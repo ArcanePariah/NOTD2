@@ -1,1 +1,1 @@
-.\MPQEditor.exe /console "MPQEditor Build.sh"
+.\MPQEditor.exe /console "Game Data Build.sh"
