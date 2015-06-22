@@ -2808,6 +2808,7 @@ bool libC50FD636_gt_HeroTest_Func (bool testConds, bool runActions) {
     UnitSetPropertyFixed(UnitLastCreated(), c_unitPropLevel, 1.0);
     UnitGroupAdd(libC50FD636_gv_marinesUnitGroup, UnitLastCreated());
     libC50FD636_gv_marines[EventPlayer()].lv_unit = UnitLastCreated();
+    TriggerAddEventUnitGainLevel(libC50FD636_gt_LevelUp, UnitRefFromUnit(UnitLastCreated()));
     return true;
 }
 

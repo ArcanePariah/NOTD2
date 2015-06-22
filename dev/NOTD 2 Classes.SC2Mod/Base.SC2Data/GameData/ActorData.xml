@@ -610,8 +610,10 @@
     <CActorModel id="ThunderballFists" parent="ModelAnimationStyleContinuous">
         <EditorCategories value=""/>
         <On Terms="Abil.ThunderballFists.SourceCastStart" Send="Create"/>
-        <On Terms="Effect.ThunderballFists.Stop" Send="Destroy Immediate"/>
+        <On Terms="Effect.ThunderballFists.Stop" Send="SetScale 0.100000 1.500000"/>
         <On Terms="ActorCreation" Send="SetOpacity 0.700000"/>
+        <On Terms="Effect.ThunderballFists.Stop" Send="TimerSet 1.550000 FistsEnd"/>
+        <On Terms="TimerExpired; TimerName FistsEnd" Send="Destroy Immediate"/>
         <HostSiteOps Ops="SOpAttachOrigin SOpMoveDownByDot75" HoldRotation="1"/>
         <Scale value="1.800000,1.800000,0.800000"/>
     </CActorModel>
