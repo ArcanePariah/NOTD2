@@ -295,6 +295,7 @@ Effect=##id##Level1,##id##Level2
 id=Aftershock
 Effect
 id=Provoke
+Actor=##id##Initial,##id##Intial2
 Effect=##id##Level1,##id##Level2,##id##Level3
 id=ThunderballFists
 Actor
@@ -524,7 +525,7 @@ path
 asset=ClassButtons\btn-class-##id##.dds
 path=Wireframes\.dds
 asset=Wireframe-##id##,Wireframe-##id##-shield01,Wireframe-##id##-shield02,Wireframe-##id##-shield03
-Actor=AntiMaterialRifleMacro,BulwarkShieldModel,CliffLocalSelection,CliffPreSelection,DeadAnimationMacro,DemolitionTorso,EditorSelection,EquippedWeapon,Flashlight,FlyerHelperSplat,FlyerShadow,GroundLocalFlashingSelection,GroundLocalSelection,GroundPreSelection,GroundShadow,GroundSyncFlashingSelection,GroundSyncSelection,HeavyMachineGun,HeavyMachineGunMacro,Helmet,LeftArm,LeftFoot,LeftForearm,LeftLeg,LeftShin,LeftShoulder,LevelUp,ModelPretargetGround,PlaceholderModel,PlacementModel,PortraitActor,RightArm,RightFoot,RightForearm,RightLeg,RightShin,RightShoulder,Snapshot,SoundEmitter,TerrainMgr,UnitDeathModel,UnitDeathModelUnscaled,UnitDeathSound,UnitDeathVoice,UnitFootprint,UnitSound,Waist,WeaponAnimationGroups,WeaponEquipHeavyMacro,WeaponModelSwapGroupsHeavy
+Actor=AntiMaterialRifleMacro,BulwarkShieldModel,CliffLocalSelection,CliffPreSelection,DeadAnimationMacro,DemolitionTorso,EditorSelection,EquippedWeapon,Flashlight,FlyerHelperSplat,FlyerShadow,GroundLocalFlashingSelection,GroundLocalSelection,GroundPreSelection,GroundShadow,GroundSyncFlashingSelection,GroundSyncSelection,HeavyMachineGun,HeavyMachineGunMacro,Helmet,LeftArm,LeftFoot,LeftForearm,LeftLeg,LeftShin,LeftShoulder,LevelUp,ModelPretargetGround,PlaceholderModel,PlacementModel,PortraitActor,RightArm,RightFoot,RightForearm,RightLeg,RightShin,RightShoulder,Snapshot,SoundEmitter,TerrainMgr,UnitDeathModel,UnitDeathModelUnscaled,UnitDeathSound,UnitDeathVoice,UnitFootprint,UnitSound,Waist,WeaponEquipHeavyMacro,WeaponHeavyAnimationGroups,WeaponModelSwapGroupsHeavy
 Model=AntiMaterialRifle,AssaultRifle,AutomaticShotgun,Axe,Baton,Chainsaw,CraftArmLeft,CraftArmRight,CraftFootLeft,CraftFootRight,CraftForearmLeft,CraftForearmRight,CraftHelmet,CraftLegLeft,CraftLegRight,CraftShinLeft,CraftShinRight,CraftShoulderLeft,CraftShoulderRight,CraftWaist,Crowbar,DemolitionCraftTorso,Flamethrower,GrenadeLauncher,Hammer,HeavyMachineGun,HeavyMarineMelee,HeavyMarineOneHanded,HeavyMarineUnderhanded,Invisible,LaserRifle,MarineFlashlight,MarksmanRifle,MediumMachineGun,Pistol,PlasmaCannon,PlasmaCutter,ProtossSmallUnitDeathLow,PumpShotgun,RailGun,RocketLauncher,StaticPortrait,SubmachineGun,TerranSmallUnitDeathLow,ZergSmallUnitDeathLow
 Sound=##id##_Ambience
 id=Engineer
@@ -1247,6 +1248,12 @@ Actor=TerrainMgr
 Sound=BoltPull
 id=WeaponMarineSwapMacro
 Actor=TerrainMgr
+id=ProvokeIntial2
+Actor=TerrainMgr
+Model
+id=ProvokeInitial
+Actor=TerrainMgr
+Model
 parent=BaseMarineActor
 default=BaseHeavyMarineActor
 Actor=LeftArm,RightArm,WeaponEquipHeavyMacro,WeaponModelSwapGroupsHeavy
@@ -2665,7 +2672,7 @@ id=ShieldBashLevel1
 Actor=ShieldBashPush,TerrainMgr
 Effect=ShieldBashSetLevel1
 id=ShieldBashLevel2
-Actor=TerrainMgr
+Actor=ShieldBashPush,TerrainMgr
 Effect=ShieldBashSetLevel2
 id=SidearmMelee
 Actor=TerrainMgr
@@ -3993,9 +4000,6 @@ Actor=TerrainMgr
 id=MortarLaunchModel
 0=Assets\Effects\Terran\SiegeTankWeaponLaunch\SiegeTankWeaponLaunch.m3
 Actor=TerrainMgr
-id=ProvokeModel
-0=Assets\Effects\Zerg\HybridWarpOut\HybridWarpOut.m3
-Actor=TerrainMgr
 id=ATMissileModel
 0=Assets\Effects\Terran\MissileTurretMissile\MissileTurretMissile.m3
 Actor=TerrainMgr
@@ -4006,6 +4010,12 @@ id=NanoWeaveBuff
 Actor=TerrainMgr
 id=Ironclad
 0=Assets\Effects\Protoss\ProtossWeatherShieldSmall\ProtossWeatherShieldSmall.m3
+Actor=TerrainMgr
+id=ProvokeIntial2
+0=Assets\Effects\Protoss\Envision\Envision.m3
+Actor=TerrainMgr
+id=ProvokeInitial
+0=Assets\Effects\Protoss\PurifyLaunch\PurifyLaunch.m3
 Actor=TerrainMgr
 
 [Sound]

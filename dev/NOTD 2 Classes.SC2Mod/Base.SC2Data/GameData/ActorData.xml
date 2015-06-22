@@ -453,6 +453,24 @@
         <HighlightTooltip value="Unit/Name/Bogus"/>
         <LifeArmorIcon value="Assets\Textures\btn-upgrade-terran-vehicleplatinglevel0.dds"/>
     </CActorUnit>
+    <CActorModel id="ProvokeInitial" parent="ModelAnimationStyleContinuous">
+        <EditorCategories value=""/>
+        <On Terms="Abil.Provoke.SourceCastStart" Send="Create"/>
+        <On Terms="Behavior.ProvokeLevel1.Off" Send="Destroy"/>
+        <On Terms="Behavior.ProvokeLevel2.Off" Send="Destroy"/>
+        <On Terms="Behavior.ProvokeLevel3.Off" Send="Destroy"/>
+        <HostSiteOps Ops="SOpMoveUpBy1"/>
+        <Scale value="3.500000"/>
+    </CActorModel>
+    <CActorModel id="ProvokeIntial2" parent="ModelAnimationStyleContinuous">
+        <On Terms="Abil.Provoke.SourceCastStart" Send="Create"/>
+        <On Terms="Behavior.ProvokeLevel1.Off" Send="Destroy"/>
+        <On Terms="Behavior.ProvokeLevel2.Off" Send="Destroy"/>
+        <On Terms="Behavior.ProvokeLevel3.Off" Send="Destroy"/>
+        <HostSiteOps Ops="SOpMoveUpBy1"/>
+        <EditorCategories value=""/>
+        <Scale value="3.500000"/>
+    </CActorModel>
     <CActorModel id="ReactiveShieldsImpact" parent="ModelAnimationStyleOneShot">
         <EditorCategories value=""/>
         <On Terms="Effect.ReactiveShieldsDamageLevel1.Start" Send="Create"/>
@@ -521,15 +539,16 @@
     <CActorRange id="SatchelRange" parent="RangeAbil" abil="SatchelCharge">
         <EditorCategories value=""/>
     </CActorRange>
-    <CActorArc id="ShieldBashPush">
+    <CActorModel id="ShieldBashPush" parent="ModelAnimationStyleOneShot">
+        <Flags index="SuppressSaveLoad" value="0"/>
         <EditorCategories value=""/>
-        <On Terms="Effect.ShieldBashLevel1.Start; At Effect" Send="Create"/>
-        <On Terms="ActorCreation" Send="AnimPlay BSD Stand"/>
-        <On Terms="AnimDone; AnimName BSD" Send="Destroy"/>
+        <On index="0" Terms="Effect.ShieldBashLevel1.Start; At Effect" Send="Create"/>
+        <On index="1" Terms="ActorCreation" Send="AnimPlay BSD Stand"/>
+        <On index="2" Terms="AnimDone; AnimName BSD" Send="Destroy"/>
+        <On Terms="Effect.ShieldBashLevel2.Start; At Effect" Send="Create"/>
         <Host Subject="_Unit"/>
         <Scale value="5.000000,5.000000,1.000000"/>
-        <Angle value="90.000000"/>
-    </CActorArc>
+    </CActorModel>
     <CActorArc id="ShieldBashRangeIndicator" parent="GuideVisualArc" abil="ShieldBash">
         <EditorCategories value=""/>
         <On index="1" Terms="ActorCreation" Send="Create ShieldBashArcGuideRegion"/>
@@ -825,10 +844,10 @@
     </CActorUnit>
     <CActorUnit id="Demolitions" parent="BaseHeavyMarineActor" unitName="Demolitions">
         <Scale value="0.900000"/>
-        <WalkAnimMoveSpeed value="1.8984"/>
         <On index="61" Terms="ActorCreation" Send="AttachModel DemolitionTorso DemolitionCraftTorso {Hardpoint 0}"/>
         <On Terms="Effect.Bulwark.Start; !ScopeContains BulwarkShieldModel" Send="Create BulwarkShieldModel"/>
         <On Terms="ActorDestruction" Target="BulwarkShieldModel" Send="Destroy"/>
+        <Macros index="5" value="WeaponHeavyAnimationGroups"/>
     </CActorUnit>
     <CActorUnit id="Drone2" parent="BaseMarineActor" unitName="Drone2">
         <HighlightTooltip value="Unit/Name/Bogus"/>
