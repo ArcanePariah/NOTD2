@@ -20,5 +20,5 @@ add "../build/NOTD 2 Weapon Item Data.SC2Mod" "./NOTD 2 Weapon Item Data.SC2Mod/
 f "../build/NOTD 2 Weapon Item Data.SC2Mod"
 add "../build/NOTD 2 Classes.SC2Mod" "./NOTD 2 Classes.SC2Mod/*" /r /c
 f "../build/NOTD 2 Classes.SC2Mod"
-add "../build/NOTD 2.SC2Map" "./NOTD 2.SC2Map/*" /r /c
-f "../build/NOTD 2 Classes.SC2Mod"
+add "../build/NOTD 2.SC2Map" "./NOTD 2.SC2Map/*" /r /auto
+f "../build/NOTD 2.SC2Map"
