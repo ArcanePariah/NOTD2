@@ -1,0 +1,1454 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<Catalog>
+    <CAbilEffectInstant default="1" id="AbilityInstantTemplate">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="##id##"/>
+    </CAbilEffectInstant>
+    <CAbilEffectInstant default="1" id="2LevelEffectInstantAbility" parent="AbilityInstantTemplate">
+        <Effect index="0" value="##id##Level1"/>
+        <Effect value="##id##Level2"/>
+        <LevelButtonTooltip value="Ability/LevelUpTooltip/##id##Level2"/>
+    </CAbilEffectInstant>
+    <CAbilEffectTarget default="1" id="AbilityWithButtonTargetTemplate">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="##id##"/>
+    </CAbilEffectTarget>
+    <CAbilEffectInstant default="1" id="3LevelEffectInstantAbility" parent="AbilityInstantTemplate">
+        <Effect index="0" value="##id##Level1"/>
+        <Effect value="##id##Level2"/>
+        <Effect value="##id##Level3"/>
+        <LevelButtonTooltip value="Ability/LevelUpTooltip/##id##Level2"/>
+        <LevelButtonTooltip value="Ability/LevelUpTooltip/##id##Level3"/>
+    </CAbilEffectInstant>
+    <CAbilEffectTarget default="1" id="2LevelEffectTargetAbility" parent="AbilityWithButtonTargetTemplate">
+        <Effect index="0" value="##id##Level1"/>
+        <Effect value="##id##Level2"/>
+        <LevelButtonTooltip value="Ability/LevelUpTooltip/##id##Level2"/>
+    </CAbilEffectTarget>
+    <CAbilInventory default="1" id="InventoryTemplate">
+        <AbilSetId value="MarineInventory"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <CmdButtonArray index="Drop" DefaultButtonFace="InventoryDrop">
+            <Flags index="ToSelection" value="1"/>
+        </CmdButtonArray>
+        <CmdButtonArray index="Move" DefaultButtonFace="InventoryMove">
+            <Flags index="ToSelection" value="1"/>
+        </CmdButtonArray>
+        <CmdButtonArray index="Take" DefaultButtonFace="InventoryTake">
+            <Flags index="ToSelection" value="1"/>
+        </CmdButtonArray>
+        <CmdButtonArray index="ItemInstant" DefaultButtonFace="InventoryUseInstant">
+            <Flags index="ToSelection" value="1"/>
+        </CmdButtonArray>
+        <CmdButtonArray index="ItemTarget" DefaultButtonFace="InventoryUseTarget">
+            <Flags index="ToSelection" value="1"/>
+        </CmdButtonArray>
+        <CmdButtonArray index="ItemCancel" DefaultButtonFace="Cancel"/>
+        <Range value="1"/>
+        <MaxDropRange value="1"/>
+        <InfoArray Alignment="Left" Container="MarineLoadout" EmptyFace="EmptyInventorySlot"/>
+        <InfoArray Container="MarineEquipmentBag" EmptyFace="EmptyInventorySlot"/>
+    </CAbilInventory>
+    <CAbilLearn default="1" id="LearnTemplate">
+        <Name value="Abil/Name/LearnTemplate"/>
+        <AbilSetId value="MarineLearn"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <InfoArray index="Learn1">
+            <Charge Link="Abil/LearnTemplate"/>
+            <Cooldown Link="Abil/LearnTemplate"/>
+        </InfoArray>
+        <InfoArray index="Learn2">
+            <Charge Link="Abil/LearnTemplate"/>
+            <Cooldown Link="Abil/LearnTemplate"/>
+        </InfoArray>
+        <InfoArray index="Learn3">
+            <Charge Link="Abil/LearnTemplate"/>
+            <Cooldown Link="Abil/LearnTemplate"/>
+        </InfoArray>
+        <InfoArray index="Learn4">
+            <Charge Link="Abil/LearnTemplate"/>
+            <Cooldown Link="Abil/LearnTemplate"/>
+        </InfoArray>
+        <InfoArray index="Learn5">
+            <Charge Link="Abil/LearnTemplate"/>
+            <Cooldown Link="Abil/LearnTemplate"/>
+        </InfoArray>
+        <InfoArray index="Learn6">
+            <Charge Link="Abil/LearnTemplate"/>
+            <Cooldown Link="Abil/LearnTemplate"/>
+        </InfoArray>
+        <InfoArray index="Learn7">
+            <Charge Link="Abil/LearnTemplate"/>
+            <Cooldown Link="Abil/LearnTemplate"/>
+        </InfoArray>
+        <InfoArray index="Learn8">
+            <Charge Link="Abil/LearnTemplate"/>
+            <Cooldown Link="Abil/LearnTemplate"/>
+        </InfoArray>
+        <InfoArray index="Learn9">
+            <Charge Link="Abil/LearnTemplate"/>
+            <Cooldown Link="Abil/LearnTemplate"/>
+        </InfoArray>
+        <InfoArray index="Learn10">
+            <Charge Link="Abil/LearnTemplate"/>
+            <Cooldown Link="Abil/LearnTemplate"/>
+        </InfoArray>
+        <InfoArray index="Learn11">
+            <Charge Link="Abil/LearnTemplate"/>
+            <Cooldown Link="Abil/LearnTemplate"/>
+        </InfoArray>
+        <InfoArray index="Learn12">
+            <Charge Link="Abil/LearnTemplate"/>
+            <Cooldown Link="Abil/LearnTemplate"/>
+        </InfoArray>
+        <InfoArray index="Learn13">
+            <Charge Link="Abil/LearnTemplate"/>
+            <Cooldown Link="Abil/LearnTemplate"/>
+        </InfoArray>
+        <InfoArray index="Learn14">
+            <Charge Link="Abil/LearnTemplate"/>
+            <Cooldown Link="Abil/LearnTemplate"/>
+        </InfoArray>
+        <InfoArray index="Learn15">
+            <Charge Link="Abil/LearnTemplate"/>
+            <Cooldown Link="Abil/LearnTemplate"/>
+        </InfoArray>
+        <InfoArray index="Learn16">
+            <Charge Link="Abil/LearnTemplate"/>
+            <Cooldown Link="Abil/LearnTemplate"/>
+        </InfoArray>
+        <InfoArray index="Learn17">
+            <Charge Link="Abil/LearnTemplate"/>
+            <Cooldown Link="Abil/LearnTemplate"/>
+        </InfoArray>
+        <InfoArray index="Learn18">
+            <Charge Link="Abil/LearnTemplate"/>
+            <Cooldown Link="Abil/LearnTemplate"/>
+        </InfoArray>
+        <InfoArray index="Learn19">
+            <Charge Link="Abil/LearnTemplate"/>
+            <Cooldown Link="Abil/LearnTemplate"/>
+        </InfoArray>
+        <InfoArray index="Learn20">
+            <Charge Link="Abil/LearnTemplate"/>
+            <Cooldown Link="Abil/LearnTemplate"/>
+        </InfoArray>
+        <Flags index="Transient" value="1"/>
+        <Points value="500"/>
+    </CAbilLearn>
+    <CAbilInventory default="1" id="PetInventoryTemplate">
+        <Name value="Abil/Name/PetInventoryTemplate"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <CmdButtonArray index="ItemInstant" State="Restricted"/>
+        <CmdButtonArray index="ItemTarget" State="Restricted"/>
+        <Range value="1"/>
+        <MaxDropRange value="1"/>
+        <InfoArray Alignment="Left">
+            <Classes value="Feet"/>
+        </InfoArray>
+        <InfoArray Container="PetDefaultInventory" EmptyFace="EmptyInventorySlot"/>
+    </CAbilInventory>
+    <CAbilEffectTarget default="1" id="3LevelEffectTargetAbility" parent="AbilityWithButtonTargetTemplate">
+        <Effect index="0" value="##id##Level1"/>
+        <Effect value="##id##Level2"/>
+        <Effect value="##id##Level3"/>
+        <LevelButtonTooltip value="Ability/LevelUpTooltip/##id##Level2"/>
+        <LevelButtonTooltip value="Ability/LevelUpTooltip/##id##Level3"/>
+    </CAbilEffectTarget>
+    <CAbilEffectInstant id="AdvancedTargeting" parent="2LevelEffectInstantAbility">
+        <Flags index="Transient" value="1"/>
+        <Cost>
+            <Vital index="Energy" value="15"/>
+            <Cooldown TimeUse="20"/>
+        </Cost>
+    </CAbilEffectInstant>
+    <CAbilBehavior id="AmmoFeed">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <CmdButtonArray index="On" DefaultButtonFace="AmmoFeed"/>
+        <BehaviorArray value="AmmoFeedLevel1"/>
+        <BehaviorArray value="AmmoFeedLevel2"/>
+    </CAbilBehavior>
+    <CAbilEffectInstant id="Aftershock" parent="2LevelEffectInstantAbility">
+        <Effect index="0" value="Aftershock"/>
+        <Effect index="1" value="Aftershock"/>
+        <Cost>
+            <Vital index="Energy" value="10"/>
+            <Cooldown TimeUse="5"/>
+        </Cost>
+        <Cost>
+            <Vital index="Energy" value="10"/>
+            <Cooldown TimeUse="3"/>
+        </Cost>
+        <CmdButtonArray index="Execute" Requirements="Aftershock"/>
+    </CAbilEffectInstant>
+    <CAbilEffectTarget id="Antivenom" parent="AbilityWithButtonTargetTemplate">
+        <Effect value="Antivenom"/>
+        <Effect value="Antivenom"/>
+        <Cost>
+            <Vital index="Energy" value="10"/>
+            <Cooldown TimeUse="15"/>
+        </Cost>
+        <Cost>
+            <Vital index="Energy" value="10"/>
+            <Cooldown TimeUse="10"/>
+        </Cost>
+        <Cost>
+            <Vital index="Energy" value="10"/>
+            <Cooldown TimeUse="5"/>
+        </Cost>
+        <Range value="6"/>
+    </CAbilEffectTarget>
+    <CAbilEffectTarget id="ArtilleryBeacon" parent="AbilityWithButtonTargetTemplate">
+        <Cost>
+            <Vital index="Energy" value="60"/>
+            <Cooldown TimeUse="60"/>
+        </Cost>
+        <Range value="1.5"/>
+    </CAbilEffectTarget>
+    <CAbilEffectTarget id="Bulwark" parent="AbilityWithButtonTargetTemplate">
+        <Range value="500"/>
+        <Arc value="360"/>
+    </CAbilEffectTarget>
+    <CAbilArmMagazine id="BulwarkHidden">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Leash value="2"/>
+        <InfoArray index="Ammo1" Distance="2" Manage="Recall" Unit="BulwarkShield">
+            <Charge Link="Abil/##id##"/>
+            <Cooldown Link="Abil/##id##"/>
+            <Button DefaultButtonFace="Bulwark"/>
+            <Flags index="External" value="1"/>
+        </InfoArray>
+        <ExternalAngle value="90"/>
+        <MaxCount value="1"/>
+    </CAbilArmMagazine>
+    <CAbilEffectTarget id="ChainExplosive" parent="AbilityWithButtonTargetTemplate">
+        <Cost>
+            <Vital index="Energy" value="20"/>
+            <Cooldown TimeUse="10"/>
+        </Cost>
+        <Effect index="0" value="ChainExplosiveLevel1"/>
+        <Effect value="ChainExplosiveLevel2"/>
+        <Placeholder value="ChainExplosiveLevel1"/>
+        <TargetFilters value="Visible;Player,Ally,Neutral,Enemy"/>
+        <Range value="6"/>
+        <PlaceUnit value="ChainExplosiveLevel1"/>
+    </CAbilEffectTarget>
+    <CAbilEffectTarget id="ChargeNOTD" parent="AbilityWithButtonTargetTemplate">
+        <Effect index="0" value="ChargeSelfSetLevel1"/>
+        <Effect value="ChargeSelfSetLevel12"/>
+        <Range value="10"/>
+        <Cost>
+            <Vital index="Energy" value="20"/>
+            <Cooldown TimeUse="5"/>
+        </Cost>
+        <LevelButtonTooltip value="Button/Tooltip/ChargeNOTDLevel2"/>
+    </CAbilEffectTarget>
+    <CAbilArmMagazine id="CloseAirSupport">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Launch value="ReleaseAtTarget"/>
+        <Leash value="1"/>
+        <InfoArray index="Ammo1" Manage="Recall" Unit="A10XGunship">
+            <Vital index="Energy" value="80"/>
+            <Charge Link="CloseAirSupport"/>
+            <Cooldown Link="CloseAirSupport" TimeUse="180"/>
+            <Button DefaultButtonFace="CloseAirSupport"/>
+            <Flags index="External" value="1"/>
+        </InfoArray>
+        <MaxCount value="1"/>
+        <EffectArray index="Create" value="MercAirDrop"/>
+    </CAbilArmMagazine>
+    <CAbilBehavior id="CollateralDamage">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <BehaviorArray value="GenericBehavior"/>
+        <BehaviorArray value="GenericBehavior"/>
+        <BehaviorArray value="GenericBehavior"/>
+    </CAbilBehavior>
+    <CAbilInventory id="CommandoInventory" parent="InventoryTemplate"/>
+    <CAbilLearn id="CommandoLearn" parent="LearnTemplate">
+        <Name value="Abil/Name/CommandoLearn"/>
+    </CAbilLearn>
+    <CAbilInventory id="DemolitionsInventory" parent="InventoryTemplate"/>
+    <CAbilLearn id="DemolitionsLearn" parent="LearnTemplate">
+        <Name value="Abil/Name/DemolitionsLearn"/>
+        <InfoArray index="Learn1" Abil="MD5Mine">
+            <Button DefaultButtonFace="MD5Mine"/>
+        </InfoArray>
+        <InfoArray index="Learn2" Abil="CollateralDamage">
+            <Button DefaultButtonFace="CollateralDamage"/>
+        </InfoArray>
+        <InfoArray index="Learn3" Abil="ChainExplosive"/>
+        <InfoArray index="Learn4" Abil="Stockpile">
+            <Button DefaultButtonFace="Stockpile"/>
+        </InfoArray>
+        <InfoArray index="Learn5" Abil="SatchelCharge"/>
+        <InfoArray index="Learn6" Abil="LittleBuster"/>
+        <InfoArray index="Learn7" Abil="ReactiveShields"/>
+        <InfoArray index="Learn8" Abil="Provoke"/>
+        <InfoArray index="Learn9" Abil="ShieldBash"/>
+        <InfoArray index="Learn10" Abil="Sadist"/>
+        <InfoArray index="Learn11" Abil="ThunderballFists"/>
+        <InfoArray index="Learn12" Abil="Bulwark">
+            <Button DefaultButtonFace="Bulwark"/>
+        </InfoArray>
+    </CAbilLearn>
+    <CAbilEffectInstant id="DeployAntiMaterialRifle" parent="AbilityInstantTemplate">
+        <CastIntroTime value="3"/>
+        <ShowProgressArray index="Cast" value="1"/>
+        <UninterruptibleArray index="Cast" value="1"/>
+        <ProgressButtonArray index="Cast" value="DeployAntiMaterialRifle"/>
+        <CmdButtonArray index="Execute" Requirements="AntiMaterialRifleDeploy">
+            <Flags index="ToSelection" value="1"/>
+        </CmdButtonArray>
+    </CAbilEffectInstant>
+    <CAbilEffectInstant id="Detonate" parent="AbilityInstantTemplate">
+        <CmdButtonArray index="Execute" Requirements="Detonate"/>
+    </CAbilEffectInstant>
+    <CAbilInventory id="EngineerInventory" parent="InventoryTemplate"/>
+    <CAbilLearn id="EngineerLearn" parent="LearnTemplate">
+        <Name value="Abil/Name/EngineerLearn"/>
+    </CAbilLearn>
+    <CAbilEffectTarget id="Execute" parent="AbilityWithButtonTargetTemplate">
+        <Effect index="0" value="ExecuteSwitchLevel1"/>
+        <Effect value="ExecuteSwitchLevel2"/>
+        <Cost>
+            <Vital index="Energy" value="20"/>
+            <Cooldown TimeUse="20"/>
+        </Cost>
+        <Cost>
+            <Vital index="Energy" value="20"/>
+            <Cooldown TimeUse="10"/>
+        </Cost>
+        <Range value="1.25"/>
+        <LevelButtonTooltip value="Button/Tooltip/ExecuteLevel2"/>
+        <TargetFilters value="-;Player,Ally,Neutral"/>
+    </CAbilEffectTarget>
+    <CAbilInventory id="FlamethrowerInventory" parent="InventoryTemplate"/>
+    <CAbilEffectInstant id="LightningField">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Cost>
+            <Vital index="Energy" value="5"/>
+            <Charge TimeUse="0.5"/>
+            <Cooldown TimeUse="0.5"/>
+        </Cost>
+        <CmdButtonArray index="Execute" DefaultButtonFace="LightningField"/>
+    </CAbilEffectInstant>
+    <CAbilEffectInstant id="PredatorCloak">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Cost>
+            <Vital index="Energy" value="15"/>
+            <Charge TimeUse="15"/>
+        </Cost>
+        <CmdButtonArray index="Execute" DefaultButtonFace="PredatorCloak"/>
+    </CAbilEffectInstant>
+    <CAbilInventory id="PredatorPetInventory" parent="PetInventoryTemplate">
+        <Name value="Abil/Name/PredatorPetInventory"/>
+    </CAbilInventory>
+    <CAbilEffectInstant id="Provoke" parent="3LevelEffectInstantAbility">
+        <Cost>
+            <Vital index="Energy" value="10"/>
+            <Cooldown TimeUse="10"/>
+        </Cost>
+    </CAbilEffectInstant>
+    <CAbilLearn id="FlamethrowerLearn" parent="LearnTemplate">
+        <Name value="Abil/Name/FlamethrowerLearn"/>
+    </CAbilLearn>
+    <CAbilEffectTarget id="FlareGunRecon" parent="3LevelEffectTargetAbility">
+        <Flags index="RequireTargetVision" value="0"/>
+        <Cost>
+            <Vital index="Energy" value="10"/>
+            <Cooldown TimeUse="5"/>
+        </Cost>
+        <Range value="20"/>
+        <AINotifyEffect value="FlareGun"/>
+    </CAbilEffectTarget>
+    <CAbilInventory id="ForwardObserverInventory" parent="InventoryTemplate"/>
+    <CAbilLearn id="ForwardObserverLearn" parent="LearnTemplate">
+        <Name value="Abil/Name/ForwardObserverLearn"/>
+    </CAbilLearn>
+    <CAbilEffectTarget id="GroundIlluminationFlare" parent="3LevelEffectTargetAbility">
+        <Cost>
+            <Vital index="Energy" value="30"/>
+            <Cooldown TimeUse="45"/>
+        </Cost>
+        <Range value="9"/>
+    </CAbilEffectTarget>
+    <CAbilEffectTarget id="Heal" parent="3LevelEffectTargetAbility">
+        <TargetFilters value="Biological;Neutral,Enemy,Item"/>
+        <Range value="3"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="HealNOTD"/>
+    </CAbilEffectTarget>
+    <CAbilEffectTarget id="LaserDesignator" parent="3LevelEffectTargetAbility">
+        <Cost>
+            <Vital index="Energy" value="10"/>
+            <Cooldown TimeUse="15"/>
+        </Cost>
+        <TargetFilters value="-;Player,Ally"/>
+        <Range value="20"/>
+    </CAbilEffectTarget>
+    <CAbilEffectTarget id="LittleBuster" parent="AbilityWithButtonTargetTemplate">
+        <Flags index="RequireTargetVision" value="0"/>
+        <Cost>
+            <Vital index="Energy" value="30"/>
+            <Cooldown TimeUse="90"/>
+        </Cost>
+        <RefundFraction Cooldown="1">
+            <Vital index="Energy" value="1"/>
+        </RefundFraction>
+        <Range value="20"/>
+        <CastIntroTime value="3"/>
+        <ShowProgressArray index="Cast" value="1"/>
+        <ProgressButtonArray index="Cast" value="LittleBuster"/>
+    </CAbilEffectTarget>
+    <CAbilEffectTarget id="MD5Mine" parent="AbilityWithButtonTargetTemplate">
+        <Effect value="MD5Mine"/>
+        <Effect value="MD5Mine"/>
+        <Cost>
+            <Vital index="Energy" value="15"/>
+            <Cooldown TimeUse="10"/>
+        </Cost>
+        <TargetFilters value="Visible;Player,Ally,Neutral,Enemy"/>
+        <Range value="6"/>
+        <Placeholder value="MD5Mine"/>
+        <PlaceUnit value="MD5Mine"/>
+    </CAbilEffectTarget>
+    <CAbilInventory id="MarksmanInventory" parent="InventoryTemplate"/>
+    <CAbilLearn id="MarksmanLearn" parent="LearnTemplate">
+        <Name value="Abil/Name/MarksmanLearn"/>
+    </CAbilLearn>
+    <CAbilEffectTarget id="MedicalAssistance" parent="AbilityWithButtonTargetTemplate">
+        <TargetFilters value="Biological;Neutral,Enemy"/>
+        <Range value="0.5"/>
+        <CmdButtonArray index="Execute">
+            <Flags index="ToSelection" value="1"/>
+        </CmdButtonArray>
+    </CAbilEffectTarget>
+    <CAbilEffectTarget id="NanoHaste" parent="3LevelEffectTargetAbility">
+        <Cost>
+            <Vital index="Energy" value="10"/>
+            <Cooldown TimeUse="60"/>
+        </Cost>
+        <Cost>
+            <Vital index="Energy" value="10"/>
+            <Cooldown TimeUse="50"/>
+        </Cost>
+        <Cost>
+            <Vital index="Energy" value="10"/>
+            <Cooldown TimeUse="40"/>
+        </Cost>
+        <TargetFilters value="-;Neutral,Enemy"/>
+        <Range value="6"/>
+    </CAbilEffectTarget>
+    <CAbilEffectTarget id="NanoPlague" parent="AbilityWithButtonTargetTemplate">
+        <Cost>
+            <Vital index="Energy" value="60"/>
+            <Cooldown TimeUse="120"/>
+        </Cost>
+        <Range value="15"/>
+        <TargetFilters value="-;Self,Player,Ally,Neutral"/>
+    </CAbilEffectTarget>
+    <CAbilEffectTarget id="NanoSear" parent="AbilityWithButtonTargetTemplate">
+        <Cost>
+            <Vital index="Energy" value="40"/>
+            <Cooldown TimeUse="90"/>
+        </Cost>
+        <Range value="15"/>
+    </CAbilEffectTarget>
+    <CAbilEffectTarget id="NanoShield" parent="AbilityWithButtonTargetTemplate">
+        <Flags index="BestUnit" value="0"/>
+        <Cost>
+            <Vital index="Energy" value="55"/>
+            <Cooldown TimeUse="90"/>
+        </Cost>
+        <Range value="10"/>
+    </CAbilEffectTarget>
+    <CAbilEffectTarget id="NanoShock" parent="3LevelEffectTargetAbility">
+        <Cost>
+            <Vital index="Energy" value="20"/>
+            <Cooldown TimeUse="8"/>
+        </Cost>
+        <Range value="12"/>
+        <CursorEffect value="NanoShockLevel1"/>
+        <CursorEffect value="NanoShockLevel2"/>
+        <CursorEffect value="NanoShockLevel3"/>
+    </CAbilEffectTarget>
+    <CAbilEffectTarget id="NanoStrength" parent="AbilityWithButtonTargetTemplate">
+        <Cost>
+            <Vital index="Energy" value="25"/>
+            <Cooldown TimeUse="60"/>
+        </Cost>
+        <Range value="6"/>
+    </CAbilEffectTarget>
+    <CAbilEffectTarget id="NanoWeave" parent="2LevelEffectTargetAbility">
+        <Cost>
+            <Vital index="Energy" value="40"/>
+            <Cooldown TimeUse="15"/>
+        </Cost>
+        <TargetFilters value="Biological;Neutral,Enemy,Item"/>
+        <Range value="6"/>
+    </CAbilEffectTarget>
+    <CAbilInventory id="PathfinderInventory" parent="InventoryTemplate"/>
+    <CAbilLearn id="PathfinderLearn" parent="LearnTemplate">
+        <Name value="Abil/Name/PathfinderLearn"/>
+    </CAbilLearn>
+    <CAbilInventory id="PsiOpsInventory" parent="InventoryTemplate"/>
+    <CAbilLearn id="PsiOpsLearn" parent="LearnTemplate">
+        <Name value="Abil/Name/PsiOpsLearn"/>
+    </CAbilLearn>
+    <CAbilBehavior id="ReactiveShields">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <BehaviorArray value="GenericBehavior"/>
+        <BehaviorArray value="GenericBehavior"/>
+        <BehaviorArray value="GenericBehavior"/>
+    </CAbilBehavior>
+    <CAbilEffectInstant id="RemoteTrigger" parent="AbilityInstantTemplate"/>
+    <CAbilEffectInstant id="DetonateHeroicHidden">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Effect index="0" value="RemoteTrigger"/>
+        <Flags index="AutoCast" value="1"/>
+        <Flags index="AutoCastOn" value="1"/>
+        <AutoCastFilters value="Visible;-"/>
+        <AutoCastValidatorArray value="MassreactiveTriggerArmed"/>
+        <AutoCastValidatorArray value="HeroicEnemyNear"/>
+        <CmdButtonArray index="Execute">
+            <Flags index="Hidden" value="1"/>
+        </CmdButtonArray>
+    </CAbilEffectInstant>
+    <CAbilEffectInstant id="DetonateMassiveHidden">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Effect index="0" value="RemoteTrigger"/>
+        <Flags index="AutoCast" value="1"/>
+        <Flags index="AutoCastOn" value="1"/>
+        <AutoCastFilters value="Visible;-"/>
+        <AutoCastValidatorArray value="MassreactiveTriggerArmed"/>
+        <AutoCastValidatorArray value="MassiveEnemyNear"/>
+        <CmdButtonArray index="Execute">
+            <Flags index="Hidden" value="1"/>
+        </CmdButtonArray>
+    </CAbilEffectInstant>
+    <CAbilEffectInstant id="DetonateHidden">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Effect index="0" value="RemoteTrigger"/>
+        <Flags index="AutoCast" value="1"/>
+        <Flags index="AutoCastOn" value="1"/>
+        <AutoCastFilters value="Visible;-"/>
+        <AutoCastValidatorArray value="ProxmityTriggerArmed"/>
+        <AutoCastValidatorArray value="EnemyNear"/>
+        <CmdButtonArray index="Execute">
+            <Flags index="Hidden" value="1"/>
+        </CmdButtonArray>
+    </CAbilEffectInstant>
+    <CAbilEffectInstant id="EscapeSet" parent="3LevelEffectInstantAbility">
+        <Cost>
+            <Vital index="Energy" value="40"/>
+            <Charge Link="Abil/Escape"/>
+            <Cooldown Link="Abil/Escape" TimeUse="20"/>
+        </Cost>
+        <CmdButtonArray index="Execute" DefaultButtonFace="Escape" Requirements="StealthMatrixNotActive"/>
+    </CAbilEffectInstant>
+    <CAbilEffectInstant id="KineticPayload" parent="AbilityInstantTemplate">
+        <AINotifyEffect value="KineticPayloadDummyPersistent"/>
+        <CmdButtonArray index="Execute" Requirements="KineticBombardmentBeaconSet"/>
+    </CAbilEffectInstant>
+    <CAbilBehavior id="MassreactiveTrigger">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <CmdButtonArray index="On" DefaultButtonFace="MassreactiveTrigger" Requirements="MassreactiveTriggerAvailable"/>
+        <Flags index="Toggle" value="1"/>
+        <BehaviorArray value="MassreactiveTrigger"/>
+    </CAbilBehavior>
+    <CAbilBehavior id="MotionSensor">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <BehaviorArray value="MotionSensorLevel1"/>
+        <BehaviorArray value="MotionSensorLevel2"/>
+    </CAbilBehavior>
+    <CAbilEffectInstant id="PackUpAntiMaterialRifle" parent="AbilityInstantTemplate">
+        <CmdButtonArray index="Execute" Requirements="AntiMaterialRifleDeploy2">
+            <Flags index="ToSelection" value="1"/>
+        </CmdButtonArray>
+    </CAbilEffectInstant>
+    <CAbilInventory id="AssaultInventory" parent="InventoryTemplate">
+        <InfoArray Alignment="Left" Container="AssaultGeminiProtocolLoadout" EmptyFace="EmptyInventorySlot"/>
+    </CAbilInventory>
+    <CAbilLearn id="AssaultLearn" parent="LearnTemplate">
+        <Name value="Abil/Name/AssaultLearn"/>
+        <InfoArray index="Learn1" Abil="ConcentratedFire">
+            <Button DefaultButtonFace="ConcentratedFire"/>
+        </InfoArray>
+        <InfoArray index="Learn2" Abil="AssaultCriticalStrike">
+            <Button DefaultButtonFace="CriticalStrike"/>
+        </InfoArray>
+        <InfoArray index="Learn3" Abil="AmmoFeed">
+            <Button DefaultButtonFace="AmmoFeed"/>
+        </InfoArray>
+        <InfoArray index="Learn4" Abil="AdvancedTargeting">
+            <Button DefaultButtonFace="AdvancedTargeting"/>
+        </InfoArray>
+        <InfoArray index="Learn5" Abil="LockdownNOTD">
+            <Button DefaultButtonFace="LockdownNOTD"/>
+        </InfoArray>
+        <InfoArray index="Learn6" Abil="GeminiProtocol">
+            <Button DefaultButtonFace="GeminiProtocol"/>
+        </InfoArray>
+        <InfoArray index="Learn7" Abil="TauntNOTD">
+            <Button DefaultButtonFace="TauntNOTD"/>
+        </InfoArray>
+        <InfoArray index="Learn8" Abil="DefensivePlating">
+            <Button DefaultButtonFace="DefensivePlating"/>
+        </InfoArray>
+        <InfoArray index="Learn9" Abil="ChargeNOTD">
+            <Button DefaultButtonFace="ChargeNOTD"/>
+        </InfoArray>
+        <InfoArray index="Learn10" Abil="Cohesion">
+            <Button DefaultButtonFace="Cohesion"/>
+        </InfoArray>
+        <InfoArray index="Learn11" Abil="UnstoppableForce">
+            <Button DefaultButtonFace="UnstoppableForce"/>
+        </InfoArray>
+        <InfoArray index="Learn12" Abil="ImmovableObject">
+            <Button DefaultButtonFace="ImmovableObject"/>
+        </InfoArray>
+    </CAbilLearn>
+    <CAbilEffectInstant id="Bloodlust">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Cost>
+            <Vital index="Energy" value="25"/>
+            <Cooldown TimeUse="15"/>
+        </Cost>
+        <CmdButtonArray index="Execute" DefaultButtonFace="Bloodlust"/>
+        <Flags index="Transient" value="1"/>
+    </CAbilEffectInstant>
+    <CAbilEffectInstant id="CancelHealing" parent="AbilityInstantTemplate">
+        <Flags index="Transient" value="1"/>
+        <CmdButtonArray index="Execute" Requirements="Healing"/>
+    </CAbilEffectInstant>
+    <CAbilBehavior id="Cohesion">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <BehaviorArray value="CohesionLevel1"/>
+        <BehaviorArray value="CohesionLevel2"/>
+    </CAbilBehavior>
+    <CAbilEffectInstant id="ConcentratedFire" parent="3LevelEffectInstantAbility">
+        <Flags index="AllowMovement" value="1"/>
+        <Flags index="Transient" value="1"/>
+        <Flags index="TransientPreferred" value="1"/>
+        <Cost>
+            <Vital index="Energy" value="10"/>
+            <Cooldown TimeUse="5"/>
+        </Cost>
+    </CAbilEffectInstant>
+    <CAbilEffectInstant id="CripplingFire">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Effect index="0" value="GenericDummyEffect"/>
+        <Effect value="GenericDummyEffect"/>
+        <Effect value="GenericDummyEffect"/>
+    </CAbilEffectInstant>
+    <CAbilBehavior id="CriticalStrike">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <CmdButtonArray index="On" DefaultButtonFace="CriticalStrike"/>
+        <BehaviorArray value="CriticalStrikeLevel1"/>
+        <BehaviorArray value="CriticalStrikeLevel2"/>
+        <BehaviorArray value="CriticalStrikeLevel3"/>
+        <LevelButtonOnTooltip value="LevelUp/Tooltip/CriticalStrikeLevel2"/>
+        <LevelButtonOnTooltip value="LevelUp/Tooltip/CriticalStrikeLevel3"/>
+    </CAbilBehavior>
+    <CAbilBehavior id="AssaultCriticalStrike">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <CmdButtonArray index="On" DefaultButtonFace="CriticalStrike"/>
+        <BehaviorArray value="AssaultCriticalStrikeLevel1"/>
+        <BehaviorArray value="AssaultCriticalStrikeLevel2"/>
+        <BehaviorArray value="AssaultCriticalStrikeLevel3"/>
+        <LevelButtonOnTooltip value="LevelUp/Tooltip/AssaultCriticalStrikeLevel2"/>
+        <LevelButtonOnTooltip value="LevelUp/Tooltip/AssaultCriticalStrikeLevel3"/>
+    </CAbilBehavior>
+    <CAbilBehavior id="DefensivePlating">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <BehaviorArray value="DefensivePlatingLevel1"/>
+        <BehaviorArray value="DefensivePlatingLevel2"/>
+        <BehaviorArray value="DefensivePlatingLevel3"/>
+    </CAbilBehavior>
+    <CAbilBehavior id="FocusFire">
+        <Alignment value="Positive"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <CmdButtonArray index="On" DefaultButtonFace="FocusFire">
+            <Flags index="ShowInGlossary" value="0"/>
+        </CmdButtonArray>
+        <CmdButtonArray index="Off" DefaultButtonFace="FocusFire"/>
+        <Flags index="Toggle" value="1"/>
+        <Flags index="Transient" value="1"/>
+        <BehaviorArray value="FocusFire"/>
+    </CAbilBehavior>
+    <CAbilEffectInstant id="FireUp">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Effect index="0" value="GenericDummyEffect"/>
+        <Effect value="GenericDummyEffect"/>
+        <Effect value="GenericDummyEffect"/>
+        <CmdButtonArray index="Execute">
+            <Flags index="ShowInGlossary" value="0"/>
+        </CmdButtonArray>
+    </CAbilEffectInstant>
+    <CAbilEffectTarget id="FragmentationGrenade" parent="3LevelEffectTargetAbility">
+        <Cost>
+            <Vital index="Energy" value="25"/>
+            <Charge Link="Grenade"/>
+            <Cooldown Location="Unit" TimeUse="6"/>
+        </Cost>
+        <TargetFilters value="-;Self,Player,Ally,Neutral,Item,Invulnerable"/>
+        <Range value="10"/>
+        <Range value="10"/>
+        <Range value="15"/>
+        <CursorEffect value="FragmentationGrenadeDamageLevel1"/>
+        <CursorEffect value="FragmentationGrenadeDamageLevel2"/>
+        <CursorEffect value="FragmentationGrenadeDamageLevel3"/>
+        <CmdButtonArray index="Execute">
+            <Flags index="ShowInGlossary" value="0"/>
+        </CmdButtonArray>
+    </CAbilEffectTarget>
+    <CAbilEffectInstant id="GeminiProtocol" parent="AbilityInstantTemplate">
+        <Effect index="0" value="GenericDummyEffect"/>
+    </CAbilEffectInstant>
+    <CAbilBehavior id="Grenadier">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <CmdButtonArray index="On" DefaultButtonFace="Grenadier"/>
+        <BehaviorArray value="Grenadier"/>
+    </CAbilBehavior>
+    <CAbilEffectInstant id="DeployHeavyMachineGun" parent="AbilityInstantTemplate">
+        <CastIntroTime value="3"/>
+        <ShowProgressArray index="Cast" value="1"/>
+        <UninterruptibleArray index="Cast" value="1"/>
+        <ProgressButtonArray index="Cast" value="DeployHeavyMachineGun"/>
+        <CmdButtonArray index="Execute" Requirements="HeavyMachineGunDeploy">
+            <Flags index="ToSelection" value="1"/>
+        </CmdButtonArray>
+    </CAbilEffectInstant>
+    <CAbilEffectInstant id="PackUpHeavyMachineGun" parent="AbilityInstantTemplate">
+        <CastIntroTime value="2"/>
+        <UninterruptibleArray index="Cast" value="1"/>
+        <ProgressButtonArray index="Cast" value="PackUpHeavyMachineGun"/>
+        <ShowProgressArray index="Cast" value="1"/>
+        <CmdButtonArray index="Execute" Requirements="HeavyMachineGunPackUp">
+            <Flags index="ToSelection" value="1"/>
+        </CmdButtonArray>
+    </CAbilEffectInstant>
+    <CAbilBehavior id="ImmovableObject">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <CmdButtonArray index="On" DefaultButtonFace="ImmovableObject"/>
+        <BehaviorArray value="ImmovableObject"/>
+    </CAbilBehavior>
+    <CAbilEffectInstant id="IntolerableCruelty" parent="AbilityInstantTemplate">
+        <Effect index="0" value="GenericDummyEffect"/>
+        <Effect value="GenericDummyEffect"/>
+    </CAbilEffectInstant>
+    <CAbilEffectInstant id="K9">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Cost>
+            <Vital index="Energy" value="75"/>
+            <Cooldown TimeUse="300"/>
+        </Cost>
+        <ProducedUnitArray value="K9"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="K9Unit"/>
+    </CAbilEffectInstant>
+    <CAbilInventory id="K9Inventory">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <InfoArray/>
+    </CAbilInventory>
+    <CAbilEffectInstant id="K9Sprint">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Effect index="0" value="Sprint"/>
+        <Cost>
+            <Cooldown TimeUse="20"/>
+        </Cost>
+        <CmdButtonArray index="Execute" DefaultButtonFace="Sprint"/>
+    </CAbilEffectInstant>
+    <CAbilBehavior id="K9Turret">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <CmdButtonArray index="On" DefaultButtonFace="K9TurretDeploy"/>
+        <CmdButtonArray index="Off" DefaultButtonFace="K9TurretPackUp"/>
+        <Flags index="Toggle" value="1"/>
+        <BehaviorArray value="K9Turret"/>
+    </CAbilBehavior>
+    <CAbilEffectInstant id="LockdownNOTD" parent="AbilityInstantTemplate">
+        <Cost>
+            <Vital index="Energy" value="10"/>
+            <Charge Link="Abil/Lockdown"/>
+            <Cooldown Link="Abil/Lockdown" TimeUse="5"/>
+        </Cost>
+        <CastIntroTime value="1"/>
+        <ShowProgressArray index="Cast" value="1"/>
+        <ProgressButtonArray index="Cast" value="LockdownNOTD"/>
+        <CmdButtonArray index="Execute" Requirements="WeaponFunctionLockdown"/>
+        <UninterruptibleArray index="Cast" value="1"/>
+    </CAbilEffectInstant>
+    <CAbilEffectInstant id="LockdownDisable" parent="AbilityInstantTemplate">
+        <CastIntroTime value="1"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="LockdownNOTD2" Requirements="Lockdown"/>
+        <ShowProgressArray index="Cast" value="1"/>
+        <ProgressButtonArray index="Cast" value="LockdownNOTD"/>
+        <UninterruptibleArray index="Cast" value="1"/>
+    </CAbilEffectInstant>
+    <CAbilEffectInstant id="ManualReloadAssault">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Effect index="0" value="ManualReloadChoice2"/>
+        <Flags index="Transient" value="1"/>
+        <Flags index="TransientPreferred" value="1"/>
+        <Cost>
+            <Charge>
+                <CountMax value="500"/>
+                <CountStart value="40"/>
+                <CountUse value="1"/>
+                <Link value="Magazine"/>
+                <Location value="Player"/>
+            </Charge>
+            <Cooldown Link="Abil/AssaultManualReload" TimeUse="0.5"/>
+        </Cost>
+        <CmdButtonArray index="Execute" DefaultButtonFace="Reload">
+            <Flags index="ToSelection" value="1"/>
+        </CmdButtonArray>
+    </CAbilEffectInstant>
+    <CAbilBehavior id="AssaultRifleModes">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <CmdButtonArray index="On" DefaultButtonFace="AssaultRifleBurstFire" Requirements="AssaultRifleBurstFire">
+            <Flags index="ToSelection" value="1"/>
+        </CmdButtonArray>
+        <CmdButtonArray index="Off" DefaultButtonFace="AssaultRifleSingleShot" Requirements="AssaultRifleBurstFire">
+            <Flags index="ToSelection" value="1"/>
+        </CmdButtonArray>
+        <Flags index="Toggle" value="1"/>
+        <Flags index="Transient" value="1"/>
+        <BehaviorArray value="AssaultRifleBurstFireMode"/>
+    </CAbilBehavior>
+    <CAbilEffectInstant id="AutomaticReload">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Flags index="AutoCast" value="1"/>
+        <Flags index="AutoCastOn" value="1"/>
+        <Flags index="ReExecutable" value="1"/>
+        <Flags index="Transient" value="1"/>
+        <Flags index="TransientPreferred" value="1"/>
+        <Cost>
+            <Charge>
+                <CountMax value="500"/>
+                <CountStart value="40"/>
+                <CountUse value="1"/>
+                <Link value="Magazine"/>
+                <Location value="Player"/>
+            </Charge>
+            <Cooldown TimeUse="0.2"/>
+        </Cost>
+        <AutoCastFilters value="-;-"/>
+        <AutoCastValidatorArray value="AutomaticReloadNormal"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="AutomaticReload">
+            <Flags index="ShowInGlossary" value="0"/>
+            <Flags index="ToSelection" value="1"/>
+        </CmdButtonArray>
+        <AbilSetId value="AutomaticReload"/>
+        <Effect index="0" value="ReloadNormal"/>
+        <PreemptableArray index="Prep" value="0"/>
+        <PreemptableArray index="Cast" value="0"/>
+        <PreemptableArray index="Channel" value="0"/>
+        <PreemptableArray index="Finish" value="0"/>
+    </CAbilEffectInstant>
+    <CAbilEffectInstant id="AutomaticReloadAssault">
+        <AbilSetId value="AutomaticReload"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Effect index="0" value="ReloadNormal"/>
+        <Flags index="AutoCast" value="1"/>
+        <Flags index="AutoCastOn" value="1"/>
+        <Flags index="ReExecutable" value="1"/>
+        <Flags index="Transient" value="1"/>
+        <Flags index="TransientPreferred" value="1"/>
+        <Cost>
+            <Charge>
+                <CountMax value="500"/>
+                <CountStart value="40"/>
+                <CountUse value="1"/>
+                <Link value="Magazine"/>
+                <Location value="Player"/>
+            </Charge>
+            <Cooldown TimeUse="0.2"/>
+        </Cost>
+        <AutoCastFilters value="-;-"/>
+        <AutoCastValidatorArray value="AutomaticReloadAssault"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="AutomaticReload">
+            <Flags index="ShowInGlossary" value="0"/>
+            <Flags index="ToSelection" value="1"/>
+        </CmdButtonArray>
+        <PreemptableArray index="Prep" value="0"/>
+        <PreemptableArray index="Cast" value="0"/>
+        <PreemptableArray index="Channel" value="0"/>
+        <PreemptableArray index="Finish" value="0"/>
+    </CAbilEffectInstant>
+    <CAbilBehavior id="Flashlight">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <CmdButtonArray index="On" DefaultButtonFace="FlashlightEnable" Requirements="NoNightVision">
+            <Flags index="ShowInGlossary" value="0"/>
+            <Flags index="ToSelection" value="1"/>
+        </CmdButtonArray>
+        <CmdButtonArray index="Off" DefaultButtonFace="FlashlightDisable" Requirements="NoNightVision">
+            <Flags index="ToSelection" value="1"/>
+        </CmdButtonArray>
+        <Flags index="Toggle" value="1"/>
+        <Flags index="Transient" value="1"/>
+        <BehaviorArray value="FlashlightNOTD"/>
+    </CAbilBehavior>
+    <CAbilEffectTarget id="LightJump">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Cost>
+            <Charge>
+                <CountMax value="4"/>
+                <CountStart value="4"/>
+                <CountUse value="1"/>
+                <Link value="Abil/Jump"/>
+                <TimeUse value="30"/>
+            </Charge>
+            <Cooldown Link="Abil/Jump"/>
+        </Cost>
+        <Range value="4"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="Jump" Requirements="NoBrokenBones">
+            <Flags index="ShowInGlossary" value="0"/>
+            <Flags index="ToSelection" value="1"/>
+        </CmdButtonArray>
+    </CAbilEffectTarget>
+    <CAbilEffectInstant id="ManualReload">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Effect index="0" value="ManualReloadChoice"/>
+        <Flags index="Transient" value="1"/>
+        <Flags index="TransientPreferred" value="1"/>
+        <Cost>
+            <Charge>
+                <CountMax value="500"/>
+                <CountStart value="40"/>
+                <CountUse value="1"/>
+                <Link value="Magazine"/>
+                <Location value="Player"/>
+            </Charge>
+            <Cooldown Link="Abil/AssaultManualReload" TimeUse="0.5"/>
+        </Cost>
+        <CmdButtonArray index="Execute" DefaultButtonFace="Reload">
+            <Flags index="ToSelection" value="1"/>
+        </CmdButtonArray>
+    </CAbilEffectInstant>
+    <CAbilInventory id="Medic2Inventory" parent="InventoryTemplate"/>
+    <CAbilSpecialize id="MarineAbilities">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <InfoArray index="Specialize1" Effect="Sprint">
+            <Vital index="Energy" value="10"/>
+            <Cooldown Link="Sprint" TimeUse="10"/>
+            <Button DefaultButtonFace="Sprint" Requirements="NoBrokenBones">
+                <Flags index="ToSelection" value="1"/>
+            </Button>
+        </InfoArray>
+        <InfoArray index="Specialize2" Effect="GenericDummyEffect">
+            <Vital index="Energy" value="3"/>
+            <Cooldown Link="TeamLocation" TimeUse="1"/>
+            <Button DefaultButtonFace="TeamLocation">
+                <Flags index="ToSelection" value="1"/>
+            </Button>
+        </InfoArray>
+        <InfoArray index="Specialize4" Effect="GenericDummyEffect">
+            <Charge HideCount="1"/>
+            <Button DefaultButtonFace="Sidearm">
+                <Flags index="ToSelection" value="1"/>
+            </Button>
+        </InfoArray>
+        <InfoArray index="Specialize5" Effect="GenericDummyEffect">
+            <Charge>
+                <CountMax value="500"/>
+                <CountStart value="40"/>
+                <CountUse value="3"/>
+                <HideCount value="1"/>
+                <Link value="Magazine"/>
+                <Location value="Player"/>
+            </Charge>
+            <Button DefaultButtonFace="DropMagazine">
+                <Flags index="ToSelection" value="1"/>
+            </Button>
+        </InfoArray>
+        <InfoArray index="Specialize6" Effect="HoldFire">
+            <Button DefaultButtonFace="HoldFireNOTD">
+                <Flags index="ToSelection" value="1"/>
+            </Button>
+        </InfoArray>
+        <InfoArray index="Specialize7" Effect="WeaponsFree">
+            <Button DefaultButtonFace="WeaponsFreeNOTD" Requirements="HoldFireEnabled">
+                <Flags index="ToSelection" value="1"/>
+            </Button>
+        </InfoArray>
+        <InfoArray index="Specialize13">
+            <Button Requirements="EnableInventoryTransfer">
+                <Flags index="ToSelection" value="1"/>
+            </Button>
+        </InfoArray>
+        <InfoArray index="Specialize14">
+            <Button Requirements="DisableInventoryTransfer"/>
+        </InfoArray>
+        <Alert value=""/>
+        <Flags index="Transient" value="1"/>
+    </CAbilSpecialize>
+    <CAbilLearn id="Medic2Learn" parent="LearnTemplate">
+        <Name value="Abil/Name/Medic2Learn"/>
+        <InfoArray index="Learn1" Abil="Heal">
+            <Button DefaultButtonFace="HealNOTD"/>
+        </InfoArray>
+        <InfoArray index="Learn2" Abil="NanoHaste">
+            <Button DefaultButtonFace="NanoHaste"/>
+        </InfoArray>
+        <InfoArray index="Learn3" Abil="MedicalExpertise">
+            <Button DefaultButtonFace="MedicalExpertise"/>
+        </InfoArray>
+        <InfoArray index="Learn4" Abil="NanoWeave">
+            <Button DefaultButtonFace="NanoWeave"/>
+        </InfoArray>
+        <InfoArray index="Learn5" Abil="NanoShield">
+            <Button DefaultButtonFace="NanoShield"/>
+        </InfoArray>
+        <InfoArray index="Learn6" Abil="NanoStrength">
+            <Button DefaultButtonFace="NanoStrength"/>
+        </InfoArray>
+        <InfoArray index="Learn7" Abil="NanoShock">
+            <Button DefaultButtonFace="NanoShock"/>
+        </InfoArray>
+        <InfoArray index="Learn8" Abil="VolatileInjection">
+            <Button DefaultButtonFace="VolatileInjection"/>
+        </InfoArray>
+        <InfoArray index="Learn9" Abil="Aftershock">
+            <Button DefaultButtonFace="Aftershock"/>
+        </InfoArray>
+        <InfoArray index="Learn10" Abil="IntolerableCruelty">
+            <Button DefaultButtonFace="IntolerableCruelty"/>
+        </InfoArray>
+        <InfoArray index="Learn11" Abil="NanoSear">
+            <Button DefaultButtonFace="NanoSear"/>
+        </InfoArray>
+        <InfoArray index="Learn12" Abil="NanoPlague">
+            <Button DefaultButtonFace="NanoPlague"/>
+        </InfoArray>
+        <InfoArray index="Learn20" Abil="Antivenom">
+            <Button DefaultButtonFace="Antivenom"/>
+        </InfoArray>
+    </CAbilLearn>
+    <CAbilEffectTarget id="ImpalerGrenade">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Effect index="0" value="ImpalerGrenadeLaunchMissile"/>
+        <Cost>
+            <Vital index="Energy" value="25"/>
+            <Charge Link="Abil/ImaplerGrenade"/>
+            <Cooldown Location="Unit" TimeUse="6"/>
+        </Cost>
+        <TargetFilters value="-;Self,Player,Ally,Neutral,Item,Invulnerable"/>
+        <Range value="15"/>
+        <CursorEffect value="ImpalerGrenadeDamage"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="ImpalerGrenade" Requirements="Grenadier">
+            <Flags index="ShowInGlossary" value="0"/>
+        </CmdButtonArray>
+        <EffectRange index="0" value="2,500"/>
+    </CAbilEffectTarget>
+    <CAbilEffectInstant id="MedicalExpertise" parent="AbilityInstantTemplate">
+        <Effect index="0" value="GenericDummyEffect"/>
+        <Effect value="GenericDummyEffect"/>
+    </CAbilEffectInstant>
+    <CAbilEffectTarget id="MediumJump">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Cost>
+            <Charge>
+                <CountMax value="3"/>
+                <CountStart value="3"/>
+                <CountUse value="1"/>
+                <Link value="Abil/Jump"/>
+                <TimeUse value="30"/>
+            </Charge>
+            <Cooldown Link="Abil/Jump"/>
+        </Cost>
+        <Range value="4"/>
+        <Marker Link="Abil/LightJump"/>
+        <AINotifyEffect value="LightJump"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="Jump" Requirements="NoBrokenBones">
+            <Flags index="ShowInGlossary" value="0"/>
+            <Flags index="ToSelection" value="1"/>
+        </CmdButtonArray>
+    </CAbilEffectTarget>
+    <CAbilEffectTarget id="ParatrooperMedkit">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Effect index="0" value="Medkit"/>
+        <Flags index="AutoCast" value="1"/>
+        <Flags index="AutoCastOn" value="1"/>
+        <Cost>
+            <Cooldown TimeUse="120"/>
+        </Cost>
+        <TargetFilters value="Biological;Neutral,Enemy"/>
+        <AutoCastAcquireLevel value="Defensive"/>
+        <AutoCastFilters value="Biological,Visible;Neutral,Enemy,Robotic,Mechanical,Structure,Missile,Stasis,Invulnerable"/>
+        <AutoCastRange value="8"/>
+        <AutoCastValidatorArray value="IsLE80Life"/>
+    </CAbilEffectTarget>
+    <CAbilEffectInstant id="PeacekeeperReload">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Effect index="0" value="ReloadNormal"/>
+        <Flags index="AutoCast" value="1"/>
+        <Flags index="AutoCastOn" value="1"/>
+        <Flags index="ReExecutable" value="1"/>
+        <Flags index="Transient" value="1"/>
+        <Flags index="TransientPreferred" value="1"/>
+        <Cost>
+            <Charge>
+                <CountMax value="30"/>
+                <CountStart value="30"/>
+                <CountUse value="-30"/>
+                <Link value="CurrentMagazine"/>
+                <Location value="Unit"/>
+            </Charge>
+        </Cost>
+        <AutoCastFilters value="Visible;-"/>
+        <AutoCastValidatorArray value="PeacekeeperReload"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="AutomaticReload"/>
+    </CAbilEffectInstant>
+    <CAbilEffectTarget id="PlasmaGrenade">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Effect index="0" value="PlasmaGrenadeLaunchMissile"/>
+        <Cost>
+            <Vital index="Energy" value="25"/>
+            <Cooldown Location="Unit" TimeUse="6"/>
+        </Cost>
+        <Range value="15"/>
+        <CursorEffect value="PlasmaGrenadeSearch"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="PlasmaGrenade" Requirements="Grenadier">
+            <Flags index="ShowInGlossary" value="0"/>
+        </CmdButtonArray>
+        <TargetFilters value="-;Self,Player,Ally,Neutral,Item,Invulnerable"/>
+        <EffectRange index="0" value="2,500"/>
+    </CAbilEffectTarget>
+    <CAbilEffectTarget id="PrecisionShot" parent="3LevelEffectTargetAbility">
+        <Cost>
+            <Vital index="Energy" value="10"/>
+            <Cooldown TimeUse="5"/>
+        </Cost>
+        <TargetFilters value="-;Player,Ally,Neutral"/>
+        <Range value="15"/>
+        <CastIntroTime value="0.0625"/>
+        <LevelButtonTooltip index="0" value="Button/Tooltip/PrecisionShotLevel2"/>
+        <LevelButtonTooltip index="1" value="Button/Tooltip/PrecisionShotLevel3"/>
+        <CmdButtonArray index="Execute">
+            <Flags index="ShowInGlossary" value="0"/>
+        </CmdButtonArray>
+    </CAbilEffectTarget>
+    <CAbilBehavior id="ProximityTrigger">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <CmdButtonArray index="On" DefaultButtonFace="ProxmityTrigger" Requirements="ProximityTriggerAvailable"/>
+        <Flags index="Toggle" value="1"/>
+        <BehaviorArray value="ProximityTrigger"/>
+    </CAbilBehavior>
+    <CAbilInventory id="ReconInventory" parent="InventoryTemplate"/>
+    <CAbilLearn id="ReconLearn" parent="LearnTemplate">
+        <Name value="Abil/Name/ReconLearn"/>
+        <InfoArray index="Learn1" Abil="LaserDesignator">
+            <Button DefaultButtonFace="LaserDesignator"/>
+        </InfoArray>
+        <InfoArray index="Learn2" Abil="GroundIlluminationFlare"/>
+        <InfoArray index="Learn3" Abil="MotionSensor"/>
+        <InfoArray index="Learn4" Abil="SmokeGrenade"/>
+        <InfoArray index="Learn5" Abil="SupplyDropOffensive">
+            <Button DefaultButtonFace="SupplyDropOffensive"/>
+        </InfoArray>
+        <InfoArray index="Learn6" Abil="CloseAirSupport"/>
+        <InfoArray index="Learn7" Abil="FlareGunRecon"/>
+        <InfoArray index="Learn8" Abil="EscapeSet"/>
+        <InfoArray index="Learn9" Abil="Execute"/>
+        <InfoArray index="Learn10" Abil="StealthMatrix"/>
+        <InfoArray index="Learn11" Abil="Refresher"/>
+        <InfoArray index="Learn12" Abil="ArtilleryBeacon">
+            <Button DefaultButtonFace="ArtilleryBeacon"/>
+        </InfoArray>
+    </CAbilLearn>
+    <CAbilEffectInstant id="Refresher" parent="AbilityInstantTemplate">
+        <Cost>
+            <Vital index="Energy" value="-45"/>
+            <Cooldown TimeUse="45"/>
+        </Cost>
+    </CAbilEffectInstant>
+    <CAbilEffectInstant id="Repulse">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Cost>
+            <Vital index="Energy" value="25"/>
+            <Cooldown TimeUse="20"/>
+        </Cost>
+        <CmdButtonArray index="Execute" DefaultButtonFace="Repulse"/>
+    </CAbilEffectInstant>
+    <CAbilLearn id="RiflemanLearn" parent="LearnTemplate">
+        <Name value="Abil/Name/RiflemanLearn"/>
+        <InfoArray index="Learn1" Abil="CriticalStrike">
+            <Button DefaultButtonFace="CriticalStrike"/>
+        </InfoArray>
+        <InfoArray index="Learn2" Abil="FireUp">
+            <Button DefaultButtonFace="FireUp"/>
+        </InfoArray>
+        <InfoArray index="Learn3" Abil="WeaponProficiency">
+            <Button DefaultButtonFace="WeaponsProficiencyLevel1"/>
+        </InfoArray>
+        <InfoArray index="Learn4" Abil="FragmentationGrenade">
+            <Button DefaultButtonFace="FragmentationGrenade"/>
+        </InfoArray>
+        <InfoArray index="Learn5" Abil="Bloodlust">
+            <Button DefaultButtonFace="Bloodlust"/>
+        </InfoArray>
+        <InfoArray index="Learn6" Abil="Grenadier">
+            <Button DefaultButtonFace="Grenadier"/>
+        </InfoArray>
+        <InfoArray index="Learn7" Abil="PrecisionShot">
+            <Button DefaultButtonFace="PrecisionShot"/>
+        </InfoArray>
+        <InfoArray index="Learn8" Abil="CripplingFire">
+            <Button DefaultButtonFace="CripplingFire"/>
+        </InfoArray>
+        <InfoArray index="Learn9" Abil="SelfAid">
+            <Button DefaultButtonFace="SelfAid"/>
+        </InfoArray>
+        <InfoArray index="Learn10" Abil="SonicTrap">
+            <Button DefaultButtonFace="SonicTrap"/>
+        </InfoArray>
+        <InfoArray index="Learn11" Abil="Repulse">
+            <Button DefaultButtonFace="Repulse"/>
+        </InfoArray>
+        <InfoArray index="Learn12" Abil="K9">
+            <Button DefaultButtonFace="K9Unit"/>
+        </InfoArray>
+    </CAbilLearn>
+    <CAbilEffectTarget id="HeavyJump">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Cost>
+            <Charge>
+                <CountMax value="2"/>
+                <CountStart value="2"/>
+                <CountUse value="1"/>
+                <Link value="Abil/Jump"/>
+                <TimeUse value="30"/>
+            </Charge>
+            <Cooldown Link="Abil/Jump"/>
+        </Cost>
+        <Range value="4"/>
+        <AINotifyEffect value="LightJump"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="Jump" Requirements="NoBrokenBones">
+            <Flags index="ShowInGlossary" value="0"/>
+            <Flags index="ToSelection" value="1"/>
+        </CmdButtonArray>
+    </CAbilEffectTarget>
+    <CAbilEffectInstant id="Reload">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Effect index="0" value=""/>
+        <Cost>
+            <Charge>
+                <CountMax value="30"/>
+                <CountStart value="30"/>
+                <CountUse value="-30"/>
+                <Link value="CurrentMagazine"/>
+                <Location value="Player"/>
+            </Charge>
+        </Cost>
+        <CmdButtonArray index="Execute" DefaultButtonFace="Reload">
+            <Flags index="ShowInGlossary" value="0"/>
+        </CmdButtonArray>
+        <Flags index="ReExecutable" value="1"/>
+        <Flags index="Transient" value="1"/>
+        <Flags index="TransientPreferred" value="1"/>
+        <PreemptableArray index="Cast" value="0"/>
+    </CAbilEffectInstant>
+    <CAbilInventory id="RiflemanInventory" parent="InventoryTemplate">
+        <Flags index="ItemDeath" value="1"/>
+    </CAbilInventory>
+    <CAbilEffectTarget id="PathfinderJump">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Effect index="0" value="HeavyJump"/>
+        <Cost>
+            <Charge>
+                <CountMax value="4"/>
+                <CountStart value="4"/>
+                <CountUse value="1"/>
+                <Link value="Abil/Jump"/>
+                <TimeUse value="30"/>
+            </Charge>
+            <Cooldown Link="Abil/Jump"/>
+        </Cost>
+        <Range value="4"/>
+        <Marker Link="Abil/LightJump"/>
+        <AINotifyEffect value="LightJump"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="Jump" Requirements="NoBrokenBones">
+            <Flags index="ShowInGlossary" value="0"/>
+            <Flags index="ToSelection" value="1"/>
+        </CmdButtonArray>
+    </CAbilEffectTarget>
+    <CAbilBehavior id="Sadist">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <BehaviorArray value="GenericBehavior"/>
+        <BehaviorArray value="GenericBehavior"/>
+    </CAbilBehavior>
+    <CAbilEffectTarget id="SatchelCharge" parent="AbilityWithButtonTargetTemplate">
+        <Flags index="RequireTargetVision" value="0"/>
+        <Cost>
+            <Vital index="Energy" value="40"/>
+            <Cooldown TimeUse="75"/>
+        </Cost>
+        <Placeholder value="DemoSatchelCharge"/>
+        <Range value="8"/>
+        <ShowProgressArray index="Cast" value="1"/>
+        <ProgressButtonArray index="Cast" value="SatchelCharge"/>
+        <PlaceUnit value="DemoSatchelCharge"/>
+        <Effect index="0" value="SatchelMissile"/>
+    </CAbilEffectTarget>
+    <CAbilEffectTarget id="ShieldBash" parent="2LevelEffectTargetAbility">
+        <Flags index="Transient" value="1"/>
+        <Cost>
+            <Vital index="Energy" value="30"/>
+        </Cost>
+        <Range value="500"/>
+        <Arc value="360"/>
+    </CAbilEffectTarget>
+    <CAbilEffectInstant id="SidearmMelee">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Cost>
+            <Charge Link="Abil/Sidearm"/>
+            <Cooldown Link="Abil/Sidearm"/>
+        </Cost>
+        <CmdButtonArray index="Execute" DefaultButtonFace="Sidearm">
+            <Flags index="ToSelection" value="1"/>
+        </CmdButtonArray>
+        <Flags index="Transient" value="1"/>
+    </CAbilEffectInstant>
+    <CAbilEffectTarget id="SmokeGrenade" parent="AbilityWithButtonTargetTemplate">
+        <Effect index="0" value="SmokeGrenadeLevel1"/>
+        <Effect value="SmokeGrenadeLevel2"/>
+        <Range value="9"/>
+        <Cost>
+            <Vital index="Energy" value="30"/>
+            <Cooldown TimeUse="30"/>
+        </Cost>
+        <LevelButtonTooltip value="Button/Tooltip/SmokeGrenadeLevel2"/>
+    </CAbilEffectTarget>
+    <CAbilInventory id="SquadLeaderInventory" parent="InventoryTemplate"/>
+    <CAbilLearn id="SquadLeaderLearn" parent="LearnTemplate">
+        <Name value="Abil/Name/SquadLeaderLearn"/>
+    </CAbilLearn>
+    <CAbilBehavior id="StealthMatrix">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <CmdButtonArray index="On" DefaultButtonFace="StealthMatrixActivate"/>
+        <CmdButtonArray index="Off" DefaultButtonFace="StealthMatrixDeactivate"/>
+        <Flags index="Toggle" value="1"/>
+        <Flags index="Transient" value="1"/>
+        <BehaviorArray value="StealthMatrixLevel1"/>
+        <BehaviorArray value="StealthMatrixLevel2"/>
+    </CAbilBehavior>
+    <CAbilBehavior id="Stockpile">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <BehaviorArray value="GenericBehavior"/>
+        <BehaviorArray value="GenericBehavior"/>
+    </CAbilBehavior>
+    <CAbilEffectTarget id="SupplyDropDefensive" parent="AbilityWithButtonTargetTemplate">
+        <Cost>
+            <Vital index="Energy" value="50"/>
+            <Charge Link="Abil/SupplyDropOffensive"/>
+            <Cooldown Link="Abil/SupplyDropOffensive" TimeUse="60"/>
+        </Cost>
+        <Arc value="360"/>
+        <Range value="500"/>
+        <CmdButtonArray index="Execute" Requirements="SupplyDrop"/>
+    </CAbilEffectTarget>
+    <CAbilEffectTarget id="SupplyDropOffensive" parent="AbilityWithButtonTargetTemplate">
+        <Cost>
+            <Vital index="Energy" value="50"/>
+            <Cooldown TimeUse="60"/>
+        </Cost>
+        <Range value="500"/>
+        <Arc value="360"/>
+    </CAbilEffectTarget>
+    <CAbilEffectInstant id="TauntNOTD" parent="3LevelEffectInstantAbility">
+        <Cost>
+            <Vital index="Energy" value="10"/>
+            <Cooldown TimeUse="10"/>
+        </Cost>
+    </CAbilEffectInstant>
+    <CAbilEffectInstant id="SelfAid" parent="2LevelEffectInstantAbility">
+        <Flags index="Transient" value="1"/>
+        <Cost>
+            <Vital index="Energy" value="20"/>
+            <Cooldown TimeUse="15"/>
+        </Cost>
+    </CAbilEffectInstant>
+    <CAbilEffectTarget id="SonicTrap" parent="2LevelEffectTargetAbility">
+        <Cost>
+            <Vital index="Energy" value="45"/>
+            <Cooldown TimeUse="45"/>
+        </Cost>
+        <Range value="3"/>
+        <LevelButtonTooltip index="0" removed="1"/>
+        <CmdButtonArray index="Execute">
+            <Flags index="ShowInGlossary" value="0"/>
+        </CmdButtonArray>
+    </CAbilEffectTarget>
+    <CAbilEffectInstant id="SonicTrapLevel1">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Flags index="AutoCast" value="1"/>
+        <Flags index="AutoCastOn" value="1"/>
+        <Cost>
+            <Charge CountMax="6" CountStart="6" CountUse="1"/>
+            <Cooldown TimeUse="3"/>
+        </Cost>
+        <AutoCastFilters value="Visible;-"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="SonicTrapActivation">
+            <Flags index="ShowInGlossary" value="0"/>
+        </CmdButtonArray>
+        <AutoCastValidatorArray value="SonicTrapActivation"/>
+        <Effect index="0" value="SonicTrapSearchLevel1"/>
+        <AINotifyEffect value="SonicTrapSearchLevel1"/>
+    </CAbilEffectInstant>
+    <CAbilEffectInstant id="SonicTrapLevel2">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Flags index="AutoCast" value="1"/>
+        <Flags index="AutoCastOn" value="1"/>
+        <Cost>
+            <Charge CountMax="6" CountStart="6" CountUse="1"/>
+            <Cooldown TimeUse="3"/>
+        </Cost>
+        <AutoCastFilters value="Visible;-"/>
+        <AutoCastValidatorArray value="SonicTrapActivation"/>
+        <LevelButtonTooltip value="Button/Tooltip/SonicTrapLevel2"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="SonicTrapActivation">
+            <Flags index="ShowInGlossary" value="0"/>
+        </CmdButtonArray>
+        <Effect index="0" value="SonicTrapSearchLevel2"/>
+        <AINotifyEffect value="SonicTrapSearchLevel2"/>
+    </CAbilEffectInstant>
+    <CAbilInventory id="TechnicianInventory" parent="InventoryTemplate"/>
+    <CAbilLearn id="TechnicianLearn" parent="LearnTemplate">
+        <Name value="Abil/Name/TechnicianLearn"/>
+    </CAbilLearn>
+    <CAbilEffectInstant id="TestAutoPickup">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Flags index="Transient" value="1"/>
+        <Arc value="360"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="DropMagazine"/>
+    </CAbilEffectInstant>
+    <CAbilEffectInstant id="ThunderballFists" parent="AbilityInstantTemplate">
+        <Cost>
+            <Vital index="Energy" value="50"/>
+            <Cooldown TimeUse="10"/>
+        </Cost>
+        <Flags index="Transient" value="1"/>
+    </CAbilEffectInstant>
+    <CAbilInventory id="UAVInventory" parent="InventoryTemplate"/>
+    <CAbilLearn id="UAVLearn" parent="LearnTemplate">
+        <Name value="Abil/Name/UAVLearn"/>
+    </CAbilLearn>
+    <CAbilEffectInstant id="UnstoppableForce" parent="AbilityInstantTemplate">
+        <Effect index="0" value="GenericDummyEffect"/>
+    </CAbilEffectInstant>
+    <CAbilEffectTarget id="VolatileInjection" parent="3LevelEffectTargetAbility">
+        <Cost>
+            <Vital index="Energy" value="20"/>
+            <Charge TimeUse="10"/>
+        </Cost>
+        <TargetFilters value="-;Player,Ally,Neutral"/>
+        <Range value="12"/>
+    </CAbilEffectTarget>
+    <CAbilEffectInstant id="WeaponProficiency">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Effect index="0" value="GenericDummyEffect"/>
+        <Effect value="GenericDummyEffect"/>
+        <CmdButtonArray index="Execute">
+            <Flags index="ShowInGlossary" value="0"/>
+        </CmdButtonArray>
+    </CAbilEffectInstant>
+</Catalog>

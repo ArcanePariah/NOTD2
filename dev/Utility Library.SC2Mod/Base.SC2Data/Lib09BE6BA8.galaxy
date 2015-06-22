@@ -1,0 +1,163 @@
+include "TriggerLibs/NativeLib"
+
+//--------------------------------------------------------------------------------------------------
+// Library: Utility
+//--------------------------------------------------------------------------------------------------
+// Function Declarations
+point lib09BE6BA8_gf_PointAtGroundLevelinRegion (region lp_region);
+bool lib09BE6BA8_gf_AttackerbehindTarget (unit lp_attacker, unit lp_target, fixed lp_rearAngle);
+bool lib09BE6BA8_gf_GroupNearPoint (unitgroup lp_group, point lp_point, fixed lp_distance);
+bool lib09BE6BA8_gf_PointisVisibletoPlayerGroup (playergroup lp_group, point lp_point);
+bool lib09BE6BA8_gf_UnitisCarryingItemofType (unit lp_unit, string lp_carriedItem);
+int lib09BE6BA8_gf_GetRandomPlayerfromPlayerGroup (playergroup lp_playerGroup);
+void lib09BE6BA8_gf_SmoothRotateActor (fixed lp_rotationTime, actor lp_actor, int lp_rotationPoints, fixed lp_forwardX, fixed lp_forwardY, fixed lp_forwardZ, fixed lp_upX, fixed lp_upY, fixed lp_upZ);
+
+// Functions
+point lib09BE6BA8_gf_PointAtGroundLevelinRegion (region lp_region) {
+    // Variable Declarations
+    point lv_point;
+
+    // Variable Initialization
+    lv_point = RegionRandomPoint(lp_region);
+
+    // Implementation
+    while ((CliffLevel(lv_point) != 1)) {
+        lv_point = RegionRandomPoint(lp_region);
+    }
+    return lv_point;
+}
+
+bool lib09BE6BA8_gf_AttackerbehindTarget (unit lp_attacker, unit lp_target, fixed lp_rearAngle) {
+    // Variable Declarations
+    fixed lv_angleofAttackedUnit;
+    fixed lv_angleofAttackingUnit;
+    fixed lv_correctedAngleofAttackingUnit;
+
+    // Variable Initialization
+    lv_angleofAttackedUnit = UnitGetFacing(lp_target);
+    lv_angleofAttackingUnit = AngleBetweenPoints(UnitGetPosition(lp_target), UnitGetPosition(lp_attacker));
+
+    // Implementation
+    if ((lv_angleofAttackedUnit < 0.0)) {
+        lv_angleofAttackedUnit += 360.0;
+    }
+    if ((lv_angleofAttackingUnit < 0.0)) {
+        lv_angleofAttackingUnit += 360.0;
+    }
+    lv_correctedAngleofAttackingUnit = (lv_angleofAttackingUnit - lv_angleofAttackedUnit);
+    if ((lv_correctedAngleofAttackingUnit < 0.0)) {
+        lv_correctedAngleofAttackingUnit += 360.0;
+    }
+    if ((lv_correctedAngleofAttackingUnit >= (lp_rearAngle  - (lv_correctedAngleofAttackingUnit/2))) && (lv_correctedAngleofAttackingUnit <= (lp_rearAngle  + (lv_correctedAngleofAttackingUnit/2)))) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
+bool lib09BE6BA8_gf_GroupNearPoint (unitgroup lp_group, point lp_point, fixed lp_distance) {
+    // Variable Declarations
+    int lv_count;
+
+    // Variable Initialization
+
+    // Implementation
+    UnitGroupLoopBegin(lp_group);
+    for ( ; !UnitGroupLoopDone() ; UnitGroupLoopStep() ) {
+        if ((DistanceBetweenPoints(UnitGetPosition(UnitGroupLoopCurrent()), lp_point) < lp_distance)) {
+            lv_count += 1;
+        }
+
+    }
+    UnitGroupLoopEnd();
+    if ((lv_count > (UnitGroupCount(lp_group, c_unitCountAlive) / 2))) {
+        return true;
+    }
+    else {
+return false;
+    }
+}
+
+bool lib09BE6BA8_gf_PointisVisibletoPlayerGroup (playergroup lp_group, point lp_point) {
+    // Implementation
+    PlayerGroupLoopBegin(lp_group);
+    for ( ; !PlayerGroupLoopDone() ; PlayerGroupLoopStep() ) {
+        if (VisIsVisibleForPlayer(PlayerGroupLoopCurrent(), lp_point)) {
+            return true;
+        }
+
+    }
+    PlayerGroupLoopEnd();
+    return false;
+}
+
+bool lib09BE6BA8_gf_UnitisCarryingItemofType (unit lp_unit, string lp_carriedItem) {
+    // Implementation
+    UnitGroupLoopBegin(UnitInventoryGroup(lp_unit));
+    for ( ; !UnitGroupLoopDone() ; UnitGroupLoopStep() ) {
+        if ((UnitGetType(UnitGroupLoopCurrent()) == lp_carriedItem)) {
+            return true;
+        }
+    }
+    UnitGroupLoopEnd();
+    return false;
+}
+
+int lib09BE6BA8_gf_GetRandomPlayerfromPlayerGroup (playergroup lp_playerGroup) {
+    // Implementation
+    return PlayerGroupPlayer(lp_playerGroup, RandomInt(1, PlayerGroupCount(lp_playerGroup)));
+}
+
+void lib09BE6BA8_gf_SmoothRotateActor (fixed lp_rotationTime, actor lp_actor, int lp_rotationPoints, fixed lp_forwardX, fixed lp_forwardY, fixed lp_forwardZ, fixed lp_upX, fixed lp_upY, fixed lp_upZ) {
+    // Variable Declarations
+    actorscope lv_scope;
+    actor lv_rotation;
+    fixed lv_rotationtimeinterval;
+
+    // Variable Initialization
+    lv_rotationtimeinterval = (lp_rotationTime / lp_rotationPoints);
+
+    // Implementation
+    lv_scope = ActorScopeFromActor(lp_actor);
+    ActorCreate(lv_scope, "PropertyCurveSet", null, null, null);
+    lv_rotation = libNtve_gf_ActorLastCreated();
+    ActorSend(lv_rotation, "PropertyCurveAdd Rotation Looping ::Main UnitRotate");
+    IntLoopBegin(0, lp_rotationPoints);
+    for ( ; !IntLoopDone() ; IntLoopStep() ) {
+        TextExpressionSetToken("Param/Expression/lib_09BE6BA8_4919AB90", "B", FixedToText((IntLoopCurrent() * lv_rotationtimeinterval), c_fixedPrecisionAny));
+        TextExpressionSetToken("Param/Expression/lib_09BE6BA8_4919AB90", "A", FixedToText(lp_forwardX, c_fixedPrecisionAny));
+        ActorSendAsText(lv_rotation, TextExpressionAssemble("Param/Expression/lib_09BE6BA8_4919AB90"));
+        TextExpressionSetToken("Param/Expression/lib_09BE6BA8_D58973F0", "B", FixedToText((IntLoopCurrent() * lv_rotationtimeinterval), c_fixedPrecisionAny));
+        TextExpressionSetToken("Param/Expression/lib_09BE6BA8_D58973F0", "A", FixedToText(lp_forwardY, c_fixedPrecisionAny));
+        ActorSendAsText(lv_rotation, TextExpressionAssemble("Param/Expression/lib_09BE6BA8_D58973F0"));
+        TextExpressionSetToken("Param/Expression/lib_09BE6BA8_468FE7A2", "B", FixedToText((IntLoopCurrent() * lv_rotationtimeinterval), c_fixedPrecisionAny));
+        TextExpressionSetToken("Param/Expression/lib_09BE6BA8_468FE7A2", "A", FixedToText(lp_forwardZ, c_fixedPrecisionAny));
+        ActorSendAsText(lv_rotation, TextExpressionAssemble("Param/Expression/lib_09BE6BA8_468FE7A2"));
+        TextExpressionSetToken("Param/Expression/lib_09BE6BA8_55EEBF3E", "B", FixedToText((IntLoopCurrent() * lv_rotationtimeinterval), c_fixedPrecisionAny));
+        TextExpressionSetToken("Param/Expression/lib_09BE6BA8_55EEBF3E", "A", FixedToText(lp_upX, c_fixedPrecisionAny));
+        ActorSendAsText(lv_rotation, TextExpressionAssemble("Param/Expression/lib_09BE6BA8_55EEBF3E"));
+        TextExpressionSetToken("Param/Expression/lib_09BE6BA8_1FCB42D3", "B", FixedToText((IntLoopCurrent() * lv_rotationtimeinterval), c_fixedPrecisionAny));
+        TextExpressionSetToken("Param/Expression/lib_09BE6BA8_1FCB42D3", "A", FixedToText(lp_upY, c_fixedPrecisionAny));
+        ActorSendAsText(lv_rotation, TextExpressionAssemble("Param/Expression/lib_09BE6BA8_1FCB42D3"));
+        TextExpressionSetToken("Param/Expression/lib_09BE6BA8_B3AF6DC7", "B", FixedToText((IntLoopCurrent() * lv_rotationtimeinterval), c_fixedPrecisionAny));
+        TextExpressionSetToken("Param/Expression/lib_09BE6BA8_B3AF6DC7", "A", FixedToText(lp_upZ, c_fixedPrecisionAny));
+        ActorSendAsText(lv_rotation, TextExpressionAssemble("Param/Expression/lib_09BE6BA8_B3AF6DC7"));
+    }
+    IntLoopEnd();
+    ActorSend(lv_rotation, "PropertyCurveStart UnitRotate");
+}
+
+//--------------------------------------------------------------------------------------------------
+// Library Initialization
+//--------------------------------------------------------------------------------------------------
+bool lib09BE6BA8_InitLib_completed = false;
+
+void lib09BE6BA8_InitLib () {
+    if (lib09BE6BA8_InitLib_completed) {
+        return;
+    }
+
+    lib09BE6BA8_InitLib_completed = true;
+}
+

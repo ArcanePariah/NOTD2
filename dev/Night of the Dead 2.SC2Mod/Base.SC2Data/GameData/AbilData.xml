@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<Catalog>
+    <CAbilTransport id="AuroraTransport">
+        <AbilSetId value="ULAT"/>
+        <EditorCategories value="Race:Terran,AbilityorEffectType:Units"/>
+        <CmdButtonArray index="Load" DefaultButtonFace="MedivacLoad"/>
+        <CmdButtonArray index="LoadAll" DefaultButtonFace="HerculesLoad"/>
+        <Flags index="ShowCargoSize" value="0"/>
+        <MaxCargoCount value="100"/>
+        <MaxCargoSize value="8"/>
+        <TotalCargoSpace value="100"/>
+        <UnloadPeriod value="0.2"/>
+        <SearchRadius value="25"/>
+        <Range value="25"/>
+    </CAbilTransport>
+    <CAbilMorph id="AuroraTransportLand">
+        <EditorCategories value="Race:Terran,AbilityorEffectType:MorphsandBurrows"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="Land"/>
+        <ActorKey value="LiftOffLand"/>
+        <Flags index="IgnoreFacing" value="1"/>
+        <InfoArray Unit="AuroraDropship">
+            <SectionArray index="Actor">
+                <DurationArray index="Duration" value="6"/>
+            </SectionArray>
+            <SectionArray index="Mover">
+                <DurationArray index="Delay" value="1.7"/>
+                <DurationArray index="Duration" value="3"/>
+            </SectionArray>
+            <SectionArray index="Stats">
+                <DurationArray index="Delay" value="6"/>
+            </SectionArray>
+        </InfoArray>
+    </CAbilMorph>
+    <CAbilMorph id="AuroraTransportLiftOff">
+        <EditorCategories value="Race:Terran,AbilityorEffectType:MorphsandBurrows"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="Lift"/>
+        <ActorKey value="LiftOffLand"/>
+        <Flags index="IgnoreFacing" value="1"/>
+        <InfoArray Unit="AuroraDropshipFlying">
+            <SectionArray index="Actor">
+                <DurationArray index="Duration" value="6"/>
+            </SectionArray>
+            <SectionArray index="Collide">
+                <DurationArray index="Delay" value="1.5"/>
+            </SectionArray>
+            <SectionArray index="Mover">
+                <DurationArray index="Delay" value="1.3"/>
+                <DurationArray index="Duration" value="2.3"/>
+            </SectionArray>
+        </InfoArray>
+    </CAbilMorph>
+    <CAbilQueue id="ZombieSpawnQueue">
+        <QueueCount value="8"/>
+    </CAbilQueue>
+</Catalog>

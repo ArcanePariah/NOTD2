@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<Catalog>
+    <CMoverMissile id="BonebreakerBoulder">
+        <MotionPhases>
+            <Driver value="Ballistic"/>
+            <Gravity value="3"/>
+            <RotationActorType value="ZeroRoll"/>
+            <ThrowBandYaw value="-360,-360,-360,-360"/>
+            <ThrowBandPitch value="-360,-360,-360,-360"/>
+            <FlightTime value="3"/>
+        </MotionPhases>
+    </CMoverMissile>
+    <CMoverAvoid id="CliffJump" parent="Ground">
+        <PathMode value="Jumper"/>
+    </CMoverAvoid>
+    <CMoverAvoid id="InfestedCliffWalk" parent="Ground">
+        <PathMode value="Scaler"/>
+    </CMoverAvoid>
+    <CMoverAvoid id="BossCliffWalk" parent="Ground">
+        <HeightMap value="Air"/>
+        <PathMode value="Scaler"/>
+    </CMoverAvoid>
+    <CMoverMissile id="JumpDown">
+        <PathMode value="Jumper"/>
+        <MotionPhases>
+            <Driver value="AdaptableParabola"/>
+            <Speed value="7"/>
+            <MinSpeed value="7"/>
+            <MaxSpeed value="7"/>
+            <ActorTracking value="Actual"/>
+            <AdaptableParabolaIsUpright value="1"/>
+            <AdaptableParabolaClearance value="1.25,0.5"/>
+            <AdaptableParabolaDistances index="Launch" value="1"/>
+            <AdaptableParabolaDistances index="PreApex" value="0.9"/>
+            <AdaptableParabolaDistances index="PostApex" value="0.1"/>
+            <AdaptableParabolaDistances index="Land" value="3"/>
+            <AdaptableParabolaAccels index="Launch" value="15"/>
+            <AdaptableParabolaAccels index="Ascent" value="1"/>
+            <AdaptableParabolaAccels index="Apex" value="-13"/>
+            <AdaptableParabolaAccels index="Descent" value="12"/>
+            <AdaptableParabolaAccels index="Land" value="-6"/>
+        </MotionPhases>
+        <RespectUnitHeightAtDestination value="1"/>
+    </CMoverMissile>
+</Catalog>

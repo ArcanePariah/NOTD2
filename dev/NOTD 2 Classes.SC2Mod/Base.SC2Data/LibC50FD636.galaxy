@@ -1,0 +1,2901 @@
+include "TriggerLibs/NativeLib"
+include "Lib09BE6BA8"
+include "Lib1E3F036D"
+
+//--------------------------------------------------------------------------------------------------
+// Library: Class Specific Triggers
+//--------------------------------------------------------------------------------------------------
+// Constants
+const int libC50FD636_gv_numberofEnhancementSlots = 3;
+const int libC50FD636_gv_inventoryBagSize = 9;
+const int libC50FD636_gv_baseAmmoModSlot = 6;
+const int libC50FD636_gv_columnOffset = 1;
+const int libC50FD636_gv_loadoutContainer = 1;
+const int libC50FD636_gv_bagContainer = 2;
+const int libC50FD636_gv_armorInventorySlot = 4;
+const int libC50FD636_gv_weaponInventorySlot = 2;
+const int libC50FD636_gv_ammoModificationSlot = 6;
+const int libC50FD636_gv_numberofPlayers = lib1E3F036D_gv_numberofPlayers;
+const int libC50FD636_gv_numberofTalents = 6;
+const int libC50FD636_gv_numberofTalentTrees = 2;
+
+// Structures
+struct libC50FD636_gs_AmmoUIElements {
+    int lv_ammoDialog;
+    int lv_ammoBar;
+    int lv_ammoLabel;
+    int lv_ammoHitTestFrame;
+};
+
+struct libC50FD636_gs_Talent {
+    int lv_talentTooltipText;
+    int lv_borderIntital;
+    int lv_borderFinal;
+    int lv_button;
+    int lv_talentImage;
+    text lv_abilityLevelText;
+    int lv_abilityLevel;
+};
+
+struct libC50FD636_gs_TalentTree {
+    int lv_talentTreeDialog;
+    libC50FD636_gs_Talent[libC50FD636_gv_numberofTalents + 1] lv_talentButtons;
+};
+
+struct libC50FD636_gs_Talents {
+    int lv_treeDialog;
+    libC50FD636_gs_TalentTree[libC50FD636_gv_numberofTalentTrees + 1] lv_tree;
+    int lv_numberAvailable;
+    bool lv_treeOpen;
+    int lv_className;
+    int lv_numberAvailableLabel;
+};
+
+struct libC50FD636_gs_Marine {
+    int lv_currentMaxMagazineSize;
+    int lv_currentNumberofMagazines;
+    int lv_numberofMagzinesPerReload;
+    string lv_unitType;
+    unit lv_unit;
+    string lv_class;
+};
+
+// Variables
+fixed libC50FD636_gv_bulwarkAngle;
+unit libC50FD636_gv_bulwarkTargetUnit;
+unit libC50FD636_gv_bulwarkCaster;
+bool libC50FD636_gv_inventoryMoveLock;
+bool[libC50FD636_gv_inventoryBagSize + 1][libC50FD636_gv_numberofPlayers + 1] libC50FD636_gv_openBagSlots;
+libC50FD636_gs_AmmoUIElements[libC50FD636_gv_numberofPlayers + 1] libC50FD636_gv_ammoDisplay;
+libC50FD636_gs_Talents[libC50FD636_gv_numberofPlayers + 1] libC50FD636_gv_talentTrees;
+int libC50FD636_gv_talentButton;
+int[libC50FD636_gv_numberofTalentTrees + 1][libC50FD636_gv_numberofTalents + 1] libC50FD636_gv_talentMax;
+unitgroup libC50FD636_gv_marinesUnitGroup;
+libC50FD636_gs_Marine[libC50FD636_gv_numberofPlayers + 1] libC50FD636_gv_marines;
+
+void libC50FD636_InitVariables () {
+    int init_i;
+    int init_i1;
+    int init_i2;
+
+    for (init_i = 0; init_i <= libC50FD636_gv_numberofPlayers; init_i += 1) {
+        libC50FD636_gv_ammoDisplay[init_i].lv_ammoDialog = c_invalidDialogId;
+        libC50FD636_gv_ammoDisplay[init_i].lv_ammoBar = c_invalidDialogControlId;
+        libC50FD636_gv_ammoDisplay[init_i].lv_ammoLabel = c_invalidDialogControlId;
+        libC50FD636_gv_ammoDisplay[init_i].lv_ammoHitTestFrame = c_invalidDialogControlId;
+    }
+    for (init_i = 0; init_i <= libC50FD636_gv_numberofPlayers; init_i += 1) {
+        libC50FD636_gv_talentTrees[init_i].lv_treeDialog = c_invalidDialogId;
+        for (init_i1 = 0; init_i1 <= libC50FD636_gv_numberofTalentTrees; init_i1 += 1) {
+            libC50FD636_gv_talentTrees[init_i].lv_tree[init_i1].lv_talentTreeDialog = c_invalidDialogControlId;
+            for (init_i2 = 0; init_i2 <= libC50FD636_gv_numberofTalents; init_i2 += 1) {
+                libC50FD636_gv_talentTrees[init_i].lv_tree[init_i1].lv_talentButtons[init_i2].lv_talentTooltipText = c_invalidDialogControlId;
+                libC50FD636_gv_talentTrees[init_i].lv_tree[init_i1].lv_talentButtons[init_i2].lv_borderIntital = c_invalidDialogControlId;
+                libC50FD636_gv_talentTrees[init_i].lv_tree[init_i1].lv_talentButtons[init_i2].lv_borderFinal = c_invalidDialogControlId;
+                libC50FD636_gv_talentTrees[init_i].lv_tree[init_i1].lv_talentButtons[init_i2].lv_button = c_invalidDialogControlId;
+                libC50FD636_gv_talentTrees[init_i].lv_tree[init_i1].lv_talentButtons[init_i2].lv_talentImage = c_invalidDialogControlId;
+            }
+        }
+        libC50FD636_gv_talentTrees[init_i].lv_numberAvailable = 1;
+        libC50FD636_gv_talentTrees[init_i].lv_className = c_invalidDialogControlId;
+        libC50FD636_gv_talentTrees[init_i].lv_numberAvailableLabel = c_invalidDialogControlId;
+    }
+    libC50FD636_gv_talentButton = c_invalidDialogControlId;
+    libC50FD636_gv_marinesUnitGroup = UnitGroupEmpty();
+    for (init_i = 0; init_i <= libC50FD636_gv_numberofPlayers; init_i += 1) {
+        libC50FD636_gv_marines[init_i].lv_currentMaxMagazineSize = 30;
+        libC50FD636_gv_marines[init_i].lv_currentNumberofMagazines = 30;
+        libC50FD636_gv_marines[init_i].lv_numberofMagzinesPerReload = -1;
+        libC50FD636_gv_marines[init_i].lv_unitType = "";
+        libC50FD636_gv_marines[init_i].lv_class = "Rifleman";
+    }
+}
+
+// Function Declarations
+void libC50FD636_gf_CrusaderAIThink (int lp_player, unit lp_unit, unitgroup lp_scanGroup);
+void libC50FD636_gf_ClassCreation (point lp_deploymentPoint, int lp_player);
+bool libC50FD636_gf_BulwarkAngleDamageCheck (fixed lp_damageAngle);
+bool libC50FD636_gf_GeminiSlotEmpty (unit lp_assault);
+int libC50FD636_gf_GetOpenBagSlot (unit lp_inventoryUnit);
+void libC50FD636_gf_EquipmentUpdateMarineWeight (int lp_ownerOfEquipment);
+int libC50FD636_gf_EquipmentGetItemWeight (int lp_ownerofEquipment, unit lp_item);
+void libC50FD636_gf_UpdateNumberofMagazines (int lp_player, int lp_change);
+void libC50FD636_gf_UpdateAmmoMax (int lp_player);
+void libC50FD636_gf_CreateAmmoDisplay (int lp_player);
+void libC50FD636_gf_IntializeTalentMax ();
+bool libC50FD636_gf_TalentSelectionOption (int lp_tree, int lp_talent, int lp_talentPlayer);
+bool libC50FD636_gf_TalentTreeSelected (int lp_dialogItem);
+bool libC50FD636_gf_TalentTreeAccess (int lp_talentTreePlayer, int lp_selectingPlayer);
+void libC50FD636_gf_UpdateTalentAbility (int lp_itemNo, int lp_triggPlayer, int lp_talentTree);
+void libC50FD636_gf_UpdateTalentSystem (int lp_talent, int lp_talentPlayer, int lp_talentTree);
+void libC50FD636_gf_UpdateAvailableTalents (int lp_dialogItem, int lp_text);
+void libC50FD636_gf_UpdateTalentText (int lp_talent, int lp_triggPlayer, int lp_tree);
+void libC50FD636_gf_UpdateTalentImage (int lp_talent, int lp_triggPlayer, int lp_tree);
+void libC50FD636_gf_UpdateAllTalentImages (int lp_triggPlayer);
+void libC50FD636_gf_UpdateTalentVisuals (int lp_player, int lp_talent, int lp_tree);
+void libC50FD636_gf_TalentButton (int lp_treePanel, int lp_player, int lp_talentNumber, int lp_tree, string lp_class);
+void libC50FD636_gf_TalentTree (int lp_treeDialogPanel, int lp_player, int lp_tree, string lp_class);
+void libC50FD636_gf_TalentTreeCreation (int lp_player, string lp_class);
+
+// Trigger Declarations
+trigger libC50FD636_gt_PredatorEventRegistration;
+trigger libC50FD636_gt_PredatorLevelUp;
+trigger libC50FD636_gt_TestIntializeAI;
+trigger libC50FD636_gt_TestDemoMerge;
+trigger libC50FD636_gt_MD5LevelUp;
+trigger libC50FD636_gt_CollateralDamageLevelUp;
+trigger libC50FD636_gt_StockpileLevelUp;
+trigger libC50FD636_gt_BulwarkLevelUp;
+trigger libC50FD636_gt_CommunicationUplinkLevelUp;
+trigger libC50FD636_gt_AssaultLevelUpUnstoppableForce;
+trigger libC50FD636_gt_AssaultLevelUpGeminiProtocol;
+trigger libC50FD636_gt_RiflemanLevelUpCriticalStrike;
+trigger libC50FD636_gt_RiflemanLevelUpFireUp;
+trigger libC50FD636_gt_RiflemanLevelUpWeaponProficiency;
+trigger libC50FD636_gt_RiflemanLevelUpFragGrenadeLevel3;
+trigger libC50FD636_gt_RiflemanLevelUpCripplingFire;
+trigger libC50FD636_gt_MedicLevelUpAntivenom;
+trigger libC50FD636_gt_MedicLevelUpMedicalExpertise;
+trigger libC50FD636_gt_MedicLevelUpIntolerableCruelty;
+trigger libC50FD636_gt_Sadist;
+trigger libC50FD636_gt_Bulwark;
+trigger libC50FD636_gt_BulwarkPositioning;
+trigger libC50FD636_gt_BulwarkPositioningUpdate;
+trigger libC50FD636_gt_LaserDesignatorVisionShare;
+trigger libC50FD636_gt_GroundIlluminationFlareFlareGunVisionShare;
+trigger libC50FD636_gt_Refresher;
+trigger libC50FD636_gt_KineticPayload;
+trigger libC50FD636_gt_DropItems;
+trigger libC50FD636_gt_WeaveAilmentRemoval;
+trigger libC50FD636_gt_CriticalHitText;
+trigger libC50FD636_gt_UnstoppableForceDamage;
+trigger libC50FD636_gt_LockdownEnabledonEquip;
+trigger libC50FD636_gt_LockdownEnabled;
+trigger libC50FD636_gt_LockdownDisabled;
+trigger libC50FD636_gt_WeaponSwapLockdownRemoval;
+trigger libC50FD636_gt_GeminiProtocolWeaponEquip;
+trigger libC50FD636_gt_StackMagazinesIntoAmmoBoxes;
+trigger libC50FD636_gt_DisplayInventoryOnSelection;
+trigger libC50FD636_gt_UpdateBagSlotsonMove;
+trigger libC50FD636_gt_IntializeOpenSlots;
+trigger libC50FD636_gt_UpdateAvailableBagSlots;
+trigger libC50FD636_gt_EquipItem;
+trigger libC50FD636_gt_UnequipItem;
+trigger libC50FD636_gt_ItemDropChangetoNeutral;
+trigger libC50FD636_gt_DisabledInventoryTransfer;
+trigger libC50FD636_gt_AmmoUpdateWeight;
+trigger libC50FD636_gt_ItemWeightUpdate;
+trigger libC50FD636_gt_UpdateAmmoDisplay;
+trigger libC50FD636_gt_DropMagazineUIClick;
+trigger libC50FD636_gt_DisplayAmmoBarOnSelection;
+trigger libC50FD636_gt_DropMagazine;
+trigger libC50FD636_gt_HighCapacityEquipped;
+trigger libC50FD636_gt_ManualReload;
+trigger libC50FD636_gt_Reload;
+trigger libC50FD636_gt_ExtendedMagazineUpgrade;
+trigger libC50FD636_gt_AmmoFeedUpgrade;
+trigger libC50FD636_gt_LevelUp;
+trigger libC50FD636_gt_TalentSelection;
+trigger libC50FD636_gt_TalentButtonHookup;
+trigger libC50FD636_gt_TalentTreeToggle;
+trigger libC50FD636_gt_JumpUpgrade;
+trigger libC50FD636_gt_MedicalAssistanceUsage;
+trigger libC50FD636_gt_HeroTest;
+
+// Functions
+void libC50FD636_gf_CrusaderAIThink (int lp_player, unit lp_unit, unitgroup lp_scanGroup) {
+    unitgroup autoF650846E_g;
+    int autoF650846E_u;
+    unitgroup autoD57DDE09_g;
+    int autoD57DDE09_u;
+
+    // Variable Declarations
+    unit lv_currentUnit;
+    unit lv_distanceUnit;
+    unitgroup lv_possibleEscortGroup;
+    unitgroup lv_tempGroup;
+    unitgroup lv_escortGroup;
+    unit lv_escortUnit;
+
+    // Variable Initialization
+    lv_possibleEscortGroup = UnitGroupAlliance(lp_player, c_unitAllianceAllyExcludeSelf, RegionEntireMap(), UnitFilter((1 << c_targetFilterHeroic), 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+    lv_tempGroup = UnitGroupEmpty();
+    lv_escortGroup = UnitGroupEmpty();
+
+    // Implementation
+    autoF650846E_g = lv_possibleEscortGroup;
+    autoF650846E_u = 1;
+    for ( ; autoF650846E_u <= UnitGroupCount(autoF650846E_g, c_unitCountAll) ; autoF650846E_u += BoolToInt(lv_currentUnit == UnitGroupUnit(autoF650846E_g, autoF650846E_u)) ) {
+        lv_currentUnit = UnitGroupUnit(autoF650846E_g, autoF650846E_u);
+        autoD57DDE09_g = lv_possibleEscortGroup;
+        autoD57DDE09_u = 1;
+        for ( ; autoD57DDE09_u <= UnitGroupCount(autoD57DDE09_g, c_unitCountAll) ; autoD57DDE09_u += BoolToInt(lv_distanceUnit == UnitGroupUnit(autoD57DDE09_g, autoD57DDE09_u)) ) {
+            lv_distanceUnit = UnitGroupUnit(autoD57DDE09_g, autoD57DDE09_u);
+            if ((DistanceBetweenPoints(UnitGetPosition(lv_currentUnit), UnitGetPosition(lv_distanceUnit)) < 20.0)) {
+                UnitGroupAdd(lv_tempGroup, lv_distanceUnit);
+            }
+        }
+        if ((UnitGroupCount(lv_tempGroup, c_unitCountAlive) > UnitGroupCount(lv_escortGroup, c_unitCountAlive))) {
+            lv_escortGroup = UnitGroupEmpty();
+            UnitGroupAddUnitGroup(lv_escortGroup, lv_tempGroup);
+        }
+        lv_tempGroup = UnitGroupEmpty();
+    }
+    lv_escortUnit = UnitGroupRandomUnit(lv_escortGroup, c_unitCountAlive);
+    AIAttackWaveSetTargetEscort(lp_player, lv_escortGroup, 2);
+    AIAttackWaveAddEscortUnit(lp_player, lp_unit, lv_escortUnit, 6.0, libNtve_gf_RandomAngle());
+    AIAttackWaveSend(lp_player, 0, false);
+}
+
+void libC50FD636_gf_ClassCreation (point lp_deploymentPoint, int lp_player) {
+    // Implementation
+    libC50FD636_gf_TalentTreeCreation(lp_player, libC50FD636_gv_marines[lp_player].lv_class);
+    libC50FD636_gf_CreateAmmoDisplay(lp_player);
+    UnitCreate(1, UserDataGetUnit("Classes", libC50FD636_gv_marines[lp_player].lv_class, "Class Unit", 1), 0, lp_player, lp_deploymentPoint, libNtve_gf_RandomAngle());
+    libC50FD636_gv_marines[lp_player].lv_unit = UnitLastCreated();
+    UnitControlGroupAddUnit(lp_player, 1, UnitLastCreated());
+    UnitSelect(UnitLastCreated(), lp_player, true);
+    UnitGroupAdd(libC50FD636_gv_marinesUnitGroup, UnitLastCreated());
+    UnitSetPropertyFixed(libC50FD636_gv_marines[lp_player].lv_unit, c_unitPropLevel, 1.0);
+    UnitInventoryCreate(libC50FD636_gv_marines[lp_player].lv_unit, UserDataGetUnit("Classes", libC50FD636_gv_marines[lp_player].lv_class, "Default Weapon", 1));
+    UnitInventoryContainerOpen(PlayerGroupSingle(lp_player), libC50FD636_gv_marines[lp_player].lv_unit, 1, true);
+    UnitInventoryContainerOpen(PlayerGroupSingle(lp_player), libC50FD636_gv_marines[lp_player].lv_unit, 2, true);
+}
+
+bool libC50FD636_gf_BulwarkAngleDamageCheck (fixed lp_damageAngle) {
+    // Variable Declarations
+    fixed lv_adjustedAngle;
+    fixed lv_adjustBulwarkAngle;
+
+    // Variable Initialization
+    lv_adjustedAngle = ModF((lp_damageAngle + 360.0), 360.0);
+    lv_adjustBulwarkAngle = ModF((libC50FD636_gv_bulwarkAngle + 360.0), 360.0);
+
+    // Implementation
+    return (((lv_adjustBulwarkAngle - lv_adjustedAngle) >= -45.0) && ((lv_adjustBulwarkAngle - lv_adjustedAngle) <= 45.0));
+}
+
+bool libC50FD636_gf_GeminiSlotEmpty (unit lp_assault) {
+    // Implementation
+    UnitGroupLoopBegin(UnitInventoryGroup(lp_assault));
+    for ( ; !UnitGroupLoopDone() ; UnitGroupLoopStep() ) {
+        if ((UnitInventoryContainer(UnitGroupLoopCurrent()) == 3)) {
+            return false;
+        }
+        else {
+        }
+    }
+    UnitGroupLoopEnd();
+    return true;
+}
+
+int libC50FD636_gf_GetOpenBagSlot (unit lp_inventoryUnit) {
+    // Variable Declarations
+    int lv_openSlot;
+
+    // Variable Initialization
+    lv_openSlot = -1;
+
+    // Implementation
+    IntLoopBegin(lib1E3F036D_gv_indexBaseValue, libC50FD636_gv_inventoryBagSize);
+    for ( ; !IntLoopDone() ; IntLoopStep() ) {
+        if (libC50FD636_gv_openBagSlots[IntLoopCurrent()][UnitGetOwner(lp_inventoryUnit)]) {
+            lv_openSlot = IntLoopCurrent();
+            return lv_openSlot;
+        }
+        else {
+        }
+    }
+    IntLoopEnd();
+    return lv_openSlot;
+}
+
+void libC50FD636_gf_EquipmentUpdateMarineWeight (int lp_ownerOfEquipment) {
+    // Variable Declarations
+    int lv_i;
+    int lv_runningWeight;
+    unit lv_marine;
+
+    // Variable Initialization
+    lv_marine = libC50FD636_gv_marines[lp_ownerOfEquipment].lv_unit;
+
+    // Implementation
+    UnitGroupLoopBegin(UnitInventoryGroup(lv_marine));
+    for ( ; !UnitGroupLoopDone() ; UnitGroupLoopStep() ) {
+        lv_runningWeight += libC50FD636_gf_EquipmentGetItemWeight(lp_ownerOfEquipment, UnitGroupLoopCurrent());
+    }
+    UnitGroupLoopEnd();
+    lv_runningWeight += FixedToInt(UnitAbilityChargeInfo(lv_marine, AbilityCommand("MarineAbilities", 4), c_unitAbilChargeCountLeft));
+    lv_runningWeight = FixedToInt((IntToFixed(lv_runningWeight) * UserDataGetFixed("Classes", libC50FD636_gv_marines[lp_ownerOfEquipment].lv_class, "Weight Class", 1)));
+    UnitBehaviorRemove(lv_marine, "ItemWeight1", 2);
+    UnitBehaviorRemove(lv_marine, "ItemWeight10", 2);
+    UnitBehaviorRemove(lv_marine, "ItemWeight100", 2);
+    UnitBehaviorRemove(lv_marine, "ItemWeight2", 2);
+    UnitBehaviorRemove(lv_marine, "ItemWeight20", 2);
+    UnitBehaviorRemove(lv_marine, "ItemWeight200", 2);
+    UnitBehaviorRemove(lv_marine, "ItemWeight5", 2);
+    UnitBehaviorRemove(lv_marine, "ItemWeight50", 2);
+    UnitBehaviorRemove(lv_marine, "ItemWeight500", 2);
+    lv_i = (lv_runningWeight / 500);
+    lv_runningWeight = ModI(lv_runningWeight, 500);
+    if ((lv_i > 0)) {
+        UnitBehaviorAddPlayer(lv_marine, "ItemWeight500", lp_ownerOfEquipment, lv_i);
+    }
+    else {
+    }
+    lv_i = (lv_runningWeight / 200);
+    lv_runningWeight = ModI(lv_runningWeight, 200);
+    if ((lv_i > 0)) {
+        UnitBehaviorAddPlayer(lv_marine, "ItemWeight200", lp_ownerOfEquipment, lv_i);
+    }
+    else {
+    }
+    lv_i = (lv_runningWeight / 100);
+    lv_runningWeight = ModI(lv_runningWeight, 100);
+    if ((lv_i > 0)) {
+        UnitBehaviorAddPlayer(lv_marine, "ItemWeight100", lp_ownerOfEquipment, lv_i);
+    }
+    else {
+    }
+    lv_i = (lv_runningWeight / 50);
+    lv_runningWeight = ModI(lv_runningWeight, 50);
+    if ((lv_i > 0)) {
+        UnitBehaviorAddPlayer(lv_marine, "ItemWeight50", lp_ownerOfEquipment, lv_i);
+    }
+    else {
+    }
+    lv_i = (lv_runningWeight / 20);
+    lv_runningWeight = ModI(lv_runningWeight, 20);
+    if ((lv_i > 0)) {
+        UnitBehaviorAddPlayer(lv_marine, "ItemWeight20", lp_ownerOfEquipment, lv_i);
+    }
+    else {
+    }
+    lv_i = (lv_runningWeight / 10);
+    lv_runningWeight = ModI(lv_runningWeight, 10);
+    if ((lv_i > 0)) {
+        UnitBehaviorAddPlayer(lv_marine, "ItemWeight10", lp_ownerOfEquipment, lv_i);
+    }
+    else {
+    }
+    lv_i = (lv_runningWeight / 5);
+    lv_runningWeight = ModI(lv_runningWeight, 5);
+    if ((lv_i > 0)) {
+        UnitBehaviorAddPlayer(lv_marine, "ItemWeight5", lp_ownerOfEquipment, lv_i);
+    }
+    else {
+    }
+    lv_i = (lv_runningWeight / 2);
+    lv_runningWeight = ModI(lv_runningWeight, 2);
+    if ((lv_i > 0)) {
+        UnitBehaviorAddPlayer(lv_marine, "ItemWeight2", lp_ownerOfEquipment, lv_i);
+    }
+    else {
+    }
+    UnitBehaviorAddPlayer(lv_marine, "ItemWeight1", lp_ownerOfEquipment, lv_runningWeight);
+}
+
+int libC50FD636_gf_EquipmentGetItemWeight (int lp_ownerofEquipment, unit lp_item) {
+    int auto09739315_ae;
+    int auto09739315_ai;
+
+    // Variable Declarations
+    int lv_index;
+    fixed lv_weight;
+
+    // Variable Initialization
+    lv_index = 1;
+
+    // Implementation
+    auto09739315_ae = UserDataInstanceCount("ItemWeights");
+    auto09739315_ai = 1;
+    lv_index = 1;
+    for ( ; ( (auto09739315_ai >= 0 && lv_index <= auto09739315_ae) || (auto09739315_ai <= 0 && lv_index >= auto09739315_ae) ) ; lv_index += auto09739315_ai ) {
+        if ((UnitGetType(lp_item) == UserDataGetUnit("ItemWeights", UserDataInstance("ItemWeights", lv_index), "Item", 1))) {
+            break;
+        }
+        else {
+        }
+    }
+    return FixedToInt(UserDataGetFixed("ItemWeights", UserDataInstance("ItemWeights", lv_index), "Weight", 1));
+}
+
+trigger auto_libC50FD636_gf_UpdateNumberofMagazines_Trigger = null;
+int auto_libC50FD636_gf_UpdateNumberofMagazines_lp_player;
+int auto_libC50FD636_gf_UpdateNumberofMagazines_lp_change;
+
+void libC50FD636_gf_UpdateNumberofMagazines (int lp_player, int lp_change) {
+    auto_libC50FD636_gf_UpdateNumberofMagazines_lp_player = lp_player;
+    auto_libC50FD636_gf_UpdateNumberofMagazines_lp_change = lp_change;
+
+    if (auto_libC50FD636_gf_UpdateNumberofMagazines_Trigger == null) {
+        auto_libC50FD636_gf_UpdateNumberofMagazines_Trigger = TriggerCreate("auto_libC50FD636_gf_UpdateNumberofMagazines_TriggerFunc");
+    }
+
+    TriggerExecute(auto_libC50FD636_gf_UpdateNumberofMagazines_Trigger, false, false);
+}
+
+bool auto_libC50FD636_gf_UpdateNumberofMagazines_TriggerFunc (bool testConds, bool runActions) {
+    int lp_player = auto_libC50FD636_gf_UpdateNumberofMagazines_lp_player;
+    int lp_change = auto_libC50FD636_gf_UpdateNumberofMagazines_lp_change;
+
+    // Implementation
+    libC50FD636_gv_marines[lp_player].lv_currentNumberofMagazines += lp_change;
+    return true;
+}
+
+trigger auto_libC50FD636_gf_UpdateAmmoMax_Trigger = null;
+int auto_libC50FD636_gf_UpdateAmmoMax_lp_player;
+
+void libC50FD636_gf_UpdateAmmoMax (int lp_player) {
+    auto_libC50FD636_gf_UpdateAmmoMax_lp_player = lp_player;
+
+    if (auto_libC50FD636_gf_UpdateAmmoMax_Trigger == null) {
+        auto_libC50FD636_gf_UpdateAmmoMax_Trigger = TriggerCreate("auto_libC50FD636_gf_UpdateAmmoMax_TriggerFunc");
+    }
+
+    TriggerExecute(auto_libC50FD636_gf_UpdateAmmoMax_Trigger, false, false);
+}
+
+bool auto_libC50FD636_gf_UpdateAmmoMax_TriggerFunc (bool testConds, bool runActions) {
+    int lp_player = auto_libC50FD636_gf_UpdateAmmoMax_lp_player;
+
+    // Implementation
+    libNtve_gf_SetDialogItemText(libC50FD636_gv_ammoDisplay[lp_player].lv_ammoLabel, (FixedToText((libC50FD636_gv_marines[lp_player].lv_currentMaxMagazineSize - PlayerGetChargeUsed(lp_player, "CurrentMagazine")), c_fixedPrecisionAny) + StringExternal("Param/Value/lib_C50FD636_64004A16") + IntToText(libC50FD636_gv_marines[lp_player].lv_currentMaxMagazineSize)), PlayerGroupAll());
+    libNtve_gf_SetDialogItemMaximumValue(libC50FD636_gv_ammoDisplay[lp_player].lv_ammoBar, libC50FD636_gv_marines[lp_player].lv_currentMaxMagazineSize, PlayerGroupAll());
+    libNtve_gf_SetDialogItemCurrentValue(libC50FD636_gv_ammoDisplay[lp_player].lv_ammoBar, (libC50FD636_gv_marines[lp_player].lv_currentMaxMagazineSize - PlayerGetChargeUsed(lp_player, "CurrentMagazine")), PlayerGroupAll());
+    return true;
+}
+
+trigger auto_libC50FD636_gf_CreateAmmoDisplay_Trigger = null;
+int auto_libC50FD636_gf_CreateAmmoDisplay_lp_player;
+
+void libC50FD636_gf_CreateAmmoDisplay (int lp_player) {
+    auto_libC50FD636_gf_CreateAmmoDisplay_lp_player = lp_player;
+
+    if (auto_libC50FD636_gf_CreateAmmoDisplay_Trigger == null) {
+        auto_libC50FD636_gf_CreateAmmoDisplay_Trigger = TriggerCreate("auto_libC50FD636_gf_CreateAmmoDisplay_TriggerFunc");
+    }
+
+    TriggerExecute(auto_libC50FD636_gf_CreateAmmoDisplay_Trigger, false, false);
+}
+
+bool auto_libC50FD636_gf_CreateAmmoDisplay_TriggerFunc (bool testConds, bool runActions) {
+    int lp_player = auto_libC50FD636_gf_CreateAmmoDisplay_lp_player;
+
+    // Variable Declarations
+    int lv_tempAmmoPanel;
+
+    // Variable Initialization
+    lv_tempAmmoPanel = c_invalidDialogControlId;
+
+    // Implementation
+    DialogCreate(305, 50, c_anchorBottomRight, 425, 265, true);
+    DialogSetImageVisible(DialogLastCreated(), false);
+    libC50FD636_gv_ammoDisplay[lp_player].lv_ammoDialog = DialogLastCreated();
+    DialogControlCreateFromTemplate(DialogLastCreated(), c_triggerControlTypePanel, "AmmoDisplay/AmmoDisplayTemplate");
+    lv_tempAmmoPanel = DialogControlLastCreated();
+    DialogControlSetPosition(DialogControlLastCreated(), PlayerGroupAll(), c_anchorTopLeft, 0, 0);
+    DialogControlHookup(lv_tempAmmoPanel, c_triggerControlTypeProgressBar, "AmmoBar");
+    libC50FD636_gv_ammoDisplay[lp_player].lv_ammoBar = DialogControlLastCreated();
+    DialogControlHookup(lv_tempAmmoPanel, c_triggerControlTypeLabel, "AmmoCount");
+    libC50FD636_gv_ammoDisplay[lp_player].lv_ammoLabel = DialogControlLastCreated();
+    DialogControlHookup(lv_tempAmmoPanel, c_triggerControlTypeButton, "HitTestFrame");
+    libC50FD636_gv_ammoDisplay[lp_player].lv_ammoHitTestFrame = DialogControlLastCreated();
+    TriggerAddEventDialogControl(libC50FD636_gt_DropMagazineUIClick, c_playerAny, DialogControlLastCreated(), c_triggerControlEventTypeClick);
+    libNtve_gf_SetDialogItemMaximumValue(libC50FD636_gv_ammoDisplay[lp_player].lv_ammoBar, libC50FD636_gv_marines[lp_player].lv_currentMaxMagazineSize, PlayerGroupAll());
+    libNtve_gf_SetDialogItemCurrentValue(libC50FD636_gv_ammoDisplay[lp_player].lv_ammoBar, libC50FD636_gv_marines[lp_player].lv_currentMaxMagazineSize, PlayerGroupAll());
+    libNtve_gf_SetDialogItemText(libC50FD636_gv_ammoDisplay[lp_player].lv_ammoLabel, (IntToText(libC50FD636_gv_marines[lp_player].lv_currentMaxMagazineSize) + StringExternal("Param/Value/lib_C50FD636_3238FD09") + IntToText(libC50FD636_gv_marines[lp_player].lv_currentMaxMagazineSize)), PlayerGroupAll());
+    DialogSetVisible(DialogLastCreated(), PlayerGroupSingle(lp_player), true);
+    return true;
+}
+
+void libC50FD636_gf_IntializeTalentMax () {
+    // Implementation
+    IntLoopBegin(1, libC50FD636_gv_numberofTalentTrees);
+    for ( ; !IntLoopDone() ; IntLoopStep() ) {
+        libC50FD636_gv_talentMax[IntLoopCurrent()][1] = 3;
+        libC50FD636_gv_talentMax[IntLoopCurrent()][2] = 3;
+        libC50FD636_gv_talentMax[IntLoopCurrent()][3] = 2;
+        libC50FD636_gv_talentMax[IntLoopCurrent()][4] = 2;
+        libC50FD636_gv_talentMax[IntLoopCurrent()][5] = 1;
+        libC50FD636_gv_talentMax[IntLoopCurrent()][6] = 1;
+    }
+    IntLoopEnd();
+}
+
+bool libC50FD636_gf_TalentSelectionOption (int lp_tree, int lp_talent, int lp_talentPlayer) {
+    // Variable Declarations
+    int lv_talentsTotal;
+
+    // Variable Initialization
+
+    // Implementation
+    if (((lp_talent >= 1) && (lp_talent <= 2))) {
+        if (((libC50FD636_gv_talentTrees[lp_talentPlayer].lv_tree[lp_tree].lv_talentButtons[lp_talent].lv_abilityLevel >= 0) && (libC50FD636_gv_talentTrees[lp_talentPlayer].lv_tree[lp_tree].lv_talentButtons[lp_talent].lv_abilityLevel <= (libC50FD636_gv_talentMax[lp_tree][lp_talent] - 1)))) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+    else {
+        lv_talentsTotal += (libC50FD636_gv_talentTrees[lp_talentPlayer].lv_tree[lp_tree].lv_talentButtons[1].lv_abilityLevel + libC50FD636_gv_talentTrees[lp_talentPlayer].lv_tree[lp_tree].lv_talentButtons[2].lv_abilityLevel);
+        if ((lv_talentsTotal >= 4) && ((lp_talent >= 3) && (lp_talent <= 4))) {
+            if (((libC50FD636_gv_talentTrees[lp_talentPlayer].lv_tree[lp_tree].lv_talentButtons[lp_talent].lv_abilityLevel >= 0) && (libC50FD636_gv_talentTrees[lp_talentPlayer].lv_tree[lp_tree].lv_talentButtons[lp_talent].lv_abilityLevel <= (libC50FD636_gv_talentMax[lp_tree][lp_talent] - 1)))) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+        else {
+            lv_talentsTotal += (libC50FD636_gv_talentTrees[lp_talentPlayer].lv_tree[lp_tree].lv_talentButtons[3].lv_abilityLevel + libC50FD636_gv_talentTrees[lp_talentPlayer].lv_tree[lp_tree].lv_talentButtons[4].lv_abilityLevel);
+            if ((lv_talentsTotal >= 8) && ((lp_talent >= 5) && (lp_talent <= 6)) && (libC50FD636_gv_talentTrees[lp_talentPlayer].lv_tree[lp_tree].lv_talentButtons[5].lv_abilityLevel == 0) && (libC50FD636_gv_talentTrees[lp_talentPlayer].lv_tree[lp_tree].lv_talentButtons[6].lv_abilityLevel == 0)) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+    }
+}
+
+bool libC50FD636_gf_TalentTreeSelected (int lp_dialogItem) {
+    int autoE1126377_ae;
+    int autoE1126377_ai;
+
+    // Variable Declarations
+    int lv_index;
+
+    // Variable Initialization
+
+    // Implementation
+    autoE1126377_ae = lib1E3F036D_gv_numberofPlayers;
+    autoE1126377_ai = 1;
+    lv_index = 1;
+    for ( ; ( (autoE1126377_ai >= 0 && lv_index <= autoE1126377_ae) || (autoE1126377_ai <= 0 && lv_index >= autoE1126377_ae) ) ; lv_index += autoE1126377_ai ) {
+        if ((DialogControlGetDialog(lp_dialogItem) == libC50FD636_gv_talentTrees[lv_index].lv_treeDialog)) {
+            return true;
+        }
+        else {
+        }
+    }
+    return false;
+}
+
+bool libC50FD636_gf_TalentTreeAccess (int lp_talentTreePlayer, int lp_selectingPlayer) {
+    // Implementation
+    return (lp_selectingPlayer == lp_talentTreePlayer);
+}
+
+void libC50FD636_gf_UpdateTalentAbility (int lp_itemNo, int lp_triggPlayer, int lp_talentTree) {
+    // Variable Declarations
+    unit lv_triggUnit;
+
+    // Variable Initialization
+    lv_triggUnit = libC50FD636_gv_marines[lp_triggPlayer].lv_unit;
+
+    // Implementation
+    UnitIssueOrder(lv_triggUnit, Order(AbilityCommand("RiflemanLearn", ((( (lp_talentTree - 1) * libC50FD636_gv_numberofTalents) + lp_itemNo) - 1))), c_orderQueueAddToFront);
+}
+
+void libC50FD636_gf_UpdateTalentSystem (int lp_talent, int lp_talentPlayer, int lp_talentTree) {
+    // Implementation
+    libC50FD636_gv_talentTrees[lp_talentPlayer].lv_numberAvailable -= 1;
+    libC50FD636_gv_talentTrees[lp_talentPlayer].lv_tree[lp_talentTree].lv_talentButtons[lp_talent].lv_abilityLevel += 1;
+    libC50FD636_gf_UpdateTalentAbility(lp_talent, lp_talentPlayer, lp_talentTree);
+    libC50FD636_gf_UpdateTalentVisuals(lp_talentPlayer, lp_talent, lp_talentTree);
+    libC50FD636_gf_UpdateAllTalentImages(lp_talentPlayer);
+    libC50FD636_gf_UpdateAvailableTalents(libC50FD636_gv_talentTrees[lp_talentPlayer].lv_numberAvailableLabel, libC50FD636_gv_talentTrees[lp_talentPlayer].lv_numberAvailable);
+}
+
+void libC50FD636_gf_UpdateAvailableTalents (int lp_dialogItem, int lp_text) {
+    // Implementation
+    libNtve_gf_SetDialogItemText(lp_dialogItem, (StringExternal("Param/Value/lib_C50FD636_12D31F0B") + IntToText(lp_text)), GameAttributePlayersForTeam(1));
+}
+
+void libC50FD636_gf_UpdateTalentText (int lp_talent, int lp_triggPlayer, int lp_tree) {
+    // Implementation
+    TextExpressionSetToken("Param/Expression/lib_C50FD636_BB8A5508", "A", IntToText(libC50FD636_gv_talentTrees[lp_triggPlayer].lv_tree[lp_tree].lv_talentButtons[lp_talent].lv_abilityLevel));
+    TextExpressionSetToken("Param/Expression/lib_C50FD636_BB8A5508", "B", IntToText(libC50FD636_gv_talentMax[lp_tree][lp_talent]));
+    libNtve_gf_SetDialogItemText(libC50FD636_gv_talentTrees[lp_triggPlayer].lv_tree[lp_tree].lv_talentButtons[lp_talent].lv_talentTooltipText, TextExpressionAssemble("Param/Expression/lib_C50FD636_BB8A5508"), GameAttributePlayersForTeam(1));
+}
+
+void libC50FD636_gf_UpdateTalentImage (int lp_talent, int lp_triggPlayer, int lp_tree) {
+    // Variable Declarations
+    bool lv_talentsAvailable;
+    int lv_currentTalentLevel;
+    int lv_dialogItem;
+    int lv_dialogBorderInitial;
+    int lv_dialogBorderFinal;
+
+    // Variable Initialization
+    lv_talentsAvailable = (libC50FD636_gv_talentTrees[lp_triggPlayer].lv_numberAvailable > 0);
+    lv_currentTalentLevel = libC50FD636_gv_talentTrees[lp_triggPlayer].lv_tree[lp_tree].lv_talentButtons[lp_talent].lv_abilityLevel;
+    lv_dialogItem = libC50FD636_gv_talentTrees[lp_triggPlayer].lv_tree[lp_tree].lv_talentButtons[lp_talent].lv_talentImage;
+    lv_dialogBorderInitial = libC50FD636_gv_talentTrees[lp_triggPlayer].lv_tree[lp_tree].lv_talentButtons[lp_talent].lv_borderIntital;
+    lv_dialogBorderFinal = libC50FD636_gv_talentTrees[lp_triggPlayer].lv_tree[lp_tree].lv_talentButtons[lp_talent].lv_borderFinal;
+
+    // Implementation
+    if ((lv_currentTalentLevel == libC50FD636_gv_talentMax[lp_tree][lp_talent])) {
+        libNtve_gf_SetDialogItemColor(lv_dialogItem, Color(100,100,100), GameAttributePlayersForTeam(1));
+        DialogControlSetVisible(lv_dialogBorderInitial, PlayerGroupAll(), false);
+        DialogControlSetVisible(lv_dialogBorderFinal, PlayerGroupAll(), true);
+    }
+    else {
+        if ((lv_talentsAvailable && libC50FD636_gf_TalentSelectionOption(lp_tree, lp_talent, lp_triggPlayer))) {
+            libNtve_gf_SetDialogItemColor(lv_dialogItem, Color(67.45, 67.45, 67.45), GameAttributePlayersForTeam(1));
+        }
+        else {
+            if ((lv_currentTalentLevel == 0)) {
+                libNtve_gf_SetDialogItemColor(lv_dialogItem, Color(33.33, 33.33, 100.00), GameAttributePlayersForTeam(1));
+            }
+            else {
+                libNtve_gf_SetDialogItemColor(lv_dialogItem, Color(66.67, 66.67, 100.00), GameAttributePlayersForTeam(1));
+            }
+        }
+    }
+}
+
+void libC50FD636_gf_UpdateAllTalentImages (int lp_triggPlayer) {
+    int auto4AD6758E_ae;
+    int auto4AD6758E_ai;
+    int auto0A87FC81_ae;
+    int auto0A87FC81_ai;
+
+    // Variable Declarations
+    int lv_tree;
+    int lv_talent;
+
+    // Variable Initialization
+
+    // Implementation
+    auto4AD6758E_ae = libC50FD636_gv_numberofTalentTrees;
+    auto4AD6758E_ai = 1;
+    lv_tree = 1;
+    for ( ; ( (auto4AD6758E_ai >= 0 && lv_tree <= auto4AD6758E_ae) || (auto4AD6758E_ai <= 0 && lv_tree >= auto4AD6758E_ae) ) ; lv_tree += auto4AD6758E_ai ) {
+        auto0A87FC81_ae = libC50FD636_gv_numberofTalents;
+        auto0A87FC81_ai = 1;
+        lv_talent = 1;
+        for ( ; ( (auto0A87FC81_ai >= 0 && lv_talent <= auto0A87FC81_ae) || (auto0A87FC81_ai <= 0 && lv_talent >= auto0A87FC81_ae) ) ; lv_talent += auto0A87FC81_ai ) {
+            libC50FD636_gf_UpdateTalentImage(lv_talent, lp_triggPlayer, lv_tree);
+        }
+    }
+}
+
+void libC50FD636_gf_UpdateTalentVisuals (int lp_player, int lp_talent, int lp_tree) {
+    // Implementation
+    libC50FD636_gf_UpdateTalentText(lp_talent, lp_player, lp_tree);
+    libC50FD636_gf_UpdateAllTalentImages(lp_player);
+}
+
+void libC50FD636_gf_TalentButton (int lp_treePanel, int lp_player, int lp_talentNumber, int lp_tree, string lp_class) {
+    // Variable Declarations
+    int lv_talentPanel;
+
+    // Variable Initialization
+    lv_talentPanel = c_invalidDialogControlId;
+
+    // Implementation
+    DialogControlHookup(lp_treePanel, c_triggerControlTypePanel, "Talent" + IntToString(lp_talentNumber));
+    lv_talentPanel = DialogControlLastCreated();
+    DialogControlHookup(lv_talentPanel, c_triggerControlTypeButton, "Button");
+    libC50FD636_gv_talentTrees[lp_player].lv_tree[lp_tree].lv_talentButtons[lp_talentNumber].lv_button = DialogControlLastCreated();
+    TriggerAddEventDialogControl(libC50FD636_gt_TalentSelection, c_playerAny, DialogControlLastCreated(), c_triggerControlEventTypeClick);
+    libNtve_gf_SetDialogItemTooltip(DialogControlLastCreated(), (StringExternal("Param/Value/lib_C50FD636_4CF33B07") + UserDataGetText("TalentTree", UserDataGetUserInstance("TalentTrees", UserDataGetUserInstance("Classes", lp_class, "Talent Tree", 1), "Trees", lp_tree), "Talent Name", lp_talentNumber) + StringExternal("Param/Value/lib_C50FD636_0DE50407") + UserDataGetText("TalentTree", UserDataGetUserInstance("TalentTrees", UserDataGetUserInstance("Classes", lp_class, "Talent Tree", 1), "Trees", lp_tree), "Talent Tooltips", lp_talentNumber)), PlayerGroupAll());
+    DialogControlHookup(lv_talentPanel, c_triggerControlTypeImage, "TalentImageIntial");
+    libC50FD636_gv_talentTrees[lp_player].lv_tree[lp_tree].lv_talentButtons[lp_talentNumber].lv_borderIntital = DialogControlLastCreated();
+    DialogControlHookup(lv_talentPanel, c_triggerControlTypeImage, "TalentImageFinal");
+    libC50FD636_gv_talentTrees[lp_player].lv_tree[lp_tree].lv_talentButtons[lp_talentNumber].lv_borderFinal = DialogControlLastCreated();
+    DialogControlHookup(lv_talentPanel, c_triggerControlTypeImage, "TalentImage");
+    libC50FD636_gv_talentTrees[lp_player].lv_tree[lp_tree].lv_talentButtons[lp_talentNumber].lv_talentImage = DialogControlLastCreated();
+    libNtve_gf_SetDialogItemImage(DialogControlLastCreated(), UserDataGetImagePath("TalentTree", UserDataGetUserInstance("TalentTrees", UserDataGetUserInstance("Classes", lp_class, "Talent Tree", 1), "Trees", lp_tree), "Talent Icon", lp_talentNumber), PlayerGroupAll());
+    DialogControlHookup(lv_talentPanel, c_triggerControlTypeLabel, "TalentLevelLabel");
+    libC50FD636_gv_talentTrees[lp_player].lv_tree[lp_tree].lv_talentButtons[lp_talentNumber].lv_talentTooltipText = DialogControlLastCreated();
+}
+
+void libC50FD636_gf_TalentTree (int lp_treeDialogPanel, int lp_player, int lp_tree, string lp_class) {
+    int auto25338DB5_ae;
+    int auto25338DB5_ai;
+
+    // Variable Declarations
+    int lv_treePanel;
+    int lv_talent;
+
+    // Variable Initialization
+    lv_treePanel = c_invalidDialogControlId;
+
+    // Implementation
+    DialogControlHookup(lp_treeDialogPanel, c_triggerControlTypePanel, "Tree" + IntToString(lp_tree));
+    lv_treePanel = DialogControlLastCreated();
+    auto25338DB5_ae = libC50FD636_gv_numberofTalents;
+    auto25338DB5_ai = 1;
+    lv_talent = lib1E3F036D_gv_indexBaseValue;
+    for ( ; ( (auto25338DB5_ai >= 0 && lv_talent <= auto25338DB5_ae) || (auto25338DB5_ai <= 0 && lv_talent >= auto25338DB5_ae) ) ; lv_talent += auto25338DB5_ai ) {
+        libC50FD636_gf_TalentButton(lv_treePanel, lp_player, lv_talent, lp_tree, lp_class);
+    }
+    DialogControlHookup(lv_treePanel, c_triggerControlTypeLabel, "TalentTreeTitle");
+    libNtve_gf_SetDialogItemText(DialogControlLastCreated(), UserDataGetText("TalentTree", UserDataGetUserInstance("TalentTrees", UserDataGetUserInstance("Classes", lp_class, "Talent Tree", 1), "Trees", lp_tree), "Header", 1), PlayerGroupAll());
+}
+
+trigger auto_libC50FD636_gf_TalentTreeCreation_Trigger = null;
+int auto_libC50FD636_gf_TalentTreeCreation_lp_player;
+string auto_libC50FD636_gf_TalentTreeCreation_lp_class;
+
+void libC50FD636_gf_TalentTreeCreation (int lp_player, string lp_class) {
+    auto_libC50FD636_gf_TalentTreeCreation_lp_player = lp_player;
+    auto_libC50FD636_gf_TalentTreeCreation_lp_class = lp_class;
+
+    if (auto_libC50FD636_gf_TalentTreeCreation_Trigger == null) {
+        auto_libC50FD636_gf_TalentTreeCreation_Trigger = TriggerCreate("auto_libC50FD636_gf_TalentTreeCreation_TriggerFunc");
+    }
+
+    TriggerExecute(auto_libC50FD636_gf_TalentTreeCreation_Trigger, false, false);
+}
+
+bool auto_libC50FD636_gf_TalentTreeCreation_TriggerFunc (bool testConds, bool runActions) {
+    int lp_player = auto_libC50FD636_gf_TalentTreeCreation_lp_player;
+    string lp_class = auto_libC50FD636_gf_TalentTreeCreation_lp_class;
+
+    int auto64E5A61F_ae;
+    int auto64E5A61F_ai;
+
+    // Variable Declarations
+    int lv_tempDialogItem;
+    int lv_tree;
+    int lv_talent;
+
+    // Variable Initialization
+    lv_tempDialogItem = c_invalidDialogControlId;
+
+    // Implementation
+    DialogCreate(690, 610, c_anchorBottomRight, 273, 433, true);
+    libC50FD636_gv_talentTrees[lp_player].lv_treeDialog = DialogLastCreated();
+    DialogSetImageVisible(libC50FD636_gv_talentTrees[lp_player].lv_treeDialog, false);
+    DialogControlCreateFromTemplate(DialogLastCreated(), c_triggerControlTypePanel, "TalentTreeTemplateLayout/TalentTreeFrameTemplate");
+    lv_tempDialogItem = DialogControlLastCreated();
+    DialogControlHookup(lv_tempDialogItem, c_triggerControlTypeLabel, "TalentsAvailable");
+    libC50FD636_gv_talentTrees[lp_player].lv_numberAvailableLabel = DialogControlLastCreated();
+    TextExpressionSetToken("Param/Expression/lib_C50FD636_5E5C0951", "A", IntToText(libC50FD636_gv_talentTrees[lp_player].lv_numberAvailable));
+    libNtve_gf_SetDialogItemText(DialogControlLastCreated(), TextExpressionAssemble("Param/Expression/lib_C50FD636_5E5C0951"), PlayerGroupAll());
+    auto64E5A61F_ae = libC50FD636_gv_numberofTalentTrees;
+    auto64E5A61F_ai = 1;
+    lv_tree = lib1E3F036D_gv_indexBaseValue;
+    for ( ; ( (auto64E5A61F_ai >= 0 && lv_tree <= auto64E5A61F_ae) || (auto64E5A61F_ai <= 0 && lv_tree >= auto64E5A61F_ae) ) ; lv_tree += auto64E5A61F_ai ) {
+        libC50FD636_gf_TalentTree(lv_tempDialogItem, lp_player, lv_tree, lp_class);
+    }
+    libC50FD636_gf_UpdateTalentImage(1, lp_player, 1);
+    libC50FD636_gf_UpdateTalentImage(2, lp_player, 1);
+    libC50FD636_gf_UpdateTalentImage(1, lp_player, 2);
+    libC50FD636_gf_UpdateTalentImage(2, lp_player, 2);
+    return true;
+}
+
+// Triggers
+//--------------------------------------------------------------------------------------------------
+// Trigger: Predator Event Registration
+//--------------------------------------------------------------------------------------------------
+bool libC50FD636_gt_PredatorEventRegistration_Func (bool testConds, bool runActions) {
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libC50FD636_gt_PredatorEventRegistration_Init () {
+    libC50FD636_gt_PredatorEventRegistration = TriggerCreate("libC50FD636_gt_PredatorEventRegistration_Func");
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Predator Level Up
+//--------------------------------------------------------------------------------------------------
+bool libC50FD636_gt_PredatorLevelUp_Func (bool testConds, bool runActions) {
+    // Conditions
+    if (testConds) {
+        if (!((EventUnitBehavior() == "PredatorPetVeterancy"))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((UnitBehaviorCount(EventUnit(), EventUnitBehavior()) == 4)) {
+        CatalogFieldValueSet(c_gameCatalogAbil, "LightningField", "Cost[" + IntToString(0) + "].Vital[" + IntToString(2) + "]", UnitGetOwner(EventUnit()), "0");
+    }
+    else if ((UnitBehaviorCount(EventUnit(), EventUnitBehavior()) == 7)) {
+        PlayerGroupLoopBegin(GameAttributePlayersForTeam(1));
+        for ( ; !PlayerGroupLoopDone() ; PlayerGroupLoopStep() ) {
+            libNtve_gf_ShareVisionofUnit(EventUnit(), true, PlayerGroupLoopCurrent());
+        }
+        PlayerGroupLoopEnd();
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libC50FD636_gt_PredatorLevelUp_Init () {
+    libC50FD636_gt_PredatorLevelUp = TriggerCreate("libC50FD636_gt_PredatorLevelUp_Func");
+    TriggerAddEventUnitGainLevel(libC50FD636_gt_PredatorLevelUp, null);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Test Intialize AI
+//--------------------------------------------------------------------------------------------------
+bool libC50FD636_gt_TestIntializeAI_Func (bool testConds, bool runActions) {
+    // Conditions
+    if (testConds) {
+        if (!(GameIsTestMap(false))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    AIStart(10, true, 5000);
+    libNtve_gf_SetAlliance(1, 10, 1);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libC50FD636_gt_TestIntializeAI_Init () {
+    libC50FD636_gt_TestIntializeAI = TriggerCreate("libC50FD636_gt_TestIntializeAI_Func");
+    TriggerAddEventMapInit(libC50FD636_gt_TestIntializeAI);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Test Demo Merge
+//--------------------------------------------------------------------------------------------------
+bool libC50FD636_gt_TestDemoMerge_Func (bool testConds, bool runActions) {
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libC50FD636_gt_TestDemoMerge_Init () {
+    libC50FD636_gt_TestDemoMerge = TriggerCreate("libC50FD636_gt_TestDemoMerge_Func");
+    TriggerAddEventGeneric(libC50FD636_gt_TestDemoMerge, ("Test 1" + "Test 2"));
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: MD 5 Level Up
+//--------------------------------------------------------------------------------------------------
+bool libC50FD636_gt_MD5LevelUp_Func (bool testConds, bool runActions) {
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TechTreeUpgradeAddLevel(UnitGetOwner(EventUnit()), "MD5MineLevelDummy", 1);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libC50FD636_gt_MD5LevelUp_Init () {
+    libC50FD636_gt_MD5LevelUp = TriggerCreate("libC50FD636_gt_MD5LevelUp_Func");
+    TriggerAddEventUnitAbility(libC50FD636_gt_MD5LevelUp, null, AbilityCommand("DemolitionsLearn", 0), c_unitAbilStageComplete, false);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Collateral Damage Level Up
+//--------------------------------------------------------------------------------------------------
+bool libC50FD636_gt_CollateralDamageLevelUp_Func (bool testConds, bool runActions) {
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TechTreeUpgradeAddLevel(UnitGetOwner(EventUnit()), "CollateralDamageDummy", 1);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libC50FD636_gt_CollateralDamageLevelUp_Init () {
+    libC50FD636_gt_CollateralDamageLevelUp = TriggerCreate("libC50FD636_gt_CollateralDamageLevelUp_Func");
+    TriggerAddEventUnitAbility(libC50FD636_gt_CollateralDamageLevelUp, null, AbilityCommand("DemolitionsLearn", 1), c_unitAbilStageComplete, false);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Stockpile Level Up
+//--------------------------------------------------------------------------------------------------
+bool libC50FD636_gt_StockpileLevelUp_Func (bool testConds, bool runActions) {
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((TechTreeUpgradeCount(EventPlayer(), "StockpileLevel1", c_techCountCompleteOnly) == 0)) {
+        TechTreeUpgradeAddLevel(EventPlayer(), "StockpileLevel1", 1);
+    }
+    else if ((TechTreeUpgradeCount(EventPlayer(), "StockpileLevel2", c_techCountCompleteOnly) == 0)) {
+        TechTreeUpgradeAddLevel(EventPlayer(), "StockpileLevel2", 1);
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libC50FD636_gt_StockpileLevelUp_Init () {
+    libC50FD636_gt_StockpileLevelUp = TriggerCreate("libC50FD636_gt_StockpileLevelUp_Func");
+    TriggerAddEventUnitAbility(libC50FD636_gt_StockpileLevelUp, null, AbilityCommand("DemolitionsLearn", 3), c_unitAbilStageComplete, false);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Bulwark Level Up
+//--------------------------------------------------------------------------------------------------
+bool libC50FD636_gt_BulwarkLevelUp_Func (bool testConds, bool runActions) {
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TriggerAddEventUnitDamaged(libC50FD636_gt_Bulwark, UnitRefFromUnit(EventUnit()), c_unitDamageTypeAny, c_unitDamageEither, null);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libC50FD636_gt_BulwarkLevelUp_Init () {
+    libC50FD636_gt_BulwarkLevelUp = TriggerCreate("libC50FD636_gt_BulwarkLevelUp_Func");
+    TriggerAddEventUnitAbility(libC50FD636_gt_BulwarkLevelUp, null, AbilityCommand("DemolitionsLearn", 11), c_unitAbilStageComplete, false);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Communication Uplink Level Up
+//--------------------------------------------------------------------------------------------------
+bool libC50FD636_gt_CommunicationUplinkLevelUp_Func (bool testConds, bool runActions) {
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    UnitCreateEffectUnit(EventUnit(), "CommunicationUplinkInitialSearch", EventUnit());
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libC50FD636_gt_CommunicationUplinkLevelUp_Init () {
+    libC50FD636_gt_CommunicationUplinkLevelUp = TriggerCreate("libC50FD636_gt_CommunicationUplinkLevelUp_Func");
+    TriggerAddEventUnitAbility(libC50FD636_gt_CommunicationUplinkLevelUp, null, AbilityCommand("ReconLearn", 4), c_unitAbilStageComplete, false);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Assault Level Up Unstoppable Force
+//--------------------------------------------------------------------------------------------------
+bool libC50FD636_gt_AssaultLevelUpUnstoppableForce_Func (bool testConds, bool runActions) {
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TriggerEnable(libC50FD636_gt_UnstoppableForceDamage, true);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libC50FD636_gt_AssaultLevelUpUnstoppableForce_Init () {
+    libC50FD636_gt_AssaultLevelUpUnstoppableForce = TriggerCreate("libC50FD636_gt_AssaultLevelUpUnstoppableForce_Func");
+    TriggerAddEventUnitAbility(libC50FD636_gt_AssaultLevelUpUnstoppableForce, null, AbilityCommand("AssaultLearn", 4), c_unitAbilStageComplete, false);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Assault Level Up Gemini Protocol
+//--------------------------------------------------------------------------------------------------
+bool libC50FD636_gt_AssaultLevelUpGeminiProtocol_Func (bool testConds, bool runActions) {
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TechTreeUpgradeAddLevel(UnitGetOwner(EventUnit()), "GeminiProtocol", 1);
+    UnitInventoryContainerOpen(PlayerGroupAll(), EventUnit(), 3, true);
+    UnitAbilityEnable(EventUnit(), "DeployAntiMaterialRifle", false);
+    UnitAbilityEnable(EventUnit(), "PackUpAntiMaterialRifle", false);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libC50FD636_gt_AssaultLevelUpGeminiProtocol_Init () {
+    libC50FD636_gt_AssaultLevelUpGeminiProtocol = TriggerCreate("libC50FD636_gt_AssaultLevelUpGeminiProtocol_Func");
+    TriggerAddEventUnitAbility(libC50FD636_gt_AssaultLevelUpGeminiProtocol, null, AbilityCommand("AssaultLearn", 5), c_unitAbilStageComplete, false);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Rifleman Level Up Critical Strike
+//--------------------------------------------------------------------------------------------------
+bool libC50FD636_gt_RiflemanLevelUpCriticalStrike_Func (bool testConds, bool runActions) {
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TechTreeUpgradeAddLevel(UnitGetOwner(EventUnit()), "CriticalStrikeRifleman", 1);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libC50FD636_gt_RiflemanLevelUpCriticalStrike_Init () {
+    libC50FD636_gt_RiflemanLevelUpCriticalStrike = TriggerCreate("libC50FD636_gt_RiflemanLevelUpCriticalStrike_Func");
+    TriggerAddEventUnitAbility(libC50FD636_gt_RiflemanLevelUpCriticalStrike, null, AbilityCommand("RiflemanLearn", 0), c_unitAbilStageComplete, false);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Rifleman Level Up Fire Up
+//--------------------------------------------------------------------------------------------------
+bool libC50FD636_gt_RiflemanLevelUpFireUp_Func (bool testConds, bool runActions) {
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TechTreeUpgradeAddLevel(UnitGetOwner(EventUnit()), "FireUp", 1);
+    if ((TechTreeUpgradeCount(UnitGetOwner(EventUnit()), "CripplingFire", c_techCountCompleteOnly) > 0)) {
+        TechTreeUpgradeAddLevel(UnitGetOwner(EventUnit()), "CripplingFireandFireUpButton", 1);
+    }
+    else {
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libC50FD636_gt_RiflemanLevelUpFireUp_Init () {
+    libC50FD636_gt_RiflemanLevelUpFireUp = TriggerCreate("libC50FD636_gt_RiflemanLevelUpFireUp_Func");
+    TriggerAddEventUnitAbility(libC50FD636_gt_RiflemanLevelUpFireUp, null, AbilityCommand("RiflemanLearn", 1), c_unitAbilStageComplete, false);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Rifleman Level Up Weapon Proficiency
+//--------------------------------------------------------------------------------------------------
+bool libC50FD636_gt_RiflemanLevelUpWeaponProficiency_Func (bool testConds, bool runActions) {
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((TechTreeUpgradeCount(UnitGetOwner(EventUnit()), "WeaponsProficiencyLevel1", c_techCountCompleteOnly) == 1)) {
+        TechTreeUpgradeAddLevel(UnitGetOwner(EventUnit()), "WeaponsProficiencyLevel12", 1);
+    }
+    else {
+        TechTreeUpgradeAddLevel(UnitGetOwner(EventUnit()), "WeaponsProficiencyLevel1", 1);
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libC50FD636_gt_RiflemanLevelUpWeaponProficiency_Init () {
+    libC50FD636_gt_RiflemanLevelUpWeaponProficiency = TriggerCreate("libC50FD636_gt_RiflemanLevelUpWeaponProficiency_Func");
+    TriggerAddEventUnitAbility(libC50FD636_gt_RiflemanLevelUpWeaponProficiency, null, AbilityCommand("RiflemanLearn", 2), c_unitAbilStageComplete, false);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Rifleman Level Up Frag Grenade Level 3
+//--------------------------------------------------------------------------------------------------
+bool libC50FD636_gt_RiflemanLevelUpFragGrenadeLevel3_Func (bool testConds, bool runActions) {
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((EventUnitAbility() == AbilityCommand("RiflemanLearn", 3)) && (libC50FD636_gv_talentTrees[UnitGetOwner(EventUnit())].lv_tree[1].lv_talentButtons[6].lv_abilityLevel == 1)) {
+        UnitIssueOrder(EventUnit(), Order(AbilityCommand("RiflemanLearn", 3)), c_orderQueueAddToFront);
+    }
+    else {
+    }
+    if ((EventUnitAbility() == AbilityCommand("RiflemanLearn", 5)) && (libC50FD636_gv_talentTrees[UnitGetOwner(EventUnit())].lv_tree[1].lv_talentButtons[4].lv_abilityLevel == 2)) {
+        UnitIssueOrder(EventUnit(), Order(AbilityCommand("RiflemanLearn", 3)), c_orderQueueAddToFront);
+    }
+    else {
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libC50FD636_gt_RiflemanLevelUpFragGrenadeLevel3_Init () {
+    libC50FD636_gt_RiflemanLevelUpFragGrenadeLevel3 = TriggerCreate("libC50FD636_gt_RiflemanLevelUpFragGrenadeLevel3_Func");
+    TriggerAddEventUnitAbility(libC50FD636_gt_RiflemanLevelUpFragGrenadeLevel3, null, AbilityCommand("RiflemanLearn", 3), c_unitAbilStageComplete, false);
+    TriggerAddEventUnitAbility(libC50FD636_gt_RiflemanLevelUpFragGrenadeLevel3, null, AbilityCommand("RiflemanLearn", 5), c_unitAbilStageComplete, false);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Rifleman Level Up Crippling Fire
+//--------------------------------------------------------------------------------------------------
+bool libC50FD636_gt_RiflemanLevelUpCripplingFire_Func (bool testConds, bool runActions) {
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TechTreeUpgradeAddLevel(UnitGetOwner(EventUnit()), "CripplingFire", 1);
+    if ((TechTreeUpgradeCount(UnitGetOwner(EventUnit()), "FireUp", c_techCountCompleteOnly) > 0)) {
+        TechTreeUpgradeAddLevel(UnitGetOwner(EventUnit()), "CripplingFireandFireUpButton", 1);
+    }
+    else {
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libC50FD636_gt_RiflemanLevelUpCripplingFire_Init () {
+    libC50FD636_gt_RiflemanLevelUpCripplingFire = TriggerCreate("libC50FD636_gt_RiflemanLevelUpCripplingFire_Func");
+    TriggerAddEventUnitAbility(libC50FD636_gt_RiflemanLevelUpCripplingFire, null, AbilityCommand("RiflemanLearn", 7), c_unitAbilStageComplete, false);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Medic Level Up Antivenom
+//--------------------------------------------------------------------------------------------------
+bool libC50FD636_gt_MedicLevelUpAntivenom_Func (bool testConds, bool runActions) {
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    UnitIssueOrder(EventUnit(), Order(AbilityCommand("Medic2Learn", 19)), c_orderQueueAddToFront);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libC50FD636_gt_MedicLevelUpAntivenom_Init () {
+    libC50FD636_gt_MedicLevelUpAntivenom = TriggerCreate("libC50FD636_gt_MedicLevelUpAntivenom_Func");
+    TriggerAddEventUnitAbility(libC50FD636_gt_MedicLevelUpAntivenom, null, AbilityCommand("Medic2Learn", 0), c_unitAbilStageComplete, false);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Medic Level Up Medical Expertise
+//--------------------------------------------------------------------------------------------------
+bool libC50FD636_gt_MedicLevelUpMedicalExpertise_Func (bool testConds, bool runActions) {
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((TechTreeUpgradeCount(UnitGetOwner(EventUnit()), "MedicalExpertiseLevel1", c_techCountCompleteOnly) == 0)) {
+        TechTreeUpgradeAddLevel(UnitGetOwner(EventUnit()), "MedicalExpertiseLevel1", 1);
+    }
+    else {
+        if ((TechTreeUpgradeCount(UnitGetOwner(EventUnit()), "MedicalExpertiseLevel2", c_techCountCompleteOnly) == 0)) {
+            TechTreeUpgradeAddLevel(UnitGetOwner(EventUnit()), "MedicalExpertiseLevel2", 1);
+        }
+        else {
+        }
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libC50FD636_gt_MedicLevelUpMedicalExpertise_Init () {
+    libC50FD636_gt_MedicLevelUpMedicalExpertise = TriggerCreate("libC50FD636_gt_MedicLevelUpMedicalExpertise_Func");
+    TriggerAddEventUnitAbility(libC50FD636_gt_MedicLevelUpMedicalExpertise, null, AbilityCommand("Medic2Learn", 2), c_unitAbilStageComplete, false);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Medic Level Up Intolerable Cruelty
+//--------------------------------------------------------------------------------------------------
+bool libC50FD636_gt_MedicLevelUpIntolerableCruelty_Func (bool testConds, bool runActions) {
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TechTreeUpgradeAddLevel(UnitGetOwner(EventUnit()), "IntolerableCruelty", 1);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libC50FD636_gt_MedicLevelUpIntolerableCruelty_Init () {
+    libC50FD636_gt_MedicLevelUpIntolerableCruelty = TriggerCreate("libC50FD636_gt_MedicLevelUpIntolerableCruelty_Func");
+    TriggerAddEventUnitAbility(libC50FD636_gt_MedicLevelUpIntolerableCruelty, null, AbilityCommand("Medic2Learn", 9), c_unitAbilStageComplete, false);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Sadist
+//--------------------------------------------------------------------------------------------------
+bool libC50FD636_gt_Sadist_Func (bool testConds, bool runActions) {
+    // Conditions
+    if (testConds) {
+        if (!((UnitGetType(libNtve_gf_KillingUnit()) == "Demolitions"))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((libC50FD636_gv_talentTrees[libNtve_gf_KillingPlayer()].lv_tree[2].lv_talentButtons[4].lv_abilityLevel == 1)) {
+        UnitSetPropertyFixed(libNtve_gf_KillingUnit(), c_unitPropEnergy, (UnitGetPropertyFixed(libNtve_gf_KillingUnit(), c_unitPropEnergy, c_unitPropCurrent) + 0.25));
+        UnitSetPropertyFixed(libNtve_gf_KillingUnit(), c_unitPropShields, (UnitGetPropertyFixed(libNtve_gf_KillingUnit(), c_unitPropShields, c_unitPropCurrent) + 1.5));
+        libNtve_gf_AttachActorToUnit(libNtve_gf_KillingUnit(), "Sadist", "Ref_Head");
+    }
+    else if ((libC50FD636_gv_talentTrees[libNtve_gf_KillingPlayer()].lv_tree[2].lv_talentButtons[4].lv_abilityLevel == 2)) {
+        UnitSetPropertyFixed(libNtve_gf_KillingUnit(), c_unitPropEnergy, (UnitGetPropertyFixed(libNtve_gf_KillingUnit(), c_unitPropEnergy, c_unitPropCurrent) + 0.5));
+        UnitSetPropertyFixed(libNtve_gf_KillingUnit(), c_unitPropShields, (UnitGetPropertyFixed(libNtve_gf_KillingUnit(), c_unitPropShields, c_unitPropCurrent) + 3.0));
+        libNtve_gf_AttachActorToUnit(libNtve_gf_KillingUnit(), "Sadist", "Ref_Head");
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libC50FD636_gt_Sadist_Init () {
+    libC50FD636_gt_Sadist = TriggerCreate("libC50FD636_gt_Sadist_Func");
+    TriggerAddEventUnitDied(libC50FD636_gt_Sadist, null);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Bulwark
+//--------------------------------------------------------------------------------------------------
+bool libC50FD636_gt_Bulwark_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    unit lv_damagedUnit;
+    unit lv_attackingUnit;
+    fixed lv_damageAngle;
+    fixed lv_damageTaken;
+    int lv_shieldArmor;
+    int lv_lifeArmor;
+    string lv_reactiveShieldLevel;
+
+    // Variable Initialization
+    lv_damagedUnit = EventUnit();
+    lv_attackingUnit = EventUnitDamageSourceUnit();
+    lv_damageAngle = AngleBetweenPoints(UnitGetPosition(lv_damagedUnit), EventUnitDamageSourcePoint());
+    lv_damageTaken = EventUnitDamageAbsorbed();
+    lv_shieldArmor = CatalogFieldValueGetAsInt(c_gameCatalogUnit, "Demolitions", "ShieldArmor", UnitGetOwner(lv_damagedUnit));
+    lv_lifeArmor = CatalogFieldValueGetAsInt(c_gameCatalogUnit, "Demolitions", "LifeArmor", UnitGetOwner(lv_damagedUnit));
+    lv_reactiveShieldLevel = ("ReactiveShieldsLevel" + IntToString(libC50FD636_gv_talentTrees[UnitGetOwner(lv_damagedUnit)].lv_tree[2].lv_talentButtons[1].lv_abilityLevel));
+
+    // Conditions
+    if (testConds) {
+        if (!((EventUnitDamageEffect() != "BulwarkDamageAmplification"))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((UnitGetPropertyFixed(lv_damagedUnit, c_unitPropShields, c_unitPropCurrent) <= 1)) {
+        lv_damageTaken += lv_lifeArmor;
+    }
+    lv_damageTaken += lv_shieldArmor;
+    lv_damageTaken += CatalogFieldValueGetAsInt(c_gameCatalogBehavior, (lv_reactiveShieldLevel), "Modification.ShieldArmorBonus", UnitGetOwner(lv_damagedUnit));
+    if (libC50FD636_gf_BulwarkAngleDamageCheck(lv_damageAngle)) {
+        UnitDamage(lv_damagedUnit, "BulwarkDamageReflect", lv_attackingUnit, (lv_damageTaken / 2.0));
+    }
+    else {
+        UnitDamage(lv_attackingUnit, "BulwarkDamageAmplification", lv_damagedUnit, lv_damageTaken);
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libC50FD636_gt_Bulwark_Init () {
+    libC50FD636_gt_Bulwark = TriggerCreate("libC50FD636_gt_Bulwark_Func");
+    TriggerEnable(libC50FD636_gt_Bulwark, false);
+    TriggerAddEventUnitDamaged(libC50FD636_gt_Bulwark, null, c_unitDamageTypeAny, c_unitDamageEither, null);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Bulwark Positioning
+//--------------------------------------------------------------------------------------------------
+bool libC50FD636_gt_BulwarkPositioning_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    unit lv_caster;
+
+    // Variable Initialization
+    lv_caster = EventPlayerEffectUsedUnit(c_effectUnitCaster);
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((EventPlayerEffectUsedUnit(c_effectUnitCaster) == EventPlayerEffectUsedUnit(c_effectUnitTarget))) {
+        ActorSendAsText(ActorFromScope(ActorScopeFromUnit(libC50FD636_gv_bulwarkCaster), "BulwarkShieldModel"), TextExpressionAssemble("Param/Expression/lib_C50FD636_B5D8314F"));
+        UnitBehaviorRemove(lv_caster, "BulwarkDamageBlock", 1);
+        TriggerEnable(libC50FD636_gt_BulwarkPositioningUpdate, false);
+        TriggerEnable(libC50FD636_gt_Bulwark, false);
+        return true;
+    }
+    else {
+    }
+    libC50FD636_gv_bulwarkCaster = lv_caster;
+    if ((EventPlayerEffectUsedUnit(c_effectUnitTarget) != null)) {
+        libC50FD636_gv_bulwarkTargetUnit = EventPlayerEffectUsedUnit(c_effectUnitTarget);
+        libC50FD636_gv_bulwarkAngle = AngleBetweenPoints(UnitGetPosition(lv_caster), UnitGetPosition(EventPlayerEffectUsedUnit(c_effectUnitTarget)));
+    }
+    else {
+        libC50FD636_gv_bulwarkAngle = AngleBetweenPoints(UnitGetPosition(lv_caster), EventPlayerEffectUsedPoint(c_effectLocationTargetPoint));
+    }
+    UnitBehaviorAdd(libC50FD636_gv_bulwarkCaster, "BulwarkDamageBlock", libC50FD636_gv_bulwarkCaster, 1);
+    TextExpressionSetToken("Param/Expression/lib_C50FD636_7B57B7C2", "A", FixedToText(Cos(libC50FD636_gv_bulwarkAngle), c_fixedPrecisionAny));
+    TextExpressionSetToken("Param/Expression/lib_C50FD636_7B57B7C2", "B", FixedToText(Sin(libC50FD636_gv_bulwarkAngle), c_fixedPrecisionAny));
+    ActorSendAsText(ActorFromScope(ActorScopeFromUnit(libC50FD636_gv_bulwarkCaster), "BulwarkShieldModel"), TextExpressionAssemble("Param/Expression/lib_C50FD636_7B57B7C2"));
+    TriggerEnable(libC50FD636_gt_BulwarkPositioningUpdate, true);
+    TriggerEnable(libC50FD636_gt_Bulwark, true);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libC50FD636_gt_BulwarkPositioning_Init () {
+    libC50FD636_gt_BulwarkPositioning = TriggerCreate("libC50FD636_gt_BulwarkPositioning_Func");
+    TriggerAddEventPlayerEffectUsed(libC50FD636_gt_BulwarkPositioning, c_playerAny, "Bulwark");
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Bulwark Positioning Update
+//--------------------------------------------------------------------------------------------------
+bool libC50FD636_gt_BulwarkPositioningUpdate_Func (bool testConds, bool runActions) {
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((libC50FD636_gv_bulwarkTargetUnit != null) && (UnitIsAlive(libC50FD636_gv_bulwarkTargetUnit) == true) && (libNtve_gf_UnitIsVisibleToPlayer(libC50FD636_gv_bulwarkTargetUnit, UnitGetOwner(libC50FD636_gv_bulwarkCaster)) == true)) {
+        libC50FD636_gv_bulwarkAngle = AngleBetweenPoints(UnitGetPosition(libC50FD636_gv_bulwarkCaster), UnitGetPosition(libC50FD636_gv_bulwarkTargetUnit));
+        TextExpressionSetToken("Param/Expression/lib_C50FD636_9C25208B", "A", FixedToText(Cos(libC50FD636_gv_bulwarkAngle), c_fixedPrecisionAny));
+        TextExpressionSetToken("Param/Expression/lib_C50FD636_9C25208B", "B", FixedToText(Sin(libC50FD636_gv_bulwarkAngle), c_fixedPrecisionAny));
+        ActorSendAsText(ActorFromScope(ActorScopeFromUnit(libC50FD636_gv_bulwarkCaster), "BulwarkShieldModel"), TextExpressionAssemble("Param/Expression/lib_C50FD636_9C25208B"));
+    }
+    else {
+        TriggerEnable(libC50FD636_gt_BulwarkPositioningUpdate, false);
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libC50FD636_gt_BulwarkPositioningUpdate_Init () {
+    libC50FD636_gt_BulwarkPositioningUpdate = TriggerCreate("libC50FD636_gt_BulwarkPositioningUpdate_Func");
+    TriggerEnable(libC50FD636_gt_BulwarkPositioningUpdate, false);
+    TriggerAddEventTimePeriodic(libC50FD636_gt_BulwarkPositioningUpdate, 0.0625, c_timeGame);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Laser Designator Vision Share
+//--------------------------------------------------------------------------------------------------
+bool libC50FD636_gt_LaserDesignatorVisionShare_Func (bool testConds, bool runActions) {
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    PlayerGroupLoopBegin(GameAttributePlayersForTeam(1));
+    for ( ; !PlayerGroupLoopDone() ; PlayerGroupLoopStep() ) {
+        libNtve_gf_ShareVisionofUnit(EventUnit(), true, PlayerGroupLoopCurrent());
+    }
+    PlayerGroupLoopEnd();
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libC50FD636_gt_LaserDesignatorVisionShare_Init () {
+    libC50FD636_gt_LaserDesignatorVisionShare = TriggerCreate("libC50FD636_gt_LaserDesignatorVisionShare_Func");
+    TriggerAddEventUnitBehaviorChange(libC50FD636_gt_LaserDesignatorVisionShare, null, "LaserDesignatedLevel1", c_unitBehaviorChangeCreate);
+    TriggerAddEventUnitBehaviorChange(libC50FD636_gt_LaserDesignatorVisionShare, null, "LaserDesignatedLevel1", c_unitBehaviorChangeRefresh);
+    TriggerAddEventUnitBehaviorChange(libC50FD636_gt_LaserDesignatorVisionShare, null, "LaserDesignatedLevel2", c_unitBehaviorChangeCreate);
+    TriggerAddEventUnitBehaviorChange(libC50FD636_gt_LaserDesignatorVisionShare, null, "LaserDesignatedLevel2", c_unitBehaviorChangeRefresh);
+    TriggerAddEventUnitBehaviorChange(libC50FD636_gt_LaserDesignatorVisionShare, null, "LaserDesignatedLevel3", c_unitBehaviorChangeCreate);
+    TriggerAddEventUnitBehaviorChange(libC50FD636_gt_LaserDesignatorVisionShare, null, "LaserDesignatedLevel3", c_unitBehaviorChangeRefresh);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Ground Illumination Flare/Flare Gun Vision Share 
+//--------------------------------------------------------------------------------------------------
+bool libC50FD636_gt_GroundIlluminationFlareFlareGunVisionShare_Func (bool testConds, bool runActions) {
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    PlayerGroupLoopBegin(GameAttributePlayersForTeam(1));
+    for ( ; !PlayerGroupLoopDone() ; PlayerGroupLoopStep() ) {
+        libNtve_gf_ShareVisionofUnit(EventUnitCreatedUnit(), true, PlayerGroupLoopCurrent());
+    }
+    PlayerGroupLoopEnd();
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libC50FD636_gt_GroundIlluminationFlareFlareGunVisionShare_Init () {
+    libC50FD636_gt_GroundIlluminationFlareFlareGunVisionShare = TriggerCreate("libC50FD636_gt_GroundIlluminationFlareFlareGunVisionShare_Func");
+    TriggerAddEventUnitCreated(libC50FD636_gt_GroundIlluminationFlareFlareGunVisionShare, null, "GroundIlluminationFlare", null);
+    TriggerAddEventUnitCreated(libC50FD636_gt_GroundIlluminationFlareFlareGunVisionShare, null, "FlareGunRecon", null);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Refresher
+//--------------------------------------------------------------------------------------------------
+bool libC50FD636_gt_Refresher_Func (bool testConds, bool runActions) {
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    UnitAbilityReset(EventUnit(), AbilityCommand("Execute", 0), c_spendLocationAll);
+    UnitAbilityReset(EventUnit(), AbilityCommand("FlareGunRecon", 0), c_spendLocationAll);
+    UnitAbilityReset(EventUnit(), AbilityCommand("EscapeSet", 0), c_spendLocationAll);
+    UnitAbilityReset(EventUnit(), AbilityCommand("GroundIlluminationFlare", 0), c_spendLocationAll);
+    UnitAbilityReset(EventUnit(), AbilityCommand("LaserDesignator", 0), c_spendLocationAll);
+    UnitAbilityReset(EventUnit(), AbilityCommand("SmokeGrenade", 0), c_spendLocationAll);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libC50FD636_gt_Refresher_Init () {
+    libC50FD636_gt_Refresher = TriggerCreate("libC50FD636_gt_Refresher_Func");
+    TriggerAddEventUnitAbility(libC50FD636_gt_Refresher, null, AbilityCommand("Refresher", 0), c_abilEffectStageCast, false);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Kinetic Payload
+//--------------------------------------------------------------------------------------------------
+bool libC50FD636_gt_KineticPayload_Func (bool testConds, bool runActions) {
+    int autoDCBD4AAE_n;
+    int autoDCBD4AAE_i;
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    autoDCBD4AAE_n = 5;
+    for (autoDCBD4AAE_i = 1; autoDCBD4AAE_i <= autoDCBD4AAE_n; autoDCBD4AAE_i += 1) {
+        Wait(0.5, c_timeGame);
+        UnitCreateEffectPoint(EventPlayerEffectUsedUnit(c_effectUnitTarget), "KineticPayloadMissile", RegionRandomPoint(RegionCircle(UnitGetPosition(EventPlayerEffectUsedUnit(c_effectUnitTarget)), 4.0)));
+    }
+    UnitKill(EventPlayerEffectUsedUnit(c_effectUnitTarget));
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libC50FD636_gt_KineticPayload_Init () {
+    libC50FD636_gt_KineticPayload = TriggerCreate("libC50FD636_gt_KineticPayload_Func");
+    TriggerAddEventPlayerEffectUsed(libC50FD636_gt_KineticPayload, c_playerAny, "KineticPayloadLaunch");
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Drop Items
+//--------------------------------------------------------------------------------------------------
+bool libC50FD636_gt_DropItems_Func (bool testConds, bool runActions) {
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    UnitGroupLoopBegin(UnitInventoryGroup(EventUnit()));
+    for ( ; !UnitGroupLoopDone() ; UnitGroupLoopStep() ) {
+        UnitSetPosition(UnitGroupLoopCurrent(), UnitGetPosition(EventUnit()), false);
+    }
+    UnitGroupLoopEnd();
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libC50FD636_gt_DropItems_Init () {
+    libC50FD636_gt_DropItems = TriggerCreate("libC50FD636_gt_DropItems_Func");
+    TriggerAddEventUnitAbility(libC50FD636_gt_DropItems, null, AbilityCommand("K9Turret", 0), c_unitAbilStageExecute, false);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Weave Ailment Removal
+//--------------------------------------------------------------------------------------------------
+bool libC50FD636_gt_WeaveAilmentRemoval_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    string[10] lv_ailmentArray;
+    int lv_ailmentIndex;
+
+    // Variable Initialization
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    IntLoopBegin(1, UserDataInstanceCount("Ailments"));
+    for ( ; !IntLoopDone() ; IntLoopStep() ) {
+        if ((UnitHasBehavior(EventUnit(), UserDataGetGameLink("Ailments", UserDataInstance("Ailments", IntLoopCurrent()), "Behavior", 1)) == true)) {
+            lv_ailmentIndex += 1;
+            lv_ailmentArray[lv_ailmentIndex] = UserDataGetGameLink("Ailments", UserDataInstance("Ailments", IntLoopCurrent()), "Behavior", 1);
+        }
+        else {
+        }
+    }
+    IntLoopEnd();
+    if ((lv_ailmentIndex != 0)) {
+        UnitBehaviorRemove(EventUnit(), lv_ailmentArray[RandomInt(1, lv_ailmentIndex)], 1);
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libC50FD636_gt_WeaveAilmentRemoval_Init () {
+    libC50FD636_gt_WeaveAilmentRemoval = TriggerCreate("libC50FD636_gt_WeaveAilmentRemoval_Func");
+    TriggerAddEventUnitBehaviorChange(libC50FD636_gt_WeaveAilmentRemoval, null, "WeaveAilmentHealLevel1", c_unitBehaviorChangeDestroy);
+    TriggerAddEventUnitBehaviorChange(libC50FD636_gt_WeaveAilmentRemoval, null, "WeaveAilmentHealLevel2", c_unitBehaviorChangeDestroy);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Critical Hit Text
+//--------------------------------------------------------------------------------------------------
+bool libC50FD636_gt_CriticalHitText_Func (bool testConds, bool runActions) {
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TextTagCreate(FixedToText(EventUnitDamageAmount(), 1), 24, UnitGetPosition(EventUnitDamageSourceUnit()), 0.5, true, false, PlayerGroupAll());
+    TextTagSetColor(TextTagLastCreated(), c_textTagColorText, Color(100.00, 0.00, 0.00));
+    TextTagSetTime(TextTagLastCreated(), c_textTagTimeDuration, 1.0);
+    TextTagSetTime(TextTagLastCreated(), c_textTagTimeFadeOut, 1.0);
+    TextTagSetVelocity(TextTagLastCreated(), 0.5, 90.0);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libC50FD636_gt_CriticalHitText_Init () {
+    libC50FD636_gt_CriticalHitText = TriggerCreate("libC50FD636_gt_CriticalHitText_Func");
+    TriggerAddEventUnitDamaged(libC50FD636_gt_CriticalHitText, null, c_unitDamageTypeRanged, c_unitDamageEither, "AntiMaterialRifleDamageCritical");
+    TriggerAddEventUnitDamaged(libC50FD636_gt_CriticalHitText, null, c_unitDamageTypeRanged, c_unitDamageEither, "AssaultRifleBurstFireDamageCritical");
+    TriggerAddEventUnitDamaged(libC50FD636_gt_CriticalHitText, null, c_unitDamageTypeRanged, c_unitDamageEither, "AssaultRifleDamageCritical");
+    TriggerAddEventUnitDamaged(libC50FD636_gt_CriticalHitText, null, c_unitDamageTypeRanged, c_unitDamageEither, "AxeDamageCritical");
+    TriggerAddEventUnitDamaged(libC50FD636_gt_CriticalHitText, null, c_unitDamageTypeRanged, c_unitDamageEither, "ChainsawDamageCritical");
+    TriggerAddEventUnitDamaged(libC50FD636_gt_CriticalHitText, null, c_unitDamageTypeRanged, c_unitDamageEither, "BatonDamageCritical");
+    TriggerAddEventUnitDamaged(libC50FD636_gt_CriticalHitText, null, c_unitDamageTypeRanged, c_unitDamageEither, "SubmachineGunDamageCritical");
+    TriggerAddEventUnitDamaged(libC50FD636_gt_CriticalHitText, null, c_unitDamageTypeRanged, c_unitDamageEither, "CrowbarDamageCritical");
+    TriggerAddEventUnitDamaged(libC50FD636_gt_CriticalHitText, null, c_unitDamageTypeRanged, c_unitDamageEither, "FlamethrowerDamageCritical");
+    TriggerAddEventUnitDamaged(libC50FD636_gt_CriticalHitText, null, c_unitDamageTypeRanged, c_unitDamageEither, "HammerDamageCritical");
+    TriggerAddEventUnitDamaged(libC50FD636_gt_CriticalHitText, null, c_unitDamageTypeRanged, c_unitDamageEither, "HeavyMachineGunDamageCritical");
+    TriggerAddEventUnitDamaged(libC50FD636_gt_CriticalHitText, null, c_unitDamageTypeRanged, c_unitDamageEither, "LaserRifleDamageCritical");
+    TriggerAddEventUnitDamaged(libC50FD636_gt_CriticalHitText, null, c_unitDamageTypeRanged, c_unitDamageEither, "MarksmanRifleDamageCritical");
+    TriggerAddEventUnitDamaged(libC50FD636_gt_CriticalHitText, null, c_unitDamageTypeRanged, c_unitDamageEither, "MediumMachineGunDamageCritical");
+    TriggerAddEventUnitDamaged(libC50FD636_gt_CriticalHitText, null, c_unitDamageTypeRanged, c_unitDamageEither, "PistolDamageCritical");
+    TriggerAddEventUnitDamaged(libC50FD636_gt_CriticalHitText, null, c_unitDamageTypeRanged, c_unitDamageEither, "PlasmaCutterDamageCritical");
+    TriggerAddEventUnitDamaged(libC50FD636_gt_CriticalHitText, null, c_unitDamageTypeRanged, c_unitDamageEither, "AntiMaterialRifleDamageCritical");
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Unstoppable Force Damage
+//--------------------------------------------------------------------------------------------------
+bool libC50FD636_gt_UnstoppableForceDamage_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    unit lv_damagedUnit;
+    unit lv_assault;
+
+    // Variable Initialization
+    lv_damagedUnit = EventUnit();
+    lv_assault = EventUnitDamageSourceUnit();
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    UnitDamage(lv_assault, "ChargeBonusDamage", lv_damagedUnit, (15.0 * UnitGetPropertyFixed(lv_assault, c_unitPropLifeArmor, c_unitPropCurrent)));
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libC50FD636_gt_UnstoppableForceDamage_Init () {
+    libC50FD636_gt_UnstoppableForceDamage = TriggerCreate("libC50FD636_gt_UnstoppableForceDamage_Func");
+    TriggerEnable(libC50FD636_gt_UnstoppableForceDamage, false);
+    TriggerAddEventUnitDamaged(libC50FD636_gt_UnstoppableForceDamage, null, c_unitDamageTypeSpell, c_unitDamageEither, "ChargeDamageLevel1");
+    TriggerAddEventUnitDamaged(libC50FD636_gt_UnstoppableForceDamage, null, c_unitDamageTypeSpell, c_unitDamageEither, "ChargeDamageLevel12");
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Lockdown Enabled on Equip
+//--------------------------------------------------------------------------------------------------
+bool libC50FD636_gt_LockdownEnabledonEquip_Func (bool testConds, bool runActions) {
+    // Conditions
+    if (testConds) {
+        if (!(UnitHasBehavior(EventUnit(), "LockdownNOTD"))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    UnitBehaviorAdd(EventUnit(), "DeployHeavyMachineGun", EventUnit(), 1);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libC50FD636_gt_LockdownEnabledonEquip_Init () {
+    libC50FD636_gt_LockdownEnabledonEquip = TriggerCreate("libC50FD636_gt_LockdownEnabledonEquip_Func");
+    TriggerAddEventUnitBehaviorChange(libC50FD636_gt_LockdownEnabledonEquip, null, "HeavyMachineGunEquipped", c_unitBehaviorChangeCreate);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Lockdown Enabled
+//--------------------------------------------------------------------------------------------------
+bool libC50FD636_gt_LockdownEnabled_Func (bool testConds, bool runActions) {
+    // Conditions
+    if (testConds) {
+        if (!(UnitHasBehavior(EventUnit(), "HeavyMachineGunEquipped"))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    UnitBehaviorAdd(EventUnit(), "DeployHeavyMachineGun", EventUnit(), 1);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libC50FD636_gt_LockdownEnabled_Init () {
+    libC50FD636_gt_LockdownEnabled = TriggerCreate("libC50FD636_gt_LockdownEnabled_Func");
+    TriggerAddEventUnitBehaviorChange(libC50FD636_gt_LockdownEnabled, null, "LockdownNOTD", c_unitBehaviorChangeCreate);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Lockdown Disabled
+//--------------------------------------------------------------------------------------------------
+bool libC50FD636_gt_LockdownDisabled_Func (bool testConds, bool runActions) {
+    // Conditions
+    if (testConds) {
+        if (!(UnitHasBehavior(EventUnit(), "HeavyMachineGunEquipped"))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    UnitBehaviorRemove(EventUnit(), "DeployHeavyMachineGun", 1);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libC50FD636_gt_LockdownDisabled_Init () {
+    libC50FD636_gt_LockdownDisabled = TriggerCreate("libC50FD636_gt_LockdownDisabled_Func");
+    TriggerAddEventUnitBehaviorChange(libC50FD636_gt_LockdownDisabled, null, "LockdownNOTD", c_unitBehaviorChangeDestroy);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Weapon Swap Lockdown Removal
+//--------------------------------------------------------------------------------------------------
+bool libC50FD636_gt_WeaponSwapLockdownRemoval_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    unit lv_usedItem;
+
+    // Variable Initialization
+    lv_usedItem = EventUnitInventoryItem();
+
+    // Conditions
+    if (testConds) {
+        if (!(UnitHasBehavior(EventUnit(), "LockdownNOTD"))) {
+            return false;
+        }
+
+        if (!((EventUnitInventoryItemContainer() == libC50FD636_gv_loadoutContainer))) {
+            return false;
+        }
+
+        if (!((CatalogFieldValueGet(c_gameCatalogItem, UnitGetType(lv_usedItem), "Class", c_playerAny) == ("NormalWeapon")))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    UnitIssueOrder(EventUnit(), Order(AbilityCommand("LockdownDisable", 0)), c_orderQueueAddToFront);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libC50FD636_gt_WeaponSwapLockdownRemoval_Init () {
+    libC50FD636_gt_WeaponSwapLockdownRemoval = TriggerCreate("libC50FD636_gt_WeaponSwapLockdownRemoval_Func");
+    TriggerAddEventUnitInventoryChange(libC50FD636_gt_WeaponSwapLockdownRemoval, null, c_unitInventoryChangeMoves, null);
+    TriggerAddEventUnitInventoryChange(libC50FD636_gt_WeaponSwapLockdownRemoval, null, c_unitInventoryChangeLoses, null);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Gemini Protocol Weapon Equip
+//--------------------------------------------------------------------------------------------------
+bool libC50FD636_gt_GeminiProtocolWeaponEquip_Func (bool testConds, bool runActions) {
+    // Conditions
+    if (testConds) {
+        if (!((CatalogFieldValueGet(c_gameCatalogItem, UnitGetType(EventUnitInventoryItem()), "Class", c_playerAny) == ("NormalWeapon")))) {
+            return false;
+        }
+
+        if (!((UnitGetType(EventUnit()) == "Assault"))) {
+            return false;
+        }
+
+        if (!((EventUnitInventoryItemContainer() == 2))) {
+            return false;
+        }
+
+        if (!((TechTreeUpgradeCount(UnitGetOwner(EventUnit()), "GeminiProtocol", c_techCountCompleteOnly) == 1))) {
+            return false;
+        }
+
+        if (!(libC50FD636_gf_GeminiSlotEmpty(UnitInventoryUnit(EventUnitInventoryItem())))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    UnitInventoryMove(EventUnitInventoryItem(), 3, 1);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libC50FD636_gt_GeminiProtocolWeaponEquip_Init () {
+    libC50FD636_gt_GeminiProtocolWeaponEquip = TriggerCreate("libC50FD636_gt_GeminiProtocolWeaponEquip_Func");
+    TriggerAddEventUnitInventoryChange(libC50FD636_gt_GeminiProtocolWeaponEquip, null, c_unitInventoryChangeGains, null);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Stack Magazines Into Ammo Boxes
+//--------------------------------------------------------------------------------------------------
+bool libC50FD636_gt_StackMagazinesIntoAmmoBoxes_Func (bool testConds, bool runActions) {
+    unitgroup autoABD13EA3_g;
+    int autoABD13EA3_u;
+
+    // Variable Declarations
+    fixed lv_magazineChargeCount;
+    fixed lv_ammunitionCaseChargeCount;
+    unit lv_magazine;
+    unit lv_ammoCase;
+    fixed lv_chargesToChange;
+
+    // Variable Initialization
+    lv_magazine = EventUnitInventoryItem();
+
+    // Conditions
+    if (testConds) {
+        if (!((UnitGetType(EventUnitInventoryItem()) == "Magazine"))) {
+            return false;
+        }
+
+        if (!(lib09BE6BA8_gf_UnitisCarryingItemofType(EventUnit(), "AmmunitionCase"))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    autoABD13EA3_g = UnitInventoryGroup(EventUnit());
+    autoABD13EA3_u = 1;
+    for ( ; autoABD13EA3_u <= UnitGroupCount(autoABD13EA3_g, c_unitCountAll) ; autoABD13EA3_u += BoolToInt(lv_ammoCase == UnitGroupUnit(autoABD13EA3_g, autoABD13EA3_u)) ) {
+        lv_ammoCase = UnitGroupUnit(autoABD13EA3_g, autoABD13EA3_u);
+        if ((UnitGetType(lv_ammoCase) == "AmmunitionCase")) {
+            lv_magazineChargeCount = (CatalogFieldValueGetAsInt(c_gameCatalogItem, "Magazine", "EffectCost.Charge.CountMax", c_playerAny) - UnitGetChargeUsed(lv_magazine, "Item/Magazine"));
+            lv_ammunitionCaseChargeCount = UnitGetChargeUsed(lv_ammoCase, "Item/AmmunitionCase");
+            lv_chargesToChange = MinF(lv_magazineChargeCount, lv_ammunitionCaseChargeCount);
+            if ((lv_chargesToChange == lv_magazineChargeCount)) {
+                UnitRemove(lv_magazine);
+            }
+            else {
+                UnitAddChargeUsed(lv_magazine, "Item/Magazine", lv_chargesToChange);
+            }
+            UnitAddChargeUsed(lv_ammoCase, "Item/AmmunitionCase", (-lv_chargesToChange));
+        }
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libC50FD636_gt_StackMagazinesIntoAmmoBoxes_Init () {
+    libC50FD636_gt_StackMagazinesIntoAmmoBoxes = TriggerCreate("libC50FD636_gt_StackMagazinesIntoAmmoBoxes_Func");
+    TriggerAddEventUnitInventoryChange(libC50FD636_gt_StackMagazinesIntoAmmoBoxes, null, c_unitInventoryChangeGains, null);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Display Inventory On Selection
+//--------------------------------------------------------------------------------------------------
+bool libC50FD636_gt_DisplayInventoryOnSelection_Func (bool testConds, bool runActions) {
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    UnitInventoryContainerOpen(PlayerGroupSingle(EventPlayer()), EventUnit(), 1, true);
+    UnitInventoryContainerOpen(PlayerGroupSingle(EventPlayer()), EventUnit(), 2, true);
+    if ((UnitGetType(EventUnit()) == "Assault") && (TechTreeUpgradeCount(UnitGetOwner(EventUnit()), "GeminiProtocol", c_techCountCompleteOnly) == 1)) {
+        UnitInventoryContainerOpen(PlayerGroupSingle(EventPlayer()), EventUnit(), 3, true);
+    }
+    else {
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libC50FD636_gt_DisplayInventoryOnSelection_Init () {
+    libC50FD636_gt_DisplayInventoryOnSelection = TriggerCreate("libC50FD636_gt_DisplayInventoryOnSelection_Func");
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Update Bag Slots on Move
+//--------------------------------------------------------------------------------------------------
+bool libC50FD636_gt_UpdateBagSlotsonMove_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    int lv_carrier;
+    bool lv_open;
+
+    // Variable Initialization
+    lv_carrier = UnitGetOwner(UnitInventoryUnit(EventUnitInventoryItem()));
+    lv_open = true;
+
+    // Conditions
+    if (testConds) {
+        if (!(((EventUnitInventoryItemContainer() == libC50FD636_gv_bagContainer) || (UnitInventoryContainer(EventUnitInventoryItem()) == libC50FD636_gv_bagContainer)))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((EventUnitInventoryItemContainer() == libC50FD636_gv_bagContainer) && (UnitInventoryContainer(EventUnitInventoryItem()) != libC50FD636_gv_bagContainer)) {
+        libC50FD636_gv_openBagSlots[EventUnitInventoryItemSlot()][lv_carrier] = true;
+    }
+    if ((EventUnitInventoryItemContainer() != libC50FD636_gv_bagContainer) && (UnitInventoryContainer(EventUnitInventoryItem()) == libC50FD636_gv_bagContainer)) {
+        libC50FD636_gv_openBagSlots[UnitInventorySlot(EventUnitInventoryItem())][lv_carrier] = false;
+    }
+    if ((EventUnitInventoryItemContainer() == libC50FD636_gv_bagContainer) && (UnitInventoryContainer(EventUnitInventoryItem()) == libC50FD636_gv_bagContainer)) {
+        libC50FD636_gv_openBagSlots[UnitInventorySlot(EventUnitInventoryItem())][lv_carrier] = false;
+        UnitGroupLoopBegin(UnitInventoryGroup(UnitInventoryUnit(EventUnitInventoryItem())));
+        for ( ; !UnitGroupLoopDone() ; UnitGroupLoopStep() ) {
+            if ((UnitInventorySlot(UnitGroupLoopCurrent()) == EventUnitInventoryItemSlot()) && (UnitGroupLoopCurrent() != EventUnitInventoryItem())) {
+                lv_open = false;
+            }
+        }
+        UnitGroupLoopEnd();
+        libC50FD636_gv_openBagSlots[EventUnitInventoryItemSlot()][lv_carrier] = lv_open;
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libC50FD636_gt_UpdateBagSlotsonMove_Init () {
+    libC50FD636_gt_UpdateBagSlotsonMove = TriggerCreate("libC50FD636_gt_UpdateBagSlotsonMove_Func");
+    TriggerAddEventUnitInventoryChange(libC50FD636_gt_UpdateBagSlotsonMove, null, c_unitInventoryChangeMoves, null);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Intialize Open Slots
+//--------------------------------------------------------------------------------------------------
+bool libC50FD636_gt_IntializeOpenSlots_Func (bool testConds, bool runActions) {
+    int auto88D1C234_ae;
+    int auto88D1C234_ai;
+    int auto19CF0FD8_ae;
+    int auto19CF0FD8_ai;
+
+    // Variable Declarations
+    int lv_player;
+    int lv_inventoryslot;
+
+    // Variable Initialization
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    auto88D1C234_ae = lib1E3F036D_gv_numberofPlayers;
+    auto88D1C234_ai = 1;
+    lv_player = lib1E3F036D_gv_indexBaseValue;
+    for ( ; ( (auto88D1C234_ai >= 0 && lv_player <= auto88D1C234_ae) || (auto88D1C234_ai <= 0 && lv_player >= auto88D1C234_ae) ) ; lv_player += auto88D1C234_ai ) {
+        auto19CF0FD8_ae = libC50FD636_gv_inventoryBagSize;
+        auto19CF0FD8_ai = 1;
+        lv_inventoryslot = lib1E3F036D_gv_indexBaseValue;
+        for ( ; ( (auto19CF0FD8_ai >= 0 && lv_inventoryslot <= auto19CF0FD8_ae) || (auto19CF0FD8_ai <= 0 && lv_inventoryslot >= auto19CF0FD8_ae) ) ; lv_inventoryslot += auto19CF0FD8_ai ) {
+            if ((ModI(lv_inventoryslot, 3) != 1)) {
+                libC50FD636_gv_openBagSlots[lv_inventoryslot][lv_player] = true;
+            }
+        }
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libC50FD636_gt_IntializeOpenSlots_Init () {
+    libC50FD636_gt_IntializeOpenSlots = TriggerCreate("libC50FD636_gt_IntializeOpenSlots_Func");
+    TriggerAddEventMapInit(libC50FD636_gt_IntializeOpenSlots);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Update Available Bag Slots
+//--------------------------------------------------------------------------------------------------
+bool libC50FD636_gt_UpdateAvailableBagSlots_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    int lv_carrier;
+
+    // Variable Initialization
+
+    // Conditions
+    if (testConds) {
+        if (!(((EventUnitInventoryItemContainer() == libC50FD636_gv_bagContainer) || (UnitInventoryContainer(EventUnitInventoryItem()) == libC50FD636_gv_bagContainer)))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if (((EventUnitInventoryChange() == c_unitInventoryChangeGives) || (EventUnitInventoryChange() == c_unitInventoryChangeLoses) || (EventUnitInventoryChange() == c_unitInventoryChangeDrops) || (EventUnitInventoryChange() == c_unitInventoryChangeExhausts))) {
+        lv_carrier = UnitGetOwner(EventUnit());
+        libC50FD636_gv_openBagSlots[EventUnitInventoryItemSlot()][lv_carrier] = true;
+    }
+    if (((EventUnitInventoryChange() == c_unitInventoryChangeGains) || (EventUnitInventoryChange() == c_unitInventoryChangePicksUp) || (EventUnitInventoryChange() == c_unitInventoryChangeReceives))) {
+        lv_carrier = UnitGetOwner(UnitInventoryUnit(EventUnitInventoryItem()));
+        libC50FD636_gv_openBagSlots[EventUnitInventoryItemSlot()][lv_carrier] = false;
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libC50FD636_gt_UpdateAvailableBagSlots_Init () {
+    libC50FD636_gt_UpdateAvailableBagSlots = TriggerCreate("libC50FD636_gt_UpdateAvailableBagSlots_Func");
+    TriggerAddEventUnitInventoryChange(libC50FD636_gt_UpdateAvailableBagSlots, null, c_unitInventoryChangePicksUp, null);
+    TriggerAddEventUnitInventoryChange(libC50FD636_gt_UpdateAvailableBagSlots, null, c_unitInventoryChangeGains, null);
+    TriggerAddEventUnitInventoryChange(libC50FD636_gt_UpdateAvailableBagSlots, null, c_unitInventoryChangeReceives, null);
+    TriggerAddEventUnitInventoryChange(libC50FD636_gt_UpdateAvailableBagSlots, null, c_unitInventoryChangeDrops, null);
+    TriggerAddEventUnitInventoryChange(libC50FD636_gt_UpdateAvailableBagSlots, null, c_unitInventoryChangeGives, null);
+    TriggerAddEventUnitInventoryChange(libC50FD636_gt_UpdateAvailableBagSlots, null, c_unitInventoryChangeLoses, null);
+    TriggerAddEventUnitInventoryChange(libC50FD636_gt_UpdateAvailableBagSlots, null, c_unitInventoryChangeExhausts, null);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Equip Item
+//--------------------------------------------------------------------------------------------------
+bool libC50FD636_gt_EquipItem_Func (bool testConds, bool runActions) {
+    int init_i;
+
+    // Variable Declarations
+    int lv_triggeringPlayer;
+    bool[libC50FD636_gv_numberofEnhancementSlots + 1] lv_openEnhancementSlot;
+    unit lv_usedItem;
+    int lv_numberofOpenSlots;
+
+    // Variable Initialization
+    lv_triggeringPlayer = UnitGetOwner(UnitInventoryUnit(EventUnitInventoryItem()));
+    for (init_i = 0; init_i <= libC50FD636_gv_numberofEnhancementSlots; init_i += 1) {
+        lv_openEnhancementSlot[init_i] = true;
+    }
+    lv_usedItem = EventUnitInventoryItem();
+    lv_numberofOpenSlots = libC50FD636_gv_numberofEnhancementSlots;
+
+    // Conditions
+    if (testConds) {
+        if (!(UnitIsAlive(lv_usedItem))) {
+            return false;
+        }
+
+        if (!((EventUnitInventoryItemContainer() == libC50FD636_gv_bagContainer))) {
+            return false;
+        }
+
+        if (!((CatalogFieldValueGet(c_gameCatalogItem, UnitGetType(lv_usedItem), "Class", c_playerAny) != ("Ammo")))) {
+            return false;
+        }
+
+        if (!((CatalogFieldValueGet(c_gameCatalogItem, UnitGetType(lv_usedItem), "Class", c_playerAny) != ("Medical")))) {
+            return false;
+        }
+
+        if (!((CatalogFieldValueGet(c_gameCatalogItem, UnitGetType(lv_usedItem), "Class", c_playerAny) != ("Utility")))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if (((CatalogFieldValueGet(c_gameCatalogItem, UnitGetType(lv_usedItem), "Class", c_playerAny) == ("NormalWeapon")) || (CatalogFieldValueGet(c_gameCatalogItem, UnitGetType(lv_usedItem), "Class", c_playerAny) == ("SpecialWeapon")))) {
+        UnitInventoryMove(lv_usedItem, libC50FD636_gv_loadoutContainer, libC50FD636_gv_weaponInventorySlot);
+    }
+    else {
+    }
+    if ((CatalogFieldValueGet(c_gameCatalogItem, UnitGetType(lv_usedItem), "Class", c_playerAny) == ("Armor"))) {
+        UnitInventoryMove(lv_usedItem, libC50FD636_gv_loadoutContainer, libC50FD636_gv_armorInventorySlot);
+    }
+    else {
+    }
+    if ((CatalogFieldValueGet(c_gameCatalogItem, UnitGetType(lv_usedItem), "Class", c_playerAny) == ("Accessory"))) {
+        UnitGroupLoopBegin(UnitInventoryGroup(EventUnit()));
+        for ( ; !UnitGroupLoopDone() ; UnitGroupLoopStep() ) {
+            if ((UnitInventoryContainer(UnitGroupLoopCurrent()) == libC50FD636_gv_loadoutContainer) && (CatalogFieldValueGet(c_gameCatalogItem, UnitGetType(UnitGroupLoopCurrent()), "Class", c_playerAny) != ("Armor")) && (CatalogFieldValueGet(c_gameCatalogItem, UnitGetType(UnitGroupLoopCurrent()), "Class", c_playerAny) != ("SpecialWeapon")) && (CatalogFieldValueGet(c_gameCatalogItem, UnitGetType(UnitGroupLoopCurrent()), "Class", c_playerAny) != ("NormalWeapon"))) {
+                lv_openEnhancementSlot[((UnitInventorySlot(UnitGroupLoopCurrent()) / 2) - 2)] = false;
+                lv_numberofOpenSlots -= 1;
+            }
+            else {
+            }
+        }
+        UnitGroupLoopEnd();
+        if ((lv_numberofOpenSlots != 0)) {
+            IntLoopBegin(1, 3);
+            for ( ; !IntLoopDone() ; IntLoopStep() ) {
+                if (lv_openEnhancementSlot[IntLoopCurrent()]) {
+                    UnitInventoryMove(EventUnitInventoryItem(), libC50FD636_gv_loadoutContainer, ((IntLoopCurrent() + 2) * 2));
+                }
+                else {
+                }
+            }
+            IntLoopEnd();
+        }
+        else {
+            IntLoopBegin(4, 5);
+            for ( ; !IntLoopDone() ; IntLoopStep() ) {
+                UnitInventoryMove(EventUnitInventoryItem(), libC50FD636_gv_loadoutContainer, (IntLoopCurrent() * 2));
+            }
+            IntLoopEnd();
+        }
+    }
+    else {
+    }
+    if ((CatalogFieldValueGet(c_gameCatalogItem, UnitGetType(lv_usedItem), "Class", c_playerAny) == ("AmmoModification"))) {
+        UnitInventoryMove(lv_usedItem, libC50FD636_gv_loadoutContainer, libC50FD636_gv_ammoModificationSlot);
+    }
+    else {
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libC50FD636_gt_EquipItem_Init () {
+    libC50FD636_gt_EquipItem = TriggerCreate("libC50FD636_gt_EquipItem_Func");
+    TriggerAddEventUnitInventoryChange(libC50FD636_gt_EquipItem, null, c_unitInventoryChangeUses, null);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Unequip Item
+//--------------------------------------------------------------------------------------------------
+bool libC50FD636_gt_UnequipItem_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    int lv_destinationSlot;
+    int lv_triggeringPlayer;
+
+    // Variable Initialization
+    lv_destinationSlot = libC50FD636_gf_GetOpenBagSlot(EventUnit());
+    lv_triggeringPlayer = UnitGetOwner(UnitInventoryUnit(EventUnitInventoryItem()));
+
+    // Conditions
+    if (testConds) {
+        if (!((EventUnitInventoryItemContainer() == libC50FD636_gv_loadoutContainer))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((EventUnitInventoryItemSlot() == libC50FD636_gv_weaponInventorySlot)) {
+        UnitAbilityEnable(EventUnit(), "Reload", false);
+    }
+    else {
+    }
+    if ((lv_destinationSlot == -1)) {
+        UnitSetPosition(EventUnitInventoryItem(), UnitGetPosition(UnitInventoryUnit(EventUnitInventoryItem())), false);
+    }
+    else {
+        UnitInventoryMove(EventUnitInventoryItem(), libC50FD636_gv_bagContainer, lv_destinationSlot);
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libC50FD636_gt_UnequipItem_Init () {
+    libC50FD636_gt_UnequipItem = TriggerCreate("libC50FD636_gt_UnequipItem_Func");
+    TriggerAddEventUnitInventoryChange(libC50FD636_gt_UnequipItem, null, c_unitInventoryChangeUses, null);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Item Drop Change to Neutral
+//--------------------------------------------------------------------------------------------------
+bool libC50FD636_gt_ItemDropChangetoNeutral_Func (bool testConds, bool runActions) {
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    UnitSetOwner(EventUnitInventoryItem(), 0, true);
+    UnitSetHeight(EventUnitInventoryItem(), PointGetHeight(UnitGetPosition(EventUnitInventoryItem())), 0.0);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libC50FD636_gt_ItemDropChangetoNeutral_Init () {
+    libC50FD636_gt_ItemDropChangetoNeutral = TriggerCreate("libC50FD636_gt_ItemDropChangetoNeutral_Func");
+    TriggerAddEventUnitInventoryChange(libC50FD636_gt_ItemDropChangetoNeutral, null, c_unitInventoryChangeDrops, null);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Disabled Inventory Transfer
+//--------------------------------------------------------------------------------------------------
+bool libC50FD636_gt_DisabledInventoryTransfer_Func (bool testConds, bool runActions) {
+    // Conditions
+    if (testConds) {
+        if (!(UnitHasBehavior(EventUnit(), "DisableInventoryTransfer"))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    UnitSetPosition(EventUnitInventoryItem(), UnitGetPosition(EventUnit()), false);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libC50FD636_gt_DisabledInventoryTransfer_Init () {
+    libC50FD636_gt_DisabledInventoryTransfer = TriggerCreate("libC50FD636_gt_DisabledInventoryTransfer_Func");
+    TriggerAddEventUnitInventoryChange(libC50FD636_gt_DisabledInventoryTransfer, null, c_unitInventoryChangeReceives, null);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Ammo Update Weight
+//--------------------------------------------------------------------------------------------------
+bool libC50FD636_gt_AmmoUpdateWeight_Func (bool testConds, bool runActions) {
+    // Conditions
+    if (testConds) {
+        if (!((UnitGetType(EventUnitInventoryItem()) == "Magazine"))) {
+            return false;
+        }
+
+        if (!((UnitGetType(EventUnitInventoryItem()) == "AmmunitionCase"))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    libC50FD636_gf_EquipmentUpdateMarineWeight(UnitGetOwner(EventUnit()));
+    libC50FD636_gf_UpdateNumberofMagazines(UnitGetOwner(EventUnit()), 3);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libC50FD636_gt_AmmoUpdateWeight_Init () {
+    libC50FD636_gt_AmmoUpdateWeight = TriggerCreate("libC50FD636_gt_AmmoUpdateWeight_Func");
+    TriggerAddEventUnitInventoryChange(libC50FD636_gt_AmmoUpdateWeight, null, c_unitInventoryChangeUses, null);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Item Weight Update
+//--------------------------------------------------------------------------------------------------
+bool libC50FD636_gt_ItemWeightUpdate_Func (bool testConds, bool runActions) {
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    libC50FD636_gf_EquipmentUpdateMarineWeight(UnitGetOwner(EventUnit()));
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libC50FD636_gt_ItemWeightUpdate_Init () {
+    libC50FD636_gt_ItemWeightUpdate = TriggerCreate("libC50FD636_gt_ItemWeightUpdate_Func");
+    TriggerAddEventUnitInventoryChange(libC50FD636_gt_ItemWeightUpdate, null, c_unitInventoryChangeGains, null);
+    TriggerAddEventUnitInventoryChange(libC50FD636_gt_ItemWeightUpdate, null, c_unitInventoryChangeLoses, null);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Update Ammo Display
+//--------------------------------------------------------------------------------------------------
+bool libC50FD636_gt_UpdateAmmoDisplay_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    int lv_attackingPlayer;
+
+    // Variable Initialization
+    lv_attackingPlayer = EventPlayer();
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    libNtve_gf_SetDialogItemCurrentValue(libC50FD636_gv_ammoDisplay[lv_attackingPlayer].lv_ammoBar, (libC50FD636_gv_marines[lv_attackingPlayer].lv_currentMaxMagazineSize - PlayerGetChargeUsed(lv_attackingPlayer, "CurrentMagazine")), PlayerGroupAll());
+    libNtve_gf_SetDialogItemText(libC50FD636_gv_ammoDisplay[lv_attackingPlayer].lv_ammoLabel, (FixedToText((libC50FD636_gv_marines[lv_attackingPlayer].lv_currentMaxMagazineSize - PlayerGetChargeUsed(lv_attackingPlayer, "CurrentMagazine")), c_fixedPrecisionAny) + StringExternal("Param/Value/lib_C50FD636_B6EE0A7C") + IntToText(libC50FD636_gv_marines[lv_attackingPlayer].lv_currentMaxMagazineSize)), PlayerGroupAll());
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libC50FD636_gt_UpdateAmmoDisplay_Init () {
+    libC50FD636_gt_UpdateAmmoDisplay = TriggerCreate("libC50FD636_gt_UpdateAmmoDisplay_Func");
+    TriggerAddEventUnitStartedAttack2(libC50FD636_gt_UpdateAmmoDisplay, null, "AntiMaterialRifle");
+    TriggerAddEventUnitStartedAttack2(libC50FD636_gt_UpdateAmmoDisplay, null, "AssaultRifle");
+    TriggerAddEventUnitStartedAttack2(libC50FD636_gt_UpdateAmmoDisplay, null, "AssaultRifleBurstFire");
+    TriggerAddEventUnitStartedAttack2(libC50FD636_gt_UpdateAmmoDisplay, null, "AutomaticShotgun");
+    TriggerAddEventUnitStartedAttack2(libC50FD636_gt_UpdateAmmoDisplay, null, "Chainsaw");
+    TriggerAddEventUnitStartedAttack2(libC50FD636_gt_UpdateAmmoDisplay, null, "Flamethrower");
+    TriggerAddEventUnitStartedAttack2(libC50FD636_gt_UpdateAmmoDisplay, null, "HeavyMachineGun");
+    TriggerAddEventUnitStartedAttack2(libC50FD636_gt_UpdateAmmoDisplay, null, "LaserRifle");
+    TriggerAddEventUnitStartedAttack2(libC50FD636_gt_UpdateAmmoDisplay, null, "MarksmanRifle");
+    TriggerAddEventUnitStartedAttack2(libC50FD636_gt_UpdateAmmoDisplay, null, "MediumMachineGun");
+    TriggerAddEventUnitStartedAttack2(libC50FD636_gt_UpdateAmmoDisplay, null, "PlasmaCutter");
+    TriggerAddEventUnitStartedAttack2(libC50FD636_gt_UpdateAmmoDisplay, null, "Pistol");
+    TriggerAddEventUnitStartedAttack2(libC50FD636_gt_UpdateAmmoDisplay, null, "PumpShotgun");
+    TriggerAddEventUnitStartedAttack2(libC50FD636_gt_UpdateAmmoDisplay, null, "PumpShotgunSlugShot");
+    TriggerAddEventUnitStartedAttack2(libC50FD636_gt_UpdateAmmoDisplay, null, "SubmachineGun");
+    TriggerAddEventUnitAbility(libC50FD636_gt_UpdateAmmoDisplay, null, AbilityCommand("Reload", 0), c_unitAbilStageComplete, false);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Drop Magazine UI Click
+//--------------------------------------------------------------------------------------------------
+bool libC50FD636_gt_DropMagazineUIClick_Func (bool testConds, bool runActions) {
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    UnitIssueOrder(libC50FD636_gv_marines[EventPlayer()].lv_unit, Order(AbilityCommand("MarineAbilities", 4)), c_orderQueueAddToFront);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libC50FD636_gt_DropMagazineUIClick_Init () {
+    libC50FD636_gt_DropMagazineUIClick = TriggerCreate("libC50FD636_gt_DropMagazineUIClick_Func");
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Display Ammo Bar On Selection
+//--------------------------------------------------------------------------------------------------
+bool libC50FD636_gt_DisplayAmmoBarOnSelection_Func (bool testConds, bool runActions) {
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    UnitGroupLoopBegin(libC50FD636_gv_marinesUnitGroup);
+    for ( ; !UnitGroupLoopDone() ; UnitGroupLoopStep() ) {
+        DialogSetVisible(libC50FD636_gv_ammoDisplay[UnitGetOwner(UnitGroupLoopCurrent())].lv_ammoDialog, PlayerGroupSingle(EventPlayer()), false);
+    }
+    UnitGroupLoopEnd();
+    DialogSetVisible(libC50FD636_gv_ammoDisplay[UnitGetOwner(EventUnit())].lv_ammoDialog, PlayerGroupSingle(EventPlayer()), true);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libC50FD636_gt_DisplayAmmoBarOnSelection_Init () {
+    libC50FD636_gt_DisplayAmmoBarOnSelection = TriggerCreate("libC50FD636_gt_DisplayAmmoBarOnSelection_Func");
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Drop Magazine
+//--------------------------------------------------------------------------------------------------
+bool libC50FD636_gt_DropMagazine_Func (bool testConds, bool runActions) {
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "Magazine", 0, 0, UnitGetPosition(EventUnit()));
+    UnitAddChargeUsed(UnitLastCreated(), "Item/Magazine", 2.0);
+    UnitIssueOrder(EventUnit(), OrderTargetingUnit(AbilityCommand("RiflemanInventory", 2), UnitLastCreated()), c_orderQueueAddToFront);
+    libC50FD636_gf_UpdateNumberofMagazines(UnitGetOwner(EventUnit()), -1);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libC50FD636_gt_DropMagazine_Init () {
+    libC50FD636_gt_DropMagazine = TriggerCreate("libC50FD636_gt_DropMagazine_Func");
+    TriggerAddEventUnitAbility(libC50FD636_gt_DropMagazine, null, AbilityCommand("MarineAbilities", 4), c_unitAbilStageComplete, false);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: High Capacity Equipped
+//--------------------------------------------------------------------------------------------------
+bool libC50FD636_gt_HighCapacityEquipped_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    unit lv_unit;
+    int lv_triggeringPlayer;
+    int lv_createDestroy;
+    int lv_leveltoAdd;
+    string lv_upgradeToAdd;
+
+    // Variable Initialization
+    lv_unit = EventUnit();
+    lv_triggeringPlayer = UnitGetOwner(lv_unit);
+    lv_createDestroy = EventUnitBehaviorChange();
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((lv_createDestroy == c_unitBehaviorChangeCreate)) {
+        lv_leveltoAdd = 1;
+    }
+    else {
+        lv_leveltoAdd = -1;
+    }
+    if ((UnitGetType(lv_unit) == "Assault")) {
+        if ((UnitBehaviorCount(lv_unit, "ExtendedMagazine") == 2)) {
+            lv_upgradeToAdd = "HighCapacityAmmoAssaultwithModification";
+            libC50FD636_gv_marines[lv_triggeringPlayer].lv_currentMaxMagazineSize += (lv_leveltoAdd * 50);
+        }
+        else {
+            lv_upgradeToAdd = "HighCapacityAmmoAssault";
+            libC50FD636_gv_marines[lv_triggeringPlayer].lv_currentMaxMagazineSize += (lv_leveltoAdd * 40);
+        }
+    }
+    else {
+        if (UnitHasBehavior(lv_unit, "ExtendedMagazine")) {
+            lv_upgradeToAdd = "HighCapacityAmmoAssault";
+            libC50FD636_gv_marines[lv_triggeringPlayer].lv_currentMaxMagazineSize += (lv_leveltoAdd * 40);
+        }
+        else {
+            lv_upgradeToAdd = "HighCapacityAmmo";
+            libC50FD636_gv_marines[lv_triggeringPlayer].lv_currentMaxMagazineSize += (lv_leveltoAdd * 30);
+        }
+    }
+    libNtve_gf_SetUpgradeLevelForPlayer(lv_triggeringPlayer, lv_upgradeToAdd, (TechTreeUpgradeCount(lv_triggeringPlayer, lv_upgradeToAdd, c_techCountCompleteOnly) + lv_leveltoAdd));
+    libC50FD636_gf_UpdateAmmoMax(lv_triggeringPlayer);
+    libC50FD636_gv_marines[lv_triggeringPlayer].lv_numberofMagzinesPerReload -= lv_leveltoAdd;
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libC50FD636_gt_HighCapacityEquipped_Init () {
+    libC50FD636_gt_HighCapacityEquipped = TriggerCreate("libC50FD636_gt_HighCapacityEquipped_Func");
+    TriggerAddEventUnitBehaviorChange(libC50FD636_gt_HighCapacityEquipped, null, "HighCapacityMagazine", c_unitBehaviorChangeCreate);
+    TriggerAddEventUnitBehaviorChange(libC50FD636_gt_HighCapacityEquipped, null, "HighCapacityMagazine", c_unitBehaviorChangeDestroy);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Manual Reload
+//--------------------------------------------------------------------------------------------------
+bool libC50FD636_gt_ManualReload_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    int lv_reloadingPlayer;
+
+    // Variable Initialization
+    lv_reloadingPlayer = UnitGetOwner(EventUnit());
+
+    // Conditions
+    if (testConds) {
+        if (!(PlayerGroupHasPlayer(GameAttributePlayersForTeam(1), lv_reloadingPlayer))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    libNtve_gf_SetDialogItemCurrentValue(libC50FD636_gv_ammoDisplay[lv_reloadingPlayer].lv_ammoLabel, 0.0, PlayerGroupAll());
+    libNtve_gf_SetDialogItemText(libC50FD636_gv_ammoDisplay[lv_reloadingPlayer].lv_ammoBar, (FixedToText(0.0, c_fixedPrecisionAny) + StringExternal("Param/Value/lib_C50FD636_CDBC36CF") + IntToText(libC50FD636_gv_marines[lv_reloadingPlayer].lv_currentMaxMagazineSize)), PlayerGroupAll());
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libC50FD636_gt_ManualReload_Init () {
+    libC50FD636_gt_ManualReload = TriggerCreate("libC50FD636_gt_ManualReload_Func");
+    TriggerAddEventUnitBehaviorChange(libC50FD636_gt_ManualReload, null, "ReloadManual", c_unitBehaviorChangeCreate);
+    TriggerAddEventUnitBehaviorChange(libC50FD636_gt_ManualReload, null, "ReloadPerfect", c_unitBehaviorChangeCreate);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Reload
+//--------------------------------------------------------------------------------------------------
+bool libC50FD636_gt_Reload_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    int lv_reloadingPlayer;
+
+    // Variable Initialization
+    lv_reloadingPlayer = UnitGetOwner(EventUnit());
+
+    // Conditions
+    if (testConds) {
+        if (!(PlayerGroupHasPlayer(GameAttributePlayersForTeam(1), lv_reloadingPlayer))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    PlayerAddChargeUsed(lv_reloadingPlayer, "CurrentMagazine", (libC50FD636_gv_marines[lv_reloadingPlayer].lv_currentMaxMagazineSize * -1.0));
+    libC50FD636_gf_UpdateNumberofMagazines(lv_reloadingPlayer, libC50FD636_gv_marines[lv_reloadingPlayer].lv_numberofMagzinesPerReload);
+    libNtve_gf_SetDialogItemCurrentValue(libC50FD636_gv_ammoDisplay[lv_reloadingPlayer].lv_ammoBar, (libC50FD636_gv_marines[lv_reloadingPlayer].lv_currentMaxMagazineSize - PlayerGetChargeUsed(lv_reloadingPlayer, "CurrentMagazine")), PlayerGroupAll());
+    libNtve_gf_SetDialogItemText(libC50FD636_gv_ammoDisplay[lv_reloadingPlayer].lv_ammoLabel, (FixedToText(libC50FD636_gv_marines[lv_reloadingPlayer].lv_currentMaxMagazineSize, c_fixedPrecisionAny) + StringExternal("Param/Value/lib_C50FD636_543B63C9") + IntToText(libC50FD636_gv_marines[lv_reloadingPlayer].lv_currentMaxMagazineSize)), PlayerGroupAll());
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libC50FD636_gt_Reload_Init () {
+    libC50FD636_gt_Reload = TriggerCreate("libC50FD636_gt_Reload_Func");
+    TriggerAddEventUnitBehaviorChange(libC50FD636_gt_Reload, null, "ReloadManual", c_unitBehaviorChangeDestroy);
+    TriggerAddEventUnitBehaviorChange(libC50FD636_gt_Reload, null, "ReloadPerfect", c_unitBehaviorChangeDestroy);
+    TriggerAddEventUnitBehaviorChange(libC50FD636_gt_Reload, null, "ReloadNightmare", c_unitBehaviorChangeDestroy);
+    TriggerAddEventUnitBehaviorChange(libC50FD636_gt_Reload, null, "ReloadNormal", c_unitBehaviorChangeDestroy);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Extended Magazine Upgrade
+//--------------------------------------------------------------------------------------------------
+bool libC50FD636_gt_ExtendedMagazineUpgrade_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    unit lv_unit;
+    int lv_triggeringPlayer;
+
+    // Variable Initialization
+    lv_unit = EventUnit();
+    lv_triggeringPlayer = UnitGetOwner(lv_unit);
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TechTreeUpgradeAddLevel(lv_triggeringPlayer, "AssaultAmmoCapacityModification", 1);
+    libC50FD636_gv_marines[lv_triggeringPlayer].lv_currentMaxMagazineSize += 10;
+    libC50FD636_gf_UpdateAmmoMax(lv_triggeringPlayer);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libC50FD636_gt_ExtendedMagazineUpgrade_Init () {
+    libC50FD636_gt_ExtendedMagazineUpgrade = TriggerCreate("libC50FD636_gt_ExtendedMagazineUpgrade_Func");
+    TriggerAddEventUnitBehaviorChange(libC50FD636_gt_ExtendedMagazineUpgrade, null, "ExtendedMagazine", c_unitBehaviorChangeIncrease);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Ammo Feed Upgrade
+//--------------------------------------------------------------------------------------------------
+bool libC50FD636_gt_AmmoFeedUpgrade_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    unit lv_unit;
+    int lv_triggeringPlayer;
+    string lv_upgradeToAdd;
+
+    // Variable Initialization
+    lv_unit = EventUnit();
+    lv_triggeringPlayer = UnitGetOwner(lv_unit);
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((UnitBehaviorCount(lv_unit, "ExtendedMagazine") == 2)) {
+        lv_upgradeToAdd = "HighCapacityAmmoAssaultwithModification";
+        libC50FD636_gv_marines[lv_triggeringPlayer].lv_currentMaxMagazineSize += 50;
+    }
+    else {
+        lv_upgradeToAdd = "HighCapacityAmmoAssault";
+        libC50FD636_gv_marines[lv_triggeringPlayer].lv_currentMaxMagazineSize += 40;
+    }
+    TechTreeUpgradeAddLevel(lv_triggeringPlayer, lv_upgradeToAdd, 1);
+    libC50FD636_gf_UpdateAmmoMax(lv_triggeringPlayer);
+    libC50FD636_gv_marines[lv_triggeringPlayer].lv_numberofMagzinesPerReload -= 1;
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libC50FD636_gt_AmmoFeedUpgrade_Init () {
+    libC50FD636_gt_AmmoFeedUpgrade = TriggerCreate("libC50FD636_gt_AmmoFeedUpgrade_Func");
+    TriggerAddEventUnitAbility(libC50FD636_gt_AmmoFeedUpgrade, null, AbilityCommand("AssaultLearn", 2), c_unitAbilStageComplete, false);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Level Up
+//--------------------------------------------------------------------------------------------------
+bool libC50FD636_gt_LevelUp_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    int lv_levelingPlayer;
+
+    // Variable Initialization
+    lv_levelingPlayer = EventPlayer();
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TextExpressionSetToken("Param/Expression/lib_C50FD636_2C5C5CF1", "A", PlayerName(lv_levelingPlayer));
+    TriggerDebugOutput(2, TextExpressionAssemble("Param/Expression/lib_C50FD636_2C5C5CF1"), false);
+    libC50FD636_gv_talentTrees[lv_levelingPlayer].lv_numberAvailable += 1;
+    libC50FD636_gf_UpdateAvailableTalents(libC50FD636_gv_talentTrees[lv_levelingPlayer].lv_numberAvailableLabel, libC50FD636_gv_talentTrees[lv_levelingPlayer].lv_numberAvailable);
+    libC50FD636_gf_UpdateAllTalentImages(lv_levelingPlayer);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libC50FD636_gt_LevelUp_Init () {
+    libC50FD636_gt_LevelUp = TriggerCreate("libC50FD636_gt_LevelUp_Func");
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Talent Selection
+//--------------------------------------------------------------------------------------------------
+bool libC50FD636_gt_TalentSelection_Func (bool testConds, bool runActions) {
+    int auto9E968BCD_ae;
+    int auto9E968BCD_ai;
+    int auto491892D1_ae;
+    int auto491892D1_ai;
+
+    // Variable Declarations
+    int lv_talentTreePlayer;
+    int lv_talentTreeUsed;
+    int lv_talentTreeLoopIndex;
+    int lv_talentButtonLoopIndex;
+    int lv_talentUsed;
+
+    // Variable Initialization
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    while ((DialogControlGetDialog(EventDialogControl()) != libC50FD636_gv_talentTrees[lv_talentTreePlayer].lv_treeDialog)) {
+        lv_talentTreePlayer += 1;
+    }
+    if ((libC50FD636_gv_talentTrees[lv_talentTreePlayer].lv_numberAvailable == 0)) {
+        return true;
+    }
+    auto9E968BCD_ae = libC50FD636_gv_numberofTalentTrees;
+    auto9E968BCD_ai = 1;
+    lv_talentTreeLoopIndex = 1;
+    for ( ; ( (auto9E968BCD_ai >= 0 && lv_talentTreeLoopIndex <= auto9E968BCD_ae) || (auto9E968BCD_ai <= 0 && lv_talentTreeLoopIndex >= auto9E968BCD_ae) ) ; lv_talentTreeLoopIndex += auto9E968BCD_ai ) {
+        auto491892D1_ae = libC50FD636_gv_numberofTalents;
+        auto491892D1_ai = 1;
+        lv_talentButtonLoopIndex = 1;
+        for ( ; ( (auto491892D1_ai >= 0 && lv_talentButtonLoopIndex <= auto491892D1_ae) || (auto491892D1_ai <= 0 && lv_talentButtonLoopIndex >= auto491892D1_ae) ) ; lv_talentButtonLoopIndex += auto491892D1_ai ) {
+            if ((EventDialogControl() == libC50FD636_gv_talentTrees[lv_talentTreePlayer].lv_tree[lv_talentTreeLoopIndex].lv_talentButtons[lv_talentButtonLoopIndex].lv_button)) {
+                lv_talentUsed = lv_talentButtonLoopIndex;
+                lv_talentTreeUsed = lv_talentTreeLoopIndex;
+                break;
+            }
+            else {
+            }
+        }
+    }
+    if (libC50FD636_gf_TalentTreeAccess(lv_talentTreePlayer, EventPlayer()) && libC50FD636_gf_TalentSelectionOption(lv_talentTreeUsed, lv_talentUsed, lv_talentTreePlayer)) {
+        libC50FD636_gf_UpdateTalentSystem(lv_talentUsed, lv_talentTreePlayer, lv_talentTreeUsed);
+    }
+    else {
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libC50FD636_gt_TalentSelection_Init () {
+    libC50FD636_gt_TalentSelection = TriggerCreate("libC50FD636_gt_TalentSelection_Func");
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Talent Button Hookup
+//--------------------------------------------------------------------------------------------------
+bool libC50FD636_gt_TalentButtonHookup_Func (bool testConds, bool runActions) {
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    DialogControlHookupStandard(c_triggerControlTypeButton, "UIContainer/FullscreenUpperContainer/MenuBar/TalentButton");
+    libC50FD636_gv_talentButton = DialogControlLastCreated();
+    TriggerAddEventDialogControl(libC50FD636_gt_TalentTreeToggle, c_playerAny, libC50FD636_gv_talentButton, c_triggerControlEventTypeClick);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libC50FD636_gt_TalentButtonHookup_Init () {
+    libC50FD636_gt_TalentButtonHookup = TriggerCreate("libC50FD636_gt_TalentButtonHookup_Func");
+    TriggerAddEventMapInit(libC50FD636_gt_TalentButtonHookup);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Talent Tree Toggle
+//--------------------------------------------------------------------------------------------------
+bool libC50FD636_gt_TalentTreeToggle_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    int lv_selectingPlayer;
+
+    // Variable Initialization
+    lv_selectingPlayer = EventPlayer();
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((DialogIsVisible(libC50FD636_gv_talentTrees[lv_selectingPlayer].lv_treeDialog, lv_selectingPlayer) == false)) {
+        DialogSetVisible(libC50FD636_gv_talentTrees[lv_selectingPlayer].lv_treeDialog, PlayerGroupSingle(lv_selectingPlayer), true);
+    }
+    else {
+        DialogSetVisible(libC50FD636_gv_talentTrees[lv_selectingPlayer].lv_treeDialog, PlayerGroupSingle(lv_selectingPlayer), false);
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libC50FD636_gt_TalentTreeToggle_Init () {
+    libC50FD636_gt_TalentTreeToggle = TriggerCreate("libC50FD636_gt_TalentTreeToggle_Func");
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Jump Upgrade
+//--------------------------------------------------------------------------------------------------
+bool libC50FD636_gt_JumpUpgrade_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    int lv_player;
+
+    // Variable Initialization
+    lv_player = UnitGetOwner(EventUnit());
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((EventUnitBehaviorChange() == c_unitBehaviorChangeCreate)) {
+        libNtve_gf_SetUpgradeLevelForPlayer(lv_player, "CombatMobilityAugmentJump", 1);
+    }
+    else {
+        libNtve_gf_SetUpgradeLevelForPlayer(lv_player, "CombatMobilityAugmentJump", 0);
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libC50FD636_gt_JumpUpgrade_Init () {
+    libC50FD636_gt_JumpUpgrade = TriggerCreate("libC50FD636_gt_JumpUpgrade_Func");
+    TriggerAddEventUnitBehaviorChange(libC50FD636_gt_JumpUpgrade, null, "CombatMobilityAugment", c_unitBehaviorChangeCreate);
+    TriggerAddEventUnitBehaviorChange(libC50FD636_gt_JumpUpgrade, null, "CombatMobilityAugment", c_unitBehaviorChangeDestroy);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Medical Assistance Usage
+//--------------------------------------------------------------------------------------------------
+bool libC50FD636_gt_MedicalAssistanceUsage_Func (bool testConds, bool runActions) {
+    string autoEC6753A2_val;
+    unitgroup auto5DCFF5C2_g;
+    int auto5DCFF5C2_u;
+
+    // Variable Declarations
+    unit lv_castingMarine;
+    string lv_itemUsed;
+    string lv_chargeLink;
+    unit lv_inventoryItem;
+
+    // Variable Initialization
+    lv_castingMarine = EventPlayerEffectUsedUnit(c_effectUnitCaster);
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    autoEC6753A2_val = EventPlayerEffectUsed();
+    if (autoEC6753A2_val == "MedicalAssistanceNormal") {
+        lv_itemUsed = "Medkit";
+        lv_chargeLink = "Item/Medkit";
+
+    }
+    else if (autoEC6753A2_val == "MedicalAssistanceHealing") {
+        lv_itemUsed = "Medkit";
+        lv_chargeLink = "Item/Medkit";
+
+    }
+    else if (autoEC6753A2_val == "MedicalAssistanceAntiVenom") {
+        lv_itemUsed = "AntiVenom";
+        lv_chargeLink = "Item/AntiVenom";
+
+    }
+    else if (autoEC6753A2_val == "MedicalAssistanceOpenWound") {
+        lv_itemUsed = "Bandage";
+        lv_chargeLink = "Item/Bandage";
+
+    }
+    else {
+    }
+    auto5DCFF5C2_g = UnitInventoryGroup(lv_castingMarine);
+    auto5DCFF5C2_u = 1;
+    for ( ; auto5DCFF5C2_u <= UnitGroupCount(auto5DCFF5C2_g, c_unitCountAll) ; auto5DCFF5C2_u += BoolToInt(lv_inventoryItem == UnitGroupUnit(auto5DCFF5C2_g, auto5DCFF5C2_u)) ) {
+        lv_inventoryItem = UnitGroupUnit(auto5DCFF5C2_g, auto5DCFF5C2_u);
+        if ((UnitGetType(lv_inventoryItem) == lv_itemUsed)) {
+            UnitAddChargeUsed(lv_inventoryItem, lv_chargeLink, 1.0);
+            return true;
+        }
+        else {
+        }
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libC50FD636_gt_MedicalAssistanceUsage_Init () {
+    libC50FD636_gt_MedicalAssistanceUsage = TriggerCreate("libC50FD636_gt_MedicalAssistanceUsage_Func");
+    TriggerAddEventPlayerEffectUsed(libC50FD636_gt_MedicalAssistanceUsage, c_playerAny, "MedicalAssistanceNormal");
+    TriggerAddEventPlayerEffectUsed(libC50FD636_gt_MedicalAssistanceUsage, c_playerAny, "MedicalAssistanceAntiVenom");
+    TriggerAddEventPlayerEffectUsed(libC50FD636_gt_MedicalAssistanceUsage, c_playerAny, "MedicalAssistanceHealing");
+    TriggerAddEventPlayerEffectUsed(libC50FD636_gt_MedicalAssistanceUsage, c_playerAny, "MedicalAssistanceOpenWound");
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Hero Test
+//--------------------------------------------------------------------------------------------------
+bool libC50FD636_gt_HeroTest_Func (bool testConds, bool runActions) {
+    int autoBE025105_ae;
+    int autoBE025105_ai;
+
+    // Variable Declarations
+    string lv_classtoCreate;
+    int lv_classIndex;
+
+    // Variable Initialization
+
+    // Conditions
+    if (testConds) {
+        if (!((!(GameIsOnline())))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    libC50FD636_gf_IntializeTalentMax();
+    autoBE025105_ae = UserDataInstanceCount("Classes");
+    autoBE025105_ai = 1;
+    lv_classIndex = 1;
+    for ( ; ( (autoBE025105_ai >= 0 && lv_classIndex <= autoBE025105_ae) || (autoBE025105_ai <= 0 && lv_classIndex >= autoBE025105_ae) ) ; lv_classIndex += autoBE025105_ai ) {
+        if (StringEqual(StringWord(EventChatMessage(false), 2), (UserDataInstance("Classes", lv_classIndex)), c_stringCase)) {
+            lv_classtoCreate = UserDataInstance("Classes", lv_classIndex);
+        }
+    }
+    libC50FD636_gf_TalentTreeCreation(EventPlayer(), lv_classtoCreate);
+    libC50FD636_gf_CreateAmmoDisplay(EventPlayer());
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, (StringWord(EventChatMessage(false), 2)), 0, EventPlayer(), CameraGetTarget(1));
+    UnitSetPropertyFixed(UnitLastCreated(), c_unitPropLevel, 1.0);
+    UnitGroupAdd(libC50FD636_gv_marinesUnitGroup, UnitLastCreated());
+    libC50FD636_gv_marines[EventPlayer()].lv_unit = UnitLastCreated();
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libC50FD636_gt_HeroTest_Init () {
+    libC50FD636_gt_HeroTest = TriggerCreate("libC50FD636_gt_HeroTest_Func");
+    TriggerAddEventChatMessage(libC50FD636_gt_HeroTest, 1, "MakeHero", false);
+}
+
+void libC50FD636_InitTriggers () {
+    libC50FD636_gt_PredatorEventRegistration_Init();
+    libC50FD636_gt_PredatorLevelUp_Init();
+    libC50FD636_gt_TestIntializeAI_Init();
+    libC50FD636_gt_TestDemoMerge_Init();
+    libC50FD636_gt_MD5LevelUp_Init();
+    libC50FD636_gt_CollateralDamageLevelUp_Init();
+    libC50FD636_gt_StockpileLevelUp_Init();
+    libC50FD636_gt_BulwarkLevelUp_Init();
+    libC50FD636_gt_CommunicationUplinkLevelUp_Init();
+    libC50FD636_gt_AssaultLevelUpUnstoppableForce_Init();
+    libC50FD636_gt_AssaultLevelUpGeminiProtocol_Init();
+    libC50FD636_gt_RiflemanLevelUpCriticalStrike_Init();
+    libC50FD636_gt_RiflemanLevelUpFireUp_Init();
+    libC50FD636_gt_RiflemanLevelUpWeaponProficiency_Init();
+    libC50FD636_gt_RiflemanLevelUpFragGrenadeLevel3_Init();
+    libC50FD636_gt_RiflemanLevelUpCripplingFire_Init();
+    libC50FD636_gt_MedicLevelUpAntivenom_Init();
+    libC50FD636_gt_MedicLevelUpMedicalExpertise_Init();
+    libC50FD636_gt_MedicLevelUpIntolerableCruelty_Init();
+    libC50FD636_gt_Sadist_Init();
+    libC50FD636_gt_Bulwark_Init();
+    libC50FD636_gt_BulwarkPositioning_Init();
+    libC50FD636_gt_BulwarkPositioningUpdate_Init();
+    libC50FD636_gt_LaserDesignatorVisionShare_Init();
+    libC50FD636_gt_GroundIlluminationFlareFlareGunVisionShare_Init();
+    libC50FD636_gt_Refresher_Init();
+    libC50FD636_gt_KineticPayload_Init();
+    libC50FD636_gt_DropItems_Init();
+    libC50FD636_gt_WeaveAilmentRemoval_Init();
+    libC50FD636_gt_CriticalHitText_Init();
+    libC50FD636_gt_UnstoppableForceDamage_Init();
+    libC50FD636_gt_LockdownEnabledonEquip_Init();
+    libC50FD636_gt_LockdownEnabled_Init();
+    libC50FD636_gt_LockdownDisabled_Init();
+    libC50FD636_gt_WeaponSwapLockdownRemoval_Init();
+    libC50FD636_gt_GeminiProtocolWeaponEquip_Init();
+    libC50FD636_gt_StackMagazinesIntoAmmoBoxes_Init();
+    libC50FD636_gt_DisplayInventoryOnSelection_Init();
+    libC50FD636_gt_UpdateBagSlotsonMove_Init();
+    libC50FD636_gt_IntializeOpenSlots_Init();
+    libC50FD636_gt_UpdateAvailableBagSlots_Init();
+    libC50FD636_gt_EquipItem_Init();
+    libC50FD636_gt_UnequipItem_Init();
+    libC50FD636_gt_ItemDropChangetoNeutral_Init();
+    libC50FD636_gt_DisabledInventoryTransfer_Init();
+    libC50FD636_gt_AmmoUpdateWeight_Init();
+    libC50FD636_gt_ItemWeightUpdate_Init();
+    libC50FD636_gt_UpdateAmmoDisplay_Init();
+    libC50FD636_gt_DropMagazineUIClick_Init();
+    libC50FD636_gt_DisplayAmmoBarOnSelection_Init();
+    libC50FD636_gt_DropMagazine_Init();
+    libC50FD636_gt_HighCapacityEquipped_Init();
+    libC50FD636_gt_ManualReload_Init();
+    libC50FD636_gt_Reload_Init();
+    libC50FD636_gt_ExtendedMagazineUpgrade_Init();
+    libC50FD636_gt_AmmoFeedUpgrade_Init();
+    libC50FD636_gt_LevelUp_Init();
+    libC50FD636_gt_TalentSelection_Init();
+    libC50FD636_gt_TalentButtonHookup_Init();
+    libC50FD636_gt_TalentTreeToggle_Init();
+    libC50FD636_gt_JumpUpgrade_Init();
+    libC50FD636_gt_MedicalAssistanceUsage_Init();
+    libC50FD636_gt_HeroTest_Init();
+}
+
+//--------------------------------------------------------------------------------------------------
+// Library Initialization
+//--------------------------------------------------------------------------------------------------
+bool libC50FD636_InitLib_completed = false;
+
+void libC50FD636_InitLib () {
+    if (libC50FD636_InitLib_completed) {
+        return;
+    }
+
+    libC50FD636_InitVariables();
+    libC50FD636_InitTriggers();
+
+    libC50FD636_InitLib_completed = true;
+}
+

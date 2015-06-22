@@ -1,0 +1,49 @@
+include "TriggerLibs/NativeLib"
+
+//--------------------------------------------------------------------------------------------------
+// Library: Default Override
+//--------------------------------------------------------------------------------------------------
+// Trigger Declarations
+trigger libBC0FF415_gt_RemoveTechTree;
+
+// Triggers
+//--------------------------------------------------------------------------------------------------
+// Trigger: Remove Tech Tree
+//--------------------------------------------------------------------------------------------------
+bool libBC0FF415_gt_RemoveTechTree_Func (bool testConds, bool runActions) {
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    HelpPanelShowTechTreeRace(PlayerGroupAll(), "Zerg", false);
+    HelpPanelShowTechTreeRace(PlayerGroupAll(), "Terr", false);
+    HelpPanelShowTechTreeRace(PlayerGroupAll(), "Prot", false);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libBC0FF415_gt_RemoveTechTree_Init () {
+    libBC0FF415_gt_RemoveTechTree = TriggerCreate("libBC0FF415_gt_RemoveTechTree_Func");
+    TriggerAddEventMapInit(libBC0FF415_gt_RemoveTechTree);
+}
+
+void libBC0FF415_InitTriggers () {
+    libBC0FF415_gt_RemoveTechTree_Init();
+}
+
+//--------------------------------------------------------------------------------------------------
+// Library Initialization
+//--------------------------------------------------------------------------------------------------
+bool libBC0FF415_InitLib_completed = false;
+
+void libBC0FF415_InitLib () {
+    if (libBC0FF415_InitLib_completed) {
+        return;
+    }
+
+    libBC0FF415_InitTriggers();
+
+    libBC0FF415_InitLib_completed = true;
+}
+

@@ -1,0 +1,1539 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<Catalog>
+    <CActorUnit default="1" id="BaseMarineActor" parent="GenericUnitStandardNoAutoSoundLinks">
+        <Macros value="WeaponEquipMacro"/>
+        <Macros value="WeaponModelSwapGroups"/>
+        <Macros value="AntiMaterialRifleMacro"/>
+        <Macros value="HeavyMachineGunMacro"/>
+        <Macros value="WeaponAnimationGroups"/>
+        <EditorCategories value=""/>
+        <On Terms="ActorCreation" Send="AttachModel Torso BasicTorso {Hardpoint 0}"/>
+        <On Terms="ActorCreation" Send="AttachModel Waist BasicWaist {Hardpoint 3}"/>
+        <On Terms="ActorCreation" Send="AttachModel RightShoulder BasicShoulderRight {Hardpoint 8}"/>
+        <On Terms="ActorCreation" Send="AttachModel RightShin BasicShinRight {Hardpoint 11}"/>
+        <On Terms="ActorCreation" Send="AttachModel RightLeg BasicLegRight {Hardpoint 10}"/>
+        <On Terms="ActorCreation" Send="AttachModel RightForearm BasicForearmRight {Hardpoint 9}"/>
+        <On Terms="ActorCreation" Send="AttachModel LeftShoulder BasicShoulderLeft {Hardpoint 4}"/>
+        <On Terms="ActorCreation" Send="AttachModel LeftShin BasicShinLeft {Hardpoint 7}"/>
+        <On Terms="ActorCreation" Send="AttachModel LeftLeg BasicLegLeft {Hardpoint 6}"/>
+        <On Terms="ActorCreation" Send="AttachModel LeftForearm BasicForearmLeft {Hardpoint 5}"/>
+        <On Terms="ActorCreation" Send="AttachModel LeftFoot BasicFootLeft {Hardpoint 13}"/>
+        <On Terms="ActorCreation" Send="AttachModel RightFoot BasicFootRight {Hardpoint 12}"/>
+        <On Terms="ActorCreation" Send="AttachModel Helmet BasicHelmet {Head 0}"/>
+        <On Terms="Abil.LightJump.SourceCastStart" Send="AnimPlay Jump Jump"/>
+        <On Terms="UnitMovementUpdate.*.Walk" Send="AnimClear Jump 0.100000"/>
+        <On Terms="ActorCreation" Send="AttachModel Flashlight MarineFlashlight {Hardpoint 0}"/>
+        <On Terms="BehaviorLevel.BasicVeterency; Level 1 GT" Send="Create LevelUp"/>
+        <On Terms="Abil.RoadFlare.SourceCastStart" Send="AnimPlay Throw Spell"/>
+        <Model value="LightMarineMelee"/>
+        <Scale value="1.150000"/>
+        <DeathArray index="Normal" ModelLink="Bogus" SoundLink="BogusDeath" VoiceLink="BogusDeathVoice"/>
+        <PlacementModel value="Bogus"/>
+        <WalkAnimMoveSpeed value="2.25"/>
+        <LifeArmorIcon value="Assets\Textures\btn-upgrade-terran-infantryarmorlevel0.dds"/>
+        <Wireframe>
+            <Image value="Wireframes\Wireframe-##id##.dds"/>
+        </Wireframe>
+        <WireframeShield>
+            <Image value="Wireframes\Wireframe-##id##-shield01.dds"/>
+            <Image value="Wireframes\Wireframe-##id##-shield02.dds"/>
+            <Image value="Wireframes\Wireframe-##id##-shield03.dds"/>
+        </WireframeShield>
+        <GroupIcon>
+            <Image value="Wireframes\Wireframe-##id##.dds"/>
+        </GroupIcon>
+        <UnitIcon value="ClassButtons\btn-class-##id##.dds"/>
+    </CActorUnit>
+    <CActorUnit default="1" id="BaseHeavyMarineActor" parent="BaseMarineActor">
+        <Macros index="1" value="WeaponEquipHeavyMacro"/>
+        <Macros index="2" value="WeaponModelSwapGroupsHeavy"/>
+        <On index="61" Terms="ActorCreation" Send="AttachModel Torso CraftTorso {Hardpoint 0}"/>
+        <On index="62" Terms="ActorCreation" Send="AttachModel Waist CraftWaist {Hardpoint 3}"/>
+        <On index="63" Terms="ActorCreation" Send="AttachModel RightShoulder CraftShoulderRight {Hardpoint 8}"/>
+        <On index="64" Terms="ActorCreation" Send="AttachModel RightShin CraftShinRight {Hardpoint 11}"/>
+        <On index="65" Terms="ActorCreation" Send="AttachModel RightLeg CraftLegRight {Hardpoint 10}"/>
+        <On index="66" Terms="ActorCreation" Send="AttachModel RightForearm CraftForearmRight {Hardpoint 2}"/>
+        <On index="67" Terms="ActorCreation" Send="AttachModel LeftShoulder CraftShoulderLeft {Hardpoint 4}"/>
+        <On index="68" Terms="ActorCreation" Send="AttachModel LeftShin CraftShinLeft {Hardpoint 7}"/>
+        <On index="69" Terms="ActorCreation" Send="AttachModel LeftLeg CraftLegLeft {Hardpoint 6}"/>
+        <On index="70" Terms="ActorCreation" Send="AttachModel LeftForearm CraftForearmLeft {Hardpoint 1}"/>
+        <On index="71" Terms="ActorCreation" Send="AttachModel LeftFoot CraftFootLeft {Hardpoint 13}"/>
+        <On index="72" Terms="ActorCreation" Send="AttachModel RightFoot CraftFootRight {Hardpoint 12}"/>
+        <On index="73" Terms="ActorCreation" Send="AttachModel Helmet CraftHelmet {Head 0}"/>
+        <On index="76" Terms="ActorCreation" Send="AttachModel Flashlight MarineFlashlight {Hardpoint 14}"/>
+        <On index="78" Terms="ActorCreation" Send="AttachModel LeftArm CraftArmLeft {Hardpoint 5}"/>
+        <On Terms="ActorCreation" Send="AttachModel RightArm CraftArmRight {Hardpoint 9}"/>
+        <Model value="HeavyMarineMelee"/>
+        <Scale value="1.000000"/>
+        <WalkAnimMoveSpeed value="3.25"/>
+    </CActorUnit>
+    <CActorForceConeRoundedEnd id="120mmSmoothboreAttackForce">
+        <HostSiteOps Ops="SOpIncomingDirect1Dot5 SOpMoveDownByDot25"/>
+        <Receiver Subject="::Main"/>
+        <Duration value="0.150000"/>
+        <Magnitude value="23.500000,9.500000"/>
+        <HostEndSiteOps Ops="SOpIncomingDirect1Dot5 SOpMoveDownByDot25 SOpMoveBy3 SOpMoveUpByDot5"/>
+        <Angle value="40.000000"/>
+    </CActorForceConeRoundedEnd>
+    <!-- Have a separate model here b/c we want to track the target when the missile is in flight, but then freeze-->
+    <!--         the explosion to its location on impact.  The explosion is mighty enough to look kind of dorky if it-->
+    <!--         tracks the target.  But we don't want to have the missile itself not track the target, since that'll-->
+    <!--         be misleading as far as how the attack actually works. -->
+    <CActorModel id="BattlecruiserYamatoAttackImpactModel">
+        <On Terms="ActorCreation; ValidateEffect Chapter1Complete" Send="SetTintColor 128,255,0"/>
+    </CActorModel>
+    <CActorSiteOpBasic id="BulwarkShieldBearings">
+        <EditorCategories value=""/>
+        <BasicType value="CreatorPosition"/>
+    </CActorSiteOpBasic>
+    <CActorModel id="BulwarkShieldModel" parent="ModelAnimationStyleContinuous">
+        <EditorCategories value=""/>
+        <On index="0" Terms="ActorCreation" Send="AnimBracketStart BSD Stand Stand Stand ContentPlayOnce"/>
+        <On index="1" Terms="AnimBracketState.*.AfterClosing; !AnimBracketExitReason ModelSwap; AnimName BSD" Send="AnimBracketStart BSD Stand Stand Stand ContentPlayOnce"/>
+        <On index="2" Terms="ActorCreation" Send="RefSet ::global.BulwarkShield ::Self"/>
+        <HostSiteOps Ops="BulwarkShieldBearings BulwarkShieldLift BulwarkShieldRotation"/>
+        <Scale value="0.500000,0.500000,0.400000"/>
+        <ScopeBearingsTracking value="ForceOff"/>
+    </CActorModel>
+    <CActorSiteOpLocalOffset id="BulwarkShieldLift">
+        <EditorCategories value=""/>
+        <LocalOffset value="0.000000,-0.350000,0.000000"/>
+    </CActorSiteOpLocalOffset>
+    <CActorSiteOpBasic id="BulwarkShieldPosition">
+        <EditorCategories value=""/>
+        <BasicType value="ActorBearings"/>
+    </CActorSiteOpBasic>
+    <CActorSiteOpForward id="BulwarkShieldRotation">
+        <EditorCategories value=""/>
+        <Forward value="0.000000,0.000000,1.000000"/>
+    </CActorSiteOpForward>
+    <CActorModel id="ChainExplosiveDetonation" parent="ModelAnimationStyleOneShot">
+        <EditorCategories value=""/>
+        <On Terms="UnitDeath.ChainExplosiveLevel1" Send="Create"/>
+        <On Terms="UnitDeath.ChainExplosiveLevel2" Send="Create"/>
+    </CActorModel>
+    <CActorRange id="ChainExplosivePlacementBlastRadius">
+        <EditorCategories value=""/>
+        <Range value="3.500000"/>
+        <On Terms="UnitBirth.ChainExplosiveLevel1" Send="Create"/>
+        <On Terms="UnitBirth.ChainExplosiveLevel2" Send="Create"/>
+    </CActorRange>
+    <CActorUnit id="ChainExplosiveLevel1" parent="GenericUnitStandard" unitName="ChainExplosiveLevel1">
+        <EditorCategories value=""/>
+        <HighlightTooltip value="Unit/Name/Bogus"/>
+        <Model value="ChainExplosive"/>
+        <BuildModel value="ChainExplosive"/>
+        <PlacementModel value="ChainExplosive"/>
+        <PlacementActorModel value="ChainExplosivePlacementModel"/>
+        <PlaceholderActorModel value="ChainExplosivePlaceholderModel"/>
+        <StatusBarFlags index="Shields" value="0"/>
+        <StatusBarFlags index="Life" value="0"/>
+        <StatusBarFlags index="Energy" value="0"/>
+        <Baselines index="Stand" AnimProps="Burrow,Stand"/>
+    </CActorUnit>
+    <CActorUnit id="ChainExplosiveLevel2" parent="GenericUnitStandard" unitName="ChainExplosiveLevel2">
+        <EditorCategories value=""/>
+        <HighlightTooltip value="Unit/Name/Bogus"/>
+        <Model value="ChainExplosive"/>
+        <BuildModel value="ChainExplosive"/>
+        <PlacementModel value="ChainExplosive"/>
+        <PlacementActorModel value="ChainExplosivePlacementModel"/>
+        <PlaceholderActorModel value="ChainExplosivePlaceholderModel"/>
+        <StatusBarFlags index="Shields" value="0"/>
+        <StatusBarFlags index="Life" value="0"/>
+        <StatusBarFlags index="Energy" value="0"/>
+        <Baselines index="Stand" AnimProps="Burrow,Stand"/>
+    </CActorUnit>
+    <CActorModel id="ChainExplosivePlacementModel" parent="PlacementModel">
+        <EditorCategories value=""/>
+        <On Terms="ActorCreation; ModelName ChainExplosive" Send="Create ChainExplosivePlacementBlastRadius"/>
+        <On Terms="ActorDestruction" Target="ChainExplosivePlacementBlastRadius" Send="Destroy"/>
+        <On Terms="ActorCreation; ModelName ChainExplosive" Send="AnimPlay Morph Burrow,Stand PlayForever"/>
+    </CActorModel>
+    <CActorModel id="ChainExplosivePlaceholderModel" parent="ChainExplosivePlacementModel"/>
+    <CActorRange id="ChainExplosiveRange" parent="RangeAbil" abil="ChainExplosive">
+        <EditorCategories value=""/>
+    </CActorRange>
+    <CActorAction id="IFV25mmHEAutocannonAttack" parent="GenericAttack" effectImpact="IFV25mmHEAutocannonDamage" effectLaunch="IFV25mmHEAutocannonSet">
+        <EditorCategories value=""/>
+        <LaunchRequest Subject="IFV25mmHEAutocannonModel"/>
+        <LaunchAssets Sound="SiegeTank_SiegedAttackLaunch"/>
+        <LaunchModel value="WeaponAttackLaunch"/>
+    </CActorAction>
+    <CActorForceConeRoundedEnd id="IFV25mmHEAutocannonAttackForce">
+        <HostSiteOps Ops="SOpIncomingDirect1Dot5 SOpMoveDownByDot25"/>
+        <Receiver Subject="::Main"/>
+        <Duration value="0.150000"/>
+        <Magnitude value="23.500000,9.500000"/>
+        <HostEndSiteOps Ops="SOpIncomingDirect1Dot5 SOpMoveDownByDot25 SOpMoveBy3 SOpMoveUpByDot5"/>
+        <Angle value="40.000000"/>
+    </CActorForceConeRoundedEnd>
+    <CActorAction id="120mmSmoothboreCannonAttack" parent="GenericAttack" effectAttack="120mmSmoothboreCannon">
+        <EditorCategories value=""/>
+        <LaunchRequest Subject="120mmSmoothboreCannonModel"/>
+        <LaunchModel value="WeaponAttackLaunch"/>
+        <LaunchAssets Sound="SiegeTank_SiegedAttackLaunch"/>
+    </CActorAction>
+    <CActorModel id="120mmSmoothboreCannonModel" parent="ModelAddition">
+        <Inherits index="CreepEngulfment" value="0"/>
+        <Inherits index="Decal" value="0"/>
+        <Inherits index="LocalTintColor" value="1"/>
+        <EditorCategories value=""/>
+        <On Terms="ActorCreation" Send="AttachModel TopMachineGunModel UGCCrusaderTankTopTurret AMFilterTurret"/>
+        <On Terms="ActorCreation" Send="AttachModel SideMachineGunModel UGCCrusaderTankSideGun {Hardpoint 1}"/>
+        <Host Subject="::Main"/>
+        <Model value="UGCCrusaderTankCannon"/>
+        <Aliases value="_UGCTank"/>
+    </CActorModel>
+    <CActorModel id="IFV25mmHEAutocannonModel" parent="ModelAddition">
+        <Aliases value="_UGCIFV"/>
+        <Inherits index="CreepEngulfment" value="0"/>
+        <Inherits index="Decal" value="0"/>
+        <Inherits index="LocalTintColor" value="1"/>
+        <EditorCategories value=""/>
+        <On Terms="ActorCreation" Send="AttachModel IFVSideMachineGunModel UGCJavelingIFVSideGun {Hardpoint 1}"/>
+        <Host Subject="::Main"/>
+        <Model value="UGCJavelingIFVCannon"/>
+    </CActorModel>
+    <CActorTurret id="120mmSmoothboreCannonTurret">
+        <EditorCategories value=""/>
+        <On Terms="TurretEnable.CrusaderCannon" Send="Create"/>
+    </CActorTurret>
+    <CActorTurret id="IFV25mmHEAutocannonTurret">
+        <EditorCategories value=""/>
+        <On Terms="TurretEnable.JavelinCannon" Send="Create"/>
+    </CActorTurret>
+    <CActorAction id="A10XCannonAttack" parent="GenericAttack" effectAttack="A10XCannonDamage">
+        <EditorCategories value=""/>
+        <LaunchAttachQuery Methods="A10XCannonFilter"/>
+    </CActorAction>
+    <CActorAction id="A10XHellfireMissileAttack" parent="GenericAttack" effectImpact="A10XHellfireMissileDamage" effectLaunch="A10XLaunchHellfireMissiles">
+        <EditorCategories value=""/>
+        <LaunchAttachQuery Methods="A10XHellfireMissilePattern"/>
+    </CActorAction>
+    <CActorUnit id="A10XGunship" parent="GenericUnitStandard" unitName="A10XGunship">
+        <EditorCategories value=""/>
+        <HostSiteOps Ops="SOpBankerBanshee"/>
+        <Scale value="2.200000"/>
+        <HighlightTooltip value="Unit/Name/Bogus"/>
+        <StatusBarFlags index="Life" value="0"/>
+        <On Terms="Behavior.MercAirDropB.Create" Send="Create BansheeMercenaryReentry"/>
+        <On Terms="Behavior.MercAirLift.Create" Send="Create BansheeMercenaryReentry"/>
+    </CActorUnit>
+    <CActorMissile id="A10XHellfireMissileAttackMissile" parent="GenericAttackMissile" unitName="A10XLaunchHellfireMissilesWeapon">
+        <EditorCategories value=""/>
+    </CActorMissile>
+    <CActorEventMacro id="AntiMaterialRifleMacro">
+        <On index="0" Terms="Abil.DeployAntiMaterialRifle.SourceCastStart" Send="AnimGroupApply Work Work,Start Work,End 0 3.000000 AsDuration"/>
+        <On index="1" Terms="Abil.PackUpAntiMaterialRifle.SourceCastStart" Send="AnimGroupRemove Work 0 0.500000 AsDuration"/>
+        <On Terms="Abil.LockdownNOTD.SourceCastStart" Send="AnimGroupApply Work Work,Start Work,End 0 1.000000 AsDuration"/>
+        <On Terms="Abil.LockdownDisable.SourceCastStart" Send="AnimGroupRemove Work 0 1.000000 AsDuration"/>
+    </CActorEventMacro>
+    <CActorUnit id="ArtillaryBeacon" parent="GenericUnitMinimal" unitName="ArtilleryBeacon">
+        <EditorCategories value=""/>
+        <Model value="ArtillaryBeacon"/>
+        <BuildModel value="ArtillaryBeacon"/>
+        <PlacementModel value="ArtillaryBeacon"/>
+        <HighlightTooltip value="Unit/Name/Bogus"/>
+    </CActorUnit>
+    <CActorModel id="ChargeStun" parent="ModelAnimationStyleContinuous">
+        <EditorCategories value=""/>
+        <On Terms="Behavior.ChargeHeroicKnockbackStunLevel1.On" Send="Create"/>
+        <On Terms="Behavior.ChargeHeroicKnockbackStunLevel2.On" Send="Create"/>
+        <On Terms="Behavior.ChargeNormalKnockbackStunLevel1.On" Send="Create"/>
+        <On Terms="Behavior.ChargeNormalKnockbackStunLevel2.On" Send="Create"/>
+        <On Terms="Behavior.ChargeHeroicKnockbackStunLevel2.Off" Send="AnimBracketStop BSD"/>
+        <On Terms="Behavior.ChargeNormalKnockbackStunLevel1.Off" Send="AnimBracketStop BSD"/>
+        <On Terms="Behavior.ChargeNormalKnockbackStunLevel2.Off" Send="AnimBracketStop BSD"/>
+        <On Terms="Behavior.ChargeHeroicKnockbackStunLevel1.Off" Send="AnimBracketStop BSD"/>
+        <Host Subject="_Unit"/>
+        <HostSiteOps Ops="SOpAttachOverhead"/>
+        <AutoScaleFromSelectionFactor value="1.000000"/>
+    </CActorModel>
+    <CActorSetQueried id="DualWieldTest">
+        <AttachQuery Methods="AssaultWeapons AssaultWeaponAttach"/>
+        <SpawnTarget value="EquippedWeapon"/>
+    </CActorSetQueried>
+    <CActorModel id="EquippedWeapon">
+        <Supporter Subject="::Creator"/>
+        <Model value="AssaultRifle"/>
+        <On Terms="ActorCreation" Send="SetBearings 1.000000,1.000000,1.000000"/>
+    </CActorModel>
+    <CActorModel id="Escape" parent="ModelAnimationStyleOneShotUNIT">
+        <EditorCategories value=""/>
+        <On Terms="Abil.EscapeSet.SourceCastStart" Send="Create"/>
+    </CActorModel>
+    <CActorModel id="EscapeImpact" parent="ModelAnimationStyleContinuous">
+        <EditorCategories value=""/>
+        <On Terms="Behavior.EscapeLevel1.On" Send="Create"/>
+        <On Terms="Behavior.EscapeLevel2.On" Send="Create"/>
+        <On Terms="Behavior.EscapeLevel3.On" Send="Create"/>
+        <On Terms="Behavior.EscapeLevel1.Off" Send="Destroy"/>
+        <On Terms="Behavior.EscapeLevel2.Off" Send="Destroy"/>
+        <On Terms="Behavior.EscapeLevel3.Off" Send="Destroy"/>
+        <On Terms="ActorCreation" Send="SetOpacity 0.800000"/>
+        <HostSiteOps Ops="EscapeImpactZSOp"/>
+        <Scale value="0.750000,0.750000,0.400000"/>
+    </CActorModel>
+    <CActorSiteOpLocalOffset id="EscapeImpactZSOp">
+        <EditorCategories value=""/>
+        <LocalOffset value="0.000000,0.000000,-0.300000"/>
+    </CActorSiteOpLocalOffset>
+    <CActorMissile id="FlareGunMissile" parent="GenericAttackMissile" unitName="FlareGunProjectileLevel1">
+        <EditorCategories value=""/>
+        <On Terms="UnitBirth.FlareGunProjectileLevel3" Send="Create"/>
+        <On Terms="UnitBirth.FlareGunProjectileLevel2" Send="Create"/>
+        <Model value="FlareGunProjectile"/>
+        <Scale value="0.600000"/>
+    </CActorMissile>
+    <CActorAction id="FlareGun" parent="GenericAttack" effectLaunch="FlareGunLaunchLevel1">
+        <EditorCategories value=""/>
+        <On index="0" Terms="Effect.FlareGunLaunchLevel1.Start; At Caster" Send="Create"/>
+        <On index="1" Terms="Effect.FlareGunLaunchLevel2.Start; At Caster" Send="Create"/>
+        <On index="2" Terms="Effect.FlareGunLaunchLevel3.Start; At Caster" Send="Create"/>
+        <On index="3" removed="1"/>
+        <On index="4" removed="1"/>
+        <On index="5" removed="1"/>
+        <On index="6" removed="1"/>
+        <LaunchAttachQuery Methods="AMFilterWeapon02"/>
+    </CActorAction>
+    <CActorUnit id="GroundIlluminationFlare" parent="GenericUnitStandard" unitName="GroundIlluminationFlareLevel1">
+        <AcceptedTransfers index="Rotation" value="0"/>
+        <EditorCategories value=""/>
+        <On Terms="UnitBirth.RoadFlareActive" Send="Create LightOmniRed"/>
+        <On Terms="UnitDeath.RoadFlareActive" Target="LightOmniRed" Send="Destroy"/>
+        <On Terms="UnitBirth.RoadFlareActive" Send="SetRotation 1.000000,-0.000000,-0.000000"/>
+        <On Terms="UnitBirth.GroundIlluminationFlareLevel3" Send="Create"/>
+        <On Terms="UnitBirth.GroundIlluminationFlareLevel2" Send="Create"/>
+        <ScopeBearingsTracking value="ForceOff"/>
+        <Model value="RoadFlareActive"/>
+        <EventDataFootprint index="0" Actor="UnitFootprint" Model="RoadFlareActiveFootprint"/>
+        <BuildModel value="RoadFlareActive"/>
+        <DeathArray index="Normal" ModelLink="RoadFlareActive" SoundLink="RoadFlareActiveDeath" VoiceLink="RoadFlareActiveDeathVoice"/>
+        <PlacementModel value="RoadFlareActive"/>
+        <GroupSoundArray index="What" value="RoadFlareActive_GroupWhat"/>
+        <GroupSoundArray index="Yes" value="RoadFlareActive_GroupYes"/>
+        <GroupSoundArray index="Attack" value="RoadFlareActive_GroupAttack"/>
+        <GroupSoundArray index="Board" value="RoadFlareActive_GroupBoard"/>
+        <HighlightTooltip value="Unit/Name/Bogus"/>
+        <SoundArray index="Birth" value="RoadFlareActive_Birth"/>
+        <SoundArray index="Ready" value="RoadFlareActive_Ready"/>
+        <SoundArray index="Help" value="RoadFlareActive_Help"/>
+        <SoundArray index="What" value="RoadFlareActive_What"/>
+        <SoundArray index="Yes" value="RoadFlareActive_Yes"/>
+        <SoundArray index="Attack" value="RoadFlareActive_Attack"/>
+        <SoundArray index="Pissed" value="RoadFlareActive_Pissed"/>
+        <SoundArray index="Movement" value="RoadFlareActive_Movement"/>
+        <SoundArray index="Turning" value="RoadFlareActive_Turning"/>
+        <SoundArray index="Board" value="RoadFlareActive_Board"/>
+        <SoundArray index="Click" value="RoadFlareActive_Click"/>
+        <SoundArray index="ClickError" value="RoadFlareActive_ClickError"/>
+        <SoundArray index="Highlight" value="RoadFlareActive_Highlight"/>
+    </CActorUnit>
+    <CActorAction id="GroundIlluminationFlareLaunch" parent="GenericAttack">
+        <EditorCategories value=""/>
+        <On index="0" Terms="Effect.GroundIlluminationFlareLevel1.Start; At Caster" Send="Create"/>
+        <On index="1" Terms="Effect.GroundIlluminationFlareLevel2.Start; At Caster" Send="Create"/>
+        <On index="2" Terms="Effect.GroundIlluminationFlareLevel3.Start; At Caster" Send="Create"/>
+        <On index="3" removed="1"/>
+        <On index="4" removed="1"/>
+        <On index="5" removed="1"/>
+        <On index="6" removed="1"/>
+        <LaunchAttachQuery Methods="AMFilterWeapon02"/>
+        <Missile value="RoadFlareMissile"/>
+    </CActorAction>
+    <CActorRange id="GroundIlluminationFlareRange" parent="RangeAbil" abil="GroundIlluminationFlare">
+        <EditorCategories value=""/>
+    </CActorRange>
+    <CActorAction id="KineticPayloadAttack" parent="GenericAttack" effectImpact="KineticPayloadDamage" effectLaunch="KineticPayloadMissile">
+        <EditorCategories value=""/>
+        <On index="6" Terms="Effect.KineticPayloadMissile.Start; At Source" Send="Create"/>
+        <ImpactMap index="None" Scale="3.000000"/>
+    </CActorAction>
+    <CActorMissile id="KineticPayloadAttackMissile" parent="GenericAttackMissile" unitName="KineticPayloadMissileWeapon">
+        <EditorCategories value=""/>
+        <Scale value="1.000000,1.000000,3.000000"/>
+    </CActorMissile>
+    <CActorModel id="LaserDesignator" parent="ModelAddition">
+        <EditorCategories value=""/>
+        <On Terms="Behavior.LaserDesignatedLevel1.Off" Send="Destroy"/>
+        <On Terms="Behavior.LaserDesignatedLevel2.Off" Send="Destroy"/>
+        <On Terms="Behavior.LaserDesignatedLevel3.Off" Send="Destroy"/>
+        <On Terms="Behavior.LaserDesignatedLevel1.On" Send="Create"/>
+        <On Terms="Behavior.LaserDesignatedLevel2.On" Send="Create"/>
+        <On Terms="Behavior.LaserDesignatedLevel3.On" Send="Create"/>
+        <InheritType value="None"/>
+        <AutoScaleFromSelectionFactor value="1.000000"/>
+        <Terms value="Cap 1"/>
+        <HostSiteOps Ops="SOpAttachCenter"/>
+    </CActorModel>
+    <CActorRange id="LaserDesignatorRange" parent="RangeAbil" abil="LaserDesignator">
+        <EditorCategories value=""/>
+    </CActorRange>
+    <CActorModel id="LightningField" parent="ModelAnimationStyleOneShot">
+        <EditorCategories value=""/>
+    </CActorModel>
+    <CActorAction id="LittleBuster" parent="GenericAttack" effectImpact="LittleBusterDamageSearch" effectLaunch="LittleBuster">
+        <EditorCategories value=""/>
+    </CActorAction>
+    <CActorMissile id="LittleBusterMissile" parent="GenericAttackMissile" unitName="LittleBusterWeapon">
+        <EditorCategories value=""/>
+    </CActorMissile>
+    <CActorSplat id="MD5BlastRadiusSplat">
+        <EditorCategories value=""/>
+    </CActorSplat>
+    <CActorModel id="MD5DeathExplosion" parent="ModelAnimationStyleOneShot">
+        <EditorCategories value=""/>
+        <On Terms="UnitDeath.MD5Mine" Send="Create"/>
+    </CActorModel>
+    <CActorModel id="MD5Detonation" parent="ModelAnimationStyleOneShot">
+        <EditorCategories value=""/>
+        <On Terms="Effect.MD5DamageSearch.Start" Send="Create"/>
+    </CActorModel>
+    <CActorForceSphere id="MD5DetonationForce">
+        <EditorCategories value=""/>
+        <On Terms="Effect.MD5DamageSearch.Start; At Effect" Send="Create"/>
+        <Duration value="0.150000"/>
+        <Magnitude value="20.000000"/>
+        <Radius value="4.000000"/>
+    </CActorForceSphere>
+    <CActorUnit id="MD5Mine" parent="GenericUnitStandard" unitName="MD5Mine">
+        <EditorCategories value=""/>
+        <HighlightTooltip value="Unit/Name/Bogus"/>
+        <Wireframe>
+            <Image value="Assets\Textures\wireframe-terran-spidermine.dds"/>
+        </Wireframe>
+        <PlacementActorModel value="MD5MinePlacementModel"/>
+        <PlaceholderActorModel value="MD5MinePlaceholderModel"/>
+        <StatusBarFlags index="Shields" value="0"/>
+        <StatusBarFlags index="Life" value="0"/>
+        <StatusBarFlags index="Energy" value="0"/>
+        <On Terms="ActorCreation" Send="AnimPlay Spell Burrow PlayForever"/>
+        <Baselines index="Stand" AnimProps="Burrow"/>
+    </CActorUnit>
+    <CActorModel id="MD5MinePlacementModel" parent="PlacementModel">
+        <EditorCategories value=""/>
+        <On Terms="ActorCreation; ModelName MD5Mine" Send="Create MD5PlacementBlastRadius"/>
+        <On Terms="ActorDestruction" Target="MD5PlacementBlastRadius" Send="Destroy"/>
+    </CActorModel>
+    <CActorRange id="MD5PlacementBlastRadius">
+        <EditorCategories value=""/>
+        <Range value="2.500000"/>
+    </CActorRange>
+    <CActorModel id="MD5MinePlaceholderModel" parent="MD5MinePlacementModel"/>
+    <CActorRange id="MD5Range" parent="RangeAbil" abil="MD5Mine">
+        <EditorCategories value=""/>
+    </CActorRange>
+    <CActorRange id="MotionSensorRangeLevel1" parent="RangeBehavior" behavior="MotionSensorLevel1">
+        <EditorCategories value=""/>
+        <RangeFlags index="GameWorld" value="0"/>
+        <RangeFlags index="Minimap" value="1"/>
+    </CActorRange>
+    <CActorRange id="MotionSensorRangeLevel2" parent="RangeBehavior" behavior="MotionSensorLevel2">
+        <EditorCategories value=""/>
+        <RangeFlags index="GameWorld" value="0"/>
+        <RangeFlags index="Minimap" value="1"/>
+    </CActorRange>
+    <!-- Bounce Segment 1                                                                        -->
+    <CActorAction id="MutaliskAttackSegment1">
+        <ImpactPhysics index="0" Name="GlaveWurmImpact" MatchKeys="Basic" Physics="MD5DetonationForce"/>
+    </CActorAction>
+    <!-- Bounce Segment 2                                                                        -->
+    <CActorAction id="MutaliskAttackSegment2">
+        <ImpactPhysics index="0" Name="GlaveWurmImpact" MatchKeys="Basic" Physics="MD5DetonationForce"/>
+    </CActorAction>
+    <CActorMissile id="PiranhaMissileAttackMissile" parent="GenericAttackMissile" unitName="PiranhaMissileWeapon">
+        <EditorCategories value=""/>
+    </CActorMissile>
+    <CActorAction id="PiranhaMissileAttack" parent="GenericAttack" effectImpact="PiranhaMissileDamage" effectLaunch="PiranhaMissile">
+        <EditorCategories value=""/>
+    </CActorAction>
+    <CActorUnit id="PredatorNOTD" parent="GenericUnitStandard" unitName="PredatorPet">
+        <EditorCategories value=""/>
+        <HighlightTooltip value="Unit/Name/Bogus"/>
+        <LifeArmorIcon value="Assets\Textures\btn-upgrade-terran-vehicleplatinglevel0.dds"/>
+    </CActorUnit>
+    <CActorModel id="ReactiveShieldsImpact" parent="ModelAnimationStyleOneShot">
+        <EditorCategories value=""/>
+        <On Terms="Effect.ReactiveShieldsDamageLevel1.Start" Send="Create"/>
+        <On Terms="Effect.ReactiveShieldsDamageLevel2.Start" Send="Create"/>
+        <On Terms="Effect.ReactiveShieldsDamageLevel3.Start" Send="Create"/>
+    </CActorModel>
+    <CActorModel id="Refresher" parent="ModelAnimationStyleOneShot">
+        <EditorCategories value=""/>
+        <On Terms="Abil.Refresher.SourceCastStart" Send="Create"/>
+    </CActorModel>
+    <CActorAction id="RoadFlareLaunch" parent="GenericAttack" effectLaunch="RoadFlare">
+        <EditorCategories value=""/>
+        <LaunchAttachQuery Methods="AMFilterWeapon02"/>
+        <Missile value="RoadFlareMissile"/>
+    </CActorAction>
+    <CActorAction id="IFVSideMachineGunAttack" parent="GenericAttack" effectAttack="IFVSideMachineGun">
+        <EditorCategories value=""/>
+        <LaunchSiteOps Ops=""/>
+        <LaunchRequest Subject="IFVSideMachineGunModel"/>
+        <LaunchAssets Model="VikingAssaultAttackLaunch" Sound="Raven_AutoTurretAttackLaunch"/>
+        <LaunchModel value="WeaponAttackLaunch"/>
+        <ImpactMap index="None" Model="VikingAssaultAttackImpact"/>
+    </CActorAction>
+    <CActorModel id="IFVSideMachineGunModel" parent="ModelAddition">
+        <EditorCategories value=""/>
+        <Model value="UGCJavelingIFVSideGun"/>
+    </CActorModel>
+    <CActorModel id="Sadist" parent="ModelAnimationStyleOneShot">
+        <EditorCategories value=""/>
+        <Scale value="2.000000"/>
+    </CActorModel>
+    <CActorUnit id="SatchelCharge" parent="GenericUnitStandard" unitName="DemoSatchelCharge">
+        <EditorCategories value=""/>
+        <HighlightTooltip value="Unit/Name/Bogus"/>
+        <PlacementActorModel value="SatchelPlacementModel"/>
+        <PlaceholderActorModel value="SatchelPlaceholderModel"/>
+        <StatusBarFlags index="Shields" value="0"/>
+        <StatusBarFlags index="Life" value="0"/>
+        <StatusBarFlags index="Energy" value="0"/>
+    </CActorUnit>
+    <CActorModel id="SatchelChargeDetonation" parent="ModelAnimationStyleOneShot">
+        <EditorCategories value=""/>
+        <On Terms="UnitDeath.DemoSatchelCharge" Send="Create"/>
+        <On Terms="ActorCreation" Send="Create SatchelChargeShockwave"/>
+    </CActorModel>
+    <CActorModel id="SatchelChargeShockwave" parent="ModelAnimationStyleOneShot">
+        <EditorCategories value=""/>
+    </CActorModel>
+    <CActorMissile id="SatchelMissile" parent="GenericAttackMissile" unitName="SatchelMissileWeapon">
+        <EditorCategories value=""/>
+    </CActorMissile>
+    <CActorRange id="SatchelPlacementBlastRadius">
+        <EditorCategories value=""/>
+        <Range value="6.000000"/>
+        <On Terms="UnitBirth.DemoSatchelCharge" Send="Create"/>
+    </CActorRange>
+    <CActorModel id="SatchelPlacementModel" parent="PlacementModel">
+        <On Terms="ActorCreation; ModelName DemoSatchelCharge" Send="Create SatchelPlacementBlastRadius"/>
+        <On Terms="ActorDestruction" Target="SatchelPlacementBlastRadius" Send="Destroy"/>
+        <EditorCategories value=""/>
+    </CActorModel>
+    <CActorModel id="SatchelPlaceholderModel" parent="SatchelPlacementModel">
+        <On index="27" Terms="ActorCreation; ModelName MD5Mine" Send="Create MD5PlacementBlastRadius"/>
+        <On index="28" Terms="ActorDestruction" Target="MD5PlacementBlastRadius" Send="Destroy"/>
+    </CActorModel>
+    <CActorRange id="SatchelRange" parent="RangeAbil" abil="SatchelCharge">
+        <EditorCategories value=""/>
+    </CActorRange>
+    <CActorArc id="ShieldBashPush">
+        <EditorCategories value=""/>
+        <On Terms="Effect.ShieldBashLevel1.Start; At Effect" Send="Create"/>
+        <On Terms="ActorCreation" Send="AnimPlay BSD Stand"/>
+        <On Terms="AnimDone; AnimName BSD" Send="Destroy"/>
+        <Host Subject="_Unit"/>
+        <Scale value="5.000000,5.000000,1.000000"/>
+        <Angle value="90.000000"/>
+    </CActorArc>
+    <CActorArc id="ShieldBashRangeIndicator" parent="GuideVisualArc" abil="ShieldBash">
+        <EditorCategories value=""/>
+        <On index="1" Terms="ActorCreation" Send="Create ShieldBashArcGuideRegion"/>
+        <Model value="ZergAOECone"/>
+        <Angle value="90.000000"/>
+        <Radius value="2.500000"/>
+    </CActorArc>
+    <CActorRegionArc id="ShieldBashArcGuideRegion" parent="GuideRegionArc">
+        <EditorCategories value=""/>
+        <Angle value="90.000000"/>
+        <Radius value="3.000000"/>
+    </CActorRegionArc>
+    <CActorUnit id="SmokeGrenade" parent="GenericUnitMinimal" unitName="SmokeGrenadeLevel1">
+        <EditorCategories value=""/>
+        <On Terms="UnitBirth.SmokeGrenadeLevel2" Send="Create"/>
+        <Model value="SmokeGrenade"/>
+        <HighlightTooltip value="Unit/Name/Bogus"/>
+        <StatusBarFlags index="Life" value="0"/>
+        <StatusBarFlags index="Duration" value="0"/>
+    </CActorUnit>
+    <CActorAction id="SmokeGrenadeLaunch" parent="GenericAttack" effectLaunch="SmokeGrenadeLevel1">
+        <EditorCategories value=""/>
+        <On index="0" Terms="Effect.SmokeGrenadeLevel1.Start; At Caster" Send="Create"/>
+        <On index="1" Terms="Effect.SmokeGrenadeLevel2.Start; At Caster" Send="Create"/>
+        <On index="2" removed="1"/>
+        <On index="3" removed="1"/>
+        <On index="4" removed="1"/>
+        <On index="5" removed="1"/>
+        <On index="6" removed="1"/>
+        <LaunchAttachQuery Methods="AMFilterWeapon02"/>
+        <ImpactMap index="None" Sound="Amb_Spark_Small"/>
+    </CActorAction>
+    <CActorMissile id="SmokeGrenadeMissile" parent="GenericAttackMissile" unitName="SmokeGrenadeLevel1Weapon">
+        <EditorCategories value=""/>
+        <On Terms="UnitBirth.SmokeGrenadeLevel2Weapon" Send="Create"/>
+        <HostSiteOps Ops="RoadFlareTumble"/>
+        <Model value="SmokeGrenadeMissile"/>
+        <Scale value="0.800000"/>
+    </CActorMissile>
+    <CActorRange id="SmokeGrenadeRange" parent="RangeAbil" abil="SmokeGrenade">
+        <EditorCategories value=""/>
+    </CActorRange>
+    <CActorModel id="IFV25mmHEAutocannonStun" parent="ModelAnimationStyleContinuous">
+        <Inherits index="CloakEffect" value="1"/>
+        <Inherits index="Decal" value="1"/>
+        <Inherits index="Visibility" value="1"/>
+        <On Terms="ActorCreation" Send="AnimBracketStart GL_BSD GLbirth GLstand GLdeath"/>
+        <On Terms="ActorCreation" Send="AnimBracketStart $BSD"/>
+        <On Terms="Behavior.IFV25mmHEAutocannonStun.On" Send="Create"/>
+        <On Terms="Behavior.IFV25mmHEAutocannonStun.Off" Send="Destroy"/>
+        <Host Subject="_Selectable"/>
+        <HostSiteOps Ops="SOpAttachOverhead"/>
+        <Model value="Stun"/>
+        <AutoScaleFactor value="1.000000"/>
+    </CActorModel>
+    <CActorModel id="SupplyDrop" parent="ModelAnimationStyleOneShot">
+        <EditorCategories value=""/>
+        <On index="0" Terms="ActorCreation" Send="AnimBracketStart BSD Birth Spell Death ContentPlayOnce"/>
+        <On Terms="Effect.SupplyDropOffensive.Start" Send="Create"/>
+        <On Terms="Effect.SupplyDropDefensive.Start" Send="Create"/>
+        <Scale value="0.500000"/>
+    </CActorModel>
+    <CActorUnit id="SupplyDropOffensiveUnit" parent="GenericUnitMinimal" unitName="SupplyDropOffensive">
+        <EditorCategories value=""/>
+        <Model value="Invisible"/>
+        <BuildModel value="SupplyDrop"/>
+        <PlacementModel value="SupplyDrop"/>
+        <HighlightTooltip value="Unit/Name/Bogus"/>
+    </CActorUnit>
+    <CActorUnit id="SupplyDropDefensiveUnit" parent="GenericUnitMinimal" unitName="SupplyDropDefensive">
+        <EditorCategories value=""/>
+        <Model value="Invisible"/>
+        <HighlightTooltip value="Unit/Name/Bogus"/>
+    </CActorUnit>
+    <CActorLookAt id="TestLookAt">
+        <EditorCategories value=""/>
+    </CActorLookAt>
+    <CActorModel id="ThunderballFists" parent="ModelAnimationStyleContinuous">
+        <EditorCategories value=""/>
+        <On Terms="Abil.ThunderballFists.SourceCastStart" Send="Create"/>
+        <On Terms="Effect.ThunderballFists.Stop" Send="Destroy Immediate"/>
+        <On Terms="ActorCreation" Send="SetOpacity 0.700000"/>
+        <HostSiteOps Ops="SOpAttachOrigin SOpMoveDownByDot75" HoldRotation="1"/>
+        <Scale value="1.800000,1.800000,0.800000"/>
+    </CActorModel>
+    <CActorUnit id="UGCCrusaderTank" parent="GenericUnitStandard" unitName="CrusaderTank">
+        <Aliases value="_UGCTank"/>
+        <EditorCategories value=""/>
+        <On index="56" Terms="WeaponStart.120mmSmoothboreCannon.AttackStart" Target="_UGCTank" Send="AnimPlay Attack Attack"/>
+        <On index="57" Terms="ActorCreation" Send="AttachModel 120mmSmoothboreCannonModel UGCCrusaderTankCannon AMFilterTurret"/>
+        <On index="58" Terms="WeaponStart.TopMachineGunTurret.AttackStart" Target="TopMachineGunModel" Send="AnimPlay TopTurretAttack Attack"/>
+        <On index="59" Terms="WeaponStart.SideMachineGun.AttackStart" Target="SideMachineGunModel" Send="AnimPlay SideGunAttack Attack"/>
+        <On index="60" removed="1"/>
+        <Model value="UGCCrusaderTank"/>
+        <EventDataFootprint index="0" Actor="UnitFootprint" Model="MengskSiegeTankFootprint"/>
+        <DeathArray index="Normal" ModelLink="UGCCrusaderTankDeath" SoundLink="SiegeBreaker_Explode" VoiceLink="MengskSiegeTankDeathVoice"/>
+        <StandAnimTurnTime value="3.33"/>
+        <WalkAnimMoveSpeed value="1.5"/>
+        <BarOffset value="80"/>
+        <BarWidth value="102"/>
+        <GroupIcon>
+            <Image value="Wireframes\Wireframe-Crusader-Tank.dds"/>
+        </GroupIcon>
+        <GroupSoundArray index="What" value="MengskSiegeTank_GroupWhat"/>
+        <GroupSoundArray index="Yes" value="MengskSiegeTank_GroupYes"/>
+        <GroupSoundArray index="Attack" value="MengskSiegeTank_GroupAttack"/>
+        <GroupSoundArray index="Board" value="MengskSiegeTank_GroupBoard"/>
+        <HeroIcon value="Wireframes\Wireframe-Crusader-Tank.dds"/>
+        <HighlightTooltip value="Unit/Name/UGCCrusaderTank"/>
+        <SoundArray index="Birth" value="MengskSiegeTank_Birth"/>
+        <SoundArray index="Ready" value="SiegeTank_Ready"/>
+        <SoundArray index="Help" value="SiegeTank_Help"/>
+        <SoundArray index="What" value="SiegeTank_What"/>
+        <SoundArray index="Yes" value="SiegeTank_Yes"/>
+        <SoundArray index="Attack" value="SiegeTank_Attack"/>
+        <SoundArray index="Pissed" value="SiegeTank_Pissed"/>
+        <SoundArray index="Movement" value="MengskSiegeTank_Movement"/>
+        <SoundArray index="Turning" value="MengskSiegeTank_Turning"/>
+        <SoundArray index="Board" value="MengskSiegeTank_Board"/>
+        <SoundArray index="Click" value="MengskSiegeTank_Click"/>
+        <SoundArray index="ClickError" value="MengskSiegeTank_ClickError"/>
+        <SoundArray index="Highlight" value="MengskSiegeTank_Highlight"/>
+        <UnitIcon value="Wireframes\Wireframe-Crusader-Tank.dds"/>
+        <Wireframe>
+            <Image value="Wireframes\Wireframe-Crusader-Tank.dds"/>
+        </Wireframe>
+        <WireframeShield>
+            <Image value="Wireframes\Wireframe-Crusader-Tank-shield01.dds"/>
+            <Image value="Wireframes\Wireframe-Crusader-Tank-shield02.dds"/>
+            <Image value="Wireframes\Wireframe-Crusader-Tank-shield03.dds"/>
+        </WireframeShield>
+        <Scale value="1.500000"/>
+    </CActorUnit>
+    <CActorSplat id="FragmentationGrenadeAoESplat" parent="TerranCursorSplat" abil="FragmentationGrenade">
+        <EditorCategories value=""/>
+    </CActorSplat>
+    <CActorEventMacro id="HeavyMachineGunMacro">
+        <On index="0" Terms="Abil.DeployHeavyMachineGun.SourceCastStart" Send="AnimPlay HeavyMachineGun Work,Large,Start 0 -1.000000 -1.000000 3.000000 AsDuration"/>
+        <On index="2" Terms="Abil.PackUpHeavyMachineGun.SourceCastStart" Send="AnimPlay HeavyMachineGunUndeploy Work,Large,End 0 -1.000000 -1.000000 1.950000 AsDuration"/>
+        <On index="4" Terms="UnitMovementUpdate.*.Walk" Send="AnimGroupRemove Work Instant"/>
+        <On index="5" Terms="Abil.LockdownNOTD.SourceCastStart; ValidateUnit EquippedWeaponisHeavyMachineGun" Send="AnimPlay HeavyMachineGun Work,Large,Start 0 -1.000000 -1.000000 1.000000 AsDuration"/>
+        <On index="6" Terms="Abil.LockdownDisable.SourceCastStart; ValidateUnit EquippedWeaponisHeavyMachineGun" Send="AnimPlay HeavyMachineGunUndeploy Work,Large,End 0 -1.000000 -1.000000 1.000000 AsDuration"/>
+    </CActorEventMacro>
+    <CActorSplat id="ImpalerGrenadeAoESplat" parent="TerranCursorSplat" abil="ImpalerGrenade">
+        <EditorCategories value=""/>
+    </CActorSplat>
+    <CActorAction id="K9SupportTurretAttack">
+        <Missile value="K9SupportTurretAttackMissile"/>
+        <LaunchSiteOps Ops="SOpAttachWeapon"/>
+    </CActorAction>
+    <CActorForceSphere id="K9TurretAttackDeathForce"/>
+    <CActorSound id="LockDownSound" parent="SoundOneShot">
+        <On Terms="Abil.LockdownNOTD.SourceCastStart" Send="Create"/>
+        <Sound value="Lockdown"/>
+    </CActorSound>
+    <CActorModel id="Charge" parent="ModelAnimationStyleContinuous">
+        <EditorCategories value=""/>
+        <On index="0" Terms="ActorCreation" Send="AnimBracketStart BSD Birth Stand Death Instant"/>
+        <On Terms="Behavior.ChargeMovement.On" Send="Create"/>
+        <On Terms="Behavior.ChargeMovement.Off" Send="Destroy"/>
+        <On Terms="Behavior.ChargeMovementLevel12.On" Send="Create"/>
+        <On Terms="Behavior.ChargeMovementLevel12.Off" Send="Destroy"/>
+        <HostSiteOps Ops="SOpAttachOverhead"/>
+        <Model value="Lockdown2"/>
+        <Host Subject="_Unit"/>
+        <Scale value="1.500000"/>
+    </CActorModel>
+    <CActorSound id="ChargeSound" parent="SoundOneShot">
+        <On Terms="Abil.ChargeNOTD.SourceCastStart" Send="Create"/>
+        <Sound value="Charge"/>
+    </CActorSound>
+    <CActorSound id="ConcentratedFireSound" parent="SoundOneShot">
+        <On Terms="Abil.ConcentratedFire.SourceCastStart" Send="Create"/>
+        <Sound value="ConcentratedFire"/>
+    </CActorSound>
+    <CActorSound id="AdvancedTargetingSound" parent="SoundOneShot">
+        <On Terms="Abil.AdvancedTargeting.SourceCastStart" Send="Create"/>
+        <Sound value="AdvancedTargeting"/>
+    </CActorSound>
+    <!-- Campaign FX ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <CActorEventMacro id="LockdownAnim">
+        <On index="0" Terms="Abil.LockdownNOTD.SourceCastStart" Send="$Spell"/>
+    </CActorEventMacro>
+    <CActorSplat id="PlasmaGrenadeAoESplat" parent="TerranCursorSplat" abil="PlasmaGrenade">
+        <EditorCategories value=""/>
+    </CActorSplat>
+    <CActorSplat id="NanoShockAoESplat" parent="TerranCursorSplat" abil="NanoShock">
+        <EditorCategories value=""/>
+    </CActorSplat>
+    <CActorAction id="SideMachineGunAttack" parent="GenericAttack" effectAttack="SideMachineGun">
+        <EditorCategories value=""/>
+        <LaunchSiteOps Ops=""/>
+        <LaunchRequest Subject="SideMachineGunModel"/>
+        <LaunchAssets Model="VikingAssaultAttackLaunch" Sound="Raven_AutoTurretAttackLaunch"/>
+        <LaunchModel value="WeaponAttackLaunch"/>
+        <ImpactMap index="None" Model="VikingAssaultAttackImpact"/>
+    </CActorAction>
+    <CActorModel id="SideMachineGunModel" parent="ModelAddition">
+        <EditorCategories value=""/>
+        <Model value="UGCCrusaderTankSideGun"/>
+    </CActorModel>
+    <CActorModel id="SonicTrapDeath" parent="ModelAnimationStyleOneShotNoOrphan">
+        <EditorCategories value=""/>
+        <Model value="GoliathAirAttackImpact"/>
+    </CActorModel>
+    <CActorModel id="Lockdown2" parent="ModelAnimationStyleContinuous">
+        <EditorCategories value=""/>
+        <On index="0" Terms="ActorCreation" Send="AnimBracketStart BSD Stand Stand Death"/>
+        <On Terms="Behavior.LockdownNOTD.On" Send="Create"/>
+        <On Terms="Behavior.LockdownNOTD.Off" Send="Destroy"/>
+        <HostSiteOps Ops="SOpAttachOrigin" HoldRotation="1"/>
+        <Model value="Lockdown"/>
+        <Host Subject="_Unit"/>
+        <Scale value="0.850000"/>
+    </CActorModel>
+    <CActorModel id="AftershockImpact" parent="ModelAnimationStyleOneShot">
+        <EditorCategories value=""/>
+        <On Terms="Effect.AftershockStunLevel1.Start" Send="Create"/>
+        <On Terms="Effect.AftershockStunLevel12.Start" Send="Create"/>
+    </CActorModel>
+    <CActorModel id="AntivenomImpact" parent="ModelAnimationStyleOneShot">
+        <EditorCategories value=""/>
+        <On Terms="Abil.Antivenom.TargetFinishStart" Send="Create"/>
+        <HostSiteOps Ops="SOpAttachHardPoint"/>
+    </CActorModel>
+    <CActorRange id="ChargeRange" parent="RangeAbil" abil="ChargeNOTD">
+        <EditorCategories value=""/>
+    </CActorRange>
+    <CActorModel id="AdvancedTargeting" parent="ModelAnimationStyleContinuous">
+        <EditorCategories value=""/>
+        <On Terms="Behavior.AdvancedTargetingLevel1.On" Send="Create"/>
+        <On Terms="Behavior.AdvancedTargetingLevel1.Off" Send="Destroy"/>
+        <On Terms="Behavior.AdvancedTargetingLevel2.On" Send="Create"/>
+        <On Terms="Behavior.AdvancedTargetingLevel2.Off" Send="Destroy"/>
+        <HostSiteOps Ops="SOpAttachWeapon"/>
+    </CActorModel>
+    <CActorModel id="CriticalDamageImpact" parent="ModelAnimationStyleOneShot">
+        <EditorCategories value=""/>
+        <Model value="BloodTargetImpact"/>
+        <Scale value="10.000000"/>
+    </CActorModel>
+    <CActorRange id="HealRange" parent="RangeAbil" abil="Heal">
+        <EditorCategories value=""/>
+    </CActorRange>
+    <CActorRange id="HeavyJumpRange" parent="RangeAbil" abil="HeavyJump">
+        <EditorCategories value=""/>
+    </CActorRange>
+    <CActorModel id="K9Turret" parent="ModelAddition">
+        <Inherits index="BaseModelScale" value="0"/>
+        <Inherits index="CastShadows" value="0"/>
+        <Inherits index="CreepEngulfment" value="0"/>
+        <Inherits index="Decal" value="0"/>
+        <Inherits index="LocalTintColor" value="1"/>
+        <Inherits index="Scale" value="0"/>
+        <Inherits index="TimeScale" value="0"/>
+        <EditorCategories value=""/>
+        <On Terms="WeaponStart.K9SupportTurret.AttackStart" Send="AnimPlay Attack Attack"/>
+        <On Terms="WeaponStop.K9SupportTurret.AttackStop" Send="AnimClear Attack"/>
+        <On Terms="Behavior.K9TurretDeployment.On" Send="AnimGroupApply Work"/>
+        <On Terms="Behavior.K9TurretDeployment.Off" Send="AnimGroupRemove Work"/>
+        <Host Subject="::Main"/>
+        <HostSiteOps Ops="SOpAttachTurret"/>
+        <Aliases value="_Weapon"/>
+    </CActorModel>
+    <CActorUnit id="Assault" parent="BaseHeavyMarineActor" unitName="Assault">
+        <Scale value="0.900000"/>
+        <Macros index="5" value="WeaponHeavyAnimationGroups"/>
+        <SoundArray index="Birth" value="WarHound_Birth"/>
+        <SoundArray index="Ready" value="WarHound_Ready"/>
+        <SoundArray index="Help" value="WarHound_Help"/>
+        <SoundArray index="What" value="WarHound_What"/>
+        <SoundArray index="Yes" value="WarHound_Yes"/>
+        <SoundArray index="Attack" value="WarHound_Attack"/>
+        <SoundArray index="Pissed" value="WarHound_Pissed"/>
+        <SoundArray index="Movement" value="WarHound_Movement"/>
+        <SoundArray index="Turning" value="WarHound_Turning"/>
+        <SoundArray index="Board" value="WarHound_Board"/>
+        <SoundArray index="Click" value="WarHound_Click"/>
+        <SoundArray index="ClickError" value="WarHound_ClickError"/>
+        <SoundArray index="Highlight" value="WarHound_Highlight"/>
+        <On index="61" Terms="ActorCreation" Send="AttachModel AssaultTorso AssaultCraftTorso {Hardpoint 0}"/>
+        <On index="74" Terms="Abil.HeavyJump.SourceCastStart" Send="AnimPlay Jump Jump"/>
+        <On Terms="Behavior.ChargeMovement.On" Send="AnimGroupApply Run"/>
+        <On Terms="Behavior.ChargeMovement.Off" Send="AnimGroupRemove Run"/>
+    </CActorUnit>
+    <CActorUnit id="Commando" parent="BaseMarineActor" unitName="Commando">
+        <HighlightTooltip value="Unit/Name/Bogus"/>
+        <On index="76" Terms="ActorCreation" Send="AttachModel Flashlight MarineFlashlight {Head 0}"/>
+        <On index="77" removed="1"/>
+        <On index="78" removed="1"/>
+    </CActorUnit>
+    <CActorUnit id="Demolitions" parent="BaseHeavyMarineActor" unitName="Demolitions">
+        <Scale value="0.900000"/>
+        <WalkAnimMoveSpeed value="1.8984"/>
+        <On index="61" Terms="ActorCreation" Send="AttachModel DemolitionTorso DemolitionCraftTorso {Hardpoint 0}"/>
+        <On Terms="Effect.Bulwark.Start; !ScopeContains BulwarkShieldModel" Send="Create BulwarkShieldModel"/>
+        <On Terms="ActorDestruction" Target="BulwarkShieldModel" Send="Destroy"/>
+    </CActorUnit>
+    <CActorUnit id="Drone2" parent="BaseMarineActor" unitName="Drone2">
+        <HighlightTooltip value="Unit/Name/Bogus"/>
+        <On index="76" Terms="ActorCreation" Send="AttachModel Flashlight MarineFlashlight {Head 0}"/>
+        <On index="77" removed="1"/>
+        <On index="78" removed="1"/>
+    </CActorUnit>
+    <CActorUnit id="Engineer" parent="BaseMarineActor" unitName="Engineer">
+        <HighlightTooltip value="Unit/Name/Bogus"/>
+        <On index="76" Terms="ActorCreation" Send="AttachModel Flashlight MarineFlashlight {Head 0}"/>
+        <On index="77" removed="1"/>
+        <On index="78" removed="1"/>
+    </CActorUnit>
+    <CActorUnit id="Flamethrower2" parent="BaseMarineActor" unitName="Flamethrower2">
+        <HighlightTooltip value="Unit/Name/Bogus"/>
+        <On index="76" Terms="ActorCreation" Send="AttachModel Flashlight MarineFlashlight {Head 0}"/>
+        <On index="77" removed="1"/>
+        <On index="78" removed="1"/>
+    </CActorUnit>
+    <CActorUnit id="ForwardObserver" parent="BaseMarineActor" unitName="ForwardObserver">
+        <HighlightTooltip value="Unit/Name/Bogus"/>
+        <On index="76" Terms="ActorCreation" Send="AttachModel Flashlight MarineFlashlight {Head 0}"/>
+        <On index="77" removed="1"/>
+        <On index="78" removed="1"/>
+    </CActorUnit>
+    <CActorModel id="JumpImpact" parent="ModelAnimationStyleOneShot">
+        <On Terms="Effect.LightJump.Impact; At Caster" Send="Create"/>
+        <On Terms="Effect.MediumJump.Impact; At Caster" Send="Create"/>
+        <On Terms="Effect.HeavyJump.Impact; At Caster" Send="Create"/>
+        <On Terms="Effect.LightJump.Impact" Send="TimerSet 0.200000 {Jump Time}"/>
+        <On Terms="Effect.MediumJump.Impact" Send="TimerSet 0.200000 JumpTime"/>
+        <On Terms="Effect.HeavyJump.Impact" Send="TimerSet 0.200000 JumpTime"/>
+        <On Terms="TimerExpired; TimerName JumpTime" Send="Create JumpLandingSound"/>
+        <EditorCategories value=""/>
+        <HostSiteOps Ops="SOpAttachCenter SOpShadow"/>
+        <AutoScaleFromSelectionFactor value="1.000000"/>
+    </CActorModel>
+    <CActorSound id="MedicHeal" parent="SoundContinuous">
+        <On Terms="Abil.Heal.TargetCastStart" Send="Create"/>
+        <On Terms="ActorCreation" Send="Create MedicHealSoundStart"/>
+        <On Terms="ActorDestruction" Send="Create MedicHealSoundStop"/>
+        <On Terms="Effect.HealLevel1.TargetStop" Send="Destroy"/>
+        <On Terms="Effect.HealLevel3.TargetStop" Send="Destroy"/>
+        <On Terms="Effect.HealLevel2.TargetStop" Send="Destroy"/>
+        <Host Subject="_Unit"/>
+        <HostSiteOps Ops="SOpAttachOverhead"/>
+        <Sound value="Medic_Heal"/>
+    </CActorSound>
+    <CActorSound id="JumpLandingSound" parent="SoundOneShot">
+        <Sound value="Reaper_Land"/>
+        <EditorCategories value=""/>
+        <On Terms="Effect.LightJump" Send="ActionDamagePhysics"/>
+    </CActorSound>
+    <CActorTurret id="K9TurretTurret">
+        <EditorCategories value=""/>
+        <On Terms="TurretEnable.K9" Send="Create"/>
+    </CActorTurret>
+    <CActorModel id="LevelUp" parent="ModelAnimationStyleOneShot">
+        <EditorCategories value=""/>
+        <Host Subject="_Unit"/>
+        <HostSiteOps Ops="SOpAttachOrigin" HoldRotation="1"/>
+        <ModelFlags index="AllowHitTest" value="0"/>
+        <On Terms="BehaviorLevel.BasicVeterency; Level 1 GE" Send="Create"/>
+    </CActorModel>
+    <CActorRange id="LightJumpRange" parent="RangeAbil" abil="LightJump">
+        <EditorCategories value=""/>
+    </CActorRange>
+    <CActorSound id="MedicNanoHastecast" parent="SoundOneShot">
+        <On Terms="Effect.NanoHasteLevel1" Send="Create"/>
+        <On Terms="Effect.NanoHasteLevel2" Send="Create"/>
+        <On Terms="Effect.NanoHasteLevel3" Send="Create"/>
+        <Sound value="MedicNanoHasteCast"/>
+    </CActorSound>
+    <CActorSound id="MedicNanoPlagueSound" parent="SoundContinuous">
+        <On Terms="Effect.PsiStormPersistent.Start" Send="Create"/>
+        <On Terms="Effect.PsiStormPersistent.Stop" Send="Destroy"/>
+        <HostSiteOps Ops="SOpShadow"/>
+    </CActorSound>
+    <CActorSound id="MedicNanoSeerSound" parent="SoundContinuous">
+        <On Terms="Abil.NanoSear.SourceCastStart" Send="Create"/>
+    </CActorSound>
+    <CActorSound id="MedicNanoShieldBirth" parent="SoundOneShot">
+        <On Terms="Behavior.NanoShieldArmor.On" Send="Create"/>
+    </CActorSound>
+    <CActorSound id="MedicNanoShieldDeath" parent="SoundOneShot">
+        <On Terms="Behavior.NanoShieldArmor.Off" Send="Create"/>
+    </CActorSound>
+    <CActorSound id="MedicNanoShockCast" parent="SoundOneShot">
+        <On Terms="Abil.NanoShock.SourceCastStart" Send="Create"/>
+        <Sound value="MedicNanoShock"/>
+    </CActorSound>
+    <CActorSound id="MedicNanoShockExplosion" parent="SoundOneShot">
+        <On Terms="Effect.NanoShockDamageLevel1" Send="Create"/>
+        <On Terms="Effect.NanoShockDamageLevel2" Send="Create"/>
+        <On Terms="Effect.NanoShockDamageLevel3" Send="Create"/>
+    </CActorSound>
+    <CActorSound id="MedicNanoStregnthBuffSound" parent="SoundOneShot">
+        <On Terms="Behavior.NanoStrength.On" Send="Create"/>
+    </CActorSound>
+    <CActorSound id="MedicNanoStrength" parent="SoundOneShot">
+        <On Terms="Effect.NanoStrength.Start" Send="Create"/>
+        <Sound value="MedicNanoStrengthCast"/>
+    </CActorSound>
+    <CActorSound id="MedicNanoWeave" parent="SoundOneShot">
+        <On Terms="Abil.NanoWeave.TargetCastStart" Send="Create"/>
+        <On Terms="Abil.NanoWeave.TargetCastStart" Send="Create"/>
+        <Sound value="MedicNanoWeaveCast"/>
+    </CActorSound>
+    <CActorSound id="MedicNanoWeaveBuff" parent="SoundOneShot">
+        <On Terms="Effect.NanoWeaveHealLevel1.Start" Send="Create"/>
+        <On Terms="Effect.NanoWeaveHealLevel2" Send="Create"/>
+    </CActorSound>
+    <CActorSound id="MedicVolatileInjection" parent="SoundOneShot">
+        <On Terms="Abil.VolatileInjection.SourceCastStart" Send="Create"/>
+    </CActorSound>
+    <CActorRange id="MediumJumpRange" parent="RangeAbil" abil="MediumJump">
+        <EditorCategories value=""/>
+    </CActorRange>
+    <CActorRange id="NanoHasteRange" parent="RangeAbil" abil="NanoHaste">
+        <EditorCategories value=""/>
+    </CActorRange>
+    <CActorRange id="NanoPlagueRange" parent="RangeAbil" abil="NanoPlague">
+        <EditorCategories value=""/>
+    </CActorRange>
+    <CActorRange id="NanoSearRange" parent="RangeAbil" abil="NanoSear">
+        <EditorCategories value=""/>
+    </CActorRange>
+    <CActorRange id="NanoShieldRange" parent="RangeAbil" abil="NanoShield">
+        <EditorCategories value=""/>
+    </CActorRange>
+    <CActorRange id="NanoShockRange" parent="RangeAbil" abil="NanoShock">
+        <EditorCategories value=""/>
+    </CActorRange>
+    <CActorModel id="ConcentratedFire" parent="ModelAnimationStyleContinuous">
+        <EditorCategories value=""/>
+        <On Terms="Behavior.ConcentratedFireLevel1.On" Send="Create"/>
+        <On Terms="Behavior.ConcentratedFireLevel1.Off" Send="Destroy"/>
+        <On Terms="Behavior.ConcentratedFireLevel2.On" Send="Create"/>
+        <On Terms="Behavior.ConcentratedFireLevel2.Off" Send="Destroy"/>
+        <On Terms="Behavior.ConcentratedFireLevel3.On" Send="Create"/>
+        <On Terms="Behavior.ConcentratedFireLevel3.Off" Send="Destroy"/>
+        <HostSiteOps Ops="SOpAttachWeapon"/>
+    </CActorModel>
+    <CActorRange id="NanoStrengthRange" parent="RangeAbil" abil="NanoStrength">
+        <EditorCategories value=""/>
+    </CActorRange>
+    <CActorModel id="NanoWeaveImpact" parent="ModelAnimationStyleOneShot">
+        <EditorCategories value=""/>
+        <On Terms="Effect.NanoWeaveHealLevel1.Start" Send="Create"/>
+        <On Terms="Effect.NanoWeaveHealLevel2.Start" Send="Create"/>
+        <Host Subject="_Unit" Scope="Target"/>
+        <HostSiteOps Ops="SOpAttachOverhead"/>
+        <Scale value="0.300000,0.300000,0.075000"/>
+    </CActorModel>
+    <CActorRange id="NanoWeaveRange" parent="RangeAbil" abil="NanoWeave">
+        <EditorCategories value=""/>
+    </CActorRange>
+    <CActorRange id="PathfinderJumpRange" parent="RangeAbil" abil="PathfinderJump">
+        <EditorCategories value=""/>
+    </CActorRange>
+    <CActorUnit id="Peacekeeper" parent="BaseMarineActor" unitName="Peacekeeper">
+        <On index="61" Terms="ActorCreation" Send="AttachModel NPCTorso BasicTorso {Hardpoint 0}"/>
+        <On index="63" Terms="ActorCreation" Send="AttachModel NPCRightShoulder BasicShoulderRight {Hardpoint 8}"/>
+        <On index="77" Terms="AttachModel" Target="_ArmorCustom" Send="Signal Peacekeeper"/>
+        <On index="78" removed="1"/>
+    </CActorUnit>
+    <CActorUnit id="Paratrooper" parent="BaseMarineActor" unitName="Paratrooper">
+        <On index="61" Terms="ActorCreation" Send="AttachModel NPCTorso BasicTorso {Hardpoint 0}"/>
+        <On index="77" Terms="AttachModel" Target="_ArmorCustom" Send="Signal Breach"/>
+        <On index="78" removed="1"/>
+    </CActorUnit>
+    <CActorRange id="PrecisionShotRange" parent="RangeAbil" abil="PrecisionShot">
+        <EditorCategories value=""/>
+    </CActorRange>
+    <CActorSound id="ReloadEndSound" parent="SoundOneShot">
+        <EditorCategories value=""/>
+        <Sound value="ClipIn"/>
+        <On Terms="Abil.Reload.SourceCastStart" Send="Create"/>
+    </CActorSound>
+    <CActorSound id="ReloadStartSound" parent="SoundOneShot">
+        <EditorCategories value=""/>
+        <On Terms="Abil.AutomaticReload.SourceCastStart" Send="Create"/>
+        <On Terms="Abil.AutomaticReloadAssault.SourceCastStart" Send="Create"/>
+        <On Terms="Abil.ManualReload.SourceCastStart" Send="Create"/>
+        <On Terms="Abil.ManualReloadAssault.SourceCastStart" Send="Create"/>
+        <Sound value="ClipOut"/>
+    </CActorSound>
+    <CActorBeamSimple id="HealBeam" parent="BeamSimpleAnimationStyleContinuous">
+        <EditorCategories value=""/>
+        <On Terms="Effect.HealLevel1.TargetStart" Send="Create"/>
+        <On Terms="Effect.HealLevel1.TargetStop" Send="Destroy"/>
+        <On Terms="Effect.HealLevel2.TargetStart" Send="Create"/>
+        <On Terms="Effect.HealLevel2.TargetStop" Send="Destroy"/>
+        <On Terms="Effect.HealLevel3.TargetStart" Send="Create"/>
+        <On Terms="Effect.HealLevel3.TargetStop" Send="Destroy"/>
+        <Model value="MedivacHealBeam"/>
+        <ModelFlags index="AllowHitTest" value="0"/>
+        <HostLaunch Subject="MedicLeftForearm" Scope="Caster" Actor="Find"/>
+        <HostImpact Subject="_Unit" Scope="Target"/>
+        <HostImpactSiteOps Ops="SOpAttachHardPoint"/>
+    </CActorBeamSimple>
+    <CActorModel id="HealImpact" parent="ModelAnimationStyleContinuous">
+        <EditorCategories value=""/>
+        <On Terms="Effect.HealLevel1.TargetStart" Send="Create"/>
+        <On Terms="Effect.HealLevel1.TargetStop" Send="Destroy"/>
+        <On Terms="Effect.HealLevel2.TargetStart" Send="Create"/>
+        <On Terms="Effect.HealLevel2.TargetStop" Send="Destroy"/>
+        <On Terms="Effect.HealLevel3.TargetStart" Send="Create"/>
+        <On Terms="Effect.HealLevel3.TargetStop" Send="Destroy"/>
+        <Model value="MedicHealModel"/>
+        <HostSiteOps Ops="SOpAttachHardPoint"/>
+    </CActorModel>
+    <CActorModel id="Bloodlust" parent="ModelAddition">
+        <EditorCategories value=""/>
+        <On Terms="Behavior.Bloodlust.On" Send="Create"/>
+        <On Terms="Behavior.Bloodlust.Off" Send="Destroy"/>
+        <Scale value="0.900000"/>
+        <Inherits index="BaseModelScale" value="0"/>
+        <Inherits index="Scale" value="0"/>
+        <HostSiteOps Ops="SOpAttachHardPoint"/>
+    </CActorModel>
+    <CActorModel id="Flashlight">
+        <Host Subject="_Unit"/>
+        <Model value="MarineFlashlight"/>
+        <On index="3" Terms="ActorCreation" Send="SetVisibility"/>
+        <On index="4" Terms="Behavior.FlashlightNOTD.On" Send="SetVisibility 1"/>
+        <On Terms="Behavior.FlashlightNOTD.Off" Send="SetVisibility"/>
+    </CActorModel>
+    <CActorModel id="FocusFireCaster" parent="ModelAnimationStyleContinuous">
+        <EditorCategories value=""/>
+        <On Terms="Behavior.FocusFire.On" Send="Create"/>
+        <On Terms="Behavior.FocusFire.Off" Send="AnimBracketStop BSD"/>
+        <Host Subject="_Unit"/>
+        <HostSiteOps Ops="SOpAttachHardPoint"/>
+        <Model value="HighYieldActiveCrystals"/>
+    </CActorModel>
+    <CActorAction id="FragmentationGrenade" parent="WeaponAttackTemplate" effectImpact="FragmentationGrenadeDamageLevel3" effectLaunch="FragmentationGrenadeLevel3">
+        <ShieldFlashType value="Full"/>
+        <On index="7" removed="1"/>
+        <LaunchSiteOps Ops="SOpAttachWeapon"/>
+        <LaunchAssets Sound="Tychus_TossGrenadeVO"/>
+        <ImpactMap index="None" Sound="TossGrenadeImpact"/>
+    </CActorAction>
+    <CActorMissile id="FragmentationGrenadeMissile" parent="GenericAttackMissile" unitName="FragmentationGrenade">
+        <EditorCategories value=""/>
+        <On index="1" Terms="UnitBirth" Send="AnimBracketStart Lifetime Birth Stand {} Instant"/>
+        <Scale value="0.500000"/>
+    </CActorMissile>
+    <CActorAction id="FragmentationGrenadeThrown" parent="GenericAttack" effectImpact="FragmentationGrenadeDamageLevel1" effectLaunch="FragmentationGrenadeLevel1">
+        <EditorCategories value=""/>
+        <On Terms="Effect.FragmentationGrenadeDamageLevel2.Start; FromEffectTreeDescendant" Send="ActionImpact"/>
+        <On Terms="Effect.FragmentationGrenadeLevel2.Start; At Caster" Send="Create"/>
+        <On Terms="Effect.FragmentationGrenadeDamageLevel2.Stop; FromEffectTreeDescendant" Send="ActionImpactPhysics"/>
+        <LaunchAttachQuery Methods="Weapon 2"/>
+        <LaunchAssets Sound="Tychus_TossGrenadeVO"/>
+        <ImpactMap index="None" Sound="TossGrenadeImpact"/>
+    </CActorAction>
+    <CActorMissile id="FragmentationGrenadeThrownMissile" parent="GenericAttackMissile" unitName="FragmentationGrenadeThrown">
+        <EditorCategories value=""/>
+    </CActorMissile>
+    <CActorAction id="ImpalerGrenade" parent="WeaponAttackTemplate" effectImpact="ImpalerGrenadeDamage" effectLaunch="ImpalerGrenadeLaunchMissile">
+        <ImpactMap index="None" Scale="3.000000" Sound="TossGrenadeImpact"/>
+        <ShieldFlashType value="Full"/>
+        <On index="7" removed="1"/>
+        <LaunchSiteOps Ops="SOpAttachWeapon"/>
+        <LaunchAssets Sound="Tychus_TossGrenadeVO"/>
+    </CActorAction>
+    <CActorMissile id="ImpalerGrenadeMissile" parent="GenericAttackMissile" unitName="ImpalerGrenade">
+        <EditorCategories value=""/>
+        <On index="1" Terms="UnitBirth" Send="AnimBracketStart Lifetime Birth Stand {} Instant"/>
+        <Scale value="0.500000"/>
+    </CActorMissile>
+    <CActorUnit id="K9" parent="GenericUnitStandard" unitName="K9">
+        <EditorCategories value=""/>
+        <HighlightTooltip value="Unit/Name/K-9"/>
+        <SoundArray index="Birth" value="Raven_Birth"/>
+        <SoundArray index="Ready" value="Raven_Ready"/>
+        <SoundArray index="Help" value="Raven_Help"/>
+        <SoundArray index="What" value="Raven_What"/>
+        <SoundArray index="Yes" value="Raven_Yes"/>
+        <SoundArray index="Attack" value="Raven_Attack"/>
+        <SoundArray index="Pissed" value="Raven_Pissed"/>
+        <SoundArray index="Movement" value="Raven_Movement"/>
+        <SoundArray index="Turning" value="Raven_Turning"/>
+        <SoundArray index="Board" value="Raven_Board"/>
+        <SoundArray index="Click" value="Raven_Click"/>
+        <SoundArray index="ClickError" value="Raven_ClickError"/>
+        <SoundArray index="Highlight" value="Raven_Highlight"/>
+        <On index="57" Terms="WeaponStart.TitaniumClaw" Send="AnimBracketStart Attack Attack"/>
+        <On Terms="Behavior.K9Turret.On" Send="AnimPlay K9Setup Work,Start 0 -1.000000 -1.000000 1.000000 AsDuration"/>
+        <On Terms="AnimDone.*.Complete; AnimName K9Setup" Send="AnimGroupApply Work Work,Start Work,End Instant"/>
+        <On Terms="Behavior.K9Turret.Off" Send="AnimPlay K9Teardown Work,End 0 -1.000000 -1.000000 1.000000 AsDuration"/>
+        <On Terms="Behavior.K9Turret.On" Send="AttachModel K9Turret K9Turret AMFilterTurret"/>
+        <On Terms="AnimDone; AnimName K9Teardown" Target="K9Turret" Send="Destroy Immediate"/>
+        <GroupIcon>
+            <Image value="Wireframes\Wireframe-K9.dds"/>
+        </GroupIcon>
+        <Wireframe>
+            <Image value="Wireframes\Wireframe-K9.dds"/>
+        </Wireframe>
+        <WireframeShield>
+            <Image value="Wireframes\Wireframe-K9-shield01.dds"/>
+            <Image value="Wireframes\Wireframe-K9-shield02.dds"/>
+            <Image value="Wireframes\Wireframe-K9-shield03.dds"/>
+        </WireframeShield>
+        <Baselines index="Walk" AnimProps="Walk,Fast"/>
+        <WalkAnimMoveSpeed value="5.25"/>
+    </CActorUnit>
+    <CActorUnit id="Marksman" parent="BaseMarineActor" unitName="Marksman"/>
+    <CActorUnit id="MedicNOTD" parent="BaseMarineActor" unitName="Medic2">
+        <On index="61" Terms="ActorCreation" Send="AttachModel MedicTorso MedicBasicTorso {Hardpoint 0}"/>
+        <On index="70" Terms="ActorCreation" Send="AttachModel MedicLeftForearm MedicBasicForearmLeft {Hardpoint 5}"/>
+        <On index="73" Terms="ActorCreation" Send="AttachModel MedicHelmet MedicBasicHelmet {Head 0}"/>
+        <DeathCustoms index="0" removed="1"/>
+        <DeathCustoms index="1" removed="1"/>
+        <DeathCustoms index="2" removed="1"/>
+        <DeathCustoms index="3" removed="1"/>
+        <DeathCustoms index="4" removed="1"/>
+        <SoundArray index="Birth" value="Medic_Birth"/>
+        <SoundArray index="Ready" value="Medic_Ready"/>
+        <SoundArray index="Help" value="Medic_Help"/>
+        <SoundArray index="What" value="Medic_What"/>
+        <SoundArray index="Yes" value="Medic_Yes"/>
+        <SoundArray index="Attack" value="Medic_Attack"/>
+        <SoundArray index="Pissed" value="Medic_Pissed"/>
+        <SoundArray index="Movement" value="Medic_Movement"/>
+        <SoundArray index="Turning" value="Medic_Turning"/>
+        <SoundArray index="Board" value="Medic_Board"/>
+        <SoundArray index="Click" value="Medic_Click"/>
+        <SoundArray index="ClickError" value="Medic_ClickError"/>
+        <SoundArray index="Highlight" value="Medic_Highlight"/>
+    </CActorUnit>
+    <CActorModel id="NanoHasteBuff" parent="ModelAnimationStyleContinuous">
+        <EditorCategories value=""/>
+        <On Terms="Behavior.NanoHasteLevel1.On" Send="Create"/>
+        <On Terms="Behavior.NanoHasteLevel2.On" Send="Create"/>
+        <On Terms="Behavior.NanoHasteLevel3.On" Send="Create"/>
+        <On Terms="Behavior.NanoHasteLevel1.Off" Send="Destroy"/>
+        <On Terms="Behavior.NanoHasteLevel2.Off" Send="Destroy"/>
+        <On Terms="Behavior.NanoHasteLevel3.Off" Send="Destroy"/>
+        <HostSiteOps Ops="SOpAttachOverhead"/>
+    </CActorModel>
+    <CActorModel id="NanoPlagueBuff" parent="ModelAnimationStyleContinuous">
+        <EditorCategories value=""/>
+        <On Terms="Behavior.NanoPlague.On" Send="Create"/>
+        <On Terms="Behavior.NanoPlagueSecondary.On" Send="Create"/>
+        <On Terms="Behavior.NanoPlague.Off" Send="Destroy"/>
+        <On Terms="Behavior.NanoPlagueSecondary.Off" Send="Destroy"/>
+    </CActorModel>
+    <CActorModel id="NanoSearBuff" parent="ModelAnimationStyleContinuous">
+        <EditorCategories value=""/>
+        <On Terms="Behavior.NanoSearDamageDoT.On" Send="Create"/>
+        <On Terms="Behavior.NanoSearDamageDoT.Off" Send="Destroy"/>
+    </CActorModel>
+    <CActorModel id="NanoSearCloud" parent="ModelAnimationStyleContinuous">
+        <EditorCategories value=""/>
+        <On Terms="Effect.NanoSear.Start" Send="Create"/>
+        <On Terms="Effect.NanoSear.Stop" Send="Destroy"/>
+    </CActorModel>
+    <CActorModel id="NanoShieldBuff" parent="ModelAddition">
+        <EditorCategories value=""/>
+        <On index="0" Terms="ActorCreation" Send="AnimBracketStart BSD Birth Stand"/>
+        <On index="2" Terms="Behavior.NanoShieldArmor.On" Send="Create"/>
+        <On Terms="Behavior.NanoShieldArmor.Off" Send="AnimBracketStop BSD"/>
+        <On Terms="Behavior.NanoShieldArmor.Off; ValidateUnit hasShields IncludeDerivedSnapshot" Send="AnimPlay Shield Death"/>
+        <On Terms="Behavior.NanoShieldArmor.Off; ValidateUnit noShields IncludeDerivedSnapshot" Send="AnimPlay Shield Death,Alternate"/>
+        <On Terms="AnimDone.*.Complete; AnimName Shield" Send="Destroy"/>
+    </CActorModel>
+    <CActorModel id="NanoShockImpact" parent="ModelAnimationStyleOneShot">
+        <EditorCategories value=""/>
+        <On Terms="Effect.NanoShockLevel1.Impact" Send="Create"/>
+        <On Terms="Effect.NanoShockLevel2.Impact" Send="Create"/>
+        <On Terms="Effect.NanoShockLevel3.Impact" Send="Create"/>
+    </CActorModel>
+    <CActorModel id="NanoStrengthBuff" parent="ModelAnimationStyleContinuous">
+        <EditorCategories value=""/>
+        <On Terms="Behavior.NanoStrength.On" Send="Create"/>
+        <On Terms="Behavior.NanoStrength.Off" Send="Destroy"/>
+    </CActorModel>
+    <CActorUnit id="Pathfinder" parent="BaseMarineActor" unitName="Pathfinder">
+        <HighlightTooltip value="Unit/Name/Bogus"/>
+        <On index="76" Terms="ActorCreation" Send="AttachModel Flashlight MarineFlashlight {Head 0}"/>
+        <On index="77" removed="1"/>
+        <On index="78" removed="1"/>
+    </CActorUnit>
+    <CActorMissile id="PlasmaGrenadeMissile" parent="GenericAttackMissile" unitName="PlasmaGrenade">
+        <EditorCategories value=""/>
+        <On index="1" Terms="UnitBirth" Send="AnimBracketStart Lifetime Birth Stand {} Instant"/>
+        <Scale value="0.500000"/>
+    </CActorMissile>
+    <CActorAction id="PlasmaGrenade" parent="WeaponAttackTemplate" effectImpact="PlasmaGrenadeSearch" effectLaunch="PlasmaGrenadeLaunchMissile">
+        <ShieldFlashType value="Full"/>
+        <On index="7" removed="1"/>
+        <LaunchSiteOps Ops="SOpAttachWeapon"/>
+        <LaunchAssets Sound="Tychus_TossGrenadeVO"/>
+        <ImpactMap index="None" Sound="TossGrenadeImpact"/>
+    </CActorAction>
+    <CActorAction id="PrecisionShot" parent="GenericAttack">
+        <EditorCategories value=""/>
+        <On Terms="Abil.PrecisionShot.SourceCastStart" Send="Create"/>
+    </CActorAction>
+    <CActorBeamSimple id="PrecisionShotBeam" parent="BeamSimpleAnimationStyleOneShot">
+        <EditorCategories value=""/>
+        <HostLaunchSiteOps Ops="SOpAttachWeapon"/>
+        <HostLaunch Subject="_Weapon" Scope="Caster" Actor="Find"/>
+        <ModelFlags index="AllowHitTest" value="0"/>
+        <InheritType value="None"/>
+        <On index="0" Terms="ActorCreation" Send="AnimBracketStart BSD Birth Stand Death ContentPlayOnce 0.500000 AsDuration"/>
+        <Scale value="10.000000"/>
+    </CActorBeamSimple>
+    <CActorModel id="PrecisionShotSlow" parent="ModelAddition">
+        <EditorCategories value=""/>
+        <On index="0" Terms="ActorCreation" Send="AnimBracketStart BSD Birth Stand Death Instant 5.000000 AsTimeScale"/>
+        <On Terms="Behavior.PrecisionShotSlowLevel1.On" Send="Create"/>
+        <On Terms="Behavior.PrecisionShotSlowLevel2.On" Send="Create"/>
+        <On Terms="Behavior.PrecisionShotSlowLevel3.On" Send="Create"/>
+        <On Terms="Behavior.PrecisionShotSlowLevel1.Off" Send="Destroy"/>
+        <On Terms="Behavior.PrecisionShotSlowLevel2.Off" Send="Destroy"/>
+        <On Terms="Behavior.PrecisionShotSlowLevel3.Off" Send="Destroy"/>
+        <HostSiteOps Ops="SOpAttachOverhead"/>
+    </CActorModel>
+    <CActorUnit id="PsiOps" parent="BaseMarineActor" unitName="PsiOps">
+        <HighlightTooltip value="Unit/Name/Bogus"/>
+        <On index="76" Terms="ActorCreation" Send="AttachModel Flashlight MarineFlashlight {Head 0}"/>
+        <On index="77" removed="1"/>
+        <On index="78" removed="1"/>
+    </CActorUnit>
+    <CActorUnit id="Recon" parent="BaseMarineActor" unitName="Recon">
+        <On index="61" Terms="ActorCreation" Send="AttachModel ReconTorso ReconBasicTorso {Hardpoint 0}"/>
+        <On index="73" Terms="ActorCreation" Send="AttachModel ReconHelmet ReconBasicHelmet {Head 0}"/>
+        <On index="76" Terms="ActorCreation" Send="AttachModel Flashlight MarineFlashlight {Head 0}"/>
+        <On Terms="Abil.GroundIlluminationFlare.SourceCastStart" Send="AnimPlay Throw Spell,Blast"/>
+        <On Terms="Abil.SmokeGrenade.SourceCastStart" Send="AnimPlay Throw Spell,Blast"/>
+        <On Terms="Abil.FlareGunRecon.SourceCastStart" Send="AnimPlay Throw Spell,Blast"/>
+    </CActorUnit>
+    <CActorModel id="RepulseHeroicSlow" parent="ModelAddition">
+        <EditorCategories value=""/>
+        <On Terms="Behavior.RepulseHeroicSlow.On" Send="Create"/>
+        <On Terms="Behavior.RepulseHeroicSlow.Off" Send="Destroy"/>
+        <HostSiteOps Ops="SOpAttachHardPoint"/>
+    </CActorModel>
+    <CActorModel id="RepulseSelfBuff" parent="ModelAddition">
+        <EditorCategories value=""/>
+        <On Terms="Behavior.RepulseSelfBuff.On" Send="Create"/>
+        <On Terms="Behavior.RepulseSelfBuff.Off" Send="Destroy"/>
+        <Inherits index="BaseModelScale" value="0"/>
+        <Inherits index="Scale" value="0"/>
+        <HostSiteOps Ops="SOpAttachHardPoint"/>
+        <Scale value="0.900000"/>
+    </CActorModel>
+    <CActorModel id="RepulseShockwave" parent="ModelAnimationStyleOneShot">
+        <EditorCategories value=""/>
+        <On Terms="Abil.Repulse.SourceCastStart" Send="Create"/>
+    </CActorModel>
+    <CActorModel id="RepulseStun" parent="ModelAnimationStyleContinuous">
+        <EditorCategories value=""/>
+        <On Terms="Behavior.RepulseStun.On" Send="Create"/>
+        <On Terms="Behavior.RepulseStun.Off" Send="Destroy"/>
+    </CActorModel>
+    <CActorUnit id="Rifleman" parent="BaseMarineActor" unitName="Rifleman">
+        <On Terms="Abil.FragmentationGrenade.SourceCastStart; AbilLevel LT 2" Send="AnimPlay Grenade Spell,Blast"/>
+        <On Terms="UnitMovementUpdate.*.Walk" Send="AnimClear Grenade"/>
+        <On Terms="Abil.ImpalerGrenade.SourceCastStart" Send="AnimPlay Grenade Attack"/>
+        <On Terms="Abil.PlasmaGrenade.SourceCastStart" Send="AnimPlay Grenade Attack"/>
+        <On Terms="Abil.PrecisionShot.SourceCastStart" Send="AnimPlay Grenade Attack"/>
+        <On Terms="Abil.FragmentationGrenade.SourceCastStart; AbilLevel Eq 2" Send="AnimPlay Grenade Attack"/>
+        <DeathActorModel value="RiflemanDeathModel"/>
+        <SoundArray index="Birth" value="Marine_Birth"/>
+        <SoundArray index="Ready" value="Marine_Ready"/>
+        <SoundArray index="Help" value="Marine_Help"/>
+        <SoundArray index="What" value="Marine_What"/>
+        <SoundArray index="Yes" value="Marine_Yes"/>
+        <SoundArray index="Attack" value="Marine_Attack"/>
+        <SoundArray index="Pissed" value="Marine_Pissed"/>
+        <SoundArray index="Movement" value="Marine_Movement"/>
+        <SoundArray index="Turning" value="Marine_Turning"/>
+        <SoundArray index="Board" value="Marine_Board"/>
+        <SoundArray index="Click" value="Marine_Click"/>
+        <SoundArray index="ClickError" value="Marine_ClickError"/>
+        <SoundArray index="Highlight" value="Marine_Highlight"/>
+        <DeathCustomData index="2" SyncPassChance="100"/>
+        <HeroIcon value="ClassButtons\btn-class-Rifleman.dds"/>
+    </CActorUnit>
+    <CActorSound id="RiflemanBloodlustCast" parent="SoundOneShot">
+        <On Terms="Effect.Bloodlust.Start" Send="Create"/>
+    </CActorSound>
+    <CActorModel id="RiflemanDeathModel" parent="UnitDeathModelWithDeathMotionGround">
+        <EditorCategories value=""/>
+        <On Terms="ActorCreation" Send="AttachModel Torso BasicTorso {Hardpoint 0}"/>
+        <On Terms="ActorCreation" Send="AttachModel Waist BasicWaist {Hardpoint 3}"/>
+        <On Terms="ActorCreation" Send="AttachModel RightShoulder BasicShoulderRight {Hardpoint 8}"/>
+        <On Terms="ActorCreation" Send="AttachModel RightShin BasicShinRight {Hardpoint 11}"/>
+        <On Terms="ActorCreation" Send="AttachModel RightLeg BasicLegRight {Hardpoint 10}"/>
+        <On Terms="ActorCreation" Send="AttachModel RightForearm BasicForearmRight {Hardpoint 9}"/>
+        <On Terms="ActorCreation" Send="AttachModel LeftShoulder BasicShoulderLeft {Hardpoint 4}"/>
+        <On Terms="ActorCreation" Send="AttachModel LeftShin BasicShinLeft {Hardpoint 7}"/>
+        <On Terms="ActorCreation" Send="AttachModel LeftLeg BasicLegLeft {Hardpoint 6}"/>
+        <On Terms="ActorCreation" Send="AttachModel LeftForearm BasicForearmLeft {Hardpoint 5}"/>
+        <On Terms="ActorCreation" Send="AttachModel LeftFoot BasicFootLeft {Hardpoint 13}"/>
+        <On Terms="ActorCreation" Send="AttachModel RightFoot BasicFootRight {Hardpoint 12}"/>
+        <On Terms="ActorCreation" Send="AttachModel Helmet BasicHelmet {Head 0}"/>
+        <On Terms="Signal.*.ClearDeathModel" Target="_ArmorCustom" Send="Destroy"/>
+    </CActorModel>
+    <CActorSound id="RiflemanLaunchGrenadeLaunch" parent="SoundOneShot">
+        <On Terms="Effect.ImpalerGrenadeLaunchMissile" Send="Create"/>
+        <On Terms="Effect.PlasmaGrenadeLaunchMissile" Send="Create"/>
+        <Sound value="RiflemanLaunchGrenadeLauncher"/>
+    </CActorSound>
+    <CActorSound id="RiflemanRepulseCast" parent="SoundOneShot">
+        <On Terms="Effect.SonicTrapLevel1Switch.Start" Send="Create"/>
+        <On Terms="Effect.SonicTrapLevel2Switch.Start" Send="Create"/>
+    </CActorSound>
+    <CActorSound id="RiflemanSelfAid" parent="SoundOneShot">
+        <On Terms="Effect.SelfAidHealLevel1" Send="Create"/>
+        <On Terms="Effect.SelfAidHealLevel2" Send="Create"/>
+        <Sound value="Marine_Stimpack"/>
+    </CActorSound>
+    <CActorSound id="RiflemanTossGrenadeLaunch" parent="SoundOneShot">
+        <On Terms="Effect.FragmentationGrenadeLevel1.Start" Send="Create"/>
+        <On Terms="Effect.FragmentationGrenadeLevel2.Start" Send="Create"/>
+        <On Terms="Effect.FragmentationGrenadeLevel3.Start" Send="Create"/>
+        <Sound value="RiflemanTossGrenadeHand"/>
+    </CActorSound>
+    <CActorSound id="RiflemanSonicTrapCast" parent="SoundOneShot">
+        <On Terms="Effect.SonicTrapSearchLevel1" Send="Create"/>
+        <On Terms="Effect.SonicTrapSearchLevel2" Send="Create"/>
+        <Sound value="RiflemanSinicTrapCast"/>
+    </CActorSound>
+    <CActorModel id="SelfAid" parent="ModelAnimationStyleOneShot">
+        <EditorCategories value=""/>
+        <On Terms="Abil.SelfAid.SourceCastStart" Send="Create"/>
+        <HostSiteOps Ops="SOpAttachHardPoint"/>
+        <Scale value="1.500000"/>
+    </CActorModel>
+    <CActorUnit id="SonicTrap" parent="GenericUnitMinimal" unitName="SonicTrapLevel1">
+        <EditorCategories value=""/>
+        <Model value="SonicTrap"/>
+        <BuildModel value="SonicTrap"/>
+        <EditorModel value="SonicTrap"/>
+        <PlacementModel value="SonicTrap"/>
+        <On Terms="UnitBirth.SonicTrapLevel12" Send="Create"/>
+        <DeathArray index="Normal" ActorModel="SonicTrapDeath" AnimProps="Death" ModelLink="GoliathAirAttackImpact"/>
+        <DeathArray index="Remove" ActorModel="SonicTrapDeath" AnimProps="Death" ModelLink="GoliathAirAttackImpact"/>
+    </CActorUnit>
+    <CActorModel id="SonicTrapActivation" parent="ModelAnimationStyleOneShotNoOrphan">
+        <EditorCategories value=""/>
+        <On Terms="Abil.SonicTrapLevel1.SourceCastStart" Send="Create"/>
+        <On Terms="Abil.SonicTrapLevel2.SourceCastStart" Send="Create"/>
+    </CActorModel>
+    <CActorRange id="SonicTrapLevel1Range">
+        <EditorCategories value=""/>
+        <On Terms="Abil.SonicTrapLevel1.TargetOn" Send="Create"/>
+        <On Terms="Abil.SonicTrapLevel1.TargetOff" Send="Destroy"/>
+        <Range value="5.000000"/>
+    </CActorRange>
+    <CActorRange id="SonicTrapLevel2Range">
+        <EditorCategories value=""/>
+        <On Terms="Abil.SonicTrapLevel2.TargetOn" Send="Create"/>
+        <On Terms="Abil.SonicTrapLevel2.TargetOff" Send="Destroy"/>
+        <Range value="8.000000"/>
+    </CActorRange>
+    <CActorUnit id="SquadLeader2" parent="BaseMarineActor" unitName="SquadLeader">
+        <HighlightTooltip value="Unit/Name/Bogus"/>
+        <On index="76" Terms="ActorCreation" Send="AttachModel Flashlight MarineFlashlight {Head 0}"/>
+        <On index="77" removed="1"/>
+        <On index="78" removed="1"/>
+    </CActorUnit>
+    <CActorModel id="TauntCaster" parent="ModelAnimationStyleContinuous">
+        <EditorCategories value=""/>
+        <On Terms="Abil.TauntNOTD.SourceFinishStart" Send="Create"/>
+        <On Terms="ActorCreation" Send="Create TauntCasterCenter"/>
+        <On Terms="ActorDestruction" Target="TauntCasterCenter" Send="Destroy"/>
+        <On Terms="Effect.TauntNOTDLevel1.Stop" Send="Destroy"/>
+        <On Terms="Effect.TauntNOTDLevel2.Stop" Send="Destroy"/>
+        <On Terms="Effect.TauntNOTDLevel3.Stop" Send="Destroy"/>
+    </CActorModel>
+    <CActorModel id="TauntCasterCenter" parent="ModelAnimationStyleContinuousUNIT">
+        <EditorCategories value=""/>
+    </CActorModel>
+    <CActorModel id="Taunted" parent="ModelAnimationStyleContinuousUNIT">
+        <EditorCategories value=""/>
+        <On Terms="Behavior.TauntedLevel1.On" Send="Create"/>
+        <On Terms="Behavior.TauntedLevel2.Off" Send="Create"/>
+        <On Terms="Behavior.TauntedLevel3.Off" Send="Create"/>
+        <On Terms="Behavior.TauntedLevel1.Off" Send="AnimBracketStop BSD"/>
+        <On Terms="Behavior.TauntedLevel2.Off" Send="AnimBracketStop BSD"/>
+        <On Terms="Behavior.TauntedLevel3.Off" Send="AnimBracketStop BSD"/>
+        <HostSiteOps Ops="SOpAttachOverhead"/>
+        <AutoScaleFromSelectionFactor value="1.000000"/>
+    </CActorModel>
+    <CActorUnit id="Technician" parent="BaseMarineActor" unitName="Technician">
+        <HighlightTooltip value="Unit/Name/Bogus"/>
+        <On index="76" Terms="ActorCreation" Send="AttachModel Flashlight MarineFlashlight {Head 0}"/>
+        <On index="77" removed="1"/>
+        <On index="78" removed="1"/>
+    </CActorUnit>
+    <CActorAction id="TopMachineGunAttack" parent="GenericAttack" effectAttack="TopMachineGunTurret">
+        <EditorCategories value=""/>
+        <LaunchSiteOps Ops=""/>
+        <LaunchRequest Subject="TopMachineGunModel"/>
+        <LaunchAssets Model="VikingAssaultAttackLaunch" Sound="Raven_AutoTurretAttackLaunch"/>
+        <LaunchModel value="WeaponAttackLaunch"/>
+        <ImpactMap index="None" Model="VikingAssaultAttackImpact"/>
+    </CActorAction>
+    <CActorModel id="TopMachineGunModel" parent="ModelAddition">
+        <Inherits index="CreepEngulfment" value="0"/>
+        <Inherits index="Decal" value="0"/>
+        <Inherits index="LocalTintColor" value="1"/>
+        <EditorCategories value=""/>
+        <Host Subject="::Main"/>
+        <HostSiteOps Ops="SOpAttachTurret"/>
+        <Model value="UGCCrusaderTankTopTurret"/>
+    </CActorModel>
+    <CActorTurret id="TopMachineGunTurret">
+        <EditorCategories value=""/>
+        <On Terms="TurretEnable.CrusaderMachineGun" Send="Create"/>
+    </CActorTurret>
+    <CActorUnit id="UGCJavelinIFV" parent="GenericUnitStandard" unitName="JavelinIFV">
+        <Aliases value="_UGCIFV"/>
+        <EditorCategories value=""/>
+        <On index="56" Terms="WeaponStart.IFV25mmHEAutocannon" Target="_UGCTank" Send="AnimPlay Attack Attack"/>
+        <On index="57" Terms="ActorCreation" Send="AttachModel IFV25mmHEAutocannonModel UGCJavelingIFVCannon AMFilterTurret"/>
+        <On index="58" Terms="WeaponStart.IFVSideMachineGun" Target="SideMachineGunModel" Send="AnimPlay SideGunAttack Attack"/>
+        <On index="59" removed="1"/>
+        <On index="60" removed="1"/>
+        <Model value="UGCJavelingIFV"/>
+        <Scale value="1.500000"/>
+        <EventDataFootprint index="0" Actor="UnitFootprint" Model="MengskSiegeTankFootprint"/>
+        <DeathArray index="Normal" ModelLink="UGCJavelingIFVDeath" SoundLink="SiegeBreaker_Explode" VoiceLink="MengskSiegeTankDeathVoice"/>
+        <StandAnimTurnTime value="3.33"/>
+        <WalkAnimMoveSpeed value="1.5"/>
+        <BarOffset value="80"/>
+        <BarWidth value="102"/>
+        <GroupIcon>
+            <Image value="Wireframes\Wireframe-Crusader-Tank.dds"/>
+        </GroupIcon>
+        <GroupSoundArray index="What" value="MengskSiegeTank_GroupWhat"/>
+        <GroupSoundArray index="Yes" value="MengskSiegeTank_GroupYes"/>
+        <GroupSoundArray index="Attack" value="MengskSiegeTank_GroupAttack"/>
+        <GroupSoundArray index="Board" value="MengskSiegeTank_GroupBoard"/>
+        <HeroIcon value="Wireframes\Wireframe-Crusader-Tank.dds"/>
+        <HighlightTooltip value="Unit/Name/UGCJavelinIFV"/>
+        <SoundArray index="Birth" value="MengskSiegeTank_Birth"/>
+        <SoundArray index="Ready" value="SiegeTank_Ready"/>
+        <SoundArray index="Help" value="SiegeTank_Help"/>
+        <SoundArray index="What" value="SiegeTank_What"/>
+        <SoundArray index="Yes" value="SiegeTank_Yes"/>
+        <SoundArray index="Attack" value="SiegeTank_Attack"/>
+        <SoundArray index="Pissed" value="SiegeTank_Pissed"/>
+        <SoundArray index="Movement" value="MengskSiegeTank_Movement"/>
+        <SoundArray index="Turning" value="MengskSiegeTank_Turning"/>
+        <SoundArray index="Board" value="MengskSiegeTank_Board"/>
+        <SoundArray index="Click" value="MengskSiegeTank_Click"/>
+        <SoundArray index="ClickError" value="MengskSiegeTank_ClickError"/>
+        <SoundArray index="Highlight" value="MengskSiegeTank_Highlight"/>
+        <UnitIcon value="Wireframes\Wireframe-Crusader-Tank.dds"/>
+        <Wireframe>
+            <Image value="Wireframes\Wireframe-Crusader-Tank.dds"/>
+        </Wireframe>
+        <WireframeShield>
+            <Image value="Wireframes\Wireframe-Crusader-Tank-shield01.dds"/>
+            <Image value="Wireframes\Wireframe-Crusader-Tank-shield02.dds"/>
+            <Image value="Wireframes\Wireframe-Crusader-Tank-shield03.dds"/>
+        </WireframeShield>
+    </CActorUnit>
+    <CActorModel id="VolatileInjectionBuff" parent="ModelAnimationStyleContinuous">
+        <EditorCategories value=""/>
+        <On Terms="Behavior.VolatileInjectionLevel1.On" Send="Create"/>
+        <On Terms="Behavior.VolatileInjectionLevel2.On" Send="Create"/>
+        <On Terms="Behavior.VolatileInjectionLevel3.On" Send="Create"/>
+    </CActorModel>
+    <CActorModel id="VolatileInjectionDetonation" parent="ModelAnimationStyleOneShot">
+        <EditorCategories value=""/>
+        <On Terms="Effect.VolatileInjectionSearchLevel1.Start" Send="Create"/>
+        <On Terms="Effect.VolatileInjectionSearchLevel2.Start" Send="Create"/>
+        <On Terms="Effect.VolatileInjectionSearchLevel3.Start" Send="Create"/>
+    </CActorModel>
+    <CActorRange id="VolatileInjectionRange" parent="RangeAbil" abil="VolatileInjection">
+        <EditorCategories value=""/>
+    </CActorRange>
+    <CActorSound id="WeaponEquipSound" parent="SoundOneShot">
+        <EditorCategories value=""/>
+        <On Terms="Behavior.AntiMaterialRifleEquipped.Create" Send="Create"/>
+        <On Terms="Behavior.AssaultRifleEquipped.Create" Send="Create"/>
+        <On Terms="Behavior.AutomaticShotgunEquipped.Create" Send="Create"/>
+        <On Terms="Behavior.FlamethrowerEquipped.Create" Send="Create"/>
+        <On Terms="Behavior.HeavyMachineGunEquipped.Create" Send="Create"/>
+        <On Terms="Behavior.LaserRifleEquipped.Create" Send="Create"/>
+        <On Terms="Behavior.MarksmanRifleEquipped.Create" Send="Create"/>
+        <On Terms="Behavior.MediumMachineGunEquipped.Create" Send="Create"/>
+        <On Terms="Behavior.PistolEquipped.Create" Send="Create"/>
+        <On Terms="Behavior.PlasmaCutterEquipped.Create" Send="Create"/>
+        <On Terms="Behavior.PumpShotgunEquipped.Create" Send="Create"/>
+        <On Terms="Behavior.SubmachineGunEquipped.Create" Send="Create"/>
+        <Sound value="BoltPull"/>
+    </CActorSound>
+    <CActorEventMacro id="WeaponMarineSwapMacro">
+        <EditorCategories value=""/>
+        <On Terms="ModelSwapped; ModelSwapFrom LightMarineTwo; ModelSwapTo LightMarineMelee" Send="$Stand,Melee,Start"/>
+        <On Terms="ModelSwapped; ModelSwapFrom LightMarineTwo; ModelSwapTo LightMarineUnder" Send="$Stand,Large,Start"/>
+        <On Terms="ModelSwapped; ModelSwapFrom LightMarineTwo; ModelSwapTo LightMarineOne" Send="$Stand,Pose,Start"/>
+        <On Terms="ModelSwapped; ModelSwapFrom LightMarineUnder; ModelSwapTo LightMarineTwo" Send="$Stand,Large,End"/>
+        <On Terms="ModelSwapped; ModelSwapFrom LightMarineUnder; ModelSwapTo LightMarineMelee" Send="$Stand,Large,Start"/>
+        <On Terms="ModelSwapped; ModelSwapFrom LightMarineUnder; ModelSwapTo LightMarineOne" Send="$Stand,Large,Start"/>
+        <On Terms="ModelSwapped; ModelSwapFrom LightMarineMelee; ModelSwapTo LightMarineTwo" Send="$Stand,Melee,End"/>
+        <On Terms="ModelSwapped; ModelSwapFrom LightMarineMelee; ModelSwapTo LightMarineUnder" Send="$Stand,Melee,End"/>
+        <On Terms="ModelSwapped; ModelSwapFrom LightMarineOne; ModelSwapTo LightMarineTwo" Send="$Stand,Pose,End"/>
+        <On Terms="ModelSwapped; ModelSwapFrom LightMarineOne; ModelSwapTo LightMarineUnder" Send="$Stand,Pose,End"/>
+    </CActorEventMacro>
+</Catalog>

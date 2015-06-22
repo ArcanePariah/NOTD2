@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<Catalog>
+    <CUnit id="AuroraDropshipFlying">
+        <AbilArray Link="attack"/>
+        <AbilArray Link="move"/>
+        <AbilArray Link="stop"/>
+        <AbilArray Link="AuroraTransportLand"/>
+        <AbilArray Link="AuroraTransport"/>
+        <WeaponArray Link="AuroraPlasmaCannons" Turret="AuroraTurret"/>
+        <CardLayouts>
+            <LayoutButtons Face="Move" Type="AbilCmd" AbilCmd="move,Move" Row="0" Column="1"/>
+            <LayoutButtons Face="Attack" Type="AbilCmd" AbilCmd="attack,Execute" Row="0" Column="0"/>
+            <LayoutButtons Face="Stop" Type="AbilCmd" AbilCmd="stop,Stop" Row="0" Column="2"/>
+            <LayoutButtons Face="MoveHoldPosition" Type="AbilCmd" AbilCmd="move,HoldPos" Row="0" Column="3"/>
+            <LayoutButtons Face="MovePatrol" Type="AbilCmd" AbilCmd="move,Patrol" Row="0" Column="4"/>
+            <LayoutButtons Face="Land" Type="AbilCmd" AbilCmd="AuroraTransportLand,Execute" Row="2" Column="4"/>
+            <LayoutButtons Face="MedivacLoad" Type="AbilCmd" AbilCmd="AuroraTransport,Load" Row="2" Column="0"/>
+            <LayoutButtons Face="HerculesUnloadAll" Type="AbilCmd" AbilCmd="AuroraTransport,UnloadAt" Row="2" Column="1"/>
+        </CardLayouts>
+        <Mover value="Fly"/>
+        <InnerRadius value="1"/>
+        <DeadInnerRadius value="1"/>
+        <Attributes index="Armored" value="1"/>
+        <Attributes index="Mechanical" value="1"/>
+        <Attributes index="Massive" value="1"/>
+        <ShieldsStart value="100"/>
+        <ShieldsMax value="100"/>
+        <ShieldRegenRate value="0.25"/>
+        <Speed value="2.0507"/>
+        <Acceleration value="0.6875"/>
+        <TurningRate value="499.9218"/>
+        <Sight value="15"/>
+        <Height value="3"/>
+        <MinimapRadius value="0.75"/>
+        <LifeStart value="1500"/>
+        <LifeMax value="1500"/>
+        <Radius value="1.75"/>
+        <SeparationRadius value="1.75"/>
+    </CUnit>
+    <CUnit id="Civilian">
+        <Speed value="2"/>
+    </CUnit>
+    <CUnit id="CivilianFemale">
+        <Speed value="2"/>
+    </CUnit>
+    <CUnit id="AuroraDropship">
+        <AbilArray Link="attack"/>
+        <AbilArray Link="move"/>
+        <AbilArray Link="stop"/>
+        <AbilArray Link="AuroraTransportLiftOff"/>
+        <AbilArray Link="AuroraTransport"/>
+        <WeaponArray Link="PlasmaCannons" Turret="AuroraTurret"/>
+        <CardLayouts>
+            <LayoutButtons Face="Attack" Type="AbilCmd" AbilCmd="attack,Execute" Row="0" Column="0"/>
+            <LayoutButtons Face="Lift" Type="AbilCmd" AbilCmd="AuroraTransportLiftOff,Execute" Row="2" Column="4"/>
+            <LayoutButtons Face="HerculesLoad" Type="AbilCmd" AbilCmd="AuroraTransport,Load" Row="2" Column="0"/>
+            <LayoutButtons Face="HerculesUnloadAll" Type="AbilCmd" AbilCmd="AuroraTransport,UnloadAt" Row="2" Column="1"/>
+        </CardLayouts>
+        <PlaneArray index="Ground" value="1"/>
+        <LifeStart value="1500"/>
+        <LifeMax value="1500"/>
+        <LifeArmor value="1"/>
+        <Race value="Human"/>
+        <Collide index="Burrow" value="1"/>
+        <Collide index="Ground" value="1"/>
+        <Collide index="Structure" value="1"/>
+        <Collide index="RoachBurrow" value="1"/>
+        <Collide index="ForceField" value="1"/>
+        <Attributes index="Armored" value="1"/>
+        <Attributes index="Mechanical" value="1"/>
+        <Attributes index="Massive" value="1"/>
+        <ShieldsStart value="100"/>
+        <ShieldsMax value="100"/>
+        <ShieldRegenRate value="0.25"/>
+        <Mover value="Fly"/>
+        <StationaryTurningRate value="719.4726"/>
+        <TurningRate value="719.4726"/>
+        <Sight value="15"/>
+        <Radius value="1.75"/>
+        <MinimapRadius value="0.75"/>
+        <EditorCategories value=""/>
+        <RankDisplay value="Never"/>
+        <SeparationRadius value="1.75"/>
+    </CUnit>
+</Catalog>

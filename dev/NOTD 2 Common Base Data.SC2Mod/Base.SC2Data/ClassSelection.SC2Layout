@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Desc>
+    <Constant name="HorizontalButtonSpace" val="64"/>
+    <Constant name="VerticalButtonSpace" val="80"/>
+
+    <Frame type="Button" name="ClassButtonTemplate">
+        <ClickSound val="Assets\Sounds\Uni\UI\UI_Horner05sTerminalButton.wav"/>
+        <Toggleable val="true"/>
+        <Height val="160"/>
+        <Width val="160"/>
+        <HoverImage val="HoverImage"/>
+        <NormalImage val="NormalImage"/>
+
+        <Frame type="Image" name="NormalImage">
+            <Anchor relative="$parent"/>
+            <Texture val="UI\ui_classselection_classborder_normaloverandpressedover.dds"/>
+            <StateCount val="3"/>
+        </Frame>
+
+        <Frame type="Image" name="HoverImage">
+            <Anchor relative="$parent"/>
+            <Texture val="UI\ui_classselection_classborder_hoveroverandpressedover.dds"/>
+            <StateCount val="3"/>
+        </Frame>
+
+        <Frame type="Image" name="ClassImage">
+            <Anchor relative="$parent" offset="-16"/>
+            <RenderPriority val="513"/>
+            <BlendMode val="Add"/>
+        </Frame>
+    </Frame>
+
+    <Frame type="Frame" name="ClassSelection">
+        <Anchor relative="$parent"/>
+
+        <Frame type="Label" name="PlayerName">
+            <Anchor side="Top" relative="$parent" pos="Min" offset="30"/>
+            <Anchor side="Left" relative="$parent" pos="Mid" offset="-300"/>
+            <Height val="64"/>
+            <Width val="600"/>
+            <Style val="HelpMenuDialogTitle"/>
+        </Frame>
+
+        <Frame type="Image" name="PlayerRankIcon">
+            <Height val="64"/>
+            <Width val="64"/>
+            <Anchor side="Right" relative="$parent/PlayerName" pos="Min" offset="-40"/>
+            <Anchor side="Top" relative="$parent/PlayerName" pos="Min" offset="0"/>
+        </Frame>
+
+        <Frame type="Label" name="ClassLoreFrame">
+            <Anchor side="Left" relative="$parent" pos="Min" offset="100"/>
+            <Anchor side="Bottom" relative="$parent" pos="Max" offset="-10"/>
+            <Height val="300"/>
+            <Width val="1056"/>
+            <Style val="ClassLore"/>
+        </Frame>
+
+        <Frame type="Button" name="ClassButton1" template="ClassSelection/ClassButtonTemplate">
+            <Anchor side="Left" relative="$parent" pos="Min" offset="100"/>
+            <Anchor side="Top" relative="$parent/PlayerName" pos="Min" offset="80"/>
+        </Frame>
+
+        <Frame type="Button" name="ClassButton2" template="ClassSelection/ClassButtonTemplate">
+            <Anchor side="Left" relative="$parent/ClassButton1" pos="Max" offset="#HorizontalButtonSpace"/>
+            <Anchor side="Top" relative="$parent/ClassButton1" pos="Min" offset="0"/>
+        </Frame>
+
+        <Frame type="Button" name="ClassButton3" template="ClassSelection/ClassButtonTemplate">
+            <Anchor side="Left" relative="$parent/ClassButton2" pos="Max" offset="#HorizontalButtonSpace"/>
+            <Anchor side="Top" relative="$parent/ClassButton1" pos="Min" offset="0"/>
+        </Frame>
+
+        <Frame type="Button" name="ClassButton4" template="ClassSelection/ClassButtonTemplate">
+            <Anchor side="Left" relative="$parent/ClassButton3" pos="Max" offset="#HorizontalButtonSpace"/>
+            <Anchor side="Top" relative="$parent/ClassButton1" pos="Min" offset="0"/>
+        </Frame>
+
+        <Frame type="Button" name="ClassButton5" template="ClassSelection/ClassButtonTemplate">
+            <Anchor side="Left" relative="$parent/ClassButton4" pos="Max" offset="#HorizontalButtonSpace"/>
+            <Anchor side="Top" relative="$parent/ClassButton1" pos="Min" offset="0"/>
+        </Frame>
+
+        <Frame type="Button" name="ClassButton6" template="ClassSelection/ClassButtonTemplate">
+            <Anchor side="Left" relative="$parent/ClassButton1" pos="Min" offset="0"/>
+            <Anchor side="Top" relative="$parent/ClassButton1" pos="Max" offset="#VerticalButtonSpace"/>
+        </Frame>
+
+        <Frame type="Button" name="ClassButton7" template="ClassSelection/ClassButtonTemplate">
+            <Anchor side="Left" relative="$parent/ClassButton6" pos="Max" offset="#HorizontalButtonSpace"/>
+            <Anchor side="Top" relative="$parent/ClassButton6" pos="Min" offset="0"/>
+        </Frame>
+
+        <Frame type="Button" name="ClassButton8" template="ClassSelection/ClassButtonTemplate">
+            <Anchor side="Left" relative="$parent/ClassButton7" pos="Max" offset="#HorizontalButtonSpace"/>
+            <Anchor side="Top" relative="$parent/ClassButton6" pos="Min" offset="0"/>
+        </Frame>
+
+        <Frame type="Button" name="ClassButton9" template="ClassSelection/ClassButtonTemplate">
+            <Anchor side="Left" relative="$parent/ClassButton8" pos="Max" offset="#HorizontalButtonSpace"/>
+            <Anchor side="Top" relative="$parent/ClassButton6" pos="Min" offset="0"/>
+        </Frame>
+
+        <Frame type="Button" name="ClassButton10" template="ClassSelection/ClassButtonTemplate">
+            <Anchor side="Left" relative="$parent/ClassButton9" pos="Max" offset="#HorizontalButtonSpace"/>
+            <Anchor side="Top" relative="$parent/ClassButton6" pos="Min" offset="0"/>
+        </Frame>
+
+        <Frame type="Button" name="ClassButton11" template="ClassSelection/ClassButtonTemplate">
+            <Anchor side="Left" relative="$parent/ClassButton6" pos="Min" offset="0"/>
+            <Anchor side="Top" relative="$parent/ClassButton6" pos="Max" offset="#VerticalButtonSpace"/>
+        </Frame>
+
+        <Frame type="Button" name="ClassButton12" template="ClassSelection/ClassButtonTemplate">
+            <Anchor side="Left" relative="$parent/ClassButton11" pos="Max" offset="#HorizontalButtonSpace"/>
+            <Anchor side="Top" relative="$parent/ClassButton11" pos="Min" offset="0"/>
+        </Frame>
+
+        <Frame type="Button" name="ClassButton13" template="ClassSelection/ClassButtonTemplate">
+            <Anchor side="Left" relative="$parent/ClassButton12" pos="Max" offset="#HorizontalButtonSpace"/>
+            <Anchor side="Top" relative="$parent/ClassButton11" pos="Min" offset="0"/>
+        </Frame>
+
+        <Frame type="Button" name="ClassButton14" template="ClassSelection/ClassButtonTemplate">
+            <Anchor side="Left" relative="$parent/ClassButton13" pos="Max" offset="#HorizontalButtonSpace"/>
+            <Anchor side="Top" relative="$parent/ClassButton11" pos="Min" offset="0"/>
+        </Frame>
+
+        <Frame type="Button" name="ClassButton15" template="ClassSelection/ClassButtonTemplate">
+            <Anchor side="Left" relative="$parent/ClassButton14" pos="Max" offset="#HorizontalButtonSpace"/>
+            <Anchor side="Top" relative="$parent/ClassButton11" pos="Min" offset="0"/>
+        </Frame>
+
+        <Frame type="UnitModelFrame" name="ClassModelPreview">
+            <Anchor side="Left" relative="$parent/ClassLoreFrame" pos="Max" offset="50"/>
+            <Anchor side="Right" relative="$parent" pos="Max" offset="-10"/>
+            <Anchor side="Top" relative="$parent/ClassButton1" pos="Min" offset="0"/>
+            <Anchor side="Bottom" relative="$parent/ClassLoreFrame" pos="Max" offset="0"/>
+            <TurningEnabled val="false"/>
+
+            <Frame type="Model" name="Model">
+                <Anchor relative="$parent"/>
+                <Camera position="0.000000,-2.000000,0.000000" target="0.000000,0.000000,0.000000" fov="90.000000" minz="1.000000" maxz="1000.000000"/>
+                <Projection val="Orthographic"/>
+                <UseAspectScaling val="true"/>
+            </Frame>
+        </Frame>
+    </Frame>
+</Desc>

@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<Catalog>
+    <CActorUnit id="AuroraDropship" parent="GenericUnitStandard" unitName="AuroraDropship">
+        <On index="56" Terms="UnitBirth.AuroraDropship.Normal" Send="Create BuildingTerrainFlatten"/>
+        <On index="57" Terms="UnitBirth.AuroraDropship.Suppressed" Send="Create BuildingTerrainFlattenInstant"/>
+        <On index="58" Terms="UnitBirth.AuroraDropship.EditorPlaced" Send="Create BuildingTerrainFlattenEditor"/>
+        <On index="59" Terms="UnitDeath.AuroraDropship" Target="_BuildingTerrainFlatten" Send="Destroy"/>
+        <On index="60" Terms="UnitBirth.AuroraDropshipFlying" Send="Create"/>
+        <On Terms="UnitBirth.AuroraDropshipFlying" Send="AnimGroupApply Fly Fly,Start Fly,End Instant"/>
+        <On Terms="AbilMorph.*.Start; MorphFrom AuroraDropship; MorphTo AuroraDropshipFlying" Send="AnimGroupApply Fly Fly,Start Fly,End"/>
+        <On Terms="AbilMorph.*.Start; MorphFrom AuroraDropship; MorphTo AuroraDropshipFlying" Target="_BuildingTerrainFlatten" Send="Destroy"/>
+        <On Terms="AbilMorph.*.Start; MorphFrom AuroraDropship; MorphTo AuroraDropshipFlying; ScopeContains GroundLocalSelection" Send="StatusIncrement FlyerHelper"/>
+        <On Terms="AbilMorph.*.Start; MorphFrom AuroraDropshipFlying; MorphTo AuroraDropship" Send="AnimGroupRemove Fly"/>
+        <On Terms="AbilMorph.*.Start; MorphFrom AuroraDropshipFlying; MorphTo AuroraDropship" Send="Create BuildingTerrainFlatten"/>
+        <On Terms="AbilMorph.*.Start; MorphFrom AuroraDropshipFlying; MorphTo AuroraDropship; ScopeContains FlyerHelperSplat; HasStatus FlyerHelper" Send="StatusDecrement FlyerHelper"/>
+        <On Terms="UnitDeathCustomize.AuroraDropshipFlying" Send="DeathCustomize Flying"/>
+        <On Terms="ActorCreation" Send="StatusSet WeaponNext 0"/>
+        <On Terms="WeaponStart.AuroraPlasmaCannons.AttackStart" Send="StatusIncrement WeaponNext"/>
+        <On Terms="WeaponStart.AuroraPlasmaCannons.AttackStart; IsStatus WeaponNext 2" Send="StatusSet WeaponNext 0"/>
+        <On Terms="WeaponStart.AuroraPlasmaCannons.AttackStart; IsStatus WeaponNext 1" Send="AnimClear AttackLeft"/>
+        <On Terms="WeaponStart.AuroraPlasmaCannons.AttackStart; IsStatus WeaponNext 1" Send="AnimPlay AttackRight Attack,Right"/>
+        <On Terms="WeaponStart.AuroraPlasmaCannons.AttackStart; IsStatus WeaponNext 0" Send="AnimClear AttackRight"/>
+        <On Terms="WeaponStart.AuroraPlasmaCannons.AttackStart; IsStatus WeaponNext 0" Send="AnimPlay AttackLeft Attack,Left"/>
+        <On Terms="UnitBirth.AuroraDropshipFlying" Send="Signal Flying"/>
+        <On Terms="UnitBirth.AuroraDropship" Send="Signal Landed"/>
+        <On Terms="UnitBirth.AuroraDropshipFlying" Send="Signal Flying"/>
+        <On Terms="AbilMorph.*.Start; MorphFrom AuroraDropship; MorphTo AuroraDropshipFlying" Send="Signal Flying"/>
+        <On Terms="AbilMorph.*.Start; MorphFrom AuroraDropshipFlying; MorphTo AuroraDropship" Send="Signal Land"/>
+        <On Terms="UnitBirth.AuroraDropshipFlying" Send="AnimPlay Land Land,Back"/>
+        <On Terms="UnitBirth.AuroraDropship" Send="AnimPlay Land Land,Back"/>
+        <HostSiteOps Ops="AuroraDropshipBanking"/>
+        <BarWidth value="130"/>
+        <GroupIcon>
+            <Image value="Wireframes\Wireframe-Aurora_Transport.dds"/>
+        </GroupIcon>
+        <SoundArray index="Birth" value="Hercules_Birth"/>
+        <SoundArray index="Ready" value="Hercules_Ready"/>
+        <SoundArray index="Help" value="Hercules_Help"/>
+        <SoundArray index="What" value="Hercules_What"/>
+        <SoundArray index="Yes" value="Hercules_Yes"/>
+        <SoundArray index="Attack" value="Hercules_Yes"/>
+        <SoundArray index="Pissed" value="Hercules_Pissed"/>
+        <SoundArray index="Movement" value="Hercules_Movement"/>
+        <SoundArray index="Turning" value="MedivacTurning"/>
+        <SoundArray index="Board" value="MedivacBoard"/>
+        <SoundArray index="Click" value="MedivacClick"/>
+        <SoundArray index="ClickError" value="MedivacClickError"/>
+        <SoundArray index="Highlight" value="MedivacHighlight"/>
+        <StatusBarFlags index="Cargo" value="0"/>
+        <Wireframe>
+            <Image value="Wireframes\Wireframe-Aurora_Transport.dds"/>
+        </Wireframe>
+        <WireframeShield>
+            <Image value="Wireframes\Wireframe-Aurora_Transport-Shield01.dds"/>
+            <Image value="Wireframes\Wireframe-Aurora_Transport-Shield02.dds"/>
+            <Image value="Wireframes\Wireframe-Aurora_Transport-shield03.dds"/>
+        </WireframeShield>
+    </CActorUnit>
+    <CActorTurret id="AuroraDropshipTurret">
+        <EditorCategories value=""/>
+        <On Terms="TurretEnable.AuroraTurret" Send="Create"/>
+    </CActorTurret>
+    <CActorSound id="AuroraDropshipLiftOffSound" parent="SoundOneShot">
+        <On Terms="AbilMorph.*.Start; MorphTo AuroraTransportFlying" Send="Create"/>
+        <Sound value="ColonistShip_LiftOff"/>
+    </CActorSound>
+    <CActorSound id="AuroraDropshipLandSound" parent="SoundOneShot">
+        <On Terms="AbilMorph.*.Start; MorphTo AuroraTransport" Send="Create"/>
+        <Sound value="ColonistShip_Land"/>
+    </CActorSound>
+    <CActorModel id="AuroraDropPod" parent="ModelAddition">
+        <Macros value="AuroraDroppodAnimations"/>
+        <EditorCategories value=""/>
+        <Host Subject="_Unit"/>
+    </CActorModel>
+    <CActorSiteOpBanker id="AuroraDropshipBanking">
+        <EditorCategories value=""/>
+        <RollAngleMax value="60.000000"/>
+        <RollInRate value="10.000000"/>
+        <RollOutRate value="10.000000"/>
+        <RollOutRemainderFractionForLevelOff value="0.300000"/>
+    </CActorSiteOpBanker>
+    <CActorEventMacro id="AuroraDroppodAnimations">
+        <EditorCategories value=""/>
+        <On Terms="Signal.*.Flying" Send="AnimGroupApply Fly Fly,Start Fly,End"/>
+        <On Terms="Signal.*.Land" Send="AnimGroupRemove Fly"/>
+    </CActorEventMacro>
+    <CActorAction id="AuroraPlasmaCannonsAttack" parent="GenericAttack" effectAttack="AuroraPlasmaCannons">
+        <LaunchAttachQuery Methods="PatternAuroraPlasmaCannons"/>
+    </CActorAction>
+    <CActorRange id="RangeGuidance10">
+        <EditorCategories value=""/>
+        <On Terms="UnitBirth.Mutalisk" Send="Create"/>
+        <Range value="10.000000"/>
+        <RangeFlags index="Minimap" value="1"/>
+    </CActorRange>
+    <CActorRange id="RangeGuidance15">
+        <EditorCategories value=""/>
+        <On Terms="UnitBirth.Mutalisk" Send="Create"/>
+        <Range value="15.000000"/>
+        <RangeFlags index="Minimap" value="1"/>
+    </CActorRange>
+    <CActorRange id="RangeGuidance20">
+        <EditorCategories value=""/>
+        <On Terms="UnitBirth.Mutalisk" Send="Create"/>
+        <Range value="20.000000"/>
+        <RangeFlags index="Minimap" value="1"/>
+    </CActorRange>
+    <CActorRange id="RangeGuidance25">
+        <EditorCategories value=""/>
+        <On Terms="UnitBirth.Mutalisk" Send="Create"/>
+        <Range value="25.000000"/>
+        <RangeFlags index="Minimap" value="1"/>
+    </CActorRange>
+    <CActorRange id="RangeGuidance40">
+        <EditorCategories value=""/>
+        <On Terms="UnitBirth.Mutalisk" Send="Create"/>
+        <Range value="40.000000"/>
+        <RangeFlags index="Minimap" value="1"/>
+    </CActorRange>
+    <CActorRange id="RangeGuidance5">
+        <EditorCategories value=""/>
+        <On Terms="UnitBirth.Mutalisk" Send="Create"/>
+        <Range value="5.000000"/>
+        <RangeFlags index="Minimap" value="1"/>
+    </CActorRange>
+    <CActorModel id="ReactorMassiveExplosion" parent="ModelAddition">
+        <EditorCategories value=""/>
+        <On Terms="ActorCreation" Send="Create ReactorMassiveExplosionShockwave"/>
+        <Model value="ReactorExplosion"/>
+    </CActorModel>
+    <CActorModel id="ReactorMassiveExplosionShockwave" parent="ModelAddition">
+        <EditorCategories value=""/>
+        <On Terms="ActorCreation" Send="SetLocalTintColor {247,175,79 5.000000}"/>
+        <Model value="ReactorExplosionShockwave"/>
+    </CActorModel>
+    <CActorSiteOpBasic id="SOpBasicBearings">
+        <EditorCategories value=""/>
+        <BasicType value="ActorBearings"/>
+    </CActorSiteOpBasic>
+</Catalog>

@@ -1,0 +1,1 @@
+.\MPQEditor.exe /console "MPQEditor Build.sh"

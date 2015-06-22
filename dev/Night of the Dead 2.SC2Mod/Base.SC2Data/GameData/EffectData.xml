@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<Catalog>
+    <CEffectModifyUnit id="DropshipLand"/>
+    <CEffectModifyUnit id="DropshipLiftOff"/>
+    <CEffectDamage id="DummDamage">
+        <ExcludeArray Value="Target"/>
+    </CEffectDamage>
+    <CEffectDamage id="AuroraPlasmaCannons">
+        <ResponseFlags index="Acquire" value="1"/>
+        <ResponseFlags index="Flee" value="1"/>
+        <ArmorReduction value="1"/>
+        <Flags index="Notification" value="1"/>
+        <Kind value="Ranged"/>
+        <Amount value="25"/>
+        <Death value="Blast"/>
+        <SearchFlags index="CallForHelp" value="1"/>
+        <SearchFlags index="SameCliff" value="0"/>
+        <DisplayFlags index="CollapseBuffed" value="1"/>
+    </CEffectDamage>
+</Catalog>

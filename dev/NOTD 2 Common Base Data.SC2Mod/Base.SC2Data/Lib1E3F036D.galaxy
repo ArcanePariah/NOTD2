@@ -1,0 +1,294 @@
+include "TriggerLibs/NativeLib"
+include "Lib09BE6BA8"
+
+//--------------------------------------------------------------------------------------------------
+// Library: Common Library
+//--------------------------------------------------------------------------------------------------
+// Constants
+const int lib1E3F036D_gv_indexBaseValue = 1;
+const int lib1E3F036D_gv_numberofPlayers = 8;
+const int lib1E3F036D_gv_numberofProfiles = 5;
+const int lib1E3F036D_gv_peacekeeperPlayer = 9;
+const int lib1E3F036D_gv_hALPlayer = 13;
+const int lib1E3F036D_gv_testSubjects = 14;
+const int lib1E3F036D_gv_mechanicalPlayer = 11;
+const int lib1E3F036D_gv_mercenaryPlayer = 12;
+const int lib1E3F036D_gv_zombiePlayer = 10;
+
+// Structures
+struct lib1E3F036D_gs_PlayerStatusUI {
+    int lv_classIcon;
+    int lv_rankIcon;
+    int lv_playerNumber;
+    int lv_playerPortrait;
+    int lv_playerStatusFrame;
+};
+
+// Variables
+int lib1E3F036D_gv_container0Slot50;
+int lib1E3F036D_gv_teamUIDialog;
+
+void lib1E3F036D_InitVariables () {
+    lib1E3F036D_gv_container0Slot50 = c_invalidDialogControlId;
+    lib1E3F036D_gv_teamUIDialog = c_invalidDialogId;
+}
+
+// Function Declarations
+void lib1E3F036D_gf_CreateTeamUI ();
+void lib1E3F036D_gf_CreatePlayerFrame (int lp_teamUIDialog);
+void lib1E3F036D_gf_SetDifficulty (int lp_gameDifficulty);
+int lib1E3F036D_gf_GameDifficultyInteger (int lp_recruit, int lp_normal, int lp_nightmare);
+fixed lib1E3F036D_gf_GameDifficultyReal (fixed lp_recruit, fixed lp_normal, fixed lp_nightmare);
+int lib1E3F036D_gf_GameType ();
+string lib1E3F036D_gf_UnitTypeDifficulty (string lp_recruit, string lp_normal, string lp_nightmare);
+
+// Trigger Declarations
+trigger lib1E3F036D_gt_TestHookupInventory;
+trigger lib1E3F036D_gt_TestInventoryRightClick;
+trigger lib1E3F036D_gt_ConstructTeamUI;
+
+// Functions
+void lib1E3F036D_gf_CreateTeamUI () {
+    // Implementation
+    DialogCreate(200, 800, c_anchorTopRight, 0, 100, true);
+    lib1E3F036D_gv_teamUIDialog = DialogLastCreated();
+    DialogSetImageVisible(lib1E3F036D_gv_teamUIDialog, false);
+    lib1E3F036D_gf_CreatePlayerFrame(lib1E3F036D_gv_teamUIDialog);
+    DialogSetVisible(DialogLastCreated(), PlayerGroupAll(), true);
+}
+
+void lib1E3F036D_gf_CreatePlayerFrame (int lp_teamUIDialog) {
+    // Variable Declarations
+    int lv_templateFrame;
+    int lv_sidebarFrame;
+    int lv_portraitFrame;
+    int lv_unitStatus;
+
+    // Variable Initialization
+    lv_templateFrame = c_invalidDialogControlId;
+    lv_sidebarFrame = c_invalidDialogControlId;
+    lv_portraitFrame = c_invalidDialogControlId;
+    lv_unitStatus = c_invalidDialogControlId;
+
+    // Implementation
+    DialogControlCreateFromTemplate(lp_teamUIDialog, c_triggerControlTypePanel, "TeamUI/PlayerStatusTemplate");
+    lv_templateFrame = DialogControlLastCreated();
+    DialogControlHookup(lv_templateFrame, c_triggerControlTypePanel, "PlayerInfoSideBar");
+    lv_sidebarFrame = DialogControlLastCreated();
+    DialogControlHookup(lv_templateFrame, c_triggerControlTypePanel, "PlayerPortrait");
+    lv_portraitFrame = DialogControlLastCreated();
+    DialogControlHookup(lv_templateFrame, c_triggerControlTypeUnitStatus, "PlayerStatus");
+    lv_unitStatus = DialogControlLastCreated();
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "HighTemplar", 0, 1, RegionGetCenter(RegionEntireMap()));
+    libNtve_gf_SetDialogItemUnit(lv_unitStatus, UnitLastCreated(), PlayerGroupAll());
+}
+
+void lib1E3F036D_gf_SetDifficulty (int lp_gameDifficulty) {
+    int auto638297DE_val;
+
+    // Implementation
+    auto638297DE_val = lp_gameDifficulty;
+    if (auto638297DE_val == 0) {
+        PlayerGroupLoopBegin(PlayerGroupAll());
+        for ( ; !PlayerGroupLoopDone() ; PlayerGroupLoopStep() ) {
+            libNtve_gf_SetUpgradeLevelForPlayer(PlayerGroupLoopCurrent(), "GameDifficulty", 0);
+            PlayerSetDifficulty(PlayerGroupLoopCurrent(), lp_gameDifficulty);
+        }
+        PlayerGroupLoopEnd();
+    }
+    else if (auto638297DE_val == 1) {
+        PlayerGroupLoopBegin(PlayerGroupAll());
+        for ( ; !PlayerGroupLoopDone() ; PlayerGroupLoopStep() ) {
+            libNtve_gf_SetUpgradeLevelForPlayer(PlayerGroupLoopCurrent(), "GameDifficulty", 1);
+            PlayerSetDifficulty(PlayerGroupLoopCurrent(), lp_gameDifficulty);
+        }
+        PlayerGroupLoopEnd();
+    }
+    else if (auto638297DE_val == 2) {
+        PlayerGroupLoopBegin(PlayerGroupAll());
+        for ( ; !PlayerGroupLoopDone() ; PlayerGroupLoopStep() ) {
+            libNtve_gf_SetUpgradeLevelForPlayer(PlayerGroupLoopCurrent(), "GameDifficulty", 2);
+            PlayerSetDifficulty(PlayerGroupLoopCurrent(), lp_gameDifficulty);
+        }
+        PlayerGroupLoopEnd();
+    }
+    else {
+        PlayerGroupLoopBegin(PlayerGroupAll());
+        for ( ; !PlayerGroupLoopDone() ; PlayerGroupLoopStep() ) {
+            libNtve_gf_SetUpgradeLevelForPlayer(PlayerGroupLoopCurrent(), "GameDifficulty", 0);
+            PlayerSetDifficulty(PlayerGroupLoopCurrent(), lp_gameDifficulty);
+        }
+        PlayerGroupLoopEnd();
+    }
+}
+
+int lib1E3F036D_gf_GameDifficultyInteger (int lp_recruit, int lp_normal, int lp_nightmare) {
+    int auto3902616F_val;
+
+    // Implementation
+    auto3902616F_val = lib1E3F036D_gf_GameType();
+    if (auto3902616F_val == 0) {
+        return lp_recruit;
+    }
+    else if (auto3902616F_val == 1) {
+        return lp_normal;
+    }
+    else if (auto3902616F_val == 2) {
+        return lp_nightmare;
+    }
+    else {
+        return lp_recruit;
+    }
+}
+
+fixed lib1E3F036D_gf_GameDifficultyReal (fixed lp_recruit, fixed lp_normal, fixed lp_nightmare) {
+    int auto6D1DB235_val;
+
+    // Implementation
+    auto6D1DB235_val = lib1E3F036D_gf_GameType();
+    if (auto6D1DB235_val == 0) {
+        return lp_recruit;
+    }
+    else if (auto6D1DB235_val == 1) {
+        return lp_normal;
+    }
+    else if (auto6D1DB235_val == 2) {
+        return lp_nightmare;
+    }
+    else {
+        return lp_recruit;
+    }
+}
+
+int lib1E3F036D_gf_GameType () {
+    // Implementation
+    if ((PlayerDifficulty(1) == 0)) {
+        return 0;
+    }
+    else {
+        if ((PlayerDifficulty(1) == 1)) {
+            return 1;
+        }
+        else {
+            return 2;
+        }
+    }
+}
+
+string lib1E3F036D_gf_UnitTypeDifficulty (string lp_recruit, string lp_normal, string lp_nightmare) {
+    int autoFFC98359_val;
+
+    // Implementation
+    autoFFC98359_val = lib1E3F036D_gf_GameType();
+    if (autoFFC98359_val == 0) {
+        return lp_recruit;
+    }
+    else if (autoFFC98359_val == 1) {
+        return lp_normal;
+    }
+    else if (autoFFC98359_val == 2) {
+        return lp_nightmare;
+    }
+    else {
+        return lp_recruit;
+    }
+}
+
+// Triggers
+//--------------------------------------------------------------------------------------------------
+// Trigger: Test Hookup Inventory
+//--------------------------------------------------------------------------------------------------
+bool lib1E3F036D_gt_TestHookupInventory_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    region lv_untitledVariable001;
+
+    // Variable Initialization
+    lv_untitledVariable001 = RegionRect(0.0, 0.0, 1.0, 1.0);
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    DialogControlHookupStandard(c_triggerControlTypeButton, "UIContainer\\ConsoleUIContainer\\InventoryPanel\\ContainerPanel01\\Slot00");
+    lib1E3F036D_gv_container0Slot50 = DialogControlLastCreated();
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib1E3F036D_gt_TestHookupInventory_Init () {
+    lib1E3F036D_gt_TestHookupInventory = TriggerCreate("lib1E3F036D_gt_TestHookupInventory_Func");
+    TriggerAddEventMapInit(lib1E3F036D_gt_TestHookupInventory);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Test Inventory Right Click
+//--------------------------------------------------------------------------------------------------
+bool lib1E3F036D_gt_TestInventoryRightClick_Func (bool testConds, bool runActions) {
+    // Conditions
+    if (testConds) {
+        if (!((EventDialogControl() == lib1E3F036D_gv_container0Slot50))) {
+            return false;
+        }
+
+        if (!((EventDialogControlMouseButton() == c_mouseButtonRight))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TriggerDebugOutput(1, StringExternal("Param/Value/lib_1E3F036D_0D64C4DB"), true);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib1E3F036D_gt_TestInventoryRightClick_Init () {
+    lib1E3F036D_gt_TestInventoryRightClick = TriggerCreate("lib1E3F036D_gt_TestInventoryRightClick_Func");
+    TriggerAddEventDialogControl(lib1E3F036D_gt_TestInventoryRightClick, c_playerAny, c_invalidDialogControlId, c_triggerControlEventTypeClick);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Construct Team UI
+//--------------------------------------------------------------------------------------------------
+bool lib1E3F036D_gt_ConstructTeamUI_Func (bool testConds, bool runActions) {
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    lib1E3F036D_gf_CreateTeamUI();
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib1E3F036D_gt_ConstructTeamUI_Init () {
+    lib1E3F036D_gt_ConstructTeamUI = TriggerCreate("lib1E3F036D_gt_ConstructTeamUI_Func");
+    TriggerAddEventChatMessage(lib1E3F036D_gt_ConstructTeamUI, c_playerAny, "UITest", true);
+}
+
+void lib1E3F036D_InitTriggers () {
+    lib1E3F036D_gt_TestHookupInventory_Init();
+    lib1E3F036D_gt_TestInventoryRightClick_Init();
+    lib1E3F036D_gt_ConstructTeamUI_Init();
+}
+
+//--------------------------------------------------------------------------------------------------
+// Library Initialization
+//--------------------------------------------------------------------------------------------------
+bool lib1E3F036D_InitLib_completed = false;
+
+void lib1E3F036D_InitLib () {
+    if (lib1E3F036D_InitLib_completed) {
+        return;
+    }
+
+    lib1E3F036D_InitVariables();
+    lib1E3F036D_InitTriggers();
+
+    lib1E3F036D_InitLib_completed = true;
+}
+

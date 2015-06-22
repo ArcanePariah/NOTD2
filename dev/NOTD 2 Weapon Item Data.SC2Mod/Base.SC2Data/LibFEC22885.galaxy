@@ -1,0 +1,279 @@
+include "TriggerLibs/NativeLib"
+
+//--------------------------------------------------------------------------------------------------
+// Library: Item Triggers
+//--------------------------------------------------------------------------------------------------
+// Variables
+string libFEC22885_gv_defaultGameLighting;
+string libFEC22885_gv_nightVisionLighting;
+
+void libFEC22885_InitVariables () {
+    libFEC22885_gv_defaultGameLighting = "NOTD2Light";
+    libFEC22885_gv_nightVisionLighting = "NOTD2NVG";
+}
+
+// Trigger Declarations
+trigger libFEC22885_gt_ArmorUpgradeVisual;
+trigger libFEC22885_gt_ArmorDowngradeVisual;
+trigger libFEC22885_gt_RoadFlareVisionShare;
+trigger libFEC22885_gt_SpecialAmmoUsage;
+trigger libFEC22885_gt_FlechetteOpenWound;
+
+// Triggers
+//--------------------------------------------------------------------------------------------------
+// Trigger: Armor Upgrade Visual
+//--------------------------------------------------------------------------------------------------
+bool libFEC22885_gt_ArmorUpgradeVisual_Func (bool testConds, bool runActions) {
+    string auto7309FB29_val;
+
+    // Variable Declarations
+    string lv_behavior;
+
+    // Variable Initialization
+    lv_behavior = EventUnitBehavior();
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    auto7309FB29_val = lv_behavior;
+    if (auto7309FB29_val == "ArmoredProtectiveInsert") {
+        TechTreeUpgradeAddLevel(UnitGetOwner(EventUnit()), "ArmoredProtectiveInsert", 1);
+
+    }
+    else if (auto7309FB29_val == "EnhancedProtectiveInsert") {
+        TechTreeUpgradeAddLevel(UnitGetOwner(EventUnit()), "EnhancedProtectiveInsert", 1);
+
+    }
+    else if (auto7309FB29_val == "HeavyProtectiveInsert") {
+        TechTreeUpgradeAddLevel(UnitGetOwner(EventUnit()), "HeavyProtectiveInsert", 1);
+
+    }
+    else if (auto7309FB29_val == "ReactiveProtectiveInsert") {
+        TechTreeUpgradeAddLevel(UnitGetOwner(EventUnit()), "ReactiveProtectiveInsert", 1);
+
+    }
+    else if (auto7309FB29_val == "ShieldAugmentationInsert") {
+        TechTreeUpgradeAddLevel(UnitGetOwner(EventUnit()), "ShieldAugmentationInsert", 1);
+
+    }
+    else {
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libFEC22885_gt_ArmorUpgradeVisual_Init () {
+    libFEC22885_gt_ArmorUpgradeVisual = TriggerCreate("libFEC22885_gt_ArmorUpgradeVisual_Func");
+    TriggerAddEventUnitBehaviorChange(libFEC22885_gt_ArmorUpgradeVisual, null, "ArmoredProtectiveInsert", c_unitBehaviorChangeCreate);
+    TriggerAddEventUnitBehaviorChange(libFEC22885_gt_ArmorUpgradeVisual, null, "EnhancedProtectiveInsert", c_unitBehaviorChangeCreate);
+    TriggerAddEventUnitBehaviorChange(libFEC22885_gt_ArmorUpgradeVisual, null, "HeavyProtectiveInsert", c_unitBehaviorChangeCreate);
+    TriggerAddEventUnitBehaviorChange(libFEC22885_gt_ArmorUpgradeVisual, null, "ReactiveProtectiveInsert", c_unitBehaviorChangeCreate);
+    TriggerAddEventUnitBehaviorChange(libFEC22885_gt_ArmorUpgradeVisual, null, "ShieldAugmentationInsert", c_unitBehaviorChangeCreate);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Armor Downgrade Visual
+//--------------------------------------------------------------------------------------------------
+bool libFEC22885_gt_ArmorDowngradeVisual_Func (bool testConds, bool runActions) {
+    string auto9F768218_val;
+
+    // Variable Declarations
+    string lv_behavior;
+
+    // Variable Initialization
+    lv_behavior = EventUnitBehavior();
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    auto9F768218_val = lv_behavior;
+    if (auto9F768218_val == "ArmoredProtectiveInsert") {
+        libNtve_gf_SetUpgradeLevelForPlayer(UnitGetOwner(EventUnit()), "ArmoredProtectiveInsert", 0);
+
+    }
+    else if (auto9F768218_val == "EnhancedProtectiveInsert") {
+        libNtve_gf_SetUpgradeLevelForPlayer(UnitGetOwner(EventUnit()), "EnhancedProtectiveInsert", 0);
+
+    }
+    else if (auto9F768218_val == "HeavyProtectiveInsert") {
+        libNtve_gf_SetUpgradeLevelForPlayer(UnitGetOwner(EventUnit()), "HeavyProtectiveInsert", 0);
+
+    }
+    else if (auto9F768218_val == "ReactiveProtectiveInsert") {
+        libNtve_gf_SetUpgradeLevelForPlayer(UnitGetOwner(EventUnit()), "ReactiveProtectiveInsert", 0);
+
+    }
+    else if (auto9F768218_val == "ShieldAugmentationInsert") {
+        libNtve_gf_SetUpgradeLevelForPlayer(UnitGetOwner(EventUnit()), "ShieldAugmentationInsert", 0);
+
+    }
+    else {
+    }
+    TechTreeUpgradeAddLevel(UnitGetOwner(EventUnit()), "StandardArmor", 1);
+    libNtve_gf_SetUpgradeLevelForPlayer(UnitGetOwner(EventUnit()), "StandardArmor", 0);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libFEC22885_gt_ArmorDowngradeVisual_Init () {
+    libFEC22885_gt_ArmorDowngradeVisual = TriggerCreate("libFEC22885_gt_ArmorDowngradeVisual_Func");
+    TriggerAddEventUnitBehaviorChange(libFEC22885_gt_ArmorDowngradeVisual, null, "ArmoredProtectiveInsert", c_unitBehaviorChangeDestroy);
+    TriggerAddEventUnitBehaviorChange(libFEC22885_gt_ArmorDowngradeVisual, null, "EnhancedProtectiveInsert", c_unitBehaviorChangeDestroy);
+    TriggerAddEventUnitBehaviorChange(libFEC22885_gt_ArmorDowngradeVisual, null, "HeavyProtectiveInsert", c_unitBehaviorChangeDestroy);
+    TriggerAddEventUnitBehaviorChange(libFEC22885_gt_ArmorDowngradeVisual, null, "ReactiveProtectiveInsert", c_unitBehaviorChangeDestroy);
+    TriggerAddEventUnitBehaviorChange(libFEC22885_gt_ArmorDowngradeVisual, null, "ShieldAugmentationInsert", c_unitBehaviorChangeDestroy);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Road Flare Vision Share
+//--------------------------------------------------------------------------------------------------
+bool libFEC22885_gt_RoadFlareVisionShare_Func (bool testConds, bool runActions) {
+    // Conditions
+    if (testConds) {
+        if (!((UnitGetType(EventUnitCreatedUnit()) == "RoadFlareActive"))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    PlayerGroupLoopBegin(PlayerGroupAll());
+    for ( ; !PlayerGroupLoopDone() ; PlayerGroupLoopStep() ) {
+        libNtve_gf_ShareVisionofUnit(EventUnitCreatedUnit(), true, PlayerGroupLoopCurrent());
+    }
+    PlayerGroupLoopEnd();
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libFEC22885_gt_RoadFlareVisionShare_Init () {
+    libFEC22885_gt_RoadFlareVisionShare = TriggerCreate("libFEC22885_gt_RoadFlareVisionShare_Func");
+    TriggerAddEventUnitCreated(libFEC22885_gt_RoadFlareVisionShare, null, null, null);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Special Ammo Usage
+//--------------------------------------------------------------------------------------------------
+bool libFEC22885_gt_SpecialAmmoUsage_Func (bool testConds, bool runActions) {
+    string autoA914D361_val;
+    unitgroup auto92F90EB5_g;
+    int auto92F90EB5_u;
+
+    // Variable Declarations
+    string lv_weapon;
+    string lv_ammoUsed;
+    unit lv_currentAmmoUnit;
+    string lv_ammoChargeLink;
+
+    // Variable Initialization
+    lv_weapon = EventUnitGetWeapon();
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    autoA914D361_val = lv_weapon;
+    if (autoA914D361_val == "PlasmaCannon") {
+        lv_ammoUsed = "PlasmaCoil";
+    }
+    else if (autoA914D361_val == "RocketLauncherAntiTank") {
+        lv_ammoUsed = "UGCModularRocket";
+    }
+    else if (autoA914D361_val == "RocketLauncherHighExplosive") {
+        lv_ammoUsed = "UGCModularRocket";
+    }
+    else if (autoA914D361_val == "Railgun") {
+        lv_ammoUsed = "TungstenRod";
+    }
+    else if (autoA914D361_val == "GrenadeLauncher") {
+        lv_ammoUsed = "40mmGrenade";
+    }
+    else {
+    }
+    lv_ammoChargeLink = CatalogFieldValueGet(c_gameCatalogItem, lv_ammoUsed, "EffectCost.Charge.Link", EventPlayer());
+    auto92F90EB5_g = UnitInventoryGroup(EventUnit());
+    auto92F90EB5_u = 1;
+    for ( ; auto92F90EB5_u <= UnitGroupCount(auto92F90EB5_g, c_unitCountAll) ; auto92F90EB5_u += BoolToInt(lv_currentAmmoUnit == UnitGroupUnit(auto92F90EB5_g, auto92F90EB5_u)) ) {
+        lv_currentAmmoUnit = UnitGroupUnit(auto92F90EB5_g, auto92F90EB5_u);
+        if ((UnitGetType(lv_currentAmmoUnit) == lv_ammoUsed)) {
+            UnitAddChargeUsed(lv_currentAmmoUnit, lv_ammoChargeLink, 1.0);
+            return true;
+        }
+        else {
+        }
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libFEC22885_gt_SpecialAmmoUsage_Init () {
+    libFEC22885_gt_SpecialAmmoUsage = TriggerCreate("libFEC22885_gt_SpecialAmmoUsage_Func");
+    TriggerAddEventUnitStartedAttack2(libFEC22885_gt_SpecialAmmoUsage, null, "PlasmaCannon");
+    TriggerAddEventUnitStartedAttack2(libFEC22885_gt_SpecialAmmoUsage, null, "Railgun");
+    TriggerAddEventUnitStartedAttack2(libFEC22885_gt_SpecialAmmoUsage, null, "GrenadeLauncher");
+    TriggerAddEventUnitStartedAttack2(libFEC22885_gt_SpecialAmmoUsage, null, "RocketLauncherAntiTank");
+    TriggerAddEventUnitStartedAttack2(libFEC22885_gt_SpecialAmmoUsage, null, "RocketLauncherHighExplosive");
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Flechette Open Wound
+//--------------------------------------------------------------------------------------------------
+bool libFEC22885_gt_FlechetteOpenWound_Func (bool testConds, bool runActions) {
+    // Conditions
+    if (testConds) {
+        if (!((UnitHasBehavior(EventUnitDamageSourceUnit(), "Flechette") == true))) {
+            return false;
+        }
+
+        if (!((libNtve_gf_RandomPercent() <= (EventUnitDamageAmount() / 2.0)))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    UnitBehaviorAdd(EventUnit(), "OpenWound", EventUnitDamageSourceUnit(), 1);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libFEC22885_gt_FlechetteOpenWound_Init () {
+    libFEC22885_gt_FlechetteOpenWound = TriggerCreate("libFEC22885_gt_FlechetteOpenWound_Func");
+    TriggerAddEventUnitDamaged(libFEC22885_gt_FlechetteOpenWound, null, c_unitDamageTypeAny, c_unitDamageNonFatal, null);
+}
+
+void libFEC22885_InitTriggers () {
+    libFEC22885_gt_ArmorUpgradeVisual_Init();
+    libFEC22885_gt_ArmorDowngradeVisual_Init();
+    libFEC22885_gt_RoadFlareVisionShare_Init();
+    libFEC22885_gt_SpecialAmmoUsage_Init();
+    libFEC22885_gt_FlechetteOpenWound_Init();
+}
+
+//--------------------------------------------------------------------------------------------------
+// Library Initialization
+//--------------------------------------------------------------------------------------------------
+bool libFEC22885_InitLib_completed = false;
+
+void libFEC22885_InitLib () {
+    if (libFEC22885_InitLib_completed) {
+        return;
+    }
+
+    libFEC22885_InitVariables();
+    libFEC22885_InitTriggers();
+
+    libFEC22885_InitLib_completed = true;
+}
+

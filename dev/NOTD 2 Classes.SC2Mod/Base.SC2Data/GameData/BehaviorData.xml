@@ -1,0 +1,1516 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<Catalog>
+    <CBehaviorBuff default="1" id="LeveledPassiveTemplate">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Requirements value="##id##"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff default="1" id="PeacekeeperTemplate">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Modification UnitNameOverride="Peacekeeper/Name/##id##"/>
+    </CBehaviorBuff>
+    <CBehaviorVeterancy default="1" id="PetLevelsTemplate">
+        <Name value="Behavior/Name/PetLevelsTemplate"/>
+        <Tooltip value="Behavior/Tooltip/PetLevelsTemplate"/>
+        <Cost>
+            <Charge Link="Behavior/PetLevelsTemplate"/>
+            <Cooldown Link="Behavior/PetLevelsTemplate"/>
+        </Cost>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <ShareFilters index="Kills" value="-;Neutral,Enemy,Hallucination"/>
+        <SharedXPRadius index="Kills" value="500"/>
+        <SharedXPFraction index="Kills" value="1"/>
+        <VeterancyLevelArray>
+            <Modification>
+                <DeathResponse>
+                    <Cost>
+                        <Charge Link="Behavior/PetLevels"/>
+                        <Cooldown Link="Behavior/PetLevels"/>
+                    </Cost>
+                </DeathResponse>
+            </Modification>
+        </VeterancyLevelArray>
+        <VeterancyLevelArray MinVeterancyXP="100">
+            <Modification>
+                <DeathResponse>
+                    <Cost>
+                        <Charge Link="" Location="Abil"/>
+                        <Cooldown Link="" Location="Abil"/>
+                    </Cost>
+                    <Type index="Remove" value="1"/>
+                </DeathResponse>
+            </Modification>
+        </VeterancyLevelArray>
+        <VeterancyLevelArray MinVeterancyXP="125">
+            <Modification>
+                <DeathResponse>
+                    <Cost>
+                        <Charge Link="" Location="Abil"/>
+                        <Cooldown Link="" Location="Abil"/>
+                    </Cost>
+                    <Type index="Remove" value="1"/>
+                </DeathResponse>
+            </Modification>
+        </VeterancyLevelArray>
+        <VeterancyLevelArray MinVeterancyXP="150">
+            <Modification>
+                <DeathResponse>
+                    <Cost>
+                        <Charge Link="" Location="Abil"/>
+                        <Cooldown Link="" Location="Abil"/>
+                    </Cost>
+                    <Type index="Remove" value="1"/>
+                </DeathResponse>
+            </Modification>
+        </VeterancyLevelArray>
+        <VeterancyLevelArray MinVeterancyXP="175">
+            <Modification>
+                <DeathResponse>
+                    <Cost>
+                        <Charge Link="" Location="Abil"/>
+                        <Cooldown Link="" Location="Abil"/>
+                    </Cost>
+                    <Type index="Remove" value="1"/>
+                </DeathResponse>
+            </Modification>
+        </VeterancyLevelArray>
+        <VeterancyLevelArray MinVeterancyXP="200">
+            <Modification>
+                <DeathResponse>
+                    <Cost>
+                        <Charge Link="" Location="Abil"/>
+                        <Cooldown Link="" Location="Abil"/>
+                    </Cost>
+                    <Type index="Remove" value="1"/>
+                </DeathResponse>
+            </Modification>
+        </VeterancyLevelArray>
+        <VeterancyLevelArray MinVeterancyXP="250">
+            <Modification>
+                <DeathResponse>
+                    <Cost>
+                        <Charge Link="" Location="Abil"/>
+                        <Cooldown Link="" Location="Abil"/>
+                    </Cost>
+                    <Type index="Remove" value="1"/>
+                </DeathResponse>
+            </Modification>
+        </VeterancyLevelArray>
+    </CBehaviorVeterancy>
+    <CBehaviorBuff id="AdvancedTargetingLevel2">
+        <InfoIcon value="btn-achievement-scannersweep.dds"/>
+        <EditorCategories value="AbilityorEffectType:Units,Race:Terran"/>
+        <Duration value="10"/>
+        <Modification CriticalAttackChanceUnscaledBonus="0.2">
+            <DamageDealtFraction index="Ranged" value="0.4"/>
+            <DamageDealtFraction index="Splash" value="0.4"/>
+        </Modification>
+        <DamageResponse Chance="1" Handled="AdvancedTargetingSlowLevel1" Location="Attacker">
+            <RequireEffectArray value="AntiMaterialRifleDamageCritical"/>
+            <RequireEffectArray value="AssaultRifleBurstFireDamageCritical"/>
+            <RequireEffectArray value="AssaultRifleDamageCritical"/>
+            <RequireEffectArray value="FlamethrowerDamageCritical"/>
+            <RequireEffectArray value="HeavyMachineGunDamageCritical"/>
+            <RequireEffectArray value="LaserRifleDamageCritical"/>
+            <RequireEffectArray value="MarksmanRifleDamageCritical"/>
+            <RequireEffectArray value="MediumMachineGunDamageCritical"/>
+            <RequireEffectArray value="PistolDamageCritical"/>
+            <RequireEffectArray value="AxeDamageCritical"/>
+            <RequireEffectArray value="ChainsawDamageCritical"/>
+            <RequireEffectArray value="CrowbarDamageCritical"/>
+            <RequireEffectArray value="HammerDamageCritical"/>
+            <RequireEffectArray value="PlasmaCutterDamageCritical"/>
+        </DamageResponse>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AdvancedTargetingSlowLevel2">
+        <Alignment value="Negative"/>
+        <InfoIcon value="btn-achievement-scannersweep.dds"/>
+        <EditorCategories value="AbilityorEffectType:Units,Race:Terran"/>
+        <Duration value="1"/>
+        <Modification MoveSpeedMultiplier="0.6" AttackSpeedMultiplier="0.6"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="Aftershock">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="0.0937"/>
+        <InfoFlags index="Hidden" value="1"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AftershockPassive">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="8"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AftershockStunLevel1">
+        <InfoIcon value="btn-ability-terran-tosh-mindblast-yellow.dds"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="1"/>
+        <Modification>
+            <StateFlags index="Stun" value="1"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AftershockStunLevel12">
+        <InfoIcon value="btn-ability-terran-tosh-mindblast-yellow.dds"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="2"/>
+        <Modification>
+            <StateFlags index="Stun" value="1"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AftershockedEnemy">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="2"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AmmoFeedLevel1">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Requirements value="AmmoFeedLevel1"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AmmoFeedLevel2">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Requirements value="AmmoFeedLevel2"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AuroraDropshipDummy">
+        <InfoFlags index="Hidden" value="1"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AutomaticReloadwhenAttacking">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <DisableValidatorArray value="ForcedReload"/>
+        <Period value="2"/>
+        <PeriodicEffect value="ForcedReload"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AutomaticReloadwhenAttacking2">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <DisableValidatorArray value="ForcedReload2"/>
+        <Period value="1"/>
+        <PeriodicEffect value="ForcedReload"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AutomaticShotgunDamage">
+        <Duration value="0.1"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="BackstabDamageBuffLevel1">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="0.0312"/>
+        <DamageResponse Chance="1" ModifyFraction="1.3"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="BackstabDamageBuffLevel2">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="0.0312"/>
+        <DamageResponse Chance="1" ModifyFraction="1.6"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="BackstabLevel2">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Requirements value="BackstabLevel2"/>
+        <DamageResponse Chance="1" Handled="BackstabDamageBuffLevel2" Location="Attacker"/>
+        <InfoFlags index="Hidden" value="1"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="BackstabLevel1">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Requirements value="BackstabLevel1"/>
+        <DamageResponse Chance="1" Handled="BackstabDamageBuffLevel1" Location="Attacker"/>
+        <InfoFlags index="Hidden" value="1"/>
+    </CBehaviorBuff>
+    <CBehaviorVeterancy id="BasicVeterency">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <VeterancyLevelArray MinVeterancyXP="50"/>
+        <VeterancyLevelArray MinVeterancyXP="75"/>
+        <VeterancyLevelArray MinVeterancyXP="100"/>
+        <VeterancyLevelArray MinVeterancyXP="125"/>
+        <VeterancyLevelArray MinVeterancyXP="150"/>
+        <VeterancyLevelArray MinVeterancyXP="175"/>
+        <VeterancyLevelArray MinVeterancyXP="200"/>
+        <VeterancyLevelArray MinVeterancyXP="300"/>
+        <VeterancyLevelArray MinVeterancyXP="400"/>
+        <VeterancyLevelArray MinVeterancyXP="500"/>
+        <VeterancyLevelArray MinVeterancyXP="600"/>
+        <VeterancyLevelArray MinVeterancyXP="700"/>
+        <VeterancyLevelArray MinVeterancyXP="800"/>
+        <ShareFilters index="Kills" value="-;Neutral,Enemy,Hallucination"/>
+        <SharedXPRadius index="Kills" value="500"/>
+        <SharedXPFraction index="Kills" value="1"/>
+    </CBehaviorVeterancy>
+    <CBehaviorBuff id="BlastSuit">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <DamageResponse Chance="1" ModifyFraction="0">
+            <RequireEffectArray value="ChainExplosiveDamage"/>
+            <RequireEffectArray value="ChainExplosiveDamageLevel2"/>
+            <RequireEffectArray value="MD5MineDamage"/>
+        </DamageResponse>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="Bloodlust">
+        <Alignment value="Positive"/>
+        <InfoIcon value="btn-achievement-hexagonredskull.dds"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="15"/>
+        <Modification AttackSpeedMultiplier="1.5">
+            <DamageDealtFraction index="Melee" value="0.5"/>
+            <DamageDealtFraction index="Ranged" value="0.5"/>
+            <DamageDealtFraction index="Splash" value="0.5"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="BulwarkDamageBlock">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <DamageResponse Chance="1" ModifyFraction="0.5">
+            <ExcludeEffectArray value="BulwarkDamageAmplification"/>
+        </DamageResponse>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="ChainExplosiveDetonateLevel1">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <DamageResponse Chance="1" Handled="ChainExplosiveDamageSetLevel1" ModifyFraction="0">
+            <RequireEffectArray value="MD5MineDamage"/>
+            <RequireEffectArray value="ChainExplosiveDamage"/>
+            <RequireEffectArray value="SatchelChargeDamage"/>
+            <RequireEffectArray value="LittleBusterDamage"/>
+        </DamageResponse>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="ChainExplosiveDetonateLevel2">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <DamageResponse Chance="1" Handled="ChainExplosiveDamageSetLevel2" ModifyFraction="0">
+            <RequireEffectArray value="MD5MineDamage"/>
+            <RequireEffectArray value="ChainExplosiveDamage"/>
+            <RequireEffectArray value="SatchelChargeDamage"/>
+            <RequireEffectArray value="LittleBusterDamage"/>
+        </DamageResponse>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="ChargeHeroicKnockbackStunLevel1">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="1"/>
+        <Modification>
+            <ModifyFlags index="DisableAbils" value="1"/>
+            <StateFlags index="Stun" value="1"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="ChargeHeroicKnockbackStunLevel2">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="2"/>
+        <Modification>
+            <ModifyFlags index="DisableAbils" value="1"/>
+            <StateFlags index="Stun" value="1"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="ChargeKnockbackHeight">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Modification Height="0.2">
+            <StateFlags index="Stun" value="1"/>
+            <HeightTime index="Start" value="0.01"/>
+            <HeightTime index="Stop" value="0.2"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="ChargeNormalKnockbackStunLevel1">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="2"/>
+        <Modification>
+            <ModifyFlags index="DisableAbils" value="1"/>
+            <StateFlags index="Stun" value="1"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="ChargeMovement">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="0.5"/>
+        <Period value="0.025"/>
+        <Modification MoveSpeedMultiplier="15"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="ChargeNormalKnockbackStunLevel2">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="4"/>
+        <Modification>
+            <ModifyFlags index="DisableAbils" value="1"/>
+            <StateFlags index="Stun" value="1"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="CollateralDamageBuffLevel1">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <MaxStackCount value="20"/>
+        <Duration value="0.3125"/>
+        <Modification>
+            <DamageDealtFraction index="Spell" value="0.05"/>
+        </Modification>
+        <Requirements value="CollateralDamageLevel1"/>
+        <MaxStackCountPerCaster value="20"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="CollateralDamageBuffLevel2">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <MaxStackCount value="20"/>
+        <Duration value="0.3125"/>
+        <Modification>
+            <DamageDealtFraction index="Spell" value="0.1"/>
+        </Modification>
+        <Requirements value="CollateralDamageLevel2"/>
+        <MaxStackCountPerCaster value="20"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="CollateralDamageBuffLevel3">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <MaxStackCount value="20"/>
+        <Duration value="0.3125"/>
+        <Modification>
+            <DamageDealtFraction index="Spell" value="0.15"/>
+        </Modification>
+        <Requirements value="CollateralDamageLevel3"/>
+        <MaxStackCountPerCaster value="20"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="CollateralDamagePeriodicSearch">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Period value="0.25"/>
+        <PeriodicEffect value="CollateralDamageExplosiveTypeSwitch"/>
+        <InfoFlags index="Hidden" value="1"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="DefaultDetection">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Modification Detect="3"/>
+        <InfoFlags index="Hidden" value="1"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="Detector4" parent="Detector">
+        <Alignment value="Positive"/>
+        <InfoFlags index="Hidden" value="1"/>
+        <InfoIcon value="Assets\Textures\btn-status-detector.dds"/>
+        <Modification Detect="4"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="IFV25mmHEAutocannonStun">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="4"/>
+        <Modification>
+            <ModifyFlags index="DisableAbils" value="1"/>
+            <StateFlags index="Stun" value="1"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="CohesionArmorLevel1">
+        <Alignment value="Positive"/>
+        <InfoIcon value="btn-ability-terran-selfixarmor-level3.dds"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="0.51"/>
+        <Modification LifeArmorBonus="1"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="CohesionArmorLevel2">
+        <Alignment value="Positive"/>
+        <InfoIcon value="btn-ability-terran-selfixarmor-level3.dds"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="0.51"/>
+        <Modification LifeArmorBonus="2"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="CohesionLevel2" parent="LeveledPassiveTemplate">
+        <InfoFlags index="Hidden" value="1"/>
+        <Requirements value="CohesionLevel2"/>
+        <Period value="0.5"/>
+        <PeriodicEffect value="CohesionAuraSearchLevel12"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="CohesionLevel1" parent="LeveledPassiveTemplate">
+        <InfoFlags index="Hidden" value="1"/>
+        <Requirements value="CohesionLevel1"/>
+        <Period value="0.5"/>
+        <PeriodicEffect value="CohesionAuraSearchLevel1"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="CombatKnifeSlowHeavy">
+        <Alignment value="Negative"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="3"/>
+        <Modification MoveSpeedMultiplier="0.65"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="CombatKnifeSlowLight">
+        <Alignment value="Negative"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="3"/>
+        <Modification MoveSpeedMultiplier="0.3"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="CommunicationUplink">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <MaxStackCount value="8"/>
+        <MaxStackCountPerCaster value="1"/>
+        <Modification>
+            <ModifyFlags index="Reveal" value="1"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="ConcentratedFireLevel1">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="5"/>
+        <Modification AttackSpeedMultiplier="1.5"/>
+        <InfoIcon value="btn-upgrade-terran-gaussrifle.dds"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AdvancedTargetingLevel1">
+        <InfoIcon value="btn-achievement-scannersweep.dds"/>
+        <EditorCategories value="AbilityorEffectType:Units,Race:Terran"/>
+        <Duration value="10"/>
+        <Modification CriticalAttackChanceUnscaledBonus="0.1">
+            <DamageDealtFraction index="Ranged" value="0.2"/>
+            <DamageDealtFraction index="Splash" value="0.2"/>
+        </Modification>
+        <DamageResponse Chance="1" Handled="AdvancedTargetingSlowLevel2" Location="Attacker">
+            <RequireEffectArray value="AntiMaterialRifleDamageCritical"/>
+            <RequireEffectArray value="AssaultRifleBurstFireDamageCritical"/>
+            <RequireEffectArray value="AssaultRifleDamageCritical"/>
+            <RequireEffectArray value="FlamethrowerDamageCritical"/>
+            <RequireEffectArray value="HeavyMachineGunDamageCritical"/>
+            <RequireEffectArray value="LaserRifleDamageCritical"/>
+            <RequireEffectArray value="MarksmanRifleDamageCritical"/>
+            <RequireEffectArray value="MediumMachineGunDamageCritical"/>
+            <RequireEffectArray value="PistolDamageCritical"/>
+            <RequireEffectArray value="AxeDamageCritical"/>
+            <RequireEffectArray value="ChainsawDamageCritical"/>
+            <RequireEffectArray value="CrowbarDamageCritical"/>
+            <RequireEffectArray value="HammerDamageCritical"/>
+            <RequireEffectArray value="PlasmaCutterDamageCritical"/>
+        </DamageResponse>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="ConcentratedFireLevel2">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="6"/>
+        <Modification AttackSpeedMultiplier="2"/>
+        <InfoIcon value="btn-upgrade-terran-gaussrifle.dds"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="ConcentratedFireLevel3">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="7"/>
+        <Modification AttackSpeedMultiplier="2.5"/>
+        <InfoIcon value="btn-upgrade-terran-gaussrifle.dds"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="CriticalStrikeLevel1" parent="LeveledPassiveTemplate">
+        <InfoFlags index="Hidden" value="1"/>
+        <Requirements value="CriticalStrikeLevel1"/>
+        <Modification CriticalAttackChanceUnscaledBonus="0.1"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AssaultCriticalStrikeLevel1" parent="LeveledPassiveTemplate">
+        <InfoFlags index="Hidden" value="1"/>
+        <Modification CriticalAttackChanceUnscaledBonus="0.15"/>
+        <Requirements value="AssaultCriticalStrikeLevel1"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="CriticalStrikeLevel2" parent="LeveledPassiveTemplate">
+        <InfoFlags index="Hidden" value="1"/>
+        <Requirements value="CriticalStrikeLevel2"/>
+        <Modification CriticalAttackChanceUnscaledBonus="0.2"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AssaultCriticalStrikeLevel2" parent="LeveledPassiveTemplate">
+        <InfoFlags index="Hidden" value="1"/>
+        <Requirements value="AssaultCriticalStrikeLevel2"/>
+        <Modification CriticalAttackChanceUnscaledBonus="0.3"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="CriticalStrikeLevel3" parent="LeveledPassiveTemplate">
+        <InfoFlags index="Hidden" value="1"/>
+        <Requirements value="CriticalStrikeLevel3"/>
+        <Modification CriticalAttackChanceUnscaledBonus="0.3"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="CripplingFire">
+        <Alignment value="Negative"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="1"/>
+        <Modification MoveSpeedMultiplier="0.9"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AssaultCriticalStrikeLevel3" parent="LeveledPassiveTemplate">
+        <InfoFlags index="Hidden" value="1"/>
+        <Requirements value="AssaultCriticalStrikeLevel3"/>
+        <Modification CriticalAttackChanceUnscaledBonus="0.45"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="DefensivePlatingLevel1" parent="LeveledPassiveTemplate">
+        <InfoIcon value="Assets\Textures\btn-upgrade-terran-infantryarmorlevel2.dds"/>
+        <Requirements value="DefensivePlatingLevel1"/>
+        <Modification LifeArmorBonus="2"/>
+        <DamageResponse Chance="1" ModifyFraction="0.85">
+            <Kind index="Spell" value="0"/>
+            <Kind index="Melee" value="0"/>
+            <Kind index="Splash" value="0"/>
+        </DamageResponse>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="DefensivePlatingLevel2" parent="LeveledPassiveTemplate">
+        <InfoIcon value="Assets\Textures\btn-upgrade-terran-infantryarmorlevel2.dds"/>
+        <Requirements value="DefensivePlatingLevel2"/>
+        <Modification LifeArmorBonus="3"/>
+        <DamageResponse Chance="1" ModifyFraction="0.7">
+            <Kind index="Spell" value="0"/>
+            <Kind index="Melee" value="0"/>
+            <Kind index="Splash" value="0"/>
+        </DamageResponse>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="DefensivePlatingLevel3" parent="LeveledPassiveTemplate">
+        <InfoIcon value="Assets\Textures\btn-upgrade-terran-infantryarmorlevel2.dds"/>
+        <Requirements value="DefensivePlatingLevel3"/>
+        <Modification LifeArmorBonus="4"/>
+        <DamageResponse Chance="1" ModifyFraction="0.55">
+            <Kind index="Spell" value="0"/>
+            <Kind index="Melee" value="0"/>
+            <Kind index="Splash" value="0"/>
+        </DamageResponse>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="DisableInventoryTransfer">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="EscapeReconLevel1">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="5"/>
+        <Modification>
+            <StateFlags index="Cloak" value="1"/>
+        </Modification>
+        <ExpireEffect value="StealthMatrixOrder"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="EscapeLevel1">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="5"/>
+        <Modification MoveSpeedMultiplier="1.2">
+            <StateFlags index="SuppressCollision" value="1"/>
+        </Modification>
+        <InitialEffect value="StealthMatrixEscapeCloakLevel1"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="EscapeLevel2">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="10"/>
+        <Modification MoveSpeedMultiplier="1.2">
+            <StateFlags index="SuppressCollision" value="1"/>
+        </Modification>
+        <InitialEffect value="StealthMatrixEscapeCloakLevel2"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="EscapeLevel3">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="15"/>
+        <Modification MoveSpeedMultiplier="1.2">
+            <StateFlags index="SuppressCollision" value="1"/>
+        </Modification>
+        <InitialEffect value="StealthMatrixEscapeCloakLevel3"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="EscapeReconLevel2">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="10"/>
+        <Modification>
+            <StateFlags index="Cloak" value="1"/>
+        </Modification>
+        <ExpireEffect value="StealthMatrixOrder"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="EscapeReconLevel3">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="15"/>
+        <Modification>
+            <StateFlags index="Cloak" value="1"/>
+        </Modification>
+        <ExpireEffect value="StealthMatrixOrder"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="ExtraLifeHeal">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="5"/>
+        <Period value="0.5"/>
+        <PeriodCount value="10"/>
+        <PeriodicEffect value="ExtraLifeHealing"/>
+        <Modification>
+            <StateFlags index="Invulnerable" value="1"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="FlareGunSlowLevel1">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="0.6"/>
+        <Modification MoveSpeedMultiplier="0.8"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="FlareGunTimedLife">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="12.5"/>
+        <Period value="0.5"/>
+        <ExpireEffect value="Suicide"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="FlareGunSlowLevel2">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="0.6"/>
+        <Modification MoveSpeedMultiplier="0.65"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="FlareGunSlowLevel3">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="0.6"/>
+        <Modification MoveSpeedMultiplier="0.5"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="FlashlightNOTD">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Modification DetectBonus="4"/>
+        <Requirements value="NoNightVision"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="FocusFire">
+        <Alignment value="Positive"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Modification AttackSpeedMultiplier="0.8">
+            <DamageDealtFraction index="Spell" value="0.3"/>
+            <DamageDealtFraction index="Melee" value="0.3"/>
+            <DamageDealtFraction index="Ranged" value="0.3"/>
+            <DamageDealtFraction index="Splash" value="0.3"/>
+            <VitalRegenArray index="Energy" value="-1"/>
+        </Modification>
+        <DamageResponse Handled="CripplingFire" Location="Attacker"/>
+        <InfoIcon value="Assets\Textures\btn-ability-protoss-blink-color.dds"/>
+        <RemoveValidatorArray value="CasterHasEnergy"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="FocusFireRangeNegationMelee">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <DisableValidatorArray value="CasterhasFocusFireActive"/>
+        <DisableValidatorArray value="FireUpLevel1"/>
+        <DisableValidatorArray value="MeleeWeaponEquipped"/>
+        <Modification WeaponRange="-1"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="FocusFireRangeNegationMeleeLevel2">
+        <Cost>
+            <Charge Link="Behavior/FocusFireRangeNegationMelee"/>
+            <Cooldown Link="Behavior/FocusFireRangeNegationMelee"/>
+        </Cost>
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <DisableValidatorArray value="CasterhasFocusFireActive"/>
+        <DisableValidatorArray value="FireUpLevel2"/>
+        <DisableValidatorArray value="MeleeWeaponEquipped"/>
+        <Modification WeaponRange="-2">
+            <DeathResponse>
+                <Cost>
+                    <Charge Link="Behavior/FocusFireRangeNegationMelee"/>
+                    <Cooldown Link="Behavior/FocusFireRangeNegationMelee"/>
+                </Cost>
+            </DeathResponse>
+        </Modification>
+        <DamageResponse>
+            <Cost>
+                <Charge Link="Behavior/FocusFireRangeNegationMelee"/>
+                <Cooldown Link="Behavior/FocusFireRangeNegationMelee"/>
+            </Cost>
+        </DamageResponse>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="FocusFireRangeNegationMeleeLevel3">
+        <Cost>
+            <Charge Link="Behavior/FocusFireRangeNegationMelee"/>
+            <Cooldown Link="Behavior/FocusFireRangeNegationMelee"/>
+        </Cost>
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <DisableValidatorArray value="CasterhasFocusFireActive"/>
+        <DisableValidatorArray value="FireUpLevel3"/>
+        <DisableValidatorArray value="MeleeWeaponEquipped"/>
+        <Modification WeaponRange="-3">
+            <DeathResponse>
+                <Cost>
+                    <Charge Link="Behavior/FocusFireRangeNegationMelee"/>
+                    <Cooldown Link="Behavior/FocusFireRangeNegationMelee"/>
+                </Cost>
+            </DeathResponse>
+        </Modification>
+        <DamageResponse>
+            <Cost>
+                <Charge Link="Behavior/FocusFireRangeNegationMelee"/>
+                <Cooldown Link="Behavior/FocusFireRangeNegationMelee"/>
+            </Cost>
+        </DamageResponse>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="GeminiProtocolAttackSpeedSlow">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Requirements value="GeminiProtocolAttackSlow"/>
+        <Modification AttackSpeedMultiplier="0.75"/>
+        <InfoFlags index="Hidden" value="1"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="Grenadier">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Requirements value="Grenadier"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="GroundIlluminationTimedLifeLevel1">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="80"/>
+        <ExpireEffect value="Suicide"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="GroundIlluminationTimedLifeLevel2">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="120"/>
+        <ExpireEffect value="Suicide"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="GroundIlluminationTimedLifeLevel3">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="160"/>
+        <ExpireEffect value="Suicide"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="GunshipTimedLife">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="23"/>
+        <ExpireEffect value="MercAirLiftApplyBehavior"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="Healing">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="HeavyMachineGunEquipped">
+        <DamageResponse>
+            <RequireEffectArray value="HeavyMachineGunDamageCritical"/>
+        </DamageResponse>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="HoldFire">
+        <InfoIcon value="btn-ability-terran-holdfire-color.dds"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <RemoveValidatorArray value="NotAttacking"/>
+        <Modification MoveSpeedMultiplier="1.1">
+            <StateFlags index="Passive" value="1"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="KineticPayloadLaunch">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Modification Height="40"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="LaserDesignatedLevel1">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <RemoveValidatorArray value="NotHidden"/>
+        <Modification>
+            <ModifyFlags index="Reveal" value="1"/>
+        </Modification>
+        <DamageResponse Chance="1" ModifyFraction="1.05"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="LaserDesignatedLevel2">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <RemoveValidatorArray value="NotHidden"/>
+        <Modification>
+            <ModifyFlags index="Reveal" value="1"/>
+        </Modification>
+        <DamageResponse Chance="1" ModifyFraction="1.05"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="LaserDesignatedLevel3">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <RemoveValidatorArray value="NotHidden"/>
+        <Modification>
+            <ModifyFlags index="Reveal" value="1"/>
+        </Modification>
+        <DamageResponse Chance="1" ModifyFraction="1.05"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="LifeLoss">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Modification>
+            <AttributeChangeArray Attribute="Lives" Points="2"/>
+        </Modification>
+        <DamageResponse>
+            <Chance value="1"/>
+            <Fatal value="1"/>
+            <Handled value="LifeLossSwitch"/>
+            <ModifyFraction value="0"/>
+        </DamageResponse>
+        <InfoFlags index="Hidden" value="1"/>
+        <RemoveValidatorArray value="MarineHasNoLives"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="LifeRemoval">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <MaxStackCount value="5"/>
+        <Modification>
+            <AttributeChangeArray Attribute="Lives" Points="-1"/>
+        </Modification>
+        <InfoFlags index="Hidden" value="1"/>
+    </CBehaviorBuff>
+    <CBehaviorAttribute id="Lives">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+    </CBehaviorAttribute>
+    <CBehaviorBuff id="LockdownNOTD">
+        <InfoIcon value="btn-ability-terran-build.dds"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <RemoveValidatorArray value="CasterHasEnergy"/>
+        <Modification WeaponRange="2" CriticalAttackChanceUnscaledBonus="0.25">
+            <ModifyFlags index="SuppressMoving" value="1"/>
+            <StateFlags index="SuppressFidgeting" value="1"/>
+            <DamageDealtFraction index="Ranged" value="0.2"/>
+            <DamageDealtFraction index="Splash" value="0.2"/>
+            <VitalRegenArray index="Energy" value="-1.5"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="HordeModeActive">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="180"/>
+        <InfoFlags index="Hidden" value="1"/>
+        <DurationOverride Duration="120">
+            <ValidatorArray value="GameisNormal"/>
+        </DurationOverride>
+        <DurationOverride Duration="60">
+            <ValidatorArray value="GameisNightmare"/>
+        </DurationOverride>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="ImmovableObject">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <DamageResponse Chance="1" Handled="ImmovableObjectArmor"/>
+        <Requirements value="ImmovableObject"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="ImmovableObjectArmor">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <MaxStackCount value="8"/>
+        <Duration value="10"/>
+        <Modification LifeArmorBonus="1"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="K9Evasion">
+        <Alignment value="Positive"/>
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <DamageResponse Chance="0.5" ModifyFraction="0">
+            <Kind index="Spell" value="0"/>
+            <Kind index="Melee" value="0"/>
+            <Kind index="Splash" value="0"/>
+        </DamageResponse>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="K9Turret">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <InitialEffect value="K9TurretDeployment"/>
+        <FinalEffect value="K9TurretDeployment"/>
+        <Modification>
+            <AbilClassDisableArray index="CAbilInventory" value="1"/>
+            <WeaponArray Link="K9SupportTurret" Turret="K9"/>
+        </Modification>
+        <InfoFlags index="Hidden" value="1"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="K9TurretDeployment">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="2"/>
+        <Modification>
+            <ModifyFlags index="SuppressMoving" value="1"/>
+            <WeaponDisableArray value="K9SupportTurret"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="MD5MineExplosion">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Modification>
+            <DeathResponse Chance="1" Effect="MD5DamageSearch"/>
+        </Modification>
+        <InfoFlags index="Hidden" value="1"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="MercAirLift">
+        <InfoFlags index="Hidden" value="1"/>
+        <Duration value="2.5"/>
+        <ExpireEffect value="SuicideRemove"/>
+        <Modification Height="10" MoveSpeedMultiplier="0.1">
+            <StateFlags index="Invulnerable" value="1"/>
+            <StateFlags index="Unselectable" value="1"/>
+            <StateFlags index="Untargetable" value="1"/>
+            <HeightTime index="Start" value="2.5"/>
+            <AbilClassDisableArray index="CAbilAttack" value="1"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="MotionSensorLevel1" parent="LeveledPassiveTemplate">
+        <InfoFlags index="Hidden" value="1"/>
+        <Modification Radar="20" RadarFilters="-;Neutral,Structure,Item"/>
+        <Requirements value="MotionSensorLevel1"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="MotionSensorLevel2" parent="LeveledPassiveTemplate">
+        <InfoFlags index="Hidden" value="1"/>
+        <Requirements value="MotionSensorLevel2"/>
+        <Modification Radar="40" RadarFilters="-;Neutral,Structure,Item"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="NanoHasteLevel1">
+        <Alignment value="Positive"/>
+        <InfoIcon value="btn-tomahawkpowercell.dds"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="40"/>
+        <InitialEffect value="NanoHasteFractureRepair"/>
+        <PeriodicEffect value="BrokenBonetoFractureConversion"/>
+        <Modification MoveSpeedMultiplier="1.1" AttackSpeedMultiplier="1.1"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="NanoHasteLevel2">
+        <Alignment value="Positive"/>
+        <InfoIcon value="btn-tomahawkpowercell.dds"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="50"/>
+        <InitialEffect value="NanoHasteFractureRepair"/>
+        <PeriodicEffect value="BrokenBonetoFractureConversion"/>
+        <Modification MoveSpeedMultiplier="1.15" AttackSpeedMultiplier="1.15"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="NanoHasteLevel3">
+        <Alignment value="Positive"/>
+        <InfoIcon value="btn-tomahawkpowercell.dds"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="60"/>
+        <InitialEffect value="NanoHasteFractureRepair"/>
+        <PeriodicEffect value="BrokenBonetoFractureConversion"/>
+        <Modification MoveSpeedMultiplier="1.2" AttackSpeedMultiplier="1.2"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="NanoPlague">
+        <BehaviorFlags index="EnabledWhileDead" value="1"/>
+        <InfoIcon value="btn-DOTA-Arthas-spell1.dds"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="90"/>
+        <Period value="1"/>
+        <PeriodicEffect value="NanoPlagueDamage"/>
+        <Modification LifeArmorBonus="-5"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="NanoPlagueSecondary">
+        <BehaviorFlags index="EnabledWhileDead" value="1"/>
+        <InfoIcon value="btn-DOTA-Arthas-spell1.dds"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="90"/>
+        <Period value="1"/>
+        <PeriodicEffect value="NanoPlagueDamage"/>
+        <Modification LifeArmorBonus="-5"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="NanoSearDamageDoT">
+        <Alignment value="Negative"/>
+        <InfoIcon value="btn-ability-zerg-corruption-orange.dds"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="60"/>
+        <Period value="1"/>
+        <PeriodicEffect value="NanoSearDamage"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AdvancedTargetingSlowLevel1">
+        <Alignment value="Negative"/>
+        <InfoIcon value="btn-achievement-scannersweep.dds"/>
+        <EditorCategories value="AbilityorEffectType:Units,Race:Terran"/>
+        <Duration value="1"/>
+        <Modification MoveSpeedMultiplier="0.8" AttackSpeedMultiplier="0.8"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="NanoStrength">
+        <Alignment value="Positive"/>
+        <InfoIcon value="Assets\Textures\btn-ability-protoss-protoncharge-color.dds"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="60"/>
+        <Modification MoveSpeedMultiplier="0.6667" UnifiedMoveSpeedFactor="0.5">
+            <DamageDealtFraction index="Melee" value="1"/>
+            <DamageDealtFraction index="Ranged" value="0.5"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="NanoSearSlow">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <BuffFlags index="RefreshStack" value="1"/>
+        <MaxStackCount value="5"/>
+        <Duration value="1.1"/>
+        <Modification MoveSpeedMultiplier="0.9"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="NanoShieldArmor">
+        <Alignment value="Positive"/>
+        <InfoIcon value="Assets\Textures\btn-ability-protoss-timewarp.dds"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="30"/>
+        <Modification ShieldArmorBonus="4">
+            <VitalMaxArray index="Shields" value="75"/>
+        </Modification>
+        <RemoveValidatorArray value="hasShields"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="NanoShockShockedLevel1">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <BuffFlags index="UpdateDurationWhileDisabled" value="1"/>
+        <Duration value="8"/>
+        <Period value="0.0625"/>
+        <PeriodicEffect value="AftershockSetLevel1"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="NanoShockShockedLevel2">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <BuffFlags index="UpdateDurationWhileDisabled" value="1"/>
+        <Duration value="8"/>
+        <Period value="0.0625"/>
+        <PeriodicEffect value="AftershockSetLevel2"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="NanoShockShockedLevel3">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <BuffFlags index="UpdateDurationWhileDisabled" value="1"/>
+        <Duration value="8"/>
+        <Period value="0.0625"/>
+        <PeriodicEffect value="AftershockSetLevel3"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="NanoShockSlowLevel2">
+        <Alignment value="Negative"/>
+        <InfoIcon value="Assets\Textures\btn-ability-terran-emp-color.dds"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="2"/>
+        <Modification MoveSpeedMultiplier="0.55" AttackSpeedMultiplier="0.55"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="NanoShockSlowLevel1">
+        <Alignment value="Negative"/>
+        <InfoIcon value="Assets\Textures\btn-ability-terran-emp-color.dds"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="1"/>
+        <Modification MoveSpeedMultiplier="0.55" AttackSpeedMultiplier="0.55"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="NanoShockSlowLevel3">
+        <Alignment value="Negative"/>
+        <InfoIcon value="Assets\Textures\btn-ability-terran-emp-color.dds"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="3"/>
+        <Modification MoveSpeedMultiplier="0.55" AttackSpeedMultiplier="0.55"/>
+    </CBehaviorBuff>
+    <CBehaviorAttribute id="NoiseIndex">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <MaxPoints value="2000"/>
+        <PointGainEffect value="NoiseThresholds"/>
+    </CBehaviorAttribute>
+    <CBehaviorBuff id="OfficerSpracklin" parent="PeacekeeperTemplate">
+        <Modification>
+            <VitalMaxArray index="Life" value="50"/>
+            <WeaponArray Link="PeacekeeperSubmachineGun"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="ChiefStrassner" parent="PeacekeeperTemplate">
+        <Modification>
+            <VitalMaxArray index="Life" value="100"/>
+            <WeaponArray Link="PeacekeeperPumpShotgun"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="PlasmaGrenadeArmorReduction">
+        <Alignment value="Negative"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="10"/>
+        <Modification LifeArmorBonus="-5"/>
+        <InfoIcon value="btn-ability-terran-spaceminelaunch-HoTS.dds"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="PrecisionShotSlowLevel1">
+        <Alignment value="Negative"/>
+        <InfoIcon value="Assets\Textures\btn-upgrade-terran-hisecautotracking.dds"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="5"/>
+        <Modification MoveSpeedMultiplier="0.9"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="PrecisionShotSlowLevel2">
+        <Alignment value="Negative"/>
+        <InfoIcon value="Assets\Textures\btn-upgrade-terran-hisecautotracking.dds"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="5"/>
+        <Modification MoveSpeedMultiplier="0.8"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="PrecisionShotSlowLevel3">
+        <Alignment value="Negative"/>
+        <InfoIcon value="Assets\Textures\btn-upgrade-terran-hisecautotracking.dds"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="5"/>
+        <Modification MoveSpeedMultiplier="0.6"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="PrecursorMerc2">
+        <InfoFlags index="Hidden" value="1"/>
+        <Modification MoveSpeedMultiplier="0.05">
+            <StateFlags index="Invulnerable" value="1"/>
+            <StateFlags index="NoDraw" value="1"/>
+            <StateFlags index="Unselectable" value="1"/>
+            <StateFlags index="Untargetable" value="1"/>
+            <AbilClassDisableArray index="CAbilAttack" value="1"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="PredatorCloak">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <DisplayDuration index="Self" value="1"/>
+        <Duration value="10"/>
+    </CBehaviorBuff>
+    <CBehaviorVeterancy id="PredatorPetVeterancy" parent="PetLevelsTemplate">
+        <Name value="Behavior/Name/PredatorPetVeterancy"/>
+        <VeterancyLevelArray index="1" MinVeterancyXP="100">
+            <Modification SightBonus="2" MoveSpeedBonus="0.1992"/>
+        </VeterancyLevelArray>
+        <VeterancyLevelArray index="2" MinVeterancyXP="125">
+            <Modification LifeArmorBonus="2"/>
+        </VeterancyLevelArray>
+        <VeterancyLevelArray index="4" MinVeterancyXP="175">
+            <Modification>
+                <WeaponArray Link="PiranhaMissiles"/>
+                <WeaponDisableArray value="Thunderclaw"/>
+            </Modification>
+        </VeterancyLevelArray>
+        <VeterancyLevelArray index="5" MinVeterancyXP="200">
+            <Modification>
+                <WeaponArray Link="PiranhaMissiles"/>
+                <WeaponDisableArray value="Thunderclaw"/>
+            </Modification>
+        </VeterancyLevelArray>
+        <VeterancyLevelArray index="6" MinVeterancyXP="250">
+            <Modification>
+                <WeaponArray Link="PiranhaMissiles"/>
+                <WeaponDisableArray value="Thunderclaw"/>
+            </Modification>
+        </VeterancyLevelArray>
+    </CBehaviorVeterancy>
+    <CBehaviorBuff id="PredatorThunderclaw">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Modification>
+            <BehaviorLinkDisableArray value="PredatorPiranhaMissiles"/>
+            <WeaponArray Link="Thunderclaw"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="PredatorPiranhaMissiles">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Modification>
+            <WeaponArray Link="PiranhaMissiles"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="ProvokeLevel1">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="4"/>
+        <Period value="0.5"/>
+        <PeriodicEffect value="ProvokeSearchLevel1"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="ProvokeLevel2">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="5"/>
+        <Period value="0.5"/>
+        <PeriodicEffect value="ProvokeSearchLevel2"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="ProvokeLevel3">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="6"/>
+        <Period value="0.5"/>
+        <PeriodicEffect value="ProvokeSearchLevel3"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="ProvokeLevel1Taunt">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="0.625"/>
+        <Modification>
+            <DamageDealtFraction index="Spell" value="-0.15"/>
+            <DamageDealtFraction index="Melee" value="-0.15"/>
+            <DamageDealtFraction index="Ranged" value="-0.15"/>
+            <DamageDealtFraction index="Splash" value="-0.15"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="ProvokeLevel2Taunt">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="0.625"/>
+        <Modification>
+            <DamageDealtFraction index="Spell" value="-0.3"/>
+            <DamageDealtFraction index="Melee" value="-0.3"/>
+            <DamageDealtFraction index="Ranged" value="-0.3"/>
+            <DamageDealtFraction index="Splash" value="-0.3"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="ProvokeLevel3Taunt">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="0.625"/>
+        <Modification>
+            <DamageDealtFraction index="Spell" value="-0.45"/>
+            <DamageDealtFraction index="Melee" value="-0.45"/>
+            <DamageDealtFraction index="Ranged" value="-0.45"/>
+            <DamageDealtFraction index="Splash" value="-0.45"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="ProximityTrigger">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="MassreactiveTrigger">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="RatingBonus">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Modification>
+            <AttributeChangeArray Attribute="Lives"/>
+        </Modification>
+        <InfoFlags index="Hidden" value="1"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="ReactiveShieldsLevel1">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Requirements value="ReactiveShieldsLevel1"/>
+        <Modification ShieldArmorBonus="1"/>
+        <DamageResponse Chance="1" Handled="ReactiveShieldsDamageLevel1"/>
+        <InfoFlags index="Hidden" value="1"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="ReactiveShieldsLevel2">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Requirements value="ReactiveShieldsLevel2"/>
+        <Modification ShieldArmorBonus="2"/>
+        <DamageResponse Chance="1" Handled="ReactiveShieldsDamageLevel2"/>
+        <InfoFlags index="Hidden" value="1"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="ReactiveShieldsLevel3">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Requirements value="ReactiveShieldsLevel3"/>
+        <Modification ShieldArmorBonus="4"/>
+        <DamageResponse Chance="1" Handled="ReactiveShieldsDamageLevel3"/>
+        <InfoFlags index="Hidden" value="1"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="RepulseHeroicSlow">
+        <Alignment value="Negative"/>
+        <InfoIcon value="Assets\Textures\btn-ability-protoss-gravitonbeam-color.dds"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="5"/>
+        <Modification MoveSpeedMultiplier="0.5"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="RepulseSelfBuff">
+        <Alignment value="Positive"/>
+        <InfoIcon value="Assets\Textures\btn-ability-protoss-gravitonbeam-color.dds"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="10"/>
+        <Modification MoveSpeedMultiplier="1.5" LifeArmorBonus="2"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="RepulseStun">
+        <Alignment value="Negative"/>
+        <InfoIcon value="Assets\Textures\btn-ability-protoss-gravitonbeam-color.dds"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="5"/>
+        <Modification>
+            <StateFlags index="Stun" value="1"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="SatchelChargeDetonation">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <DisplayDuration index="Self" value="1"/>
+        <DisplayDuration index="Ally" value="1"/>
+        <DisplayDuration index="Neutral" value="1"/>
+        <DisplayDuration index="Enemy" value="1"/>
+        <Duration value="5"/>
+        <ExpireEffect value="SatchelDetonationSet"/>
+        <DamageResponse Chance="1" Handled="SatchelDetonationSet" ModifyFraction="0">
+            <RequireEffectArray value="MD5MineDamage"/>
+            <RequireEffectArray value="ChainExplosiveDamage"/>
+            <RequireEffectArray value="SatchelChargeDamage"/>
+        </DamageResponse>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="SergeantAscalon" parent="PeacekeeperTemplate">
+        <Modification>
+            <VitalMaxArray index="Life" value="50"/>
+            <WeaponArray Link="PeacekeeperSubmachineGun"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="SergeantLefty" parent="PeacekeeperTemplate">
+        <Modification>
+            <VitalMaxArray index="Life" value="50"/>
+            <WeaponArray Link="PeacekeeperMarksmanRifle"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="ShieldBashLift">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Modification Height="0.5" MoveSpeedBonus="9">
+            <HeightTime index="Start" value="0.125"/>
+            <HeightTime index="Stop" value="0.125"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="SmokeGrenadeBlindHeroicLevel2">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="0.5"/>
+        <Modification SightMaximum="0" MoveSpeedMultiplier="0.8"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="SmokeGrenadeBlindLevel1">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="0.5"/>
+        <Modification SightMaximum="0" MoveSpeedMultiplier="0.8"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="SmokeGrenadeBlindHeroicLevel1">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="0.5"/>
+        <Modification SightMaximum="0" MoveSpeedMultiplier="0.9"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="SmokeGrenadeBlindLevel2">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="0.5"/>
+        <Modification SightMaximum="0" MoveSpeedMultiplier="0.6"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="SmokeGrenadeLevel2">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="50"/>
+        <Period value="0.25"/>
+        <PeriodicEffect value="SmokeGrenadeBlindSearchLevel2"/>
+        <FinalEffect value="Suicide"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="SmokeGrenadeLevel1">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="25"/>
+        <Period value="0.25"/>
+        <PeriodicEffect value="SmokeGrenadeBlindSearchLevel1"/>
+        <FinalEffect value="Suicide"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="SonicTrapHeroicSlowLevel1">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="2"/>
+        <Modification MoveSpeedMultiplier="0.9"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="SonicTrapHeroicSlowLevel2">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="2"/>
+        <Modification MoveSpeedMultiplier="0.8"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="SonicTrapMassiveSlowLevel1">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="2"/>
+        <Modification MoveSpeedMultiplier="0.8"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="SonicTrapMassiveSlowLevel2">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="2"/>
+        <Modification MoveSpeedMultiplier="0.6"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="SonicTrapStunLevel1">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="0.5"/>
+        <Modification>
+            <StateFlags index="Stun" value="1"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="SonicTrapStunLevel2">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="1"/>
+        <Modification>
+            <StateFlags index="Stun" value="1"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="SonicTrapSuicideLevel1">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <RemoveValidatorArray value="SonicTrapSuicideLevel1"/>
+        <FinalEffect value="Suicide"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="SonicTrapSuicideLevel2">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <RemoveValidatorArray value="SonicTrapSuicideLevel2"/>
+        <FinalEffect value="Suicide"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="Sprint">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="5"/>
+        <Modification MoveSpeedMultiplier="1.35"/>
+        <InfoIcon value="btn-custom-rocetboot-off.dds"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="StaffSergeantFenwick" parent="PeacekeeperTemplate">
+        <Modification>
+            <VitalMaxArray index="Life" value="100"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="StealthMatrixEscapeCloakLevel1">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="5"/>
+        <Modification>
+            <StateFlags index="Cloak" value="1"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="StealthMatrixEscapeCloakLevel2">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="10"/>
+        <Modification>
+            <StateFlags index="Cloak" value="1"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="StealthMatrixEscapeCloakLevel3">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="15"/>
+        <Modification>
+            <StateFlags index="Cloak" value="1"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="StealthMatrixLevel1">
+        <InfoFlags index="Hidden" value="1"/>
+        <BehaviorCategories index="Temporary" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <TechAliasArray value="_StealthMatrix"/>
+        <RemoveValidatorArray value="CasterHasEnergy"/>
+        <Modification MoveSpeedMultiplier="1.1">
+            <StateFlags index="Cloak" value="1"/>
+            <StateFlags index="Passive" value="1"/>
+            <VitalRegenArray index="Energy" value="-1"/>
+        </Modification>
+        <DamageResponse Chance="1" Handled="DeactivateStealthMatrix" Location="Attacker">
+            <ExcludeEffectArray value="ExecuteDamageLevel1"/>
+            <ExcludeEffectArray value="ExecuteDamageLevel2"/>
+            <ExcludeEffectArray value="Kill"/>
+            <ExcludeEffectArray value="CombatKnifeDamage"/>
+            <ExcludeEffectArray value="TomahawkDamage"/>
+            <ExcludeEffectArray value="CombatKnifeDoubleDamage"/>
+            <ExcludeEffectArray value="TomahawkDoubleDamage"/>
+        </DamageResponse>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="StealthMatrixLevel2">
+        <InfoFlags index="Hidden" value="1"/>
+        <BehaviorCategories index="Temporary" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <TechAliasArray value="_StealthMatrix"/>
+        <RemoveValidatorArray value="CasterHasEnergy"/>
+        <Modification MoveSpeedMultiplier="1.2">
+            <StateFlags index="Cloak" value="1"/>
+            <StateFlags index="Passive" value="1"/>
+            <StateFlags index="SuppressCollision" value="1"/>
+            <VitalRegenArray index="Energy" value="-0.6992"/>
+        </Modification>
+        <DamageResponse Chance="1" Handled="DeactivateStealthMatrix" Location="Attacker">
+            <ExcludeEffectArray value="ExecuteDamageLevel1"/>
+            <ExcludeEffectArray value="ExecuteDamageLevel2"/>
+            <ExcludeEffectArray value="Kill"/>
+            <ExcludeEffectArray value="CombatKnifeDamage"/>
+            <ExcludeEffectArray value="TomahawkDamage"/>
+            <ExcludeEffectArray value="CombatKnifeDoubleDamage"/>
+            <ExcludeEffectArray value="TomahawkDoubleDamage"/>
+        </DamageResponse>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="TauntedLevel2">
+        <Alignment value="Negative"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="6"/>
+        <Modification>
+            <DamageDealtFraction index="Spell" value="-0.2"/>
+            <DamageDealtFraction index="Melee" value="-0.2"/>
+            <DamageDealtFraction index="Ranged" value="-0.2"/>
+            <DamageDealtFraction index="Splash" value="-0.2"/>
+        </Modification>
+        <InfoIcon value="btn-custom-lightningshield.dds"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="TauntedLevel3">
+        <Alignment value="Negative"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="7"/>
+        <Modification>
+            <DamageDealtFraction index="Spell" value="-0.3"/>
+            <DamageDealtFraction index="Melee" value="-0.3"/>
+            <DamageDealtFraction index="Ranged" value="-0.3"/>
+            <DamageDealtFraction index="Splash" value="-0.3"/>
+        </Modification>
+        <InfoIcon value="btn-custom-lightningshield.dds"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="TauntedLevel1">
+        <Alignment value="Negative"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="5"/>
+        <Modification>
+            <DamageDealtFraction index="Spell" value="-0.1"/>
+            <DamageDealtFraction index="Melee" value="-0.1"/>
+            <DamageDealtFraction index="Ranged" value="-0.1"/>
+            <DamageDealtFraction index="Splash" value="-0.1"/>
+        </Modification>
+        <InfoIcon value="btn-custom-lightningshield.dds"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="VolatileInjectionLevel2">
+        <Alignment value="Negative"/>
+        <InfoIcon value="Assets\Textures\btn-ability-zerg-corrosiveblast.dds"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <PeriodCount value="0"/>
+        <PeriodicEffect value="IntolerableCrueltyDamage"/>
+        <Modification>
+            <DeathResponse Chance="1" Effect="VolatileInjectionSearchLevel2"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="VolatileInjectionLevel3">
+        <Alignment value="Negative"/>
+        <InfoIcon value="Assets\Textures\btn-ability-zerg-corrosiveblast.dds"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <PeriodCount value="0"/>
+        <PeriodicEffect value="IntolerableCrueltyDamage"/>
+        <Modification>
+            <DeathResponse Chance="1" Effect="VolatileInjectionSearchLevel3"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="VolatileInjectionLevel1">
+        <Alignment value="Negative"/>
+        <InfoIcon value="Assets\Textures\btn-ability-zerg-corrosiveblast.dds"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <PeriodCount value="0"/>
+        <PeriodicEffect value="IntolerableCrueltyDamage"/>
+        <Modification>
+            <DeathResponse Chance="1" Effect="VolatileInjectionSearchLevel1"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="WeaveAilmentHealLevel1">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="10"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="WeaveAilmentHealLevel2">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="7"/>
+    </CBehaviorBuff>
+</Catalog>

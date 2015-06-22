@@ -1,0 +1,628 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<Catalog>
+    <CUpgrade default="1" id="AmmoUpgradeTemplate">
+        <EffectArray Reference="Weapon,AssaultRifle,Cost.Charge.CountMax" Value="##AmmoChange##"/>
+        <EffectArray Reference="Weapon,AssaultRifle,Cost.Charge.CountStart" Value="##AmmoChange##"/>
+        <EffectArray Reference="Weapon,AssaultRifleBurstFire,Cost.Charge.CountMax" Value="##AmmoChange##"/>
+        <EffectArray Reference="Weapon,AssaultRifleBurstFire,Cost.Charge.CountStart" Value="##AmmoChange##"/>
+        <EffectArray Reference="Weapon,AutomaticShotgun,Cost.Charge.CountMax" Value="##AmmoChange##"/>
+        <EffectArray Reference="Weapon,AutomaticShotgun,Cost.Charge.CountStart" Value="##AmmoChange##"/>
+        <EffectArray Reference="Weapon,AutomaticShotgunSlugShot,Cost.Charge.CountMax" Value="##AmmoChange##"/>
+        <EffectArray Reference="Weapon,AutomaticShotgunSlugShot,Cost.Charge.CountStart" Value="##AmmoChange##"/>
+        <EffectArray Reference="Weapon,Chainsaw,Cost.Charge.CountMax" Value="##AmmoChange##"/>
+        <EffectArray Reference="Weapon,Chainsaw,Cost.Charge.CountStart" Value="##AmmoChange##"/>
+        <EffectArray Reference="Weapon,Flamethrower,Cost.Charge.CountMax" Value="##AmmoChange##"/>
+        <EffectArray Reference="Weapon,Flamethrower,Cost.Charge.CountStart" Value="##AmmoChange##"/>
+        <EffectArray Reference="Weapon,HeavyMachineGun,Cost.Charge.CountMax" Value="##AmmoChange##"/>
+        <EffectArray Reference="Weapon,HeavyMachineGun,Cost.Charge.CountStart" Value="##AmmoChange##"/>
+        <EffectArray Reference="Weapon,LaserRifle,Cost.Charge.CountMax" Value="##AmmoChange##"/>
+        <EffectArray Reference="Weapon,LaserRifle,Cost.Charge.CountStart" Value="##AmmoChange##"/>
+        <EffectArray Reference="Weapon,MarksmanRifle,Cost.Charge.CountMax" Value="##AmmoChange##"/>
+        <EffectArray Reference="Weapon,MarksmanRifle,Cost.Charge.CountStart" Value="##AmmoChange##"/>
+        <EffectArray Reference="Weapon,MediumMachineGun,Cost.Charge.CountMax" Value="##AmmoChange##"/>
+        <EffectArray Reference="Weapon,MediumMachineGun,Cost.Charge.CountStart" Value="##AmmoChange##"/>
+        <EffectArray Reference="Weapon,Pistol,Cost.Charge.CountMax" Value="##AmmoChange##"/>
+        <EffectArray Reference="Weapon,Pistol,Cost.Charge.CountStart" Value="##AmmoChange##"/>
+        <EffectArray Reference="Weapon,PlasmaCutter,Cost.Charge.CountMax" Value="##AmmoChange##"/>
+        <EffectArray Reference="Weapon,PlasmaCutter,Cost.Charge.CountStart" Value="##AmmoChange##"/>
+        <EffectArray Reference="Weapon,PumpShotgun,Cost.Charge.CountMax" Value="##AmmoChange##"/>
+        <EffectArray Reference="Weapon,PumpShotgun,Cost.Charge.CountStart" Value="##AmmoChange##"/>
+        <EffectArray Reference="Weapon,PumpShotgunSlugShot,Cost.Charge.CountMax" Value="##AmmoChange##"/>
+        <EffectArray Reference="Weapon,PumpShotgunSlugShot,Cost.Charge.CountStart" Value="##AmmoChange##"/>
+        <EffectArray Reference="Weapon,SubmachineGun,Cost.Charge.CountMax" Value="##AmmoChange##"/>
+        <EffectArray Reference="Weapon,SubmachineGun,Cost.Charge.CountStart" Value="##AmmoChange##"/>
+        <EffectArray Reference="Weapon,AntiMaterialRifle,Cost.Charge.CountMax" Value="##AmmoChange##"/>
+        <EffectArray Reference="Weapon,AntiMaterialRifle,Cost.Charge.CountStart" Value="##AmmoChange##"/>
+        <EffectArray Reference="Abil,Reload,Cost[0].Charge.CountMax" Value="##AmmoChange##"/>
+        <EffectArray Reference="Abil,Reload,Cost[0].Charge.CountStart" Value="##AmmoChange##"/>
+        <EffectArray Operation="Subtract" Reference="Abil,Reload,Cost[0].Charge.CountUse" Value="##AmmoChange##"/>
+    </CUpgrade>
+    <CUpgrade default="1" id="AmmoUpgradeMagazineTemplate" parent="AmmoUpgradeTemplate">
+        <EffectArray Reference="Abil,AutomaticReload,Cost[0].Charge.CountUse" Value="1"/>
+        <EffectArray Reference="Abil,ManualReload,Cost[0].Charge.CountUse" Value="1"/>
+        <EffectArray Reference="Abil,AutomaticReloadAssault,Cost[0].Charge.CountUse" Value="1"/>
+        <EffectArray Reference="Abil,ManualReloadAssault,Cost[0].Charge.CountUse" Value="1"/>
+    </CUpgrade>
+    <CUpgrade default="1" id="DefaultUpgradeOverride"/>
+    <CUpgrade default="1" id="ArmorVisualTemplate" parent="DefaultUpgradeOverride">
+        <?token id="ArmorIcon"?>
+        <?token id="ArmorName"?>
+        <?token id="ArmorTip"?>
+        <EffectArray Operation="Set" Reference="Actor,Rifleman,LifeArmorIcon" Value="##ArmorIcon##"/>
+        <EffectArray Operation="Set" Reference="Actor,Recon,LifeArmorIcon" Value="##ArmorIcon##"/>
+        <EffectArray Operation="Set" Reference="Actor,MedicNOTD,LifeArmorIcon" Value="##ArmorIcon##"/>
+        <EffectArray Operation="Set" Reference="Actor,Assault,LifeArmorIcon" Value="##ArmorIcon##"/>
+        <EffectArray Operation="Set" Reference="Actor,Demolitions,LifeArmorIcon" Value="##ArmorIcon##"/>
+        <EffectArray Operation="Set" Reference="Actor,Engineer,LifeArmorIcon" Value="##ArmorIcon##"/>
+        <EffectArray Operation="Set" Reference="Actor,Commando,LifeArmorIcon" Value="##ArmorIcon##"/>
+        <EffectArray Operation="Set" Reference="Actor,Flamethrower2,LifeArmorIcon" Value="##ArmorIcon##"/>
+        <EffectArray Operation="Set" Reference="Actor,ForwardObserver,LifeArmorIcon" Value="##ArmorIcon##"/>
+        <EffectArray Operation="Set" Reference="Actor,Technician,LifeArmorIcon" Value="##ArmorIcon##"/>
+        <EffectArray Operation="Set" Reference="Actor,Pathfinder,LifeArmorIcon" Value="##ArmorIcon##"/>
+        <EffectArray Operation="Set" Reference="Actor,PsiOps,LifeArmorIcon" Value="##ArmorIcon##"/>
+        <EffectArray Operation="Set" Reference="Actor,SquadLeader2,LifeArmorIcon" Value="##ArmorIcon##"/>
+        <EffectArray Operation="Set" Reference="Actor,Drone2,LifeArmorIcon" Value="##ArmorIcon##"/>
+        <EffectArray Operation="Set" Reference="Actor,Marksman,LifeArmorIcon" Value="##ArmorIcon##"/>
+        <EffectArray Operation="Set" Reference="Unit,Rifleman,LifeArmorName" Value="##ArmorName##"/>
+        <EffectArray Operation="Set" Reference="Unit,Medic2,LifeArmorName" Value="##ArmorName##"/>
+        <EffectArray Operation="Set" Reference="Unit,Assault,LifeArmorName" Value="##ArmorName##"/>
+        <EffectArray Operation="Set" Reference="Unit,Commando,LifeArmorName" Value="##ArmorName##"/>
+        <EffectArray Operation="Set" Reference="Unit,Demolitions,LifeArmorName" Value="##ArmorName##"/>
+        <EffectArray Operation="Set" Reference="Unit,Drone2,LifeArmorName" Value="##ArmorName##"/>
+        <EffectArray Operation="Set" Reference="Unit,Engineer,LifeArmorName" Value="##ArmorName##"/>
+        <EffectArray Operation="Set" Reference="Unit,Flamethrower2,LifeArmorName" Value="##ArmorName##"/>
+        <EffectArray Operation="Set" Reference="Unit,ForwardObserver,LifeArmorName" Value="##ArmorName##"/>
+        <EffectArray Operation="Set" Reference="Unit,Marksman,LifeArmorName" Value="##ArmorName##"/>
+        <EffectArray Operation="Set" Reference="Unit,Pathfinder,LifeArmorName" Value="##ArmorName##"/>
+        <EffectArray Operation="Set" Reference="Unit,PsiOps,LifeArmorName" Value="##ArmorName##"/>
+        <EffectArray Operation="Set" Reference="Unit,Recon,LifeArmorName" Value="##ArmorName##"/>
+        <EffectArray Operation="Set" Reference="Unit,SquadLeader,LifeArmorName" Value="##ArmorName##"/>
+        <EffectArray Operation="Set" Reference="Unit,Technician,LifeArmorName" Value="##ArmorName##"/>
+        <EffectArray Operation="Set" Reference="Unit,Rifleman,LifeArmorTip" Value="##ArmorTip##"/>
+        <EffectArray Operation="Set" Reference="Unit,Medic2,LifeArmorTip" Value="##ArmorTip##"/>
+        <EffectArray Operation="Set" Reference="Unit,Assault,LifeArmorTip" Value="##ArmorTip##"/>
+        <EffectArray Operation="Set" Reference="Unit,Commando,LifeArmorTip" Value="##ArmorTip##"/>
+        <EffectArray Operation="Set" Reference="Unit,Demolitions,LifeArmorTip" Value="##ArmorTip##"/>
+        <EffectArray Operation="Set" Reference="Unit,Drone2,LifeArmorTip" Value="##ArmorTip##"/>
+        <EffectArray Operation="Set" Reference="Unit,Engineer,LifeArmorTip" Value="##ArmorTip##"/>
+        <EffectArray Operation="Set" Reference="Unit,Flamethrower2,LifeArmorTip" Value="##ArmorTip##"/>
+        <EffectArray Operation="Set" Reference="Unit,ForwardObserver,LifeArmorTip" Value="##ArmorTip##"/>
+        <EffectArray Operation="Set" Reference="Unit,Marksman,LifeArmorTip" Value="##ArmorTip##"/>
+        <EffectArray Operation="Set" Reference="Unit,Pathfinder,LifeArmorTip" Value="##ArmorTip##"/>
+        <EffectArray Operation="Set" Reference="Unit,PsiOps,LifeArmorTip" Value="##ArmorTip##"/>
+        <EffectArray Operation="Set" Reference="Unit,Recon,LifeArmorTip" Value="##ArmorTip##"/>
+        <EffectArray Operation="Set" Reference="Unit,SquadLeader,LifeArmorTip" Value="##ArmorTip##"/>
+        <EffectArray Operation="Set" Reference="Unit,Technician,LifeArmorTip" Value="##ArmorTip##"/>
+        <EditorCategories value="UpgradeType:ArmorBonus"/>
+    </CUpgrade>
+    <CUpgrade id="ArmoredProtectiveInsert" parent="ArmorVisualTemplate" ArmorIcon="Items\btn-item-armour-ArmoredProtectiveInsert.dds" ArmorName="Button/Name/ArmoredProtectiveInsert" ArmorTip="Button/Tooltip/ArmoredProtectiveInsert">
+        <EditorCategories value=""/>
+    </CUpgrade>
+    <CUpgrade id="AssaultAmmoCapacityModification" parent="AmmoUpgradeTemplate" AmmoChange="10">
+        <MaxLevel value="2"/>
+    </CUpgrade>
+    <CUpgrade id="AttackSpeed" parent="DefaultUpgradeOverride">
+        <EffectArray Operation="Multiply" Reference="Weapon,AntiMaterialRifle,Period" Value="0.850000"/>
+        <EffectArray Operation="Multiply" Reference="Weapon,AssaultRifle,Period" Value="0.850000"/>
+        <EffectArray Operation="Multiply" Reference="Weapon,AssaultRifleBurstFire,Period" Value="0.850000"/>
+        <EffectArray Operation="Multiply" Reference="Weapon,GrenadeLauncher,Period" Value="0.850000"/>
+        <EffectArray Operation="Multiply" Reference="Weapon,Pistol,Period" Value="0.850000"/>
+        <EffectArray Operation="Multiply" Reference="Weapon,MediumMachineGun,Period" Value="0.850000"/>
+        <EffectArray Operation="Multiply" Reference="Weapon,MarksmanRifle,Period" Value="0.850000"/>
+        <EffectArray Operation="Multiply" Reference="Weapon,SubmachineGun,Period" Value="0.850000"/>
+        <EffectArray Operation="Multiply" Reference="Weapon,LaserRifle,Period" Value="0.850000"/>
+        <EffectArray Operation="Multiply" Reference="Weapon,HeavyMachineGun,Period" Value="0.850000"/>
+        <EffectArray Operation="Multiply" Reference="Weapon,AutomaticShotgun,Period" Value="0.850000"/>
+        <EffectArray Operation="Multiply" Reference="Weapon,AutomaticShotgunSlugShot,Period" Value="0.850000"/>
+        <EffectArray Operation="Multiply" Reference="Weapon,Chainsaw,Period" Value="0.850000"/>
+        <EffectArray Operation="Multiply" Reference="Weapon,Crowbar,Period" Value="0.850000"/>
+        <EffectArray Operation="Multiply" Reference="Weapon,Flamethrower,Period" Value="0.850000"/>
+        <EffectArray Operation="Multiply" Reference="Weapon,PlasmaCutter,Period" Value="0.850000"/>
+        <EffectArray Operation="Multiply" Reference="Weapon,PumpShotgun,Period" Value="0.850000"/>
+        <EffectArray Operation="Multiply" Reference="Weapon,PumpShotgunSlugShot,Period" Value="0.850000"/>
+        <EditorCategories value="UpgradeType:Character Modification"/>
+    </CUpgrade>
+    <!--Energy rate to be decided-->
+    <CUpgrade id="BlackOps" parent="DefaultUpgradeOverride">
+        <LeaderAlias value="UGCMarines"/>
+        <EffectArray Reference="Unit,Assault,EnergyRegenRate" Value="3.000000"/>
+        <EffectArray Reference="Unit,Commando,EnergyRegenRate" Value="3"/>
+        <EffectArray Reference="Unit,Demolitions,EnergyRegenRate" Value="3"/>
+        <EffectArray Reference="Unit,Drone2,EnergyRegenRate" Value="3"/>
+        <EffectArray Reference="Unit,Engineer,EnergyRegenRate" Value="3"/>
+        <EffectArray Reference="Unit,Flamethrower2,EnergyRegenRate" Value="3"/>
+        <EffectArray Reference="Unit,ForwardObserver,EnergyRegenRate" Value="3"/>
+        <EffectArray Reference="Unit,Marksman,EnergyRegenRate" Value="3"/>
+        <EffectArray Reference="Unit,Medic2,EnergyRegenRate" Value="3"/>
+        <EffectArray Reference="Unit,Pathfinder,EnergyRegenRate" Value="3"/>
+        <EffectArray Reference="Unit,PsiOps,EnergyRegenRate" Value="3"/>
+        <EffectArray Reference="Unit,Recon,EnergyRegenRate" Value="3"/>
+        <EffectArray Reference="Unit,Rifleman,EnergyRegenRate" Value="3"/>
+        <EffectArray Reference="Unit,SquadLeader,EnergyRegenRate" Value="3"/>
+        <EffectArray Reference="Unit,Technician,EnergyRegenRate" Value="3"/>
+        <EditorCategories value="UpgradeType:Service Branch"/>
+    </CUpgrade>
+    <CUpgrade id="BodyArmor" parent="DefaultUpgradeOverride">
+        <EffectArray Reference="Unit,Assault,LifeArmor" Value="1"/>
+        <EffectArray Reference="Unit,Commando,LifeArmor" Value="1"/>
+        <EffectArray Reference="Unit,Demolitions,LifeArmor" Value="1"/>
+        <EffectArray Reference="Unit,Drone2,LifeArmor" Value="1"/>
+        <EffectArray Reference="Unit,Engineer,LifeArmor" Value="1"/>
+        <EffectArray Reference="Unit,Flamethrower2,LifeArmor" Value="1"/>
+        <EffectArray Reference="Unit,ForwardObserver,LifeArmor" Value="1"/>
+        <EffectArray Reference="Unit,Marksman,LifeArmor" Value="1"/>
+        <EffectArray Reference="Unit,Medic2,LifeArmor" Value="1"/>
+        <EffectArray Reference="Unit,Pathfinder,LifeArmor" Value="1"/>
+        <EffectArray Reference="Unit,PsiOps,LifeArmor" Value="1"/>
+        <EffectArray Reference="Unit,Recon,LifeArmor" Value="1"/>
+        <EffectArray Reference="Unit,Rifleman,LifeArmor" Value="1"/>
+        <EffectArray Reference="Unit,SquadLeader,LifeArmor" Value="1"/>
+        <EffectArray Reference="Unit,Technician,LifeArmor" Value="1"/>
+        <EditorCategories value="UpgradeType:Character Modification"/>
+    </CUpgrade>
+    <CUpgrade id="CollateralDamageDummy" parent="DefaultUpgradeOverride">
+        <MaxLevel value="3"/>
+    </CUpgrade>
+    <CUpgrade id="CombatKnifeRankUpgrade" parent="DefaultUpgradeOverride">
+        <EffectArray Reference="Effect,CombatKnifeDamage,Amount" Value="0.5"/>
+        <EffectArray Reference="Effect,CombatKnifeDoubleDamage,Chance" Value="0.025"/>
+        <EffectArray Reference="Effect,CombatKnifeDoubleDamage,Amount" Value="0.5"/>
+        <EditorCategories value="UpgradeType:AttackBonus"/>
+        <MaxLevel value="15"/>
+    </CUpgrade>
+    <CUpgrade id="CombatKnifeSidearm">
+        <Alert value=""/>
+        <EffectArray Operation="Set" Reference="Button,Sidearm,Name" Value="Button/Name/CombatKnife"/>
+        <EffectArray Operation="Set" Reference="Button,Sidearm,Tooltip" Value="Button/Tooltip/CombatKnife"/>
+        <EffectArray Operation="Set" Reference="Button,Sidearm,Icon" Value="Weapons\btn-Baton.dds"/>
+        <EffectArray Operation="Set" Reference="Abil,SidearmMelee,Cost[0].Cooldown.TimeUse" Value="0.500000"/>
+    </CUpgrade>
+    <CUpgrade id="CombatMobilityAugmentJump" parent="DefaultUpgradeOverride">
+        <EffectArray Reference="Abil,HeavyJump,Range[0]" Value="1"/>
+        <EffectArray Reference="Abil,LightJump,Range[0]" Value="1"/>
+        <EffectArray Reference="Abil,MediumJump,Range[0]" Value="1"/>
+        <EffectArray Reference="Abil,PathfinderJump,Range[0]" Value="1"/>
+    </CUpgrade>
+    <CUpgrade id="CripplingFire" parent="DefaultUpgradeOverride">
+        <EffectArray Operation="Set" Reference="Behavior,FocusFire,DamageResponse.Chance" Value="1"/>
+        <EffectArray Operation="Subtract" Reference="Behavior,CripplingFire,Modification.AttackSpeedMultiplier" Value="0.05"/>
+        <EffectArray Operation="Subtract" Reference="Behavior,CripplingFire,Modification.MoveSpeedMultiplier" Value="0.05"/>
+        <EffectArray Operation="Set" Reference="Button,FocusFire,Tooltip" Value="Button/Tooltip/FocusFireCripplingFire"/>
+        <MaxLevel value="3"/>
+    </CUpgrade>
+    <CUpgrade id="CripplingFireandFireUpButton" parent="DefaultUpgradeOverride">
+        <EffectArray Operation="Set" Reference="Button,FocusFire,Tooltip" Value="Button/Tooltip/FocusFireCripplingFiredUp"/>
+        <MaxLevel value="6"/>
+    </CUpgrade>
+    <CUpgrade id="CriticalStrikeRifleman" parent="DefaultUpgradeOverride">
+        <EffectArray Reference="Effect,PrecisionShotBonusCriticalDamageLevel1,Chance" Value="0.1"/>
+        <EffectArray Reference="Effect,PrecisionShotBonusCriticalDamageLevel2,Chance" Value="0.1"/>
+        <EffectArray Reference="Effect,PrecisionShotBonusCriticalDamageLevel3,Chance" Value="0.1"/>
+        <EffectArray Reference="Effect,PrecisionShotNormalCriticalDamageLevel1,Chance" Value="0.1"/>
+        <EffectArray Reference="Effect,PrecisionShotNormalCriticalDamageLevel2,Chance" Value="0.1"/>
+        <EffectArray Reference="Effect,PrecisionShotNormalCriticalDamageLevel3,Chance" Value="0.1"/>
+        <MaxLevel value="3"/>
+    </CUpgrade>
+    <CUpgrade id="EnergyRegeneration" parent="DefaultUpgradeOverride">
+        <EditorCategories value="UpgradeType:Character Modification"/>
+        <EffectArray Reference="Unit,Assault,EnergyRegenRate" Value="0.2"/>
+        <EffectArray Reference="Unit,Commando,EnergyRegenRate" Value="0.2"/>
+        <EffectArray Reference="Unit,Demolitions,EnergyRegenRate" Value="0.2"/>
+        <EffectArray Reference="Unit,Drone2,EnergyRegenRate" Value="0.2"/>
+        <EffectArray Reference="Unit,Engineer,EnergyRegenRate" Value="0.2"/>
+        <EffectArray Reference="Unit,Flamethrower2,EnergyRegenRate" Value="0.2"/>
+        <EffectArray Reference="Unit,ForwardObserver,EnergyRegenRate" Value="0.2"/>
+        <EffectArray Reference="Unit,Marksman,EnergyRegenRate" Value="0.2"/>
+        <EffectArray Reference="Unit,Medic2,EnergyRegenRate" Value="0.2"/>
+        <EffectArray Reference="Unit,Pathfinder,EnergyRegenRate" Value="0.2"/>
+        <EffectArray Reference="Unit,PsiOps,EnergyRegenRate" Value="0.2"/>
+        <EffectArray Reference="Unit,Recon,EnergyRegenRate" Value="0.2"/>
+        <EffectArray Reference="Unit,Rifleman,EnergyRegenRate" Value="0.2"/>
+        <EffectArray Reference="Unit,SquadLeader,EnergyRegenRate" Value="0.2"/>
+        <EffectArray Reference="Unit,Technician,EnergyRegenRate" Value="0.2"/>
+    </CUpgrade>
+    <CUpgrade id="EnhancedProtectiveInsert" parent="ArmorVisualTemplate" ArmorIcon="Items\btn-item-armour-EnhancedProtectiveInsert.dds" ArmorName="Button/Name/EnhancedProtectiveInsert" ArmorTip="Button/Tooltip/EnhancedProtectiveInsert">
+        <EditorCategories value=""/>
+    </CUpgrade>
+    <CUpgrade id="FireUp">
+        <Flags index="UpgradeCheat" value="0"/>
+        <Alert value=""/>
+        <EffectArray Reference="Behavior,FocusFire,Modification.AttackSpeedMultiplier" Value="0.15"/>
+        <EffectArray Reference="Behavior,FocusFire,Modification.WeaponRange" Value="1"/>
+        <EffectArray Operation="Set" Reference="Button,FocusFire,Tooltip" Value="Button/Tooltip/FocusFireFireUp"/>
+        <MaxLevel value="3"/>
+    </CUpgrade>
+    <CUpgrade id="GeminiProtocol"/>
+    <CUpgrade id="HALSoldiers" parent="DefaultUpgradeOverride">
+        <LeaderAlias value="UGCMarines"/>
+        <EditorCategories value="UpgradeType:Service Branch"/>
+    </CUpgrade>
+    <CUpgrade id="HeavyProtectiveInsert" parent="ArmorVisualTemplate" ArmorIcon="Items\btn-item-armour-HeavyProtectiveInsert.dds" ArmorName="Button/Name/HeavyProtectiveInsert" ArmorTip="Button/Tooltip/EnhancedProtectiveInsert">
+        <EditorCategories value=""/>
+    </CUpgrade>
+    <!--Currently, duration override in behaviors can not be upgrades. May need to use triggers for this with catalog writes, however, this upgrade will still be used to start that trigger.-->
+    <CUpgrade id="IntegratedSuppressor" parent="DefaultUpgradeOverride">
+        <EditorCategories value="UpgradeType:Character Modification"/>
+    </CUpgrade>
+    <CUpgrade id="MD5MineLevelDummy" parent="DefaultUpgradeOverride">
+        <MaxLevel value="3"/>
+    </CUpgrade>
+    <CUpgrade id="MedicalExpertiseLevel2" parent="DefaultUpgradeOverride">
+        <Flags index="UpgradeCheat" value="1"/>
+        <EffectArray Operation="Divide" Reference="Abil,Antivenom,Cost[0].Vital[Energy]" Value="2"/>
+    </CUpgrade>
+    <CUpgrade id="HighCapacityAmmo" parent="AmmoUpgradeMagazineTemplate" AmmoChange="30"/>
+    <CUpgrade id="HighCapacityAmmoAssault" parent="AmmoUpgradeMagazineTemplate" AmmoChange="40">
+        <MaxLevel value="3"/>
+    </CUpgrade>
+    <CUpgrade id="HighCapacityAmmoAssaultwithModification" parent="AmmoUpgradeMagazineTemplate" AmmoChange="50">
+        <MaxLevel value="3"/>
+    </CUpgrade>
+    <CUpgrade id="IntolerableCruelty" parent="DefaultUpgradeOverride">
+        <Flags index="UpgradeCheat" value="1"/>
+        <EffectArray Operation="Set" Reference="Behavior,VolatileInjectionLevel1,PeriodCount" Value="30"/>
+        <EffectArray Operation="Set" Reference="Behavior,VolatileInjectionLevel1,Period" Value="1.000000"/>
+        <EffectArray Reference="Effect,IntolerableCrueltyDamage,Amount" Value="3"/>
+        <EffectArray Operation="Set" Reference="Behavior,VolatileInjectionLevel2,Period" Value="1.000000"/>
+        <EffectArray Operation="Set" Reference="Behavior,VolatileInjectionLevel3,Period" Value="1.000000"/>
+        <EffectArray Operation="Set" Reference="Behavior,VolatileInjectionLevel2,PeriodCount" Value="30"/>
+        <EffectArray Operation="Set" Reference="Behavior,VolatileInjectionLevel3,PeriodCount" Value="30"/>
+        <EffectArray Reference="Effect,VolatileInjectionSearchLevel1,AreaArray[0].Radius" Value="1"/>
+        <EffectArray Reference="Effect,VolatileInjectionSearchLevel2,AreaArray[0].Radius" Value="1"/>
+        <EffectArray Reference="Effect,VolatileInjectionSearchLevel3,AreaArray[0].Radius" Value="1"/>
+        <MaxLevel value="2"/>
+    </CUpgrade>
+    <CUpgrade id="MedicalExpertiseLevel1" parent="DefaultUpgradeOverride">
+        <Flags index="UpgradeCheat" value="1"/>
+        <EffectArray Operation="Set" Reference="Behavior,NanoHasteLevel1,Period" Value="20.000000"/>
+        <EffectArray Operation="Set" Reference="Behavior,NanoHasteLevel2,Period" Value="20.000000"/>
+        <EffectArray Operation="Set" Reference="Behavior,NanoHasteLevel3,Period" Value="20.000000"/>
+        <EffectArray Operation="Set" Reference="Effect,NanoHasteFractureRepair,PeriodCount" Value="2"/>
+    </CUpgrade>
+    <CUpgrade id="Mercernary" parent="DefaultUpgradeOverride">
+        <LeaderAlias value="UGCMarines"/>
+        <EffectArray Operation="Multiply" Reference="Effect,AssaultRifleBurstFireDamage,Amount" Value="1.05"/>
+        <EffectArray Operation="Multiply" Reference="Effect,AssaultRifleDamage,Amount" Value="1.05"/>
+        <EffectArray Operation="Multiply" Reference="Effect,AutomaticShotgunSlugShotDamage,Amount" Value="1.05"/>
+        <EffectArray Operation="Multiply" Reference="Effect,ChainsawDamage,Amount" Value="1.05"/>
+        <EffectArray Operation="Multiply" Reference="Effect,FlamethrowerDamage,Amount" Value="1.05"/>
+        <EffectArray Operation="Multiply" Reference="Effect,HeavyMachineGunDamage,Amount" Value="1.05"/>
+        <EffectArray Operation="Multiply" Reference="Effect,LaserRifleDamage,Amount" Value="1.05"/>
+        <EffectArray Operation="Multiply" Reference="Effect,MarksmanRifleDamage,Amount" Value="1.05"/>
+        <EffectArray Operation="Multiply" Reference="Effect,MediumMachineGunDamage,Amount" Value="1.05"/>
+        <EffectArray Operation="Multiply" Reference="Effect,PistolDamage,Amount" Value="1.05"/>
+        <EffectArray Operation="Multiply" Reference="Effect,PlasmaCutterDamage,Amount" Value="1.05"/>
+        <EffectArray Operation="Multiply" Reference="Effect,PumpShotgunDamage,Amount" Value="1.05"/>
+        <EffectArray Operation="Multiply" Reference="Effect,AutomaticShotgunDamage,Amount" Value="1.05"/>
+        <EffectArray Operation="Multiply" Reference="Effect,SubmachineGunDamage,Amount" Value="1.05"/>
+        <EffectArray Operation="Multiply" Reference="Effect,AntiMaterialRifleDamage,Amount" Value="1.05"/>
+        <EditorCategories value="UpgradeType:Service Branch"/>
+    </CUpgrade>
+    <CUpgrade id="MovementSpeed" parent="DefaultUpgradeOverride">
+        <EffectArray Operation="Multiply" Reference="Unit,Assault,Speed" Value="1.05"/>
+        <EffectArray Operation="Multiply" Reference="Unit,Commando,Speed" Value="1.05"/>
+        <EffectArray Operation="Multiply" Reference="Unit,Demolitions,Speed" Value="1.05"/>
+        <EffectArray Operation="Multiply" Reference="Unit,Drone2,Speed" Value="1.05"/>
+        <EffectArray Operation="Multiply" Reference="Unit,Engineer,Speed" Value="1.05"/>
+        <EffectArray Operation="Multiply" Reference="Unit,Flamethrower2,Speed" Value="1.05"/>
+        <EffectArray Operation="Multiply" Reference="Unit,ForwardObserver,Speed" Value="1.05"/>
+        <EffectArray Operation="Multiply" Reference="Unit,Marksman,Speed" Value="1.05"/>
+        <EffectArray Operation="Multiply" Reference="Unit,Medic2,Speed" Value="1.05"/>
+        <EffectArray Operation="Multiply" Reference="Unit,Pathfinder,Speed" Value="1.05"/>
+        <EffectArray Operation="Multiply" Reference="Unit,PsiOps,Speed" Value="1.05"/>
+        <EffectArray Operation="Multiply" Reference="Unit,Recon,Speed" Value="1.05"/>
+        <EffectArray Operation="Multiply" Reference="Unit,Rifleman,Speed" Value="1.05"/>
+        <EffectArray Operation="Multiply" Reference="Unit,SquadLeader,Speed" Value="1.05"/>
+        <EffectArray Operation="Multiply" Reference="Unit,Technician,Speed" Value="1.05"/>
+        <EditorCategories value="UpgradeType:Character Modification"/>
+    </CUpgrade>
+    <CUpgrade id="NightVision" parent="DefaultUpgradeOverride">
+        <EditorCategories value="UpgradeType:Character Modification"/>
+        <EffectArray Operation="Set" Reference="Abil,Flashlight,BehaviorArray[0]" Value="NightVisionModule"/>
+        <EffectArray Operation="Set" Reference="Button,FlashlightEnable,Name" Value="Button/Name/NightVisionModule"/>
+        <EffectArray Operation="Set" Reference="Button,FlashlightEnable,Icon" Value="Assets\Textures\btn-research-terran-microfiltering.dds"/>
+        <EffectArray Operation="Set" Reference="Button,FlashlightEnable,Tooltip" Value="Button/Tooltip/NightVisionModule"/>
+        <EffectArray Operation="Set" Reference="Button,FlashlightDisable,Name" Value="Button/Name/NightVisionModule"/>
+        <EffectArray Operation="Set" Reference="Button,FlashlightDisable,Tooltip" Value="Button/Tooltip/NightVisionModule"/>
+        <EffectArray Operation="Set" Reference="Button,FlashlightDisable,Icon" Value="Assets\Textures\btn-research-terran-microfiltering.dds"/>
+    </CUpgrade>
+    <CUpgrade id="OccularImplants" parent="DefaultUpgradeOverride">
+        <AffectedUnitArray value="Rifleman"/>
+        <EffectArray Reference="Unit,Assault,Sight" Value="2"/>
+        <EffectArray Reference="Unit,Commando,Sight" Value="2"/>
+        <EffectArray Reference="Unit,Demolitions,Sight" Value="2"/>
+        <EffectArray Reference="Unit,Drone2,Sight" Value="2"/>
+        <EffectArray Reference="Unit,Engineer,Sight" Value="2"/>
+        <EffectArray Reference="Unit,Flamethrower2,Sight" Value="2"/>
+        <EffectArray Reference="Unit,ForwardObserver,Sight" Value="2"/>
+        <EffectArray Reference="Unit,Marksman,Sight" Value="2"/>
+        <EffectArray Reference="Unit,Medic2,Sight" Value="2"/>
+        <EffectArray Reference="Unit,Pathfinder,Sight" Value="2"/>
+        <EffectArray Reference="Unit,PsiOps,Sight" Value="2"/>
+        <EffectArray Reference="Unit,Recon,Sight" Value="2"/>
+        <EffectArray Reference="Unit,Rifleman,Sight" Value="2"/>
+        <EffectArray Reference="Unit,SquadLeader,Sight" Value="2"/>
+        <EffectArray Reference="Unit,Technician,Sight" Value="2"/>
+        <EffectArray Reference="Weapon,AntiMaterialRifle,Range" Value="2"/>
+        <EffectArray Reference="Weapon,AssaultRifle,Range" Value="2"/>
+        <EffectArray Reference="Weapon,AssaultRifleBurstFire,Range" Value="2"/>
+        <EffectArray Reference="Weapon,GrenadeLauncher,Range" Value="2"/>
+        <EffectArray Reference="Weapon,Pistol,Range" Value="2"/>
+        <EffectArray Reference="Weapon,MediumMachineGun,Range" Value="2"/>
+        <EffectArray Reference="Weapon,MarksmanRifle,Range" Value="2"/>
+        <EffectArray Reference="Weapon,SubmachineGun,Range" Value="2"/>
+        <EffectArray Reference="Weapon,LaserRifle,Range" Value="2"/>
+        <EffectArray Reference="Weapon,HeavyMachineGun,Range" Value="2"/>
+        <EffectArray Operation="Multiply" Reference="Effect,AssaultRifleBurstFireDamage,Amount" Value="1.10"/>
+        <EffectArray Operation="Multiply" Reference="Effect,AssaultRifleDamage,Amount" Value="1.10"/>
+        <EffectArray Operation="Multiply" Reference="Effect,AutomaticShotgunSlugShotDamage,Amount" Value="1.10"/>
+        <EffectArray Operation="Multiply" Reference="Effect,ChainsawDamage,Amount" Value="1.10"/>
+        <EffectArray Operation="Multiply" Reference="Effect,FlamethrowerDamage,Amount" Value="1.10"/>
+        <EffectArray Operation="Multiply" Reference="Effect,HeavyMachineGunDamage,Amount" Value="1.10"/>
+        <EffectArray Operation="Multiply" Reference="Effect,LaserRifleDamage,Amount" Value="1.10"/>
+        <EffectArray Operation="Multiply" Reference="Effect,MarksmanRifleDamage,Amount" Value="1.10"/>
+        <EffectArray Operation="Multiply" Reference="Effect,MediumMachineGunDamage,Amount" Value="1.10"/>
+        <EffectArray Operation="Multiply" Reference="Effect,PistolDamage,Amount" Value="1.10"/>
+        <EffectArray Operation="Multiply" Reference="Effect,PlasmaCutterDamage,Amount" Value="1.10"/>
+        <EffectArray Operation="Multiply" Reference="Effect,PumpShotgunDamage,Amount" Value="1.10"/>
+        <EffectArray Operation="Multiply" Reference="Effect,AutomaticShotgunDamage,Amount" Value="1.10"/>
+        <EffectArray Operation="Multiply" Reference="Effect,SubmachineGunDamage,Amount" Value="1.10"/>
+        <EffectArray Operation="Multiply" Reference="Effect,AntiMaterialRifleDamage,Amount" Value="1.10"/>
+        <EditorCategories value="UpgradeType:Character Modification"/>
+    </CUpgrade>
+    <CUpgrade id="Peacekeeper" parent="DefaultUpgradeOverride">
+        <LeaderAlias value="UGCMarines"/>
+        <EffectArray Reference="Unit,Assault,LifeArmor" Value="1"/>
+        <EffectArray Reference="Unit,Commando,LifeArmor" Value="1"/>
+        <EffectArray Reference="Unit,Demolitions,LifeArmor" Value="1"/>
+        <EffectArray Reference="Unit,Drone2,LifeArmor" Value="1"/>
+        <EffectArray Reference="Unit,Engineer,LifeArmor" Value="1"/>
+        <EffectArray Reference="Unit,Flamethrower2,LifeArmor" Value="1"/>
+        <EffectArray Reference="Unit,ForwardObserver,LifeArmor" Value="1"/>
+        <EffectArray Reference="Unit,Marksman,LifeArmor" Value="1"/>
+        <EffectArray Reference="Unit,Medic2,LifeArmor" Value="1"/>
+        <EffectArray Reference="Unit,Pathfinder,LifeArmor" Value="1"/>
+        <EffectArray Reference="Unit,PsiOps,LifeArmor" Value="1"/>
+        <EffectArray Reference="Unit,Recon,LifeArmor" Value="1"/>
+        <EffectArray Reference="Unit,Rifleman,LifeArmor" Value="1"/>
+        <EffectArray Reference="Unit,SquadLeader,LifeArmor" Value="1"/>
+        <EffectArray Reference="Unit,Technician,LifeArmor" Value="1"/>
+        <EditorCategories value="UpgradeType:Service Branch"/>
+    </CUpgrade>
+    <CUpgrade id="ReactiveProtectiveInsert" parent="ArmorVisualTemplate" ArmorIcon="Items\btn-item-armour-ReactiveProtectiveInsert.dds" ArmorName="Button/Name/ReactiveProtectiveInsert" ArmorTip="Button/Tooltip/ReactiveProtectiveInsert">
+        <EditorCategories value=""/>
+    </CUpgrade>
+    <!--Currently, duration override in behaviors can not be upgrades. May need to use triggers for this with catalog writes, however, this upgrade will still be used to start that trigger.-->
+    <CUpgrade id="ReloadSpeed" parent="DefaultUpgradeOverride">
+        <EditorCategories value="UpgradeType:Character Modification"/>
+    </CUpgrade>
+    <CUpgrade id="ShieldAugmentationInsert" parent="ArmorVisualTemplate" ArmorIcon="Items\btn-item-armour-ShieldAugmentationInsert.dds" ArmorName="Button/Name/ShieldAugmentationInsert" ArmorTip="Button/Tooltip/ShieldAugmentationInsert">
+        <EditorCategories value=""/>
+    </CUpgrade>
+    <CUpgrade id="SidearmDamage" parent="DefaultUpgradeOverride">
+        <EditorCategories value="UpgradeType:Character Modification"/>
+    </CUpgrade>
+    <CUpgrade id="SightRange" parent="DefaultUpgradeOverride">
+        <EffectArray Reference="Unit,Assault,Sight" Value="2"/>
+        <EffectArray Reference="Unit,Commando,Sight" Value="2"/>
+        <EffectArray Reference="Unit,Demolitions,Sight" Value="2"/>
+        <EffectArray Reference="Unit,Drone2,Sight" Value="2"/>
+        <EffectArray Reference="Unit,Engineer,Sight" Value="2"/>
+        <EffectArray Reference="Unit,Flamethrower2,Sight" Value="2"/>
+        <EffectArray Reference="Unit,ForwardObserver,Sight" Value="2"/>
+        <EffectArray Reference="Unit,Marksman,Sight" Value="2"/>
+        <EffectArray Reference="Unit,Medic2,Sight" Value="2"/>
+        <EffectArray Reference="Unit,Pathfinder,Sight" Value="2"/>
+        <EffectArray Reference="Unit,PsiOps,Sight" Value="2"/>
+        <EffectArray Reference="Unit,Recon,Sight" Value="2"/>
+        <EffectArray Reference="Unit,Rifleman,Sight" Value="2"/>
+        <EffectArray Reference="Unit,SquadLeader,Sight" Value="2"/>
+        <EffectArray Reference="Unit,Technician,Sight" Value="2"/>
+        <EditorCategories value="UpgradeType:Character Modification"/>
+    </CUpgrade>
+    <CUpgrade id="SplashRadius" parent="DefaultUpgradeOverride">
+        <EditorCategories value="UpgradeType:Character Modification"/>
+        <EffectArray Operation="Multiply" Reference="Effect,AssaultRifleBurstFireDamage,AreaArray[0].Radius" Value="1.25"/>
+        <EffectArray Operation="Multiply" Reference="Effect,AssaultRifleDamage,AreaArray[0].Radius" Value="1.25"/>
+        <EffectArray Operation="Multiply" Reference="Effect,AutomaticShotgunSlugShotDamage,AreaArray[0].Radius" Value="1.25"/>
+        <EffectArray Operation="Multiply" Reference="Effect,ChainsawDamage,AreaArray[0].Radius" Value="1.25"/>
+        <EffectArray Operation="Multiply" Reference="Effect,FlamethrowerDamage,AreaArray[0].Radius" Value="1.25"/>
+        <EffectArray Operation="Multiply" Reference="Effect,HeavyMachineGunDamage,AreaArray[0].Radius" Value="1.25"/>
+        <EffectArray Operation="Multiply" Reference="Effect,LaserRifleDamage,AreaArray[0].Radius" Value="1.25"/>
+        <EffectArray Operation="Multiply" Reference="Effect,MediumMachineGunDamage,AreaArray[0].Radius" Value="1.25"/>
+        <EffectArray Operation="Multiply" Reference="Effect,PlasmaCutterDamage,AreaArray[0].Radius" Value="1.25"/>
+        <EffectArray Operation="Multiply" Reference="Effect,PumpShotgunDamage,AreaArray[0].Radius" Value="1.25"/>
+        <EffectArray Operation="Multiply" Reference="Effect,AutomaticShotgunDamage,AreaArray[0].Radius" Value="1.25"/>
+        <EffectArray Operation="Multiply" Reference="Effect,SubmachineGunDamage,AreaArray[0].Radius" Value="1.25"/>
+    </CUpgrade>
+    <CUpgrade id="StandardArmor" parent="ArmorVisualTemplate" ArmorIcon="Assets\Textures\btn-upgrade-terran-infantryarmorlevel0.dds" ArmorName="Unit/LifeArmor/UGC Marine Forces" ArmorTip="Unit/LifeArmorTooltip/UGCMarines">
+        <EditorCategories value=""/>
+    </CUpgrade>
+    <CUpgrade id="StockpileLevel1" parent="DefaultUpgradeOverride">
+        <EffectArray Operation="Set" Reference="Abil,MD5Mine,Cost[0].Charge.CountMax" Value="3"/>
+        <EffectArray Operation="Set" Reference="Abil,MD5Mine,Cost[0].Charge.CountUse" Value="1"/>
+        <EffectArray Operation="Set" Reference="Abil,MD5Mine,Cost[0].Charge.CountStart" Value="3"/>
+        <EffectArray Operation="Set" Reference="Abil,MD5Mine,Cost[0].Charge.TimeUse" Value="10.000000"/>
+        <EffectArray Operation="Set" Reference="Abil,MD5Mine,Cost[0].Cooldown.TimeUse" Value="0.000000"/>
+        <EffectArray Operation="Set" Reference="Abil,ChainExplosive,Cost[0].Charge.CountMax" Value="3"/>
+        <EffectArray Operation="Set" Reference="Abil,ChainExplosive,Cost[0].Charge.CountUse" Value="1"/>
+        <EffectArray Operation="Set" Reference="Abil,ChainExplosive,Cost[0].Charge.CountStart" Value="3"/>
+        <EffectArray Operation="Set" Reference="Abil,ChainExplosive,Cost[0].Charge.TimeUse" Value="10.000000"/>
+        <EffectArray Operation="Set" Reference="Abil,ChainExplosive,Cost[0].Cooldown.TimeUse" Value="0.000000"/>
+    </CUpgrade>
+    <CUpgrade id="StockpileLevel2" parent="DefaultUpgradeOverride">
+        <EffectArray Operation="Set" Reference="Abil,MD5Mine,Cost[0].Charge.CountMax" Value="5"/>
+        <EffectArray Operation="Set" Reference="Abil,ChainExplosive,Cost[0].Charge.CountMax" Value="5"/>
+    </CUpgrade>
+    <!--Currently, duration override in behaviors can not be upgrades. May need to use triggers for this with catalog writes, however, this upgrade will still be used to start that trigger.-->
+    <CUpgrade id="SwapSpeed" parent="DefaultUpgradeOverride">
+        <EditorCategories value="UpgradeType:Character Modification"/>
+    </CUpgrade>
+    <CUpgrade id="TomahawkRankUpgrade">
+        <Alert value=""/>
+        <EffectArray Reference="Effect,TomahawkDamage,Amount" Value="1"/>
+        <EffectArray Reference="Effect,TomahawkDoubleDamage,Chance" Value="0.05"/>
+        <EffectArray Reference="Effect,TomahawkDoubleDamage,Amount" Value="1"/>
+        <EditorCategories value="UpgradeType:AttackBonus"/>
+    </CUpgrade>
+    <CUpgrade id="TestUpgrade">
+        <EffectArray Reference="Unit,Recon,VisionHeight" Value="0.5"/>
+    </CUpgrade>
+    <CUpgrade id="TomahawkSidearm">
+        <Alert value=""/>
+        <EffectArray Operation="Set" Reference="Effect,SidearmMelee,EffectArray[0]" Value="TomahawkSet"/>
+        <EffectArray Operation="Set" Reference="Button,Sidearm,Name" Value="Button/Name/TacticalTomahawk"/>
+        <EffectArray Operation="Set" Reference="Button,Sidearm,Tooltip" Value="Button/Tooltip/TacticalTomahawk"/>
+        <EffectArray Operation="Set" Reference="Button,Sidearm,Icon" Value="Weapons\btn-Axe.dds"/>
+        <EffectArray Operation="Set" Reference="Abil,SidearmMelee,Cost[0].Cooldown.TimeUse" Value="0.750000"/>
+    </CUpgrade>
+    <CUpgrade id="UGCAirForce" parent="DefaultUpgradeOverride">
+        <LeaderAlias value="UGCMarines"/>
+        <EffectArray Operation="Multiply" Reference="Unit,Assault,Speed" Value="1.05"/>
+        <EffectArray Operation="Multiply" Reference="Unit,Commando,Speed" Value="1.05"/>
+        <EffectArray Operation="Multiply" Reference="Unit,Demolitions,Speed" Value="1.05"/>
+        <EffectArray Operation="Multiply" Reference="Unit,Drone2,Speed" Value="1.05"/>
+        <EffectArray Operation="Multiply" Reference="Unit,Engineer,Speed" Value="1.05"/>
+        <EffectArray Operation="Multiply" Reference="Unit,Flamethrower2,Speed" Value="1.05"/>
+        <EffectArray Operation="Multiply" Reference="Unit,ForwardObserver,Speed" Value="1.05"/>
+        <EffectArray Operation="Multiply" Reference="Unit,Marksman,Speed" Value="1.05"/>
+        <EffectArray Operation="Multiply" Reference="Unit,Medic2,Speed" Value="1.05"/>
+        <EffectArray Operation="Multiply" Reference="Unit,Pathfinder,Speed" Value="1.05"/>
+        <EffectArray Operation="Multiply" Reference="Unit,PsiOps,Speed" Value="1.05"/>
+        <EffectArray Operation="Multiply" Reference="Unit,Recon,Speed" Value="1.05"/>
+        <EffectArray Operation="Multiply" Reference="Unit,Rifleman,Speed" Value="1.05"/>
+        <EffectArray Operation="Multiply" Reference="Unit,SquadLeader,Speed" Value="1.05"/>
+        <EffectArray Operation="Multiply" Reference="Unit,Technician,Speed" Value="1.05"/>
+        <EditorCategories value="UpgradeType:Service Branch"/>
+    </CUpgrade>
+    <CUpgrade id="UGCArmy" parent="DefaultUpgradeOverride">
+        <LeaderAlias value="UGCMarines"/>
+        <EffectArray Reference="Unit,Assault,LifeStart" Value="30"/>
+        <EffectArray Reference="Unit,Commando,LifeStart" Value="30"/>
+        <EffectArray Reference="Unit,Demolitions,LifeStart" Value="30"/>
+        <EffectArray Reference="Unit,Drone2,LifeStart" Value="30"/>
+        <EffectArray Reference="Unit,Engineer,LifeStart" Value="30"/>
+        <EffectArray Reference="Unit,Flamethrower2,LifeStart" Value="30"/>
+        <EffectArray Reference="Unit,ForwardObserver,LifeStart" Value="30"/>
+        <EffectArray Reference="Unit,Marksman,LifeStart" Value="30"/>
+        <EffectArray Reference="Unit,Medic2,LifeStart" Value="30"/>
+        <EffectArray Reference="Unit,Pathfinder,LifeStart" Value="30"/>
+        <EffectArray Reference="Unit,PsiOps,LifeStart" Value="30"/>
+        <EffectArray Reference="Unit,Recon,LifeStart" Value="30"/>
+        <EffectArray Reference="Unit,Rifleman,LifeStart" Value="30"/>
+        <EffectArray Reference="Unit,SquadLeader,LifeStart" Value="30"/>
+        <EffectArray Reference="Unit,Technician,LifeStart" Value="30"/>
+        <EffectArray Reference="Unit,Assault,LifeMax" Value="30"/>
+        <EffectArray Reference="Unit,Commando,LifeMax" Value="30"/>
+        <EffectArray Reference="Unit,Demolitions,LifeMax" Value="30"/>
+        <EffectArray Reference="Unit,Drone2,LifeMax" Value="30"/>
+        <EffectArray Reference="Unit,Engineer,LifeMax" Value="30"/>
+        <EffectArray Reference="Unit,Flamethrower2,LifeMax" Value="30"/>
+        <EffectArray Reference="Unit,ForwardObserver,LifeMax" Value="30"/>
+        <EffectArray Reference="Unit,Marksman,LifeMax" Value="30"/>
+        <EffectArray Reference="Unit,Medic2,LifeMax" Value="30"/>
+        <EffectArray Reference="Unit,Pathfinder,LifeMax" Value="30"/>
+        <EffectArray Reference="Unit,PsiOps,LifeMax" Value="30"/>
+        <EffectArray Reference="Unit,Recon,LifeMax" Value="30"/>
+        <EffectArray Reference="Unit,Rifleman,LifeMax" Value="30"/>
+        <EffectArray Reference="Unit,SquadLeader,LifeMax" Value="30"/>
+        <EffectArray Reference="Unit,Technician,LifeMax" Value="30"/>
+        <EditorCategories value="UpgradeType:Service Branch"/>
+    </CUpgrade>
+    <CUpgrade id="UGCMarines" parent="DefaultUpgradeOverride">
+        <EffectArray Reference="Unit,Assault,Sight" Value="3"/>
+        <EffectArray Reference="Unit,Assault,Sight" Value="3"/>
+        <EffectArray Reference="Unit,Commando,Sight" Value="3"/>
+        <EffectArray Reference="Unit,Demolitions,Sight" Value="3"/>
+        <EffectArray Reference="Unit,Drone2,Sight" Value="3"/>
+        <EffectArray Reference="Unit,Engineer,Sight" Value="3"/>
+        <EffectArray Reference="Unit,Flamethrower2,Sight" Value="3"/>
+        <EffectArray Reference="Unit,ForwardObserver,Sight" Value="3"/>
+        <EffectArray Reference="Unit,Marksman,Sight" Value="3"/>
+        <EffectArray Reference="Unit,Medic2,Sight" Value="3"/>
+        <EffectArray Reference="Unit,Pathfinder,Sight" Value="3"/>
+        <EffectArray Reference="Unit,PsiOps,Sight" Value="3"/>
+        <EffectArray Reference="Unit,Recon,Sight" Value="3"/>
+        <EffectArray Reference="Unit,Rifleman,Sight" Value="3"/>
+        <EffectArray Reference="Unit,SquadLeader,Sight" Value="3"/>
+        <EffectArray Reference="Unit,Technician,Sight" Value="3"/>
+        <EditorCategories value="UpgradeType:Service Branch"/>
+    </CUpgrade>
+    <CUpgrade id="UGCNavy" parent="DefaultUpgradeOverride">
+        <LeaderAlias value="UGCMarines"/>
+        <EffectArray Reference="Unit,Assault,EnergyMax" Value="15"/>
+        <EffectArray Reference="Unit,Assault,EnergyMax" Value="15"/>
+        <EffectArray Reference="Unit,Commando,EnergyMax" Value="15"/>
+        <EffectArray Reference="Unit,Demolitions,EnergyMax" Value="15"/>
+        <EffectArray Reference="Unit,Drone2,EnergyMax" Value="15"/>
+        <EffectArray Reference="Unit,Engineer,EnergyMax" Value="15"/>
+        <EffectArray Reference="Unit,Flamethrower2,EnergyMax" Value="15"/>
+        <EffectArray Reference="Unit,ForwardObserver,EnergyMax" Value="15"/>
+        <EffectArray Reference="Unit,Marksman,EnergyMax" Value="15"/>
+        <EffectArray Reference="Unit,Medic2,EnergyMax" Value="15"/>
+        <EffectArray Reference="Unit,Pathfinder,EnergyMax" Value="15"/>
+        <EffectArray Reference="Unit,PsiOps,EnergyMax" Value="15"/>
+        <EffectArray Reference="Unit,Recon,EnergyMax" Value="15"/>
+        <EffectArray Reference="Unit,Rifleman,EnergyMax" Value="15"/>
+        <EffectArray Reference="Unit,SquadLeader,EnergyMax" Value="15"/>
+        <EffectArray Reference="Unit,Technician,EnergyMax" Value="15"/>
+        <EditorCategories value="UpgradeType:Service Branch"/>
+    </CUpgrade>
+    <!--Validator for turning range actors for abilites on or off. Player selection at start of game.-->
+    <CUpgrade id="UseRangeAssistance"/>
+    <CUpgrade id="WeaponDamage" parent="DefaultUpgradeOverride">
+        <EffectArray Operation="Multiply" Reference="Effect,AssaultRifleBurstFireDamage,Amount" Value="1.15"/>
+        <EffectArray Operation="Multiply" Reference="Effect,AssaultRifleDamage,Amount" Value="1.15"/>
+        <EffectArray Operation="Multiply" Reference="Effect,AutomaticShotgunSlugShotDamage,Amount" Value="1.15"/>
+        <EffectArray Operation="Multiply" Reference="Effect,ChainsawDamage,Amount" Value="1.15"/>
+        <EffectArray Operation="Multiply" Reference="Effect,FlamethrowerDamage,Amount" Value="1.15"/>
+        <EffectArray Operation="Multiply" Reference="Effect,HeavyMachineGunDamage,Amount" Value="1.15"/>
+        <EffectArray Operation="Multiply" Reference="Effect,LaserRifleDamage,Amount" Value="1.15"/>
+        <EffectArray Operation="Multiply" Reference="Effect,MarksmanRifleDamage,Amount" Value="1.15"/>
+        <EffectArray Operation="Multiply" Reference="Effect,MediumMachineGunDamage,Amount" Value="1.15"/>
+        <EffectArray Operation="Multiply" Reference="Effect,PistolDamage,Amount" Value="1.15"/>
+        <EffectArray Operation="Multiply" Reference="Effect,PlasmaCutterDamage,Amount" Value="1.15"/>
+        <EffectArray Operation="Multiply" Reference="Effect,PumpShotgunDamage,Amount" Value="1.15"/>
+        <EffectArray Operation="Multiply" Reference="Effect,AutomaticShotgunDamage,Amount" Value="1.15"/>
+        <EffectArray Operation="Multiply" Reference="Effect,SubmachineGunDamage,Amount" Value="1.15"/>
+        <EffectArray Operation="Multiply" Reference="Effect,AntiMaterialRifleDamage,Amount" Value="1.15"/>
+        <EditorCategories value="UpgradeType:Character Modification"/>
+    </CUpgrade>
+    <CUpgrade id="WeaponRange" parent="DefaultUpgradeOverride">
+        <EditorCategories value="UpgradeType:Character Modification"/>
+        <EffectArray Reference="Weapon,AntiMaterialRifle,Range" Value="3"/>
+        <EffectArray Reference="Weapon,AssaultRifle,Range" Value="3"/>
+        <EffectArray Reference="Weapon,AssaultRifleBurstFire,Range" Value="3"/>
+        <EffectArray Reference="Weapon,GrenadeLauncher,Range" Value="3"/>
+        <EffectArray Reference="Weapon,Pistol,Range" Value="3"/>
+        <EffectArray Reference="Weapon,MediumMachineGun,Range" Value="3"/>
+        <EffectArray Reference="Weapon,MarksmanRifle,Range" Value="3"/>
+        <EffectArray Reference="Weapon,SubmachineGun,Range" Value="3"/>
+        <EffectArray Reference="Weapon,LaserRifle,Range" Value="3"/>
+        <EffectArray Reference="Weapon,HeavyMachineGun,Range" Value="3"/>
+    </CUpgrade>
+    <CUpgrade id="WeaponsProficiencyLevel1" parent="DefaultUpgradeOverride">
+        <EffectArray Operation="Multiply" Reference="Behavior,ReloadManual,Duration" Value="0.850000"/>
+        <EffectArray Operation="Multiply" Reference="Behavior,ReloadNightmare,Duration" Value="0.850000"/>
+        <EffectArray Operation="Multiply" Reference="Behavior,ReloadNormal,Duration" Value="0.850000"/>
+        <EffectArray Operation="Multiply" Reference="Behavior,ReloadPerfect,Duration" Value="0.850000"/>
+        <EffectArray Reference="Behavior,FocusFire,Modification.DamageDealtFraction[Melee]" Value="0.05"/>
+        <EffectArray Reference="Behavior,FocusFire,Modification.DamageDealtFraction[Ranged]" Value="0.05"/>
+        <EffectArray Reference="Behavior,FocusFire,Modification.DamageDealtFraction[Splash]" Value="0.05"/>
+        <EffectArray Reference="Behavior,FocusFire,Modification.DamageDealtFraction[Spell]" Value="0.05"/>
+    </CUpgrade>
+    <CUpgrade id="WeaponsProficiencyLevel12" parent="DefaultUpgradeOverride">
+        <EffectArray Operation="Multiply" Reference="Behavior,ReloadManual,Duration" Value="0.700000"/>
+        <EffectArray Operation="Multiply" Reference="Behavior,ReloadNormal,Duration" Value="0.700000"/>
+        <EffectArray Operation="Multiply" Reference="Behavior,ReloadPerfect,Duration" Value="0.700000"/>
+        <EffectArray Operation="Multiply" Reference="Behavior,ReloadNightmare,Duration" Value="0.700000"/>
+        <EffectArray Reference="Behavior,FocusFire,Modification.DamageDealtFraction[Melee]" Value="0.1"/>
+        <EffectArray Reference="Behavior,FocusFire,Modification.DamageDealtFraction[Ranged]" Value="0.1"/>
+        <EffectArray Reference="Behavior,FocusFire,Modification.DamageDealtFraction[Splash]" Value="0.1"/>
+        <EffectArray Reference="Behavior,FocusFire,Modification.DamageDealtFraction[Spell]" Value="0.1"/>
+    </CUpgrade>
+    <!--Placeholder, upgrade level will be checked in triggers when calculating weight-->
+    <CUpgrade id="WeightTolerance" parent="DefaultUpgradeOverride">
+        <EditorCategories value="UpgradeType:Character Modification"/>
+    </CUpgrade>
+</Catalog>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<Catalog>
+    <CValidatorPlayerRequirement default="1" id="ChapterComplete">
+        <Value value="##id##"/>
+        <Find value="1"/>
+    </CValidatorPlayerRequirement>
+    <CValidatorPlayerRequirement id="Chapter1Complete" parent="ChapterComplete">
+        <Value value="Chapter1Complete"/>
+    </CValidatorPlayerRequirement>
+    <CValidatorPlayerRequirement id="Chapter2Complete" parent="ChapterComplete">
+        <Value value="Chapter2Complete"/>
+    </CValidatorPlayerRequirement>
+    <CValidatorPlayerRequirement id="Chapter3Complete" parent="ChapterComplete">
+        <Value value="Chapter3Complete"/>
+    </CValidatorPlayerRequirement>
+    <CValidatorPlayerRequirement id="Chapter4Complete" parent="ChapterComplete">
+        <Value value="Chapter4Complete"/>
+    </CValidatorPlayerRequirement>
+    <CValidatorPlayerRequirement id="Chapter5Complete" parent="ChapterComplete">
+        <Value value="Chapter5Complete"/>
+    </CValidatorPlayerRequirement>
+    <CValidatorPlayerCompareDifficulty id="GameisNightmare">
+        <Compare value="Eq"/>
+        <Value value="2"/>
+    </CValidatorPlayerCompareDifficulty>
+    <CValidatorPlayerCompareDifficulty id="GameisnotNormal">
+        <Compare value="NE"/>
+        <Value value="1"/>
+    </CValidatorPlayerCompareDifficulty>
+    <CValidatorPlayerCompareDifficulty id="GameisnotRecruit">
+        <Compare value="NE"/>
+    </CValidatorPlayerCompareDifficulty>
+    <CValidatorPlayerCompareDifficulty id="GameisnotNightmare">
+        <Compare value="NE"/>
+        <Value value="2"/>
+    </CValidatorPlayerCompareDifficulty>
+    <CValidatorPlayerCompareDifficulty id="GameisNormal">
+        <Compare value="Eq"/>
+        <Value value="1"/>
+    </CValidatorPlayerCompareDifficulty>
+    <CValidatorPlayerCompareDifficulty id="GameisRecruit">
+        <Compare value="Eq"/>
+    </CValidatorPlayerCompareDifficulty>
+    <CValidatorPlayerCompareRace id="UnitisfromZombies">
+        <WhichPlayer Value="Target"/>
+        <Value value="Zombie"/>
+    </CValidatorPlayerCompareRace>
+</Catalog>
