@@ -815,6 +815,12 @@ asset=btn-missing-kaeo,btn-upgrade-protoss-shieldslevel0,btn-upgrade-terran-vehi
 Actor=CliffLocalSelection,CliffPreSelection,DeadAnimationMacro,EditorSelection,FlyerHelperSplat,FlyerShadow,GroundLocalFlashingSelection,GroundLocalSelection,GroundPreSelection,GroundShadow,GroundSyncFlashingSelection,GroundSyncSelection,ModelPretargetGround,PlaceholderModel,PlacementModel,PortraitActor,Snapshot,SoundEmitter,TerrainMgr,UnitDeathModel,UnitDeathModelUnscaled,UnitDeathSound,UnitDeathVoice,UnitFootprint,UnitSound
 Model=Invisible,PredatorPet,ProtossSmallUnitDeathLow,StaticPortrait,TerranSmallUnitDeathLow,ZergSmallUnitDeathLow
 Sound=PredatorPet_Ambience
+id=ProvokeInitial
+Actor=TerrainMgr
+Model
+id=ProvokeIntial2
+Actor=TerrainMgr
+Model
 id=ReactiveShieldsImpact
 Actor=TerrainMgr
 Model
@@ -1248,12 +1254,11 @@ Actor=TerrainMgr
 Sound=BoltPull
 id=WeaponMarineSwapMacro
 Actor=TerrainMgr
-id=ProvokeIntial2
+id=ShieldBash
+Actor=GenericAttackDamageModel,GenericAttackDamageModelReaction,GenericAttackDamageSite,GenericAttackDamageSound,GenericAttackDamageTerrainSquibModel,GenericAttackDamageTerrainSquibSound,GenericAttackImpactFallbackSite,GenericAttackImpactModel,GenericAttackImpactModelReaction,GenericAttackImpactPointSite,GenericAttackImpactSite,GenericAttackImpactSound,GenericAttackImpactTerrainSquibModel,GenericAttackImpactTerrainSquibSound,GenericAttackLaunchFallbackSite,GenericAttackLaunchModel,GenericAttackLaunchSite,GenericAttackLaunchSound,GenericAttackLaunchTerrainSquibModel,GenericAttackLaunchTerrainSquibSound,##id##Push,TerrainMgr
+Model=##id##Push
+id=ShieldBashIncoming
 Actor=TerrainMgr
-Model
-id=ProvokeInitial
-Actor=TerrainMgr
-Model
 parent=BaseMarineActor
 default=BaseHeavyMarineActor
 Actor=LeftArm,RightArm,WeaponEquipHeavyMacro,WeaponModelSwapGroupsHeavy
@@ -2669,10 +2674,10 @@ id=SatchelCharge
 Actor=TerrainMgr
 Unit=Demo##id##
 id=ShieldBashLevel1
-Actor=ShieldBashPush,TerrainMgr
+Actor=TerrainMgr
 Effect=ShieldBashSetLevel1
 id=ShieldBashLevel2
-Actor=ShieldBashPush,TerrainMgr
+Actor=TerrainMgr
 Effect=ShieldBashSetLevel2
 id=SidearmMelee
 Actor=TerrainMgr
@@ -3395,7 +3400,7 @@ id=SatchelChargeDamageSearch
 Actor=TerrainMgr
 Effect=SatchelChargeDamage
 id=ShieldBashDamageSwitchLevel1
-Actor=TerrainMgr
+Actor=ShieldBash,TerrainMgr
 Effect=ShieldBashLevel1ReactiveShieldsLevel1,ShieldBashLevel1ReactiveShieldsLevel2,ShieldBashLevel1ReactiveShieldsLevel3
 id=ShieldBashLevel1ReactiveShieldsLevel1
 Actor=TerrainMgr
@@ -3835,6 +3840,12 @@ Actor=TerrainMgr
 id=PredatorPet
 0=Assets\Units\Terran\Predator\Predator.m3
 Actor=TerrainMgr
+id=ProvokeInitial
+0=Assets\Effects\Protoss\PurifyLaunch\PurifyLaunch.m3
+Actor=TerrainMgr
+id=ProvokeIntial2
+0=Assets\Effects\Protoss\Envision\Envision.m3
+Actor=TerrainMgr
 id=ReactiveShieldsImpact
 0=Assets\Effects\Protoss\MothershipBeamImpact\MotherShipBeamImpact.m3
 Actor=TerrainMgr
@@ -4010,12 +4021,6 @@ id=NanoWeaveBuff
 Actor=TerrainMgr
 id=Ironclad
 0=Assets\Effects\Protoss\ProtossWeatherShieldSmall\ProtossWeatherShieldSmall.m3
-Actor=TerrainMgr
-id=ProvokeIntial2
-0=Assets\Effects\Protoss\Envision\Envision.m3
-Actor=TerrainMgr
-id=ProvokeInitial
-0=Assets\Effects\Protoss\PurifyLaunch\PurifyLaunch.m3
 Actor=TerrainMgr
 
 [Sound]

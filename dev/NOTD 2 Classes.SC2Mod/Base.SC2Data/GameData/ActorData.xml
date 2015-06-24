@@ -539,15 +539,27 @@
     <CActorRange id="SatchelRange" parent="RangeAbil" abil="SatchelCharge">
         <EditorCategories value=""/>
     </CActorRange>
+    <CActorAction id="ShieldBash" parent="GenericAttack" effectAttack="ShieldBashDamageSwitchLevel1">
+        <EditorCategories value=""/>
+        <LaunchAttachQuery Methods="Center 0"/>
+        <LaunchAssets Model="ShieldBashPush"/>
+        <LaunchModel value="ShieldBashPush"/>
+        <ShieldFlashType value="Full"/>
+        <LaunchSiteOps Ops="SOpAttachHarness ShieldBashIncoming SOpMoveBy4"/>
+    </CActorAction>
+    <CActorSiteOpIncoming id="ShieldBashIncoming" parent="SOpIncomingDirect">
+        <EditorCategories value=""/>
+        <HostImpact Subject="GenericAttackImpactSite"/>
+        <Type value="Missile"/>
+        <PullBack value="1.000000"/>
+    </CActorSiteOpIncoming>
     <CActorModel id="ShieldBashPush" parent="ModelAnimationStyleOneShot">
         <Flags index="SuppressSaveLoad" value="0"/>
         <EditorCategories value=""/>
-        <On index="0" Terms="Effect.ShieldBashLevel1.Start; At Effect" Send="Create"/>
-        <On index="1" Terms="ActorCreation" Send="AnimPlay BSD Stand"/>
-        <On index="2" Terms="AnimDone; AnimName BSD" Send="Destroy"/>
-        <On Terms="Effect.ShieldBashLevel2.Start; At Effect" Send="Create"/>
-        <Host Subject="_Unit"/>
-        <Scale value="5.000000,5.000000,1.000000"/>
+        <On index="0" Terms="ActorCreation" Send="AnimPlay BSD Death"/>
+        <On index="1" Terms="AnimDone; AnimName BSD" Send="Destroy"/>
+        <On index="2" Terms="ActorCreation" Send="AnimSetCompletion BSD 23.000000"/>
+        <Scale value="3.000000,3.000000,1.000000"/>
     </CActorModel>
     <CActorArc id="ShieldBashRangeIndicator" parent="GuideVisualArc" abil="ShieldBash">
         <EditorCategories value=""/>
