@@ -482,9 +482,16 @@
     </CActorModel>
     <CActorModel id="ReactiveShieldsImpact" parent="ModelAnimationStyleOneShot">
         <EditorCategories value=""/>
+        <On index="0" Terms="ActorCreation" Send="AnimPlay BSD Birth 0 0.000000 0.000000 2.000000 AsDuration 0.050000"/>
+        <On index="1" Terms="AnimDone; AnimName BSD" Send="Destroy"/>
+        <On index="2" Terms="ActorOrphan" Send="AnimClear BSD"/>
         <On Terms="Effect.ReactiveShieldsDamageLevel1.Start" Send="Create"/>
         <On Terms="Effect.ReactiveShieldsDamageLevel2.Start" Send="Create"/>
         <On Terms="Effect.ReactiveShieldsDamageLevel3.Start" Send="Create"/>
+        <Host Subject="_Unit" Scope="Target"/>
+        <HostSiteOps Ops="SOpAttachOverhead SOp180"/>
+        <ScopeBearingsTracking value="ForceOff"/>
+        <Scale value="2.000000"/>
     </CActorModel>
     <CActorModel id="Refresher" parent="ModelAnimationStyleOneShot">
         <EditorCategories value=""/>
