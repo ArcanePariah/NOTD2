@@ -109,8 +109,9 @@
     </CActorSiteOpForward>
     <CActorModel id="ChainExplosiveDetonation" parent="ModelAnimationStyleOneShot">
         <EditorCategories value=""/>
-        <On Terms="UnitDeath.ChainExplosiveLevel1" Send="Create"/>
-        <On Terms="UnitDeath.ChainExplosiveLevel2" Send="Create"/>
+        <On Terms="Effect.ChainExplosiveDamageSearchLevel1.Start" Send="Create"/>
+        <On Terms="Effect.ChainExplosiveDamageSearchLevel2.Start" Send="Create"/>
+        <Scale value="2.000000"/>
     </CActorModel>
     <CActorRange id="ChainExplosivePlacementBlastRadius">
         <EditorCategories value=""/>
@@ -154,6 +155,14 @@
     <CActorRange id="ChainExplosiveRange" parent="RangeAbil" abil="ChainExplosive">
         <EditorCategories value=""/>
     </CActorRange>
+    <CActorModel id="ExplosivesFizzile" parent="ModelAnimationStyleOneShot">
+        <EditorCategories value=""/>
+        <On Terms="UnitDeath.ChainExplosiveLevel1" Send="Create"/>
+        <On Terms="UnitDeath.ChainExplosiveLevel2" Send="Create"/>
+        <On Terms="UnitDeath.DemoSatchelCharge" Send="Create"/>
+        <On Terms="UnitDeath.MD5Mine" Send="Create"/>
+        <AutoScaleFactor value="1.000000"/>
+    </CActorModel>
     <CActorAction id="IFV25mmHEAutocannonAttack" parent="GenericAttack" effectImpact="IFV25mmHEAutocannonDamage" effectLaunch="IFV25mmHEAutocannonSet">
         <EditorCategories value=""/>
         <LaunchRequest Subject="IFV25mmHEAutocannonModel"/>
@@ -513,7 +522,7 @@
     </CActorUnit>
     <CActorModel id="SatchelChargeDetonation" parent="ModelAnimationStyleOneShot">
         <EditorCategories value=""/>
-        <On Terms="UnitDeath.DemoSatchelCharge" Send="Create"/>
+        <On Terms="Effect.SatchelChargeDamageSearch.Start" Send="Create"/>
         <On Terms="ActorCreation" Send="Create SatchelChargeShockwave"/>
     </CActorModel>
     <CActorModel id="SatchelChargeShockwave" parent="ModelAnimationStyleOneShot">

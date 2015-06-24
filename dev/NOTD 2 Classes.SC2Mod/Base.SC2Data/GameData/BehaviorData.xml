@@ -260,7 +260,12 @@
     <CBehaviorBuff id="ChainExplosiveDetonateLevel1">
         <InfoFlags index="Hidden" value="1"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
-        <DamageResponse Chance="1" Handled="ChainExplosiveDamageSetLevel1" ModifyFraction="0">
+        <DamageResponse>
+            <Chance value="1"/>
+            <Exhausted value="ChainExplosiveDamageSetLevel1"/>
+            <ModifyAmount value="2"/>
+            <ModifyLimit value="1"/>
+            <ModifyMinimumDamage value="1"/>
             <RequireEffectArray value="MD5MineDamage"/>
             <RequireEffectArray value="ChainExplosiveDamage"/>
             <RequireEffectArray value="SatchelChargeDamage"/>
@@ -270,7 +275,12 @@
     <CBehaviorBuff id="ChainExplosiveDetonateLevel2">
         <InfoFlags index="Hidden" value="1"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
-        <DamageResponse Chance="1" Handled="ChainExplosiveDamageSetLevel2" ModifyFraction="0">
+        <DamageResponse>
+            <Chance value="1"/>
+            <Exhausted value="ChainExplosiveDamageSetLevel2"/>
+            <ModifyAmount value="2"/>
+            <ModifyLimit value="1"/>
+            <ModifyMinimumDamage value="1"/>
             <RequireEffectArray value="MD5MineDamage"/>
             <RequireEffectArray value="ChainExplosiveDamage"/>
             <RequireEffectArray value="SatchelChargeDamage"/>

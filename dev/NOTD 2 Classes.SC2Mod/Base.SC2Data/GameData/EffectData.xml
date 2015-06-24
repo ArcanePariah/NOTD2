@@ -41,13 +41,13 @@
     <CEffectEnumArea id="ChainExplosiveDamageSearchLevel1">
         <ValidatorArray value="ChainExplosiveNoAlliedUnitsNear"/>
         <EditorCategories value=""/>
-        <ImpactLocation Value="CasterUnit"/>
+        <ImpactLocation Value="CasterPoint"/>
         <AreaArray Radius="3.5" Effect="ChainExplosiveDamage"/>
     </CEffectEnumArea>
     <CEffectEnumArea id="ChainExplosiveDamageSearchLevel2">
         <ValidatorArray value="ChainExplosiveNoAlliedUnitsNear"/>
         <EditorCategories value=""/>
-        <ImpactLocation Value="CasterUnit"/>
+        <ImpactLocation Value="CasterPoint"/>
         <AreaArray Radius="1" Effect="ChainExplosiveDamage"/>
     </CEffectEnumArea>
     <CEffectSet id="ChainExplosiveDamageSetLevel1">
@@ -60,7 +60,6 @@
         <EffectArray value="ChainExplosiveDamageSearchLevel1"/>
         <EffectArray value="ChainExplosiveDamageSearchLevel2"/>
         <EffectArray value="Suicide"/>
-        <TargetLocationType value="Point"/>
     </CEffectSet>
     <CEffectCreateUnit id="ChainExplosiveLevel1">
         <EditorCategories value=""/>
