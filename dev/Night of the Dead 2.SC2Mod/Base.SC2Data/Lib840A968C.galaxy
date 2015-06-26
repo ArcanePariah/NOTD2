@@ -24,6 +24,9 @@ const string lib840A968C_gv_playerCustomizationDataBankName = "NOTD2Customizatio
 const string lib840A968C_gv_playerUnlocksBankName = "NOTD2Unlocks";
 const string lib840A968C_gv_save = "Save";
 const string lib840A968C_gv_load = "Load";
+const fixed lib840A968C_gv_recruitRatingGainPerXP = 1.0;
+const fixed lib840A968C_gv_normalRatingGainPerXP = 1.5;
+const fixed lib840A968C_gv_nightmareRatingGainPerXP = 2.0;
 const int lib840A968C_gv_gameEvents = 1;
 const int lib840A968C_gv_bossEvents = 3;
 const int lib840A968C_gv_playerEvents = 2;
@@ -1418,7 +1421,7 @@ void lib840A968C_gf_AwardRating (int lp_experienceGained, int lp_player) {
     if ((((PlayerDifficulty(lp_player) == 0) && (lib840A968C_gv_players[lp_player].lv_rating >= 1500)) || ((PlayerDifficulty(lp_player) == 1) && (lib840A968C_gv_players[lp_player].lv_rating >= 1800)))) {
         return ;
     }
-    lib840A968C_gv_players[lp_player].lv_rating += (lp_experienceGained * lib1E3F036D_gf_GameDifficultyReal(0.25, 0.5, 1.0));
+    lib840A968C_gv_players[lp_player].lv_rating += (lp_experienceGained * lib1E3F036D_gf_GameDifficultyReal(lib840A968C_gv_recruitRatingGainPerXP, lib840A968C_gv_normalRatingGainPerXP, lib840A968C_gv_nightmareRatingGainPerXP));
 }
 
 void lib840A968C_gf_RatingBonusAdjustment (int lp_player) {
