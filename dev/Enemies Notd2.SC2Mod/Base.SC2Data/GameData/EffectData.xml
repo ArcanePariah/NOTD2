@@ -1042,6 +1042,11 @@
         <EditorCategories value=""/>
         <Behavior value="WitchShroud"/>
     </CEffectApplyBehavior>
+    <CEffectEnumArea id="IncreasedDamageAuraSearch">
+        <EditorCategories value=""/>
+        <SearchFilters value="-;Enemy,Structure,Dead"/>
+        <AreaArray Radius="2.5" Effect="IncreasedAttack"/>
+    </CEffectEnumArea>
     <CEffectEnumArea id="WitchShroudSearchArea">
         <EditorCategories value=""/>
         <SearchFilters value="-;Self,Enemy,Structure,Dead"/>
@@ -1062,11 +1067,6 @@
         <ArmorReduction value="1"/>
         <Amount value="10"/>
     </CEffectDamage>
-    <CEffectEnumArea id="IncreasedAttack2">
-        <EditorCategories value=""/>
-        <SearchFilters value="-;Enemy,Structure,Dead"/>
-        <AreaArray Radius="2.5" Effect="IncreasedAttack"/>
-    </CEffectEnumArea>
     <CEffectDamage id="RacerClaws" parent="Claws3"/>
     <CEffectApplyBehavior id="IncreasedAttack">
         <EditorCategories value=""/>

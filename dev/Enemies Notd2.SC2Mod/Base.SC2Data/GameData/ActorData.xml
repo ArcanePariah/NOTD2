@@ -1271,8 +1271,8 @@
         <AutoScaleFactor value="0.450000"/>
     </CActorModel>
     <CActorModel id="AttackClawsAura" parent="ModelAddition">
-        <On Terms="Behavior.IncreasedAttackStart.On" Send="Create"/>
-        <On Terms="Behavior.IncreasedAttackStart.Off" Send="Destroy"/>
+        <On Terms="Behavior.IncreasedDamageAura.On" Send="Create"/>
+        <On Terms="Behavior.IncreasedDamageAura.Off" Send="Destroy"/>
         <On Terms="ActorCreation" Send="SetTintColor {194,143,48 5.000000}"/>
         <HostSiteOps Ops="SOpAttachOrigin"/>
         <Model value="AttackClawsSplat"/>

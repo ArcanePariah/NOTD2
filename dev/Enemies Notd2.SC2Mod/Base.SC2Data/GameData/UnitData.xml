@@ -378,9 +378,6 @@
         <Food value="-10"/>
         <AttackTargetPriority value="5"/>
         <AbilArray Link="InfestedCharge"/>
-        <BehaviorArray Link="OpenWoundStart"/>
-        <BehaviorArray Link="Range5"/>
-        <BehaviorArray Link="Range3"/>
         <CardLayouts index="0">
             <LayoutButtons Face="InfestedCharge" Type="AbilCmd" AbilCmd="InfestedCharge,Execute" Row="2" Column="4"/>
         </CardLayouts>
@@ -444,11 +441,7 @@
         <LifeMax value="4500"/>
         <LifeArmor value="15"/>
         <Speed value="2"/>
-        <BehaviorArray index="1" Link="ZombieWander"/>
-        <BehaviorArray index="2" removed="1"/>
-        <BehaviorArray index="3" removed="1"/>
-        <BehaviorArray index="4" removed="1"/>
-        <BehaviorArray index="5" removed="1"/>
+        <BehaviorArray Link="OpenWoundStart"/>
         <WeaponArray Link="BehemothSmash"/>
         <PlaneArray index="Air" value="1"/>
         <Collide index="Colossus" value="1"/>
@@ -477,34 +470,26 @@
     </CUnit>
     <CUnit id="Blitzer" parent="SuperHeavyTemplate">
         <DeathRevealRadius value="3"/>
-        <Mob value="Multiplayer"/>
         <LateralAcceleration value="46.0625"/>
-        <AbilArray index="3" Link="BlitzerCharge"/>
-        <BehaviorArray index="3" Link="SpeedMultiBlitzerStart"/>
-        <BehaviorArray Link="ZombieWander"/>
+        <AbilArray Link="BlitzerCharge"/>
+        <BehaviorArray Link="SpeedMultiBlitzerStart"/>
         <WeaponArray Link="BlitzerSmash"/>
         <CardLayouts index="0">
             <LayoutButtons index="5" Face="BlitzerCharge" Type="AbilCmd" AbilCmd="BlitzerCharge,Execute" Row="2" Column="4"/>
             <LayoutButtons Face="BlitzerSpeedAura" Type="Passive" Behavior="SpeedMultiBlitzerStart" Row="2" Column="0"/>
         </CardLayouts>
         <GlossaryPriority value="450"/>
-        <GlossaryStrongArray value="Marauder"/>
-        <GlossaryStrongArray value="Hydralisk"/>
-        <GlossaryStrongArray value="Stalker"/>
-        <GlossaryWeakArray value="Hellion"/>
-        <GlossaryWeakArray value="Baneling"/>
-        <GlossaryWeakArray value="Colossus"/>
         <Speed value="2.25"/>
         <PlaneArray index="Air" value="1"/>
         <Collide index="Colossus" value="1"/>
         <Collide index="ForceField" value="1"/>
     </CUnit>
     <CUnit id="Bloodseeker" parent="SuperHeavyTemplate">
-        <BehaviorArray index="1" Link="IncreasedAttackStart"/>
-        <BehaviorArray index="2" Link="BloodseekerDamageHeal"/>
+        <BehaviorArray Link="IncreasedDamageAura"/>
+        <BehaviorArray Link="BloodseekerDamageHeal"/>
         <WeaponArray Link="BloodseekerSmash"/>
         <CardLayouts index="0">
-            <LayoutButtons Face="BloodseekerDamageAura" Type="Passive" Behavior="IncreasedAttackStart" Row="2" Column="0"/>
+            <LayoutButtons Face="BloodseekerDamageAura" Type="Passive" Behavior="IncreasedDamageAura" Row="2" Column="0"/>
         </CardLayouts>
         <Speed value="1.6992"/>
         <PlaneArray index="Air" value="1"/>
@@ -514,11 +499,6 @@
     <CUnit id="Bonebreaker" parent="SuperHeavyTemplate">
         <AbilArray index="3" Link="BonebreakerBoulder"/>
         <AbilArray Link="BonebreakerLeap"/>
-        <BehaviorArray index="1" Link="ZombieWander"/>
-        <BehaviorArray index="2" removed="1"/>
-        <BehaviorArray index="3" removed="1"/>
-        <BehaviorArray index="4" removed="1"/>
-        <BehaviorArray index="5" removed="1"/>
         <WeaponArray Link="BonebreakerSmash"/>
         <CardLayouts index="0">
             <LayoutButtons index="5" Face="BonebreakerLeap" Type="AbilCmd" AbilCmd="BonebreakerLeap,Execute" Row="2" Column="4"/>
@@ -795,9 +775,9 @@
         <TurningRate value="199.8632"/>
         <AbilArray index="3" removed="1"/>
         <BehaviorArray index="2" Link="OpenWoundStart"/>
-        <BehaviorArray index="3" Link="Range5"/>
-        <BehaviorArray index="4" Link="Range3"/>
-        <BehaviorArray index="5" Link="Range10"/>
+        <BehaviorArray Link="Range5"/>
+        <BehaviorArray Link="Range3"/>
+        <BehaviorArray Link="Range10"/>
         <BehaviorArray Link="RentodusCliffJump"/>
         <WeaponArray Link="CrushingJaws"/>
         <CardLayouts index="0">
@@ -1265,10 +1245,7 @@
     </CUnit>
     <CUnit id="Stonewall" parent="SuperHeavyTemplate">
         <LifeArmor value="10"/>
-        <BehaviorArray index="1" Link="HealthRegenStonewallStart"/>
-        <BehaviorArray index="3" removed="1"/>
-        <BehaviorArray index="4" removed="1"/>
-        <BehaviorArray index="5" removed="1"/>
+        <BehaviorArray Link="HealthRegenStonewallStart"/>
         <WeaponArray Link="StonewallSmash"/>
         <CardLayouts index="0">
             <LayoutButtons Face="StonewallHealthAura" Type="Passive" Behavior="HealthRegenStonewallStart" Row="2" Column="0"/>
