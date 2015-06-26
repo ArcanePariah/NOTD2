@@ -295,14 +295,8 @@
         <InfoFlags index="Hidden" value="1"/>
         <Duration value="5"/>
         <Modification>
-            <DeathResponse Chance="1" Effect="ExplodeCreeper"/>
+            <DeathResponse Chance="1" Effect="ExplodeCreep2"/>
         </Modification>
-        <DamageResponse>
-            <Chance value="1"/>
-            <Fatal value="1"/>
-            <Handled value="ExplodeCreeper"/>
-            <ModifyFraction value="0"/>
-        </DamageResponse>
     </CBehaviorBuff>
     <CBehaviorBuff id="FlyByAttackStart">
         <EditorCategories value="AbilityorEffectType:Units"/>
@@ -352,12 +346,11 @@
         <DisplayDuration index="Ally" value="1"/>
         <DisplayDuration index="Neutral" value="1"/>
         <DisplayDuration index="Enemy" value="1"/>
-        <Duration value="3"/>
-        <ExpireEffect value="CreepExplodeTimedLifeKill"/>
+        <Duration value="5"/>
+        <ExpireEffect value="Suicide"/>
         <Modification>
             <StateFlags index="Summoned" value="1"/>
         </Modification>
-        <KillCredit Value="Caster"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="CreepMakerImmuneToDamage">
         <InfoFlags index="Hidden" value="1"/>

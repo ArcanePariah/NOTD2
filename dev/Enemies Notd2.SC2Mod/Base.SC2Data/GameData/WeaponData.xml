@@ -149,19 +149,19 @@
     <CWeaponLegacy id="BeastExplodeAcid">
         <EditorCategories value="Race:Zerg"/>
         <Options index="Melee" value="1"/>
-        <Options index="OnlyFireWhileInAttackOrder" value="0"/>
         <Icon value="Assets\Textures\btn-ability-zerg-explode-color.dds"/>
-        <DisplayEffect value="BeastExplodeAcid2"/>
+        <DisplayEffect value="BeastExplodeAcidDmaage"/>
         <TargetFilters value="Ground,Visible;Missile,Stasis,Dead,Hidden,Invulnerable"/>
         <AcquireFilters value="Ground,Visible;Missile,Stasis,Dead,Hidden,Invulnerable"/>
         <AcquireScanFilters value="-;Structure"/>
         <Range value="0.1"/>
         <Period value="0.2"/>
         <DamagePoint value="0"/>
-        <Effect value="BeastExplodeAcid6"/>
         <LegacyOptions index="NoDeceleration" value="1"/>
         <AllowedMovement value="Moving"/>
         <MinScanRange value="10"/>
+        <RandomDelayMin value="0"/>
+        <RandomDelayMax value="0"/>
     </CWeaponLegacy>
     <CWeaponLegacy id="BlinkClaws">
         <EditorCategories value=""/>
@@ -260,9 +260,8 @@
     <CWeaponLegacy id="ExplodeCreeper">
         <EditorCategories value="Race:Zerg"/>
         <Options index="Melee" value="1"/>
-        <Options index="OnlyFireWhileInAttackOrder" value="0"/>
         <Icon value="Assets\Textures\btn-ability-zerg-explode-color.dds"/>
-        <DisplayEffect value="ExplodeCreeper4"/>
+        <DisplayEffect value="ExplodeCreeperDamage"/>
         <TargetFilters value="Ground,Visible;Missile,Stasis,Dead,Hidden,Invulnerable"/>
         <AcquireFilters value="Ground,Visible;Missile,Stasis,Dead,Hidden,Invulnerable"/>
         <AcquireScanFilters value="-;Structure"/>
@@ -272,6 +271,8 @@
         <LegacyOptions index="NoDeceleration" value="1"/>
         <AllowedMovement value="Moving"/>
         <MinScanRange value="10"/>
+        <RandomDelayMin value="0"/>
+        <RandomDelayMax value="0"/>
     </CWeaponLegacy>
     <CWeaponLegacy id="HulkMaul" parent="Maul">
         <EditorCategories value="Race:Zerg"/>
@@ -429,28 +430,26 @@
         <DisplayEffect value="MastermindBite"/>
         <Range value="1"/>
     </CWeaponLegacy>
-    <CWeaponLegacy id="ExplodeBlinder">
+    <CWeaponLegacy id="BlinderExplode">
         <EditorCategories value="Race:Zerg"/>
         <Options index="Hidden" value="1"/>
         <Options index="Melee" value="1"/>
-        <Options index="OnlyFireWhileInAttackOrder" value="0"/>
         <Icon value="Assets\Textures\btn-ability-zerg-explode-color.dds"/>
-        <DisplayEffect value="ExplodeBlind"/>
         <TargetFilters value="Ground,Visible;Missile,Stasis,Dead,Hidden,Invulnerable"/>
         <AcquireFilters value="Ground,Visible;Missile,Stasis,Dead,Hidden,Invulnerable"/>
         <AcquireScanFilters value="-;Structure"/>
+        <MinScanRange value="10"/>
         <Range value="0.1"/>
         <Period value="0.2"/>
         <DamagePoint value="0"/>
-        <Effect value="ExplodeBlind3"/>
         <LegacyOptions index="NoDeceleration" value="1"/>
         <AllowedMovement value="Moving"/>
-        <MinScanRange value="10"/>
+        <RandomDelayMin value="0"/>
+        <RandomDelayMax value="0"/>
     </CWeaponLegacy>
     <CWeaponLegacy id="ExplodeAcid">
         <EditorCategories value="Race:Zerg"/>
         <Options index="Melee" value="1"/>
-        <Options index="OnlyFireWhileInAttackOrder" value="0"/>
         <Icon value="Assets\Textures\btn-ability-zerg-explode-color.dds"/>
         <TargetFilters value="Ground,Visible;Missile,Stasis,Dead,Hidden,Invulnerable"/>
         <AcquireFilters value="Ground,Visible;Missile,Stasis,Dead,Hidden,Invulnerable"/>
@@ -458,10 +457,12 @@
         <Range value="0.1"/>
         <Period value="0.2"/>
         <DamagePoint value="0"/>
-        <Effect value="Suicide"/>
         <LegacyOptions index="NoDeceleration" value="1"/>
         <AllowedMovement value="Moving"/>
         <MinScanRange value="10"/>
+        <DisplayEffect value="ExplodeAcidDamage"/>
+        <RandomDelayMin value="0"/>
+        <RandomDelayMax value="0"/>
     </CWeaponLegacy>
     <CWeaponLegacy id="MatriarchTalons" parent="Talons2">
         <Name value="Weapon/Name/MatriarchTalons"/>

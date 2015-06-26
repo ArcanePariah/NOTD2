@@ -5,9 +5,9 @@
         <Inherits index="Decal" value="1"/>
         <Inherits index="Visibility" value="1"/>
         <On Terms="ActorCreation" Send="AnimBracketStart GL_BSD GLbirth GLstand GLdeath"/>
-        <On Terms="Behavior.ExplodeBlind.On" Send="Create"/>
+        <On Terms="Behavior.Blind.On" Send="Create"/>
         <On Terms="ActorCreation" Send="AnimBracketStart $BSD"/>
-        <On Terms="Behavior.ExplodeBlind.Off" Send="AnimBracketStop BSD"/>
+        <On Terms="Behavior.Blind.Off" Send="AnimBracketStop BSD"/>
         <On Terms="ActorCreation" Send="SetTintColor {102,41,38 3.000000}"/>
         <Host Subject="_Unit"/>
         <HostSiteOps Ops="SOpAttachHead"/>

@@ -19,11 +19,11 @@ Model=##id##Impact
 id=Stunned
 Actor=TerrainMgr
 Model=Stun
+id=TestSelection
+Actor=TerrainMgr
 id=Venom
 Actor=TerrainMgr
 Model=##id##Impact
-id=TestSelection
-Actor=TerrainMgr
 
 [Behavior]
 id=makeCreep3x3
@@ -32,9 +32,6 @@ Actor=TerrainMgr
 id=BuildingStasis
 asset=Assets\Textures\btn-ability-protoss-phaseshift2.dds
 Actor=##id##Impact,##id##ImpactBanelingNest,##id##ImpactGhostAcademy,##id##ImpactMissileTurret,##id##ImpactSpire,##id##Tinter,TerrainMgr
-id=ExplodeBlind
-asset=Assets\Textures\btn-ability-zerg-viper-ocularparasite.dds
-Actor=Blind,TerrainMgr
 id=NightmareDifficultyModifier
 asset=Assets\Textures\btn-missing-kaeo.dds
 Actor=TerrainMgr
@@ -72,6 +69,9 @@ Effect=Venom
 id=testbehavior2
 asset=Assets\Textures\btn-missing-kaeo.dds
 Actor=TerrainMgr
+id=Blind
+asset=Assets\Textures\btn-ability-zerg-viper-ocularparasite.dds
+Actor=##id##,TerrainMgr
 
 [Effect]
 id=NukeDamage
@@ -86,6 +86,9 @@ id=ShortCircuit
 Actor=TerrainMgr
 Behavior
 id=Venom
+Actor=TerrainMgr
+Behavior
+id=Blind
 Actor=TerrainMgr
 Behavior
 

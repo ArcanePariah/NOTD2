@@ -83,10 +83,38 @@
     <CEffectApplyBehavior default="1" id="DifficultyScalingTemplate">
         <ValidatorArray index="0" value="GameisnotRecruit"/>
     </CEffectApplyBehavior>
+    <CEffectDamage default="1" id="SuicideDamageTemplate" parent="DU_WEAP">
+        <EditorCategories value=""/>
+        <AINotifyFlags index="HurtEnemy" value="1"/>
+        <ImpactLocation Value="TargetUnit"/>
+        <ArmorReduction value="3"/>
+        <Kind value="Splash"/>
+        <KindSplash value="Splash"/>
+        <Amount value="75"/>
+        <Death value="Disintegrate"/>
+        <AreaArray Radius="1.5" Fraction="1"/>
+        <ExcludeArray Value="Target"/>
+        <SearchFilters value="-;Player,Ally,Neutral"/>
+    </CEffectDamage>
     <CEffectApplyBehavior id="AirborneDifficultyScaling" parent="DifficultyScalingTemplate"/>
+    <CEffectSet id="BeastExplodeAcid">
+        <EditorCategories value=""/>
+        <EffectArray value="BeastExplodeAcidDmaage"/>
+        <EffectArray value="Suicide"/>
+    </CEffectSet>
+    <CEffectSet id="BlinderExplode">
+        <EditorCategories value=""/>
+        <EffectArray value="Suicide"/>
+        <EffectArray value="Blind"/>
+    </CEffectSet>
     <CEffectApplyBehavior id="EltradDevour">
         <EditorCategories value=""/>
     </CEffectApplyBehavior>
+    <CEffectSet id="ExplodeAcid">
+        <EditorCategories value=""/>
+        <EffectArray value="ExplodeAcidDamage"/>
+        <EffectArray value="Suicide"/>
+    </CEffectSet>
     <CEffectApplyBehavior id="HoundDifficultyScaling" parent="DifficultyScalingTemplate"/>
     <CEffectModifyUnit id="EltradDevourHeal">
         <EditorCategories value=""/>
@@ -237,27 +265,6 @@
         <EffectArray value="GorgonRunStart"/>
         <TargetLocationType value="UnitOrPoint"/>
     </CEffectSet>
-    <CEffectEnumArea id="BeastExplodeAcid">
-        <ImpactLocation Value="SourceUnit"/>
-        <ExcludeArray Value="Outer"/>
-        <ExcludeArray Value="Target"/>
-        <SearchFilters value="Ground,Visible;Player,Ally,Neutral,Missile,Item,Stasis,Dead,Hidden,Invulnerable"/>
-        <AreaArray Radius="3" Effect="BeastExplodeAcid4"/>
-        <SearchFlags index="SameCliff" value="1"/>
-    </CEffectEnumArea>
-    <CEffectSet id="BeastExplodeAcid5">
-        <EffectArray value="BeastExplodeAcid3"/>
-        <EffectArray value="BeastExplodeAcid2"/>
-        <EffectArray value="BeastExplodeAcid"/>
-        <EffectArray value="Class"/>
-    </CEffectSet>
-    <CEffectDamage id="BeastExplodeAcid2" parent="DU_WEAP">
-        <EditorCategories value="Race:Zerg"/>
-        <AINotifyFlags index="HurtEnemy" value="1"/>
-        <Kind value="Splash"/>
-        <Amount value="150"/>
-        <Death value="Disintegrate"/>
-    </CEffectDamage>
     <CEffectApplyForce id="BoneBreakerBoulderImpactForce">
         <EditorCategories value=""/>
         <Amount value="20"/>
@@ -399,13 +406,10 @@
         <EditorCategories value="Race:Zerg"/>
         <VitalArray index="Life" Change="100"/>
     </CEffectModifyUnit>
-    <CEffectApplyBehavior id="ExplodeBlind6">
-        <ValidatorArray index="0" value="noShields"/>
-        <ValidatorArray value="IsBiological"/>
-        <ResponseFlags index="Acquire" value="1"/>
-        <ResponseFlags index="Flee" value="1"/>
-        <Behavior value="ExplodeBlind"/>
-    </CEffectApplyBehavior>
+    <CEffectSet id="ExplodeCreeper">
+        <EffectArray value="Blind"/>
+        <EffectArray value="Suicide"/>
+    </CEffectSet>
     <CEffectCreateUnit id="ExplodeCreep2">
         <EditorCategories value=""/>
         <WhichLocation Value="CasterPoint"/>
@@ -416,31 +420,6 @@
         <SpawnEffect value="ExplodeCreep"/>
         <SpawnUnit value="InvisibleCreepmaker"/>
     </CEffectCreateUnit>
-    <CEffectSet id="ExplodeCreeper">
-        <EffectArray value="ExplodeCreeper2"/>
-        <EffectArray value="ExplodeCreep2"/>
-        <EffectArray value="Class"/>
-    </CEffectSet>
-    <CEffectEnumArea id="ExplodeBlind5">
-        <ImpactLocation Value="SourceUnit"/>
-        <ExcludeArray Value="Outer"/>
-        <ExcludeArray Value="Target"/>
-        <SearchFilters value="Ground,Visible;Player,Ally,Neutral,Missile,Item,Stasis,Dead,Hidden,Invulnerable"/>
-        <AreaArray Radius="1.5" Effect="ExplodeBlind6"/>
-        <SearchFlags index="SameCliff" value="1"/>
-    </CEffectEnumArea>
-    <CEffectDamage id="ExplodeBlind" parent="DU_WEAP">
-        <AINotifyFlags index="HurtEnemy" value="1"/>
-        <ImpactLocation Value="TargetUnit"/>
-        <Kind value="Splash"/>
-        <Death value="Disintegrate"/>
-    </CEffectDamage>
-    <CEffectDamage id="ExplodeCreeper4" parent="DU_WEAP">
-        <AINotifyFlags index="HurtEnemy" value="1"/>
-        <ImpactLocation Value="TargetUnit"/>
-        <Kind value="Splash"/>
-        <Death value="Disintegrate"/>
-    </CEffectDamage>
     <CEffectEnumArea id="GorgonBlindingVomitImpact">
         <EditorCategories value="Race:Zerg"/>
         <ImpactLocation Value="TargetPoint"/>
@@ -862,11 +841,6 @@
         <Abil value="MutatetoSeeker"/>
         <CmdFlags index="Preempt" value="1"/>
     </CEffectIssueOrder>
-    <CEffectRemoveBehavior id="BeastExplodeAcid3">
-        <EditorCategories value="Race:Zerg"/>
-        <WhichUnit Value="Caster"/>
-        <BehaviorLink value="ExplodeAcid"/>
-    </CEffectRemoveBehavior>
     <CEffectApplyBehavior id="SuperChargeKnockback4">
         <EditorCategories value="Race:Zerg"/>
         <Behavior value="SuperChargeKnockback"/>
@@ -876,24 +850,6 @@
         <WhichUnit Value="Source"/>
         <Behavior value="SuperChargeSpeed"/>
     </CEffectApplyBehavior>
-    <CEffectEnumArea id="BeastExplodeAcid8">
-        <ImpactLocation Value="SourceUnit"/>
-        <SearchFilters value="Ground,Visible;Player,Ally,Neutral,Missile,Item,Stasis,Dead,Hidden,Invulnerable"/>
-        <AreaArray Radius="3" Effect="BeastExplodeAcid4"/>
-        <SearchFlags index="SameCliff" value="1"/>
-    </CEffectEnumArea>
-    <CEffectDamage id="BeastExplodeAcid4" parent="DU_WEAP">
-        <AINotifyFlags index="HurtEnemy" value="1"/>
-        <ImpactLocation Value="TargetUnit"/>
-        <Kind value="Splash"/>
-        <Amount value="150"/>
-        <Death value="Disintegrate"/>
-    </CEffectDamage>
-    <CEffectSet id="BeastExplodeAcid7">
-        <EffectArray value="BeastExplodeAcid3"/>
-        <EffectArray value="BeastExplodeAcid8"/>
-        <EffectArray value="Class"/>
-    </CEffectSet>
     <CEffectIssueOrder id="RoamerMorphMutation">
         <EditorCategories value=""/>
         <Abil value="MutatetoRoamer"/>
@@ -1278,23 +1234,9 @@
     <CEffectDamage id="ZombieWalkerColonistAttack" parent="Attack">
         <EditorCategories value="Race:Zerg"/>
     </CEffectDamage>
-    <CEffectEnumArea id="ExplodeAcid3">
-        <ImpactLocation Value="CasterPoint"/>
-        <SearchFilters value="Ground,Visible;Player,Ally,Neutral,Missile,Item,Stasis,Dead,Hidden,Invulnerable"/>
-        <AreaArray Radius="1.5" Effect="ExplodeAcid"/>
-        <SearchFlags index="SameCliff" value="1"/>
-    </CEffectEnumArea>
     <CEffectDamage id="RoamerAttack" parent="Attack">
         <EditorCategories value="Race:Zerg"/>
         <Amount value="40"/>
-    </CEffectDamage>
-    <CEffectDamage id="ExplodeAcid" parent="DU_WEAP">
-        <AINotifyFlags index="HurtEnemy" value="1"/>
-        <ImpactLocation Value="TargetUnit"/>
-        <Kind value="Splash"/>
-        <Amount value="75"/>
-        <Death value="Disintegrate"/>
-        <ArmorReduction value="3"/>
     </CEffectDamage>
     <CEffectDamage id="CrushingJaws" parent="Smash">
         <EditorCategories value="Race:Zerg"/>
@@ -1358,4 +1300,16 @@
         <Marker Link="Effect/Stimpack"/>
         <Behavior value="WarHowl"/>
     </CEffectApplyBehavior>
+    <CEffectDamage id="BeastExplodeAcidDmaage" parent="SuicideDamageTemplate">
+        <EditorCategories value="Race:Zerg"/>
+        <ArmorReduction value="1"/>
+        <Amount value="150"/>
+        <AreaArray index="0" Radius="3" Fraction="1"/>
+    </CEffectDamage>
+    <CEffectDamage id="ExplodeAcidDamage" parent="SuicideDamageTemplate">
+        <EditorCategories value="Race:Neutral"/>
+    </CEffectDamage>
+    <CEffectDamage id="ExplodeCreeperDamage" parent="SuicideDamageTemplate">
+        <EditorCategories value="Race:Neutral"/>
+    </CEffectDamage>
 </Catalog>

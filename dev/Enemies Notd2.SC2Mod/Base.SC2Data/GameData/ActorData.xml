@@ -69,7 +69,7 @@
         <On Terms="Effect.SuicideUnits2.Start; At Target; ValidateEffect noShields; ValidateUnitType IsMechanical" Send="Create"/>
         <On Terms="Effect.ExplodeBlind5.Start; At Target; ValidateEffect noShields; ValidateUnitType IsMechanical" Send="Create"/>
         <On Terms="Effect.ExplodeAcid5.Start; At Target; ValidateEffect noShields; ValidateUnitType IsMechanical" Send="Create"/>
-        <On Terms="Effect.BeastExplodeAcid2.Start; At Target; ValidateEffect noShields; ValidateUnitType IsMechanical" Send="Create"/>
+        <On Terms="Effect.BeastExplodeAcidDmaage.Start; At Target; ValidateEffect noShields; ValidateUnitType IsMechanical" Send="Create"/>
         <On Terms="Effect.TickMandibles.Start; At Target; ValidateEffect noShields; ValidateUnitType IsMechanical" Send="Create"/>
         <On Terms="Effect.SquealerMandibles.Start; At Target; ValidateEffect noShields; ValidateUnitType IsMechanical" Send="Create"/>
         <On Terms="Effect.SlitherMandibles.Start; At Target; ValidateEffect noShields; ValidateUnitType IsMechanical" Send="Create"/>
@@ -117,7 +117,7 @@
         <On Terms="Effect.SuicideUnits2.Start; At Target; ValidateEffect noShields; ValidateUnitType IsBiological" Send="Create"/>
         <On Terms="Effect.ExplodeBlind5.Start; At Target; ValidateEffect noShields; ValidateUnitType IsBiological" Send="Create"/>
         <On Terms="Effect.ExplodeAcid5.Start; At Target; ValidateEffect noShields; ValidateUnitType IsBiological" Send="Create"/>
-        <On Terms="Effect.BeastExplodeAcid2.Start; At Target; ValidateEffect noShields; ValidateUnitType IsBiological" Send="Create"/>
+        <On Terms="Effect.BeastExplodeAcidDmaage.Start; At Target; ValidateEffect noShields; ValidateUnitType IsBiological" Send="Create"/>
         <On Terms="Effect.TickMandibles.Start; At Target; ValidateEffect noShields; ValidateUnitType IsBiological" Send="Create"/>
         <On Terms="Effect.SquealerMandibles.Start; At Target; ValidateEffect noShields; ValidateUnitType IsBiological" Send="Create"/>
         <On Terms="Effect.SlitherMandibles.Start; At Target; ValidateEffect noShields; ValidateUnitType IsBiological" Send="Create"/>
@@ -409,7 +409,7 @@
         <On Terms="Effect.SuicideUnits2.Start; At Target; ValidateEffect noShields; ValidateUnitType IsBiological" Send="Create"/>
         <On Terms="Effect.ExplodeBlind5.Start; At Target; ValidateEffect noShields; ValidateUnitType IsBiological" Send="Create"/>
         <On Terms="Effect.ExplodeAcid5.Start; At Target; ValidateEffect noShields; ValidateUnitType IsBiological" Send="Create"/>
-        <On Terms="Effect.BeastExplodeAcid2.Start; At Target; ValidateEffect noShields; ValidateUnitType IsBiological" Send="Create"/>
+        <On Terms="Effect.BeastExplodeAcidDmaage.Start; At Target; ValidateEffect noShields; ValidateUnitType IsBiological" Send="Create"/>
         <On Terms="Effect.TickMandibles.Start; At Target; ValidateEffect noShields; ValidateUnitType IsBiological" Send="Create"/>
         <On Terms="Effect.SquealerMandibles.Start; At Target; ValidateEffect noShields; ValidateUnitType IsBiological" Send="Create"/>
         <On Terms="Effect.SlitherMandibles.Start; At Target; ValidateEffect noShields; ValidateUnitType IsBiological" Send="Create"/>
@@ -459,7 +459,7 @@
         <On Terms="Effect.SuicideUnits2.Start; At Target; ValidateEffect hasShields" Send="Create"/>
         <On Terms="Effect.ExplodeBlind5.Start; At Target; ValidateEffect hasShields" Send="Create"/>
         <On Terms="Effect.ExplodeAcid5.Start; At Target; ValidateEffect hasShields" Send="Create"/>
-        <On Terms="Effect.BeastExplodeAcid2.Start; At Target; ValidateEffect hasShields" Send="Create"/>
+        <On Terms="Effect.BeastExplodeAcidDmaage.Start; At Target; ValidateEffect hasShields" Send="Create"/>
         <On Terms="Effect.TickMandibles.Start; At Target; ValidateEffect hasShields" Send="Create"/>
         <On Terms="Effect.SquealerMandibles.Start; At Target; ValidateEffect hasShields" Send="Create"/>
         <On Terms="Effect.SlitherMandibles.Start; At Target; ValidateEffect hasShields" Send="Create"/>
@@ -504,7 +504,7 @@
         <On Terms="Effect.SuicideUnits2.Start; At Target; ValidateEffect noShields; ValidateUnitType IsMechanical" Send="Create"/>
         <On Terms="Effect.ExplodeBlind5.Start; At Target; ValidateEffect noShields; ValidateUnitType IsMechanical" Send="Create"/>
         <On Terms="Effect.ExplodeAcid5.Start; At Target; ValidateEffect noShields; ValidateUnitType IsMechanical" Send="Create"/>
-        <On Terms="Effect.BeastExplodeAcid2.Start; At Target; ValidateEffect noShields; ValidateUnitType IsMechanical" Send="Create"/>
+        <On Terms="Effect.BeastExplodeAcidDmaage.Start; At Target; ValidateEffect noShields; ValidateUnitType IsMechanical" Send="Create"/>
         <On Terms="Effect.TickMandibles.Start; At Target; ValidateEffect noShields; ValidateUnitType IsMechanical" Send="Create"/>
         <On Terms="Effect.SquealerMandibles.Start; At Target; ValidateEffect noShields; ValidateUnitType IsMechanical" Send="Create"/>
         <On Terms="Effect.SlitherMandibles.Start; At Target; ValidateEffect noShields; ValidateUnitType IsMechanical" Send="Create"/>
@@ -1300,12 +1300,12 @@
         <AcceptedHostedPropTransfers index="Scale" value="0"/>
         <Remove Terms="UnitDeathCustomize; ValidateUnit NotStructure; IsStatus InAir 1" Send="DeathCustomize AntiGravGeneric"/>
         <Remove Terms="UnitDeathCustomize; ValidateUnit IsZergUnit; IsStatus InAir 1" Send="DeathCustomize AntiGravZerg"/>
-        <On Terms="WeaponStart.ExplodeBlinder" Send="StatusSet DeathSuicide 1"/>
+        <On Terms="WeaponStart.BlinderExplode" Send="StatusSet DeathSuicide 1"/>
         <On Terms="Abil.Explode.SourceCastStart" Send="StatusSet DeathSuicide 1"/>
         <On Terms="UnitDeathCustomize; IsStatus DeathSuicide 0" Send="Create BanelingDeathNormalSound"/>
         <On Terms="UnitDeathCustomize; IsStatus DeathSuicide 1" Send="Create BanelingDeathSuicideSound"/>
         <On Terms="UnitBirth.Blinder" Send="TerrainSquibActivateGroup RippleStandard"/>
-        <On Terms="WeaponStart.ExplodeBlinder.AttackStart" Send="StatusSet DeathSuicide 1"/>
+        <On Terms="WeaponStart.BlinderExplode.AttackStart" Send="StatusSet DeathSuicide 1"/>
         <On Terms="ActorCreation" Send="TextureSelectById baneling_diffuse_red"/>
         <On Terms="ActorCreation" Send="TextureSelectById baneling_emissive_red"/>
         <On Terms="AbilMorph.MutatetoBlinder.Finish; MorphFrom Buster; MorphTo Blinder" Send="Create"/>
