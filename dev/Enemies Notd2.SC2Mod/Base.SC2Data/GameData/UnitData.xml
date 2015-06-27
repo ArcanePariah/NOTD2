@@ -576,13 +576,13 @@
     </CUnit>
     <CUnit id="Creeper" parent="SuicideTemplate">
         <Subtitle value="UnitSubtitle/SuicideMutation"/>
-        <BehaviorArray Link="ExplodeCreeperDeath"/>
         <WeaponArray Link="ExplodeCreeper"/>
         <CardLayouts index="0">
             <LayoutButtons index="5" removed="1"/>
         </CardLayouts>
         <InnerRadius value="0"/>
         <Speed value="2.1992"/>
+        <EffectArray index="Death" value="ExplodeCreep2"/>
     </CUnit>
     <CUnit id="Devourer2" parent="HeavyStalkerTemplate">
         <Subtitle value="UnitSubtitle/StalkerMutation"/>
@@ -595,6 +595,7 @@
         <CardLayouts index="0">
             <LayoutButtons Face="InfestedCharge" Type="AbilCmd" AbilCmd="InfestedCharge,Execute" Row="2" Column="4"/>
         </CardLayouts>
+        <EffectArray index="Death" value="ExplodeCreep2"/>
     </CUnit>
     <CUnit id="Dissolver" parent="HeavyStalkerTemplate">
         <Subtitle value="UnitSubtitle/StalkerMutation"/>
