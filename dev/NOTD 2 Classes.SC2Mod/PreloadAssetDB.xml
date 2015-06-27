@@ -303,8 +303,6 @@ Effect
 id=DeployAntiMaterialRifle
 Button
 Effect
-id=Detonate
-Effect
 id=RemoteTrigger
 Effect
 id=EscapeSet
@@ -379,6 +377,9 @@ Effect
 id=ShieldBash
 Actor=##id##RangeIndicator
 Effect=##id##Level1,##id##Level2
+id=Detonate
+Actor=##id##AreaSplat
+Effect
 id=Execute
 Effect=##id##SwitchLevel1,##id##SwitchLevel2
 id=FlareGunRecon
@@ -1262,6 +1263,9 @@ Actor=TerrainMgr
 Sound=BoltPull
 id=WeaponMarineSwapMacro
 Actor=TerrainMgr
+id=DetonateAreaSplat
+Actor=CursorRegion,TerrainMgr
+Model=TerranAOECursorSplat
 parent=BaseMarineActor
 default=BaseHeavyMarineActor
 Actor=LeftArm,RightArm,WeaponEquipHeavyMacro,WeaponModelSwapGroupsHeavy

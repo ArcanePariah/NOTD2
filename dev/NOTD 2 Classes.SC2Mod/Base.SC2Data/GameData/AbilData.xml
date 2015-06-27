@@ -300,9 +300,12 @@
             <Flags index="ToSelection" value="1"/>
         </CmdButtonArray>
     </CAbilEffectInstant>
-    <CAbilEffectInstant id="Detonate" parent="AbilityInstantTemplate">
-        <CmdButtonArray index="Execute" Requirements="Detonate"/>
-    </CAbilEffectInstant>
+    <CAbilEffectTarget id="Detonate" parent="AbilityWithButtonTargetTemplate">
+        <Flags index="BestUnit" value="0"/>
+        <Flags index="RequireTargetVision" value="0"/>
+        <Range value="500"/>
+        <CursorEffect value="Detonate"/>
+    </CAbilEffectTarget>
     <CAbilInventory id="EngineerInventory" parent="InventoryTemplate"/>
     <CAbilLearn id="EngineerLearn" parent="LearnTemplate">
         <Name value="Abil/Name/EngineerLearn"/>
