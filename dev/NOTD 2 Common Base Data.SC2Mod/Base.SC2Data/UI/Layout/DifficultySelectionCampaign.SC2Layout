@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Desc>
+
+    <Frame type="Frame" name="DifficultySelect">
+        <Anchor side="Left" relative="$parent" pos="Min" offset="0"/>
+        <Anchor side="Top" relative="$parent" pos="Min" offset="0"/>
+        <Anchor side="Right" relative="$parent" pos="Max" offset="0"/>
+        <Anchor side="Bottom" relative="$parent" pos="Max" offset="0"/>
+
+        <Frame type="Button" name="RecruitModeButton" template="StandardTemplates/StandardButtonTemplate">
+            <Anchor side="Left" relative="$parent" pos="Min" offset="200"/>
+            <Anchor side="Top" relative="$parent" pos="Min" offset="200"/>
+
+            <Frame type="Image" name="NormalImage">
+                <Desaturated val="true"/>
+                <DesaturationColor val="255,255,0"/>
+            </Frame>
+
+            <Frame type="Image" name="HoverImage">
+                <Desaturated val="true"/>
+                <DesaturationColor val="255,255,0"/>
+            </Frame>
+
+            <Frame type="Label" name="Label">
+                <Text val="Recruit"/>
+            </Frame>
+        </Frame>
+
+        <Frame type="Button" name="NormalModeButton" template="StandardTemplates/StandardButtonTemplate">
+            <Anchor side="Left" relative="$parent/RecruitModeButton" pos="Min" offset="0"/>
+            <Anchor side="Top" relative="$parent/RecruitModeButton" pos="Max" offset="30"/>
+
+            <Frame type="Image" name="NormalImage">
+                <Desaturated val="true"/>
+                <DesaturationColor val="255,128,0"/>
+            </Frame>
+
+            <Frame type="Image" name="HoverImage">
+                <Desaturated val="true"/>
+                <DesaturationColor val="255,128,0"/>
+            </Frame>
+
+            <Frame type="Label" name="Label">
+                <Text val="Normal"/>
+            </Frame>
+        </Frame>
+
+        <Frame type="Button" name="NightmareModeButton" template="StandardTemplates/StandardButtonTemplate">
+            <Anchor side="Left" relative="$parent/RecruitModeButton" pos="Min" offset="0"/>
+            <Anchor side="Top" relative="$parent/NormalModeButton" pos="Max" offset="30"/>
+
+            <Frame type="Image" name="NormalImage">
+                <Desaturated val="true"/>
+                <DesaturationColor val="255,0,0"/>
+            </Frame>
+
+            <Frame type="Image" name="HoverImage">
+                <Desaturated val="true"/>
+                <DesaturationColor val="255,0,0"/>
+            </Frame>
+
+            <Frame type="Label" name="Label">
+                <Text val="Nightmare"/>
+            </Frame>
+        </Frame>
+
+        <Frame type="Label" name="RecruitVoteCounter">
+            <Anchor side="Left" relative="$parent/RecruitModeButton" pos="Max" offset="0"/>
+            <Anchor side="Top" relative="$parent/RecruitModeButton" pos="Min" offset="0"/>
+            <Anchor side="Bottom" relative="$parent/RecruitModeButton" pos="Max" offset="0"/>
+            <Width val="371"/>
+            <Style val="@@StandardButton"/>
+            <Text val="0"/>
+        </Frame>
+
+        <Frame type="Label" name="NormalVoteCounter">
+            <Anchor side="Left" relative="$parent/NormalModeButton" pos="Max" offset="0"/>
+            <Anchor side="Top" relative="$parent/NormalModeButton" pos="Min" offset="0"/>
+            <Anchor side="Bottom" relative="$parent/NormalModeButton" pos="Max" offset="0"/>
+            <Width val="371"/>
+            <Style val="@@StandardButton"/>
+            <Text val="1"/>
+        </Frame>
+
+        <Frame type="Label" name="NightmareVoteCounter">
+            <Anchor side="Left" relative="$parent/NightmareModeButton" pos="Max" offset="0"/>
+            <Anchor side="Top" relative="$parent/NightmareModeButton" pos="Min" offset="0"/>
+            <Anchor side="Bottom" relative="$parent/NightmareModeButton" pos="Max" offset="0"/>
+            <Width val="371"/>
+            <Style val="@@StandardButton"/>
+            <Text val="2"/>
+        </Frame>
+    </Frame>
+</Desc>
