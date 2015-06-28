@@ -16,7 +16,9 @@ const string lib840A968C_gv_victory = "Victory";
 const string lib840A968C_gv_defeat = "Defeat";
 const int lib840A968C_gv_numberofClasses = 15;
 const string lib840A968C_gv_classSelectionEvent = "Class Selection";
+const string lib840A968C_gv_difficultySelectionEvent = "DifficultySelection";
 const int lib840A968C_gv_mISSION_MAX_COUNT = 32;
+const int lib840A968C_gv_numberofDifficulties = 3;
 const int lib840A968C_gv_numberofPlayers = lib1E3F036D_gv_numberofPlayers;
 const string lib840A968C_gv_eventRegistrationSignal = "Register Event";
 const string lib840A968C_gv_playerDataBankName = "NightoftheDead2";
@@ -41,6 +43,12 @@ const string lib840A968C_gv_assertsLogFile = "Unit Tests";
 const string lib840A968C_gv_bankLogFile = "Bank Statistics";
 
 // Structures
+struct lib840A968C_gs_DifficultSelectionItems {
+    playergroup lv_votes;
+    int lv_optionButton;
+    int lv_optionLabel;
+};
+
 struct lib840A968C_gs_Mission {
     string lv_missionData;
     int lv_missionObjective;
@@ -114,6 +122,8 @@ int lib840A968C_gv_classSelectionDialog;
 int lib840A968C_gv_classSelectionPanel;
 int lib840A968C_gv_classLoreFrame;
 int lib840A968C_gv_classModelFrame;
+int lib840A968C_gv_difficultySelectionDialog;
+lib840A968C_gs_DifficultSelectionItems[4] lib840A968C_gv_difficultySelectionOptions;
 lib840A968C_gs_Mission[lib840A968C_gv_mISSION_MAX_COUNT + 1] lib840A968C_gv_missionData;
 int lib840A968C_gv_missionIndex;
 string lib840A968C_gv_missionStep;
@@ -148,6 +158,12 @@ void lib840A968C_InitVariables () {
     lib840A968C_gv_classSelectionPanel = c_invalidDialogControlId;
     lib840A968C_gv_classLoreFrame = c_invalidDialogControlId;
     lib840A968C_gv_classModelFrame = c_invalidDialogControlId;
+    lib840A968C_gv_difficultySelectionDialog = c_invalidDialogId;
+    for (init_i = 0; init_i <= 3; init_i += 1) {
+        lib840A968C_gv_difficultySelectionOptions[init_i].lv_votes = PlayerGroupEmpty();
+        lib840A968C_gv_difficultySelectionOptions[init_i].lv_optionButton = c_invalidDialogControlId;
+        lib840A968C_gv_difficultySelectionOptions[init_i].lv_optionLabel = c_invalidDialogControlId;
+    }
     for (init_i = 0; init_i <= lib840A968C_gv_mISSION_MAX_COUNT; init_i += 1) {
         lib840A968C_gv_missionData[init_i].lv_missionObjective = c_invalidObjectiveId;
     }
@@ -201,9 +217,9 @@ void lib840A968C_gf_PlayerSetup ();
 void lib840A968C_gf_DefaultAllianceStates ();
 void lib840A968C_gf_SetGameDifficulty ();
 void lib840A968C_gf_GameDifficultyHPAdjustment ();
-bool lib840A968C_gf_NightmareAvailable ();
 bool lib840A968C_gf_PlayerHasClassUnlocked (int lp_player, int lp_classSlot);
 void lib840A968C_gf_ClassUnlocked (int lp_classSlot);
+void lib840A968C_gf_CreateDifficultySelection ();
 bool lib840A968C_gf_GetMissionType (string lp_mission);
 trigger lib840A968C_gf_GetMissionProgression (int lp_missionToken);
 string lib840A968C_gf_GetMissionSignal (int lp_missionToken);
@@ -279,6 +295,8 @@ trigger lib840A968C_gt_Defeat;
 trigger lib840A968C_gt_DisplayClassSelection;
 trigger lib840A968C_gt_ClassSelection;
 trigger lib840A968C_gt_EndClassSelection;
+trigger lib840A968C_gt_DifficultySelection;
+trigger lib840A968C_gt_DifficultyVote;
 trigger lib840A968C_gt_EventRegistrationForMarineUnits;
 trigger lib840A968C_gt_NightVisionModuleLightingChange;
 trigger lib840A968C_gt_NightVisionUIHookup;
@@ -939,16 +957,6 @@ void lib840A968C_gf_SetGameDifficulty () {
     TriggerDebugOutput(lib840A968C_gv_gameEvents, StringExternal("Param/Value/lib_840A968C_3C6819BA"), false);
     PlayerGroupLoopBegin(lib840A968C_gv_marineSquad);
     for ( ; !PlayerGroupLoopDone() ; PlayerGroupLoopStep() ) {
-        if (BankConditionEvaluate(PlayerGroupLoopCurrent(), "Recruit")) {
-            lib840A968C_gv_difficulty = 0;
-            break;
-        }
-        else {
-        }
-    }
-    PlayerGroupLoopEnd();
-    PlayerGroupLoopBegin(lib840A968C_gv_marineSquad);
-    for ( ; !PlayerGroupLoopDone() ; PlayerGroupLoopStep() ) {
         lv_totalRating += lib840A968C_gv_players[PlayerGroupLoopCurrent()].lv_rating;
     }
     PlayerGroupLoopEnd();
@@ -959,11 +967,6 @@ void lib840A968C_gf_SetGameDifficulty () {
 
 void lib840A968C_gf_GameDifficultyHPAdjustment () {
     // Implementation
-}
-
-bool lib840A968C_gf_NightmareAvailable () {
-    // Implementation
-    return true;
 }
 
 bool lib840A968C_gf_PlayerHasClassUnlocked (int lp_player, int lp_classSlot) {
@@ -997,6 +1000,37 @@ void lib840A968C_gf_ClassUnlocked (int lp_classSlot) {
         }
     }
     PlayerGroupLoopEnd();
+}
+
+void lib840A968C_gf_CreateDifficultySelection () {
+    // Variable Declarations
+    int lv_templateFrame;
+
+    // Variable Initialization
+    lv_templateFrame = c_invalidDialogControlId;
+
+    // Implementation
+    DialogCreate(500, 400, c_anchorCenter, 0, 0, true);
+    DialogSetFullscreen(DialogLastCreated(), true);
+    lib840A968C_gv_difficultySelectionDialog = DialogLastCreated();
+    DialogControlCreateFromTemplate(DialogLastCreated(), c_triggerControlTypePanel, "DifficultySelectionCampaign/DifficultySelect");
+    lv_templateFrame = DialogControlLastCreated();
+    DialogControlHookup(lv_templateFrame, c_triggerControlTypeButton, "RecruitModeButton");
+    lib840A968C_gv_difficultySelectionOptions[1].lv_optionButton = DialogControlLastCreated();
+    DialogControlHookup(lv_templateFrame, c_triggerControlTypeLabel, "RecruitVoteCounter");
+    lib840A968C_gv_difficultySelectionOptions[1].lv_optionLabel = DialogControlLastCreated();
+    DialogControlHookup(lv_templateFrame, c_triggerControlTypeButton, "NormalModeButton");
+    lib840A968C_gv_difficultySelectionOptions[2].lv_optionButton = DialogControlLastCreated();
+    DialogControlHookup(lv_templateFrame, c_triggerControlTypeLabel, "NormalVoteCounter");
+    lib840A968C_gv_difficultySelectionOptions[2].lv_optionLabel = DialogControlLastCreated();
+    DialogControlHookup(lv_templateFrame, c_triggerControlTypeButton, "NightmareModeButton");
+    lib840A968C_gv_difficultySelectionOptions[3].lv_optionButton = DialogControlLastCreated();
+    DialogControlHookup(lv_templateFrame, c_triggerControlTypeLabel, "NightmareVoteCounter");
+    lib840A968C_gv_difficultySelectionOptions[3].lv_optionLabel = DialogControlLastCreated();
+    TriggerAddEventDialogControl(lib840A968C_gt_DifficultyVote, c_playerAny, lib840A968C_gv_difficultySelectionOptions[1].lv_optionButton, c_triggerControlEventTypeClick);
+    TriggerAddEventDialogControl(lib840A968C_gt_DifficultyVote, c_playerAny, lib840A968C_gv_difficultySelectionOptions[2].lv_optionButton, c_triggerControlEventTypeClick);
+    TriggerAddEventDialogControl(lib840A968C_gt_DifficultyVote, c_playerAny, lib840A968C_gv_difficultySelectionOptions[3].lv_optionButton, c_triggerControlEventTypeClick);
+    DialogSetVisible(DialogLastCreated(), PlayerGroupAll(), true);
 }
 
 bool lib840A968C_gf_GetMissionType (string lp_mission) {
@@ -1970,7 +2004,6 @@ bool lib840A968C_gt_Intialization_Func (bool testConds, bool runActions) {
     lib840A968C_gf_AIIntialize();
     lib840A968C_gf_SetLoggingOutput();
     libC50FD636_gf_IntializeTalentMax();
-    lib840A968C_gf_SetGameDifficulty();
     lib840A968C_gf_DefaultAllianceStates();
     lib840A968C_gv_gameSetupComplete = true;
     return true;
@@ -2002,7 +2035,7 @@ bool lib840A968C_gt_GameStart_Func (bool testConds, bool runActions) {
     }
     if (((GameAttributeGameValue("1") == "0001") || GameIsTestMap(false))) {
         TriggerDebugOutput(lib840A968C_gv_gameEvents, StringExternal("Param/Value/lib_840A968C_5EF69773"), false);
-        TriggerSendEvent(lib840A968C_gv_classSelectionEvent);
+        TriggerSendEvent(lib840A968C_gv_difficultySelectionEvent);
     }
     else if ((GameAttributeGameValue("1") == "0003")) {
     }
@@ -2124,7 +2157,7 @@ bool lib840A968C_gt_DisplayClassSelection_Func (bool testConds, bool runActions)
         CameraLockInput(PlayerGroupLoopCurrent(), true);
     }
     PlayerGroupLoopEnd();
-    TimerStart(lib840A968C_gv_classSelectionTimer, 15.0, false, c_timeReal);
+    TimerStart(lib840A968C_gv_classSelectionTimer, 20.0, false, c_timeReal);
     TriggerEnable(lib840A968C_gt_ClassSelection, true);
     TriggerEnable(lib840A968C_gt_EndClassSelection, true);
     DialogCreate(500, 400, c_anchorCenter, 0, 0, true);
@@ -2244,6 +2277,97 @@ void lib840A968C_gt_EndClassSelection_Init () {
     lib840A968C_gt_EndClassSelection = TriggerCreate("lib840A968C_gt_EndClassSelection_Func");
     TriggerEnable(lib840A968C_gt_EndClassSelection, false);
     TriggerAddEventTimer(lib840A968C_gt_EndClassSelection, lib840A968C_gv_classSelectionTimer);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Difficulty Selection
+//--------------------------------------------------------------------------------------------------
+bool lib840A968C_gt_DifficultySelection_Func (bool testConds, bool runActions) {
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    lib840A968C_gf_CreateDifficultySelection();
+    Wait(10.0, c_timeReal);
+    DialogDestroy(lib840A968C_gv_difficultySelectionDialog);
+    if ((PlayerGroupCount(lib840A968C_gv_difficultySelectionOptions[1].lv_votes) < PlayerGroupCount(lib840A968C_gv_difficultySelectionOptions[2].lv_votes))) {
+        if ((PlayerGroupCount(lib840A968C_gv_difficultySelectionOptions[2].lv_votes) < PlayerGroupCount(lib840A968C_gv_difficultySelectionOptions[3].lv_votes))) {
+            lib840A968C_gv_difficulty = 2;
+        }
+        else {
+            lib840A968C_gv_difficulty = 1;
+        }
+    }
+    else {
+        if ((PlayerGroupCount(lib840A968C_gv_difficultySelectionOptions[1].lv_votes) < PlayerGroupCount(lib840A968C_gv_difficultySelectionOptions[3].lv_votes))) {
+            lib840A968C_gv_difficulty = 2;
+        }
+        else {
+            lib840A968C_gv_difficulty = 0;
+        }
+    }
+    lib840A968C_gf_SetGameDifficulty();
+    TriggerSendEvent(lib840A968C_gv_classSelectionEvent);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib840A968C_gt_DifficultySelection_Init () {
+    lib840A968C_gt_DifficultySelection = TriggerCreate("lib840A968C_gt_DifficultySelection_Func");
+    TriggerAddEventGeneric(lib840A968C_gt_DifficultySelection, lib840A968C_gv_difficultySelectionEvent);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Difficulty Vote
+//--------------------------------------------------------------------------------------------------
+bool lib840A968C_gt_DifficultyVote_Func (bool testConds, bool runActions) {
+    int auto1A8F2750_ae;
+    int auto1A8F2750_ai;
+    int autoDD98B4F6_val;
+    int auto92DA7F75_ae;
+    int auto92DA7F75_ai;
+
+    // Variable Declarations
+    int lv_loop;
+
+    // Variable Initialization
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    auto1A8F2750_ae = lib840A968C_gv_numberofDifficulties;
+    auto1A8F2750_ai = 1;
+    lv_loop = lib1E3F036D_gv_indexBaseValue;
+    for ( ; ( (auto1A8F2750_ai >= 0 && lv_loop <= auto1A8F2750_ae) || (auto1A8F2750_ai <= 0 && lv_loop >= auto1A8F2750_ae) ) ; lv_loop += auto1A8F2750_ai ) {
+        PlayerGroupRemove(lib840A968C_gv_difficultySelectionOptions[lv_loop].lv_votes, EventPlayer());
+    }
+    autoDD98B4F6_val = EventDialogControl();
+    if (autoDD98B4F6_val == lib840A968C_gv_difficultySelectionOptions[1].lv_optionButton) {
+        PlayerGroupAdd(lib840A968C_gv_difficultySelectionOptions[1].lv_votes, EventPlayer());
+    }
+    else if (autoDD98B4F6_val == lib840A968C_gv_difficultySelectionOptions[2].lv_optionButton) {
+        PlayerGroupAdd(lib840A968C_gv_difficultySelectionOptions[2].lv_votes, EventPlayer());
+    }
+    else if (autoDD98B4F6_val == lib840A968C_gv_difficultySelectionOptions[3].lv_optionButton) {
+        PlayerGroupAdd(lib840A968C_gv_difficultySelectionOptions[3].lv_votes, EventPlayer());
+    }
+    else {
+    }
+    auto92DA7F75_ae = lib840A968C_gv_numberofDifficulties;
+    auto92DA7F75_ai = 1;
+    lv_loop = lib1E3F036D_gv_indexBaseValue;
+    for ( ; ( (auto92DA7F75_ai >= 0 && lv_loop <= auto92DA7F75_ae) || (auto92DA7F75_ai <= 0 && lv_loop >= auto92DA7F75_ae) ) ; lv_loop += auto92DA7F75_ai ) {
+        libNtve_gf_SetDialogItemText(lib840A968C_gv_difficultySelectionOptions[lv_loop].lv_optionLabel, IntToText(PlayerGroupCount(lib840A968C_gv_difficultySelectionOptions[lv_loop].lv_votes)), PlayerGroupAll());
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib840A968C_gt_DifficultyVote_Init () {
+    lib840A968C_gt_DifficultyVote = TriggerCreate("lib840A968C_gt_DifficultyVote_Func");
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -3400,6 +3524,8 @@ void lib840A968C_InitTriggers () {
     lib840A968C_gt_DisplayClassSelection_Init();
     lib840A968C_gt_ClassSelection_Init();
     lib840A968C_gt_EndClassSelection_Init();
+    lib840A968C_gt_DifficultySelection_Init();
+    lib840A968C_gt_DifficultyVote_Init();
     lib840A968C_gt_EventRegistrationForMarineUnits_Init();
     lib840A968C_gt_NightVisionModuleLightingChange_Init();
     lib840A968C_gt_NightVisionUIHookup_Init();

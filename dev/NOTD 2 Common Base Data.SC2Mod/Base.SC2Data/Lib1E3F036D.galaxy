@@ -25,11 +25,9 @@ struct lib1E3F036D_gs_PlayerStatusUI {
 };
 
 // Variables
-int lib1E3F036D_gv_container0Slot50;
 int lib1E3F036D_gv_teamUIDialog;
 
 void lib1E3F036D_InitVariables () {
-    lib1E3F036D_gv_container0Slot50 = c_invalidDialogControlId;
     lib1E3F036D_gv_teamUIDialog = c_invalidDialogId;
 }
 
@@ -43,8 +41,6 @@ int lib1E3F036D_gf_GameType ();
 string lib1E3F036D_gf_UnitTypeDifficulty (string lp_recruit, string lp_normal, string lp_nightmare);
 
 // Trigger Declarations
-trigger lib1E3F036D_gt_TestHookupInventory;
-trigger lib1E3F036D_gt_TestInventoryRightClick;
 trigger lib1E3F036D_gt_ConstructTeamUI;
 
 // Functions
@@ -196,62 +192,6 @@ string lib1E3F036D_gf_UnitTypeDifficulty (string lp_recruit, string lp_normal, s
 
 // Triggers
 //--------------------------------------------------------------------------------------------------
-// Trigger: Test Hookup Inventory
-//--------------------------------------------------------------------------------------------------
-bool lib1E3F036D_gt_TestHookupInventory_Func (bool testConds, bool runActions) {
-    // Variable Declarations
-    region lv_untitledVariable001;
-
-    // Variable Initialization
-    lv_untitledVariable001 = RegionRect(0.0, 0.0, 1.0, 1.0);
-
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    DialogControlHookupStandard(c_triggerControlTypeButton, "UIContainer\\ConsoleUIContainer\\InventoryPanel\\ContainerPanel01\\Slot00");
-    lib1E3F036D_gv_container0Slot50 = DialogControlLastCreated();
-    return true;
-}
-
-//--------------------------------------------------------------------------------------------------
-void lib1E3F036D_gt_TestHookupInventory_Init () {
-    lib1E3F036D_gt_TestHookupInventory = TriggerCreate("lib1E3F036D_gt_TestHookupInventory_Func");
-    TriggerAddEventMapInit(lib1E3F036D_gt_TestHookupInventory);
-}
-
-//--------------------------------------------------------------------------------------------------
-// Trigger: Test Inventory Right Click
-//--------------------------------------------------------------------------------------------------
-bool lib1E3F036D_gt_TestInventoryRightClick_Func (bool testConds, bool runActions) {
-    // Conditions
-    if (testConds) {
-        if (!((EventDialogControl() == lib1E3F036D_gv_container0Slot50))) {
-            return false;
-        }
-
-        if (!((EventDialogControlMouseButton() == c_mouseButtonRight))) {
-            return false;
-        }
-    }
-
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    TriggerDebugOutput(1, StringExternal("Param/Value/lib_1E3F036D_0D64C4DB"), true);
-    return true;
-}
-
-//--------------------------------------------------------------------------------------------------
-void lib1E3F036D_gt_TestInventoryRightClick_Init () {
-    lib1E3F036D_gt_TestInventoryRightClick = TriggerCreate("lib1E3F036D_gt_TestInventoryRightClick_Func");
-    TriggerAddEventDialogControl(lib1E3F036D_gt_TestInventoryRightClick, c_playerAny, c_invalidDialogControlId, c_triggerControlEventTypeClick);
-}
-
-//--------------------------------------------------------------------------------------------------
 // Trigger: Construct Team UI
 //--------------------------------------------------------------------------------------------------
 bool lib1E3F036D_gt_ConstructTeamUI_Func (bool testConds, bool runActions) {
@@ -271,8 +211,6 @@ void lib1E3F036D_gt_ConstructTeamUI_Init () {
 }
 
 void lib1E3F036D_InitTriggers () {
-    lib1E3F036D_gt_TestHookupInventory_Init();
-    lib1E3F036D_gt_TestInventoryRightClick_Init();
     lib1E3F036D_gt_ConstructTeamUI_Init();
 }
 
