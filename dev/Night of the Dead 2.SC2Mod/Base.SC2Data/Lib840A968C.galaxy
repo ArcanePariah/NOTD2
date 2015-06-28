@@ -1838,7 +1838,7 @@ bool lib840A968C_gt_AmbientAttacksOnPlayers_Func (bool testConds, bool runAction
         return true;
     }
 
-    AIAttackWaveUseGroup(lib1E3F036D_gv_zombiePlayer, UnitGroup(null, lib1E3F036D_gv_zombiePlayer, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterHeroic) | (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), RandomInt(15, 30)));
+    AIAttackWaveUseGroup(lib1E3F036D_gv_zombiePlayer, UnitGroup(null, lib1E3F036D_gv_zombiePlayer, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterHeroic) | (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32)) | (1 << (c_targetFilterPassive - 32))), RandomInt(15, 30)));
     AIAttackWaveSetTargetUnitGroup(lib1E3F036D_gv_zombiePlayer, lib840A968C_gf_GetMarineGroup());
     AIAttackWaveSend(lib1E3F036D_gv_zombiePlayer, 0, false);
     return true;
@@ -1922,14 +1922,14 @@ bool lib840A968C_gt_ActivateHorde_Func (bool testConds, bool runActions) {
     UIDisplayMessage(PlayerGroupAll(), c_messageAreaSubtitle, StringExternal("Param/Value/lib_840A968C_8280CFC9"));
     TextExpressionSetToken("Param/Expression/lib_840A968C_5607E622", "A", IntToText(TechTreeUpgradeCount(lib1E3F036D_gv_zombiePlayer, "Chapter1Complete", c_techCountCompleteOnly)));
     TriggerDebugOutput(lib840A968C_gv_gameEvents, TextExpressionAssemble("Param/Expression/lib_840A968C_5607E622"), false);
-    while (lib840A968C_gf_PointNotNearUnitGroupUnits(lv_spawnPoint, lib840A968C_gf_GetMarineGroup(), 30.0)) {
+    while (lib840A968C_gf_PointNotNearUnitGroupUnits(lv_spawnPoint, lib840A968C_gf_GetMarineGroup(), 50.0)) {
         lv_spawnPoint = lib09BE6BA8_gf_PointAtGroundLevelinRegion(RegionPlayableMap());
     }
     lib1765BC64_gf_HordeMode(AIWaveTargetUnitGroup(lib840A968C_gf_GetMarineGroup()), lv_spawnPoint, UnitGroupCount(lib840A968C_gf_GetMarineGroup(), c_unitCountAlive), lib840A968C_gv_currentChapter);
     Wait(1.5, c_timeGame);
     if ((lib1E3F036D_gf_GameType() == 1)) {
         lv_spawnPoint = lib09BE6BA8_gf_PointAtGroundLevelinRegion(RegionPlayableMap());
-        while (lib840A968C_gf_PointNotNearUnitGroupUnits(lv_spawnPoint, lib840A968C_gf_GetMarineGroup(), 30.0)) {
+        while (lib840A968C_gf_PointNotNearUnitGroupUnits(lv_spawnPoint, lib840A968C_gf_GetMarineGroup(), 50.0)) {
             lv_spawnPoint = lib09BE6BA8_gf_PointAtGroundLevelinRegion(RegionPlayableMap());
         }
         auto5A20CEE4_g = AIWaveGetUnits(lib1765BC64_gv_currentHordeWave);

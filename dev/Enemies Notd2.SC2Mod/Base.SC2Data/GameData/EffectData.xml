@@ -84,7 +84,7 @@
         <ValidatorArray index="0" value="GameisnotRecruit"/>
     </CEffectApplyBehavior>
     <CEffectDamage default="1" id="SuicideDamageTemplate" parent="DU_WEAP">
-        <EditorCategories value=""/>
+        <EditorCategories value="Race:Zombie"/>
         <AINotifyFlags index="HurtEnemy" value="1"/>
         <ImpactLocation Value="TargetUnit"/>
         <ArmorReduction value="3"/>
@@ -98,12 +98,12 @@
     </CEffectDamage>
     <CEffectApplyBehavior id="AirborneDifficultyScaling" parent="DifficultyScalingTemplate"/>
     <CEffectSet id="BeastExplodeAcid">
-        <EditorCategories value=""/>
+        <EditorCategories value="Race:Zombie"/>
         <EffectArray value="BeastExplodeAcidDmaage"/>
         <EffectArray value="Suicide"/>
     </CEffectSet>
     <CEffectSet id="BlinderExplode">
-        <EditorCategories value=""/>
+        <EditorCategories value="Race:Zombie"/>
         <EffectArray value="Suicide"/>
         <EffectArray value="Blind"/>
     </CEffectSet>
@@ -111,7 +111,7 @@
         <EditorCategories value=""/>
     </CEffectApplyBehavior>
     <CEffectSet id="ExplodeAcid">
-        <EditorCategories value=""/>
+        <EditorCategories value="Race:Zombie"/>
         <EffectArray value="ExplodeAcidDamage"/>
         <EffectArray value="Suicide"/>
     </CEffectSet>
@@ -409,9 +409,10 @@
     <CEffectSet id="ExplodeCreeper">
         <EffectArray value="Blind"/>
         <EffectArray value="Suicide"/>
+        <EditorCategories value="Race:Zombie"/>
     </CEffectSet>
     <CEffectCreateUnit id="ExplodeCreep2">
-        <EditorCategories value=""/>
+        <EditorCategories value="Race:Zombie"/>
         <WhichLocation Value="CasterPoint"/>
         <CreateFlags index="PlacementIgnoreBlockers" value="1"/>
         <CreateFlags index="ProvideFood" value="0"/>
@@ -473,7 +474,9 @@
     </CEffectDamage>
     <CEffectApplyBehavior id="SlasherDifficultyScaling" parent="DifficultyScalingTemplate"/>
     <CEffectApplyBehavior id="StalkerDifficultyScaling" parent="DifficultyScalingTemplate"/>
-    <CEffectApplyBehavior id="SuicideDifficultyScaling" parent="DifficultyScalingTemplate"/>
+    <CEffectApplyBehavior id="SuicideDifficultyScaling" parent="DifficultyScalingTemplate">
+        <EditorCategories value="Race:Zombie"/>
+    </CEffectApplyBehavior>
     <CEffectApplyBehavior id="SuperHeavyDifficultyScaling" parent="DifficultyScalingTemplate"/>
     <CEffectApplyBehavior id="SupportDifficultyScaling" parent="DifficultyScalingTemplate"/>
     <CEffectIssueOrder id="TrainBlinkIssueOrder">
@@ -641,7 +644,7 @@
         <SearchFilters value="-;Item,Invulnerable"/>
     </CEffectDamage>
     <CEffectApplyBehavior id="ExplodeCreep">
-        <EditorCategories value=""/>
+        <EditorCategories value="Race:Zombie"/>
         <WhichUnit Value="Source"/>
         <Behavior value="MakeTrailBig"/>
     </CEffectApplyBehavior>
@@ -770,22 +773,22 @@
         <CmdFlags index="Preempt" value="1"/>
     </CEffectIssueOrder>
     <CEffectIssueOrder id="CreeperMorphMutation">
-        <EditorCategories value=""/>
+        <EditorCategories value="Race:Zombie"/>
         <Abil value="MutatetoCreeper"/>
         <CmdFlags index="Preempt" value="1"/>
     </CEffectIssueOrder>
     <CEffectIssueOrder id="BlinderMorphMutation">
-        <EditorCategories value=""/>
+        <EditorCategories value="Race:Zombie"/>
         <Abil value="MutatetoBlinder"/>
         <CmdFlags index="Preempt" value="1"/>
     </CEffectIssueOrder>
     <CEffectIssueOrder id="BeastMorphMutation">
-        <EditorCategories value=""/>
+        <EditorCategories value="Race:Zombie"/>
         <Abil value="MutatetoBeast"/>
         <CmdFlags index="Preempt" value="1"/>
     </CEffectIssueOrder>
     <CEffectSet id="BusterMorphMutation">
-        <EditorCategories value=""/>
+        <EditorCategories value="Race:Zombie"/>
         <EffectArray value="CreeperMorphMutation"/>
         <EffectArray value="BlinderMorphMutation"/>
         <EffectArray value="BeastMorphMutation"/>
@@ -800,7 +803,7 @@
         <CmdFlags index="Preempt" value="1"/>
     </CEffectIssueOrder>
     <CEffectIssueOrder id="SplatterMorphMutation">
-        <EditorCategories value=""/>
+        <EditorCategories value="Race:Zombie"/>
         <Abil value="MutatetoSplatter"/>
         <CmdFlags index="Preempt" value="1"/>
     </CEffectIssueOrder>
@@ -1301,12 +1304,9 @@
         <Behavior value="WarHowl"/>
     </CEffectApplyBehavior>
     <CEffectDamage id="BeastExplodeAcidDmaage" parent="SuicideDamageTemplate">
-        <EditorCategories value="Race:Zerg"/>
         <ArmorReduction value="1"/>
         <Amount value="150"/>
         <AreaArray index="0" Radius="3" Fraction="1"/>
     </CEffectDamage>
-    <CEffectDamage id="ExplodeAcidDamage" parent="SuicideDamageTemplate">
-        <EditorCategories value="Race:Neutral"/>
-    </CEffectDamage>
+    <CEffectDamage id="ExplodeAcidDamage" parent="SuicideDamageTemplate"/>
 </Catalog>
