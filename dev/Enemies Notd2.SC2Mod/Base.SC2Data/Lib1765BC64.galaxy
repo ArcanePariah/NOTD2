@@ -41,7 +41,6 @@ int lib1765BC64_gv_gorgonLimit;
 int lib1765BC64_gv_creeperLimit;
 int lib1765BC64_gv_hopliteLimit;
 fixed lib1765BC64_gv_hordeMutationChance;
-int lib1765BC64_gv_hordeCap;
 wave lib1765BC64_gv_currentHordeWave;
 timer lib1765BC64_gv_eltradWaitTimer;
 bool lib1765BC64_gv_eltradFleeing;
@@ -92,8 +91,7 @@ order lib1765BC64_gf_EltradWaiting (int lp_player, unit lp_aiUnit, unitgroup lp_
 
 // Trigger Declarations
 trigger lib1765BC64_gt_ZombieSpawnerTest;
-trigger lib1765BC64_gt_ZombieNightmareSettings;
-trigger lib1765BC64_gt_ZombieLimits;
+trigger lib1765BC64_gt_ZombieSettings;
 trigger lib1765BC64_gt_SetupAmbientWave;
 trigger lib1765BC64_gt_OvergrownDamageReduction;
 trigger lib1765BC64_gt_RadiationFieldUpgrade;
@@ -2248,52 +2246,28 @@ void lib1765BC64_gt_ZombieSpawnerTest_Init () {
 }
 
 //--------------------------------------------------------------------------------------------------
-// Trigger: Zombie Nightmare Settings
+// Trigger: Zombie Settings
 //--------------------------------------------------------------------------------------------------
-bool lib1765BC64_gt_ZombieNightmareSettings_Func (bool testConds, bool runActions) {
-    // Conditions
-    if (testConds) {
-        if (!((PlayerDifficulty(lib1E3F036D_gv_zombiePlayer) == 2))) {
-            return false;
-        }
-    }
-
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    CatalogFieldValueSet(c_gameCatalogBehavior, "ParasiteMoundSpawn", "Limit", lib1E3F036D_gv_zombiePlayer, "6");
-    CatalogFieldValueSet(c_gameCatalogBehavior, "HeavyParasiteSpawnonDeath", "Modification.DeathResponse.Chance", lib1E3F036D_gv_zombiePlayer, "0.6");
-    CatalogFieldValueSet(c_gameCatalogBehavior, "WalkerParasiteSpawnonDeath", "Modification.DeathResponse.Chance", lib1E3F036D_gv_zombiePlayer, "0.4");
-    return true;
-}
-
-//--------------------------------------------------------------------------------------------------
-void lib1765BC64_gt_ZombieNightmareSettings_Init () {
-    lib1765BC64_gt_ZombieNightmareSettings = TriggerCreate("lib1765BC64_gt_ZombieNightmareSettings_Func");
-    TriggerAddEventTimeElapsed(lib1765BC64_gt_ZombieNightmareSettings, 5.0, c_timeGame);
-}
-
-//--------------------------------------------------------------------------------------------------
-// Trigger: Zombie Limits
-//--------------------------------------------------------------------------------------------------
-bool lib1765BC64_gt_ZombieLimits_Func (bool testConds, bool runActions) {
+bool lib1765BC64_gt_ZombieSettings_Func (bool testConds, bool runActions) {
     // Actions
     if (!runActions) {
         return true;
     }
 
     lib1765BC64_gv_suppyLimitPerPlayer = lib1E3F036D_gf_GameDifficultyInteger(10, 20, 30);
-    lib1765BC64_gv_hordeCap = lib1E3F036D_gf_GameDifficultyInteger(2, 3, 4);
-    lib1765BC64_gv_hordeMutationChance = lib1E3F036D_gf_GameDifficultyReal(10.0, 35.0, 70.0);
+    lib1765BC64_gv_hordeMutationChance = lib1E3F036D_gf_GameDifficultyReal(25.0, 50.0, 75.0);
+    if ((PlayerDifficulty(lib1E3F036D_gv_zombiePlayer) == 2)) {
+        CatalogFieldValueSet(c_gameCatalogBehavior, "ParasiteMoundSpawn", "Limit", lib1E3F036D_gv_zombiePlayer, "6");
+        CatalogFieldValueSet(c_gameCatalogBehavior, "HeavyParasiteSpawnonDeath", "Modification.DeathResponse.Chance", lib1E3F036D_gv_zombiePlayer, "0.6");
+        CatalogFieldValueSet(c_gameCatalogBehavior, "WalkerParasiteSpawnonDeath", "Modification.DeathResponse.Chance", lib1E3F036D_gv_zombiePlayer, "0.4");
+    }
     return true;
 }
 
 //--------------------------------------------------------------------------------------------------
-void lib1765BC64_gt_ZombieLimits_Init () {
-    lib1765BC64_gt_ZombieLimits = TriggerCreate("lib1765BC64_gt_ZombieLimits_Func");
-    TriggerAddEventTimeElapsed(lib1765BC64_gt_ZombieLimits, 5.0, c_timeGame);
+void lib1765BC64_gt_ZombieSettings_Init () {
+    lib1765BC64_gt_ZombieSettings = TriggerCreate("lib1765BC64_gt_ZombieSettings_Func");
+    TriggerAddEventTimeElapsed(lib1765BC64_gt_ZombieSettings, 5.0, c_timeGame);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -2378,8 +2352,7 @@ void lib1765BC64_gt_RadiationFieldUpgrade_Init () {
 
 void lib1765BC64_InitTriggers () {
     lib1765BC64_gt_ZombieSpawnerTest_Init();
-    lib1765BC64_gt_ZombieNightmareSettings_Init();
-    lib1765BC64_gt_ZombieLimits_Init();
+    lib1765BC64_gt_ZombieSettings_Init();
     lib1765BC64_gt_SetupAmbientWave_Init();
     lib1765BC64_gt_OvergrownDamageReduction_Init();
     lib1765BC64_gt_RadiationFieldUpgrade_Init();

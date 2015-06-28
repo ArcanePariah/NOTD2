@@ -94,7 +94,7 @@
         <Death value="Disintegrate"/>
         <AreaArray Radius="1.5" Fraction="1"/>
         <ExcludeArray Value="Target"/>
-        <SearchFilters value="-;Player,Ally,Neutral"/>
+        <SearchFilters value="-;Player,Ally,Neutral,Item"/>
     </CEffectDamage>
     <CEffectApplyBehavior id="AirborneDifficultyScaling" parent="DifficultyScalingTemplate"/>
     <CEffectSet id="BeastExplodeAcid">
@@ -1307,9 +1307,6 @@
         <AreaArray index="0" Radius="3" Fraction="1"/>
     </CEffectDamage>
     <CEffectDamage id="ExplodeAcidDamage" parent="SuicideDamageTemplate">
-        <EditorCategories value="Race:Neutral"/>
-    </CEffectDamage>
-    <CEffectDamage id="ExplodeCreeperDamage" parent="SuicideDamageTemplate">
         <EditorCategories value="Race:Neutral"/>
     </CEffectDamage>
 </Catalog>
