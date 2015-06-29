@@ -3068,7 +3068,7 @@ void lib840A968C_gt_RunUnitTests_Init () {
 bool lib840A968C_gt_ForceHordeMode_Func (bool testConds, bool runActions) {
     // Conditions
     if (testConds) {
-        if (!(lib840A968C_gf_IsaDeveloper(PlayerHandle(EventPlayer())))) {
+        if (!(((GameIsTestMap(false) == true) || lib840A968C_gf_IsaDeveloper(PlayerHandle(EventPlayer()))))) {
             return false;
         }
     }
