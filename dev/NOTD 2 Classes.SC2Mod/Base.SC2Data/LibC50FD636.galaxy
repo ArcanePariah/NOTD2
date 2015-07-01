@@ -167,6 +167,7 @@ trigger libC50FD636_gt_Refresher;
 trigger libC50FD636_gt_KineticPayload;
 trigger libC50FD636_gt_DropItems;
 trigger libC50FD636_gt_WeaveAilmentRemoval;
+trigger libC50FD636_gt_CohesionAilmentResistence;
 trigger libC50FD636_gt_CriticalHitText;
 trigger libC50FD636_gt_UnstoppableForceDamage;
 trigger libC50FD636_gt_LockdownEnabledonEquip;
@@ -1537,6 +1538,46 @@ void libC50FD636_gt_WeaveAilmentRemoval_Init () {
 }
 
 //--------------------------------------------------------------------------------------------------
+// Trigger: Cohesion Ailment Resistence
+//--------------------------------------------------------------------------------------------------
+bool libC50FD636_gt_CohesionAilmentResistence_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    string lv_ailmentApplied;
+
+    // Variable Initialization
+    lv_ailmentApplied = EventUnitBehavior();
+
+    // Conditions
+    if (testConds) {
+        if (!((UnitHasBehavior(EventUnit(), "CohesionArmorLevel1") || UnitHasBehavior(EventUnit(), "CohesionArmorLevel2")))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if (UnitHasBehavior(EventUnit(), "CohesionArmorLevel1") && (libNtve_gf_RandomPercent() <= 20.0)) {
+        UnitBehaviorRemove(EventUnit(), lv_ailmentApplied, 1);
+    }
+    if (UnitHasBehavior(EventUnit(), "CohesionArmorLevel2") && (libNtve_gf_RandomPercent() <= 40.0)) {
+        UnitBehaviorRemove(EventUnit(), lv_ailmentApplied, 1);
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libC50FD636_gt_CohesionAilmentResistence_Init () {
+    libC50FD636_gt_CohesionAilmentResistence = TriggerCreate("libC50FD636_gt_CohesionAilmentResistence_Func");
+    TriggerAddEventUnitBehaviorChange(libC50FD636_gt_CohesionAilmentResistence, null, "Blind", c_unitBehaviorChangeIncrease);
+    TriggerAddEventUnitBehaviorChange(libC50FD636_gt_CohesionAilmentResistence, null, "OpenWound", c_unitBehaviorChangeIncrease);
+    TriggerAddEventUnitBehaviorChange(libC50FD636_gt_CohesionAilmentResistence, null, "ShortCircuit", c_unitBehaviorChangeIncrease);
+    TriggerAddEventUnitBehaviorChange(libC50FD636_gt_CohesionAilmentResistence, null, "Venom", c_unitBehaviorChangeIncrease);
+}
+
+//--------------------------------------------------------------------------------------------------
 // Trigger: Critical Hit Text
 //--------------------------------------------------------------------------------------------------
 bool libC50FD636_gt_CriticalHitText_Func (bool testConds, bool runActions) {
@@ -2848,6 +2889,7 @@ void libC50FD636_InitTriggers () {
     libC50FD636_gt_KineticPayload_Init();
     libC50FD636_gt_DropItems_Init();
     libC50FD636_gt_WeaveAilmentRemoval_Init();
+    libC50FD636_gt_CohesionAilmentResistence_Init();
     libC50FD636_gt_CriticalHitText_Init();
     libC50FD636_gt_UnstoppableForceDamage_Init();
     libC50FD636_gt_LockdownEnabledonEquip_Init();
