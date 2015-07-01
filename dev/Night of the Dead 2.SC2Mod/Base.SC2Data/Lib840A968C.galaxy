@@ -1012,6 +1012,7 @@ void lib840A968C_gf_CreateDifficultySelection () {
     // Implementation
     DialogCreate(500, 400, c_anchorCenter, 0, 0, true);
     DialogSetFullscreen(DialogLastCreated(), true);
+    DialogSetImageVisible(DialogLastCreated(), false);
     lib840A968C_gv_difficultySelectionDialog = DialogLastCreated();
     DialogControlCreateFromTemplate(DialogLastCreated(), c_triggerControlTypePanel, "DifficultySelectionCampaign/DifficultySelect");
     lv_templateFrame = DialogControlLastCreated();
