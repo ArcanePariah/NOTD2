@@ -1,0 +1,1312 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<Catalog>
+    <CEffectDamage default="1" id="Bite2" parent="DU_WEAP">
+        <EditorCategories value=""/>
+        <Marker Link="Effect/BaseZombieClassAttack"/>
+        <Amount value="25"/>
+        <Death value="Eat"/>
+    </CEffectDamage>
+    <CEffectDamage default="1" id="Claws3">
+        <ValidatorArray value="HeavyClassClawsTargetFilters"/>
+        <EditorCategories value=""/>
+        <Marker Link="Effect/HeavyClassClaws"/>
+        <ArmorReduction value="9"/>
+        <Amount value="125"/>
+        <Death value="Eat"/>
+        <Kind value="Melee"/>
+    </CEffectDamage>
+    <CEffectDamage default="1" id="Attack" parent="DU_WEAP">
+        <EditorCategories value=""/>
+        <ArmorReduction value="3"/>
+        <Amount value="25"/>
+        <Death value="Eat"/>
+    </CEffectDamage>
+    <CEffectDamage default="1" id="Claws2" parent="DU_WEAP">
+        <EditorCategories value=""/>
+        <ArmorReduction value="5"/>
+        <Amount value="25"/>
+        <Death value="Eat"/>
+        <SearchFilters value="-;Item,Invulnerable"/>
+    </CEffectDamage>
+    <CEffectDamage default="1" id="Claws4">
+        <ValidatorArray value="HeavyClassClawsTargetFilters"/>
+        <EditorCategories value=""/>
+        <Marker Link="Effect/HeavyClassClaws"/>
+        <ArmorReduction value="1"/>
+        <Amount value="35"/>
+        <Death value="Eat"/>
+        <Kind value="Melee"/>
+    </CEffectDamage>
+    <CEffectDamage default="1" id="Bite" parent="DU_WEAP">
+        <EditorCategories value=""/>
+        <Marker Link="Effect/BaseZombieClassAttack"/>
+        <ArmorReduction value="4"/>
+        <Amount value="25"/>
+        <Death value="Eat"/>
+    </CEffectDamage>
+    <CEffectDamage default="1" id="Mandibles" parent="DU_WEAP">
+        <EditorCategories value=""/>
+        <Amount value="5"/>
+        <Death value="Eat"/>
+    </CEffectDamage>
+    <CEffectDamage default="1" id="Smash" parent="Claws2">
+        <Marker Link="Effect/Smash"/>
+        <ArmorReduction value="1"/>
+        <Amount value="80"/>
+        <SearchFilters value="-;-"/>
+    </CEffectDamage>
+    <CEffectSet default="1" id="SpawnMutationNightmareTemplate">
+        <?token id="ZombieType"?>
+        <EditorCategories value=""/>
+        <Chance value="0.7"/>
+        <EffectArray value="##ZombieType##MorphMutation"/>
+    </CEffectSet>
+    <CEffectSet default="1" id="SpawnMutationNormalTemplate">
+        <?token id="ZombieType"?>
+        <EditorCategories value=""/>
+        <Chance value="0.35"/>
+        <EffectArray value="##ZombieType##MorphMutation"/>
+    </CEffectSet>
+    <CEffectSet default="1" id="SpawnMutationRecruitTemplate">
+        <?token id="ZombieType"?>
+        <EditorCategories value=""/>
+        <Chance value="0.1"/>
+        <EffectArray value="##ZombieType##MorphMutation"/>
+    </CEffectSet>
+    <CEffectSwitch default="1" id="SpawnMutationTemplate">
+        <?token id="ZombieType"?>
+        <EditorCategories value=""/>
+        <CaseArray Validator="GameisNightmare" Effect="##ZombieType##SpawnMutationNightmare"/>
+        <CaseArray Validator="GameisNormal" Effect="##ZombieType##SpawnMutationNormal"/>
+        <CaseArray Validator="GameisRecruit" Effect="##ZombieType##SpawnMutationRecruit"/>
+    </CEffectSwitch>
+    <CEffectApplyBehavior default="1" id="DifficultyScalingTemplate">
+        <ValidatorArray index="0" value="GameisnotRecruit"/>
+    </CEffectApplyBehavior>
+    <CEffectDamage default="1" id="SuicideDamageTemplate" parent="DU_WEAP">
+        <EditorCategories value="Race:Zombie"/>
+        <AINotifyFlags index="HurtEnemy" value="1"/>
+        <ImpactLocation Value="TargetUnit"/>
+        <ArmorReduction value="3"/>
+        <Kind value="Splash"/>
+        <KindSplash value="Splash"/>
+        <Amount value="75"/>
+        <Death value="Disintegrate"/>
+        <AreaArray Radius="1.5" Fraction="1"/>
+        <ExcludeArray Value="Target"/>
+        <SearchFilters value="-;Player,Ally,Neutral,Item"/>
+    </CEffectDamage>
+    <CEffectApplyBehavior id="AirborneDifficultyScaling" parent="DifficultyScalingTemplate"/>
+    <CEffectSet id="BeastExplodeAcid">
+        <EditorCategories value="Race:Zombie"/>
+        <EffectArray value="BeastExplodeAcidDmaage"/>
+        <EffectArray value="Suicide"/>
+    </CEffectSet>
+    <CEffectSet id="BlinderExplode">
+        <EditorCategories value="Race:Zombie"/>
+        <EffectArray value="Suicide"/>
+        <EffectArray value="Blind"/>
+    </CEffectSet>
+    <CEffectApplyBehavior id="EltradDevour">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectSet id="ExplodeAcid">
+        <EditorCategories value="Race:Zombie"/>
+        <EffectArray value="ExplodeAcidDamage"/>
+        <EffectArray value="Suicide"/>
+    </CEffectSet>
+    <CEffectApplyBehavior id="HoundDifficultyScaling" parent="DifficultyScalingTemplate"/>
+    <CEffectModifyUnit id="EltradDevourHeal">
+        <EditorCategories value=""/>
+        <VitalArray index="Life" Change="25"/>
+    </CEffectModifyUnit>
+    <CEffectCreatePersistent id="EltradDevourHealPersistent">
+        <EditorCategories value=""/>
+        <WhichLocation Value="CasterUnit"/>
+        <PeriodCount value="10"/>
+        <PeriodicEffectArray value="EltradDevourHeal"/>
+        <PeriodicPeriodArray value="1"/>
+    </CEffectCreatePersistent>
+    <CEffectDamage id="EnergyDrain">
+        <EditorCategories value=""/>
+        <Amount value="1"/>
+        <ImpactLocation Value="TargetUnit"/>
+    </CEffectDamage>
+    <CEffectApplyBehavior id="InfestorCloak">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="LordofDecayHeal">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectModifyUnit id="LordofDecayHealEffect">
+        <EditorCategories value=""/>
+        <ImpactUnit Value="Caster"/>
+        <VitalArray index="Life" Change="100"/>
+    </CEffectModifyUnit>
+    <CEffectCreatePersistent id="MengskHellionInfernalFlameThrowerCP">
+        <PeriodicPeriodArray index="0" value="0.125"/>
+    </CEffectCreatePersistent>
+    <CEffectApplyBehavior id="OvergrownDamageFromFrontDamageIncrease">
+        <ValidatorArray index="0" value="OvergrowthDirectionalResponse"/>
+        <EditorCategories value=""/>
+        <WhichUnit Value="Caster"/>
+    </CEffectApplyBehavior>
+    <CEffectDamage id="OvergrownPenetratingDamage">
+        <EditorCategories value=""/>
+    </CEffectDamage>
+    <CEffectCreateUnit id="ParasiteCreateonDeath">
+        <EditorCategories value=""/>
+        <WhichLocation Value="CasterPoint"/>
+        <Origin Value="CasterPoint"/>
+        <SpawnEffect value="ParasiteMorphMutation"/>
+        <SpawnUnit value="Parasite"/>
+    </CEffectCreateUnit>
+    <CEffectSet id="ParasiteCreateonDeathSet">
+        <EditorCategories value=""/>
+        <EffectArray value="ParasiteCreateonDeath"/>
+        <EffectArray value="ParasiteCreateonDeath"/>
+        <TargetLocationType value="Point"/>
+    </CEffectSet>
+    <CEffectApplyBehavior id="ParasiteDifficultyScaling" parent="DifficultyScalingTemplate"/>
+    <CEffectSwitch id="HoundSpawnMutation" parent="SpawnMutationTemplate" ZombieType="Hound"/>
+    <CEffectSet id="ParasiteSpawnDummyEffect">
+        <EditorCategories value=""/>
+    </CEffectSet>
+    <CEffectSwitch id="ShamblerSpawnMutation" parent="SpawnMutationTemplate" ZombieType="Shambler"/>
+    <CEffectSet id="ParasiteSpawnMutationNightmare" parent="SpawnMutationNightmareTemplate" ZombieType="Parasite"/>
+    <CEffectSet id="HoundSpawnMutationNightmare" parent="SpawnMutationNightmareTemplate" ZombieType="Hound"/>
+    <CEffectSet id="ShamblerSpawnMutationNightmare" parent="SpawnMutationNightmareTemplate" ZombieType="Shambler"/>
+    <CEffectSet id="ParasiteSpawnMutationNormal" parent="SpawnMutationNormalTemplate" ZombieType="Parasite"/>
+    <CEffectSet id="HoundSpawnMutationNormal" parent="SpawnMutationNormalTemplate" ZombieType="Hound"/>
+    <CEffectSet id="ShamblerSpawnMutationNormal" parent="SpawnMutationNormalTemplate" ZombieType="Shambler"/>
+    <CEffectSet id="ParasiteSpawnMutationRecruit" parent="SpawnMutationRecruitTemplate" ZombieType="Parasite"/>
+    <CEffectSet id="HoundSpawnMutationRecruit" parent="SpawnMutationRecruitTemplate" ZombieType="Hound"/>
+    <CEffectSet id="ShamblerSpawnMutationRecruit" parent="SpawnMutationRecruitTemplate" ZombieType="Shambler"/>
+    <CEffectDamage id="RadiationFieldDamage">
+        <EditorCategories value=""/>
+        <AINotifyFlags index="HurtFriend" value="1"/>
+        <AINotifyFlags index="HurtEnemy" value="1"/>
+        <ImpactLocation Value="SourcePoint"/>
+        <Amount value="2"/>
+        <AreaArray Radius="10" Fraction="1"/>
+        <SearchFilters value="-;Self,Item,Invulnerable"/>
+    </CEffectDamage>
+    <CEffectCreatePersistent id="RaynorSnipeCreatePersistent">
+        <ValidatorArray value="OvergrowthDirectionalResponse"/>
+    </CEffectCreatePersistent>
+    <CEffectCreatePersistent id="ReactorDestruction">
+        <EditorCategories value=""/>
+        <PeriodCount value="100"/>
+        <PeriodicEffectArray value="ReactorDestructionDamage"/>
+        <PeriodicPeriodArray value="0.0625"/>
+    </CEffectCreatePersistent>
+    <CEffectDamage id="SarbusLordofDecayImpale">
+        <EditorCategories value="Race:Zerg"/>
+        <ArmorReduction value="3"/>
+        <Kind value="Melee"/>
+        <KindSplash value="Melee"/>
+        <Amount value="75"/>
+    </CEffectDamage>
+    <CEffectCreateUnit id="SarbusCorpse">
+        <EditorCategories value="Race:Zerg"/>
+        <WhichLocation Value="CasterPoint"/>
+        <SpawnUnit value="SarbusCorpse"/>
+        <SpawnRange value="0"/>
+    </CEffectCreateUnit>
+    <CEffectIssueOrder id="SarbusCorpseMorph">
+        <EditorCategories value="Race:Zerg"/>
+        <Abil value="MutatetoSarbusCorpse"/>
+        <CmdFlags index="Preempt" value="1"/>
+    </CEffectIssueOrder>
+    <CEffectDamage id="BlinkMuliplyTimedLifeKill">
+        <Flags index="Kill" value="1"/>
+        <Flags index="NoKillCredit" value="1"/>
+        <Death value="Timeout"/>
+    </CEffectDamage>
+    <CEffectDamage id="EltradTriadTimedLifeKill">
+        <EditorCategories value="Race:Zerg"/>
+        <Flags index="Kill" value="1"/>
+        <Flags index="NoKillCredit" value="1"/>
+        <Death value="Timeout"/>
+    </CEffectDamage>
+    <CEffectDamage id="EltradBiteDamage" parent="DU_WEAP">
+        <EditorCategories value="Race:Zerg"/>
+        <AttributeBonus index="Light" value="40"/>
+        <ArmorReduction value="4"/>
+        <Amount value="40"/>
+    </CEffectDamage>
+    <CEffectDamage id="EltradBiteTriad" parent="DU_WEAP">
+        <EditorCategories value="Race:Zerg"/>
+        <AttributeBonus index="Light" value="40"/>
+        <ArmorReduction value="4"/>
+        <Amount value="40"/>
+    </CEffectDamage>
+    <CEffectDamage id="EltradBiteJoyride" parent="DU_WEAP">
+        <EditorCategories value="Race:Zerg"/>
+        <AttributeBonus index="Light" value="40"/>
+        <ArmorReduction value="4"/>
+        <Amount value="40"/>
+    </CEffectDamage>
+    <CEffectDamage id="EltradBiteFlying" parent="DU_WEAP">
+        <EditorCategories value="Race:Zerg"/>
+        <AttributeBonus index="Light" value="40"/>
+        <ArmorReduction value="4"/>
+        <Amount value="40"/>
+    </CEffectDamage>
+    <CEffectDamage id="EltradBiteFastHealing" parent="DU_WEAP">
+        <EditorCategories value="Race:Zerg"/>
+        <AttributeBonus index="Light" value="40"/>
+        <ArmorReduction value="4"/>
+        <Amount value="40"/>
+    </CEffectDamage>
+    <CEffectSet id="BansheeScreamSet">
+        <EditorCategories value=""/>
+        <EffectArray value="BansheeScreamStunSearch"/>
+        <EffectArray value="GorgonRunStart"/>
+        <TargetLocationType value="UnitOrPoint"/>
+    </CEffectSet>
+    <CEffectApplyForce id="BoneBreakerBoulderImpactForce">
+        <EditorCategories value=""/>
+        <Amount value="20"/>
+        <MassFraction value="0"/>
+    </CEffectApplyForce>
+    <CEffectDamage id="BonebreakerLeapImpactDamage">
+        <ResponseFlags index="Acquire" value="1"/>
+        <ResponseFlags index="Flee" value="1"/>
+        <ArmorReduction value="1"/>
+        <KindSplash value="Ranged"/>
+        <Amount value="80"/>
+    </CEffectDamage>
+    <CEffectApplyBehavior id="BonebreakerLeapImpactKnockback">
+        <EditorCategories value=""/>
+        <Behavior value="BonebreakerLeapKnockback"/>
+    </CEffectApplyBehavior>
+    <CEffectApplyForce id="BoneBreakerLeapImpactForce">
+        <EditorCategories value=""/>
+        <Amount value="20"/>
+        <MassFraction value="0"/>
+    </CEffectApplyForce>
+    <CEffectApplyBehavior id="BonebreakerBoulderImpactKnockback">
+        <EditorCategories value=""/>
+        <Behavior value="BonebreakerBoulderKnockback"/>
+    </CEffectApplyBehavior>
+    <CEffectSet id="BonebreakerBoulderImpactSet">
+        <EditorCategories value=""/>
+        <EffectArray value="BonebreakerBoulderDamage"/>
+        <EffectArray value="BonebreakerBoulderImpactKnockback"/>
+        <EffectArray value="BonebreakerBoulderImpactStun"/>
+    </CEffectSet>
+    <CEffectSet id="BonebreakerLeapImpactSet">
+        <EditorCategories value=""/>
+        <EffectArray value="BonebreakerLeapImpactDamage"/>
+        <EffectArray value="BonebreakerLeapImpactKnockback"/>
+        <EffectArray value="BonebreakerLeapImpactStun"/>
+    </CEffectSet>
+    <CEffectSet id="BroodMotherMorphMutation">
+        <EditorCategories value=""/>
+        <EffectArray value="GorgonMorphMutation"/>
+        <EffectArray value="MatriarchMorphMutation"/>
+        <Random value="1"/>
+        <MinCount value="1"/>
+        <MaxCount value="1"/>
+    </CEffectSet>
+    <CEffectDamage id="BansheeClawDamage" parent="DU_WEAP_MISSILE">
+        <EditorCategories value="Race:Zerg"/>
+        <Amount value="25"/>
+        <Kind value="Melee"/>
+    </CEffectDamage>
+    <CEffectLaunchMissile id="BansheeClawLaunchMissile">
+        <EditorCategories value="Race:Zerg"/>
+        <ImpactEffect value="BansheeClawDamage"/>
+        <Flags index="Return" value="1"/>
+        <AmmoUnit value="Claw"/>
+        <ReturnDelay value="0.175"/>
+        <ReturnMovers Link="SpineCrawlerTentacleRetractShort" IfRangeLTE="3"/>
+        <ReturnMovers Link="SpineCrawlerTentacleRetractLong" IfRangeLTE="7"/>
+        <Movers Link="SpineCrawlerTentacleExtendShort" IfRangeLTE="3"/>
+        <Movers Link="SpineCrawlerTentacleExtendLong" IfRangeLTE="7"/>
+    </CEffectLaunchMissile>
+    <CEffectApplyBehavior id="BansheeAttackApplyBehavior">
+        <EditorCategories value=""/>
+        <WhichUnit Value="Caster"/>
+        <Behavior value="BanseeAttackSpeed"/>
+    </CEffectApplyBehavior>
+    <CEffectEnumArea id="BansheeAttackSearch">
+        <EditorCategories value=""/>
+        <SearchFilters value="Visible;Self,Player,Ally,Structure,Missile,Stasis,Dead,Hidden,Invulnerable"/>
+        <AreaArray Radius="3" Effect="BansheeAttackApplyBehavior"/>
+    </CEffectEnumArea>
+    <CEffectApplyBehavior id="InfestorCallToArms">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectEnumArea id="InfestorCallToArmsSearch">
+        <EditorCategories value=""/>
+        <SearchFilters value="Visible;Self,Neutral,Enemy,Structure,Missile,Stasis,Dead,Hidden,Invulnerable"/>
+        <AreaArray Radius="10" Effect="InfestorCallToArms"/>
+    </CEffectEnumArea>
+    <CEffectCreatePersistent id="GorgonRun">
+        <EditorCategories value=""/>
+        <ResponseFlags index="Flee" value="1"/>
+        <WhichLocation Value="CasterUnit"/>
+        <Flags index="RandomOffset" value="1"/>
+        <PeriodCount value="1"/>
+        <PeriodicEffectArray value="GorgonRunMove"/>
+        <PeriodicOffsetArray value="5,0,0"/>
+        <PeriodicOffsetArray value="0,5,0"/>
+        <PeriodicOffsetArray value="-5,0,0"/>
+        <PeriodicOffsetArray value="0,-5,0"/>
+        <PeriodicPeriodArray value="0"/>
+    </CEffectCreatePersistent>
+    <CEffectIssueOrder id="GorgonRunMove">
+        <EditorCategories value=""/>
+        <WhichUnit Value="Caster"/>
+        <Abil value="move"/>
+        <Player Value="Caster"/>
+        <Target Value="TargetPoint"/>
+    </CEffectIssueOrder>
+    <CEffectApplyBehavior id="GorgonRunStart">
+        <EditorCategories value=""/>
+        <WhichUnit Value="Caster"/>
+        <Behavior value="GorgonRun"/>
+    </CEffectApplyBehavior>
+    <CEffectIssueOrder id="GorgonRunStop">
+        <EditorCategories value=""/>
+        <WhichUnit Value="Caster"/>
+        <Abil value="stop"/>
+        <Target Value="CasterUnit"/>
+    </CEffectIssueOrder>
+    <CEffectApplyBehavior id="GorgonAttackApplyBehavior">
+        <EditorCategories value=""/>
+        <WhichUnit Value="Caster"/>
+        <Behavior value="GorgonAttackSpeed"/>
+    </CEffectApplyBehavior>
+    <CEffectEnumArea id="GorgonAttackSearch">
+        <EditorCategories value=""/>
+        <SearchFilters value="Visible;Self,Player,Ally,Structure,Missile,Stasis,Dead,Hidden,Invulnerable"/>
+        <AreaArray Radius="3" Effect="GorgonAttackApplyBehavior"/>
+    </CEffectEnumArea>
+    <CEffectApplyBehavior id="GorgonBlindingVomit">
+        <EditorCategories value=""/>
+        <Behavior value="ExplodeBlind"/>
+    </CEffectApplyBehavior>
+    <CEffectSet id="GorgonBlindingVomitSet">
+        <EditorCategories value=""/>
+        <EffectArray value="GorgonBlindingVomitMissile"/>
+        <EffectArray value="GorgonRunStart"/>
+        <TargetLocationType value="UnitOrPoint"/>
+    </CEffectSet>
+    <CEffectEnumArea id="MendHealSearch">
+        <EditorCategories value="Race:Zerg"/>
+        <ImpactLocation Value="TargetUnit"/>
+        <SearchFilters value="Biological;Enemy,Missile,Stasis,Dead,Hidden,Invulnerable"/>
+        <AreaArray Radius="2.5" Effect="MendHealTarget"/>
+        <SearchFlags index="ExtendByUnitRadius" value="1"/>
+    </CEffectEnumArea>
+    <CEffectModifyUnit id="MendHealTarget">
+        <EditorCategories value="Race:Zerg"/>
+        <VitalArray index="Life" Change="100"/>
+    </CEffectModifyUnit>
+    <CEffectSet id="ExplodeCreeper">
+        <EffectArray value="Blind"/>
+        <EffectArray value="Suicide"/>
+        <EditorCategories value="Race:Zombie"/>
+    </CEffectSet>
+    <CEffectCreateUnit id="ExplodeCreep2">
+        <EditorCategories value="Race:Zombie"/>
+        <WhichLocation Value="CasterPoint"/>
+        <CreateFlags index="PlacementIgnoreBlockers" value="1"/>
+        <CreateFlags index="ProvideFood" value="0"/>
+        <CreateFlags index="TechComplete" value="0"/>
+        <CreateFlags index="UseFood" value="0"/>
+        <SpawnEffect value="ExplodeCreep"/>
+        <SpawnUnit value="InvisibleCreepmaker"/>
+    </CEffectCreateUnit>
+    <CEffectEnumArea id="GorgonBlindingVomitImpact">
+        <EditorCategories value="Race:Zerg"/>
+        <ImpactLocation Value="TargetPoint"/>
+        <AreaArray Radius="2.5" Effect="GorgonBlindingVomit"/>
+        <SearchFilters value="Visible;Self,Robotic,Mechanical,Structure,Missile,UnderConstruction,Dead,Invulnerable"/>
+    </CEffectEnumArea>
+    <CEffectLaunchMissile id="GorgonBlindingVomitMissile">
+        <EditorCategories value="Race:Zerg"/>
+        <ImpactLocation Value="TargetPoint"/>
+        <ImpactEffect value="GorgonBlindingVomitImpact"/>
+        <Flags index="Channeled" value="1"/>
+        <AmmoUnit value="GorgonBlindingVomit"/>
+    </CEffectLaunchMissile>
+    <CEffectEnumArea id="BansheeScreamStunSearch">
+        <EditorCategories value="Race:Zerg"/>
+        <ImpactLocation Value="TargetPoint"/>
+        <SearchFilters value="-;Self,Player,Ally,Neutral,Structure,Missile,Stasis,Dead,Hidden,Invulnerable,Unstoppable"/>
+        <AreaArray MaxCount="3" Radius="3" Effect="BansheeScreamStunApplyBehavior"/>
+    </CEffectEnumArea>
+    <CEffectApplyBehavior id="BansheeScreamStunApplyBehavior">
+        <EditorCategories value="Race:Zerg"/>
+        <Behavior value="BansheeScreamStun"/>
+    </CEffectApplyBehavior>
+    <CEffectDamage id="SarbusImpaleDamage">
+        <EditorCategories value="Race:Zerg"/>
+        <ArmorReduction value="3"/>
+        <Kind value="Melee"/>
+        <KindSplash value="Melee"/>
+        <Amount value="75"/>
+    </CEffectDamage>
+    <CEffectDamage id="SarbusBloatedImpale">
+        <EditorCategories value="Race:Zerg"/>
+        <ArmorReduction value="3"/>
+        <Kind value="Melee"/>
+        <KindSplash value="Melee"/>
+        <Amount value="75"/>
+    </CEffectDamage>
+    <CEffectDamage id="SarbusOvergrownImpale">
+        <EditorCategories value="Race:Zerg"/>
+        <ArmorReduction value="3"/>
+        <Kind value="Melee"/>
+        <KindSplash value="Melee"/>
+        <Amount value="75"/>
+    </CEffectDamage>
+    <CEffectDamage id="SarbusHotfootImpale">
+        <EditorCategories value="Race:Zerg"/>
+        <ArmorReduction value="3"/>
+        <Kind value="Melee"/>
+        <KindSplash value="Melee"/>
+        <Amount value="75"/>
+    </CEffectDamage>
+    <CEffectApplyBehavior id="SlasherDifficultyScaling" parent="DifficultyScalingTemplate"/>
+    <CEffectApplyBehavior id="StalkerDifficultyScaling" parent="DifficultyScalingTemplate"/>
+    <CEffectApplyBehavior id="SuicideDifficultyScaling" parent="DifficultyScalingTemplate">
+        <EditorCategories value="Race:Zombie"/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="SuperHeavyDifficultyScaling" parent="DifficultyScalingTemplate"/>
+    <CEffectApplyBehavior id="SupportDifficultyScaling" parent="DifficultyScalingTemplate"/>
+    <CEffectIssueOrder id="TrainBlinkIssueOrder">
+        <EditorCategories value=""/>
+        <WhichUnit Value="Caster"/>
+        <Abil value="BlinkMulitply"/>
+        <CmdFlags index="Queued" value="1"/>
+    </CEffectIssueOrder>
+    <CEffectIssueOrder id="TrainEltradTriad">
+        <EditorCategories value="Race:Zerg"/>
+        <WhichUnit Value="Caster"/>
+        <Abil value="EltradTriadMulitply"/>
+        <CmdFlags index="Queued" value="1"/>
+    </CEffectIssueOrder>
+    <CEffectDamage id="ReactorDestructionDamage">
+        <ValidatorArray value="ReactorDestructionDamageTargetFilters"/>
+        <EditorCategories value=""/>
+        <Flags index="Kill" value="1"/>
+        <AreaArray Radius="1" RadiusBonus="1" Fraction="1"/>
+    </CEffectDamage>
+    <CEffectSwitch id="ParasiteSpawnMutation" parent="SpawnMutationTemplate" ZombieType="Parasite"/>
+    <CEffectApplyBehavior id="WalkerDifficultyScaling" parent="DifficultyScalingTemplate"/>
+    <CEffectSwitch id="WalkerSpawnMutation" parent="SpawnMutationTemplate" ZombieType="Walker"/>
+    <CEffectSet id="WalkerSpawnMutationNightmare" parent="SpawnMutationNightmareTemplate" ZombieType="Walker"/>
+    <CEffectSet id="WalkerSpawnMutationNormal" parent="SpawnMutationNormalTemplate" ZombieType="Walker"/>
+    <CEffectSet id="WalkerSpawnMutationRecruit" parent="SpawnMutationRecruitTemplate" ZombieType="Walker"/>
+    <CEffectDamage id="WitchClawDamage" parent="DU_WEAP_MISSILE">
+        <EditorCategories value="Race:Zerg"/>
+        <Amount value="25"/>
+        <Kind value="Melee"/>
+    </CEffectDamage>
+    <CEffectLaunchMissile id="WitchClawLaunchMissile">
+        <EditorCategories value="Race:Zerg"/>
+        <ImpactEffect value="WitchClawDamage"/>
+        <Flags index="Return" value="1"/>
+        <AmmoUnit value="Claw"/>
+        <ReturnDelay value="0.175"/>
+        <ReturnMovers Link="SpineCrawlerTentacleRetractShort" IfRangeLTE="3"/>
+        <ReturnMovers Link="SpineCrawlerTentacleRetractLong" IfRangeLTE="7"/>
+        <Movers Link="SpineCrawlerTentacleExtendShort" IfRangeLTE="3"/>
+        <Movers Link="SpineCrawlerTentacleExtendLong" IfRangeLTE="7"/>
+    </CEffectLaunchMissile>
+    <CEffectModifyUnit id="FlyByAttacklower">
+        <EditorCategories value=""/>
+        <Height value="-2.75"/>
+        <HeightTime value="1"/>
+    </CEffectModifyUnit>
+    <CEffectIssueOrder id="FlyByStop">
+        <EditorCategories value=""/>
+        <WhichUnit Value="Caster"/>
+        <Abil value="stop"/>
+        <Target Value="CasterUnit"/>
+    </CEffectIssueOrder>
+    <CEffectApplyBehavior id="FlyByRunStart">
+        <EditorCategories value=""/>
+        <Behavior value="FlyByRun"/>
+    </CEffectApplyBehavior>
+    <CEffectEnumArea id="BonebreakerBoulderImpactSearch">
+        <EditorCategories value="Race:Zerg"/>
+        <ExcludeArray/>
+        <SearchFilters value="-;Self,Player,Ally,Air,Missile,Stasis,Dead,Invulnerable"/>
+        <AreaArray Radius="3" Effect="BonebreakerBoulderImpactSet"/>
+    </CEffectEnumArea>
+    <CEffectApplyBehavior id="BonebreakerBoulderImpactStun">
+        <EditorCategories value="Race:Terran"/>
+        <Behavior value="BonebreakerStunned"/>
+    </CEffectApplyBehavior>
+    <CEffectIssueOrder id="FlyByRunMove">
+        <EditorCategories value=""/>
+        <WhichUnit Value="Caster"/>
+        <Abil value="move"/>
+        <Player Value="Caster"/>
+        <Target Value="TargetPoint"/>
+    </CEffectIssueOrder>
+    <CEffectApplyBehavior id="FlyByAttackStart">
+        <EditorCategories value=""/>
+        <WhichUnit Value="Caster"/>
+    </CEffectApplyBehavior>
+    <CEffectCreatePersistent id="FlyByRun">
+        <EditorCategories value=""/>
+        <ResponseFlags index="Flee" value="1"/>
+        <WhichLocation Value="CasterUnit"/>
+        <Flags index="RandomOffset" value="1"/>
+        <FinalEffect value="FlyByRaise2"/>
+        <PeriodCount value="1"/>
+        <PeriodicEffectArray value="FlyByRunMove"/>
+        <PeriodicOffsetArray value="5,0,0"/>
+        <PeriodicOffsetArray value="0,5,0"/>
+        <PeriodicOffsetArray value="-5,0,0"/>
+        <PeriodicOffsetArray value="0,-5,0"/>
+        <PeriodicPeriodArray value="0"/>
+    </CEffectCreatePersistent>
+    <CEffectModifyUnit id="FlyByRaise2">
+        <EditorCategories value=""/>
+        <Height value="2.75"/>
+        <HeightTime value="1"/>
+    </CEffectModifyUnit>
+    <CEffectApplyBehavior id="BonebreakerLeapImpactStun">
+        <EditorCategories value="Race:Terran"/>
+        <Behavior value="BonebreakerStunned"/>
+    </CEffectApplyBehavior>
+    <CEffectDamage id="BlinkClaws" parent="Claws2">
+        <EditorCategories value="Race:Zerg"/>
+        <AINotifyFlags index="HurtEnemy" value="1"/>
+        <ImpactLocation Value="TargetUnit"/>
+        <SearchFilters value="Ground;Self,Missile,Item,Stasis,Dead,Invulnerable"/>
+    </CEffectDamage>
+    <CEffectLaunchMissile id="BonebreakerLeapLaunchMissile">
+        <ValidatorArray index="0" value="TargetIsPathable"/>
+        <EditorCategories value="Race:Zerg"/>
+        <LaunchLocation Value="CasterUnit"/>
+        <ImpactLocation Value="TargetPoint"/>
+        <ImpactEffect value="BonebreakerLeapImpactSearch"/>
+        <Flags index="2D" value="1"/>
+        <Flags index="Placement" value="1"/>
+        <Flags index="PlacementIgnoreBlockers" value="1"/>
+        <Flags index="PlacementIgnoreCliffTest" value="1"/>
+        <Movers Link="GiantYetiLeapMissile"/>
+        <DeathType value="Unknown"/>
+    </CEffectLaunchMissile>
+    <CEffectEnumArea id="BonebreakerLeapImpactSearch">
+        <EditorCategories value="Race:Zerg"/>
+        <ExcludeArray/>
+        <SearchFilters value="Ground;Self,Player,Ally,Missile,Stasis,Dead,Hidden,Invulnerable"/>
+        <AreaArray Radius="3" Effect="BonebreakerLeapImpactSet"/>
+    </CEffectEnumArea>
+    <CEffectIssueOrder id="HarpyMorphMutation">
+        <EditorCategories value=""/>
+        <Abil value="MutatetoHarpy"/>
+        <CmdFlags index="Preempt" value="1"/>
+    </CEffectIssueOrder>
+    <CEffectSet id="GargoyleMorphMutation">
+        <EditorCategories value=""/>
+        <EffectArray value="WitchMorphMutation"/>
+        <EffectArray value="HarpyMorphMutation"/>
+        <EffectArray value="FlutterMorphMutation"/>
+        <EffectArray value="RazerbackMorphMutation"/>
+        <EffectArray value="BansheeMorphMutation"/>
+        <EffectArray value="BlinkMorphMutation"/>
+        <EffectArray value="CoronaMorphMutation"/>
+        <Random value="1"/>
+        <MinCount value="1"/>
+        <MaxCount value="1"/>
+    </CEffectSet>
+    <CEffectDamage id="CoronaShock" parent="DU_WEAP">
+        <EditorCategories value="Race:Protoss"/>
+        <KindSplash value="Ranged"/>
+        <Amount value="25"/>
+    </CEffectDamage>
+    <CEffectLaunchMissile id="ClawLaunchMissile">
+        <EditorCategories value="Race:Zerg"/>
+        <ImpactEffect value="ClawDamage"/>
+        <Flags index="Return" value="1"/>
+        <AmmoUnit value="Claw"/>
+        <ReturnDelay value="0.175"/>
+        <ReturnMovers Link="SpineCrawlerTentacleRetractShort" IfRangeLTE="3"/>
+        <ReturnMovers Link="SpineCrawlerTentacleRetractLong" IfRangeLTE="7"/>
+        <Movers Link="SpineCrawlerTentacleExtendShort" IfRangeLTE="3"/>
+        <Movers Link="SpineCrawlerTentacleExtendLong" IfRangeLTE="7"/>
+    </CEffectLaunchMissile>
+    <CEffectDamage id="ClawDamage" parent="DU_WEAP_MISSILE">
+        <EditorCategories value="Race:Zerg"/>
+        <Amount value="25"/>
+        <Kind value="Melee"/>
+        <SearchFilters value="-;Item,Invulnerable"/>
+    </CEffectDamage>
+    <CEffectApplyBehavior id="ExplodeCreep">
+        <EditorCategories value="Race:Zombie"/>
+        <WhichUnit Value="Source"/>
+        <Behavior value="MakeTrailBig"/>
+    </CEffectApplyBehavior>
+    <CEffectIssueOrder id="RazerbackMorphMutation">
+        <EditorCategories value=""/>
+        <Abil value="MutatetoRazorback"/>
+        <CmdFlags index="Preempt" value="1"/>
+    </CEffectIssueOrder>
+    <CEffectIssueOrder id="FlutterMorphMutation">
+        <EditorCategories value=""/>
+        <Abil value="MutatetoFlutter"/>
+        <CmdFlags index="Preempt" value="1"/>
+    </CEffectIssueOrder>
+    <CEffectIssueOrder id="SquealerMorphMutation">
+        <EditorCategories value=""/>
+        <Abil value="MutatetoSquealer"/>
+        <CmdFlags index="Preempt" value="1"/>
+    </CEffectIssueOrder>
+    <CEffectIssueOrder id="BansheeMorphMutation">
+        <EditorCategories value=""/>
+        <Abil value="MutatetoBanshee"/>
+        <CmdFlags index="Preempt" value="1"/>
+    </CEffectIssueOrder>
+    <CEffectIssueOrder id="TickMorphMutation">
+        <EditorCategories value=""/>
+        <Abil value="MutatetoTick"/>
+        <CmdFlags index="Preempt" value="1"/>
+    </CEffectIssueOrder>
+    <CEffectIssueOrder id="ShredderMorphMutation">
+        <EditorCategories value=""/>
+        <Abil value="MutatetoShredder"/>
+        <CmdFlags index="Preempt" value="1"/>
+    </CEffectIssueOrder>
+    <CEffectIssueOrder id="CrabMorphMutation">
+        <EditorCategories value=""/>
+        <Abil value="MutatetoCrab"/>
+        <CmdFlags index="Preempt" value="1"/>
+    </CEffectIssueOrder>
+    <CEffectIssueOrder id="RacerMorphMutation">
+        <EditorCategories value=""/>
+        <Abil value="MutatetoRacer"/>
+        <CmdFlags index="Preempt" value="1"/>
+    </CEffectIssueOrder>
+    <CEffectIssueOrder id="SlitherMorphMutation">
+        <EditorCategories value=""/>
+        <Abil value="MutatetoSlither"/>
+        <CmdFlags index="Preempt" value="1"/>
+    </CEffectIssueOrder>
+    <CEffectIssueOrder id="ScytheMorphMutation">
+        <EditorCategories value=""/>
+        <Abil value="MutatetoScythe"/>
+        <CmdFlags index="Preempt" value="1"/>
+    </CEffectIssueOrder>
+    <CEffectIssueOrder id="MastermindMorphMutation">
+        <EditorCategories value=""/>
+        <Abil value="MutatetoMastermind"/>
+        <CmdFlags index="Preempt" value="1"/>
+    </CEffectIssueOrder>
+    <CEffectIssueOrder id="MatriarchMorphMutation">
+        <EditorCategories value=""/>
+        <Abil value="MutatetoMatriarch"/>
+        <CmdFlags index="Preempt" value="1"/>
+    </CEffectIssueOrder>
+    <CEffectIssueOrder id="SlayerMorphMutation">
+        <EditorCategories value=""/>
+        <Abil value="MutatetoSlayer"/>
+        <CmdFlags index="Preempt" value="1"/>
+    </CEffectIssueOrder>
+    <CEffectIssueOrder id="RhinoMorphMutation">
+        <EditorCategories value=""/>
+        <Abil value="MutatetoRhino"/>
+        <CmdFlags index="Preempt" value="1"/>
+    </CEffectIssueOrder>
+    <CEffectIssueOrder id="HopliteMorphMutation">
+        <EditorCategories value=""/>
+        <Abil value="MutatetoHoplite"/>
+        <CmdFlags index="Preempt" value="1"/>
+    </CEffectIssueOrder>
+    <CEffectIssueOrder id="CenturionMorphMutation">
+        <EditorCategories value=""/>
+        <Abil value="MutatetoCenturion"/>
+        <CmdFlags index="Preempt" value="1"/>
+    </CEffectIssueOrder>
+    <CEffectSet id="StalkerMorphMutation">
+        <EditorCategories value=""/>
+        <EffectArray value="DevourerMorphMutation"/>
+        <EffectArray value="HopliteMorphMutation"/>
+        <EffectArray value="RhinoMorphMutation"/>
+        <EffectArray value="DissolverMorphMutation"/>
+        <EffectArray value="CenturionMorphMutation"/>
+        <Random value="1"/>
+        <MinCount value="1"/>
+        <MaxCount value="1"/>
+    </CEffectSet>
+    <CEffectApplyBehavior id="InfestorCreep252">
+        <EditorCategories value=""/>
+        <Behavior value="MakeTrailSmall"/>
+    </CEffectApplyBehavior>
+    <CEffectRemoveBehavior id="InfestorCreep253">
+        <EditorCategories value=""/>
+        <BehaviorLink value="MakeTrailSmall"/>
+    </CEffectRemoveBehavior>
+    <CEffectCreatePersistent id="InfestorCreep25">
+        <EditorCategories value=""/>
+        <InitialEffect value="InfestorCreep252"/>
+        <ExpireDelay value="25"/>
+        <ExpireEffect value="InfestorCreep253"/>
+        <WhichLocation Value="TargetUnit"/>
+    </CEffectCreatePersistent>
+    <CEffectIssueOrder id="DevourerMorphMutation">
+        <EditorCategories value=""/>
+        <Abil value="MutatetoDevourer"/>
+        <CmdFlags index="Preempt" value="1"/>
+    </CEffectIssueOrder>
+    <CEffectEnumArea id="HealthRegenMastermind2">
+        <EditorCategories value=""/>
+        <SearchFilters value="-;Self,Enemy,Structure,Dead"/>
+        <AreaArray Radius="5" Effect="HealthRegenMastermind"/>
+    </CEffectEnumArea>
+    <CEffectApplyBehavior id="HealthRegenMastermind">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectIssueOrder id="HulkMorphMutation">
+        <EditorCategories value=""/>
+        <Abil value="MutatetoHulk"/>
+        <CmdFlags index="Preempt" value="1"/>
+    </CEffectIssueOrder>
+    <CEffectIssueOrder id="CreeperMorphMutation">
+        <EditorCategories value="Race:Zombie"/>
+        <Abil value="MutatetoCreeper"/>
+        <CmdFlags index="Preempt" value="1"/>
+    </CEffectIssueOrder>
+    <CEffectIssueOrder id="BlinderMorphMutation">
+        <EditorCategories value="Race:Zombie"/>
+        <Abil value="MutatetoBlinder"/>
+        <CmdFlags index="Preempt" value="1"/>
+    </CEffectIssueOrder>
+    <CEffectIssueOrder id="BeastMorphMutation">
+        <EditorCategories value="Race:Zombie"/>
+        <Abil value="MutatetoBeast"/>
+        <CmdFlags index="Preempt" value="1"/>
+    </CEffectIssueOrder>
+    <CEffectSet id="BusterMorphMutation">
+        <EditorCategories value="Race:Zombie"/>
+        <EffectArray value="CreeperMorphMutation"/>
+        <EffectArray value="BlinderMorphMutation"/>
+        <EffectArray value="BeastMorphMutation"/>
+        <EffectArray value="SplatterMorphMutation"/>
+        <Random value="1"/>
+        <MinCount value="1"/>
+        <MaxCount value="1"/>
+    </CEffectSet>
+    <CEffectIssueOrder id="DissolverMorphMutation">
+        <EditorCategories value=""/>
+        <Abil value="MutatetoDissolver"/>
+        <CmdFlags index="Preempt" value="1"/>
+    </CEffectIssueOrder>
+    <CEffectIssueOrder id="SplatterMorphMutation">
+        <EditorCategories value="Race:Zombie"/>
+        <Abil value="MutatetoSplatter"/>
+        <CmdFlags index="Preempt" value="1"/>
+    </CEffectIssueOrder>
+    <CEffectSet id="SlasherMorphMutation">
+        <EditorCategories value=""/>
+        <EffectArray value="ScytheMorphMutation"/>
+        <EffectArray value="SlayerMorphMutation"/>
+        <EffectArray value="RacerMorphMutation"/>
+        <Random value="1"/>
+        <MinCount value="1"/>
+        <MaxCount value="1"/>
+    </CEffectSet>
+    <CEffectSet id="ParasiteMorphMutation">
+        <EditorCategories value=""/>
+        <EffectArray value="TickMorphMutation"/>
+        <EffectArray value="CrabMorphMutation"/>
+        <EffectArray value="SlitherMorphMutation"/>
+        <EffectArray value="ShredderMorphMutation"/>
+        <EffectArray value="SquealerMorphMutation"/>
+        <Random value="1"/>
+        <MinCount value="1"/>
+        <MaxCount value="1"/>
+        <ValidatorArray value="GameisNightmare"/>
+    </CEffectSet>
+    <CEffectIssueOrder id="TeslaMorphMutation">
+        <EditorCategories value=""/>
+        <Abil value="MutatetoTesla"/>
+        <CmdFlags index="Preempt" value="1"/>
+    </CEffectIssueOrder>
+    <CEffectIssueOrder id="ImmortalMorphMutation">
+        <EditorCategories value=""/>
+        <Abil value="MutatetoImmortal"/>
+        <CmdFlags index="Preempt" value="1"/>
+        <ValidatorArray value="GameisnotRecruit"/>
+    </CEffectIssueOrder>
+    <CEffectIssueOrder id="SeekerMorphMutation">
+        <EditorCategories value=""/>
+        <Abil value="MutatetoSeeker"/>
+        <CmdFlags index="Preempt" value="1"/>
+    </CEffectIssueOrder>
+    <CEffectApplyBehavior id="SuperChargeKnockback4">
+        <EditorCategories value="Race:Zerg"/>
+        <Behavior value="SuperChargeKnockback"/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="SuperChargeSpeed2">
+        <EditorCategories value="Race:Zerg"/>
+        <WhichUnit Value="Source"/>
+        <Behavior value="SuperChargeSpeed"/>
+    </CEffectApplyBehavior>
+    <CEffectIssueOrder id="RoamerMorphMutation">
+        <EditorCategories value=""/>
+        <Abil value="MutatetoRoamer"/>
+        <CmdFlags index="Preempt" value="1"/>
+        <ValidatorArray value="GameisnotRecruit"/>
+    </CEffectIssueOrder>
+    <CEffectSet id="HoundMorphMutation">
+        <EditorCategories value=""/>
+        <EffectArray value="TeslaMorphMutation"/>
+        <EffectArray value="SeekerMorphMutation"/>
+        <Random value="1"/>
+        <MinCount value="1"/>
+        <MaxCount value="1"/>
+    </CEffectSet>
+    <CEffectDamage id="SuperCharge2" parent="DU_WEAP">
+        <ValidatorArray value="NotKnockedBackKraith"/>
+        <ValidatorArray value="noMarkers"/>
+        <EditorCategories value="Race:Zerg"/>
+        <AINotifyFlags index="HurtEnemy" value="1"/>
+        <ImpactLocation Value="TargetUnit"/>
+        <AttributeBonus index="Psionic" value="40"/>
+        <Kind value="Spell"/>
+        <Amount value="40"/>
+        <Death value="Blast"/>
+        <SearchFilters value="Ground;Self,Missile,Stasis,Dead,Invulnerable"/>
+    </CEffectDamage>
+    <CEffectSet id="ShamblerMorphMutation">
+        <EditorCategories value=""/>
+        <EffectArray value="HulkMorphMutation"/>
+        <EffectArray value="ImmortalMorphMutation"/>
+        <EffectArray value="RoamerMorphMutation"/>
+        <Random value="1"/>
+        <MinCount value="1"/>
+        <MaxCount value="1"/>
+        <ValidatorArray value="GameisnotRecruit"/>
+    </CEffectSet>
+    <CEffectSet id="SuperChargeCaster">
+        <ValidatorArray value="CasterIsNotHidden"/>
+        <EditorCategories value="Race:Zerg"/>
+        <EffectArray value="SuperChargeCasterMove"/>
+        <EffectArray value="SuperCharge4"/>
+    </CEffectSet>
+    <CEffectCreatePersistent id="SuperChargeCasterMove">
+        <EditorCategories value="Race:Zerg"/>
+        <WhichLocation Value="SourceUnit"/>
+        <TimeScaleSource Value="Caster"/>
+        <Flags index="Channeled" value="1"/>
+        <InitialEffect value="SuperCharge5"/>
+        <FinalEffect value="KraithCrashingChargeCheckRange"/>
+    </CEffectCreatePersistent>
+    <CEffectApplyForce id="SuperChargeKnockback3">
+        <EditorCategories value="Race:Zerg"/>
+        <WhichLocation Value="SourceUnit"/>
+        <Amount value="10"/>
+    </CEffectApplyForce>
+    <CEffectIssueOrder id="WalkerMorphMutation">
+        <EditorCategories value=""/>
+        <Abil value="MutatetoShambler"/>
+        <CmdFlags index="Preempt" value="1"/>
+    </CEffectIssueOrder>
+    <CEffectCreatePersistent id="SuperChargeKnockback2">
+        <ValidatorArray value="NotStructure"/>
+        <ValidatorArray value="IsNotBuried"/>
+        <EditorCategories value="Race:Zerg"/>
+        <WhichLocation Value="TargetUnit"/>
+        <TimeScaleSource Value="Caster"/>
+        <Flags index="Channeled" value="1"/>
+        <InitialEffect value="SuperChargeKnockback4"/>
+        <FinalEffect value="SuperChargeKnockback"/>
+        <PeriodCount value="10"/>
+        <PeriodicEffectArray value="SuperChargeKnockback3"/>
+        <PeriodicPeriodArray value="0.0625"/>
+    </CEffectCreatePersistent>
+    <CEffectRemoveBehavior id="SuperChargeSpeed">
+        <EditorCategories value="Race:Zerg"/>
+        <WhichUnit Value="Source"/>
+    </CEffectRemoveBehavior>
+    <CEffectRemoveBehavior id="SuperChargeKnockback">
+        <EditorCategories value="Race:Zerg"/>
+    </CEffectRemoveBehavior>
+    <CEffectCreatePersistent id="SuperCharge">
+        <EditorCategories value="Race:Zerg"/>
+        <Marker>
+            <MatchFlags index="Id" value="1"/>
+        </Marker>
+        <TimeScaleSource Value="Caster"/>
+        <Flags index="Channeled" value="1"/>
+        <InitialEffect value="SuperChargeSpeed2"/>
+        <FinalEffect value="SuperChargeSpeed"/>
+        <PeriodCount value="150"/>
+        <PeriodicValidator value="KraithCrashingChargeTargetCloseAndKraithCrashingChargeAbort"/>
+        <PeriodicEffectArray value="SuperChargeCaster"/>
+        <PeriodicPeriodArray value="0.0625"/>
+    </CEffectCreatePersistent>
+    <CEffectApplyForce id="SuperCharge5">
+        <EditorCategories value="Race:Zerg"/>
+        <WhichLocation Effect="SuperChargeCasterMove" Value="TargetPoint"/>
+        <Amount value="-10"/>
+    </CEffectApplyForce>
+    <CEffectApplyBehavior id="SpeedMultiBlizter">
+        <EditorCategories value=""/>
+        <Behavior value="SpeedMultiBlitzer"/>
+    </CEffectApplyBehavior>
+    <CEffectEnumArea id="SuperCharge4">
+        <EditorCategories value="Race:Zerg"/>
+        <ImpactLocation Value="SourceUnit"/>
+        <SearchFilters value="Ground;Self,Missile,Stasis,Dead,Invulnerable"/>
+        <AreaArray Arc="90" Radius="3" Effect="SuperCharge3"/>
+    </CEffectEnumArea>
+    <CEffectSet id="SuperCharge3">
+        <ValidatorArray value="CasterIsNotHidden"/>
+        <ValidatorArray value="KraithCrashingChargeAbort"/>
+        <EditorCategories value="Race:Zerg"/>
+        <EffectArray value="SuperCharge2"/>
+        <EffectArray value="SuperChargeKnockback2"/>
+    </CEffectSet>
+    <CEffectEnumArea id="SpeedMultiBlitzer">
+        <EditorCategories value=""/>
+        <SearchFilters value="-;Self,Enemy,Structure,Dead"/>
+        <AreaArray Radius="5" Effect="SpeedMultiBlizter"/>
+    </CEffectEnumArea>
+    <CEffectEnumArea id="SpeedMultiBrainBug2">
+        <EditorCategories value=""/>
+        <SearchFilters value="-;Self,Enemy,Structure,Dead"/>
+        <AreaArray Radius="3.5" Effect="SpeedMultiBrainBug"/>
+    </CEffectEnumArea>
+    <CEffectApplyBehavior id="SpeedMultiBrainBug">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="SpeedMultiMastermind2">
+        <EditorCategories value=""/>
+        <Behavior value="SpeedMultiMastermind"/>
+    </CEffectApplyBehavior>
+    <CEffectDamage id="HopliteClaws" parent="Claws4"/>
+    <CEffectEnumArea id="SpeedMultiMastermind">
+        <EditorCategories value=""/>
+        <SearchFilters value="-;Self,Enemy,Structure,Dead"/>
+        <AreaArray Radius="3.5" Effect="SpeedMultiMastermind2"/>
+    </CEffectEnumArea>
+    <CEffectApplyBehavior id="HealthRegenMatriarch">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectEnumArea id="HealthRegenMatriarch2">
+        <EditorCategories value=""/>
+        <SearchFilters value="-;Self,Enemy,Structure,Dead"/>
+        <AreaArray Radius="5" Effect="HealthRegenMatriarch"/>
+    </CEffectEnumArea>
+    <CEffectEnumArea id="HealthRegenStonewall2">
+        <EditorCategories value=""/>
+        <SearchFilters value="-;Self,Enemy,Structure,Dead"/>
+        <AreaArray Radius="5" Effect="HealthRegenStonewall"/>
+    </CEffectEnumArea>
+    <CEffectApplyBehavior id="HealthRegenStonewall">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="InfestedCharge">
+        <ValidatorArray index="0" value="ChargeMinTriggerDistance"/>
+        <ValidatorArray value="ChargeMaxDistance"/>
+        <EditorCategories value=""/>
+        <WhichUnit Value="Caster"/>
+    </CEffectApplyBehavior>
+    <CEffectDamage id="BlitzerSmashDamage" parent="Smash"/>
+    <CEffectIssueOrder id="GorgonMorphMutation">
+        <EditorCategories value=""/>
+        <Abil value="MutatetoGorgon"/>
+        <CmdFlags index="Preempt" value="1"/>
+        <WhichUnit Value="Caster"/>
+    </CEffectIssueOrder>
+    <CEffectDamage id="BonebreakerBoulderDamage">
+        <ResponseFlags index="Acquire" value="1"/>
+        <ResponseFlags index="Flee" value="1"/>
+        <ArmorReduction value="1"/>
+        <Amount value="80"/>
+        <KindSplash value="Ranged"/>
+    </CEffectDamage>
+    <CEffectLaunchMissile id="BonebreakerBoulderLaunchMissile">
+        <ValidatorArray index="0" value="HasVision"/>
+        <EditorCategories value="Race:Terran"/>
+        <LaunchLocation Value="CasterUnit"/>
+        <ImpactLocation Value="TargetPoint"/>
+        <ImpactEffect value="BonebreakerBoulderImpactSearch"/>
+        <AmmoUnit value="BonebreakerBoulder"/>
+    </CEffectLaunchMissile>
+    <CEffectIssueOrder id="WitchMorphMutation">
+        <EditorCategories value=""/>
+        <Abil value="MutatetoWitch"/>
+        <CmdFlags index="Preempt" value="1"/>
+    </CEffectIssueOrder>
+    <CEffectApplyBehavior id="WithShroudApplyBehavior">
+        <EditorCategories value=""/>
+        <Behavior value="WitchShroud"/>
+    </CEffectApplyBehavior>
+    <CEffectEnumArea id="IncreasedDamageAuraSearch">
+        <EditorCategories value=""/>
+        <SearchFilters value="-;Enemy,Structure,Dead"/>
+        <AreaArray Radius="2.5" Effect="IncreasedAttack"/>
+    </CEffectEnumArea>
+    <CEffectEnumArea id="WitchShroudSearchArea">
+        <EditorCategories value=""/>
+        <SearchFilters value="-;Self,Enemy,Structure,Dead"/>
+        <AreaArray Radius="8" Effect="WithShroudApplyBehavior"/>
+    </CEffectEnumArea>
+    <CEffectIssueOrder id="BlinkMorphMutation">
+        <EditorCategories value=""/>
+        <Abil value="MutatetoBlink"/>
+        <CmdFlags index="Preempt" value="1"/>
+    </CEffectIssueOrder>
+    <CEffectIssueOrder id="CoronaMorphMutation">
+        <EditorCategories value=""/>
+        <Abil value="MutatetoCorona"/>
+        <CmdFlags index="Preempt" value="1"/>
+    </CEffectIssueOrder>
+    <CEffectDamage id="MarsColonistAttack" parent="Attack">
+        <EditorCategories value="Race:Terran"/>
+        <ArmorReduction value="1"/>
+        <Amount value="10"/>
+    </CEffectDamage>
+    <CEffectDamage id="RacerClaws" parent="Claws3"/>
+    <CEffectApplyBehavior id="IncreasedAttack">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectDamage id="BrainBugBite" parent="Bite2"/>
+    <CEffectEnumArea id="IncreasedArmour">
+        <EditorCategories value=""/>
+        <SearchFilters value="-;Self,Enemy,Structure,Dead"/>
+        <AreaArray Radius="3" Effect="IncreasedArmour2"/>
+    </CEffectEnumArea>
+    <CEffectApplyBehavior id="IncreasedArmour2">
+        <EditorCategories value=""/>
+        <Behavior value="IncreasedArmour"/>
+    </CEffectApplyBehavior>
+    <CEffectDamage id="ScytheClaws" parent="Claws3"/>
+    <CEffectDamage id="SlayerClaws" parent="Claws3">
+        <ArmorReduction value="7.5"/>
+    </CEffectDamage>
+    <CEffectDamage id="ShredderMandibles" parent="Mandibles"/>
+    <CEffectApplyBehavior id="EnergyDrainAura">
+        <EditorCategories value="Race:Zerg"/>
+        <Behavior value="EnergyDrainDebuff"/>
+    </CEffectApplyBehavior>
+    <CEffectDamage id="BonebreakerSmashDamage" parent="Smash"/>
+    <CEffectDamage id="SlasherClaws" parent="Claws3"/>
+    <CEffectDamage id="StonewallSmashDamage" parent="Smash"/>
+    <CEffectEnumArea id="EnergyDrainAura2">
+        <ImpactLocation Value="TargetUnit"/>
+        <SearchFilters value="-;Self,Player,Ally,Structure,Item,Stasis,Dead"/>
+        <AreaArray Radius="8" Effect="EnergyDrainAura"/>
+        <SearchFlags index="SameCliff" value="1"/>
+    </CEffectEnumArea>
+    <CEffectDamage id="MatriarchTalons2" parent="DU_WEAP">
+        <EditorCategories value=""/>
+        <ArmorReduction value="5"/>
+        <Visibility value="Visible"/>
+        <Amount value="90"/>
+    </CEffectDamage>
+    <CEffectCreatePersistent id="MatriarchTalons">
+        <EditorCategories value=""/>
+        <WhichLocation Value="TargetUnit"/>
+        <TimeScaleSource Value="Caster"/>
+        <InitialEffect value="MatriarchTalons2"/>
+        <PeriodCount value="2"/>
+        <PeriodicEffectArray value="MatriarchTalons2"/>
+        <PeriodicPeriodArray value="0"/>
+        <PeriodicPeriodArray value="0"/>
+    </CEffectCreatePersistent>
+    <CEffectDamage id="MastermindBite" parent="Bite2"/>
+    <CEffectCreatePersistent id="GorgonTalons">
+        <EditorCategories value=""/>
+        <WhichLocation Value="TargetUnit"/>
+        <TimeScaleSource Value="Caster"/>
+        <InitialEffect value="GorgonTalons2"/>
+        <PeriodCount value="2"/>
+        <PeriodicEffectArray value="GorgonTalons2"/>
+        <PeriodicPeriodArray value="0"/>
+        <PeriodicPeriodArray value="0"/>
+    </CEffectCreatePersistent>
+    <CEffectApplyBehavior id="RhinoClawsKnockBackApplyBehavior">
+        <EditorCategories value="Race:Zerg"/>
+        <Behavior value="RhinoClawsKnockBack"/>
+        <ValidatorArray index="0" value="NotMassive"/>
+    </CEffectApplyBehavior>
+    <CEffectDamage id="GorgonTalons2" parent="DU_WEAP">
+        <EditorCategories value=""/>
+        <ArmorReduction value="5"/>
+        <Visibility value="Visible"/>
+        <Amount value="90"/>
+    </CEffectDamage>
+    <CEffectDamage id="HoundBite" parent="Bite">
+        <EditorCategories value="Race:Zerg"/>
+    </CEffectDamage>
+    <CEffectDamage id="TickMandibles" parent="Mandibles"/>
+    <CEffectDamage id="RhinoClawsKnockBackDamage" parent="Claws4">
+        <EditorCategories value="Race:Zerg"/>
+        <Marker Link="Effect/RhinoClawsKnockBackDamage"/>
+        <AINotifyFlags index="HurtEnemy" value="1"/>
+        <ResponseFlags index="Acquire" value="1"/>
+        <ResponseFlags index="Flee" value="1"/>
+        <ImpactLocation Value="TargetUnit"/>
+        <Flags index="Notification" value="1"/>
+        <SearchFilters value="Ground;Self,Missile,Stasis,Dead,Invulnerable"/>
+        <SearchFlags index="CallForHelp" value="1"/>
+        <SearchFlags index="OffsetByUnitRadius" value="1"/>
+        <SearchFlags index="OffsetAreaByAngle" value="1"/>
+    </CEffectDamage>
+    <CEffectDamage id="SquealerMandibles" parent="Mandibles"/>
+    <CEffectSet id="RhinoClawsKnockBackSet">
+        <ValidatorArray value="CasterIsNotHidden"/>
+        <EditorCategories value="Race:Zerg"/>
+        <EffectArray value="RhinoClawsKnockBackDamage"/>
+        <EffectArray value="RhinoClawsKnockBackPersistent"/>
+    </CEffectSet>
+    <CEffectCreatePersistent id="BroodTalons">
+        <EditorCategories value=""/>
+        <WhichLocation Value="TargetUnit"/>
+        <TimeScaleSource Value="Caster"/>
+        <InitialEffect value="BroodTalons2"/>
+        <PeriodCount value="2"/>
+        <PeriodicEffectArray value="BroodTalons2"/>
+        <PeriodicPeriodArray value="0"/>
+        <PeriodicPeriodArray value="0"/>
+    </CEffectCreatePersistent>
+    <CEffectDamage id="SlitherMandibles" parent="Mandibles"/>
+    <CEffectDamage id="BroodTalons2" parent="DU_WEAP">
+        <EditorCategories value=""/>
+        <ArmorReduction value="5"/>
+        <Visibility value="Visible"/>
+        <Amount value="90"/>
+    </CEffectDamage>
+    <CEffectDamage id="CrabMandibles" parent="Mandibles"/>
+    <CEffectApplyForce id="KraithCrashingChargeApplyForce2">
+        <EditorCategories value="Race:Zerg"/>
+        <WhichLocation Value="SourceUnit"/>
+        <Amount value="2"/>
+    </CEffectApplyForce>
+    <CEffectDamage id="ParasiteMandibles" parent="Mandibles"/>
+    <CEffectCreatePersistent id="RhinoClawsKnockBackPersistent">
+        <ValidatorArray value="NotStructure"/>
+        <ValidatorArray value="IsNotBuried"/>
+        <ValidatorArray value="NotMassive"/>
+        <EditorCategories value="Race:Zerg"/>
+        <WhichLocation Value="TargetUnit"/>
+        <TimeScaleSource Value="Caster"/>
+        <Flags index="Channeled" value="1"/>
+        <InitialEffect value="RhinoClawsKnockBackApplyBehavior"/>
+        <FinalEffect value="RhinoClawsKnockBackRemoveBehavior"/>
+        <PeriodCount value="10"/>
+        <PeriodicEffectArray value="KraithCrashingChargeApplyForce2"/>
+        <PeriodicPeriodArray value="0.0625"/>
+    </CEffectCreatePersistent>
+    <CEffectRemoveBehavior id="RhinoClawsKnockBackRemoveBehavior">
+        <EditorCategories value="Race:Zerg"/>
+        <BehaviorLink value="RhinoClawsKnockBack"/>
+    </CEffectRemoveBehavior>
+    <CEffectDamage id="HulkAttack" parent="Attack">
+        <EditorCategories value="Race:Zerg"/>
+        <Amount value="45"/>
+    </CEffectDamage>
+    <CEffectDamage id="StalkerClaws" parent="Claws4"/>
+    <CEffectDamage id="ImmortalAttack" parent="Attack">
+        <EditorCategories value="Race:Zerg"/>
+        <Amount value="35"/>
+    </CEffectDamage>
+    <CEffectDamage id="BehemothSmashDamage" parent="Smash">
+        <Amount value="120"/>
+    </CEffectDamage>
+    <CEffectDamage id="BloodseekerSmashDamage" parent="Smash"/>
+    <CEffectDamage id="ShamblerAttack" parent="Attack">
+        <EditorCategories value="Race:Terran"/>
+        <Amount value="30"/>
+    </CEffectDamage>
+    <CEffectDamage id="SeekerBite" parent="Bite">
+        <EditorCategories value="Race:Zerg"/>
+    </CEffectDamage>
+    <CEffectDamage id="TeslaShockBiteDmg" parent="Bite">
+        <EditorCategories value="Race:Zerg"/>
+        <Death value="Disintegrate"/>
+    </CEffectDamage>
+    <CEffectApplyBehavior id="ZombieScalingApply">
+        <EditorCategories value=""/>
+        <Behavior value="ZombieScaling"/>
+    </CEffectApplyBehavior>
+    <CEffectDamage id="ZombieWalkerColonistAttack" parent="Attack">
+        <EditorCategories value="Race:Zerg"/>
+    </CEffectDamage>
+    <CEffectDamage id="RoamerAttack" parent="Attack">
+        <EditorCategories value="Race:Zerg"/>
+        <Amount value="40"/>
+    </CEffectDamage>
+    <CEffectDamage id="CrushingJaws" parent="Smash">
+        <EditorCategories value="Race:Zerg"/>
+        <ArmorReduction value="5"/>
+        <Amount value="200"/>
+        <KillHallucination value="1"/>
+    </CEffectDamage>
+    <CEffectApplyBehavior id="BlightKingApply">
+        <EditorCategories value="Race:Zerg"/>
+        <WhichUnit Value="Caster"/>
+        <Behavior value="BlightKingCreepTrail"/>
+    </CEffectApplyBehavior>
+    <CEffectRemoveBehavior id="BlightKingRemove">
+        <EditorCategories value="Race:Zerg"/>
+        <WhichUnit Value="Caster"/>
+        <BehaviorLink value="BlightKingCreepTrail"/>
+    </CEffectRemoveBehavior>
+    <CEffectCreatePersistent id="BlightKingCreatePersistent">
+        <EditorCategories value="Race:Zerg"/>
+        <WhichLocation Value="CasterUnit"/>
+        <InitialEffect value="BlightKingApply"/>
+        <ExpireDelay value="25"/>
+        <ExpireEffect value="BlightKingRemove"/>
+        <FinalEffect value="BlightKingRemove"/>
+    </CEffectCreatePersistent>
+    <CEffectEnumArea id="BloodKnightSearch">
+        <EditorCategories value="Race:Zerg"/>
+        <SearchFilters value="-;Self,Enemy,Structure,Dead"/>
+        <AreaArray Radius="7" Effect="BloodKnightApply"/>
+    </CEffectEnumArea>
+    <CEffectApplyBehavior id="BloodKnightApply">
+        <EditorCategories value="Race:Zerg"/>
+        <Behavior value="BloodKnight"/>
+    </CEffectApplyBehavior>
+    <CEffectSet id="BoneClawsSet">
+        <EditorCategories value="Race:Zerg"/>
+        <EffectArray value="BoneClaws"/>
+        <EffectArray value="ScythingBlades"/>
+    </CEffectSet>
+    <CEffectDamage id="ScythingBlades" parent="DU_WEAP">
+        <EditorCategories value="Race:Zerg"/>
+        <ImpactLocation Value="TargetPoint"/>
+        <ArmorReduction value="4"/>
+        <KindSplash value="Splash"/>
+        <Amount value="50"/>
+        <Death value="Eviscerate"/>
+        <AreaArray Radius="2" Fraction="1"/>
+        <ExcludeArray Value="Target"/>
+        <SearchFilters value="-;Player,Ally,Neutral,Item,Hidden,Invulnerable"/>
+    </CEffectDamage>
+    <CEffectDamage id="BoneClaws" parent="DU_WEAP">
+        <EditorCategories value="Race:Zerg"/>
+        <ImpactLocation Value="TargetUnit"/>
+        <ArmorReduction value="8"/>
+        <Amount value="150"/>
+        <Death value="Eviscerate"/>
+    </CEffectDamage>
+    <CEffectApplyBehavior id="WarHowlApplyBuff">
+        <ValidatorArray index="0" removed="1"/>
+        <EditorCategories value="Race:Zerg"/>
+        <Marker Link="Effect/Stimpack"/>
+        <Behavior value="WarHowl"/>
+    </CEffectApplyBehavior>
+    <CEffectDamage id="BeastExplodeAcidDmaage" parent="SuicideDamageTemplate">
+        <ArmorReduction value="1"/>
+        <Amount value="150"/>
+        <AreaArray index="0" Radius="3" Fraction="1"/>
+    </CEffectDamage>
+    <CEffectDamage id="ExplodeAcidDamage" parent="SuicideDamageTemplate"/>
+</Catalog>

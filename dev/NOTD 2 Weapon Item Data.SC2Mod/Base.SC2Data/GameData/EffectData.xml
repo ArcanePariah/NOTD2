@@ -1,0 +1,1167 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<Catalog>
+    <CEffectDamage default="1" id="AutomaticShotgunDamageTemplate">
+        <EditorCategories value=""/>
+        <Marker Link="Effect/PumpShotgunDamageTemplate"/>
+        <ImpactLocation Value="TargetUnit"/>
+        <ArmorReduction value="1.5"/>
+        <Kind value="Ranged"/>
+        <KindSplash value="Ranged"/>
+        <Amount value="25"/>
+        <Death value="Blast"/>
+        <AreaArray Radius="0.1" Fraction="1.4284"/>
+        <SearchFilters value="-;Player,Ally,Neutral,Item,Invulnerable"/>
+        <SearchFlags index="OffsetAreaByAngle" value="1"/>
+    </CEffectDamage>
+    <CEffectDamage default="1" id="ShotgunSlugShotDamageTemplate">
+        <EditorCategories value=""/>
+        <Marker Link="Effect/ShotgunSlugShotDamageTemplate"/>
+        <LaunchLocation Value="CasterUnit"/>
+        <ImpactLocation Value="CasterPoint"/>
+        <ArmorReduction value="0.5"/>
+        <Amount value="90"/>
+        <AreaArray Arc="0" Fraction="1"/>
+        <SearchFilters value="-;Player,Ally,Item,Stasis,Invulnerable"/>
+        <SearchFlags index="OffsetAreaByAngle" value="1"/>
+        <Kind value="Ranged"/>
+        <KindSplash value="Splash"/>
+        <DisplayFlags index="CollapseBuffed" value="1"/>
+    </CEffectDamage>
+    <CEffectDamage default="1" id="PumpShotgunDamageTemplate">
+        <EditorCategories value=""/>
+        <Marker Link="Effect/PumpShotgunDamageTemplate"/>
+        <ImpactLocation Value="TargetUnit"/>
+        <ArmorReduction value="1.5"/>
+        <Kind value="Ranged"/>
+        <KindSplash value="Ranged"/>
+        <Amount value="35"/>
+        <AreaArray Radius="0.1" Fraction="1.4284"/>
+        <SearchFilters value="-;Player,Ally,Neutral,Item,Invulnerable"/>
+        <SearchFlags index="OffsetAreaByAngle" value="1"/>
+        <Death value="Blast"/>
+    </CEffectDamage>
+    <CEffectSet id="ArmFracturetoBrokenBone">
+        <EditorCategories value=""/>
+        <EffectArray value="ApplyBrokenArm"/>
+        <EffectArray value="RemoveArmFracture"/>
+    </CEffectSet>
+    <CEffectSwitch id="AutomaticShotgunDamageCritical">
+        <EditorCategories value=""/>
+        <CaseArray Validator="Target2RangeOrLessAway" Effect="AutomaticShotgunCriticalDamageRange1"/>
+        <CaseArray Validator="Target3RangeOrLessAway" Effect="AutomaticShotgunCriticalDamageRange2"/>
+        <CaseArray Validator="Target4RangeOrLessAway" Effect="AutomaticShotgunCriticalDamageRange3"/>
+        <CaseArray Validator="Target5RangeOrLessAway" Effect="AutomaticShotgunCriticalDamageRange4"/>
+        <CaseArray Validator="Target6RangeOrLessAway" Effect="AutomaticCriticalShotgunDamageRange5"/>
+        <CaseArray Validator="Target7RangeOrLessAway" Effect="AutomaticCriticalShotgunDamageRange7"/>
+        <CaseArray Validator="Target8RangeOrLessAway" Effect="AutomaticShotgunCriticalDamageRange6"/>
+    </CEffectSwitch>
+    <CEffectDamage id="AutomaticShotgunCriticalDamageRange1" parent="AutomaticShotgunDamageTemplate">
+        <AreaArray index="0" Radius="0.1" Fraction="2"/>
+    </CEffectDamage>
+    <CEffectDamage id="AutomaticShotgunCriticalDamageRange2" parent="AutomaticShotgunDamageTemplate">
+        <AreaArray index="0" Radius="0.35" Fraction="1.6"/>
+    </CEffectDamage>
+    <CEffectDamage id="AutomaticShotgunCriticalDamageRange3" parent="AutomaticShotgunDamageTemplate">
+        <AreaArray index="0" Radius="0.65" Fraction="1.2"/>
+    </CEffectDamage>
+    <CEffectDamage id="AutomaticShotgunCriticalDamageRange4" parent="AutomaticShotgunDamageTemplate">
+        <AreaArray index="0" Radius="1" Fraction="1"/>
+    </CEffectDamage>
+    <CEffectDamage id="AutomaticCriticalShotgunDamageRange5" parent="AutomaticShotgunDamageTemplate">
+        <AreaArray index="0" Radius="1.25" Fraction="1"/>
+    </CEffectDamage>
+    <CEffectDamage id="AutomaticCriticalShotgunDamageRange7" parent="AutomaticShotgunDamageTemplate">
+        <AreaArray index="0" Radius="1.5" Fraction="0.8"/>
+    </CEffectDamage>
+    <CEffectDamage id="AutomaticShotgunCriticalDamageRange6" parent="AutomaticShotgunDamageTemplate">
+        <AreaArray index="0" Radius="1.75" Fraction="0.8"/>
+    </CEffectDamage>
+    <CEffectApplyBehavior id="ExpandingHeroicSlow">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="ExpandingStun">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectSwitch id="ExpandingSwitch">
+        <EditorCategories value=""/>
+        <CaseArray Validator="IsHeroic" Effect="ExpandingHeroicSlow"/>
+        <CaseDefault value="ExpandingStun"/>
+    </CEffectSwitch>
+    <CEffectApplyBehavior id="HeavyMachineGunNoise">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectDamage id="PumpShotgunCriticalDamageRange10" parent="PumpShotgunDamageTemplate">
+        <AreaArray index="0" Radius="2.5" Fraction="0.2856"/>
+        <Amount value="87.5"/>
+    </CEffectDamage>
+    <CEffectDamage id="PumpShotgunCriticalDamageRange11" parent="PumpShotgunDamageTemplate">
+        <AreaArray index="0" Radius="2.75" Fraction="0.2856"/>
+        <Amount value="87.5"/>
+    </CEffectDamage>
+    <CEffectDamage id="PumpShotgunCriticalDamageRange1" parent="PumpShotgunDamageTemplate">
+        <Amount value="87.5"/>
+    </CEffectDamage>
+    <CEffectDamage id="PumpShotgunCriticalDamageRange12Up" parent="PumpShotgunDamageTemplate">
+        <Amount value="87.5"/>
+        <AreaArray index="0" Radius="3" Fraction="0.1428"/>
+    </CEffectDamage>
+    <CEffectDamage id="PumpShotgunCriticalDamageRange2" parent="PumpShotgunDamageTemplate">
+        <AreaArray index="0" Radius="0.35" Fraction="1.1428"/>
+        <Amount value="87.5"/>
+    </CEffectDamage>
+    <CEffectSwitch id="AutomaticShotgunDamage">
+        <EditorCategories value=""/>
+        <CaseArray Validator="Target2RangeOrLessAway" Effect="AutomaticShotgunDamageRange1"/>
+        <CaseArray Validator="Target3RangeOrLessAway" Effect="AutomaticShotgunDamageRange2"/>
+        <CaseArray Validator="Target4RangeOrLessAway" Effect="AutomaticShotgunDamageRange3"/>
+        <CaseArray Validator="Target5RangeOrLessAway" Effect="AutomaticShotgunDamageRange4"/>
+        <CaseArray Validator="Target6RangeOrLessAway" Effect="AutomaticShotgunDamageRange5"/>
+        <CaseArray Validator="Target7RangeOrLessAway" Effect="AutomaticShotgunDamageRange6"/>
+        <CaseArray Validator="Target8RangeOrLessAway" Effect="AutomaticShotgunDamageRange7"/>
+    </CEffectSwitch>
+    <CEffectDamage id="PumpShotgunCriticalDamageRange3" parent="PumpShotgunDamageTemplate">
+        <AreaArray index="0" Radius="0.65" Fraction="0.8571"/>
+        <Amount value="87.5"/>
+    </CEffectDamage>
+    <CEffectDamage id="AutomaticShotgunDamageRange1" parent="AutomaticShotgunDamageTemplate">
+        <AreaArray index="0" Radius="0.1" Fraction="2"/>
+    </CEffectDamage>
+    <CEffectDamage id="AutomaticShotgunDamageRange2" parent="AutomaticShotgunDamageTemplate">
+        <AreaArray index="0" Radius="0.35" Fraction="1.6"/>
+    </CEffectDamage>
+    <CEffectDamage id="PumpShotgunDamageRange2" parent="PumpShotgunDamageTemplate">
+        <AreaArray index="0" Radius="0.35" Fraction="1.1428"/>
+    </CEffectDamage>
+    <CEffectDamage id="PumpShotgunCriticalDamageRange4" parent="PumpShotgunDamageTemplate">
+        <AreaArray index="0" Radius="1" Fraction="0.7143"/>
+        <Amount value="87.5"/>
+    </CEffectDamage>
+    <CEffectDamage id="AutomaticShotgunDamageRange3" parent="AutomaticShotgunDamageTemplate">
+        <AreaArray index="0" Radius="0.65" Fraction="1.2"/>
+    </CEffectDamage>
+    <CEffectDamage id="PumpShotgunDamageRange3" parent="PumpShotgunDamageTemplate">
+        <AreaArray index="0" Radius="0.65" Fraction="0.8571"/>
+    </CEffectDamage>
+    <CEffectDamage id="PumpShotgunDamageRange12Up" parent="PumpShotgunDamageTemplate">
+        <AreaArray index="0" Radius="3" Fraction="0.1428"/>
+    </CEffectDamage>
+    <CEffectDamage id="AutomaticShotgunDamageRange4" parent="AutomaticShotgunDamageTemplate">
+        <AreaArray index="0" Radius="1" Fraction="1"/>
+    </CEffectDamage>
+    <CEffectDamage id="PumpShotgunCriticalDamageRange5" parent="PumpShotgunDamageTemplate">
+        <AreaArray index="0" Radius="1.25" Fraction="0.7143"/>
+        <Amount value="87.5"/>
+    </CEffectDamage>
+    <CEffectDamage id="AutomaticShotgunDamageRange5" parent="AutomaticShotgunDamageTemplate">
+        <AreaArray index="0" Radius="1.25" Fraction="1"/>
+    </CEffectDamage>
+    <CEffectDamage id="PumpShotgunDamageRange4" parent="PumpShotgunDamageTemplate">
+        <AreaArray index="0" Radius="1" Fraction="0.7143"/>
+    </CEffectDamage>
+    <CEffectDamage id="PumpShotgunCriticalDamageRange6" parent="PumpShotgunDamageTemplate">
+        <AreaArray index="0" Radius="1.5" Fraction="0.5715"/>
+        <Amount value="87.5"/>
+    </CEffectDamage>
+    <CEffectDamage id="AutomaticShotgunDamageRange6" parent="AutomaticShotgunDamageTemplate">
+        <AreaArray index="0" Radius="1.5" Fraction="0.8"/>
+    </CEffectDamage>
+    <CEffectDamage id="PumpShotgunDamageRange5" parent="PumpShotgunDamageTemplate">
+        <AreaArray index="0" Radius="1.25" Fraction="0.7143"/>
+    </CEffectDamage>
+    <CEffectDamage id="AutomaticShotgunDamageRange7" parent="AutomaticShotgunDamageTemplate">
+        <AreaArray index="0" Radius="1.75" Fraction="0.8"/>
+    </CEffectDamage>
+    <CEffectDamage id="PumpShotgunCriticalDamageRange7" parent="PumpShotgunDamageTemplate">
+        <AreaArray index="0" Radius="1.75" Fraction="0.5715"/>
+        <Amount value="87.5"/>
+    </CEffectDamage>
+    <CEffectDamage id="PumpShotgunDamageRange6" parent="PumpShotgunDamageTemplate">
+        <AreaArray index="0" Radius="1.5" Fraction="0.5715"/>
+    </CEffectDamage>
+    <CEffectDamage id="PumpShotgunCriticalDamageRange8" parent="PumpShotgunDamageTemplate">
+        <AreaArray index="0" Radius="2" Fraction="0.4284"/>
+        <Amount value="87.5"/>
+    </CEffectDamage>
+    <CEffectDamage id="PumpShotgunDamageRange7" parent="PumpShotgunDamageTemplate">
+        <AreaArray index="0" Radius="1.75" Fraction="0.5715"/>
+    </CEffectDamage>
+    <CEffectDamage id="PumpShotgunDamageRange8" parent="PumpShotgunDamageTemplate">
+        <AreaArray index="0" Radius="2" Fraction="0.4284"/>
+    </CEffectDamage>
+    <CEffectDamage id="PumpShotgunDamageRange9" parent="PumpShotgunDamageTemplate">
+        <AreaArray index="0" Radius="2.25" Fraction="0.4284"/>
+    </CEffectDamage>
+    <CEffectDamage id="PumpShotgunDamageRange10" parent="PumpShotgunDamageTemplate">
+        <AreaArray index="0" Radius="2.5" Fraction="0.2856"/>
+    </CEffectDamage>
+    <CEffectDamage id="PumpShotgunDamageRange11" parent="PumpShotgunDamageTemplate">
+        <AreaArray index="0" Radius="2.75" Fraction="0.2856"/>
+    </CEffectDamage>
+    <CEffectDamage id="AxeDamage">
+        <EditorCategories value=""/>
+        <ImpactLocation Value="TargetUnit"/>
+        <ArmorReduction value="1"/>
+        <Kind value="Melee"/>
+        <KindSplash value="Splash"/>
+        <Amount value="40"/>
+        <ExcludeArray Value="Target"/>
+        <SearchFilters value="-;Player,Ally,Neutral,Item,Invulnerable"/>
+        <Death value="Impact"/>
+        <DisplayFlags index="CollapseBuffed" value="1"/>
+    </CEffectDamage>
+    <CEffectCreateUnit id="CommunicationsArrayPackedUp">
+        <EditorCategories value="Race:Terran"/>
+        <WhichLocation Value="TargetPoint"/>
+        <SpawnUnit value="CommunicationsArray"/>
+    </CEffectCreateUnit>
+    <CEffectCreatePersistent id="FieldLightPersistent">
+        <EditorCategories value=""/>
+        <WhichLocation Value="CasterUnit"/>
+        <Flags index="PersistUntilDestroyed" value="1"/>
+        <RevealRadius value="7"/>
+        <RevealFlags index="Unfog" value="1"/>
+        <RevealFlags index="Detect" value="1"/>
+    </CEffectCreatePersistent>
+    <CEffectDamage id="HammerDamage">
+        <EditorCategories value=""/>
+        <ImpactLocation Value="TargetUnit"/>
+        <ArmorReduction value="1"/>
+        <Kind value="Melee"/>
+        <KindSplash value="Melee"/>
+        <Amount value="40"/>
+        <ExcludeArray Value="Target"/>
+        <SearchFilters value="-;Player,Ally,Neutral,Item,Invulnerable"/>
+        <Death value="Impact"/>
+        <DisplayFlags index="CollapseBuffed" value="1"/>
+    </CEffectDamage>
+    <CEffectDamage id="BatonDamage">
+        <EditorCategories value=""/>
+        <ImpactLocation Value="TargetUnit"/>
+        <ArmorReduction value="1"/>
+        <Kind value="Melee"/>
+        <KindSplash value="Melee"/>
+        <Amount value="40"/>
+        <ExcludeArray Value="Target"/>
+        <SearchFilters value="-;Player,Ally,Neutral,Item,Invulnerable"/>
+        <Death value="Impact"/>
+        <DisplayFlags index="CollapseBuffed" value="1"/>
+    </CEffectDamage>
+    <CEffectSet id="FracturetoBrokenBone">
+        <EditorCategories value=""/>
+        <EffectArray value="ApplyBrokenLeg"/>
+        <EffectArray value="RemoveLegFracture"/>
+    </CEffectSet>
+    <CEffectDamage id="AntiMaterialRifleDamage">
+        <EditorCategories value=""/>
+        <Amount value="180"/>
+        <AreaArray Radius="0.15" Fraction="1"/>
+        <ExcludeArray Value="Target"/>
+        <Kind value="Ranged"/>
+        <KindSplash value="Splash"/>
+        <SearchFilters value="-;Item,Invulnerable"/>
+        <Death value="Silentkill"/>
+        <DisplayFlags index="CollapseBuffed" value="1"/>
+    </CEffectDamage>
+    <CEffectDamage id="AntiMaterialRifleDamageCritical" parent="AntiMaterialRifleDamage">
+        <Amount value="405"/>
+        <Death value="Blast"/>
+    </CEffectDamage>
+    <CEffectApplyBehavior id="DeployAntiMaterialRifle">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="AntiMaterialRifleNoise">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectRemoveBehavior id="PackUpAntiMaterialRifle">
+        <EditorCategories value=""/>
+        <BehaviorLink value="DeployAntiMaterialRifle"/>
+    </CEffectRemoveBehavior>
+    <CEffectApplyBehavior id="ApplyArmFracture">
+        <EditorCategories value=""/>
+        <Behavior value="FractureArm"/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="ApplyBrokenArm">
+        <EditorCategories value=""/>
+        <Behavior value="BrokenArm"/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="ApplyBrokenLeg">
+        <EditorCategories value=""/>
+        <Behavior value="BrokenLeg"/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="ApplyLegFracture">
+        <EditorCategories value=""/>
+        <Behavior value="FractureLeg"/>
+    </CEffectApplyBehavior>
+    <CEffectDamage id="AssaultRifleDamage">
+        <EditorCategories value=""/>
+        <ImpactLocation Value="TargetUnit"/>
+        <AttributeBonus index="Massive" value="5"/>
+        <ArmorReduction value="1.5"/>
+        <Amount value="15"/>
+        <AreaArray Radius="0.75" Fraction="1"/>
+        <ExcludeArray Value="Target"/>
+        <SearchFilters value="-;Player,Ally,Neutral,Item,Invulnerable"/>
+        <Kind value="Ranged"/>
+        <KindSplash value="Splash"/>
+        <Death value="Impact"/>
+        <DisplayFlags index="CollapseBuffed" value="1"/>
+    </CEffectDamage>
+    <CEffectDamage id="AssaultRifleBurstFireDamage">
+        <EditorCategories value=""/>
+        <ImpactLocation Value="TargetUnit"/>
+        <AttributeBonus index="Massive" value="15"/>
+        <ArmorReduction value="4.5"/>
+        <Amount value="45"/>
+        <AreaArray Radius="0.75" Fraction="1"/>
+        <ExcludeArray Value="Target"/>
+        <SearchFilters value="-;Player,Ally,Neutral,Item,Invulnerable"/>
+        <Kind value="Ranged"/>
+        <KindSplash value="Splash"/>
+        <Death value="Eviscerate"/>
+        <DisplayFlags index="CollapseBuffed" value="1"/>
+    </CEffectDamage>
+    <CEffectDamage id="AssaultRifleBurstFireDamageCritical" parent="AssaultRifleBurstFireDamage">
+        <Amount value="90"/>
+        <Marker Link="Effect/AssaultRifleDamage"/>
+        <Death value="Blast"/>
+    </CEffectDamage>
+    <CEffectDamage id="AssaultRifleDamageCritical" parent="AssaultRifleDamage">
+        <Amount value="30"/>
+        <Death value="Blast"/>
+    </CEffectDamage>
+    <CEffectApplyBehavior id="AssaultRifleNoise">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="AutomaticShotgunNoise">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectSet id="Bandage">
+        <EditorCategories value=""/>
+        <EffectArray value="RemoveOpenWoundTarget"/>
+        <EffectArray value="BandageHeal"/>
+    </CEffectSet>
+    <CEffectModifyUnit id="BandageHeal">
+        <EditorCategories value=""/>
+        <VitalArray index="Life" Change="50"/>
+    </CEffectModifyUnit>
+    <CEffectApplyBehavior id="ChainsawBodyTraumaStun">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectDamage id="ChainsawDamage">
+        <EditorCategories value=""/>
+        <AttributeBonus index="Light" value="15"/>
+        <ArmorReduction value="1.5"/>
+        <Amount value="30"/>
+        <Death value="Eviscerate"/>
+        <AreaArray Radius="1.5" Fraction="1"/>
+        <ExcludeArray Value="Target"/>
+        <SearchFilters value="-;Player,Ally,Neutral,Item,Invulnerable"/>
+        <Kind value="Melee"/>
+        <KindSplash value="Melee"/>
+        <DisplayFlags index="CollapseBuffed" value="1"/>
+    </CEffectDamage>
+    <CEffectDamage id="ChainsawDamageCritical" parent="ChainsawDamage">
+        <Marker Link="Effect/ChainsawDamageCritical"/>
+        <AttributeBonus index="Light" value="37.5"/>
+        <Amount value="75"/>
+    </CEffectDamage>
+    <CEffectApplyBehavior id="ChainsawNoise">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectSet id="ConvertBrokenLegtoLegFracture">
+        <EditorCategories value=""/>
+        <EffectArray value="RemoveBrokenLegTarget"/>
+        <EffectArray value="ApplyLegFracture"/>
+    </CEffectSet>
+    <CEffectSet id="ConvertBrokenArmtoArmFracture">
+        <EditorCategories value=""/>
+        <EffectArray value="RemoveBrokenArmTarget"/>
+        <EffectArray value="ApplyArmFracture"/>
+    </CEffectSet>
+    <CEffectSet id="ConvertRandomBrokenBonetoFracture">
+        <EditorCategories value=""/>
+        <EffectArray value="ConvertBrokenLegtoLegFracture"/>
+        <EffectArray value="ConvertBrokenArmtoArmFracture"/>
+        <Random value="1"/>
+        <MinCount value="1"/>
+        <MaxCount value="1"/>
+    </CEffectSet>
+    <CEffectDamage id="CrowbarDamage">
+        <EditorCategories value=""/>
+        <ImpactLocation Value="TargetUnit"/>
+        <ArmorReduction value="1"/>
+        <Amount value="40"/>
+        <ExcludeArray Value="Target"/>
+        <SearchFilters value="-;Player,Ally,Neutral,Item,Invulnerable"/>
+        <Kind value="Melee"/>
+        <KindSplash value="Melee"/>
+        <Death value="Impact"/>
+        <DisplayFlags index="CollapseBuffed" value="1"/>
+    </CEffectDamage>
+    <CEffectDamage id="CrowbarDamageCritical" parent="CrowbarDamage">
+        <Amount value="100"/>
+        <Death value="Blast"/>
+    </CEffectDamage>
+    <CEffectDamage id="AxeDamageCritical" parent="AxeDamage">
+        <Marker Link="Effect/CrowbarDamage"/>
+        <Amount value="100"/>
+        <Death value="Blast"/>
+        <KindSplash value="Melee"/>
+    </CEffectDamage>
+    <CEffectDamage id="FlamethrowerDamageCritical">
+        <EditorCategories value=""/>
+        <ImpactLocation Value="TargetPoint"/>
+        <Kind value="Ranged"/>
+        <KindSplash value="Splash"/>
+        <Amount value="7"/>
+        <AreaArray Radius="0.1875" Fraction="1"/>
+        <SearchFilters value="Ground;Player,Ally,Neutral,Item,Invulnerable"/>
+        <SearchFlags index="ExtendByUnitRadius" value="1"/>
+        <SearchFlags index="OffsetByUnitRadius" value="1"/>
+        <Death value="Blast"/>
+        <DisplayFlags index="CollapseBuffed" value="1"/>
+    </CEffectDamage>
+    <CEffectApplyBehavior id="FlamethrowerNoise">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectCreatePersistent id="FlamethrowerPersistentCritical">
+        <EditorCategories value=""/>
+        <WhichLocation Value="SourcePoint"/>
+        <PeriodCount value="12"/>
+        <PeriodicEffectArray value="FlamethrowerRangePersistent12Critical"/>
+        <PeriodicEffectArray value="FlamethrowerRangePersistent11Critical"/>
+        <PeriodicEffectArray value="FlamethrowerRangePersistent10Critical"/>
+        <PeriodicEffectArray value="FlamethrowerRangePersistent9Critical"/>
+        <PeriodicEffectArray value="FlamethrowerRangePersistent8Critical"/>
+        <PeriodicEffectArray value="FlamethrowerRangePersistent7Critical"/>
+        <PeriodicEffectArray value="FlamethrowerRangePersistent6Critical"/>
+        <PeriodicEffectArray value="FlamethrowerRangePersistent5Critical"/>
+        <PeriodicEffectArray value="FlamethrowerRangePersistent4Critical"/>
+        <PeriodicEffectArray value="FlamethrowerRangePersistent3Critical"/>
+        <PeriodicEffectArray value="FlamethrowerRangePersistent2Critical"/>
+        <PeriodicEffectArray value="FlamethrowerRangePersistent1Critical"/>
+        <PeriodicOffsetArray value="0,-0.1875,0"/>
+        <PeriodicOffsetArray value="0,-0.5625,0"/>
+        <PeriodicOffsetArray value="0,-0.9375,0"/>
+        <PeriodicOffsetArray value="0,-1.3125,0"/>
+        <PeriodicOffsetArray value="0,-1.6875,0"/>
+        <PeriodicOffsetArray value="0,-2.0625,0"/>
+        <PeriodicOffsetArray value="0,-2.4375,0"/>
+        <PeriodicOffsetArray value="0,-2.8125,0"/>
+        <PeriodicOffsetArray value="0,-3.1875,0"/>
+        <PeriodicOffsetArray value="0,-3.5625,0"/>
+        <PeriodicOffsetArray value="0,-3.9375,0"/>
+        <PeriodicOffsetArray value="0,-4.3125,0"/>
+        <PeriodicPeriodArray value="0"/>
+    </CEffectCreatePersistent>
+    <CEffectCreatePersistent id="FlamethrowerPersistent">
+        <EditorCategories value=""/>
+        <PeriodicEffectArray value="FlamethrowerRangePersistent12"/>
+        <PeriodicEffectArray value="FlamethrowerRangePersistent11"/>
+        <PeriodicEffectArray value="FlamethrowerRangePersistent10"/>
+        <PeriodicEffectArray value="FlamethrowerRangePersistent9"/>
+        <PeriodicEffectArray value="FlamethrowerRangePersistent8"/>
+        <PeriodicEffectArray value="FlamethrowerRangePersistent7"/>
+        <PeriodicEffectArray value="FlamethrowerRangePersistent6"/>
+        <PeriodicEffectArray value="FlamethrowerRangePersistent5"/>
+        <PeriodicEffectArray value="FlamethrowerRangePersistent4"/>
+        <PeriodicEffectArray value="FlamethrowerRangePersistent3"/>
+        <PeriodicEffectArray value="FlamethrowerRangePersistent2"/>
+        <PeriodicEffectArray value="FlamethrowerRangePersistent1"/>
+        <PeriodicPeriodArray value="0"/>
+        <WhichLocation Value="SourceUnit"/>
+        <PeriodCount value="12"/>
+        <PeriodicOffsetArray value="0,-0.1875,0"/>
+        <PeriodicOffsetArray value="0,-0.5625,0"/>
+        <PeriodicOffsetArray value="0,-0.9375,0"/>
+        <PeriodicOffsetArray value="0,-1.3125,0"/>
+        <PeriodicOffsetArray value="0,-1.6875,0"/>
+        <PeriodicOffsetArray value="0,-2.0625,0"/>
+        <PeriodicOffsetArray value="0,-2.4375,0"/>
+        <PeriodicOffsetArray value="0,-2.8125,0"/>
+        <PeriodicOffsetArray value="0,-3.1875,0"/>
+        <PeriodicOffsetArray value="0,-3.5625,0"/>
+        <PeriodicOffsetArray value="0,-3.9375,0"/>
+        <PeriodicOffsetArray value="0,-4.3125,0"/>
+        <InitialEffect value="NoiseSearch"/>
+    </CEffectCreatePersistent>
+    <CEffectCreatePersistent id="FlamethrowerRangePersistent1">
+        <EditorCategories value=""/>
+        <PeriodCount value="1"/>
+        <PeriodicEffectArray value="FlamethrowerDamage"/>
+        <PeriodicPeriodArray value="0"/>
+    </CEffectCreatePersistent>
+    <CEffectCreatePersistent id="FlamethrowerRangePersistent10Critical">
+        <EditorCategories value=""/>
+        <PeriodCount value="10"/>
+        <PeriodicEffectArray value="FlamethrowerDamageCritical"/>
+        <PeriodicPeriodArray value="0"/>
+    </CEffectCreatePersistent>
+    <CEffectCreatePersistent id="FlamethrowerRangePersistent11Critical">
+        <EditorCategories value=""/>
+        <PeriodCount value="11"/>
+        <PeriodicEffectArray value="FlamethrowerDamageCritical"/>
+        <PeriodicPeriodArray value="0"/>
+    </CEffectCreatePersistent>
+    <CEffectCreatePersistent id="FlamethrowerRangePersistent12Critical">
+        <EditorCategories value=""/>
+        <PeriodCount value="12"/>
+        <PeriodicEffectArray value="FlamethrowerDamageCritical"/>
+        <PeriodicPeriodArray value="0"/>
+    </CEffectCreatePersistent>
+    <CEffectCreatePersistent id="FlamethrowerRangePersistent1Critical">
+        <EditorCategories value=""/>
+        <PeriodCount value="1"/>
+        <PeriodicEffectArray value="FlamethrowerDamageCritical"/>
+        <PeriodicPeriodArray value="0"/>
+    </CEffectCreatePersistent>
+    <CEffectCreatePersistent id="FlamethrowerRangePersistent2Critical">
+        <EditorCategories value=""/>
+        <PeriodCount value="2"/>
+        <PeriodicEffectArray value="FlamethrowerDamageCritical"/>
+        <PeriodicPeriodArray value="0"/>
+    </CEffectCreatePersistent>
+    <CEffectCreatePersistent id="FlamethrowerRangePersistent3Critical">
+        <EditorCategories value=""/>
+        <PeriodCount value="3"/>
+        <PeriodicEffectArray value="FlamethrowerDamageCritical"/>
+        <PeriodicPeriodArray value="0"/>
+    </CEffectCreatePersistent>
+    <CEffectCreatePersistent id="FlamethrowerRangePersistent4Critical">
+        <EditorCategories value=""/>
+        <PeriodCount value="4"/>
+        <PeriodicEffectArray value="FlamethrowerDamageCritical"/>
+        <PeriodicPeriodArray value="0"/>
+    </CEffectCreatePersistent>
+    <CEffectCreatePersistent id="FlamethrowerRangePersistent5Critical">
+        <EditorCategories value=""/>
+        <PeriodCount value="5"/>
+        <PeriodicEffectArray value="FlamethrowerDamageCritical"/>
+        <PeriodicPeriodArray value="0"/>
+    </CEffectCreatePersistent>
+    <CEffectCreatePersistent id="FlamethrowerRangePersistent6Critical">
+        <EditorCategories value=""/>
+        <PeriodCount value="6"/>
+        <PeriodicEffectArray value="FlamethrowerDamageCritical"/>
+        <PeriodicPeriodArray value="0"/>
+    </CEffectCreatePersistent>
+    <CEffectCreatePersistent id="FlamethrowerRangePersistent2">
+        <EditorCategories value=""/>
+        <PeriodCount value="2"/>
+        <PeriodicEffectArray value="FlamethrowerDamage"/>
+        <PeriodicPeriodArray value="0"/>
+    </CEffectCreatePersistent>
+    <CEffectCreatePersistent id="FlamethrowerRangePersistent3">
+        <EditorCategories value=""/>
+        <PeriodCount value="3"/>
+        <PeriodicEffectArray value="FlamethrowerDamage"/>
+        <PeriodicPeriodArray value="0"/>
+    </CEffectCreatePersistent>
+    <CEffectCreatePersistent id="FlamethrowerRangePersistent7Critical">
+        <EditorCategories value=""/>
+        <PeriodCount value="7"/>
+        <PeriodicEffectArray value="FlamethrowerDamageCritical"/>
+        <PeriodicPeriodArray value="0"/>
+    </CEffectCreatePersistent>
+    <CEffectCreatePersistent id="FlamethrowerRangePersistent8Critical">
+        <EditorCategories value=""/>
+        <PeriodCount value="8"/>
+        <PeriodicEffectArray value="FlamethrowerDamageCritical"/>
+        <PeriodicPeriodArray value="0"/>
+    </CEffectCreatePersistent>
+    <CEffectCreatePersistent id="FlamethrowerRangePersistent7">
+        <EditorCategories value=""/>
+        <PeriodCount value="7"/>
+        <PeriodicEffectArray value="FlamethrowerDamage"/>
+        <PeriodicPeriodArray value="0"/>
+    </CEffectCreatePersistent>
+    <CEffectCreatePersistent id="FlamethrowerRangePersistent5">
+        <EditorCategories value=""/>
+        <PeriodCount value="5"/>
+        <PeriodicEffectArray value="FlamethrowerDamage"/>
+        <PeriodicPeriodArray value="0"/>
+    </CEffectCreatePersistent>
+    <CEffectCreatePersistent id="FlamethrowerRangePersistent4">
+        <EditorCategories value=""/>
+        <PeriodCount value="4"/>
+        <PeriodicEffectArray value="FlamethrowerDamage"/>
+        <PeriodicPeriodArray value="0"/>
+    </CEffectCreatePersistent>
+    <CEffectCreatePersistent id="FlamethrowerRangePersistent6">
+        <EditorCategories value=""/>
+        <PeriodCount value="6"/>
+        <PeriodicEffectArray value="FlamethrowerDamage"/>
+        <PeriodicPeriodArray value="0"/>
+    </CEffectCreatePersistent>
+    <CEffectCreatePersistent id="FlamethrowerRangePersistent9Critical">
+        <EditorCategories value=""/>
+        <PeriodCount value="9"/>
+        <PeriodicEffectArray value="FlamethrowerDamageCritical"/>
+        <PeriodicPeriodArray value="0"/>
+    </CEffectCreatePersistent>
+    <CEffectCreatePersistent id="FlamethrowerRangePersistent8">
+        <EditorCategories value=""/>
+        <PeriodCount value="8"/>
+        <PeriodicEffectArray value="FlamethrowerDamage"/>
+        <PeriodicPeriodArray value="0"/>
+    </CEffectCreatePersistent>
+    <CEffectCreatePersistent id="FlamethrowerRangePersistent9">
+        <EditorCategories value=""/>
+        <PeriodCount value="9"/>
+        <PeriodicEffectArray value="FlamethrowerDamage"/>
+        <PeriodicPeriodArray value="0"/>
+    </CEffectCreatePersistent>
+    <CEffectCreatePersistent id="FlamethrowerRangePersistent10">
+        <EditorCategories value=""/>
+        <PeriodCount value="10"/>
+        <PeriodicEffectArray value="FlamethrowerDamage"/>
+        <PeriodicPeriodArray value="0"/>
+    </CEffectCreatePersistent>
+    <CEffectCreatePersistent id="FlamethrowerRangePersistent11">
+        <EditorCategories value=""/>
+        <PeriodCount value="11"/>
+        <PeriodicEffectArray value="FlamethrowerDamage"/>
+        <PeriodicPeriodArray value="0"/>
+    </CEffectCreatePersistent>
+    <CEffectCreatePersistent id="FlamethrowerRangePersistent12">
+        <EditorCategories value=""/>
+        <PeriodCount value="12"/>
+        <PeriodicEffectArray value="FlamethrowerDamage"/>
+        <PeriodicPeriodArray value="0"/>
+    </CEffectCreatePersistent>
+    <CEffectIssueOrder id="ForcedReload">
+        <EditorCategories value=""/>
+        <WhichUnit Value="Caster"/>
+        <Abil value="move"/>
+        <AbilCmdIndex value="2"/>
+        <CmdFlags index="Preempt" value="1"/>
+        <Player Value="Caster"/>
+    </CEffectIssueOrder>
+    <CEffectApplyBehavior id="GravityGunNoise">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="GrenadeLauncherNoise">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectSwitch id="PumpShotgunDamageCritical">
+        <EditorCategories value=""/>
+        <CaseArray Validator="Target2RangeOrLessAway" Effect="PumpShotgunCriticalDamageRange1"/>
+        <CaseArray Validator="Target3RangeOrLessAway" Effect="PumpShotgunCriticalDamageRange2"/>
+        <CaseArray Validator="Target4RangeOrLessAway" Effect="PumpShotgunCriticalDamageRange3"/>
+        <CaseArray Validator="Target5RangeOrLessAway" Effect="PumpShotgunCriticalDamageRange4"/>
+        <CaseArray Validator="Target6RangeOrLessAway" Effect="PumpShotgunCriticalDamageRange5"/>
+        <CaseArray Validator="Target7RangeOrLessAway" Effect="PumpShotgunCriticalDamageRange6"/>
+        <CaseArray Validator="Target8RangeOrLessAway" Effect="PumpShotgunCriticalDamageRange7"/>
+        <CaseArray Validator="Target9RangeOrLessAway" Effect="PumpShotgunCriticalDamageRange8"/>
+        <CaseArray Validator="Target10RangeOrLessAway" Effect="PumpShotgunCriticalDamageRange9"/>
+        <CaseArray Validator="Target11RangeOrLessAway" Effect="PumpShotgunCriticalDamageRange10"/>
+        <CaseArray Validator="Target12RangeOrLessAway" Effect="PumpShotgunCriticalDamageRange11"/>
+        <CaseArray Validator="Target12RangeOrGreaterAway" Effect="PumpShotgunCriticalDamageRange12Up"/>
+    </CEffectSwitch>
+    <CEffectDamage id="PumpShotgunDamageRange1" parent="PumpShotgunDamageTemplate"/>
+    <CEffectDamage id="HammerDamageCritical" parent="HammerDamage">
+        <Marker Link="Effect/CrowbarDamage"/>
+        <Amount value="100"/>
+        <Death value="Blast"/>
+    </CEffectDamage>
+    <CEffectDamage id="BatonDamageCritical" parent="BatonDamage">
+        <Marker Link="Effect/CrowbarDamage"/>
+        <Amount value="100"/>
+        <Death value="Blast"/>
+    </CEffectDamage>
+    <CEffectApplyBehavior id="DeployHeavyMachineGun">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectRemoveBehavior id="PackUpHeavyMachineGun">
+        <EditorCategories value=""/>
+        <BehaviorLink value="DeployHeavyMachineGun"/>
+    </CEffectRemoveBehavior>
+    <CEffectApplyBehavior id="LaserRifleNoise">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="MarksmanRifleNoise">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="MediumMachineGunNoise">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectSet id="MendingPaste">
+        <EditorCategories value=""/>
+        <EffectArray value="RemoveArmFracture"/>
+        <EffectArray value="RemoveBrokenArmTarget"/>
+        <EffectArray value="RemoveLegFracture"/>
+        <EffectArray value="RemoveBrokenLegTarget"/>
+    </CEffectSet>
+    <CEffectSwitch id="NoiseApplication">
+        <ValidatorArray value="HordeModeNotActive"/>
+        <EditorCategories value=""/>
+        <CaseArray Validator="EquippedWeaponisAntiMaterialRifle" Effect="AntiMaterialRifleNoise"/>
+        <CaseArray Validator="EquippedWeaponisAssaultRifle" Effect="AssaultRifleNoise"/>
+        <CaseArray Validator="EquippedWeaponisAutomaticShotgun" Effect="AutomaticShotgunNoise"/>
+        <CaseArray Validator="EquippedWeaponisChainsaw" Effect="ChainsawNoise"/>
+        <CaseArray Validator="EquippedWeaponisFlamethrower" Effect="FlamethrowerNoise"/>
+        <CaseArray Validator="EquippedWeaponisLaserRifle" Effect="LaserRifleNoise"/>
+        <CaseArray Validator="EquippedWeaponisMarksmanRifle" Effect="MarksmanRifleNoise"/>
+        <CaseArray Validator="EquippedWeaponisMediumMachineGun" Effect="MediumMachineGunNoise"/>
+        <CaseArray Validator="EquippedWeaponisPistol" Effect="PistolNoise"/>
+        <CaseArray Validator="EquippedWeaponisPlasmaCutter" Effect="PlasmaCutterNoise"/>
+        <CaseArray Validator="EquippedWeaponisPumpShotgun" Effect="PumpShotgunNoise"/>
+        <CaseArray Validator="EquippedWeaponisSubmachineGun" Effect="SubmachineGunNoise"/>
+        <CaseArray Validator="EquippedWeaponisGrenadeLauncher" Effect="GrenadeLauncherNoise"/>
+        <CaseArray Validator="EquippedWeaponisPlasmaCannon" Effect="PlasmaCannonNoise"/>
+        <CaseArray Validator="EquippedWeaponisRailgun" Effect="RailgunNoise"/>
+        <CaseArray Validator="EquippedWeaponisRocketLauncher" Effect="RocketLauncherNoise"/>
+        <CaseArray Validator="EquippedWeaponisHeavyMachineGun" Effect="HeavyMachineGunNoise"/>
+    </CEffectSwitch>
+    <CEffectEnumArea id="NoiseSearch">
+        <EditorCategories value=""/>
+        <ImpactLocation Value="TargetPoint"/>
+        <SearchFilters value="Heroic;Neutral,Enemy"/>
+        <AreaArray Radius="500" Effect="NoiseApplication"/>
+    </CEffectEnumArea>
+    <CEffectDamage id="PlasmaCannonDamage2" parent="DU_WEAP">
+        <EditorCategories value="Race:Protoss"/>
+        <Marker Link="Effect/PlasmaCannonDamage"/>
+        <ResponseFlags index="Acquire" value="0"/>
+        <ResponseFlags index="Flee" value="0"/>
+        <AttributeBonus index="Armored" value="300"/>
+        <ArmorReduction value="0"/>
+        <Kind value="Ranged"/>
+        <Amount value="300"/>
+        <Death value="Electrocute"/>
+        <AreaArray Radius="3.5" Fraction="1"/>
+        <SearchFlags index="CallForHelp" value="0"/>
+        <SearchFlags index="OffsetByUnitRadius" value="0"/>
+        <SearchFlags index="OffsetAreaByAngle" value="0"/>
+        <DisplayFlags index="CollapseBuffed" value="1"/>
+    </CEffectDamage>
+    <CEffectLaunchMissile id="PlasmaCannonLaunchMissile">
+        <ValidatorArray index="0" value="PhotonCannonTargetFilters"/>
+        <EditorCategories value="Race:Protoss"/>
+        <ImpactEffect value="PlasmaCannonSearch"/>
+        <AmmoUnit value="PlasmaCannonProjectile"/>
+    </CEffectLaunchMissile>
+    <CEffectDamage id="PumpShotgunCriticalDamageRange9" parent="PumpShotgunDamageTemplate">
+        <AreaArray index="0" Radius="2.25" Fraction="0.4284"/>
+        <Amount value="87.5"/>
+    </CEffectDamage>
+    <CEffectApplyBehavior id="PistolNoise">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="PlasmaCannonNoise">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="PlasmaCutterNoise">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="RailgunNoise">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="PumpShotgunNoise">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectRemoveBehavior id="RemoveArmFracture">
+        <EditorCategories value=""/>
+        <BehaviorLink value="FractureArm"/>
+    </CEffectRemoveBehavior>
+    <CEffectRemoveBehavior id="RemoveBrokenArmTarget">
+        <EditorCategories value=""/>
+        <BehaviorLink value="BrokenArm"/>
+    </CEffectRemoveBehavior>
+    <CEffectSet id="RemoveBrokenBoneRandom">
+        <EditorCategories value=""/>
+        <EffectArray value="RemoveBrokenLegTarget"/>
+        <EffectArray value="RemoveBrokenArmTarget"/>
+        <Random value="1"/>
+        <MinCount value="1"/>
+        <MaxCount value="1"/>
+    </CEffectSet>
+    <CEffectDestroyPersistent id="RemoveFieldLights">
+        <EditorCategories value=""/>
+        <Effect value="FieldLightPersistent"/>
+        <Count value="500"/>
+    </CEffectDestroyPersistent>
+    <CEffectRemoveBehavior id="RemoveLegFracture">
+        <EditorCategories value=""/>
+        <BehaviorLink value="FractureLeg"/>
+    </CEffectRemoveBehavior>
+    <CEffectSet id="RemoveRandomFracture">
+        <EditorCategories value=""/>
+        <EffectArray value="RemoveArmFracture"/>
+        <EffectArray value="RemoveLegFracture"/>
+        <Random value="1"/>
+        <MinCount value="1"/>
+        <MaxCount value="1"/>
+    </CEffectSet>
+    <CEffectLaunchMissile id="RoadFlare">
+        <EditorCategories value=""/>
+        <ImpactLocation Value="TargetPoint"/>
+        <ImpactEffect value="RoadFlareCreate"/>
+        <AmmoUnit value="RoadFlareTossed"/>
+        <Movers Link="RoadFlare"/>
+        <Flags index="2D" value="1"/>
+        <Flags index="PointFallback" value="0"/>
+    </CEffectLaunchMissile>
+    <CEffectCreateUnit id="RoadFlareCreate">
+        <EditorCategories value=""/>
+        <WhichLocation Value="TargetPoint"/>
+        <Origin Value="TargetPoint"/>
+        <SpawnUnit value="RoadFlareActive"/>
+    </CEffectCreateUnit>
+    <CEffectModifyUnit id="EquipAmmoNormal">
+        <EditorCategories value=""/>
+        <Cost Abil="ManualReload,0" ChargeCountUse="-3"/>
+    </CEffectModifyUnit>
+    <CEffectSet id="EquipAmmo">
+        <EditorCategories value=""/>
+        <EffectArray value="EquipAmmoNormal"/>
+        <EffectArray value="EquipAmmoAssault"/>
+    </CEffectSet>
+    <CEffectModifyUnit id="EquipAmmoAssault">
+        <EditorCategories value=""/>
+        <Cost Abil="ManualReloadAssault,0" ChargeCountUse="-3"/>
+    </CEffectModifyUnit>
+    <CEffectApplyBehavior id="FiringStanceApply">
+        <EditorCategories value=""/>
+        <WhichUnit Value="Caster"/>
+        <Behavior value="FiringStance"/>
+    </CEffectApplyBehavior>
+    <CEffectRemoveBehavior id="FiringStanceRemove">
+        <EditorCategories value=""/>
+        <WhichUnit Value="Caster"/>
+        <BehaviorLink value="FiringStance"/>
+        <Count value="1"/>
+    </CEffectRemoveBehavior>
+    <CEffectCreatePersistent id="FlareGun">
+        <EditorCategories value=""/>
+        <InitialEffect value="FlareGunSearch"/>
+        <ExpireDelay value="10"/>
+        <RevealRadius value="6"/>
+        <RevealFlags index="Unfog" value="1"/>
+        <RevealFlags index="Detect" value="1"/>
+    </CEffectCreatePersistent>
+    <CEffectDamage id="FlamethrowerDamage">
+        <EditorCategories value=""/>
+        <Amount value="6"/>
+        <AreaArray Radius="0.3125" Fraction="1"/>
+        <SearchFilters value="Ground;Player,Ally,Neutral,Item,Invulnerable"/>
+        <Kind value="Ranged"/>
+        <KindSplash value="Splash"/>
+        <ImpactLocation Value="TargetPoint"/>
+        <SearchFlags index="ExtendByUnitRadius" value="1"/>
+        <SearchFlags index="OffsetByUnitRadius" value="1"/>
+        <Death value="Fire"/>
+        <DisplayFlags index="CollapseBuffed" value="1"/>
+    </CEffectDamage>
+    <CEffectEnumArea id="FlareGunSearch">
+        <EditorCategories value=""/>
+        <AreaArray Radius="6" Effect="FlareGunSlow"/>
+    </CEffectEnumArea>
+    <CEffectApplyBehavior id="FlareGunSlow">
+        <ValidatorArray index="0" value="UnitisfromZombies"/>
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectDamage id="FractureDamageMedium">
+        <EditorCategories value=""/>
+        <Chance value="0.4"/>
+        <ImpactLocation Value="CasterUnit"/>
+        <ArmorReduction value="2"/>
+        <Flags index="NoBehaviorResponse" value="1"/>
+        <Flags index="NoVitalAbsorbShields" value="1"/>
+        <Amount value="50"/>
+        <ValidatorArray value="JumpDamageEndingCliff"/>
+        <ValidatorArray value="JumpDamageStartingCliff"/>
+        <DisplayFlags index="CollapseBuffed" value="1"/>
+    </CEffectDamage>
+    <CEffectCreatePersistent id="Medkit">
+        <EditorCategories value=""/>
+        <WhichLocation Value="TargetUnit"/>
+        <PeriodCount value="15"/>
+        <PeriodicEffectArray value="MedkitHeal"/>
+        <PeriodicPeriodArray value="1"/>
+    </CEffectCreatePersistent>
+    <CEffectModifyUnit id="MedkitHeal">
+        <EditorCategories value=""/>
+        <VitalArray index="Life" Change="10"/>
+    </CEffectModifyUnit>
+    <CEffectModifyPlayer id="GenericDummyEffect">
+        <EditorCategories value=""/>
+    </CEffectModifyPlayer>
+    <CEffectDamage id="HighExplosive">
+        <EditorCategories value=""/>
+        <ImpactLocation Value="TargetUnit"/>
+        <AttributeBonus index="Light" value="10"/>
+        <Amount value="5"/>
+        <AreaArray Radius="1.5" Fraction="1"/>
+        <ExcludeArray Value="Target"/>
+        <Death value="Fire"/>
+        <DisplayFlags index="CollapseBuffed" value="1"/>
+        <SearchFilters value="-;Player,Ally,Item,Invulnerable"/>
+    </CEffectDamage>
+    <CEffectDamage id="HeavyMachineGunDamage">
+        <EditorCategories value=""/>
+        <ImpactLocation Value="TargetUnit"/>
+        <Amount value="45"/>
+        <AreaArray Radius="2" Fraction="1"/>
+        <ExcludeArray Value="Target"/>
+        <SearchFilters value="-;Player,Ally,Neutral,Item,Invulnerable"/>
+        <Kind value="Ranged"/>
+        <KindSplash value="Splash"/>
+        <ValidatorArray value="HeavyMachineGunDeployed"/>
+        <Death value="Impact"/>
+        <DisplayFlags index="CollapseBuffed" value="1"/>
+    </CEffectDamage>
+    <CEffectDamage id="HeavyMachineGunDamageCritical" parent="HeavyMachineGunDamage">
+        <Marker Link="Effect/HeavyMachineGunDamageCritical"/>
+        <Amount value="90"/>
+        <Death value="Blast"/>
+    </CEffectDamage>
+    <CEffectDamage id="LaserRifleDamage">
+        <EditorCategories value=""/>
+        <ImpactLocation Value="TargetUnit"/>
+        <ArmorReduction value="-2"/>
+        <Amount value="20"/>
+        <AreaArray Radius="0.1" Fraction="1"/>
+        <ExcludeArray Value="Target"/>
+        <SearchFilters value="-;Player,Ally,Neutral,Item,Invulnerable"/>
+        <Kind value="Ranged"/>
+        <KindSplash value="Splash"/>
+        <Death value="Fire"/>
+        <DisplayFlags index="CollapseBuffed" value="1"/>
+    </CEffectDamage>
+    <CEffectDamage id="LaserRifleDamageCritical" parent="LaserRifleDamage">
+        <Marker Link="Effect/LaserRifleDamageCritical"/>
+        <Amount value="40"/>
+    </CEffectDamage>
+    <CEffectSwitch id="ManualReloadChoice">
+        <ValidatorArray value="ManualReloadBoundsNormal"/>
+        <EditorCategories value=""/>
+        <CaseArray Validator="PerfectReloadNormal" Effect="ReloadPerfect"/>
+        <CaseArray Validator="ManualReloadNormal" Effect="ReloadManual"/>
+    </CEffectSwitch>
+    <CEffectSwitch id="ManualReloadChoice2">
+        <ValidatorArray value="AutomaticReloadAssault222"/>
+        <EditorCategories value=""/>
+        <CaseArray Validator="AutomaticReloadAssault22" Effect="ReloadPerfect"/>
+        <CaseArray Validator="AutomaticReloadAssault2" Effect="ReloadManual"/>
+    </CEffectSwitch>
+    <CEffectDamage id="MediumMachineGunDamage">
+        <EditorCategories value=""/>
+        <ArmorReduction value="0.75"/>
+        <Amount value="18"/>
+        <AreaArray Radius="1.25" Fraction="1"/>
+        <ExcludeArray Value="Target"/>
+        <ImpactLocation Value="TargetUnit"/>
+        <SearchFilters value="-;Player,Ally,Neutral,Item,Invulnerable"/>
+        <Kind value="Ranged"/>
+        <KindSplash value="Splash"/>
+        <Death value="Impact"/>
+        <DisplayFlags index="CollapseBuffed" value="1"/>
+    </CEffectDamage>
+    <CEffectDamage id="MediumMachineGunDamageCritical" parent="MediumMachineGunDamage">
+        <Amount value="36"/>
+        <Death value="Blast"/>
+    </CEffectDamage>
+    <CEffectDamage id="PistolDamage">
+        <EditorCategories value=""/>
+        <ArmorReduction value="2"/>
+        <Amount value="40"/>
+        <SearchFilters value="-;Player,Ally,Neutral,Item,Invulnerable"/>
+        <Kind value="Ranged"/>
+        <KindSplash value="Splash"/>
+        <DisplayFlags index="CollapseBuffed" value="1"/>
+    </CEffectDamage>
+    <CEffectSwitch id="PumpShotgunDamage">
+        <EditorCategories value=""/>
+        <CaseArray Validator="Target2RangeOrLessAway" Effect="PumpShotgunDamageRange1"/>
+        <CaseArray Validator="Target3RangeOrLessAway" Effect="PumpShotgunDamageRange2"/>
+        <CaseArray Validator="Target4RangeOrLessAway" Effect="PumpShotgunDamageRange3"/>
+        <CaseArray Validator="Target5RangeOrLessAway" Effect="PumpShotgunDamageRange4"/>
+        <CaseArray Validator="Target6RangeOrLessAway" Effect="PumpShotgunDamageRange5"/>
+        <CaseArray Validator="Target7RangeOrLessAway" Effect="PumpShotgunDamageRange6"/>
+        <CaseArray Validator="Target8RangeOrLessAway" Effect="PumpShotgunDamageRange7"/>
+        <CaseArray Validator="Target9RangeOrLessAway" Effect="PumpShotgunDamageRange8"/>
+        <CaseArray Validator="Target10RangeOrLessAway" Effect="PumpShotgunDamageRange9"/>
+        <CaseArray Validator="Target11RangeOrLessAway" Effect="PumpShotgunDamageRange10"/>
+        <CaseArray Validator="Target12RangeOrLessAway" Effect="PumpShotgunDamageRange11"/>
+        <CaseArray Validator="Target12RangeOrGreaterAway" Effect="PumpShotgunDamageRange12Up"/>
+    </CEffectSwitch>
+    <CEffectDamage id="PistolDamageCritical" parent="PistolDamage">
+        <Amount value="70"/>
+        <Death value="Blast"/>
+    </CEffectDamage>
+    <CEffectApplyBehavior id="PlasmaCannonArmorReduction">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectEnumArea id="PlasmaCannonSearch">
+        <EditorCategories value=""/>
+        <ImpactLocation Value="TargetUnit"/>
+        <AreaArray Radius="3.5" Effect="PlasmaCannonSet"/>
+    </CEffectEnumArea>
+    <CEffectSet id="PlasmaCannonSet">
+        <EditorCategories value=""/>
+        <EffectArray value="PlasmaCannonArmorReduction"/>
+        <EffectArray value="PlasmaCannonDamage2"/>
+    </CEffectSet>
+    <CEffectDamage id="PlasmaCutterDamage">
+        <EditorCategories value=""/>
+        <SearchFilters value="-;Player,Ally,Neutral,Item,Invulnerable"/>
+        <Kind value="Melee"/>
+        <KindSplash value="Melee"/>
+        <ImpactLocation Value="TargetUnit"/>
+        <Amount value="120"/>
+        <AreaArray Radius="0.1" Fraction="1"/>
+        <ExcludeArray Value="Target"/>
+        <Death value="Impact"/>
+        <DisplayFlags index="CollapseBuffed" value="1"/>
+    </CEffectDamage>
+    <CEffectDamage id="MarksmanRifleDamage">
+        <EditorCategories value=""/>
+        <ImpactLocation Value="TargetUnit"/>
+        <ArmorReduction value="2"/>
+        <Amount value="65"/>
+        <AreaArray Radius="0.1" Fraction="1"/>
+        <ExcludeArray Value="Target"/>
+        <SearchFilters value="-;Player,Ally,Neutral,Item,Invulnerable"/>
+        <Kind value="Ranged"/>
+        <KindSplash value="Splash"/>
+        <Death value="Impact"/>
+        <DisplayFlags index="CollapseBuffed" value="1"/>
+    </CEffectDamage>
+    <CEffectDamage id="MarksmanRifleDamageCritical" parent="MarksmanRifleDamage">
+        <Amount value="146.25"/>
+        <Death value="Blast"/>
+    </CEffectDamage>
+    <CEffectDamage id="PlasmaCutterDamageCritical" parent="PlasmaCutterDamage">
+        <Amount value="300"/>
+        <Death value="Blast"/>
+    </CEffectDamage>
+    <CEffectDamage id="RailgunDamage">
+        <EditorCategories value=""/>
+        <Amount value="600"/>
+        <Death value="Eviscerate"/>
+        <AreaArray Arc="0" Radius="15" Fraction="1"/>
+        <DisplayFlags index="CollapseBuffed" value="1"/>
+    </CEffectDamage>
+    <CEffectIssueOrder id="Reload">
+        <EditorCategories value=""/>
+        <WhichUnit Value="Caster"/>
+        <Abil value="Reload"/>
+        <CmdFlags index="Preempt" value="1"/>
+        <Player Value="Caster"/>
+        <Target Value="CasterUnit"/>
+    </CEffectIssueOrder>
+    <CEffectSwitch id="ReloadChoice">
+        <EditorCategories value=""/>
+        <CaseArray Validator="GameisNightmare" Effect="ReloadNightmare" FallThrough="1"/>
+        <CaseDefault value="ReloadNormal"/>
+        <ValidatorArray value="AutomaticReloadNormal"/>
+    </CEffectSwitch>
+    <CEffectApplyBehavior id="ReloadManual">
+        <EditorCategories value=""/>
+        <WhichUnit Value="Caster"/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="ReloadNightmare">
+        <EditorCategories value=""/>
+        <WhichUnit Value="Caster"/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="ReloadNormal">
+        <EditorCategories value=""/>
+        <WhichUnit Value="Caster"/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="ReloadPerfect">
+        <EditorCategories value=""/>
+        <WhichUnit Value="Caster"/>
+    </CEffectApplyBehavior>
+    <CEffectRemoveBehavior id="RemoveBlindTarget">
+        <EditorCategories value=""/>
+        <BehaviorLink value="Blind"/>
+    </CEffectRemoveBehavior>
+    <CEffectRemoveBehavior id="RemoveOpenWoundTarget">
+        <EditorCategories value=""/>
+        <BehaviorLink value="OpenWound"/>
+    </CEffectRemoveBehavior>
+    <CEffectRemoveBehavior id="RemoveShortCircuitTarget">
+        <EditorCategories value=""/>
+        <BehaviorLink value="ShortCircuit"/>
+    </CEffectRemoveBehavior>
+    <CEffectRemoveBehavior id="RemoveVenomTarget">
+        <EditorCategories value=""/>
+        <BehaviorLink value="Venom"/>
+    </CEffectRemoveBehavior>
+    <CEffectApplyBehavior id="RocketLauncherNoise">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectSwitch id="FractureRemoval">
+        <EditorCategories value=""/>
+        <CaseArray Validator="UnithasArmandLegFracture" Effect="RemoveRandomFracture"/>
+        <CaseArray Validator="UnithasLegFracture" Effect="RemoveLegFracture"/>
+        <CaseArray Validator="UnithasArmFracture" Effect="RemoveArmFracture"/>
+    </CEffectSwitch>
+    <CEffectDamage id="ShotgunSlugShotDamage">
+        <EditorCategories value=""/>
+        <ImpactLocation Value="TargetUnit"/>
+        <ArmorReduction value="0.5"/>
+        <Amount value="90"/>
+        <AreaArray Radius="0.1" Fraction="1"/>
+        <ExcludeArray Value="Target"/>
+        <SearchFilters value="-;Player,Ally,Neutral,Item,Invulnerable"/>
+        <Kind value="Ranged"/>
+        <KindSplash value="Splash"/>
+        <Death value="Impact"/>
+        <DisplayFlags index="CollapseBuffed" value="1"/>
+    </CEffectDamage>
+    <CEffectDamage id="AutomaticShotgunSlugShotDamage" parent="ShotgunSlugShotDamageTemplate">
+        <AreaArray index="0" Arc="0.5712" Radius="10" Fraction="1"/>
+        <KindSplash value="Spell"/>
+        <Death value="Blast"/>
+    </CEffectDamage>
+    <CEffectDamage id="PumpShotgunSlugShotDamage" parent="ShotgunSlugShotDamageTemplate">
+        <AreaArray index="0" Arc="0.4064" Radius="14" Fraction="1"/>
+        <Death value="Impact"/>
+    </CEffectDamage>
+    <CEffectApplyBehavior id="SubmachineGunNoise">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectDamage id="SubmachineGunDamage">
+        <EditorCategories value=""/>
+        <ImpactLocation Value="TargetUnit"/>
+        <AttributeBonus index="Light" value="10"/>
+        <ArmorReduction value="2"/>
+        <Amount value="10"/>
+        <AreaArray Radius="1.75" Fraction="1"/>
+        <ExcludeArray Value="Target"/>
+        <SearchFilters value="-;Player,Ally,Neutral,Item,Invulnerable"/>
+        <Kind value="Ranged"/>
+        <KindSplash value="Splash"/>
+        <Death value="Eviscerate"/>
+        <DisplayFlags index="CollapseBuffed" value="1"/>
+    </CEffectDamage>
+    <CEffectDamage id="SubmachineGunDamageCritical" parent="SubmachineGunDamage">
+        <Amount value="22.5"/>
+        <Death value="Blast"/>
+    </CEffectDamage>
+    <CEffectApplyBehavior id="SuperGravityGunNoise">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="TX1Poison">
+        <EditorCategories value="Race:Terran"/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="PlasmaCore">
+        <EditorCategories value="Race:Terran"/>
+        <Behavior value="PlasmaCoreDebuff"/>
+    </CEffectApplyBehavior>
+    <CEffectDamage id="TX1PoisonDamage">
+        <EditorCategories value=""/>
+        <Amount value="5"/>
+        <Death value="Disintegrate"/>
+        <DisplayFlags index="CollapseBuffed" value="1"/>
+    </CEffectDamage>
+    <CEffectRemoveBehavior id="RemoveBrokenLegTarget">
+        <EditorCategories value=""/>
+        <BehaviorLink value="BrokenLeg"/>
+    </CEffectRemoveBehavior>
+    <CEffectApplyBehavior id="WeaponEquipDelay">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+</Catalog>

@@ -1,0 +1,1409 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<Catalog>
+    <CUnit default="1" id="Class6">
+        <ReviveType value="MarsColonistMale"/>
+        <Race value="Human"/>
+        <FlagArray index="UseLineOfSight" value="1"/>
+        <FlagArray index="ShowResources" value="0"/>
+        <FlagArray index="PlayerRevivable" value="0"/>
+        <PlaneArray index="Ground" value="1"/>
+        <PushPriority value="3"/>
+        <Collide index="Ground" value="1"/>
+        <Collide index="ForceField" value="1"/>
+        <Attributes index="Light" value="1"/>
+        <Attributes index="Biological" value="1"/>
+        <LifeStart value="30"/>
+        <LifeMax value="30"/>
+        <LifeArmor value="1"/>
+        <Speed value="2"/>
+        <Acceleration value="1000"/>
+        <Sight value="8"/>
+        <Food value="-1"/>
+        <AttackTargetPriority value="4"/>
+        <KillXP value="1"/>
+        <AbilArray Link="stop"/>
+        <AbilArray Link="move"/>
+        <AbilArray Link="attack"/>
+        <WeaponArray Link="MarsColonistAttack"/>
+        <CardLayouts>
+            <LayoutButtons Face="Move" Type="AbilCmd" AbilCmd="move,Move" Row="0" Column="0"/>
+            <LayoutButtons Face="Stop" Type="AbilCmd" AbilCmd="stop,Stop" Row="0" Column="1"/>
+            <LayoutButtons Face="MoveHoldPosition" Type="AbilCmd" AbilCmd="move,HoldPos" Row="0" Column="2"/>
+            <LayoutButtons Face="MovePatrol" Type="AbilCmd" AbilCmd="move,Patrol" Row="0" Column="3"/>
+            <LayoutButtons Face="Attack" Type="AbilCmd" AbilCmd="attack,Execute" Row="0" Column="4"/>
+        </CardLayouts>
+        <Radius value="0.3125"/>
+        <InnerRadius value="0.3125"/>
+        <EditorCategories value="ObjectFamily:Melee,ObjectType:Unit"/>
+        <LeaderAlias value="MarsColonistMale"/>
+        <SelectAlias value="MarsColonistMale"/>
+        <SubgroupAlias value="MarsColonistMale"/>
+        <KillDisplay value="Never"/>
+    </CUnit>
+    <CUnit default="1" id="AirborneTemplate" parent="EnemyTemplate">
+        <Race value="Zombie"/>
+        <FlagArray index="UseLineOfSight" value="1"/>
+        <FlagArray index="KillCredit" value="0"/>
+        <FlagArray index="ShowResources" value="0"/>
+        <FlagArray index="PlayerRevivable" value="0"/>
+        <PlaneArray index="Air" value="1"/>
+        <CardLayouts index="0">
+            <LayoutButtons Face="InfestedCharge" Type="AbilCmd" AbilCmd="FlybyAttack,Execute" Row="2" Column="4"/>
+        </CardLayouts>
+        <Collide index="Flying" value="1"/>
+        <Response value="AcquireNoFlee"/>
+        <Attributes index="Light" value="1"/>
+        <Attributes index="Biological" value="1"/>
+        <LifeStart value="100"/>
+        <LifeMax value="100"/>
+        <Mover value="Fly"/>
+        <Speed value="1.75"/>
+        <SpeedMultiplierCreep value="1.25"/>
+        <Acceleration value="1000"/>
+        <Sight value="9"/>
+        <Height value="3.15"/>
+        <Food value="-3"/>
+        <AttackTargetPriority value="5"/>
+        <AbilArray Link="FlybyAttack"/>
+        <BehaviorArray Link="ZombieWander"/>
+        <EditorCategories value="ObjectFamily:Melee,ObjectType:Unit"/>
+    </CUnit>
+    <CUnit default="1" id="SarbusTemplate">
+        <ReviveType value="Sarbus"/>
+        <Race value="Zombie"/>
+        <FlagArray index="AlwaysThreatens" value="1"/>
+        <FlagArray index="Unstoppable" value="1"/>
+        <PlaneArray index="Ground" value="1"/>
+        <PushPriority value="15"/>
+        <Collide index="Ground" value="1"/>
+        <Collide index="ForceField" value="1"/>
+        <Attributes index="Armored" value="1"/>
+        <Attributes index="Biological" value="1"/>
+        <Attributes index="Massive" value="1"/>
+        <Attributes index="Heroic" value="1"/>
+        <LifeStart value="8000"/>
+        <LifeMax value="8000"/>
+        <LifeArmor value="10"/>
+        <LifeRegenRate value="2.5"/>
+        <LifeArmorName value="Unit/LifeArmorName/SarbusTemplateArmor"/>
+        <ShieldArmorName value="Unit/ShieldArmorName/ZergWildMutation"/>
+        <Speed value="1.5"/>
+        <Acceleration value="1000"/>
+        <LateralAcceleration value="46.0625"/>
+        <StationaryTurningRate value="149.9414"/>
+        <TurningRate value="149.9414"/>
+        <Sight value="9"/>
+        <AttackTargetPriority value="5"/>
+        <KillXP value="1"/>
+        <AbilArray Link="stop"/>
+        <AbilArray Link="attack"/>
+        <AbilArray Link="move"/>
+        <AbilArray Link="EnergyDrain"/>
+        <BehaviorArray Link="OpenWoundShieldsStart"/>
+        <BehaviorArray Link="SarbusPassive"/>
+        <BehaviorArray Link="RadiationField"/>
+        <WeaponArray Link="SarbusImpale"/>
+        <CardLayouts>
+            <LayoutButtons Face="Move" Type="AbilCmd" AbilCmd="move,Move" Row="0" Column="0"/>
+            <LayoutButtons Face="Stop" Type="AbilCmd" AbilCmd="stop,Stop" Row="0" Column="1"/>
+            <LayoutButtons Face="MoveHoldPosition" Type="AbilCmd" AbilCmd="move,HoldPos" Row="0" Column="2"/>
+            <LayoutButtons Face="Attack" Type="AbilCmd" AbilCmd="attack,Execute" Row="0" Column="4"/>
+            <LayoutButtons Face="MovePatrol" Type="AbilCmd" AbilCmd="move,Patrol" Row="0" Column="3"/>
+        </CardLayouts>
+        <SeparationRadius value="1.25"/>
+        <InnerRadius value="2"/>
+        <TacticalAI value="Sarbus"/>
+        <LeaderAlias value="Sarbus"/>
+        <HotkeyAlias value="Sarbus"/>
+        <SelectAlias value="Sarbus"/>
+        <SubgroupAlias value="Sarbus"/>
+        <AIEvaluateAlias value="Sarbus"/>
+        <Response value="AcquireNoFlee"/>
+        <EffectArray index="Death" value="SarbusCorpse"/>
+    </CUnit>
+    <CUnit default="1" id="ZombieUnitSpawnerTemplate">
+        <?token id="SpawnAbility"?>
+        <Race value="Zombie"/>
+        <FlagArray index="Undetectable" value="1"/>
+        <FlagArray index="Unradarable" value="1"/>
+        <FlagArray index="Invulnerable" value="1"/>
+        <FlagArray index="Cloaked" value="1"/>
+        <Attributes index="Structure" value="1"/>
+        <Food value="50"/>
+        <AbilArray Link="ZombieSpawnQueue"/>
+        <AbilArray Link="##SpawnAbility##"/>
+        <BehaviorArray Link="ZombieUnitSpawnDisable"/>
+        <MinimapRadius value="0"/>
+        <EditorCategories value="ObjectType:Structure"/>
+    </CUnit>
+    <CUnit default="1" id="EltradTemplate">
+        <Race value="Zombie"/>
+        <FlagArray index="UseLineOfSight" value="1"/>
+        <FlagArray index="AlwaysThreatens" value="1"/>
+        <PlaneArray index="Ground" value="1"/>
+        <Collide index="Ground" value="1"/>
+        <Collide index="ForceField" value="1"/>
+        <Attributes index="Light" value="1"/>
+        <Attributes index="Biological" value="1"/>
+        <Attributes index="Massive" value="1"/>
+        <Attributes index="Heroic" value="1"/>
+        <LifeStart value="5000"/>
+        <LifeMax value="5000"/>
+        <LifeArmorName value="Unit/LifeArmorName/EltradTemplateArmor"/>
+        <ShieldArmorName value="Unit/ShieldArmorName/ZergWildMutation"/>
+        <Speed value="2.1992"/>
+        <SpeedMultiplierCreep value="1.25"/>
+        <Acceleration value="1000"/>
+        <Sight value="9"/>
+        <AttackTargetPriority value="5"/>
+        <KillXP value="1"/>
+        <AbilArray Link="stop"/>
+        <AbilArray Link="attack"/>
+        <AbilArray Link="move"/>
+        <AbilArray Link="InfestedCharge"/>
+        <WeaponArray Link="EltradBite"/>
+        <Radius value="0.375"/>
+        <EditorCategories value="ObjectType:Unit,ObjectFamily:Melee,UnitType:Boss"/>
+        <TacticalAIThink value="lib1765BC64_gf_AIThinkEltrad"/>
+        <BehaviorArray Link="EltradCannabilism"/>
+        <TacticalAIRange value="10"/>
+        <TacticalAIFilters value="-;-"/>
+    </CUnit>
+    <CUnit default="1" id="ZombieEnemyTemplate" parent="EnemyTemplate">
+        <Race value="Zombie"/>
+        <EditorCategories value=""/>
+        <Acceleration value="1000"/>
+        <Sight value="9"/>
+        <BehaviorArray Link="ZombieWander"/>
+        <FlagArray index="UseLineOfSight" value="1"/>
+        <FlagArray index="ShowResources" value="0"/>
+        <FlagArray index="PlayerRevivable" value="0"/>
+        <Response value="AcquireNoFlee"/>
+        <Collide index="Ground" value="1"/>
+        <PlaneArray index="Ground" value="1"/>
+    </CUnit>
+    <CUnit default="1" id="BrainBugTemplate" parent="ZombieEnemyTemplate">
+        <FlagArray index="AICaster" value="1"/>
+        <FlagArray index="AISupport" value="1"/>
+        <PushPriority value="7"/>
+        <Attributes index="Armored" value="1"/>
+        <Attributes index="Biological" value="1"/>
+        <Attributes index="Massive" value="1"/>
+        <LifeStart value="1250"/>
+        <LifeMax value="1250"/>
+        <LifeArmor value="5"/>
+        <LifeArmorName value="Unit/LifeArmorName/InfestedFlesh"/>
+        <ShieldArmorName value="Unit/ShieldArmorName/ProtossPlasmaShields"/>
+        <Speed value="1.8007"/>
+        <SpeedMultiplierCreep value="1.25"/>
+        <Food value="-5"/>
+        <AttackTargetPriority value="5"/>
+        <BehaviorArray Link="Range4"/>
+        <Radius value="1"/>
+        <InnerRadius value="0.5"/>
+        <EditorCategories value="ObjectType:Unit,ObjectFamily:Melee"/>
+        <Collide index="Ground" value="0"/>
+        <Collide index="Colossus" value="1"/>
+    </CUnit>
+    <CUnit default="1" id="BroodmotherTemplate" parent="ZombieEnemyTemplate">
+        <ReviveType value="BroodMother2"/>
+        <FlagArray index="KillCredit" value="0"/>
+        <FlagArray index="AICaster" value="1"/>
+        <FlagArray index="AISupport" value="1"/>
+        <PushPriority value="7"/>
+        <Collide index="Ground" value="0"/>
+        <Collide index="Colossus" value="1"/>
+        <Attributes index="Biological" value="1"/>
+        <Attributes index="Psionic" value="1"/>
+        <LifeStart value="850"/>
+        <LifeMax value="850"/>
+        <EnergyRegenRate value="1"/>
+        <LifeArmorName value="Unit/LifeArmorName/InfestedFlesh"/>
+        <EnergyStart value="100"/>
+        <EnergyMax value="100"/>
+        <ShieldArmorName value="Unit/ShieldArmorName/ProtossPlasmaShields"/>
+        <Speed value="1.8515"/>
+        <SpeedMultiplierCreep value="1.25"/>
+        <Food value="-1"/>
+        <AttackTargetPriority value="5"/>
+        <BehaviorArray Link="Range5"/>
+        <Radius value="1"/>
+        <InnerRadius value="0.5"/>
+        <EditorCategories value="ObjectType:Unit,ObjectFamily:Melee"/>
+    </CUnit>
+    <CUnit default="1" id="HeavySlasherTemplate" parent="ZombieEnemyTemplate">
+        <FlagArray index="KillCredit" value="0"/>
+        <PushPriority value="6"/>
+        <Attributes index="Armored" value="1"/>
+        <Attributes index="Biological" value="1"/>
+        <Attributes index="Massive" value="1"/>
+        <LifeStart value="500"/>
+        <LifeMax value="500"/>
+        <LifeArmor value="5"/>
+        <ShieldArmorName value="Unit/ShieldArmorName/ProtossPlasmaShields"/>
+        <Mover value="InfestedCliffWalk"/>
+        <Speed value="1.6992"/>
+        <SpeedMultiplierCreep value="1.25"/>
+        <Food value="-4"/>
+        <AttackTargetPriority value="4"/>
+        <WeaponArray Link="SlasherClaws"/>
+        <CardLayouts index="0">
+            <LayoutButtons Face="InfestedCliffWalk" Type="Passive" Row="2" Column="0"/>
+        </CardLayouts>
+        <Radius value="0.375"/>
+        <InnerRadius value="0.375"/>
+        <EditorCategories value="ObjectType:Unit,ObjectFamily:Melee"/>
+        <BehaviorArray Link="HeavyParasiteSpawnonDeath"/>
+    </CUnit>
+    <CUnit default="1" id="HeavyStalkerTemplate" parent="ZombieEnemyTemplate">
+        <Mover value="InfestedCliffWalk"/>
+        <FlagArray index="KillCredit" value="0"/>
+        <PushPriority value="5"/>
+        <Attributes index="Armored" value="1"/>
+        <Attributes index="Biological" value="1"/>
+        <LifeStart value="300"/>
+        <LifeMax value="300"/>
+        <LifeArmor value="5"/>
+        <LifeArmorName value="Unit/LifeArmorName/ReinforcedFlesh"/>
+        <ShieldArmorName value="Unit/ShieldArmorName/ProtossPlasmaShields"/>
+        <Speed value="1.5"/>
+        <SpeedMultiplierCreep value="1.25"/>
+        <Food value="-2"/>
+        <AttackTargetPriority value="5"/>
+        <WeaponArray Link="StalkerClaws"/>
+        <CardLayouts index="0">
+            <LayoutButtons Face="CliffWalk" Type="Passive" Row="2" Column="0"/>
+        </CardLayouts>
+        <InnerRadius value="0.625"/>
+        <EditorCategories value="ObjectType:Unit,ObjectFamily:Melee"/>
+        <BehaviorArray Link="HeavyParasiteSpawnonDeath"/>
+    </CUnit>
+    <CUnit default="1" id="HoundTemplate" parent="ZombieEnemyTemplate">
+        <FlagArray index="KillCredit" value="0"/>
+        <Attributes index="Light" value="1"/>
+        <Attributes index="Biological" value="1"/>
+        <LifeStart value="80"/>
+        <LifeMax value="80"/>
+        <LifeArmor value="1"/>
+        <ShieldArmorName value="Unit/ShieldArmorName/ProtossPlasmaShields"/>
+        <Speed value="2"/>
+        <SpeedMultiplierCreep value="1.25"/>
+        <Food value="-2"/>
+        <AttackTargetPriority value="5"/>
+        <AbilArray Link="InfestedCharge"/>
+        <BehaviorArray Link="OpenWoundStart"/>
+        <BehaviorArray Link="Range3"/>
+        <CardLayouts index="0">
+            <LayoutButtons Face="InfestedCharge" Type="AbilCmd" AbilCmd="InfestedCharge,Execute" Row="2" Column="4"/>
+        </CardLayouts>
+        <Radius value="0.25"/>
+        <InnerRadius value="0.25"/>
+        <EditorCategories value="ObjectFamily:Melee,ObjectType:Unit"/>
+    </CUnit>
+    <CUnit default="1" id="ParasiteTemplate" parent="ZombieEnemyTemplate">
+        <FlagArray index="AIDefense" value="1"/>
+        <PushPriority value="0"/>
+        <Attributes index="Light" value="1"/>
+        <Attributes index="Biological" value="1"/>
+        <LifeStart value="20"/>
+        <LifeMax value="20"/>
+        <LifeArmorName value="Unit/LifeArmorName/MutatedScales"/>
+        <ShieldArmorName value="Unit/ShieldArmorName/ProtossPlasmaShields"/>
+        <Speed value="1.1015"/>
+        <SpeedMultiplierCreep value="1.25"/>
+        <AttackTargetPriority value="20"/>
+        <BehaviorArray Link="VenomAttacker"/>
+        <WeaponArray Link="ParasiteMandibles"/>
+        <Radius value="0.125"/>
+        <InnerRadius value="0.125"/>
+        <EditorCategories value="ObjectType:Unit,ObjectFamily:Melee"/>
+        <EffectArray index="Create" value="ParasiteSpawnDummyEffect"/>
+    </CUnit>
+    <CUnit default="1" id="SuicideTemplate" parent="ZombieEnemyTemplate">
+        <FlagArray index="AISplash" value="1"/>
+        <FlagArray index="AIHighPrioTarget" value="1"/>
+        <FlagArray index="AIAllowSuicideOverride" value="1"/>
+        <PushPriority value="5"/>
+        <Attributes index="Light" value="1"/>
+        <Attributes index="Biological" value="1"/>
+        <LifeStart value="35"/>
+        <LifeMax value="35"/>
+        <LifeArmorName value="Unit/LifeArmorName/LightFlesh"/>
+        <ShieldArmorName value="Unit/ShieldArmorName/ProtossPlasmaShields"/>
+        <Speed value="1.8515"/>
+        <SpeedMultiplierCreep value="1.25"/>
+        <Food value="-1"/>
+        <AttackTargetPriority value="5"/>
+        <CardLayouts index="0">
+            <LayoutButtons Face="InfestedCharge" Type="AbilCmd" AbilCmd="InfestedCharge,Execute" Row="2" Column="4"/>
+        </CardLayouts>
+        <Radius value="0.3125"/>
+        <InnerRadius value="0.375"/>
+        <EditorCategories value="ObjectFamily:Melee,ObjectType:Unit"/>
+    </CUnit>
+    <CUnit default="1" id="SuperHeavyTemplate" parent="ZombieEnemyTemplate">
+        <PushPriority value="8"/>
+        <Attributes index="Armored" value="1"/>
+        <Attributes index="Biological" value="1"/>
+        <Attributes index="Massive" value="1"/>
+        <Attributes index="Heroic" value="1"/>
+        <LifeStart value="3000"/>
+        <LifeMax value="3000"/>
+        <LifeArmor value="5"/>
+        <LifeArmorName value="Unit/LifeArmorName/HeavyMutatedFlesh"/>
+        <ShieldArmorName value="Unit/ShieldArmorName/ProtossPlasmaShields"/>
+        <Speed value="1.6484"/>
+        <SpeedMultiplierCreep value="1.25"/>
+        <Food value="-10"/>
+        <AttackTargetPriority value="5"/>
+        <AbilArray Link="InfestedCharge"/>
+        <CardLayouts index="0">
+            <LayoutButtons Face="InfestedCharge" Type="AbilCmd" AbilCmd="InfestedCharge,Execute" Row="2" Column="4"/>
+        </CardLayouts>
+        <Radius value="2"/>
+        <SeparationRadius value="0.75"/>
+        <InnerRadius value="0.5"/>
+        <EditorCategories value="ObjectFamily:Melee,ObjectType:Unit"/>
+        <Collide index="Ground" value="0"/>
+        <Collide index="Colossus" value="1"/>
+    </CUnit>
+    <CUnit default="1" id="WalkerTemplate" parent="ZombieEnemyTemplate">
+        <Description value="Button/Tooltip/Walker"/>
+        <PushPriority value="3"/>
+        <Attributes index="Light" value="1"/>
+        <Attributes index="Biological" value="1"/>
+        <LifeStart value="25"/>
+        <LifeMax value="25"/>
+        <LifeArmor value="1"/>
+        <LifeArmorName value="Unit/LifeArmorName/HardenedSkin"/>
+        <ShieldArmorName value="Unit/ShieldArmorName/ProtossPlasmaShields"/>
+        <Speed value="1.3515"/>
+        <SpeedMultiplierCreep value="1.25"/>
+        <Food value="-0.5"/>
+        <AttackTargetPriority value="5"/>
+        <AbilArray Link="MutatetoShambler"/>
+        <BehaviorArray Link="OpenWoundStart"/>
+        <BehaviorArray Link="ColonistMorphs"/>
+        <BehaviorArray Link="WalkerParasiteSpawnonDeath"/>
+        <WeaponArray Link="WalkerColonistMaul"/>
+        <Radius value="0.3125"/>
+        <InnerRadius value="0.3125"/>
+        <EditorCategories value="ObjectFamily:Melee,ObjectType:Unit"/>
+    </CUnit>
+    <CUnit id="Banshee2" parent="AirborneTemplate">
+        <FlagArray index="KillCredit" value="1"/>
+        <FlagArray index="AIThreatAir" value="1"/>
+        <FlagArray index="AIDefense" value="1"/>
+        <FlagArray index="AICaster" value="1"/>
+        <FlagArray index="AISupport" value="1"/>
+        <Attributes index="Psionic" value="1"/>
+        <LifeArmorName value="Unit/LifeArmorName/BansheeHide"/>
+        <AbilArray Link="BansheeScream"/>
+        <BehaviorArray Link="Range2"/>
+        <BehaviorArray Link="BansheeAttackSpeedStart"/>
+        <WeaponArray Link="BansheeClaw"/>
+        <CardLayouts index="0">
+            <LayoutButtons Face="BansheeScream" Type="AbilCmd" AbilCmd="BansheeScream,Execute" Row="2" Column="0"/>
+        </CardLayouts>
+        <Food value="-5"/>
+    </CUnit>
+    <CUnit id="Beast" parent="SuicideTemplate">
+        <Subtitle value="UnitSubtitle/SuicideMutation"/>
+        <Attributes index="Light" value="0"/>
+        <Attributes index="Armored" value="1"/>
+        <LifeStart value="300"/>
+        <LifeMax value="300"/>
+        <Speed value="1.3867"/>
+        <WeaponArray Link="BeastExplodeAcid"/>
+        <InnerRadius value="1"/>
+    </CUnit>
+    <CUnit id="Behemoth" parent="SuperHeavyTemplate">
+        <LifeStart value="4500"/>
+        <LifeMax value="4500"/>
+        <LifeArmor value="15"/>
+        <Speed value="2"/>
+        <BehaviorArray Link="OpenWoundStart"/>
+        <WeaponArray Link="BehemothSmash"/>
+        <PlaneArray index="Air" value="1"/>
+    </CUnit>
+    <CUnit id="Blinder" parent="SuicideTemplate">
+        <Subtitle value="UnitSubtitle/SuicideMutation"/>
+        <WeaponArray Link="BlinderExplode"/>
+        <CardLayouts index="0">
+            <LayoutButtons index="5" removed="1"/>
+        </CardLayouts>
+        <InnerRadius value="0"/>
+        <Speed value="2.1992"/>
+    </CUnit>
+    <CUnit id="Blink" parent="AirborneTemplate">
+        <FlagArray index="KillCredit" value="1"/>
+        <FlagArray index="AIThreatAir" value="1"/>
+        <LifeArmorName value="Unit/LifeArmorName/BlinkSkin"/>
+        <AbilArray Link="BlinkToggle"/>
+        <BehaviorArray Link="OpenWoundStart"/>
+        <WeaponArray Link="BlinkClaws"/>
+        <CardLayouts index="0">
+            <LayoutButtons Face="ToggleCloak" Type="AbilCmd" AbilCmd="BlinkToggle,On" Row="2" Column="0"/>
+        </CardLayouts>
+        <Food value="-1"/>
+    </CUnit>
+    <CUnit id="Blitzer" parent="SuperHeavyTemplate">
+        <DeathRevealRadius value="3"/>
+        <LateralAcceleration value="46.0625"/>
+        <AbilArray Link="BlitzerCharge"/>
+        <BehaviorArray Link="SpeedMultiBlitzerStart"/>
+        <WeaponArray Link="BlitzerSmash"/>
+        <CardLayouts index="0">
+            <LayoutButtons index="5" Face="BlitzerCharge" Type="AbilCmd" AbilCmd="BlitzerCharge,Execute" Row="2" Column="4"/>
+            <LayoutButtons Face="BlitzerSpeedAura" Type="Passive" Behavior="SpeedMultiBlitzerStart" Row="2" Column="0"/>
+        </CardLayouts>
+        <GlossaryPriority value="450"/>
+        <Speed value="2.25"/>
+        <PlaneArray index="Air" value="1"/>
+    </CUnit>
+    <CUnit id="Bloodseeker" parent="SuperHeavyTemplate">
+        <BehaviorArray Link="IncreasedDamageAura"/>
+        <BehaviorArray Link="BloodseekerDamageHeal"/>
+        <WeaponArray Link="BloodseekerSmash"/>
+        <CardLayouts index="0">
+            <LayoutButtons Face="BloodseekerDamageAura" Type="Passive" Behavior="IncreasedDamageAura" Row="2" Column="0"/>
+        </CardLayouts>
+        <Speed value="1.6992"/>
+        <PlaneArray index="Air" value="1"/>
+    </CUnit>
+    <CUnit id="Bonebreaker" parent="SuperHeavyTemplate">
+        <AbilArray index="3" Link="BonebreakerBoulder"/>
+        <AbilArray Link="BonebreakerLeap"/>
+        <WeaponArray Link="BonebreakerSmash"/>
+        <CardLayouts index="0">
+            <LayoutButtons index="5" Face="BonebreakerLeap" Type="AbilCmd" AbilCmd="BonebreakerLeap,Execute" Row="2" Column="4"/>
+            <LayoutButtons Face="BoulderThrow" Type="AbilCmd" AbilCmd="BonebreakerBoulder,Execute" Row="2" Column="0"/>
+        </CardLayouts>
+        <PlaneArray index="Air" value="1"/>
+    </CUnit>
+    <CUnit id="BrainBug" parent="BrainBugTemplate">
+        <AbilArray Link="MutatetoMastermind"/>
+        <BehaviorArray index="1" Link="BrainBugMorphs"/>
+        <BehaviorArray Link="SpeedMultiBrainBugStart"/>
+        <BehaviorArray Link="ZombieWander"/>
+        <WeaponArray Link="BrainBugBite"/>
+        <CardLayouts index="0">
+            <LayoutButtons Face="Rampage" Type="Passive" Behavior="SpeedMultiBrainBugStart" Row="2" Column="0"/>
+        </CardLayouts>
+    </CUnit>
+    <CUnit id="BroodMother2" parent="BroodmotherTemplate">
+        <FlagArray index="KillCredit" value="1"/>
+        <FlagArray index="AIPressForwardDisabled" value="1"/>
+        <Response value="Flee"/>
+        <AbilArray Link="MutatetoGorgon"/>
+        <AbilArray Link="MutatetoMatriarch"/>
+        <AbilArray Link="MendHeal"/>
+        <BehaviorArray Link="BroodMotherMorphs"/>
+        <WeaponArray Link="BroodMotherTalons"/>
+        <CardLayouts index="0">
+            <LayoutButtons Face="Mend" Type="AbilCmd" AbilCmd="MendHeal,Execute" Row="2" Column="4"/>
+        </CardLayouts>
+        <Race value="Neut"/>
+    </CUnit>
+    <CUnit id="Buster" parent="ZombieEnemyTemplate">
+        <FlagArray index="AISplash" value="1"/>
+        <FlagArray index="AIHighPrioTarget" value="1"/>
+        <FlagArray index="AIAllowSuicideOverride" value="1"/>
+        <PushPriority value="5"/>
+        <Collide index="ForceField" value="1"/>
+        <Attributes index="Light" value="1"/>
+        <Attributes index="Biological" value="1"/>
+        <LifeStart value="35"/>
+        <LifeMax value="35"/>
+        <LifeArmorName value="Unit/LifeArmorName/LightFlesh"/>
+        <ShieldArmorName value="Unit/ShieldArmorName/ProtossPlasmaShields"/>
+        <Speed value="2"/>
+        <SpeedMultiplierCreep value="1.25"/>
+        <Food value="-1"/>
+        <AttackTargetPriority value="5"/>
+        <AbilArray Link="MutatetoBeast"/>
+        <AbilArray Link="MutatetoBlinder"/>
+        <AbilArray Link="MutatetoCreeper"/>
+        <AbilArray Link="MutatetoSplatter"/>
+        <BehaviorArray Link="BusterMorphs"/>
+        <WeaponArray Link="ExplodeAcid"/>
+        <Radius value="0.3125"/>
+        <EditorCategories value="ObjectFamily:Melee,ObjectType:Unit"/>
+    </CUnit>
+    <CUnit id="Centurion" parent="HeavyStalkerTemplate">
+        <Subtitle value="UnitSubtitle/StalkerMutation"/>
+        <Collide index="ForceField" value="1"/>
+        <LifeStart value="600"/>
+        <LifeMax value="600"/>
+        <LifeArmorName value="Unit/LifeArmorName/ArmouredShell"/>
+        <BehaviorArray Link="OpenWoundStart"/>
+        <CardLayouts index="0">
+            <LayoutButtons Face="InfestedCliffWalk" Type="Passive" Row="2" Column="0"/>
+        </CardLayouts>
+    </CUnit>
+    <CUnit id="Corona" parent="AirborneTemplate">
+        <FlagArray index="KillCredit" value="1"/>
+        <FlagArray index="AIThreatAir" value="1"/>
+        <FlagArray index="AISupport" value="1"/>
+        <LifeArmorName value="Unit/LifeArmorName/ElectrifiedHide"/>
+        <Speed value="0.875"/>
+        <BehaviorArray Link="Range4"/>
+        <BehaviorArray Link="EnergyDrainStart"/>
+        <WeaponArray Link="CoronaShock"/>
+        <CardLayouts index="0">
+            <LayoutButtons Face="EnergyDrainAura" Type="Passive" Behavior="EnergyDrainStart" Row="2" Column="0"/>
+        </CardLayouts>
+    </CUnit>
+    <CUnit id="Crab" parent="ParasiteTemplate">
+        <LifeStart value="200"/>
+        <LifeMax value="200"/>
+    </CUnit>
+    <CUnit id="Creeper" parent="SuicideTemplate">
+        <Subtitle value="UnitSubtitle/SuicideMutation"/>
+        <WeaponArray Link="ExplodeCreeper"/>
+        <CardLayouts index="0">
+            <LayoutButtons index="5" removed="1"/>
+        </CardLayouts>
+        <InnerRadius value="0"/>
+        <Speed value="2.1992"/>
+        <EffectArray index="Death" value="ExplodeCreep2"/>
+    </CUnit>
+    <CUnit id="Devourer2" parent="HeavyStalkerTemplate">
+        <Subtitle value="UnitSubtitle/StalkerMutation"/>
+        <FlagArray index="KillCredit" value="1"/>
+        <FlagArray index="PlayerRevivable" value="1"/>
+        <Collide index="ForceField" value="1"/>
+        <LifeArmorName value="Unit/LifeArmorName/ArmouredShell"/>
+        <AbilArray Link="InfestedCharge"/>
+        <BehaviorArray Link="MakeTrailBig"/>
+        <CardLayouts index="0">
+            <LayoutButtons Face="InfestedCharge" Type="AbilCmd" AbilCmd="InfestedCharge,Execute" Row="2" Column="4"/>
+        </CardLayouts>
+        <EffectArray index="Death" value="ExplodeCreep2"/>
+    </CUnit>
+    <CUnit id="Dissolver" parent="HeavyStalkerTemplate">
+        <Subtitle value="UnitSubtitle/StalkerMutation"/>
+        <Collide index="ForceField" value="1"/>
+        <LifeArmorName value="Unit/LifeArmorName/ArmouredShell"/>
+        <BehaviorArray Link="VenomAttacker"/>
+        <BehaviorArray Link="ExplodeVenomStart"/>
+    </CUnit>
+    <CUnit id="Flutter" parent="AirborneTemplate">
+        <FlagArray index="KillCredit" value="1"/>
+        <FlagArray index="Cloaked" value="1"/>
+        <FlagArray index="AIThreatAir" value="1"/>
+        <LifeArmorName value="Unit/LifeArmorName/ScaledHide"/>
+        <WeaponArray Link="Claw"/>
+        <BehaviorArray Link="PermanentlyCloaked"/>
+    </CUnit>
+    <CUnit id="Gargoyle" parent="AirborneTemplate">
+        <FlagArray index="KillCredit" value="1"/>
+        <FlagArray index="AIThreatAir" value="1"/>
+        <LifeArmorName value="Unit/LifeArmorName/ScaledHide"/>
+        <AbilArray Link="MutatetoBanshee"/>
+        <AbilArray Link="MutatetoBlink"/>
+        <AbilArray Link="MutatetoCorona"/>
+        <AbilArray Link="MutatetoFlutter"/>
+        <AbilArray Link="MutatetoHarpy"/>
+        <AbilArray Link="MutatetoRazorback"/>
+        <AbilArray Link="MutatetoWitch"/>
+        <BehaviorArray Link="GargoyleMorphs"/>
+        <WeaponArray Link="Claw"/>
+    </CUnit>
+    <CUnit id="Gorgon" parent="BroodmotherTemplate">
+        <FlagArray index="AISplash" value="1"/>
+        <Response value="Flee"/>
+        <AbilArray Link="GorgonBlindingVomit"/>
+        <BehaviorArray index="3" Link="Range3"/>
+        <BehaviorArray Link="GorgonAttackSpeedStart"/>
+        <WeaponArray Link="GorgonTalons"/>
+        <CardLayouts index="0">
+            <LayoutButtons Face="BlindingCloud" Type="AbilCmd" AbilCmd="GorgonBlindingVomit,Execute" Row="2" Column="4"/>
+        </CardLayouts>
+    </CUnit>
+    <CUnit id="Harpy" parent="AirborneTemplate">
+        <FlagArray index="KillCredit" value="1"/>
+        <FlagArray index="AIThreatAir" value="1"/>
+        <FlagArray index="AISplash" value="1"/>
+        <LifeArmorName value="Unit/LifeArmorName/ScaledHide"/>
+        <WeaponArray Link="Claw"/>
+        <BehaviorArray Link="VenomAttacker"/>
+    </CUnit>
+    <CUnit id="Hoplite" parent="HeavyStalkerTemplate">
+        <Subtitle value="UnitSubtitle/StalkerMutation"/>
+        <Collide index="ForceField" value="1"/>
+        <LifeArmor value="8"/>
+        <LifeArmorName value="Unit/LifeArmorName/ArmouredShell"/>
+        <Food value="-3"/>
+        <AbilArray Link="InfestedCharge"/>
+        <BehaviorArray Link="OpenWoundStart"/>
+        <BehaviorArray Link="IncreasedArmourStart"/>
+        <WeaponArray index="0" Link="HopliteClaws"/>
+        <CardLayouts index="0">
+            <LayoutButtons Face="InfestedCharge" Type="AbilCmd" AbilCmd="InfestedCharge,Execute" Row="2" Column="4"/>
+            <LayoutButtons Face="HopliteArmorAura" Type="Passive" Behavior="IncreasedArmourStart" Row="1" Column="0"/>
+        </CardLayouts>
+    </CUnit>
+    <CUnit id="Hound" parent="HoundTemplate">
+        <FlagArray index="KillCredit" value="1"/>
+        <PushPriority value="2"/>
+        <LifeArmorName value="Unit/LifeArmorName/AnimalSkin"/>
+        <AbilArray index="3" Link="MutatetoTesla"/>
+        <AbilArray Link="MutatetoSeeker"/>
+        <BehaviorArray Link="HoundMorphs"/>
+        <WeaponArray Link="HoundBite"/>
+        <CardLayouts index="0">
+            <LayoutButtons index="5" removed="1"/>
+        </CardLayouts>
+        <EffectArray index="Create" value="HoundSpawnMutation"/>
+        <Collide index="ForceField" value="1"/>
+    </CUnit>
+    <CUnit id="Hulk" parent="WalkerTemplate">
+        <Subtitle value="UnitSubtitle/WalkerMutation"/>
+        <PushPriority value="4"/>
+        <Attributes index="Light" value="0"/>
+        <Attributes index="Armored" value="1"/>
+        <LifeStart value="120"/>
+        <LifeMax value="120"/>
+        <LifeArmorName value="Unit/LifeArmorName/MutatedFlesh"/>
+        <AbilArray index="3" removed="1"/>
+        <WeaponArray index="0" Link="HulkMaul"/>
+        <Food value="-1"/>
+        <Description value="Button/Tooltip/Hulk"/>
+        <ReviveType value="MarsColonistMale2"/>
+        <LeaderAlias value="MarsColonistMale2"/>
+        <SelectAlias value="MarsColonistMale2"/>
+        <SubgroupAlias value="MarsColonistMale2"/>
+    </CUnit>
+    <CUnit id="Immortal2" parent="WalkerTemplate">
+        <Subtitle value="UnitSubtitle/WalkerMutation"/>
+        <PushPriority value="4"/>
+        <Attributes index="Light" value="0"/>
+        <LifeStart value="200"/>
+        <LifeMax value="200"/>
+        <LifeRegenRate value="5"/>
+        <LifeArmorName value="Unit/LifeArmorName/MutatedFlesh"/>
+        <AbilArray index="3" removed="1"/>
+        <WeaponArray index="0" Link="ImmortalMaul"/>
+        <Food value="-1.5"/>
+        <Description value="Button/Tooltip/Immortal2"/>
+    </CUnit>
+    <CUnit id="MarsColonistFemale2" parent="WalkerTemplate"/>
+    <CUnit id="MarsColonistMale2" parent="WalkerTemplate"/>
+    <CUnit id="MarsColonistMaleMiner2" parent="WalkerTemplate"/>
+    <CUnit id="MarsPrisoner2" parent="WalkerTemplate">
+        <Attributes index="Light" value="0"/>
+    </CUnit>
+    <CUnit id="MarsScientist2" parent="WalkerTemplate"/>
+    <CUnit id="Mastermind" parent="BrainBugTemplate">
+        <Subtitle value="UnitSubtitle/BrainBugMutation"/>
+        <LifeStart value="1500"/>
+        <LifeMax value="1500"/>
+        <LifeArmor value="10"/>
+        <BehaviorArray index="0" Link="SpeedMultiMastermindStart"/>
+        <BehaviorArray index="1" Link="HealthRegenMastermindStart"/>
+        <BehaviorArray Link="ZombieWander"/>
+        <WeaponArray Link="MastermindBite"/>
+        <CardLayouts index="0">
+            <LayoutButtons Face="Rampage" Type="Passive" Behavior="SpeedMultiMastermindStart" Row="1" Column="0"/>
+            <LayoutButtons Face="StukovRegenAura" Type="Passive" Behavior="HealthRegenMastermindStart" Row="1" Column="1"/>
+        </CardLayouts>
+    </CUnit>
+    <CUnit id="Matriarch" parent="BroodmotherTemplate">
+        <Subtitle value="UnitSubtitle/BroodMotherMutation"/>
+        <FlagArray index="AIFleeDamageDisabled" value="1"/>
+        <LifeStart value="1250"/>
+        <LifeMax value="1250"/>
+        <EnergyStart value="200"/>
+        <EnergyMax value="200"/>
+        <BehaviorArray index="3" Link="Range7"/>
+        <BehaviorArray Link="HealthRegenMatriarchStart"/>
+        <WeaponArray Link="MatriarchTalons"/>
+        <CardLayouts index="0">
+            <LayoutButtons Face="StukovRegenAura" Type="Passive" Behavior="HealthRegenMatriarchStart" Row="1" Column="0"/>
+        </CardLayouts>
+    </CUnit>
+    <CUnit id="Parasite" parent="ParasiteTemplate">
+        <AbilArray Link="MutatetoCrab"/>
+        <AbilArray Link="MutatetoShredder"/>
+        <AbilArray Link="MutatetoSlither"/>
+        <AbilArray Link="MutatetoSquealer"/>
+        <AbilArray Link="MutatetoTick"/>
+        <BehaviorArray Link="ParasiteMorphs"/>
+    </CUnit>
+    <CUnit id="Racer" parent="HeavySlasherTemplate">
+        <Subtitle value="UnitSubtitle/SlasherMutation"/>
+        <FlagArray index="KillCredit" value="1"/>
+        <Collide index="ForceField" value="1"/>
+        <LifeArmorName value="Unit/LifeArmorName/ArmouredHide"/>
+        <Speed value="2.125"/>
+        <AbilArray index="0" Link="stop"/>
+        <AbilArray index="1" Link="attack"/>
+        <AbilArray index="2" Link="move"/>
+        <AbilArray Link="InfestedCharge"/>
+        <WeaponArray index="0" Link="RacerClaws"/>
+        <CardLayouts index="0">
+            <LayoutButtons Face="InfestedCharge" Type="AbilCmd" AbilCmd="InfestedCharge,Execute" Row="2" Column="4"/>
+        </CardLayouts>
+    </CUnit>
+    <CUnit id="Razorback" parent="AirborneTemplate">
+        <FlagArray index="KillCredit" value="1"/>
+        <FlagArray index="AIThreatAir" value="1"/>
+        <LifeArmorName value="Unit/LifeArmorName/ScaledHide"/>
+        <WeaponArray Link="Claw"/>
+    </CUnit>
+    <CUnit id="RentodusPlaceholder" parent="PLACEHOLDER">
+        <DeathRevealRadius value="2"/>
+        <Race value="Zombie"/>
+        <Collide index="Structure" value="1"/>
+        <Attributes index="Armored" value="1"/>
+        <Attributes index="Biological" value="1"/>
+        <Attributes index="Massive" value="1"/>
+        <Attributes index="Heroic" value="1"/>
+        <LifeArmorName value="Unit/LifeArmorName/Flawless Carapace"/>
+        <StationaryTurningRate value="199.8632"/>
+        <TurningRate value="199.8632"/>
+        <AttackTargetPriority value="5"/>
+        <KillXP value="1"/>
+        <Radius value="0.75"/>
+        <SeparationRadius value="1"/>
+        <MinimapRadius value="1"/>
+        <EditorCategories value="ObjectType:Unit,ObjectFamily:Melee"/>
+    </CUnit>
+    <CUnit id="Rentodus" parent="SuperHeavyTemplate">
+        <Response value="Acquire"/>
+        <LifeStart value="50000"/>
+        <LifeMax value="50000"/>
+        <LifeRegenRate value="1"/>
+        <LifeArmorName value="Unit/LifeArmorName/Flawless Carapace"/>
+        <Mover value="CliffJump"/>
+        <Speed value="1.75"/>
+        <StationaryTurningRate value="199.8632"/>
+        <TurningRate value="199.8632"/>
+        <AbilArray index="3" removed="1"/>
+        <BehaviorArray index="2" Link="OpenWoundStart"/>
+        <BehaviorArray Link="Range5"/>
+        <BehaviorArray Link="Range3"/>
+        <BehaviorArray Link="Range10"/>
+        <BehaviorArray Link="RentodusCliffJump"/>
+        <WeaponArray Link="CrushingJaws"/>
+        <CardLayouts index="0">
+            <LayoutButtons index="5">
+                <Face value="BlightKing"/>
+                <Type value="Passive"/>
+                <AbilCmd value=""/>
+                <Behavior value="BlightKingCreepTrail"/>
+                <Row value="2"/>
+                <Column value="1"/>
+            </LayoutButtons>
+        </CardLayouts>
+        <Radius value="0.75"/>
+        <SeparationRadius value="1"/>
+        <InnerRadius value="0.125"/>
+        <Food value="0"/>
+        <PushPriority value="20"/>
+        <Sight value="32"/>
+        <PlaneArray index="Air" value="1"/>
+        <Height value="0.1"/>
+        <MinimapRadius value="1"/>
+    </CUnit>
+    <CUnit id="Rhino" parent="HeavyStalkerTemplate">
+        <Subtitle value="UnitSubtitle/StalkerMutation"/>
+        <Collide index="ForceField" value="1"/>
+        <LifeArmorName value="Unit/LifeArmorName/ArmouredShell"/>
+        <Food value="-3"/>
+        <KillXP value="0"/>
+        <AbilArray Link="InfestedCharge"/>
+        <BehaviorArray Link="OpenWoundStart"/>
+        <WeaponArray index="0" Link="RhinoClaws"/>
+        <CardLayouts index="0">
+            <LayoutButtons Face="SuperiorCharge" AbilCmd="InfestedCharge,Execute" Row="2" Column="4"/>
+        </CardLayouts>
+    </CUnit>
+    <CUnit id="Roamer" parent="WalkerTemplate">
+        <Subtitle value="UnitSubtitle/WalkerMutation"/>
+        <FlagArray index="Cloaked" value="1"/>
+        <PushPriority value="4"/>
+        <LifeArmorName value="Unit/LifeArmorName/MutatedFlesh"/>
+        <AbilArray index="3" removed="1"/>
+        <WeaponArray index="0" Link="RoamerMaul"/>
+        <Description value="Button/Tooltip/Roamer"/>
+        <LifeStart value="40"/>
+        <LifeMax value="40"/>
+    </CUnit>
+    <CUnit id="Sarbus" parent="SarbusTemplate">
+        <LifeArmorName value="Unit/LifeArmorName/SarbusArmor"/>
+        <EditorCategories value="ObjectType:Boss,ObjectFamily:Melee"/>
+        <DamageTakenXP value="1"/>
+    </CUnit>
+    <CUnit id="PowerPlantReactor">
+        <Race value="Zombie"/>
+        <FlagArray index="Turnable" value="0"/>
+        <FlagArray index="Movable" value="0"/>
+        <FlagArray index="Unselectable" value="1"/>
+        <FlagArray index="Invulnerable" value="1"/>
+        <Attributes index="Armored" value="1"/>
+        <Attributes index="Massive" value="1"/>
+        <Attributes index="Structure" value="1"/>
+        <LifeStart value="100"/>
+        <LifeMax value="100"/>
+        <EffectArray index="Death" value="ReactorDestruction"/>
+        <Radius value="0"/>
+        <MinimapRadius value="1"/>
+        <EditorCategories value=""/>
+    </CUnit>
+    <CUnit id="InvisibleEltradTriadMaker">
+        <Race value="Zombie"/>
+        <FlagArray index="Uncommandable" value="1"/>
+        <FlagArray index="Unselectable" value="1"/>
+        <FlagArray index="NoDeathEvent" value="1"/>
+        <FlagArray index="NoPortraitTalk" value="1"/>
+        <PlaneArray index="Ground" value="1"/>
+        <LifeStart value="1000"/>
+        <LifeMax value="1000"/>
+        <LifeArmor value="10"/>
+        <LifeRegenRate value="10"/>
+        <AbilArray Link="EltradTriadMulitply"/>
+        <BehaviorArray Link="EltradTriadMakerImmuneToDamage"/>
+        <BehaviorArray Link="EltradTriadMakerTimedLife"/>
+        <BehaviorArray Link="TrainEltradTriad"/>
+        <CardLayouts>
+            <LayoutButtons Face="Zergling" Type="AbilCmd" AbilCmd="EltradTriadMulitply,Train1" Row="0" Column="0"/>
+        </CardLayouts>
+        <MinimapRadius value="0"/>
+        <EditorCategories value="ObjectFamily:Melee,ObjectType:Other"/>
+    </CUnit>
+    <CUnit id="InvisibleBlinkMaker">
+        <Race value="Zombie"/>
+        <FlagArray index="Uncommandable" value="1"/>
+        <FlagArray index="Unselectable" value="1"/>
+        <FlagArray index="NoDeathEvent" value="1"/>
+        <FlagArray index="NoPortraitTalk" value="1"/>
+        <PlaneArray index="Air" value="1"/>
+        <LifeStart value="1000"/>
+        <LifeMax value="1000"/>
+        <LifeArmor value="10"/>
+        <LifeRegenRate value="10"/>
+        <Height value="3.15"/>
+        <Food value="-1"/>
+        <AbilArray Link="BlinkMulitply"/>
+        <BehaviorArray Link="BlinkMultiplyImmuneToDamage"/>
+        <BehaviorArray Link="BlinkMulitplyTimedLife"/>
+        <BehaviorArray Link="TrainBlink"/>
+        <CardLayouts>
+            <LayoutButtons Face="DehakaMirrorImage" Type="AbilCmd" AbilCmd="BlinkMulitply,Train1" Row="0" Column="0"/>
+        </CardLayouts>
+        <MinimapRadius value="0"/>
+        <EditorCategories value="ObjectFamily:Melee,ObjectType:Other"/>
+    </CUnit>
+    <CUnit id="SarbusCorpse">
+        <Race value="Zombie"/>
+        <FlagArray index="AlwaysThreatens" value="1"/>
+        <FlagArray index="Unstoppable" value="1"/>
+        <PlaneArray index="Ground" value="1"/>
+        <PushPriority value="15"/>
+        <Collide index="Ground" value="1"/>
+        <Collide index="ForceField" value="1"/>
+        <Attributes index="Armored" value="1"/>
+        <Attributes index="Biological" value="1"/>
+        <Attributes index="Massive" value="1"/>
+        <Attributes index="Heroic" value="1"/>
+        <LifeStart value="2000"/>
+        <LifeMax value="2000"/>
+        <LifeArmor value="10"/>
+        <LifeRegenRate value="2.5"/>
+        <LifeArmorName value="Unit/LifeArmorName/SarbusArmor"/>
+        <ShieldArmorName value="Unit/ShieldArmorName/ZergWildMutation"/>
+        <LateralAcceleration value="46.0625"/>
+        <StationaryTurningRate value="0"/>
+        <TurningRate value="0"/>
+        <Sight value="9"/>
+        <AttackTargetPriority value="5"/>
+        <KillXP value="1"/>
+        <Radius value="1.25"/>
+        <SeparationRadius value="1.25"/>
+        <InnerRadius value="2"/>
+        <EditorCategories value="ObjectType:Unit,ObjectFamily:Melee"/>
+        <DeathTime value="1"/>
+        <BehaviorArray Link="RadiationField"/>
+    </CUnit>
+    <CUnit id="InfestorNOTD">
+        <Race value="Zombie"/>
+        <FlagArray index="UseLineOfSight" value="1"/>
+        <FlagArray index="AISplash" value="1"/>
+        <FlagArray index="AIHighPrioTarget" value="1"/>
+        <FlagArray index="AICaster" value="1"/>
+        <FlagArray index="AISupport" value="1"/>
+        <FlagArray index="AIPressForwardDisabled" value="1"/>
+        <PlaneArray index="Ground" value="1"/>
+        <PlaneArray index="Air" value="1"/>
+        <PushPriority value="7"/>
+        <Collide index="Colossus" value="1"/>
+        <Collide index="ForceField" value="1"/>
+        <Response value="Flee"/>
+        <Attributes index="Armored" value="1"/>
+        <Attributes index="Biological" value="1"/>
+        <Attributes index="Psionic" value="1"/>
+        <Attributes index="Massive" value="1"/>
+        <LifeStart value="2000"/>
+        <LifeMax value="2000"/>
+        <LifeArmorName value="Unit/LifeArmorName/InfestedFlesh"/>
+        <ShieldArmorName value="Unit/ShieldArmorName/ProtossPlasmaShields"/>
+        <Mover value="InfestedCliffWalk"/>
+        <Speed value="1.5"/>
+        <SpeedMultiplierCreep value="1.25"/>
+        <Acceleration value="1000"/>
+        <Sight value="9"/>
+        <AttackTargetPriority value="5"/>
+        <KillXP value="1"/>
+        <AbilArray Link="stop"/>
+        <AbilArray Link="move"/>
+        <AbilArray Link="attack"/>
+        <BehaviorArray Link="Range6"/>
+        <BehaviorArray Link="InfestorCallToArmsStart"/>
+        <BehaviorArray Link="InfestorWander"/>
+        <BehaviorArray Link="InfestorDifficultyScaling"/>
+        <BehaviorArray Link="ParasiteMoundSpawn"/>
+        <BehaviorArray Link="InfestorIntialCloakDelay"/>
+        <BehaviorArray Link="InfestorPassive"/>
+        <CardLayouts>
+            <LayoutButtons Face="Move" Type="AbilCmd" AbilCmd="move,Move" Row="0" Column="0"/>
+            <LayoutButtons Face="Stop" Type="AbilCmd" AbilCmd="stop,Stop" Row="0" Column="1"/>
+            <LayoutButtons Face="MoveHoldPosition" Type="AbilCmd" AbilCmd="move,HoldPos" Row="0" Column="2"/>
+            <LayoutButtons Face="MovePatrol" Type="AbilCmd" AbilCmd="move,Patrol" Row="0" Column="3"/>
+            <LayoutButtons Face="Attack" Type="AbilCmd" AbilCmd="attack,Execute" Row="0" Column="4"/>
+            <LayoutButtons Face="AcquireMove" Type="AbilCmd" AbilCmd="move,AcquireMove" Row="0" Column="4"/>
+        </CardLayouts>
+        <Radius value="1"/>
+        <InnerRadius value="0.5"/>
+        <EditorCategories value="ObjectType:Unit,ObjectFamily:Melee"/>
+    </CUnit>
+    <CUnit id="InvisibleCreepmaker">
+        <Race value="Zombie"/>
+        <FlagArray index="Uncommandable" value="1"/>
+        <FlagArray index="Unselectable" value="1"/>
+        <FlagArray index="Untargetable" value="1"/>
+        <FlagArray index="Cloaked" value="1"/>
+        <FlagArray index="NoDeathEvent" value="1"/>
+        <FlagArray index="NoPortraitTalk" value="1"/>
+        <PlaneArray index="Ground" value="1"/>
+        <LifeStart value="1000"/>
+        <LifeMax value="1000"/>
+        <LifeArmor value="10"/>
+        <LifeRegenRate value="10"/>
+        <Food value="-1"/>
+        <BehaviorArray Link="CreepMakerImmuneToDamage"/>
+        <BehaviorArray Link="ExplodeCreepTimedLife"/>
+        <BehaviorArray Link="MakeTrailBig"/>
+        <MinimapRadius value="0"/>
+        <EditorCategories value="ObjectFamily:Melee,ObjectType:Other"/>
+    </CUnit>
+    <CUnit id="SarbusLordofDecay" parent="SarbusTemplate">
+        <LifeArmorName value="Unit/LifeArmorName/SarbusLordofDecayArmor"/>
+        <DamageTakenXP value="1"/>
+        <ReviveInfoBase>
+            <Charge Link="Sarbus/Revive"/>
+            <Cooldown Link="Sarbus/Revive"/>
+        </ReviveInfoBase>
+    </CUnit>
+    <CUnit id="Scythe" parent="HeavySlasherTemplate">
+        <Subtitle value="UnitSubtitle/SlasherMutation"/>
+        <FlagArray index="KillCredit" value="1"/>
+        <LifeArmorName value="Unit/LifeArmorName/ArmouredHide"/>
+        <BehaviorArray Link="OpenWoundStart"/>
+        <WeaponArray index="0" Link="ScytheClaws"/>
+        <Collide index="ForceField" value="1"/>
+    </CUnit>
+    <CUnit id="Claw" parent="MISSILE_INVULNERABLE">
+        <Race value="Zombie"/>
+    </CUnit>
+    <CUnit id="GorgonBlindingVomit" parent="MISSILE">
+        <Race value="Zombie"/>
+        <Mover value="VileStream"/>
+        <EditorCategories value="ObjectType:Projectile,ObjectFamily:Melee"/>
+    </CUnit>
+    <CUnit id="Seeker" parent="HoundTemplate">
+        <Subtitle value="UnitSubtitle/HoundMutation"/>
+        <FlagArray index="KillCredit" value="1"/>
+        <PushPriority value="2"/>
+        <LifeStart value="120"/>
+        <LifeMax value="120"/>
+        <LifeArmorName value="Unit/LifeArmorName/AnimalSkin"/>
+        <Speed value="2.25"/>
+        <WeaponArray Link="SeekerBite"/>
+        <Collide index="ForceField" value="1"/>
+    </CUnit>
+    <CUnit id="Shambler" parent="WalkerTemplate">
+        <Subtitle value="UnitSubtitle/WalkerMutation"/>
+        <PushPriority value="4"/>
+        <Attributes index="Light" value="0"/>
+        <LifeStart value="60"/>
+        <LifeMax value="60"/>
+        <LifeArmorName value="Unit/LifeArmorName/MutatedFlesh"/>
+        <AbilArray index="3" Link="MutatetoHulk"/>
+        <AbilArray Link="MutatetoImmortal"/>
+        <AbilArray Link="MutatetoRoamer"/>
+        <BehaviorArray index="4" Link="ShamblerMorphs"/>
+        <WeaponArray index="0" Link="ShamblerMaul"/>
+        <Description value="Button/Tooltip/Shambler"/>
+        <Radius value="0.375"/>
+        <InnerRadius value="0.375"/>
+    </CUnit>
+    <CUnit id="Shredder" parent="ParasiteTemplate">
+        <Description value="Button/Tooltip/Broodling"/>
+        <Height value="0.1"/>
+        <AbilArray Link="InfestedCharge"/>
+        <BehaviorArray Link="OpenWoundStart"/>
+        <CardLayouts index="0">
+            <LayoutButtons Face="InfestedCharge" Type="AbilCmd" AbilCmd="InfestedCharge,Execute" Row="2" Column="4"/>
+        </CardLayouts>
+    </CUnit>
+    <CUnit id="Slasher" parent="HeavySlasherTemplate">
+        <Name value="Unit/Name/Slasher2"/>
+        <FlagArray index="KillCredit" value="1"/>
+        <LifeArmorName value="Unit/LifeArmorName/ArmouredHide"/>
+        <AbilArray index="0" Link="stop"/>
+        <AbilArray index="1" Link="attack"/>
+        <AbilArray index="2" Link="move"/>
+        <AbilArray Link="MutatetoRacer"/>
+        <AbilArray Link="MutatetoScythe"/>
+        <AbilArray Link="MutatetoSlayer"/>
+        <BehaviorArray index="0" Link="SlasherMorphs"/>
+        <BehaviorArray index="1" Link="ZombieWander"/>
+        <BehaviorArray index="2" removed="1"/>
+        <BehaviorArray index="3" removed="1"/>
+        <Collide index="ForceField" value="1"/>
+    </CUnit>
+    <CUnit id="Slayer" parent="HeavySlasherTemplate">
+        <Subtitle value="UnitSubtitle/SlasherMutation"/>
+        <FlagArray index="KillCredit" value="1"/>
+        <LifeStart value="800"/>
+        <LifeMax value="800"/>
+        <LifeArmorName value="Unit/LifeArmorName/ArmouredHide"/>
+        <WeaponArray index="0" Link="SlayerClaws"/>
+    </CUnit>
+    <CUnit id="Slither" parent="ParasiteTemplate">
+        <Speed value="1.5507"/>
+        <AbilArray Link="InfestedCharge"/>
+        <CardLayouts index="0">
+            <LayoutButtons Face="InfestedCharge" Type="AbilCmd" AbilCmd="InfestedCharge,Execute" Row="2" Column="4"/>
+        </CardLayouts>
+    </CUnit>
+    <CUnit id="Splatter" parent="SuicideTemplate">
+        <Subtitle value="UnitSubtitle/SuicideMutation"/>
+        <Mover value="InfestedCliffWalk"/>
+        <Speed value="2.7734"/>
+        <WeaponArray Link="ExplodeAcid"/>
+        <CardLayouts index="0">
+            <LayoutButtons Face="InfestedCliffWalk" Type="Passive" Row="2" Column="0"/>
+        </CardLayouts>
+        <InnerRadius value="0"/>
+        <AbilArray Link="InfestedCharge"/>
+    </CUnit>
+    <CUnit id="Squealer" parent="ParasiteTemplate">
+        <FlagArray index="AISplash" value="1"/>
+        <BehaviorArray Link="ExplodeVenomStart"/>
+        <BehaviorArray Link="VenomAttacker"/>
+    </CUnit>
+    <CUnit id="Stalker2" parent="HeavyStalkerTemplate">
+        <Collide index="ForceField" value="1"/>
+        <LifeArmorName value="Unit/LifeArmorName/ArmouredShell"/>
+        <AbilArray Link="MutatetoCenturion"/>
+        <AbilArray Link="MutatetoDevourer"/>
+        <AbilArray Link="MutatetoDissolver"/>
+        <AbilArray Link="MutatetoHoplite"/>
+        <AbilArray Link="MutatetoRhino"/>
+        <BehaviorArray Link="StalkerMorphs"/>
+    </CUnit>
+    <CUnit id="MarsColonistFemale" parent="Class6">
+        <Subtitle value="UnitSubtitle/Civilian"/>
+        <ReviveType value="MarsColonistFemale"/>
+        <LifeArmorName value="Unit/LifeArmorName/CivilianArmor"/>
+        <ShieldArmorName value="Unit/ShieldArmorName/ProtossPlasmaShields"/>
+        <LeaderAlias value="MarsColonistFemale"/>
+        <HotkeyAlias value="CivilianFemale"/>
+        <SelectAlias value="MarsColonistFemale"/>
+        <SubgroupAlias value="MarsColonistFemale"/>
+    </CUnit>
+    <CUnit id="ParasiteMound">
+        <Race value="Zombie"/>
+        <FlagArray index="Turnable" value="0"/>
+        <FlagArray index="Movable" value="0"/>
+        <FlagArray index="UseLineOfSight" value="1"/>
+        <FlagArray index="TownAlert" value="1"/>
+        <FlagArray index="NoPortraitTalk" value="1"/>
+        <FlagArray index="TownCamera" value="1"/>
+        <FlagArray index="AIDefense" value="1"/>
+        <FlagArray index="ShowResources" value="0"/>
+        <FlagArray index="ArmorDisabledWhileConstructing" value="1"/>
+        <PlaneArray index="Ground" value="1"/>
+        <PlaneArray index="Air" value="1"/>
+        <Attributes index="Armored" value="1"/>
+        <Attributes index="Biological" value="1"/>
+        <Attributes index="Structure" value="1"/>
+        <LifeStart value="500"/>
+        <LifeMax value="500"/>
+        <LifeArmor value="1"/>
+        <LifeArmorName value="Unit/LifeArmorName/InfestedFlesh"/>
+        <ShieldArmorName value="Unit/ShieldArmorName/ProtossPlasmaShields"/>
+        <Sight value="9"/>
+        <KillXP value="1"/>
+        <AbilArray Link="stop"/>
+        <AbilArray Link="Rally"/>
+        <AbilArray Link="ParasiteMoundTrainParasite"/>
+        <AbilArray Link="que1"/>
+        <CardLayouts>
+            <LayoutButtons Face="Stop" Type="AbilCmd" AbilCmd="stop,Stop" Row="0" Column="0"/>
+            <LayoutButtons Face="SetRallyPoint" Type="AbilCmd" AbilCmd="Rally,Rally1" Row="0" Column="4"/>
+            <LayoutButtons Face="MorphMorphalisk" Type="AbilCmd" AbilCmd="ParasiteMoundTrainParasite,Train1" Row="1" Column="0"/>
+        </CardLayouts>
+        <Radius value="1"/>
+        <InnerRadius value="0.5"/>
+        <EditorCategories value="ObjectType:Unit,ObjectFamily:Melee"/>
+        <AttackTargetPriority value="1"/>
+        <BehaviorArray Link="ParasiteMoundTimedLife"/>
+    </CUnit>
+    <CUnit id="BonebreakerBoulder" parent="MISSILE">
+        <Race value="Zombie"/>
+        <SpeedMultiplierCreep value="0.25"/>
+        <AttackTargetPriority value="5"/>
+        <EditorCategories value="ObjectType:Projectile,ObjectFamily:Melee"/>
+    </CUnit>
+    <CUnit id="MarsScientist" parent="Class6">
+        <Subtitle value="UnitSubtitle/Civilian"/>
+        <ReviveType value="MarsScientist"/>
+        <LifeArmorName value="Unit/LifeArmorName/CivilianArmor"/>
+        <ShieldArmorName value="Unit/ShieldArmorName/ProtossPlasmaShields"/>
+        <LeaderAlias value="MarsScientist"/>
+        <SelectAlias value="MarsScientist"/>
+        <SubgroupAlias value="MarsScientist"/>
+    </CUnit>
+    <CUnit id="MarsColonistMale" parent="Class6">
+        <Subtitle value="UnitSubtitle/Civilian"/>
+        <LifeArmorName value="Unit/LifeArmorName/CivilianArmor"/>
+        <ShieldArmorName value="Unit/ShieldArmorName/ProtossPlasmaShields"/>
+    </CUnit>
+    <CUnit id="Stonewall" parent="SuperHeavyTemplate">
+        <LifeArmor value="10"/>
+        <BehaviorArray Link="HealthRegenStonewallStart"/>
+        <WeaponArray Link="StonewallSmash"/>
+        <CardLayouts index="0">
+            <LayoutButtons Face="StonewallHealthAura" Type="Passive" Behavior="HealthRegenStonewallStart" Row="2" Column="0"/>
+        </CardLayouts>
+        <Speed value="1.5"/>
+        <PlaneArray index="Air" value="1"/>
+    </CUnit>
+    <CUnit id="Tarion">
+        <DeathRevealRadius value="3"/>
+        <Race value="Zombie"/>
+        <Mob value="Campaign"/>
+        <FlagArray index="UseLineOfSight" value="1"/>
+        <PlaneArray index="Ground" value="1"/>
+        <Collide index="Ground" value="1"/>
+        <Attributes index="Armored" value="1"/>
+        <Attributes index="Biological" value="1"/>
+        <Attributes index="Massive" value="1"/>
+        <Attributes index="Heroic" value="1"/>
+        <LifeStart value="10000"/>
+        <LifeMax value="10000"/>
+        <LifeArmor value="8"/>
+        <LifeRegenRate value="1"/>
+        <LifeArmorName value="Unit/LifeArmorName/TarionArmor"/>
+        <Speed value="2"/>
+        <Acceleration value="1000"/>
+        <LateralAcceleration value="46.0625"/>
+        <StationaryTurningRate value="359.2968"/>
+        <TurningRate value="249.961"/>
+        <Sight value="9"/>
+        <AttackTargetPriority value="5"/>
+        <DamageDealtXP value="1"/>
+        <DamageTakenXP value="1"/>
+        <KillXP value="150"/>
+        <AbilArray Link="stop"/>
+        <AbilArray Link="attack"/>
+        <AbilArray Link="move"/>
+        <WeaponArray Link="BoneBlades"/>
+        <CardLayouts>
+            <LayoutButtons Face="Move" Type="AbilCmd" AbilCmd="move,Move" Row="0" Column="0"/>
+            <LayoutButtons Face="Stop" Type="AbilCmd" AbilCmd="stop,Stop" Row="0" Column="1"/>
+            <LayoutButtons Face="MoveHoldPosition" Type="AbilCmd" AbilCmd="move,HoldPos" Row="0" Column="2"/>
+            <LayoutButtons Face="Attack" Type="AbilCmd" AbilCmd="attack,Execute" Row="0" Column="4"/>
+            <LayoutButtons Face="MovePatrol" Type="AbilCmd" AbilCmd="move,Patrol" Row="0" Column="3"/>
+            <LayoutButtons Face="Bulwark" Type="Passive" Row="2" Column="0"/>
+            <LayoutButtons Face="OpenFlank" Type="Passive" Row="2" Column="1"/>
+            <LayoutButtons Face="ScythingBlades" Type="Passive" Row="2" Column="4"/>
+        </CardLayouts>
+        <SeparationRadius value="1"/>
+        <InnerRadius value="0.875"/>
+        <CargoSize value="4"/>
+        <ScoreMake value="800"/>
+        <ScoreKill value="1600"/>
+        <SubgroupPriority value="57"/>
+        <MinimapRadius value="1"/>
+        <EditorCategories value="ObjectType:Unit,ObjectFamily:Melee"/>
+        <TacticalAI value="Ultralisk"/>
+        <GlossaryPriority value="340"/>
+        <Fidget>
+            <ChanceArray index="Anim" value="50"/>
+            <ChanceArray index="Idle" value="50"/>
+        </Fidget>
+    </CUnit>
+    <CUnit id="TarionBlightStomper" parent="Tarion">
+        <Name value="Unit/Name/TarionBlightStomper"/>
+        <Subtitle value="UnitSubtitle/TarionBlightStomperMutation"/>
+        <Description value="Button/Tooltip/TarionBlightStomper"/>
+        <ReviveType value="TarionBlightStomper"/>
+        <LifeArmorName value="Unit/LifeArmorName/TarionBlightStomperArmor"/>
+        <LeaderAlias value="TarionBlightStomper"/>
+        <HotkeyAlias value="TarionBlightStomper"/>
+        <SelectAlias value="TarionBlightStomper"/>
+        <SubgroupAlias value="TarionBlightStomper"/>
+        <AIEvaluateAlias value="TarionBlightStomper"/>
+        <ReviveInfoBase>
+            <Charge Link="TarionBlightStomper/Revive"/>
+            <Cooldown Link="TarionBlightStomper/Revive"/>
+        </ReviveInfoBase>
+        <WeaponArray index="0" Link="TarionHeadCharge"/>
+        <WeaponArray Link="BoneBlades"/>
+    </CUnit>
+    <CUnit id="TarionBloodKnight" parent="Tarion">
+        <Name value="Unit/Name/TarionBloodKnight"/>
+        <Subtitle value="UnitSubtitle/TarionBloodKnightMutation"/>
+        <Description value="Button/Tooltip/TarionBloodKnight"/>
+        <ReviveType value="TarionBloodKnight"/>
+        <LifeArmorName value="Unit/LifeArmorName/TarionBloodKnightArmor"/>
+        <BehaviorArray Link="BloodKnight"/>
+        <BehaviorArray Link="BloodKnightStart"/>
+        <LeaderAlias value="TarionBloodKnight"/>
+        <HotkeyAlias value="TarionBloodKnight"/>
+        <SelectAlias value="TarionBloodKnight"/>
+        <SubgroupAlias value="TarionBloodKnight"/>
+        <AIEvaluateAlias value="TarionBloodKnight"/>
+        <ReviveInfoBase>
+            <Charge Link="TarionBloodKnight/Revive"/>
+            <Cooldown Link="TarionBloodKnight/Revive"/>
+        </ReviveInfoBase>
+        <WeaponArray index="0" Link="TarionHeadCharge"/>
+        <WeaponArray Link="BoneBlades"/>
+    </CUnit>
+    <CUnit id="TarionWretchedHive" parent="Tarion">
+        <Name value="Unit/Name/TarionWretchedHive"/>
+        <Subtitle value="UnitSubtitle/TarionWretchedHiveMutation"/>
+        <Description value="Button/Tooltip/TarionWretchedHive"/>
+        <ReviveType value="TarionWretchedHive"/>
+        <LifeArmorName value="Unit/LifeArmorName/TarionWretchedHiveArmor"/>
+        <LeaderAlias value="TarionWretchedHive"/>
+        <HotkeyAlias value="TarionWretchedHive"/>
+        <SelectAlias value="TarionWretchedHive"/>
+        <SubgroupAlias value="TarionWretchedHive"/>
+        <AIEvaluateAlias value="TarionWretchedHive"/>
+        <ReviveInfoBase>
+            <Charge Link="TarionWretchedHive/Revive"/>
+            <Cooldown Link="TarionWretchedHive/Revive"/>
+        </ReviveInfoBase>
+        <WeaponArray index="0" Link="TarionHeadCharge"/>
+        <WeaponArray Link="BoneBlades"/>
+    </CUnit>
+    <CUnit id="MarsColonistMaleMiner" parent="Class6">
+        <Subtitle value="UnitSubtitle/Civilian"/>
+        <ReviveType value="MarsColonistMaleMiner"/>
+        <LifeArmorName value="Unit/LifeArmorName/CivilianArmor"/>
+        <ShieldArmorName value="Unit/ShieldArmorName/ProtossPlasmaShields"/>
+        <LeaderAlias value="MarsColonistMaleMiner"/>
+        <SelectAlias value="MarsColonistMaleMiner"/>
+        <SubgroupAlias value="MarsColonistMaleMiner"/>
+    </CUnit>
+    <CUnit id="MarsPrisoner" parent="Class6">
+        <Subtitle value="UnitSubtitle/Civilian"/>
+        <ReviveType value="MarsPrisoner"/>
+        <LifeArmorName value="Unit/LifeArmorName/CivilianArmor"/>
+        <ShieldArmorName value="Unit/ShieldArmorName/ProtossPlasmaShields"/>
+        <LeaderAlias value="MarsPrisoner"/>
+        <SelectAlias value="MarsPrisoner"/>
+        <SubgroupAlias value="MarsPrisoner"/>
+    </CUnit>
+    <CUnit id="Eltrad" parent="EltradTemplate"/>
+    <CUnit id="EltradFastHealing" parent="EltradTemplate">
+        <Subtitle value="UnitSubtitle/EltradFastHealing"/>
+        <WeaponArray index="0" Link="EltradFastHealingBite"/>
+        <LifeRegenDelay value="5"/>
+        <LifeRegenRate value="15"/>
+    </CUnit>
+    <CUnit id="EltradFlying" parent="EltradTemplate">
+        <Subtitle value="UnitSubtitle/EltradFlyingMutationFlying"/>
+        <PlaneArray index="Ground" value="0"/>
+        <PlaneArray index="Air" value="1"/>
+        <Mover value="Fly"/>
+        <WeaponArray index="0" Link="EltradFlyingBite"/>
+        <Collide index="Ground" value="0"/>
+        <Collide index="ForceField" value="0"/>
+        <Collide index="Flying" value="1"/>
+    </CUnit>
+    <CUnit id="EltradJoyride" parent="EltradTemplate">
+        <Subtitle value="UnitSubtitle/EltradJoyrideMutation"/>
+        <WeaponArray index="0" Link="EltradJoyrideBite"/>
+    </CUnit>
+    <CUnit id="EltradTriad" parent="EltradTemplate">
+        <Subtitle value="UnitSubtitle/EltradTriadMutation"/>
+        <LifeStart value="2500"/>
+        <LifeMax value="2500"/>
+        <WeaponArray index="0" Link="EltradTriadBite"/>
+        <AIEvaluateAlias value="Eltrad"/>
+    </CUnit>
+    <CUnit id="TarionAcidReflux" parent="Tarion">
+        <Name value="Unit/Name/TarionAcidReflux"/>
+        <Subtitle value="UnitSubtitle/TarionAcidRefluxMutation"/>
+        <Description value="Button/Tooltip/TarionAcidReflux"/>
+        <ReviveType value="TarionAcidReflux"/>
+        <LifeArmorName value="Unit/LifeArmorName/TarionAcidRefluxArmor"/>
+        <LeaderAlias value="TarionAcidReflux"/>
+        <HotkeyAlias value="TarionAcidReflux"/>
+        <SelectAlias value="TarionAcidReflux"/>
+        <SubgroupAlias value="TarionAcidReflux"/>
+        <AIEvaluateAlias value="TarionAcidReflux"/>
+        <ReviveInfoBase>
+            <Charge Link="TarionAcidReflux/Revive"/>
+            <Cooldown Link="TarionAcidReflux/Revive"/>
+        </ReviveInfoBase>
+        <WeaponArray index="0" Link="TarionHeadCharge"/>
+        <WeaponArray Link="BoneBlades"/>
+    </CUnit>
+    <CUnit id="Tesla" parent="HoundTemplate">
+        <Subtitle value="UnitSubtitle/HoundMutation"/>
+        <FlagArray index="KillCredit" value="1"/>
+        <PushPriority value="2"/>
+        <LifeStart value="150"/>
+        <LifeMax value="150"/>
+        <LifeArmorName value="Unit/LifeArmorName/AnimalSkin"/>
+        <BehaviorArray Link="ShortCircuitStart"/>
+        <BehaviorArray Link="EnergyDrainStart"/>
+        <WeaponArray Link="TeslaShockBite"/>
+        <Collide index="ForceField" value="1"/>
+    </CUnit>
+    <CUnit id="Tick" parent="ParasiteTemplate">
+        <LifeStart value="100"/>
+        <LifeMax value="100"/>
+        <LifeArmorName value="Unit/LifeArmorName/None"/>
+        <BehaviorArray Link="ShortCircuitStart"/>
+    </CUnit>
+    <CUnit id="Witch" parent="AirborneTemplate">
+        <FlagArray index="KillCredit" value="1"/>
+        <FlagArray index="AIThreatAir" value="1"/>
+        <FlagArray index="AICaster" value="1"/>
+        <FlagArray index="AISupport" value="1"/>
+        <Response value="Acquire"/>
+        <Attributes index="Psionic" value="1"/>
+        <LifeArmorName value="Unit/LifeArmorName/WitchScales"/>
+        <Speed value="0.875"/>
+        <AbilArray Link="WitchShroud"/>
+        <WeaponArray Link="WitchClaw"/>
+        <CardLayouts index="0">
+            <LayoutButtons Face="OracleCloakField" Type="AbilCmd" AbilCmd="WitchShroud,Execute" Row="2" Column="0"/>
+        </CardLayouts>
+        <Food value="-5"/>
+        <BehaviorArray Link="Range4"/>
+    </CUnit>
+    <CUnit id="AmbientSpawner" parent="ZombieUnitSpawnerTemplate" SpawnAbility="ZombieWalkerSpawn">
+        <AbilArray index="1" Link="AmbientSpawn"/>
+    </CUnit>
+</Catalog>

@@ -1,0 +1,3577 @@
+include "TriggerLibs/NativeLib"
+include "Lib09BE6BA8"
+include "Lib1E3F036D"
+include "LibFEC22885"
+include "LibC50FD636"
+include "Lib1765BC64"
+
+//--------------------------------------------------------------------------------------------------
+// Library: Night of the Dead
+//--------------------------------------------------------------------------------------------------
+// Constants
+const string lib840A968C_gv_classCustomizationEvent = "CustomizeUnits";
+const string lib840A968C_gv_intializeEvent = "Initialize";
+const string lib840A968C_gv_shopIntialization = "Shop Intialize";
+const string lib840A968C_gv_victory = "Victory";
+const string lib840A968C_gv_defeat = "Defeat";
+const int lib840A968C_gv_numberofClasses = 15;
+const string lib840A968C_gv_classSelectionEvent = "Class Selection";
+const string lib840A968C_gv_difficultySelectionEvent = "DifficultySelection";
+const int lib840A968C_gv_mISSION_MAX_COUNT = 32;
+const int lib840A968C_gv_numberofDifficulties = 3;
+const int lib840A968C_gv_numberofPlayers = lib1E3F036D_gv_numberofPlayers;
+const string lib840A968C_gv_eventRegistrationSignal = "Register Event";
+const string lib840A968C_gv_playerDataBankName = "NightoftheDead2";
+const string lib840A968C_gv_playerCustomizationDataBankName = "NOTD2Customization";
+const string lib840A968C_gv_playerUnlocksBankName = "NOTD2Unlocks";
+const string lib840A968C_gv_save = "Save";
+const string lib840A968C_gv_load = "Load";
+const fixed lib840A968C_gv_recruitRatingGainPerXP = 1.0;
+const fixed lib840A968C_gv_normalRatingGainPerXP = 1.5;
+const fixed lib840A968C_gv_nightmareRatingGainPerXP = 2.0;
+const int lib840A968C_gv_gameEvents = 1;
+const int lib840A968C_gv_bossEvents = 3;
+const int lib840A968C_gv_playerEvents = 2;
+const int lib840A968C_gv_summary = 4;
+const int lib840A968C_gv_asserts = 5;
+const int lib840A968C_gv_banks = 6;
+const string lib840A968C_gv_gameEventLogFile = "Game Event Log";
+const string lib840A968C_gv_bossEventLogFile = "Boss Log";
+const string lib840A968C_gv_playerEventsLogFile = "Player Log";
+const string lib840A968C_gv_summaryLogFile = "Summary Log";
+const string lib840A968C_gv_assertsLogFile = "Unit Tests";
+const string lib840A968C_gv_bankLogFile = "Bank Statistics";
+
+// Structures
+struct lib840A968C_gs_DifficultSelectionItems {
+    playergroup lv_votes;
+    int lv_optionButton;
+    int lv_optionLabel;
+};
+
+struct lib840A968C_gs_Mission {
+    string lv_missionData;
+    int lv_missionObjective;
+    trigger lv_missionProgression;
+    string lv_nextMissionSignal;
+};
+
+struct lib840A968C_gs_PlayerStatusUI {
+    int lv_classIcon;
+    int lv_rankIcon;
+    int lv_playerNumber;
+    int lv_playerPortrait;
+    int lv_playerStatusFrame;
+};
+
+struct lib840A968C_gs_ClassCustomizationData {
+    string lv_serviceBranch;
+    string[4] lv_characterModifications;
+    string lv_sidearm;
+    string lv_pet;
+};
+
+struct lib840A968C_gs_Stats {
+    int lv_strength;
+    int lv_intelligance;
+    int lv_agility;
+    int lv_perception;
+    int lv_endurance;
+    int lv_total;
+    int lv_available;
+};
+
+struct lib840A968C_gs_GameplayStats {
+    int lv_hits;
+    int lv_damageTaken;
+    fixed lv_ratingLossFromHits;
+};
+
+struct lib840A968C_gs_PlayerData {
+    int lv_totalExperience;
+    int lv_availableExperience;
+    int lv_credits;
+    fixed lv_rating;
+    int lv_gamesPlayed;
+    string lv_currentRank;
+    int lv_currentRankIndex;
+    lib840A968C_gs_Stats lv_stats;
+    lib840A968C_gs_GameplayStats lv_currentGameStats;
+    lib840A968C_gs_ClassCustomizationData lv_classCustomization;
+};
+
+struct lib840A968C_gs_PlayerBanks {
+    bank lv_playerData;
+    bank lv_currentProfile;
+    bank lv_customizationUnlocks;
+};
+
+// Variables
+int lib840A968C_gv_numberofArmorSets;
+int lib840A968C_gv_testVaraible;
+bool lib840A968C_gv_riotMode;
+bool lib840A968C_gv_hordeLock;
+bool lib840A968C_gv_messageControl;
+string lib840A968C_gv_currentChapterData;
+int lib840A968C_gv_currentChapter;
+bool lib840A968C_gv_gameSetupComplete;
+int lib840A968C_gv_difficulty;
+int[lib840A968C_gv_numberofClasses + 1] lib840A968C_gv_classSelectionItems;
+timer lib840A968C_gv_classSelectionTimer;
+int lib840A968C_gv_classSelectionDialog;
+int lib840A968C_gv_classSelectionPanel;
+int lib840A968C_gv_classLoreFrame;
+int lib840A968C_gv_classModelFrame;
+int lib840A968C_gv_difficultySelectionDialog;
+lib840A968C_gs_DifficultSelectionItems[4] lib840A968C_gv_difficultySelectionOptions;
+lib840A968C_gs_Mission[lib840A968C_gv_mISSION_MAX_COUNT + 1] lib840A968C_gv_missionData;
+int lib840A968C_gv_missionIndex;
+string lib840A968C_gv_missionStep;
+int lib840A968C_gv_squadRating;
+int lib840A968C_gv_currentTransmission;
+bool lib840A968C_gv_nightmareModeSet;
+bool lib840A968C_gv_recruitMode;
+int lib840A968C_gv_scalingFactor;
+int lib840A968C_gv_sideMissionCount;
+int lib840A968C_gv_nightVisionButton;
+int lib840A968C_gv_teamLocationButton;
+int lib840A968C_gv_teamUIDialog;
+playergroup lib840A968C_gv_marineSquad;
+playergroup lib840A968C_gv_livingMarines;
+playergroup lib840A968C_gv_pets;
+playergroup lib840A968C_gv_deadMarines;
+lib840A968C_gs_PlayerBanks[lib840A968C_gv_numberofPlayers + 1] lib840A968C_gv_playerBanks;
+timer[lib840A968C_gv_numberofPlayers + 1][lib840A968C_gv_numberofPlayers + 1] lib840A968C_gv_damageNearDeathPenaltyTimer;
+lib840A968C_gs_PlayerData[lib840A968C_gv_numberofPlayers + 1] lib840A968C_gv_players;
+revealer[lib840A968C_gv_numberofPlayers + 1] lib840A968C_gv_mapHackRevealerDeveloper;
+bool[lib840A968C_gv_numberofPlayers + 1] lib840A968C_gv_revealerActive;
+
+void lib840A968C_InitVariables () {
+    int init_i;
+    int init_j;
+
+    lib840A968C_gv_numberofArmorSets = UserDataInstanceCount("ArmorSet");
+    lib840A968C_gv_currentChapterData = "Chapter 0";
+    lib840A968C_gv_difficulty = 1;
+    lib840A968C_gv_classSelectionTimer = TimerCreate();
+    lib840A968C_gv_classSelectionDialog = c_invalidDialogId;
+    lib840A968C_gv_classSelectionPanel = c_invalidDialogControlId;
+    lib840A968C_gv_classLoreFrame = c_invalidDialogControlId;
+    lib840A968C_gv_classModelFrame = c_invalidDialogControlId;
+    lib840A968C_gv_difficultySelectionDialog = c_invalidDialogId;
+    for (init_i = 0; init_i <= 3; init_i += 1) {
+        lib840A968C_gv_difficultySelectionOptions[init_i].lv_votes = PlayerGroupEmpty();
+        lib840A968C_gv_difficultySelectionOptions[init_i].lv_optionButton = c_invalidDialogControlId;
+        lib840A968C_gv_difficultySelectionOptions[init_i].lv_optionLabel = c_invalidDialogControlId;
+    }
+    for (init_i = 0; init_i <= lib840A968C_gv_mISSION_MAX_COUNT; init_i += 1) {
+        lib840A968C_gv_missionData[init_i].lv_missionObjective = c_invalidObjectiveId;
+    }
+    lib840A968C_gv_missionIndex = lib1E3F036D_gv_indexBaseValue;
+    lib840A968C_gv_squadRating = 1000;
+    lib840A968C_gv_currentTransmission = c_invalidTransmissionId;
+    lib840A968C_gv_sideMissionCount = lib1E3F036D_gf_GameDifficultyInteger(0, 2, 4);
+    lib840A968C_gv_nightVisionButton = c_invalidDialogControlId;
+    lib840A968C_gv_teamLocationButton = c_invalidDialogControlId;
+    lib840A968C_gv_teamUIDialog = c_invalidDialogId;
+    lib840A968C_gv_marineSquad = PlayerGroupEmpty();
+    lib840A968C_gv_livingMarines = PlayerGroupEmpty();
+    lib840A968C_gv_pets = PlayerGroupEmpty();
+    lib840A968C_gv_deadMarines = PlayerGroupEmpty();
+    for (init_i = 0; init_i <= lib840A968C_gv_numberofPlayers; init_i += 1) {
+        for (init_j = 0; init_j <= lib840A968C_gv_numberofPlayers; init_j += 1) {
+            lib840A968C_gv_damageNearDeathPenaltyTimer[init_i][init_j] = TimerCreate();
+        }
+    }
+    for (init_i = 0; init_i <= lib840A968C_gv_numberofPlayers; init_i += 1) {
+        lib840A968C_gv_players[init_i].lv_currentRankIndex = 1;
+    }
+}
+
+// Function Declarations
+bool lib840A968C_gf_ItemhasbeenPurchased (string lp_bankConditionID);
+void lib840A968C_gf_CreateUnlockBankKeys (bank lp_bank);
+void lib840A968C_gf_ApplyPlayerCustomization ();
+void lib840A968C_gf_ApplyCustomModel (int lp_player);
+void lib840A968C_gf_ApplyCustomColor (int lp_player);
+void lib840A968C_gf_ApplyCustomName ();
+int lib840A968C_gf_GetSlotActor (string lp_class);
+string lib840A968C_gf_GetSlotModelSet (string lp_slotName);
+void lib840A968C_gf_ApplyServiceBranchUpgrade (int lp_player);
+void lib840A968C_gf_ApplyCustomSidearm (int lp_player);
+void lib840A968C_gf_ApplyCharacterMods (int lp_player);
+void lib840A968C_gf_SendTransmission (text lp_speakerName, text lp_message, int lp_overrideCurrentMessage, int lp_type, int lp_messageDisplayLocation, int lp_speakerFaction, unit lp_speakingUnit);
+int lib840A968C_gf_GetMessagesfromMessageArea (int lp_messageLocation);
+soundlink lib840A968C_gf_GetFactionRadioSound (int lp_senderFaction);
+color lib840A968C_gf_GetMessageColor (int lp_event);
+void lib840A968C_gf_ChapterStart (int lp_chapterPreset);
+void lib840A968C_gf_MedicalDropPoolItemSpawn (point lp_location);
+void lib840A968C_gf_FlareDropPoolItemSpawn (point lp_location);
+void lib840A968C_gf_FieldLightDropPoolItemSpawn (point lp_location);
+void lib840A968C_gf_AmmoModificationDropPoolItemSpawn (point lp_location);
+void lib840A968C_gf_MagazineDropPoolItemSpawn (point lp_location);
+void lib840A968C_gf_SpawnItem (point lp_point, string lp_item, int lp_spawnType);
+void lib840A968C_gf_AIIntialize ();
+void lib840A968C_gf_PlayerOptionsOverride ();
+void lib840A968C_gf_PlayerSetup ();
+void lib840A968C_gf_DefaultAllianceStates ();
+void lib840A968C_gf_SetGameDifficulty ();
+void lib840A968C_gf_GameDifficultyHPAdjustment ();
+bool lib840A968C_gf_PlayerHasClassUnlocked (int lp_player, int lp_classSlot);
+void lib840A968C_gf_ClassUnlocked (int lp_classSlot);
+void lib840A968C_gf_CreateDifficultySelection ();
+bool lib840A968C_gf_GetMissionType (string lp_mission);
+trigger lib840A968C_gf_GetMissionProgression (int lp_missionToken);
+string lib840A968C_gf_GetMissionSignal (int lp_missionToken);
+int lib840A968C_gf_MissionStart (string lp_mission, trigger lp_progressionTrigger, string lp_nextMissionSignal);
+void lib840A968C_gf_MissionEnd (int lp_missionOutcome, int lp_missionToken);
+void lib840A968C_gf_MissonRewards (string lp_mission);
+bool lib840A968C_gf_PointNotNearUnitGroupUnits (point lp_targetPoint, unitgroup lp_unitGroup, fixed lp_distance);
+playergroup lib840A968C_gf_GetMarineSquadPlayers ();
+playergroup lib840A968C_gf_GetLivingMarineSquadPlayers ();
+playergroup lib840A968C_gf_GetDeadMarineSquadPlayers ();
+playergroup lib840A968C_gf_GetPets ();
+unit lib840A968C_gf_GetMarine (int lp_player);
+unitgroup lib840A968C_gf_GetMarineGroup ();
+bool lib840A968C_gf_IsAMarine (unit lp_unit);
+void lib840A968C_gf_RatingFromDeath (int lp_player);
+void lib840A968C_gf_DeathShareVision (int lp_deadPlayer);
+bool lib840A968C_gf_PlayerHasPet (int lp_player);
+void lib840A968C_gf_SpawnPet (int lp_player, fixed lp_deadMarineExperience, point lp_spawnPosition);
+void lib840A968C_gf_DropEquippedMagazines (point lp_dropPoint, int lp_numberofMagazines);
+void lib840A968C_gf_CreateTeamUI ();
+void lib840A968C_gf_CreatePlayerFrame (int lp_teamUIDialog);
+void lib840A968C_gf_SetRankData (int lp_player);
+void lib840A968C_gf_CreateBankDefaultKeyValues (bank lp_bank);
+void lib840A968C_gf_PreloadBanks ();
+void lib840A968C_gf_LoadBanks ();
+void lib840A968C_gf_LoadDataBankData (int lp_player, bank lp_bank);
+void lib840A968C_gf_LoadCustomizationBankData (int lp_player, bank lp_bank);
+void lib840A968C_gf_DataBoundsCheck (int lp_player);
+void lib840A968C_gf_SaveDataBank (int lp_player, bank lp_bank);
+void lib840A968C_gf_SaveCustomizationBank (int lp_player, bank lp_bank);
+string lib840A968C_gf_GetSectionName (string lp_section);
+string lib840A968C_gf_GetKeyName (string lp_key);
+void lib840A968C_gf_CreateProfileBank (int lp_player, int lp_profile);
+void lib840A968C_gf_LoadActiveProfile (int lp_player);
+void lib840A968C_gf_AwardRating (int lp_experienceGained, int lp_player);
+void lib840A968C_gf_RatingBonusAdjustment (int lp_player);
+void lib840A968C_gf_AwardPlayerXP (int lp_player, int lp_xP);
+void lib840A968C_gf_AwardTeamXP (int lp_xP);
+void lib840A968C_gf_AwardUnitXP (fixed lp_xP, unit lp_unit);
+void lib840A968C_gf_AwardTeamMarineXP (fixed lp_xP);
+void lib840A968C_gf_AwardCredits (int lp_player, int lp_credits);
+void lib840A968C_gf_AwardTeamCredits (int lp_credits);
+void lib840A968C_gf_RankUp (int lp_player);
+bool lib840A968C_gf_RankUpCheck (int lp_player);
+fixed lib840A968C_gf_RatingLoss (int lp_player);
+text lib840A968C_gf_GetPlayerNamewithrank (int lp_player);
+void lib840A968C_gf_BackgroundDialog (unit lp_unit, text lp_speaker, text lp_speechText, int lp_speechType, fixed lp_dialogDuration);
+void lib840A968C_gf_Assert (string lp_test, string lp_expectedValue, string lp_testMessage);
+void lib840A968C_gf_AssertBankLoad ();
+void lib840A968C_gf_AssertBankCreation ();
+void lib840A968C_gf_AssertBankSave ();
+void lib840A968C_gf_AssertXPAward ();
+void lib840A968C_gf_AssertMarineExperienceAward ();
+void lib840A968C_gf_AssertClassCreation ();
+void lib840A968C_gf_SetLoggingOutput ();
+bool lib840A968C_gf_IsaDeveloper (string lp_handle);
+
+// Trigger Declarations
+trigger lib840A968C_gt_ShopIntialize;
+trigger lib840A968C_gt_BankLoad;
+trigger lib840A968C_gt_ApplyServiceBranches;
+trigger lib840A968C_gt_ApplySidearms;
+trigger lib840A968C_gt_ApplyCharacterModifications;
+trigger lib840A968C_gt_ParasiteAttacks;
+trigger lib840A968C_gt_AmbientAttacksOnPlayers;
+trigger lib840A968C_gt_RiotModeCheck;
+trigger lib840A968C_gt_ActivateHorde;
+trigger lib840A968C_gt_Intialization;
+trigger lib840A968C_gt_GameStart;
+trigger lib840A968C_gt_PlayerLeavestheGame;
+trigger lib840A968C_gt_Victory;
+trigger lib840A968C_gt_Defeat;
+trigger lib840A968C_gt_DisplayClassSelection;
+trigger lib840A968C_gt_ClassSelection;
+trigger lib840A968C_gt_EndClassSelection;
+trigger lib840A968C_gt_DifficultySelection;
+trigger lib840A968C_gt_DifficultyVote;
+trigger lib840A968C_gt_EventRegistrationForMarineUnits;
+trigger lib840A968C_gt_NightVisionModuleLightingChange;
+trigger lib840A968C_gt_NightVisionUIHookup;
+trigger lib840A968C_gt_NightVisionToggle;
+trigger lib840A968C_gt_TeamLocation;
+trigger lib840A968C_gt_HookupTeamLocationButton;
+trigger lib840A968C_gt_PlayerMarineDies;
+trigger lib840A968C_gt_ConstructTeamUI;
+trigger lib840A968C_gt_BankSave;
+trigger lib840A968C_gt_RatingLossfromLives;
+trigger lib840A968C_gt_RatingLossfromFriendlyFire;
+trigger lib840A968C_gt_HitsUpdate;
+trigger lib840A968C_gt_CamoSwitch;
+trigger lib840A968C_gt_ModelLightMarine;
+trigger lib840A968C_gt_ModelHeavyMarine;
+trigger lib840A968C_gt_ColorSwitching;
+trigger lib840A968C_gt_RunUnitTests;
+trigger lib840A968C_gt_ForceHordeMode;
+trigger lib840A968C_gt_SetChapter;
+trigger lib840A968C_gt_DeveloperGodMode;
+trigger lib840A968C_gt_StartGameClassSelection;
+trigger lib840A968C_gt_MissionRewards;
+trigger lib840A968C_gt_DisplayPlayerStats;
+trigger lib840A968C_gt_SkipClassSelection;
+trigger lib840A968C_gt_Weapons;
+trigger lib840A968C_gt_RandomArmor;
+trigger lib840A968C_gt_AllianceStates;
+trigger lib840A968C_gt_SpawnItem;
+trigger lib840A968C_gt_MapReveal;
+trigger lib840A968C_gt_MaxLevelHero;
+trigger lib840A968C_gt_HPScaling;
+
+// Functions
+bool lib840A968C_gf_ItemhasbeenPurchased (string lp_bankConditionID) {
+    // Implementation
+    return BankConditionEvaluate(1, (lp_bankConditionID));
+}
+
+void lib840A968C_gf_CreateUnlockBankKeys (bank lp_bank) {
+    int init_i;
+
+    int auto36CF4845_ae;
+    int auto36CF4845_ai;
+    int auto8FFB7043_ae;
+    int auto8FFB7043_ai;
+
+    // Variable Declarations
+    string[6] lv_armorSlots;
+    int lv_slotIndex;
+    int lv_armorSetIndex;
+
+    // Variable Initialization
+    for (init_i = 0; init_i <= 5; init_i += 1) {
+        lv_armorSlots[init_i] = "";
+    }
+    lv_slotIndex = lib1E3F036D_gv_indexBaseValue;
+
+    // Implementation
+    lv_armorSlots[lv_slotIndex] = UserDataGetString("ArmorSlots", UserDataInstance("ArmorSlots", 1), "Slot", 1);
+    IntLoopBegin(lib1E3F036D_gv_indexBaseValue, UserDataInstanceCount("ArmorSlots"));
+    for ( ; !IntLoopDone() ; IntLoopStep() ) {
+        if ((lv_armorSlots[lv_slotIndex] != UserDataGetString("ArmorSlots", UserDataInstance("ArmorSlots", IntLoopCurrent()), "Slot", 1))) {
+            lv_slotIndex += 1;
+            lv_armorSlots[lv_slotIndex] = UserDataGetString("ArmorSlots", UserDataInstance("ArmorSlots", IntLoopCurrent()), "Slot", 1);
+        }
+
+    }
+    IntLoopEnd();
+    auto36CF4845_ae = lib840A968C_gv_numberofArmorSets;
+    auto36CF4845_ai = 1;
+    lv_armorSetIndex = lib1E3F036D_gv_indexBaseValue;
+    for ( ; ( (auto36CF4845_ai >= 0 && lv_armorSetIndex <= auto36CF4845_ae) || (auto36CF4845_ai <= 0 && lv_armorSetIndex >= auto36CF4845_ae) ) ; lv_armorSetIndex += auto36CF4845_ai ) {
+        auto8FFB7043_ae = 5;
+        auto8FFB7043_ai = 1;
+        lv_slotIndex = lib1E3F036D_gv_indexBaseValue;
+        for ( ; ( (auto8FFB7043_ai >= 0 && lv_slotIndex <= auto8FFB7043_ae) || (auto8FFB7043_ai <= 0 && lv_slotIndex >= auto8FFB7043_ae) ) ; lv_slotIndex += auto8FFB7043_ai ) {
+            if ((!(BankKeyExists(lp_bank, UserDataGetString("ArmorSet", UserDataInstance("ArmorSet", lv_armorSetIndex), "Name", 1), lv_armorSlots[lv_slotIndex])))) {
+                BankValueSetFromInt(lp_bank, UserDataGetString("ArmorSet", UserDataInstance("ArmorSet", lv_armorSetIndex), "Name", 1), lv_armorSlots[lv_slotIndex], 0);
+            }
+        }
+    }
+    BankSave(lp_bank);
+}
+
+void lib840A968C_gf_ApplyPlayerCustomization () {
+    // Implementation
+    TriggerSendEvent(lib840A968C_gv_classCustomizationEvent);
+}
+
+void lib840A968C_gf_ApplyCustomModel (int lp_player) {
+    // Variable Declarations
+    string lv_modelSet;
+
+    // Variable Initialization
+    lv_modelSet = "";
+
+    // Implementation
+    IntLoopBegin(1, UserDataInstanceCount("ArmorSlots"));
+    for ( ; !IntLoopDone() ; IntLoopStep() ) {
+        lv_modelSet = lib840A968C_gf_GetSlotModelSet("");
+    }
+    IntLoopEnd();
+}
+
+void lib840A968C_gf_ApplyCustomColor (int lp_player) {
+    // Implementation
+    libNtve_gf_SendActorMessageToUnit(null, libNtve_gf_SetTintColor(Color(100.00, 100.00, 100.00), 1.0, 0.0));
+}
+
+void lib840A968C_gf_ApplyCustomName () {
+}
+
+int lib840A968C_gf_GetSlotActor (string lp_class) {
+    string auto5D3B261E_val;
+
+    // Implementation
+    auto5D3B261E_val = lp_class;
+    if (auto5D3B261E_val == "Medic2") {
+        return 2;
+
+    }
+    else if (auto5D3B261E_val == "Recon") {
+        return 3;
+
+    }
+    else {
+        return 1;
+
+    }
+}
+
+string lib840A968C_gf_GetSlotModelSet (string lp_slotName) {
+    // Implementation
+    return "";
+}
+
+trigger auto_lib840A968C_gf_ApplyServiceBranchUpgrade_Trigger = null;
+int auto_lib840A968C_gf_ApplyServiceBranchUpgrade_lp_player;
+
+void lib840A968C_gf_ApplyServiceBranchUpgrade (int lp_player) {
+    auto_lib840A968C_gf_ApplyServiceBranchUpgrade_lp_player = lp_player;
+
+    if (auto_lib840A968C_gf_ApplyServiceBranchUpgrade_Trigger == null) {
+        auto_lib840A968C_gf_ApplyServiceBranchUpgrade_Trigger = TriggerCreate("auto_lib840A968C_gf_ApplyServiceBranchUpgrade_TriggerFunc");
+    }
+
+    TriggerExecute(auto_lib840A968C_gf_ApplyServiceBranchUpgrade_Trigger, false, false);
+}
+
+bool auto_lib840A968C_gf_ApplyServiceBranchUpgrade_TriggerFunc (bool testConds, bool runActions) {
+    int lp_player = auto_lib840A968C_gf_ApplyServiceBranchUpgrade_lp_player;
+
+    // Implementation
+    if ((lib840A968C_gv_players[lp_player].lv_classCustomization.lv_serviceBranch != null)) {
+        TechTreeUpgradeAddLevel(lp_player, UserDataGetGameLink("ServiceBranch", lib840A968C_gv_players[lp_player].lv_classCustomization.lv_serviceBranch, "Branch Upgrade", 1), 1);
+    }
+    return true;
+}
+
+void lib840A968C_gf_ApplyCustomSidearm (int lp_player) {
+    // Implementation
+    TechTreeUpgradeAddLevel(lp_player, lib840A968C_gv_players[lp_player].lv_classCustomization.lv_sidearm, 1);
+    if ((lib840A968C_gv_players[lp_player].lv_classCustomization.lv_sidearm == "CombatKnifeSidearm")) {
+        TechTreeUpgradeAddLevel(lp_player, "CombatKnifeRankUpgrade", (lib840A968C_gv_players[lp_player].lv_currentRankIndex - 1));
+    }
+
+    if ((lib840A968C_gv_players[lp_player].lv_classCustomization.lv_sidearm == "TomahawkSidearm")) {
+        TechTreeUpgradeAddLevel(lp_player, "TomahawkRankUpgrade", (lib840A968C_gv_players[lp_player].lv_currentRankIndex - 1));
+    }
+
+}
+
+trigger auto_lib840A968C_gf_ApplyCharacterMods_Trigger = null;
+int auto_lib840A968C_gf_ApplyCharacterMods_lp_player;
+
+void lib840A968C_gf_ApplyCharacterMods (int lp_player) {
+    auto_lib840A968C_gf_ApplyCharacterMods_lp_player = lp_player;
+
+    if (auto_lib840A968C_gf_ApplyCharacterMods_Trigger == null) {
+        auto_lib840A968C_gf_ApplyCharacterMods_Trigger = TriggerCreate("auto_lib840A968C_gf_ApplyCharacterMods_TriggerFunc");
+    }
+
+    TriggerExecute(auto_lib840A968C_gf_ApplyCharacterMods_Trigger, false, false);
+}
+
+bool auto_lib840A968C_gf_ApplyCharacterMods_TriggerFunc (bool testConds, bool runActions) {
+    int lp_player = auto_lib840A968C_gf_ApplyCharacterMods_lp_player;
+
+    // Implementation
+    IntLoopBegin(1, 3);
+    for ( ; !IntLoopDone() ; IntLoopStep() ) {
+        TechTreeUpgradeAddLevel(lp_player, lib840A968C_gv_players[lp_player].lv_classCustomization.lv_characterModifications[IntLoopCurrent()], 1);
+        if ((lib840A968C_gv_players[lp_player].lv_classCustomization.lv_characterModifications[IntLoopCurrent()] != "")) {
+        }
+    }
+    IntLoopEnd();
+    return true;
+}
+
+void lib840A968C_gf_SendTransmission (text lp_speakerName, text lp_message, int lp_overrideCurrentMessage, int lp_type, int lp_messageDisplayLocation, int lp_speakerFaction, unit lp_speakingUnit) {
+    // Implementation
+    while (lib840A968C_gv_messageControl) {
+        Wait(1.0, c_timeGame);
+    }
+    lib840A968C_gv_messageControl = true;
+    SoundPlay(lib840A968C_gf_GetFactionRadioSound(lp_speakerFaction), PlayerGroupAll(), 100.0, 0.0);
+    if ((lp_overrideCurrentMessage == 0)) {
+        UIClearMessages(PlayerGroupAll(), lib840A968C_gf_GetMessagesfromMessageArea(lp_messageDisplayLocation));
+    }
+    else {
+    }
+    TextExpressionSetToken("Param/Expression/lib_840A968C_7D715F8D", "A", lp_speakerName);
+    TextExpressionSetToken("Param/Expression/lib_840A968C_7D715F8D", "B", lp_message);
+    UIDisplayMessage(PlayerGroupAll(), lp_messageDisplayLocation, TextWithColor(TextExpressionAssemble("Param/Expression/lib_840A968C_7D715F8D"), lib840A968C_gf_GetMessageColor(lp_type)));
+    Wait(4.0, c_timeGame);
+    lib840A968C_gv_messageControl = false;
+}
+
+int lib840A968C_gf_GetMessagesfromMessageArea (int lp_messageLocation) {
+    int auto43486D03_val;
+
+    // Implementation
+    auto43486D03_val = lp_messageLocation;
+    if (auto43486D03_val == c_messageAreaWarning) {
+        return c_messageAreaWarning;
+    }
+    else if (auto43486D03_val == c_messageAreaSubtitle) {
+        return c_messageAreaSubtitle;
+    }
+    else if (auto43486D03_val == c_messageAreaObjective) {
+        return c_messageAreaObjective;
+    }
+    else if (auto43486D03_val == c_messageAreaError) {
+        return c_messageAreaError;
+    }
+    else if (auto43486D03_val == c_messageAreaDirective) {
+        return c_messageAreaDirective;
+    }
+    else if (auto43486D03_val == c_messageAreaDebug) {
+        return c_messageAreaDebug;
+    }
+    else if (auto43486D03_val == c_messageAreaCinematic) {
+        return c_messageAreaCinematic;
+    }
+    else if (auto43486D03_val == c_messageAreaCheat) {
+        return c_messageAreaCheat;
+    }
+    else if (auto43486D03_val == c_messageAreaChat) {
+        return c_messageAreaChat;
+    }
+    else {
+    }
+    return c_messageAreaAll;
+}
+
+soundlink lib840A968C_gf_GetFactionRadioSound (int lp_senderFaction) {
+    int autoE09415A6_val;
+
+    // Implementation
+    autoE09415A6_val = lp_senderFaction;
+    if (autoE09415A6_val == 0) {
+        return SoundLink("RadioActivateUGC", -1);
+    }
+    else if (autoE09415A6_val == 2) {
+        return null;
+    }
+    else if (autoE09415A6_val == 4) {
+        return SoundLink("RadioActivateCiv", -1);
+    }
+    else if (autoE09415A6_val == 1) {
+        return SoundLink("RadioActivateMerc", -1);
+    }
+    else if (autoE09415A6_val == 6) {
+        return null;
+    }
+    else if (autoE09415A6_val == 5) {
+        return SoundLink("RadioActivatePlayer", -1);
+    }
+    else {
+    }
+    return null;
+}
+
+color lib840A968C_gf_GetMessageColor (int lp_event) {
+    int autoB8B1FF29_val;
+
+    // Implementation
+    autoB8B1FF29_val = lp_event;
+    if (autoB8B1FF29_val == 0) {
+        return Color(100.00, 100.00, 50.20);
+    }
+    else if (autoB8B1FF29_val == 2) {
+        return Color(100.00, 0.00, 0.00);
+    }
+    else if (autoB8B1FF29_val == 5) {
+        return Color(0.00, 0.00, 100.00);
+    }
+    else if (autoB8B1FF29_val == 3) {
+        return Color(100.00, 0.00, 0.00);
+    }
+    else if (autoB8B1FF29_val == 4) {
+        return Color(100.00, 0.00, 0.00);
+    }
+    else if (autoB8B1FF29_val == 1) {
+        return Color(0.00, 100.00, 0.00);
+    }
+    else {
+    }
+    return Color(100.00, 100.00, 100.00);
+}
+
+void lib840A968C_gf_ChapterStart (int lp_chapterPreset) {
+    // Implementation
+    lib840A968C_gv_currentChapter = lp_chapterPreset;
+    lib840A968C_gv_currentChapterData = UserDataInstance("Chapters", ((lp_chapterPreset) + 1));
+    PlayerGroupLoopBegin(PlayerGroupAll());
+    for ( ; !PlayerGroupLoopDone() ; PlayerGroupLoopStep() ) {
+        libNtve_gf_SetUpgradeLevelForPlayer(PlayerGroupLoopCurrent(), "Chapter1Complete", (lp_chapterPreset));
+    }
+    PlayerGroupLoopEnd();
+    SoundtrackStopCurrent(PlayerGroupAll(), c_soundtrackCategoryAmbience, true);
+    SoundtrackPlay(PlayerGroupAll(), c_soundtrackCategoryAmbience, UserDataGetGameLink("Chapters", lib840A968C_gv_currentChapterData, "Chapter Ambient Soundtrack", 1), c_soundtrackCueAny, c_soundtrackIndexAny, true);
+    UIShowTextCrawl(PlayerGroupAll(), UserDataGetText("Chapters", lib840A968C_gv_currentChapterData, "Chapter Name", 1), UserDataGetText("Chapters", lib840A968C_gv_currentChapterData, "Chapter Subtitle", 1), 20.0, SoundLink("TextCrawlType", -1), SoundLink("TextCrawlType", -1));
+    lib1765BC64_gf_ZoneSpawning(UserDataGetUnit("Chapters", lib840A968C_gv_currentChapterData, "Chapter Spawner", lib1E3F036D_gf_GameDifficultyInteger(1, 2, 3)), 16);
+    TriggerSendEvent(lib840A968C_gv_save);
+    TextExpressionSetToken("Param/Expression/lib_840A968C_2906CCE5", "A", UserDataGetText("Chapters", lib840A968C_gv_currentChapterData, "Chapter Name", 1));
+    TriggerDebugOutput(lib840A968C_gv_gameEvents, TextExpressionAssemble("Param/Expression/lib_840A968C_2906CCE5"), false);
+}
+
+trigger auto_lib840A968C_gf_MedicalDropPoolItemSpawn_Trigger = null;
+point auto_lib840A968C_gf_MedicalDropPoolItemSpawn_lp_location;
+
+void lib840A968C_gf_MedicalDropPoolItemSpawn (point lp_location) {
+    auto_lib840A968C_gf_MedicalDropPoolItemSpawn_lp_location = lp_location;
+
+    if (auto_lib840A968C_gf_MedicalDropPoolItemSpawn_Trigger == null) {
+        auto_lib840A968C_gf_MedicalDropPoolItemSpawn_Trigger = TriggerCreate("auto_lib840A968C_gf_MedicalDropPoolItemSpawn_TriggerFunc");
+    }
+
+    TriggerExecute(auto_lib840A968C_gf_MedicalDropPoolItemSpawn_Trigger, false, false);
+}
+
+bool auto_lib840A968C_gf_MedicalDropPoolItemSpawn_TriggerFunc (bool testConds, bool runActions) {
+    point lp_location = auto_lib840A968C_gf_MedicalDropPoolItemSpawn_lp_location;
+
+    fixed auto3ABD229D_chance;
+    fixed auto3ABD229D_roll;
+
+    // Implementation
+    auto3ABD229D_chance = 0.0;
+    auto3ABD229D_roll = RandomFixed(0.0, 100.0);
+    if (auto3ABD229D_roll >= auto3ABD229D_chance && auto3ABD229D_roll <= (auto3ABD229D_chance + 60.0))
+    {
+        lib840A968C_gf_SpawnItem(lp_location, "Medkit", 0);
+    }
+    auto3ABD229D_chance += 60.0;
+    if (auto3ABD229D_roll >= auto3ABD229D_chance && auto3ABD229D_roll <= (auto3ABD229D_chance + 20.0))
+    {
+        lib840A968C_gf_SpawnItem(lp_location, "Bandage", 0);
+    }
+    auto3ABD229D_chance += 20.0;
+    if (auto3ABD229D_roll >= auto3ABD229D_chance && auto3ABD229D_roll <= (auto3ABD229D_chance + 10.0))
+    {
+        lib840A968C_gf_SpawnItem(lp_location, "AntiVenom", 0);
+    }
+    auto3ABD229D_chance += 10.0;
+    if (auto3ABD229D_roll >= auto3ABD229D_chance && auto3ABD229D_roll <= (auto3ABD229D_chance + 10.0))
+    {
+        lib840A968C_gf_SpawnItem(lp_location, "MendingPaste", 0);
+    }
+    auto3ABD229D_chance += 10.0;
+
+    return true;
+}
+
+trigger auto_lib840A968C_gf_FlareDropPoolItemSpawn_Trigger = null;
+point auto_lib840A968C_gf_FlareDropPoolItemSpawn_lp_location;
+
+void lib840A968C_gf_FlareDropPoolItemSpawn (point lp_location) {
+    auto_lib840A968C_gf_FlareDropPoolItemSpawn_lp_location = lp_location;
+
+    if (auto_lib840A968C_gf_FlareDropPoolItemSpawn_Trigger == null) {
+        auto_lib840A968C_gf_FlareDropPoolItemSpawn_Trigger = TriggerCreate("auto_lib840A968C_gf_FlareDropPoolItemSpawn_TriggerFunc");
+    }
+
+    TriggerExecute(auto_lib840A968C_gf_FlareDropPoolItemSpawn_Trigger, false, false);
+}
+
+bool auto_lib840A968C_gf_FlareDropPoolItemSpawn_TriggerFunc (bool testConds, bool runActions) {
+    point lp_location = auto_lib840A968C_gf_FlareDropPoolItemSpawn_lp_location;
+
+    fixed auto4DA3A24B_chance;
+    fixed auto4DA3A24B_roll;
+
+    // Implementation
+    auto4DA3A24B_chance = 0.0;
+    auto4DA3A24B_roll = RandomFixed(0.0, 100.0);
+    if (auto4DA3A24B_roll >= auto4DA3A24B_chance && auto4DA3A24B_roll <= (auto4DA3A24B_chance + 75.0))
+    {
+        lib840A968C_gf_SpawnItem(lp_location, "RoadFlare", 0);
+    }
+    auto4DA3A24B_chance += 75.0;
+    if (auto4DA3A24B_roll >= auto4DA3A24B_chance && auto4DA3A24B_roll <= (auto4DA3A24B_chance + 25.0))
+    {
+        lib840A968C_gf_SpawnItem(lp_location, "FlareGun", 0);
+    }
+    auto4DA3A24B_chance += 25.0;
+
+    return true;
+}
+
+trigger auto_lib840A968C_gf_FieldLightDropPoolItemSpawn_Trigger = null;
+point auto_lib840A968C_gf_FieldLightDropPoolItemSpawn_lp_location;
+
+void lib840A968C_gf_FieldLightDropPoolItemSpawn (point lp_location) {
+    auto_lib840A968C_gf_FieldLightDropPoolItemSpawn_lp_location = lp_location;
+
+    if (auto_lib840A968C_gf_FieldLightDropPoolItemSpawn_Trigger == null) {
+        auto_lib840A968C_gf_FieldLightDropPoolItemSpawn_Trigger = TriggerCreate("auto_lib840A968C_gf_FieldLightDropPoolItemSpawn_TriggerFunc");
+    }
+
+    TriggerExecute(auto_lib840A968C_gf_FieldLightDropPoolItemSpawn_Trigger, false, false);
+}
+
+bool auto_lib840A968C_gf_FieldLightDropPoolItemSpawn_TriggerFunc (bool testConds, bool runActions) {
+    point lp_location = auto_lib840A968C_gf_FieldLightDropPoolItemSpawn_lp_location;
+
+    // Implementation
+    lib840A968C_gf_SpawnItem(lp_location, "FieldLights", 0);
+    return true;
+}
+
+trigger auto_lib840A968C_gf_AmmoModificationDropPoolItemSpawn_Trigger = null;
+point auto_lib840A968C_gf_AmmoModificationDropPoolItemSpawn_lp_location;
+
+void lib840A968C_gf_AmmoModificationDropPoolItemSpawn (point lp_location) {
+    auto_lib840A968C_gf_AmmoModificationDropPoolItemSpawn_lp_location = lp_location;
+
+    if (auto_lib840A968C_gf_AmmoModificationDropPoolItemSpawn_Trigger == null) {
+        auto_lib840A968C_gf_AmmoModificationDropPoolItemSpawn_Trigger = TriggerCreate("auto_lib840A968C_gf_AmmoModificationDropPoolItemSpawn_TriggerFunc");
+    }
+
+    TriggerExecute(auto_lib840A968C_gf_AmmoModificationDropPoolItemSpawn_Trigger, false, false);
+}
+
+bool auto_lib840A968C_gf_AmmoModificationDropPoolItemSpawn_TriggerFunc (bool testConds, bool runActions) {
+    point lp_location = auto_lib840A968C_gf_AmmoModificationDropPoolItemSpawn_lp_location;
+
+    fixed auto29BAACFA_chance;
+    fixed auto29BAACFA_roll;
+
+    // Implementation
+    auto29BAACFA_chance = 0.0;
+    auto29BAACFA_roll = RandomFixed(0.0, 100.0);
+    if (auto29BAACFA_roll >= auto29BAACFA_chance && auto29BAACFA_roll <= (auto29BAACFA_chance + 25.0))
+    {
+        lib840A968C_gf_SpawnItem(lp_location, "HighExplosive", 0);
+    }
+    auto29BAACFA_chance += 25.0;
+    if (auto29BAACFA_roll >= auto29BAACFA_chance && auto29BAACFA_roll <= (auto29BAACFA_chance + 25.0))
+    {
+        lib840A968C_gf_SpawnItem(lp_location, "ArmorPiercing", 0);
+    }
+    auto29BAACFA_chance += 25.0;
+    if (auto29BAACFA_roll >= auto29BAACFA_chance && auto29BAACFA_roll <= (auto29BAACFA_chance + 25.0))
+    {
+        lib840A968C_gf_SpawnItem(lp_location, "Expanding", 0);
+    }
+    auto29BAACFA_chance += 25.0;
+    if (auto29BAACFA_roll >= auto29BAACFA_chance && auto29BAACFA_roll <= (auto29BAACFA_chance + 25.0))
+    {
+        lib840A968C_gf_SpawnItem(lp_location, "Flechette", 0);
+    }
+    auto29BAACFA_chance += 25.0;
+
+    return true;
+}
+
+trigger auto_lib840A968C_gf_MagazineDropPoolItemSpawn_Trigger = null;
+point auto_lib840A968C_gf_MagazineDropPoolItemSpawn_lp_location;
+
+void lib840A968C_gf_MagazineDropPoolItemSpawn (point lp_location) {
+    auto_lib840A968C_gf_MagazineDropPoolItemSpawn_lp_location = lp_location;
+
+    if (auto_lib840A968C_gf_MagazineDropPoolItemSpawn_Trigger == null) {
+        auto_lib840A968C_gf_MagazineDropPoolItemSpawn_Trigger = TriggerCreate("auto_lib840A968C_gf_MagazineDropPoolItemSpawn_TriggerFunc");
+    }
+
+    TriggerExecute(auto_lib840A968C_gf_MagazineDropPoolItemSpawn_Trigger, false, false);
+}
+
+bool auto_lib840A968C_gf_MagazineDropPoolItemSpawn_TriggerFunc (bool testConds, bool runActions) {
+    point lp_location = auto_lib840A968C_gf_MagazineDropPoolItemSpawn_lp_location;
+
+    fixed auto23AA3173_chance;
+    fixed auto23AA3173_roll;
+    int auto349FC4BA_n;
+    int auto349FC4BA_i;
+    int auto880855DB_n;
+    int auto880855DB_i;
+    int auto8A13D3CB_n;
+    int auto8A13D3CB_i;
+
+    // Implementation
+    auto23AA3173_chance = 0.0;
+    auto23AA3173_roll = RandomFixed(0.0, 100.0);
+    if (auto23AA3173_roll >= auto23AA3173_chance && auto23AA3173_roll <= (auto23AA3173_chance + 50.0))
+    {
+        auto349FC4BA_n = 2;
+        for (auto349FC4BA_i = 1; auto349FC4BA_i <= auto349FC4BA_n; auto349FC4BA_i += 1) {
+            lib840A968C_gf_SpawnItem(lp_location, "Magazine", 0);
+        }
+    }
+    auto23AA3173_chance += 50.0;
+    if (auto23AA3173_roll >= auto23AA3173_chance && auto23AA3173_roll <= (auto23AA3173_chance + 35.0))
+    {
+        auto880855DB_n = 3;
+        for (auto880855DB_i = 1; auto880855DB_i <= auto880855DB_n; auto880855DB_i += 1) {
+            lib840A968C_gf_SpawnItem(lp_location, "Magazine", 0);
+        }
+    }
+    auto23AA3173_chance += 35.0;
+    if (auto23AA3173_roll >= auto23AA3173_chance && auto23AA3173_roll <= (auto23AA3173_chance + 15.0))
+    {
+        auto8A13D3CB_n = 4;
+        for (auto8A13D3CB_i = 1; auto8A13D3CB_i <= auto8A13D3CB_n; auto8A13D3CB_i += 1) {
+            lib840A968C_gf_SpawnItem(lp_location, "Magazine", 0);
+        }
+    }
+    auto23AA3173_chance += 15.0;
+
+    return true;
+}
+
+trigger auto_lib840A968C_gf_SpawnItem_Trigger = null;
+point auto_lib840A968C_gf_SpawnItem_lp_point;
+string auto_lib840A968C_gf_SpawnItem_lp_item;
+int auto_lib840A968C_gf_SpawnItem_lp_spawnType;
+
+void lib840A968C_gf_SpawnItem (point lp_point, string lp_item, int lp_spawnType) {
+    auto_lib840A968C_gf_SpawnItem_lp_point = lp_point;
+    auto_lib840A968C_gf_SpawnItem_lp_item = lp_item;
+    auto_lib840A968C_gf_SpawnItem_lp_spawnType = lp_spawnType;
+
+    if (auto_lib840A968C_gf_SpawnItem_Trigger == null) {
+        auto_lib840A968C_gf_SpawnItem_Trigger = TriggerCreate("auto_lib840A968C_gf_SpawnItem_TriggerFunc");
+    }
+
+    TriggerExecute(auto_lib840A968C_gf_SpawnItem_Trigger, false, false);
+}
+
+bool auto_lib840A968C_gf_SpawnItem_TriggerFunc (bool testConds, bool runActions) {
+    point lp_point = auto_lib840A968C_gf_SpawnItem_lp_point;
+    string lp_item = auto_lib840A968C_gf_SpawnItem_lp_item;
+    int lp_spawnType = auto_lib840A968C_gf_SpawnItem_lp_spawnType;
+
+    // Implementation
+    if (lib09BE6BA8_gf_PointisVisibletoPlayerGroup(lib840A968C_gf_GetMarineSquadPlayers(), lp_point) && (lp_spawnType != 0)) {
+        libNtve_gf_CreateActorAtPoint("BarracksDropPod", lp_point);
+        Wait(2.2, c_timeGame);
+    }
+    else {
+    }
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, lp_item, 0, 0, lp_point);
+    return true;
+}
+
+void lib840A968C_gf_AIIntialize () {
+    // Implementation
+    CampaignInitAI();
+    AISetDifficulty(lib1E3F036D_gv_zombiePlayer, c_diffPressForward, true);
+    AISetDifficulty(lib1E3F036D_gv_zombiePlayer, c_diffFleeDamage, true);
+    AISetDifficulty(lib1E3F036D_gv_zombiePlayer, c_diffWaveAvoidDanger, true);
+    AISetDifficulty(lib1E3F036D_gv_peacekeeperPlayer, c_diffPressForward, true);
+    AISetDifficulty(lib1E3F036D_gv_peacekeeperPlayer, c_diffFleeDamage, true);
+    AISetDifficulty(lib1E3F036D_gv_peacekeeperPlayer, c_diffWaveAvoidDanger, true);
+    AISetBullyAttackWavePercent(0, lib1E3F036D_gv_zombiePlayer);
+}
+
+void lib840A968C_gf_PlayerOptionsOverride () {
+    // Implementation
+    HelpPanelEnableTechTreeButton(PlayerGroupAll(), false);
+    PlayerGroupLoopBegin(PlayerGroupAll());
+    for ( ; !PlayerGroupLoopDone() ; PlayerGroupLoopStep() ) {
+        TechTreeRestrictionsEnable(PlayerGroupLoopCurrent(), true);
+        PlayerOptionOverride(PlayerGroupLoopCurrent(), "gametooltips", "1");
+        PlayerOptionOverride(PlayerGroupLoopCurrent(), "selectuncontrolable", "1");
+        PlayerOptionOverride(PlayerGroupLoopCurrent(), "simplecommandcard", "0");
+        PlayerOptionOverride(PlayerGroupLoopCurrent(), "showmissiontime", "1");
+        PlayerOptionOverride(PlayerGroupLoopCurrent(), "worldobjecttooltips", "1");
+        PlayerOptionOverride(PlayerGroupLoopCurrent(), "showalerts", "1");
+    }
+    PlayerGroupLoopEnd();
+}
+
+void lib840A968C_gf_PlayerSetup () {
+    playergroup auto8264CA4E_g;
+    int auto8264CA4E_p;
+
+    // Variable Declarations
+    int lv_player;
+
+    // Variable Initialization
+
+    // Implementation
+    auto8264CA4E_g = GameAttributePlayersForTeam(1); 
+    auto8264CA4E_p = 1;
+    for ( ; auto8264CA4E_p <= PlayerGroupCount(auto8264CA4E_g) ; auto8264CA4E_p += BoolToInt(lv_player == PlayerGroupPlayer(auto8264CA4E_g, auto8264CA4E_p)) ) {
+        lv_player = PlayerGroupPlayer(auto8264CA4E_g, auto8264CA4E_p);
+        PlayerGroupAdd(lib840A968C_gv_marineSquad, lv_player);
+        TextExpressionSetToken("Param/Expression/lib_840A968C_46716C7E", "A", PlayerName(lv_player));
+        TriggerDebugOutput(lib840A968C_gv_playerEvents, TextExpressionAssemble("Param/Expression/lib_840A968C_46716C7E"), false);
+        lib840A968C_gv_players[lv_player].lv_gamesPlayed += 1;
+    }
+    lib840A968C_gf_LoadBanks();
+    libNtve_gf_AddPlayerGroupToPlayerGroup(lib840A968C_gv_marineSquad, lib840A968C_gv_livingMarines);
+    lib840A968C_gf_ApplyPlayerCustomization();
+}
+
+void lib840A968C_gf_DefaultAllianceStates () {
+    // Implementation
+    libNtve_gf_SetPlayerGroupAlliance(lib840A968C_gv_marineSquad, 0);
+    PlayerGroupLoopBegin(lib840A968C_gv_marineSquad);
+    for ( ; !PlayerGroupLoopDone() ; PlayerGroupLoopStep() ) {
+        libNtve_gf_SetAlliance(PlayerGroupLoopCurrent(), lib1E3F036D_gv_peacekeeperPlayer, 1);
+        PlayerSetAlliance(lib1E3F036D_gv_peacekeeperPlayer, c_allianceIdPushable, PlayerGroupLoopCurrent(), true);
+        libNtve_gf_SetAlliance(PlayerGroupLoopCurrent(), lib1E3F036D_gv_zombiePlayer, 5);
+        libNtve_gf_SetAlliance(PlayerGroupLoopCurrent(), lib1E3F036D_gv_hALPlayer, 5);
+        libNtve_gf_SetAlliance(PlayerGroupLoopCurrent(), lib1E3F036D_gv_testSubjects, 5);
+        libNtve_gf_SetAlliance(PlayerGroupLoopCurrent(), lib1E3F036D_gv_mercenaryPlayer, 7);
+    }
+    PlayerGroupLoopEnd();
+    libNtve_gf_SetAlliance(lib1E3F036D_gv_peacekeeperPlayer, lib1E3F036D_gv_zombiePlayer, 5);
+    libNtve_gf_SetAlliance(lib1E3F036D_gv_hALPlayer, lib1E3F036D_gv_zombiePlayer, 5);
+    libNtve_gf_SetAlliance(lib1E3F036D_gv_mercenaryPlayer, lib1E3F036D_gv_zombiePlayer, 5);
+    libNtve_gf_SetAlliance(lib1E3F036D_gv_testSubjects, lib1E3F036D_gv_zombiePlayer, 5);
+    PlayerSetColorIndex(lib1E3F036D_gv_zombiePlayer, 12, true);
+    PlayerSetColorIndex(lib1E3F036D_gv_testSubjects, 0, true);
+    PlayerSetColorIndex(lib1E3F036D_gv_peacekeeperPlayer, 3, true);
+    PlayerSetColorIndex(lib1E3F036D_gv_mercenaryPlayer, 1, true);
+    PlayerSetColorIndex(lib1E3F036D_gv_mechanicalPlayer, 14, true);
+    PlayerSetColorIndex(lib1E3F036D_gv_hALPlayer, 6, true);
+}
+
+void lib840A968C_gf_SetGameDifficulty () {
+    // Variable Declarations
+    fixed lv_totalRating;
+
+    // Variable Initialization
+
+    // Implementation
+    PlayerGroupLoopBegin(lib840A968C_gv_marineSquad);
+    for ( ; !PlayerGroupLoopDone() ; PlayerGroupLoopStep() ) {
+        lib840A968C_gv_players[PlayerGroupLoopCurrent()].lv_currentRank = UserDataInstance("Ranks", lib840A968C_gv_players[PlayerGroupLoopCurrent()].lv_currentRankIndex);
+        lib840A968C_gf_RatingBonusAdjustment(PlayerGroupLoopCurrent());
+    }
+    PlayerGroupLoopEnd();
+    TriggerDebugOutput(lib840A968C_gv_gameEvents, StringExternal("Param/Value/lib_840A968C_3C6819BA"), false);
+    PlayerGroupLoopBegin(lib840A968C_gv_marineSquad);
+    for ( ; !PlayerGroupLoopDone() ; PlayerGroupLoopStep() ) {
+        lv_totalRating += lib840A968C_gv_players[PlayerGroupLoopCurrent()].lv_rating;
+    }
+    PlayerGroupLoopEnd();
+    lib1E3F036D_gf_SetDifficulty(lib840A968C_gv_difficulty);
+    lib840A968C_gv_squadRating = RoundI((lv_totalRating / PlayerGroupCount(lib840A968C_gv_marineSquad)));
+    lib840A968C_gf_GameDifficultyHPAdjustment();
+}
+
+void lib840A968C_gf_GameDifficultyHPAdjustment () {
+    // Implementation
+}
+
+bool lib840A968C_gf_PlayerHasClassUnlocked (int lp_player, int lp_classSlot) {
+    // Implementation
+    if (((lp_classSlot < 6) || (GameAttributeGameValue("1") == "0003"))) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
+void lib840A968C_gf_ClassUnlocked (int lp_classSlot) {
+    // Variable Declarations
+    int lv_buttonImage;
+
+    // Variable Initialization
+    lv_buttonImage = c_invalidDialogControlId;
+
+    // Implementation
+    DialogControlHookup(lib840A968C_gv_classSelectionItems[lp_classSlot], c_triggerControlTypeImage, "ClassImage");
+    lv_buttonImage = DialogControlLastCreated();
+    PlayerGroupLoopBegin(lib840A968C_gv_marineSquad);
+    for ( ; !PlayerGroupLoopDone() ; PlayerGroupLoopStep() ) {
+        if (lib840A968C_gf_PlayerHasClassUnlocked(PlayerGroupLoopCurrent(), lp_classSlot)) {
+            libNtve_gf_SetDialogItemImage(lv_buttonImage, UserDataGetImagePath("Classes", UserDataInstance("Classes", lp_classSlot), "Class Image", 1), PlayerGroupSingle(PlayerGroupLoopCurrent()));
+        }
+        else {
+            libNtve_gf_SetDialogItemImage(lv_buttonImage, "btn-ability-terran-lockdown-classic.dds", PlayerGroupSingle(PlayerGroupLoopCurrent()));
+            DialogControlSetEnabled(lib840A968C_gv_classSelectionItems[lp_classSlot], PlayerGroupSingle(PlayerGroupLoopCurrent()), false);
+        }
+    }
+    PlayerGroupLoopEnd();
+}
+
+void lib840A968C_gf_CreateDifficultySelection () {
+    // Variable Declarations
+    int lv_templateFrame;
+
+    // Variable Initialization
+    lv_templateFrame = c_invalidDialogControlId;
+
+    // Implementation
+    DialogCreate(500, 400, c_anchorCenter, 0, 0, true);
+    DialogSetFullscreen(DialogLastCreated(), true);
+    lib840A968C_gv_difficultySelectionDialog = DialogLastCreated();
+    DialogControlCreateFromTemplate(DialogLastCreated(), c_triggerControlTypePanel, "DifficultySelectionCampaign/DifficultySelect");
+    lv_templateFrame = DialogControlLastCreated();
+    DialogControlHookup(lv_templateFrame, c_triggerControlTypeButton, "RecruitModeButton");
+    lib840A968C_gv_difficultySelectionOptions[1].lv_optionButton = DialogControlLastCreated();
+    DialogControlHookup(lv_templateFrame, c_triggerControlTypeLabel, "RecruitVoteCounter");
+    lib840A968C_gv_difficultySelectionOptions[1].lv_optionLabel = DialogControlLastCreated();
+    DialogControlHookup(lv_templateFrame, c_triggerControlTypeButton, "NormalModeButton");
+    lib840A968C_gv_difficultySelectionOptions[2].lv_optionButton = DialogControlLastCreated();
+    DialogControlHookup(lv_templateFrame, c_triggerControlTypeLabel, "NormalVoteCounter");
+    lib840A968C_gv_difficultySelectionOptions[2].lv_optionLabel = DialogControlLastCreated();
+    DialogControlHookup(lv_templateFrame, c_triggerControlTypeButton, "NightmareModeButton");
+    lib840A968C_gv_difficultySelectionOptions[3].lv_optionButton = DialogControlLastCreated();
+    DialogControlHookup(lv_templateFrame, c_triggerControlTypeLabel, "NightmareVoteCounter");
+    lib840A968C_gv_difficultySelectionOptions[3].lv_optionLabel = DialogControlLastCreated();
+    TriggerAddEventDialogControl(lib840A968C_gt_DifficultyVote, c_playerAny, lib840A968C_gv_difficultySelectionOptions[1].lv_optionButton, c_triggerControlEventTypeClick);
+    TriggerAddEventDialogControl(lib840A968C_gt_DifficultyVote, c_playerAny, lib840A968C_gv_difficultySelectionOptions[2].lv_optionButton, c_triggerControlEventTypeClick);
+    TriggerAddEventDialogControl(lib840A968C_gt_DifficultyVote, c_playerAny, lib840A968C_gv_difficultySelectionOptions[3].lv_optionButton, c_triggerControlEventTypeClick);
+    DialogSetVisible(DialogLastCreated(), PlayerGroupAll(), true);
+}
+
+bool lib840A968C_gf_GetMissionType (string lp_mission) {
+    // Implementation
+    if ((UserDataGetString("MissionData", lp_mission, "Mission Type", 1) == "Primary")) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
+trigger lib840A968C_gf_GetMissionProgression (int lp_missionToken) {
+    // Implementation
+    return lib840A968C_gv_missionData[lp_missionToken].lv_missionProgression;
+}
+
+string lib840A968C_gf_GetMissionSignal (int lp_missionToken) {
+    // Implementation
+    return lib840A968C_gv_missionData[lp_missionToken].lv_nextMissionSignal;
+}
+
+int lib840A968C_gf_MissionStart (string lp_mission, trigger lp_progressionTrigger, string lp_nextMissionSignal) {
+    // Variable Declarations
+    int lv_missionToken;
+
+    // Variable Initialization
+    lv_missionToken = lib840A968C_gv_missionIndex;
+
+    // Implementation
+    lib840A968C_gv_missionData[lib840A968C_gv_missionIndex].lv_missionData = lp_mission;
+    ObjectiveCreateForPlayers(UserDataGetText("MissionData", lp_mission, "Mission Brief Description", 1), UserDataGetText("MissionData", lp_mission, "Mission Description", 1), c_objectiveStateActive, lib840A968C_gf_GetMissionType(lp_mission), lib840A968C_gv_marineSquad);
+    lib840A968C_gv_missionData[lib840A968C_gv_missionIndex].lv_missionObjective = ObjectiveLastCreated();
+    if ((lp_progressionTrigger != null)) {
+        lib840A968C_gv_missionData[lib840A968C_gv_missionIndex].lv_missionProgression = lp_progressionTrigger;
+    }
+    if ((lp_nextMissionSignal != null)) {
+        lib840A968C_gv_missionData[lib840A968C_gv_missionIndex].lv_nextMissionSignal = lp_nextMissionSignal;
+    }
+    if (lib840A968C_gv_missionIndex >= lib840A968C_gv_mISSION_MAX_COUNT) {
+        lib840A968C_gv_missionIndex = 1;
+    }
+    else {
+        lib840A968C_gv_missionIndex = lib840A968C_gv_missionIndex + 1;
+    }
+    return lv_missionToken;
+}
+
+void lib840A968C_gf_MissionEnd (int lp_missionOutcome, int lp_missionToken) {
+    // Implementation
+    if ((lp_missionOutcome == c_objectiveStateCompleted)) {
+        lib840A968C_gf_MissonRewards(lib840A968C_gv_missionData[lp_missionToken].lv_missionData);
+    }
+    else {
+    }
+    ObjectiveSetState(lib840A968C_gv_missionData[lp_missionToken].lv_missionObjective, lp_missionOutcome);
+    TriggerSendEvent(lib840A968C_gv_save);
+    Wait(5.0, c_timeGame);
+    ObjectiveDestroy(lib840A968C_gv_missionData[lp_missionToken].lv_missionObjective);
+    Wait(5.0, c_timeGame);
+    if ((lib840A968C_gf_GetMissionSignal(lp_missionToken) != null)) {
+        TriggerSendEvent(lib840A968C_gf_GetMissionSignal(lp_missionToken));
+    }
+    else {
+    }
+}
+
+void lib840A968C_gf_MissonRewards (string lp_mission) {
+    // Implementation
+    lib840A968C_gf_AwardTeamXP(UserDataGetInt("MissionData", lp_mission, "Player XP Reward", 1));
+    lib840A968C_gf_AwardTeamMarineXP(UserDataGetFixed("MissionData", lp_mission, "Marine XP Reward", 1));
+    lib840A968C_gf_AwardTeamCredits(UserDataGetInt("MissionData", lp_mission, "Credit Reward", 1));
+}
+
+bool lib840A968C_gf_PointNotNearUnitGroupUnits (point lp_targetPoint, unitgroup lp_unitGroup, fixed lp_distance) {
+    // Implementation
+    return (DistanceBetweenPoints(lp_targetPoint, UnitGetPosition(UnitGroupClosestToPoint(lp_unitGroup, lp_targetPoint))) >= lp_distance);
+}
+
+playergroup lib840A968C_gf_GetMarineSquadPlayers () {
+    // Implementation
+    return PlayerGroupCopy(lib840A968C_gv_marineSquad);
+}
+
+playergroup lib840A968C_gf_GetLivingMarineSquadPlayers () {
+    // Implementation
+    return PlayerGroupCopy(lib840A968C_gv_livingMarines);
+}
+
+playergroup lib840A968C_gf_GetDeadMarineSquadPlayers () {
+    // Implementation
+    return PlayerGroupCopy(lib840A968C_gv_deadMarines);
+}
+
+playergroup lib840A968C_gf_GetPets () {
+    // Implementation
+    return PlayerGroupCopy(lib840A968C_gv_pets);
+}
+
+unit lib840A968C_gf_GetMarine (int lp_player) {
+    // Implementation
+    return libC50FD636_gv_marines[lp_player].lv_unit;
+}
+
+unitgroup lib840A968C_gf_GetMarineGroup () {
+    // Implementation
+    return libC50FD636_gv_marinesUnitGroup;
+}
+
+bool lib840A968C_gf_IsAMarine (unit lp_unit) {
+    // Implementation
+    return UnitGroupHasUnit(lib840A968C_gf_GetMarineGroup(), lp_unit);
+}
+
+void lib840A968C_gf_RatingFromDeath (int lp_player) {
+}
+
+void lib840A968C_gf_DeathShareVision (int lp_deadPlayer) {
+    // Implementation
+    PlayerGroupLoopBegin(lib840A968C_gv_livingMarines);
+    for ( ; !PlayerGroupLoopDone() ; PlayerGroupLoopStep() ) {
+        PlayerSetAlliance(PlayerGroupLoopCurrent(), c_allianceIdVision, lp_deadPlayer, true);
+    }
+    PlayerGroupLoopEnd();
+}
+
+bool lib840A968C_gf_PlayerHasPet (int lp_player) {
+    // Implementation
+    return true;
+}
+
+void lib840A968C_gf_SpawnPet (int lp_player, fixed lp_deadMarineExperience, point lp_spawnPosition) {
+    // Implementation
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, lib840A968C_gv_players[lp_player].lv_classCustomization.lv_pet, 0, lp_player, lp_spawnPosition);
+    libC50FD636_gv_marines[lp_player].lv_unit = UnitLastCreated();
+    UnitSetPropertyFixed(UnitLastCreated(), c_unitPropXP, (0.4 * lp_deadMarineExperience));
+}
+
+void lib840A968C_gf_DropEquippedMagazines (point lp_dropPoint, int lp_numberofMagazines) {
+    // Implementation
+    libNtve_gf_CreateUnitsWithDefaultFacing((FixedToInt(lp_numberofMagazines) / 9), "Magazine", 0, 0, lp_dropPoint);
+    if (((ModI(FixedToInt(lp_numberofMagazines), 9) / 3) > 0)) {
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "Magazine", 0, 0, lp_dropPoint);
+        UnitAddChargeUsed(UnitLastCreated(), "Item/Magazine", (3 - (ModI(FixedToInt(lp_numberofMagazines), 9) / 3)));
+    }
+    else {
+    }
+}
+
+void lib840A968C_gf_CreateTeamUI () {
+    // Implementation
+    DialogCreate(200, 800, c_anchorTopRight, 0, 100, true);
+    lib840A968C_gv_teamUIDialog = DialogLastCreated();
+    DialogSetImageVisible(lib840A968C_gv_teamUIDialog, false);
+    lib840A968C_gf_CreatePlayerFrame(lib840A968C_gv_teamUIDialog);
+    DialogSetVisible(DialogLastCreated(), PlayerGroupAll(), true);
+}
+
+void lib840A968C_gf_CreatePlayerFrame (int lp_teamUIDialog) {
+    // Variable Declarations
+    int lv_templateFrame;
+    int lv_sidebarFrame;
+    int lv_portraitFrame;
+
+    // Variable Initialization
+    lv_templateFrame = c_invalidDialogControlId;
+    lv_sidebarFrame = c_invalidDialogControlId;
+    lv_portraitFrame = c_invalidDialogControlId;
+
+    // Implementation
+    DialogControlCreateFromTemplate(lp_teamUIDialog, c_triggerControlTypePanel, "TeamUI/PlayerStatusTemplate");
+    lv_templateFrame = DialogControlLastCreated();
+    DialogControlSetPosition(DialogControlLastCreated(), PlayerGroupAll(), c_anchorTopRight, 0, 0);
+    DialogControlHookup(lv_templateFrame, c_triggerControlTypePanel, "PlayerInfoSideBar");
+    lv_sidebarFrame = DialogControlLastCreated();
+    DialogControlHookup(lv_templateFrame, c_triggerControlTypePanel, "PlayerPortrait");
+    lv_portraitFrame = DialogControlLastCreated();
+    DialogControlSetPosition(DialogControlLastCreated(), PlayerGroupAll(), c_anchorTopRight, 0, 0);
+}
+
+void lib840A968C_gf_SetRankData (int lp_player) {
+}
+
+void lib840A968C_gf_CreateBankDefaultKeyValues (bank lp_bank) {
+    int autoDF24C959_u;
+    string auto54221216_val;
+
+    // Variable Declarations
+    string lv_currentInstance;
+
+    // Variable Initialization
+
+    // Implementation
+    autoDF24C959_u = 1;
+    for ( ; autoDF24C959_u <= UserDataInstanceCount("BankKeys"); autoDF24C959_u += 1)
+    {
+        lv_currentInstance = UserDataInstance("BankKeys", autoDF24C959_u);
+        if (StringEqual(BankName(lp_bank), UserDataGetString("BankKeys", lv_currentInstance, "Bank", 1), c_stringCase) && (!(BankKeyExists(lp_bank, UserDataGetString("BankKeys", lv_currentInstance, "Section", 1), UserDataGetString("BankKeys", lv_currentInstance, "Key", 1))))) {
+            TextExpressionSetToken("Param/Expression/lib_840A968C_4AE7319B", "A", StringToText(UserDataGetString("BankKeys", lv_currentInstance, "Key", 1)));
+            TextExpressionSetToken("Param/Expression/lib_840A968C_4AE7319B", "B", StringToText(UserDataGetString("BankKeys", lv_currentInstance, "Section", 1)));
+            TextExpressionSetToken("Param/Expression/lib_840A968C_4AE7319B", "C", PlayerName(BankPlayer(lp_bank)));
+            TriggerDebugOutput(lib840A968C_gv_banks, TextExpressionAssemble("Param/Expression/lib_840A968C_4AE7319B"), false);
+            auto54221216_val = UserDataGetString("BankKeys", lv_currentInstance, "Key Type", 1);
+            if (auto54221216_val == "Integer") {
+                BankValueSetFromInt(lp_bank, UserDataGetString("BankKeys", lv_currentInstance, "Section", 1), UserDataGetString("BankKeys", lv_currentInstance, "Key", 1), UserDataGetInt("BankKeys", lv_currentInstance, "Default Integer Value", 1));
+            }
+            else if (auto54221216_val == "Real") {
+                BankValueSetFromFixed(lp_bank, UserDataGetString("BankKeys", lv_currentInstance, "Section", 1), UserDataGetString("BankKeys", lv_currentInstance, "Key", 1), UserDataGetFixed("BankKeys", lv_currentInstance, "Default Real Value", 1));
+            }
+            else if (auto54221216_val == "String") {
+                BankValueSetFromString(lp_bank, UserDataGetString("BankKeys", lv_currentInstance, "Section", 1), UserDataGetString("BankKeys", lv_currentInstance, "Key", 1), UserDataGetString("BankKeys", lv_currentInstance, "Default String Value", 1));
+            }
+            else if (auto54221216_val == "Text") {
+                BankValueSetFromText(lp_bank, UserDataGetString("BankKeys", lv_currentInstance, "Section", 1), UserDataGetString("BankKeys", lv_currentInstance, "Key", 1), UserDataGetText("BankKeys", lv_currentInstance, "Default Text Value", 1));
+            }
+            else {
+            }
+        }
+        else {
+        }
+        ;
+    }
+}
+
+void lib840A968C_gf_PreloadBanks () {
+    // Implementation
+}
+
+void lib840A968C_gf_LoadBanks () {
+    playergroup autoC10AA4AF_g;
+    int autoC10AA4AF_p;
+
+    // Variable Declarations
+    int lv_player;
+
+    // Variable Initialization
+
+    // Implementation
+    lib840A968C_gf_PreloadBanks();
+    autoC10AA4AF_g = lib840A968C_gv_marineSquad; 
+    autoC10AA4AF_p = 1;
+    for ( ; autoC10AA4AF_p <= PlayerGroupCount(autoC10AA4AF_g) ; autoC10AA4AF_p += BoolToInt(lv_player == PlayerGroupPlayer(autoC10AA4AF_g, autoC10AA4AF_p)) ) {
+        lv_player = PlayerGroupPlayer(autoC10AA4AF_g, autoC10AA4AF_p);
+        BankLoad(lib840A968C_gv_playerDataBankName, lv_player);
+        lib840A968C_gv_playerBanks[lv_player].lv_playerData = BankLastCreated();
+        lib840A968C_gf_CreateBankDefaultKeyValues(lib840A968C_gv_playerBanks[lv_player].lv_playerData);
+        BankSave(lib840A968C_gv_playerBanks[lv_player].lv_playerData);
+        lib840A968C_gf_LoadDataBankData(lv_player, lib840A968C_gv_playerBanks[lv_player].lv_playerData);
+        BankLoad(lib840A968C_gv_playerCustomizationDataBankName, lv_player);
+        lib840A968C_gv_playerBanks[lv_player].lv_customizationUnlocks = BankLastCreated();
+        lib840A968C_gf_CreateBankDefaultKeyValues(lib840A968C_gv_playerBanks[lv_player].lv_customizationUnlocks);
+        BankSave(lib840A968C_gv_playerBanks[lv_player].lv_customizationUnlocks);
+        lib840A968C_gf_LoadCustomizationBankData(lv_player, lib840A968C_gv_playerBanks[lv_player].lv_customizationUnlocks);
+    }
+}
+
+trigger auto_lib840A968C_gf_LoadDataBankData_Trigger = null;
+int auto_lib840A968C_gf_LoadDataBankData_lp_player;
+bank auto_lib840A968C_gf_LoadDataBankData_lp_bank;
+
+void lib840A968C_gf_LoadDataBankData (int lp_player, bank lp_bank) {
+    auto_lib840A968C_gf_LoadDataBankData_lp_player = lp_player;
+    auto_lib840A968C_gf_LoadDataBankData_lp_bank = lp_bank;
+
+    if (auto_lib840A968C_gf_LoadDataBankData_Trigger == null) {
+        auto_lib840A968C_gf_LoadDataBankData_Trigger = TriggerCreate("auto_lib840A968C_gf_LoadDataBankData_TriggerFunc");
+    }
+
+    TriggerExecute(auto_lib840A968C_gf_LoadDataBankData_Trigger, false, false);
+}
+
+bool auto_lib840A968C_gf_LoadDataBankData_TriggerFunc (bool testConds, bool runActions) {
+    int lp_player = auto_lib840A968C_gf_LoadDataBankData_lp_player;
+    bank lp_bank = auto_lib840A968C_gf_LoadDataBankData_lp_bank;
+
+    // Implementation
+    TextExpressionSetToken("Param/Expression/lib_840A968C_E9186E10", "Player", PlayerName(lp_player));
+    TriggerDebugOutput(lib840A968C_gv_banks, TextExpressionAssemble("Param/Expression/lib_840A968C_E9186E10"), false);
+    lib840A968C_gv_players[lp_player].lv_availableExperience = BankValueGetAsInt(lp_bank, lib840A968C_gf_GetSectionName("PlayerData"), lib840A968C_gf_GetKeyName("AvailableExperience"));
+    lib840A968C_gv_players[lp_player].lv_totalExperience = BankValueGetAsInt(lp_bank, lib840A968C_gf_GetSectionName("PlayerData"), lib840A968C_gf_GetKeyName("TotalExperience"));
+    lib840A968C_gv_players[lp_player].lv_credits = BankValueGetAsInt(lp_bank, lib840A968C_gf_GetSectionName("PlayerData"), lib840A968C_gf_GetKeyName("Credits"));
+    lib840A968C_gv_players[lp_player].lv_rating = BankValueGetAsInt(lp_bank, lib840A968C_gf_GetSectionName("PlayerData"), lib840A968C_gf_GetKeyName("Rating"));
+    lib840A968C_gv_players[lp_player].lv_gamesPlayed = BankValueGetAsInt(lp_bank, lib840A968C_gf_GetSectionName("PlayerData"), lib840A968C_gf_GetKeyName("GamesPlayed"));
+    lib840A968C_gv_players[lp_player].lv_currentRankIndex = BankValueGetAsInt(lp_bank, lib840A968C_gf_GetSectionName("PlayerData"), lib840A968C_gf_GetKeyName("Rank"));
+    lib840A968C_gv_players[lp_player].lv_stats.lv_agility = BankValueGetAsInt(lp_bank, lib840A968C_gf_GetSectionName("Stats"), lib840A968C_gf_GetKeyName("Agility"));
+    lib840A968C_gv_players[lp_player].lv_stats.lv_endurance = BankValueGetAsInt(lp_bank, lib840A968C_gf_GetSectionName("Stats"), lib840A968C_gf_GetKeyName("Endurance"));
+    lib840A968C_gv_players[lp_player].lv_stats.lv_intelligance = BankValueGetAsInt(lp_bank, lib840A968C_gf_GetSectionName("Stats"), lib840A968C_gf_GetKeyName("Intelligence"));
+    lib840A968C_gv_players[lp_player].lv_stats.lv_perception = BankValueGetAsInt(lp_bank, lib840A968C_gf_GetSectionName("Stats"), lib840A968C_gf_GetKeyName("Perception"));
+    lib840A968C_gv_players[lp_player].lv_stats.lv_strength = BankValueGetAsInt(lp_bank, lib840A968C_gf_GetSectionName("Stats"), lib840A968C_gf_GetKeyName("Strength"));
+    lib840A968C_gv_players[lp_player].lv_stats.lv_total = BankValueGetAsInt(lp_bank, lib840A968C_gf_GetSectionName("Stats"), lib840A968C_gf_GetKeyName("TotalStats"));
+    lib840A968C_gv_players[lp_player].lv_stats.lv_available = BankValueGetAsInt(lp_bank, lib840A968C_gf_GetSectionName("Stats"), lib840A968C_gf_GetKeyName("AvailableStatPoints"));
+    TextExpressionSetToken("Param/Expression/lib_840A968C_3410F163", "Player", PlayerName(lp_player));
+    TriggerDebugOutput(lib840A968C_gv_banks, TextExpressionAssemble("Param/Expression/lib_840A968C_3410F163"), false);
+    return true;
+}
+
+void lib840A968C_gf_LoadCustomizationBankData (int lp_player, bank lp_bank) {
+    // Implementation
+    TextExpressionSetToken("Param/Expression/lib_840A968C_81DD2B7D", "Player", PlayerName(lp_player));
+    TriggerDebugOutput(lib840A968C_gv_banks, TextExpressionAssemble("Param/Expression/lib_840A968C_81DD2B7D"), false);
+    lib840A968C_gv_players[lp_player].lv_classCustomization.lv_serviceBranch = UserDataInstanceFromReference(BankValueGetAsString(lp_bank, lib840A968C_gf_GetSectionName("Customization"), lib840A968C_gf_GetKeyName("Service Branch")));
+    lib840A968C_gv_players[lp_player].lv_classCustomization.lv_characterModifications[1] = (BankValueGetAsString(lp_bank, lib840A968C_gf_GetSectionName("Customization"), lib840A968C_gf_GetKeyName("Char Mod Slot 1")));
+    lib840A968C_gv_players[lp_player].lv_classCustomization.lv_characterModifications[2] = (BankValueGetAsString(lp_bank, lib840A968C_gf_GetSectionName("Customization"), lib840A968C_gf_GetKeyName("Char Mod Slot 2")));
+    lib840A968C_gv_players[lp_player].lv_classCustomization.lv_characterModifications[3] = (BankValueGetAsString(lp_bank, lib840A968C_gf_GetSectionName("Customization"), lib840A968C_gf_GetKeyName("Char Mod Slot 3")));
+    lib840A968C_gv_players[lp_player].lv_classCustomization.lv_sidearm = (BankValueGetAsString(lp_bank, lib840A968C_gf_GetSectionName("Customization"), lib840A968C_gf_GetKeyName("Sidearm")));
+    lib840A968C_gv_players[lp_player].lv_classCustomization.lv_pet = (BankValueGetAsString(lp_bank, lib840A968C_gf_GetSectionName("Customization"), lib840A968C_gf_GetKeyName("Pet")));
+    TextExpressionSetToken("Param/Expression/lib_840A968C_DC3524E1", "Player", PlayerName(lp_player));
+    TriggerDebugOutput(lib840A968C_gv_banks, TextExpressionAssemble("Param/Expression/lib_840A968C_DC3524E1"), false);
+}
+
+void lib840A968C_gf_DataBoundsCheck (int lp_player) {
+    // Implementation
+    lib840A968C_gv_players[lp_player].lv_rating = libNtve_gf_ArithmeticRealClamp(lib840A968C_gv_players[lp_player].lv_rating, 0.0, 3000.0);
+}
+
+trigger auto_lib840A968C_gf_SaveDataBank_Trigger = null;
+int auto_lib840A968C_gf_SaveDataBank_lp_player;
+bank auto_lib840A968C_gf_SaveDataBank_lp_bank;
+
+void lib840A968C_gf_SaveDataBank (int lp_player, bank lp_bank) {
+    auto_lib840A968C_gf_SaveDataBank_lp_player = lp_player;
+    auto_lib840A968C_gf_SaveDataBank_lp_bank = lp_bank;
+
+    if (auto_lib840A968C_gf_SaveDataBank_Trigger == null) {
+        auto_lib840A968C_gf_SaveDataBank_Trigger = TriggerCreate("auto_lib840A968C_gf_SaveDataBank_TriggerFunc");
+    }
+
+    TriggerExecute(auto_lib840A968C_gf_SaveDataBank_Trigger, false, false);
+}
+
+bool auto_lib840A968C_gf_SaveDataBank_TriggerFunc (bool testConds, bool runActions) {
+    int lp_player = auto_lib840A968C_gf_SaveDataBank_lp_player;
+    bank lp_bank = auto_lib840A968C_gf_SaveDataBank_lp_bank;
+
+    // Implementation
+    lib840A968C_gf_DataBoundsCheck(lp_player);
+    TextExpressionSetToken("Param/Expression/lib_840A968C_9EC95DE9", "A", PlayerName(lp_player));
+    TriggerDebugOutput(lib840A968C_gv_banks, TextExpressionAssemble("Param/Expression/lib_840A968C_9EC95DE9"), false);
+    BankValueSetFromInt(lp_bank, lib840A968C_gf_GetSectionName("PlayerData"), lib840A968C_gf_GetKeyName("AvailableExperience"), lib840A968C_gv_players[lp_player].lv_availableExperience);
+    BankValueSetFromInt(lp_bank, lib840A968C_gf_GetSectionName("PlayerData"), lib840A968C_gf_GetKeyName("Credits"), lib840A968C_gv_players[lp_player].lv_credits);
+    BankValueSetFromInt(lp_bank, lib840A968C_gf_GetSectionName("PlayerData"), lib840A968C_gf_GetKeyName("GamesPlayed"), lib840A968C_gv_players[lp_player].lv_gamesPlayed);
+    BankValueSetFromInt(lp_bank, lib840A968C_gf_GetSectionName("PlayerData"), lib840A968C_gf_GetKeyName("TotalExperience"), lib840A968C_gv_players[lp_player].lv_totalExperience);
+    BankValueSetFromInt(lp_bank, lib840A968C_gf_GetSectionName("PlayerData"), lib840A968C_gf_GetKeyName("Rating"), FixedToInt(lib840A968C_gv_players[lp_player].lv_rating));
+    BankValueSetFromInt(lp_bank, lib840A968C_gf_GetSectionName("PlayerData"), lib840A968C_gf_GetKeyName("Rank"), lib840A968C_gv_players[lp_player].lv_currentRankIndex);
+    BankValueSetFromInt(lp_bank, lib840A968C_gf_GetSectionName("Stats"), lib840A968C_gf_GetKeyName("Strength"), lib840A968C_gv_players[lp_player].lv_stats.lv_strength);
+    BankValueSetFromInt(lp_bank, lib840A968C_gf_GetSectionName("Stats"), lib840A968C_gf_GetKeyName("Strength"), lib840A968C_gv_players[lp_player].lv_stats.lv_agility);
+    BankValueSetFromInt(lp_bank, lib840A968C_gf_GetSectionName("Stats"), lib840A968C_gf_GetKeyName("Strength"), lib840A968C_gv_players[lp_player].lv_stats.lv_endurance);
+    BankValueSetFromInt(lp_bank, lib840A968C_gf_GetSectionName("Stats"), lib840A968C_gf_GetKeyName("Strength"), lib840A968C_gv_players[lp_player].lv_stats.lv_perception);
+    BankValueSetFromInt(lp_bank, lib840A968C_gf_GetSectionName("Stats"), lib840A968C_gf_GetKeyName("Strength"), lib840A968C_gv_players[lp_player].lv_stats.lv_intelligance);
+    BankValueSetFromInt(lp_bank, lib840A968C_gf_GetSectionName("Stats"), lib840A968C_gf_GetKeyName("TotalStats"), lib840A968C_gv_players[lp_player].lv_stats.lv_total);
+    BankValueSetFromInt(lp_bank, lib840A968C_gf_GetSectionName("Stats"), lib840A968C_gf_GetKeyName("AvailableStatPoints"), lib840A968C_gv_players[lp_player].lv_stats.lv_available);
+    BankSave(lp_bank);
+    TextExpressionSetToken("Param/Expression/lib_840A968C_443F5C06", "A", PlayerName(lp_player));
+    TriggerDebugOutput(lib840A968C_gv_banks, TextExpressionAssemble("Param/Expression/lib_840A968C_443F5C06"), false);
+    return true;
+}
+
+trigger auto_lib840A968C_gf_SaveCustomizationBank_Trigger = null;
+int auto_lib840A968C_gf_SaveCustomizationBank_lp_player;
+bank auto_lib840A968C_gf_SaveCustomizationBank_lp_bank;
+
+void lib840A968C_gf_SaveCustomizationBank (int lp_player, bank lp_bank) {
+    auto_lib840A968C_gf_SaveCustomizationBank_lp_player = lp_player;
+    auto_lib840A968C_gf_SaveCustomizationBank_lp_bank = lp_bank;
+
+    if (auto_lib840A968C_gf_SaveCustomizationBank_Trigger == null) {
+        auto_lib840A968C_gf_SaveCustomizationBank_Trigger = TriggerCreate("auto_lib840A968C_gf_SaveCustomizationBank_TriggerFunc");
+    }
+
+    TriggerExecute(auto_lib840A968C_gf_SaveCustomizationBank_Trigger, false, false);
+}
+
+bool auto_lib840A968C_gf_SaveCustomizationBank_TriggerFunc (bool testConds, bool runActions) {
+    int lp_player = auto_lib840A968C_gf_SaveCustomizationBank_lp_player;
+    bank lp_bank = auto_lib840A968C_gf_SaveCustomizationBank_lp_bank;
+
+    // Implementation
+    TextExpressionSetToken("Param/Expression/lib_840A968C_59D9B370", "A", PlayerName(lp_player));
+    TriggerDebugOutput(lib840A968C_gv_banks, TextExpressionAssemble("Param/Expression/lib_840A968C_59D9B370"), false);
+    BankValueSetFromString(lp_bank, lib840A968C_gf_GetSectionName("Customization"), lib840A968C_gf_GetKeyName("Service Branch"), (lib840A968C_gv_players[lp_player].lv_classCustomization.lv_serviceBranch));
+    BankValueSetFromString(lp_bank, lib840A968C_gf_GetSectionName("Customization"), lib840A968C_gf_GetKeyName("Char Mod Slot 1"), (lib840A968C_gv_players[lp_player].lv_classCustomization.lv_characterModifications[1]));
+    BankValueSetFromString(lp_bank, lib840A968C_gf_GetSectionName("Customization"), lib840A968C_gf_GetKeyName("Char Mod Slot 2"), (lib840A968C_gv_players[lp_player].lv_classCustomization.lv_characterModifications[2]));
+    BankValueSetFromString(lp_bank, lib840A968C_gf_GetSectionName("Customization"), lib840A968C_gf_GetKeyName("Char Mod Slot 3"), (lib840A968C_gv_players[lp_player].lv_classCustomization.lv_characterModifications[3]));
+    BankValueSetFromString(lp_bank, lib840A968C_gf_GetSectionName("Customization"), lib840A968C_gf_GetKeyName("Sidearm"), (lib840A968C_gv_players[lp_player].lv_classCustomization.lv_sidearm));
+    BankValueSetFromString(lp_bank, lib840A968C_gf_GetSectionName("Customization"), lib840A968C_gf_GetKeyName("Pet"), (lib840A968C_gv_players[lp_player].lv_classCustomization.lv_pet));
+    BankSave(lp_bank);
+    TextExpressionSetToken("Param/Expression/lib_840A968C_43EFB875", "A", PlayerName(lp_player));
+    TriggerDebugOutput(lib840A968C_gv_banks, TextExpressionAssemble("Param/Expression/lib_840A968C_43EFB875"), false);
+    return true;
+}
+
+string lib840A968C_gf_GetSectionName (string lp_section) {
+    // Implementation
+    return (lp_section);
+}
+
+string lib840A968C_gf_GetKeyName (string lp_key) {
+    // Implementation
+    return (lp_key);
+}
+
+void lib840A968C_gf_CreateProfileBank (int lp_player, int lp_profile) {
+    // Variable Declarations
+    int lv_index;
+
+    // Variable Initialization
+
+    // Implementation
+    BankLoad(("Profile" + IntToString(lp_profile)), lp_player);
+    lib840A968C_gv_playerBanks[lp_player].lv_currentProfile = BankLastCreated();
+    BankSave(lib840A968C_gv_playerBanks[lp_player].lv_currentProfile);
+    BankReload(lib840A968C_gv_playerBanks[lp_player].lv_currentProfile);
+}
+
+void lib840A968C_gf_LoadActiveProfile (int lp_player) {
+    // Implementation
+    BankLoad(BankValueGetAsString(lib840A968C_gv_playerBanks[lp_player].lv_playerData, UserDataGetString("BankStructure", "Active Profile", "Section", 1), UserDataGetString("BankStructure", "Active Profile", "Key", 1)), lp_player);
+}
+
+void lib840A968C_gf_AwardRating (int lp_experienceGained, int lp_player) {
+    // Implementation
+    if ((((PlayerDifficulty(lp_player) == 0) && (lib840A968C_gv_players[lp_player].lv_rating >= 1500)) || ((PlayerDifficulty(lp_player) == 1) && (lib840A968C_gv_players[lp_player].lv_rating >= 1800)))) {
+        return ;
+    }
+    lib840A968C_gv_players[lp_player].lv_rating += (lp_experienceGained * lib1E3F036D_gf_GameDifficultyReal(lib840A968C_gv_recruitRatingGainPerXP, lib840A968C_gv_normalRatingGainPerXP, lib840A968C_gv_nightmareRatingGainPerXP));
+}
+
+void lib840A968C_gf_RatingBonusAdjustment (int lp_player) {
+    // Variable Declarations
+    string lv_currentRatingBonus;
+    int lv_index;
+
+    // Variable Initialization
+    lv_currentRatingBonus = "2000 Rating";
+    lv_index = 1;
+
+    // Implementation
+    while ((lv_index <= UserDataInstanceCount("RatingBonuses")) && (!(BankConditionEvaluate(lp_player, UserDataGetGameLink("RatingBonuses", lv_currentRatingBonus, "Rating Evaluation", 1))))) {
+        lv_index += 1;
+        lv_currentRatingBonus = UserDataInstance("RatingBonuses", lv_index);
+    }
+    CatalogFieldValueSet(c_gameCatalogBehavior, "RatingBonus", "Modification.VitalMaxArray[" + IntToString(1) + "]", lp_player, IntToString(UserDataGetInt("RatingBonuses", lv_currentRatingBonus, "Shield Adjustment", 1)));
+    CatalogFieldValueSet(c_gameCatalogBehavior, "RatingBonus", "Modification.AttributeChangeArray[" + IntToString(0) + "].Points", lp_player, IntToString(UserDataGetInt("RatingBonuses", lv_currentRatingBonus, "Life Adjustment", 1)));
+    CatalogFieldValueSet(c_gameCatalogBehavior, "RatingBonus", "Modification.MoveSpeedMultiplier", lp_player, FixedToString((1 + (UserDataGetInt("RatingBonuses", lv_currentRatingBonus, "Movement Speed Adjustment", 1)/100.0)), c_fixedPrecisionAny));
+    CatalogFieldValueSet(c_gameCatalogBehavior, "RatingBonus", "Modification.SightBonus", lp_player, IntToString(UserDataGetInt("RatingBonuses", lv_currentRatingBonus, "Sight Adjustment", 1)));
+    CatalogFieldValueSet(c_gameCatalogBehavior, "RatingBonus", "Modification.DamageDealtFraction[" + IntToString(0) + "]", lp_player, FixedToString((UserDataGetInt("RatingBonuses", lv_currentRatingBonus, "Damage Adjustment", 1) / 100.0), c_fixedPrecisionAny));
+    CatalogFieldValueSet(c_gameCatalogBehavior, "RatingBonus", "Modification.DamageDealtFraction[" + IntToString(1) + "]", lp_player, FixedToString((UserDataGetInt("RatingBonuses", lv_currentRatingBonus, "Damage Adjustment", 1) / 100.0), c_fixedPrecisionAny));
+    CatalogFieldValueSet(c_gameCatalogBehavior, "RatingBonus", "Modification.DamageDealtFraction[" + IntToString(2) + "]", lp_player, FixedToString((UserDataGetInt("RatingBonuses", lv_currentRatingBonus, "Damage Adjustment", 1) / 100.0), c_fixedPrecisionAny));
+    CatalogFieldValueSet(c_gameCatalogBehavior, "RatingBonus", "Modification.DamageDealtFraction[" + IntToString(3) + "]", lp_player, FixedToString((UserDataGetInt("RatingBonuses", lv_currentRatingBonus, "Damage Adjustment", 1) / 100.0), c_fixedPrecisionAny));
+}
+
+void lib840A968C_gf_AwardPlayerXP (int lp_player, int lp_xP) {
+    // Implementation
+    if (PlayerGroupHasPlayer(lib840A968C_gv_livingMarines, lp_player)) {
+        lib840A968C_gv_players[lp_player].lv_totalExperience += lp_xP;
+        lib840A968C_gv_players[lp_player].lv_availableExperience += lp_xP;
+    }
+    else {
+    }
+    if (PlayerGroupHasPlayer(lib840A968C_gv_pets, lp_player)) {
+        lib840A968C_gv_players[lp_player].lv_totalExperience += RoundI((lp_xP * 0.5));
+        lib840A968C_gv_players[lp_player].lv_availableExperience += RoundI((lp_xP * 0.5));
+    }
+    else {
+    }
+    TextExpressionSetToken("Param/Expression/lib_840A968C_606D8F65", "A", PlayerName(lp_player));
+    TextExpressionSetToken("Param/Expression/lib_840A968C_606D8F65", "B", IntToText(lp_xP));
+    TriggerDebugOutput(2, TextExpressionAssemble("Param/Expression/lib_840A968C_606D8F65"), false);
+    lib840A968C_gf_AwardRating(lp_xP, lp_player);
+    if (lib840A968C_gf_RankUpCheck(lp_player)) {
+        lib840A968C_gf_RankUp(lp_player);
+    }
+    else {
+    }
+}
+
+void lib840A968C_gf_AwardTeamXP (int lp_xP) {
+    playergroup auto22B00990_g;
+    int auto22B00990_p;
+    playergroup auto60DB124E_g;
+    int auto60DB124E_p;
+
+    // Variable Declarations
+    int lv_alivePlayer;
+
+    // Variable Initialization
+
+    // Implementation
+    auto22B00990_g = lib840A968C_gv_livingMarines; 
+    auto22B00990_p = 1;
+    for ( ; auto22B00990_p <= PlayerGroupCount(auto22B00990_g) ; auto22B00990_p += BoolToInt(lv_alivePlayer == PlayerGroupPlayer(auto22B00990_g, auto22B00990_p)) ) {
+        lv_alivePlayer = PlayerGroupPlayer(auto22B00990_g, auto22B00990_p);
+        lib840A968C_gf_AwardPlayerXP(lv_alivePlayer, lp_xP);
+    }
+    auto60DB124E_g = lib840A968C_gv_pets; 
+    auto60DB124E_p = 1;
+    for ( ; auto60DB124E_p <= PlayerGroupCount(auto60DB124E_g) ; auto60DB124E_p += BoolToInt(lv_alivePlayer == PlayerGroupPlayer(auto60DB124E_g, auto60DB124E_p)) ) {
+        lv_alivePlayer = PlayerGroupPlayer(auto60DB124E_g, auto60DB124E_p);
+        lib840A968C_gf_AwardPlayerXP(lv_alivePlayer, lp_xP);
+    }
+}
+
+void lib840A968C_gf_AwardUnitXP (fixed lp_xP, unit lp_unit) {
+    // Implementation
+    UnitSetPropertyFixed(lp_unit, c_unitPropXP, (UnitGetPropertyFixed(lp_unit, c_unitPropXP, c_unitPropCurrent) + lp_xP));
+}
+
+void lib840A968C_gf_AwardTeamMarineXP (fixed lp_xP) {
+    // Implementation
+    UnitGroupLoopBegin(lib840A968C_gf_GetMarineGroup());
+    for ( ; !UnitGroupLoopDone() ; UnitGroupLoopStep() ) {
+        lib840A968C_gf_AwardUnitXP(lp_xP, UnitGroupLoopCurrent());
+    }
+    UnitGroupLoopEnd();
+}
+
+void lib840A968C_gf_AwardCredits (int lp_player, int lp_credits) {
+    // Implementation
+    if (PlayerGroupHasPlayer(lib840A968C_gv_livingMarines, lp_player)) {
+        lib840A968C_gv_players[lp_player].lv_credits += lp_credits;
+    }
+    else {
+    }
+    if (PlayerGroupHasPlayer(lib840A968C_gv_pets, lp_player)) {
+        lib840A968C_gv_players[lp_player].lv_credits += RoundI((lp_credits * 0.5));
+    }
+    else {
+    }
+}
+
+void lib840A968C_gf_AwardTeamCredits (int lp_credits) {
+    playergroup auto0EBA3343_g;
+    int auto0EBA3343_p;
+    playergroup auto75A805B4_g;
+    int auto75A805B4_p;
+
+    // Variable Declarations
+    int lv_alivePlayer;
+
+    // Variable Initialization
+
+    // Implementation
+    auto0EBA3343_g = lib840A968C_gv_livingMarines; 
+    auto0EBA3343_p = 1;
+    for ( ; auto0EBA3343_p <= PlayerGroupCount(auto0EBA3343_g) ; auto0EBA3343_p += BoolToInt(lv_alivePlayer == PlayerGroupPlayer(auto0EBA3343_g, auto0EBA3343_p)) ) {
+        lv_alivePlayer = PlayerGroupPlayer(auto0EBA3343_g, auto0EBA3343_p);
+        lib840A968C_gf_AwardCredits(lv_alivePlayer, lp_credits);
+    }
+    auto75A805B4_g = lib840A968C_gv_pets; 
+    auto75A805B4_p = 1;
+    for ( ; auto75A805B4_p <= PlayerGroupCount(auto75A805B4_g) ; auto75A805B4_p += BoolToInt(lv_alivePlayer == PlayerGroupPlayer(auto75A805B4_g, auto75A805B4_p)) ) {
+        lv_alivePlayer = PlayerGroupPlayer(auto75A805B4_g, auto75A805B4_p);
+        lib840A968C_gf_AwardCredits(lv_alivePlayer, lp_credits);
+    }
+}
+
+void lib840A968C_gf_RankUp (int lp_player) {
+    // Implementation
+    lib840A968C_gv_players[lp_player].lv_currentRankIndex += 1;
+    lib840A968C_gv_players[lp_player].lv_currentRank = UserDataInstance("Ranks", lib840A968C_gv_players[lp_player].lv_currentRankIndex);
+    lib840A968C_gf_SetRankData(lp_player);
+}
+
+bool lib840A968C_gf_RankUpCheck (int lp_player) {
+    // Implementation
+    return (lib840A968C_gv_players[lp_player].lv_totalExperience >= UserDataGetInt("Ranks", UserDataInstance("Ranks", (lib840A968C_gv_players[lp_player].lv_currentRankIndex + 1)), "XP Required", 1));
+}
+
+fixed lib840A968C_gf_RatingLoss (int lp_player) {
+    // Implementation
+    if ((lib840A968C_gv_players[lp_player].lv_rating < 1500.0)) {
+        return 0.25;
+    }
+    else if (((lib840A968C_gv_players[lp_player].lv_rating >= 1500) && (lib840A968C_gv_players[lp_player].lv_rating <= 1799))) {
+        return 0.5;
+    }
+    return 1.0;
+}
+
+text lib840A968C_gf_GetPlayerNamewithrank (int lp_player) {
+    // Implementation
+    TextExpressionSetToken("Param/Expression/lib_840A968C_7B7BB48C", "B", UserDataGetText("Ranks", lib840A968C_gv_players[lp_player].lv_currentRank, "Title Brief", 1));
+    TextExpressionSetToken("Param/Expression/lib_840A968C_7B7BB48C", "A", PlayerName(lp_player));
+    return TextExpressionAssemble("Param/Expression/lib_840A968C_7B7BB48C");
+}
+
+void lib840A968C_gf_BackgroundDialog (unit lp_unit, text lp_speaker, text lp_speechText, int lp_speechType, fixed lp_dialogDuration) {
+    // Implementation
+    if ((!(UnitIsAlive(lp_unit)))) {
+        return ;
+    }
+    TextExpressionSetToken("Param/Expression/lib_840A968C_3312D1A6", "A", lp_speaker);
+    TextExpressionSetToken("Param/Expression/lib_840A968C_3312D1A6", "C", lp_speechText);
+    TextTagCreate((TextExpressionAssemble("Param/Expression/lib_840A968C_3312D1A6")), 24, UnitGetPosition(lp_unit), 1.0, true, false, PlayerGroupAll());
+    TextTagAttachToUnit(TextTagLastCreated(), lp_unit, 1.5);
+    TextTagSetTime(TextTagLastCreated(), c_textTagTimeDuration, lp_dialogDuration);
+    TextTagSetTime(TextTagLastCreated(), c_textTagTimeFadeDuration, 0.0);
+    TextTagSetTime(TextTagLastCreated(), c_textTagTimeFadeOut, 0.0);
+    TextTagShow(TextTagLastCreated(), PlayerGroupAll(), true);
+    Wait(lp_dialogDuration, c_timeGame);
+}
+
+void lib840A968C_gf_Assert (string lp_test, string lp_expectedValue, string lp_testMessage) {
+    // Implementation
+    if (StringEqual(lp_test, lp_expectedValue, c_stringCase)) {
+        TriggerDebugOutput(lib840A968C_gv_asserts, StringToText((lp_testMessage + "Passed")), true);
+    }
+    else {
+        TriggerDebugOutput(lib840A968C_gv_asserts, StringToText((lp_testMessage + "Failed")), true);
+    }
+}
+
+void lib840A968C_gf_AssertBankLoad () {
+    // Implementation
+    PlayerGroupAdd(lib840A968C_gv_marineSquad, 1);
+    lib840A968C_gf_LoadBanks();
+    TriggerDebugOutput(lib840A968C_gv_asserts, StringExternal("Param/Value/lib_840A968C_127E03B0"), true);
+    lib840A968C_gf_Assert(IntToString(lib840A968C_gv_players[1].lv_totalExperience), "0", "Total Experience: ");
+    lib840A968C_gf_Assert(IntToString(lib840A968C_gv_players[1].lv_gamesPlayed), "1", "Games Played: ");
+    lib840A968C_gf_Assert(IntToString(lib840A968C_gv_players[1].lv_availableExperience), "0", "Available Experience: ");
+    lib840A968C_gf_Assert(IntToString(lib840A968C_gv_players[1].lv_credits), "0", "Credits : ");
+    lib840A968C_gf_Assert(FixedToString(lib840A968C_gv_players[1].lv_rating, c_fixedPrecisionAny), "1000", "Rating : ");
+}
+
+void lib840A968C_gf_AssertBankCreation () {
+    // Implementation
+    TriggerDebugOutput(lib840A968C_gv_asserts, StringExternal("Param/Value/lib_840A968C_977CD454"), true);
+    lib840A968C_gf_Assert(IntToString(BankValueGetAsInt(lib840A968C_gv_playerBanks[1].lv_playerData, lib840A968C_gf_GetSectionName("PlayerData"), lib840A968C_gf_GetKeyName("TotalExperience"))), "0", "Total Experience: ");
+    lib840A968C_gf_Assert(IntToString(BankValueGetAsInt(lib840A968C_gv_playerBanks[1].lv_playerData, lib840A968C_gf_GetSectionName("PlayerData"), lib840A968C_gf_GetKeyName("GamesPlayed"))), "1", "Games Played: ");
+    lib840A968C_gf_Assert(IntToString(BankValueGetAsInt(lib840A968C_gv_playerBanks[1].lv_playerData, lib840A968C_gf_GetSectionName("PlayerData"), lib840A968C_gf_GetKeyName("AvailableExperience"))), "0", "Available Experience: ");
+    lib840A968C_gf_Assert(IntToString(BankValueGetAsInt(lib840A968C_gv_playerBanks[1].lv_playerData, lib840A968C_gf_GetSectionName("PlayerData"), lib840A968C_gf_GetKeyName("Credits"))), "0", "Credits : ");
+    lib840A968C_gf_Assert(IntToString(BankValueGetAsInt(lib840A968C_gv_playerBanks[1].lv_playerData, lib840A968C_gf_GetSectionName("PlayerData"), lib840A968C_gf_GetKeyName("Rating"))), "1000", "Rating : ");
+}
+
+void lib840A968C_gf_AssertBankSave () {
+    // Implementation
+    lib840A968C_gv_players[1].lv_totalExperience = 500;
+    lib840A968C_gv_players[1].lv_rating = 2000;
+    lib840A968C_gv_players[1].lv_gamesPlayed = 50;
+    lib840A968C_gv_players[1].lv_availableExperience = 500;
+    lib840A968C_gv_players[1].lv_credits = 372;
+    Wait(2.0, c_timeGame);
+    TriggerDebugOutput(lib840A968C_gv_asserts, StringExternal("Param/Value/lib_840A968C_B21B16EC"), true);
+    lib840A968C_gf_Assert(IntToString(BankValueGetAsInt(lib840A968C_gv_playerBanks[1].lv_playerData, lib840A968C_gf_GetSectionName("PlayerData"), lib840A968C_gf_GetKeyName("TotalExperience"))), "500", "Total Experience: ");
+    lib840A968C_gf_Assert(IntToString(BankValueGetAsInt(lib840A968C_gv_playerBanks[1].lv_playerData, lib840A968C_gf_GetSectionName("PlayerData"), lib840A968C_gf_GetKeyName("GamesPlayed"))), "50", "Games Played: ");
+    lib840A968C_gf_Assert(IntToString(BankValueGetAsInt(lib840A968C_gv_playerBanks[1].lv_playerData, lib840A968C_gf_GetSectionName("PlayerData"), lib840A968C_gf_GetKeyName("AvailableExperience"))), "500", "Available Experience: ");
+    lib840A968C_gf_Assert(IntToString(BankValueGetAsInt(lib840A968C_gv_playerBanks[1].lv_playerData, lib840A968C_gf_GetSectionName("PlayerData"), lib840A968C_gf_GetKeyName("Credits"))), "372", "Credits : ");
+    lib840A968C_gf_Assert(IntToString(BankValueGetAsInt(lib840A968C_gv_playerBanks[1].lv_playerData, lib840A968C_gf_GetSectionName("PlayerData"), lib840A968C_gf_GetKeyName("Rating"))), "2000", "Rating : ");
+}
+
+void lib840A968C_gf_AssertXPAward () {
+    // Implementation
+    lib840A968C_gv_players[1].lv_totalExperience = 0;
+    lib840A968C_gv_players[1].lv_availableExperience = 0;
+    lib840A968C_gf_AwardPlayerXP(1, 30);
+    TriggerDebugOutput(lib840A968C_gv_asserts, StringExternal("Param/Value/lib_840A968C_6D1BFAF9"), true);
+    lib840A968C_gf_Assert(IntToString(lib840A968C_gv_players[1].lv_totalExperience), "30", "Total Experience: ");
+    lib840A968C_gf_Assert(IntToString(lib840A968C_gv_players[1].lv_availableExperience), "30", "Available Experience: ");
+}
+
+void lib840A968C_gf_AssertMarineExperienceAward () {
+    // Implementation
+    lib840A968C_gf_AwardUnitXP(30.0, libC50FD636_gv_marines[1].lv_unit);
+    TriggerDebugOutput(lib840A968C_gv_asserts, StringExternal("Param/Value/lib_840A968C_58C6EEA9"), true);
+    lib840A968C_gf_Assert(FixedToString(UnitGetPropertyFixed(libC50FD636_gv_marines[1].lv_unit, c_unitPropXP, c_unitPropCurrent), c_fixedPrecisionAny), "80", "Marine Experience: ");
+}
+
+void lib840A968C_gf_AssertClassCreation () {
+    // Implementation
+    libC50FD636_gv_marines[1].lv_class = "Rifleman";
+    TriggerDebugOutput(lib840A968C_gv_asserts, StringExternal("Param/Value/lib_840A968C_06C84448"), true);
+    lib840A968C_gf_Assert(FixedToString(UnitGetPropertyFixed(libC50FD636_gv_marines[1].lv_unit, c_unitPropLevel, c_unitPropCurrent), c_fixedPrecisionAny), "1", "Marine Experience: ");
+    lib840A968C_gf_Assert(FixedToString(UnitGetPropertyFixed(libC50FD636_gv_marines[1].lv_unit, c_unitPropLevel, c_unitPropCurrent), c_fixedPrecisionAny), "1", "Marine Experience: ");
+}
+
+void lib840A968C_gf_SetLoggingOutput () {
+    // Implementation
+    TriggerDebugSetTypeFile(lib840A968C_gv_gameEvents, lib840A968C_gv_gameEventLogFile);
+    TriggerDebugSetTypeFile(lib840A968C_gv_playerEvents, lib840A968C_gv_playerEventsLogFile);
+    TriggerDebugSetTypeFile(lib840A968C_gv_bossEvents, lib840A968C_gv_bossEventLogFile);
+    TriggerDebugSetTypeFile(lib840A968C_gv_summary, lib840A968C_gv_summaryLogFile);
+    TriggerDebugSetTypeFile(lib840A968C_gv_asserts, lib840A968C_gv_assertsLogFile);
+    TriggerDebugSetTypeFile(lib840A968C_gv_banks, lib840A968C_gv_bankLogFile);
+}
+
+bool lib840A968C_gf_IsaDeveloper (string lp_handle) {
+    // Implementation
+    return (StringEqual("6-S2-1-750760", lp_handle, c_stringCase) || StringEqual("1-S2-1-3765578", lp_handle, c_stringCase) || StringEqual("1-S2-1-431521", lp_handle, c_stringCase) || StringEqual("1-S2-1-1143628", lp_handle, c_stringCase));
+}
+
+// Triggers
+//--------------------------------------------------------------------------------------------------
+// Trigger: Shop Intialize
+//--------------------------------------------------------------------------------------------------
+bool lib840A968C_gt_ShopIntialize_Func (bool testConds, bool runActions) {
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TriggerExecute(lib840A968C_gt_BankLoad, true, false);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib840A968C_gt_ShopIntialize_Init () {
+    lib840A968C_gt_ShopIntialize = TriggerCreate("lib840A968C_gt_ShopIntialize_Func");
+    TriggerAddEventGeneric(lib840A968C_gt_ShopIntialize, lib840A968C_gv_shopIntialization);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Bank Load
+//--------------------------------------------------------------------------------------------------
+bool lib840A968C_gt_BankLoad_Func (bool testConds, bool runActions) {
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    BankLoad(lib840A968C_gv_playerUnlocksBankName, 1);
+    lib840A968C_gv_playerBanks[1].lv_customizationUnlocks = BankLastCreated();
+    lib840A968C_gf_CreateUnlockBankKeys(lib840A968C_gv_playerBanks[1].lv_customizationUnlocks);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib840A968C_gt_BankLoad_Init () {
+    lib840A968C_gt_BankLoad = TriggerCreate("lib840A968C_gt_BankLoad_Func");
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Apply Service Branches
+//--------------------------------------------------------------------------------------------------
+bool lib840A968C_gt_ApplyServiceBranches_Func (bool testConds, bool runActions) {
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    PlayerGroupLoopBegin(lib840A968C_gv_marineSquad);
+    for ( ; !PlayerGroupLoopDone() ; PlayerGroupLoopStep() ) {
+        lib840A968C_gf_ApplyServiceBranchUpgrade(PlayerGroupLoopCurrent());
+    }
+    PlayerGroupLoopEnd();
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib840A968C_gt_ApplyServiceBranches_Init () {
+    lib840A968C_gt_ApplyServiceBranches = TriggerCreate("lib840A968C_gt_ApplyServiceBranches_Func");
+    TriggerAddEventGeneric(lib840A968C_gt_ApplyServiceBranches, lib840A968C_gv_classCustomizationEvent);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Apply Sidearms
+//--------------------------------------------------------------------------------------------------
+bool lib840A968C_gt_ApplySidearms_Func (bool testConds, bool runActions) {
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    PlayerGroupLoopBegin(lib840A968C_gv_marineSquad);
+    for ( ; !PlayerGroupLoopDone() ; PlayerGroupLoopStep() ) {
+        lib840A968C_gf_ApplyCustomSidearm(PlayerGroupLoopCurrent());
+    }
+    PlayerGroupLoopEnd();
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib840A968C_gt_ApplySidearms_Init () {
+    lib840A968C_gt_ApplySidearms = TriggerCreate("lib840A968C_gt_ApplySidearms_Func");
+    TriggerAddEventGeneric(lib840A968C_gt_ApplySidearms, lib840A968C_gv_classCustomizationEvent);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Apply Character Modifications
+//--------------------------------------------------------------------------------------------------
+bool lib840A968C_gt_ApplyCharacterModifications_Func (bool testConds, bool runActions) {
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    PlayerGroupLoopBegin(lib840A968C_gv_marineSquad);
+    for ( ; !PlayerGroupLoopDone() ; PlayerGroupLoopStep() ) {
+        lib840A968C_gf_ApplyCharacterMods(PlayerGroupLoopCurrent());
+    }
+    PlayerGroupLoopEnd();
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib840A968C_gt_ApplyCharacterModifications_Init () {
+    lib840A968C_gt_ApplyCharacterModifications = TriggerCreate("lib840A968C_gt_ApplyCharacterModifications_Func");
+    TriggerAddEventGeneric(lib840A968C_gt_ApplyCharacterModifications, lib840A968C_gv_classCustomizationEvent);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Parasite Attacks
+//--------------------------------------------------------------------------------------------------
+bool lib840A968C_gt_ParasiteAttacks_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    unit lv_parasiteUnit;
+
+    // Variable Initialization
+    lv_parasiteUnit = EventPlayerEffectUsedUnit(c_effectUnitTarget);
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    AISetUnitNotUsableInWaves(lv_parasiteUnit, true);
+    UnitIssueOrder(lv_parasiteUnit, OrderTargetingUnitGroup(AbilityCommand("attack", 0), lib840A968C_gf_GetMarineGroup()), c_orderQueueReplace);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib840A968C_gt_ParasiteAttacks_Init () {
+    lib840A968C_gt_ParasiteAttacks = TriggerCreate("lib840A968C_gt_ParasiteAttacks_Func");
+    TriggerAddEventPlayerEffectUsed(lib840A968C_gt_ParasiteAttacks, lib1E3F036D_gv_zombiePlayer, "ParasiteSpawnDummyEffect");
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Riot Mode Attacks On Players
+//--------------------------------------------------------------------------------------------------
+bool lib840A968C_gt_AmbientAttacksOnPlayers_Func (bool testConds, bool runActions) {
+    // Conditions
+    if (testConds) {
+        if (!((lib840A968C_gv_riotMode || (lib840A968C_gv_currentChapter == 5)))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    AIAttackWaveUseGroup(lib1E3F036D_gv_zombiePlayer, UnitGroup(null, lib1E3F036D_gv_zombiePlayer, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterHeroic) | (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32)) | (1 << (c_targetFilterPassive - 32))), RandomInt(15, 30)));
+    AIAttackWaveSetTargetUnitGroup(lib1E3F036D_gv_zombiePlayer, lib840A968C_gf_GetMarineGroup());
+    AIAttackWaveSend(lib1E3F036D_gv_zombiePlayer, 0, false);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib840A968C_gt_AmbientAttacksOnPlayers_Init () {
+    lib840A968C_gt_AmbientAttacksOnPlayers = TriggerCreate("lib840A968C_gt_AmbientAttacksOnPlayers_Func");
+    TriggerAddEventTimePeriodic(lib840A968C_gt_AmbientAttacksOnPlayers, 10.0, c_timeGame);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Riot Mode Check
+//--------------------------------------------------------------------------------------------------
+bool lib840A968C_gt_RiotModeCheck_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    unit lv_attackTargetUnit;
+    int lv_unitCount;
+
+    // Variable Initialization
+
+    // Conditions
+    if (testConds) {
+        if (!((((PlayerDifficulty(EventPlayer()) == 0) && (EventUnitAttributePoints() > 100)) || ((PlayerDifficulty(EventPlayer()) == 1) && (EventUnitAttributePoints() > 75)) || ((PlayerDifficulty(EventPlayer()) == 2) && (EventUnitAttributePoints() > 50))))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TriggerEnable(TriggerGetCurrent(), false);
+    lib840A968C_gv_riotMode = true;
+    while (!((!((((PlayerDifficulty(EventPlayer()) == 0) && (EventUnitAttributePoints() > 100)) || ((PlayerDifficulty(EventPlayer()) == 1) && (EventUnitAttributePoints() > 75)) || ((PlayerDifficulty(EventPlayer()) == 2) && (EventUnitAttributePoints() > 50))))))) {
+        Wait(5.0, c_timeGame);
+    }
+    lib840A968C_gv_riotMode = false;
+    TriggerEnable(TriggerGetCurrent(), true);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib840A968C_gt_RiotModeCheck_Init () {
+    lib840A968C_gt_RiotModeCheck = TriggerCreate("lib840A968C_gt_RiotModeCheck_Func");
+    TriggerAddEventUnitAttributeChange(lib840A968C_gt_RiotModeCheck, null);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Activate Horde
+//--------------------------------------------------------------------------------------------------
+bool lib840A968C_gt_ActivateHorde_Func (bool testConds, bool runActions) {
+    unitgroup auto5A20CEE4_g;
+    int auto5A20CEE4_u;
+
+    // Variable Declarations
+    point lv_spawnPoint;
+    unit lv_normalUnit;
+
+    // Variable Initialization
+    lv_spawnPoint = lib09BE6BA8_gf_PointAtGroundLevelinRegion(RegionPlayableMap());
+
+    // Conditions
+    if (testConds) {
+        if (!((lib840A968C_gv_currentChapter != 0))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    Wait(RandomFixed(0.0, 2.0), c_timeGame);
+    while (lib840A968C_gv_hordeLock) {
+        Wait(1.0, c_timeGame);
+    }
+    lib840A968C_gv_hordeLock = true;
+    UIDisplayMessage(PlayerGroupAll(), c_messageAreaSubtitle, StringExternal("Param/Value/lib_840A968C_8280CFC9"));
+    TextExpressionSetToken("Param/Expression/lib_840A968C_5607E622", "A", IntToText(TechTreeUpgradeCount(lib1E3F036D_gv_zombiePlayer, "Chapter1Complete", c_techCountCompleteOnly)));
+    TriggerDebugOutput(lib840A968C_gv_gameEvents, TextExpressionAssemble("Param/Expression/lib_840A968C_5607E622"), false);
+    while (lib840A968C_gf_PointNotNearUnitGroupUnits(lv_spawnPoint, lib840A968C_gf_GetMarineGroup(), 50.0)) {
+        lv_spawnPoint = lib09BE6BA8_gf_PointAtGroundLevelinRegion(RegionPlayableMap());
+    }
+    lib1765BC64_gf_HordeMode(AIWaveTargetUnitGroup(lib840A968C_gf_GetMarineGroup()), lv_spawnPoint, UnitGroupCount(lib840A968C_gf_GetMarineGroup(), c_unitCountAlive), lib840A968C_gv_currentChapter);
+    Wait(1.5, c_timeGame);
+    if ((lib1E3F036D_gf_GameType() == 1)) {
+        lv_spawnPoint = lib09BE6BA8_gf_PointAtGroundLevelinRegion(RegionPlayableMap());
+        while (lib840A968C_gf_PointNotNearUnitGroupUnits(lv_spawnPoint, lib840A968C_gf_GetMarineGroup(), 50.0)) {
+            lv_spawnPoint = lib09BE6BA8_gf_PointAtGroundLevelinRegion(RegionPlayableMap());
+        }
+        auto5A20CEE4_g = AIWaveGetUnits(lib1765BC64_gv_currentHordeWave);
+        auto5A20CEE4_u = 1;
+        for ( ; auto5A20CEE4_u <= UnitGroupCount(auto5A20CEE4_g, c_unitCountAll) ; auto5A20CEE4_u += BoolToInt(lv_normalUnit == UnitGroupUnit(auto5A20CEE4_g, auto5A20CEE4_u)) ) {
+            lv_normalUnit = UnitGroupUnit(auto5A20CEE4_g, auto5A20CEE4_u);
+            if ((RandomInt(0, 1) == 1)) {
+                AIRemoveUnitFromAnyWaves(lv_normalUnit);
+                UnitSetPosition(lv_normalUnit, lv_spawnPoint, false);
+                AIAttackWaveUseUnit(lib1E3F036D_gv_zombiePlayer, lv_normalUnit);
+            }
+        }
+        AIAttackWaveSetTargetUnitGroup(lib1E3F036D_gv_zombiePlayer, lib840A968C_gf_GetMarineGroup());
+        AIAttackWaveSend(lib1E3F036D_gv_zombiePlayer, 0, false);
+    }
+    TriggerStop(TriggerGetCurrent());
+    lib840A968C_gv_hordeLock = false;
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib840A968C_gt_ActivateHorde_Init () {
+    lib840A968C_gt_ActivateHorde = TriggerCreate("lib840A968C_gt_ActivateHorde_Func");
+    TriggerAddEventUnitBehaviorChange(lib840A968C_gt_ActivateHorde, null, "HordeModeActive", c_unitBehaviorChangeCreate);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Intialization
+//--------------------------------------------------------------------------------------------------
+bool lib840A968C_gt_Intialization_Func (bool testConds, bool runActions) {
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    lib840A968C_gf_PlayerSetup();
+    lib840A968C_gf_PlayerOptionsOverride();
+    lib840A968C_gf_AIIntialize();
+    lib840A968C_gf_SetLoggingOutput();
+    libC50FD636_gf_IntializeTalentMax();
+    lib840A968C_gf_DefaultAllianceStates();
+    lib840A968C_gv_gameSetupComplete = true;
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib840A968C_gt_Intialization_Init () {
+    lib840A968C_gt_Intialization = TriggerCreate("lib840A968C_gt_Intialization_Func");
+    TriggerAddEventMapInit(lib840A968C_gt_Intialization);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Game Start
+//--------------------------------------------------------------------------------------------------
+bool lib840A968C_gt_GameStart_Func (bool testConds, bool runActions) {
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TriggerDebugOutput(lib840A968C_gv_gameEvents, StringExternal("Param/Value/lib_840A968C_C040248C"), false);
+    GameSetMissionTimePaused(true);
+    EnvironmentShow(c_environmentAll, false);
+    libNtve_gf_HideGameUI(false, PlayerGroupAll());
+    UISetWorldVisible(PlayerGroupAll(), false);
+    UISetFrameVisible(PlayerGroupAll(), c_syncFrameTypeTeamResourceButton, false);
+    while (!(lib840A968C_gv_gameSetupComplete)) {
+        Wait(0.0625, c_timeGame);
+    }
+    if (((GameAttributeGameValue("1") == "0001") || GameIsTestMap(false))) {
+        TriggerDebugOutput(lib840A968C_gv_gameEvents, StringExternal("Param/Value/lib_840A968C_5EF69773"), false);
+        TriggerSendEvent(lib840A968C_gv_difficultySelectionEvent);
+    }
+    else if ((GameAttributeGameValue("1") == "0003")) {
+    }
+    else if ((GameAttributeGameValue("1") == "0002")) {
+        TriggerSendEvent(lib840A968C_gv_shopIntialization);
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib840A968C_gt_GameStart_Init () {
+    lib840A968C_gt_GameStart = TriggerCreate("lib840A968C_gt_GameStart_Func");
+    TriggerAddEventTimeElapsed(lib840A968C_gt_GameStart, 0.0625, c_timeGame);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Player Leaves the Game
+//--------------------------------------------------------------------------------------------------
+bool lib840A968C_gt_PlayerLeavestheGame_Func (bool testConds, bool runActions) {
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    PlayerGroupRemove(lib840A968C_gv_marineSquad, EventPlayer());
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib840A968C_gt_PlayerLeavestheGame_Init () {
+    lib840A968C_gt_PlayerLeavestheGame = TriggerCreate("lib840A968C_gt_PlayerLeavestheGame_Func");
+    TriggerAddEventPlayerLeft(lib840A968C_gt_PlayerLeavestheGame, c_playerAny, c_gameResultUndecided);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Victory
+//--------------------------------------------------------------------------------------------------
+bool lib840A968C_gt_Victory_Func (bool testConds, bool runActions) {
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TriggerSendEvent(lib840A968C_gv_save);
+    UIDisplayMessage(PlayerGroupAll(), c_messageAreaDirective, StringExternal("Param/Value/lib_840A968C_3C61C002"));
+    Wait(10.0, c_timeGame);
+    PlayerGroupLoopBegin(lib840A968C_gv_marineSquad);
+    for ( ; !PlayerGroupLoopDone() ; PlayerGroupLoopStep() ) {
+        GameOver(PlayerGroupLoopCurrent(), c_gameOverVictory, true, true);
+    }
+    PlayerGroupLoopEnd();
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib840A968C_gt_Victory_Init () {
+    lib840A968C_gt_Victory = TriggerCreate("lib840A968C_gt_Victory_Func");
+    TriggerAddEventGeneric(lib840A968C_gt_Victory, lib840A968C_gv_victory);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Defeat
+//--------------------------------------------------------------------------------------------------
+bool lib840A968C_gt_Defeat_Func (bool testConds, bool runActions) {
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TriggerSendEvent(lib840A968C_gv_save);
+    UIDisplayMessage(PlayerGroupAll(), c_messageAreaDirective, StringExternal("Param/Value/lib_840A968C_352B45F2"));
+    Wait(10.0, c_timeGame);
+    PlayerGroupLoopBegin(lib840A968C_gv_marineSquad);
+    for ( ; !PlayerGroupLoopDone() ; PlayerGroupLoopStep() ) {
+        GameOver(PlayerGroupLoopCurrent(), c_gameOverDefeat, true, true);
+    }
+    PlayerGroupLoopEnd();
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib840A968C_gt_Defeat_Init () {
+    lib840A968C_gt_Defeat = TriggerCreate("lib840A968C_gt_Defeat_Func");
+    TriggerAddEventGeneric(lib840A968C_gt_Defeat, lib840A968C_gv_defeat);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Display Class Selection
+//--------------------------------------------------------------------------------------------------
+bool lib840A968C_gt_DisplayClassSelection_Func (bool testConds, bool runActions) {
+    int autoE7B793F7_ae;
+    int autoE7B793F7_ai;
+    playergroup auto2FAB51E5_g;
+    int auto2FAB51E5_p;
+
+    // Variable Declarations
+    int lv_classButton;
+    int lv_player;
+    int lv_playerRankIcon;
+    int lv_playerNameLabel;
+
+    // Variable Initialization
+    lv_playerRankIcon = c_invalidDialogControlId;
+    lv_playerNameLabel = c_invalidDialogControlId;
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TriggerDebugOutput(lib840A968C_gv_gameEvents, StringExternal("Param/Value/lib_840A968C_9029BFAB"), false);
+    SoundChannelMute(PlayerGroupAll(), c_soundCategoryAmbient, true);
+    SoundChannelMute(PlayerGroupAll(), c_soundCategorySAmbient, true);
+    SoundChannelMute(PlayerGroupAll(), c_soundCategorySEmitters, true);
+    SoundChannelMute(PlayerGroupAll(), c_soundCategoryMusic, true);
+    PlayerGroupLoopBegin(PlayerGroupAll());
+    for ( ; !PlayerGroupLoopDone() ; PlayerGroupLoopStep() ) {
+        CameraPan(PlayerGroupLoopCurrent(), Point(0.0, 0.0), 0.0, -1, 10.0, false);
+        CameraLockInput(PlayerGroupLoopCurrent(), true);
+    }
+    PlayerGroupLoopEnd();
+    TimerStart(lib840A968C_gv_classSelectionTimer, 20.0, false, c_timeReal);
+    TriggerEnable(lib840A968C_gt_ClassSelection, true);
+    TriggerEnable(lib840A968C_gt_EndClassSelection, true);
+    DialogCreate(500, 400, c_anchorCenter, 0, 0, true);
+    lib840A968C_gv_classSelectionDialog = DialogLastCreated();
+    DialogSetFullscreen(DialogLastCreated(), true);
+    DialogControlCreateFromTemplate(DialogLastCreated(), c_triggerControlTypePanel, "ClassSelection/ClassSelection");
+    lib840A968C_gv_classSelectionPanel = DialogControlLastCreated();
+    DialogControlSetFullDialog(lib840A968C_gv_classSelectionPanel, PlayerGroupAll(), true);
+    autoE7B793F7_ae = lib840A968C_gv_numberofClasses;
+    autoE7B793F7_ai = 1;
+    lv_classButton = 1;
+    for ( ; ( (autoE7B793F7_ai >= 0 && lv_classButton <= autoE7B793F7_ae) || (autoE7B793F7_ai <= 0 && lv_classButton >= autoE7B793F7_ae) ) ; lv_classButton += autoE7B793F7_ai ) {
+        DialogControlHookup(lib840A968C_gv_classSelectionPanel, c_triggerControlTypeButton, "ClassButton" + IntToString(lv_classButton));
+        lib840A968C_gv_classSelectionItems[lv_classButton] = DialogControlLastCreated();
+        lib840A968C_gf_ClassUnlocked(lv_classButton);
+    }
+    DialogControlHookup(lib840A968C_gv_classSelectionPanel, c_triggerControlTypeLabel, "PlayerName");
+    lv_playerNameLabel = DialogControlLastCreated();
+    DialogControlHookup(lib840A968C_gv_classSelectionPanel, c_triggerControlTypeImage, "PlayerRankIcon");
+    lv_playerRankIcon = DialogControlLastCreated();
+    DialogControlHookup(lib840A968C_gv_classSelectionPanel, c_triggerControlTypeLabel, "ClassLoreFrame");
+    lib840A968C_gv_classLoreFrame = DialogControlLastCreated();
+    DialogControlHookup(lib840A968C_gv_classSelectionPanel, c_triggerControlTypeUnitModel, "ClassModelPreview");
+    lib840A968C_gv_classModelFrame = DialogControlLastCreated();
+    auto2FAB51E5_g = lib840A968C_gv_marineSquad; 
+    auto2FAB51E5_p = 1;
+    for ( ; auto2FAB51E5_p <= PlayerGroupCount(auto2FAB51E5_g) ; auto2FAB51E5_p += BoolToInt(lv_player == PlayerGroupPlayer(auto2FAB51E5_g, auto2FAB51E5_p)) ) {
+        lv_player = PlayerGroupPlayer(auto2FAB51E5_g, auto2FAB51E5_p);
+        libNtve_gf_SetDialogItemImage(lv_playerRankIcon, UserDataGetImagePath("Ranks", lib840A968C_gv_players[lv_player].lv_currentRank, "Icon", 1), PlayerGroupSingle(lv_player));
+        TextExpressionSetToken("Param/Expression/lib_840A968C_65BE9F6D", "B", UserDataGetText("Ranks", lib840A968C_gv_players[lv_player].lv_currentRank, "Title Full", 1));
+        TextExpressionSetToken("Param/Expression/lib_840A968C_65BE9F6D", "A", PlayerName(lv_player));
+        libNtve_gf_SetDialogItemText(lv_playerNameLabel, TextExpressionAssemble("Param/Expression/lib_840A968C_65BE9F6D"), PlayerGroupSingle(lv_player));
+    }
+    DialogSetVisible(lib840A968C_gv_classSelectionDialog, PlayerGroupAll(), true);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib840A968C_gt_DisplayClassSelection_Init () {
+    lib840A968C_gt_DisplayClassSelection = TriggerCreate("lib840A968C_gt_DisplayClassSelection_Func");
+    TriggerAddEventGeneric(lib840A968C_gt_DisplayClassSelection, lib840A968C_gv_classSelectionEvent);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Class Selection
+//--------------------------------------------------------------------------------------------------
+bool lib840A968C_gt_ClassSelection_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    int lv_classIndex;
+    int lv_selectingPlayer;
+
+    // Variable Initialization
+    lv_selectingPlayer = EventPlayer();
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    while ((EventDialogControl() != lib840A968C_gv_classSelectionItems[lv_classIndex])) {
+        lv_classIndex += 1;
+    }
+    libC50FD636_gv_marines[lv_selectingPlayer].lv_class = UserDataInstance("Classes", lv_classIndex);
+    TextExpressionSetToken("Param/Expression/lib_840A968C_17A6A483", "A", PlayerName(EventPlayer()));
+    TextExpressionSetToken("Param/Expression/lib_840A968C_17A6A483", "Class", UnitTypeGetName(UserDataGetUnit("Classes", libC50FD636_gv_marines[lv_selectingPlayer].lv_class, "Class Unit", 1)));
+    TriggerDebugOutput(lib840A968C_gv_playerEvents, TextExpressionAssemble("Param/Expression/lib_840A968C_17A6A483"), false);
+    libNtve_gf_SetDialogItemText(lib840A968C_gv_classLoreFrame, UserDataGetText("Classes", libC50FD636_gv_marines[lv_selectingPlayer].lv_class, "Class Lore", 1), PlayerGroupSingle(lv_selectingPlayer));
+    IntLoopBegin(lib1E3F036D_gv_indexBaseValue, lib840A968C_gv_numberofClasses);
+    for ( ; !IntLoopDone() ; IntLoopStep() ) {
+        if ((lib840A968C_gv_classSelectionItems[IntLoopCurrent()] != EventDialogControl())) {
+            libNtve_gf_SetDialogItemToggled(lib840A968C_gv_classSelectionItems[IntLoopCurrent()], false, PlayerGroupSingle(lv_selectingPlayer));
+        }
+    }
+    IntLoopEnd();
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib840A968C_gt_ClassSelection_Init () {
+    lib840A968C_gt_ClassSelection = TriggerCreate("lib840A968C_gt_ClassSelection_Func");
+    TriggerEnable(lib840A968C_gt_ClassSelection, false);
+    TriggerAddEventDialogControl(lib840A968C_gt_ClassSelection, c_playerAny, c_invalidDialogControlId, c_triggerControlEventTypeClick);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: End Class Selection
+//--------------------------------------------------------------------------------------------------
+bool lib840A968C_gt_EndClassSelection_Func (bool testConds, bool runActions) {
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TriggerDebugOutput(lib840A968C_gv_gameEvents, StringExternal("Param/Value/lib_840A968C_FB304153"), false);
+    SoundChannelMute(PlayerGroupAll(), c_soundCategoryAmbient, false);
+    SoundChannelMute(PlayerGroupAll(), c_soundCategoryMusic, false);
+    SoundChannelMute(PlayerGroupAll(), c_soundCategorySAmbient, false);
+    SoundChannelMute(PlayerGroupAll(), c_soundCategorySEmitters, false);
+    TriggerEnable(lib840A968C_gt_ClassSelection, false);
+    TriggerEnable(lib840A968C_gt_EndClassSelection, false);
+    PlayerGroupLoopBegin(PlayerGroupAll());
+    for ( ; !PlayerGroupLoopDone() ; PlayerGroupLoopStep() ) {
+        CameraLockInput(PlayerGroupLoopCurrent(), false);
+    }
+    PlayerGroupLoopEnd();
+    DialogDestroy(lib840A968C_gv_classSelectionDialog);
+    libNtve_gf_HideGameUI(true, PlayerGroupAll());
+    UISetWorldVisible(PlayerGroupAll(), true);
+    EnvironmentShow(c_environmentAll, true);
+    GameSetMissionTimePaused(false);
+    TriggerSendEvent(lib840A968C_gv_intializeEvent);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib840A968C_gt_EndClassSelection_Init () {
+    lib840A968C_gt_EndClassSelection = TriggerCreate("lib840A968C_gt_EndClassSelection_Func");
+    TriggerEnable(lib840A968C_gt_EndClassSelection, false);
+    TriggerAddEventTimer(lib840A968C_gt_EndClassSelection, lib840A968C_gv_classSelectionTimer);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Difficulty Selection
+//--------------------------------------------------------------------------------------------------
+bool lib840A968C_gt_DifficultySelection_Func (bool testConds, bool runActions) {
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    lib840A968C_gf_CreateDifficultySelection();
+    Wait(10.0, c_timeReal);
+    DialogDestroy(lib840A968C_gv_difficultySelectionDialog);
+    if ((PlayerGroupCount(lib840A968C_gv_difficultySelectionOptions[1].lv_votes) < PlayerGroupCount(lib840A968C_gv_difficultySelectionOptions[2].lv_votes))) {
+        if ((PlayerGroupCount(lib840A968C_gv_difficultySelectionOptions[2].lv_votes) < PlayerGroupCount(lib840A968C_gv_difficultySelectionOptions[3].lv_votes))) {
+            lib840A968C_gv_difficulty = 2;
+        }
+        else {
+            lib840A968C_gv_difficulty = 1;
+        }
+    }
+    else {
+        if ((PlayerGroupCount(lib840A968C_gv_difficultySelectionOptions[1].lv_votes) < PlayerGroupCount(lib840A968C_gv_difficultySelectionOptions[3].lv_votes))) {
+            lib840A968C_gv_difficulty = 2;
+        }
+        else {
+            lib840A968C_gv_difficulty = 0;
+        }
+    }
+    lib840A968C_gf_SetGameDifficulty();
+    TriggerSendEvent(lib840A968C_gv_classSelectionEvent);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib840A968C_gt_DifficultySelection_Init () {
+    lib840A968C_gt_DifficultySelection = TriggerCreate("lib840A968C_gt_DifficultySelection_Func");
+    TriggerAddEventGeneric(lib840A968C_gt_DifficultySelection, lib840A968C_gv_difficultySelectionEvent);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Difficulty Vote
+//--------------------------------------------------------------------------------------------------
+bool lib840A968C_gt_DifficultyVote_Func (bool testConds, bool runActions) {
+    int auto1A8F2750_ae;
+    int auto1A8F2750_ai;
+    int autoDD98B4F6_val;
+    int auto92DA7F75_ae;
+    int auto92DA7F75_ai;
+
+    // Variable Declarations
+    int lv_loop;
+
+    // Variable Initialization
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    auto1A8F2750_ae = lib840A968C_gv_numberofDifficulties;
+    auto1A8F2750_ai = 1;
+    lv_loop = lib1E3F036D_gv_indexBaseValue;
+    for ( ; ( (auto1A8F2750_ai >= 0 && lv_loop <= auto1A8F2750_ae) || (auto1A8F2750_ai <= 0 && lv_loop >= auto1A8F2750_ae) ) ; lv_loop += auto1A8F2750_ai ) {
+        PlayerGroupRemove(lib840A968C_gv_difficultySelectionOptions[lv_loop].lv_votes, EventPlayer());
+    }
+    autoDD98B4F6_val = EventDialogControl();
+    if (autoDD98B4F6_val == lib840A968C_gv_difficultySelectionOptions[1].lv_optionButton) {
+        PlayerGroupAdd(lib840A968C_gv_difficultySelectionOptions[1].lv_votes, EventPlayer());
+    }
+    else if (autoDD98B4F6_val == lib840A968C_gv_difficultySelectionOptions[2].lv_optionButton) {
+        PlayerGroupAdd(lib840A968C_gv_difficultySelectionOptions[2].lv_votes, EventPlayer());
+    }
+    else if (autoDD98B4F6_val == lib840A968C_gv_difficultySelectionOptions[3].lv_optionButton) {
+        PlayerGroupAdd(lib840A968C_gv_difficultySelectionOptions[3].lv_votes, EventPlayer());
+    }
+    else {
+    }
+    auto92DA7F75_ae = lib840A968C_gv_numberofDifficulties;
+    auto92DA7F75_ai = 1;
+    lv_loop = lib1E3F036D_gv_indexBaseValue;
+    for ( ; ( (auto92DA7F75_ai >= 0 && lv_loop <= auto92DA7F75_ae) || (auto92DA7F75_ai <= 0 && lv_loop >= auto92DA7F75_ae) ) ; lv_loop += auto92DA7F75_ai ) {
+        libNtve_gf_SetDialogItemText(lib840A968C_gv_difficultySelectionOptions[lv_loop].lv_optionLabel, IntToText(PlayerGroupCount(lib840A968C_gv_difficultySelectionOptions[lv_loop].lv_votes)), PlayerGroupAll());
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib840A968C_gt_DifficultyVote_Init () {
+    lib840A968C_gt_DifficultyVote = TriggerCreate("lib840A968C_gt_DifficultyVote_Func");
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Event Registration For Marine Units
+//--------------------------------------------------------------------------------------------------
+bool lib840A968C_gt_EventRegistrationForMarineUnits_Func (bool testConds, bool runActions) {
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    UnitGroupLoopBegin(lib840A968C_gf_GetMarineGroup());
+    for ( ; !UnitGroupLoopDone() ; UnitGroupLoopStep() ) {
+        TriggerAddEventUnitDied(lib840A968C_gt_PlayerMarineDies, UnitRefFromUnit(UnitGroupLoopCurrent()));
+        TriggerAddEventUnitSelected(libC50FD636_gt_DisplayAmmoBarOnSelection, UnitRefFromUnit(UnitGroupLoopCurrent()), c_playerAny, true);
+        TriggerAddEventUnitSelected(libC50FD636_gt_DisplayInventoryOnSelection, UnitRefFromUnit(UnitGroupLoopCurrent()), c_playerAny, true);
+        TriggerAddEventUnitDamaged(lib840A968C_gt_RatingLossfromFriendlyFire, UnitRefFromUnit(UnitGroupLoopCurrent()), c_unitDamageTypeAny, c_unitDamageEither, null);
+        TriggerAddEventUnitGainLevel(libC50FD636_gt_LevelUp, UnitRefFromUnit(UnitGroupLoopCurrent()));
+    }
+    UnitGroupLoopEnd();
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib840A968C_gt_EventRegistrationForMarineUnits_Init () {
+    lib840A968C_gt_EventRegistrationForMarineUnits = TriggerCreate("lib840A968C_gt_EventRegistrationForMarineUnits_Func");
+    TriggerAddEventGeneric(lib840A968C_gt_EventRegistrationForMarineUnits, lib840A968C_gv_eventRegistrationSignal);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Night Vision Module Lighting Change
+//--------------------------------------------------------------------------------------------------
+bool lib840A968C_gt_NightVisionModuleLightingChange_Func (bool testConds, bool runActions) {
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((EventUnitBehaviorChange() == c_unitBehaviorChangeActivate)) {
+        PlayerSetLighting(UnitGetOwner(EventUnit()), libFEC22885_gv_nightVisionLighting, 1.0);
+    }
+    else {
+    }
+    if ((EventUnitBehaviorChange() == c_unitBehaviorChangeDeactivate)) {
+        PlayerSetLighting(UnitGetOwner(EventUnit()), libFEC22885_gv_defaultGameLighting, 1.0);
+    }
+    else {
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib840A968C_gt_NightVisionModuleLightingChange_Init () {
+    lib840A968C_gt_NightVisionModuleLightingChange = TriggerCreate("lib840A968C_gt_NightVisionModuleLightingChange_Func");
+    TriggerAddEventUnitBehaviorChange(lib840A968C_gt_NightVisionModuleLightingChange, null, "NightVisionModule", c_unitBehaviorChangeActivate);
+    TriggerAddEventUnitBehaviorChange(lib840A968C_gt_NightVisionModuleLightingChange, null, "NightVisionModule", c_unitBehaviorChangeDeactivate);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Night Vision UI Hookup
+//--------------------------------------------------------------------------------------------------
+bool lib840A968C_gt_NightVisionUIHookup_Func (bool testConds, bool runActions) {
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    DialogControlHookupStandard(c_triggerControlTypeButton, "UIContainer\\FullscreenUpperContainer\\MenuBar\\NightVisionButton");
+    lib840A968C_gv_nightVisionButton = DialogControlLastCreated();
+    libNtve_gf_SetDialogItemTooltip(DialogControlLastCreated(), StringExternal("Param/Value/lib_840A968C_03083B17"), PlayerGroupAll());
+    TriggerAddEventDialogControl(lib840A968C_gt_NightVisionToggle, c_playerAny, DialogControlLastCreated(), c_triggerControlEventTypeClick);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib840A968C_gt_NightVisionUIHookup_Init () {
+    lib840A968C_gt_NightVisionUIHookup = TriggerCreate("lib840A968C_gt_NightVisionUIHookup_Func");
+    TriggerAddEventMapInit(lib840A968C_gt_NightVisionUIHookup);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Night Vision Toggle
+//--------------------------------------------------------------------------------------------------
+bool lib840A968C_gt_NightVisionToggle_Func (bool testConds, bool runActions) {
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((UnitHasBehavior(libC50FD636_gv_marines[EventPlayer()].lv_unit, "NightVisionModule") == true)) {
+        UnitBehaviorRemovePlayer(libC50FD636_gv_marines[EventPlayer()].lv_unit, "NightVisionModule", EventPlayer(), 1);
+        libNtve_gf_SetDialogItemImage(lib840A968C_gv_nightVisionButton, "Assets\\Textures\\btn-ability-terran-microfiltering.dds", PlayerGroupSingle(EventPlayer()));
+        libNtve_gf_SetDialogItemImage2(lib840A968C_gv_nightVisionButton, "Assets\\Textures\\btn-ability-terran-microfiltering.dds", PlayerGroupSingle(EventPlayer()));
+    }
+    else {
+        UnitBehaviorAddPlayer(libC50FD636_gv_marines[EventPlayer()].lv_unit, "NightVisionModule", EventPlayer(), 1);
+        libNtve_gf_SetDialogItemImage(lib840A968C_gv_nightVisionButton, "Assets\\Textures\\btn-research-terran-microfiltering.dds", PlayerGroupSingle(EventPlayer()));
+        libNtve_gf_SetDialogItemImage2(lib840A968C_gv_nightVisionButton, "Assets\\Textures\\btn-research-terran-microfiltering.dds", PlayerGroupSingle(EventPlayer()));
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib840A968C_gt_NightVisionToggle_Init () {
+    lib840A968C_gt_NightVisionToggle = TriggerCreate("lib840A968C_gt_NightVisionToggle_Func");
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Team Location
+//--------------------------------------------------------------------------------------------------
+bool lib840A968C_gt_TeamLocation_Func (bool testConds, bool runActions) {
+    int init_i;
+
+    // Variable Declarations
+    int[lib840A968C_gv_numberofPlayers + 1] lv_pings;
+
+    // Variable Initialization
+    for (init_i = 0; init_i <= lib840A968C_gv_numberofPlayers; init_i += 1) {
+        lv_pings[init_i] = c_invalidPingId;
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TriggerEnable(TriggerGetCurrent(), false);
+    PlayerGroupLoopBegin(lib840A968C_gv_livingMarines);
+    for ( ; !PlayerGroupLoopDone() ; PlayerGroupLoopStep() ) {
+        libNtve_gf_CreatePingFacingAngle(lib840A968C_gv_marineSquad, "PingNumeric" +  IntToString(PlayerGroupLoopCurrent()), Point(0.0, 0.0), ColorWithAlpha(0.00, 100.00, 0.00, 0.00), 10.0, 270.0);
+        lv_pings[PlayerGroupLoopCurrent()] = PingLastCreated();
+        PingSetScale(PingLastCreated(), 0.6);
+        PingSetTooltip(PingLastCreated(), lib840A968C_gf_GetPlayerNamewithrank(PlayerGroupLoopCurrent()));
+        PingSetUnit(PingLastCreated(), lib840A968C_gf_GetMarine(PlayerGroupLoopCurrent()));
+        TextTagCreate(lib840A968C_gf_GetPlayerNamewithrank(PlayerGroupLoopCurrent()), 24, UnitGetPosition(lib840A968C_gf_GetMarine(PlayerGroupLoopCurrent())), 1.0, true, false, PlayerGroupAll());
+        TextTagAttachToUnit(TextTagLastCreated(), lib840A968C_gf_GetMarine(PlayerGroupLoopCurrent()), 1.0);
+        TextTagSetTime(TextTagLastCreated(), c_textTagTimeDuration, 10.0);
+        TextTagSetTime(TextTagLastCreated(), c_textTagTimeFadeDuration, 0.0);
+        TextTagSetTime(TextTagLastCreated(), c_textTagTimeFadeOut, 0.0);
+    }
+    PlayerGroupLoopEnd();
+    Wait(10.0, c_timeGame);
+    TriggerEnable(TriggerGetCurrent(), true);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib840A968C_gt_TeamLocation_Init () {
+    lib840A968C_gt_TeamLocation = TriggerCreate("lib840A968C_gt_TeamLocation_Func");
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Hookup Team Location Button
+//--------------------------------------------------------------------------------------------------
+bool lib840A968C_gt_HookupTeamLocationButton_Func (bool testConds, bool runActions) {
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    DialogControlHookupStandard(c_triggerControlTypeButton, "UIContainer/ConsoleUIContainer/MinimapPanel/TeamLocationButton");
+    lib840A968C_gv_teamLocationButton = DialogControlLastCreated();
+    libNtve_gf_SetDialogItemTooltip(DialogControlLastCreated(), StringExternal("Param/Value/lib_840A968C_040732F9"), PlayerGroupAll());
+    TriggerAddEventDialogControl(lib840A968C_gt_TeamLocation, c_playerAny, DialogControlLastCreated(), c_triggerControlEventTypeClick);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib840A968C_gt_HookupTeamLocationButton_Init () {
+    lib840A968C_gt_HookupTeamLocationButton = TriggerCreate("lib840A968C_gt_HookupTeamLocationButton_Func");
+    TriggerAddEventMapInit(lib840A968C_gt_HookupTeamLocationButton);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Player Marine Dies
+//--------------------------------------------------------------------------------------------------
+bool lib840A968C_gt_PlayerMarineDies_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    int lv_deadPlayer;
+    point lv_deathLocation;
+
+    // Variable Initialization
+    lv_deadPlayer = EventPlayer();
+    lv_deathLocation = UnitGetPosition(EventUnit());
+
+    // Conditions
+    if (testConds) {
+        if (!(PlayerGroupHasPlayer(lib840A968C_gv_livingMarines, lv_deadPlayer))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    PlayerGroupRemove(lib840A968C_gv_livingMarines, lv_deadPlayer);
+    IntLoopBegin(1, lib840A968C_gv_numberofPlayers);
+    for ( ; !IntLoopDone() ; IntLoopStep() ) {
+        if ((TimerGetDuration(lib840A968C_gv_damageNearDeathPenaltyTimer[IntLoopCurrent()][lv_deadPlayer]) > 0.0)) {
+            lib840A968C_gv_players[IntLoopCurrent()].lv_rating -= 10.0;
+        }
+    }
+    IntLoopEnd();
+    if ((!(PlayerGroupHasPlayer(lib840A968C_gv_livingMarines, libNtve_gf_KillingPlayer())))) {
+        if ((lib840A968C_gv_players[lv_deadPlayer].lv_rating < 1500.0)) {
+            lib840A968C_gv_players[lv_deadPlayer].lv_rating -= 5.0;
+        }
+        else if (((lib840A968C_gv_players[lv_deadPlayer].lv_rating >= 1500) && (lib840A968C_gv_players[lv_deadPlayer].lv_rating <= 1799))) {
+            lib840A968C_gv_players[lv_deadPlayer].lv_rating -= 20.0;
+        }
+        else if (((lib840A968C_gv_players[lv_deadPlayer].lv_rating >= 1800) && (lib840A968C_gv_players[lv_deadPlayer].lv_rating <= 2100))) {
+            lib840A968C_gv_players[lv_deadPlayer].lv_rating -= 60.0;
+        }
+    }
+    else {
+        lib840A968C_gv_players[libNtve_gf_KillingPlayer()].lv_rating -= 20.0;
+    }
+    if ((PlayerGroupCount(lib840A968C_gv_livingMarines) == 0) && GameIsOnline()) {
+        TriggerSendEvent("Defeat");
+        return true;
+    }
+    else {
+    }
+    lib840A968C_gf_DeathShareVision(lv_deadPlayer);
+    if (lib840A968C_gf_PlayerHasPet(lv_deadPlayer)) {
+        PlayerGroupAdd(lib840A968C_gv_pets, lv_deadPlayer);
+        lib840A968C_gf_SpawnPet(lv_deadPlayer, UnitXPTotal(EventUnit()), lv_deathLocation);
+    }
+    else {
+        PlayerGroupAdd(lib840A968C_gv_deadMarines, lv_deadPlayer);
+    }
+    lib840A968C_gf_DropEquippedMagazines(lv_deathLocation, libC50FD636_gv_marines[lv_deadPlayer].lv_currentNumberofMagazines);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib840A968C_gt_PlayerMarineDies_Init () {
+    lib840A968C_gt_PlayerMarineDies = TriggerCreate("lib840A968C_gt_PlayerMarineDies_Func");
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Construct Team UI
+//--------------------------------------------------------------------------------------------------
+bool lib840A968C_gt_ConstructTeamUI_Func (bool testConds, bool runActions) {
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    lib840A968C_gf_CreateTeamUI();
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib840A968C_gt_ConstructTeamUI_Init () {
+    lib840A968C_gt_ConstructTeamUI = TriggerCreate("lib840A968C_gt_ConstructTeamUI_Func");
+    TriggerAddEventChatMessage(lib840A968C_gt_ConstructTeamUI, c_playerAny, "UITest", true);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Bank Save
+//--------------------------------------------------------------------------------------------------
+bool lib840A968C_gt_BankSave_Func (bool testConds, bool runActions) {
+    playergroup autoBB050601_g;
+    int autoBB050601_p;
+
+    // Variable Declarations
+    int lv_player;
+
+    // Variable Initialization
+
+    // Conditions
+    if (testConds) {
+        if (!((GameAttributeGameValue("1") != "0003"))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    autoBB050601_g = lib840A968C_gv_marineSquad; 
+    autoBB050601_p = 1;
+    for ( ; autoBB050601_p <= PlayerGroupCount(autoBB050601_g) ; autoBB050601_p += BoolToInt(lv_player == PlayerGroupPlayer(autoBB050601_g, autoBB050601_p)) ) {
+        lv_player = PlayerGroupPlayer(autoBB050601_g, autoBB050601_p);
+        lib840A968C_gf_SaveDataBank(lv_player, lib840A968C_gv_playerBanks[lv_player].lv_playerData);
+        lib840A968C_gf_SaveCustomizationBank(lv_player, lib840A968C_gv_playerBanks[lv_player].lv_playerData);
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib840A968C_gt_BankSave_Init () {
+    lib840A968C_gt_BankSave = TriggerCreate("lib840A968C_gt_BankSave_Func");
+    TriggerAddEventGeneric(lib840A968C_gt_BankSave, lib840A968C_gv_save);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Rating Loss from Lives
+//--------------------------------------------------------------------------------------------------
+bool lib840A968C_gt_RatingLossfromLives_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    int lv_player;
+
+    // Variable Initialization
+    lv_player = UnitGetOwner(EventUnit());
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if (((lib840A968C_gv_players[lv_player].lv_rating >= 1500) && (lib840A968C_gv_players[lv_player].lv_rating <= 1799))) {
+        lib840A968C_gv_players[lv_player].lv_rating -= 20.0;
+    }
+    else if ((lib840A968C_gv_players[lv_player].lv_rating > 1800.0)) {
+        lib840A968C_gv_players[lv_player].lv_rating -= 60.0;
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib840A968C_gt_RatingLossfromLives_Init () {
+    lib840A968C_gt_RatingLossfromLives = TriggerCreate("lib840A968C_gt_RatingLossfromLives_Func");
+    TriggerAddEventUnitBehaviorChange(lib840A968C_gt_RatingLossfromLives, null, "ExtraLifeHeal", c_unitBehaviorChangeCreate);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Rating Loss from Friendly Fire
+//--------------------------------------------------------------------------------------------------
+bool lib840A968C_gt_RatingLossfromFriendlyFire_Func (bool testConds, bool runActions) {
+    // Conditions
+    if (testConds) {
+        if (!(PlayerGroupHasPlayer(lib840A968C_gv_livingMarines, EventUnitDamageSourcePlayer()))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    lib840A968C_gv_players[EventUnitDamageSourcePlayer()].lv_rating -= Ceiling((EventUnitDamageAmount() / 4.0));
+    TimerStart(lib840A968C_gv_damageNearDeathPenaltyTimer[EventUnitDamageSourcePlayer()][EventPlayer()], 60.0, false, c_timeGame);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib840A968C_gt_RatingLossfromFriendlyFire_Init () {
+    lib840A968C_gt_RatingLossfromFriendlyFire = TriggerCreate("lib840A968C_gt_RatingLossfromFriendlyFire_Func");
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Hits Update
+//--------------------------------------------------------------------------------------------------
+bool lib840A968C_gt_HitsUpdate_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    fixed lv_ratingLoss;
+    int lv_damagedPlayer;
+
+    // Variable Initialization
+    lv_damagedPlayer = EventPlayer();
+
+    // Conditions
+    if (testConds) {
+        if (!(PlayerGroupHasPlayer(lib840A968C_gv_livingMarines, lv_damagedPlayer))) {
+            return false;
+        }
+
+        if (!(PlayerGroupHasPlayer(PlayerGroupAlliance(c_playerGroupEnemy, lv_damagedPlayer), EventUnitDamageSourcePlayer()))) {
+            return false;
+        }
+
+        if (!((UnitGetPropertyFixed(EventUnit(), c_unitPropShields, c_unitPropCurrent) <= 0.5))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    lib840A968C_gv_players[lv_damagedPlayer].lv_currentGameStats.lv_hits += 1;
+    if ((((lib840A968C_gv_players[lv_damagedPlayer].lv_rating < 1500.0) && (lib840A968C_gv_players[lv_damagedPlayer].lv_currentGameStats.lv_ratingLossFromHits < 10.0)) || (((lib840A968C_gv_players[lv_damagedPlayer].lv_rating >= 1500) && (lib840A968C_gv_players[lv_damagedPlayer].lv_rating <= 1799)) && (lib840A968C_gv_players[lv_damagedPlayer].lv_currentGameStats.lv_ratingLossFromHits < 20.0)) || ((lib840A968C_gv_players[lv_damagedPlayer].lv_rating > 1800.0) && (lib840A968C_gv_players[lv_damagedPlayer].lv_currentGameStats.lv_ratingLossFromHits < 30.0)))) {
+        lv_ratingLoss = lib840A968C_gf_RatingLoss(lv_damagedPlayer);
+        lib840A968C_gv_players[lv_damagedPlayer].lv_rating -= lv_ratingLoss;
+        lib840A968C_gv_players[lv_damagedPlayer].lv_currentGameStats.lv_ratingLossFromHits += lv_ratingLoss;
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib840A968C_gt_HitsUpdate_Init () {
+    lib840A968C_gt_HitsUpdate = TriggerCreate("lib840A968C_gt_HitsUpdate_Func");
+    TriggerAddEventUnitDamaged(lib840A968C_gt_HitsUpdate, null, c_unitDamageTypeAny, c_unitDamageEither, null);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Camo Switch
+//--------------------------------------------------------------------------------------------------
+bool lib840A968C_gt_CamoSwitch_Func (bool testConds, bool runActions) {
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    ActorScopeSend(ActorScopeFromUnit(lib840A968C_gf_GetMarine(EventPlayer())), libNtve_gf_Signal(StringWord(EventChatMessage(false), 1)));
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib840A968C_gt_CamoSwitch_Init () {
+    lib840A968C_gt_CamoSwitch = TriggerCreate("lib840A968C_gt_CamoSwitch_Func");
+    TriggerAddEventChatMessage(lib840A968C_gt_CamoSwitch, c_playerAny, "Navy", true);
+    TriggerAddEventChatMessage(lib840A968C_gt_CamoSwitch, c_playerAny, "Night", true);
+    TriggerAddEventChatMessage(lib840A968C_gt_CamoSwitch, c_playerAny, "Infested", true);
+    TriggerAddEventChatMessage(lib840A968C_gt_CamoSwitch, c_playerAny, "RTiger", true);
+    TriggerAddEventChatMessage(lib840A968C_gt_CamoSwitch, c_playerAny, "Desert", true);
+    TriggerAddEventChatMessage(lib840A968C_gt_CamoSwitch, c_playerAny, "Snow", true);
+    TriggerAddEventChatMessage(lib840A968C_gt_CamoSwitch, c_playerAny, "Tech", true);
+    TriggerAddEventChatMessage(lib840A968C_gt_CamoSwitch, c_playerAny, "Urban", true);
+    TriggerAddEventChatMessage(lib840A968C_gt_CamoSwitch, c_playerAny, "Woodland", true);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Model Light Marine
+//--------------------------------------------------------------------------------------------------
+bool lib840A968C_gt_ModelLightMarine_Func (bool testConds, bool runActions) {
+    string autoA32E8E0C_val;
+
+    // Conditions
+    if (testConds) {
+        if (!((!((UnitGetType(lib840A968C_gf_GetMarine(EventPlayer())) == "Assault") || (UnitGetType(lib840A968C_gf_GetMarine(EventPlayer())) == "Demolitions") || (UnitGetType(lib840A968C_gf_GetMarine(EventPlayer())) == "Technician") || (UnitGetType(lib840A968C_gf_GetMarine(EventPlayer())) == "Flamethrower2"))))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((StringWord(EventChatMessage(false), 2) == null)) {
+        ActorScopeSend(ActorScopeFromUnit(lib840A968C_gf_GetMarine(EventPlayer())), libNtve_gf_Signal(StringWord(EventChatMessage(false), 1)));
+    }
+    else {
+        autoA32E8E0C_val = StringWord(EventChatMessage(false), 2);
+        if (autoA32E8E0C_val == "Legs") {
+            ActorSendTo(libNtve_gf_MainActorofUnit(lib840A968C_gf_GetMarine(EventPlayer())), "RightFoot", libNtve_gf_Signal(StringWord(EventChatMessage(false), 1)));
+            ActorSendTo(libNtve_gf_MainActorofUnit(lib840A968C_gf_GetMarine(EventPlayer())), "RightLeg", libNtve_gf_Signal(StringWord(EventChatMessage(false), 1)));
+            ActorSendTo(libNtve_gf_MainActorofUnit(lib840A968C_gf_GetMarine(EventPlayer())), "LeftFoot", libNtve_gf_Signal(StringWord(EventChatMessage(false), 1)));
+            ActorSendTo(libNtve_gf_MainActorofUnit(lib840A968C_gf_GetMarine(EventPlayer())), "LeftLeg", libNtve_gf_Signal(StringWord(EventChatMessage(false), 1)));
+        }
+        else if (autoA32E8E0C_val == "Shoulders") {
+            ActorSendTo(libNtve_gf_MainActorofUnit(lib840A968C_gf_GetMarine(EventPlayer())), "RightShoulder", libNtve_gf_Signal(StringWord(EventChatMessage(false), 1)));
+            ActorSendTo(libNtve_gf_MainActorofUnit(lib840A968C_gf_GetMarine(EventPlayer())), "LeftShoulder", libNtve_gf_Signal(StringWord(EventChatMessage(false), 1)));
+        }
+        else if (autoA32E8E0C_val == "Arms") {
+            ActorSendTo(libNtve_gf_MainActorofUnit(lib840A968C_gf_GetMarine(EventPlayer())), "RightForearm", libNtve_gf_Signal(StringWord(EventChatMessage(false), 1)));
+            ActorSendTo(libNtve_gf_MainActorofUnit(lib840A968C_gf_GetMarine(EventPlayer())), "LeftForearm", libNtve_gf_Signal(StringWord(EventChatMessage(false), 1)));
+        }
+        else if (autoA32E8E0C_val == "Chest") {
+            ActorSendTo(libNtve_gf_MainActorofUnit(lib840A968C_gf_GetMarine(EventPlayer())), "Torso", libNtve_gf_Signal(StringWord(EventChatMessage(false), 1)));
+            ActorSendTo(libNtve_gf_MainActorofUnit(lib840A968C_gf_GetMarine(EventPlayer())), "Waist", libNtve_gf_Signal(StringWord(EventChatMessage(false), 1)));
+        }
+        else if (autoA32E8E0C_val == "Head") {
+            ActorSendTo(libNtve_gf_MainActorofUnit(lib840A968C_gf_GetMarine(EventPlayer())), "Helmet", libNtve_gf_Signal(StringWord(EventChatMessage(false), 1)));
+        }
+        else {
+        }
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib840A968C_gt_ModelLightMarine_Init () {
+    lib840A968C_gt_ModelLightMarine = TriggerCreate("lib840A968C_gt_ModelLightMarine_Func");
+    TriggerAddEventChatMessage(lib840A968C_gt_ModelLightMarine, c_playerAny, "War", false);
+    TriggerAddEventChatMessage(lib840A968C_gt_ModelLightMarine, c_playerAny, "Evac", false);
+    TriggerAddEventChatMessage(lib840A968C_gt_ModelLightMarine, c_playerAny, "Basic", false);
+    TriggerAddEventChatMessage(lib840A968C_gt_ModelLightMarine, c_playerAny, "Breach", false);
+    TriggerAddEventChatMessage(lib840A968C_gt_ModelLightMarine, c_playerAny, "Pyro", false);
+    TriggerAddEventChatMessage(lib840A968C_gt_ModelLightMarine, c_playerAny, "Shadow", false);
+    TriggerAddEventChatMessage(lib840A968C_gt_ModelLightMarine, c_playerAny, "Avalanche", false);
+    TriggerAddEventChatMessage(lib840A968C_gt_ModelLightMarine, c_playerAny, "GoldCenturion", false);
+    TriggerAddEventChatMessage(lib840A968C_gt_ModelLightMarine, c_playerAny, "PeaceKeeper", false);
+    TriggerAddEventChatMessage(lib840A968C_gt_ModelLightMarine, c_playerAny, "Warcraft3", false);
+    TriggerAddEventChatMessage(lib840A968C_gt_ModelLightMarine, c_playerAny, "Qesun", false);
+    TriggerAddEventChatMessage(lib840A968C_gt_ModelLightMarine, c_playerAny, "Rebel", false);
+    TriggerAddEventChatMessage(lib840A968C_gt_ModelLightMarine, c_playerAny, "Neutrino", false);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Model Heavy Marine
+//--------------------------------------------------------------------------------------------------
+bool lib840A968C_gt_ModelHeavyMarine_Func (bool testConds, bool runActions) {
+    string auto375E0C54_val;
+
+    // Conditions
+    if (testConds) {
+        if (!(((UnitGetType(lib840A968C_gf_GetMarine(EventPlayer())) == "Assault") || (UnitGetType(lib840A968C_gf_GetMarine(EventPlayer())) == "Demolitions") || (UnitGetType(lib840A968C_gf_GetMarine(EventPlayer())) == "Technician") || (UnitGetType(lib840A968C_gf_GetMarine(EventPlayer())) == "Flamethrower2")))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((StringWord(EventChatMessage(false), 2) == null)) {
+        ActorScopeSend(ActorScopeFromUnit(lib840A968C_gf_GetMarine(EventPlayer())), libNtve_gf_Signal(StringWord(EventChatMessage(false), 1)));
+    }
+    else {
+        auto375E0C54_val = StringWord(EventChatMessage(false), 2);
+        if (auto375E0C54_val == "Legs") {
+            ActorSendTo(libNtve_gf_MainActorofUnit(lib840A968C_gf_GetMarine(EventPlayer())), "RightFoot", libNtve_gf_Signal(StringWord(EventChatMessage(false), 1)));
+            ActorSendTo(libNtve_gf_MainActorofUnit(lib840A968C_gf_GetMarine(EventPlayer())), "RightLeg", libNtve_gf_Signal(StringWord(EventChatMessage(false), 1)));
+            ActorSendTo(libNtve_gf_MainActorofUnit(lib840A968C_gf_GetMarine(EventPlayer())), "LeftFoot", libNtve_gf_Signal(StringWord(EventChatMessage(false), 1)));
+            ActorSendTo(libNtve_gf_MainActorofUnit(lib840A968C_gf_GetMarine(EventPlayer())), "LeftLeg", libNtve_gf_Signal(StringWord(EventChatMessage(false), 1)));
+            ActorSendTo(libNtve_gf_MainActorofUnit(lib840A968C_gf_GetMarine(EventPlayer())), "LeftShin", libNtve_gf_Signal(StringWord(EventChatMessage(false), 1)));
+            ActorSendTo(libNtve_gf_MainActorofUnit(lib840A968C_gf_GetMarine(EventPlayer())), "RightShin", libNtve_gf_Signal(StringWord(EventChatMessage(false), 1)));
+        }
+        else if (auto375E0C54_val == "Shoulders") {
+            ActorSendTo(libNtve_gf_MainActorofUnit(lib840A968C_gf_GetMarine(EventPlayer())), "RightShoulder", libNtve_gf_Signal(StringWord(EventChatMessage(false), 1)));
+            ActorSendTo(libNtve_gf_MainActorofUnit(lib840A968C_gf_GetMarine(EventPlayer())), "LeftShoulder", libNtve_gf_Signal(StringWord(EventChatMessage(false), 1)));
+        }
+        else if (auto375E0C54_val == "Arms") {
+            ActorSendTo(libNtve_gf_MainActorofUnit(lib840A968C_gf_GetMarine(EventPlayer())), "RightForearm", libNtve_gf_Signal(StringWord(EventChatMessage(false), 1)));
+            ActorSendTo(libNtve_gf_MainActorofUnit(lib840A968C_gf_GetMarine(EventPlayer())), "LeftForearm", libNtve_gf_Signal(StringWord(EventChatMessage(false), 1)));
+            ActorSendTo(libNtve_gf_MainActorofUnit(lib840A968C_gf_GetMarine(EventPlayer())), "RightArm", libNtve_gf_Signal(StringWord(EventChatMessage(false), 1)));
+            ActorSendTo(libNtve_gf_MainActorofUnit(lib840A968C_gf_GetMarine(EventPlayer())), "LeftArm", libNtve_gf_Signal(StringWord(EventChatMessage(false), 1)));
+        }
+        else if (auto375E0C54_val == "Chest") {
+            ActorSendTo(libNtve_gf_MainActorofUnit(lib840A968C_gf_GetMarine(EventPlayer())), "Torso", libNtve_gf_Signal(StringWord(EventChatMessage(false), 1)));
+            ActorSendTo(libNtve_gf_MainActorofUnit(lib840A968C_gf_GetMarine(EventPlayer())), "Waist", libNtve_gf_Signal(StringWord(EventChatMessage(false), 1)));
+        }
+        else if (auto375E0C54_val == "Head") {
+            ActorSendTo(libNtve_gf_MainActorofUnit(lib840A968C_gf_GetMarine(EventPlayer())), "Helmet", libNtve_gf_Signal(StringWord(EventChatMessage(false), 1)));
+        }
+        else {
+        }
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib840A968C_gt_ModelHeavyMarine_Init () {
+    lib840A968C_gt_ModelHeavyMarine = TriggerCreate("lib840A968C_gt_ModelHeavyMarine_Func");
+    TriggerAddEventChatMessage(lib840A968C_gt_ModelHeavyMarine, c_playerAny, "Craft", false);
+    TriggerAddEventChatMessage(lib840A968C_gt_ModelHeavyMarine, c_playerAny, "Zync", false);
+    TriggerAddEventChatMessage(lib840A968C_gt_ModelHeavyMarine, c_playerAny, "Kaiten", false);
+    TriggerAddEventChatMessage(lib840A968C_gt_ModelHeavyMarine, c_playerAny, "Crossfire", false);
+    TriggerAddEventChatMessage(lib840A968C_gt_ModelHeavyMarine, c_playerAny, "Lance", false);
+    TriggerAddEventChatMessage(lib840A968C_gt_ModelHeavyMarine, c_playerAny, "Scavenger", false);
+    TriggerAddEventChatMessage(lib840A968C_gt_ModelHeavyMarine, c_playerAny, "Vortex", false);
+    TriggerAddEventChatMessage(lib840A968C_gt_ModelHeavyMarine, c_playerAny, "Rhino", false);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Color Switching
+//--------------------------------------------------------------------------------------------------
+bool lib840A968C_gt_ColorSwitching_Func (bool testConds, bool runActions) {
+    int auto98384C02_val;
+
+    // Variable Declarations
+    unit lv_marine;
+
+    // Variable Initialization
+    lv_marine = lib840A968C_gf_GetMarine(EventPlayer());
+
+    // Conditions
+    if (testConds) {
+        if (!(lib840A968C_gf_IsaDeveloper(PlayerHandle(EventPlayer())))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    auto98384C02_val = StringToInt(StringWord(EventChatMessage(false), 2));
+    if (auto98384C02_val == 1) {
+        UnitSetTeamColorIndex(lv_marine, 0);
+
+    }
+    else if (auto98384C02_val == 2) {
+        UnitSetTeamColorIndex(lv_marine, 1);
+
+    }
+    else if (auto98384C02_val == 3) {
+        UnitSetTeamColorIndex(lv_marine, 2);
+
+    }
+    else if (auto98384C02_val == 4) {
+        UnitSetTeamColorIndex(lv_marine, 3);
+
+    }
+    else if (auto98384C02_val == 5) {
+        UnitSetTeamColorIndex(lv_marine, 4);
+
+    }
+    else if (auto98384C02_val == 6) {
+        UnitSetTeamColorIndex(lv_marine, 5);
+
+    }
+    else if (auto98384C02_val == 7) {
+        UnitSetTeamColorIndex(lv_marine, 6);
+
+    }
+    else if (auto98384C02_val == 8) {
+        UnitSetTeamColorIndex(lv_marine, 7);
+
+    }
+    else if (auto98384C02_val == 9) {
+        UnitSetTeamColorIndex(lv_marine, 8);
+
+    }
+    else if (auto98384C02_val == 10) {
+        UnitSetTeamColorIndex(lv_marine, 9);
+
+    }
+    else if (auto98384C02_val == 11) {
+        UnitSetTeamColorIndex(lv_marine, 10);
+
+    }
+    else if (auto98384C02_val == 12) {
+        UnitSetTeamColorIndex(lv_marine, 11);
+
+    }
+    else if (auto98384C02_val == 13) {
+        UnitSetTeamColorIndex(lv_marine, 12);
+
+    }
+    else if (auto98384C02_val == 14) {
+        UnitSetTeamColorIndex(lv_marine, 13);
+
+    }
+    else if (auto98384C02_val == 15) {
+        UnitSetTeamColorIndex(lv_marine, 14);
+
+    }
+    else if (auto98384C02_val == 16) {
+        UnitSetTeamColorIndex(lv_marine, 15);
+
+    }
+    else {
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib840A968C_gt_ColorSwitching_Init () {
+    lib840A968C_gt_ColorSwitching = TriggerCreate("lib840A968C_gt_ColorSwitching_Func");
+    TriggerAddEventChatMessage(lib840A968C_gt_ColorSwitching, c_playerAny, "Color", false);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Run Unit Tests
+//--------------------------------------------------------------------------------------------------
+bool lib840A968C_gt_RunUnitTests_Func (bool testConds, bool runActions) {
+    // Conditions
+    if (testConds) {
+        if (!(GameIsTestMap(false))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    lib840A968C_gf_AssertBankCreation();
+    lib840A968C_gf_AssertBankSave();
+    lib840A968C_gf_AssertXPAward();
+    lib840A968C_gf_AssertMarineExperienceAward();
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib840A968C_gt_RunUnitTests_Init () {
+    lib840A968C_gt_RunUnitTests = TriggerCreate("lib840A968C_gt_RunUnitTests_Func");
+    TriggerAddEventChatMessage(lib840A968C_gt_RunUnitTests, c_playerAny, "UnitTests", true);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Force Horde Mode
+//--------------------------------------------------------------------------------------------------
+bool lib840A968C_gt_ForceHordeMode_Func (bool testConds, bool runActions) {
+    // Conditions
+    if (testConds) {
+        if (!(((GameIsTestMap(false) == true) || lib840A968C_gf_IsaDeveloper(PlayerHandle(EventPlayer()))))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    lib1765BC64_gf_HordeMode(AIWaveTargetUnitGroup(lib840A968C_gf_GetMarineGroup()), RegionGetCenter(RegionEntireMap()), StringToInt(StringWord(EventChatMessage(false), 2)), lib840A968C_gv_currentChapter);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib840A968C_gt_ForceHordeMode_Init () {
+    lib840A968C_gt_ForceHordeMode = TriggerCreate("lib840A968C_gt_ForceHordeMode_Func");
+    TriggerAddEventChatMessage(lib840A968C_gt_ForceHordeMode, c_playerAny, "LoudNoises", false);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Set Chapter
+//--------------------------------------------------------------------------------------------------
+bool lib840A968C_gt_SetChapter_Func (bool testConds, bool runActions) {
+    string autoC2E88CCB_val;
+
+    // Conditions
+    if (testConds) {
+        if (!(((GameIsTestMap(false) == true) || lib840A968C_gf_IsaDeveloper(PlayerHandle(EventPlayer()))))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    autoC2E88CCB_val = StringWord(EventChatMessage(false), 2);
+    if (autoC2E88CCB_val == "1") {
+        lib840A968C_gf_ChapterStart(1);
+    }
+    else if (autoC2E88CCB_val == "2") {
+        lib840A968C_gf_ChapterStart(2);
+    }
+    else if (autoC2E88CCB_val == "3") {
+        lib840A968C_gf_ChapterStart(3);
+    }
+    else if (autoC2E88CCB_val == "4") {
+        lib840A968C_gf_ChapterStart(4);
+    }
+    else if (autoC2E88CCB_val == "5") {
+        lib840A968C_gf_ChapterStart(5);
+    }
+    else {
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib840A968C_gt_SetChapter_Init () {
+    lib840A968C_gt_SetChapter = TriggerCreate("lib840A968C_gt_SetChapter_Func");
+    TriggerAddEventChatMessage(lib840A968C_gt_SetChapter, c_playerAny, "Chapter", false);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Developer God Mode
+//--------------------------------------------------------------------------------------------------
+bool lib840A968C_gt_DeveloperGodMode_Func (bool testConds, bool runActions) {
+    // Conditions
+    if (testConds) {
+        if (!(lib840A968C_gf_IsaDeveloper(PlayerHandle(EventPlayer())))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    PlayerGroupLoopBegin(lib840A968C_gf_GetMarineSquadPlayers());
+    for ( ; !PlayerGroupLoopDone() ; PlayerGroupLoopStep() ) {
+        PlayerModifyPropertyInt(PlayerGroupLoopCurrent(), c_playerPropDamageTakenPercent, c_playerPropOperSetTo, 0);
+        PlayerModifyPropertyInt(PlayerGroupLoopCurrent(), c_playerPropDamageDealtPercent, c_playerPropOperSetTo, 5000);
+    }
+    PlayerGroupLoopEnd();
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib840A968C_gt_DeveloperGodMode_Init () {
+    lib840A968C_gt_DeveloperGodMode = TriggerCreate("lib840A968C_gt_DeveloperGodMode_Func");
+    TriggerAddEventChatMessage(lib840A968C_gt_DeveloperGodMode, c_playerAny, "InvadersMustDie", true);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Start Game/Class Selection
+//--------------------------------------------------------------------------------------------------
+bool lib840A968C_gt_StartGameClassSelection_Func (bool testConds, bool runActions) {
+    // Conditions
+    if (testConds) {
+        if (!((lib840A968C_gf_IsaDeveloper(PlayerHandle(EventPlayer())) || GameIsTestMap(false)))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    libC50FD636_gf_IntializeTalentMax();
+    lib840A968C_gf_SetGameDifficulty();
+    TriggerSendEvent(lib840A968C_gv_classSelectionEvent);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib840A968C_gt_StartGameClassSelection_Init () {
+    lib840A968C_gt_StartGameClassSelection = TriggerCreate("lib840A968C_gt_StartGameClassSelection_Func");
+    TriggerAddEventChatMessage(lib840A968C_gt_StartGameClassSelection, c_playerAny, "Start", true);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Mission Rewards
+//--------------------------------------------------------------------------------------------------
+bool lib840A968C_gt_MissionRewards_Func (bool testConds, bool runActions) {
+    // Conditions
+    if (testConds) {
+        if (!((lib840A968C_gf_IsaDeveloper(PlayerHandle(EventPlayer())) || GameIsTestMap(false)))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "Rifleman", 0, 1, RegionGetBoundsMin(RegionEntireMap()));
+    UnitGroupAdd(lib840A968C_gf_GetMarineGroup(), UnitLastCreated());
+    Wait(2.0, c_timeGame);
+    lib840A968C_gf_MissionEnd(c_objectiveStateCompleted, 0);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib840A968C_gt_MissionRewards_Init () {
+    lib840A968C_gt_MissionRewards = TriggerCreate("lib840A968C_gt_MissionRewards_Func");
+    TriggerAddEventChatMessage(lib840A968C_gt_MissionRewards, c_playerAny, "MissionReward", true);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Display Player Stats
+//--------------------------------------------------------------------------------------------------
+bool lib840A968C_gt_DisplayPlayerStats_Func (bool testConds, bool runActions) {
+    // Conditions
+    if (testConds) {
+        if (!((lib840A968C_gf_IsaDeveloper(PlayerHandle(EventPlayer())) || GameIsTestMap(false)))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TriggerDebugOutput(1, IntToText(lib840A968C_gv_players[EventPlayer()].lv_credits), true);
+    TriggerDebugOutput(1, IntToText(lib840A968C_gv_players[EventPlayer()].lv_totalExperience), true);
+    TriggerDebugOutput(1, IntToText(lib840A968C_gv_players[EventPlayer()].lv_availableExperience), true);
+    TriggerDebugOutput(1, FixedToText(lib840A968C_gv_players[EventPlayer()].lv_rating, c_fixedPrecisionAny), true);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib840A968C_gt_DisplayPlayerStats_Init () {
+    lib840A968C_gt_DisplayPlayerStats = TriggerCreate("lib840A968C_gt_DisplayPlayerStats_Func");
+    TriggerAddEventChatMessage(lib840A968C_gt_DisplayPlayerStats, c_playerAny, "Stats", true);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Skip Class Selection
+//--------------------------------------------------------------------------------------------------
+bool lib840A968C_gt_SkipClassSelection_Func (bool testConds, bool runActions) {
+    // Conditions
+    if (testConds) {
+        if (!((lib840A968C_gf_IsaDeveloper(PlayerHandle(EventPlayer())) || GameIsTestMap(false)))) {
+            return false;
+        }
+
+        if (!((TimerGetRemaining(lib840A968C_gv_classSelectionTimer) > 0.0))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TimerStart(lib840A968C_gv_classSelectionTimer, 1.0, false, c_timeGame);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib840A968C_gt_SkipClassSelection_Init () {
+    lib840A968C_gt_SkipClassSelection = TriggerCreate("lib840A968C_gt_SkipClassSelection_Func");
+    TriggerAddEventChatMessage(lib840A968C_gt_SkipClassSelection, c_playerAny, "SkipClass", true);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Weapons
+//--------------------------------------------------------------------------------------------------
+bool lib840A968C_gt_Weapons_Func (bool testConds, bool runActions) {
+    // Conditions
+    if (testConds) {
+        if (!(lib840A968C_gf_IsaDeveloper(PlayerHandle(EventPlayer())))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "AssaultRifle", 0, EventPlayer(), CameraGetTarget(EventPlayer()));
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "PumpShotgun", 0, EventPlayer(), CameraGetTarget(EventPlayer()));
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "AutomaticShotgun", 0, EventPlayer(), CameraGetTarget(EventPlayer()));
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "MarksmanRifle", 0, EventPlayer(), CameraGetTarget(EventPlayer()));
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "SubmachineGun", 0, EventPlayer(), CameraGetTarget(EventPlayer()));
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "Flamethrower", 0, EventPlayer(), CameraGetTarget(EventPlayer()));
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "HeavyMachineGun", 0, EventPlayer(), CameraGetTarget(EventPlayer()));
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "AntiMaterialRifle", 0, EventPlayer(), CameraGetTarget(EventPlayer()));
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "PlasmaCutter", 0, EventPlayer(), CameraGetTarget(EventPlayer()));
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "Chainsaw", 0, EventPlayer(), CameraGetTarget(EventPlayer()));
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "MediumMachineGun", 0, EventPlayer(), CameraGetTarget(EventPlayer()));
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "LaserRifle", 0, EventPlayer(), CameraGetTarget(EventPlayer()));
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "Crowbar", 0, EventPlayer(), CameraGetTarget(EventPlayer()));
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib840A968C_gt_Weapons_Init () {
+    lib840A968C_gt_Weapons = TriggerCreate("lib840A968C_gt_Weapons_Func");
+    TriggerAddEventChatMessage(lib840A968C_gt_Weapons, c_playerAny, "-spawn Weapons", true);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Random Armor
+//--------------------------------------------------------------------------------------------------
+bool lib840A968C_gt_RandomArmor_Func (bool testConds, bool runActions) {
+    int auto0330847E_ae;
+    int auto0330847E_ai;
+
+    // Variable Declarations
+    actorscope lv_localScope;
+    string lv_signal;
+    int lv_loop;
+
+    // Variable Initialization
+    lv_signal = "";
+
+    // Conditions
+    if (testConds) {
+        if (!(lib840A968C_gf_IsaDeveloper(PlayerHandle(EventPlayer())))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    auto0330847E_ae = 13;
+    auto0330847E_ai = 1;
+    lv_loop = 1;
+    for ( ; ( (auto0330847E_ai >= 0 && lv_loop <= auto0330847E_ae) || (auto0330847E_ai <= 0 && lv_loop >= auto0330847E_ae) ) ; lv_loop += auto0330847E_ai ) {
+        lv_signal = UserDataGetString("ArmorSet", UserDataInstance("ArmorSet", RandomInt(1, UserDataInstanceCount("ArmorSet"))), "Signal", 1);
+        ActorSend(ActorFromScope(lv_localScope, (UserDataGetActor("ArmorSlots", UserDataInstance("ArmorSlots", lv_loop), "Slot Actor", 1))), libNtve_gf_Signal(lv_signal));
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib840A968C_gt_RandomArmor_Init () {
+    lib840A968C_gt_RandomArmor = TriggerCreate("lib840A968C_gt_RandomArmor_Func");
+    TriggerAddEventChatMessage(lib840A968C_gt_RandomArmor, c_playerAny, "Randomize", true);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Alliance States
+//--------------------------------------------------------------------------------------------------
+bool lib840A968C_gt_AllianceStates_Func (bool testConds, bool runActions) {
+    // Conditions
+    if (testConds) {
+        if (!((GameIsTestMap(false)))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    libNtve_gf_SetAlliance(1, 10, 5);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib840A968C_gt_AllianceStates_Init () {
+    lib840A968C_gt_AllianceStates = TriggerCreate("lib840A968C_gt_AllianceStates_Func");
+    TriggerAddEventMapInit(lib840A968C_gt_AllianceStates);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Spawn Item
+//--------------------------------------------------------------------------------------------------
+bool lib840A968C_gt_SpawnItem_Func (bool testConds, bool runActions) {
+    // Conditions
+    if (testConds) {
+        if (!(lib840A968C_gf_IsaDeveloper(PlayerHandle(EventPlayer())))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, UnitTypeFromString(StringWord(EventChatMessage(false), 2)), 0, EventPlayer(), CameraGetTarget(EventPlayer()));
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib840A968C_gt_SpawnItem_Init () {
+    lib840A968C_gt_SpawnItem = TriggerCreate("lib840A968C_gt_SpawnItem_Func");
+    TriggerAddEventChatMessage(lib840A968C_gt_SpawnItem, c_playerAny, "SpawnItem", false);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Map Reveal
+//--------------------------------------------------------------------------------------------------
+bool lib840A968C_gt_MapReveal_Func (bool testConds, bool runActions) {
+    // Conditions
+    if (testConds) {
+        if (!(lib840A968C_gf_IsaDeveloper(PlayerHandle(EventPlayer())))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    PlayerGroupLoopBegin(lib840A968C_gf_GetMarineSquadPlayers());
+    for ( ; !PlayerGroupLoopDone() ; PlayerGroupLoopStep() ) {
+        if ((lib840A968C_gv_mapHackRevealerDeveloper[PlayerGroupLoopCurrent()] == null)) {
+            VisRevealerCreate(PlayerGroupLoopCurrent(), RegionEntireMap());
+            lib840A968C_gv_mapHackRevealerDeveloper[PlayerGroupLoopCurrent()] = VisRevealerLastCreated();
+        }
+        if (lib840A968C_gv_revealerActive[PlayerGroupLoopCurrent()]) {
+            lib840A968C_gv_revealerActive[PlayerGroupLoopCurrent()] = false;
+            VisRevealerEnable(lib840A968C_gv_mapHackRevealerDeveloper[PlayerGroupLoopCurrent()], false);
+        }
+        else {
+            lib840A968C_gv_revealerActive[PlayerGroupLoopCurrent()] = true;
+            VisRevealerEnable(lib840A968C_gv_mapHackRevealerDeveloper[PlayerGroupLoopCurrent()], true);
+        }
+    }
+    PlayerGroupLoopEnd();
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib840A968C_gt_MapReveal_Init () {
+    lib840A968C_gt_MapReveal = TriggerCreate("lib840A968C_gt_MapReveal_Func");
+    TriggerAddEventChatMessage(lib840A968C_gt_MapReveal, c_playerAny, "iseedeadpeople", true);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Max Level Hero
+//--------------------------------------------------------------------------------------------------
+bool lib840A968C_gt_MaxLevelHero_Func (bool testConds, bool runActions) {
+    // Conditions
+    if (testConds) {
+        if (!(lib840A968C_gf_IsaDeveloper(PlayerHandle(EventPlayer())))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    UnitSetPropertyFixed(lib840A968C_gf_GetMarine(EventPlayer()), c_unitPropLevel, 12.0);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib840A968C_gt_MaxLevelHero_Init () {
+    lib840A968C_gt_MaxLevelHero = TriggerCreate("lib840A968C_gt_MaxLevelHero_Func");
+    TriggerAddEventChatMessage(lib840A968C_gt_MaxLevelHero, c_playerAny, "zugzug", true);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: HP Scaling
+//--------------------------------------------------------------------------------------------------
+bool lib840A968C_gt_HPScaling_Func (bool testConds, bool runActions) {
+    // Conditions
+    if (testConds) {
+        if (!(lib840A968C_gf_IsaDeveloper(PlayerHandle(EventPlayer())))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    CatalogFieldValueSet(c_gameCatalogBehavior, "ZombieScaling", "Modification.VitalMaxFractionArray[" + IntToString(0) + "]", lib1E3F036D_gv_zombiePlayer, StringWord(EventChatMessage(false), 2));
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib840A968C_gt_HPScaling_Init () {
+    lib840A968C_gt_HPScaling = TriggerCreate("lib840A968C_gt_HPScaling_Func");
+    TriggerAddEventChatMessage(lib840A968C_gt_HPScaling, c_playerAny, "HPScale", false);
+}
+
+void lib840A968C_InitTriggers () {
+    lib840A968C_gt_ShopIntialize_Init();
+    lib840A968C_gt_BankLoad_Init();
+    lib840A968C_gt_ApplyServiceBranches_Init();
+    lib840A968C_gt_ApplySidearms_Init();
+    lib840A968C_gt_ApplyCharacterModifications_Init();
+    lib840A968C_gt_ParasiteAttacks_Init();
+    lib840A968C_gt_AmbientAttacksOnPlayers_Init();
+    lib840A968C_gt_RiotModeCheck_Init();
+    lib840A968C_gt_ActivateHorde_Init();
+    lib840A968C_gt_Intialization_Init();
+    lib840A968C_gt_GameStart_Init();
+    lib840A968C_gt_PlayerLeavestheGame_Init();
+    lib840A968C_gt_Victory_Init();
+    lib840A968C_gt_Defeat_Init();
+    lib840A968C_gt_DisplayClassSelection_Init();
+    lib840A968C_gt_ClassSelection_Init();
+    lib840A968C_gt_EndClassSelection_Init();
+    lib840A968C_gt_DifficultySelection_Init();
+    lib840A968C_gt_DifficultyVote_Init();
+    lib840A968C_gt_EventRegistrationForMarineUnits_Init();
+    lib840A968C_gt_NightVisionModuleLightingChange_Init();
+    lib840A968C_gt_NightVisionUIHookup_Init();
+    lib840A968C_gt_NightVisionToggle_Init();
+    lib840A968C_gt_TeamLocation_Init();
+    lib840A968C_gt_HookupTeamLocationButton_Init();
+    lib840A968C_gt_PlayerMarineDies_Init();
+    lib840A968C_gt_ConstructTeamUI_Init();
+    lib840A968C_gt_BankSave_Init();
+    lib840A968C_gt_RatingLossfromLives_Init();
+    lib840A968C_gt_RatingLossfromFriendlyFire_Init();
+    lib840A968C_gt_HitsUpdate_Init();
+    lib840A968C_gt_CamoSwitch_Init();
+    lib840A968C_gt_ModelLightMarine_Init();
+    lib840A968C_gt_ModelHeavyMarine_Init();
+    lib840A968C_gt_ColorSwitching_Init();
+    lib840A968C_gt_RunUnitTests_Init();
+    lib840A968C_gt_ForceHordeMode_Init();
+    lib840A968C_gt_SetChapter_Init();
+    lib840A968C_gt_DeveloperGodMode_Init();
+    lib840A968C_gt_StartGameClassSelection_Init();
+    lib840A968C_gt_MissionRewards_Init();
+    lib840A968C_gt_DisplayPlayerStats_Init();
+    lib840A968C_gt_SkipClassSelection_Init();
+    lib840A968C_gt_Weapons_Init();
+    lib840A968C_gt_RandomArmor_Init();
+    lib840A968C_gt_AllianceStates_Init();
+    lib840A968C_gt_SpawnItem_Init();
+    lib840A968C_gt_MapReveal_Init();
+    lib840A968C_gt_MaxLevelHero_Init();
+    lib840A968C_gt_HPScaling_Init();
+}
+
+//--------------------------------------------------------------------------------------------------
+// Library Initialization
+//--------------------------------------------------------------------------------------------------
+bool lib840A968C_InitLib_completed = false;
+
+void lib840A968C_InitLib () {
+    if (lib840A968C_InitLib_completed) {
+        return;
+    }
+
+    lib840A968C_InitVariables();
+    lib840A968C_InitTriggers();
+
+    lib840A968C_InitLib_completed = true;
+}
+

@@ -1,0 +1,469 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<Catalog>
+    <CActorEventMacro default="1" id="ArmorSwapTemplate">
+        <?token id="ArmorSlot"?>
+        <?token id="Class"?>
+        <EditorCategories value=""/>
+        <On Terms="Signal.*.War" Send="ModelSwap ##Class##War##ArmorSlot##"/>
+        <On Terms="Signal.*.Evac" Send="ModelSwap ##Class##Evac##ArmorSlot##"/>
+        <On Terms="Signal.*.Breach" Send="ModelSwap ##Class##Breach##ArmorSlot##"/>
+        <On Terms="Signal.*.Pyro" Send="ModelSwap ##Class##Pyro##ArmorSlot##"/>
+        <On Terms="Signal.*.Shadow" Send="ModelSwap ##Class##Shadow##ArmorSlot##"/>
+        <On Terms="Signal.*.Avalanche" Send="ModelSwap ##Class##Avalanche##ArmorSlot##"/>
+        <On Terms="Signal.*.GoldCenturion" Send="ModelSwap ##Class##GoldCenturion##ArmorSlot##"/>
+        <On Terms="Signal.*.Basic" Send="ModelSwap ##Class##Basic##ArmorSlot##"/>
+        <On Terms="Signal.*.Warcraft3" Send="ModelSwap ##Class##Warcraft3##ArmorSlot##"/>
+        <On Terms="Signal.*.Peacekeeper" Send="ModelSwap ##Class##PeaceKeeper##ArmorSlot##"/>
+        <On Terms="Signal.*.Zync" Send="ModelSwap ##Class##Zync##ArmorSlot##"/>
+        <On Terms="Signal.*.Craft" Send="ModelSwap ##Class##Craft##ArmorSlot##"/>
+        <On Terms="Signal.*.Kaiten" Send="ModelSwap ##Class##Kaiten##ArmorSlot##"/>
+        <On Terms="Signal.*.Qesun" Send="ModelSwap ##Class##Qesun##ArmorSlot##"/>
+        <On Terms="Signal.*.Rebel" Send="ModelSwap ##Class##Rebel##ArmorSlot##"/>
+        <On Terms="Signal.*.Neutrino" Send="ModelSwap ##Class##Neutrino##ArmorSlot##"/>
+        <On Terms="Signal.*.Crossfire" Send="ModelSwap ##Class##Crossfire##ArmorSlot##"/>
+        <On Terms="Signal.*.Scavenger" Send="ModelSwap ##Class##Scavenger##ArmorSlot##"/>
+        <On Terms="Signal.*.Lance" Send="ModelSwap ##Class##Lance##ArmorSlot##"/>
+        <On Terms="Signal.*.Vortex" Send="ModelSwap ##Class##Vortex##ArmorSlot##"/>
+        <On Terms="Signal.*.Rhino" Send="ModelSwap ##Class##Rhino##ArmorSlot##"/>
+        <On Terms="ModelSwap" Send="TextureResetToDefault"/>
+    </CActorEventMacro>
+    <CActorModel default="1" id="ArmorTemplate" parent="ModelAddition">
+        <?token id="SwapMacro"?>
+        <?token id="Class"?>
+        <Macros value="##Class####SwapMacro##"/>
+        <Macros value="ArmorSwapStatusMacro"/>
+        <Macros value="AvalancheTextureSelectMacro"/>
+        <Macros value="BasicTextureSelectMacro"/>
+        <Macros value="BreachTextureSelectMacro"/>
+        <Macros value="CraftTextureSelectMacro"/>
+        <Macros value="CrossfireTextureSelectMacro"/>
+        <Macros value="EvacTextureSelectMacro"/>
+        <Macros value="KaitenTextureSelectMacro"/>
+        <Macros value="LanceTextureSelectMacro"/>
+        <Macros value="NeutrinoTextureSelectMacro"/>
+        <Macros value="PeacekeeperTextureSelectMacro"/>
+        <Macros value="PyroTextureSelectMacro"/>
+        <Macros value="QesunTextureSelectMacro"/>
+        <Macros value="RebelTextureSelectMacro"/>
+        <Macros value="ScavengerTextureSelectMacro"/>
+        <Macros value="ShadowTextureSelectMacro"/>
+        <Macros value="WarTextureSelectMacro"/>
+        <Macros value="ZyncTextureSelectMacro"/>
+        <Macros value="VortexTextureSelectMacro"/>
+        <Macros value="RhinoTextureSelectMacro"/>
+        <EditorCategories value=""/>
+        <Aliases value="_ArmorCustom"/>
+        <Host Subject="_Unit"/>
+        <On Terms="ActorCreation" Send="StatusSet ArmorSet 1"/>
+    </CActorModel>
+    <CActorModel default="1" id="EngineerArmorTemplate" parent="ArmorTemplate">
+        <?token id="Class" value="Engineer"?>
+    </CActorModel>
+    <CActorModel default="1" id="FlamethrowerArmorTemplate" parent="ArmorTemplate">
+        <?token id="Class" value="Flamethrower"?>
+        <On index="3" Terms="ActorCreation" Send="StatusSet ArmorSet 12"/>
+    </CActorModel>
+    <CActorModel default="1" id="MedicArmorTemplate" parent="ArmorTemplate">
+        <?token id="Class" value="Medic"?>
+    </CActorModel>
+    <CActorModel default="1" id="ReconArmorTemplate" parent="ArmorTemplate">
+        <?token id="Class" value="Recon"?>
+    </CActorModel>
+    <CActorModel default="1" id="AssaultArmorTemplate" parent="ArmorTemplate">
+        <?token id="Class" value="Assault"?>
+        <On index="3" Terms="ActorCreation" Send="StatusSet ArmorSet 12"/>
+        <Model value="AssaultArmorTemplate"/>
+    </CActorModel>
+    <CActorModel default="1" id="CommandoArmorTemplate" parent="ArmorTemplate">
+        <?token id="Class" value="Commando"?>
+    </CActorModel>
+    <CActorModel default="1" id="NPCArmorTemplate" parent="ArmorTemplate">
+        <Model value="##Class#BasicNPCArmorTemplate"/>
+    </CActorModel>
+    <CActorModel default="1" id="PathfinderArmorTemplate" parent="ArmorTemplate">
+        <?token id="Class" value="Pathfinder"?>
+    </CActorModel>
+    <CActorModel default="1" id="PsiOpsArmorTemplate" parent="ArmorTemplate">
+        <?token id="Class" value="PsiOps"?>
+    </CActorModel>
+    <CActorModel default="1" id="DemolitionArmorTemplate" parent="ArmorTemplate">
+        <?token id="Class" value="Demolition"?>
+        <On index="3" Terms="ActorCreation" Send="StatusSet ArmorSet 12"/>
+    </CActorModel>
+    <CActorModel default="1" id="TechnicianArmorTemplate" parent="ArmorTemplate">
+        <?token id="Class" value="Technician"?>
+        <On index="3" Terms="ActorCreation" Send="StatusSet ArmorSet 12"/>
+    </CActorModel>
+    <CActorEventMacro default="1" id="TextureSelectMacroTemplate">
+        <?token id="ArmorSet"?>
+        <EditorCategories value=""/>
+        <On Terms="Signal.*.Desert; IsStatus ArmorSet 1" Send="TextureSelectById ##ArmorSet##Desert"/>
+        <On Terms="Signal.*.Infested; IsStatus ArmorSet 1" Send="TextureSelectById ##ArmorSet##Infested"/>
+        <On Terms="Signal.*.Navy; IsStatus ArmorSet 1" Send="TextureSelectById ##ArmorSet##Navy"/>
+        <On Terms="Signal.*.Night; IsStatus ArmorSet 1" Send="TextureSelectById ##ArmorSet##Night"/>
+        <On Terms="Signal.*.RTiger; IsStatus ArmorSet 1" Send="TextureSelectById ##ArmorSet##RTiger"/>
+        <On Terms="Signal.*.Snow; IsStatus ArmorSet 1" Send="TextureSelectById ##ArmorSet##Snow"/>
+        <On Terms="Signal.*.Tech; IsStatus ArmorSet 1" Send="TextureSelectById ##ArmorSet##Tech"/>
+        <On Terms="Signal.*.Urban; IsStatus ArmorSet 1" Send="TextureSelectById ##ArmorSet##Urban"/>
+        <On Terms="Signal.*.Woodland; IsStatus ArmorSet 1" Send="TextureSelectById ##ArmorSet##Woodland"/>
+    </CActorEventMacro>
+    <CActorEventMacro id="ArmorSwapStatusMacro">
+        <On Terms="Signal.*.War" Send="StatusSet ArmorSet 5"/>
+        <On Terms="Signal.*.Evac" Send="StatusSet ArmorSet 3"/>
+        <On Terms="Signal.*.Breach" Send="StatusSet ArmorSet 2"/>
+        <On Terms="Signal.*.Pyro" Send="StatusSet ArmorSet 6"/>
+        <On Terms="Signal.*.Shadow" Send="StatusSet ArmorSet 7"/>
+        <On Terms="Signal.*.Avalanche" Send="StatusSet ArmorSet 4"/>
+        <On Terms="Signal.*.GoldCenturion" Send="StatusSet ArmorSet 0"/>
+        <On Terms="Signal.*.Basic" Send="StatusSet ArmorSet 1"/>
+        <On Terms="Signal.*.Warcraft3" Send="StatusSet ArmorSet 0"/>
+        <On Terms="Signal.*.Peacekeeper" Send="StatusSet ArmorSet 8"/>
+        <On Terms="Signal.*.Zync" Send="StatusSet ArmorSet 14"/>
+        <On Terms="Signal.*.Craft" Send="StatusSet ArmorSet 12"/>
+        <On Terms="Signal.*.Kaiten" Send="StatusSet ArmorSet 13"/>
+        <On Terms="Signal.*.Qesun" Send="StatusSet ArmorSet 9"/>
+        <On Terms="Signal.*.Rebel" Send="StatusSet ArmorSet 10"/>
+        <On Terms="Signal.*.Neutrino" Send="StatusSet ArmorSet 11"/>
+        <On Terms="Signal.*.Crossfire" Send="StatusSet ArmorSet17"/>
+        <On Terms="Signal.*.Scavenger" Send="StatusSet ArmorSet 15"/>
+        <On Terms="Signal.*.Lance" Send="StatusSet ArmorSet 16"/>
+        <On Terms="Signal.*.Vortex" Send="StatusSet ArmorSet 17"/>
+        <On Terms="Signal.*.Rhino" Send="StatusSet ArmorSet 18"/>
+        <EditorCategories value=""/>
+    </CActorEventMacro>
+    <CActorEventMacro id="ArmorTextureSelectMacro">
+        <Macros value="AvalancheTextureSelectMacro"/>
+        <Macros value="BasicTextureSelectMacro"/>
+        <Macros value="BreachTextureSelectMacro"/>
+        <Macros value="CraftTextureSelectMacro"/>
+        <Macros value="CrossfireTextureSelectMacro"/>
+        <Macros value="EvacTextureSelectMacro"/>
+        <Macros value="KaitenTextureSelectMacro"/>
+        <Macros value="LanceTextureSelectMacro"/>
+        <Macros value="NeutrinoTextureSelectMacro"/>
+        <Macros value="PeacekeeperTextureSelectMacro"/>
+        <Macros value="PyroTextureSelectMacro"/>
+        <Macros value="QesunTextureSelectMacro"/>
+        <Macros value="RebelTextureSelectMacro"/>
+        <Macros value="ScavengerTextureSelectMacro"/>
+        <Macros value="ShadowTextureSelectMacro"/>
+        <Macros value="WarTextureSelectMacro"/>
+        <Macros value="ZyncTextureSelectMacro"/>
+        <Macros value="VortexTextureSelectMacro"/>
+        <EditorCategories value=""/>
+    </CActorEventMacro>
+    <CActorModel id="AssaultTorso" parent="AssaultArmorTemplate" SwapMacro="TorsoSwap">
+        <On index="3" Terms="ActorCreation" Send="StatusSet ArmorSet 1"/>
+    </CActorModel>
+    <CActorEventMacro id="AvalancheTextureSelectMacro" parent="TextureSelectMacroTemplate" ArmorSet="Avalanche">
+        <On index="0" Terms="Signal.*.Desert; IsStatus ArmorSet 4" Send="TextureSelectById AvalancheDesert"/>
+        <On index="1" Terms="Signal.*.Infested; IsStatus ArmorSet 4" Send="TextureSelectById AvalancheInfested"/>
+        <On index="2" Terms="Signal.*.Navy; IsStatus ArmorSet 4" Send="TextureSelectById AvalancheNavy"/>
+        <On index="3" Terms="Signal.*.Night; IsStatus ArmorSet 4" Send="TextureSelectById AvalancheNight"/>
+        <On index="4" Terms="Signal.*.RTiger; IsStatus ArmorSet 4" Send="TextureSelectById AvalancheRTiger"/>
+        <On index="5" Terms="Signal.*.Snow; IsStatus ArmorSet 4" Send="TextureSelectById AvalancheSnow"/>
+        <On index="6" Terms="Signal.*.Tech; IsStatus ArmorSet 4" Send="TextureSelectById AvalancheTech"/>
+        <On index="7" Terms="Signal.*.Urban; IsStatus ArmorSet 4" Send="TextureSelectById AvalancheUrban"/>
+        <On index="8" Terms="Signal.*.Woodland; IsStatus ArmorSet 4" Send="TextureSelectById AvalancheWoodland"/>
+    </CActorEventMacro>
+    <CActorEventMacro id="BasicTextureSelectMacro" parent="TextureSelectMacroTemplate" ArmorSet="Basic"/>
+    <CActorEventMacro id="BreachTextureSelectMacro" parent="TextureSelectMacroTemplate" ArmorSet="Breach">
+        <On index="0" Terms="Signal.*.Desert; IsStatus ArmorSet 2" Send="TextureSelectById BreachDesert"/>
+        <On index="1" Terms="Signal.*.Infested; IsStatus ArmorSet 2" Send="TextureSelectById BreachInfested"/>
+        <On index="2" Terms="Signal.*.Navy; IsStatus ArmorSet 2" Send="TextureSelectById BreachNavy"/>
+        <On index="3" Terms="Signal.*.Night; IsStatus ArmorSet 2" Send="TextureSelectById BreachNight"/>
+        <On index="4" Terms="Signal.*.RTiger; IsStatus ArmorSet 2" Send="TextureSelectById BreachRTiger"/>
+        <On index="5" Terms="Signal.*.Snow; IsStatus ArmorSet 2" Send="TextureSelectById BreachSnow"/>
+        <On index="6" Terms="Signal.*.Tech; IsStatus ArmorSet 2" Send="TextureSelectById BreachTech"/>
+        <On index="7" Terms="Signal.*.Urban; IsStatus ArmorSet 2" Send="TextureSelectById BreachUrban"/>
+        <On index="8" Terms="Signal.*.Woodland; IsStatus ArmorSet 2" Send="TextureSelectById BreachWoodland"/>
+    </CActorEventMacro>
+    <CActorEventMacro id="CraftTextureSelectMacro" parent="TextureSelectMacroTemplate" ArmorSet="Craft">
+        <On index="0" Terms="Signal.*.Desert; IsStatus ArmorSet 12" Send="TextureSelectById CraftDesert"/>
+        <On index="1" Terms="Signal.*.Infested; IsStatus ArmorSet 12" Send="TextureSelectById CraftInfested"/>
+        <On index="2" Terms="Signal.*.Navy; IsStatus ArmorSet 12" Send="TextureSelectById CraftNavy"/>
+        <On index="3" Terms="Signal.*.Night; IsStatus ArmorSet 12" Send="TextureSelectById CraftNight"/>
+        <On index="4" Terms="Signal.*.RTiger; IsStatus ArmorSet 12" Send="TextureSelectById CraftRTiger"/>
+        <On index="5" Terms="Signal.*.Snow; IsStatus ArmorSet 12" Send="TextureSelectById CraftSnow"/>
+        <On index="6" Terms="Signal.*.Tech; IsStatus ArmorSet 12" Send="TextureSelectById CraftTech"/>
+        <On index="7" Terms="Signal.*.Urban; IsStatus ArmorSet 12" Send="TextureSelectById CraftUrban"/>
+        <On index="8" Terms="Signal.*.Woodland; IsStatus ArmorSet 12" Send="TextureSelectById CraftWoodland"/>
+    </CActorEventMacro>
+    <CActorEventMacro id="CrossfireTextureSelectMacro" parent="TextureSelectMacroTemplate" ArmorSet="Crossfire">
+        <On index="0" Terms="Signal.*.Desert; IsStatus ArmorSet 17" Send="TextureSelectById CrossfireDesert"/>
+        <On index="1" Terms="Signal.*.Infested; IsStatus ArmorSet 17" Send="TextureSelectById CrossfireInfested"/>
+        <On index="2" Terms="Signal.*.Navy; IsStatus ArmorSet 17" Send="TextureSelectById CrossfireNavy"/>
+        <On index="3" Terms="Signal.*.Night; IsStatus ArmorSet 17" Send="TextureSelectById CrossfireNight"/>
+        <On index="4" Terms="Signal.*.RTiger; IsStatus ArmorSet 17" Send="TextureSelectById CrossfireRTiger"/>
+        <On index="5" Terms="Signal.*.Snow; IsStatus ArmorSet 17" Send="TextureSelectById CrossfireSnow"/>
+        <On index="6" Terms="Signal.*.Tech; IsStatus ArmorSet 17" Send="TextureSelectById CrossfireTech"/>
+        <On index="7" Terms="Signal.*.Urban; IsStatus ArmorSet 17" Send="TextureSelectById CrossfireUrban"/>
+        <On index="8" Terms="Signal.*.Woodland; IsStatus ArmorSet 17" Send="TextureSelectById CrossfireWoodland"/>
+    </CActorEventMacro>
+    <CActorEventMacro id="EvacTextureSelectMacro" parent="TextureSelectMacroTemplate" ArmorSet="Evac">
+        <On index="0" Terms="Signal.*.Desert; IsStatus ArmorSet 3" Send="TextureSelectById EvacDesert"/>
+        <On index="1" Terms="Signal.*.Infested; IsStatus ArmorSet 3" Send="TextureSelectById EvacInfested"/>
+        <On index="2" Terms="Signal.*.Navy; IsStatus ArmorSet 3" Send="TextureSelectById EvacNavy"/>
+        <On index="3" Terms="Signal.*.Night; IsStatus ArmorSet 3" Send="TextureSelectById EvacNight"/>
+        <On index="4" Terms="Signal.*.RTiger; IsStatus ArmorSet 3" Send="TextureSelectById EvacRTiger"/>
+        <On index="5" Terms="Signal.*.Snow; IsStatus ArmorSet 3" Send="TextureSelectById EvacSnow"/>
+        <On index="6" Terms="Signal.*.Tech; IsStatus ArmorSet 3" Send="TextureSelectById EvacTech"/>
+        <On index="7" Terms="Signal.*.Urban; IsStatus ArmorSet 3" Send="TextureSelectById EvacUrban"/>
+        <On index="8" Terms="Signal.*.Woodland; IsStatus ArmorSet 3" Send="TextureSelectById EvacWoodland"/>
+    </CActorEventMacro>
+    <CActorEventMacro id="KaitenTextureSelectMacro" parent="TextureSelectMacroTemplate" ArmorSet="Kaiten">
+        <On index="0" Terms="Signal.*.Desert; IsStatus ArmorSet 13" Send="TextureSelectById KaitenDesert"/>
+        <On index="1" Terms="Signal.*.Infested; IsStatus ArmorSet 13" Send="TextureSelectById KaitenInfested"/>
+        <On index="2" Terms="Signal.*.Navy; IsStatus ArmorSet 13" Send="TextureSelectById KaitenNavy"/>
+        <On index="3" Terms="Signal.*.Night; IsStatus ArmorSet 13" Send="TextureSelectById KaitenNight"/>
+        <On index="4" Terms="Signal.*.RTiger; IsStatus ArmorSet 13" Send="TextureSelectById KaitenRTiger"/>
+        <On index="5" Terms="Signal.*.Snow; IsStatus ArmorSet 13" Send="TextureSelectById KaitenSnow"/>
+        <On index="6" Terms="Signal.*.Tech; IsStatus ArmorSet 13" Send="TextureSelectById KaitenTech"/>
+        <On index="7" Terms="Signal.*.Urban; IsStatus ArmorSet 13" Send="TextureSelectById KaitenUrban"/>
+        <On index="8" Terms="Signal.*.Woodland; IsStatus ArmorSet 13" Send="TextureSelectById KaitenWoodland"/>
+    </CActorEventMacro>
+    <CActorEventMacro id="LanceTextureSelectMacro" parent="TextureSelectMacroTemplate" ArmorSet="Lance">
+        <On index="0" Terms="Signal.*.Desert; IsStatus ArmorSet 16" Send="TextureSelectById LanceDesert"/>
+        <On index="1" Terms="Signal.*.Infested; IsStatus ArmorSet 16" Send="TextureSelectById LanceInfested"/>
+        <On index="2" Terms="Signal.*.Navy; IsStatus ArmorSet 16" Send="TextureSelectById LanceNavy"/>
+        <On index="3" Terms="Signal.*.Night; IsStatus ArmorSet 16" Send="TextureSelectById LanceNight"/>
+        <On index="4" Terms="Signal.*.RTiger; IsStatus ArmorSet 16" Send="TextureSelectById LanceRTiger"/>
+        <On index="5" Terms="Signal.*.Snow; IsStatus ArmorSet 16" Send="TextureSelectById LanceSnow"/>
+        <On index="6" Terms="Signal.*.Tech; IsStatus ArmorSet 16" Send="TextureSelectById LanceTech"/>
+        <On index="7" Terms="Signal.*.Urban; IsStatus ArmorSet 16" Send="TextureSelectById LanceUrban"/>
+        <On index="8" Terms="Signal.*.Woodland; IsStatus ArmorSet 16" Send="TextureSelectById LanceWoodland"/>
+    </CActorEventMacro>
+    <CActorEventMacro id="NeutrinoTextureSelectMacro" parent="TextureSelectMacroTemplate" ArmorSet="Neutrino">
+        <On index="0" Terms="Signal.*.Desert; IsStatus ArmorSet 11" Send="TextureSelectById NeutrinoDesert"/>
+        <On index="1" Terms="Signal.*.Infested; IsStatus ArmorSet 11" Send="TextureSelectById NeutrinoInfested"/>
+        <On index="2" Terms="Signal.*.Navy; IsStatus ArmorSet 11" Send="TextureSelectById NeutrinoNavy"/>
+        <On index="3" Terms="Signal.*.Night; IsStatus ArmorSet 11" Send="TextureSelectById NeutrinoNight"/>
+        <On index="4" Terms="Signal.*.RTiger; IsStatus ArmorSet 11" Send="TextureSelectById NeutrinoRTiger"/>
+        <On index="5" Terms="Signal.*.Snow; IsStatus ArmorSet 11" Send="TextureSelectById NeutrinoSnow"/>
+        <On index="6" Terms="Signal.*.Tech; IsStatus ArmorSet 11" Send="TextureSelectById NeutrinoTech"/>
+        <On index="7" Terms="Signal.*.Urban; IsStatus ArmorSet 11" Send="TextureSelectById NeutrinoUrban"/>
+        <On index="8" Terms="Signal.*.Woodland; IsStatus ArmorSet 11" Send="TextureSelectById NeutrinoWoodland"/>
+    </CActorEventMacro>
+    <CActorEventMacro id="PeacekeeperTextureSelectMacro" parent="TextureSelectMacroTemplate" ArmorSet="Peacekeeper">
+        <On index="0" Terms="Signal.*.Desert; IsStatus ArmorSet 8" Send="TextureSelectById PeacekeeperDesert"/>
+        <On index="1" Terms="Signal.*.Infested; IsStatus ArmorSet 8" Send="TextureSelectById PeacekeeperInfested"/>
+        <On index="2" Terms="Signal.*.Navy; IsStatus ArmorSet 8" Send="TextureSelectById PeacekeeperNavy"/>
+        <On index="3" Terms="Signal.*.Night; IsStatus ArmorSet 8" Send="TextureSelectById PeacekeeperNight"/>
+        <On index="4" Terms="Signal.*.RTiger; IsStatus ArmorSet 8" Send="TextureSelectById PeacekeeperRTiger"/>
+        <On index="5" Terms="Signal.*.Snow; IsStatus ArmorSet 8" Send="TextureSelectById PeacekeeperSnow"/>
+        <On index="6" Terms="Signal.*.Tech; IsStatus ArmorSet 8" Send="TextureSelectById PeacekeeperTech"/>
+        <On index="7" Terms="Signal.*.Urban; IsStatus ArmorSet 8" Send="TextureSelectById PeacekeeperUrban"/>
+        <On index="8" Terms="Signal.*.Woodland; IsStatus ArmorSet 8" Send="TextureSelectById PeacekeeperWoodland"/>
+    </CActorEventMacro>
+    <CActorEventMacro id="PyroTextureSelectMacro" parent="TextureSelectMacroTemplate" ArmorSet="Pyro">
+        <On index="0" Terms="Signal.*.Desert; IsStatus ArmorSet 6" Send="TextureSelectById PyroDesert"/>
+        <On index="1" Terms="Signal.*.Infested; IsStatus ArmorSet 6" Send="TextureSelectById PyroInfested"/>
+        <On index="2" Terms="Signal.*.Navy; IsStatus ArmorSet 6" Send="TextureSelectById PyroNavy"/>
+        <On index="3" Terms="Signal.*.Night; IsStatus ArmorSet 6" Send="TextureSelectById PyroNight"/>
+        <On index="4" Terms="Signal.*.RTiger; IsStatus ArmorSet 6" Send="TextureSelectById PyroRTiger"/>
+        <On index="5" Terms="Signal.*.Snow; IsStatus ArmorSet 6" Send="TextureSelectById PyroSnow"/>
+        <On index="6" Terms="Signal.*.Tech; IsStatus ArmorSet 6" Send="TextureSelectById PyroTech"/>
+        <On index="7" Terms="Signal.*.Urban; IsStatus ArmorSet 6" Send="TextureSelectById PyroUrban"/>
+        <On index="8" Terms="Signal.*.Woodland; IsStatus ArmorSet 6" Send="TextureSelectById PyroWoodland"/>
+    </CActorEventMacro>
+    <CActorEventMacro id="QesunTextureSelectMacro" parent="TextureSelectMacroTemplate" ArmorSet="Qesun">
+        <On index="0" Terms="Signal.*.Desert; IsStatus ArmorSet 9" Send="TextureSelectById QesunDesert"/>
+        <On index="1" Terms="Signal.*.Infested; IsStatus ArmorSet 9" Send="TextureSelectById QesunInfested"/>
+        <On index="2" Terms="Signal.*.Navy; IsStatus ArmorSet 9" Send="TextureSelectById QesunNavy"/>
+        <On index="3" Terms="Signal.*.Night; IsStatus ArmorSet 9" Send="TextureSelectById QesunNight"/>
+        <On index="4" Terms="Signal.*.RTiger; IsStatus ArmorSet 9" Send="TextureSelectById QesunRTiger"/>
+        <On index="5" Terms="Signal.*.Snow; IsStatus ArmorSet 9" Send="TextureSelectById QesunSnow"/>
+        <On index="6" Terms="Signal.*.Tech; IsStatus ArmorSet 9" Send="TextureSelectById QesunTech"/>
+        <On index="7" Terms="Signal.*.Urban; IsStatus ArmorSet 9" Send="TextureSelectById QesunUrban"/>
+        <On index="8" Terms="Signal.*.Woodland; IsStatus ArmorSet 9" Send="TextureSelectById QesunWoodland"/>
+    </CActorEventMacro>
+    <CActorEventMacro id="RebelTextureSelectMacro" parent="TextureSelectMacroTemplate" ArmorSet="Rebel">
+        <On index="0" Terms="Signal.*.Desert; IsStatus ArmorSet 10" Send="TextureSelectById RebelDesert"/>
+        <On index="1" Terms="Signal.*.Infested; IsStatus ArmorSet 10" Send="TextureSelectById RebelInfested"/>
+        <On index="2" Terms="Signal.*.Navy; IsStatus ArmorSet 10" Send="TextureSelectById RebelNavy"/>
+        <On index="3" Terms="Signal.*.Night; IsStatus ArmorSet 10" Send="TextureSelectById RebelNight"/>
+        <On index="4" Terms="Signal.*.RTiger; IsStatus ArmorSet 10" Send="TextureSelectById RebelRTiger"/>
+        <On index="5" Terms="Signal.*.Snow; IsStatus ArmorSet 10" Send="TextureSelectById RebelSnow"/>
+        <On index="6" Terms="Signal.*.Tech; IsStatus ArmorSet 10" Send="TextureSelectById RebelTech"/>
+        <On index="7" Terms="Signal.*.Urban; IsStatus ArmorSet 10" Send="TextureSelectById RebelUrban"/>
+        <On index="8" Terms="Signal.*.Woodland; IsStatus ArmorSet 10" Send="TextureSelectById RebelWoodland"/>
+    </CActorEventMacro>
+    <CActorEventMacro id="ScavengerTextureSelectMacro" parent="TextureSelectMacroTemplate" ArmorSet="Scavenger">
+        <On index="0" Terms="Signal.*.Desert; IsStatus ArmorSet 15" Send="TextureSelectById ScavengerDesert"/>
+        <On index="1" Terms="Signal.*.Infested; IsStatus ArmorSet 15" Send="TextureSelectById ScavengerInfested"/>
+        <On index="2" Terms="Signal.*.Navy; IsStatus ArmorSet 15" Send="TextureSelectById ScavengerNavy"/>
+        <On index="3" Terms="Signal.*.Night; IsStatus ArmorSet 15" Send="TextureSelectById ScavengerNight"/>
+        <On index="4" Terms="Signal.*.RTiger; IsStatus ArmorSet 15" Send="TextureSelectById ScavengerRTiger"/>
+        <On index="5" Terms="Signal.*.Snow; IsStatus ArmorSet 15" Send="TextureSelectById ScavengerSnow"/>
+        <On index="6" Terms="Signal.*.Tech; IsStatus ArmorSet 15" Send="TextureSelectById ScavengerTech"/>
+        <On index="7" Terms="Signal.*.Urban; IsStatus ArmorSet 15" Send="TextureSelectById ScavengerUrban"/>
+        <On index="8" Terms="Signal.*.Woodland; IsStatus ArmorSet 15" Send="TextureSelectById ScavengerWoodland"/>
+    </CActorEventMacro>
+    <CActorEventMacro id="ShadowTextureSelectMacro" parent="TextureSelectMacroTemplate" ArmorSet="Shadow">
+        <On index="0" Terms="Signal.*.Desert; IsStatus ArmorSet 7" Send="TextureSelectById ShadowDesert"/>
+        <On index="1" Terms="Signal.*.Infested; IsStatus ArmorSet 7" Send="TextureSelectById ShadowInfested"/>
+        <On index="2" Terms="Signal.*.Navy; IsStatus ArmorSet 7" Send="TextureSelectById ShadowNavy"/>
+        <On index="3" Terms="Signal.*.Night; IsStatus ArmorSet 7" Send="TextureSelectById ShadowNight"/>
+        <On index="4" Terms="Signal.*.RTiger; IsStatus ArmorSet 7" Send="TextureSelectById ShadowRTiger"/>
+        <On index="5" Terms="Signal.*.Snow; IsStatus ArmorSet 7" Send="TextureSelectById ShadowSnow"/>
+        <On index="6" Terms="Signal.*.Tech; IsStatus ArmorSet 7" Send="TextureSelectById ShadowTech"/>
+        <On index="7" Terms="Signal.*.Urban; IsStatus ArmorSet 7" Send="TextureSelectById ShadowUrban"/>
+        <On index="8" Terms="Signal.*.Woodland; IsStatus ArmorSet 7" Send="TextureSelectById ShadowWoodland"/>
+    </CActorEventMacro>
+    <CActorEventMacro id="WarTextureSelectMacro" parent="TextureSelectMacroTemplate" ArmorSet="War">
+        <On index="0" Terms="Signal.*.Desert; IsStatus ArmorSet 5" Send="TextureSelectById WarDesert"/>
+        <On index="1" Terms="Signal.*.Infested; IsStatus ArmorSet 5" Send="TextureSelectById WarInfested"/>
+        <On index="2" Terms="Signal.*.Navy; IsStatus ArmorSet 5" Send="TextureSelectById WarNavy"/>
+        <On index="3" Terms="Signal.*.Night; IsStatus ArmorSet 5" Send="TextureSelectById WarNight"/>
+        <On index="4" Terms="Signal.*.RTiger; IsStatus ArmorSet 5" Send="TextureSelectById WarRTiger"/>
+        <On index="5" Terms="Signal.*.Snow; IsStatus ArmorSet 5" Send="TextureSelectById WarSnow"/>
+        <On index="6" Terms="Signal.*.Tech; IsStatus ArmorSet 5" Send="TextureSelectById WarTech"/>
+        <On index="7" Terms="Signal.*.Urban; IsStatus ArmorSet 5" Send="TextureSelectById WarUrban"/>
+        <On index="8" Terms="Signal.*.Woodland; IsStatus ArmorSet 5" Send="TextureSelectById WarWoodland"/>
+    </CActorEventMacro>
+    <CActorEventMacro id="ZyncTextureSelectMacro" parent="TextureSelectMacroTemplate" ArmorSet="Zync">
+        <On index="0" Terms="Signal.*.Desert; IsStatus ArmorSet 14" Send="TextureSelectById ZyncDesert"/>
+        <On index="1" Terms="Signal.*.Infested; IsStatus ArmorSet 14" Send="TextureSelectById ZyncInfested"/>
+        <On index="2" Terms="Signal.*.Navy; IsStatus ArmorSet 14" Send="TextureSelectById ZyncNavy"/>
+        <On index="3" Terms="Signal.*.Night; IsStatus ArmorSet 14" Send="TextureSelectById ZyncNight"/>
+        <On index="4" Terms="Signal.*.RTiger; IsStatus ArmorSet 14" Send="TextureSelectById ZyncRTiger"/>
+        <On index="5" Terms="Signal.*.Snow; IsStatus ArmorSet 14" Send="TextureSelectById ZyncSnow"/>
+        <On index="6" Terms="Signal.*.Tech; IsStatus ArmorSet 14" Send="TextureSelectById ZyncTech"/>
+        <On index="7" Terms="Signal.*.Urban; IsStatus ArmorSet 14" Send="TextureSelectById ZyncUrban"/>
+        <On index="8" Terms="Signal.*.Woodland; IsStatus ArmorSet 14" Send="TextureSelectById ZyncWoodland"/>
+    </CActorEventMacro>
+    <CActorEventMacro id="VortexTextureSelectMacro" parent="TextureSelectMacroTemplate" ArmorSet="Vortex">
+        <On index="0" Terms="Signal.*.Desert; IsStatus ArmorSet 17" Send="TextureSelectById VortexDesert"/>
+        <On index="1" Terms="Signal.*.Infested; IsStatus ArmorSet 17" Send="TextureSelectById VortexInfested"/>
+        <On index="2" Terms="Signal.*.Navy; IsStatus ArmorSet 17" Send="TextureSelectById VortexNavy"/>
+        <On index="3" Terms="Signal.*.Night; IsStatus ArmorSet 17" Send="TextureSelectById VortexNight"/>
+        <On index="4" Terms="Signal.*.RTiger; IsStatus ArmorSet 17" Send="TextureSelectById VortexRTiger"/>
+        <On index="5" Terms="Signal.*.Snow; IsStatus ArmorSet 17" Send="TextureSelectById VortexSnow"/>
+        <On index="6" Terms="Signal.*.Tech; IsStatus ArmorSet 17" Send="TextureSelectById VortexTech"/>
+        <On index="7" Terms="Signal.*.Urban; IsStatus ArmorSet 17" Send="TextureSelectById VortexUrban"/>
+        <On index="8" Terms="Signal.*.Woodland; IsStatus ArmorSet 17" Send="TextureSelectById VortexWoodland"/>
+    </CActorEventMacro>
+    <CActorEventMacro id="RhinoTextureSelectMacro" parent="TextureSelectMacroTemplate" ArmorSet="Rhino">
+        <On index="0" Terms="Signal.*.Desert; IsStatus ArmorSet 18" Send="TextureSelectById RhinoDesert"/>
+        <On index="1" Terms="Signal.*.Infested; IsStatus ArmorSet 18" Send="TextureSelectById RhinoInfested"/>
+        <On index="2" Terms="Signal.*.Navy; IsStatus ArmorSet 18" Send="TextureSelectById RhinoNavy"/>
+        <On index="3" Terms="Signal.*.Night; IsStatus ArmorSet 18" Send="TextureSelectById RhinoNight"/>
+        <On index="4" Terms="Signal.*.RTiger; IsStatus ArmorSet 18" Send="TextureSelectById RhinoRTiger"/>
+        <On index="5" Terms="Signal.*.Snow; IsStatus ArmorSet 18" Send="TextureSelectById RhinoSnow"/>
+        <On index="6" Terms="Signal.*.Tech; IsStatus ArmorSet 18" Send="TextureSelectById RhinoTech"/>
+        <On index="7" Terms="Signal.*.Urban; IsStatus ArmorSet 18" Send="TextureSelectById RhinoUrban"/>
+        <On index="8" Terms="Signal.*.Woodland; IsStatus ArmorSet 18" Send="TextureSelectById RhinoWoodland"/>
+    </CActorEventMacro>
+    <CActorModel id="CommandoTorso" parent="CommandoArmorTemplate" SwapMacro="TorsoSwap"/>
+    <CActorEventMacro id="CommandoTorsoSwap" parent="ArmorSwapTemplate" ArmorSlot="Torso" Class="Commando"/>
+    <CActorModel id="DemolitionTorso" parent="DemolitionArmorTemplate" SwapMacro="TorsoSwap">
+        <On index="3" Terms="ActorCreation" Send="StatusSet ArmorSet 1"/>
+    </CActorModel>
+    <CActorEventMacro id="DemolitionTorsoSwap" parent="ArmorSwapTemplate" ArmorSlot="Torso" Class="Demolition"/>
+    <CActorModel id="EngineerTorso" parent="EngineerArmorTemplate" SwapMacro="TorsoSwap"/>
+    <CActorEventMacro id="EngineerTorsoSwap" parent="ArmorSwapTemplate" ArmorSlot="Torso" Class="Engineer"/>
+    <CActorModel id="EquippedWeapon" parent="ModelAddition">
+        <Aliases value="_Weapon"/>
+        <EditorCategories value=""/>
+        <On index="0" Terms="ActorCreation" Send="AnimBracketStart BSD Birth Stand Death Instant"/>
+        <Host Subject="_Unit"/>
+    </CActorModel>
+    <CActorEventMacro id="FlamethrowerTorsoSwap" parent="ArmorSwapTemplate" ArmorSlot="Torso" Class="Flamethrower"/>
+    <CActorModel id="Flashlight" parent="ModelAddition">
+        <EditorCategories value=""/>
+        <On Terms="Behavior.*.On; ValidateUnit TargetIsCloaked" Send="SetOpacity 0.000000 0.000000 Light"/>
+        <On Terms="Behavior.*.Off; ValidateUnit !TargetIsCloaked" Send="ClearOpacity 0.000000 Light"/>
+    </CActorModel>
+    <CActorEventMacro id="ForwardObserverTorsoSwap" parent="ArmorSwapTemplate" ArmorSlot="Torso" Class="ForwardObs"/>
+    <CActorModel id="Helmet" parent="ArmorTemplate" SwapMacro="HelmetSwap">
+        <Model value="BasicHelmet"/>
+    </CActorModel>
+    <CActorModel id="LeftArm" parent="ArmorTemplate" SwapMacro="LeftArmSwap">
+        <Model value="BasicLeftArm"/>
+    </CActorModel>
+    <CActorEventMacro id="LeftArmSwap" parent="ArmorSwapTemplate" ArmorSlot="ArmLeft"/>
+    <CActorEventMacro id="AssaultTorsoSwap" parent="ArmorSwapTemplate" ArmorSlot="Torso" Class="Assault"/>
+    <CActorEventMacro id="MarksmanHelmetSwap" parent="ArmorSwapTemplate" ArmorSlot="Helmet" Class="Marksman"/>
+    <CActorEventMacro id="MarksmanTorsoSwap" parent="ArmorSwapTemplate" ArmorSlot="Marksman" Class="Torso"/>
+    <CActorModel id="NPCRightShoulder" parent="ArmorTemplate" SwapMacro="NPCRightShoulderSwap"/>
+    <CActorEventMacro id="NPCRightShoulderSwap" parent="ArmorSwapTemplate" ArmorSlot="ShoulderRight" Class="NPC"/>
+    <CActorModel id="NPCTorso" parent="ArmorTemplate" SwapMacro="NPCTorsoSwap"/>
+    <CActorEventMacro id="NPCTorsoSwap" parent="ArmorSwapTemplate" ArmorSlot="Torso" Class="NPC"/>
+    <CActorModel id="PathfinderTorso" parent="PathfinderArmorTemplate" SwapMacro="TorsoSwap"/>
+    <CActorEventMacro id="PathfinderTorsoSwap" parent="ArmorSwapTemplate" ArmorSlot="Torso" Class="PathFinder"/>
+    <CActorModel id="PeacekeeperRightShoulderLights" parent="ArmorTemplate"/>
+    <CActorModel id="PsiOpsHelmet" parent="PsiOpsArmorTemplate" SwapMacro="HelmetSwap"/>
+    <CActorEventMacro id="PsiOpsHelmetSwap" parent="ArmorSwapTemplate" ArmorSlot="Helmet" Class="PsiOps"/>
+    <CActorModel id="PsiOpsTorso" parent="PsiOpsArmorTemplate" SwapMacro="TorsoSwap"/>
+    <CActorEventMacro id="PsiOpsTorsoSwap" parent="ArmorSwapTemplate"/>
+    <CActorEventMacro id="RightArmSwap" parent="ArmorSwapTemplate" ArmorSlot="ArmRight"/>
+    <CActorModel id="RightArm" parent="ArmorTemplate" SwapMacro="RightArmSwap">
+        <Model value="BasicRightArm"/>
+    </CActorModel>
+    <CActorModel id="MedicHelmet" parent="MedicArmorTemplate" SwapMacro="HelmetSwap"/>
+    <CActorEventMacro id="MedicHelmetSwap" parent="ArmorSwapTemplate" ArmorSlot="Helmet" Class="Medic"/>
+    <CActorEventMacro id="MedicTorsoSwap" parent="ArmorSwapTemplate" ArmorSlot="Torso" Class="Medic"/>
+    <CActorEventMacro id="MedicLeftForearmSwap" parent="ArmorSwapTemplate" ArmorSlot="ForearmLeft" Class="Medic"/>
+    <CActorModel id="MedicLeftForearm" parent="MedicArmorTemplate" SwapMacro="LeftForearmSwap"/>
+    <CActorModel id="MedicTorso" parent="MedicArmorTemplate" SwapMacro="TorsoSwap"/>
+    <CActorEventMacro id="ReconHelmetSwap" parent="ArmorSwapTemplate" ArmorSlot="Helmet" Class="Recon"/>
+    <CActorModel id="ReconHelmet" parent="ReconArmorTemplate" SwapMacro="HelmetSwap"/>
+    <CActorEventMacro id="ReconTorsoSwap" parent="ArmorSwapTemplate" ArmorSlot="Torso" Class="Recon"/>
+    <CActorEventMacro id="TechnicianTorsoSwap" parent="ArmorSwapTemplate" ArmorSlot="Torso" Class="Technician"/>
+    <CActorModel id="Torso" parent="ArmorTemplate" SwapMacro="TorsoSwap">
+        <Model value="BasicTorso"/>
+    </CActorModel>
+    <CActorEventMacro id="LeftFootSwap" parent="ArmorSwapTemplate" ArmorSlot="FootLeft"/>
+    <CActorEventMacro id="RightFootSwap" parent="ArmorSwapTemplate" ArmorSlot="FootRight"/>
+    <CActorModel id="ReconTorso" parent="ReconArmorTemplate" SwapMacro="TorsoSwap"/>
+    <CActorModel id="FlamethrowerTorso" parent="FlamethrowerArmorTemplate" SwapMacro="TorsoSwap">
+        <On index="3" Terms="ActorCreation" Send="StatusSet ArmorSet 1"/>
+    </CActorModel>
+    <CActorModel id="Waist" parent="ArmorTemplate" SwapMacro="WaistSwap">
+        <Model value="BasicWaist"/>
+    </CActorModel>
+    <CActorModel id="LeftLeg" parent="ArmorTemplate" SwapMacro="LeftLegSwap">
+        <Model value="BasicLegLeft"/>
+    </CActorModel>
+    <CActorModel id="RightLeg" parent="ArmorTemplate" SwapMacro="RightLegSwap">
+        <Model value="BasicLegRight"/>
+    </CActorModel>
+    <CActorModel id="LeftShin" parent="ArmorTemplate" SwapMacro="LeftShinSwap">
+        <Model value="BasicShinLeft"/>
+    </CActorModel>
+    <CActorModel id="RightShin" parent="ArmorTemplate" SwapMacro="RightShinSwap">
+        <Model value="BasicShinRight"/>
+    </CActorModel>
+    <CActorModel id="LeftShoulder" parent="ArmorTemplate" SwapMacro="LeftShoulderSwap">
+        <Model value="BasicShoulderLeft"/>
+    </CActorModel>
+    <CActorModel id="RightShoulder" parent="ArmorTemplate" SwapMacro="RightShoulderSwap">
+        <Model value="BasicShoulderRight"/>
+    </CActorModel>
+    <CActorModel id="LeftFoot" parent="ArmorTemplate" SwapMacro="LeftFootSwap">
+        <Model value="BasicFootLeft"/>
+    </CActorModel>
+    <CActorModel id="RightFoot" parent="ArmorTemplate" SwapMacro="RightFootSwap">
+        <Model value="BasicFootRight"/>
+    </CActorModel>
+    <CActorModel id="RightForearm" parent="ArmorTemplate" SwapMacro="RightForearmSwap">
+        <Model value="BasicForearmRight"/>
+    </CActorModel>
+    <CActorModel id="LeftForearm" parent="ArmorTemplate" SwapMacro="LeftForearmSwap">
+        <Model value="BasicTorso"/>
+    </CActorModel>
+    <CActorEventMacro id="TorsoSwap" parent="ArmorSwapTemplate" ArmorSlot="Torso"/>
+    <CActorEventMacro id="RightShoulderSwap" parent="ArmorSwapTemplate" ArmorSlot="ShoulderRight"/>
+    <CActorEventMacro id="HelmetSwap" parent="ArmorSwapTemplate" ArmorSlot="Helmet"/>
+    <CActorEventMacro id="WaistSwap" parent="ArmorSwapTemplate" ArmorSlot="Waist"/>
+    <CActorEventMacro id="LeftShoulderSwap" parent="ArmorSwapTemplate" ArmorSlot="ShoulderLeft"/>
+    <CActorEventMacro id="RightLegSwap" parent="ArmorSwapTemplate" ArmorSlot="LegRight"/>
+    <CActorEventMacro id="LeftForearmSwap" parent="ArmorSwapTemplate" ArmorSlot="ForearmLeft"/>
+    <CActorEventMacro id="RightForearmSwap" parent="ArmorSwapTemplate" ArmorSlot="ForearmRight"/>
+    <CActorEventMacro id="LeftLegSwap" parent="ArmorSwapTemplate" ArmorSlot="LegLeft"/>
+    <CActorEventMacro id="RightShinSwap" parent="ArmorSwapTemplate" ArmorSlot="ShinRight"/>
+    <CActorEventMacro id="LeftShinSwap" parent="ArmorSwapTemplate" ArmorSlot="ShinLeft"/>
+    <CActorModel id="TechnicianTorso" parent="TechnicianArmorTemplate" SwapMacro="TorsoSwap">
+        <On index="3" Terms="ActorCreation" Send="StatusSet ArmorSet 1"/>
+    </CActorModel>
+</Catalog>

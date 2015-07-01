@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<Catalog>
+    <CBehaviorBuff id="BuildingStasis">
+        <Modification>
+            <StateFlags index="Stun" value="0"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="Blind">
+        <Alignment value="Negative"/>
+        <InfoIcon value="Assets\Textures\btn-ability-zerg-viper-ocularparasite.dds"/>
+        <Duration value="10"/>
+        <Modification SightBonus="-7" SightMaximum="2"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="NightmareDifficultyModifier">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <RemoveValidatorArray value="GameisNightmare"/>
+        <Modification MoveSpeedMultiplier="1.1">
+            <VitalMaxFractionArray index="Life" value="0.2"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="NormalDifficultyModifier">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <RemoveValidatorArray value="GameisNormal"/>
+        <Modification MoveSpeedMultiplier="1.05">
+            <VitalMaxFractionArray index="Life" value="0.1"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="OpenWound">
+        <Alignment value="Negative"/>
+        <InfoIcon value="Assets\Textures\btn-upgrade-zerg-adrenaloverload.dds"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <MaxStackCount value="5"/>
+        <Duration value="240"/>
+        <Modification>
+            <VitalRegenArray index="Life" value="-1"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="OpenWoundShieldsStart">
+        <Alignment value="Positive"/>
+        <InfoFlags index="Hidden" value="1"/>
+        <InfoIcon value="Assets\Textures\btn-upgrade-zerg-adrenaloverload.dds"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <DamageResponse>
+            <Chance value="1"/>
+            <Handled value="OpenWoundShields"/>
+            <Location value="Attacker"/>
+            <Minimum value="10"/>
+        </DamageResponse>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="OpenWoundAttacker">
+        <Alignment value="Positive"/>
+        <InfoFlags index="Hidden" value="1"/>
+        <InfoIcon value="Assets\Textures\btn-upgrade-zerg-adrenaloverload.dds"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <DamageResponse>
+            <Chance value="1"/>
+            <Handled value="OpenWound"/>
+            <Location value="Attacker"/>
+            <Minimum value="10"/>
+        </DamageResponse>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="ShortCircuit">
+        <Alignment value="Negative"/>
+        <InfoIcon value="Assets\Textures\btn-ability-kerrigan-chainreaction.dds"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="70"/>
+        <Modification>
+            <VitalRegenArray index="Shields" value="-2"/>
+            <VitalRegenArray index="Energy" value="-2"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="ShortCircuitAttacker">
+        <InfoFlags index="Hidden" value="1"/>
+        <InfoIcon value="Assets\Textures\btn-ability-kerrigan-chainreaction.dds"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <DamageResponse>
+            <Chance value="1"/>
+            <Handled value="ShortCircuit"/>
+            <Location value="Attacker"/>
+            <Minimum value="10"/>
+        </DamageResponse>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="TestBehavior">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <DisplayDuration index="Self" value="1"/>
+        <Duration value="30"/>
+        <Modification>
+            <StateFlags index="Bury" value="1"/>
+            <StateFlags index="Cloak" value="1"/>
+            <VitalRegenArray index="Life" value="-1"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="Venom">
+        <Alignment value="Negative"/>
+        <InfoIcon value="Assets\Textures\btn-ability-zerg-banelingspooge.dds"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <MaxStackCount value="15"/>
+        <Duration value="180"/>
+        <Modification MoveSpeedMultiplier="0.95">
+            <VitalRegenArray index="Life" value="-0.3984"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="VenomAttacker">
+        <InfoFlags index="Hidden" value="1"/>
+        <InfoIcon value="Assets\Textures\btn-ability-zerg-banelingspooge.dds"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <MaxStackCount value="2"/>
+        <DamageResponse>
+            <Chance value="1"/>
+            <Handled value="Venom"/>
+            <Location value="Attacker"/>
+            <Minimum value="10"/>
+        </DamageResponse>
+    </CBehaviorBuff>
+    <CBehaviorCreepSource id="makeCreep3x3">
+        <Delay value="5"/>
+        <Period value="1"/>
+    </CBehaviorCreepSource>
+    <CBehaviorBuff id="testbehavior2">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Modification MoveSpeedBonus="-1"/>
+    </CBehaviorBuff>
+</Catalog>

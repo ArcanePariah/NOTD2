@@ -1,0 +1,2377 @@
+include "TriggerLibs/NativeLib"
+include "Lib09BE6BA8"
+include "Lib1E3F036D"
+
+//--------------------------------------------------------------------------------------------------
+// Library: Enemy Triggers
+//--------------------------------------------------------------------------------------------------
+// Constants
+const string lib1765BC64_gv_zombieIntialize = "ZombiesStart";
+
+// Variables
+waveinfo lib1765BC64_gv_ambientWaveInfo;
+unitgroup lib1765BC64_gv_zombieSpawners;
+int lib1765BC64_gv_spawnZones;
+int lib1765BC64_gv_numberofSpawners;
+int lib1765BC64_gv_houndCount;
+int lib1765BC64_gv_roamerCount;
+int lib1765BC64_gv_blinderCount;
+int lib1765BC64_gv_stalkerCount;
+int lib1765BC64_gv_broodMotherCount;
+int lib1765BC64_gv_brainBugCount;
+int lib1765BC64_gv_busterCount;
+int lib1765BC64_gv_slasherCount;
+int lib1765BC64_gv_gargoyleCount;
+int lib1765BC64_gv_immortalCount;
+int lib1765BC64_gv_gorgonCount;
+int lib1765BC64_gv_creeperCount;
+int lib1765BC64_gv_hopliteCount;
+int lib1765BC64_gv_suppyLimitPerPlayer;
+int lib1765BC64_gv_roamerLimit;
+int lib1765BC64_gv_houndLimit;
+int lib1765BC64_gv_blinderLimit;
+int lib1765BC64_gv_stalkerLimit;
+int lib1765BC64_gv_broodMotherLimit;
+int lib1765BC64_gv_brainBugLimit;
+int lib1765BC64_gv_busterLimit;
+int lib1765BC64_gv_slasherLimit;
+int lib1765BC64_gv_gargoyleLimit;
+int lib1765BC64_gv_immortalLimit;
+int lib1765BC64_gv_gorgonLimit;
+int lib1765BC64_gv_creeperLimit;
+int lib1765BC64_gv_hopliteLimit;
+fixed lib1765BC64_gv_hordeMutationChance;
+wave lib1765BC64_gv_currentHordeWave;
+timer lib1765BC64_gv_eltradWaitTimer;
+bool lib1765BC64_gv_eltradFleeing;
+unit lib1765BC64_gv_sarbus;
+unit lib1765BC64_gv_sarbusTarget;
+
+void lib1765BC64_InitVariables () {
+    lib1765BC64_gv_ambientWaveInfo = AIWaveInfoCreate();
+    lib1765BC64_gv_zombieSpawners = UnitGroupEmpty();
+    lib1765BC64_gv_spawnZones = 16;
+    lib1765BC64_gv_eltradWaitTimer = TimerCreate();
+}
+
+// Function Declarations
+void lib1765BC64_gf_PlaceZombieSpawner (string lp_spawnerType, int lp_zone, fixed lp_zoneSize, int lp_numberofZones);
+void lib1765BC64_gf_ZoneSpawning (string lp_spawner, int lp_numberofSpawners);
+waveinfo lib1765BC64_gf_GetRecruitHorde (int lp_currentChapter, int lp_numberofPlayers, point lp_spawnPoint);
+void lib1765BC64_gf_SetRecruitHordeLimits (int lp_numberofPlayers, int lp_currentChapter);
+string lib1765BC64_gf_GetRecruitHordeUnit (int lp_currentChapter);
+string lib1765BC64_gf_GetChapter1RecruitHordeUnit ();
+string lib1765BC64_gf_GetChapter2RecruitHordeUnit ();
+string lib1765BC64_gf_GetChapter3RecruitHordeUnit ();
+string lib1765BC64_gf_GetChapter4RecruitHordeUnit ();
+string lib1765BC64_gf_GetChapter5RecruitHordeUnit ();
+waveinfo lib1765BC64_gf_GetNormalHorde (int lp_currentChapter, int lp_numberofPlayers, point lp_spawnPoint);
+void lib1765BC64_gf_SetNormalHordeLimits (int lp_numberofPlayers, int lp_currentChapter);
+string lib1765BC64_gf_GetNormalHordeUnit (int lp_currentChapter);
+string lib1765BC64_gf_GetChapter1NormalHordeUnit ();
+string lib1765BC64_gf_GetChapter2NormalHordeUnit ();
+string lib1765BC64_gf_GetChapter3NormalHordeUnit ();
+string lib1765BC64_gf_GetChapter4NormalHordeUnit ();
+string lib1765BC64_gf_GetChapter5NormalHordeUnit ();
+waveinfo lib1765BC64_gf_GetNightmareHorde (int lp_currentChapter, int lp_supplyLimit, point lp_spawnPoint);
+void lib1765BC64_gf_SetNightmareHordeLimits (int lp_numberofPlayers, int lp_currentChapter);
+string lib1765BC64_gf_GetNightmareHordeUnit (int lp_currentChapter);
+string lib1765BC64_gf_GetChapter1NightmareHordeUnit ();
+string lib1765BC64_gf_GetChapter2NightmareHordeUnit ();
+string lib1765BC64_gf_GetChapter3NightmareHordeUnit ();
+string lib1765BC64_gf_GetChapter4NightmareHordeUnit ();
+string lib1765BC64_gf_GetChapter5NightmareHordeUnit ();
+waveinfo lib1765BC64_gf_GetHordeWave (int lp_currentChapter, int lp_difficulty, int lp_numberofPlayers, point lp_spawnPoint);
+void lib1765BC64_gf_HordeMode (wavetarget lp_attackPoint, point lp_spawnLocation, int lp_numberofCurrentPlayers, int lp_currentChapter);
+void lib1765BC64_gf_ResetHordeCounts ();
+void lib1765BC64_gf_AttackWaveFromInfoImmediateGather (int lp_player, point lp_rallyPoint, waveinfo lp_waveInfo, wavetarget lp_attackTarget, int lp_attackTime);
+void lib1765BC64_gf_AIThinkEltrad (int lp_player, unit lp_aiUnit, unitgroup lp_scanGroup);
+unitgroup lib1765BC64_gf_GetLowLifeEnemies (unitgroup lp_scanGroup, fixed lp_lifeThreshold);
+order lib1765BC64_gf_EltradWaiting (int lp_player, unit lp_aiUnit, unitgroup lp_scanGroup);
+
+// Trigger Declarations
+trigger lib1765BC64_gt_ZombieSpawnerTest;
+trigger lib1765BC64_gt_ZombieSettings;
+trigger lib1765BC64_gt_SetupAmbientWave;
+trigger lib1765BC64_gt_OvergrownDamageReduction;
+trigger lib1765BC64_gt_RadiationFieldUpgrade;
+
+// Custom Script
+//--------------------------------------------------------------------------------------------------
+// Custom Script: Load AI
+//--------------------------------------------------------------------------------------------------
+include "TriggerLibs/DebugAI"
+include "TriggerLibs/RequirementsAI"
+include "TriggerLibs/BuildAI"
+include "TriggerLibs/SharedAI"
+include "TriggerLibs/Tactical/TacticalAI"
+
+void lib1765BC64_InitCustomScript () {
+}
+
+// Functions
+void lib1765BC64_gf_PlaceZombieSpawner (string lp_spawnerType, int lp_zone, fixed lp_zoneSize, int lp_numberofZones) {
+    // Variable Declarations
+    point lv_spawnPoint;
+    region lv_spawnZone;
+
+    // Variable Initialization
+    lv_spawnPoint = Point(0.0, 0.0);
+    lv_spawnZone = RegionRect((ModI(lp_zone, SquareRootI(lp_numberofZones))  * lp_zoneSize), ((lp_zone / SquareRootI(lp_numberofZones))  * lp_zoneSize), ((ModI(lp_zone, SquareRootI(lp_numberofZones))  + 1) * lp_zoneSize), (((lp_zone / SquareRootI(lp_numberofZones)) +1) * lp_zoneSize));
+
+    // Implementation
+    while (((PathingType(lv_spawnPoint) == c_pathingUnpathable) || (PathingType(lv_spawnPoint) != c_pathingGround) || (CliffLevel(lv_spawnPoint) != 1) || (lv_spawnPoint == Point(0.0, 0.0)))) {
+        lv_spawnPoint = RegionRandomPoint(lv_spawnZone);
+    }
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, lp_spawnerType, 0, lib1E3F036D_gv_zombiePlayer, lv_spawnPoint);
+    UnitGroupAdd(lib1765BC64_gv_zombieSpawners, UnitLastCreated());
+}
+
+void lib1765BC64_gf_ZoneSpawning (string lp_spawner, int lp_numberofSpawners) {
+    int autoF38CB16A_ae;
+    int autoF38CB16A_ai;
+
+    // Variable Declarations
+    int lv_currentZone;
+
+    // Variable Initialization
+
+    // Implementation
+    while ((lp_numberofSpawners > 0)) {
+        autoF38CB16A_ae = lib1765BC64_gv_spawnZones;
+        autoF38CB16A_ai = 1;
+        lv_currentZone = 1;
+        for ( ; ( (autoF38CB16A_ai >= 0 && lv_currentZone <= autoF38CB16A_ae) || (autoF38CB16A_ai <= 0 && lv_currentZone >= autoF38CB16A_ae) ) ; lv_currentZone += autoF38CB16A_ai ) {
+            if ((libNtve_gf_RandomPercent() < 50.0)) {
+                lib1765BC64_gf_PlaceZombieSpawner(lp_spawner, (lv_currentZone - 1), (libNtve_gf_WidthOfRegion(RegionEntireMap()) / SquareRootI(lib1765BC64_gv_spawnZones)), lib1765BC64_gv_spawnZones);
+                lp_numberofSpawners -= 1;
+            }
+            else {
+            }
+        }
+    }
+}
+
+waveinfo lib1765BC64_gf_GetRecruitHorde (int lp_currentChapter, int lp_numberofPlayers, point lp_spawnPoint) {
+    // Variable Declarations
+    fixed lv_currentSupply;
+    string lv_unittoAdd;
+    waveinfo lv_horde;
+    int lv_supplyLimit;
+
+    // Variable Initialization
+    lv_horde = AIWaveInfoCreate();
+    lv_supplyLimit = (lp_numberofPlayers * lib1765BC64_gv_suppyLimitPerPlayer);
+
+    // Implementation
+    lib1765BC64_gf_SetRecruitHordeLimits(lp_numberofPlayers, lp_currentChapter);
+    while ((lv_currentSupply < lv_supplyLimit)) {
+        lv_unittoAdd = lib1765BC64_gf_GetRecruitHordeUnit(lp_currentChapter);
+        if ((lv_unittoAdd != null)) {
+            libNtve_gf_CreateUnitsWithDefaultFacing(1, lv_unittoAdd, 0, lib1E3F036D_gv_zombiePlayer, lp_spawnPoint);
+            AIWaveInfoAdd(lv_horde, (lv_unittoAdd), 1);
+            lv_currentSupply += UnitTypeGetProperty(lv_unittoAdd, c_unitPropSuppliesUsed);
+            Wait(0.0, c_timeGame);
+        }
+    }
+    return lv_horde;
+}
+
+void lib1765BC64_gf_SetRecruitHordeLimits (int lp_numberofPlayers, int lp_currentChapter) {
+    int auto4B12A56F_val;
+
+    // Implementation
+    auto4B12A56F_val = lp_currentChapter;
+    if (auto4B12A56F_val == 1) {
+        lib1765BC64_gv_houndLimit = (lp_numberofPlayers * 2);
+        lib1765BC64_gv_blinderLimit = (lp_numberofPlayers * 3);
+        lib1765BC64_gv_stalkerLimit = (lp_numberofPlayers * 2);
+        lib1765BC64_gv_broodMotherLimit = 1;
+    }
+    else if (auto4B12A56F_val == 2) {
+        lib1765BC64_gv_houndLimit = (lp_numberofPlayers * 2);
+        lib1765BC64_gv_blinderLimit = (lp_numberofPlayers * 3);
+        lib1765BC64_gv_stalkerLimit = (lp_numberofPlayers * 4);
+        lib1765BC64_gv_broodMotherLimit = 1;
+        lib1765BC64_gv_brainBugLimit = 1;
+        lib1765BC64_gv_busterLimit = (lp_numberofPlayers * 2);
+    }
+    else if (auto4B12A56F_val == 3) {
+        lib1765BC64_gv_houndLimit = (lp_numberofPlayers * 2);
+        lib1765BC64_gv_blinderLimit = (lp_numberofPlayers * 3);
+        lib1765BC64_gv_stalkerLimit = (lp_numberofPlayers * 4);
+        lib1765BC64_gv_broodMotherLimit = 1;
+        lib1765BC64_gv_brainBugLimit = 1;
+        lib1765BC64_gv_busterLimit = (lp_numberofPlayers * 2);
+        lib1765BC64_gv_slasherLimit = 1;
+        lib1765BC64_gv_gargoyleLimit = (lp_numberofPlayers * 3);
+    }
+    else if (auto4B12A56F_val == 4) {
+        lib1765BC64_gv_houndLimit = (lp_numberofPlayers * 2);
+        lib1765BC64_gv_blinderLimit = (lp_numberofPlayers * 3);
+        lib1765BC64_gv_stalkerLimit = (lp_numberofPlayers * 6);
+        lib1765BC64_gv_broodMotherLimit = 1;
+        lib1765BC64_gv_brainBugLimit = 1;
+        lib1765BC64_gv_busterLimit = (lp_numberofPlayers * 2);
+        lib1765BC64_gv_slasherLimit = 2;
+        lib1765BC64_gv_gargoyleLimit = (lp_numberofPlayers * 3);
+    }
+    else if (auto4B12A56F_val == 5) {
+        lib1765BC64_gv_houndLimit = (lp_numberofPlayers * 2);
+        lib1765BC64_gv_blinderLimit = (lp_numberofPlayers * 3);
+        lib1765BC64_gv_stalkerLimit = (lp_numberofPlayers * 6);
+        lib1765BC64_gv_broodMotherLimit = 1;
+        lib1765BC64_gv_brainBugLimit = 1;
+        lib1765BC64_gv_busterLimit = (lp_numberofPlayers * 2);
+        lib1765BC64_gv_slasherLimit = 2;
+        lib1765BC64_gv_gargoyleLimit = (lp_numberofPlayers * 3);
+        lib1765BC64_gv_immortalLimit = lp_numberofPlayers;
+    }
+    else {
+    }
+}
+
+string lib1765BC64_gf_GetRecruitHordeUnit (int lp_currentChapter) {
+    int auto5E74FFEB_val;
+
+    // Implementation
+    auto5E74FFEB_val = lp_currentChapter;
+    if (auto5E74FFEB_val == 1) {
+        return lib1765BC64_gf_GetChapter1RecruitHordeUnit();
+    }
+    else if (auto5E74FFEB_val == 2) {
+        return lib1765BC64_gf_GetChapter2RecruitHordeUnit();
+    }
+    else if (auto5E74FFEB_val == 3) {
+        return lib1765BC64_gf_GetChapter3RecruitHordeUnit();
+    }
+    else if (auto5E74FFEB_val == 4) {
+        return lib1765BC64_gf_GetChapter4RecruitHordeUnit();
+    }
+    else if (auto5E74FFEB_val == 5) {
+        return lib1765BC64_gf_GetChapter5RecruitHordeUnit();
+    }
+    else {
+        return null;
+    }
+}
+
+string lib1765BC64_gf_GetChapter1RecruitHordeUnit () {
+    int auto76B85359_val;
+
+    // Variable Declarations
+    string lv_unit;
+    int lv_randomSelector;
+    bool lv_mutation;
+
+    // Variable Initialization
+    lv_randomSelector = RandomInt(1, 5);
+    lv_mutation = (libNtve_gf_RandomPercent() <= lib1765BC64_gv_hordeMutationChance);
+
+    // Implementation
+    auto76B85359_val = lv_randomSelector;
+    if (auto76B85359_val == 1) {
+        if (lv_mutation) {
+            lv_unit = "Shambler";
+        }
+        else {
+            lv_unit = "MarsColonistFemale2";
+        }
+    }
+    else if (auto76B85359_val == 2) {
+        if ((lib1765BC64_gv_houndCount < lib1765BC64_gv_houndLimit)) {
+            lv_unit = "Hound";
+            lib1765BC64_gv_houndCount += 1;
+        }
+    }
+    else if (auto76B85359_val == 3) {
+        if ((lib1765BC64_gv_blinderCount < lib1765BC64_gv_blinderLimit)) {
+            lv_unit = "Blinder";
+            lib1765BC64_gv_blinderLimit += 1;
+        }
+    }
+    else if (auto76B85359_val == 4) {
+        if ((lib1765BC64_gv_stalkerCount < lib1765BC64_gv_stalkerLimit)) {
+            lv_unit = "Stalker2";
+            lib1765BC64_gv_stalkerCount += 1;
+        }
+    }
+    else if (auto76B85359_val == 5) {
+        if ((lib1765BC64_gv_broodMotherCount < lib1765BC64_gv_broodMotherLimit) && (UnitGroupCount(UnitGroup("BroodMother2", lib1E3F036D_gv_zombiePlayer, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0), c_unitCountAlive) == 0)) {
+            lv_unit = "BroodMother2";
+            lib1765BC64_gv_broodMotherCount += 1;
+        }
+    }
+    else {
+    }
+    return lv_unit;
+}
+
+string lib1765BC64_gf_GetChapter2RecruitHordeUnit () {
+    int autoE4011386_val;
+
+    // Variable Declarations
+    string lv_unit;
+    int lv_randomSelector;
+    bool lv_mutation;
+
+    // Variable Initialization
+    lv_randomSelector = RandomInt(1, 7);
+    lv_mutation = (libNtve_gf_RandomPercent() <= lib1765BC64_gv_hordeMutationChance);
+
+    // Implementation
+    autoE4011386_val = lv_randomSelector;
+    if (autoE4011386_val == 1) {
+        if (lv_mutation) {
+            lv_unit = "Shambler";
+        }
+        else {
+            lv_unit = "MarsColonistFemale2";
+        }
+    }
+    else if (autoE4011386_val == 2) {
+        if ((lib1765BC64_gv_houndCount < lib1765BC64_gv_houndLimit)) {
+            lv_unit = "Hound";
+            lib1765BC64_gv_houndCount += 1;
+        }
+    }
+    else if (autoE4011386_val == 3) {
+        if ((lib1765BC64_gv_blinderCount < lib1765BC64_gv_blinderLimit)) {
+            if (lv_mutation) {
+                lv_unit = "Creeper";
+            }
+            else {
+                lv_unit = "Blinder";
+            }
+            lib1765BC64_gv_blinderLimit += 1;
+        }
+    }
+    else if (autoE4011386_val == 4) {
+        if ((lib1765BC64_gv_stalkerCount < lib1765BC64_gv_stalkerLimit)) {
+            if (lv_mutation) {
+                if ((RandomInt(0, 1) == 1)) {
+                    lv_unit = "Devourer2";
+                }
+                else {
+                    lv_unit = "Dissolver";
+                }
+            }
+            else {
+                lv_unit = "Stalker2";
+            }
+            lib1765BC64_gv_stalkerCount += 1;
+        }
+    }
+    else if (autoE4011386_val == 5) {
+        if ((lib1765BC64_gv_broodMotherCount < lib1765BC64_gv_broodMotherLimit) && (UnitGroupCount(UnitGroup("BroodMother2", lib1E3F036D_gv_zombiePlayer, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0), c_unitCountAlive) == 0)) {
+            lv_unit = "BroodMother2";
+            lib1765BC64_gv_broodMotherCount += 1;
+        }
+    }
+    else if (autoE4011386_val == 6) {
+        if ((lib1765BC64_gv_brainBugCount < lib1765BC64_gv_brainBugLimit) && (UnitGroupCount(UnitGroup("BrainBug", lib1E3F036D_gv_zombiePlayer, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0), c_unitCountAlive) == 0)) {
+            lv_unit = "BrainBug";
+            lib1765BC64_gv_brainBugCount += 1;
+        }
+    }
+    else if (autoE4011386_val == 7) {
+        if ((lib1765BC64_gv_busterCount < lib1765BC64_gv_busterLimit)) {
+            lv_unit = "Buster";
+            lib1765BC64_gv_busterCount += 1;
+        }
+    }
+    else {
+    }
+    return lv_unit;
+}
+
+string lib1765BC64_gf_GetChapter3RecruitHordeUnit () {
+    int auto64A34FA7_val;
+
+    // Variable Declarations
+    string lv_unit;
+    int lv_randomSelector;
+    bool lv_mutation;
+
+    // Variable Initialization
+    lv_randomSelector = RandomInt(1, 9);
+    lv_mutation = (libNtve_gf_RandomPercent() <= lib1765BC64_gv_hordeMutationChance);
+
+    // Implementation
+    auto64A34FA7_val = lv_randomSelector;
+    if (auto64A34FA7_val == 1) {
+        lv_unit = "Shambler";
+    }
+    else if (auto64A34FA7_val == 2) {
+        if ((lib1765BC64_gv_houndCount < lib1765BC64_gv_houndLimit)) {
+            lv_unit = "Hound";
+            lib1765BC64_gv_houndCount += 1;
+        }
+    }
+    else if (auto64A34FA7_val == 3) {
+        if ((lib1765BC64_gv_blinderCount < lib1765BC64_gv_blinderLimit)) {
+            if (lv_mutation) {
+                lv_unit = "Creeper";
+            }
+            else {
+                lv_unit = "Blinder";
+            }
+            lib1765BC64_gv_blinderLimit += 1;
+        }
+    }
+    else if (auto64A34FA7_val == 4) {
+        if ((lib1765BC64_gv_stalkerCount < lib1765BC64_gv_stalkerLimit)) {
+            if (lv_mutation) {
+                if ((RandomInt(0, 1) == 1)) {
+                    lv_unit = "Devourer2";
+                }
+                else {
+                    lv_unit = "Dissolver";
+                }
+            }
+            else {
+                lv_unit = "Stalker2";
+            }
+            lib1765BC64_gv_stalkerCount += 1;
+        }
+    }
+    else if (auto64A34FA7_val == 5) {
+        if ((lib1765BC64_gv_broodMotherCount < lib1765BC64_gv_broodMotherLimit) && (UnitGroupCount(UnitGroup("BroodMother2", lib1E3F036D_gv_zombiePlayer, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0), c_unitCountAlive) == 0)) {
+            lv_unit = "BroodMother2";
+            lib1765BC64_gv_broodMotherCount += 1;
+        }
+    }
+    else if (auto64A34FA7_val == 6) {
+        if ((lib1765BC64_gv_brainBugCount < lib1765BC64_gv_brainBugLimit)) {
+            lv_unit = "BrainBug";
+            lib1765BC64_gv_brainBugCount += 1;
+        }
+    }
+    else if (auto64A34FA7_val == 7) {
+        if ((lib1765BC64_gv_slasherCount < lib1765BC64_gv_slasherLimit)) {
+            lv_unit = "Slasher";
+            lib1765BC64_gv_slasherCount += 1;
+        }
+    }
+    else if (auto64A34FA7_val == 8) {
+        if ((lib1765BC64_gv_gargoyleCount < lib1765BC64_gv_gargoyleLimit)) {
+            lv_unit = "Gargoyle";
+            lib1765BC64_gv_gargoyleCount += 1;
+        }
+    }
+    else if (auto64A34FA7_val == 9) {
+        if ((lib1765BC64_gv_busterCount < lib1765BC64_gv_busterLimit)) {
+            lv_unit = "Buster";
+            lib1765BC64_gv_busterCount += 1;
+        }
+    }
+    else {
+    }
+    return lv_unit;
+}
+
+string lib1765BC64_gf_GetChapter4RecruitHordeUnit () {
+    int auto8D217019_val;
+
+    // Variable Declarations
+    string lv_unit;
+    int lv_randomSelector;
+    bool lv_mutation;
+
+    // Variable Initialization
+    lv_randomSelector = RandomInt(1, 9);
+    lv_mutation = (libNtve_gf_RandomPercent() <= lib1765BC64_gv_hordeMutationChance);
+
+    // Implementation
+    auto8D217019_val = lv_randomSelector;
+    if (auto8D217019_val == 1) {
+        if (lv_mutation) {
+            lv_unit = "Hulk";
+        }
+        else {
+            lv_unit = "Shambler";
+        }
+    }
+    else if (auto8D217019_val == 2) {
+        if ((lib1765BC64_gv_houndCount < lib1765BC64_gv_houndLimit)) {
+            if (lv_mutation) {
+                lv_unit = "Seeker";
+            }
+            else {
+                lv_unit = "Hound";
+            }
+            lib1765BC64_gv_houndCount += 1;
+        }
+    }
+    else if (auto8D217019_val == 3) {
+        if ((lib1765BC64_gv_blinderCount < lib1765BC64_gv_blinderLimit)) {
+            if (lv_mutation) {
+                lv_unit = "Creeper";
+            }
+            else {
+                lv_unit = "Blinder";
+            }
+            lib1765BC64_gv_blinderLimit += 1;
+        }
+    }
+    else if (auto8D217019_val == 4) {
+        if ((lib1765BC64_gv_stalkerCount < lib1765BC64_gv_stalkerLimit)) {
+            if (lv_mutation) {
+                if ((RandomInt(0, 1) == 1)) {
+                    lv_unit = "Devourer2";
+                }
+                else {
+                    lv_unit = "Dissolver";
+                }
+            }
+            else {
+                lv_unit = "Stalker2";
+            }
+            lib1765BC64_gv_stalkerCount += 1;
+        }
+    }
+    else if (auto8D217019_val == 5) {
+        if ((lib1765BC64_gv_broodMotherCount < lib1765BC64_gv_broodMotherLimit) && (UnitGroupCount(UnitGroup("BroodMother2", lib1E3F036D_gv_zombiePlayer, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0), c_unitCountAlive) == 0)) {
+            lv_unit = "BroodMother2";
+            lib1765BC64_gv_broodMotherCount += 1;
+        }
+    }
+    else if (auto8D217019_val == 6) {
+        if ((lib1765BC64_gv_brainBugCount < lib1765BC64_gv_brainBugLimit)) {
+            lv_unit = "BrainBug";
+            lib1765BC64_gv_brainBugCount += 1;
+        }
+    }
+    else if (auto8D217019_val == 7) {
+        if ((lib1765BC64_gv_slasherCount < lib1765BC64_gv_slasherLimit)) {
+            lv_unit = "Slasher";
+            lib1765BC64_gv_slasherCount += 1;
+        }
+    }
+    else if (auto8D217019_val == 8) {
+        if ((lib1765BC64_gv_gargoyleCount < lib1765BC64_gv_gargoyleLimit)) {
+            lv_unit = "Gargoyle";
+            lib1765BC64_gv_gargoyleCount += 1;
+        }
+    }
+    else if (auto8D217019_val == 9) {
+        if ((lib1765BC64_gv_busterCount < lib1765BC64_gv_busterLimit)) {
+            lv_unit = "Buster";
+            lib1765BC64_gv_busterCount += 1;
+        }
+    }
+    else {
+    }
+    return lv_unit;
+}
+
+string lib1765BC64_gf_GetChapter5RecruitHordeUnit () {
+    int auto5A6520EE_val;
+    int auto3EA2FDAA_val;
+
+    // Variable Declarations
+    string lv_unit;
+    int lv_randomSelector;
+    bool lv_mutation;
+
+    // Variable Initialization
+    lv_randomSelector = RandomInt(1, 10);
+    lv_mutation = (libNtve_gf_RandomPercent() <= lib1765BC64_gv_hordeMutationChance);
+
+    // Implementation
+    auto5A6520EE_val = lv_randomSelector;
+    if (auto5A6520EE_val == 1) {
+        if (lv_mutation) {
+            lv_unit = "Hulk";
+        }
+        else {
+            lv_unit = "Shambler";
+        }
+    }
+    else if (auto5A6520EE_val == 2) {
+        if ((lib1765BC64_gv_houndCount < lib1765BC64_gv_houndLimit)) {
+            if (lv_mutation) {
+                lv_unit = "Seeker";
+            }
+            else {
+                lv_unit = "Hound";
+            }
+            lib1765BC64_gv_houndCount += 1;
+        }
+    }
+    else if (auto5A6520EE_val == 3) {
+        if ((lib1765BC64_gv_blinderCount < lib1765BC64_gv_blinderLimit)) {
+            if (lv_mutation) {
+                lv_unit = "Creeper";
+            }
+            else {
+                lv_unit = "Blinder";
+            }
+            lib1765BC64_gv_blinderLimit += 1;
+        }
+    }
+    else if (auto5A6520EE_val == 4) {
+        if ((lib1765BC64_gv_stalkerCount < lib1765BC64_gv_stalkerLimit)) {
+            if (lv_mutation) {
+                auto3EA2FDAA_val = RandomInt(1, 4);
+                if (auto3EA2FDAA_val == 1) {
+                    lv_unit = "Devourer2";
+                }
+                else if (auto3EA2FDAA_val == 2) {
+                    lv_unit = "Dissolver";
+                }
+                else if (auto3EA2FDAA_val == 3) {
+                    lv_unit = "Centurion";
+                }
+                else if (auto3EA2FDAA_val == 4) {
+                    lv_unit = "Hoplite";
+                }
+                else {
+                }
+            }
+            else {
+                lv_unit = "Stalker2";
+            }
+            lib1765BC64_gv_stalkerCount += 1;
+        }
+    }
+    else if (auto5A6520EE_val == 5) {
+        if ((lib1765BC64_gv_broodMotherCount < lib1765BC64_gv_broodMotherLimit)) {
+            lv_unit = "BroodMother2";
+            lib1765BC64_gv_broodMotherCount += 1;
+        }
+    }
+    else if (auto5A6520EE_val == 6) {
+        if ((lib1765BC64_gv_brainBugCount < lib1765BC64_gv_brainBugLimit)) {
+            lv_unit = "BrainBug";
+            lib1765BC64_gv_brainBugCount += 1;
+        }
+    }
+    else if (auto5A6520EE_val == 7) {
+        if ((lib1765BC64_gv_slasherCount < lib1765BC64_gv_slasherLimit)) {
+            lv_unit = "Slasher";
+            lib1765BC64_gv_slasherCount += 1;
+        }
+    }
+    else if (auto5A6520EE_val == 8) {
+        if ((lib1765BC64_gv_gargoyleCount < lib1765BC64_gv_gargoyleLimit)) {
+            if (lv_mutation) {
+                if ((RandomInt(0, 1) == 1)) {
+                    lv_unit = "Harpy";
+                }
+                else {
+                    lv_unit = "Razorback";
+                }
+            }
+            else {
+                lv_unit = "Gargoyle";
+            }
+            lib1765BC64_gv_gargoyleCount += 1;
+        }
+    }
+    else if (auto5A6520EE_val == 9) {
+        if ((lib1765BC64_gv_busterCount < lib1765BC64_gv_busterLimit)) {
+            lv_unit = "Buster";
+            lib1765BC64_gv_busterCount += 1;
+        }
+    }
+    else {
+    }
+    return lv_unit;
+}
+
+waveinfo lib1765BC64_gf_GetNormalHorde (int lp_currentChapter, int lp_numberofPlayers, point lp_spawnPoint) {
+    // Variable Declarations
+    fixed lv_currentSupply;
+    string lv_unittoAdd;
+    waveinfo lv_horde;
+    int lv_supplyLimit;
+
+    // Variable Initialization
+    lv_horde = AIWaveInfoCreate();
+    lv_supplyLimit = (lp_numberofPlayers * lib1765BC64_gv_suppyLimitPerPlayer);
+
+    // Implementation
+    lib1765BC64_gf_SetNormalHordeLimits(lp_numberofPlayers, lp_currentChapter);
+    while ((lv_currentSupply < lv_supplyLimit)) {
+        lv_unittoAdd = lib1765BC64_gf_GetNormalHordeUnit(lp_currentChapter);
+        if ((lv_unittoAdd != null)) {
+            libNtve_gf_CreateUnitsWithDefaultFacing(1, lv_unittoAdd, 0, lib1E3F036D_gv_zombiePlayer, lp_spawnPoint);
+            AIWaveInfoAdd(lv_horde, (lv_unittoAdd), 1);
+            lv_currentSupply += UnitTypeGetProperty(lv_unittoAdd, c_unitPropSuppliesUsed);
+            Wait(0.0, c_timeGame);
+        }
+    }
+    return lv_horde;
+}
+
+void lib1765BC64_gf_SetNormalHordeLimits (int lp_numberofPlayers, int lp_currentChapter) {
+    int autoCEC1F007_val;
+
+    // Implementation
+    autoCEC1F007_val = lp_currentChapter;
+    if (autoCEC1F007_val == 1) {
+        lib1765BC64_gv_houndLimit = (lp_numberofPlayers * 4);
+        lib1765BC64_gv_blinderLimit = (lp_numberofPlayers * 3);
+        lib1765BC64_gv_stalkerLimit = (lp_numberofPlayers * 3);
+        lib1765BC64_gv_broodMotherLimit = 1;
+    }
+    else if (autoCEC1F007_val == 2) {
+        lib1765BC64_gv_roamerLimit = (lp_numberofPlayers * 2);
+        lib1765BC64_gv_houndLimit = (lp_numberofPlayers * 4);
+        lib1765BC64_gv_blinderLimit = (lp_numberofPlayers * 3);
+        lib1765BC64_gv_stalkerLimit = (lp_numberofPlayers * 4);
+        lib1765BC64_gv_broodMotherLimit = 1;
+        lib1765BC64_gv_brainBugLimit = 1;
+        lib1765BC64_gv_busterLimit = (lp_numberofPlayers * 2);
+        lib1765BC64_gv_gargoyleLimit = (lp_numberofPlayers * 4);
+    }
+    else if (autoCEC1F007_val == 3) {
+        lib1765BC64_gv_roamerLimit = (lp_numberofPlayers * 2);
+        lib1765BC64_gv_houndLimit = (lp_numberofPlayers * 4);
+        lib1765BC64_gv_busterLimit = (lp_numberofPlayers * 2);
+        lib1765BC64_gv_blinderLimit = (lp_numberofPlayers * 3);
+        lib1765BC64_gv_stalkerLimit = (lp_numberofPlayers * 4);
+        lib1765BC64_gv_creeperLimit = (lp_numberofPlayers * 3);
+        lib1765BC64_gv_broodMotherLimit = 1;
+        lib1765BC64_gv_brainBugLimit = 1;
+        lib1765BC64_gv_slasherLimit = 1;
+        lib1765BC64_gv_gorgonLimit = 1;
+        lib1765BC64_gv_gargoyleLimit = (lp_numberofPlayers * 4);
+    }
+    else if (autoCEC1F007_val == 4) {
+        lib1765BC64_gv_roamerLimit = (lp_numberofPlayers * 2);
+        lib1765BC64_gv_houndLimit = (lp_numberofPlayers * 4);
+        lib1765BC64_gv_busterLimit = (lp_numberofPlayers * 2);
+        lib1765BC64_gv_stalkerLimit = (lp_numberofPlayers * 4);
+        lib1765BC64_gv_creeperLimit = (lp_numberofPlayers * 4);
+        lib1765BC64_gv_broodMotherLimit = 1;
+        lib1765BC64_gv_brainBugLimit = 1;
+        lib1765BC64_gv_slasherLimit = 2;
+        lib1765BC64_gv_gorgonLimit = 1;
+        lib1765BC64_gv_gargoyleLimit = (lp_numberofPlayers * 4);
+    }
+    else if (autoCEC1F007_val == 5) {
+        lib1765BC64_gv_roamerLimit = (lp_numberofPlayers * 2);
+        lib1765BC64_gv_immortalLimit = lp_numberofPlayers;
+        lib1765BC64_gv_busterLimit = (lp_numberofPlayers * 2);
+        lib1765BC64_gv_stalkerLimit = (lp_numberofPlayers * 6);
+        lib1765BC64_gv_creeperLimit = (lp_numberofPlayers * 4);
+        lib1765BC64_gv_gorgonLimit = 1;
+        lib1765BC64_gv_hopliteLimit = 2;
+        lib1765BC64_gv_broodMotherLimit = 1;
+        lib1765BC64_gv_brainBugLimit = 1;
+        lib1765BC64_gv_slasherLimit = 4;
+        lib1765BC64_gv_gargoyleLimit = (lp_numberofPlayers * 4);
+    }
+    else {
+    }
+}
+
+string lib1765BC64_gf_GetNormalHordeUnit (int lp_currentChapter) {
+    int auto9AC0EA03_val;
+
+    // Variable Declarations
+    string lv_unit;
+
+    // Variable Initialization
+
+    // Implementation
+    auto9AC0EA03_val = lp_currentChapter;
+    if (auto9AC0EA03_val == 1) {
+        return lib1765BC64_gf_GetChapter1NormalHordeUnit();
+    }
+    else if (auto9AC0EA03_val == 2) {
+        return lib1765BC64_gf_GetChapter2NormalHordeUnit();
+    }
+    else if (auto9AC0EA03_val == 3) {
+        return lib1765BC64_gf_GetChapter3NormalHordeUnit();
+    }
+    else if (auto9AC0EA03_val == 4) {
+        return lib1765BC64_gf_GetChapter4NormalHordeUnit();
+    }
+    else if (auto9AC0EA03_val == 5) {
+        return lib1765BC64_gf_GetChapter5NormalHordeUnit();
+    }
+    else {
+    }
+    return lv_unit;
+}
+
+string lib1765BC64_gf_GetChapter1NormalHordeUnit () {
+    int autoD9E252E5_val;
+
+    // Variable Declarations
+    string lv_unit;
+    int lv_randomSelector;
+    bool lv_mutation;
+
+    // Variable Initialization
+    lv_randomSelector = RandomInt(1, 6);
+    lv_mutation = (libNtve_gf_RandomPercent() <= lib1765BC64_gv_hordeMutationChance);
+
+    // Implementation
+    autoD9E252E5_val = lv_randomSelector;
+    if (autoD9E252E5_val == 1) {
+        if (lv_mutation) {
+            lv_unit = "Shambler";
+        }
+        else {
+            lv_unit = "MarsColonistFemale2";
+        }
+    }
+    else if (autoD9E252E5_val == 2) {
+        if ((lib1765BC64_gv_houndCount < lib1765BC64_gv_houndLimit)) {
+            lv_unit = "Hound";
+            lib1765BC64_gv_houndCount += 1;
+        }
+    }
+    else if (autoD9E252E5_val == 3) {
+        if ((lib1765BC64_gv_blinderCount < lib1765BC64_gv_blinderLimit)) {
+            if (lv_mutation) {
+                lv_unit = "Creeper";
+            }
+            else {
+                lv_unit = "Blinder";
+            }
+            lib1765BC64_gv_blinderLimit += 1;
+        }
+    }
+    else if (autoD9E252E5_val == 4) {
+        if ((lib1765BC64_gv_stalkerCount < lib1765BC64_gv_stalkerLimit)) {
+            lv_unit = "Stalker2";
+            lib1765BC64_gv_stalkerCount += 1;
+        }
+    }
+    else if (autoD9E252E5_val == 5) {
+        if ((lib1765BC64_gv_broodMotherCount < lib1765BC64_gv_broodMotherLimit) && (UnitGroupCount(UnitGroup("BroodMother2", lib1E3F036D_gv_zombiePlayer, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0), c_unitCountAlive) == 0)) {
+            lv_unit = "BroodMother2";
+            lib1765BC64_gv_broodMotherCount += 1;
+        }
+    }
+    else if (autoD9E252E5_val == 6) {
+        if ((lib1765BC64_gv_brainBugCount < lib1765BC64_gv_brainBugLimit) && (UnitGroupCount(UnitGroup("BrainBug", lib1E3F036D_gv_zombiePlayer, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0), c_unitCountAlive) == 0)) {
+            lv_unit = "BrainBug";
+            lib1765BC64_gv_brainBugCount += 1;
+        }
+    }
+    else {
+    }
+    return lv_unit;
+}
+
+string lib1765BC64_gf_GetChapter2NormalHordeUnit () {
+    int autoBE42C6F5_val;
+    int autoE01BFE2A_val;
+
+    // Variable Declarations
+    string lv_unit;
+    int lv_randomSelector;
+    bool lv_mutation;
+
+    // Variable Initialization
+    lv_randomSelector = RandomInt(1, 9);
+    lv_mutation = (libNtve_gf_RandomPercent() <= lib1765BC64_gv_hordeMutationChance);
+
+    // Implementation
+    autoBE42C6F5_val = lv_randomSelector;
+    if (autoBE42C6F5_val == 1) {
+        lv_unit = "Shambler";
+    }
+    else if (autoBE42C6F5_val == 2) {
+        if ((lib1765BC64_gv_houndCount < lib1765BC64_gv_houndLimit)) {
+            lv_unit = "Hound";
+            lib1765BC64_gv_houndCount += 1;
+        }
+    }
+    else if (autoBE42C6F5_val == 3) {
+        if ((lib1765BC64_gv_blinderCount < lib1765BC64_gv_blinderLimit)) {
+            if (lv_mutation) {
+                lv_unit = "Creeper";
+            }
+            else {
+                lv_unit = "Blinder";
+            }
+            lib1765BC64_gv_blinderLimit += 1;
+        }
+    }
+    else if (autoBE42C6F5_val == 4) {
+        if ((lib1765BC64_gv_stalkerCount < lib1765BC64_gv_stalkerLimit)) {
+            if (lv_mutation) {
+                autoE01BFE2A_val = RandomInt(0, 2);
+                if (autoE01BFE2A_val == 0) {
+                    lv_unit = "Devourer2";
+                }
+                else if (autoE01BFE2A_val == 1) {
+                    lv_unit = "Dissolver";
+                }
+                else if (autoE01BFE2A_val == 2) {
+                    lv_unit = "Centurion";
+                }
+                else {
+                }
+            }
+            else {
+                lv_unit = "Stalker2";
+            }
+            lib1765BC64_gv_stalkerCount += 1;
+        }
+    }
+    else if (autoBE42C6F5_val == 5) {
+        if ((lib1765BC64_gv_broodMotherCount < lib1765BC64_gv_broodMotherLimit) && (UnitGroupCount(UnitGroup("BroodMother2", lib1E3F036D_gv_zombiePlayer, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0), c_unitCountAlive) == 0)) {
+            if (lv_mutation) {
+                lv_unit = "Matriarch";
+            }
+            else {
+                lv_unit = "BroodMother2";
+            }
+            lib1765BC64_gv_broodMotherCount += 1;
+        }
+    }
+    else if (autoBE42C6F5_val == 6) {
+        if ((lib1765BC64_gv_brainBugCount < lib1765BC64_gv_brainBugLimit) && (UnitGroupCount(UnitGroup("BrainBug", lib1E3F036D_gv_zombiePlayer, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0), c_unitCountAlive) == 0)) {
+            lv_unit = "BrainBug";
+            lib1765BC64_gv_brainBugCount += 1;
+        }
+    }
+    else if (autoBE42C6F5_val == 7) {
+        if ((lib1765BC64_gv_busterCount < lib1765BC64_gv_busterLimit)) {
+            lv_unit = "Buster";
+            lib1765BC64_gv_busterCount += 1;
+        }
+    }
+    else if (autoBE42C6F5_val == 8) {
+        if ((lib1765BC64_gv_roamerCount < lib1765BC64_gv_roamerLimit)) {
+            lv_unit = "Roamer";
+            lib1765BC64_gv_roamerCount += 1;
+        }
+    }
+    else if (autoBE42C6F5_val == 9) {
+        if ((lib1765BC64_gv_gargoyleCount < lib1765BC64_gv_gargoyleLimit)) {
+            if (lv_mutation) {
+                if ((RandomInt(0, 1) == 1)) {
+                    lv_unit = "Harpy";
+                }
+                else {
+                    lv_unit = "Razorback";
+                }
+            }
+            else {
+                lv_unit = "Gargoyle";
+            }
+            lib1765BC64_gv_gargoyleCount += 1;
+        }
+    }
+    else {
+    }
+    return lv_unit;
+}
+
+string lib1765BC64_gf_GetChapter3NormalHordeUnit () {
+    int autoA5140D6E_val;
+    int auto59B919E0_val;
+    int autoA0A96306_val;
+
+    // Variable Declarations
+    string lv_unit;
+    int lv_randomSelector;
+    bool lv_mutation;
+
+    // Variable Initialization
+    lv_randomSelector = RandomInt(1, 11);
+    lv_mutation = (libNtve_gf_RandomPercent() <= lib1765BC64_gv_hordeMutationChance);
+
+    // Implementation
+    autoA5140D6E_val = lv_randomSelector;
+    if (autoA5140D6E_val == 1) {
+        lv_unit = "Shambler";
+    }
+    else if (autoA5140D6E_val == 2) {
+        if ((lib1765BC64_gv_roamerCount < lib1765BC64_gv_roamerLimit)) {
+            lv_unit = "Roamer";
+            lib1765BC64_gv_roamerCount += 1;
+        }
+    }
+    else if (autoA5140D6E_val == 3) {
+        if ((lib1765BC64_gv_houndCount < lib1765BC64_gv_houndLimit)) {
+            lv_unit = "Hound";
+            lib1765BC64_gv_houndCount += 1;
+        }
+    }
+    else if (autoA5140D6E_val == 4) {
+        if ((lib1765BC64_gv_busterCount < lib1765BC64_gv_busterLimit)) {
+            lv_unit = "Buster";
+            lib1765BC64_gv_busterCount += 1;
+        }
+    }
+    else if (autoA5140D6E_val == 5) {
+        if ((lib1765BC64_gv_creeperCount < lib1765BC64_gv_creeperLimit)) {
+            lv_unit = "Creeper";
+            lib1765BC64_gv_creeperCount += 1;
+        }
+    }
+    else if (autoA5140D6E_val == 6) {
+        if ((lib1765BC64_gv_stalkerCount < lib1765BC64_gv_stalkerLimit)) {
+            if (lv_mutation) {
+                auto59B919E0_val = RandomInt(0, 2);
+                if (auto59B919E0_val == 0) {
+                    lv_unit = "Devourer2";
+                }
+                else if (auto59B919E0_val == 1) {
+                    lv_unit = "Dissolver";
+                }
+                else if (auto59B919E0_val == 2) {
+                    lv_unit = "Centurion";
+                }
+                else {
+                }
+            }
+            else {
+                lv_unit = "Stalker2";
+            }
+            lib1765BC64_gv_stalkerCount += 1;
+        }
+    }
+    else if (autoA5140D6E_val == 7) {
+        if ((lib1765BC64_gv_broodMotherCount < lib1765BC64_gv_broodMotherLimit)) {
+            if (lv_mutation) {
+                lv_unit = "Matriarch";
+            }
+            else {
+                lv_unit = "BroodMother2";
+            }
+            lib1765BC64_gv_broodMotherCount += 1;
+        }
+    }
+    else if (autoA5140D6E_val == 8) {
+        if ((lib1765BC64_gv_brainBugCount < lib1765BC64_gv_brainBugLimit)) {
+            if (lv_mutation) {
+                lv_unit = "Mastermind";
+            }
+            else {
+                lv_unit = "BrainBug";
+            }
+            lib1765BC64_gv_brainBugCount += 1;
+        }
+    }
+    else if (autoA5140D6E_val == 9) {
+        if ((lib1765BC64_gv_gargoyleCount < lib1765BC64_gv_gargoyleLimit)) {
+            if (lv_mutation) {
+                if ((RandomInt(0, 1) == 1)) {
+                    lv_unit = "Harpy";
+                }
+                else {
+                    lv_unit = "Razorback";
+                }
+            }
+            else {
+                lv_unit = "Gargoyle";
+            }
+            lib1765BC64_gv_gargoyleCount += 1;
+        }
+    }
+    else if (autoA5140D6E_val == 10) {
+        if ((lib1765BC64_gv_gorgonCount < lib1765BC64_gv_gorgonLimit)) {
+            lv_unit = "Gorgon";
+            lib1765BC64_gv_gorgonCount += 1;
+        }
+    }
+    else if (autoA5140D6E_val == 11) {
+        if ((lib1765BC64_gv_slasherCount < lib1765BC64_gv_slasherLimit)) {
+            if (lv_mutation) {
+                autoA0A96306_val = RandomInt(0, 2);
+                if (autoA0A96306_val == 0) {
+                    lv_unit = "Racer";
+                }
+                else if (autoA0A96306_val == 1) {
+                    lv_unit = "Scythe";
+                }
+                else if (autoA0A96306_val == 2) {
+                    lv_unit = "Slayer";
+                }
+                else {
+                }
+            }
+            else {
+                lv_unit = "Slasher";
+            }
+            lib1765BC64_gv_slasherCount += 1;
+        }
+    }
+    else {
+    }
+    return lv_unit;
+}
+
+string lib1765BC64_gf_GetChapter4NormalHordeUnit () {
+    int auto5CD7AC2A_val;
+    int auto6A8EE605_val;
+    int auto96EF7CF3_val;
+    int autoFD15935A_val;
+
+    // Variable Declarations
+    string lv_unit;
+    int lv_randomSelector;
+    bool lv_mutation;
+
+    // Variable Initialization
+    lv_randomSelector = RandomInt(1, 11);
+    lv_mutation = (libNtve_gf_RandomPercent() <= lib1765BC64_gv_hordeMutationChance);
+
+    // Implementation
+    auto5CD7AC2A_val = lv_randomSelector;
+    if (auto5CD7AC2A_val == 1) {
+        if (lv_mutation) {
+            lv_unit = "Hulk";
+        }
+        else {
+            lv_unit = "Shambler";
+        }
+    }
+    else if (auto5CD7AC2A_val == 2) {
+        if ((lib1765BC64_gv_roamerCount < lib1765BC64_gv_roamerLimit)) {
+            lv_unit = "Roamer";
+            lib1765BC64_gv_roamerCount += 1;
+        }
+    }
+    else if (auto5CD7AC2A_val == 3) {
+        if ((lib1765BC64_gv_houndCount < lib1765BC64_gv_houndLimit)) {
+            if (lv_mutation) {
+                lv_unit = "Seeker";
+            }
+            else {
+                lv_unit = "Hound";
+            }
+            lib1765BC64_gv_houndCount += 1;
+        }
+    }
+    else if (auto5CD7AC2A_val == 4) {
+        if ((lib1765BC64_gv_busterCount < lib1765BC64_gv_busterLimit)) {
+            lv_unit = "Buster";
+            lib1765BC64_gv_busterCount += 1;
+        }
+    }
+    else if (auto5CD7AC2A_val == 5) {
+        if ((lib1765BC64_gv_creeperCount < lib1765BC64_gv_creeperLimit)) {
+            lv_unit = "Creeper";
+            lib1765BC64_gv_creeperCount += 1;
+        }
+    }
+    else if (auto5CD7AC2A_val == 6) {
+        if ((lib1765BC64_gv_stalkerCount < lib1765BC64_gv_stalkerLimit)) {
+            if (lv_mutation) {
+                auto6A8EE605_val = RandomInt(0, 2);
+                if (auto6A8EE605_val == 0) {
+                    lv_unit = "Devourer2";
+                }
+                else if (auto6A8EE605_val == 1) {
+                    lv_unit = "Dissolver";
+                }
+                else if (auto6A8EE605_val == 2) {
+                    lv_unit = "Centurion";
+                }
+                else {
+                }
+            }
+            else {
+                lv_unit = "Stalker2";
+            }
+            lib1765BC64_gv_stalkerCount += 1;
+        }
+    }
+    else if (auto5CD7AC2A_val == 7) {
+        if ((lib1765BC64_gv_broodMotherCount < lib1765BC64_gv_broodMotherLimit)) {
+            if (lv_mutation) {
+                lv_unit = "Matriarch";
+            }
+            else {
+                lv_unit = "BroodMother2";
+            }
+            lib1765BC64_gv_broodMotherCount += 1;
+        }
+    }
+    else if (auto5CD7AC2A_val == 8) {
+        if ((lib1765BC64_gv_brainBugCount < lib1765BC64_gv_brainBugLimit)) {
+            if (lv_mutation) {
+                lv_unit = "Mastermind";
+            }
+            else {
+                lv_unit = "BrainBug";
+            }
+            lib1765BC64_gv_brainBugCount += 1;
+        }
+    }
+    else if (auto5CD7AC2A_val == 9) {
+        if ((lib1765BC64_gv_gargoyleCount < lib1765BC64_gv_gargoyleLimit)) {
+            if (lv_mutation) {
+                auto96EF7CF3_val = RandomInt(0, 2);
+                if (auto96EF7CF3_val == 0) {
+                    lv_unit = "Harpy";
+                }
+                else if (auto96EF7CF3_val == 1) {
+                    lv_unit = "Razorback";
+                }
+                else if (auto96EF7CF3_val == 2) {
+                    lv_unit = "Flutter";
+                }
+                else {
+                }
+            }
+            else {
+                lv_unit = "Gargoyle";
+            }
+            lib1765BC64_gv_gargoyleCount += 1;
+        }
+    }
+    else if (auto5CD7AC2A_val == 10) {
+        if ((lib1765BC64_gv_gorgonCount < lib1765BC64_gv_gorgonLimit)) {
+            lv_unit = "Gorgon";
+            lib1765BC64_gv_gorgonCount += 1;
+        }
+    }
+    else if (auto5CD7AC2A_val == 11) {
+        if ((lib1765BC64_gv_slasherCount < lib1765BC64_gv_slasherLimit)) {
+            if (lv_mutation) {
+                autoFD15935A_val = RandomInt(0, 2);
+                if (autoFD15935A_val == 0) {
+                    lv_unit = "Racer";
+                }
+                else if (autoFD15935A_val == 1) {
+                    lv_unit = "Scythe";
+                }
+                else if (autoFD15935A_val == 2) {
+                    lv_unit = "Slayer";
+                }
+                else {
+                }
+            }
+            else {
+                lv_unit = "Slasher";
+            }
+            lib1765BC64_gv_slasherCount += 1;
+        }
+    }
+    else {
+    }
+    return lv_unit;
+}
+
+string lib1765BC64_gf_GetChapter5NormalHordeUnit () {
+    int auto18844575_val;
+    int autoDC3AE5D6_val;
+    int auto4054BAD2_val;
+    int auto67B0FCDD_val;
+
+    // Variable Declarations
+    string lv_unit;
+    int lv_randomSelector;
+    bool lv_mutation;
+
+    // Variable Initialization
+    lv_randomSelector = RandomInt(1, 13);
+    lv_mutation = (libNtve_gf_RandomPercent() <= lib1765BC64_gv_hordeMutationChance);
+
+    // Implementation
+    auto18844575_val = lv_randomSelector;
+    if (auto18844575_val == 1) {
+        if (lv_mutation) {
+            lv_unit = "Hulk";
+        }
+        else {
+            lv_unit = "Shambler";
+        }
+    }
+    else if (auto18844575_val == 2) {
+        if ((lib1765BC64_gv_roamerCount < lib1765BC64_gv_roamerLimit)) {
+            lv_unit = "Roamer";
+            lib1765BC64_gv_roamerCount += 1;
+        }
+    }
+    else if (auto18844575_val == 3) {
+        if (lv_mutation) {
+            lv_unit = "Seeker";
+        }
+        else {
+            lv_unit = "Hound";
+        }
+    }
+    else if (auto18844575_val == 4) {
+        if ((lib1765BC64_gv_busterCount < lib1765BC64_gv_busterLimit)) {
+            lv_unit = "Buster";
+            lib1765BC64_gv_busterCount += 1;
+        }
+    }
+    else if (auto18844575_val == 5) {
+        if ((lib1765BC64_gv_creeperCount < lib1765BC64_gv_creeperLimit)) {
+            lv_unit = "Creeper";
+            lib1765BC64_gv_creeperCount += 1;
+        }
+    }
+    else if (auto18844575_val == 6) {
+        if ((lib1765BC64_gv_stalkerCount < lib1765BC64_gv_stalkerLimit)) {
+            if (lv_mutation) {
+                autoDC3AE5D6_val = RandomInt(0, 2);
+                if (autoDC3AE5D6_val == 0) {
+                    lv_unit = "Devourer2";
+                }
+                else if (autoDC3AE5D6_val == 1) {
+                    lv_unit = "Dissolver";
+                }
+                else if (autoDC3AE5D6_val == 2) {
+                    lv_unit = "Centurion";
+                }
+                else {
+                }
+            }
+            else {
+                lv_unit = "Stalker2";
+            }
+            lib1765BC64_gv_stalkerCount += 1;
+        }
+    }
+    else if (auto18844575_val == 7) {
+        if ((lib1765BC64_gv_broodMotherCount < lib1765BC64_gv_broodMotherLimit)) {
+            if (lv_mutation) {
+                lv_unit = "Matriarch";
+            }
+            else {
+                lv_unit = "BroodMother2";
+            }
+            lib1765BC64_gv_broodMotherCount += 1;
+        }
+    }
+    else if (auto18844575_val == 8) {
+        if ((lib1765BC64_gv_brainBugCount < lib1765BC64_gv_brainBugLimit)) {
+            if (lv_mutation) {
+                lv_unit = "Mastermind";
+            }
+            else {
+                lv_unit = "BrainBug";
+            }
+            lib1765BC64_gv_brainBugCount += 1;
+        }
+    }
+    else if (auto18844575_val == 9) {
+        if ((lib1765BC64_gv_gargoyleCount < lib1765BC64_gv_gargoyleLimit)) {
+            if (lv_mutation) {
+                auto4054BAD2_val = RandomInt(0, 2);
+                if (auto4054BAD2_val == 0) {
+                    lv_unit = "Harpy";
+                }
+                else if (auto4054BAD2_val == 1) {
+                    lv_unit = "Razorback";
+                }
+                else if (auto4054BAD2_val == 2) {
+                    lv_unit = "Flutter";
+                }
+                else {
+                }
+            }
+            else {
+                lv_unit = "Gargoyle";
+            }
+            lib1765BC64_gv_gargoyleCount += 1;
+        }
+    }
+    else if (auto18844575_val == 10) {
+        if ((lib1765BC64_gv_gorgonCount < lib1765BC64_gv_gorgonLimit)) {
+            lv_unit = "Gorgon";
+            lib1765BC64_gv_gorgonCount += 1;
+        }
+    }
+    else if (auto18844575_val == 11) {
+        if ((lib1765BC64_gv_slasherCount < lib1765BC64_gv_slasherLimit)) {
+            if (lv_mutation) {
+                auto67B0FCDD_val = RandomInt(0, 2);
+                if (auto67B0FCDD_val == 0) {
+                    lv_unit = "Racer";
+                }
+                else if (auto67B0FCDD_val == 1) {
+                    lv_unit = "Scythe";
+                }
+                else if (auto67B0FCDD_val == 2) {
+                    lv_unit = "Slayer";
+                }
+                else {
+                }
+            }
+            else {
+                lv_unit = "Slasher";
+            }
+            lib1765BC64_gv_slasherCount += 1;
+        }
+    }
+    else if (auto18844575_val == 12) {
+        if ((lib1765BC64_gv_immortalCount < lib1765BC64_gv_immortalLimit)) {
+            lv_unit = "Immortal2";
+            lib1765BC64_gv_immortalCount += 1;
+        }
+    }
+    else if (auto18844575_val == 13) {
+        if ((lib1765BC64_gv_hopliteCount < lib1765BC64_gv_hopliteLimit)) {
+            lv_unit = "Hoplite";
+            lib1765BC64_gv_hopliteCount += 1;
+        }
+    }
+    else {
+    }
+    return lv_unit;
+}
+
+waveinfo lib1765BC64_gf_GetNightmareHorde (int lp_currentChapter, int lp_supplyLimit, point lp_spawnPoint) {
+    // Variable Declarations
+    waveinfo lv_horde;
+
+    // Variable Initialization
+    lv_horde = AIWaveInfoCreate();
+
+    // Implementation
+    return lv_horde;
+}
+
+void lib1765BC64_gf_SetNightmareHordeLimits (int lp_numberofPlayers, int lp_currentChapter) {
+    int autoDA4B02A6_val;
+
+    // Implementation
+    autoDA4B02A6_val = lp_currentChapter;
+    if (autoDA4B02A6_val == 1) {
+        lib1765BC64_gv_houndLimit = (lp_numberofPlayers * 2);
+        lib1765BC64_gv_blinderLimit = (lp_numberofPlayers * 3);
+        lib1765BC64_gv_stalkerLimit = (lp_numberofPlayers * 2);
+        lib1765BC64_gv_broodMotherLimit = 1;
+    }
+    else if (autoDA4B02A6_val == 2) {
+        lib1765BC64_gv_houndLimit = (lp_numberofPlayers * 2);
+        lib1765BC64_gv_blinderLimit = (lp_numberofPlayers * 3);
+        lib1765BC64_gv_stalkerLimit = (lp_numberofPlayers * 4);
+        lib1765BC64_gv_broodMotherLimit = 1;
+        lib1765BC64_gv_brainBugLimit = 1;
+        lib1765BC64_gv_busterLimit = (lp_numberofPlayers * 2);
+    }
+    else if (autoDA4B02A6_val == 3) {
+        lib1765BC64_gv_houndLimit = (lp_numberofPlayers * 2);
+        lib1765BC64_gv_blinderLimit = (lp_numberofPlayers * 3);
+        lib1765BC64_gv_stalkerLimit = (lp_numberofPlayers * 4);
+        lib1765BC64_gv_broodMotherLimit = 1;
+        lib1765BC64_gv_brainBugLimit = 1;
+        lib1765BC64_gv_busterLimit = (lp_numberofPlayers * 2);
+        lib1765BC64_gv_slasherLimit = 1;
+        lib1765BC64_gv_gargoyleLimit = (lp_numberofPlayers * 3);
+    }
+    else if (autoDA4B02A6_val == 4) {
+        lib1765BC64_gv_houndLimit = (lp_numberofPlayers * 2);
+        lib1765BC64_gv_blinderLimit = (lp_numberofPlayers * 3);
+        lib1765BC64_gv_stalkerLimit = (lp_numberofPlayers * 6);
+        lib1765BC64_gv_broodMotherLimit = 1;
+        lib1765BC64_gv_brainBugLimit = 1;
+        lib1765BC64_gv_busterLimit = (lp_numberofPlayers * 2);
+        lib1765BC64_gv_slasherLimit = 2;
+        lib1765BC64_gv_gargoyleLimit = (lp_numberofPlayers * 3);
+    }
+    else if (autoDA4B02A6_val == 5) {
+        lib1765BC64_gv_houndLimit = (lp_numberofPlayers * 2);
+        lib1765BC64_gv_blinderLimit = (lp_numberofPlayers * 3);
+        lib1765BC64_gv_stalkerLimit = (lp_numberofPlayers * 6);
+        lib1765BC64_gv_broodMotherLimit = 1;
+        lib1765BC64_gv_brainBugLimit = 1;
+        lib1765BC64_gv_busterLimit = (lp_numberofPlayers * 2);
+        lib1765BC64_gv_slasherLimit = 2;
+        lib1765BC64_gv_gargoyleLimit = (lp_numberofPlayers * 3);
+        lib1765BC64_gv_immortalLimit = lp_numberofPlayers;
+    }
+    else {
+    }
+}
+
+string lib1765BC64_gf_GetNightmareHordeUnit (int lp_currentChapter) {
+    int auto08DC4B6E_val;
+
+    // Variable Declarations
+    string lv_unit;
+
+    // Variable Initialization
+
+    // Implementation
+    auto08DC4B6E_val = lp_currentChapter;
+    if (auto08DC4B6E_val == 1) {
+        return lib1765BC64_gf_GetChapter1NightmareHordeUnit();
+    }
+    else if (auto08DC4B6E_val == 2) {
+        return lib1765BC64_gf_GetChapter2NightmareHordeUnit();
+    }
+    else if (auto08DC4B6E_val == 3) {
+        return lib1765BC64_gf_GetChapter3NightmareHordeUnit();
+    }
+    else if (auto08DC4B6E_val == 4) {
+        return lib1765BC64_gf_GetChapter4NightmareHordeUnit();
+    }
+    else if (auto08DC4B6E_val == 5) {
+        return lib1765BC64_gf_GetChapter5NightmareHordeUnit();
+    }
+    else {
+    }
+    return lv_unit;
+}
+
+string lib1765BC64_gf_GetChapter1NightmareHordeUnit () {
+    int auto99A22496_val;
+
+    // Variable Declarations
+    string lv_unit;
+    int lv_randomSelector;
+    bool lv_mutation;
+
+    // Variable Initialization
+    lv_randomSelector = RandomInt(1, 5);
+    lv_mutation = (libNtve_gf_RandomPercent() <= lib1765BC64_gv_hordeMutationChance);
+
+    // Implementation
+    auto99A22496_val = lv_randomSelector;
+    if (auto99A22496_val == 1) {
+        if (lv_mutation) {
+            lv_unit = "Shambler";
+        }
+        else {
+            lv_unit = "MarsColonistFemale2";
+        }
+    }
+    else if (auto99A22496_val == 2) {
+        if ((lib1765BC64_gv_houndCount < lib1765BC64_gv_houndLimit)) {
+            lv_unit = "Hound";
+            lib1765BC64_gv_houndCount += 1;
+        }
+    }
+    else if (auto99A22496_val == 3) {
+        if ((lib1765BC64_gv_blinderCount < lib1765BC64_gv_blinderLimit)) {
+            lv_unit = "Blinder";
+            lib1765BC64_gv_blinderLimit += 1;
+        }
+    }
+    else if (auto99A22496_val == 4) {
+        if ((lib1765BC64_gv_stalkerCount < lib1765BC64_gv_stalkerLimit)) {
+            lv_unit = "Stalker2";
+            lib1765BC64_gv_stalkerCount += 1;
+        }
+    }
+    else if (auto99A22496_val == 5) {
+        if ((lib1765BC64_gv_broodMotherCount < lib1765BC64_gv_broodMotherLimit) && (UnitGroupCount(UnitGroup("BroodMother2", lib1E3F036D_gv_zombiePlayer, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0), c_unitCountAlive) == 0)) {
+            lv_unit = "BroodMother2";
+            lib1765BC64_gv_broodMotherCount += 1;
+        }
+    }
+    else {
+    }
+    return lv_unit;
+}
+
+string lib1765BC64_gf_GetChapter2NightmareHordeUnit () {
+    int auto035E7541_val;
+
+    // Variable Declarations
+    string lv_unit;
+    int lv_randomSelector;
+    bool lv_mutation;
+
+    // Variable Initialization
+    lv_randomSelector = RandomInt(1, 7);
+    lv_mutation = (libNtve_gf_RandomPercent() <= lib1765BC64_gv_hordeMutationChance);
+
+    // Implementation
+    auto035E7541_val = lv_randomSelector;
+    if (auto035E7541_val == 1) {
+        if (lv_mutation) {
+            lv_unit = "Shambler";
+        }
+        else {
+            lv_unit = "MarsColonistFemale2";
+        }
+    }
+    else if (auto035E7541_val == 2) {
+        if ((lib1765BC64_gv_houndCount < lib1765BC64_gv_houndLimit)) {
+            lv_unit = "Hound";
+            lib1765BC64_gv_houndCount += 1;
+        }
+    }
+    else if (auto035E7541_val == 3) {
+        if ((lib1765BC64_gv_blinderCount < lib1765BC64_gv_blinderLimit)) {
+            if (lv_mutation) {
+                lv_unit = "Creeper";
+            }
+            else {
+                lv_unit = "Blinder";
+            }
+            lib1765BC64_gv_blinderLimit += 1;
+        }
+    }
+    else if (auto035E7541_val == 4) {
+        if ((lib1765BC64_gv_stalkerCount < lib1765BC64_gv_stalkerLimit)) {
+            if (lv_mutation) {
+                if ((RandomInt(0, 1) == 1)) {
+                    lv_unit = "Devourer2";
+                }
+                else {
+                    lv_unit = "Dissolver";
+                }
+            }
+            else {
+                lv_unit = "Stalker2";
+            }
+            lib1765BC64_gv_stalkerCount += 1;
+        }
+    }
+    else if (auto035E7541_val == 5) {
+        if ((lib1765BC64_gv_broodMotherCount < lib1765BC64_gv_broodMotherLimit) && (UnitGroupCount(UnitGroup("BroodMother2", lib1E3F036D_gv_zombiePlayer, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0), c_unitCountAlive) == 0)) {
+            lv_unit = "BroodMother2";
+            lib1765BC64_gv_broodMotherCount += 1;
+        }
+    }
+    else if (auto035E7541_val == 6) {
+        if ((lib1765BC64_gv_brainBugCount < lib1765BC64_gv_brainBugLimit) && (UnitGroupCount(UnitGroup("BrainBug", lib1E3F036D_gv_zombiePlayer, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0), c_unitCountAlive) == 0)) {
+            lv_unit = "BrainBug";
+            lib1765BC64_gv_brainBugCount += 1;
+        }
+    }
+    else if (auto035E7541_val == 7) {
+        if ((lib1765BC64_gv_busterCount < lib1765BC64_gv_busterLimit)) {
+            lv_unit = "Buster";
+            lib1765BC64_gv_busterCount += 1;
+        }
+    }
+    else {
+    }
+    return lv_unit;
+}
+
+string lib1765BC64_gf_GetChapter3NightmareHordeUnit () {
+    int autoF7CEBFA6_val;
+
+    // Variable Declarations
+    string lv_unit;
+    int lv_randomSelector;
+    bool lv_mutation;
+
+    // Variable Initialization
+    lv_randomSelector = RandomInt(1, 9);
+    lv_mutation = (libNtve_gf_RandomPercent() <= lib1765BC64_gv_hordeMutationChance);
+
+    // Implementation
+    autoF7CEBFA6_val = lv_randomSelector;
+    if (autoF7CEBFA6_val == 1) {
+        lv_unit = "Shambler";
+    }
+    else if (autoF7CEBFA6_val == 2) {
+        if ((lib1765BC64_gv_houndCount < lib1765BC64_gv_houndLimit)) {
+            lv_unit = "Hound";
+            lib1765BC64_gv_houndCount += 1;
+        }
+    }
+    else if (autoF7CEBFA6_val == 3) {
+        if ((lib1765BC64_gv_blinderCount < lib1765BC64_gv_blinderLimit)) {
+            if (lv_mutation) {
+                lv_unit = "Creeper";
+            }
+            else {
+                lv_unit = "Blinder";
+            }
+            lib1765BC64_gv_blinderLimit += 1;
+        }
+    }
+    else if (autoF7CEBFA6_val == 4) {
+        if ((lib1765BC64_gv_stalkerCount < lib1765BC64_gv_stalkerLimit)) {
+            if (lv_mutation) {
+                if ((RandomInt(0, 1) == 1)) {
+                    lv_unit = "Devourer2";
+                }
+                else {
+                    lv_unit = "Dissolver";
+                }
+            }
+            else {
+                lv_unit = "Stalker2";
+            }
+            lib1765BC64_gv_stalkerCount += 1;
+        }
+    }
+    else if (autoF7CEBFA6_val == 5) {
+        if ((lib1765BC64_gv_broodMotherCount < lib1765BC64_gv_broodMotherLimit) && (UnitGroupCount(UnitGroup("BroodMother2", lib1E3F036D_gv_zombiePlayer, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0), c_unitCountAlive) == 0)) {
+            lv_unit = "BroodMother2";
+            lib1765BC64_gv_broodMotherCount += 1;
+        }
+    }
+    else if (autoF7CEBFA6_val == 6) {
+        if ((lib1765BC64_gv_brainBugCount < lib1765BC64_gv_brainBugLimit)) {
+            lv_unit = "BrainBug";
+            lib1765BC64_gv_brainBugCount += 1;
+        }
+    }
+    else if (autoF7CEBFA6_val == 7) {
+        if ((lib1765BC64_gv_slasherCount < lib1765BC64_gv_slasherLimit)) {
+            lv_unit = "Slasher";
+            lib1765BC64_gv_slasherCount += 1;
+        }
+    }
+    else if (autoF7CEBFA6_val == 8) {
+        if ((lib1765BC64_gv_gargoyleCount < lib1765BC64_gv_gargoyleLimit)) {
+            lv_unit = "Gargoyle";
+            lib1765BC64_gv_gargoyleCount += 1;
+        }
+    }
+    else if (autoF7CEBFA6_val == 9) {
+        if ((lib1765BC64_gv_busterCount < lib1765BC64_gv_busterLimit)) {
+            lv_unit = "Buster";
+            lib1765BC64_gv_busterCount += 1;
+        }
+    }
+    else {
+    }
+    return lv_unit;
+}
+
+string lib1765BC64_gf_GetChapter4NightmareHordeUnit () {
+    int auto0AE6356B_val;
+
+    // Variable Declarations
+    string lv_unit;
+    int lv_randomSelector;
+    bool lv_mutation;
+
+    // Variable Initialization
+    lv_randomSelector = RandomInt(1, 9);
+    lv_mutation = (libNtve_gf_RandomPercent() <= lib1765BC64_gv_hordeMutationChance);
+
+    // Implementation
+    auto0AE6356B_val = lv_randomSelector;
+    if (auto0AE6356B_val == 1) {
+        if (lv_mutation) {
+            lv_unit = "Hulk";
+        }
+        else {
+            lv_unit = "Shambler";
+        }
+    }
+    else if (auto0AE6356B_val == 2) {
+        if ((lib1765BC64_gv_houndCount < lib1765BC64_gv_houndLimit)) {
+            if (lv_mutation) {
+                lv_unit = "Seeker";
+            }
+            else {
+                lv_unit = "Hound";
+            }
+            lib1765BC64_gv_houndCount += 1;
+        }
+    }
+    else if (auto0AE6356B_val == 3) {
+        if ((lib1765BC64_gv_blinderCount < lib1765BC64_gv_blinderLimit)) {
+            if (lv_mutation) {
+                lv_unit = "Creeper";
+            }
+            else {
+                lv_unit = "Blinder";
+            }
+            lib1765BC64_gv_blinderLimit += 1;
+        }
+    }
+    else if (auto0AE6356B_val == 4) {
+        if ((lib1765BC64_gv_stalkerCount < lib1765BC64_gv_stalkerLimit)) {
+            if (lv_mutation) {
+                if ((RandomInt(0, 1) == 1)) {
+                    lv_unit = "Devourer2";
+                }
+                else {
+                    lv_unit = "Dissolver";
+                }
+            }
+            else {
+                lv_unit = "Stalker2";
+            }
+            lib1765BC64_gv_stalkerCount += 1;
+        }
+    }
+    else if (auto0AE6356B_val == 5) {
+        if ((lib1765BC64_gv_broodMotherCount < lib1765BC64_gv_broodMotherLimit) && (UnitGroupCount(UnitGroup("BroodMother2", lib1E3F036D_gv_zombiePlayer, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0), c_unitCountAlive) == 0)) {
+            lv_unit = "BroodMother2";
+            lib1765BC64_gv_broodMotherCount += 1;
+        }
+    }
+    else if (auto0AE6356B_val == 6) {
+        if ((lib1765BC64_gv_brainBugCount < lib1765BC64_gv_brainBugLimit)) {
+            lv_unit = "BrainBug";
+            lib1765BC64_gv_brainBugCount += 1;
+        }
+    }
+    else if (auto0AE6356B_val == 7) {
+        if ((lib1765BC64_gv_slasherCount < lib1765BC64_gv_slasherLimit)) {
+            lv_unit = "Slasher";
+            lib1765BC64_gv_slasherCount += 1;
+        }
+    }
+    else if (auto0AE6356B_val == 8) {
+        if ((lib1765BC64_gv_gargoyleCount < lib1765BC64_gv_gargoyleLimit)) {
+            lv_unit = "Gargoyle";
+            lib1765BC64_gv_gargoyleCount += 1;
+        }
+    }
+    else if (auto0AE6356B_val == 9) {
+        if ((lib1765BC64_gv_busterCount < lib1765BC64_gv_busterLimit)) {
+            lv_unit = "Buster";
+            lib1765BC64_gv_busterCount += 1;
+        }
+    }
+    else {
+    }
+    return lv_unit;
+}
+
+string lib1765BC64_gf_GetChapter5NightmareHordeUnit () {
+    int auto749F9F9D_val;
+    int auto94EBB795_val;
+
+    // Variable Declarations
+    string lv_unit;
+    int lv_randomSelector;
+    bool lv_mutation;
+
+    // Variable Initialization
+    lv_randomSelector = RandomInt(1, 10);
+    lv_mutation = (libNtve_gf_RandomPercent() <= lib1765BC64_gv_hordeMutationChance);
+
+    // Implementation
+    auto749F9F9D_val = lv_randomSelector;
+    if (auto749F9F9D_val == 1) {
+        if (lv_mutation) {
+            lv_unit = "Hulk";
+        }
+        else {
+            lv_unit = "Shambler";
+        }
+    }
+    else if (auto749F9F9D_val == 2) {
+        if ((lib1765BC64_gv_houndCount < lib1765BC64_gv_houndLimit)) {
+            if (lv_mutation) {
+                lv_unit = "Seeker";
+            }
+            else {
+                lv_unit = "Hound";
+            }
+            lib1765BC64_gv_houndCount += 1;
+        }
+    }
+    else if (auto749F9F9D_val == 3) {
+        if ((lib1765BC64_gv_blinderCount < lib1765BC64_gv_blinderLimit)) {
+            if (lv_mutation) {
+                lv_unit = "Creeper";
+            }
+            else {
+                lv_unit = "Blinder";
+            }
+            lib1765BC64_gv_blinderLimit += 1;
+        }
+    }
+    else if (auto749F9F9D_val == 4) {
+        if ((lib1765BC64_gv_stalkerCount < lib1765BC64_gv_stalkerLimit)) {
+            if (lv_mutation) {
+                auto94EBB795_val = RandomInt(1, 4);
+                if (auto94EBB795_val == 1) {
+                    lv_unit = "Devourer2";
+                }
+                else if (auto94EBB795_val == 2) {
+                    lv_unit = "Dissolver";
+                }
+                else if (auto94EBB795_val == 3) {
+                    lv_unit = "Centurion";
+                }
+                else if (auto94EBB795_val == 4) {
+                    lv_unit = "Hoplite";
+                }
+                else {
+                }
+            }
+            else {
+                lv_unit = "Stalker2";
+            }
+            lib1765BC64_gv_stalkerCount += 1;
+        }
+    }
+    else if (auto749F9F9D_val == 5) {
+        if ((lib1765BC64_gv_broodMotherCount < lib1765BC64_gv_broodMotherLimit)) {
+            lv_unit = "BroodMother2";
+            lib1765BC64_gv_broodMotherCount += 1;
+        }
+    }
+    else if (auto749F9F9D_val == 6) {
+        if ((lib1765BC64_gv_brainBugCount < lib1765BC64_gv_brainBugLimit)) {
+            lv_unit = "BrainBug";
+            lib1765BC64_gv_brainBugCount += 1;
+        }
+    }
+    else if (auto749F9F9D_val == 7) {
+        if ((lib1765BC64_gv_slasherCount < lib1765BC64_gv_slasherLimit)) {
+            lv_unit = "Slasher";
+            lib1765BC64_gv_slasherCount += 1;
+        }
+    }
+    else if (auto749F9F9D_val == 8) {
+        if ((lib1765BC64_gv_gargoyleCount < lib1765BC64_gv_gargoyleLimit)) {
+            if (lv_mutation) {
+                if ((RandomInt(0, 1) == 1)) {
+                    lv_unit = "Harpy";
+                }
+                else {
+                    lv_unit = "Razorback";
+                }
+            }
+            else {
+                lv_unit = "Gargoyle";
+            }
+            lib1765BC64_gv_gargoyleCount += 1;
+        }
+    }
+    else if (auto749F9F9D_val == 9) {
+        if ((lib1765BC64_gv_busterCount < lib1765BC64_gv_busterLimit)) {
+            lv_unit = "Buster";
+            lib1765BC64_gv_busterCount += 1;
+        }
+    }
+    else {
+    }
+    return lv_unit;
+}
+
+waveinfo lib1765BC64_gf_GetHordeWave (int lp_currentChapter, int lp_difficulty, int lp_numberofPlayers, point lp_spawnPoint) {
+    int auto051D788D_val;
+
+    // Variable Declarations
+    waveinfo lv_hordeWave;
+
+    // Variable Initialization
+
+    // Implementation
+    auto051D788D_val = lp_difficulty;
+    if (auto051D788D_val == 0) {
+        lv_hordeWave = lib1765BC64_gf_GetRecruitHorde(lp_currentChapter, lp_numberofPlayers, lp_spawnPoint);
+    }
+    else if (auto051D788D_val == 1) {
+        lv_hordeWave = lib1765BC64_gf_GetNormalHorde(lp_currentChapter, lp_numberofPlayers, lp_spawnPoint);
+    }
+    else if (auto051D788D_val == 2) {
+        lv_hordeWave = lib1765BC64_gf_GetNightmareHorde(lp_currentChapter, lp_numberofPlayers, lp_spawnPoint);
+    }
+    else {
+    }
+    lib1765BC64_gf_ResetHordeCounts();
+    return lv_hordeWave;
+}
+
+void lib1765BC64_gf_HordeMode (wavetarget lp_attackPoint, point lp_spawnLocation, int lp_numberofCurrentPlayers, int lp_currentChapter) {
+    // Variable Declarations
+    fixed lv_attackDelay;
+    waveinfo lv_hordeWave;
+
+    // Variable Initialization
+    lv_attackDelay = 1.0;
+
+    // Implementation
+    lv_hordeWave = lib1765BC64_gf_GetHordeWave(lp_currentChapter, lib1E3F036D_gf_GameType(), lp_numberofCurrentPlayers, lp_spawnLocation);
+    AIWaveInfoAttack(lv_hordeWave, lib1E3F036D_gv_zombiePlayer, lp_spawnLocation, lp_attackPoint, FixedToInt(lv_attackDelay));
+    Wait(lv_attackDelay, c_timeGame);
+    lib1765BC64_gv_currentHordeWave = WaveLastCreated();
+}
+
+void lib1765BC64_gf_ResetHordeCounts () {
+    // Implementation
+    lib1765BC64_gv_houndCount = 0;
+    lib1765BC64_gv_blinderCount = 0;
+    lib1765BC64_gv_stalkerCount = 0;
+    lib1765BC64_gv_broodMotherCount = 0;
+    lib1765BC64_gv_brainBugCount = 0;
+    lib1765BC64_gv_busterCount = 0;
+    lib1765BC64_gv_slasherCount = 0;
+    lib1765BC64_gv_gargoyleCount = 0;
+    lib1765BC64_gv_immortalCount = 0;
+}
+
+trigger auto_lib1765BC64_gf_AttackWaveFromInfoImmediateGather_Trigger = null;
+int auto_lib1765BC64_gf_AttackWaveFromInfoImmediateGather_lp_player;
+point auto_lib1765BC64_gf_AttackWaveFromInfoImmediateGather_lp_rallyPoint;
+waveinfo auto_lib1765BC64_gf_AttackWaveFromInfoImmediateGather_lp_waveInfo;
+wavetarget auto_lib1765BC64_gf_AttackWaveFromInfoImmediateGather_lp_attackTarget;
+int auto_lib1765BC64_gf_AttackWaveFromInfoImmediateGather_lp_attackTime;
+
+void lib1765BC64_gf_AttackWaveFromInfoImmediateGather (int lp_player, point lp_rallyPoint, waveinfo lp_waveInfo, wavetarget lp_attackTarget, int lp_attackTime) {
+    auto_lib1765BC64_gf_AttackWaveFromInfoImmediateGather_lp_player = lp_player;
+    auto_lib1765BC64_gf_AttackWaveFromInfoImmediateGather_lp_rallyPoint = lp_rallyPoint;
+    auto_lib1765BC64_gf_AttackWaveFromInfoImmediateGather_lp_waveInfo = lp_waveInfo;
+    auto_lib1765BC64_gf_AttackWaveFromInfoImmediateGather_lp_attackTarget = lp_attackTarget;
+    auto_lib1765BC64_gf_AttackWaveFromInfoImmediateGather_lp_attackTime = lp_attackTime;
+
+    if (auto_lib1765BC64_gf_AttackWaveFromInfoImmediateGather_Trigger == null) {
+        auto_lib1765BC64_gf_AttackWaveFromInfoImmediateGather_Trigger = TriggerCreate("auto_lib1765BC64_gf_AttackWaveFromInfoImmediateGather_TriggerFunc");
+    }
+
+    TriggerExecute(auto_lib1765BC64_gf_AttackWaveFromInfoImmediateGather_Trigger, false, false);
+}
+
+bool auto_lib1765BC64_gf_AttackWaveFromInfoImmediateGather_TriggerFunc (bool testConds, bool runActions) {
+    int lp_player = auto_lib1765BC64_gf_AttackWaveFromInfoImmediateGather_lp_player;
+    point lp_rallyPoint = auto_lib1765BC64_gf_AttackWaveFromInfoImmediateGather_lp_rallyPoint;
+    waveinfo lp_waveInfo = auto_lib1765BC64_gf_AttackWaveFromInfoImmediateGather_lp_waveInfo;
+    wavetarget lp_attackTarget = auto_lib1765BC64_gf_AttackWaveFromInfoImmediateGather_lp_attackTarget;
+    int lp_attackTime = auto_lib1765BC64_gf_AttackWaveFromInfoImmediateGather_lp_attackTime;
+
+    // Implementation
+    AIAttackWaveSetGatherEarlyNoReplace(lp_player);
+    AIWaveInfoAttack(lp_waveInfo, lp_player, lp_rallyPoint, lp_attackTarget, lp_attackTime);
+    return true;
+}
+
+void lib1765BC64_gf_AIThinkEltrad (int lp_player, unit lp_aiUnit, unitgroup lp_scanGroup) {
+    // Variable Declarations
+    order lv_order;
+    unitgroup lv_lowLifeGroup;
+
+    // Variable Initialization
+
+    // Implementation
+    if (lib1765BC64_gv_eltradFleeing && (DistanceBetweenPoints(UnitGetPosition(lp_aiUnit), UnitGetPosition(UnitGroupClosestToPoint(UnitGroupAlliance(lp_player, c_unitAllianceEnemy, RegionEntireMap(), UnitFilter((1 << c_targetFilterHeroic), 0, (1 << c_targetFilterPlayer) | (1 << c_targetFilterAlly) | (1 << c_targetFilterNeutral) | (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0), UnitGetPosition(lp_aiUnit)))) < 28.0)) {
+        return ;
+    }
+    else {
+        lib1765BC64_gv_eltradFleeing = false;
+        if ((UnitGetPropertyFixed(lp_aiUnit, c_unitPropLifePercent, c_unitPropCurrent) <= 70.0) && (UnitGetCustomValue(lp_aiUnit, 0) == 0.0)) {
+            UnitSetCustomValue(lp_aiUnit, 0, 1.0);
+            lib1765BC64_gv_eltradFleeing = true;
+            TimerStart(lib1765BC64_gv_eltradWaitTimer, 60.0, false, c_timeGame);
+            AIRemoveUnitFromAnyWaves(lp_aiUnit);
+            AICastFlee(lp_aiUnit, UnitGroupClosestToPoint(UnitGroupAlliance(lp_player, c_unitAllianceEnemy, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0), UnitGetPosition(lp_aiUnit)), 30, null);
+            return ;
+        }
+        else {
+        }
+        if ((UnitGetPropertyFixed(lp_aiUnit, c_unitPropLifePercent, c_unitPropCurrent) <= 35.0) && (UnitGetCustomValue(lp_aiUnit, 1) == 0.0)) {
+            UnitSetCustomValue(lp_aiUnit, 1, 1.0);
+            lib1765BC64_gv_eltradFleeing = true;
+            TimerStart(lib1765BC64_gv_eltradWaitTimer, 45.0, false, c_timeGame);
+            AIRemoveUnitFromAnyWaves(lp_aiUnit);
+            AICastFlee(lp_aiUnit, UnitGroupClosestToPoint(UnitGroupAlliance(lp_player, c_unitAllianceEnemy, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0), UnitGetPosition(lp_aiUnit)), 30, null);
+            return ;
+        }
+        else {
+        }
+        if ((TimerGetRemaining(lib1765BC64_gv_eltradWaitTimer) == 0.0) && (AIUnitGetWave(lp_aiUnit) == null)) {
+            lv_lowLifeGroup = lib1765BC64_gf_GetLowLifeEnemies(UnitGroupAlliance(lp_player, c_unitAllianceEnemy, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0), 50.0);
+            AIAttackWaveUseUnit(lp_player, lp_aiUnit);
+            if ((UnitGroupCount(lv_lowLifeGroup, c_unitCountAlive) != 0)) {
+                AIAttackWaveSetTargetUnit(lp_player, UnitGroupClosestToPoint(lv_lowLifeGroup, UnitGetPosition(lp_aiUnit)));
+            }
+            else {
+                AIAttackWaveSetTargetUnitGroup(lp_player, UnitGroupAlliance(lp_player, c_unitAllianceEnemy, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0));
+            }
+            AIAttackWaveSend(lp_player, 0, false);
+        }
+        else {
+            if ((TimerGetRemaining(lib1765BC64_gv_eltradWaitTimer) != 0.0) && UnitTestState(lp_aiUnit, c_unitStateIdle)) {
+                lv_order = lib1765BC64_gf_EltradWaiting(lp_player, lp_aiUnit, UnitGroup(null, lib1E3F036D_gv_zombiePlayer, RegionCircle(UnitGetPosition(lp_aiUnit), 10.0), UnitFilter((1 << c_targetFilterVisible), 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0));
+                if ((lv_order == null)) {
+                    return ;
+                }
+                else {
+                }
+                if (UnitOrderIsValid(lp_aiUnit, lv_order)) {
+                    libNtve_gf_AICast(lp_aiUnit, lv_order);
+                }
+                else {
+                }
+            }
+            else {
+            }
+        }
+    }
+}
+
+unitgroup lib1765BC64_gf_GetLowLifeEnemies (unitgroup lp_scanGroup, fixed lp_lifeThreshold) {
+    unitgroup auto9F4C2D41_g;
+    int auto9F4C2D41_u;
+
+    // Variable Declarations
+    unitgroup lv_lowlifeenemygroup;
+    unit lv_unit;
+
+    // Variable Initialization
+    lv_lowlifeenemygroup = UnitGroupEmpty();
+
+    // Implementation
+    auto9F4C2D41_g = lp_scanGroup;
+    auto9F4C2D41_u = 1;
+    for ( ; auto9F4C2D41_u <= UnitGroupCount(auto9F4C2D41_g, c_unitCountAll) ; auto9F4C2D41_u += BoolToInt(lv_unit == UnitGroupUnit(auto9F4C2D41_g, auto9F4C2D41_u)) ) {
+        lv_unit = UnitGroupUnit(auto9F4C2D41_g, auto9F4C2D41_u);
+        if ((UnitGetPropertyFixed(lv_unit, c_unitPropLifePercent, c_unitPropCurrent) <= lp_lifeThreshold)) {
+            UnitGroupAdd(lv_lowlifeenemygroup, lv_unit);
+        }
+        else {
+        }
+    }
+    return lv_lowlifeenemygroup;
+}
+
+order lib1765BC64_gf_EltradWaiting (int lp_player, unit lp_aiUnit, unitgroup lp_scanGroup) {
+    // Variable Declarations
+    unitgroup lv_walkerstoEat;
+    unit lv_target;
+
+    // Variable Initialization
+    lv_walkerstoEat = UnitGroupEmpty();
+
+    // Implementation
+    UnitGroupAddUnitGroup(lv_walkerstoEat, UnitGroupFilter("MarsColonistFemale2", lp_player, lp_scanGroup, UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0));
+    UnitGroupAddUnitGroup(lv_walkerstoEat, UnitGroupFilter("MarsColonistMale2", lp_player, lp_scanGroup, UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0));
+    UnitGroupAddUnitGroup(lv_walkerstoEat, UnitGroupFilter("MarsColonistMaleMiner2", lp_player, lp_scanGroup, UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0));
+    UnitGroupAddUnitGroup(lv_walkerstoEat, UnitGroupFilter("MarsPrisoner2", lp_player, lp_scanGroup, UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0));
+    UnitGroupAddUnitGroup(lv_walkerstoEat, UnitGroupFilter("MarsScientist2", lp_player, lp_scanGroup, UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0));
+    if ((UnitGroupCount(lv_walkerstoEat, c_unitCountAlive) == 0)) {
+        return null;
+    }
+    else {
+    }
+    lv_target = UnitGroupClosestToPoint(lv_walkerstoEat, UnitGetPosition(lp_aiUnit));
+    return OrderTargetingUnit(AbilityCommand("attack", 0), lv_target);
+}
+
+// Triggers
+//--------------------------------------------------------------------------------------------------
+// Trigger: Zombie Spawner Test
+//--------------------------------------------------------------------------------------------------
+bool lib1765BC64_gt_ZombieSpawnerTest_Func (bool testConds, bool runActions) {
+    // Conditions
+    if (testConds) {
+        if (!(GameIsTestMap(false))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    lib1E3F036D_gf_SetDifficulty(0);
+    lib1765BC64_gf_ZoneSpawning("AmbientSpawner", 24);
+    UnitGroupLoopBegin(lib1765BC64_gv_zombieSpawners);
+    for ( ; !UnitGroupLoopDone() ; UnitGroupLoopStep() ) {
+        UnitBehaviorRemove(UnitGroupLoopCurrent(), "ZombieUnitSpawnDisable", 1);
+    }
+    UnitGroupLoopEnd();
+    Wait(120.0, c_timeGame);
+    UnitGroupLoopBegin(UnitGroup("MarsColonistFemale2", c_playerAny, RegionEntireMap(), UnitFilter(0, 0, 0, 0), 0));
+    for ( ; !UnitGroupLoopDone() ; UnitGroupLoopStep() ) {
+        UnitKill(UnitGroupLoopCurrent());
+    }
+    UnitGroupLoopEnd();
+    UnitGroupLoopBegin(UnitGroup("MarsPrisoner2", c_playerAny, RegionEntireMap(), UnitFilter(0, 0, 0, 0), 0));
+    for ( ; !UnitGroupLoopDone() ; UnitGroupLoopStep() ) {
+        UnitKill(UnitGroupLoopCurrent());
+    }
+    UnitGroupLoopEnd();
+    UnitGroupLoopBegin(UnitGroup("MarsScientist2", c_playerAny, RegionEntireMap(), UnitFilter(0, 0, 0, 0), 0));
+    for ( ; !UnitGroupLoopDone() ; UnitGroupLoopStep() ) {
+        UnitKill(UnitGroupLoopCurrent());
+    }
+    UnitGroupLoopEnd();
+    UnitGroupLoopBegin(UnitGroup("MarsColonistMale2", c_playerAny, RegionEntireMap(), UnitFilter(0, 0, 0, 0), 0));
+    for ( ; !UnitGroupLoopDone() ; UnitGroupLoopStep() ) {
+        UnitKill(UnitGroupLoopCurrent());
+    }
+    UnitGroupLoopEnd();
+    if ((lib1765BC64_gv_zombieSpawners != UnitGroup(null, c_playerAny, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0))) {
+        TriggerDebugOutput(1, StringExternal("Param/Value/lib_1765BC64_972A0CE2"), true);
+    }
+    lib1E3F036D_gf_SetDifficulty(1);
+    UnitGroupLoopBegin(lib1765BC64_gv_zombieSpawners);
+    for ( ; !UnitGroupLoopDone() ; UnitGroupLoopStep() ) {
+        UnitBehaviorRemove(UnitGroupLoopCurrent(), "ZombieUnitSpawnDisable", 1);
+    }
+    UnitGroupLoopEnd();
+    Wait(120.0, c_timeGame);
+    UnitGroupLoopBegin(UnitGroup("MarsColonistFemale2", c_playerAny, RegionEntireMap(), UnitFilter(0, 0, 0, 0), 0));
+    for ( ; !UnitGroupLoopDone() ; UnitGroupLoopStep() ) {
+        UnitKill(UnitGroupLoopCurrent());
+    }
+    UnitGroupLoopEnd();
+    UnitGroupLoopBegin(UnitGroup("MarsPrisoner2", c_playerAny, RegionEntireMap(), UnitFilter(0, 0, 0, 0), 0));
+    for ( ; !UnitGroupLoopDone() ; UnitGroupLoopStep() ) {
+        UnitKill(UnitGroupLoopCurrent());
+    }
+    UnitGroupLoopEnd();
+    UnitGroupLoopBegin(UnitGroup("MarsScientist2", c_playerAny, RegionEntireMap(), UnitFilter(0, 0, 0, 0), 0));
+    for ( ; !UnitGroupLoopDone() ; UnitGroupLoopStep() ) {
+        UnitKill(UnitGroupLoopCurrent());
+    }
+    UnitGroupLoopEnd();
+    UnitGroupLoopBegin(UnitGroup("MarsColonistMale2", c_playerAny, RegionEntireMap(), UnitFilter(0, 0, 0, 0), 0));
+    for ( ; !UnitGroupLoopDone() ; UnitGroupLoopStep() ) {
+        UnitKill(UnitGroupLoopCurrent());
+    }
+    UnitGroupLoopEnd();
+    UnitGroupLoopBegin(UnitGroup("Hound", c_playerAny, RegionEntireMap(), UnitFilter(0, 0, 0, 0), 0));
+    for ( ; !UnitGroupLoopDone() ; UnitGroupLoopStep() ) {
+        UnitKill(UnitGroupLoopCurrent());
+    }
+    UnitGroupLoopEnd();
+    UnitGroupLoopBegin(UnitGroup("Stalker2", c_playerAny, RegionEntireMap(), UnitFilter(0, 0, 0, 0), 0));
+    for ( ; !UnitGroupLoopDone() ; UnitGroupLoopStep() ) {
+        UnitKill(UnitGroupLoopCurrent());
+    }
+    UnitGroupLoopEnd();
+    if ((lib1765BC64_gv_zombieSpawners != UnitGroup(null, c_playerAny, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0))) {
+        TriggerDebugOutput(1, StringExternal("Param/Value/lib_1765BC64_A9CBEFA1"), true);
+    }
+    lib1E3F036D_gf_SetDifficulty(2);
+    UnitGroupLoopBegin(lib1765BC64_gv_zombieSpawners);
+    for ( ; !UnitGroupLoopDone() ; UnitGroupLoopStep() ) {
+        UnitBehaviorRemove(UnitGroupLoopCurrent(), "ZombieUnitSpawnDisable", 1);
+    }
+    UnitGroupLoopEnd();
+    Wait(120.0, c_timeGame);
+    UnitGroupLoopBegin(UnitGroup(null, c_playerAny, RegionEntireMap(), UnitFilter(0, 0, 0, 0), 0));
+    for ( ; !UnitGroupLoopDone() ; UnitGroupLoopStep() ) {
+        UnitKill(UnitGroupLoopCurrent());
+    }
+    UnitGroupLoopEnd();
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib1765BC64_gt_ZombieSpawnerTest_Init () {
+    lib1765BC64_gt_ZombieSpawnerTest = TriggerCreate("lib1765BC64_gt_ZombieSpawnerTest_Func");
+    TriggerAddEventChatMessage(lib1765BC64_gt_ZombieSpawnerTest, c_playerAny, "TestZombie", true);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Zombie Settings
+//--------------------------------------------------------------------------------------------------
+bool lib1765BC64_gt_ZombieSettings_Func (bool testConds, bool runActions) {
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    lib1765BC64_gv_suppyLimitPerPlayer = lib1E3F036D_gf_GameDifficultyInteger(10, 20, 30);
+    lib1765BC64_gv_hordeMutationChance = lib1E3F036D_gf_GameDifficultyReal(25.0, 50.0, 75.0);
+    if ((PlayerDifficulty(lib1E3F036D_gv_zombiePlayer) == 2)) {
+        CatalogFieldValueSet(c_gameCatalogBehavior, "ParasiteMoundSpawn", "Limit", lib1E3F036D_gv_zombiePlayer, "6");
+        CatalogFieldValueSet(c_gameCatalogBehavior, "HeavyParasiteSpawnonDeath", "Modification.DeathResponse.Chance", lib1E3F036D_gv_zombiePlayer, "0.6");
+        CatalogFieldValueSet(c_gameCatalogBehavior, "WalkerParasiteSpawnonDeath", "Modification.DeathResponse.Chance", lib1E3F036D_gv_zombiePlayer, "0.4");
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib1765BC64_gt_ZombieSettings_Init () {
+    lib1765BC64_gt_ZombieSettings = TriggerCreate("lib1765BC64_gt_ZombieSettings_Func");
+    TriggerAddEventTimeElapsed(lib1765BC64_gt_ZombieSettings, 5.0, c_timeGame);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Setup Ambient Wave
+//--------------------------------------------------------------------------------------------------
+bool lib1765BC64_gt_SetupAmbientWave_Func (bool testConds, bool runActions) {
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    AIWaveInfoAdd(lib1765BC64_gv_ambientWaveInfo, ("MarsColonistFemale2"), 5);
+    AIWaveInfoAdd(lib1765BC64_gv_ambientWaveInfo, ("MarsColonistMale2"), 5);
+    AIWaveInfoAdd(lib1765BC64_gv_ambientWaveInfo, ("MarsPrisoner2"), 5);
+    AIWaveInfoAdd(lib1765BC64_gv_ambientWaveInfo, ("MarsScientist2"), 5);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib1765BC64_gt_SetupAmbientWave_Init () {
+    lib1765BC64_gt_SetupAmbientWave = TriggerCreate("lib1765BC64_gt_SetupAmbientWave_Func");
+    TriggerAddEventGeneric(lib1765BC64_gt_SetupAmbientWave, lib1765BC64_gv_zombieIntialize);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Overgrown Damage Reduction
+//--------------------------------------------------------------------------------------------------
+bool lib1765BC64_gt_OvergrownDamageReduction_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    fixed lv_damageAbsorbed;
+
+    // Variable Initialization
+    lv_damageAbsorbed = (EventUnitDamageAbsorbed() * 0.5);
+
+    // Conditions
+    if (testConds) {
+        if (!(lib09BE6BA8_gf_AttackerbehindTarget(EventUnitDamageSourceUnit(), EventUnit(), 160.0))) {
+            return false;
+        }
+
+        if (!((EventUnitDamageEffect() != "OvergrownPenetratingDamage"))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    UnitDamage(EventUnitDamageSourceUnit(), "OvergrownPenetratingDamage", EventUnit(), lv_damageAbsorbed);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib1765BC64_gt_OvergrownDamageReduction_Init () {
+    lib1765BC64_gt_OvergrownDamageReduction = TriggerCreate("lib1765BC64_gt_OvergrownDamageReduction_Func");
+    TriggerEnable(lib1765BC64_gt_OvergrownDamageReduction, false);
+    TriggerAddEventUnitDamaged(lib1765BC64_gt_OvergrownDamageReduction, UnitRefFromVariable("lib1765BC64_gv_sarbus"), c_unitDamageTypeMelee, c_unitDamageEither, null);
+    TriggerAddEventUnitDamaged(lib1765BC64_gt_OvergrownDamageReduction, UnitRefFromVariable("lib1765BC64_gv_sarbus"), c_unitDamageTypeRanged, c_unitDamageEither, null);
+    TriggerAddEventUnitDamaged(lib1765BC64_gt_OvergrownDamageReduction, UnitRefFromVariable("lib1765BC64_gv_sarbus"), c_unitDamageTypeSplash, c_unitDamageEither, null);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Radiation Field Upgrade
+//--------------------------------------------------------------------------------------------------
+bool lib1765BC64_gt_RadiationFieldUpgrade_Func (bool testConds, bool runActions) {
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TechTreeUpgradeAddLevel(EventPlayer(), "RadiationFieldDamageIncrease", 1);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib1765BC64_gt_RadiationFieldUpgrade_Init () {
+    lib1765BC64_gt_RadiationFieldUpgrade = TriggerCreate("lib1765BC64_gt_RadiationFieldUpgrade_Func");
+    TriggerAddEventUnitAbility(lib1765BC64_gt_RadiationFieldUpgrade, null, AbilityCommand("EnergyDrain", 0), c_abilEffectStageFinish, false);
+}
+
+void lib1765BC64_InitTriggers () {
+    lib1765BC64_gt_ZombieSpawnerTest_Init();
+    lib1765BC64_gt_ZombieSettings_Init();
+    lib1765BC64_gt_SetupAmbientWave_Init();
+    lib1765BC64_gt_OvergrownDamageReduction_Init();
+    lib1765BC64_gt_RadiationFieldUpgrade_Init();
+}
+
+//--------------------------------------------------------------------------------------------------
+// Library Initialization
+//--------------------------------------------------------------------------------------------------
+bool lib1765BC64_InitLib_completed = false;
+
+void lib1765BC64_InitLib () {
+    if (lib1765BC64_InitLib_completed) {
+        return;
+    }
+
+    lib1765BC64_InitVariables();
+    lib1765BC64_InitCustomScript();
+    lib1765BC64_InitTriggers();
+
+    lib1765BC64_InitLib_completed = true;
+}
+

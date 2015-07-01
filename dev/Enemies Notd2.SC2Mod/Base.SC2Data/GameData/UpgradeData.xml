@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<Catalog>
+    <CUpgrade default="1" id="ZombieScalingTemplate">
+        <Flags index="UpgradeCheat" value="0"/>
+        <Name value="Upgrade/Name/ZombieScalingTemplate"/>
+        <Alert value=""/>
+        <Race value="Zombie"/>
+        <EditorCategories value="Race:Zombie"/>
+        <MaxLevel value="100"/>
+        <LeaderAlias value="ZombieScalingTemplate"/>
+    </CUpgrade>
+    <CUpgrade id="RadiationFieldDamageIncrease">
+        <Race value="Zombie"/>
+        <EffectArray Reference="Effect,RadiationFieldDamage,Amount" Value="0.5"/>
+        <MaxLevel value="100"/>
+    </CUpgrade>
+    <CUpgrade id="AirborneDifficultyScaling" parent="ZombieScalingTemplate">
+        <Name value="Upgrade/Name/AirborneDifficultyScaling"/>
+        <EffectArray Reference="Behavior,AirborneDifficultyScaling,Modification.MoveSpeedMultiplier" Value="0.005"/>
+        <EffectArray Reference="Behavior,AirborneDifficultyScaling,Modification.DamageDealtFraction[Ranged]" Value="0.005"/>
+    </CUpgrade>
+    <CUpgrade id="HoundDifficultyScaling" parent="ZombieScalingTemplate">
+        <Name value="Upgrade/Name/HoundDifficultyScaling"/>
+        <EffectArray Reference="Behavior,HoundDifficultyScaling,Modification.DamageDealtFraction[Melee]" Value="0.005"/>
+        <EffectArray Reference="Behavior,HoundDifficultyScaling,Modification.DamageDealtFraction[Splash]" Value="0.005"/>
+        <EffectArray Reference="Behavior,HoundDifficultyScaling,Modification.MoveSpeedMultiplier" Value="0.01"/>
+    </CUpgrade>
+    <CUpgrade id="InfestorDifficultyScaling" parent="ZombieScalingTemplate">
+        <Name value="Upgrade/Name/InfestorDifficultyScaling"/>
+        <EffectArray Reference="Behavior,InfestorDifficultyScaling,Modification.VitalMaxFractionArray[Life]" Value="0.025"/>
+        <EffectArray Reference="Behavior,InfestorDifficultyScaling,Modification.MoveSpeedMultiplier" Value="0.01"/>
+    </CUpgrade>
+    <CUpgrade id="ParasiteDifficultyScaling" parent="ZombieScalingTemplate">
+        <Name value="Upgrade/Name/ParasiteDifficultyScaling"/>
+        <EffectArray Reference="Behavior,ParasiteDifficultyScaling,Modification.MoveSpeedMultiplier" Value="0.005"/>
+        <EffectArray Reference="Behavior,ParasiteDifficultyScaling,Modification.VitalMaxFractionArray[Life]" Value="0.005"/>
+    </CUpgrade>
+    <CUpgrade id="RadiationFieldRangeIncrease">
+        <Race value="Zombie"/>
+        <EffectArray Reference="Effect,RadiationFieldDamage,AreaArray[0].Radius" Value="0.5"/>
+        <MaxLevel value="100"/>
+    </CUpgrade>
+    <CUpgrade id="SlasherDifficultyScaling" parent="ZombieScalingTemplate">
+        <Name value="Upgrade/Name/SlasherDifficultyScaling"/>
+        <EffectArray Reference="Behavior,SlasherDifficultyScaling,Modification.DamageDealtFraction[Melee]" Value="0.005"/>
+        <EffectArray Reference="Behavior,SlasherDifficultyScaling,Modification.DamageDealtFraction[Splash]" Value="0.005"/>
+        <EffectArray Reference="Behavior,SlasherDifficultyScaling,Modification.VitalMaxFractionArray[Life]" Value="0.005"/>
+    </CUpgrade>
+    <CUpgrade id="StalkerDifficultyScaling" parent="ZombieScalingTemplate">
+        <Name value="Upgrade/Name/StalkerDifficultyScaling"/>
+        <EffectArray Reference="Behavior,StalkerDifficultyScaling,Modification.VitalMaxFractionArray[Life]" Value="0.01"/>
+        <EffectArray Reference="Behavior,StalkerDifficultyScaling,Modification.VitalRegenArray[Life]" Value="0.250000"/>
+    </CUpgrade>
+    <CUpgrade id="SuicideDifficultyScaling" parent="ZombieScalingTemplate">
+        <Name value="Upgrade/Name/SuicideDifficultyScaling"/>
+        <EffectArray Reference="Behavior,SuicideDifficultyScaling,Modification.DamageDealtFraction[Melee]" Value="0.01"/>
+        <EffectArray Reference="Behavior,SuicideDifficultyScaling,Modification.DamageDealtFraction[Splash]" Value="0.01"/>
+        <EffectArray Reference="Behavior,SuicideDifficultyScaling,Modification.DamageDealtFraction[Spell]" Value="0.01"/>
+    </CUpgrade>
+    <CUpgrade id="SuperHeavyDifficultyScaling" parent="ZombieScalingTemplate">
+        <Name value="Upgrade/Name/SuperHeavyDifficultyScaling"/>
+        <EffectArray Reference="Behavior,SuperHeavyDifficultyScaling,Modification.DamageDealtFraction[Melee]" Value="0.01"/>
+        <EffectArray Reference="Behavior,SuperHeavyDifficultyScaling,Modification.DamageDealtFraction[Splash]" Value="0.01"/>
+        <EffectArray Reference="Behavior,SuperHeavyDifficultyScaling,Modification.VitalMaxFractionArray[Life]" Value="0.01"/>
+    </CUpgrade>
+    <CUpgrade id="SupportDifficultyScaling" parent="ZombieScalingTemplate">
+        <Name value="Upgrade/Name/SupportDifficultyScaling"/>
+        <EffectArray Reference="Behavior,SupportDifficultyScaling,Modification.VitalMaxArray[Energy]" Value="5"/>
+    </CUpgrade>
+    <CUpgrade id="WalkerDifficultyScaling" parent="ZombieScalingTemplate">
+        <Name value="Upgrade/Name/WalkerDifficultyScaling"/>
+        <EffectArray Reference="Behavior,WalkerDifficultyScaling,Modification.DeathResponse.Cost.VitalFraction[Life]" Value="0.01"/>
+    </CUpgrade>
+</Catalog>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<Catalog>
+    <CLootUnit id="AmmunitionCase"/>
+    <CLootUnit id="AntiVenom"/>
+    <CLootUnit id="ArmorPiercing"/>
+    <CLootUnit id="Bandage"/>
+    <CLootUnit id="Expanding"/>
+    <CLootUnit id="FlareGun"/>
+    <CLootUnit id="Magazine"/>
+    <CLootUnit id="Medkit"/>
+    <CLootUnit id="MendingPaste"/>
+    <CLootUnit id="PlasmaCore"/>
+    <CLootUnit id="RoadFlare"/>
+    <CLootSet id="SupplyDropDefensiveAntiVenomSet">
+        <MinCount value="2"/>
+        <MaxCount value="2"/>
+        <ChildArray Child="AntiVenom"/>
+    </CLootSet>
+    <CLootSet id="SupplyDropDefensiveSet">
+        <MaxCount value="1"/>
+        <ChildArray Chance="25" Child="SupplyDropDefensiveAntiVenomSet"/>
+        <ChildArray Chance="25" Child="SupplyDropDefensiveBandageSet"/>
+        <ChildArray Chance="25" Child="MendingPaste"/>
+        <ChildArray Chance="25" Child="FlareGun"/>
+    </CLootSet>
+    <CLootSet id="SupplyDropOffensiveAmmoSet">
+        <MinCount value="4"/>
+        <MaxCount value="4"/>
+        <ChildArray Child="AmmunitionCase"/>
+        <ChildArray Child="Magazine"/>
+        <ChildArray Child="Magazine"/>
+        <ChildArray Child="Magazine"/>
+    </CLootSet>
+    <CLootSet id="SupplyDropOffensiveSet">
+        <MinCount value="1"/>
+        <MaxCount value="1"/>
+        <ChildArray Chance="25" Child="Expanding"/>
+        <ChildArray Chance="25" Child="SupplyDropOffensiveAmmoSet"/>
+        <ChildArray Chance="25" Child="PlasmaCore"/>
+        <ChildArray Chance="25" Child="ArmorPiercing"/>
+    </CLootSet>
+    <CLootSet id="SupplyDropDefensiveBandageSet">
+        <MinCount value="2"/>
+        <MaxCount value="2"/>
+        <ChildArray Child="Bandage"/>
+    </CLootSet>
+</Catalog>

@@ -1,0 +1,430 @@
+include "TriggerLibs/NativeLib"
+
+//--------------------------------------------------------------------------------------------------
+// Library: Customization System
+//--------------------------------------------------------------------------------------------------
+// Structures
+struct lib61822889_gs_PlayerColorItem {
+    int lv_slider;
+    int lv_editBox;
+};
+
+struct lib61822889_gs_PlayerColorDialog {
+    lib61822889_gs_PlayerColorItem lv_emissiveRed;
+    lib61822889_gs_PlayerColorItem lv_emissiveGreen;
+    lib61822889_gs_PlayerColorItem lv_emissiveBlue;
+    lib61822889_gs_PlayerColorItem lv_diffuseRed;
+    lib61822889_gs_PlayerColorItem lv_diffuseGreen;
+    lib61822889_gs_PlayerColorItem lv_diffuseBlue;
+    lib61822889_gs_PlayerColorItem lv_hDR;
+};
+
+struct lib61822889_gs_PlayerColor {
+    fixed lv_emissiveRed;
+    fixed lv_emissiveGreen;
+    fixed lv_emissiveBlue;
+    fixed lv_diffuseRed;
+    fixed lv_diffuseGreen;
+    fixed lv_diffuseBlue;
+    lib61822889_gs_PlayerColorDialog lv_colorSelectionDialogItems;
+    int lv_colorSelectionPanel;
+    int lv_emissivePanel;
+    int lv_diffusePanel;
+    unit lv_demoModel;
+};
+
+// Variables
+lib61822889_gs_PlayerColor lib61822889_gv_playerColors;
+int lib61822889_gv_colorCustomizationDialog;
+
+void lib61822889_InitVariables () {
+    lib61822889_gv_playerColors.lv_colorSelectionDialogItems.lv_emissiveRed.lv_slider = c_invalidDialogControlId;
+    lib61822889_gv_playerColors.lv_colorSelectionDialogItems.lv_emissiveRed.lv_editBox = c_invalidDialogControlId;
+    lib61822889_gv_playerColors.lv_colorSelectionDialogItems.lv_emissiveGreen.lv_slider = c_invalidDialogControlId;
+    lib61822889_gv_playerColors.lv_colorSelectionDialogItems.lv_emissiveGreen.lv_editBox = c_invalidDialogControlId;
+    lib61822889_gv_playerColors.lv_colorSelectionDialogItems.lv_emissiveBlue.lv_slider = c_invalidDialogControlId;
+    lib61822889_gv_playerColors.lv_colorSelectionDialogItems.lv_emissiveBlue.lv_editBox = c_invalidDialogControlId;
+    lib61822889_gv_playerColors.lv_colorSelectionDialogItems.lv_diffuseRed.lv_slider = c_invalidDialogControlId;
+    lib61822889_gv_playerColors.lv_colorSelectionDialogItems.lv_diffuseRed.lv_editBox = c_invalidDialogControlId;
+    lib61822889_gv_playerColors.lv_colorSelectionDialogItems.lv_diffuseGreen.lv_slider = c_invalidDialogControlId;
+    lib61822889_gv_playerColors.lv_colorSelectionDialogItems.lv_diffuseGreen.lv_editBox = c_invalidDialogControlId;
+    lib61822889_gv_playerColors.lv_colorSelectionDialogItems.lv_diffuseBlue.lv_slider = c_invalidDialogControlId;
+    lib61822889_gv_playerColors.lv_colorSelectionDialogItems.lv_diffuseBlue.lv_editBox = c_invalidDialogControlId;
+    lib61822889_gv_playerColors.lv_colorSelectionDialogItems.lv_hDR.lv_slider = c_invalidDialogControlId;
+    lib61822889_gv_playerColors.lv_colorSelectionDialogItems.lv_hDR.lv_editBox = c_invalidDialogControlId;
+    lib61822889_gv_playerColors.lv_colorSelectionPanel = c_invalidDialogControlId;
+    lib61822889_gv_playerColors.lv_emissivePanel = c_invalidDialogControlId;
+    lib61822889_gv_playerColors.lv_diffusePanel = c_invalidDialogControlId;
+    lib61822889_gv_colorCustomizationDialog = c_invalidDialogId;
+}
+
+// Function Declarations
+color lib61822889_gf_GetCustomTeamEmissive (int lp_player);
+color lib61822889_gf_GetCustomTeamDiffuse (int lp_player);
+color lib61822889_gf_GetCustomTint (int lp_player);
+void lib61822889_gf_CreateColorSelection (int lp_dialog, int lp_player);
+void lib61822889_gf_CreateColorMenu (int lp_player);
+void lib61822889_gf_CreateEmissivePanel (int lp_player);
+void lib61822889_gf_CreateDiffusePanel (int lp_player);
+void lib61822889_gf_CreateDemoPortrait (int lp_panel, int lp_player);
+void lib61822889_gf_UpdateColorPanel (int lp_player);
+void lib61822889_gf_UpdateEditBoxes (int lp_player);
+void lib61822889_gf_UpdateSliders (int lp_player);
+void lib61822889_gf_UpdateDemoModel (int lp_player);
+fixed lib61822889_gf_EditBoxValue (int lp_dialogItem);
+
+// Trigger Declarations
+trigger lib61822889_gt_ColorCustomizer;
+trigger lib61822889_gt_ColorMenuSelection;
+trigger lib61822889_gt_ColorSync;
+
+// Functions
+color lib61822889_gf_GetCustomTeamEmissive (int lp_player) {
+    // Implementation
+    return Color(0.00, 0.00, 0.00);
+}
+
+color lib61822889_gf_GetCustomTeamDiffuse (int lp_player) {
+    // Implementation
+    return Color(0.00, 0.00, 0.00);
+}
+
+color lib61822889_gf_GetCustomTint (int lp_player) {
+    // Implementation
+    return Color(0.00, 0.00, 0.00);
+}
+
+void lib61822889_gf_CreateColorSelection (int lp_dialog, int lp_player) {
+    // Implementation
+    DialogControlCreate(lp_dialog, c_triggerControlTypePanel);
+    DialogControlSetFullDialog(DialogControlLastCreated(), PlayerGroupAll(), true);
+    DialogControlSetVisible(DialogControlLastCreated(), PlayerGroupAll(), false);
+    DialogControlSetVisible(DialogControlLastCreated(), PlayerGroupSingle(lp_player), true);
+    lib61822889_gv_playerColors.lv_colorSelectionPanel = DialogControlLastCreated();
+    lib61822889_gf_CreateDiffusePanel(lp_player);
+    lib61822889_gf_CreateEmissivePanel(lp_player);
+    lib61822889_gf_CreateColorMenu(lp_player);
+    lib61822889_gf_CreateDemoPortrait(lib61822889_gv_playerColors.lv_colorSelectionPanel, lp_player);
+}
+
+void lib61822889_gf_CreateColorMenu (int lp_player) {
+    // Implementation
+    DialogControlCreateInPanel(lib61822889_gv_playerColors.lv_colorSelectionPanel, c_triggerControlTypePulldown);
+    DialogControlSetSize(DialogControlLastCreated(), PlayerGroupAll(), 350, 50);
+    DialogControlAddItem(DialogControlLastCreated(), PlayerGroupAll(), StringExternal("Param/Value/lib_61822889_4DEACB7F"));
+    DialogControlAddItem(DialogControlLastCreated(), PlayerGroupAll(), StringExternal("Param/Value/lib_61822889_EF81C16F"));
+    DialogControlSelectItem(DialogControlLastCreated(), PlayerGroupAll(), 1);
+    DialogControlSetPosition(DialogControlLastCreated(), PlayerGroupAll(), c_anchorTopLeft, 140, 150);
+}
+
+void lib61822889_gf_CreateEmissivePanel (int lp_player) {
+    // Variable Declarations
+    int lv_tempPanel;
+
+    // Variable Initialization
+    lv_tempPanel = c_invalidDialogControlId;
+
+    // Implementation
+    DialogControlCreateInPanelFromTemplate(lib61822889_gv_playerColors.lv_colorSelectionPanel, c_triggerControlTypePanel, "PlayerColorSelection/ColorSelectionTemplate");
+    lib61822889_gv_playerColors.lv_emissivePanel = DialogControlLastCreated();
+    DialogControlSetFullDialog(DialogControlLastCreated(), PlayerGroupAll(), true);
+    DialogControlSetVisible(DialogControlLastCreated(), PlayerGroupAll(), false);
+    DialogControlHookup(lib61822889_gv_playerColors.lv_emissivePanel, c_triggerControlTypePanel, "RedColorSelect");
+    lv_tempPanel = DialogControlLastCreated();
+    DialogControlHookup(lv_tempPanel, c_triggerControlTypeEditBox, "EditBox");
+    libNtve_gf_SetDialogItemEditorValue(DialogControlLastCreated(), "0", PlayerGroupAll());
+    lib61822889_gv_playerColors.lv_colorSelectionDialogItems.lv_emissiveRed.lv_editBox = DialogControlLastCreated();
+    DialogControlHookup(lv_tempPanel, c_triggerControlTypeSlider, "Slider");
+    libNtve_gf_SetDialogItemCurrentValue(DialogControlLastCreated(), 0.0, PlayerGroupAll());
+    lib61822889_gv_playerColors.lv_colorSelectionDialogItems.lv_emissiveRed.lv_slider = DialogControlLastCreated();
+    DialogControlHookup(lib61822889_gv_playerColors.lv_emissivePanel, c_triggerControlTypePanel, "GreenColorSelect");
+    lv_tempPanel = DialogControlLastCreated();
+    DialogControlHookup(lv_tempPanel, c_triggerControlTypeEditBox, "EditBox");
+    libNtve_gf_SetDialogItemEditorValue(DialogControlLastCreated(), "0", PlayerGroupAll());
+    lib61822889_gv_playerColors.lv_colorSelectionDialogItems.lv_emissiveGreen.lv_editBox = DialogControlLastCreated();
+    DialogControlHookup(lv_tempPanel, c_triggerControlTypeSlider, "Slider");
+    libNtve_gf_SetDialogItemCurrentValue(DialogControlLastCreated(), 0.0, PlayerGroupAll());
+    lib61822889_gv_playerColors.lv_colorSelectionDialogItems.lv_emissiveGreen.lv_slider = DialogControlLastCreated();
+    DialogControlHookup(lib61822889_gv_playerColors.lv_emissivePanel, c_triggerControlTypePanel, "BlueColorSelect");
+    lv_tempPanel = DialogControlLastCreated();
+    DialogControlHookup(lv_tempPanel, c_triggerControlTypeEditBox, "EditBox");
+    libNtve_gf_SetDialogItemEditorValue(DialogControlLastCreated(), "0", PlayerGroupAll());
+    lib61822889_gv_playerColors.lv_colorSelectionDialogItems.lv_emissiveBlue.lv_editBox = DialogControlLastCreated();
+    DialogControlHookup(lv_tempPanel, c_triggerControlTypeSlider, "Slider");
+    libNtve_gf_SetDialogItemCurrentValue(DialogControlLastCreated(), 0.0, PlayerGroupAll());
+    lib61822889_gv_playerColors.lv_colorSelectionDialogItems.lv_emissiveBlue.lv_slider = DialogControlLastCreated();
+}
+
+void lib61822889_gf_CreateDiffusePanel (int lp_player) {
+    // Variable Declarations
+    int lv_tempPanel;
+
+    // Variable Initialization
+    lv_tempPanel = c_invalidDialogControlId;
+
+    // Implementation
+    DialogControlCreateInPanelFromTemplate(lib61822889_gv_playerColors.lv_colorSelectionPanel, c_triggerControlTypePanel, "PlayerColorSelection/ColorSelectionTemplate");
+    lib61822889_gv_playerColors.lv_diffusePanel = DialogControlLastCreated();
+    DialogControlSetFullDialog(DialogControlLastCreated(), PlayerGroupAll(), true);
+    DialogControlSetVisible(DialogControlLastCreated(), PlayerGroupAll(), false);
+    DialogControlSetVisible(DialogControlLastCreated(), PlayerGroupSingle(lp_player), true);
+    DialogControlHookup(lib61822889_gv_playerColors.lv_diffusePanel, c_triggerControlTypePanel, "RedColorSelect");
+    lv_tempPanel = DialogControlLastCreated();
+    DialogControlHookup(lv_tempPanel, c_triggerControlTypeEditBox, "EditBox");
+    libNtve_gf_SetDialogItemEditorValue(DialogControlLastCreated(), "0", PlayerGroupAll());
+    lib61822889_gv_playerColors.lv_colorSelectionDialogItems.lv_diffuseRed.lv_editBox = DialogControlLastCreated();
+    DialogControlHookup(lv_tempPanel, c_triggerControlTypeSlider, "Slider");
+    libNtve_gf_SetDialogItemCurrentValue(DialogControlLastCreated(), 0.0, PlayerGroupAll());
+    lib61822889_gv_playerColors.lv_colorSelectionDialogItems.lv_diffuseRed.lv_slider = DialogControlLastCreated();
+    DialogControlHookup(lib61822889_gv_playerColors.lv_diffusePanel, c_triggerControlTypePanel, "GreenColorSelect");
+    lv_tempPanel = DialogControlLastCreated();
+    DialogControlHookup(lv_tempPanel, c_triggerControlTypeEditBox, "EditBox");
+    libNtve_gf_SetDialogItemEditorValue(DialogControlLastCreated(), "0", PlayerGroupAll());
+    lib61822889_gv_playerColors.lv_colorSelectionDialogItems.lv_diffuseGreen.lv_editBox = DialogControlLastCreated();
+    DialogControlHookup(lv_tempPanel, c_triggerControlTypeSlider, "Slider");
+    libNtve_gf_SetDialogItemCurrentValue(DialogControlLastCreated(), 0.0, PlayerGroupAll());
+    lib61822889_gv_playerColors.lv_colorSelectionDialogItems.lv_diffuseGreen.lv_slider = DialogControlLastCreated();
+    DialogControlHookup(lib61822889_gv_playerColors.lv_diffusePanel, c_triggerControlTypePanel, "BlueColorSelect");
+    lv_tempPanel = DialogControlLastCreated();
+    DialogControlHookup(lv_tempPanel, c_triggerControlTypeEditBox, "EditBox");
+    libNtve_gf_SetDialogItemEditorValue(DialogControlLastCreated(), "0", PlayerGroupAll());
+    lib61822889_gv_playerColors.lv_colorSelectionDialogItems.lv_diffuseBlue.lv_editBox = DialogControlLastCreated();
+    DialogControlHookup(lv_tempPanel, c_triggerControlTypeSlider, "Slider");
+    libNtve_gf_SetDialogItemCurrentValue(DialogControlLastCreated(), 0.0, PlayerGroupAll());
+    lib61822889_gv_playerColors.lv_colorSelectionDialogItems.lv_diffuseBlue.lv_slider = DialogControlLastCreated();
+}
+
+void lib61822889_gf_CreateDemoPortrait (int lp_panel, int lp_player) {
+    // Variable Declarations
+    point lv_startingPoint;
+
+    // Variable Initialization
+    lv_startingPoint = PointWithOffsetPolar(RegionGetCenter(RegionEntireMap()), 60.0, 180.0);
+
+    // Implementation
+    UnitCreate(1, "Zealot", 0, lp_player, PointWithOffset(lv_startingPoint, (20.0 * IntToFixed(lp_player)), 0.0), 270.0);
+    lib61822889_gv_playerColors.lv_demoModel = UnitLastCreated();
+    UnitSetScale(UnitLastCreated(), 150.0, 150.0, 200.0);
+    UnitSetState(UnitLastCreated(), c_unitStateFidget, false);
+    UnitSetState(UnitLastCreated(), c_unitStateHighlightable, false);
+    UnitSetState(UnitLastCreated(), c_unitStateCursorable, false);
+    UnitSetState(UnitLastCreated(), c_unitStateTurnSuppressed, false);
+    UnitSetState(UnitLastCreated(), c_unitStateSelectable, false);
+    UnitSetState(UnitLastCreated(), c_unitStateStatusBar, false);
+    UnitSetState(UnitLastCreated(), c_unitStateInvulnerable, true);
+    CameraLookAt(lp_player, PointWithOffset(UnitGetPosition(UnitLastCreated()), -1.9, 0.0), 0.0, -1, 10.0);
+    CameraSetValue(lp_player, c_cameraValueDistance, 10.0, 0.0, -1, 10.0);
+    CameraSetValue(lp_player, c_cameraValuePitch, 0.0, 0.0, -1, 10.0);
+    CameraSetValue(lp_player, c_cameraValueHeightOffset, 1.0, 0.0, -1, 10.0);
+    CameraLockInput(lp_player, true);
+}
+
+void lib61822889_gf_UpdateColorPanel (int lp_player) {
+    // Implementation
+    lib61822889_gf_UpdateEditBoxes(lp_player);
+    Wait(0.0625, c_timeReal);
+    lib61822889_gf_UpdateSliders(lp_player);
+    lib61822889_gf_UpdateDemoModel(lp_player);
+}
+
+void lib61822889_gf_UpdateEditBoxes (int lp_player) {
+    // Implementation
+    if (true) {
+    }
+    else {
+    }
+    if (true) {
+    }
+    else {
+    }
+    if (true) {
+    }
+    else {
+    }
+    if (true) {
+    }
+    else {
+    }
+    if (true) {
+    }
+    else {
+    }
+    if (true) {
+    }
+    else {
+    }
+}
+
+void lib61822889_gf_UpdateSliders (int lp_player) {
+    // Variable Declarations
+    int lv_editValue;
+    int lv_currentEditBox;
+
+    // Variable Initialization
+    lv_currentEditBox = c_invalidDialogControlId;
+
+    // Implementation
+    if (true) {
+    }
+    else {
+    }
+    if (true) {
+    }
+    else {
+    }
+    if (true) {
+    }
+    else {
+    }
+    if (true) {
+    }
+    else {
+    }
+    if (true) {
+    }
+    else {
+    }
+    if (true) {
+    }
+    else {
+    }
+}
+
+void lib61822889_gf_UpdateDemoModel (int lp_player) {
+    // Implementation
+}
+
+fixed lib61822889_gf_EditBoxValue (int lp_dialogItem) {
+    // Variable Declarations
+    int lv_editValue;
+
+    // Variable Initialization
+
+    // Implementation
+    if ((libNtve_gf_DialogItemEditValue(lp_dialogItem, 1) == "")) {
+        lv_editValue = 0;
+    }
+    else {
+        lv_editValue = libNtve_gf_ArithmeticIntClamp(StringToInt(libNtve_gf_DialogItemEditValue(lp_dialogItem, 1)), 0, 255);
+    }
+    libNtve_gf_SetDialogItemEditorValue(lp_dialogItem, FixedToString(lv_editValue, c_fixedPrecisionAny), PlayerGroupAll());
+    return lv_editValue;
+}
+
+// Triggers
+//--------------------------------------------------------------------------------------------------
+// Trigger: Color Customizer
+//--------------------------------------------------------------------------------------------------
+bool lib61822889_gt_ColorCustomizer_Func (bool testConds, bool runActions) {
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    libNtve_gf_HideGameUI(false, PlayerGroupAll());
+    EnvironmentShow(c_environmentAll, false);
+    DialogCreate(500, 500, c_anchorCenter, 0, 0, true);
+    lib61822889_gv_colorCustomizationDialog = DialogLastCreated();
+    DialogSetFullscreen(DialogLastCreated(), true);
+    DialogSetVisible(DialogLastCreated(), PlayerGroupAll(), true);
+    DialogSetImageVisible(DialogLastCreated(), false);
+    lib61822889_gf_CreateColorSelection(DialogLastCreated(), 1);
+    TriggerExecute(lib61822889_gt_ColorSync, true, false);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib61822889_gt_ColorCustomizer_Init () {
+    lib61822889_gt_ColorCustomizer = TriggerCreate("lib61822889_gt_ColorCustomizer_Func");
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Color Menu Selection
+//--------------------------------------------------------------------------------------------------
+bool lib61822889_gt_ColorMenuSelection_Func (bool testConds, bool runActions) {
+    int auto21F587AF_val;
+
+    // Variable Declarations
+    int lv_usedidalogItem;
+    int lv_triggeringPlayer;
+
+    // Variable Initialization
+    lv_usedidalogItem = EventDialogControl();
+    lv_triggeringPlayer = EventPlayer();
+
+    // Conditions
+    if (testConds) {
+        if (!((DialogControlGetType(lv_usedidalogItem) == c_triggerControlTypePulldown))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    DialogControlSetVisible(lib61822889_gv_playerColors.lv_diffusePanel, PlayerGroupSingle(lv_triggeringPlayer), false);
+    DialogControlSetVisible(lib61822889_gv_playerColors.lv_emissivePanel, PlayerGroupSingle(lv_triggeringPlayer), false);
+    auto21F587AF_val = DialogControlGetSelectedItem(lv_usedidalogItem, lv_triggeringPlayer);
+    if (auto21F587AF_val == 1) {
+        DialogControlSetVisible(lib61822889_gv_playerColors.lv_diffusePanel, PlayerGroupSingle(lv_triggeringPlayer), true);
+
+    }
+    else if (auto21F587AF_val == 2) {
+        DialogControlSetVisible(lib61822889_gv_playerColors.lv_emissivePanel, PlayerGroupSingle(lv_triggeringPlayer), true);
+
+    }
+    else {
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib61822889_gt_ColorMenuSelection_Init () {
+    lib61822889_gt_ColorMenuSelection = TriggerCreate("lib61822889_gt_ColorMenuSelection_Func");
+    TriggerAddEventDialogControl(lib61822889_gt_ColorMenuSelection, c_playerAny, c_invalidDialogControlId, c_triggerControlEventTypeSelectionChanged);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Color Sync
+//--------------------------------------------------------------------------------------------------
+bool lib61822889_gt_ColorSync_Func (bool testConds, bool runActions) {
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    while (true) {
+        lib61822889_gf_UpdateColorPanel(1);
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib61822889_gt_ColorSync_Init () {
+    lib61822889_gt_ColorSync = TriggerCreate("lib61822889_gt_ColorSync_Func");
+}
+
+void lib61822889_InitTriggers () {
+    lib61822889_gt_ColorCustomizer_Init();
+    lib61822889_gt_ColorMenuSelection_Init();
+    lib61822889_gt_ColorSync_Init();
+}
+
+//--------------------------------------------------------------------------------------------------
+// Library Initialization
+//--------------------------------------------------------------------------------------------------
+bool lib61822889_InitLib_completed = false;
+
+void lib61822889_InitLib () {
+    if (lib61822889_InitLib_completed) {
+        return;
+    }
+
+    lib61822889_InitVariables();
+    lib61822889_InitTriggers();
+
+    lib61822889_InitLib_completed = true;
+}
+

@@ -1,0 +1,3202 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<Catalog>
+    <CModel id="RentodusJump" parent="ImpactFX">
+        <Model value="Assets\Effects\Other\JumpLandDust\JumpLandDust.m3"/>
+    </CModel>
+    <CModel id="Rentodus" parent="Unit" Race="Zerg">
+        <Model value="Assets\Units\Zerg\Primalisk\Primalisk.m3"/>
+        <AttachProps Id="Ref_Center" SquibType="Shield" RadiusShield="0.350000">
+            <Keys index="Shield" value="1"/>
+        </AttachProps>
+        <Flags index="Facial" value="1"/>
+        <Lighting value=""/>
+        <Occlusion value="Show"/>
+        <PlanetPanelCamera value="Star2CameraHigh13"/>
+        <Radius value="1.000000"/>
+        <ShadowRadius value="1.700000"/>
+        <SquibTypeDefault value="Flesh"/>
+        <TechPurchaseCamera value="Star2CameraHigh13"/>
+        <Tipability value="0.750000"/>
+        <TipabilityLength value="1.000000"/>
+        <TipabilityWidth value="1.000000"/>
+        <UnitGlossaryCamera value="Star2CameraHigh13"/>
+        <SelectionRadius value="1.700000"/>
+    </CModel>
+    <CModel id="SarbusBloated" parent="Unit" Race="Zerg">
+        <Model value="Assets\Units\Zerg\Kraith\Kraith.m3"/>
+        <Events>
+            <Anim value="Run,Start"/>
+            <Name value="RunStart"/>
+            <Type value="Sound"/>
+            <Time value="0.010000"/>
+            <Payload value="Spell_CrashingCharge_PreCast"/>
+        </Events>
+        <Events>
+            <Anim value="Run,Start"/>
+            <Name value="RunStart"/>
+            <Type value="Sound"/>
+            <Time value="0.010000"/>
+            <Payload value="Kraith_Vox_ChargePreCast"/>
+        </Events>
+        <Events>
+            <Anim value="Run,03"/>
+            <Name value="Run"/>
+            <Type value="Sound"/>
+            <Time value="0.100000"/>
+            <Payload value="Kraith_SpellRunCharge"/>
+        </Events>
+        <Events>
+            <Anim value="Run,03"/>
+            <Name value="Run"/>
+            <Type value="Sound"/>
+            <Time value="0.010000"/>
+            <Payload value="Kraith_FoleyMovement"/>
+        </Events>
+        <Events>
+            <Anim value="Run,End"/>
+            <Name value="Run"/>
+            <Type value="Sound"/>
+            <Time value="0.080000"/>
+            <Payload value="Kraith_SpellImpact_Mn"/>
+        </Events>
+        <Events>
+            <Anim value="Run,End"/>
+            <Name value="Run"/>
+            <Type value="Sound"/>
+            <Time value="0.080000"/>
+            <Payload value="Kraith_SpellImpact"/>
+        </Events>
+        <Events>
+            <Anim value="Run,End"/>
+            <Name value="Run"/>
+            <Type value="Sound"/>
+            <Time value="0.120000"/>
+            <Payload value="Kraith_ImpactSlap_Eso"/>
+        </Events>
+        <Events>
+            <Anim value="Run,End"/>
+            <Name value="Run"/>
+            <Type value="Sound"/>
+            <Time value="0.010000"/>
+            <Payload value="Kraith_Vox_Impact"/>
+        </Events>
+        <Events>
+            <Anim value="Walk,00"/>
+            <Name value="Run"/>
+            <Type value="Sound"/>
+            <Time value="0.010000"/>
+            <Payload value="Kraith_Foley_LargeFootSteps"/>
+        </Events>
+        <Events>
+            <Anim value="Walk,00"/>
+            <Name value="Run"/>
+            <Type value="Sound"/>
+            <Time value="0.010000"/>
+            <Payload value="Kraith_Vox_SlowWalk"/>
+        </Events>
+        <Events>
+            <Anim value="Walk,00"/>
+            <Name value="Run"/>
+            <Type value="Sound"/>
+            <Time value="1.570000"/>
+            <Payload value="Kraith_FoleyMovement"/>
+        </Events>
+        <Events>
+            <Anim value="Walk,00"/>
+            <Name value="Run"/>
+            <Type value="Sound"/>
+            <Time value="1.700000"/>
+            <Payload value="Kraith_Foley_LargeFootSteps"/>
+        </Events>
+        <Events>
+            <Anim value="Walk,00"/>
+            <Name value="Run"/>
+            <Type value="Sound"/>
+            <Time value="3.150000"/>
+            <Payload value="Kraith_FoleyMovement"/>
+        </Events>
+        <Events>
+            <Anim value="Walk,01"/>
+            <Name value="Run"/>
+            <Type value="Sound"/>
+            <Time value="0.060000"/>
+            <Payload value="Kraith_Foley_LargeFootSteps"/>
+        </Events>
+        <Events>
+            <Anim value="Walk,01"/>
+            <Name value="Run"/>
+            <Type value="Sound"/>
+            <Time value="0.940000"/>
+            <Payload value="Kraith_FoleyMovement"/>
+        </Events>
+        <Events>
+            <Anim value="Walk,01"/>
+            <Name value="Run"/>
+            <Type value="Sound"/>
+            <Time value="1.010000"/>
+            <Payload value="Kraith_Foley_LargeFootSteps"/>
+        </Events>
+        <Events>
+            <Anim value="Attack"/>
+            <Name value="Attack"/>
+            <Type value="Sound"/>
+            <Time value="0.550000"/>
+            <Payload value="Kraith_Vox_Attack"/>
+        </Events>
+        <Events>
+            <Anim value="Attack"/>
+            <Name value="Attack"/>
+            <Type value="Sound"/>
+            <Time value="0.490000"/>
+            <Payload value="Kraith_FoleyMovement"/>
+        </Events>
+        <Events>
+            <Anim value="Spell,Start,01"/>
+            <Name value="Attack"/>
+            <Type value="Sound"/>
+            <Time value="0.010000"/>
+            <Payload value="Kraith_Vox_Spell"/>
+        </Events>
+        <Events>
+            <Anim value="Spell,Start,01"/>
+            <Name value="Attack"/>
+            <Type value="Sound"/>
+            <Time value="0.900000"/>
+            <Payload value="Kraith_Vox_SpellStartSpine"/>
+        </Events>
+        <Events>
+            <Anim value="Spell,Start,B"/>
+            <Name value="Attack"/>
+            <Type value="Sound"/>
+            <Time value="0.150000"/>
+            <Payload value="Kraith_Vox_InhaleExert"/>
+        </Events>
+        <Occlusion value="Show"/>
+        <PlanetPanelCamera value="Star2CameraMid09"/>
+        <Radius value="1.250000"/>
+        <ScaleMax value="1.050000,1.050000,1.050000"/>
+        <ScaleMin value="1.050000,1.050000,1.050000"/>
+        <SelectionRadius value="1.250000"/>
+        <ShadowRadius value="1.250000"/>
+        <SquibTypeDefault value="Flesh"/>
+        <TechPurchaseCamera value="Star2CameraMid09"/>
+        <Tipability value="0.750000"/>
+        <TipabilityLength value="1.000000"/>
+        <TipabilityWidth value="0.600000"/>
+        <UnitGlossaryCamera value="Star2CameraMid09"/>
+    </CModel>
+    <CModel id="SarbusBurnLowHP">
+        <Model value="Assets\Effects\Terran\TerranBuildingFireMedium\TerranBuildingFireMedium.m3"/>
+    </CModel>
+    <CModel id="SarbusLordofDecay" parent="Unit" Race="Zerg">
+        <Model value="Assets\Units\Zerg\Kraith\Kraith.m3"/>
+        <Events>
+            <Anim value="Run,Start"/>
+            <Name value="RunStart"/>
+            <Type value="Sound"/>
+            <Time value="0.010000"/>
+            <Payload value="Spell_CrashingCharge_PreCast"/>
+        </Events>
+        <Events>
+            <Anim value="Run,Start"/>
+            <Name value="RunStart"/>
+            <Type value="Sound"/>
+            <Time value="0.010000"/>
+            <Payload value="Kraith_Vox_ChargePreCast"/>
+        </Events>
+        <Events>
+            <Anim value="Run,03"/>
+            <Name value="Run"/>
+            <Type value="Sound"/>
+            <Time value="0.100000"/>
+            <Payload value="Kraith_SpellRunCharge"/>
+        </Events>
+        <Events>
+            <Anim value="Run,03"/>
+            <Name value="Run"/>
+            <Type value="Sound"/>
+            <Time value="0.010000"/>
+            <Payload value="Kraith_FoleyMovement"/>
+        </Events>
+        <Events>
+            <Anim value="Run,End"/>
+            <Name value="Run"/>
+            <Type value="Sound"/>
+            <Time value="0.080000"/>
+            <Payload value="Kraith_SpellImpact_Mn"/>
+        </Events>
+        <Events>
+            <Anim value="Run,End"/>
+            <Name value="Run"/>
+            <Type value="Sound"/>
+            <Time value="0.080000"/>
+            <Payload value="Kraith_SpellImpact"/>
+        </Events>
+        <Events>
+            <Anim value="Run,End"/>
+            <Name value="Run"/>
+            <Type value="Sound"/>
+            <Time value="0.120000"/>
+            <Payload value="Kraith_ImpactSlap_Eso"/>
+        </Events>
+        <Events>
+            <Anim value="Run,End"/>
+            <Name value="Run"/>
+            <Type value="Sound"/>
+            <Time value="0.010000"/>
+            <Payload value="Kraith_Vox_Impact"/>
+        </Events>
+        <Events>
+            <Anim value="Walk,00"/>
+            <Name value="Run"/>
+            <Type value="Sound"/>
+            <Time value="0.010000"/>
+            <Payload value="Kraith_Foley_LargeFootSteps"/>
+        </Events>
+        <Events>
+            <Anim value="Walk,00"/>
+            <Name value="Run"/>
+            <Type value="Sound"/>
+            <Time value="0.010000"/>
+            <Payload value="Kraith_Vox_SlowWalk"/>
+        </Events>
+        <Events>
+            <Anim value="Walk,00"/>
+            <Name value="Run"/>
+            <Type value="Sound"/>
+            <Time value="1.570000"/>
+            <Payload value="Kraith_FoleyMovement"/>
+        </Events>
+        <Events>
+            <Anim value="Walk,00"/>
+            <Name value="Run"/>
+            <Type value="Sound"/>
+            <Time value="1.700000"/>
+            <Payload value="Kraith_Foley_LargeFootSteps"/>
+        </Events>
+        <Events>
+            <Anim value="Walk,00"/>
+            <Name value="Run"/>
+            <Type value="Sound"/>
+            <Time value="3.150000"/>
+            <Payload value="Kraith_FoleyMovement"/>
+        </Events>
+        <Events>
+            <Anim value="Walk,01"/>
+            <Name value="Run"/>
+            <Type value="Sound"/>
+            <Time value="0.060000"/>
+            <Payload value="Kraith_Foley_LargeFootSteps"/>
+        </Events>
+        <Events>
+            <Anim value="Walk,01"/>
+            <Name value="Run"/>
+            <Type value="Sound"/>
+            <Time value="0.940000"/>
+            <Payload value="Kraith_FoleyMovement"/>
+        </Events>
+        <Events>
+            <Anim value="Walk,01"/>
+            <Name value="Run"/>
+            <Type value="Sound"/>
+            <Time value="1.010000"/>
+            <Payload value="Kraith_Foley_LargeFootSteps"/>
+        </Events>
+        <Events>
+            <Anim value="Attack"/>
+            <Name value="Attack"/>
+            <Type value="Sound"/>
+            <Time value="0.550000"/>
+            <Payload value="Kraith_Vox_Attack"/>
+        </Events>
+        <Events>
+            <Anim value="Attack"/>
+            <Name value="Attack"/>
+            <Type value="Sound"/>
+            <Time value="0.490000"/>
+            <Payload value="Kraith_FoleyMovement"/>
+        </Events>
+        <Events>
+            <Anim value="Spell,Start,01"/>
+            <Name value="Attack"/>
+            <Type value="Sound"/>
+            <Time value="0.010000"/>
+            <Payload value="Kraith_Vox_Spell"/>
+        </Events>
+        <Events>
+            <Anim value="Spell,Start,01"/>
+            <Name value="Attack"/>
+            <Type value="Sound"/>
+            <Time value="0.900000"/>
+            <Payload value="Kraith_Vox_SpellStartSpine"/>
+        </Events>
+        <Events>
+            <Anim value="Spell,Start,B"/>
+            <Name value="Attack"/>
+            <Type value="Sound"/>
+            <Time value="0.150000"/>
+            <Payload value="Kraith_Vox_InhaleExert"/>
+        </Events>
+        <Occlusion value="Show"/>
+        <PlanetPanelCamera value="Star2CameraMid09"/>
+        <Radius value="1.250000"/>
+        <ScaleMax value="1.050000,1.050000,1.050000"/>
+        <ScaleMin value="1.050000,1.050000,1.050000"/>
+        <SelectionRadius value="1.250000"/>
+        <ShadowRadius value="1.250000"/>
+        <SquibTypeDefault value="Flesh"/>
+        <TechPurchaseCamera value="Star2CameraMid09"/>
+        <Tipability value="0.750000"/>
+        <TipabilityLength value="1.000000"/>
+        <TipabilityWidth value="0.600000"/>
+        <UnitGlossaryCamera value="Star2CameraMid09"/>
+    </CModel>
+    <CModel id="SarbusDeath" parent="OneShotSpellFX">
+        <Model value="Assets\Effects\Zerg\KerriganSpawnBroodlingsImpact\KerriganSpawnBroodlingsImpact.m3"/>
+        <EditorCategories value="Race:Zerg"/>
+        <ScaleMax value="3.000000,3.000000,3.000000"/>
+        <ScaleMin value="3.000000,3.000000,3.000000"/>
+    </CModel>
+    <CModel id="SarbusBloatedTarget">
+        <Model value="Assets\Buildings\Zerg\BanelingEggNest\BanelingEggNest.m3"/>
+    </CModel>
+    <CModel id="SarbusBloatedTarget1">
+        <Model value="Assets\Buildings\Zerg\BanelingEggNest\BanelingEggNest.m3"/>
+    </CModel>
+    <CModel id="SarbusOvergrown" parent="Unit" Race="Zerg">
+        <Model value="Assets\Units\Zerg\Kraith\Kraith.m3"/>
+        <Events>
+            <Anim value="Run,Start"/>
+            <Name value="RunStart"/>
+            <Type value="Sound"/>
+            <Time value="0.010000"/>
+            <Payload value="Spell_CrashingCharge_PreCast"/>
+        </Events>
+        <Events>
+            <Anim value="Run,Start"/>
+            <Name value="RunStart"/>
+            <Type value="Sound"/>
+            <Time value="0.010000"/>
+            <Payload value="Kraith_Vox_ChargePreCast"/>
+        </Events>
+        <Events>
+            <Anim value="Run,03"/>
+            <Name value="Run"/>
+            <Type value="Sound"/>
+            <Time value="0.100000"/>
+            <Payload value="Kraith_SpellRunCharge"/>
+        </Events>
+        <Events>
+            <Anim value="Run,03"/>
+            <Name value="Run"/>
+            <Type value="Sound"/>
+            <Time value="0.010000"/>
+            <Payload value="Kraith_FoleyMovement"/>
+        </Events>
+        <Events>
+            <Anim value="Run,End"/>
+            <Name value="Run"/>
+            <Type value="Sound"/>
+            <Time value="0.080000"/>
+            <Payload value="Kraith_SpellImpact_Mn"/>
+        </Events>
+        <Events>
+            <Anim value="Run,End"/>
+            <Name value="Run"/>
+            <Type value="Sound"/>
+            <Time value="0.080000"/>
+            <Payload value="Kraith_SpellImpact"/>
+        </Events>
+        <Events>
+            <Anim value="Run,End"/>
+            <Name value="Run"/>
+            <Type value="Sound"/>
+            <Time value="0.120000"/>
+            <Payload value="Kraith_ImpactSlap_Eso"/>
+        </Events>
+        <Events>
+            <Anim value="Run,End"/>
+            <Name value="Run"/>
+            <Type value="Sound"/>
+            <Time value="0.010000"/>
+            <Payload value="Kraith_Vox_Impact"/>
+        </Events>
+        <Events>
+            <Anim value="Walk,00"/>
+            <Name value="Run"/>
+            <Type value="Sound"/>
+            <Time value="0.010000"/>
+            <Payload value="Kraith_Foley_LargeFootSteps"/>
+        </Events>
+        <Events>
+            <Anim value="Walk,00"/>
+            <Name value="Run"/>
+            <Type value="Sound"/>
+            <Time value="0.010000"/>
+            <Payload value="Kraith_Vox_SlowWalk"/>
+        </Events>
+        <Events>
+            <Anim value="Walk,00"/>
+            <Name value="Run"/>
+            <Type value="Sound"/>
+            <Time value="1.570000"/>
+            <Payload value="Kraith_FoleyMovement"/>
+        </Events>
+        <Events>
+            <Anim value="Walk,00"/>
+            <Name value="Run"/>
+            <Type value="Sound"/>
+            <Time value="1.700000"/>
+            <Payload value="Kraith_Foley_LargeFootSteps"/>
+        </Events>
+        <Events>
+            <Anim value="Walk,00"/>
+            <Name value="Run"/>
+            <Type value="Sound"/>
+            <Time value="3.150000"/>
+            <Payload value="Kraith_FoleyMovement"/>
+        </Events>
+        <Events>
+            <Anim value="Walk,01"/>
+            <Name value="Run"/>
+            <Type value="Sound"/>
+            <Time value="0.060000"/>
+            <Payload value="Kraith_Foley_LargeFootSteps"/>
+        </Events>
+        <Events>
+            <Anim value="Walk,01"/>
+            <Name value="Run"/>
+            <Type value="Sound"/>
+            <Time value="0.940000"/>
+            <Payload value="Kraith_FoleyMovement"/>
+        </Events>
+        <Events>
+            <Anim value="Walk,01"/>
+            <Name value="Run"/>
+            <Type value="Sound"/>
+            <Time value="1.010000"/>
+            <Payload value="Kraith_Foley_LargeFootSteps"/>
+        </Events>
+        <Events>
+            <Anim value="Attack"/>
+            <Name value="Attack"/>
+            <Type value="Sound"/>
+            <Time value="0.550000"/>
+            <Payload value="Kraith_Vox_Attack"/>
+        </Events>
+        <Events>
+            <Anim value="Attack"/>
+            <Name value="Attack"/>
+            <Type value="Sound"/>
+            <Time value="0.490000"/>
+            <Payload value="Kraith_FoleyMovement"/>
+        </Events>
+        <Events>
+            <Anim value="Spell,Start,01"/>
+            <Name value="Attack"/>
+            <Type value="Sound"/>
+            <Time value="0.010000"/>
+            <Payload value="Kraith_Vox_Spell"/>
+        </Events>
+        <Events>
+            <Anim value="Spell,Start,01"/>
+            <Name value="Attack"/>
+            <Type value="Sound"/>
+            <Time value="0.900000"/>
+            <Payload value="Kraith_Vox_SpellStartSpine"/>
+        </Events>
+        <Events>
+            <Anim value="Spell,Start,B"/>
+            <Name value="Attack"/>
+            <Type value="Sound"/>
+            <Time value="0.150000"/>
+            <Payload value="Kraith_Vox_InhaleExert"/>
+        </Events>
+        <Occlusion value="Show"/>
+        <PlanetPanelCamera value="Star2CameraMid09"/>
+        <Radius value="1.250000"/>
+        <ScaleMax value="1.050000,1.050000,1.050000"/>
+        <ScaleMin value="1.050000,1.050000,1.050000"/>
+        <SelectionRadius value="1.250000"/>
+        <ShadowRadius value="1.250000"/>
+        <SquibTypeDefault value="Flesh"/>
+        <TechPurchaseCamera value="Star2CameraMid09"/>
+        <Tipability value="0.750000"/>
+        <TipabilityLength value="1.000000"/>
+        <TipabilityWidth value="0.600000"/>
+        <UnitGlossaryCamera value="Star2CameraMid09"/>
+    </CModel>
+    <CModel id="SarbusLordofDecayTarget1">
+        <Model value="Assets\Buildings\Zerg\InfestationPit\InfestationPit.m3"/>
+    </CModel>
+    <CModel id="SarbusLordofDecayTarget">
+        <Model value="Assets\Buildings\Zerg\RoachWarren\RoachWarren.m3"/>
+    </CModel>
+    <CModel id="EltradFlying" parent="Unit" Race="Zerg">
+        <Model value="Assets\Units\Zerg\ZerglingEx1A\ZerglingEx1A.m3"/>
+        <RequiredAnims value="Assets\Units\Zerg\Zergling_SwarmAnims\Zergling_SwarmAnims.m3a"/>
+        <AttachProps Id="Ref_Weapon Left">
+            <Keys index="Weapon" value="1"/>
+            <Keys index="Work" value="0"/>
+        </AttachProps>
+        <AttachProps Id="Ref_Weapon Right">
+            <Keys index="Weapon" value="1"/>
+        </AttachProps>
+        <Lighting value="Zergling"/>
+        <Occlusion value="Show"/>
+        <PlanetPanelCamera value="Star2CameraMid05"/>
+        <Radius value="0.300000"/>
+        <ScaleMax value="1.500000,1.500000,1.500000"/>
+        <ScaleMin value="1.500000,1.500000,1.500000"/>
+        <SelectionRadius value="0.350000"/>
+        <ShadowRadius value="0.350000"/>
+        <SquibTypeDefault value="Flesh"/>
+        <TechPurchaseCamera value="Star2CameraMid05"/>
+        <Tipability value="0.750000"/>
+        <TipabilityLength value="0.400000"/>
+        <TipabilityWidth value="0.400000"/>
+        <UnitGlossaryCamera value="Star2CameraMid05"/>
+    </CModel>
+    <CModel id="EltradJoyride" parent="Unit" Race="Zerg">
+        <Model value="Assets\Units\Zerg\ZerglingEx1B\ZerglingEx1B.m3"/>
+        <RequiredAnims value="Assets\Units\Zerg\Zergling_SwarmAnims\Zergling_SwarmAnims.m3a"/>
+        <AttachProps Id="Ref_Weapon Left">
+            <Keys index="Weapon" value="1"/>
+            <Keys index="Work" value="0"/>
+        </AttachProps>
+        <AttachProps Id="Ref_Weapon Right">
+            <Keys index="Weapon" value="1"/>
+        </AttachProps>
+        <Lighting value="Zergling"/>
+        <Occlusion value="Show"/>
+        <PlanetPanelCamera value="Star2CameraMid05"/>
+        <Radius value="0.300000"/>
+        <ScaleMax value="1.500000,1.500000,1.500000"/>
+        <ScaleMin value="1.500000,1.500000,1.500000"/>
+        <SelectionRadius value="0.350000"/>
+        <ShadowRadius value="0.350000"/>
+        <SquibTypeDefault value="Flesh"/>
+        <TechPurchaseCamera value="Star2CameraMid05"/>
+        <Tipability value="0.750000"/>
+        <TipabilityLength value="0.400000"/>
+        <TipabilityWidth value="0.400000"/>
+        <UnitGlossaryCamera value="Star2CameraMid05"/>
+    </CModel>
+    <CModel id="FireMedium2" parent="Doodad">
+        <Model value="Assets\Doodads\FireMedium\FireMedium.m3"/>
+    </CModel>
+    <CModel id="SarbusCorpse" parent="Unit" Race="Zerg">
+        <Model value="Assets\Units\Zerg\KraithDeath\KraithDeath.m3"/>
+        <Events>
+            <Anim value="Death,00"/>
+            <Name value="DeathExplosion00"/>
+            <Type value="Sound"/>
+            <Time value="0.650000"/>
+            <Payload value="Zerg_ExplosionLarge"/>
+        </Events>
+        <Events>
+            <Anim value="Death,00"/>
+            <Name value="DeathExplosion00"/>
+            <Type value="Sound"/>
+            <Time value="1.900000"/>
+            <Payload value="Kraith_BodyFall"/>
+        </Events>
+        <Events>
+            <Anim value="Death,00"/>
+            <Name value="DeathExplosion00"/>
+            <Type value="Sound"/>
+            <Time value="0.500000"/>
+            <Payload value="Kraith_DeathHit"/>
+        </Events>
+        <Events>
+            <Anim value="Death,00"/>
+            <Name value="DeathExplosion00"/>
+            <Type value="Sound"/>
+            <Time value="1.340000"/>
+            <Payload value="Kraith_DeathHit_Splatter"/>
+        </Events>
+        <Events>
+            <Anim value="Death,00"/>
+            <Name value="DeathExplosion00"/>
+            <Type value="Sound"/>
+            <Time value="1.820000"/>
+            <Payload value="Kraith_Vox_DieHit"/>
+        </Events>
+        <Events>
+            <Anim value="Death,00"/>
+            <Name value="Death00"/>
+            <Type value="Sound"/>
+            <Time value="1.820000"/>
+            <Payload value="Kraith_BodyFall_Mn"/>
+        </Events>
+        <Events>
+            <Anim value="Death,00"/>
+            <Name value="Death00"/>
+            <Type value="Sound"/>
+            <Time value="1.970000"/>
+            <Payload value="Kraith_BodyFall"/>
+        </Events>
+        <Events>
+            <Anim value="Death,00"/>
+            <Name value="Death00"/>
+            <Type value="Sound"/>
+            <Time value="2.150000"/>
+            <Payload value="Kraith_DeadHeartBeat"/>
+        </Events>
+        <Events>
+            <Anim value="Death,00"/>
+            <Name value="Death00"/>
+            <Type value="Sound"/>
+            <Time value="2.640000"/>
+            <Payload value="Kraith_DeadHeartBeat"/>
+        </Events>
+        <Events>
+            <Anim value="Death,00"/>
+            <Name value="Death00"/>
+            <Type value="Sound"/>
+            <Time value="2.880000"/>
+            <Payload value="Kraith_DeadHeartBeat"/>
+        </Events>
+        <Events>
+            <Anim value="Death,00"/>
+            <Name value="Death00"/>
+            <Type value="Sound"/>
+            <Time value="3.370000"/>
+            <Payload value="Kraith_DeadHeartBeat"/>
+        </Events>
+        <Events>
+            <Anim value="Death,00"/>
+            <Name value="Death00"/>
+            <Type value="Sound"/>
+            <Time value="3.650000"/>
+            <Payload value="Kraith_DeadHeartBeat"/>
+        </Events>
+        <Events>
+            <Anim value="Death,00"/>
+            <Name value="Death00"/>
+            <Type value="Sound"/>
+            <Time value="4.160000"/>
+            <Payload value="Kraith_DeadHeartBeat"/>
+        </Events>
+        <Events>
+            <Anim value="Death,00"/>
+            <Name value="Death00"/>
+            <Type value="Sound"/>
+            <Time value="4.390000"/>
+            <Payload value="Kraith_DeadHeartBeat"/>
+        </Events>
+        <Events>
+            <Anim value="Death,00"/>
+            <Name value="Death00"/>
+            <Type value="Sound"/>
+            <Time value="5.020000"/>
+            <Payload value="Kraith_DeadHeartBeat"/>
+        </Events>
+        <Events>
+            <Anim value="Death,00"/>
+            <Name value="Death00"/>
+            <Type value="Sound"/>
+            <Time value="5.120000"/>
+            <Payload value="Kraith_Vox_DeathLast_Breaths"/>
+        </Events>
+        <Events>
+            <Anim value="Death,00"/>
+            <Name value="Death00"/>
+            <Type value="Sound"/>
+            <Time value="5.220000"/>
+            <Payload value="Kraith_DeadHeartBeat"/>
+        </Events>
+        <Events>
+            <Anim value="Death,00"/>
+            <Name value="Death00"/>
+            <Type value="Sound"/>
+            <Time value="6.160000"/>
+            <Payload value="Kraith_DeadHeartBeat"/>
+        </Events>
+        <Events>
+            <Anim value="Death,00"/>
+            <Name value="Death00"/>
+            <Type value="Sound"/>
+            <Time value="6.390000"/>
+            <Payload value="Kraith_DeadHeartBeat2"/>
+        </Events>
+        <Occlusion value="Show"/>
+        <Radius value="0.800000"/>
+        <ShadowRadius value="0.800000"/>
+        <SquibTypeDefault value="Flesh"/>
+        <Tipability value="0.750000"/>
+        <TipabilityLength value="1.000000"/>
+        <TipabilityWidth value="0.600000"/>
+    </CModel>
+    <CModel id="Sarbus" parent="Unit" Race="Zerg">
+        <Model value="Assets\Units\Zerg\Kraith\Kraith.m3"/>
+        <Events>
+            <Anim value="Run,Start"/>
+            <Name value="RunStart"/>
+            <Type value="Sound"/>
+            <Time value="0.010000"/>
+            <Payload value="Spell_CrashingCharge_PreCast"/>
+        </Events>
+        <Events>
+            <Anim value="Run,Start"/>
+            <Name value="RunStart"/>
+            <Type value="Sound"/>
+            <Time value="0.010000"/>
+            <Payload value="Kraith_Vox_ChargePreCast"/>
+        </Events>
+        <Events>
+            <Anim value="Run,03"/>
+            <Name value="Run"/>
+            <Type value="Sound"/>
+            <Time value="0.100000"/>
+            <Payload value="Kraith_SpellRunCharge"/>
+        </Events>
+        <Events>
+            <Anim value="Run,03"/>
+            <Name value="Run"/>
+            <Type value="Sound"/>
+            <Time value="0.010000"/>
+            <Payload value="Kraith_FoleyMovement"/>
+        </Events>
+        <Events>
+            <Anim value="Run,End"/>
+            <Name value="Run"/>
+            <Type value="Sound"/>
+            <Time value="0.080000"/>
+            <Payload value="Kraith_SpellImpact_Mn"/>
+        </Events>
+        <Events>
+            <Anim value="Run,End"/>
+            <Name value="Run"/>
+            <Type value="Sound"/>
+            <Time value="0.080000"/>
+            <Payload value="Kraith_SpellImpact"/>
+        </Events>
+        <Events>
+            <Anim value="Run,End"/>
+            <Name value="Run"/>
+            <Type value="Sound"/>
+            <Time value="0.120000"/>
+            <Payload value="Kraith_ImpactSlap_Eso"/>
+        </Events>
+        <Events>
+            <Anim value="Run,End"/>
+            <Name value="Run"/>
+            <Type value="Sound"/>
+            <Time value="0.010000"/>
+            <Payload value="Kraith_Vox_Impact"/>
+        </Events>
+        <Events>
+            <Anim value="Walk,00"/>
+            <Name value="Run"/>
+            <Type value="Sound"/>
+            <Time value="0.010000"/>
+            <Payload value="Kraith_Foley_LargeFootSteps"/>
+        </Events>
+        <Events>
+            <Anim value="Walk,00"/>
+            <Name value="Run"/>
+            <Type value="Sound"/>
+            <Time value="0.010000"/>
+            <Payload value="Kraith_Vox_SlowWalk"/>
+        </Events>
+        <Events>
+            <Anim value="Walk,00"/>
+            <Name value="Run"/>
+            <Type value="Sound"/>
+            <Time value="1.570000"/>
+            <Payload value="Kraith_FoleyMovement"/>
+        </Events>
+        <Events>
+            <Anim value="Walk,00"/>
+            <Name value="Run"/>
+            <Type value="Sound"/>
+            <Time value="1.700000"/>
+            <Payload value="Kraith_Foley_LargeFootSteps"/>
+        </Events>
+        <Events>
+            <Anim value="Walk,00"/>
+            <Name value="Run"/>
+            <Type value="Sound"/>
+            <Time value="3.150000"/>
+            <Payload value="Kraith_FoleyMovement"/>
+        </Events>
+        <Events>
+            <Anim value="Walk,01"/>
+            <Name value="Run"/>
+            <Type value="Sound"/>
+            <Time value="0.060000"/>
+            <Payload value="Kraith_Foley_LargeFootSteps"/>
+        </Events>
+        <Events>
+            <Anim value="Walk,01"/>
+            <Name value="Run"/>
+            <Type value="Sound"/>
+            <Time value="0.940000"/>
+            <Payload value="Kraith_FoleyMovement"/>
+        </Events>
+        <Events>
+            <Anim value="Walk,01"/>
+            <Name value="Run"/>
+            <Type value="Sound"/>
+            <Time value="1.010000"/>
+            <Payload value="Kraith_Foley_LargeFootSteps"/>
+        </Events>
+        <Events>
+            <Anim value="Attack"/>
+            <Name value="Attack"/>
+            <Type value="Sound"/>
+            <Time value="0.550000"/>
+            <Payload value="Kraith_Vox_Attack"/>
+        </Events>
+        <Events>
+            <Anim value="Attack"/>
+            <Name value="Attack"/>
+            <Type value="Sound"/>
+            <Time value="0.490000"/>
+            <Payload value="Kraith_FoleyMovement"/>
+        </Events>
+        <Events>
+            <Anim value="Spell,Start,01"/>
+            <Name value="Attack"/>
+            <Type value="Sound"/>
+            <Time value="0.010000"/>
+            <Payload value="Kraith_Vox_Spell"/>
+        </Events>
+        <Events>
+            <Anim value="Spell,Start,01"/>
+            <Name value="Attack"/>
+            <Type value="Sound"/>
+            <Time value="0.900000"/>
+            <Payload value="Kraith_Vox_SpellStartSpine"/>
+        </Events>
+        <Events>
+            <Anim value="Spell,Start,B"/>
+            <Name value="Attack"/>
+            <Type value="Sound"/>
+            <Time value="0.150000"/>
+            <Payload value="Kraith_Vox_InhaleExert"/>
+        </Events>
+        <Occlusion value="Show"/>
+        <PlanetPanelCamera value="Star2CameraMid09"/>
+        <Radius value="1.250000"/>
+        <ScaleMax value="1.050000,1.050000,1.050000"/>
+        <ScaleMin value="1.050000,1.050000,1.050000"/>
+        <SelectionRadius value="1.250000"/>
+        <ShadowRadius value="1.250000"/>
+        <SquibTypeDefault value="Flesh"/>
+        <TechPurchaseCamera value="Star2CameraMid09"/>
+        <Tipability value="0.750000"/>
+        <TipabilityLength value="1.000000"/>
+        <TipabilityWidth value="0.600000"/>
+        <UnitGlossaryCamera value="Star2CameraMid09"/>
+    </CModel>
+    <CModel id="Mauler" parent="Unit" Race="Zerg">
+        <Model value="Assets\Buildings\Zerg\InfestedBunker\InfestedBunker.m3"/>
+        <PlanetPanelCamera value="Star2CameraHigh08"/>
+        <Radius value="0.875000"/>
+        <ScaleMax value="1.100000,1.100000,1.100000"/>
+        <ScaleMin value="1.100000,1.100000,1.100000"/>
+        <SelectionRadius value="0.972100"/>
+        <ShadowRadius value="0.972100"/>
+        <TechPurchaseCamera value="Star2CameraHigh08"/>
+        <Tipability value="0.750000"/>
+        <TipabilityLength value="0.800000"/>
+        <TipabilityWidth value="0.400000"/>
+        <UnitGlossaryCamera value="Star2CameraHigh08"/>
+    </CModel>
+    <CModel id="SarbusHotfoot" parent="Unit" Race="Zerg">
+        <Model value="Assets\Units\Zerg\Kraith\Kraith.m3"/>
+        <Events>
+            <Anim value="Run,Start"/>
+            <Name value="RunStart"/>
+            <Type value="Sound"/>
+            <Time value="0.010000"/>
+            <Payload value="Spell_CrashingCharge_PreCast"/>
+        </Events>
+        <Events>
+            <Anim value="Run,Start"/>
+            <Name value="RunStart"/>
+            <Type value="Sound"/>
+            <Time value="0.010000"/>
+            <Payload value="Kraith_Vox_ChargePreCast"/>
+        </Events>
+        <Events>
+            <Anim value="Run,03"/>
+            <Name value="Run"/>
+            <Type value="Sound"/>
+            <Time value="0.100000"/>
+            <Payload value="Kraith_SpellRunCharge"/>
+        </Events>
+        <Events>
+            <Anim value="Run,03"/>
+            <Name value="Run"/>
+            <Type value="Sound"/>
+            <Time value="0.010000"/>
+            <Payload value="Kraith_FoleyMovement"/>
+        </Events>
+        <Events>
+            <Anim value="Run,End"/>
+            <Name value="Run"/>
+            <Type value="Sound"/>
+            <Time value="0.080000"/>
+            <Payload value="Kraith_SpellImpact_Mn"/>
+        </Events>
+        <Events>
+            <Anim value="Run,End"/>
+            <Name value="Run"/>
+            <Type value="Sound"/>
+            <Time value="0.080000"/>
+            <Payload value="Kraith_SpellImpact"/>
+        </Events>
+        <Events>
+            <Anim value="Run,End"/>
+            <Name value="Run"/>
+            <Type value="Sound"/>
+            <Time value="0.120000"/>
+            <Payload value="Kraith_ImpactSlap_Eso"/>
+        </Events>
+        <Events>
+            <Anim value="Run,End"/>
+            <Name value="Run"/>
+            <Type value="Sound"/>
+            <Time value="0.010000"/>
+            <Payload value="Kraith_Vox_Impact"/>
+        </Events>
+        <Events>
+            <Anim value="Walk,00"/>
+            <Name value="Run"/>
+            <Type value="Sound"/>
+            <Time value="0.010000"/>
+            <Payload value="Kraith_Foley_LargeFootSteps"/>
+        </Events>
+        <Events>
+            <Anim value="Walk,00"/>
+            <Name value="Run"/>
+            <Type value="Sound"/>
+            <Time value="0.010000"/>
+            <Payload value="Kraith_Vox_SlowWalk"/>
+        </Events>
+        <Events>
+            <Anim value="Walk,00"/>
+            <Name value="Run"/>
+            <Type value="Sound"/>
+            <Time value="1.570000"/>
+            <Payload value="Kraith_FoleyMovement"/>
+        </Events>
+        <Events>
+            <Anim value="Walk,00"/>
+            <Name value="Run"/>
+            <Type value="Sound"/>
+            <Time value="1.700000"/>
+            <Payload value="Kraith_Foley_LargeFootSteps"/>
+        </Events>
+        <Events>
+            <Anim value="Walk,00"/>
+            <Name value="Run"/>
+            <Type value="Sound"/>
+            <Time value="3.150000"/>
+            <Payload value="Kraith_FoleyMovement"/>
+        </Events>
+        <Events>
+            <Anim value="Walk,01"/>
+            <Name value="Run"/>
+            <Type value="Sound"/>
+            <Time value="0.060000"/>
+            <Payload value="Kraith_Foley_LargeFootSteps"/>
+        </Events>
+        <Events>
+            <Anim value="Walk,01"/>
+            <Name value="Run"/>
+            <Type value="Sound"/>
+            <Time value="0.940000"/>
+            <Payload value="Kraith_FoleyMovement"/>
+        </Events>
+        <Events>
+            <Anim value="Walk,01"/>
+            <Name value="Run"/>
+            <Type value="Sound"/>
+            <Time value="1.010000"/>
+            <Payload value="Kraith_Foley_LargeFootSteps"/>
+        </Events>
+        <Events>
+            <Anim value="Attack"/>
+            <Name value="Attack"/>
+            <Type value="Sound"/>
+            <Time value="0.550000"/>
+            <Payload value="Kraith_Vox_Attack"/>
+        </Events>
+        <Events>
+            <Anim value="Attack"/>
+            <Name value="Attack"/>
+            <Type value="Sound"/>
+            <Time value="0.490000"/>
+            <Payload value="Kraith_FoleyMovement"/>
+        </Events>
+        <Events>
+            <Anim value="Spell,Start,01"/>
+            <Name value="Attack"/>
+            <Type value="Sound"/>
+            <Time value="0.010000"/>
+            <Payload value="Kraith_Vox_Spell"/>
+        </Events>
+        <Events>
+            <Anim value="Spell,Start,01"/>
+            <Name value="Attack"/>
+            <Type value="Sound"/>
+            <Time value="0.900000"/>
+            <Payload value="Kraith_Vox_SpellStartSpine"/>
+        </Events>
+        <Events>
+            <Anim value="Spell,Start,B"/>
+            <Name value="Attack"/>
+            <Type value="Sound"/>
+            <Time value="0.150000"/>
+            <Payload value="Kraith_Vox_InhaleExert"/>
+        </Events>
+        <Occlusion value="Show"/>
+        <PlanetPanelCamera value="Star2CameraMid09"/>
+        <Radius value="1.250000"/>
+        <ScaleMax value="0.600000,0.600000,0.600000"/>
+        <ScaleMin value="0.750000,0.750000,0.750000"/>
+        <SelectionRadius value="1.250000"/>
+        <ShadowRadius value="1.250000"/>
+        <SquibTypeDefault value="Flesh"/>
+        <TechPurchaseCamera value="Star2CameraMid09"/>
+        <Tipability value="0.750000"/>
+        <TipabilityLength value="1.000000"/>
+        <TipabilityWidth value="0.600000"/>
+        <UnitGlossaryCamera value="Star2CameraMid09"/>
+    </CModel>
+    <CModel id="ParasiteMoundEggMissile" parent="MissileFX">
+        <Model value="Assets\Units\Zerg\BroodLordEgg\BroodLordEgg.m3"/>
+        <EditorCategories value="Race:Zerg"/>
+    </CModel>
+    <CModel id="SarbusOvergrownTarget1">
+        <Model value="Assets\Effects\Zerg\InfestationBunker\InfestationBunker_03.m3"/>
+    </CModel>
+    <CModel id="SarbusHotfootTarget">
+        <Model value="Assets\Effects\Protoss\ProtossBuildingFireSmall\ProtossBuildingFireSmall.m3"/>
+        <ScaleMax value="0.500000,0.500000,0.500000"/>
+        <ScaleMin value="0.500000,0.500000,0.500000"/>
+    </CModel>
+    <CModel id="SarbusOvergrownTarget">
+        <Model value="Assets\Effects\Zerg\InfestationArmory\InfestationArmory.m3"/>
+    </CModel>
+    <CModel id="ShockAttackBeam" parent="MissileFX">
+        <Model value="Assets\Effects\Protoss\TempestGroundBeam\TempestGroundBeam.m3"/>
+        <LowQualityModel value="MothershipAttackBeamLow"/>
+        <EditorCategories value="Race:Protoss"/>
+        <RadiusLoose value="1.000000"/>
+        <SelectionRadius value="0.714000"/>
+        <ShadowRadius value="0.714000"/>
+    </CModel>
+    <CModel id="BlindingVomitWeapon" parent="MissileFX">
+        <Model value="Assets\Effects\Zerg\SlimeMissile\SlimeMissile.m3"/>
+        <EditorCategories value="Race:Zerg"/>
+    </CModel>
+    <CModel id="CreeperCorrosiveExplosion" parent="OneShotSpellFX">
+        <Model value="Assets\Units\Zerg\BanelingEx1BDeathCorrosive\BanelingEx1BDeathCorrosive.m3"/>
+        <EditorCategories value="Race:Zerg"/>
+        <Flags index="TeenSafe" value="1"/>
+    </CModel>
+    <CModel id="CreeperRuptureExplosion" parent="OneShotSpellFX">
+        <Model value="Assets\Units\Zerg\BanelingEx1BDeathRupture\BanelingEx1BDeathRupture.m3"/>
+        <EditorCategories value="Race:Zerg"/>
+        <Flags index="TeenSafe" value="1"/>
+        <ScaleMax value="1.333330,1.333330,1.333330"/>
+        <ScaleMin value="1.333330,1.333330,1.333330"/>
+    </CModel>
+    <CModel id="InvisibleCreepMaker">
+        <Model value="Assets\Units\Test\InvisibleUnit\InvisibleUnit.m3"/>
+        <EditorCategories value="Race:Neutral"/>
+        <Flags index="TeenSafe" value="1"/>
+        <Radius value="-1.000000"/>
+        <SelectionRadius value="0.000000"/>
+        <ShadowRadius value="0.000000"/>
+    </CModel>
+    <CModel id="CoronaAttackBeamLow" parent="PersistentSpellFX">
+        <Model value="Assets\Effects\Protoss\ArchonBeam\ArchonBeam_Low.m3"/>
+        <EditorCategories value="Race:Protoss"/>
+        <RadiusLoose value="1.000000"/>
+    </CModel>
+    <CModel id="CoronaAttackBeam" parent="PersistentSpellFX">
+        <Model value="Assets\Effects\Protoss\ArchonBeam\ArchonBeam.m3"/>
+        <LowQualityModel value="CoronaAttackBeamLow"/>
+        <EditorCategories value="Race:Protoss"/>
+        <RadiusLoose value="1.000000"/>
+    </CModel>
+    <CModel id="BanelingDeath2" parent="UnitDeath">
+        <Model value="Assets\Units\Zerg\BanelingDeath\BanelingDeath.m3"/>
+        <LowQualityModel value="BanelingDeathLow"/>
+        <EditorCategories value="Race:Zerg"/>
+        <Occlusion value="Show"/>
+        <AttachProps Id="Ref_Center" SquibType="Shield" RadiusShield="0.350000">
+            <Keys index="Shield" value="1"/>
+        </AttachProps>
+    </CModel>
+    <CModel id="BlinderImpact" parent="OneShotSpellFX">
+        <Model value="Assets\Effects\Zerg\KerriganSpawnBroodlingsImpact\KerriganSpawnBroodlingsImpact.m3"/>
+        <EditorCategories value="Race:Zerg"/>
+    </CModel>
+    <CModel id="BansheeScreamImpact" parent="OneShotSpellFX">
+        <Model value="Assets\Effects\Terran\UltraSonicMissileImpact\UltraSonicMissileImpact.m3"/>
+        <EditorCategories value="Race:Terran"/>
+        <ScaleMax value="1.250000,1.250000,1.250000"/>
+        <ScaleMin value="1.250000,1.250000,1.250000"/>
+    </CModel>
+    <CModel id="AttackMetalImpact" parent="ImpactFX">
+        <Model value="Assets\Effects\Zerg\DehakaAttackImpact\DehakaAttackImpact.m3"/>
+        <EditorCategories value="Race:Zerg"/>
+        <Flags index="Ignorable" value="1"/>
+        <Lighting value=""/>
+    </CModel>
+    <CModel id="BanelingEx1Death2" parent="UnitDeath">
+        <Model value="Assets\Units\Zerg\BanelingEx1Death\BanelingEx1Death.m3"/>
+        <LowQualityModel value="BanelingDeathLow"/>
+        <EditorCategories value="Race:Zerg"/>
+        <Occlusion value="Show"/>
+        <AttachProps Id="Ref_Center" SquibType="Shield" RadiusShield="0.350000">
+            <Keys index="Shield" value="1"/>
+        </AttachProps>
+    </CModel>
+    <CModel id="BonebreakerJumpImpact" parent="ImpactFX">
+        <Model value="Assets\Effects\Other\JumpLandDust\JumpLandDust.m3"/>
+    </CModel>
+    <CModel id="Invisible2">
+        <Model value="Assets\Units\Test\InvisibleUnit\InvisibleUnit.m3"/>
+        <EditorCategories value="Race:Neutral"/>
+        <Flags index="TeenSafe" value="1"/>
+        <Radius value="-1.000000"/>
+        <SelectionRadius value="0.000000"/>
+        <ShadowRadius value="0.000000"/>
+    </CModel>
+    <CModel id="BoulderImpactRockMassive">
+        <Model value="Assets\Effects\Other\PhysicsImpactRockMassive\PhysicsImpactRockMassive.m3"/>
+    </CModel>
+    <CModel id="ShieldDamageImpact" parent="ImpactFX">
+        <Model value="Assets\Effects\Protoss\ScoutWeaponImpact\ScoutWeaponImpact.m3"/>
+        <EditorCategories value="Race:Protoss"/>
+    </CModel>
+    <CModel id="SpeedMultiImpact" parent="OneShotSpellFX">
+        <Model value="Assets\Effects\Zerg\MendBuff\MendBuff.m3"/>
+        <TextureDeclares Prefix="Med2Orange.dds">
+            <Adaptions TriggerOnSubstring="Med2Orange.dd" Slot="main"/>
+        </TextureDeclares>
+        <TextureDeclares Prefix="Flare1_Orange4.dds">
+            <Adaptions TriggerOnSubstring="Flare1_Orange4.dds" Slot="body"/>
+        </TextureDeclares>
+        <TextureDeclares Prefix="Med2.dds">
+            <Adaptions TriggerOnSubstring="Med2.dds" Slot="merc"/>
+        </TextureDeclares>
+    </CModel>
+    <CModel id="Blinder" parent="Unit" Race="Zerg">
+        <Model value="Assets\Units\Zerg\BanelingEx1\BanelingEx1.m3"/>
+        <Lighting value="Baneling"/>
+        <Occlusion value="Show"/>
+        <PlanetPanelCamera value="Star2CameraMid04"/>
+        <Radius value="0.350000"/>
+        <ScaleMax value="0.800000,0.800000,0.800000"/>
+        <ScaleMin value="0.800000,0.800000,0.800000"/>
+        <SelectionRadius value="0.468700"/>
+        <ShadowRadius value="0.468700"/>
+        <SquibTypeDefault value="Flesh"/>
+        <TechPurchaseCamera value="Star2CameraMid04"/>
+        <Tipability value="0.750000"/>
+        <TipabilityLength value="0.600000"/>
+        <TipabilityWidth value="0.600000"/>
+        <TextureDeclares Prefix="baneling_diffuse.dds">
+            <Adaptions TriggerOnSubstring="baneling_diffuse.dds" Slot="main"/>
+        </TextureDeclares>
+        <TextureDeclares Prefix="baneling_emissive.dds">
+            <Adaptions TriggerOnSubstring="baneling_emissive.dds" Slot="body"/>
+        </TextureDeclares>
+        <UnitGlossaryCamera value="Star2CameraMid04"/>
+        <AttachProps Id="Ref_Center" SquibType="Shield" RadiusShield="0.350000">
+            <Keys index="Shield" value="1"/>
+        </AttachProps>
+    </CModel>
+    <CModel id="Behemoth" parent="Unit" Race="Zerg">
+        <Model value="Assets\Units\Zerg\PrimalKing\PrimalKing.m3"/>
+        <RequiredAnims value="Assets\Units\Zerg\PrimalZerg_RequiredAnims\PrimalZerg_RequiredAnims.m3a"/>
+        <Events>
+            <Anim value="Attack,00"/>
+            <Name value="AttackLaunch"/>
+            <Type value="Sound"/>
+            <Time value="0.200000"/>
+        </Events>
+        <Events>
+            <Anim value="Attack,00"/>
+            <Name value="AttackImpact"/>
+            <Type value="Sound"/>
+            <Time value="0.450000"/>
+        </Events>
+        <Events>
+            <Anim value="Attack,03"/>
+            <Name value="AttackLaunch"/>
+            <Type value="Sound"/>
+            <Time value="0.200000"/>
+        </Events>
+        <Events>
+            <Anim value="Attack,03"/>
+            <Name value="AttackImpact"/>
+            <Type value="Sound"/>
+            <Time value="0.450000"/>
+        </Events>
+        <Events>
+            <Anim value="Attack,04"/>
+            <Name value="AttackLaunch"/>
+            <Type value="Sound"/>
+            <Time value="0.200000"/>
+        </Events>
+        <Events>
+            <Anim value="Attack,04"/>
+            <Name value="AttackImpact"/>
+            <Type value="Sound"/>
+            <Time value="0.450000"/>
+        </Events>
+        <Events>
+            <Anim value="Attack,04"/>
+            <Name value="AttackLaunch"/>
+            <Type value="Sound"/>
+            <Time value="0.700000"/>
+        </Events>
+        <Events>
+            <Anim value="Attack,04"/>
+            <Name value="AttackImpact"/>
+            <Type value="Sound"/>
+            <Time value="0.900000"/>
+        </Events>
+        <Events>
+            <Anim value="Custom,01"/>
+            <Name value="Zerus01_Brakk_LeapLand"/>
+            <Type value="Sound"/>
+            <Time value="0.281000"/>
+            <Payload value="Zerus01_Brakk_LeapLand"/>
+        </Events>
+        <Events>
+            <Anim value="Custom,01"/>
+            <Name value="Zerus01_Brakk_PawScratches"/>
+            <Type value="Sound"/>
+            <Time value="5.369000"/>
+            <Payload value="Zerus01_Brakk_PawScratches"/>
+        </Events>
+        <Events>
+            <Anim value="Custom,01"/>
+            <Name value="Zerus01_Brakk_ChestPounding"/>
+            <Type value="Sound"/>
+            <Time value="7.227000"/>
+            <Payload value="Zerus01_Brakk_ChestPounding"/>
+        </Events>
+        <FacialController value="LocalizedData\Facial\PrimalZerg.fxa"/>
+        <Flags index="Facial" value="1"/>
+        <Lighting value=""/>
+        <Occlusion value="Show"/>
+        <PlanetPanelCamera value="Star2CameraHigh13"/>
+        <Radius value="1.000000"/>
+        <ScaleMax value="2.750000,2.750000,2.750000"/>
+        <ScaleMin value="2.750000,2.750000,2.750000"/>
+        <ShadowRadius value="1.176200"/>
+        <SquibTypeDefault value="Flesh"/>
+        <TechPurchaseCamera value="Star2CameraHigh13"/>
+        <Tipability value="0.750000"/>
+        <TipabilityLength value="1.000000"/>
+        <TipabilityWidth value="1.000000"/>
+        <UnitGlossaryCamera value="Star2CameraHigh13"/>
+        <AttachProps Id="Ref_Center" SquibType="Shield" RadiusShield="0.350000">
+            <Keys index="Shield" value="1"/>
+        </AttachProps>
+    </CModel>
+    <CModel id="MarsColonistFemale2" parent="Unit" Race="Terran">
+        <Model value="Assets\Units\Terran\ColonistFemale\ColonistFemale_00.m3"/>
+        <RequiredAnims value="Assets\Units\Terran\ColonistFemale_RequiredAnims\ColonistFemale_RequiredAnims.m3a"/>
+        <Flags index="AutoUnload" value="1"/>
+        <Occlusion value="Show"/>
+        <Radius value="0.250000"/>
+        <ScaleMax value="1.150000,1.150000,1.150000"/>
+        <ScaleMin value="1.150000,1.150000,1.150000"/>
+        <SelectionRadius value="0.250000"/>
+        <ShadowRadius value="0.250000"/>
+        <TextureDeclares Prefix="Colonist_Female_Diffuse_00.dds">
+            <Adaptions TriggerOnSubstring="Colonist_Female_Diffuse_00.dds" Slot="main.diffuse"/>
+        </TextureDeclares>
+        <TextureDeclares Prefix="Colonist_Female_Normal.dds">
+            <Adaptions TriggerOnSubstring="Colonist_Female_Normal.dds" Slot="main.normal"/>
+        </TextureDeclares>
+        <TextureMatchesForEditor Slot="main.normal" Source="main"/>
+        <Variations Number="1" Probability="1">
+            <TextureExpressionsForEditor Slot="main" Expression="RequireAll diffuse"/>
+        </Variations>
+        <AttachProps Id="Ref_Center" SquibType="Shield" RadiusShield="0.350000">
+            <Keys index="Shield" value="1"/>
+        </AttachProps>
+    </CModel>
+    <CModel id="MarsColonistMale2" parent="Unit" Race="Terran">
+        <Model value="Assets\Units\Terran\ColonistMale\ColonistMale_00.m3"/>
+        <RequiredAnims value="Assets\Units\Terran\ColonistMaleAnim\ColonistMaleAnim.m3a"/>
+        <Events>
+            <Variation value="1"/>
+            <Anim value="Custom,Ready,End,00"/>
+            <Name value="CivilianDeath"/>
+            <Type value="Sound"/>
+            <Time value="8.200000"/>
+            <Payload value="CivilianDeath"/>
+        </Events>
+        <Occlusion value="Show"/>
+        <Radius value="0.250000"/>
+        <ScaleMax value="1.150000,1.150000,1.150000"/>
+        <ScaleMin value="1.150000,1.150000,1.150000"/>
+        <SelectionRadius value="0.250000"/>
+        <ShadowRadius value="0.250000"/>
+        <TextureAppliedGroups value="male"/>
+        <TextureDeclares Prefix="Colonist_Main_Male_Backpack_Diffuse_01.dds">
+            <Adaptions TriggerOnSubstring="Colonist_Main_Male_Backpack_Diffuse_01.dds" Slot="main.diffuse"/>
+        </TextureDeclares>
+        <TextureDeclares Prefix="Colonist_Main_Male_Backpack_Normal.dds">
+            <Adaptions TriggerOnSubstring="Colonist_Main_Male_Backpack_Normal.dds" Slot="main.normal"/>
+        </TextureDeclares>
+        <TextureMatchesForEditor Slot="main.normal" Source="main"/>
+        <Variations Probability="1">
+            <TextureExpressionsForEditor Slot="main" Expression="RequireAll diffuse,male"/>
+        </Variations>
+        <Variations Probability="1">
+            <TextureExpressionsForEditor Slot="main" Expression="RequireAll diffuse; RequireAny helmet,backpack"/>
+        </Variations>
+        <Variations Probability="1">
+            <TextureExpressionsForEditor Slot="main" Expression="RequireAll diffuse,helmet"/>
+        </Variations>
+        <AttachProps Id="Ref_Center" SquibType="Shield" RadiusShield="0.350000">
+            <Keys index="Shield" value="1"/>
+        </AttachProps>
+    </CModel>
+    <CModel id="MarsColonistMaleMiner2" parent="Unit" Race="Terran">
+        <Model value="Assets\Units\Terran\MinerMale\MinerMale.m3"/>
+        <Flags index="AutoUnload" value="1"/>
+        <Occlusion value="Show"/>
+        <Radius value="0.250000"/>
+        <ScaleMax value="1.150000,1.150000,1.150000"/>
+        <ScaleMin value="1.150000,1.150000,1.150000"/>
+        <SelectionRadius value="0.250000"/>
+        <ShadowRadius value="0.250000"/>
+        <TextureDeclares Prefix="MinerMale_Diffuse_00.dds">
+            <Adaptions TriggerOnSubstring="MinerMale_Diffuse_00.dds" Slot="main.diffuse"/>
+        </TextureDeclares>
+        <TextureDeclares Prefix="MinerMale_Normal_00.dds">
+            <Adaptions TriggerOnSubstring="MinerMale_Normal_00.dds" Slot="main.normal"/>
+        </TextureDeclares>
+        <Variations Probability="1">
+            <TextureExpressionsForEditor Slot="main" Expression="RequireAll diffuse"/>
+        </Variations>
+        <AttachProps Id="Ref_Center" SquibType="Shield" RadiusShield="0.350000">
+            <Keys index="Shield" value="1"/>
+        </AttachProps>
+    </CModel>
+    <CModel id="MarsPrisoner2" parent="Unit" Race="Terran">
+        <Model value="Assets\Units\Terran\PrisonerCivilian\PrisonerCivilian.m3"/>
+        <RequiredAnims value="Assets\Units\Terran\ColonistMaleAnim\ColonistMaleAnim.m3a"/>
+        <Events>
+            <Anim value="Stand,Work,00"/>
+            <Name value="EventNPCHammering"/>
+            <Type value="Sound"/>
+            <Time value="0.550000"/>
+            <Payload value="Event_NPCHammering"/>
+        </Events>
+        <Events>
+            <Anim value="Stand,Work,01"/>
+            <Name value="EventNPCHammering"/>
+            <Type value="Sound"/>
+            <Time value="2.700000"/>
+            <Payload value="Event_NPCHammering"/>
+        </Events>
+        <Events>
+            <Anim value="Stand,Work,02"/>
+            <Name value="EventNPCDrilling"/>
+            <Type value="Sound"/>
+            <Time value="0.010000"/>
+            <Payload value="Event_NPCDrilling"/>
+        </Events>
+        <Flags index="AutoUnload" value="1"/>
+        <Occlusion value="Show"/>
+        <Radius value="0.250000"/>
+        <ScaleMax value="1.150000,1.150000,1.150000"/>
+        <ScaleMin value="1.150000,1.150000,1.150000"/>
+        <SelectionRadius value="0.250000"/>
+        <ShadowRadius value="0.250000"/>
+        <TextureDeclares Prefix="PrisonerCivilian_">
+            <Adaptions Slot="main"/>
+        </TextureDeclares>
+        <TextureMatchesForEditor Slot="main.specular" Source="main"/>
+        <Variations Probability="1">
+            <TextureExpressionsForEditor Slot="main" Expression="RequireAll diffuse; RequireAll diffuse"/>
+        </Variations>
+        <AttachProps Id="Ref_Center" SquibType="Shield" RadiusShield="0.350000">
+            <Keys index="Shield" value="1"/>
+        </AttachProps>
+    </CModel>
+    <CModel id="MarsScientist2" parent="Unit">
+        <Model value="Assets\Units\Terran\ScientistMale\ScientistMale.m3"/>
+        <RequiredAnims value="Assets\Units\Terran\ColonistMaleAnim\ColonistMaleAnim.m3a"/>
+        <EditorCategories value="Race:Terran"/>
+        <Radius value="0.250000"/>
+        <ScaleMax value="1.150000,1.150000,1.150000"/>
+        <ScaleMin value="1.150000,1.150000,1.150000"/>
+        <SelectionRadius value="0.250000"/>
+        <ShadowRadius value="0.250000"/>
+        <VariationCount value="4"/>
+        <AttachProps Id="Ref_Center" SquibType="Shield" RadiusShield="0.350000">
+            <Keys index="Shield" value="1"/>
+        </AttachProps>
+    </CModel>
+    <CModel id="Scythe" parent="Unit" Race="Zerg">
+        <Model value="Assets\Units\Zerg\HydraliskEx1A\HydraliskEx1A.m3"/>
+        <RequiredAnims value="Assets\Units\Zerg\Hydralisk_SwarmAnims\Hydralisk_SwarmAnims.m3a"/>
+        <AttachProps Id="Ref_Weapon">
+            <Keys index="SetA" value="0"/>
+        </AttachProps>
+        <AttachProps Id="Ref_Weapon Right">
+            <Keys index="SetA" value="1"/>
+        </AttachProps>
+        <AttachProps Id="Ref_Weapon Left">
+            <Keys index="SetA" value="1"/>
+        </AttachProps>
+        <AttachProps Id="Ref_Center" SquibType="Shield" RadiusShield="0.350000"/>
+        <Events>
+            <Anim value="Attack,Cover,00"/>
+            <Name value="HydraliskAttackImpactMelee"/>
+            <Type value="Sound"/>
+            <Time value="0.500000"/>
+        </Events>
+        <Events>
+            <Anim value="Attack,Cover,00"/>
+            <Name value="HydraliskAttackImpactMelee"/>
+            <Type value="Sound"/>
+            <Time value="0.550000"/>
+        </Events>
+        <Events>
+            <Anim value="Attack,Cover,01"/>
+            <Name value="HydraliskAttackImpactMelee"/>
+            <Type value="Sound"/>
+            <Time value="0.230000"/>
+        </Events>
+        <Events>
+            <Anim value="Attack,Cover,01"/>
+            <Name value="HydraliskAttackImpactMelee"/>
+            <Type value="Sound"/>
+            <Time value="0.400000"/>
+        </Events>
+        <Occlusion value="Show"/>
+        <PlanetPanelCamera value="Star2CameraMid08"/>
+        <Radius value="0.400000"/>
+        <ScaleMax value="0.650000,0.650000,0.700000"/>
+        <ScaleMin value="0.650000,0.650000,0.700000"/>
+        <SelectionRadius value="0.571000"/>
+        <ShadowRadius value="0.571000"/>
+        <SquibTypeDefault value="Flesh"/>
+        <TechPurchaseCamera value="Star2CameraMid08"/>
+        <Tipability value="0.750000"/>
+        <TipabilityLength value="0.800000"/>
+        <TipabilityWidth value="0.800000"/>
+        <UnitGlossaryCamera value="Star2CameraMid08"/>
+    </CModel>
+    <CModel id="Shredder" parent="Unit" Race="Zerg">
+        <Model value="Assets\Units\Zerg\Symbiote\Symbiote.m3"/>
+        <Occlusion value="Show"/>
+        <PlanetPanelCamera value="Star2CameraLow05"/>
+        <Radius value="0.250000"/>
+        <ScaleMax value="0.650000,0.650000,0.650000"/>
+        <ScaleMin value="0.650000,0.650000,0.650000"/>
+        <SelectionRadius value="0.390000"/>
+        <ShadowRadius value="0.390000"/>
+        <SquibTypeDefault value="Flesh"/>
+        <TechPurchaseCamera value="Star2CameraLow05"/>
+        <Tipability value="0.750000"/>
+        <TipabilityLength value="0.375000"/>
+        <TipabilityWidth value="0.375000"/>
+        <UnitGlossaryCamera value="Star2CameraLow05"/>
+        <AttachProps Id="Ref_Center" SquibType="Shield" RadiusShield="0.350000">
+            <Keys index="Shield" value="1"/>
+        </AttachProps>
+    </CModel>
+    <CModel id="MarsColonistMale" parent="Unit" Race="Terran">
+        <Model value="Assets\Units\Terran\ColonistMale\ColonistMale.m3"/>
+        <RequiredAnims value="Assets\Units\Terran\ColonistMaleAnim\ColonistMaleAnim.m3a"/>
+        <Events>
+            <Anim value="Custom,Ready,End,00"/>
+            <Name value="CivilianDeath"/>
+            <Type value="Sound"/>
+            <Time value="8.200000"/>
+            <Payload value="CivilianDeath"/>
+        </Events>
+        <Occlusion value="Show"/>
+        <Radius value="0.250000"/>
+        <ScaleMax value="1.150000,1.150000,1.150000"/>
+        <ScaleMin value="1.150000,1.150000,1.150000"/>
+        <SelectionRadius value="0.250000"/>
+        <ShadowRadius value="0.250000"/>
+        <TextureAppliedGroups value="male"/>
+        <TextureDeclares Prefix="Colonist_Main"/>
+        <TextureMatchesForEditor Slot="main.normal" Source="main"/>
+        <VariationCount value="3"/>
+        <Variations Probability="1">
+            <TextureExpressionsForEditor Slot="main" Expression="RequireAll diffuse,male"/>
+        </Variations>
+        <Variations Probability="1">
+            <TextureExpressionsForEditor Slot="main" Expression="RequireAll diffuse; RequireAny helmet,backpack"/>
+        </Variations>
+        <Variations Probability="1">
+            <TextureExpressionsForEditor Slot="main" Expression="RequireAll diffuse,helmet"/>
+        </Variations>
+        <AttachProps Id="Ref_Center" SquibType="Shield" RadiusShield="0.350000">
+            <Keys index="Shield" value="1"/>
+        </AttachProps>
+    </CModel>
+    <CModel id="Creeper" parent="Unit">
+        <Model value="Assets\Units\Zerg\BanelingEx1B\BanelingEx1B.m3"/>
+        <EditorCategories value="Race:Zerg"/>
+        <Flags index="AutoUnload" value="1"/>
+        <Occlusion value="Show"/>
+        <Radius value="0.350000"/>
+        <ScaleMax value="0.800000,0.800000,0.800000"/>
+        <ScaleMin value="0.800000,0.800000,0.800000"/>
+        <SelectionRadius value="0.468700"/>
+        <ShadowRadius value="0.468700"/>
+        <SquibTypeDefault value="Flesh"/>
+        <Tipability value="0.750000"/>
+        <TipabilityLength value="0.600000"/>
+        <TipabilityWidth value="0.600000"/>
+        <AttachProps Id="Ref_Center" SquibType="Shield" RadiusShield="0.350000">
+            <Keys index="Shield" value="1"/>
+        </AttachProps>
+    </CModel>
+    <CModel id="Buster" parent="Unit">
+        <Model value="Assets\Units\Zerg\BanelingEx1A\BanelingEx1A.m3"/>
+        <EditorCategories value="Race:Zerg"/>
+        <Flags index="AutoUnload" value="1"/>
+        <Occlusion value="Show"/>
+        <Radius value="0.350000"/>
+        <ScaleMax value="0.800000,0.800000,0.800000"/>
+        <ScaleMin value="0.800000,0.800000,0.800000"/>
+        <SelectionRadius value="0.468700"/>
+        <ShadowRadius value="0.468700"/>
+        <SquibTypeDefault value="Flesh"/>
+        <Tipability value="0.750000"/>
+        <TipabilityLength value="0.600000"/>
+        <TipabilityWidth value="0.600000"/>
+        <AttachProps Id="Ref_Center" SquibType="Shield" RadiusShield="0.350000">
+            <Keys index="Shield" value="1"/>
+        </AttachProps>
+    </CModel>
+    <CModel id="Roamer" parent="Unit" Race="Zerg">
+        <Model value="Assets\Units\Zerg\InfestedColonist\InfestedColonist.m3"/>
+        <RequiredAnims value="Assets\Units\Zerg\InfestedColonist_RequiredAnims\InfestedColonist_RequiredAnims.m3a"/>
+        <PlanetPanelCamera value="Star2CameraMid04"/>
+        <Radius value="0.250000"/>
+        <ScaleMax value="1.050000,1.050000,1.050000"/>
+        <ScaleMin value="1.050000,1.050000,1.050000"/>
+        <SelectionRadius value="0.350000"/>
+        <ShadowRadius value="0.350000"/>
+        <TechPurchaseCamera value="Star2CameraMid04"/>
+        <TextureDeclares Prefix="infestedcolonist_">
+            <Adaptions Slot="main"/>
+        </TextureDeclares>
+        <UnitGlossaryCamera value="Star2CameraMid04"/>
+        <VariationCount value="3"/>
+        <Variations Probability="1">
+            <TextureExpressionsForEditor Slot="main.diffuse" Expression="RequireAny 06"/>
+        </Variations>
+        <AttachProps Id="Ref_Center" SquibType="Shield" RadiusShield="0.350000"/>
+    </CModel>
+    <CModel id="Banshee2" parent="Unit">
+        <Model value="Assets\Units\Zerg\Corruptor\Corruptor.m3"/>
+        <RequiredAnims value="Assets\Units\Zerg\Corruptor_SwarmAnims\Corruptor_SwarmAnims.m3a"/>
+        <EditorCategories value="Race:Zerg"/>
+        <Occlusion value="Show"/>
+        <PlanetPanelCamera value="Star2CameraLow08"/>
+        <Radius value="0.375000"/>
+        <ScaleMax value="0.400000,0.400000,0.400000"/>
+        <ScaleMin value="0.400000,0.400000,0.400000"/>
+        <SelectionOffset value="0.000000,0.000000,-0.400000"/>
+        <SelectionRadius value="1.000000"/>
+        <ShadowRadius value="1.000000"/>
+        <SquibTypeDefault value="Flesh"/>
+        <TechPurchaseCamera value="Star2CameraLow08"/>
+        <UnitGlossaryCamera value="Star2CameraLow08"/>
+        <AttachProps Id="Ref_Center" SquibType="Shield" RadiusShield="0.350000">
+            <Keys index="Shield" value="1"/>
+        </AttachProps>
+    </CModel>
+    <CModel id="AttackBloodImpact" parent="ImpactFX">
+        <Model value="Assets\Effects\Zerg\BloodImpactSmear\BloodImpactSmear.m3"/>
+        <EditorCategories value="Race:Neutral"/>
+        <Flags index="Ignorable" value="1"/>
+    </CModel>
+    <CModel id="SpeedMultiSplat" parent="PersistentSpellFX">
+        <Model value="Assets\Effects\Zerg\CreepTumorFrenzy\CreepTumorFrenzy.m3"/>
+        <EditorCategories value="Race:Zerg"/>
+    </CModel>
+    <CModel id="SplitterlingMainDeath2" parent="UnitDeath" Race="Zerg">
+        <Model value="Assets\Units\Zerg\BanelingEx1Death\BanelingEx1Death.m3"/>
+        <LowQualityModel value="BanelingDeathLow"/>
+        <Occlusion value="Show"/>
+        <AttachProps Id="Ref_Center" SquibType="Shield" RadiusShield="0.350000">
+            <Keys index="Shield" value="1"/>
+        </AttachProps>
+    </CModel>
+    <CModel id="StaticPortrait2" parent="Portrait">
+        <Model value="Assets\Portraits\Terran\TerranPortraitTransition\TerranPortraitTransition.m3"/>
+        <Flags index="Download" value="1"/>
+        <Image value="Assets\Textures\TerranPortraitTransition_Static.dds"/>
+    </CModel>
+    <CModel id="Tick" parent="Unit">
+        <Model value="Assets\Units\Critters\Crabeetle\Crabeetle.m3"/>
+        <EditorCategories value="Race:Zerg"/>
+        <Radius value="0.250000"/>
+        <ScaleMax value="0.300000,0.300000,0.300000"/>
+        <ScaleMin value="0.300000,0.300000,0.300000"/>
+        <SelectionRadius value="0.950000"/>
+        <ShadowRadius value="0.950000"/>
+        <SquibTypeDefault value="Flesh"/>
+        <Tipability value="0.750000"/>
+        <TipabilityLength value="0.375000"/>
+        <TipabilityWidth value="0.375000"/>
+        <AttachProps Id="Ref_Center" SquibType="Shield" RadiusShield="0.350000">
+            <Keys index="Shield" value="1"/>
+        </AttachProps>
+    </CModel>
+    <CModel id="Gorgon" parent="Unit" Race="Zerg">
+        <Model value="Assets\Units\Zerg\Dehaka\Dehaka.m3"/>
+        <Events>
+            <Anim value="Attack,00"/>
+            <Name value="AttackLaunch"/>
+            <Type value="Sound"/>
+            <Time value="0.200000"/>
+        </Events>
+        <Events>
+            <Anim value="Attack,00"/>
+            <Name value="AttackImpact"/>
+            <Type value="Sound"/>
+            <Time value="0.300000"/>
+        </Events>
+        <Events>
+            <Anim value="Attack,01"/>
+            <Name value="AttackLaunch"/>
+            <Type value="Sound"/>
+            <Time value="0.200000"/>
+        </Events>
+        <Events>
+            <Anim value="Attack,01"/>
+            <Name value="AttackImpact"/>
+            <Type value="Sound"/>
+            <Time value="0.400000"/>
+        </Events>
+        <Events>
+            <Anim value="Attack,02"/>
+            <Name value="AttackLaunch"/>
+            <Type value="Sound"/>
+            <Time value="0.200000"/>
+        </Events>
+        <Events>
+            <Anim value="Attack,02"/>
+            <Name value="AttackImpact"/>
+            <Type value="Sound"/>
+            <Time value="0.400000"/>
+        </Events>
+        <Events>
+            <Anim value="Attack,03"/>
+            <Name value="AttackLaunch"/>
+            <Type value="Sound"/>
+            <Time value="0.200000"/>
+        </Events>
+        <Events>
+            <Anim value="Attack,03"/>
+            <Name value="AttackImpact"/>
+            <Type value="Sound"/>
+            <Time value="0.400000"/>
+        </Events>
+        <Events>
+            <Anim value="Attack,04"/>
+            <Name value="AttackLaunch"/>
+            <Type value="Sound"/>
+            <Time value="0.280000"/>
+        </Events>
+        <Events>
+            <Anim value="Attack,04"/>
+            <Name value="AttackImpact"/>
+            <Type value="Sound"/>
+            <Time value="0.400000"/>
+        </Events>
+        <Events>
+            <Anim value="Attack,05"/>
+            <Name value="Dehaka_Bite"/>
+            <Type value="Sound"/>
+            <Time value="0.260000"/>
+            <Payload value="Dehaka_Bite"/>
+        </Events>
+        <Events>
+            <Anim value="Attack,05"/>
+            <Name value="AttackImpact"/>
+            <Type value="Sound"/>
+            <Time value="0.280000"/>
+        </Events>
+        <Events>
+            <Anim value="Attack,06"/>
+            <Name value="Dehaka_Bite"/>
+            <Type value="Sound"/>
+            <Time value="0.260000"/>
+            <Payload value="Dehaka_Bite"/>
+        </Events>
+        <Events>
+            <Anim value="Attack,06"/>
+            <Name value="AttackImpact"/>
+            <Type value="Sound"/>
+            <Time value="0.280000"/>
+        </Events>
+        <Events>
+            <Anim value="Unburrow"/>
+            <Name value="Dehaka_Jump_Land"/>
+            <Type value="Sound"/>
+            <Time value="0.900000"/>
+            <Payload value="Dehaka_Jump_Land"/>
+        </Events>
+        <Occlusion value="Show"/>
+        <PlanetPanelCamera value="Star2CameraHigher06"/>
+        <Radius value="0.850000"/>
+        <SelectionRadius value="0.750000"/>
+        <ShadowRadius value="1.000000"/>
+        <SquibTypeDefault value="Flesh"/>
+        <TechPurchaseCamera value="Star2CameraHigher06"/>
+        <TextureDeclares Prefix="dehaka_">
+            <Adaptions TriggerOnSubstring="_diff" Slot="main"/>
+        </TextureDeclares>
+        <UnitGlossaryCamera value="Star2CameraHigher06"/>
+        <AttachProps Id="Ref_Center" SquibType="Shield" RadiusShield="0.350000">
+            <Keys index="Shield" value="1"/>
+        </AttachProps>
+    </CModel>
+    <CModel id="Beast" parent="Unit">
+        <Model value="Assets\Units\Zerg\Fatty\Fatty.m3"/>
+        <EditorCategories value="Race:Zerg"/>
+        <Flags index="AutoUnload" value="1"/>
+        <PlanetPanelCamera value="Star2CameraMid04"/>
+        <Radius value="0.400000"/>
+        <ScaleMax value="0.500000,0.500000,0.500000"/>
+        <ScaleMin value="0.500000,0.500000,0.500000"/>
+        <SelectionRadius value="1.000000"/>
+        <ShadowRadius value="1.000000"/>
+        <Tipability value="0.750000"/>
+        <TipabilityLength value="0.800000"/>
+        <TipabilityWidth value="0.800000"/>
+        <AttachProps Id="Ref_Center" SquibType="Shield" RadiusShield="0.350000">
+            <Keys index="Shield" value="1"/>
+        </AttachProps>
+    </CModel>
+    <CModel id="ArmourIncreaseImpact" parent="OneShotSpellFX">
+        <Model value="Assets\Effects\Zerg\MendBuff\MendBuff.m3"/>
+        <TextureDeclares Prefix="Med2Orange.dds">
+            <Adaptions TriggerOnSubstring="Med2Orange.dd" Slot="main"/>
+        </TextureDeclares>
+        <TextureDeclares Prefix="Flare1_Orange4.dds">
+            <Adaptions TriggerOnSubstring="Flare1_Orange4.dds" Slot="body"/>
+        </TextureDeclares>
+        <TextureDeclares Prefix="Med2.dds">
+            <Adaptions TriggerOnSubstring="Med2.dds" Slot="merc"/>
+        </TextureDeclares>
+    </CModel>
+    <CModel id="AttackClawsImpact" parent="OneShotSpellFX">
+        <Model value="Assets\Effects\Zerg\MendBuff\MendBuff.m3"/>
+        <TextureDeclares Prefix="Med2Orange.dds">
+            <Adaptions TriggerOnSubstring="Med2Orange.dd" Slot="main"/>
+        </TextureDeclares>
+        <TextureDeclares Prefix="Flare1_Orange4.dds">
+            <Adaptions TriggerOnSubstring="Flare1_Orange4.dds" Slot="body"/>
+        </TextureDeclares>
+        <TextureDeclares Prefix="Med2.dds">
+            <Adaptions TriggerOnSubstring="Med2.dds" Slot="merc"/>
+        </TextureDeclares>
+    </CModel>
+    <CModel id="Squealer" parent="Unit" Race="Zerg">
+        <Model value="Assets\Units\Zerg\Feederling\Feederling.m3"/>
+        <Occlusion value="Show"/>
+        <Radius value="0.250000"/>
+        <ScaleMax value="0.550000,0.550000,0.550000"/>
+        <ScaleMin value="0.550000,0.550000,0.550000"/>
+        <ShadowRadius value="0.250000"/>
+        <SquibTypeDefault value="Flesh"/>
+        <Tipability value="0.750000"/>
+        <TipabilityLength value="0.375000"/>
+        <TipabilityWidth value="0.375000"/>
+        <AttachProps Id="Ref_Center" SquibType="Shield" RadiusShield="0.350000">
+            <Keys index="Shield" value="1"/>
+        </AttachProps>
+    </CModel>
+    <CModel id="EyeStalkModel2" parent="PersistentSpellFX">
+        <Model value="Assets\Effects\Zerg\EyeStalk\EyeStalk.m3"/>
+        <EditorCategories value="Race:Zerg"/>
+    </CModel>
+    <CModel id="Bonebreaker" parent="Unit">
+        <Model value="Assets\Units\Neutral\MatriarchSnowBeast\MatriarchSnowBeast.m3"/>
+        <EditorCategories value="Race:Zerg"/>
+        <Events>
+            <Anim value="Attack,00"/>
+            <Name value="SnowBeastAttack"/>
+            <Type value="Sound"/>
+            <Time value="0.380000"/>
+        </Events>
+        <Events>
+            <Anim value="Attack,01"/>
+            <Name value="SnowBeastAttack"/>
+            <Type value="Sound"/>
+            <Time value="0.380000"/>
+        </Events>
+        <Events>
+            <Anim value="Attack,02"/>
+            <Name value="SnowBeastAttack"/>
+            <Type value="Sound"/>
+            <Time value="0.320000"/>
+        </Events>
+        <Flags index="Facial" value="1"/>
+        <Radius value="1.000000"/>
+        <ScaleMax value="1.600000,1.600000,1.600000"/>
+        <ScaleMin value="1.600000,1.600000,1.600000"/>
+        <SelectionRadius value="0.850000"/>
+        <ShadowRadius value="1.176200"/>
+        <SquibTypeDefault value="Flesh"/>
+        <Tipability value="0.750000"/>
+        <TipabilityLength value="1.000000"/>
+        <TipabilityWidth value="1.000000"/>
+        <AttachProps Id="Ref_Center" SquibType="Shield" RadiusShield="0.350000">
+            <Keys index="Shield" value="1"/>
+        </AttachProps>
+    </CModel>
+    <CModel id="Racer" parent="Unit" Race="Zerg">
+        <Model value="Assets\Units\Zerg\HydraliskEx1B\HydraliskEx1B.m3"/>
+        <RequiredAnims value="Assets\Units\Zerg\Hydralisk_SwarmAnims\Hydralisk_SwarmAnims.m3a"/>
+        <AttachProps Id="Ref_Weapon">
+            <Keys index="SetA" value="0"/>
+        </AttachProps>
+        <AttachProps Id="Ref_Weapon Right">
+            <Keys index="SetA" value="1"/>
+        </AttachProps>
+        <AttachProps Id="Ref_Weapon Left">
+            <Keys index="SetA" value="1"/>
+        </AttachProps>
+        <AttachProps Id="Ref_Center" SquibType="Shield" RadiusShield="0.350000"/>
+        <Events>
+            <Anim value="Attack,Cover,00"/>
+            <Name value="HydraliskAttackImpactMelee"/>
+            <Type value="Sound"/>
+            <Time value="0.500000"/>
+        </Events>
+        <Events>
+            <Anim value="Attack,Cover,00"/>
+            <Name value="HydraliskAttackImpactMelee"/>
+            <Type value="Sound"/>
+            <Time value="0.550000"/>
+        </Events>
+        <Events>
+            <Anim value="Attack,Cover,01"/>
+            <Name value="HydraliskAttackImpactMelee"/>
+            <Type value="Sound"/>
+            <Time value="0.230000"/>
+        </Events>
+        <Events>
+            <Anim value="Attack,Cover,01"/>
+            <Name value="HydraliskAttackImpactMelee"/>
+            <Type value="Sound"/>
+            <Time value="0.400000"/>
+        </Events>
+        <Occlusion value="Show"/>
+        <PlanetPanelCamera value="Star2CameraMid08"/>
+        <Radius value="0.400000"/>
+        <ScaleMax value="0.650000,0.650000,0.700000"/>
+        <ScaleMin value="0.650000,0.650000,0.700000"/>
+        <SelectionRadius value="0.571000"/>
+        <ShadowRadius value="0.571000"/>
+        <SquibTypeDefault value="Flesh"/>
+        <TechPurchaseCamera value="Star2CameraMid08"/>
+        <Tipability value="0.750000"/>
+        <TipabilityLength value="0.800000"/>
+        <TipabilityWidth value="0.800000"/>
+        <UnitGlossaryCamera value="Star2CameraMid08"/>
+    </CModel>
+    <CModel id="Splatter" parent="Unit" Race="Zerg">
+        <Model value="Assets\Units\Zerg\Splitterling\Splitterling.m3"/>
+        <Occlusion value="Show"/>
+        <PlanetPanelCamera value="Star2CameraMid04"/>
+        <Radius value="0.350000"/>
+        <ScaleMax value="1.200000,1.200000,1.200000"/>
+        <ScaleMin value="1.200000,1.200000,1.200000"/>
+        <SelectionOffset value="0.000000,0.000000,-0.200000"/>
+        <SelectionRadius value="0.300000"/>
+        <ShadowRadius value="0.300000"/>
+        <SquibTypeDefault value="Flesh"/>
+        <TechPurchaseCamera value="Star2CameraMid04"/>
+        <Tipability value="0.750000"/>
+        <TipabilityLength value="0.600000"/>
+        <TipabilityWidth value="0.600000"/>
+        <UnitGlossaryCamera value="Star2CameraMid04"/>
+        <AttachProps Id="Ref_Center" SquibType="Shield" RadiusShield="0.350000">
+            <Keys index="Shield" value="1"/>
+        </AttachProps>
+    </CModel>
+    <CModel id="Slasher" parent="Unit" Race="Zerg">
+        <Model value="Assets\Units\Zerg\Hydralisk\Hydralisk.m3"/>
+        <RequiredAnims value="Assets\Units\Zerg\Hydralisk_SwarmAnims\Hydralisk_SwarmAnims.m3a"/>
+        <AttachProps Id="Ref_Weapon">
+            <Keys index="SetA" value="0"/>
+        </AttachProps>
+        <AttachProps Id="Ref_Weapon Right">
+            <Keys index="SetA" value="1"/>
+        </AttachProps>
+        <AttachProps Id="Ref_Weapon Left">
+            <Keys index="SetA" value="1"/>
+        </AttachProps>
+        <AttachProps Id="Ref_Center" SquibType="Shield" RadiusShield="0.350000"/>
+        <Events>
+            <Anim value="Attack,Cover,00"/>
+            <Name value="HydraliskAttackImpactMelee"/>
+            <Type value="Sound"/>
+            <Time value="0.500000"/>
+        </Events>
+        <Events>
+            <Anim value="Attack,Cover,00"/>
+            <Name value="HydraliskAttackImpactMelee"/>
+            <Type value="Sound"/>
+            <Time value="0.550000"/>
+        </Events>
+        <Events>
+            <Anim value="Attack,Cover,01"/>
+            <Name value="HydraliskAttackImpactMelee"/>
+            <Type value="Sound"/>
+            <Time value="0.230000"/>
+        </Events>
+        <Events>
+            <Anim value="Attack,Cover,01"/>
+            <Name value="HydraliskAttackImpactMelee"/>
+            <Type value="Sound"/>
+            <Time value="0.400000"/>
+        </Events>
+        <Occlusion value="Show"/>
+        <PlanetPanelCamera value="Star2CameraMid08"/>
+        <Radius value="0.400000"/>
+        <ScaleMax value="0.650000,0.650000,0.700000"/>
+        <ScaleMin value="0.650000,0.650000,0.700000"/>
+        <SelectionRadius value="0.571000"/>
+        <ShadowRadius value="0.571000"/>
+        <SquibTypeDefault value="Flesh"/>
+        <TechPurchaseCamera value="Star2CameraMid08"/>
+        <Tipability value="0.750000"/>
+        <TipabilityLength value="0.800000"/>
+        <TipabilityWidth value="0.800000"/>
+        <UnitGlossaryCamera value="Star2CameraMid08"/>
+    </CModel>
+    <CModel id="Rhino" parent="Unit" Race="Zerg">
+        <Model value="Assets\Units\Zerg\LurkerEx1A\LurkerEx1A.m3"/>
+        <Occlusion value="Show"/>
+        <PlanetPanelCamera value="Star2CameraMid08"/>
+        <Radius value="0.400000"/>
+        <ScaleMax value="0.600000,0.700000,0.900000"/>
+        <ScaleMin value="0.600000,0.700000,0.900000"/>
+        <SelectionRadius value="0.850000"/>
+        <ShadowRadius value="0.850000"/>
+        <SquibTypeDefault value="Flesh"/>
+        <TechPurchaseCamera value="Star2CameraMid08"/>
+        <Tipability value="0.750000"/>
+        <TipabilityLength value="0.800000"/>
+        <TipabilityWidth value="0.800000"/>
+        <UnitGlossaryCamera value="Star2CameraMid08"/>
+        <AttachProps Id="Ref_Center" SquibType="Shield" RadiusShield="0.350000">
+            <Keys index="Shield" value="1"/>
+        </AttachProps>
+    </CModel>
+    <CModel id="Blitzer" parent="Unit" Race="Zerg">
+        <Model value="Assets\Units\Zerg\PrimalZergMelee\PrimalZergMelee_00.m3"/>
+        <RequiredAnims value="Assets\Units\Zerg\PrimalZerg_RequiredAnims\PrimalZerg_RequiredAnims.m3a"/>
+        <RequiredAnims value="Assets\Units\Zerg\PrimalZergMeleeHeavy_SwarmAnims\PrimalZergMeleeHeavy_SwarmAnims.m3a"/>
+        <FacialController value="LocalizedData\Facial\PrimalZerg.fxa"/>
+        <Flags index="Facial" value="1"/>
+        <Occlusion value="Show"/>
+        <PlanetPanelCamera value="Star2CameraMid09"/>
+        <Radius value="1.000000"/>
+        <ScaleMax value="2.750000,2.750000,2.750000"/>
+        <ScaleMin value="2.750000,2.750000,2.750000"/>
+        <ShadowRadius value="1.176200"/>
+        <SquibTypeDefault value="Flesh"/>
+        <TechPurchaseCamera value="Star2CameraMid09"/>
+        <Tipability value="0.750000"/>
+        <TipabilityLength value="1.000000"/>
+        <TipabilityWidth value="1.000000"/>
+        <UnitGlossaryCamera value="Star2CameraMid09"/>
+        <AttachProps Id="Ref_Center" SquibType="Shield" RadiusShield="0.350000">
+            <Keys index="Shield" value="1"/>
+        </AttachProps>
+    </CModel>
+    <CModel id="Matriarch" parent="Unit" Race="Zerg">
+        <Model value="Assets\Units\Zerg\ExpeditionQueenLevel3\ExpeditionQueenLevel3.m3"/>
+        <Occlusion value="Show"/>
+        <PlanetPanelCamera value="Star2CameraHigh08"/>
+        <Radius value="0.850000"/>
+        <ScaleMax value="1.050000,1.050000,1.050000"/>
+        <ScaleMin value="1.250000,1.250000,1.250000"/>
+        <SelectionRadius value="0.972100"/>
+        <ShadowRadius value="0.750000"/>
+        <SquibTypeDefault value="Flesh"/>
+        <TechPurchaseCamera value="Star2CameraHigh08"/>
+        <Tipability value="0.750000"/>
+        <TipabilityLength value="1.000000"/>
+        <TipabilityWidth value="0.800000"/>
+        <UnitGlossaryCamera value="Star2CameraHigh08"/>
+        <AttachProps Id="Ref_Center" SquibType="Shield" RadiusShield="0.350000"/>
+    </CModel>
+    <CModel id="Stonewall" parent="Unit" Race="Zerg">
+        <Model value="Assets\Units\Zerg\PrimalZergMeleeHeavy\PrimalZergMeleeHeavy_00.m3"/>
+        <RequiredAnims value="Assets\Units\Zerg\PrimalZerg_RequiredAnims\PrimalZerg_RequiredAnims.m3a"/>
+        <RequiredAnims value="Assets\Units\Zerg\PrimalZergMeleeHeavy_SwarmAnims\PrimalZergMeleeHeavy_SwarmAnims.m3a"/>
+        <Events>
+            <Anim value="Stand,00"/>
+            <Name value="Terrorzor_Stand"/>
+            <Type value="Sound"/>
+            <Time value="0.010000"/>
+            <Payload value="Terrorzor_Stand"/>
+        </Events>
+        <Events>
+            <Anim value="Stand,02"/>
+            <Name value="Terrorzor_Stand_02Pt1"/>
+            <Type value="Sound"/>
+            <Time value="0.010000"/>
+            <Payload value="Terrorzor_Stand_02Pt1"/>
+        </Events>
+        <Events>
+            <Anim value="Stand,02"/>
+            <Name value="Terrorzor_Stand_02Pt2"/>
+            <Type value="Sound"/>
+            <Time value="1.365000"/>
+            <Payload value="Terrorzor_Stand_02Pt2"/>
+        </Events>
+        <Events>
+            <Anim value="Cover,Walk,00"/>
+            <Name value="Terrorzor_Walk_Cover"/>
+            <Type value="Sound"/>
+            <Time value="0.620000"/>
+            <Payload value="Terrorzor_Walk_Cover"/>
+        </Events>
+        <Events>
+            <Anim value="Cover,Walk,00"/>
+            <Name value="Terrorzor_Walk_Cover"/>
+            <Type value="Sound"/>
+            <Time value="0.028000"/>
+            <Payload value="Terrorzor_Walk_Cover"/>
+        </Events>
+        <Events>
+            <Anim value="Attack,00"/>
+            <Name value="Terrorzor_Attack"/>
+            <Type value="Sound"/>
+            <Time value="0.010000"/>
+            <Payload value="Terrorzor_Attack"/>
+        </Events>
+        <Events>
+            <Anim value="Attack,03"/>
+            <Name value="Terrorzor_Attack_03"/>
+            <Type value="Sound"/>
+            <Time value="0.021000"/>
+            <Payload value="Terrorzor_Attack_03"/>
+        </Events>
+        <Events>
+            <Anim value="Attack,04"/>
+            <Name value="Terrorzor_Attack_04"/>
+            <Type value="Sound"/>
+            <Time value="0.021000"/>
+            <Payload value="Terrorzor_Attack_04"/>
+        </Events>
+        <FacialController value="LocalizedData\Facial\PrimalZerg.fxa"/>
+        <Flags index="Facial" value="1"/>
+        <Occlusion value="Show"/>
+        <PlanetPanelCamera value="Star2CameraMid03"/>
+        <Radius value="1.000000"/>
+        <ScaleMax value="2.750000,2.750000,2.750000"/>
+        <ScaleMin value="2.750000,2.750000,2.750000"/>
+        <ShadowRadius value="1.176200"/>
+        <SquibTypeDefault value="Flesh"/>
+        <TechPurchaseCamera value="Star2CameraMid03"/>
+        <Tipability value="0.750000"/>
+        <TipabilityLength value="1.000000"/>
+        <TipabilityWidth value="1.000000"/>
+        <UnitGlossaryCamera value="Star2CameraMid03"/>
+        <AttachProps Id="Ref_Center" SquibType="Shield" RadiusShield="0.350000">
+            <Keys index="Shield" value="1"/>
+        </AttachProps>
+    </CModel>
+    <CModel id="Infestor2" parent="Unit" Race="Zerg">
+        <Model value="Assets\Units\Zerg\Infestor\Infestor.m3"/>
+        <RequiredAnims value="Assets\Units\Zerg\Infestor_SwarmAnims\Infestor_SwarmAnims.m3a"/>
+        <Occlusion value="Show"/>
+        <PlanetPanelCamera value="Star2CameraMid09"/>
+        <Radius value="0.850000"/>
+        <ScaleMax value="1.200000,1.200000,1.200000"/>
+        <ScaleMin value="1.200000,1.200000,1.200000"/>
+        <SelectionRadius value="1.029000"/>
+        <ShadowRadius value="0.800000"/>
+        <SquibTypeDefault value="Flesh"/>
+        <TechPurchaseCamera value="Star2CameraMid09"/>
+        <Tipability value="0.750000"/>
+        <TipabilityLength value="1.000000"/>
+        <TipabilityWidth value="0.600000"/>
+        <UnitGlossaryCamera value="Star2CameraMid09"/>
+        <AttachProps Id="Ref_Center" SquibType="Shield" RadiusShield="0.350000">
+            <Keys index="Shield" value="1"/>
+        </AttachProps>
+    </CModel>
+    <CModel id="Slither" parent="Unit" Race="Zerg">
+        <Model value="Assets\Units\Zerg\LarvalQueen\LarvalQueen.m3"/>
+        <Occlusion value="Show"/>
+        <PlanetPanelCamera value="Star2CameraLow04"/>
+        <Radius value="0.250000"/>
+        <SelectionRadius value="0.270000"/>
+        <ShadowRadius value="0.270000"/>
+        <SquibTypeDefault value="Flesh"/>
+        <TechPurchaseCamera value="Star2CameraLow04"/>
+        <Tipability value="0.750000"/>
+        <TipabilityLength value="0.375000"/>
+        <TipabilityWidth value="0.375000"/>
+        <UnitGlossaryCamera value="Star2CameraLow04"/>
+        <AttachProps Id="Ref_Center" SquibType="Shield" RadiusShield="0.350000">
+            <Keys index="Shield" value="1"/>
+        </AttachProps>
+    </CModel>
+    <CModel id="Hoplite" parent="Unit" Race="Zerg">
+        <Model value="Assets\Units\Zerg\Lurker\Lurker.m3"/>
+        <Occlusion value="Show"/>
+        <PlanetPanelCamera value="Star2CameraMid07"/>
+        <Radius value="0.400000"/>
+        <ScaleMax value="0.600000,0.700000,0.900000"/>
+        <ScaleMin value="0.600000,0.700000,0.900000"/>
+        <SelectionRadius value="0.850000"/>
+        <ShadowRadius value="0.850000"/>
+        <SquibTypeDefault value="Flesh"/>
+        <TechPurchaseCamera value="Star2CameraMid07"/>
+        <UnitGlossaryCamera value="Star2CameraMid07"/>
+        <AttachProps Id="Ref_Center" SquibType="Shield" RadiusShield="0.350000">
+            <Keys index="Shield" value="1"/>
+        </AttachProps>
+    </CModel>
+    <CModel id="Gargoyle" parent="Unit" Race="Zerg">
+        <Model value="Assets\Units\Zerg\Mutalisk\Mutalisk.m3"/>
+        <AnimBlendTime value="0.300000"/>
+        <Lighting value="Mutalisk"/>
+        <Occlusion value="Show"/>
+        <PlanetPanelCamera value="Star2CameraMid11"/>
+        <Radius value="0.375000"/>
+        <ScaleMax value="0.540000,0.540000,0.540000"/>
+        <ScaleMin value="0.540000,0.540000,0.540000"/>
+        <SelectionOffset value="0.000000,0.000000,-0.350000"/>
+        <SelectionRadius value="0.833200"/>
+        <ShadowRadius value="0.833200"/>
+        <SquibTypeDefault value="Flesh"/>
+        <TechPurchaseCamera value="Star2CameraMid11"/>
+        <Tipability value="0.750000"/>
+        <UnitGlossaryCamera value="Star2CameraMid11"/>
+        <AttachProps Id="Ref_Center" SquibType="Shield" RadiusShield="0.350000">
+            <Keys index="Shield" value="1"/>
+        </AttachProps>
+    </CModel>
+    <CModel id="Harpy" parent="Unit" Race="Zerg">
+        <Model value="Assets\Units\Zerg\MutaliskEx1A\MutaliskEx1A.m3"/>
+        <AnimBlendTime value="0.300000"/>
+        <Occlusion value="Show"/>
+        <PlanetPanelCamera value="Star2CameraMid11"/>
+        <Radius value="0.375000"/>
+        <ScaleMax value="0.540000,0.540000,0.540000"/>
+        <ScaleMin value="0.540000,0.540000,0.540000"/>
+        <SelectionOffset value="0.000000,0.000000,-0.350000"/>
+        <SelectionRadius value="0.833200"/>
+        <ShadowRadius value="0.833200"/>
+        <SquibTypeDefault value="Flesh"/>
+        <TechPurchaseCamera value="Star2CameraMid11"/>
+        <Tipability value="0.750000"/>
+        <UnitGlossaryCamera value="Star2CameraMid11"/>
+        <AttachProps Id="Ref_Center" SquibType="Shield" RadiusShield="0.350000">
+            <Keys index="Shield" value="1"/>
+        </AttachProps>
+    </CModel>
+    <CModel id="Razorback" parent="Unit" Race="Zerg">
+        <Model value="Assets\Units\Zerg\MutaliskEx1B\MutaliskEx1B.m3"/>
+        <AnimBlendTime value="0.300000"/>
+        <Occlusion value="Show"/>
+        <PlanetPanelCamera value="Star2CameraMid11"/>
+        <Radius value="0.375000"/>
+        <ScaleMax value="0.540000,0.540000,0.540000"/>
+        <ScaleMin value="0.540000,0.540000,0.540000"/>
+        <SelectionOffset value="0.000000,0.000000,-0.350000"/>
+        <SelectionRadius value="0.833200"/>
+        <ShadowRadius value="0.833200"/>
+        <SquibTypeDefault value="Flesh"/>
+        <TechPurchaseCamera value="Star2CameraMid11"/>
+        <Tipability value="0.750000"/>
+        <UnitGlossaryCamera value="Star2CameraMid11"/>
+        <AttachProps Id="Ref_Center" SquibType="Shield" RadiusShield="0.350000">
+            <Keys index="Shield" value="1"/>
+        </AttachProps>
+    </CModel>
+    <CModel id="ParasiteMound" parent="Building" Race="Zerg">
+        <Model value="Assets\Buildings\Zerg\NydusNetworkEx1\NydusNetworkEx1.m3"/>
+        <Lighting value="NydusNetwork"/>
+        <Radius value="1.500000"/>
+        <ScaleMax value="0.250000,0.250000,0.450000"/>
+        <ScaleMin value="0.250000,0.250000,0.450000"/>
+        <SelectionLayer value="2"/>
+        <SelectionRadius value="2.142500"/>
+        <ShadowRadius value="2.142500"/>
+        <SquibTypeDefault value="Flesh"/>
+    </CModel>
+    <CModel id="EnergyDrainSplat" parent="PersistentSpellFX">
+        <Model value="Assets\Effects\Zerg\KerriganFury\KerriganFury.m3"/>
+        <EditorCategories value="Race:Zerg"/>
+    </CModel>
+    <CModel id="BroodMother2" parent="Unit" Race="Zerg">
+        <Model value="Assets\Units\Zerg\ExpeditionQueenLevel2\ExpeditionQueenLevel2.m3"/>
+        <Occlusion value="Show"/>
+        <PlanetPanelCamera value="Star2CameraHigh08"/>
+        <Radius value="0.850000"/>
+        <ScaleMax value="1.150000,1.150000,1.150000"/>
+        <ScaleMin value="1.150000,1.150000,1.150000"/>
+        <SelectionRadius value="0.972100"/>
+        <ShadowRadius value="0.750000"/>
+        <SquibTypeDefault value="Flesh"/>
+        <TechPurchaseCamera value="Star2CameraHigh08"/>
+        <Tipability value="0.750000"/>
+        <TipabilityLength value="1.000000"/>
+        <TipabilityWidth value="0.800000"/>
+        <UnitGlossaryCamera value="Star2CameraHigh08"/>
+        <AttachProps Id="Ref_Center" SquibType="Shield" RadiusShield="0.350000">
+            <Keys index="Shield" value="1"/>
+        </AttachProps>
+    </CModel>
+    <CModel id="BrainBug" parent="Unit" Race="Zerg">
+        <Model value="Assets\Units\Zerg\SwarmHostSpawn\SwarmHostSpawn.m3"/>
+        <Events>
+            <Anim value="Birth"/>
+            <Name value="Locust_EggBurst"/>
+            <Type value="Sound"/>
+            <Time value="0.010000"/>
+            <Payload value="Locust_EggBurst"/>
+        </Events>
+        <Events>
+            <Anim value="Attack"/>
+            <Name value="Rattle"/>
+            <Type value="Sound"/>
+            <Time value="0.390000"/>
+            <Payload value="Locust_Rattle"/>
+        </Events>
+        <PlanetPanelCamera value="Star2CameraMid05"/>
+        <Radius value="0.850000"/>
+        <ScaleMax value="3.000000,3.000000,3.000000"/>
+        <ScaleMin value="3.000000,3.000000,3.000000"/>
+        <SelectionRadius value="0.380000"/>
+        <ShadowRadius value="0.380000"/>
+        <SquibTypeDefault value="Flesh"/>
+        <TechPurchaseCamera value="Star2CameraMid05"/>
+        <Tipability value="0.750000"/>
+        <TipabilityLength value="0.375000"/>
+        <TipabilityWidth value="0.375000"/>
+        <UnitGlossaryCamera value="Star2CameraMid05"/>
+        <AttachProps Id="Ref_Center" SquibType="Shield" RadiusShield="0.350000">
+            <Keys index="Shield" value="1"/>
+        </AttachProps>
+    </CModel>
+    <CModel id="MarsScientist" parent="Unit">
+        <Model value="Assets\Units\Terran\ScientistMale\ScientistMale.m3"/>
+        <RequiredAnims value="Assets\Units\Terran\ColonistMaleAnim\ColonistMaleAnim.m3a"/>
+        <EditorCategories value="Race:Terran"/>
+        <Radius value="0.250000"/>
+        <ScaleMax value="1.150000,1.150000,1.150000"/>
+        <ScaleMin value="1.150000,1.150000,1.150000"/>
+        <SelectionRadius value="0.250000"/>
+        <ShadowRadius value="0.250000"/>
+        <VariationCount value="4"/>
+        <AttachProps Id="Ref_Center" SquibType="Shield" RadiusShield="0.350000">
+            <Keys index="Shield" value="1"/>
+        </AttachProps>
+    </CModel>
+    <CModel id="Flutter" parent="Unit" Race="Zerg">
+        <Model value="Assets\Units\Zerg\PrimalZergMutalisk\PrimalZergMutalisk.m3"/>
+        <AnimBlendTime value="0.300000"/>
+        <Occlusion value="Show"/>
+        <PlanetPanelCamera value="Star2CameraMid11"/>
+        <Radius value="0.375000"/>
+        <ScaleMax value="0.540000,0.540000,0.540000"/>
+        <ScaleMin value="0.540000,0.540000,0.540000"/>
+        <SelectionOffset value="0.000000,0.000000,-0.350000"/>
+        <SelectionRadius value="0.833200"/>
+        <ShadowRadius value="0.833200"/>
+        <SquibTypeDefault value="Flesh"/>
+        <TechPurchaseCamera value="Star2CameraMid11"/>
+        <Tipability value="0.750000"/>
+        <UnitGlossaryCamera value="Star2CameraMid11"/>
+        <AttachProps Id="Ref_Center" SquibType="Shield" RadiusShield="0.350000">
+            <Keys index="Shield" value="1"/>
+        </AttachProps>
+    </CModel>
+    <CModel id="AttackShockLaunch" parent="PersistentSpellFX">
+        <Model value="Assets\Effects\Terran\DiamondbackZapBuff\DiamondbackZapBuff.m3"/>
+        <EditorCategories value="Race:Terran"/>
+        <Flags index="Ignorable" value="1"/>
+    </CModel>
+    <CModel id="K5KerriganLevelUp2" parent="OneShotSpellFX">
+        <Model value="Assets\Effects\Zerg\KerriganRespawnImpact\KerriganRespawnImpact.m3"/>
+        <EditorCategories value="Race:Zerg"/>
+    </CModel>
+    <CModel id="Slayer" parent="Unit" Race="Zerg">
+        <Model value="Assets\Units\Zerg\PrimalZergHydralisk\PrimalZergHydralisk.m3"/>
+        <RequiredAnims value="Assets\Units\Zerg\Hydralisk_SwarmAnims\Hydralisk_SwarmAnims.m3a"/>
+        <AttachProps Id="Ref_Weapon">
+            <Keys index="SetA" value="0"/>
+        </AttachProps>
+        <AttachProps Id="Ref_Weapon Right">
+            <Keys index="SetA" value="1"/>
+        </AttachProps>
+        <AttachProps Id="Ref_Weapon Left">
+            <Keys index="SetA" value="1"/>
+        </AttachProps>
+        <AttachProps Id="Ref_Center" SquibType="Shield" RadiusShield="0.350000"/>
+        <Events>
+            <Anim value="Attack,Cover,00"/>
+            <Name value="HydraliskAttackImpactMelee"/>
+            <Type value="Sound"/>
+            <Time value="0.500000"/>
+        </Events>
+        <Events>
+            <Anim value="Attack,Cover,00"/>
+            <Name value="HydraliskAttackImpactMelee"/>
+            <Type value="Sound"/>
+            <Time value="0.550000"/>
+        </Events>
+        <Events>
+            <Anim value="Attack,Cover,01"/>
+            <Name value="HydraliskAttackImpactMelee"/>
+            <Type value="Sound"/>
+            <Time value="0.230000"/>
+        </Events>
+        <Events>
+            <Anim value="Attack,Cover,01"/>
+            <Name value="HydraliskAttackImpactMelee"/>
+            <Type value="Sound"/>
+            <Time value="0.400000"/>
+        </Events>
+        <Occlusion value="Show"/>
+        <PlanetPanelCamera value="Star2CameraMid08"/>
+        <Radius value="0.400000"/>
+        <ScaleMax value="0.650000,0.650000,0.700000"/>
+        <ScaleMin value="0.650000,0.650000,0.700000"/>
+        <SelectionRadius value="0.571000"/>
+        <ShadowRadius value="0.571000"/>
+        <SquibTypeDefault value="Flesh"/>
+        <TechPurchaseCamera value="Star2CameraMid08"/>
+        <Tipability value="0.750000"/>
+        <TipabilityLength value="0.800000"/>
+        <TipabilityWidth value="0.800000"/>
+        <UnitGlossaryCamera value="Star2CameraMid08"/>
+    </CModel>
+    <CModel id="BonebreakerBoulder" parent="MissileFX">
+        <Model value="Assets\Doodads\Rock\Rock_00.m3"/>
+        <EditorCategories value="Race:Terran"/>
+        <ScaleMax value="2.000000,2.000000,2.000000"/>
+        <ScaleMin value="1.500000,1.500000,1.500000"/>
+        <SelectionRadius value="0.833200"/>
+        <ShadowRadius value="0.833200"/>
+    </CModel>
+    <CModel id="Centurion" parent="Unit" Race="Zerg">
+        <Model value="Assets\Units\Zerg\PrimalZergRoach\PrimalZergRoach.m3"/>
+        <RequiredAnims value="Assets\Units\Zerg\Roach_SwarmAnims\Roach_SwarmAnims.m3a"/>
+        <Occlusion value="Show"/>
+        <PlanetPanelCamera value="Star2CameraMid04"/>
+        <Radius value="0.400000"/>
+        <ScaleMax value="0.900000,0.900000,1.000000"/>
+        <ScaleMin value="0.900000,0.900000,1.000000"/>
+        <SelectionRadius value="0.541500"/>
+        <ShadowRadius value="0.541500"/>
+        <SquibTypeDefault value="Flesh"/>
+        <TechPurchaseCamera value="Star2CameraMid04"/>
+        <Tipability value="0.750000"/>
+        <TipabilityLength value="0.800000"/>
+        <TipabilityWidth value="0.800000"/>
+        <UnitGlossaryCamera value="Star2CameraMid04"/>
+        <AttachProps Id="Ref_Center" SquibType="Shield" RadiusShield="0.350000">
+            <Keys index="Shield" value="1"/>
+        </AttachProps>
+    </CModel>
+    <CModel id="RentodusDeathRagdoll" parent="UnitDeathRagdoll" Race="Zerg">
+        <Model value="Assets\Units\Zerg\UltraliskDeathRagdoll\UltraliskDeathRagdoll.m3"/>
+        <ScaleMax value="0.850000,0.850000,0.850000"/>
+        <ScaleMin value="0.850000,0.850000,0.850000"/>
+    </CModel>
+    <CModel id="Witch" parent="Unit" Race="Zerg">
+        <Model value="Assets\Units\Zerg\QueenClassic\QueenClassic.m3"/>
+        <Flags index="AutoUnload" value="1"/>
+        <Radius value="0.375000"/>
+        <ScaleMax value="0.700000,0.700000,0.700000"/>
+        <ScaleMin value="0.700000,0.700000,0.700000"/>
+        <SelectionRadius value="0.800000"/>
+        <ShadowRadius value="0.800000"/>
+        <AttachProps Id="Ref_Center" SquibType="Shield" RadiusShield="0.350000">
+            <Keys index="Shield" value="1"/>
+        </AttachProps>
+    </CModel>
+    <CModel id="Blink" parent="Unit" Race="Zerg">
+        <Model value="Assets\Units\Zerg\Scourge\Scourge.m3"/>
+        <Occlusion value="Show"/>
+        <PlanetPanelCamera value="Star2CameraLow05"/>
+        <Radius value="0.375000"/>
+        <ScaleMax value="0.700000,0.700000,0.700000"/>
+        <ScaleMin value="0.700000,0.700000,0.700000"/>
+        <SelectionRadius value="0.375000"/>
+        <ShadowRadius value="0.375000"/>
+        <TechPurchaseCamera value="Star2CameraLow05"/>
+        <Tipability value="0.750000"/>
+        <UnitGlossaryCamera value="Star2CameraLow05"/>
+        <AttachProps Id="Ref_Center" SquibType="Shield" RadiusShield="0.350000">
+            <Keys index="Shield" value="1"/>
+        </AttachProps>
+    </CModel>
+    <CModel id="Dissolver" parent="Unit" Race="Zerg">
+        <Model value="Assets\Units\Zerg\RoachEx1A\RoachEx1A.m3"/>
+        <RequiredAnims value="Assets\Units\Zerg\Roach_SwarmAnims\Roach_SwarmAnims.m3a"/>
+        <Occlusion value="Show"/>
+        <PlanetPanelCamera value="Star2CameraMid04"/>
+        <Radius value="0.400000"/>
+        <ScaleMax value="0.900000,0.900000,1.000000"/>
+        <ScaleMin value="0.900000,0.900000,1.000000"/>
+        <SelectionRadius value="0.541500"/>
+        <ShadowRadius value="0.541500"/>
+        <SquibTypeDefault value="Flesh"/>
+        <TechPurchaseCamera value="Star2CameraMid04"/>
+        <Tipability value="0.750000"/>
+        <TipabilityLength value="0.800000"/>
+        <TipabilityWidth value="0.800000"/>
+        <UnitGlossaryCamera value="Star2CameraMid04"/>
+        <AttachProps Id="Ref_Center" SquibType="Shield" RadiusShield="0.350000">
+            <Keys index="Shield" value="1"/>
+        </AttachProps>
+    </CModel>
+    <CModel id="Devourer2" parent="Unit" Race="Zerg">
+        <Model value="Assets\Units\Zerg\RoachEx1B\RoachEx1B.m3"/>
+        <RequiredAnims value="Assets\Units\Zerg\Roach_SwarmAnims\Roach_SwarmAnims.m3a"/>
+        <Occlusion value="Show"/>
+        <PlanetPanelCamera value="Star2CameraMid04"/>
+        <Radius value="0.400000"/>
+        <SelectionRadius value="0.541500"/>
+        <ShadowRadius value="0.541500"/>
+        <SquibTypeDefault value="Flesh"/>
+        <TechPurchaseCamera value="Star2CameraMid04"/>
+        <Tipability value="0.750000"/>
+        <TipabilityLength value="0.800000"/>
+        <TipabilityWidth value="0.800000"/>
+        <UnitGlossaryCamera value="Star2CameraMid04"/>
+        <AttachProps Id="Ref_Center" SquibType="Shield" RadiusShield="0.350000">
+            <Keys index="Shield" value="1"/>
+        </AttachProps>
+    </CModel>
+    <CModel id="Stalker2" parent="Unit" Race="Zerg">
+        <Model value="Assets\Units\Zerg\Roach\Roach.m3"/>
+        <RequiredAnims value="Assets\Units\Zerg\Roach_SwarmAnims\Roach_SwarmAnims.m3a"/>
+        <Lighting value="Roach"/>
+        <Occlusion value="Show"/>
+        <PlanetPanelCamera value="Star2CameraMid04"/>
+        <Radius value="0.400000"/>
+        <SelectionRadius value="0.541500"/>
+        <ShadowRadius value="0.541500"/>
+        <SquibTypeDefault value="Flesh"/>
+        <TechPurchaseCamera value="Star2CameraMid04"/>
+        <Tipability value="0.750000"/>
+        <TipabilityLength value="0.800000"/>
+        <TipabilityWidth value="0.800000"/>
+        <UnitGlossaryCamera value="Star2CameraMid04"/>
+        <AttachProps Id="Ref_Center" SquibType="Shield" RadiusShield="0.350000">
+            <Keys index="Shield" value="1"/>
+        </AttachProps>
+    </CModel>
+    <CModel id="Crab" parent="Unit">
+        <Model value="Assets\Units\Critters\ScantipedeEx1\ScantipedeEx1.m3"/>
+        <EditorCategories value="Race:Zerg"/>
+        <Radius value="0.250000"/>
+        <ScaleMax value="0.500000,0.500000,0.500000"/>
+        <ScaleMin value="0.500000,0.500000,0.500000"/>
+        <SelectionRadius value="0.550000"/>
+        <ShadowRadius value="0.550000"/>
+        <SquibTypeDefault value="Flesh"/>
+        <Tipability value="0.750000"/>
+        <TipabilityLength value="0.375000"/>
+        <TipabilityWidth value="0.375000"/>
+        <AttachProps Id="Ref_Center" SquibType="Shield" RadiusShield="0.350000">
+            <Keys index="Shield" value="1"/>
+        </AttachProps>
+    </CModel>
+    <CModel id="Parasite" parent="Unit" Race="Zerg">
+        <Model value="Assets\Units\Zerg\Larva\Larva.m3"/>
+        <Occlusion value="Show"/>
+        <PlanetPanelCamera value="Star2CameraLow04"/>
+        <Radius value="0.250000"/>
+        <ScaleMax value="0.700000,0.700000,0.700000"/>
+        <ScaleMin value="0.700000,0.700000,0.700000"/>
+        <SelectionLayer value="1"/>
+        <SelectionRadius value="0.390000"/>
+        <ShadowRadius value="0.390000"/>
+        <SquibTypeDefault value="Flesh"/>
+        <TechPurchaseCamera value="Star2CameraLow04"/>
+        <Tipability value="0.750000"/>
+        <TipabilityLength value="0.375000"/>
+        <TipabilityWidth value="0.375000"/>
+        <UnitGlossaryCamera value="Star2CameraLow04"/>
+        <AttachProps Id="Ref_Center" SquibType="Shield" RadiusShield="0.350000">
+            <Keys index="Shield" value="1"/>
+        </AttachProps>
+    </CModel>
+    <CModel id="Bloodseeker" parent="Unit" Race="Zerg">
+        <Model value="Assets\Units\Zerg\PrimalZergRanged\PrimalZergRanged_00.m3"/>
+        <RequiredAnims value="Assets\Units\Zerg\PrimalZerg_RequiredAnims\PrimalZerg_RequiredAnims.m3a"/>
+        <Events>
+            <Anim value="Attack,00"/>
+            <Name value="AttackLaunch"/>
+            <Type value="Sound"/>
+            <Time value="0.200000"/>
+        </Events>
+        <Events>
+            <Anim value="Attack,00"/>
+            <Name value="AttackImpact"/>
+            <Type value="Sound"/>
+            <Time value="0.500000"/>
+        </Events>
+        <Events>
+            <Anim value="Attack,03"/>
+            <Name value="AttackLaunch"/>
+            <Type value="Sound"/>
+            <Time value="0.200000"/>
+        </Events>
+        <Events>
+            <Anim value="Attack,03"/>
+            <Name value="AttackImpact"/>
+            <Type value="Sound"/>
+            <Time value="0.500000"/>
+        </Events>
+        <Events>
+            <Anim value="Attack,04"/>
+            <Name value="AttackLaunch"/>
+            <Type value="Sound"/>
+            <Time value="0.200000"/>
+        </Events>
+        <Events>
+            <Anim value="Attack,04"/>
+            <Name value="AttackImpact"/>
+            <Type value="Sound"/>
+            <Time value="0.500000"/>
+        </Events>
+        <Events>
+            <Anim value="Attack,04"/>
+            <Name value="AttackLaunch"/>
+            <Type value="Sound"/>
+            <Time value="0.700000"/>
+        </Events>
+        <Events>
+            <Anim value="Attack,04"/>
+            <Name value="AttackImpact"/>
+            <Type value="Sound"/>
+            <Time value="0.900000"/>
+        </Events>
+        <Events>
+            <Anim value="Spell,00"/>
+            <Name value="AttackLaunchB"/>
+            <Type value="Sound"/>
+            <Time value="0.010000"/>
+            <Payload value="Ravasaur_Attack"/>
+        </Events>
+        <Events>
+            <Anim value="Spell,00"/>
+            <Name value="Spit"/>
+            <Type value="Sound"/>
+            <Time value="0.010000"/>
+            <Payload value="Ravasaur_Spit"/>
+        </Events>
+        <Flags index="Facial" value="1"/>
+        <Occlusion value="Show"/>
+        <PlanetPanelCamera value="Star2CameraMid05"/>
+        <Radius value="1.000000"/>
+        <ScaleMax value="2.750000,2.750000,2.750000"/>
+        <ScaleMin value="2.750000,2.750000,2.750000"/>
+        <ShadowRadius value="1.176200"/>
+        <SquibTypeDefault value="Flesh"/>
+        <TechPurchaseCamera value="Star2CameraMid05"/>
+        <Tipability value="0.750000"/>
+        <TipabilityLength value="1.000000"/>
+        <TipabilityWidth value="1.000000"/>
+        <UnitGlossaryCamera value="Star2CameraMid05"/>
+        <AttachProps Id="Ref_Center" SquibType="Shield" RadiusShield="0.350000">
+            <Keys index="Shield" value="1"/>
+        </AttachProps>
+    </CModel>
+    <CModel id="Corona" parent="Unit">
+        <Model value="Assets\Units\Critters\ZerusAlienTreeHover\ZerusAlienTreeHover.m3"/>
+        <Radius value="0.375000"/>
+        <ScaleMax value="0.700000,0.700000,0.700000"/>
+        <ScaleMin value="0.700000,0.700000,0.700000"/>
+        <SelectionRadius value="0.800000"/>
+        <ShadowRadius value="0.800000"/>
+        <AttachProps Id="Ref_Center" SquibType="Shield" RadiusShield="0.350000">
+            <Keys index="Shield" value="1"/>
+        </AttachProps>
+    </CModel>
+    <CModel id="Mastermind" parent="Unit" Race="Zerg">
+        <Model value="Assets\Units\Zerg\SwarmHost\SwarmHost.m3"/>
+        <RequiredAnims value="Assets\Units\Zerg\SwarmHost_RequiredAnims\SwarmHost_RequiredAnims.m3a"/>
+        <AnimBlendTime value="0.400000"/>
+        <AttachProps Id="Ref_Weapon 01">
+            <Keys index="SetA" value="0"/>
+        </AttachProps>
+        <AttachProps Id="Ref_Weapon 02">
+            <Keys index="SetA" value="0"/>
+        </AttachProps>
+        <AttachProps Id="Ref_Weapon 03">
+            <Keys index="SetA" value="0"/>
+        </AttachProps>
+        <AttachProps Id="Ref_Weapon 04">
+            <Keys index="SetA" value="0"/>
+        </AttachProps>
+        <AttachProps Id="Ref_Weapon 05">
+            <Keys index="SetA" value="0"/>
+        </AttachProps>
+        <AttachProps Id="Ref_Target 03">
+            <Keys index="SetB" value="0"/>
+        </AttachProps>
+        <AttachProps Id="Ref_Target 04">
+            <Keys index="SetB" value="0"/>
+        </AttachProps>
+        <AttachProps Id="Ref_Target 05">
+            <Keys index="SetB" value="0"/>
+        </AttachProps>
+        <AttachProps Id="Ref_Target 06">
+            <Keys index="SetB" value="0"/>
+        </AttachProps>
+        <AttachProps Id="Ref_Center" SquibType="Shield" RadiusShield="0.350000"/>
+        <Events>
+            <Anim value="Spell,Alternate,End"/>
+            <Name value="EggPop"/>
+            <Type value="Sound"/>
+            <Time value="0.360000"/>
+            <Payload value="SwarmHost_SpawnLaunch"/>
+        </Events>
+        <Events>
+            <Anim value="Spell,Alternate,End"/>
+            <Name value="EggPop"/>
+            <Type value="Sound"/>
+            <Time value="0.550000"/>
+            <Payload value="SwarmHost_SpawnLaunch"/>
+        </Events>
+        <Events>
+            <Anim value="Spell,Alternate,End"/>
+            <Name value="EggPop"/>
+            <Type value="Sound"/>
+            <Time value="0.920000"/>
+            <Payload value="SwarmHost_SpawnLaunch"/>
+        </Events>
+        <Events>
+            <Anim value="Spell,Alternate,End"/>
+            <Name value="EggPop"/>
+            <Type value="Sound"/>
+            <Time value="1.280000"/>
+            <Payload value="SwarmHost_SpawnLaunch"/>
+        </Events>
+        <Events>
+            <Anim value="Spell,Alternate,End"/>
+            <Name value="EggPop"/>
+            <Type value="Sound"/>
+            <Time value="1.550000"/>
+            <Payload value="SwarmHost_SpawnLaunch"/>
+        </Events>
+        <Events>
+            <Anim value="Spell,Alternate,End"/>
+            <Name value="EggPop"/>
+            <Type value="Sound"/>
+            <Time value="1.750000"/>
+            <Payload value="SwarmHost_SpawnLaunch"/>
+        </Events>
+        <Occlusion value="Show"/>
+        <PlanetPanelCamera value="Star2CameraHigh05"/>
+        <Radius value="0.850000"/>
+        <ScaleMax value="1.600000,1.600000,1.600000"/>
+        <ScaleMin value="1.600000,1.600000,1.600000"/>
+        <SelectionRadius value="0.850000"/>
+        <ShadowRadius value="0.850000"/>
+        <SquibTypeDefault value="Flesh"/>
+        <TechPurchaseCamera value="Star2CameraHigh05"/>
+        <Tipability value="0.750000"/>
+        <TipabilityLength value="1.000000"/>
+        <TipabilityWidth value="1.000000"/>
+        <UnitGlossaryCamera value="Star2CameraHigh05"/>
+    </CModel>
+    <CModel id="Shambler" parent="Unit" Race="Terran">
+        <Model value="Assets\Units\Terran\PrisonerSpectre\PrisonerSpectre.m3"/>
+        <RequiredAnims value="Assets\Units\Terran\ColonistMaleAnim\ColonistMaleAnim.m3a"/>
+        <EditorCategories value="Race:Zerg"/>
+        <Events>
+            <Anim value="Stand,Work,00"/>
+            <Name value="EventNPCHammering"/>
+            <Type value="Sound"/>
+            <Time value="0.550000"/>
+            <Payload value="Event_NPCHammering"/>
+        </Events>
+        <Events>
+            <Anim value="Stand,Work,01"/>
+            <Name value="EventNPCHammering"/>
+            <Type value="Sound"/>
+            <Time value="2.700000"/>
+            <Payload value="Event_NPCHammering"/>
+        </Events>
+        <Events>
+            <Anim value="Stand,Work,02"/>
+            <Name value="EventNPCDrilling"/>
+            <Type value="Sound"/>
+            <Time value="0.010000"/>
+            <Payload value="Event_NPCDrilling"/>
+        </Events>
+        <Flags index="AutoUnload" value="1"/>
+        <Occlusion value="Show"/>
+        <Radius value="0.250000"/>
+        <ScaleMax value="1.100000,1.100000,1.100000"/>
+        <ScaleMin value="1.100000,1.100000,1.100000"/>
+        <SelectionRadius value="0.250000"/>
+        <ShadowRadius value="0.250000"/>
+        <SquibTypeDefault value="Flesh"/>
+        <AttachProps Id="Ref_Center" SquibType="Shield" RadiusShield="0.350000"/>
+        <TextureDeclares Prefix="PrisonerSpectreDiffuse_00.dds">
+            <Adaptions TriggerOnSubstring="PrisonerSpectreDiffuse_00.dds" Slot="main.diffuse"/>
+        </TextureDeclares>
+        <TextureDeclares Prefix="PrisonerSpectreNormal_00.dds">
+            <Adaptions TriggerOnSubstring="PrisonerSpectreNormal.dds" Slot="main.normal"/>
+        </TextureDeclares>
+    </CModel>
+    <CModel id="MarsPrisoner" parent="Unit" Race="Terran">
+        <Model value="Assets\Units\Terran\PrisonerCivilian\PrisonerCivilian.m3"/>
+        <RequiredAnims value="Assets\Units\Terran\ColonistMaleAnim\ColonistMaleAnim.m3a"/>
+        <Events>
+            <Anim value="Stand,Work,00"/>
+            <Name value="EventNPCHammering"/>
+            <Type value="Sound"/>
+            <Time value="0.550000"/>
+            <Payload value="Event_NPCHammering"/>
+        </Events>
+        <Events>
+            <Anim value="Stand,Work,01"/>
+            <Name value="EventNPCHammering"/>
+            <Type value="Sound"/>
+            <Time value="2.700000"/>
+            <Payload value="Event_NPCHammering"/>
+        </Events>
+        <Events>
+            <Anim value="Stand,Work,02"/>
+            <Name value="EventNPCDrilling"/>
+            <Type value="Sound"/>
+            <Time value="0.010000"/>
+            <Payload value="Event_NPCDrilling"/>
+        </Events>
+        <Flags index="AutoUnload" value="1"/>
+        <Occlusion value="Show"/>
+        <Radius value="0.250000"/>
+        <ScaleMax value="1.150000,1.150000,1.150000"/>
+        <ScaleMin value="1.150000,1.150000,1.150000"/>
+        <SelectionRadius value="0.250000"/>
+        <ShadowRadius value="0.250000"/>
+        <TextureDeclares Prefix="PrisonerCivilian_">
+            <Adaptions Slot="main"/>
+        </TextureDeclares>
+        <TextureMatchesForEditor Slot="main.specular" Source="main"/>
+        <Variations Probability="1">
+            <TextureExpressionsForEditor Slot="main" Expression="RequireAll diffuse; RequireAll diffuse"/>
+        </Variations>
+        <AttachProps Id="Ref_Center" SquibType="Shield" RadiusShield="0.350000">
+            <Keys index="Shield" value="1"/>
+        </AttachProps>
+    </CModel>
+    <CModel id="EnergyDrainImpact" parent="OneShotSpellFX">
+        <Model value="Assets\Effects\Zerg\MendBuff\MendBuff.m3"/>
+        <TextureDeclares Prefix="Med2Orange.dds">
+            <Adaptions TriggerOnSubstring="Med2Orange.dd" Slot="main"/>
+        </TextureDeclares>
+        <TextureDeclares Prefix="Flare1_Orange4.dds">
+            <Adaptions TriggerOnSubstring="Flare1_Orange4.dds" Slot="body"/>
+        </TextureDeclares>
+        <TextureDeclares Prefix="Med2.dds">
+            <Adaptions TriggerOnSubstring="Med2.dds" Slot="merc"/>
+        </TextureDeclares>
+    </CModel>
+    <CModel id="Hound" parent="Unit">
+        <Model value="Assets\Units\Critters\Dog\Dog.m3"/>
+        <EditorCategories value="Race:Zerg"/>
+        <Radius value="0.250000"/>
+        <ScaleMax value="0.800000,0.900000,0.800000"/>
+        <ScaleMin value="0.800000,0.900000,0.800000"/>
+        <SquibTypeDefault value="Flesh"/>
+        <VariationCount value="3"/>
+        <AttachProps Id="Ref_Center" SquibType="Shield" RadiusShield="0.350000"/>
+    </CModel>
+    <CModel id="HealthRegenImpact" parent="OneShotSpellFX">
+        <Model value="Assets\Effects\Zerg\MendBuff\MendBuff.m3"/>
+    </CModel>
+    <CModel id="HealthRegen" parent="PersistentSpellFX">
+        <Model value="Assets\Effects\Zerg\QueenRegenAura\QueenRegenAura.m3"/>
+        <EditorCategories value="Race:Neutral"/>
+        <ScaleMax value="2.000000,2.000000,2.000000"/>
+        <ScaleMin value="2.000000,2.000000,2.000000"/>
+    </CModel>
+    <CModel id="MarsColonistMaleMiner" parent="Unit" Race="Terran">
+        <Model value="Assets\Units\Terran\MinerMale\MinerMale.m3"/>
+        <Flags index="AutoUnload" value="1"/>
+        <Occlusion value="Show"/>
+        <Radius value="0.250000"/>
+        <ScaleMax value="1.150000,1.150000,1.150000"/>
+        <ScaleMin value="1.150000,1.150000,1.150000"/>
+        <SelectionRadius value="0.250000"/>
+        <ShadowRadius value="0.250000"/>
+        <TextureDeclares Prefix="MinerMale_">
+            <Adaptions Slot="main"/>
+        </TextureDeclares>
+        <Variations Probability="1">
+            <TextureExpressionsForEditor Slot="main" Expression="RequireAll diffuse"/>
+        </Variations>
+        <AttachProps Id="Ref_Center" SquibType="Shield" RadiusShield="0.350000">
+            <Keys index="Shield" value="1"/>
+        </AttachProps>
+    </CModel>
+    <CModel id="Immortal2" parent="Unit">
+        <Model value="Assets\Units\Zerg\Changeling\Changeling.m3"/>
+        <EditorCategories value="Race:Zerg"/>
+        <Occlusion value="Show"/>
+        <PlanetPanelCamera value="Star2CameraMid04"/>
+        <Radius value="0.250000"/>
+        <ScaleMax value="0.850000,0.850000,0.850000"/>
+        <ScaleMin value="0.850000,0.850000,0.850000"/>
+        <SelectionRadius value="0.529000"/>
+        <ShadowRadius value="0.529000"/>
+        <SquibTypeDefault value="Flesh"/>
+        <TechPurchaseCamera value="Star2CameraMid04"/>
+        <Tipability value="0.750000"/>
+        <TipabilityLength value="0.400000"/>
+        <TipabilityWidth value="0.400000"/>
+        <UnitGlossaryCamera value="Star2CameraMid04"/>
+        <AttachProps Id="Ref_Center" SquibType="Shield" RadiusShield="0.350000"/>
+    </CModel>
+    <CModel id="MarsColonistFemale" parent="Unit" Race="Terran">
+        <Model value="Assets\Units\Terran\ColonistFemale\ColonistFemale.m3"/>
+        <RequiredAnims value="Assets\Units\Terran\ColonistFemale_RequiredAnims\ColonistFemale_RequiredAnims.m3a"/>
+        <Flags index="AutoUnload" value="1"/>
+        <Occlusion value="Show"/>
+        <Radius value="0.250000"/>
+        <ScaleMax value="1.150000,1.150000,1.150000"/>
+        <ScaleMin value="1.150000,1.150000,1.150000"/>
+        <SelectionRadius value="0.250000"/>
+        <ShadowRadius value="0.250000"/>
+        <TextureDeclares Prefix="colonist_female">
+            <Adaptions TriggerOnSubstring="colonist_female" Slot="main"/>
+        </TextureDeclares>
+        <TextureMatchesForEditor Slot="main.normal" Source="main"/>
+        <VariationCount value="3"/>
+        <Variations Probability="1">
+            <TextureExpressionsForEditor Slot="main" Expression="RequireAll diffuse"/>
+        </Variations>
+        <AttachProps Id="Ref_Center" SquibType="Shield" RadiusShield="0.350000">
+            <Keys index="Shield" value="1"/>
+        </AttachProps>
+    </CModel>
+    <CModel id="Seeker" parent="Unit" Race="Zerg">
+        <Model value="Assets\Units\Critters\Lyote\Lyote.m3"/>
+        <Events>
+            <Anim value="Stand,01"/>
+            <Name value="Howl"/>
+            <Type value="Sound"/>
+            <Time value="2.940000"/>
+            <Payload value="Lyote_Howl"/>
+        </Events>
+        <Radius value="0.250000"/>
+        <ScaleMax value="0.800000,1.000000,0.800000"/>
+        <ScaleMin value="0.800000,1.000000,0.800000"/>
+        <SelectionRadius value="0.510000"/>
+        <ShadowRadius value="0.250000"/>
+        <SquibTypeDefault value="Flesh"/>
+        <TextureDeclares Prefix="Lyote_">
+            <Adaptions TriggerOnSubstring="_Diffuse" Slot="main"/>
+        </TextureDeclares>
+        <AttachProps Id="Ref_Center" SquibType="Shield" RadiusShield="0.350000"/>
+    </CModel>
+    <CModel id="Hulk" parent="Unit" Race="Zerg">
+        <Model value="Assets\Units\Zerg\InfestedColonist\InfestedColonist.m3"/>
+        <RequiredAnims value="Assets\Units\Zerg\InfestedColonist_RequiredAnims\InfestedColonist_RequiredAnims.m3a"/>
+        <PlanetPanelCamera value="Star2CameraMid04"/>
+        <Radius value="0.250000"/>
+        <ScaleMax value="1.050000,1.050000,1.050000"/>
+        <ScaleMin value="1.050000,1.050000,1.050000"/>
+        <SelectionRadius value="0.350000"/>
+        <ShadowRadius value="0.350000"/>
+        <TechPurchaseCamera value="Star2CameraMid04"/>
+        <TextureDeclares Prefix="infestedcolonist_">
+            <Adaptions Slot="main"/>
+        </TextureDeclares>
+        <UnitGlossaryCamera value="Star2CameraMid04"/>
+        <VariationCount value="3"/>
+        <Variations Probability="1">
+            <TextureExpressionsForEditor Slot="main.diffuse" Expression="RequireAny 06"/>
+        </Variations>
+        <AttachProps Id="Ref_Center" SquibType="Shield" RadiusShield="0.350000"/>
+    </CModel>
+    <CModel id="Tesla" parent="Unit" Race="Zerg">
+        <Model value="Assets\Units\Critters\Artosilope\Artosilope.m3"/>
+        <Radius value="0.250000"/>
+        <ScaleMax value="0.600000,0.600000,0.600000"/>
+        <ScaleMin value="0.600000,0.600000,0.600000"/>
+        <SelectionRadius value="0.700000"/>
+        <ShadowRadius value="0.250000"/>
+        <SquibTypeDefault value="Flesh"/>
+        <AttachProps Id="Ref_Center" SquibType="Shield" RadiusShield="0.350000"/>
+    </CModel>
+    <CModel id="AttackClawsSplat">
+        <Model value="Assets\Doodads\WaterRippleMassive\WaterRippleMassive.m3"/>
+        <Events>
+            <Anim value="Walk"/>
+            <Name value="WaterRippleMediumWalk"/>
+            <Type value="Custom"/>
+            <Time value="0.010000"/>
+        </Events>
+        <ScaleMax value="1.500000,1.500000,1.500000"/>
+        <ScaleMin value="1.500000,1.500000,1.500000"/>
+    </CModel>
+    <CModel id="ArmourShieldSplat" parent="PersistentSpellFX">
+        <Model value="Assets\Effects\Zerg\WildMutationBuff\WildMutationBuff.m3"/>
+        <EditorCategories value="Race:Zerg"/>
+        <ScaleMax value="1.000000,1.000000,0.100000"/>
+        <ScaleMin value="1.000000,1.000000,0.100000"/>
+    </CModel>
+    <CModel id="BoulderImpact" parent="ImpactFX">
+        <Model value="Assets\Effects\Zerg\ZurvanTentacleImpact\ZurvanTentacleImpact.m3"/>
+        <Events>
+            <Anim value="Death"/>
+            <Name value="Zurvan_TentacleImpact"/>
+            <Type value="Sound"/>
+            <Time value="0.050000"/>
+            <Payload value="Zurvan_TentacleImpact"/>
+        </Events>
+        <Events>
+            <Anim value="Death"/>
+            <Name value="Zurvan_TentacleImpact_StereoSlap"/>
+            <Type value="Sound"/>
+            <Time value="0.250000"/>
+            <Payload value="Zurvan_TentacleImpact_StereoSlap"/>
+        </Events>
+        <Radius value="1.000000"/>
+        <SelectionRadius value="1.000000"/>
+        <ShadowRadius value="1.000000"/>
+    </CModel>
+    <CModel id="Eltrad" parent="Unit" Race="Zerg">
+        <Model value="Assets\Units\Zerg\Zergling\Zergling.m3"/>
+        <RequiredAnims value="Assets\Units\Zerg\Zergling_SwarmAnims\Zergling_SwarmAnims.m3a"/>
+        <AttachProps Id="Ref_Weapon Left">
+            <Keys index="Weapon" value="1"/>
+            <Keys index="Work" value="0"/>
+        </AttachProps>
+        <AttachProps Id="Ref_Weapon Right">
+            <Keys index="Weapon" value="1"/>
+        </AttachProps>
+        <Lighting value="Zergling"/>
+        <Occlusion value="Show"/>
+        <PlanetPanelCamera value="Star2CameraMid05"/>
+        <Radius value="0.300000"/>
+        <ScaleMax value="1.500000,1.500000,1.500000"/>
+        <ScaleMin value="1.500000,1.500000,1.500000"/>
+        <SelectionRadius value="0.350000"/>
+        <ShadowRadius value="0.350000"/>
+        <SquibTypeDefault value="Flesh"/>
+        <TechPurchaseCamera value="Star2CameraMid05"/>
+        <Tipability value="0.750000"/>
+        <TipabilityLength value="0.400000"/>
+        <TipabilityWidth value="0.400000"/>
+        <UnitGlossaryCamera value="Star2CameraMid05"/>
+    </CModel>
+    <CModel id="EltradFastHealing" parent="Unit" Race="Zerg">
+        <Model value="Assets\Units\Zerg\ZerglingUpgrade\ZerglingUpgrade.m3"/>
+        <RequiredAnims value="Assets\Units\Zerg\Zergling_SwarmAnims\Zergling_SwarmAnims.m3a"/>
+        <AttachProps Id="Ref_Weapon Left">
+            <Keys index="Weapon" value="1"/>
+            <Keys index="Work" value="0"/>
+        </AttachProps>
+        <AttachProps Id="Ref_Weapon Right">
+            <Keys index="Weapon" value="1"/>
+        </AttachProps>
+        <Lighting value="Zergling"/>
+        <Occlusion value="Show"/>
+        <PlanetPanelCamera value="Star2CameraMid05"/>
+        <Radius value="0.300000"/>
+        <ScaleMax value="1.500000,1.500000,1.500000"/>
+        <ScaleMin value="1.500000,1.500000,1.500000"/>
+        <SelectionRadius value="0.350000"/>
+        <ShadowRadius value="0.350000"/>
+        <SquibTypeDefault value="Flesh"/>
+        <TechPurchaseCamera value="Star2CameraMid05"/>
+        <Tipability value="0.750000"/>
+        <TipabilityLength value="0.400000"/>
+        <TipabilityWidth value="0.400000"/>
+        <UnitGlossaryCamera value="Star2CameraMid05"/>
+    </CModel>
+    <CModel id="EltradTriad" parent="Unit" Race="Zerg">
+        <Model value="Assets\Units\Zerg\Zergling\Zergling.m3"/>
+        <RequiredAnims value="Assets\Units\Zerg\Zergling_SwarmAnims\Zergling_SwarmAnims.m3a"/>
+        <AttachProps Id="Ref_Weapon Left">
+            <Keys index="Weapon" value="1"/>
+            <Keys index="Work" value="0"/>
+        </AttachProps>
+        <AttachProps Id="Ref_Weapon Right">
+            <Keys index="Weapon" value="1"/>
+        </AttachProps>
+        <Lighting value="Zergling"/>
+        <Occlusion value="Show"/>
+        <PlanetPanelCamera value="Star2CameraMid05"/>
+        <Radius value="0.300000"/>
+        <ScaleMax value="1.040000,1.040000,1.040000"/>
+        <ScaleMin value="1.040000,1.040000,1.040000"/>
+        <SelectionRadius value="0.441400"/>
+        <ShadowRadius value="0.441400"/>
+        <SquibTypeDefault value="Flesh"/>
+        <TechPurchaseCamera value="Star2CameraMid05"/>
+        <Tipability value="0.750000"/>
+        <TipabilityLength value="0.400000"/>
+        <TipabilityWidth value="0.400000"/>
+        <UnitGlossaryCamera value="Star2CameraMid05"/>
+    </CModel>
+    <CModel id="HealthRegenImpact2" parent="OneShotSpellFX">
+        <Model value="Assets\Effects\Zerg\MendBuff\MendBuff.m3"/>
+    </CModel>
+    <CModel id="TarionAcidTarget">
+        <Model value="Assets\Buildings\Zerg\BanelingEggNest\BanelingEggNest.m3"/>
+        <ScaleMax value="0.400000,0.400000,0.400000"/>
+        <ScaleMin value="0.400000,0.400000,0.400000"/>
+    </CModel>
+    <CModel id="StimpackEndImpact2" parent="OneShotSpellFX">
+        <Model value="Assets\Effects\Terran\StimpackEndImpact\StimpackEndImpact.m3"/>
+        <EditorCategories value="Race:Terran"/>
+    </CModel>
+    <CModel id="TarionAcidTarget1">
+        <Model value="Assets\Units\Zerg\OverseerEgg\OverseerEgg.m3"/>
+        <ScaleMin value="0.900000,0.900000,0.900000"/>
+    </CModel>
+    <CModel id="TarionBloodknightTarget">
+        <Model value="Assets\Units\Zerg\TentacleMonster\TentacleMonster.m3"/>
+        <ScaleMax value="1.500000,1.500000,1.100000"/>
+        <ScaleMin value="1.500000,1.500000,1.100000"/>
+    </CModel>
+    <CModel id="TarionBloodknight" parent="Unit" Race="Zerg">
+        <Model value="Assets\Units\Zerg\UltraliskEx1CE\UltraliskEx1CE.m3"/>
+        <RequiredAnims value="Assets\Units\Zerg\UltraliskEx1_RequiredAnims\UltraliskEx1_RequiredAnims.m3a"/>
+        <Events>
+            <Anim value="Attack,00"/>
+            <Name value="UltraliskAttack"/>
+            <Type value="Sound"/>
+            <Time value="0.010000"/>
+        </Events>
+        <Events>
+            <Anim value="Attack,00"/>
+            <Name value="UltraliskAttack"/>
+            <Type value="Sound"/>
+            <Time value="0.160000"/>
+        </Events>
+        <Events>
+            <Anim value="Attack,01"/>
+            <Name value="UltraliskAttack"/>
+            <Type value="Sound"/>
+            <Time value="0.040000"/>
+        </Events>
+        <Events>
+            <Anim value="Attack,01"/>
+            <Name value="UltraliskAttack"/>
+            <Type value="Sound"/>
+            <Time value="0.160000"/>
+        </Events>
+        <Events>
+            <Anim value="Spell,A"/>
+            <Name value="UltraliskAttack"/>
+            <Type value="Sound"/>
+            <Time value="0.020000"/>
+        </Events>
+        <Events>
+            <Anim value="Spell,A"/>
+            <Name value="UltraliskAttack"/>
+            <Type value="Sound"/>
+            <Time value="0.190000"/>
+        </Events>
+        <Events>
+            <Anim value="Spell,00"/>
+            <Name value="UltraliskHeadAttack"/>
+            <Type value="Sound"/>
+            <Time value="0.550000"/>
+        </Events>
+        <Events>
+            <Anim value="Spell,00"/>
+            <Name value="UltraliskAttack"/>
+            <Type value="Sound"/>
+            <Time value="0.350000"/>
+        </Events>
+        <Events>
+            <Anim value="Spell,00"/>
+            <Name value="UltraliskAttack"/>
+            <Type value="Sound"/>
+            <Time value="0.490000"/>
+        </Events>
+        <Events>
+            <Anim value="Spell,01"/>
+            <Name value="UltraliskHeadAttack"/>
+            <Type value="Sound"/>
+            <Time value="0.450000"/>
+        </Events>
+        <Events>
+            <Anim value="Spell,01"/>
+            <Name value="UltraliskAttack"/>
+            <Type value="Sound"/>
+            <Time value="0.400000"/>
+        </Events>
+        <Events>
+            <Anim value="Spell,01"/>
+            <Name value="UltraliskAttack"/>
+            <Type value="Sound"/>
+            <Time value="0.490000"/>
+        </Events>
+        <Events>
+            <Anim value="Spell,D"/>
+            <Name value="UltraliskAttack"/>
+            <Type value="Sound"/>
+            <Time value="0.020000"/>
+        </Events>
+        <Events>
+            <Anim value="Spell,D"/>
+            <Name value="UltraliskAttack"/>
+            <Type value="Sound"/>
+            <Time value="0.190000"/>
+        </Events>
+        <Occlusion value="Show"/>
+        <PlanetPanelCamera value="Star2CameraHigh13"/>
+        <Radius value="1.250000"/>
+        <ScaleMax value="0.850000,0.850000,0.850000"/>
+        <ScaleMin value="0.850000,0.850000,0.850000"/>
+        <SelectionRadius value="1.176200"/>
+        <ShadowRadius value="1.176200"/>
+        <SquibTypeDefault value="Flesh"/>
+        <TechPurchaseCamera value="Star2CameraHigh13"/>
+        <Tipability value="0.750000"/>
+        <TipabilityLength value="1.000000"/>
+        <TipabilityWidth value="1.000000"/>
+        <UnitGlossaryCamera value="Star2CameraHigh13"/>
+    </CModel>
+    <CModel id="TarionBloodknightTarget1">
+        <Model value="Assets\Units\Zerg\Corruptor\Corruptor.m3"/>
+    </CModel>
+    <CModel id="EltradDeath" parent="UnitDeath">
+        <Model value="Assets\Units\Zerg\ZerglingDeathEx1\ZerglingDeathEx1.m3"/>
+        <LowQualityModel value="ZergSmallUnitDeathLow"/>
+        <EditorCategories value="Race:Zerg"/>
+        <Occlusion value="Show"/>
+        <ScaleMax value="1.300000,1.300000,1.300000"/>
+        <ScaleMin value="1.300000,1.300000,1.300000"/>
+    </CModel>
+</Catalog>

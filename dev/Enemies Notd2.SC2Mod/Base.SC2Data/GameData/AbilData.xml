@@ -1,0 +1,553 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<Catalog>
+    <CAbilTrain default="1" id="ZombieSpawnTemplate">
+        <?token id="ScalingEffect"?>
+        <AbilSetId value="ZombieTrain"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Range value="5"/>
+        <InfoArray index="Train1" Effect="##ScalingEffect##"/>
+        <InfoArray index="Train2" Effect="##ScalingEffect##"/>
+        <InfoArray index="Train3" Effect="##ScalingEffect##"/>
+        <InfoArray index="Train4" Effect="##ScalingEffect##"/>
+        <InfoArray index="Train5" Effect="##ScalingEffect##"/>
+        <InfoArray index="Train6" Effect="##ScalingEffect##"/>
+        <InfoArray index="Train7" Effect="##ScalingEffect##"/>
+        <InfoArray index="Train8" Effect="##ScalingEffect##"/>
+        <InfoArray index="Train9" Effect="##ScalingEffect##"/>
+    </CAbilTrain>
+    <CAbilTrain id="BlinkMulitply">
+        <EditorCategories value="Race:Zerg,AbilityorEffectType:Units"/>
+        <Flags index="AutoCastOffOwnerLeave" value="0"/>
+        <Flags index="DisableCollision" value="1"/>
+        <Flags index="IgnoreUnitCost" value="1"/>
+        <Flags index="Select" value="1"/>
+        <Flags index="WaitForFood" value="0"/>
+        <Range value="5"/>
+        <InfoArray index="Train1" Time="0.05">
+            <Button DefaultButtonFace="Scourge">
+                <Flags index="AllowSelfCast" value="1"/>
+            </Button>
+            <Unit value="Blink"/>
+            <Unit value="Blink"/>
+            <Unit value="Blink"/>
+            <Unit value="Blink"/>
+            <Unit value="Blink"/>
+            <Flags index="AutoCast" value="1"/>
+            <Flags index="AutoCastOn" value="1"/>
+        </InfoArray>
+    </CAbilTrain>
+    <CAbilTrain id="EltradTriadMulitply">
+        <EditorCategories value="Race:Zerg,AbilityorEffectType:Units"/>
+        <Flags index="AutoCastOffOwnerLeave" value="0"/>
+        <Flags index="DisableCollision" value="1"/>
+        <Flags index="IgnoreUnitCost" value="1"/>
+        <Flags index="Select" value="1"/>
+        <Flags index="WaitForFood" value="0"/>
+        <Range value="5"/>
+        <InfoArray index="Train1" Time="0.05">
+            <Button DefaultButtonFace="Zergling">
+                <Flags index="AllowSelfCast" value="1"/>
+            </Button>
+            <Unit value="EltradTriad"/>
+            <Unit value="EltradTriad"/>
+            <Unit value="EltradTriad"/>
+            <Flags index="AutoCast" value="1"/>
+            <Flags index="AutoCastOn" value="1"/>
+        </InfoArray>
+    </CAbilTrain>
+    <CAbilBehavior id="BlinkToggle">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <CmdButtonArray index="On" DefaultButtonFace="ToggleCloak">
+            <Flags index="AllowSelfCast" value="1"/>
+        </CmdButtonArray>
+        <Flags index="AutoCast" value="1"/>
+        <Flags index="AutoCastOn" value="1"/>
+        <Flags index="BestUnit" value="1"/>
+        <Cost>
+            <Cooldown TimeUse="4"/>
+        </Cost>
+        <BehaviorArray value="BlinkCloakToggle"/>
+    </CAbilBehavior>
+    <CAbilEffectTarget id="EnergyDrain">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Range value="3"/>
+        <Cost>
+            <Cooldown TimeUse="2"/>
+        </Cost>
+        <CmdButtonArray index="Execute" DefaultButtonFace="SarbusEnergyDrain"/>
+    </CAbilEffectTarget>
+    <CAbilEffectInstant id="WitchShroud">
+        <OrderArray index="0" Model="Assets\UI\Cursors\WayPointConfirmSwarm\WayPointConfirmSwarm.m3"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Effect index="0" value="WitchShroudSearchArea"/>
+        <Flags index="AutoCast" value="1"/>
+        <Flags index="AutoCastOn" value="1"/>
+        <Flags index="BestUnit" value="1"/>
+        <Flags index="ReExecutable" value="1"/>
+        <Flags index="RequireTargetVision" value="0"/>
+        <Cost>
+            <Charge Link=""/>
+            <Cooldown Link="OracleCloakField" TimeUse="4"/>
+        </Cost>
+        <AutoCastFilters value="Visible;Neutral,Enemy"/>
+        <AINotifyEffect value="WitchShroudSearchArea"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="OracleCloakField"/>
+    </CAbilEffectInstant>
+    <CAbilTrain id="ParasiteMoundTrainParasite">
+        <OrderArray index="0" Model="Assets\UI\Cursors\WayPointConfirmSwarm\WayPointConfirmSwarm.m3"/>
+        <Range value="5"/>
+        <InfoArray index="Train1" Time="60" Effect="ParasiteDifficultyScaling">
+            <Button DefaultButtonFace="MorphMorphalisk"/>
+            <Unit value="Parasite"/>
+            <Unit value="Parasite"/>
+            <Flags index="AutoCast" value="1"/>
+            <Flags index="AutoCastOn" value="1"/>
+        </InfoArray>
+        <Flags index="IgnoreUnitCost" value="1"/>
+    </CAbilTrain>
+    <CAbilEffectTarget id="MendHeal">
+        <Alignment value="Positive"/>
+        <EditorCategories value="Race:Zerg,AbilityorEffectType:Units"/>
+        <Effect index="0" value="MendHealTarget"/>
+        <Flags index="AllowMovement" value="1"/>
+        <Flags index="AutoCast" value="1"/>
+        <Flags index="AutoCastOn" value="1"/>
+        <Flags index="NoDeceleration" value="1"/>
+        <Flags index="ReExecutable" value="1"/>
+        <Flags index="Smart" value="1"/>
+        <Flags index="UpdateChargesOnLevelChange" value="0"/>
+        <Cost>
+            <Display index="Energy" value="1"/>
+            <Vital index="Energy" value="50"/>
+            <Charge Link="Abil/DehakaHeal"/>
+            <Cooldown Link="DehakaHeal" Location="Unit" TimeUse="10"/>
+        </Cost>
+        <TargetFilters value="Biological,Visible;Self,Enemy,Mechanical,Structure,Missile,UnderConstruction,Dead,Invulnerable"/>
+        <TargetSorts RequestCount="1">
+            <SortArray value="TSAlliancePassive"/>
+            <SortArray value="TSDistance"/>
+            <SortArray value="TSLifeFraction"/>
+        </TargetSorts>
+        <Range value="2.5"/>
+        <SmartValidatorArray value="MendHealSmartTarget"/>
+        <AutoCastAcquireLevel value="Defensive"/>
+        <AutoCastFilters value="Biological,Visible;Self,Neutral,Enemy,Robotic,Mechanical,Structure,Missile,Dead,Invulnerable"/>
+        <AutoCastRange value="6"/>
+        <AutoCastValidatorArray value="IsLE50Life"/>
+        <AutoCastValidatorArray value="MininumEnergyRequiredtoMendHeal"/>
+        <AINotifyEffect value="MendHealTarget"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="Mend"/>
+        <AcquireAttackers value="1"/>
+        <FollowRange value="1.5"/>
+    </CAbilEffectTarget>
+    <CAbilAugment id="FlybyAttack">
+        <Alignment value="Negative"/>
+        <OrderArray index="0" Color="255,0,255,0" Model="Assets\UI\Cursors\WayPointConfirmSwarm\WayPointConfirmSwarm.m3" LineTexture="Assets\Textures\WayPointLine.dds"/>
+        <EditorCategories value="Race:Zerg,AbilityorEffectType:Units"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="DiveBomb">
+            <Flags index="AllowSelfCast" value="1"/>
+            <Flags index="ToSelection" value="1"/>
+        </CmdButtonArray>
+        <Flags index="AutoCast" value="1"/>
+        <Flags index="AutoCastOn" value="1"/>
+        <AbilCmd value="attack,Execute"/>
+        <Cost>
+            <Cooldown Link="Charge" Location="Unit" TimeUse="2.4"/>
+        </Cost>
+        <Effect value="FlyByAttackStart"/>
+        <AutoCastFilters value="Ground,Visible;Player,Ally,Air,Missile,Stasis,Dead,Invulnerable"/>
+    </CAbilAugment>
+    <CAbilEffectTarget id="BonebreakerLeap">
+        <Alignment value="Negative"/>
+        <OrderArray index="0" Model="Assets\UI\Cursors\WayPointConfirmSwarm\WayPointConfirmSwarm.m3"/>
+        <EditorCategories value="Race:Terran,AbilityorEffectType:Units"/>
+        <Effect index="0" value="BonebreakerLeapLaunchMissile"/>
+        <Flags index="AbortOnAllianceChange" value="0"/>
+        <Flags index="AutoCast" value="1"/>
+        <Flags index="AutoCastOn" value="1"/>
+        <Flags index="ClearLastAttackTarget" value="1"/>
+        <Flags index="WaitToSpend" value="0"/>
+        <Flags index="UpdateChargesOnLevelChange" value="0"/>
+        <Cost>
+            <Charge Link="Abil/GiantYetiLeap"/>
+            <Cooldown Link="GiantYetiLeap" TimeUse="10"/>
+        </Cost>
+        <TargetFilters value="-;Self,Player,Ally,Air,Missile,Stasis,Dead,Invulnerable"/>
+        <Range value="4"/>
+        <RangeSlop value="7"/>
+        <AutoCastFilters value="Visible;Self,Player,Ally,Air,Missile,Stasis,Dead,Invulnerable"/>
+        <AutoCastRange value="4"/>
+        <PrepTime value="0.5"/>
+        <UninterruptibleArray index="Prep" value="1"/>
+        <CursorEffect value="BonebreakerLeapImpactSearch"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="BonebreakerLeap"/>
+        <CmdButtonArray index="Cancel" DefaultButtonFace="Cancel"/>
+    </CAbilEffectTarget>
+    <CAbilAugment id="InfestedCharge">
+        <Alignment value="Negative"/>
+        <OrderArray index="0" Color="255,0,255,0" Model="Assets\UI\Cursors\WayPointConfirmSwarm\WayPointConfirmSwarm.m3" LineTexture="Assets\Textures\WayPointLine.dds"/>
+        <EditorCategories value="Race:Zerg,AbilityorEffectType:Units"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="InfestedCharge">
+            <Flags index="AllowSelfCast" value="1"/>
+            <Flags index="ToSelection" value="1"/>
+        </CmdButtonArray>
+        <Flags index="AutoCast" value="1"/>
+        <Flags index="AutoCastOn" value="1"/>
+        <AbilCmd value="attack,Execute"/>
+        <Cost>
+            <Cooldown Link="Charge" Location="Unit" TimeUse="10"/>
+        </Cost>
+        <AutoCastValidatorArray value="CasterNotHoldingPosition"/>
+        <AutoCastFilters value="Ground,Visible;Player,Ally,Air,Missile,Stasis,Dead,Invulnerable"/>
+    </CAbilAugment>
+    <CAbilMorph id="MutatetoGorgon">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <InfoArray Unit="Gorgon"/>
+    </CAbilMorph>
+    <CAbilMorph id="MutatetoRhino">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <InfoArray Unit="Rhino"/>
+    </CAbilMorph>
+    <CAbilMorph id="MutatetoMastermind">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <InfoArray Unit="Mastermind"/>
+    </CAbilMorph>
+    <CAbilMorph id="MutatetoDevourer">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <InfoArray Unit="Devourer2"/>
+    </CAbilMorph>
+    <CAbilMorph id="MutatetoSplatter">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <InfoArray Unit="Splatter"/>
+    </CAbilMorph>
+    <CAbilMorph id="MutatetoBlink">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <InfoArray Unit="InvisibleBlinkMaker"/>
+    </CAbilMorph>
+    <CAbilMorph id="MutatetoDissolver">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <InfoArray Unit="Dissolver"/>
+    </CAbilMorph>
+    <CAbilMorph id="MutatetoCorona">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <InfoArray Unit="Corona"/>
+    </CAbilMorph>
+    <CAbilMorph id="MutatetoHoplite">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <InfoArray Unit="Hoplite"/>
+    </CAbilMorph>
+    <CAbilMorph id="MutatetoCenturion">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <InfoArray Unit="Centurion"/>
+    </CAbilMorph>
+    <CAbilMorph id="MutatetoHarpy">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <InfoArray Unit="Harpy"/>
+    </CAbilMorph>
+    <CAbilMorph id="MutatetoRazorback">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <InfoArray Unit="Razorback"/>
+    </CAbilMorph>
+    <CAbilMorph id="MutatetoFlutter">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <InfoArray Unit="Flutter"/>
+    </CAbilMorph>
+    <CAbilMorph id="MutatetoWitch">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <InfoArray Unit="Witch"/>
+    </CAbilMorph>
+    <CAbilMorph id="MutatetoShredder">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <InfoArray Unit="Shredder"/>
+    </CAbilMorph>
+    <CAbilMorph id="MutatetoCrab">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <InfoArray Unit="Crab"/>
+    </CAbilMorph>
+    <CAbilMorph id="MutatetoScythe">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <InfoArray Unit="Scythe"/>
+    </CAbilMorph>
+    <CAbilMorph id="MutatetoTick">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <InfoArray Unit="Tick"/>
+    </CAbilMorph>
+    <CAbilMorph id="MutatetoSquealer">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <InfoArray Unit="Squealer"/>
+    </CAbilMorph>
+    <CAbilMorph id="MutatetoRacer">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <InfoArray Unit="Racer"/>
+    </CAbilMorph>
+    <CAbilMorph id="MutatetoCreeper">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <InfoArray Unit="Creeper"/>
+    </CAbilMorph>
+    <CAbilMorph id="MutatetoBeast">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <InfoArray Unit="Beast"/>
+    </CAbilMorph>
+    <CAbilMorph id="MutatetoHulk">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <InfoArray Unit="Hulk"/>
+    </CAbilMorph>
+    <CAbilMorph id="MutatetoMatriarch">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <InfoArray Unit="Matriarch"/>
+    </CAbilMorph>
+    <CAbilMorph id="MutatetoSlayer">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <InfoArray Unit="Slayer"/>
+    </CAbilMorph>
+    <CAbilMorph id="MutatetoSlither">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <InfoArray Unit="Slither"/>
+    </CAbilMorph>
+    <CAbilMorph id="MutatetoBanshee">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <InfoArray Unit="Banshee2"/>
+    </CAbilMorph>
+    <CAbilEffectTarget id="GorgonBlindingVomit">
+        <Alignment value="Negative"/>
+        <OrderArray index="0" Model="Assets\UI\Cursors\WayPointConfirmSwarm\WayPointConfirmSwarm.m3"/>
+        <EditorCategories value="Race:Zerg,AbilityorEffectType:Units"/>
+        <Effect index="0" value="GorgonBlindingVomitSet"/>
+        <Flags index="AutoCast" value="1"/>
+        <Flags index="AutoCastOn" value="1"/>
+        <Cost>
+            <Vital index="Energy" value="100"/>
+            <Charge Link="Abil/BlindingVomit2"/>
+            <Cooldown Link="Abil/BlindingVomit2" Location="Unit" TimeUse="10"/>
+        </Cost>
+        <Range value="10"/>
+        <Arc value="4.9987"/>
+        <ArcSlop value="180"/>
+        <AutoCastRange value="10"/>
+        <AutoCastValidatorArray value="MininumEnergyRequiredforBlindingVomit"/>
+        <CancelableArray index="Channel" value="1"/>
+        <UninterruptibleArray index="Channel" value="1"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="BlindingVomit"/>
+        <CmdButtonArray index="Cancel" DefaultButtonFace="Cancel"/>
+        <AcquireAttackers value="1"/>
+    </CAbilEffectTarget>
+    <CAbilMorph id="MutatetoSeeker">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <InfoArray Unit="Seeker"/>
+    </CAbilMorph>
+    <CAbilEffectTarget id="BansheeScream">
+        <Alignment value="Negative"/>
+        <OrderArray index="0" Model="Assets\UI\Cursors\WayPointConfirmSwarm\WayPointConfirmSwarm.m3"/>
+        <EditorCategories value="Race:Terran,AbilityorEffectType:Units"/>
+        <Effect index="0" value="BansheeScreamSet"/>
+        <Flags index="AutoCast" value="1"/>
+        <Flags index="AutoCastOn" value="1"/>
+        <Flags index="NoDeceleration" value="1"/>
+        <Flags index="ReExecutable" value="1"/>
+        <Flags index="Smart" value="1"/>
+        <Cost>
+            <Charge Link="Abil/StunningBlast"/>
+            <Cooldown Link="Abil/StunningBlast" TimeUse="60"/>
+        </Cost>
+        <Range value="10"/>
+        <AutoCastFilters value="Visible;Self,Player,Ally,Neutral,Mechanical,Missile,Stasis,Dead,Invulnerable,Stunned"/>
+        <AutoCastRange value="10"/>
+        <CursorEffect value="BansheeScreamStunSearch"/>
+        <AINotifyEffect value="BansheeScreamStunSearch"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="BansheeScream"/>
+    </CAbilEffectTarget>
+    <CAbilEffectTarget id="BlitzerCharge">
+        <OrderArray index="0" Model="Assets\UI\Cursors\WayPointConfirmSwarm\WayPointConfirmSwarm.m3"/>
+        <EditorCategories value="Race:Zerg,AbilityorEffectType:Units"/>
+        <Effect index="0" value="SuperCharge"/>
+        <Flags index="AutoCast" value="1"/>
+        <Flags index="AutoCastOn" value="1"/>
+        <Flags index="RequireTargetVision" value="0"/>
+        <Cost>
+            <Charge Link="Abil/KraithCrashingCharge"/>
+            <Cooldown Link="Abil/KraithCrashingCharge" TimeUse="10"/>
+        </Cost>
+        <Range value="8"/>
+        <AutoCastFilters value="Visible;Self,Player,Ally,Air,Missile,Stasis,Dead,Invulnerable"/>
+        <AutoCastRange value="8"/>
+        <PrepTime value="2.5"/>
+        <FinishTime value="0.3"/>
+        <ShowProgressArray index="Prep" value="1"/>
+        <UninterruptibleArray index="Channel" value="1"/>
+        <UninterruptibleArray index="Finish" value="1"/>
+        <AINotifyEffect value="SuperCharge"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="BlitzerCharge"/>
+    </CAbilEffectTarget>
+    <CAbilMorph id="MutatetoImmortal">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <InfoArray Unit="Immortal2"/>
+    </CAbilMorph>
+    <CAbilMorph id="MutatetoBlinder">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <InfoArray Unit="Blinder"/>
+    </CAbilMorph>
+    <CAbilMorph id="MutatetoTesla">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <InfoArray Unit="Tesla"/>
+    </CAbilMorph>
+    <CAbilMorph id="MutatetoShambler">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <InfoArray Unit="Shambler"/>
+    </CAbilMorph>
+    <CAbilMorph id="MutatetoRoamer">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <InfoArray Unit="Roamer"/>
+    </CAbilMorph>
+    <CAbilEffectTarget id="BonebreakerBoulder">
+        <Alignment value="Negative"/>
+        <OrderArray index="0" Model="Assets\UI\Cursors\WayPointConfirmSwarm\WayPointConfirmSwarm.m3"/>
+        <EditorCategories value="Race:Terran,AbilityorEffectType:Units"/>
+        <Effect index="0" value="BonebreakerBoulderLaunchMissile"/>
+        <Flags index="AbortOnAllianceChange" value="0"/>
+        <Flags index="AutoCast" value="1"/>
+        <Flags index="AutoCastOn" value="1"/>
+        <Flags index="ClearLastAttackTarget" value="1"/>
+        <Flags index="RangeUsePathing" value="1"/>
+        <Flags index="RequireTargetVision" value="0"/>
+        <Cost>
+            <Cooldown TimeUse="15"/>
+        </Cost>
+        <TargetFilters value="-;Self,Player,Ally,Air,Missile,Stasis,Dead,Invulnerable"/>
+        <Range value="8"/>
+        <AutoCastFilters value="-;Self,Player,Ally,Air,Missile,Stasis,Dead,Invulnerable"/>
+        <AutoCastRange value="8"/>
+        <PrepTime value="0.361"/>
+        <CursorEffect value="BonebreakerBoulderImpactSearch"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="BoulderThrow" State="Restricted"/>
+    </CAbilEffectTarget>
+    <CAbilEffectTarget id="GreaterMendHeal">
+        <Alignment value="Positive"/>
+        <EditorCategories value="Race:Zerg,AbilityorEffectType:Units"/>
+        <Effect index="0" value="GreaterMendHealTargets"/>
+        <Flags index="AllowMovement" value="1"/>
+        <Flags index="AutoCast" value="1"/>
+        <Flags index="AutoCastOn" value="1"/>
+        <Flags index="NoDeceleration" value="1"/>
+        <Flags index="ReExecutable" value="1"/>
+        <Flags index="Smart" value="1"/>
+        <Flags index="UpdateChargesOnLevelChange" value="0"/>
+        <Cost>
+            <Display index="Energy" value="1"/>
+            <Vital index="Energy" value="50"/>
+            <Charge Link="Abil/DehakaHeal"/>
+            <Cooldown Link="DehakaHeal" Location="Unit" TimeUse="10"/>
+        </Cost>
+        <Cost>
+            <Display index="Energy" value="1"/>
+            <Vital index="Energy" value="50"/>
+            <Charge Link="Abil/DehakaHeal"/>
+            <Cooldown Link="DehakaHeal" Location="Unit" TimeUse="10"/>
+        </Cost>
+        <TargetFilters value="Biological,Visible;Self,Enemy,Mechanical,Structure,Missile,UnderConstruction,Dead,Invulnerable"/>
+        <TargetFilters value="Biological,Visible;Self,Enemy,Mechanical,Structure,Missile,UnderConstruction,Dead,Invulnerable"/>
+        <TargetSorts RequestCount="1">
+            <SortArray value="TSAlliancePassive"/>
+            <SortArray value="TSDistance"/>
+            <SortArray value="TSLifeFraction"/>
+            <SortArray value="TSAlliancePassive"/>
+            <SortArray value="TSDistance"/>
+            <SortArray value="TSLifeFraction"/>
+        </TargetSorts>
+        <Range value="2.5"/>
+        <Range value="2.5"/>
+        <SmartValidatorArray value="MendHealSmartTarget"/>
+        <SmartValidatorArray value="MendHealSmartTarget"/>
+        <AutoCastAcquireLevel value="Defensive"/>
+        <AutoCastFilters value="Biological,Visible;Self,Neutral,Enemy,Robotic,Mechanical,Structure,Missile,Dead,Invulnerable"/>
+        <AutoCastRange value="6"/>
+        <AutoCastValidatorArray value="IsLE50Life"/>
+        <AutoCastValidatorArray value="MininumEnergyRequiredtoMendHeal"/>
+        <AutoCastValidatorArray value="IsLE50Life"/>
+        <AutoCastValidatorArray value="MininumEnergyRequiredtoMendHeal"/>
+        <AINotifyEffect value="MendHealTarget"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="GreaterMend"/>
+        <AcquireAttackers value="1"/>
+        <FollowRange value="1.5"/>
+    </CAbilEffectTarget>
+    <CAbilQueue id="ZombieSpawnQueue">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <QueueCount value="5"/>
+        <QueueSize value="5"/>
+    </CAbilQueue>
+    <CAbilTrain id="AmbientSpawn" parent="ZombieSpawnTemplate" ScalingEffect="WalkerDifficultyScaling">
+        <InfoArray index="Train1" Time="15">
+            <Charge Link="ZombieWalkerFemaleColonist"/>
+            <Cooldown Link="ZombieWalkerFemaleColonist" TimeUse="5"/>
+            <Button Requirements="GameisnotNightmare"/>
+            <Unit value="MarsColonistFemale2"/>
+            <Flags index="AutoCast" value="1"/>
+            <Flags index="AutoCastOn" value="1"/>
+        </InfoArray>
+        <InfoArray index="Train2" Time="15">
+            <Charge Link="ZombieWalkerMaleColonist"/>
+            <Cooldown Link="ZombieWalkerMaleColonist" TimeUse="5"/>
+            <Button Requirements="GameisnotNightmare"/>
+            <Unit value="MarsColonistMale2"/>
+            <Flags index="AutoCast" value="1"/>
+            <Flags index="AutoCastOn" value="1"/>
+        </InfoArray>
+        <InfoArray index="Train3" Time="15">
+            <Charge Link="ZombieWalkerScientist"/>
+            <Cooldown Link="ZombieWalkerScientist" TimeUse="5"/>
+            <Button Requirements="GameisnotNightmare"/>
+            <Unit value="MarsScientist2"/>
+            <Flags index="AutoCast" value="1"/>
+            <Flags index="AutoCastOn" value="1"/>
+        </InfoArray>
+        <InfoArray index="Train4" Time="15">
+            <Charge Link="ZombieWalkerPrisoner"/>
+            <Cooldown Link="ZombieWalkerPrisoner" TimeUse="5"/>
+            <Button Requirements="GameisnotNightmare"/>
+            <Unit value="MarsPrisoner2"/>
+            <Flags index="AutoCast" value="1"/>
+            <Flags index="AutoCastOn" value="1"/>
+        </InfoArray>
+        <InfoArray index="Train5" Time="5" Effect="HoundDifficultyScaling">
+            <Cooldown Link="ZombieHound" TimeUse="5"/>
+            <Button Requirements="GameisNormal"/>
+            <Unit value="Hound"/>
+            <Flags index="AutoCast" value="1"/>
+            <Flags index="AutoCastOn" value="1"/>
+        </InfoArray>
+        <InfoArray index="Train6" Time="5" Effect="StalkerDifficultyScaling">
+            <Cooldown TimeUse="5"/>
+            <Button Requirements="GameisNotRecruit"/>
+            <Unit value="Stalker2"/>
+            <Flags index="AutoCast" value="1"/>
+            <Flags index="AutoCastOn" value="1"/>
+        </InfoArray>
+        <InfoArray index="Train7" Time="5">
+            <Cooldown Link="ZombieShambler" TimeUse="5"/>
+            <Button Requirements="GameisNightmare"/>
+            <Unit value="Shambler"/>
+            <Flags index="AutoCast" value="1"/>
+            <Flags index="AutoCastOn" value="1"/>
+        </InfoArray>
+        <InfoArray index="Train8" Time="5">
+            <Cooldown Link="ZombieRoamer" TimeUse="5"/>
+            <Button Requirements="GameisNightmare"/>
+            <Unit value="Roamer"/>
+            <Flags index="AutoCast" value="1"/>
+            <Flags index="AutoCastOn" value="1"/>
+        </InfoArray>
+        <InfoArray index="Train9" Time="5" Effect="HoundDifficultyScaling">
+            <Cooldown Link="ZombieSeeker" TimeUse="5"/>
+            <Button Requirements="GameisNightmare"/>
+            <Unit value="Seeker"/>
+            <Flags index="AutoCast" value="1"/>
+            <Flags index="AutoCastOn" value="1"/>
+        </InfoArray>
+        <InfoArray index="Train10" Time="5" Effect="AirborneDifficultyScaling">
+            <Cooldown Link="ZombieGargoyle" TimeUse="5"/>
+            <Button Requirements="GameisNightmare"/>
+            <Unit value="Gargoyle"/>
+            <Flags index="AutoCast" value="1"/>
+            <Flags index="AutoCastOn" value="1"/>
+        </InfoArray>
+    </CAbilTrain>
+</Catalog>

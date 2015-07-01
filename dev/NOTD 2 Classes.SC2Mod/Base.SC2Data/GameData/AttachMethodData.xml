@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<Catalog>
+    <CAttachMethodFilter id="A10XCannonFilter">
+        <Keys Keyword="Hit"/>
+    </CAttachMethodFilter>
+    <CAttachMethodFilter id="A10XHellfireMissileFilter">
+        <Keys Keyword="Hit" Index="1"/>
+        <Keys Keyword="Hit" Index="5"/>
+    </CAttachMethodFilter>
+    <CAttachMethodPattern id="A10XHellfireMissilePattern">
+        <Keyword value="Weapon"/>
+        <Driver value="A10XLaunchHellfireMissiles"/>
+    </CAttachMethodPattern>
+    <CAttachMethodNodeOccupancy2 id="AssaultWeaponAttach">
+        <Targets value="MarksmanRifle"/>
+        <Targets value="MediumMachineGun"/>
+        <Targets value="LaserRifle"/>
+        <Targets value="AutomaticShotgun"/>
+        <Targets value="Pistol"/>
+        <Targets value="SubmachineGun"/>
+        <Targets value="AssaultRifle"/>
+        <Targets value="Flamethrower"/>
+        <Logic value="RequireNone"/>
+    </CAttachMethodNodeOccupancy2>
+    <CAttachMethodFilter id="AssaultWeapons">
+        <Keys Keyword="Weapon" Index="1"/>
+        <Keys Keyword="Weapon" Index="2"/>
+        <Logic value="OR"/>
+    </CAttachMethodFilter>
+    <CAttachMethodPattern id="DropshipAttackFilter"/>
+    <CAttachMethodReduction id="WeaponAttachReduction"/>
+</Catalog>

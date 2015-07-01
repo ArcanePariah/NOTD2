@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<Catalog>
+    <CValidatorLocationEnumArea id="EnemiesWithinRange2">
+        <ResultFailed value="MustTargetVisibleLocation"/>
+        <WhichLocation Value="SourceUnit"/>
+        <AreaArray Radius="20"/>
+        <SearchFilters value="-;Self,Player,Ally,Neutral"/>
+        <ExcludeArray Value="Source"/>
+    </CValidatorLocationEnumArea>
+    <CValidatorUnitCompareVital id="IsLE25Life">
+        <Compare value="LE"/>
+        <Type value="Fraction"/>
+        <Value value="0.25"/>
+    </CValidatorUnitCompareVital>
+    <CValidatorUnitCompareVital id="IsLE50Life">
+        <Compare value="LE"/>
+        <Type value="Fraction"/>
+        <Value value="0.5"/>
+    </CValidatorUnitCompareVital>
+    <CValidatorUnitFilters id="IsMechanical">
+        <Filters value="Mechanical;-"/>
+    </CValidatorUnitFilters>
+    <CValidatorUnitCompareVital id="MininumEnergyRequiredtoMendHeal">
+        <WhichUnit Value="Caster"/>
+        <Compare value="GE"/>
+        <Value value="50"/>
+        <Vital value="Energy"/>
+    </CValidatorUnitCompareVital>
+    <CValidatorUnitFilters id="MendHealSmartTarget">
+        <Filters value="-;Enemy"/>
+    </CValidatorUnitFilters>
+    <CValidatorUnitCompareVital id="MininumEnergyRequiredforBlindingVomit">
+        <WhichUnit Value="Caster"/>
+        <Compare value="GE"/>
+        <Value value="100"/>
+        <Vital value="Energy"/>
+    </CValidatorUnitCompareVital>
+    <CValidatorLocationCompareRange id="RangeLE3">
+        <WhichLocation Value="TargetUnit"/>
+        <Compare value="LE"/>
+        <Range value="3"/>
+        <Value Value="SourceUnit"/>
+    </CValidatorLocationCompareRange>
+    <CValidatorLocationEnumArea id="SarbusPassiveDisable">
+        <WhichLocation Value="SourceUnit"/>
+        <AreaArray Count="0" Radius="1" Validator="TargetisnotReactor"/>
+        <Compare value="GE"/>
+        <SearchFilters value="-;Player,Ally,Neutral"/>
+    </CValidatorLocationEnumArea>
+    <CValidatorLocationEnumArea id="SarbusSeesReactor">
+        <WhichLocation Value="SourceUnit"/>
+        <AreaArray Radius="8" Validator="TargetisReactor"/>
+        <SearchFlags index="ExtendByUnitRadius" value="1"/>
+    </CValidatorLocationEnumArea>
+    <CValidatorUnitFilters id="TargetIsPlayer">
+        <Filters value="-;Ally,Neutral,Enemy"/>
+    </CValidatorUnitFilters>
+    <CValidatorUnitCompareVital id="TargetUnitGE80">
+        <Compare value="LT"/>
+        <Type value="Fraction"/>
+        <Value value="0.8"/>
+    </CValidatorUnitCompareVital>
+    <CValidatorUnitCompareVital id="TargetUnitLT40">
+        <Compare value="LT"/>
+        <Type value="Fraction"/>
+        <Value value="0.4"/>
+    </CValidatorUnitCompareVital>
+    <CValidatorUnitType id="TargetisReactor">
+        <Value value="PowerPlantReactor"/>
+    </CValidatorUnitType>
+    <CValidatorUnitType id="TargetisnotReactor">
+        <Value value="PowerPlantReactor"/>
+    </CValidatorUnitType>
+    <CValidatorUnitFilters id="UnitisLight">
+        <Filters value="Light;-"/>
+    </CValidatorUnitFilters>
+    <CValidatorLocationEnumArea id="EnemiesWithinRange">
+        <ResultFailed value="MustTargetVisibleLocation"/>
+        <WhichLocation Value="SourceUnit"/>
+        <AreaArray Radius="90"/>
+        <SearchFilters value="-;Self,Player,Ally,Neutral"/>
+        <Compare value="Eq"/>
+        <ExcludeArray Value="Source"/>
+    </CValidatorLocationEnumArea>
+    <CValidatorCombine id="ZombieSpawnDisable">
+        <CombineArray value="EnemiesWithinRange2"/>
+        <CombineArray value="EnemiesWithinRange"/>
+    </CValidatorCombine>
+</Catalog>

@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<Catalog>
+    <CMoverMissile id="A10XLaunchHellfireMissilesWeapon">
+        <MotionPhases>
+            <Driver value="Throw"/>
+            <Speed value="6"/>
+            <BlendType value="Logarithmic"/>
+            <Outro value="3,5,1,3"/>
+            <ThrowRotationType value="ThrowForward"/>
+            <ThrowVector value="0,-1,0"/>
+            <ThrowBandYaw value="14.9963,-14.9963,-360,-360"/>
+            <ThrowBandPitch value="-360,-360,-360,-360"/>
+            <Overlays/>
+            <Overlays/>
+        </MotionPhases>
+        <MotionPhases>
+            <Driver value="Guidance"/>
+            <Acceleration value="1"/>
+            <AccelerationRange value="3"/>
+            <Speed value="5"/>
+            <MaxSpeed value="10"/>
+            <ActorTracking value="Actual"/>
+            <ThrowBandYaw value="-360,-360,-360,-360"/>
+            <ThrowBandPitch value="-360,-360,-360,-360"/>
+            <YawPitchRoll value="19.6875"/>
+            <YawPitchRollAccel value="4.9218"/>
+            <Overlays Scale="1,1"/>
+            <Overlays/>
+        </MotionPhases>
+        <MotionOverlays>
+            <Type value="Wave"/>
+            <Polarity value="Positive"/>
+            <Axis value="1,0,0"/>
+            <Wavelength value="7,3"/>
+        </MotionOverlays>
+    </CMoverMissile>
+    <CMoverMissile id="FlareGunProjectile">
+        <MotionPhases>
+            <Driver value="AdaptableParabola"/>
+            <Speed value="0"/>
+            <MinSpeed value="0.8515"/>
+            <ArrivalTestType value="Never"/>
+            <ThrowBandYaw value="-360,-360,-360,-360"/>
+            <ThrowBandPitch value="-360,-360,-360,-360"/>
+            <AdaptableParabolaIsUpright value="1"/>
+            <AdaptableParabolaClearance value="15,-1"/>
+            <AdaptableParabolaDistances index="PreApex" value="2"/>
+            <AdaptableParabolaDistances index="PostApex" value="0.5"/>
+            <AdaptableParabolaAccels index="Launch" value="600"/>
+            <AdaptableParabolaAccels index="Ascent" value="0"/>
+            <AdaptableParabolaAccels index="Apex" value="-100"/>
+            <AdaptableParabolaAccels index="Descent" value="0"/>
+            <AdaptableParabolaAccels index="Land" value="0"/>
+            <Overlays/>
+            <Overlays/>
+        </MotionPhases>
+    </CMoverMissile>
+    <CMoverMissile id="FragmentationGrenadeThrown">
+        <MotionPhases>
+            <Driver value="AdaptableParabola"/>
+            <Acceleration value="3200"/>
+            <Speed value="7"/>
+            <SpeedRange value="0"/>
+            <MinSpeed value="7"/>
+            <MaxSpeed value="7"/>
+            <ThrowBandYaw value="-360,-360,-360,-360"/>
+            <ThrowBandPitch value="-360,-360,-360,-360"/>
+            <AdaptableParabolaIsUpright value="1"/>
+            <AdaptableParabolaClearance value="2,0.5"/>
+            <FlightTime value="1.5"/>
+            <AdaptableParabolaDistances index="PreApex" value="0.3"/>
+            <AdaptableParabolaDistances index="PostApex" value="0.3"/>
+            <Overlays/>
+            <Overlays/>
+        </MotionPhases>
+    </CMoverMissile>
+    <CMoverMissile id="Grenadier">
+        <MotionPhases>
+            <Driver value="Guidance"/>
+            <Acceleration value="3200"/>
+            <Speed value="0"/>
+            <MinSpeed value="0"/>
+            <MaxSpeed value="30"/>
+            <ActorTracking value="Actual"/>
+            <ThrowBandYaw value="-360,-360,-360,-360"/>
+            <ThrowBandPitch value="-360,-360,-360,-360"/>
+            <Overlays/>
+            <Overlays/>
+        </MotionPhases>
+    </CMoverMissile>
+    <CMoverMissile id="KineticPayloadMissileWeapon">
+        <MotionPhases>
+            <Driver value="Guidance"/>
+            <Speed value="80"/>
+            <MaxSpeed value="80"/>
+            <ArrivalTestType value="3D"/>
+            <ThrowBandYaw value="-360,-360,-360,-360"/>
+            <ThrowBandPitch value="-360,-360,-360,-360"/>
+            <YawPitchRoll value="5759.6484"/>
+            <YawPitchRollAccel value="5759.6484"/>
+            <Overlays/>
+            <Overlays/>
+        </MotionPhases>
+    </CMoverMissile>
+    <CMoverMissile id="LittleBusterWeapon">
+        <MotionPhases>
+            <Driver value="Guidance"/>
+            <Acceleration value="3200"/>
+            <Speed value="10"/>
+            <Outro value="-1,-0.5"/>
+            <YawPitchRoll value="719.2968"/>
+        </MotionPhases>
+        <MotionPhases YawPitchRoll="MAX"/>
+    </CMoverMissile>
+    <CMoverMissile id="PiranhaMissileWeapon">
+        <MotionPhases>
+            <Driver value="Guidance"/>
+            <Speed value="10"/>
+            <MaxSpeed value="10"/>
+            <ActorTracking value="Actual"/>
+            <Outro value="-4"/>
+            <ThrowBandYaw value="-360,-360,-360,-360"/>
+            <ThrowBandPitch value="-360,-360,-360,-360"/>
+            <YawPitchRoll value="5759.6484"/>
+            <Overlays Scale="1,3"/>
+        </MotionPhases>
+        <MotionPhases Acceleration="200" MaxSpeed="20"/>
+        <MotionOverlays>
+            <Type value="Wave"/>
+            <Polarity value="Alternating"/>
+            <Axis value="0,-1,0"/>
+            <Wavelength value="0.5,2"/>
+            <WavelengthChangeProbability value="0.5"/>
+        </MotionOverlays>
+    </CMoverMissile>
+    <CMoverMissile id="SatchelMissileWeapon">
+        <HeightMap value="Air"/>
+        <MotionPhases>
+            <Driver value="AdaptableParabola"/>
+            <Acceleration value="3200"/>
+            <SpeedRange value="0"/>
+            <MinSpeed value="2"/>
+            <MaxSpeed value="80"/>
+            <ArrivalTestType value="2D"/>
+            <Outro value="-0.5,0"/>
+            <ThrowBandYaw value="-360,-360,-360,-360"/>
+            <ThrowBandPitch value="-360,-360,-360,-360"/>
+            <AdaptableParabolaIsUpright value="1"/>
+            <AdaptableParabolaClearance value="3,1"/>
+            <AdaptableParabolaDistances index="Launch" value="0"/>
+            <AdaptableParabolaDistances index="PreApex" value="0.5"/>
+            <AdaptableParabolaDistances index="PostApex" value="0.1"/>
+            <AdaptableParabolaDistances index="Land" value="0"/>
+            <AdaptableParabolaAccels index="Launch" value="60"/>
+            <AdaptableParabolaAccels index="Ascent" value="10"/>
+            <AdaptableParabolaAccels index="Apex" value="-20"/>
+            <AdaptableParabolaAccels index="Descent" value="15"/>
+            <AdaptableParabolaAccels index="Land" value="30"/>
+        </MotionPhases>
+    </CMoverMissile>
+</Catalog>

@@ -1,0 +1,717 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<Catalog>
+    <CActorUnit default="1" id="AmmoModificationTemplate" parent="GenericUnitSelectableNoAutoSoundLinks">
+        <Model value="ItemCrate"/>
+        <InfoText value="Button/Tooltip/##unitName##"/>
+        <StatusBarFlags index="Shields" value="0"/>
+        <StatusBarFlags index="Life" value="0"/>
+        <StatusBarFlags index="Energy" value="0"/>
+        <StatusBarFlags index="Cargo" value="0"/>
+        <StatusBarFlags index="Progress" value="0"/>
+        <StatusBarFlags index="Duration" value="0"/>
+        <StatusBarFlags index="Magazine" value="0"/>
+        <StatusBarFlags index="Workers" value="0"/>
+        <StatusBarFlags index="Custom" value="0"/>
+        <Wireframe>
+            <Image value="Items\MilitaryCrate_Wireframe.dds"/>
+        </Wireframe>
+        <DeathArray index="Normal" ModelLink="TossGrenadeImpact" SoundLink="TychusTossGrenadeImpact"/>
+        <Macros value="CrateOrangeGlowMacro"/>
+    </CActorUnit>
+    <CActorUnit default="1" id="ConsumableTemplate" parent="GenericUnitSelectableNoAutoSoundLinks">
+        <InfoText value="Button/Tooltip/##unitName##"/>
+        <EditorCategories value=""/>
+        <Model value="ItemCrate"/>
+        <StatusBarFlags index="Shields" value="0"/>
+        <StatusBarFlags index="Life" value="0"/>
+        <StatusBarFlags index="Energy" value="0"/>
+        <StatusBarFlags index="Cargo" value="0"/>
+        <StatusBarFlags index="Progress" value="0"/>
+        <StatusBarFlags index="Duration" value="0"/>
+        <StatusBarFlags index="Magazine" value="0"/>
+        <StatusBarFlags index="Workers" value="0"/>
+        <StatusBarFlags index="Custom" value="0"/>
+        <Wireframe>
+            <Image value="Items\MilitaryCrate_Wireframe.dds"/>
+        </Wireframe>
+        <DeathArray index="Normal" ModelLink="TossGrenadeImpact" SoundLink="TychusTossGrenadeImpact"/>
+        <Macros value="CratePurpleGlowMacro"/>
+    </CActorUnit>
+    <CActorUnit default="1" id="AccessoryTemplate" parent="GenericUnitSelectableNoAutoSoundLinks">
+        <Model value="ItemCrate"/>
+        <InfoText value="Button/Tooltip/##unitName##"/>
+        <StatusBarFlags index="Shields" value="0"/>
+        <StatusBarFlags index="Life" value="0"/>
+        <StatusBarFlags index="Energy" value="0"/>
+        <StatusBarFlags index="Cargo" value="0"/>
+        <StatusBarFlags index="Progress" value="0"/>
+        <StatusBarFlags index="Duration" value="0"/>
+        <StatusBarFlags index="Magazine" value="0"/>
+        <StatusBarFlags index="Workers" value="0"/>
+        <StatusBarFlags index="Custom" value="0"/>
+        <Wireframe>
+            <Image value="Items\MilitaryCrate_Wireframe.dds"/>
+        </Wireframe>
+        <DeathArray index="Normal" ModelLink="TossGrenadeImpact" SoundLink="TychusTossGrenadeImpact"/>
+        <Macros value="CrateYellowGlowMacro"/>
+    </CActorUnit>
+    <CActorAction default="1" id="WeaponAttackTemplate" parent="GenericAttack">
+        <EditorCategories value=""/>
+        <LaunchRequest Subject="_Weapon"/>
+        <LaunchSiteOps Ops=""/>
+        <LaunchModel value="WeaponAttackLaunch"/>
+        <On Terms="Effect.##effectAttack##Critical.Start; At Caster" Send="Create"/>
+    </CActorAction>
+    <CActorUnit default="1" id="WeaponCrateTemplate" parent="GenericUnitSelectableNoAutoSoundLinks">
+        <EditorCategories value=""/>
+        <Model value="WeaponCrate"/>
+        <StatusBarFlags index="Shields" value="0"/>
+        <StatusBarFlags index="Life" value="0"/>
+        <StatusBarFlags index="Energy" value="0"/>
+        <StatusBarFlags index="Cargo" value="0"/>
+        <StatusBarFlags index="Progress" value="0"/>
+        <StatusBarFlags index="Duration" value="0"/>
+        <StatusBarFlags index="Magazine" value="0"/>
+        <StatusBarFlags index="Workers" value="0"/>
+        <StatusBarFlags index="Custom" value="0"/>
+        <InfoText value="Button/Tooltip/##unitName##"/>
+        <Wireframe>
+            <Image value="Items\MilitaryCrate_Wireframe.dds"/>
+        </Wireframe>
+        <DeathArray index="Normal" ModelLink="TossGrenadeImpact" SoundLink="TychusTossGrenadeImpact"/>
+        <Macros value="CrateBlueGlowMacro"/>
+    </CActorUnit>
+    <CActorUnit default="1" id="ArmorCrateTemplate" parent="GenericUnitSelectableNoAutoSoundLinks">
+        <InfoText value="Button/Tooltip/##unitName##"/>
+        <Model value="BigItemCrate"/>
+        <StatusBarFlags index="Shields" value="0"/>
+        <StatusBarFlags index="Life" value="0"/>
+        <StatusBarFlags index="Energy" value="0"/>
+        <StatusBarFlags index="Cargo" value="0"/>
+        <StatusBarFlags index="Progress" value="0"/>
+        <StatusBarFlags index="Duration" value="0"/>
+        <StatusBarFlags index="Magazine" value="0"/>
+        <StatusBarFlags index="Workers" value="0"/>
+        <StatusBarFlags index="Custom" value="0"/>
+        <Wireframe>
+            <Image value="Items\MilitaryCrate_Wireframe.dds"/>
+        </Wireframe>
+        <DeathArray index="Normal" ModelLink="TossGrenadeImpact" SoundLink="TychusTossGrenadeImpact"/>
+        <Macros value="CrateBlueGlowMacro"/>
+    </CActorUnit>
+    <CActorAction id="GrenadeLauncherAttack" parent="WeaponAttackTemplate"/>
+    <CActorRange id="RoadFlareRange" parent="RangeAbil" abil="RoadFlare"/>
+    <CActorAction id="RocketLauncherAttack" parent="WeaponAttackTemplate"/>
+    <CActorSound id="AntiVenomUse" parent="SoundOneShot">
+        <EditorCategories value=""/>
+        <On Terms="Item.AntiVenom" Send="Create"/>
+        <Sound value="AntiVenomInjection"/>
+    </CActorSound>
+    <CActorEventMacro id="CrateBlueGlowMacro">
+        <EditorCategories value=""/>
+        <On Terms="ActorCreation" Send="SetTeamColor 0,0,0 27,27,154"/>
+    </CActorEventMacro>
+    <CActorEventMacro id="CratePurpleGlowMacro">
+        <EditorCategories value=""/>
+        <On Terms="ActorCreation" Send="SetTeamColor 0,0,0 114,46,139"/>
+    </CActorEventMacro>
+    <CActorEventMacro id="CrateOrangeGlowMacro">
+        <EditorCategories value=""/>
+        <On Terms="ActorCreation" Send="SetTeamColor 0,0,0 164,121,11"/>
+    </CActorEventMacro>
+    <CActorEventMacro id="CrateYellowGlowMacro">
+        <EditorCategories value=""/>
+        <On Terms="ActorCreation" Send="SetTeamColor 0,0,0 168,191,4"/>
+    </CActorEventMacro>
+    <CActorEventMacro id="CrateRedGlowMacro">
+        <EditorCategories value=""/>
+        <On Terms="ActorCreation" Send="SetTeamColor 0,0,0 254,46,29"/>
+    </CActorEventMacro>
+    <CActorEventMacro id="CrateGreenGlowMacro">
+        <EditorCategories value=""/>
+        <On Terms="ActorCreation" Send="SetTeamColor 0,0,0 0,125,6"/>
+    </CActorEventMacro>
+    <CActorUnit id="CommunicationsArrayItem" parent="ConsumableTemplate" unitName="CommunicationsArrayPackedUp">
+        <BuildModel value="CommunicationsArray"/>
+        <PlacementModel value="CommunicationsArray"/>
+        <InfoText value="Button/Tooltip/CommunicationsArrayItem"/>
+        <Model value="MissionCrate"/>
+        <Macros index="0" value="CrateGreenGlowMacro"/>
+    </CActorUnit>
+    <CActorAction id="PlasmaCannonAttack" parent="GenericAttack" effectImpact="PhotonCannonU" effectLaunch="PlasmaCannonLaunchMissile">
+        <LaunchAssets Model="ImmortalAttackImpact" Sound="PlasmaCannonShot"/>
+        <ImpactMap index="None" Model="PlasmaCannonImpact" Sound="PlasmaCannonHit"/>
+        <ImpactMap index="Flesh" ModelReaction="BloodTargetImpact"/>
+        <ImpactPhysics Name="PhotonCannonImpact" MatchKeys="Basic" Physics="PhotonCannonAttackDeathForce"/>
+    </CActorAction>
+    <CActorMissile id="PlasmaCannonAttackMissile" parent="GenericAttackMissile" unitName="PlasmaCannonProjectile">
+        <On Terms="UnitBirth" Send="AnimSetTimeScaleAbsolute Lifetime 1.0"/>
+    </CActorMissile>
+    <CActorModel id="LaserImpactModel" parent="ModelAnimationStyleOneShotUNIT">
+        <EditorCategories value=""/>
+        <Host Subject="_Unit"/>
+        <Model value="LaserAttackBeamImpact"/>
+    </CActorModel>
+    <CActorModel id="MendingPasteModel" parent="ModelAddition">
+        <On Terms="Effect.MendingPaste.Start" Send="Create"/>
+        <AutoScaleFactor value="2.100000"/>
+        <HostSiteOps Ops="SOpAttachHardPoint"/>
+    </CActorModel>
+    <CActorModel id="AntiVenomModel" parent="ModelAddition">
+        <On Terms="Effect.BandageHeal.Start" Send="Create"/>
+        <On Terms="Effect.BandageHeal.Stop" Send="Destroy"/>
+        <AutoScaleFactor value="2.100000"/>
+        <HostSiteOps Ops="SOpAttachHardPoint"/>
+    </CActorModel>
+    <CActorModel id="MedkitHealModel" parent="ModelAddition">
+        <On Terms="Effect.MedkitHeal.Start" Send="Create"/>
+        <On Terms="Effect.MedkitHeal.Stop" Send="Destroy"/>
+        <AutoScaleFactor value="2.100000"/>
+        <HostSiteOps Ops="SOpAttachHardPoint"/>
+    </CActorModel>
+    <CActorAction id="BatonAttack" parent="GenericAttack" effectAttack="BatonDamage">
+        <EditorCategories value=""/>
+        <LaunchAssets Sound="Broodling_AttackLaunch"/>
+        <ImpactMap index="None" Model="CrowbarImpactModel" Sound="PhysicsImpactMetalLightHeavy"/>
+    </CActorAction>
+    <CActorUnit id="Baton" parent="WeaponCrateTemplate" unitName="Baton"/>
+    <CActorAction id="AxeAttack" parent="GenericAttack" effectAttack="AxeDamage">
+        <EditorCategories value=""/>
+        <LaunchAssets Sound="Broodling_AttackLaunch"/>
+        <ImpactMap index="None" Model="CrowbarImpactModel" Sound="PhysicsImpactMetalLightHeavy"/>
+    </CActorAction>
+    <CActorModel id="BandageModel" parent="ModelAddition">
+        <On Terms="Effect.BandageHeal.Start" Send="Create"/>
+        <On Terms="Effect.BandageHeal.Stop" Send="Destroy"/>
+        <AutoScaleFactor value="2.100000"/>
+        <HostSiteOps Ops="SOpAttachHardPoint"/>
+    </CActorModel>
+    <CActorAction id="HammerAttack" parent="GenericAttack" effectAttack="HammerDamage">
+        <EditorCategories value=""/>
+        <LaunchAssets Sound="Broodling_AttackLaunch"/>
+        <ImpactMap index="None" Model="CrowbarImpactModel" Sound="PhysicsImpactMetalLightHeavy"/>
+    </CActorAction>
+    <CActorUnit id="Hammer" parent="WeaponCrateTemplate" unitName="Hammer"/>
+    <CActorUnit id="Axe" parent="WeaponCrateTemplate" unitName="Axe"/>
+    <CActorUnit id="Expanding" parent="AmmoModificationTemplate" unitName="Expanding"/>
+    <CActorUnit id="HecateModule" parent="AmmoModificationTemplate" unitName="HecateModule"/>
+    <CActorUnit id="HighExplosive" parent="AmmoModificationTemplate" unitName="HighExplosive"/>
+    <CActorModel id="FlareGunModel" parent="ModelAnimationStyleOneShot">
+        <Aliases value="_Snapshot"/>
+        <Flags index="SuppressSaveLoad" value="0"/>
+        <On Terms="Effect.FlareGun.Start; At Effect" Send="Create"/>
+        <AutoScaleFactor value="2.100000"/>
+        <ModelFlags index="UseSyncSeed" value="1"/>
+    </CActorModel>
+    <CActorUnit id="PlasmaCore" parent="AmmoModificationTemplate" unitName="PlasmaCore"/>
+    <CActorUnit id="RoadFlareActive" parent="GenericUnitStandard" unitName="RoadFlareActive">
+        <EditorCategories value=""/>
+        <HighlightTooltip value="Unit/Name/Bogus"/>
+        <AcceptedTransfers index="Rotation" value="0"/>
+        <On Terms="UnitBirth.RoadFlareActive" Send="Create LightOmniRed"/>
+        <On Terms="UnitDeath.RoadFlareActive" Target="LightOmniRed" Send="Destroy"/>
+        <On Terms="UnitBirth.RoadFlareActive" Send="SetRotation 1.000000,-0.000000,-0.000000"/>
+        <ScopeBearingsTracking value="ForceOff"/>
+    </CActorUnit>
+    <CActorSiteOpRotationExplicit id="RoadFlareKnockOver">
+        <EditorCategories value=""/>
+        <Forward value="1.000000,0.000000,0.000000"/>
+        <IsLocal value="1"/>
+    </CActorSiteOpRotationExplicit>
+    <CActorMissile id="RoadFlareMissile" parent="GenericAttackMissile" unitName="RoadFlareTossed">
+        <EditorCategories value=""/>
+        <HostSiteOps Ops="RoadFlareTumble"/>
+    </CActorMissile>
+    <CActorSiteOpRotationRandom id="RoadFlareRandomRotation">
+        <EditorCategories value=""/>
+        <YawHalfAngle value="90.000000"/>
+    </CActorSiteOpRotationRandom>
+    <CActorSiteOpRotator id="RoadFlareTumble">
+        <LocalAxis value="-1.000000,0.000000,0.000000"/>
+        <Rate value="360.000000"/>
+    </CActorSiteOpRotator>
+    <CActorUnit id="CommunicationsArray" parent="GenericUnitStandard" unitName="CommunicationsArray">
+        <On Terms="ActorCreation" Send="AnimGroupApply Work Work,Stand,Start Work,Stand,End"/>
+    </CActorUnit>
+    <CActorUnit id="RailGun" parent="WeaponCrateTemplate" unitName="Railgun">
+        <BuildModel value="RocketLauncher"/>
+        <PlacementModel value="RocketLauncher"/>
+        <HighlightTooltip value="Unit/Name/Bogus"/>
+        <InfoText value="Button/Tooltip/Bogus"/>
+    </CActorUnit>
+    <CActorAction id="RailGunAttack" parent="WeaponAttackTemplate"/>
+    <CActorUnit id="TX1" parent="AmmoModificationTemplate" unitName="TX1"/>
+    <CActorUnit id="ArmorPiercing" parent="AmmoModificationTemplate" unitName="ArmorPiercing"/>
+    <CActorUnit id="Flechette" parent="AmmoModificationTemplate" unitName="Flechette"/>
+    <CActorUnit id="NanoHealthAugment" parent="AccessoryTemplate" unitName="NanoHealthAugment"/>
+    <CActorEventMacro id="AntiMaterialRifleMacro">
+        <EditorCategories value=""/>
+        <On Terms="Abil.AntiMaterialRifleDeploy.SourceCastStart" Send="AnimGroupApply Work Work,Start Work,End 0 3.000000 AsDuration"/>
+        <On Terms="Abil.AntiMaterialRiflePackUp.SourceCastStart" Send="AnimGroupRemove Work 0 0.500000 AsDuration"/>
+    </CActorEventMacro>
+    <CActorUnit id="CombatMobilityAugment" parent="AccessoryTemplate" unitName="CombatMobilityAugment"/>
+    <CActorUnit id="FieldLight" parent="AccessoryTemplate" unitName="FieldLights">
+        <HighlightTooltip value="Unit/Name/FieldLight"/>
+        <InfoText value="Button/Tooltip/FieldLight"/>
+    </CActorUnit>
+    <CActorUnit id="HighCapacityMagazine" parent="AccessoryTemplate" unitName="HighCapacityMagazine"/>
+    <CActorUnit id="ImprovedAccuracyModule" parent="AccessoryTemplate" unitName="ImprovedAccuracyModule"/>
+    <CActorForceSphere id="K9TurretAttackDeathForce">
+        <HostSiteOps Ops="SOpIncomingDirectDot25 SOpPointUp1ByDot25 AutoTurretForceDirectionRandomizer"/>
+        <Receiver Subject="::Main"/>
+        <Field value="Directional"/>
+        <Duration value="0.150000"/>
+        <Magnitude value="21.150000,7.650000"/>
+        <Radius value="0.750000"/>
+        <Direction value="Forward"/>
+    </CActorForceSphere>
+    <CActorAction id="K9SupportTurretAttack" parent="WeaponAttackTemplate" effectAttack="K9TurretDamage">
+        <On index="7" removed="1"/>
+        <LaunchAssets Model="MarineAttackLaunch" Sound="MMGShot"/>
+        <Beam value="AssaultRifleAttackBeam"/>
+        <Missile value="AssaultRifleAttackMissile"/>
+        <ImpactMap index="None" Model="MarineAttackImpact" Sound="Marine_AttackImpact" ModelReaction="AssaultRifleAttackImpactReaction"/>
+        <ImpactMap index="Shield" Sound="AssaultRifleAttackImpactShield" ModelReaction="AssaultRifleAttackImpactReactionShield"/>
+        <ImpactPhysics Name="K-9TurretImpact" MatchKeys="Basic" Physics="K9TurretAttackDeathForce"/>
+        <DamageMap index="None" Model="AssaultRifleAttackDamage" Sound="AssaultRifleAttackDamage" ModelReaction="AssaultRifleAttackDamageReaction"/>
+        <DamageMap index="Shield" Sound="AssaultRifleAttackDamageShield" ModelReaction="AssaultRifleAttackDamageReactionShield"/>
+    </CActorAction>
+    <CActorEventMacro id="CrateWhiteTextureMacro">
+        <EditorCategories value=""/>
+        <On Terms="ActorCreation" Send="TextureSelectById MilitaryCrateWhite_Diffuse"/>
+        <On Terms="ActorCreation" Send="TextureSelectById MilitaryCrateWhite_Spec"/>
+        <On Terms="ActorCreation" Send="TextureSelectById MilitaryCrateWhite_Emissive"/>
+    </CActorEventMacro>
+    <CActorEventMacro id="CrateGrayTextureMacro">
+        <EditorCategories value=""/>
+        <On Terms="ActorCreation" Send="TextureSelectById MilitaryCrateMetal_Diffuse"/>
+        <On Terms="ActorCreation" Send="TextureSelectById MilitaryCrateMetal_Spec"/>
+    </CActorEventMacro>
+    <CActorEventMacro id="CrateTanTextureMacro">
+        <EditorCategories value=""/>
+        <On Terms="ActorCreation" Send="TextureSelectById MilitaryCrateTan_Diffuse"/>
+        <On Terms="ActorCreation" Send="TextureSelectById MilitaryCrateTan_Spec"/>
+    </CActorEventMacro>
+    <CActorUnit id="ArmoredProtectiveInsert" parent="ArmorCrateTemplate" unitName="ArmoredProtectiveInsert"/>
+    <CActorAction id="ChainsawAttack" parent="GenericAttack" effectAttack="ChainsawDamage">
+        <EditorCategories value=""/>
+        <LaunchAssets Sound="Robot_servo"/>
+        <ImpactMap index="None" Scale="2.000000" Sound="Ultralisk_AttackLaunch"/>
+    </CActorAction>
+    <CActorUnit id="MendingPaste" parent="ConsumableTemplate" unitName="MendingPaste">
+        <Model value="MedicalCrate"/>
+        <Macros index="0" value="CrateRedGlowMacro"/>
+    </CActorUnit>
+    <CActorUnit id="NightVisionModule" parent="AccessoryTemplate" unitName="NightVisionModule"/>
+    <CActorUnit id="PowerGeneratorAugment" parent="AccessoryTemplate" unitName="PowerGeneratorAugment"/>
+    <CActorUnit id="RiotShield" parent="AccessoryTemplate" unitName="RiotShield"/>
+    <CActorAction id="PumpShotgunAttack" parent="WeaponAttackTemplate" effectAttack="PumpShotgunDamage">
+        <LaunchAssets Sound="PumpShotgunShot"/>
+        <ImpactMap index="None" Sound="Reaper_AttackImpact"/>
+    </CActorAction>
+    <CActorUnit id="AmmunitionCase" parent="GenericUnitSelectableNoAutoSoundLinks" unitName="AmmunitionCase">
+        <EditorCategories value=""/>
+        <HighlightTooltip value="Unit/Name/Bogus"/>
+        <StatusBarFlags index="Shields" value="0"/>
+        <StatusBarFlags index="Life" value="0"/>
+        <StatusBarFlags index="Energy" value="0"/>
+        <StatusBarFlags index="Cargo" value="0"/>
+        <StatusBarFlags index="Progress" value="0"/>
+        <StatusBarFlags index="Duration" value="0"/>
+        <StatusBarFlags index="Magazine" value="0"/>
+        <StatusBarFlags index="Workers" value="0"/>
+        <StatusBarFlags index="Custom" value="0"/>
+        <Scale value="0.600000"/>
+        <DeathArray index="Normal" ModelLink="TossGrenadeImpact" SoundLink="TychusTossGrenadeImpact"/>
+    </CActorUnit>
+    <CActorAction id="AntiMaterialRifleAttack" parent="WeaponAttackTemplate" effectAttack="AntiMaterialRifleDamage">
+        <LaunchAssets Model="AutoTurretAttackLaunch" Sound="AntiMaterialRifleShot"/>
+        <ImpactMap index="None" Model="PointDefenseBeamImpact" Sound="Ghost_SnipeImpact"/>
+    </CActorAction>
+    <CActorUnit id="Antivenom" parent="ConsumableTemplate" unitName="AntiVenom">
+        <Model value="MedicalCrate"/>
+        <Macros index="0" value="CrateRedGlowMacro"/>
+    </CActorUnit>
+    <CActorUnit id="AssaultRifle" parent="WeaponCrateTemplate" unitName="AssaultRifle">
+        <InfoText value="Button/Infotext/AssaultRifle"/>
+        <UnitIcon value="Weapons\btn-AssaultRifle.dds"/>
+    </CActorUnit>
+    <CActorUnit id="AutomaticShotgun" parent="WeaponCrateTemplate" unitName="AutomaticShotgun">
+        <InfoText value="Button/Imfotext/AutomaticShotgun"/>
+        <UnitIcon value="Weapons\btn-AutomaticShotgun.dds"/>
+    </CActorUnit>
+    <CActorUnit id="Bandage" parent="ConsumableTemplate" unitName="Bandage">
+        <Model value="MedicalCrate"/>
+        <Macros index="0" value="CrateRedGlowMacro"/>
+    </CActorUnit>
+    <CActorUnit id="Chainsaw" parent="WeaponCrateTemplate" unitName="Chainsaw">
+        <InfoText value="Button/Infotext/Chainsaw"/>
+        <UnitIcon value="Weapons\btn-Chainsaw.dds"/>
+    </CActorUnit>
+    <CActorModel id="ChainsawBodyTraumaStun" parent="ModelAnimationStyleOneShot">
+        <EditorCategories value=""/>
+        <On Terms="Behavior.ChainsawBodyTraumaStun.On" Send="Create"/>
+    </CActorModel>
+    <CActorUnit id="Crowbar" parent="WeaponCrateTemplate" unitName="Crowbar">
+        <InfoText value="Button/Infotext/Crowbar"/>
+        <UnitIcon value="Weapons\btn-Crowbar.dds"/>
+    </CActorUnit>
+    <CActorAction id="CrowbarAttack" parent="GenericAttack" effectAttack="CrowbarDamage">
+        <EditorCategories value=""/>
+        <ImpactMap index="None" Model="CrowbarImpactModel" Sound="PhysicsImpactMetalLightHeavy"/>
+        <LaunchAssets Sound="Broodling_AttackLaunch"/>
+    </CActorAction>
+    <CActorUnit id="Flamethrower" parent="WeaponCrateTemplate" unitName="Flamethrower">
+        <InfoText value="Button/Infotext/Flamethrower"/>
+        <UnitIcon value="Weapons\btn-Flamethrower.dds"/>
+    </CActorUnit>
+    <CActorAction id="FlamethrowerAttack" parent="WeaponAttackTemplate" effectAttack="FlamethrowerPersistent">
+        <LaunchAssets Scale="1.000000,4.000000,1.000000" Sound="HellionTank_AttackLaunch"/>
+        <BeamScope value="Caster"/>
+        <DamageSiteOps Ops="SOpAttachCenter"/>
+        <DamageMap index="None" Sound="Hellion_AttackImpact"/>
+        <ShieldFlashType value="Full"/>
+        <On index="3" Terms="Effect.SplashDamage.Start; FromEffectTreeDescendant; Cap 1"/>
+    </CActorAction>
+    <CActorUnit id="HeavyMachineGun" parent="WeaponCrateTemplate" unitName="HeavyMachineGun">
+        <InfoText value="Button/Infotext/HeavyMachineGun"/>
+        <UnitIcon value="Weapons\btn-HeavyMachineGun.dds"/>
+    </CActorUnit>
+    <CActorAction id="HeavyMachineGunAttack" parent="WeaponAttackTemplate" effectAttack="HeavyMachineGunDamage">
+        <LaunchAssets Model="AutoTurretAttackLaunch" Sound="HMGShot"/>
+        <ImpactMap index="None" Model="AutoTurretAttackImpact" Sound="Terran_MachineGunLarge_Impact"/>
+    </CActorAction>
+    <CActorEventMacro id="HeavyMachineGunMacro">
+        <On Terms="Abil.AlternateFireModes.Start; ValidateUnit DeployingHeavyMachineGun" Send="AnimPlay HeavyMachineGun Work,Large,Start 0 -1.000000 -1.000000 3.000000 AsDuration"/>
+        <On Terms="AnimDone.*.Complete; AnimName HeavyMachineGun" Send="AnimGroupApply Work {} {} Instant"/>
+        <On Terms="Abil.AlternateFireModes.Start; ValidateUnit HeavyMachineGunDeployed" Send="AnimPlay HeavyMachineGunUndeploy Work,Large,End 0 -1.000000 -1.000000 1.950000 AsDuration"/>
+        <On Terms="AnimDone.*.Complete; AnimName HeavyMachineGunUndeploy" Send="AnimGroupRemove Work Instant"/>
+        <On Terms="Abil.AlternateFireModes.Stop; AnimPlaying HeavyMachineGun" Send="AnimClear HeavyMachineGun"/>
+        <On Terms="Abil.AlternateFireModes.Stop; AnimPlaying HeavyMachineGunUndeploy" Send="AnimClear HeavyMachineGunUndeploy"/>
+        <On Terms="UnitMovementUpdate.*.Walk" Send="AnimGroupRemove Work Instant"/>
+        <EditorCategories value=""/>
+    </CActorEventMacro>
+    <CActorUnit id="HeavyProtectiveInsert" parent="ArmorCrateTemplate" unitName="HeavyProtectiveInsert"/>
+    <CActorAction id="HighExplosiveAmmoImpact" parent="GenericAttack" effectAttack="HighExplosive">
+        <EditorCategories value=""/>
+    </CActorAction>
+    <CActorUnit id="LaserRifle" parent="WeaponCrateTemplate" unitName="LaserRifle">
+        <InfoText value="Button/Infotext/LaserRifle"/>
+        <UnitIcon value="Weapons\btn-LaserRifle.dds"/>
+    </CActorUnit>
+    <CActorAction id="LaserRifleAttack" parent="WeaponAttackTemplate" effectAttack="LaserRifleDamage">
+        <LaunchAssets Sound="LaserRifleShot"/>
+        <BeamScope value="Caster"/>
+        <ImpactMap index="None" Model="LaserAttackBeamImpact" Sound="Raven_PointDefenseDroneAttackImpact"/>
+        <ImpactModel value="LaserImpactModel"/>
+    </CActorAction>
+    <CActorBeamSimple id="LaserRifleAttackBeam" parent="BeamSimpleAnimationStyleOneShot">
+        <EditorCategories value=""/>
+        <ModelFlags index="AllowHitTest" value="0"/>
+        <HostLaunchSiteOps Ops="SOpAttachWeapon"/>
+        <On index="0" Terms="ActorCreation" Send="AnimBracketStart BSD Birth Stand Death ContentPlayOnce 30.000000 AsTimeScale"/>
+        <HostLaunch Subject="_Weapon" Scope="Caster" Actor="Find"/>
+    </CActorBeamSimple>
+    <CActorUnit id="Magazine" parent="GenericUnitSelectableNoAutoSoundLinks" unitName="Magazine">
+        <EditorCategories value=""/>
+        <StatusBarFlags index="Shields" value="0"/>
+        <StatusBarFlags index="Life" value="0"/>
+        <StatusBarFlags index="Energy" value="0"/>
+        <StatusBarFlags index="Cargo" value="0"/>
+        <StatusBarFlags index="Progress" value="0"/>
+        <StatusBarFlags index="Duration" value="0"/>
+        <StatusBarFlags index="Magazine" value="0"/>
+        <StatusBarFlags index="Workers" value="0"/>
+        <StatusBarFlags index="Custom" value="0"/>
+        <Scale value="0.750000"/>
+        <InfoText value="Button/Tooltip/Magazine"/>
+        <DeathArray index="Normal" ModelLink="TossGrenadeImpact" SoundLink="TychusTossGrenadeImpact"/>
+    </CActorUnit>
+    <CActorUnit id="MarksmanRifle" parent="WeaponCrateTemplate" unitName="MarksmanRifle">
+        <InfoText value="Button/Infotext/MarksmanRifle"/>
+        <UnitIcon value="Weapons\btn-MarksmenRifle.dds"/>
+    </CActorUnit>
+    <CActorAction id="MarksmanRifleAttack" parent="WeaponAttackTemplate" effectAttack="MarksmanRifleDamage">
+        <LaunchAttachQuery Methods="AMFilterWeapon"/>
+        <LaunchAssets Model="GhostAttackLaunch" Sound="MarksmanRifleShot"/>
+        <ImpactMap index="None" Model="GhostAttackImpact" Sound="Ghost_SnipeImpact"/>
+    </CActorAction>
+    <CActorUnit id="MediumMachineGun" parent="WeaponCrateTemplate" unitName="MediumMachineGun">
+        <InfoText value="Button/Infotext/MediumMachineGun"/>
+        <UnitIcon value="Weapons\btn-MediumMachineGun.dds"/>
+    </CActorUnit>
+    <CActorUnit id="Medkit" parent="ConsumableTemplate" unitName="Medkit">
+        <Model value="MedicalCrate"/>
+        <Macros index="0" value="CrateRedGlowMacro"/>
+    </CActorUnit>
+    <CActorUnit id="Pistol" parent="WeaponCrateTemplate" unitName="Pistol">
+        <InfoText value="Button/Infotext/Pistol"/>
+        <UnitIcon value="Weapons\btn-Pistol.dds"/>
+    </CActorUnit>
+    <CActorUnit id="PlasmaCutter" parent="WeaponCrateTemplate" unitName="PlasmaCutter">
+        <InfoText value="Button/Infotext/PlasmaCutter"/>
+        <UnitIcon value="Weapons\btn-PlasmaCutter.dds"/>
+    </CActorUnit>
+    <CActorAction id="MediumMachineGunAttack" parent="WeaponAttackTemplate" effectAttack="MediumMachineGunDamage">
+        <LaunchAttachQuery Methods="AMFilterWeapon"/>
+        <LaunchAssets Model="VikingAssaultAttackLaunch" Sound="MMGShot"/>
+        <ImpactMap index="None" Model="VikingAssaultAttackImpact" Sound="Marine_AttackImpact"/>
+    </CActorAction>
+    <CActorAction id="PistolAttack" parent="WeaponAttackTemplate" effectAttack="PistolDamage">
+        <LaunchAttachQuery Methods="AMFilterWeapon"/>
+        <LaunchAssets Model="ReaperAttackLaunch" Sound="PistolShot"/>
+        <ImpactMap index="None" Model="ReaperAttackImpact" Sound="Reaper_AttackImpact"/>
+    </CActorAction>
+    <CActorAction id="PlasmaCutterAttack" parent="WeaponAttackTemplate" effectAttack="PlasmaCutterDamage">
+        <ImpactMap index="None" Model="DarkTemplarAttackImpact" Scale="3.000000" Sound="Stalker_AttackImpact"/>
+        <LaunchAssets Sound="Zealot_AttackLaunch"/>
+    </CActorAction>
+    <CActorUnit id="PumpShotgun" parent="WeaponCrateTemplate" unitName="PumpShotgun">
+        <InfoText value="Button/Infotext/PumpShotgun"/>
+        <UnitIcon value="Weapons\btn-PumpShotgun.dds"/>
+    </CActorUnit>
+    <CActorAction id="AutomaticShotgunAttack" parent="WeaponAttackTemplate" effectAttack="AutomaticShotgunDamage">
+        <DamageMap index="None" Model="WraithGroundAttackImpact" Sound="Reaper_AttackImpact"/>
+        <LaunchAssets Sound="AutomaticShotgunShot"/>
+        <ImpactMap index="None" Sound="Reaper_AttackImpact"/>
+    </CActorAction>
+    <CActorUnit id="ReactiveProtectiveInsert" parent="ArmorCrateTemplate" unitName="ReactiveProtectiveInsert"/>
+    <CActorUnit id="RoadFlare" parent="ConsumableTemplate" unitName="RoadFlare"/>
+    <CActorUnit id="RoadFlareGun" parent="ConsumableTemplate" unitName="FlareGun"/>
+    <CActorUnit id="ShieldAugmentationInsert" parent="ArmorCrateTemplate" unitName="ShieldAugmentationInsert"/>
+    <CActorAction id="ShotgunSlugShotAttack" parent="WeaponAttackTemplate" effectAttack="ShotgunSlugShotDamage">
+        <ImpactMap index="None" Model="ReaperAttackImpact"/>
+        <On index="7" removed="1"/>
+    </CActorAction>
+    <CActorBeamSimple id="ShotgunSlugShotAttackBeam" parent="BeamSimpleAnimationStyleOneShot">
+        <EditorCategories value=""/>
+        <Model value="GhostSnipeAttackBeam"/>
+        <ModelFlags index="AllowHitTest" value="0"/>
+        <HostImpact Subject="_Unit"/>
+        <HostLaunchSiteOps Ops="SOpAttachWeapon" HoldPosition="1" HoldRotation="1"/>
+    </CActorBeamSimple>
+    <CActorUnit id="SubmachineGun" parent="WeaponCrateTemplate" unitName="SubmachineGun">
+        <InfoText value="Button/Infotext/SubmachineGun"/>
+        <UnitIcon value="Weapons\btn-SubMachineGun.dds"/>
+    </CActorUnit>
+    <CActorAction id="SubmachineGunAttack" parent="WeaponAttackTemplate" effectAttack="SubmachineGunDamage">
+        <LaunchAttachQuery Methods="AMFilterWeapon"/>
+        <LaunchAssets Model="ReaperAttackLaunch" Sound="SubmachineGunShot"/>
+        <ImpactMap index="None" Model="MarineAttackImpact" Sound="Marine_AttackImpact"/>
+    </CActorAction>
+    <CActorAction id="AssaultRifleAttack" parent="WeaponAttackTemplate" effectAttack="AssaultRifleDamage">
+        <On Terms="Effect.AssaultRifleBurstFireDamage.Start; At Caster" Send="Create"/>
+        <On Terms="Effect.AssaultRifleBurstFireDamageCritical; At Caster" Send="Create"/>
+        <LaunchAssets Model="MarineAttackLaunch" Sound="AssaultRifleShot"/>
+        <ImpactMap index="None" Model="MarineAttackImpact" Sound="Marine_AttackImpact"/>
+    </CActorAction>
+    <CActorUnit id="EnhancedProtectiveInsert" parent="ArmorCrateTemplate" unitName="EnhancedProtectiveInsert"/>
+    <CActorModel id="WeaponAttackLaunch" parent="GenericAttackModel">
+        <HostSiteOps Ops="SOpAttachWeapon"/>
+    </CActorModel>
+    <CActorUnit id="AntiMaterialRifle" parent="WeaponCrateTemplate" unitName="AntiMaterialRifle">
+        <InfoText value="Button/Infotext/AntiMaterialRifle"/>
+        <UnitIcon value="Weapons\btn-AntiMaterialRifle.dds"/>
+    </CActorUnit>
+    <CActorEventMacro id="WeaponEquipMacro">
+        <EditorCategories value=""/>
+        <On Terms="Behavior.AssaultRifleEquipped.On" Send="AttachModel EquippedWeapon AssaultRifle {Weapon 1}"/>
+        <On Terms="Behavior.AssaultRifleEquipped.Off" Target="_Weapon" Send="Destroy Immediate"/>
+        <On Terms="Behavior.AutomaticShotgunEquipped.On" Send="AttachModel EquippedWeapon AutomaticShotgun {Weapon 1}"/>
+        <On Terms="Behavior.AutomaticShotgunEquipped.Off" Target="_Weapon" Send="Destroy Immediate"/>
+        <On Terms="Behavior.PumpShotgunEquipped.On" Send="AttachModel EquippedWeapon PumpShotgun {Weapon 1}"/>
+        <On Terms="Behavior.PumpShotgunEquipped.Off" Target="_Weapon" Send="Destroy Immediate"/>
+        <On Terms="Behavior.SubmachineGunEquipped.On" Send="AttachModel EquippedWeapon SubmachineGun {Weapon 1}"/>
+        <On Terms="Behavior.SubmachineGunEquipped.Off" Target="_Weapon" Send="Destroy Immediate"/>
+        <On Terms="Behavior.MarksmanRifleEquipped.On" Send="AttachModel EquippedWeapon MarksmanRifle {Weapon 1}"/>
+        <On Terms="Behavior.MarksmanRifleEquipped.Off" Target="_Weapon" Send="Destroy Immediate"/>
+        <On Terms="Behavior.PistolEquipped.On" Send="AttachModel EquippedWeapon Pistol {Weapon 1}"/>
+        <On Terms="Behavior.PistolEquipped.Off" Target="_Weapon" Send="Destroy Immediate"/>
+        <On Terms="Behavior.PlasmaCutterEquipped.On" Send="AttachModel EquippedWeapon PlasmaCutter {Weapon 1}"/>
+        <On Terms="Behavior.PlasmaCutterEquipped.Off" Target="_Weapon" Send="Destroy Immediate"/>
+        <On Terms="Behavior.HeavyMachineGunEquipped.On" Send="AttachModel EquippedWeapon HeavyMachineGun {Weapon 1}"/>
+        <On Terms="Behavior.HeavyMachineGunEquipped.Off" Target="_Weapon" Send="Destroy Immediate"/>
+        <On Terms="Behavior.LaserRifleEquipped.On" Send="AttachModel EquippedWeapon LaserRifle {Weapon 1}"/>
+        <On Terms="Behavior.LaserRifleEquipped.Off" Target="_Weapon" Send="Destroy Immediate"/>
+        <On Terms="Behavior.MediumMachineGunEquipped.On" Send="AttachModel EquippedWeapon MediumMachineGun {Weapon 1}"/>
+        <On Terms="Behavior.MediumMachineGunEquipped.Off" Target="_Weapon" Send="Destroy Immediate"/>
+        <On Terms="Behavior.FlamethrowerEquipped.On" Send="AttachModel EquippedWeapon Flamethrower {Weapon 1}"/>
+        <On Terms="Behavior.FlamethrowerEquipped.Off" Target="_Weapon" Send="Destroy Immediate"/>
+        <On Terms="Behavior.ChainsawEquipped.On" Send="AttachModel EquippedWeapon Chainsaw {Weapon 1}"/>
+        <On Terms="Behavior.ChainsawEquipped.Off" Target="_Weapon" Send="Destroy Immediate"/>
+        <On Terms="Behavior.CrowbarEquipped.On" Send="AttachModel EquippedWeapon Crowbar {Weapon 1}"/>
+        <On Terms="Behavior.CrowbarEquipped.Off" Target="_Weapon" Send="Destroy Immediate"/>
+        <On Terms="Behavior.AntiMaterialRifleEquipped.On" Send="AttachModel EquippedWeapon AntiMaterialRifle {Weapon 1}"/>
+        <On Terms="Behavior.AntiMaterialRifleEquipped.Off" Target="_Weapon" Send="Destroy Immediate"/>
+        <On Terms="Behavior.AxeEquipped.On" Send="AttachModel EquippedWeapon Axe {Weapon 1}"/>
+        <On Terms="Behavior.AxeEquipped.Off" Target="_Weapon" Send="Destroy Immediate"/>
+        <On Terms="Behavior.BatonEquipped.On" Send="AttachModel EquippedWeapon Baton {Weapon 1}"/>
+        <On Terms="Behavior.BatonEquipped.Off" Target="_Weapon" Send="Destroy Immediate"/>
+        <On Terms="Behavior.HammerEquipped.On" Send="AttachModel EquippedWeapon Hammer {Weapon 1}"/>
+        <On Terms="Behavior.HammerEquipped.Off" Target="_Weapon" Send="Destroy Immediate"/>
+        <On Terms="Behavior.GrenadeLauncherEquipped.On" Send="AttachModel EquippedWeapon GrenadeLauncher {Weapon 1}"/>
+        <On Terms="Behavior.GrenadeLauncherEquipped.Off" Send="Destroy Immediate"/>
+        <On Terms="Behavior.PlasmaCannonEquipped.On" Send="AttachModel EquippedWeapon PlasmaCannon {Weapon 1}"/>
+        <On Terms="Behavior.PlasmaCannonEquipped.Off" Send="Destroy Immediate"/>
+        <On Terms="Behavior.RailgunEquipped.On" Send="AttachModel EquippedWeapon RailGun {Weapon 1}"/>
+        <On Terms="Behavior.RailgunEquipped.Off" Send="Destroy Immediate"/>
+        <On Terms="Behavior.RocketLauncherEquipped.On" Send="AttachModel EquippedWeapon RocketLauncher {Weapon 1}"/>
+        <On Terms="Behavior.RocketLauncherEquipped.Off" Send="Destroy Immediate"/>
+    </CActorEventMacro>
+    <CActorEventMacro id="WeaponEquipHeavyMacro" parent="WeaponEquipMacro">
+        <On index="12" Terms="Behavior.PlasmaCutterEquipped.On" Send="AttachModel EquippedWeapon PlasmaCutter {Weapon 3}"/>
+        <On index="14" Terms="Behavior.HeavyMachineGunEquipped.On" Send="AttachModel EquippedWeapon HeavyMachineGun {Weapon 3}"/>
+        <On index="20" Terms="Behavior.FlamethrowerEquipped.On" Send="AttachModel EquippedWeapon Flamethrower {Weapon 3}"/>
+        <On index="22" Terms="Behavior.ChainsawEquipped.On" Send="AttachModel EquippedWeapon Chainsaw {Weapon 3}"/>
+    </CActorEventMacro>
+    <CActorEventMacro id="WeaponAnimationGroups">
+        <EditorCategories value=""/>
+        <On Terms="Abil.attack.ReadyStart; ValidateUnit EquippedWeaponisSubmachineGun" Send="AnimGroupRemove Ready Instant"/>
+        <On Terms="Abil.attack.ReadyStart; ValidateUnit EquippedWeaponisSubmachineGun" Send="AnimGroupApply Pose"/>
+        <On Terms="Abil.attack.ReadyStop" Send="AnimGroupRemove Pose"/>
+        <On Terms="Abil.attack.ReadyStart; ValidateUnit EquippedWeaponisSubmachineGun" Send="AnimGroupRemove Attack Instant"/>
+        <On Terms="Abil.attack.ReadyStart; ValidateUnit EquippedWeaponisAntiMaterialRifle" Send="AnimGroupRemove Ready Instant"/>
+        <On Terms="Abil.attack.ReadyStart; ValidateUnit EquippedWeaponisAntiMaterialRifle" Send="AnimGroupApply Blast"/>
+        <On Terms="Abil.attack.ReadyStart; ValidateUnit EquippedWeaponisAutomaticShotgun" Send="AnimGroupRemove Ready Instant"/>
+        <On Terms="Abil.attack.ReadyStart; ValidateUnit EquippedWeaponisAutomaticShotgun" Send="AnimGroupApply Blast"/>
+        <On Terms="Abil.attack.ReadyStart; ValidateUnit EquippedWeaponisPumpShotgun" Send="AnimGroupRemove Ready Instant"/>
+        <On Terms="Abil.attack.ReadyStart; ValidateUnit EquippedWeaponisPumpShotgun" Send="AnimGroupApply Blast"/>
+        <On Terms="Abil.attack.ReadyStop" Send="AnimGroupRemove Blast"/>
+        <On Terms="Abil.attack.ReadyStart; ValidateUnit EquippedWeaponisChainsaw" Send="AnimGroupRemove Ready Instant"/>
+        <On Terms="Abil.attack.ReadyStart; ValidateUnit EquippedWeaponisChainsaw" Send="AnimGroupApply Chain"/>
+        <On Terms="Abil.attack.ReadyStop" Send="AnimGroupRemove Chain"/>
+        <On Terms="Abil.attack.ReadyStart; ValidateUnit EquippedWeaponisFlamethrower" Send="AnimGroupRemove Ready Instant"/>
+        <On Terms="Abil.attack.ReadyStart; ValidateUnit EquippedWeaponisFlamethrower" Send="AnimGroupApply Fire"/>
+        <On Terms="Abil.attack.ReadyStop" Send="AnimGroupRemove Fire"/>
+        <On Terms="Abil.attack.ReadyStart; ValidateUnit EquippedWeaponisPlasmaCutter" Send="AnimGroupRemove Ready Instant"/>
+        <On Terms="Abil.attack.ReadyStart; ValidateUnit EquippedWeaponisPlasmaCutter" Send="AnimGroupApply Slam"/>
+        <On Terms="Abil.attack.ReadyStop" Send="AnimGroupRemove Slam"/>
+        <On Terms="Abil.attack.ReadyStart; ValidateUnit EquippedWeaponisGrenadeLauncher" Send="AnimGroupRemove Ready Instant"/>
+        <On Terms="Abil.attack.ReadyStart; ValidateUnit EquippedWeaponisGrenadeLauncher" Send="AnimGroupApply Blast"/>
+        <On Terms="Abil.attack.ReadyStop" Send="AnimGroupRemove Blast"/>
+        <On Terms="Abil.attack.ReadyStart; ValidateUnit EquippedWeaponisRocketLauncher" Send="AnimGroupRemove Ready Instant"/>
+        <On Terms="Abil.attack.ReadyStart; ValidateUnit EquippedWeaponisRocketLauncher" Send="AnimGroupApply Blast"/>
+        <On Terms="Abil.attack.ReadyStop" Send="AnimGroupRemove Blast"/>
+    </CActorEventMacro>
+    <CActorEventMacro id="WeaponModelSwapGroups">
+        <EditorCategories value=""/>
+        <On Terms="Behavior.PistolEquipped.On" Send="ModelSwap LightMarineOne"/>
+        <On Terms="Behavior.SubmachineGunEquipped.On" Send="ModelSwap LightMarineOne"/>
+        <On Terms="Behavior.CrowbarEquipped.On" Send="ModelSwap LightMarineMelee"/>
+        <On Terms="Behavior.PlasmaCutterEquipped.On" Send="ModelSwap LightMarineUnder"/>
+        <On Terms="Behavior.PlasmaCutterEquipped.Off" Send="ModelSwap LightMarineMelee"/>
+        <On Terms="Behavior.ChainsawEquipped.On" Send="ModelSwap LightMarineUnder"/>
+        <On Terms="Behavior.ChainsawEquipped.Off" Send="ModelSwap LightMarineMelee"/>
+        <On Terms="Behavior.FlamethrowerEquipped.On" Send="ModelSwap LightMarineUnder"/>
+        <On Terms="Behavior.FlamethrowerEquipped.Off" Send="ModelSwap LightMarineMelee"/>
+        <On Terms="Behavior.AxeEquipped.On" Send="ModelSwap LightMarineMelee"/>
+        <On Terms="Behavior.BatonEquipped.On" Send="ModelSwap LightMarineMelee"/>
+        <On Terms="Behavior.HammerEquipped.On" Send="ModelSwap LightMarineMelee"/>
+        <On Terms="Behavior.HeavyMachineGunEquipped.On" Send="ModelSwap LightMarineUnder"/>
+        <On Terms="Behavior.HeavyMachineGunEquipped.Off" Send="ModelSwap LightMarineMelee"/>
+        <On Terms="Behavior.AssaultRifleEquipped.On" Send="ModelSwap LightMarineTwo"/>
+        <On Terms="Behavior.AssaultRifleEquipped.Off" Send="ModelSwap LightMarineMelee"/>
+        <On Terms="Behavior.AntiMaterialRifleEquipped.On" Send="ModelSwap LightMarineTwo"/>
+        <On Terms="Behavior.AntiMaterialRifleEquipped.Off" Send="ModelSwap LightMarineMelee"/>
+        <On Terms="Behavior.AutomaticShotgunEquipped.On" Send="ModelSwap LightMarineTwo"/>
+        <On Terms="Behavior.AutomaticShotgunEquipped.Off" Send="ModelSwap LightMarineMelee"/>
+        <On Terms="Behavior.LaserRifleEquipped.On" Send="ModelSwap LightMarineTwo"/>
+        <On Terms="Behavior.LaserRifleEquipped.Off" Send="ModelSwap LightMarineMelee"/>
+        <On Terms="Behavior.MarksmanRifleEquipped.On" Send="ModelSwap LightMarineTwo"/>
+        <On Terms="Behavior.MarksmanRifleEquipped.Off" Send="ModelSwap LightMarineMelee"/>
+        <On Terms="Behavior.MediumMachineGunEquipped.On" Send="ModelSwap LightMarineTwo"/>
+        <On Terms="Behavior.MediumMachineGunEquipped.Off" Send="ModelSwap LightMarineMelee"/>
+        <On Terms="Behavior.PumpShotgunEquipped.On" Send="ModelSwap LightMarineTwo"/>
+        <On Terms="Behavior.PumpShotgunEquipped.Off" Send="ModelSwap LightMarineMelee"/>
+        <On Terms="Behavior.AxeEquipped.On" Send="ModelSwap LightMarineMelee"/>
+        <On Terms="Behavior.BatonEquipped.On" Send="ModelSwap LightMarineMelee"/>
+        <On Terms="Behavior.HammerEquipped.On" Send="ModelSwap LightMarineMelee"/>
+        <On Terms="Behavior.GrenadeLauncherEquipped.On" Send="ModelSwap LightMarineTwo"/>
+        <On Terms="Behavior.GrenadeLauncherEquipped.Off" Send="ModelSwap LightMarineMelee"/>
+        <On Terms="Behavior.PlasmaCannonEquipped.On" Send="ModelSwap LightMarineUnder"/>
+        <On Terms="Behavior.PlasmaCannonEquipped.Off" Send="ModelSwap LightMarineMelee"/>
+        <On Terms="Behavior.RailgunEquipped.On" Send="ModelSwap LightMarineUnder"/>
+        <On Terms="Behavior.RailgunEquipped.Off" Send="ModelSwap LightMarineMelee"/>
+        <On Terms="Behavior.RocketLauncherEquipped.On" Send="ModelSwap LightMarineTwo"/>
+        <On Terms="Behavior.RocketLauncherEquipped.Off" Send="ModelSwap LightMarineMelee"/>
+    </CActorEventMacro>
+    <CActorEventMacro id="WeaponModelSwapGroupsHeavy">
+        <EditorCategories value=""/>
+        <On Terms="Behavior.PistolEquipped.On" Send="ModelSwap HeavyMarineOneHanded"/>
+        <On Terms="Behavior.SubmachineGunEquipped.On" Send="ModelSwap HeavyMarineOneHanded"/>
+        <On Terms="Behavior.CrowbarEquipped.On" Send="ModelSwap HeavyMarineMelee"/>
+        <On Terms="Behavior.PlasmaCutterEquipped.On" Send="ModelSwap HeavyMarineUnderhanded"/>
+        <On Terms="Behavior.PlasmaCutterEquipped.Off" Send="ModelSwap HeavyMarineMelee"/>
+        <On Terms="Behavior.ChainsawEquipped.On" Send="ModelSwap HeavyMarineUnderhanded"/>
+        <On Terms="Behavior.ChainsawEquipped.Off" Send="ModelSwap HeavyMarineMelee"/>
+        <On Terms="Behavior.FlamethrowerEquipped.On" Send="ModelSwap HeavyMarineUnderhanded"/>
+        <On Terms="Behavior.FlamethrowerEquipped.Off" Send="ModelSwap HeavyMarineMelee"/>
+        <On Terms="Behavior.AxeEquipped.On" Send="ModelSwap HeavyMarineMelee"/>
+        <On Terms="Behavior.BatonEquipped.On" Send="ModelSwap HeavyMarineMelee"/>
+        <On Terms="Behavior.HammerEquipped.On" Send="ModelSwap HeavyMarineMelee"/>
+        <On Terms="Behavior.HeavyMachineGunEquipped.On" Send="ModelSwap HeavyMarineUnderhanded"/>
+        <On Terms="Behavior.HeavyMachineGunEquipped.Off" Send="ModelSwap HeavyMarineMelee"/>
+        <On Terms="Behavior.AssaultRifleEquipped.On" Send="ModelSwap HeavyMarineOneHanded"/>
+        <On Terms="Behavior.AssaultRifleEquipped.Off" Send="ModelSwap HeavyMarineMelee"/>
+        <On Terms="Behavior.AntiMaterialRifleEquipped.On" Send="ModelSwap HeavyMarineOneHanded"/>
+        <On Terms="Behavior.AntiMaterialRifleEquipped.Off" Send="ModelSwap HeavyMarineMelee"/>
+        <On Terms="Behavior.AutomaticShotgunEquipped.On" Send="ModelSwap HeavyMarineOneHanded"/>
+        <On Terms="Behavior.AutomaticShotgunEquipped.Off" Send="ModelSwap HeavyMarineMelee"/>
+        <On Terms="Behavior.LaserRifleEquipped.On" Send="ModelSwap HeavyMarineOneHanded"/>
+        <On Terms="Behavior.LaserRifleEquipped.Off" Send="ModelSwap HeavyMarineMelee"/>
+        <On Terms="Behavior.MarksmanRifleEquipped.On" Send="ModelSwap HeavyMarineOneHanded"/>
+        <On Terms="Behavior.MarksmanRifleEquipped.Off" Send="ModelSwap HeavyMarineMelee"/>
+        <On Terms="Behavior.MediumMachineGunEquipped.On" Send="ModelSwap HeavyMarineOneHanded"/>
+        <On Terms="Behavior.MediumMachineGunEquipped.Off" Send="ModelSwap HeavyMarineMelee"/>
+        <On Terms="Behavior.PumpShotgunEquipped.On" Send="ModelSwap HeavyMarineOneHanded"/>
+        <On Terms="Behavior.PumpShotgunEquipped.Off" Send="ModelSwap HeavyMarineMelee"/>
+        <On Terms="Behavior.PistolEquipped.Off" Send="ModelSwap HeavyMarineMelee"/>
+        <On Terms="Behavior.SubmachineGunEquipped.On" Send="ModelSwap HeavyMarineOneHanded"/>
+        <On Terms="Behavior.AxeEquipped.On" Send="ModelSwap HeavyMarineMelee"/>
+        <On Terms="Behavior.BatonEquipped.On" Send="ModelSwap HeavyMarineMelee"/>
+        <On Terms="Behavior.HammerEquipped.On" Send="ModelSwap HeavyMarineMelee"/>
+        <On Terms="Behavior.GrenadeLauncherEquipped.On" Send="ModelSwap HeavyMarineOneHanded"/>
+        <On Terms="Behavior.GrenadeLauncherEquipped.Off" Send="ModelSwap HeavyMarineMelee"/>
+        <On Terms="Behavior.SubmachineGunEquipped.Off" Send="ModelSwap HeavyMarineMelee"/>
+        <On Terms="Behavior.PlasmaCannonEquipped.On" Send="ModelSwap HeavyMarineOneHanded"/>
+        <On Terms="Behavior.PlasmaCannonEquipped.Off" Send="ModelSwap HeavyMarineMelee"/>
+        <On Terms="Behavior.RailgunEquipped.On" Send="ModelSwap HeavyMarineOneHanded"/>
+        <On Terms="Behavior.RailgunEquipped.Off" Send="ModelSwap HeavyMarineMelee"/>
+        <On Terms="Behavior.RocketLauncherEquipped.On" Send="ModelSwap HeavyMarineOneHanded"/>
+        <On Terms="Behavior.RocketLauncherEquipped.Off" Send="ModelSwap HeavyMarineMelee"/>
+    </CActorEventMacro>
+    <CActorEventMacro id="WeaponHeavyAnimationGroups">
+        <EditorCategories value=""/>
+        <On Terms="Abil.attack.ReadyStart; ValidateUnit EquippedWeaponisSubmachineGun" Send="AnimGroupRemove Ready Instant"/>
+        <On Terms="Abil.attack.ReadyStart; ValidateUnit EquippedWeaponisSubmachineGun" Send="AnimGroupApply Pose"/>
+        <On Terms="Abil.attack.ReadyStop" Send="AnimGroupRemove Pose"/>
+        <On Terms="Abil.attack.ReadyStart; ValidateUnit EquippedWeaponisAntiMaterialRifle" Send="AnimGroupRemove Ready Instant"/>
+        <On Terms="Abil.attack.ReadyStart; ValidateUnit EquippedWeaponisAntiMaterialRifle" Send="AnimGroupApply Blast"/>
+        <On Terms="Abil.attack.ReadyStart; ValidateUnit EquippedWeaponisAutomaticShotgun" Send="AnimGroupRemove Ready Instant"/>
+        <On Terms="Abil.attack.ReadyStart; ValidateUnit EquippedWeaponisAutomaticShotgun" Send="AnimGroupApply Blast"/>
+        <On Terms="Abil.attack.ReadyStart; ValidateUnit EquippedWeaponisPumpShotgun" Send="AnimGroupRemove Ready Instant"/>
+        <On Terms="Abil.attack.ReadyStart; ValidateUnit EquippedWeaponisPumpShotgun" Send="AnimGroupApply Blast"/>
+        <On Terms="Abil.attack.ReadyStop" Send="AnimGroupRemove Blast"/>
+        <On Terms="Abil.attack.ReadyStart; ValidateUnit EquippedWeaponisChainsaw" Send="AnimGroupRemove Ready Instant"/>
+        <On Terms="Abil.attack.ReadyStart; ValidateUnit EquippedWeaponisChainsaw" Send="AnimGroupApply Chain"/>
+        <On Terms="Abil.attack.ReadyStop" Send="AnimGroupRemove Chain"/>
+        <On Terms="Abil.attack.ReadyStart; ValidateUnit EquippedWeaponisFlamethrower" Send="AnimGroupRemove Ready Instant"/>
+        <On Terms="Abil.attack.ReadyStart; ValidateUnit EquippedWeaponisFlamethrower" Send="AnimGroupApply Fire"/>
+        <On Terms="Abil.attack.ReadyStop" Send="AnimGroupRemove Fire"/>
+        <On Terms="Abil.attack.ReadyStart; ValidateUnit EquippedWeaponisPlasmaCutter" Send="AnimGroupRemove Ready Instant"/>
+        <On Terms="Abil.attack.ReadyStart; ValidateUnit EquippedWeaponisPlasmaCutter" Send="AnimGroupApply Slam"/>
+        <On Terms="Abil.attack.ReadyStop" Send="AnimGroupRemove Slam"/>
+        <On Terms="Abil.attack.ReadyStart; ValidateUnit EquippedWeaponisGrenadeLauncher" Send="AnimGroupApply Blast"/>
+        <On Terms="Abil.attack.ReadyStart; ValidateUnit EquippedWeaponisGrenadeLauncher" Send="AnimGroupApply Blast"/>
+        <On Terms="Abil.attack.ReadyStop" Send="AnimGroupRemove Blast"/>
+        <On Terms="Abil.attack.ReadyStart; ValidateUnit EquippedWeaponisRocketLauncher" Send="AnimGroupApply Blast"/>
+        <On Terms="Abil.attack.ReadyStart; ValidateUnit EquippedWeaponisRocketLauncher" Send="AnimGroupApply Blast"/>
+        <On Terms="Abil.attack.ReadyStop" Send="AnimGroupRemove Blast"/>
+    </CActorEventMacro>
+    <CActorUnit id="GrenadeLauncher" parent="WeaponCrateTemplate" unitName="GrenadeLauncher"/>
+    <CActorUnit id="PlasmaCannon" parent="WeaponCrateTemplate" unitName="PlasmaCannon"/>
+    <CActorUnit id="RocketLauncher" parent="WeaponCrateTemplate" unitName="RocketLauncher">
+        <HighlightTooltip value="Unit/Name/Bogus"/>
+        <InfoText value="Button/Tooltip/Bogus"/>
+    </CActorUnit>
+</Catalog>
