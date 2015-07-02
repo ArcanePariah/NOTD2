@@ -404,8 +404,10 @@
             <Action Type="FunctionCall" Library="C50FD636" Id="F1E69477"/>
         </Element>
         <Element Type="Trigger" Id="3E0E6C65">
+            <Internal/>
             <Variable Type="Variable" Library="C50FD636" Id="CFC5E4DE"/>
             <Event Type="FunctionCall" Library="C50FD636" Id="8B3A2684"/>
+            <Event Type="FunctionCall" Library="C50FD636" Id="7F3B31DD"/>
             <Event Type="FunctionCall" Library="C50FD636" Id="CB148AD1"/>
             <Event Type="FunctionCall" Library="C50FD636" Id="9DF080C1"/>
             <Event Type="FunctionCall" Library="C50FD636" Id="B7F7EAE3"/>
@@ -728,6 +730,7 @@
             <Condition Type="FunctionCall" Library="C50FD636" Id="0944661C"/>
             <Action Type="FunctionCall" Library="C50FD636" Id="7745F469"/>
             <Action Type="FunctionCall" Library="C50FD636" Id="59819921"/>
+            <Action Type="FunctionCall" Library="C50FD636" Id="8DAA7E20"/>
         </Element>
         <Element Type="Trigger" Id="CEFC196C">
             <Internal/>
@@ -4860,6 +4863,12 @@
             <FunctionDef Type="FunctionDef" Library="Ntve" Id="00000081"/>
             <Parameter Type="Param" Library="C50FD636" Id="BB58FCA1"/>
         </Element>
+        <Element Type="FunctionCall" Id="7F3B31DD">
+            <FunctionDef Type="FunctionDef" Library="Ntve" Id="3C0566C4"/>
+            <Parameter Type="Param" Library="C50FD636" Id="B175E670"/>
+            <Parameter Type="Param" Library="C50FD636" Id="EBD1DF0D"/>
+            <Parameter Type="Param" Library="C50FD636" Id="105C9C4E"/>
+        </Element>
         <Element Type="FunctionCall" Id="7F649DC0">
             <FunctionDef Type="FunctionDef" Library="Ntve" Id="00000099"/>
         </Element>
@@ -5244,6 +5253,12 @@
             <Parameter Type="Param" Library="C50FD636" Id="0B784EE4"/>
             <Parameter Type="Param" Library="C50FD636" Id="38CB3335"/>
             <Parameter Type="Param" Library="C50FD636" Id="75898394"/>
+        </Element>
+        <Element Type="FunctionCall" Id="8DAA7E20">
+            <FunctionDef Type="FunctionDef" Library="Ntve" Id="00000123"/>
+            <ScriptCode>
+                TriggerDestroy( libC50FD636_gt_HeroTest);
+            </ScriptCode>
         </Element>
         <Element Type="FunctionCall" Id="8DDB61F8">
             <FunctionDef Type="FunctionDef" Library="Ntve" Id="1BC52DDD"/>
@@ -9250,6 +9265,10 @@
             <ParameterDef Type="ParamDef" Library="Ntve" Id="2E722704"/>
             <Variable Type="Variable" Library="C50FD636" Id="D211B66C"/>
         </Element>
+        <Element Type="Param" Id="105C9C4E">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="3029CA3C"/>
+            <Preset Type="PresetValue" Library="Ntve" Id="00F337BD"/>
+        </Element>
         <Element Type="Param" Id="10834F46">
             <ParameterDef Type="ParamDef" Library="Ntve" Id="15A09730"/>
             <Preset Type="PresetValue" Library="Ntve" Id="C84C7A78"/>
@@ -10103,7 +10122,7 @@
         </Element>
         <Element Type="Param" Id="21510CAD">
             <ParameterDef Type="ParamDef" Library="Ntve" Id="1CDCC284"/>
-            <Value>Blind</Value>
+            <Value>FractureArm</Value>
             <ValueType Type="gamelink"/>
             <ValueGameType Type="Behavior"/>
         </Element>
@@ -16988,6 +17007,10 @@
             <Value>-45.0</Value>
             <ValueType Type="fixed"/>
         </Element>
+        <Element Type="Param" Id="B175E670">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="F3A8B0DC"/>
+            <Preset Type="PresetValue" Library="Ntve" Id="C84C7A78"/>
+        </Element>
         <Element Type="Param" Id="B181E4A5">
             <ParameterDef Type="ParamDef" Library="Ntve" Id="00000144"/>
             <Variable Type="Variable" Library="C50FD636" Id="7609FB1D"/>
@@ -20127,6 +20150,12 @@
         <Element Type="Param" Id="EBA7C000">
             <ParameterDef Type="ParamDef" Library="Ntve" Id="00000219"/>
             <Variable Type="Variable" Library="C50FD636" Id="5336B5EA"/>
+        </Element>
+        <Element Type="Param" Id="EBD1DF0D">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="1CDCC284"/>
+            <Value>FractureLeg</Value>
+            <ValueType Type="gamelink"/>
+            <ValueGameType Type="Behavior"/>
         </Element>
         <Element Type="Param" Id="EBDA0F11">
             <ParameterDef Type="ParamDef" Library="Ntve" Id="00000041"/>

@@ -385,6 +385,15 @@
         <InfoIcon value="Assets\Textures\btn-status-detector.dds"/>
         <Modification Detect="4"/>
     </CBehaviorBuff>
+    <CBehaviorBuff id="ElbowRoomLift">
+        <Alignment value="Negative"/>
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Modification Height="0.25">
+            <HeightTime index="Start" value="0.25"/>
+            <HeightTime index="Stop" value="0.25"/>
+        </Modification>
+    </CBehaviorBuff>
     <CBehaviorBuff id="IFV25mmHEAutocannonStun">
         <InfoFlags index="Hidden" value="1"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
@@ -410,7 +419,7 @@
         <InfoFlags index="Hidden" value="1"/>
         <Requirements value="CohesionLevel2"/>
         <Period value="0.5"/>
-        <PeriodicEffect value="CohesionAuraSearchLevel12"/>
+        <PeriodicEffect value="CohesionAuraSearchLevel2"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="CohesionLevel1" parent="LeveledPassiveTemplate">
         <InfoFlags index="Hidden" value="1"/>

@@ -71,6 +71,11 @@
         <Tooltip value=""/>
         <Count Link="DefensivePlating" State="CompleteOnlyAtUnit"/>
     </CRequirementCountAbil>
+    <CRequirementCountAbil id="CountAbilElbowRoomCompleteOnlyAtUnit">
+        <Flags index="TechTreeCheat" value="0"/>
+        <Tooltip value=""/>
+        <Count Link="ElbowRoom" State="CompleteOnlyAtUnit"/>
+    </CRequirementCountAbil>
     <CRequirementCountAbil id="CountAbilExecuteCompleteOnlyAtUnit">
         <Flags index="TechTreeCheat" value="0"/>
         <Tooltip value=""/>
@@ -121,11 +126,6 @@
         <Tooltip value=""/>
         <Count Link="DeployAntiMaterialRifle" State="CompleteOnlyAtUnit"/>
     </CRequirementCountBehavior>
-    <CRequirementCountAbil id="CountAbilUnstoppableForceCompleteOnlyAtUnit">
-        <Flags index="TechTreeCheat" value="0"/>
-        <Tooltip value=""/>
-        <Count Link="UnstoppableForce" State="CompleteOnlyAtUnit"/>
-    </CRequirementCountAbil>
     <CRequirementCountBehavior id="CountBehaviorAftershockPassiveCompleteOnlyAtUnit">
         <Flags index="TechTreeCheat" value="0"/>
         <Tooltip value=""/>
@@ -327,6 +327,11 @@
         <OperandArray index="0" value="CountAbilDefensivePlatingCompleteOnlyAtUnit"/>
         <OperandArray index="1" value="2"/>
     </CRequirementEq>
+    <CRequirementEq id="EqCountAbilElbowRoomCompleteOnlyAtUnit1">
+        <Tooltip value=""/>
+        <OperandArray index="0" value="CountAbilElbowRoomCompleteOnlyAtUnit"/>
+        <OperandArray index="1" value="1"/>
+    </CRequirementEq>
     <CRequirementEq id="EqCountAbilDefensivePlatingCompleteOnlyAtUnit3">
         <Tooltip value=""/>
         <OperandArray index="0" value="CountAbilDefensivePlatingCompleteOnlyAtUnit"/>
@@ -405,11 +410,6 @@
     <CRequirementEq id="EqCountBehaviorDeployAntiMaterialRifleCompleteOnlyAtUnit1">
         <Tooltip value=""/>
         <OperandArray index="0" value="CountBehaviorDeployAntiMaterialRifleCompleteOnlyAtUnit"/>
-        <OperandArray index="1" value="1"/>
-    </CRequirementEq>
-    <CRequirementEq id="EqCountAbilUnstoppableForceCompleteOnlyAtUnit1">
-        <Tooltip value=""/>
-        <OperandArray index="0" value="CountAbilUnstoppableForceCompleteOnlyAtUnit"/>
         <OperandArray index="1" value="1"/>
     </CRequirementEq>
     <CRequirementEq id="EqCountAbilCriticalStrikeCompleteOnlyAtUnit2">

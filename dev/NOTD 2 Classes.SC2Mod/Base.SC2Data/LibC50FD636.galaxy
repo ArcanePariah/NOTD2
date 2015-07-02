@@ -859,6 +859,7 @@ bool libC50FD636_gt_TestIntializeAI_Func (bool testConds, bool runActions) {
 
     AIStart(10, true, 5000);
     libNtve_gf_SetAlliance(1, 10, 1);
+    TriggerDestroy( libC50FD636_gt_HeroTest);
     return true;
 }
 
@@ -1571,7 +1572,8 @@ bool libC50FD636_gt_CohesionAilmentResistence_Func (bool testConds, bool runActi
 //--------------------------------------------------------------------------------------------------
 void libC50FD636_gt_CohesionAilmentResistence_Init () {
     libC50FD636_gt_CohesionAilmentResistence = TriggerCreate("libC50FD636_gt_CohesionAilmentResistence_Func");
-    TriggerAddEventUnitBehaviorChange(libC50FD636_gt_CohesionAilmentResistence, null, "Blind", c_unitBehaviorChangeIncrease);
+    TriggerAddEventUnitBehaviorChange(libC50FD636_gt_CohesionAilmentResistence, null, "FractureArm", c_unitBehaviorChangeIncrease);
+    TriggerAddEventUnitBehaviorChange(libC50FD636_gt_CohesionAilmentResistence, null, "FractureLeg", c_unitBehaviorChangeIncrease);
     TriggerAddEventUnitBehaviorChange(libC50FD636_gt_CohesionAilmentResistence, null, "OpenWound", c_unitBehaviorChangeIncrease);
     TriggerAddEventUnitBehaviorChange(libC50FD636_gt_CohesionAilmentResistence, null, "ShortCircuit", c_unitBehaviorChangeIncrease);
     TriggerAddEventUnitBehaviorChange(libC50FD636_gt_CohesionAilmentResistence, null, "Venom", c_unitBehaviorChangeIncrease);

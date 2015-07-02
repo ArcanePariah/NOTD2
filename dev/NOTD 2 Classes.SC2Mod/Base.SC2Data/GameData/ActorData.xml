@@ -158,6 +158,15 @@
     <CActorSplat id="DetonateAreaSplat" parent="TerranCursorSplat" abil="Detonate">
         <EditorCategories value=""/>
     </CActorSplat>
+    <CActorModel id="ElbowRoomShockwave" parent="ModelAnimationStyleOneShot">
+        <EditorCategories value=""/>
+        <On index="0" Terms="ActorCreation" Send="AnimBracketStart BSD Stand Stand,Work Death ClosingFull"/>
+        <On Terms="Abil.ElbowRoom.SourceCastStart" Send="Create"/>
+        <On Terms="Effect.ElbowRoomMainPersistent.Stop" Send="AnimBracketStop BSD"/>
+        <On Terms="ActorCreation" Send="SetScale 0.950000 1.000000"/>
+        <On Terms="Abil.ElbowRoom.SourceChannelStop" Send="AnimBracketStop BSD"/>
+        <Scale value="0.050000"/>
+    </CActorModel>
     <CActorModel id="ExplosivesFizzile" parent="ModelAnimationStyleOneShot">
         <EditorCategories value=""/>
         <On Terms="UnitDeath.ChainExplosiveLevel1" Send="Create"/>

@@ -111,6 +111,53 @@
         <SearchFilters value="-;Ally,Neutral,Enemy"/>
         <AreaArray Radius="3" Effect="MD5DetonateOrder"/>
     </CEffectEnumArea>
+    <CEffectCreatePersistent id="ElbowRoom">
+        <EditorCategories value=""/>
+        <Flags index="Channeled" value="1"/>
+        <ExpireEffect value="ElbowRoomMainPersistent"/>
+        <PeriodCount value="10"/>
+        <PeriodicEffectArray value="ElbowRoomIntialSearch"/>
+        <PeriodicPeriodArray value="0.1"/>
+    </CEffectCreatePersistent>
+    <CEffectApplyForce id="ElbowRoomForce">
+        <EditorCategories value=""/>
+        <WhichLocation Value="CasterUnit"/>
+        <Amount value="1"/>
+    </CEffectApplyForce>
+    <CEffectCreatePersistent id="ElbowRoomForcePersistent">
+        <EditorCategories value=""/>
+        <WhichLocation Value="TargetUnit"/>
+        <InitialEffect value="ElbowRoomLift"/>
+        <ExpireEffect value="ElbowRoomRemoveLift"/>
+        <PeriodCount value="15"/>
+        <PeriodicEffectArray value="ElbowRoomForce"/>
+        <PeriodicPeriodArray value="0.0625"/>
+    </CEffectCreatePersistent>
+    <CEffectEnumArea id="ElbowRoomIntialSearch">
+        <EditorCategories value=""/>
+        <SearchFilters value="-;Player,Ally,Neutral"/>
+        <AreaArray Radius="1" RadiusBonus="0.5" Effect="ElbowRoomForcePersistent"/>
+    </CEffectEnumArea>
+    <CEffectApplyBehavior id="ElbowRoomLift">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectCreatePersistent id="ElbowRoomMainPersistent">
+        <EditorCategories value=""/>
+        <WhichLocation Value="CasterUnit"/>
+        <Flags index="Channeled" value="1"/>
+        <PeriodCount value="40"/>
+        <PeriodicEffectArray value="ElbowRoomSearch"/>
+        <PeriodicPeriodArray value="0.1"/>
+    </CEffectCreatePersistent>
+    <CEffectRemoveBehavior id="ElbowRoomRemoveLift">
+        <EditorCategories value=""/>
+        <BehaviorLink value="ElbowRoomLift"/>
+    </CEffectRemoveBehavior>
+    <CEffectEnumArea id="ElbowRoomSearch">
+        <EditorCategories value=""/>
+        <SearchFilters value="-;Player,Ally,Neutral"/>
+        <AreaArray Radius="5" Effect="ElbowRoomForcePersistent"/>
+    </CEffectEnumArea>
     <CEffectDamage id="IFV25mmHEAutocannonDamage">
         <EditorCategories value=""/>
         <ImpactLocation Value="TargetUnit"/>
@@ -330,6 +377,13 @@
         <EditorCategories value=""/>
         <BehaviorLink value="ChargeKnockbackHeight"/>
     </CEffectRemoveBehavior>
+    <CEffectSet id="ChargeSelfSetLevel2">
+        <EditorCategories value=""/>
+        <EffectArray value="ChargeMovement"/>
+        <EffectArray value="ChargeMovementOrder"/>
+        <EffectArray value="ChargeLevel2"/>
+        <TargetLocationType value="UnitOrPoint"/>
+    </CEffectSet>
     <CEffectRemoveBehavior id="ChargeRemoveMovement">
         <EditorCategories value=""/>
         <BehaviorLink value="ChargeMovement"/>
@@ -341,6 +395,9 @@
         <AreaArray Radius="2" Effect="ChargeImpactSetLevel2"/>
         <SearchFlags index="ExtendByUnitRadius" value="1"/>
     </CEffectEnumArea>
+    <CEffectApplyBehavior id="CohesionArmorLevel2">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
     <CEffectSet id="ChargeSelfSetLevel1">
         <EditorCategories value=""/>
         <EffectArray value="ChargeMovement"/>
@@ -354,6 +411,11 @@
         <EffectArray value="ChargeDamageLevel1"/>
         <EffectArray value="ChargeKnockbackSwitchLevel1"/>
     </CEffectSet>
+    <CEffectEnumArea id="CohesionAuraSearchLevel2">
+        <EditorCategories value=""/>
+        <SearchFilters value="-;Enemy"/>
+        <AreaArray Radius="8" Effect="CohesionArmorLevel2"/>
+    </CEffectEnumArea>
     <CEffectSet id="ChargeKnockbackImpactSetLevel1">
         <EditorCategories value=""/>
     </CEffectSet>
@@ -375,29 +437,13 @@
         <Player Value="Caster"/>
         <Target Value="TargetPoint"/>
     </CEffectIssueOrder>
-    <CEffectSet id="ChargeSelfSetLevel12">
-        <EditorCategories value=""/>
-        <EffectArray value="ChargeMovement"/>
-        <EffectArray value="ChargeMovementOrder"/>
-        <EffectArray value="ChargeLevel2"/>
-        <TargetLocationType value="UnitOrPoint"/>
-    </CEffectSet>
     <CEffectApplyBehavior id="CohesionArmorLevel1">
         <EditorCategories value=""/>
-    </CEffectApplyBehavior>
-    <CEffectApplyBehavior id="CohesionArmorLevel12">
-        <EditorCategories value=""/>
-        <Behavior value="CohesionArmorLevel2"/>
     </CEffectApplyBehavior>
     <CEffectEnumArea id="CohesionAuraSearchLevel1">
         <EditorCategories value=""/>
         <SearchFilters value="-;Enemy"/>
         <AreaArray Radius="6" Effect="CohesionArmorLevel1"/>
-    </CEffectEnumArea>
-    <CEffectEnumArea id="CohesionAuraSearchLevel12">
-        <EditorCategories value=""/>
-        <SearchFilters value="-;Enemy"/>
-        <AreaArray Radius="8" Effect="CohesionArmorLevel12"/>
     </CEffectEnumArea>
     <CEffectDamage id="CombatKnifeDamage">
         <EditorCategories value=""/>

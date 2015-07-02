@@ -235,7 +235,7 @@
     </CAbilEffectTarget>
     <CAbilEffectTarget id="ChargeNOTD" parent="AbilityWithButtonTargetTemplate">
         <Effect index="0" value="ChargeSelfSetLevel1"/>
-        <Effect value="ChargeSelfSetLevel12"/>
+        <Effect value="ChargeSelfSetLevel2"/>
         <Range value="10"/>
         <Cost>
             <Vital index="Energy" value="20"/>
@@ -603,8 +603,8 @@
         <InfoArray index="Learn10" Abil="Cohesion">
             <Button DefaultButtonFace="Cohesion"/>
         </InfoArray>
-        <InfoArray index="Learn11" Abil="UnstoppableForce">
-            <Button DefaultButtonFace="UnstoppableForce"/>
+        <InfoArray index="Learn11" Abil="ElbowRoom">
+            <Button DefaultButtonFace="ElbowRoom"/>
         </InfoArray>
         <InfoArray index="Learn12" Abil="ImmovableObject">
             <Button DefaultButtonFace="ImmovableObject"/>
@@ -1435,8 +1435,11 @@
     <CAbilLearn id="UAVLearn" parent="LearnTemplate">
         <Name value="Abil/Name/UAVLearn"/>
     </CAbilLearn>
-    <CAbilEffectInstant id="UnstoppableForce" parent="AbilityInstantTemplate">
-        <Effect index="0" value="GenericDummyEffect"/>
+    <CAbilEffectInstant id="ElbowRoom" parent="AbilityInstantTemplate">
+        <Cost>
+            <Vital index="Energy" value="30"/>
+            <Cooldown TimeUse="40"/>
+        </Cost>
     </CAbilEffectInstant>
     <CAbilEffectTarget id="VolatileInjection" parent="3LevelEffectTargetAbility">
         <Cost>
