@@ -47,6 +47,8 @@
             <Item Type="FunctionDef" Library="09BE6BA8" Id="A2E2E400"/>
             <Item Type="FunctionDef" Library="09BE6BA8" Id="6699D380"/>
             <Item Type="FunctionDef" Library="09BE6BA8" Id="5EFEAF4F"/>
+            <Item Type="FunctionDef" Library="09BE6BA8" Id="359CE34F"/>
+            <Item Type="FunctionDef" Library="09BE6BA8" Id="57774261"/>
         </Element>
         <Element Type="Category" Id="755CC69F">
             <Label Type="Label" Library="Ntve" Id="00000038"/>
@@ -92,6 +94,17 @@
             <Variable Type="Variable" Library="09BE6BA8" Id="E5A0EEFF"/>
             <FunctionCall Type="FunctionCall" Library="09BE6BA8" Id="5D415FC8"/>
             <FunctionCall Type="FunctionCall" Library="09BE6BA8" Id="09FBA836"/>
+        </Element>
+        <Element Type="FunctionDef" Id="359CE34F">
+            <Identifier>TriggerAddEventUnitRange</Identifier>
+            <Label Type="Label" Library="Ntve" Id="00000007"/>
+            <FlagAction/>
+            <FlagNative/>
+            <Parameter Type="ParamDef" Library="09BE6BA8" Id="1CA00CE9"/>
+            <Parameter Type="ParamDef" Library="09BE6BA8" Id="3EF5FBA4"/>
+            <Parameter Type="ParamDef" Library="09BE6BA8" Id="12DFE86E"/>
+            <Parameter Type="ParamDef" Library="09BE6BA8" Id="1E9E01CA"/>
+            <Parameter Type="ParamDef" Library="09BE6BA8" Id="C701C9B5"/>
         </Element>
         <Element Type="FunctionDef" Id="3B9189DE">
             <FlagCondition/>
@@ -200,8 +213,20 @@
             <FunctionCall Type="FunctionCall" Library="09BE6BA8" Id="4F1C3607"/>
             <FunctionCall Type="FunctionCall" Library="09BE6BA8" Id="9C607586"/>
         </Element>
+        <Element Type="FunctionDef" Id="57774261">
+            <Identifier>TriggerAddEventUnitRangePoint</Identifier>
+            <Label Type="Label" Library="Ntve" Id="00000007"/>
+            <FlagAction/>
+            <FlagNative/>
+            <Parameter Type="ParamDef" Library="09BE6BA8" Id="CB9179EA"/>
+            <Parameter Type="ParamDef" Library="09BE6BA8" Id="5B754C08"/>
+            <Parameter Type="ParamDef" Library="09BE6BA8" Id="3DD97233"/>
+            <Parameter Type="ParamDef" Library="09BE6BA8" Id="79B1A02F"/>
+            <Parameter Type="ParamDef" Library="09BE6BA8" Id="366B8C9E"/>
+        </Element>
         <Element Type="FunctionDef" Id="5EFEAF4F">
             <Identifier>TriggerAddEventUnitRegion</Identifier>
+            <Label Type="Label" Library="Ntve" Id="00000007"/>
             <FlagAction/>
             <FlagNative/>
             <Parameter Type="ParamDef" Library="09BE6BA8" Id="C7354C81"/>
@@ -1146,6 +1171,9 @@
             <FunctionCall Type="FunctionCall" Library="09BE6BA8" Id="FCD6F387"/>
             <ExpressionCode Value="A"/>
         </Element>
+        <Element Type="Param" Id="136DBEEB">
+            <Preset Type="PresetValue" Library="Ntve" Id="C84C7A78"/>
+        </Element>
         <Element Type="Param" Id="137D2E4E">
             <ParameterDef Type="ParamDef" Library="Ntve" Id="CA5A6F99"/>
             <Variable Type="Variable" Library="09BE6BA8" Id="B14C7F32"/>
@@ -1361,6 +1389,9 @@
             <ParameterDef Type="ParamDef" Library="Ntve" Id="0A06ABFD"/>
             <Parameter Type="ParamDef" Library="09BE6BA8" Id="2EF58080"/>
         </Element>
+        <Element Type="Param" Id="3B57307D">
+            <Preset Type="PresetValue" Library="Ntve" Id="00000542"/>
+        </Element>
         <Element Type="Param" Id="3E317EF1">
             <Value>0</Value>
             <ValueType Type="int"/>
@@ -1393,6 +1424,9 @@
             <ExpressionType Type="text"/>
             <ExpressionParam Type="Param" Library="09BE6BA8" Id="111D11A6"/>
             <ExpressionParam Type="Param" Library="09BE6BA8" Id="5A2D091E"/>
+        </Element>
+        <Element Type="Param" Id="4742B5C2">
+            <Preset Type="PresetValue" Library="Ntve" Id="00000145"/>
         </Element>
         <Element Type="Param" Id="487F748B">
             <FunctionCall Type="FunctionCall" Library="09BE6BA8" Id="EA595684"/>
@@ -1694,6 +1728,9 @@
             <Value>0.0</Value>
             <ValueType Type="fixed"/>
         </Element>
+        <Element Type="Param" Id="906ABADD">
+            <Preset Type="PresetValue" Library="Ntve" Id="C84C7A78"/>
+        </Element>
         <Element Type="Param" Id="91209F4D">
             <ParameterDef Type="ParamDef" Library="Ntve" Id="17F291FD"/>
             <Parameter Type="ParamDef" Library="09BE6BA8" Id="E71F5474"/>
@@ -1838,6 +1875,10 @@
         <Element Type="Param" Id="AE51E1AA">
             <Preset Type="PresetValue" Library="Ntve" Id="00000136"/>
         </Element>
+        <Element Type="Param" Id="AE997B80">
+            <Value>1.0</Value>
+            <ValueType Type="fixed"/>
+        </Element>
         <Element Type="Param" Id="B3AF6DC7">
             <ParameterDef Type="ParamDef" Library="Ntve" Id="E2FE1E75"/>
             <ExpressionType Type="text"/>
@@ -1905,6 +1946,10 @@
             <Value>0.0</Value>
             <ValueType Type="fixed"/>
         </Element>
+        <Element Type="Param" Id="C09CC332">
+            <Value>1</Value>
+            <ValueType Type="fixed"/>
+        </Element>
         <Element Type="Param" Id="C0D716D1">
             <ParameterDef Type="ParamDef" Library="Ntve" Id="00000220"/>
             <FunctionCall Type="FunctionCall" Library="09BE6BA8" Id="13EA1709"/>
@@ -1928,6 +1973,9 @@
         </Element>
         <Element Type="Param" Id="C4BD830B">
             <FunctionCall Type="FunctionCall" Library="09BE6BA8" Id="9B279B16"/>
+        </Element>
+        <Element Type="Param" Id="C535CD5B">
+            <Preset Type="PresetValue" Library="Ntve" Id="00000145"/>
         </Element>
         <Element Type="Param" Id="C56BC676">
             <ParameterDef Type="ParamDef" Library="Ntve" Id="00000144"/>
@@ -2072,6 +2120,9 @@
         </Element>
         <Element Type="Param" Id="E3C0D2C0">
             <FunctionCall Type="FunctionCall" Library="09BE6BA8" Id="A2F6D9E6"/>
+        </Element>
+        <Element Type="Param" Id="E4EBC44F">
+            <Preset Type="PresetValue" Library="Ntve" Id="00000542"/>
         </Element>
         <Element Type="Param" Id="E5BB6CF8">
             <ParameterDef Type="ParamDef" Library="Ntve" Id="0A06ABFD"/>
@@ -2240,6 +2291,12 @@
             </ParameterType>
             <Default Type="Param" Library="09BE6BA8" Id="AE51E1AA"/>
         </Element>
+        <Element Type="ParamDef" Id="12DFE86E">
+            <Identifier>fromUnit</Identifier>
+            <ParameterType>
+                <Type Value="unit"/>
+            </ParameterType>
+        </Element>
         <Element Type="ParamDef" Id="12FE6F77">
             <ParameterType>
                 <Type Value="int"/>
@@ -2278,6 +2335,19 @@
                 <Type Value="trigger"/>
             </ParameterType>
             <Default Type="Param" Library="09BE6BA8" Id="619BB29F"/>
+        </Element>
+        <Element Type="ParamDef" Id="1CA00CE9">
+            <ParameterType>
+                <Type Value="trigger"/>
+            </ParameterType>
+            <Default Type="Param" Library="09BE6BA8" Id="3B57307D"/>
+        </Element>
+        <Element Type="ParamDef" Id="1E9E01CA">
+            <Identifier>range</Identifier>
+            <ParameterType>
+                <Type Value="fixed"/>
+            </ParameterType>
+            <Default Type="Param" Library="09BE6BA8" Id="C09CC332"/>
         </Element>
         <Element Type="ParamDef" Id="1FF4C416">
             <Identifier>property</Identifier>
@@ -2356,6 +2426,14 @@
             </ParameterType>
             <Default Type="Param" Library="09BE6BA8" Id="6CE98A68"/>
         </Element>
+        <Element Type="ParamDef" Id="366B8C9E">
+            <Identifier>state</Identifier>
+            <ParameterType>
+                <Type Value="preset"/>
+                <TypeElement Type="Preset" Library="Ntve" Id="00000050"/>
+            </ParameterType>
+            <Default Type="Param" Library="09BE6BA8" Id="C535CD5B"/>
+        </Element>
         <Element Type="ParamDef" Id="378D21DB">
             <ParameterType>
                 <Type Value="trigger"/>
@@ -2368,6 +2446,13 @@
                 <Type Value="color"/>
             </ParameterType>
         </Element>
+        <Element Type="ParamDef" Id="3DD97233">
+            <Identifier>p</Identifier>
+            <ParameterType>
+                <Type Value="point"/>
+            </ParameterType>
+            <Preset Type="Preset" Library="Ntve" Id="BC55C170"/>
+        </Element>
         <Element Type="ParamDef" Id="3EA036AD">
             <Identifier>property</Identifier>
             <ParameterType>
@@ -2375,6 +2460,15 @@
                 <TypeElement Type="Preset" Library="Ntve" Id="C700041F"/>
             </ParameterType>
             <Default Type="Param" Library="09BE6BA8" Id="7CDAA998"/>
+        </Element>
+        <Element Type="ParamDef" Id="3EF5FBA4">
+            <Identifier>u</Identifier>
+            <ParameterType>
+                <Type Value="unit"/>
+            </ParameterType>
+            <ParamFlagReference/>
+            <Default Type="Param" Library="09BE6BA8" Id="136DBEEB"/>
+            <Preset Type="Preset" Library="Ntve" Id="B87E2354"/>
         </Element>
         <Element Type="ParamDef" Id="3EFECF58">
             <ParameterType>
@@ -2456,6 +2550,15 @@
                 <TypeElement Type="Preset" Library="Ntve" Id="203034DA"/>
             </ParameterType>
             <Default Type="Param" Library="09BE6BA8" Id="FE513E5A"/>
+        </Element>
+        <Element Type="ParamDef" Id="5B754C08">
+            <Identifier>u</Identifier>
+            <ParameterType>
+                <Type Value="unit"/>
+            </ParameterType>
+            <ParamFlagReference/>
+            <Default Type="Param" Library="09BE6BA8" Id="906ABADD"/>
+            <Preset Type="Preset" Library="Ntve" Id="B87E2354"/>
         </Element>
         <Element Type="ParamDef" Id="5BF23CBB">
             <Identifier>section</Identifier>
@@ -2580,6 +2683,14 @@
                 <Type Value="playergroup"/>
             </ParameterType>
             <Default Type="Param" Library="09BE6BA8" Id="9DFC578D"/>
+        </Element>
+        <Element Type="ParamDef" Id="79B1A02F">
+            <Identifier>distance</Identifier>
+            <ParameterType>
+                <Type Value="fixed"/>
+            </ParameterType>
+            <Default Type="Param" Library="09BE6BA8" Id="AE997B80"/>
+            <Limits Value="0,N"/>
         </Element>
         <Element Type="ParamDef" Id="7A5ACC64">
             <Identifier>value</Identifier>
@@ -2844,6 +2955,14 @@
             </ParameterType>
             <Default Type="Param" Library="09BE6BA8" Id="F6C2DC3B"/>
         </Element>
+        <Element Type="ParamDef" Id="C701C9B5">
+            <Identifier>state</Identifier>
+            <ParameterType>
+                <Type Value="preset"/>
+                <TypeElement Type="Preset" Library="Ntve" Id="00000050"/>
+            </ParameterType>
+            <Default Type="Param" Library="09BE6BA8" Id="4742B5C2"/>
+        </Element>
         <Element Type="ParamDef" Id="C7354C81">
             <ParameterType>
                 <Type Value="trigger"/>
@@ -2869,6 +2988,12 @@
                 <Type Value="fixed"/>
             </ParameterType>
             <Default Type="Param" Library="09BE6BA8" Id="2B050D5C"/>
+        </Element>
+        <Element Type="ParamDef" Id="CB9179EA">
+            <ParameterType>
+                <Type Value="trigger"/>
+            </ParameterType>
+            <Default Type="Param" Library="09BE6BA8" Id="E4EBC44F"/>
         </Element>
         <Element Type="ParamDef" Id="CC373953">
             <Identifier>modal</Identifier>
