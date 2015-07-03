@@ -48,6 +48,9 @@
         <MaxDropRange value="1"/>
         <InfoArray Alignment="Left" Container="MarineLoadout" EmptyFace="EmptyInventorySlot"/>
         <InfoArray Container="MarineEquipmentBag" EmptyFace="EmptyInventorySlot"/>
+        <InfoArray EmptyFace="EmptyInventorySlot">
+            <Classes value="Ammo"/>
+        </InfoArray>
     </CAbilInventory>
     <CAbilLearn default="1" id="LearnTemplate">
         <Name value="Abil/Name/LearnTemplate"/>
@@ -263,11 +266,15 @@
         <BehaviorArray value="GenericBehavior"/>
         <BehaviorArray value="GenericBehavior"/>
     </CAbilBehavior>
-    <CAbilInventory id="CommandoInventory" parent="InventoryTemplate"/>
+    <CAbilInventory id="CommandoInventory" parent="InventoryTemplate">
+        <InfoArray index="2" removed="1"/>
+    </CAbilInventory>
     <CAbilLearn id="CommandoLearn" parent="LearnTemplate">
         <Name value="Abil/Name/CommandoLearn"/>
     </CAbilLearn>
-    <CAbilInventory id="DemolitionsInventory" parent="InventoryTemplate"/>
+    <CAbilInventory id="DemolitionsInventory" parent="InventoryTemplate">
+        <InfoArray index="2" removed="1"/>
+    </CAbilInventory>
     <CAbilLearn id="DemolitionsLearn" parent="LearnTemplate">
         <Name value="Abil/Name/DemolitionsLearn"/>
         <InfoArray index="Learn1" Abil="MD5Mine">
@@ -306,7 +313,9 @@
         <Range value="500"/>
         <CursorEffect value="Detonate"/>
     </CAbilEffectTarget>
-    <CAbilInventory id="EngineerInventory" parent="InventoryTemplate"/>
+    <CAbilInventory id="EngineerInventory" parent="InventoryTemplate">
+        <InfoArray index="2" removed="1"/>
+    </CAbilInventory>
     <CAbilLearn id="EngineerLearn" parent="LearnTemplate">
         <Name value="Abil/Name/EngineerLearn"/>
     </CAbilLearn>
@@ -325,7 +334,9 @@
         <LevelButtonTooltip value="Button/Tooltip/ExecuteLevel2"/>
         <TargetFilters value="-;Player,Ally,Neutral"/>
     </CAbilEffectTarget>
-    <CAbilInventory id="FlamethrowerInventory" parent="InventoryTemplate"/>
+    <CAbilInventory id="FlamethrowerInventory" parent="InventoryTemplate">
+        <InfoArray index="2" removed="1"/>
+    </CAbilInventory>
     <CAbilEffectInstant id="LightningField">
         <EditorCategories value="AbilityorEffectType:Units"/>
         <Cost>
@@ -364,7 +375,9 @@
         <Range value="20"/>
         <AINotifyEffect value="FlareGun"/>
     </CAbilEffectTarget>
-    <CAbilInventory id="ForwardObserverInventory" parent="InventoryTemplate"/>
+    <CAbilInventory id="ForwardObserverInventory" parent="InventoryTemplate">
+        <InfoArray index="2" removed="1"/>
+    </CAbilInventory>
     <CAbilLearn id="ForwardObserverLearn" parent="LearnTemplate">
         <Name value="Abil/Name/ForwardObserverLearn"/>
     </CAbilLearn>
@@ -414,7 +427,9 @@
         <Placeholder value="MD5Mine"/>
         <PlaceUnit value="MD5Mine"/>
     </CAbilEffectTarget>
-    <CAbilInventory id="MarksmanInventory" parent="InventoryTemplate"/>
+    <CAbilInventory id="MarksmanInventory" parent="InventoryTemplate">
+        <InfoArray index="2" removed="1"/>
+    </CAbilInventory>
     <CAbilLearn id="MarksmanLearn" parent="LearnTemplate">
         <Name value="Abil/Name/MarksmanLearn"/>
     </CAbilLearn>
@@ -489,11 +504,15 @@
         <TargetFilters value="Biological;Neutral,Enemy,Item"/>
         <Range value="6"/>
     </CAbilEffectTarget>
-    <CAbilInventory id="PathfinderInventory" parent="InventoryTemplate"/>
+    <CAbilInventory id="PathfinderInventory" parent="InventoryTemplate">
+        <InfoArray index="2" removed="1"/>
+    </CAbilInventory>
     <CAbilLearn id="PathfinderLearn" parent="LearnTemplate">
         <Name value="Abil/Name/PathfinderLearn"/>
     </CAbilLearn>
-    <CAbilInventory id="PsiOpsInventory" parent="InventoryTemplate"/>
+    <CAbilInventory id="PsiOpsInventory" parent="InventoryTemplate">
+        <InfoArray index="2" removed="1"/>
+    </CAbilInventory>
     <CAbilLearn id="PsiOpsLearn" parent="LearnTemplate">
         <Name value="Abil/Name/PsiOpsLearn"/>
     </CAbilLearn>
@@ -569,7 +588,9 @@
         </CmdButtonArray>
     </CAbilEffectInstant>
     <CAbilInventory id="AssaultInventory" parent="InventoryTemplate">
-        <InfoArray Alignment="Left" Container="AssaultGeminiProtocolLoadout" EmptyFace="EmptyInventorySlot"/>
+        <InfoArray index="2" Alignment="Left" Container="AssaultGeminiProtocolLoadout" EmptyFace="EmptyInventorySlot">
+            <Classes index="0" removed="1"/>
+        </InfoArray>
     </CAbilInventory>
     <CAbilLearn id="AssaultLearn" parent="LearnTemplate">
         <Name value="Abil/Name/AssaultLearn"/>
@@ -927,7 +948,9 @@
             <Flags index="ToSelection" value="1"/>
         </CmdButtonArray>
     </CAbilEffectInstant>
-    <CAbilInventory id="Medic2Inventory" parent="InventoryTemplate"/>
+    <CAbilInventory id="Medic2Inventory" parent="InventoryTemplate">
+        <InfoArray index="2" removed="1"/>
+    </CAbilInventory>
     <CAbilSpecialize id="MarineAbilities">
         <EditorCategories value="AbilityorEffectType:Units"/>
         <InfoArray index="Specialize1" Effect="Sprint">
@@ -1136,7 +1159,9 @@
         <Flags index="Toggle" value="1"/>
         <BehaviorArray value="ProximityTrigger"/>
     </CAbilBehavior>
-    <CAbilInventory id="ReconInventory" parent="InventoryTemplate"/>
+    <CAbilInventory id="ReconInventory" parent="InventoryTemplate">
+        <InfoArray index="2" removed="1"/>
+    </CAbilInventory>
     <CAbilLearn id="ReconLearn" parent="LearnTemplate">
         <Name value="Abil/Name/ReconLearn"/>
         <InfoArray index="Learn1" Abil="LaserDesignator">
@@ -1250,9 +1275,7 @@
         <Flags index="TransientPreferred" value="1"/>
         <PreemptableArray index="Cast" value="0"/>
     </CAbilEffectInstant>
-    <CAbilInventory id="RiflemanInventory" parent="InventoryTemplate">
-        <Flags index="ItemDeath" value="1"/>
-    </CAbilInventory>
+    <CAbilInventory id="RiflemanInventory" parent="InventoryTemplate"/>
     <CAbilEffectTarget id="PathfinderJump">
         <EditorCategories value="AbilityorEffectType:Units"/>
         <Effect index="0" value="HeavyJump"/>
@@ -1321,7 +1344,9 @@
         </Cost>
         <LevelButtonTooltip value="Button/Tooltip/SmokeGrenadeLevel2"/>
     </CAbilEffectTarget>
-    <CAbilInventory id="SquadLeaderInventory" parent="InventoryTemplate"/>
+    <CAbilInventory id="SquadLeaderInventory" parent="InventoryTemplate">
+        <InfoArray index="2" removed="1"/>
+    </CAbilInventory>
     <CAbilLearn id="SquadLeaderLearn" parent="LearnTemplate">
         <Name value="Abil/Name/SquadLeaderLearn"/>
     </CAbilLearn>
@@ -1414,7 +1439,9 @@
         <Effect index="0" value="SonicTrapSearchLevel2"/>
         <AINotifyEffect value="SonicTrapSearchLevel2"/>
     </CAbilEffectInstant>
-    <CAbilInventory id="TechnicianInventory" parent="InventoryTemplate"/>
+    <CAbilInventory id="TechnicianInventory" parent="InventoryTemplate">
+        <InfoArray index="2" removed="1"/>
+    </CAbilInventory>
     <CAbilLearn id="TechnicianLearn" parent="LearnTemplate">
         <Name value="Abil/Name/TechnicianLearn"/>
     </CAbilLearn>
@@ -1431,7 +1458,9 @@
         </Cost>
         <Flags index="Transient" value="1"/>
     </CAbilEffectInstant>
-    <CAbilInventory id="UAVInventory" parent="InventoryTemplate"/>
+    <CAbilInventory id="UAVInventory" parent="InventoryTemplate">
+        <InfoArray index="2" removed="1"/>
+    </CAbilInventory>
     <CAbilLearn id="UAVLearn" parent="LearnTemplate">
         <Name value="Abil/Name/UAVLearn"/>
     </CAbilLearn>

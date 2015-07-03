@@ -45,6 +45,8 @@
             <Item Type="FunctionDef" Library="09BE6BA8" Id="A85DD2EE"/>
             <Item Type="FunctionDef" Library="09BE6BA8" Id="A29548FA"/>
             <Item Type="FunctionDef" Library="09BE6BA8" Id="A2E2E400"/>
+            <Item Type="FunctionDef" Library="09BE6BA8" Id="6699D380"/>
+            <Item Type="FunctionDef" Library="09BE6BA8" Id="5EFEAF4F"/>
         </Element>
         <Element Type="Category" Id="755CC69F">
             <Label Type="Label" Library="Ntve" Id="00000038"/>
@@ -198,6 +200,15 @@
             <FunctionCall Type="FunctionCall" Library="09BE6BA8" Id="4F1C3607"/>
             <FunctionCall Type="FunctionCall" Library="09BE6BA8" Id="9C607586"/>
         </Element>
+        <Element Type="FunctionDef" Id="5EFEAF4F">
+            <Identifier>TriggerAddEventUnitRegion</Identifier>
+            <FlagAction/>
+            <FlagNative/>
+            <Parameter Type="ParamDef" Library="09BE6BA8" Id="C7354C81"/>
+            <Parameter Type="ParamDef" Library="09BE6BA8" Id="A0597900"/>
+            <Parameter Type="ParamDef" Library="09BE6BA8" Id="CCD38581"/>
+            <Parameter Type="ParamDef" Library="09BE6BA8" Id="7F467D80"/>
+        </Element>
         <Element Type="FunctionDef" Id="66912DE6">
             <Label Type="Label" Library="Ntve" Id="00000028"/>
             <FlagAction/>
@@ -213,6 +224,16 @@
                 BankValueGetAsUnit(#PARAM(bank), #PARAM(section), #PARAM(key), #PARAM(player), #PARAM(position), #PARAM(angle));
                 #PARAM(variable) = BankLastRestoredUnit();
             </ScriptCode>
+        </Element>
+        <Element Type="FunctionDef" Id="6699D380">
+            <Identifier>TriggerAddEventUnitCreated</Identifier>
+            <Label Type="Label" Library="Ntve" Id="00000007"/>
+            <FlagAction/>
+            <FlagNative/>
+            <Parameter Type="ParamDef" Library="09BE6BA8" Id="378D21DB"/>
+            <Parameter Type="ParamDef" Library="09BE6BA8" Id="497F6A05"/>
+            <Parameter Type="ParamDef" Library="09BE6BA8" Id="60B09E55"/>
+            <Parameter Type="ParamDef" Library="09BE6BA8" Id="0522A71A"/>
         </Element>
         <Element Type="FunctionDef" Id="82B0E5F1">
             <FlagCall/>
@@ -921,6 +942,9 @@
             <FunctionDef Type="FunctionDef" Library="Ntve" Id="00000083"/>
             <Parameter Type="Param" Library="09BE6BA8" Id="B4294621"/>
         </Element>
+        <Element Type="FunctionCall" Id="D828517C">
+            <FunctionDef Type="FunctionDef" Library="Ntve" Id="00000356"/>
+        </Element>
         <Element Type="FunctionCall" Id="D9526708">
             <FunctionDef Type="FunctionDef" Library="Ntve" Id="C4DC760C"/>
             <Parameter Type="Param" Library="09BE6BA8" Id="8D90D90A"/>
@@ -1184,6 +1208,9 @@
             <ExpressionParam Type="Param" Library="09BE6BA8" Id="EEC31704"/>
             <ExpressionParam Type="Param" Library="09BE6BA8" Id="A5AC66EE"/>
         </Element>
+        <Element Type="Param" Id="2085BEAB">
+            <Preset Type="PresetValue" Library="Ntve" Id="00000542"/>
+        </Element>
         <Element Type="Param" Id="20B99200">
             <Preset Type="PresetValue" Library="Ntve" Id="D6EA4D09"/>
         </Element>
@@ -1309,6 +1336,9 @@
             <ParameterDef Type="ParamDef" Library="Ntve" Id="00000208"/>
             <FunctionCall Type="FunctionCall" Library="09BE6BA8" Id="6C9DC729"/>
         </Element>
+        <Element Type="Param" Id="36C9E618">
+            <Preset Type="PresetValue" Library="Ntve" Id="C9DCA6C0"/>
+        </Element>
         <Element Type="Param" Id="375C2A06">
             <Preset Type="PresetValue" Library="Ntve" Id="C9DCA6C0"/>
         </Element>
@@ -1407,6 +1437,9 @@
             <ParameterDef Type="ParamDef" Library="Ntve" Id="00000220"/>
             <FunctionCall Type="FunctionCall" Library="09BE6BA8" Id="A54C516C"/>
         </Element>
+        <Element Type="Param" Id="52F0256B">
+            <FunctionCall Type="FunctionCall" Library="09BE6BA8" Id="D828517C"/>
+        </Element>
         <Element Type="Param" Id="53880BE7">
             <ParameterDef Type="ParamDef" Library="Ntve" Id="00000219"/>
             <Variable Type="Variable" Library="09BE6BA8" Id="5B9EE91A"/>
@@ -1438,6 +1471,9 @@
             <ParameterDef Type="ParamDef" Library="Ntve" Id="00000488"/>
             <Value>true</Value>
             <ValueType Type="bool"/>
+        </Element>
+        <Element Type="Param" Id="59948C31">
+            <Preset Type="PresetValue" Library="Ntve" Id="00000231"/>
         </Element>
         <Element Type="Param" Id="5A2D091E">
             <FunctionCall Type="FunctionCall" Library="09BE6BA8" Id="0EE2499B"/>
@@ -1528,6 +1564,9 @@
             <Value>0</Value>
             <ValueType Type="fixed"/>
         </Element>
+        <Element Type="Param" Id="6F318EB6">
+            <Preset Type="PresetValue" Library="Ntve" Id="00000145"/>
+        </Element>
         <Element Type="Param" Id="6F421F57">
             <ParameterDef Type="ParamDef" Library="Ntve" Id="504494F0"/>
             <Variable Type="Variable" Library="09BE6BA8" Id="0CE289B2"/>
@@ -1597,6 +1636,9 @@
         <Element Type="Param" Id="84253C19">
             <ParameterDef Type="ParamDef" Library="Ntve" Id="D2E5A641"/>
             <Preset Type="PresetValue" Library="Ntve" Id="06588939"/>
+        </Element>
+        <Element Type="Param" Id="86317905">
+            <Preset Type="PresetValue" Library="Ntve" Id="00000542"/>
         </Element>
         <Element Type="Param" Id="868787AB">
             <ParameterDef Type="ParamDef" Library="Ntve" Id="D2E5A641"/>
@@ -1825,6 +1867,9 @@
         <Element Type="Param" Id="B5EC0DC7">
             <ParameterDef Type="ParamDef" Library="Ntve" Id="51567265"/>
             <Preset Type="PresetValue" Library="Ntve" Id="684CA9CE"/>
+        </Element>
+        <Element Type="Param" Id="B70C5042">
+            <Preset Type="PresetValue" Library="Ntve" Id="C84C7A78"/>
         </Element>
         <Element Type="Param" Id="B8C6232B">
             <Preset Type="PresetValue" Library="Ntve" Id="00000542"/>
@@ -2124,6 +2169,9 @@
             <Value>false</Value>
             <ValueType Type="bool"/>
         </Element>
+        <Element Type="Param" Id="FCF7C0EB">
+            <Preset Type="PresetValue" Library="Ntve" Id="C84C7A78"/>
+        </Element>
         <Element Type="Param" Id="FDA2844F">
             <ParameterDef Type="ParamDef" Library="Ntve" Id="00000210"/>
             <Parameter Type="ParamDef" Library="09BE6BA8" Id="F1A73846"/>
@@ -2138,6 +2186,15 @@
         <Element Type="Param" Id="FF8B16F0">
             <ParameterDef Type="ParamDef" Library="Ntve" Id="0A06ABFD"/>
             <FunctionCall Type="FunctionCall" Library="09BE6BA8" Id="FAC9E5AC"/>
+        </Element>
+        <Element Type="ParamDef" Id="0522A71A">
+            <Identifier>behavior</Identifier>
+            <ParameterType>
+                <Type Value="gamelink"/>
+                <GameType Value="Behavior"/>
+            </ParameterType>
+            <Default Type="Param" Library="09BE6BA8" Id="36C9E618"/>
+            <Preset Type="Preset" Library="Ntve" Id="00000058"/>
         </Element>
         <Element Type="ParamDef" Id="06EF89E8">
             <Identifier>property</Identifier>
@@ -2299,6 +2356,12 @@
             </ParameterType>
             <Default Type="Param" Library="09BE6BA8" Id="6CE98A68"/>
         </Element>
+        <Element Type="ParamDef" Id="378D21DB">
+            <ParameterType>
+                <Type Value="trigger"/>
+            </ParameterType>
+            <Default Type="Param" Library="09BE6BA8" Id="86317905"/>
+        </Element>
         <Element Type="ParamDef" Id="3A0FAAC1">
             <Identifier>value</Identifier>
             <ParameterType>
@@ -2332,6 +2395,15 @@
             </ParameterType>
             <ParamFlagReference/>
             <Default Type="Param" Library="09BE6BA8" Id="D764A347"/>
+        </Element>
+        <Element Type="ParamDef" Id="497F6A05">
+            <Identifier>creator2</Identifier>
+            <ParameterType>
+                <Type Value="unit"/>
+            </ParameterType>
+            <ParamFlagReference/>
+            <Default Type="Param" Library="09BE6BA8" Id="FCF7C0EB"/>
+            <Preset Type="Preset" Library="Ntve" Id="B87E2354"/>
         </Element>
         <Element Type="ParamDef" Id="4B721C21">
             <ParameterType>
@@ -2390,6 +2462,15 @@
             <ParameterType>
                 <Type Value="string"/>
             </ParameterType>
+        </Element>
+        <Element Type="ParamDef" Id="60B09E55">
+            <Identifier>ability</Identifier>
+            <ParameterType>
+                <Type Value="gamelink"/>
+                <GameType Value="Abil"/>
+            </ParameterType>
+            <Default Type="Param" Library="09BE6BA8" Id="59948C31"/>
+            <Preset Type="Preset" Library="Ntve" Id="00000058"/>
         </Element>
         <Element Type="ParamDef" Id="61B0BA04">
             <Identifier>dialogItem</Identifier>
@@ -2539,6 +2620,14 @@
             </ParameterType>
             <Default Type="Param" Library="09BE6BA8" Id="C4BD830B"/>
         </Element>
+        <Element Type="ParamDef" Id="7F467D80">
+            <Identifier>state</Identifier>
+            <ParameterType>
+                <Type Value="preset"/>
+                <TypeElement Type="Preset" Library="Ntve" Id="00000050"/>
+            </ParameterType>
+            <Default Type="Param" Library="09BE6BA8" Id="6F318EB6"/>
+        </Element>
         <Element Type="ParamDef" Id="812E71AD">
             <ParameterType>
                 <Type Value="unit"/>
@@ -2638,6 +2727,15 @@
                 <Type Value="int"/>
             </ParameterType>
             <Default Type="Param" Library="09BE6BA8" Id="1C8D38F3"/>
+        </Element>
+        <Element Type="ParamDef" Id="A0597900">
+            <Identifier>u</Identifier>
+            <ParameterType>
+                <Type Value="unit"/>
+            </ParameterType>
+            <ParamFlagReference/>
+            <Default Type="Param" Library="09BE6BA8" Id="B70C5042"/>
+            <Preset Type="Preset" Library="Ntve" Id="B87E2354"/>
         </Element>
         <Element Type="ParamDef" Id="A3BCC7B4">
             <Identifier>property</Identifier>
@@ -2746,6 +2844,12 @@
             </ParameterType>
             <Default Type="Param" Library="09BE6BA8" Id="F6C2DC3B"/>
         </Element>
+        <Element Type="ParamDef" Id="C7354C81">
+            <ParameterType>
+                <Type Value="trigger"/>
+            </ParameterType>
+            <Default Type="Param" Library="09BE6BA8" Id="2085BEAB"/>
+        </Element>
         <Element Type="ParamDef" Id="C90AC95C">
             <ParameterType>
                 <Type Value="trigger"/>
@@ -2773,6 +2877,13 @@
                 <TypeElement Type="Preset" Library="Ntve" Id="8DA98BE1"/>
             </ParameterType>
             <Default Type="Param" Library="09BE6BA8" Id="23FCEDC5"/>
+        </Element>
+        <Element Type="ParamDef" Id="CCD38581">
+            <Identifier>r</Identifier>
+            <ParameterType>
+                <Type Value="region"/>
+            </ParameterType>
+            <Default Type="Param" Library="09BE6BA8" Id="52F0256B"/>
         </Element>
         <Element Type="ParamDef" Id="D2433391">
             <Identifier>soundLink</Identifier>

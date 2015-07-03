@@ -2386,7 +2386,9 @@ bool lib840A968C_gt_EventRegistrationForMarineUnits_Func (bool testConds, bool r
         TriggerAddEventUnitSelected(libC50FD636_gt_DisplayAmmoBarOnSelection, UnitRefFromUnit(UnitGroupLoopCurrent()), c_playerAny, true);
         TriggerAddEventUnitSelected(libC50FD636_gt_DisplayInventoryOnSelection, UnitRefFromUnit(UnitGroupLoopCurrent()), c_playerAny, true);
         TriggerAddEventUnitDamaged(lib840A968C_gt_RatingLossfromFriendlyFire, UnitRefFromUnit(UnitGroupLoopCurrent()), c_unitDamageTypeAny, c_unitDamageEither, null);
+        TriggerAddEventUnitDamaged(lib840A968C_gt_HitsUpdate, UnitRefFromUnit(UnitGroupLoopCurrent()), c_unitDamageTypeAny, c_unitDamageEither, null);
         TriggerAddEventUnitGainLevel(libC50FD636_gt_LevelUp, UnitRefFromUnit(UnitGroupLoopCurrent()));
+        TriggerAddEventUnitCreated(libFEC22885_gt_RoadFlareVisionShare, UnitRefFromUnit(UnitGroupLoopCurrent()), null, null);
     }
     UnitGroupLoopEnd();
     return true;
@@ -2739,10 +2741,6 @@ bool lib840A968C_gt_HitsUpdate_Func (bool testConds, bool runActions) {
 
     // Conditions
     if (testConds) {
-        if (!(PlayerGroupHasPlayer(lib840A968C_gv_livingMarines, lv_damagedPlayer))) {
-            return false;
-        }
-
         if (!(PlayerGroupHasPlayer(PlayerGroupAlliance(c_playerGroupEnemy, lv_damagedPlayer), EventUnitDamageSourcePlayer()))) {
             return false;
         }
@@ -2769,7 +2767,6 @@ bool lib840A968C_gt_HitsUpdate_Func (bool testConds, bool runActions) {
 //--------------------------------------------------------------------------------------------------
 void lib840A968C_gt_HitsUpdate_Init () {
     lib840A968C_gt_HitsUpdate = TriggerCreate("lib840A968C_gt_HitsUpdate_Func");
-    TriggerAddEventUnitDamaged(lib840A968C_gt_HitsUpdate, null, c_unitDamageTypeAny, c_unitDamageEither, null);
 }
 
 //--------------------------------------------------------------------------------------------------

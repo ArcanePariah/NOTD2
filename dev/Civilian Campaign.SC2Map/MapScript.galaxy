@@ -199,6 +199,7 @@ void gf_Chapter5AirItemDrops ();
 //--------------------------------------------------------------------------------------------------
 // Trigger Variables
 //--------------------------------------------------------------------------------------------------
+trigger gt_RegisterMarineswithTriggers;
 trigger gt_IntializeArmoryGate;
 trigger gt_GamePath;
 trigger gt_SetBullies;
@@ -1526,6 +1527,47 @@ void gf_Chapter5AirItemDrops () {
 }
 
 //--------------------------------------------------------------------------------------------------
+// Trigger: Register Marines with Triggers
+//--------------------------------------------------------------------------------------------------
+bool gt_RegisterMarineswithTriggers_Func (bool testConds, bool runActions) {
+    unitgroup autoA11C3D95_g;
+    int autoA11C3D95_u;
+
+    // Variable Declarations
+    unit lv_marine;
+
+    // Variable Initialization
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    autoA11C3D95_g = lib840A968C_gf_GetMarineGroup();
+    autoA11C3D95_u = 1;
+    for ( ; autoA11C3D95_u <= UnitGroupCount(autoA11C3D95_g, c_unitCountAll) ; autoA11C3D95_u += BoolToInt(lv_marine == UnitGroupUnit(autoA11C3D95_g, autoA11C3D95_u)) ) {
+        lv_marine = UnitGroupUnit(autoA11C3D95_g, autoA11C3D95_u);
+        TriggerAddEventUnitRegion(gt_DeadBodiesDiscovered, UnitRefFromUnit(UnitGroupLoopCurrent()), RegionFromId(5), true);
+        TriggerAddEventUnitRegion(gt_MilitaryHQSpotted, UnitRefFromUnit(UnitGroupLoopCurrent()), RegionCircle(PointFromId(1930), 10.0), true);
+        TriggerAddEventUnitRegion(gt_EnteringMilitaryBase, UnitRefFromUnit(UnitGroupLoopCurrent()), RegionCircle(PointFromId(2070), 10.0), true);
+        TriggerAddEventUnitRegion(gt_CustomsLockup, UnitRefFromUnit(UnitGroupLoopCurrent()), RegionFromId(22), true);
+        TriggerAddEventUnitRegion(gt_WarzoneTransmission, UnitRefFromUnit(UnitGroupLoopCurrent()), RegionFromId(17), true);
+        TriggerAddEventUnitRegion(gt_WarzoneTransmission, UnitRefFromUnit(UnitGroupLoopCurrent()), RegionFromId(6), true);
+        TriggerAddEventUnitRegion(gt_WarzoneAmmoMarine1, UnitRefFromUnit(UnitGroupLoopCurrent()), RegionFromId(18), true);
+        TriggerAddEventUnitRegion(gt_WarzoneAmmoMarine2, UnitRefFromUnit(UnitGroupLoopCurrent()), RegionFromId(19), true);
+        TriggerAddEventUnitRegion(gt_WarzoneAmmoMarine3, UnitRefFromUnit(UnitGroupLoopCurrent()), RegionFromId(20), true);
+        TriggerAddEventUnitRegion(gt_WarzoneAmmoMarine4, UnitRefFromUnit(UnitGroupLoopCurrent()), RegionFromId(21), true);
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void gt_RegisterMarineswithTriggers_Init () {
+    gt_RegisterMarineswithTriggers = TriggerCreate("gt_RegisterMarineswithTriggers_Func");
+    TriggerAddEventGeneric(gt_RegisterMarineswithTriggers, lib840A968C_gv_eventRegistrationSignal);
+}
+
+//--------------------------------------------------------------------------------------------------
 // Trigger: Intialize Armory Gate
 //--------------------------------------------------------------------------------------------------
 bool gt_IntializeArmoryGate_Func (bool testConds, bool runActions) {
@@ -1673,13 +1715,6 @@ bool gt_DeadBodiesDiscovered_Func (bool testConds, bool runActions) {
     lv_discoveringUnit = EventUnit();
     lv_discoveringPlayer = EventPlayer();
 
-    // Conditions
-    if (testConds) {
-        if (!((UnitGroupHasUnit(lib840A968C_gf_GetMarineGroup(), lv_discoveringUnit) == true))) {
-            return false;
-        }
-    }
-
     // Actions
     if (!runActions) {
         return true;
@@ -1701,7 +1736,6 @@ bool gt_DeadBodiesDiscovered_Func (bool testConds, bool runActions) {
 //--------------------------------------------------------------------------------------------------
 void gt_DeadBodiesDiscovered_Init () {
     gt_DeadBodiesDiscovered = TriggerCreate("gt_DeadBodiesDiscovered_Func");
-    TriggerAddEventUnitRegion(gt_DeadBodiesDiscovered, null, RegionFromId(5), true);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -1713,13 +1747,6 @@ bool gt_MilitaryHQSpotted_Func (bool testConds, bool runActions) {
 
     // Variable Initialization
     lv_discoveringPlayer = EventPlayer();
-
-    // Conditions
-    if (testConds) {
-        if (!((UnitGroupHasUnit(lib840A968C_gf_GetMarineGroup(), EventUnit()) == true))) {
-            return false;
-        }
-    }
 
     // Actions
     if (!runActions) {
@@ -1742,20 +1769,12 @@ bool gt_MilitaryHQSpotted_Func (bool testConds, bool runActions) {
 //--------------------------------------------------------------------------------------------------
 void gt_MilitaryHQSpotted_Init () {
     gt_MilitaryHQSpotted = TriggerCreate("gt_MilitaryHQSpotted_Func");
-    TriggerAddEventUnitRegion(gt_MilitaryHQSpotted, null, RegionCircle(PointFromId(1930), 10.0), true);
 }
 
 //--------------------------------------------------------------------------------------------------
 // Trigger: Entering Military Base
 //--------------------------------------------------------------------------------------------------
 bool gt_EnteringMilitaryBase_Func (bool testConds, bool runActions) {
-    // Conditions
-    if (testConds) {
-        if (!((UnitGroupHasUnit(lib840A968C_gf_GetMarineGroup(), EventUnit()) == true))) {
-            return false;
-        }
-    }
-
     // Actions
     if (!runActions) {
         return true;
@@ -1770,7 +1789,6 @@ bool gt_EnteringMilitaryBase_Func (bool testConds, bool runActions) {
 //--------------------------------------------------------------------------------------------------
 void gt_EnteringMilitaryBase_Init () {
     gt_EnteringMilitaryBase = TriggerCreate("gt_EnteringMilitaryBase_Func");
-    TriggerAddEventUnitRegion(gt_EnteringMilitaryBase, null, RegionCircle(PointFromId(2070), 10.0), true);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -1785,13 +1803,6 @@ bool gt_CustomsLockup_Func (bool testConds, bool runActions) {
     lv_discoveringPlayer = EventPlayer();
     lv_itemDropChance = RandomInt(1, 10);
 
-    // Conditions
-    if (testConds) {
-        if (!((UnitGroupHasUnit(lib840A968C_gf_GetMarineGroup(), EventUnit()) == true))) {
-            return false;
-        }
-    }
-
     // Actions
     if (!runActions) {
         return true;
@@ -1805,7 +1816,6 @@ bool gt_CustomsLockup_Func (bool testConds, bool runActions) {
 //--------------------------------------------------------------------------------------------------
 void gt_CustomsLockup_Init () {
     gt_CustomsLockup = TriggerCreate("gt_CustomsLockup_Func");
-    TriggerAddEventUnitRegion(gt_CustomsLockup, null, RegionFromId(22), true);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -1829,7 +1839,7 @@ bool gt_HeadtoCustomsLockup_Func (bool testConds, bool runActions) {
     for ( ; !PlayerGroupLoopDone() ; PlayerGroupLoopStep() ) {
         VisRevealArea(PlayerGroupLoopCurrent(), RegionFromId(22), 10.0, false);
         CameraLockInput(PlayerGroupLoopCurrent(), true);
-        CameraPan(PlayerGroupLoopCurrent(), RegionGetCenter(RegionFromId(22)), gv_bullyRegionSize, -1, 10.0, false);
+        CameraPan(PlayerGroupLoopCurrent(), RegionGetCenter(RegionFromId(22)), 5.0, -1, 10.0, false);
     }
     PlayerGroupLoopEnd();
     while (gv_transmissionLock) {
@@ -1840,7 +1850,7 @@ bool gt_HeadtoCustomsLockup_Func (bool testConds, bool runActions) {
     gv_transmissionLock = false;
     PlayerGroupLoopBegin(lib840A968C_gf_GetLivingMarineSquadPlayers());
     for ( ; !PlayerGroupLoopDone() ; PlayerGroupLoopStep() ) {
-        CameraPan(PlayerGroupLoopCurrent(), UnitGetPosition(lib840A968C_gf_GetMarine(PlayerGroupLoopCurrent())), gv_bullyRegionSize, -1, 10.0, false);
+        CameraPan(PlayerGroupLoopCurrent(), UnitGetPosition(lib840A968C_gf_GetMarine(PlayerGroupLoopCurrent())), 5.0, -1, 10.0, false);
         Wait(2.0, c_timeGame);
         CameraLockInput(PlayerGroupLoopCurrent(), false);
     }
@@ -1864,13 +1874,6 @@ bool gt_WarzoneAmmoMarine4_Func (bool testConds, bool runActions) {
     // Variable Initialization
     lv_enteredRegion = EventUnitRegion();
 
-    // Conditions
-    if (testConds) {
-        if (!((UnitGroupHasUnit(lib840A968C_gf_GetMarineGroup(), EventUnit()) == true))) {
-            return false;
-        }
-    }
-
     // Actions
     if (!runActions) {
         return true;
@@ -1883,7 +1886,6 @@ bool gt_WarzoneAmmoMarine4_Func (bool testConds, bool runActions) {
 //--------------------------------------------------------------------------------------------------
 void gt_WarzoneAmmoMarine4_Init () {
     gt_WarzoneAmmoMarine4 = TriggerCreate("gt_WarzoneAmmoMarine4_Func");
-    TriggerAddEventUnitRegion(gt_WarzoneAmmoMarine4, null, RegionFromId(21), true);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -1895,13 +1897,6 @@ bool gt_WarzoneAmmoMarine3_Func (bool testConds, bool runActions) {
 
     // Variable Initialization
     lv_enteredRegion = EventUnitRegion();
-
-    // Conditions
-    if (testConds) {
-        if (!((UnitGroupHasUnit(lib840A968C_gf_GetMarineGroup(), EventUnit()) == true))) {
-            return false;
-        }
-    }
 
     // Actions
     if (!runActions) {
@@ -1915,7 +1910,6 @@ bool gt_WarzoneAmmoMarine3_Func (bool testConds, bool runActions) {
 //--------------------------------------------------------------------------------------------------
 void gt_WarzoneAmmoMarine3_Init () {
     gt_WarzoneAmmoMarine3 = TriggerCreate("gt_WarzoneAmmoMarine3_Func");
-    TriggerAddEventUnitRegion(gt_WarzoneAmmoMarine3, null, RegionFromId(20), true);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -1927,13 +1921,6 @@ bool gt_WarzoneAmmoMarine2_Func (bool testConds, bool runActions) {
 
     // Variable Initialization
     lv_enteredRegion = EventUnitRegion();
-
-    // Conditions
-    if (testConds) {
-        if (!((UnitGroupHasUnit(lib840A968C_gf_GetMarineGroup(), EventUnit()) == true))) {
-            return false;
-        }
-    }
 
     // Actions
     if (!runActions) {
@@ -1947,7 +1934,6 @@ bool gt_WarzoneAmmoMarine2_Func (bool testConds, bool runActions) {
 //--------------------------------------------------------------------------------------------------
 void gt_WarzoneAmmoMarine2_Init () {
     gt_WarzoneAmmoMarine2 = TriggerCreate("gt_WarzoneAmmoMarine2_Func");
-    TriggerAddEventUnitRegion(gt_WarzoneAmmoMarine2, null, RegionFromId(19), true);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -1959,13 +1945,6 @@ bool gt_WarzoneAmmoMarine1_Func (bool testConds, bool runActions) {
 
     // Variable Initialization
     lv_enteredRegion = EventUnitRegion();
-
-    // Conditions
-    if (testConds) {
-        if (!((UnitGroupHasUnit(lib840A968C_gf_GetMarineGroup(), EventUnit()) == true))) {
-            return false;
-        }
-    }
 
     // Actions
     if (!runActions) {
@@ -1979,7 +1958,6 @@ bool gt_WarzoneAmmoMarine1_Func (bool testConds, bool runActions) {
 //--------------------------------------------------------------------------------------------------
 void gt_WarzoneAmmoMarine1_Init () {
     gt_WarzoneAmmoMarine1 = TriggerCreate("gt_WarzoneAmmoMarine1_Func");
-    TriggerAddEventUnitRegion(gt_WarzoneAmmoMarine1, null, RegionFromId(18), true);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -1991,13 +1969,6 @@ bool gt_WarzoneTransmission_Func (bool testConds, bool runActions) {
 
     // Variable Initialization
     lv_discoveringPlayer = EventPlayer();
-
-    // Conditions
-    if (testConds) {
-        if (!((UnitGroupHasUnit(lib840A968C_gf_GetMarineGroup(), EventUnit()) == true))) {
-            return false;
-        }
-    }
 
     // Actions
     if (!runActions) {
@@ -2018,7 +1989,6 @@ bool gt_WarzoneTransmission_Func (bool testConds, bool runActions) {
 //--------------------------------------------------------------------------------------------------
 void gt_WarzoneTransmission_Init () {
     gt_WarzoneTransmission = TriggerCreate("gt_WarzoneTransmission_Func");
-    TriggerAddEventUnitRegion(gt_WarzoneTransmission, null, RegionFromId(17), true);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -2032,13 +2002,6 @@ bool gt_SecurityGateTransmission_Func (bool testConds, bool runActions) {
     // Variable Initialization
     lv_discoveringPlayer = EventPlayer();
     lv_discoveringUnit = EventUnit();
-
-    // Conditions
-    if (testConds) {
-        if (!((UnitGroupHasUnit(lib840A968C_gf_GetMarineGroup(), lv_discoveringUnit) == true))) {
-            return false;
-        }
-    }
 
     // Actions
     if (!runActions) {
@@ -2066,7 +2029,6 @@ bool gt_SecurityGateTransmission_Func (bool testConds, bool runActions) {
 //--------------------------------------------------------------------------------------------------
 void gt_SecurityGateTransmission_Init () {
     gt_SecurityGateTransmission = TriggerCreate("gt_SecurityGateTransmission_Func");
-    TriggerAddEventUnitRegion(gt_SecurityGateTransmission, null, RegionFromId(6), true);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -2297,7 +2259,7 @@ bool gt_PlayerReachesPeacekeepers_Func (bool testConds, bool runActions) {
 void gt_PlayerReachesPeacekeepers_Init () {
     gt_PlayerReachesPeacekeepers = TriggerCreate("gt_PlayerReachesPeacekeepers_Func");
     TriggerEnable(gt_PlayerReachesPeacekeepers, false);
-    TriggerAddEventUnitRangePoint(gt_PlayerReachesPeacekeepers, null, PointWithOffsetPolar(gv_peacekeeperHoldout, 0.0, 0.0), 10.0, true);
+    TriggerAddEventUnitRangePoint(gt_PlayerReachesPeacekeepers, null, gv_peacekeeperHoldout, 10.0, true);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -5549,6 +5511,7 @@ void gt_AmbientAttacksOnPlayers_Init () {
 // Trigger Initialization
 //--------------------------------------------------------------------------------------------------
 void InitTriggers () {
+    gt_RegisterMarineswithTriggers_Init();
     gt_IntializeArmoryGate_Init();
     gt_GamePath_Init();
     gt_SetBullies_Init();

@@ -859,7 +859,6 @@ bool libC50FD636_gt_TestIntializeAI_Func (bool testConds, bool runActions) {
 
     AIStart(10, true, 5000);
     libNtve_gf_SetAlliance(1, 10, 1);
-    TriggerDestroy( libC50FD636_gt_HeroTest);
     return true;
 }
 
@@ -1825,38 +1824,33 @@ bool libC50FD636_gt_StackMagazinesIntoAmmoBoxes_Func (bool testConds, bool runAc
     // Variable Initialization
     lv_magazine = EventUnitInventoryItem();
 
-    // Conditions
-    if (testConds) {
-        if (!((UnitGetType(EventUnitInventoryItem()) == "Magazine"))) {
-            return false;
-        }
-
-        if (!(lib09BE6BA8_gf_UnitisCarryingItemofType(EventUnit(), "AmmunitionCase"))) {
-            return false;
-        }
-    }
-
     // Actions
     if (!runActions) {
         return true;
     }
 
-    autoABD13EA3_g = UnitInventoryGroup(EventUnit());
-    autoABD13EA3_u = 1;
-    for ( ; autoABD13EA3_u <= UnitGroupCount(autoABD13EA3_g, c_unitCountAll) ; autoABD13EA3_u += BoolToInt(lv_ammoCase == UnitGroupUnit(autoABD13EA3_g, autoABD13EA3_u)) ) {
-        lv_ammoCase = UnitGroupUnit(autoABD13EA3_g, autoABD13EA3_u);
-        if ((UnitGetType(lv_ammoCase) == "AmmunitionCase")) {
-            lv_magazineChargeCount = (CatalogFieldValueGetAsInt(c_gameCatalogItem, "Magazine", "EffectCost.Charge.CountMax", c_playerAny) - UnitGetChargeUsed(lv_magazine, "Item/Magazine"));
-            lv_ammunitionCaseChargeCount = UnitGetChargeUsed(lv_ammoCase, "Item/AmmunitionCase");
-            lv_chargesToChange = MinF(lv_magazineChargeCount, lv_ammunitionCaseChargeCount);
-            if ((lv_chargesToChange == lv_magazineChargeCount)) {
-                UnitRemove(lv_magazine);
+    if ((UnitGetType(EventUnitInventoryItem()) == "Magazine") && lib09BE6BA8_gf_UnitisCarryingItemofType(EventUnit(), "AmmunitionCase")) {
+        autoABD13EA3_g = UnitInventoryGroup(EventUnit());
+        autoABD13EA3_u = 1;
+        for ( ; autoABD13EA3_u <= UnitGroupCount(autoABD13EA3_g, c_unitCountAll) ; autoABD13EA3_u += BoolToInt(lv_ammoCase == UnitGroupUnit(autoABD13EA3_g, autoABD13EA3_u)) ) {
+            lv_ammoCase = UnitGroupUnit(autoABD13EA3_g, autoABD13EA3_u);
+            if ((UnitGetType(lv_ammoCase) == "AmmunitionCase")) {
+                lv_magazineChargeCount = (CatalogFieldValueGetAsInt(c_gameCatalogItem, "Magazine", "EffectCost.Charge.CountMax", c_playerAny) - UnitGetChargeUsed(lv_magazine, "Item/Magazine"));
+                lv_ammunitionCaseChargeCount = UnitGetChargeUsed(lv_ammoCase, "Item/AmmunitionCase");
+                lv_chargesToChange = MinF(lv_magazineChargeCount, lv_ammunitionCaseChargeCount);
+                if ((lv_chargesToChange == lv_magazineChargeCount)) {
+                    UnitRemove(lv_magazine);
+                    UnitAddChargeUsed(lv_ammoCase, "Item/AmmunitionCase", (-lv_chargesToChange));
+                    break;
+                }
+                else {
+                    UnitAddChargeUsed(lv_magazine, "Item/Magazine", lv_chargesToChange);
+                    UnitAddChargeUsed(lv_ammoCase, "Item/AmmunitionCase", (-lv_chargesToChange));
+                }
             }
-            else {
-                UnitAddChargeUsed(lv_magazine, "Item/Magazine", lv_chargesToChange);
-            }
-            UnitAddChargeUsed(lv_ammoCase, "Item/AmmunitionCase", (-lv_chargesToChange));
         }
+    }
+    else {
     }
     return true;
 }
