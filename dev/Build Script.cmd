@@ -1,1 +1,10 @@
-.\MPQEditor.exe /console "Map Build.sh"
+@echo off
+if "%1"=="map" .\MPQEditor.exe /console "Map Build.sh"
+if "%1"=="data" .\MPQEditor.exe /console "Game Data Build.sh"
+if "%1"=="assets" .\MPQEditor.exe /console "Assets Build.sh"
+if "%2"=="map" .\MPQEditor.exe /console "Map Build.sh"
+if "%2"=="data" .\MPQEditor.exe /console "Game Data Build.sh"
+if "%2"=="assets" .\MPQEditor.exe /console "Assets Build.sh"
+if "%3"=="map" .\MPQEditor.exe /console "Map Build.sh"
+if "%3"=="data" .\MPQEditor.exe /console "Game Data Build.sh"
+if "%3"=="assets" .\MPQEditor.exe /console "Assets Build.sh"
