@@ -717,6 +717,7 @@ void gf_ExtractionConvoyCreation () {
     for ( ; autoDB5042DD_u <= UnitGroupCount(autoDB5042DD_g, c_unitCountAll) ; autoDB5042DD_u += BoolToInt(lv_trooper == UnitGroupUnit(autoDB5042DD_g, autoDB5042DD_u)) ) {
         lv_trooper = UnitGroupUnit(autoDB5042DD_g, autoDB5042DD_u);
         TriggerAddEventUnitRegion(gt_ExtractionEndSuccess, UnitRefFromVariable("lv_trooper"), RegionCircle(gv_extractionLocation, 5.0), true);
+        TriggerAddEventUnitDied(gt_ParatrooperLoot, UnitRefFromVariable("lv_trooper"));
     }
     autoA261E908_g = gv_civiliansPeacekeepers;
     autoA261E908_u = 1;
@@ -1591,6 +1592,17 @@ bool gt_RegisterMarineswithTriggers_Func (bool testConds, bool runActions) {
         TriggerAddEventUnitRangePoint(gt_PlayerReturntoPeacekeeperHoldout, UnitRefFromVariable("lv_marine"), gv_peacekeeperHoldout, 8.0, true);
         TriggerAddEventUnitRangePoint(gt_PlayerRescuesCivilians, UnitRefFromVariable("lv_marine"), gv_civilianRescuePoint, 10.0, true);
         TriggerAddEventUnitRangePoint(gt_PlayersFailtoRescue, UnitRefFromVariable("lv_marine"), gv_civilianRescuePoint, 10.0, true);
+        TriggerAddEventUnitRegion(gt_ArmoryDoor, UnitRefFromVariable("lv_marine"), RegionFromId(25), true);
+        TriggerAddEventUnitRangePoint(gt_TeamReachesReactor, UnitRefFromVariable("lv_marine"), PointFromId(3280), 10.0, true);
+        TriggerAddEventUnitRangePoint(gt_LabEntranceChatter, UnitRefFromVariable("lv_marine"), PointFromId(4635), 4.0, true);
+        TriggerAddEventUnitRangePoint(gt_ReceptionAreaTransmission, UnitRefFromVariable("lv_marine"), PointFromId(4570), 6.0, true);
+        TriggerAddEventUnitRangePoint(gt_InfestationResearchTransmission, UnitRefFromVariable("lv_marine"), PointFromId(4573), 5.0, true);
+        TriggerAddEventUnitRangePoint(gt_CharliePen, UnitRefFromVariable("lv_marine"), PointFromId(4572), gv_distancetoDiscover, true);
+        TriggerAddEventUnitRangePoint(gt_DemeterWorkstation, UnitRefFromVariable("lv_marine"), PointFromId(4704), gv_distancetoDiscover, true);
+        TriggerAddEventUnitRangePoint(gt_DissectionWorkstation, UnitRefFromVariable("lv_marine"), PointFromId(4703), gv_distancetoDiscover, true);
+        TriggerAddEventUnitRangePoint(gt_PoolviewingDeck, UnitRefFromVariable("lv_marine"), PointFromId(4702), gv_distancetoDiscover, true);
+        TriggerAddEventUnitRangePoint(gt_WorkstationTX1, UnitRefFromVariable("lv_marine"), PointFromId(4699), gv_distancetoDiscover, true);
+        TriggerAddEventUnitRangePoint(gt_CharlieEscapeHole, UnitRefFromVariable("lv_marine"), PointFromId(4636), (3.0 * gv_distancetoDiscover), true);
     }
     return true;
 }
@@ -2446,7 +2458,6 @@ bool gt_PlayersFailtoRescue_Func (bool testConds, bool runActions) {
 void gt_PlayersFailtoRescue_Init () {
     gt_PlayersFailtoRescue = TriggerCreate("gt_PlayersFailtoRescue_Func");
     TriggerEnable(gt_PlayersFailtoRescue, false);
-    TriggerAddEventUnitRangePoint(gt_PlayersFailtoRescue, null, PointWithOffsetPolar(gv_civilianRescuePoint, 0.0, 0.0), 10.0, true);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -2593,13 +2604,6 @@ void gt_Holdout_Init () {
 // Trigger: Paratrooper Loot
 //--------------------------------------------------------------------------------------------------
 bool gt_ParatrooperLoot_Func (bool testConds, bool runActions) {
-    // Conditions
-    if (testConds) {
-        if (!((UnitGroupHasUnit(gv_paratroopers, EventUnit()) == true))) {
-            return false;
-        }
-    }
-
     // Actions
     if (!runActions) {
         return true;
@@ -2618,7 +2622,6 @@ bool gt_ParatrooperLoot_Func (bool testConds, bool runActions) {
 void gt_ParatrooperLoot_Init () {
     gt_ParatrooperLoot = TriggerCreate("gt_ParatrooperLoot_Func");
     TriggerEnable(gt_ParatrooperLoot, false);
-    TriggerAddEventUnitDied(gt_ParatrooperLoot, null);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -3073,13 +3076,6 @@ void gt_CommunicationMissionEnd_Init () {
 // Trigger: Armory Door
 //--------------------------------------------------------------------------------------------------
 bool gt_ArmoryDoor_Func (bool testConds, bool runActions) {
-    // Conditions
-    if (testConds) {
-        if (!(lib840A968C_gf_IsAMarine(EventUnit()))) {
-            return false;
-        }
-    }
-
     // Actions
     if (!runActions) {
         return true;
@@ -3094,7 +3090,6 @@ bool gt_ArmoryDoor_Func (bool testConds, bool runActions) {
 void gt_ArmoryDoor_Init () {
     gt_ArmoryDoor = TriggerCreate("gt_ArmoryDoor_Func");
     TriggerEnable(gt_ArmoryDoor, false);
-    TriggerAddEventUnitRegion(gt_ArmoryDoor, null, RegionFromId(25), true);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -3129,13 +3124,6 @@ void gt_RestorePowerMission_Init () {
 // Trigger: Team Reaches Reactor
 //--------------------------------------------------------------------------------------------------
 bool gt_TeamReachesReactor_Func (bool testConds, bool runActions) {
-    // Conditions
-    if (testConds) {
-        if (!(lib840A968C_gf_IsAMarine(EventUnit()))) {
-            return false;
-        }
-    }
-
     // Actions
     if (!runActions) {
         return true;
@@ -3156,7 +3144,6 @@ bool gt_TeamReachesReactor_Func (bool testConds, bool runActions) {
 void gt_TeamReachesReactor_Init () {
     gt_TeamReachesReactor = TriggerCreate("gt_TeamReachesReactor_Func");
     TriggerEnable(gt_TeamReachesReactor, false);
-    TriggerAddEventUnitRangePoint(gt_TeamReachesReactor, null, PointFromId(3280), 10.0, true);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -3315,13 +3302,6 @@ bool gt_LabEntranceChatter_Func (bool testConds, bool runActions) {
     lv_speakers = PlayerGroupCopy(lib840A968C_gf_GetLivingMarineSquadPlayers());
     lv_currentSpeaker = UnitGetOwner(EventUnit());
 
-    // Conditions
-    if (testConds) {
-        if (!(lib840A968C_gf_IsAMarine(EventUnit()))) {
-            return false;
-        }
-    }
-
     // Actions
     if (!runActions) {
         return true;
@@ -3346,20 +3326,12 @@ bool gt_LabEntranceChatter_Func (bool testConds, bool runActions) {
 void gt_LabEntranceChatter_Init () {
     gt_LabEntranceChatter = TriggerCreate("gt_LabEntranceChatter_Func");
     TriggerEnable(gt_LabEntranceChatter, false);
-    TriggerAddEventUnitRangePoint(gt_LabEntranceChatter, null, PointFromId(4635), 4.0, true);
 }
 
 //--------------------------------------------------------------------------------------------------
 // Trigger: Reception Area Transmission
 //--------------------------------------------------------------------------------------------------
 bool gt_ReceptionAreaTransmission_Func (bool testConds, bool runActions) {
-    // Conditions
-    if (testConds) {
-        if (!(lib840A968C_gf_IsAMarine(EventUnit()))) {
-            return false;
-        }
-    }
-
     // Actions
     if (!runActions) {
         return true;
@@ -3374,20 +3346,12 @@ bool gt_ReceptionAreaTransmission_Func (bool testConds, bool runActions) {
 void gt_ReceptionAreaTransmission_Init () {
     gt_ReceptionAreaTransmission = TriggerCreate("gt_ReceptionAreaTransmission_Func");
     TriggerEnable(gt_ReceptionAreaTransmission, false);
-    TriggerAddEventUnitRangePoint(gt_ReceptionAreaTransmission, null, PointFromId(4570), 6.0, true);
 }
 
 //--------------------------------------------------------------------------------------------------
 // Trigger: Infestation Research Transmission
 //--------------------------------------------------------------------------------------------------
 bool gt_InfestationResearchTransmission_Func (bool testConds, bool runActions) {
-    // Conditions
-    if (testConds) {
-        if (!(lib840A968C_gf_IsAMarine(EventUnit()))) {
-            return false;
-        }
-    }
-
     // Actions
     if (!runActions) {
         return true;
@@ -3403,20 +3367,12 @@ bool gt_InfestationResearchTransmission_Func (bool testConds, bool runActions) {
 void gt_InfestationResearchTransmission_Init () {
     gt_InfestationResearchTransmission = TriggerCreate("gt_InfestationResearchTransmission_Func");
     TriggerEnable(gt_InfestationResearchTransmission, false);
-    TriggerAddEventUnitRangePoint(gt_InfestationResearchTransmission, null, PointFromId(4573), 5.0, true);
 }
 
 //--------------------------------------------------------------------------------------------------
 // Trigger: Workstation - TX1
 //--------------------------------------------------------------------------------------------------
 bool gt_WorkstationTX1_Func (bool testConds, bool runActions) {
-    // Conditions
-    if (testConds) {
-        if (!(lib840A968C_gf_IsAMarine(EventUnit()))) {
-            return false;
-        }
-    }
-
     // Actions
     if (!runActions) {
         return true;
@@ -3439,20 +3395,12 @@ bool gt_WorkstationTX1_Func (bool testConds, bool runActions) {
 void gt_WorkstationTX1_Init () {
     gt_WorkstationTX1 = TriggerCreate("gt_WorkstationTX1_Func");
     TriggerEnable(gt_WorkstationTX1, false);
-    TriggerAddEventUnitRangePoint(gt_WorkstationTX1, null, PointFromId(4699), gv_distancetoDiscover, true);
 }
 
 //--------------------------------------------------------------------------------------------------
 // Trigger: Dissection Workstation
 //--------------------------------------------------------------------------------------------------
 bool gt_DissectionWorkstation_Func (bool testConds, bool runActions) {
-    // Conditions
-    if (testConds) {
-        if (!(lib840A968C_gf_IsAMarine(EventUnit()))) {
-            return false;
-        }
-    }
-
     // Actions
     if (!runActions) {
         return true;
@@ -3469,20 +3417,12 @@ bool gt_DissectionWorkstation_Func (bool testConds, bool runActions) {
 void gt_DissectionWorkstation_Init () {
     gt_DissectionWorkstation = TriggerCreate("gt_DissectionWorkstation_Func");
     TriggerEnable(gt_DissectionWorkstation, false);
-    TriggerAddEventUnitRangePoint(gt_DissectionWorkstation, null, PointFromId(4703), gv_distancetoDiscover, true);
 }
 
 //--------------------------------------------------------------------------------------------------
 // Trigger: Demeter Workstation
 //--------------------------------------------------------------------------------------------------
 bool gt_DemeterWorkstation_Func (bool testConds, bool runActions) {
-    // Conditions
-    if (testConds) {
-        if (!(lib840A968C_gf_IsAMarine(EventUnit()))) {
-            return false;
-        }
-    }
-
     // Actions
     if (!runActions) {
         return true;
@@ -3499,20 +3439,12 @@ bool gt_DemeterWorkstation_Func (bool testConds, bool runActions) {
 void gt_DemeterWorkstation_Init () {
     gt_DemeterWorkstation = TriggerCreate("gt_DemeterWorkstation_Func");
     TriggerEnable(gt_DemeterWorkstation, false);
-    TriggerAddEventUnitRangePoint(gt_DemeterWorkstation, null, PointFromId(4704), gv_distancetoDiscover, true);
 }
 
 //--------------------------------------------------------------------------------------------------
 // Trigger: Pool viewing Deck
 //--------------------------------------------------------------------------------------------------
 bool gt_PoolviewingDeck_Func (bool testConds, bool runActions) {
-    // Conditions
-    if (testConds) {
-        if (!(lib840A968C_gf_IsAMarine(EventUnit()))) {
-            return false;
-        }
-    }
-
     // Actions
     if (!runActions) {
         return true;
@@ -3529,20 +3461,12 @@ bool gt_PoolviewingDeck_Func (bool testConds, bool runActions) {
 void gt_PoolviewingDeck_Init () {
     gt_PoolviewingDeck = TriggerCreate("gt_PoolviewingDeck_Func");
     TriggerEnable(gt_PoolviewingDeck, false);
-    TriggerAddEventUnitRangePoint(gt_PoolviewingDeck, null, PointFromId(4702), gv_distancetoDiscover, true);
 }
 
 //--------------------------------------------------------------------------------------------------
 // Trigger: Charlie Escape Hole
 //--------------------------------------------------------------------------------------------------
 bool gt_CharlieEscapeHole_Func (bool testConds, bool runActions) {
-    // Conditions
-    if (testConds) {
-        if (!(lib840A968C_gf_IsAMarine(EventUnit()))) {
-            return false;
-        }
-    }
-
     // Actions
     if (!runActions) {
         return true;
@@ -3559,20 +3483,12 @@ bool gt_CharlieEscapeHole_Func (bool testConds, bool runActions) {
 void gt_CharlieEscapeHole_Init () {
     gt_CharlieEscapeHole = TriggerCreate("gt_CharlieEscapeHole_Func");
     TriggerEnable(gt_CharlieEscapeHole, false);
-    TriggerAddEventUnitRangePoint(gt_CharlieEscapeHole, null, PointFromId(4636), (3.0 * gv_distancetoDiscover), true);
 }
 
 //--------------------------------------------------------------------------------------------------
 // Trigger: Charlie Pen
 //--------------------------------------------------------------------------------------------------
 bool gt_CharliePen_Func (bool testConds, bool runActions) {
-    // Conditions
-    if (testConds) {
-        if (!(lib840A968C_gf_IsAMarine(EventUnit()))) {
-            return false;
-        }
-    }
-
     // Actions
     if (!runActions) {
         return true;
@@ -3589,7 +3505,6 @@ bool gt_CharliePen_Func (bool testConds, bool runActions) {
 void gt_CharliePen_Init () {
     gt_CharliePen = TriggerCreate("gt_CharliePen_Func");
     TriggerEnable(gt_CharliePen, false);
-    TriggerAddEventUnitRangePoint(gt_CharliePen, null, PointFromId(4572), gv_distancetoDiscover, true);
 }
 
 //--------------------------------------------------------------------------------------------------
