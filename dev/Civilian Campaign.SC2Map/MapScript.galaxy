@@ -47,6 +47,7 @@ const string gv_rentodusSpawnSignal = "RentodusSpawn";
 //--------------------------------------------------------------------------------------------------
 // Global Variables
 //--------------------------------------------------------------------------------------------------
+unit gv_registrationUnit;
 bool gv_transmissionLock;
 region[28] gv_bullyRegions;
 int gv_recruitArrivalMissionToken;
@@ -679,11 +680,6 @@ void gf_ExtractionConvoyCreation () {
     unitgroup autoA261E908_g;
     int autoA261E908_u;
 
-    // Variable Declarations
-    unit lv_trooper;
-
-    // Variable Initialization
-
     // Implementation
     VisRevealArea(9, RegionCircle(gv_extractionLocation, 5.0), 180.0, false);
     PingCreate(PlayerGroupAll(), "PingTriangle", gv_extractionLocation, ColorWithAlpha(0.00, 100.00, 100.00, 0.00), 360.0);
@@ -708,22 +704,22 @@ void gf_ExtractionConvoyCreation () {
     UnitGroupLoopEnd();
     auto9D6C615A_g = gv_peacekeepers;
     auto9D6C615A_u = 1;
-    for ( ; auto9D6C615A_u <= UnitGroupCount(auto9D6C615A_g, c_unitCountAll) ; auto9D6C615A_u += BoolToInt(lv_trooper == UnitGroupUnit(auto9D6C615A_g, auto9D6C615A_u)) ) {
-        lv_trooper = UnitGroupUnit(auto9D6C615A_g, auto9D6C615A_u);
-        TriggerAddEventUnitRegion(gt_ExtractionEndSuccess, UnitRefFromVariable("lv_trooper"), RegionCircle(gv_extractionLocation, 5.0), true);
+    for ( ; auto9D6C615A_u <= UnitGroupCount(auto9D6C615A_g, c_unitCountAll) ; auto9D6C615A_u += BoolToInt(gv_registrationUnit == UnitGroupUnit(auto9D6C615A_g, auto9D6C615A_u)) ) {
+        gv_registrationUnit = UnitGroupUnit(auto9D6C615A_g, auto9D6C615A_u);
+        TriggerAddEventUnitRegion(gt_ExtractionEndSuccess, UnitRefFromVariable("gv_registrationUnit"), RegionCircle(gv_extractionLocation, 5.0), true);
     }
     autoDB5042DD_g = gv_paratroopers;
     autoDB5042DD_u = 1;
-    for ( ; autoDB5042DD_u <= UnitGroupCount(autoDB5042DD_g, c_unitCountAll) ; autoDB5042DD_u += BoolToInt(lv_trooper == UnitGroupUnit(autoDB5042DD_g, autoDB5042DD_u)) ) {
-        lv_trooper = UnitGroupUnit(autoDB5042DD_g, autoDB5042DD_u);
-        TriggerAddEventUnitRegion(gt_ExtractionEndSuccess, UnitRefFromVariable("lv_trooper"), RegionCircle(gv_extractionLocation, 5.0), true);
-        TriggerAddEventUnitDied(gt_ParatrooperLoot, UnitRefFromVariable("lv_trooper"));
+    for ( ; autoDB5042DD_u <= UnitGroupCount(autoDB5042DD_g, c_unitCountAll) ; autoDB5042DD_u += BoolToInt(gv_registrationUnit == UnitGroupUnit(autoDB5042DD_g, autoDB5042DD_u)) ) {
+        gv_registrationUnit = UnitGroupUnit(autoDB5042DD_g, autoDB5042DD_u);
+        TriggerAddEventUnitRegion(gt_ExtractionEndSuccess, UnitRefFromVariable("gv_registrationUnit"), RegionCircle(gv_extractionLocation, 5.0), true);
+        TriggerAddEventUnitDied(gt_ParatrooperLoot, UnitRefFromVariable("gv_registrationUnit"));
     }
     autoA261E908_g = gv_civiliansPeacekeepers;
     autoA261E908_u = 1;
-    for ( ; autoA261E908_u <= UnitGroupCount(autoA261E908_g, c_unitCountAll) ; autoA261E908_u += BoolToInt(lv_trooper == UnitGroupUnit(autoA261E908_g, autoA261E908_u)) ) {
-        lv_trooper = UnitGroupUnit(autoA261E908_g, autoA261E908_u);
-        TriggerAddEventUnitRegion(gt_ExtractionEndSuccess, UnitRefFromVariable("lv_trooper"), RegionCircle(gv_extractionLocation, 5.0), true);
+    for ( ; autoA261E908_u <= UnitGroupCount(autoA261E908_g, c_unitCountAll) ; autoA261E908_u += BoolToInt(gv_registrationUnit == UnitGroupUnit(autoA261E908_g, autoA261E908_u)) ) {
+        gv_registrationUnit = UnitGroupUnit(autoA261E908_g, autoA261E908_u);
+        TriggerAddEventUnitRegion(gt_ExtractionEndSuccess, UnitRefFromVariable("gv_registrationUnit"), RegionCircle(gv_extractionLocation, 5.0), true);
     }
 }
 
@@ -1564,11 +1560,6 @@ bool gt_RegisterMarineswithTriggers_Func (bool testConds, bool runActions) {
     unitgroup autoA11C3D95_g;
     int autoA11C3D95_u;
 
-    // Variable Declarations
-    unit lv_marine;
-
-    // Variable Initialization
-
     // Actions
     if (!runActions) {
         return true;
@@ -1576,33 +1567,33 @@ bool gt_RegisterMarineswithTriggers_Func (bool testConds, bool runActions) {
 
     autoA11C3D95_g = lib840A968C_gf_GetMarineGroup();
     autoA11C3D95_u = 1;
-    for ( ; autoA11C3D95_u <= UnitGroupCount(autoA11C3D95_g, c_unitCountAll) ; autoA11C3D95_u += BoolToInt(lv_marine == UnitGroupUnit(autoA11C3D95_g, autoA11C3D95_u)) ) {
-        lv_marine = UnitGroupUnit(autoA11C3D95_g, autoA11C3D95_u);
-        TriggerAddEventUnitRegion(gt_DeadBodiesDiscovered, UnitRefFromVariable("lv_marine"), RegionFromId(5), true);
-        TriggerAddEventUnitRegion(gt_MilitaryHQSpotted, UnitRefFromVariable("lv_marine"), RegionCircle(PointFromId(1930), 10.0), true);
-        TriggerAddEventUnitRegion(gt_EnteringMilitaryBase, UnitRefFromVariable("lv_marine"), RegionCircle(PointFromId(2070), 10.0), true);
-        TriggerAddEventUnitRegion(gt_CustomsLockup, UnitRefFromVariable("lv_marine"), RegionFromId(22), true);
-        TriggerAddEventUnitRegion(gt_WarzoneTransmission, UnitRefFromVariable("lv_marine"), RegionFromId(17), true);
-        TriggerAddEventUnitRegion(gt_WarzoneTransmission, UnitRefFromVariable("lv_marine"), RegionFromId(6), true);
-        TriggerAddEventUnitRegion(gt_WarzoneAmmoMarine1, UnitRefFromVariable("lv_marine"), RegionFromId(18), true);
-        TriggerAddEventUnitRegion(gt_WarzoneAmmoMarine2, UnitRefFromVariable("lv_marine"), RegionFromId(19), true);
-        TriggerAddEventUnitRegion(gt_WarzoneAmmoMarine3, UnitRefFromVariable("lv_marine"), RegionFromId(20), true);
-        TriggerAddEventUnitRegion(gt_WarzoneAmmoMarine4, UnitRefFromVariable("lv_marine"), RegionFromId(21), true);
-        TriggerAddEventUnitRangePoint(gt_PlayerReachesPeacekeepers, UnitRefFromVariable("lv_marine"), gv_peacekeeperHoldout, 10.0, true);
-        TriggerAddEventUnitRangePoint(gt_PlayerReturntoPeacekeeperHoldout, UnitRefFromVariable("lv_marine"), gv_peacekeeperHoldout, 8.0, true);
-        TriggerAddEventUnitRangePoint(gt_PlayerRescuesCivilians, UnitRefFromVariable("lv_marine"), gv_civilianRescuePoint, 10.0, true);
-        TriggerAddEventUnitRangePoint(gt_PlayersFailtoRescue, UnitRefFromVariable("lv_marine"), gv_civilianRescuePoint, 10.0, true);
-        TriggerAddEventUnitRegion(gt_ArmoryDoor, UnitRefFromVariable("lv_marine"), RegionFromId(25), true);
-        TriggerAddEventUnitRangePoint(gt_TeamReachesReactor, UnitRefFromVariable("lv_marine"), PointFromId(3280), 10.0, true);
-        TriggerAddEventUnitRangePoint(gt_LabEntranceChatter, UnitRefFromVariable("lv_marine"), PointFromId(4635), 4.0, true);
-        TriggerAddEventUnitRangePoint(gt_ReceptionAreaTransmission, UnitRefFromVariable("lv_marine"), PointFromId(4570), 6.0, true);
-        TriggerAddEventUnitRangePoint(gt_InfestationResearchTransmission, UnitRefFromVariable("lv_marine"), PointFromId(4573), 5.0, true);
-        TriggerAddEventUnitRangePoint(gt_CharliePen, UnitRefFromVariable("lv_marine"), PointFromId(4572), gv_distancetoDiscover, true);
-        TriggerAddEventUnitRangePoint(gt_DemeterWorkstation, UnitRefFromVariable("lv_marine"), PointFromId(4704), gv_distancetoDiscover, true);
-        TriggerAddEventUnitRangePoint(gt_DissectionWorkstation, UnitRefFromVariable("lv_marine"), PointFromId(4703), gv_distancetoDiscover, true);
-        TriggerAddEventUnitRangePoint(gt_PoolviewingDeck, UnitRefFromVariable("lv_marine"), PointFromId(4702), gv_distancetoDiscover, true);
-        TriggerAddEventUnitRangePoint(gt_WorkstationTX1, UnitRefFromVariable("lv_marine"), PointFromId(4699), gv_distancetoDiscover, true);
-        TriggerAddEventUnitRangePoint(gt_CharlieEscapeHole, UnitRefFromVariable("lv_marine"), PointFromId(4636), (3.0 * gv_distancetoDiscover), true);
+    for ( ; autoA11C3D95_u <= UnitGroupCount(autoA11C3D95_g, c_unitCountAll) ; autoA11C3D95_u += BoolToInt(gv_registrationUnit == UnitGroupUnit(autoA11C3D95_g, autoA11C3D95_u)) ) {
+        gv_registrationUnit = UnitGroupUnit(autoA11C3D95_g, autoA11C3D95_u);
+        TriggerAddEventUnitRegion(gt_DeadBodiesDiscovered, UnitRefFromVariable("gv_registrationUnit"), RegionFromId(5), true);
+        TriggerAddEventUnitRegion(gt_MilitaryHQSpotted, UnitRefFromVariable("gv_registrationUnit"), RegionCircle(PointFromId(1930), 10.0), true);
+        TriggerAddEventUnitRegion(gt_EnteringMilitaryBase, UnitRefFromVariable("gv_registrationUnit"), RegionCircle(PointFromId(2070), 10.0), true);
+        TriggerAddEventUnitRegion(gt_CustomsLockup, UnitRefFromVariable("gv_registrationUnit"), RegionFromId(22), true);
+        TriggerAddEventUnitRegion(gt_WarzoneTransmission, UnitRefFromVariable("gv_registrationUnit"), RegionFromId(17), true);
+        TriggerAddEventUnitRegion(gt_WarzoneTransmission, UnitRefFromVariable("gv_registrationUnit"), RegionFromId(6), true);
+        TriggerAddEventUnitRegion(gt_WarzoneAmmoMarine1, UnitRefFromVariable("gv_registrationUnit"), RegionFromId(18), true);
+        TriggerAddEventUnitRegion(gt_WarzoneAmmoMarine2, UnitRefFromVariable("gv_registrationUnit"), RegionFromId(19), true);
+        TriggerAddEventUnitRegion(gt_WarzoneAmmoMarine3, UnitRefFromVariable("gv_registrationUnit"), RegionFromId(20), true);
+        TriggerAddEventUnitRegion(gt_WarzoneAmmoMarine4, UnitRefFromVariable("gv_registrationUnit"), RegionFromId(21), true);
+        TriggerAddEventUnitRangePoint(gt_PlayerReachesPeacekeepers, UnitRefFromVariable("gv_registrationUnit"), gv_peacekeeperHoldout, 10.0, true);
+        TriggerAddEventUnitRangePoint(gt_PlayerReturntoPeacekeeperHoldout, UnitRefFromVariable("gv_registrationUnit"), gv_peacekeeperHoldout, 8.0, true);
+        TriggerAddEventUnitRangePoint(gt_PlayerRescuesCivilians, UnitRefFromVariable("gv_registrationUnit"), gv_civilianRescuePoint, 10.0, true);
+        TriggerAddEventUnitRangePoint(gt_PlayersFailtoRescue, UnitRefFromVariable("gv_registrationUnit"), gv_civilianRescuePoint, 10.0, true);
+        TriggerAddEventUnitRegion(gt_ArmoryDoor, UnitRefFromVariable("gv_registrationUnit"), RegionFromId(25), true);
+        TriggerAddEventUnitRangePoint(gt_TeamReachesReactor, UnitRefFromVariable("gv_registrationUnit"), PointFromId(3280), 10.0, true);
+        TriggerAddEventUnitRangePoint(gt_LabEntranceChatter, UnitRefFromVariable("gv_registrationUnit"), PointFromId(4635), 4.0, true);
+        TriggerAddEventUnitRangePoint(gt_ReceptionAreaTransmission, UnitRefFromVariable("gv_registrationUnit"), PointFromId(4570), 6.0, true);
+        TriggerAddEventUnitRangePoint(gt_InfestationResearchTransmission, UnitRefFromVariable("gv_registrationUnit"), PointFromId(4573), 5.0, true);
+        TriggerAddEventUnitRangePoint(gt_CharliePen, UnitRefFromVariable("gv_registrationUnit"), PointFromId(4572), gv_distancetoDiscover, true);
+        TriggerAddEventUnitRangePoint(gt_DemeterWorkstation, UnitRefFromVariable("gv_registrationUnit"), PointFromId(4704), gv_distancetoDiscover, true);
+        TriggerAddEventUnitRangePoint(gt_DissectionWorkstation, UnitRefFromVariable("gv_registrationUnit"), PointFromId(4703), gv_distancetoDiscover, true);
+        TriggerAddEventUnitRangePoint(gt_PoolviewingDeck, UnitRefFromVariable("gv_registrationUnit"), PointFromId(4702), gv_distancetoDiscover, true);
+        TriggerAddEventUnitRangePoint(gt_WorkstationTX1, UnitRefFromVariable("gv_registrationUnit"), PointFromId(4699), gv_distancetoDiscover, true);
+        TriggerAddEventUnitRangePoint(gt_CharlieEscapeHole, UnitRefFromVariable("gv_registrationUnit"), PointFromId(4636), (3.0 * gv_distancetoDiscover), true);
     }
     return true;
 }
@@ -2731,6 +2722,7 @@ bool gt_ExtractionEndSuccess_Func (bool testConds, bool runActions) {
 
     TriggerEnable(TriggerGetCurrent(), false);
     TriggerEnable(gt_PeriodicZombieAttacksCivilianExtraction, false);
+    TriggerEnable(gt_ParatrooperLoot, false);
     libNtve_gf_UnitCreateFacingPoint(1, "AuroraDropshipFlying", 0, lib1E3F036D_gv_peacekeeperPlayer, PointWithOffsetPolar(gv_extractionLocation, 60.0, libNtve_gf_RandomAngle()), gv_extractionLocation);
     lv_dropship = UnitLastCreated();
     UnitSetState(lv_dropship, c_unitStateInvulnerable, true);
@@ -2805,6 +2797,7 @@ bool gt_ExtractionEndFailure_Func (bool testConds, bool runActions) {
 
     TriggerEnable(TriggerGetCurrent(), false);
     TriggerEnable(gt_PeriodicZombieAttacksCivilianExtraction, false);
+    TriggerEnable(gt_ParatrooperLoot, false);
     AIRemoveGroupFromAnyWaves(gv_paratroopers);
     AIRemoveGroupFromAnyWaves(gv_peacekeepers);
     AIAttackWaveUseGroup(lib1E3F036D_gv_peacekeeperPlayer, gv_peacekeepers);
