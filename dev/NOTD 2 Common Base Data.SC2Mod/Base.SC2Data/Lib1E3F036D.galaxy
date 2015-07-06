@@ -34,7 +34,8 @@ void lib1E3F036D_InitVariables () {
 // Function Declarations
 void lib1E3F036D_gf_CreateTeamUI ();
 void lib1E3F036D_gf_CreatePlayerFrame (int lp_teamUIDialog);
-void lib1E3F036D_gf_SetDifficulty (int lp_gameDifficulty);
+void lib1E3F036D_gf_SetGameDifficultyforPlayerGroup (playergroup lp_players, int lp_difficulty);
+void lib1E3F036D_gf_SetGameDifficulty (int lp_player, int lp_gameDifficulty);
 int lib1E3F036D_gf_GameDifficultyInteger (int lp_recruit, int lp_normal, int lp_nightmare);
 fixed lib1E3F036D_gf_GameDifficultyReal (fixed lp_recruit, fixed lp_normal, fixed lp_nightmare);
 int lib1E3F036D_gf_GameType ();
@@ -79,43 +80,33 @@ void lib1E3F036D_gf_CreatePlayerFrame (int lp_teamUIDialog) {
     libNtve_gf_SetDialogItemUnit(lv_unitStatus, UnitLastCreated(), PlayerGroupAll());
 }
 
-void lib1E3F036D_gf_SetDifficulty (int lp_gameDifficulty) {
+void lib1E3F036D_gf_SetGameDifficultyforPlayerGroup (playergroup lp_players, int lp_difficulty) {
+    // Implementation
+    PlayerGroupLoopBegin(lp_players);
+    for ( ; !PlayerGroupLoopDone() ; PlayerGroupLoopStep() ) {
+        lib1E3F036D_gf_SetGameDifficulty(PlayerGroupLoopCurrent(), lp_difficulty);
+    }
+    PlayerGroupLoopEnd();
+}
+
+void lib1E3F036D_gf_SetGameDifficulty (int lp_player, int lp_gameDifficulty) {
     int auto638297DE_val;
 
     // Implementation
     auto638297DE_val = lp_gameDifficulty;
     if (auto638297DE_val == 0) {
-        PlayerGroupLoopBegin(PlayerGroupAll());
-        for ( ; !PlayerGroupLoopDone() ; PlayerGroupLoopStep() ) {
-            libNtve_gf_SetUpgradeLevelForPlayer(PlayerGroupLoopCurrent(), "GameDifficulty", 0);
-            PlayerSetDifficulty(PlayerGroupLoopCurrent(), lp_gameDifficulty);
-        }
-        PlayerGroupLoopEnd();
+        libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "GameDifficulty", 0);
     }
     else if (auto638297DE_val == 1) {
-        PlayerGroupLoopBegin(PlayerGroupAll());
-        for ( ; !PlayerGroupLoopDone() ; PlayerGroupLoopStep() ) {
-            libNtve_gf_SetUpgradeLevelForPlayer(PlayerGroupLoopCurrent(), "GameDifficulty", 1);
-            PlayerSetDifficulty(PlayerGroupLoopCurrent(), lp_gameDifficulty);
-        }
-        PlayerGroupLoopEnd();
+        libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "GameDifficulty", 1);
     }
     else if (auto638297DE_val == 2) {
-        PlayerGroupLoopBegin(PlayerGroupAll());
-        for ( ; !PlayerGroupLoopDone() ; PlayerGroupLoopStep() ) {
-            libNtve_gf_SetUpgradeLevelForPlayer(PlayerGroupLoopCurrent(), "GameDifficulty", 2);
-            PlayerSetDifficulty(PlayerGroupLoopCurrent(), lp_gameDifficulty);
-        }
-        PlayerGroupLoopEnd();
+        libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "GameDifficulty", 2);
     }
     else {
-        PlayerGroupLoopBegin(PlayerGroupAll());
-        for ( ; !PlayerGroupLoopDone() ; PlayerGroupLoopStep() ) {
-            libNtve_gf_SetUpgradeLevelForPlayer(PlayerGroupLoopCurrent(), "GameDifficulty", 0);
-            PlayerSetDifficulty(PlayerGroupLoopCurrent(), lp_gameDifficulty);
-        }
-        PlayerGroupLoopEnd();
+        libNtve_gf_SetUpgradeLevelForPlayer(PlayerGroupLoopCurrent(), "GameDifficulty", 0);
     }
+    PlayerSetDifficulty(lp_player, lp_gameDifficulty);
 }
 
 int lib1E3F036D_gf_GameDifficultyInteger (int lp_recruit, int lp_normal, int lp_nightmare) {

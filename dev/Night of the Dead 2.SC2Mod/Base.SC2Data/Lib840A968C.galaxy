@@ -211,14 +211,11 @@ void lib840A968C_gf_FieldLightDropPoolItemSpawn (point lp_location);
 void lib840A968C_gf_AmmoModificationDropPoolItemSpawn (point lp_location);
 void lib840A968C_gf_MagazineDropPoolItemSpawn (point lp_location);
 void lib840A968C_gf_SpawnItem (point lp_point, string lp_item, int lp_spawnType);
-void lib840A968C_gf_AIIntialize ();
-void lib840A968C_gf_PlayerOptionsOverride ();
 void lib840A968C_gf_PlayerSetup ();
 void lib840A968C_gf_DefaultAllianceStates ();
-void lib840A968C_gf_SetGameDifficulty ();
-void lib840A968C_gf_GameDifficultyHPAdjustment ();
 bool lib840A968C_gf_PlayerHasClassUnlocked (int lp_player, int lp_classSlot);
 void lib840A968C_gf_ClassUnlocked (int lp_classSlot);
+void lib840A968C_gf_SetGameDifficulty ();
 void lib840A968C_gf_CreateDifficultySelection ();
 bool lib840A968C_gf_GetMissionType (string lp_mission);
 trigger lib840A968C_gf_GetMissionProgression (int lp_missionToken);
@@ -274,7 +271,6 @@ void lib840A968C_gf_AssertBankSave ();
 void lib840A968C_gf_AssertXPAward ();
 void lib840A968C_gf_AssertMarineExperienceAward ();
 void lib840A968C_gf_AssertClassCreation ();
-void lib840A968C_gf_SetLoggingOutput ();
 bool lib840A968C_gf_IsaDeveloper (string lp_handle);
 
 // Trigger Declarations
@@ -288,6 +284,9 @@ trigger lib840A968C_gt_AmbientAttacksOnPlayers;
 trigger lib840A968C_gt_RiotModeCheck;
 trigger lib840A968C_gt_ActivateHorde;
 trigger lib840A968C_gt_Intialization;
+trigger lib840A968C_gt_PlayerOptionsOverride;
+trigger lib840A968C_gt_AIIntialize;
+trigger lib840A968C_gt_SetLogging;
 trigger lib840A968C_gt_GameStart;
 trigger lib840A968C_gt_PlayerLeavestheGame;
 trigger lib840A968C_gt_Victory;
@@ -317,7 +316,6 @@ trigger lib840A968C_gt_RunUnitTests;
 trigger lib840A968C_gt_ForceHordeMode;
 trigger lib840A968C_gt_SetChapter;
 trigger lib840A968C_gt_DeveloperGodMode;
-trigger lib840A968C_gt_StartGameClassSelection;
 trigger lib840A968C_gt_MissionRewards;
 trigger lib840A968C_gt_DisplayPlayerStats;
 trigger lib840A968C_gt_SkipClassSelection;
@@ -864,37 +862,11 @@ bool auto_lib840A968C_gf_SpawnItem_TriggerFunc (bool testConds, bool runActions)
     return true;
 }
 
-void lib840A968C_gf_AIIntialize () {
-    // Implementation
-    CampaignInitAI();
-    AISetDifficulty(lib1E3F036D_gv_zombiePlayer, c_diffPressForward, true);
-    AISetDifficulty(lib1E3F036D_gv_zombiePlayer, c_diffFleeDamage, true);
-    AISetDifficulty(lib1E3F036D_gv_zombiePlayer, c_diffWaveAvoidDanger, true);
-    AISetDifficulty(lib1E3F036D_gv_peacekeeperPlayer, c_diffPressForward, true);
-    AISetDifficulty(lib1E3F036D_gv_peacekeeperPlayer, c_diffFleeDamage, true);
-    AISetDifficulty(lib1E3F036D_gv_peacekeeperPlayer, c_diffWaveAvoidDanger, true);
-    AISetBullyAttackWavePercent(0, lib1E3F036D_gv_zombiePlayer);
-}
-
-void lib840A968C_gf_PlayerOptionsOverride () {
-    // Implementation
-    HelpPanelEnableTechTreeButton(PlayerGroupAll(), false);
-    PlayerGroupLoopBegin(PlayerGroupAll());
-    for ( ; !PlayerGroupLoopDone() ; PlayerGroupLoopStep() ) {
-        TechTreeRestrictionsEnable(PlayerGroupLoopCurrent(), true);
-        PlayerOptionOverride(PlayerGroupLoopCurrent(), "gametooltips", "1");
-        PlayerOptionOverride(PlayerGroupLoopCurrent(), "selectuncontrolable", "1");
-        PlayerOptionOverride(PlayerGroupLoopCurrent(), "simplecommandcard", "0");
-        PlayerOptionOverride(PlayerGroupLoopCurrent(), "showmissiontime", "1");
-        PlayerOptionOverride(PlayerGroupLoopCurrent(), "worldobjecttooltips", "1");
-        PlayerOptionOverride(PlayerGroupLoopCurrent(), "showalerts", "1");
-    }
-    PlayerGroupLoopEnd();
-}
-
 void lib840A968C_gf_PlayerSetup () {
     playergroup auto8264CA4E_g;
     int auto8264CA4E_p;
+    playergroup auto47A70290_g;
+    int auto47A70290_p;
 
     // Variable Declarations
     int lv_player;
@@ -909,10 +881,15 @@ void lib840A968C_gf_PlayerSetup () {
         PlayerGroupAdd(lib840A968C_gv_marineSquad, lv_player);
         TextExpressionSetToken("Param/Expression/lib_840A968C_46716C7E", "A", PlayerName(lv_player));
         TriggerDebugOutput(lib840A968C_gv_playerEvents, TextExpressionAssemble("Param/Expression/lib_840A968C_46716C7E"), false);
-        lib840A968C_gv_players[lv_player].lv_gamesPlayed += 1;
     }
     lib840A968C_gf_LoadBanks();
     libNtve_gf_AddPlayerGroupToPlayerGroup(lib840A968C_gv_marineSquad, lib840A968C_gv_livingMarines);
+    auto47A70290_g = lib840A968C_gv_livingMarines; 
+    auto47A70290_p = 1;
+    for ( ; auto47A70290_p <= PlayerGroupCount(auto47A70290_g) ; auto47A70290_p += BoolToInt(lv_player == PlayerGroupPlayer(auto47A70290_g, auto47A70290_p)) ) {
+        lv_player = PlayerGroupPlayer(auto47A70290_g, auto47A70290_p);
+        lib840A968C_gv_players[lv_player].lv_gamesPlayed += 1;
+    }
     lib840A968C_gf_ApplyPlayerCustomization();
 }
 
@@ -939,34 +916,6 @@ void lib840A968C_gf_DefaultAllianceStates () {
     PlayerSetColorIndex(lib1E3F036D_gv_mercenaryPlayer, 1, true);
     PlayerSetColorIndex(lib1E3F036D_gv_mechanicalPlayer, 14, true);
     PlayerSetColorIndex(lib1E3F036D_gv_hALPlayer, 6, true);
-}
-
-void lib840A968C_gf_SetGameDifficulty () {
-    // Variable Declarations
-    fixed lv_totalRating;
-
-    // Variable Initialization
-
-    // Implementation
-    PlayerGroupLoopBegin(lib840A968C_gv_marineSquad);
-    for ( ; !PlayerGroupLoopDone() ; PlayerGroupLoopStep() ) {
-        lib840A968C_gv_players[PlayerGroupLoopCurrent()].lv_currentRank = UserDataInstance("Ranks", lib840A968C_gv_players[PlayerGroupLoopCurrent()].lv_currentRankIndex);
-        lib840A968C_gf_RatingBonusAdjustment(PlayerGroupLoopCurrent());
-    }
-    PlayerGroupLoopEnd();
-    TriggerDebugOutput(lib840A968C_gv_gameEvents, StringExternal("Param/Value/lib_840A968C_3C6819BA"), false);
-    PlayerGroupLoopBegin(lib840A968C_gv_marineSquad);
-    for ( ; !PlayerGroupLoopDone() ; PlayerGroupLoopStep() ) {
-        lv_totalRating += lib840A968C_gv_players[PlayerGroupLoopCurrent()].lv_rating;
-    }
-    PlayerGroupLoopEnd();
-    lib1E3F036D_gf_SetDifficulty(lib840A968C_gv_difficulty);
-    lib840A968C_gv_squadRating = RoundI((lv_totalRating / PlayerGroupCount(lib840A968C_gv_marineSquad)));
-    lib840A968C_gf_GameDifficultyHPAdjustment();
-}
-
-void lib840A968C_gf_GameDifficultyHPAdjustment () {
-    // Implementation
 }
 
 bool lib840A968C_gf_PlayerHasClassUnlocked (int lp_player, int lp_classSlot) {
@@ -1000,6 +949,29 @@ void lib840A968C_gf_ClassUnlocked (int lp_classSlot) {
         }
     }
     PlayerGroupLoopEnd();
+}
+
+void lib840A968C_gf_SetGameDifficulty () {
+    // Variable Declarations
+    fixed lv_totalRating;
+
+    // Variable Initialization
+
+    // Implementation
+    PlayerGroupLoopBegin(lib840A968C_gv_marineSquad);
+    for ( ; !PlayerGroupLoopDone() ; PlayerGroupLoopStep() ) {
+        lib840A968C_gv_players[PlayerGroupLoopCurrent()].lv_currentRank = UserDataInstance("Ranks", lib840A968C_gv_players[PlayerGroupLoopCurrent()].lv_currentRankIndex);
+        lib840A968C_gf_RatingBonusAdjustment(PlayerGroupLoopCurrent());
+    }
+    PlayerGroupLoopEnd();
+    TriggerDebugOutput(lib840A968C_gv_gameEvents, StringExternal("Param/Value/lib_840A968C_3C6819BA"), false);
+    PlayerGroupLoopBegin(lib840A968C_gv_marineSquad);
+    for ( ; !PlayerGroupLoopDone() ; PlayerGroupLoopStep() ) {
+        lv_totalRating += lib840A968C_gv_players[PlayerGroupLoopCurrent()].lv_rating;
+    }
+    PlayerGroupLoopEnd();
+    lib1E3F036D_gf_SetGameDifficultyforPlayerGroup(PlayerGroupAll(), lib840A968C_gv_difficulty);
+    lib840A968C_gv_squadRating = RoundI((lv_totalRating / PlayerGroupCount(lib840A968C_gv_marineSquad)));
 }
 
 void lib840A968C_gf_CreateDifficultySelection () {
@@ -1168,6 +1140,8 @@ void lib840A968C_gf_SpawnPet (int lp_player, fixed lp_deadMarineExperience, poin
     libNtve_gf_CreateUnitsWithDefaultFacing(1, lib840A968C_gv_players[lp_player].lv_classCustomization.lv_pet, 0, lp_player, lp_spawnPosition);
     libC50FD636_gv_marines[lp_player].lv_unit = UnitLastCreated();
     UnitSetPropertyFixed(UnitLastCreated(), c_unitPropXP, (0.4 * lp_deadMarineExperience));
+    UnitControlGroupAddUnit(lp_player, 1, UnitLastCreated());
+    UnitSelect(UnitLastCreated(), lp_player, true);
 }
 
 void lib840A968C_gf_DropEquippedMagazines (point lp_dropPoint, int lp_numberofMagazines) {
@@ -1707,16 +1681,6 @@ void lib840A968C_gf_AssertClassCreation () {
     lib840A968C_gf_Assert(FixedToString(UnitGetPropertyFixed(libC50FD636_gv_marines[1].lv_unit, c_unitPropLevel, c_unitPropCurrent), c_fixedPrecisionAny), "1", "Marine Experience: ");
 }
 
-void lib840A968C_gf_SetLoggingOutput () {
-    // Implementation
-    TriggerDebugSetTypeFile(lib840A968C_gv_gameEvents, lib840A968C_gv_gameEventLogFile);
-    TriggerDebugSetTypeFile(lib840A968C_gv_playerEvents, lib840A968C_gv_playerEventsLogFile);
-    TriggerDebugSetTypeFile(lib840A968C_gv_bossEvents, lib840A968C_gv_bossEventLogFile);
-    TriggerDebugSetTypeFile(lib840A968C_gv_summary, lib840A968C_gv_summaryLogFile);
-    TriggerDebugSetTypeFile(lib840A968C_gv_asserts, lib840A968C_gv_assertsLogFile);
-    TriggerDebugSetTypeFile(lib840A968C_gv_banks, lib840A968C_gv_bankLogFile);
-}
-
 bool lib840A968C_gf_IsaDeveloper (string lp_handle) {
     // Implementation
     return (StringEqual("6-S2-1-750760", lp_handle, c_stringCase) || StringEqual("1-S2-1-3765578", lp_handle, c_stringCase) || StringEqual("1-S2-1-431521", lp_handle, c_stringCase) || StringEqual("1-S2-1-1143628", lp_handle, c_stringCase));
@@ -2001,9 +1965,6 @@ bool lib840A968C_gt_Intialization_Func (bool testConds, bool runActions) {
     }
 
     lib840A968C_gf_PlayerSetup();
-    lib840A968C_gf_PlayerOptionsOverride();
-    lib840A968C_gf_AIIntialize();
-    lib840A968C_gf_SetLoggingOutput();
     libC50FD636_gf_IntializeTalentMax();
     lib840A968C_gf_DefaultAllianceStates();
     lib840A968C_gv_gameSetupComplete = true;
@@ -2014,6 +1975,86 @@ bool lib840A968C_gt_Intialization_Func (bool testConds, bool runActions) {
 void lib840A968C_gt_Intialization_Init () {
     lib840A968C_gt_Intialization = TriggerCreate("lib840A968C_gt_Intialization_Func");
     TriggerAddEventMapInit(lib840A968C_gt_Intialization);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Player Options Override
+//--------------------------------------------------------------------------------------------------
+bool lib840A968C_gt_PlayerOptionsOverride_Func (bool testConds, bool runActions) {
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    HelpPanelEnableTechTreeButton(PlayerGroupAll(), false);
+    PlayerGroupLoopBegin(PlayerGroupAll());
+    for ( ; !PlayerGroupLoopDone() ; PlayerGroupLoopStep() ) {
+        TechTreeRestrictionsEnable(PlayerGroupLoopCurrent(), true);
+        PlayerOptionOverride(PlayerGroupLoopCurrent(), "gametooltips", "1");
+        PlayerOptionOverride(PlayerGroupLoopCurrent(), "selectuncontrolable", "1");
+        PlayerOptionOverride(PlayerGroupLoopCurrent(), "simplecommandcard", "0");
+        PlayerOptionOverride(PlayerGroupLoopCurrent(), "showmissiontime", "1");
+        PlayerOptionOverride(PlayerGroupLoopCurrent(), "worldobjecttooltips", "1");
+        PlayerOptionOverride(PlayerGroupLoopCurrent(), "showalerts", "1");
+    }
+    PlayerGroupLoopEnd();
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib840A968C_gt_PlayerOptionsOverride_Init () {
+    lib840A968C_gt_PlayerOptionsOverride = TriggerCreate("lib840A968C_gt_PlayerOptionsOverride_Func");
+    TriggerAddEventMapInit(lib840A968C_gt_PlayerOptionsOverride);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: AI Intialize
+//--------------------------------------------------------------------------------------------------
+bool lib840A968C_gt_AIIntialize_Func (bool testConds, bool runActions) {
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    CampaignInitAI();
+    AISetDifficulty(lib1E3F036D_gv_zombiePlayer, c_diffPressForward, true);
+    AISetDifficulty(lib1E3F036D_gv_zombiePlayer, c_diffFleeDamage, true);
+    AISetDifficulty(lib1E3F036D_gv_zombiePlayer, c_diffWaveAvoidDanger, true);
+    AISetDifficulty(lib1E3F036D_gv_peacekeeperPlayer, c_diffPressForward, true);
+    AISetDifficulty(lib1E3F036D_gv_peacekeeperPlayer, c_diffFleeDamage, true);
+    AISetDifficulty(lib1E3F036D_gv_peacekeeperPlayer, c_diffWaveAvoidDanger, true);
+    AISetBullyAttackWavePercent(0, lib1E3F036D_gv_zombiePlayer);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib840A968C_gt_AIIntialize_Init () {
+    lib840A968C_gt_AIIntialize = TriggerCreate("lib840A968C_gt_AIIntialize_Func");
+    TriggerAddEventMapInit(lib840A968C_gt_AIIntialize);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Set Logging
+//--------------------------------------------------------------------------------------------------
+bool lib840A968C_gt_SetLogging_Func (bool testConds, bool runActions) {
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TriggerDebugSetTypeFile(lib840A968C_gv_gameEvents, lib840A968C_gv_gameEventLogFile);
+    TriggerDebugSetTypeFile(lib840A968C_gv_playerEvents, lib840A968C_gv_playerEventsLogFile);
+    TriggerDebugSetTypeFile(lib840A968C_gv_bossEvents, lib840A968C_gv_bossEventLogFile);
+    TriggerDebugSetTypeFile(lib840A968C_gv_summary, lib840A968C_gv_summaryLogFile);
+    TriggerDebugSetTypeFile(lib840A968C_gv_asserts, lib840A968C_gv_assertsLogFile);
+    TriggerDebugSetTypeFile(lib840A968C_gv_banks, lib840A968C_gv_bankLogFile);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib840A968C_gt_SetLogging_Init () {
+    lib840A968C_gt_SetLogging = TriggerCreate("lib840A968C_gt_SetLogging_Func");
+    TriggerAddEventMapInit(lib840A968C_gt_SetLogging);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -2383,7 +2424,7 @@ bool lib840A968C_gt_EventRegistrationForMarineUnits_Func (bool testConds, bool r
     UnitGroupLoopBegin(lib840A968C_gf_GetMarineGroup());
     for ( ; !UnitGroupLoopDone() ; UnitGroupLoopStep() ) {
         TriggerAddEventUnitDied(lib840A968C_gt_PlayerMarineDies, UnitRefFromUnit(UnitGroupLoopCurrent()));
-        TriggerAddEventUnitSelected(libC50FD636_gt_DisplayAmmoBarOnSelection, UnitRefFromUnit(UnitGroupLoopCurrent()), c_playerAny, true);
+        TriggerAddEventUnitSelected(libC50FD636_gt_DisplayAmmoBarOnSelection, UnitRefFromUnit(UnitGroupLoopCurrent()), UnitGetOwner(UnitGroupLoopCurrent()), true);
         TriggerAddEventUnitSelected(libC50FD636_gt_DisplayInventoryOnSelection, UnitRefFromUnit(UnitGroupLoopCurrent()), c_playerAny, true);
         TriggerAddEventUnitDamaged(lib840A968C_gt_RatingLossfromFriendlyFire, UnitRefFromUnit(UnitGroupLoopCurrent()), c_unitDamageTypeAny, c_unitDamageEither, null);
         TriggerAddEventUnitDamaged(lib840A968C_gt_HitsUpdate, UnitRefFromUnit(UnitGroupLoopCurrent()), c_unitDamageTypeAny, c_unitDamageEither, null);
@@ -2569,6 +2610,8 @@ bool lib840A968C_gt_PlayerMarineDies_Func (bool testConds, bool runActions) {
     }
 
     PlayerGroupRemove(lib840A968C_gv_livingMarines, lv_deadPlayer);
+    libC50FD636_gf_DestroyAmmoDisplay(lv_deadPlayer);
+    libC50FD636_gf_DisableTalentTree(lv_deadPlayer);
     IntLoopBegin(1, lib840A968C_gv_numberofPlayers);
     for ( ; !IntLoopDone() ; IntLoopStep() ) {
         if ((TimerGetDuration(lib840A968C_gv_damageNearDeathPenaltyTimer[IntLoopCurrent()][lv_deadPlayer]) > 0.0)) {
@@ -3163,34 +3206,6 @@ void lib840A968C_gt_DeveloperGodMode_Init () {
 }
 
 //--------------------------------------------------------------------------------------------------
-// Trigger: Start Game/Class Selection
-//--------------------------------------------------------------------------------------------------
-bool lib840A968C_gt_StartGameClassSelection_Func (bool testConds, bool runActions) {
-    // Conditions
-    if (testConds) {
-        if (!((lib840A968C_gf_IsaDeveloper(PlayerHandle(EventPlayer())) || GameIsTestMap(false)))) {
-            return false;
-        }
-    }
-
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    libC50FD636_gf_IntializeTalentMax();
-    lib840A968C_gf_SetGameDifficulty();
-    TriggerSendEvent(lib840A968C_gv_classSelectionEvent);
-    return true;
-}
-
-//--------------------------------------------------------------------------------------------------
-void lib840A968C_gt_StartGameClassSelection_Init () {
-    lib840A968C_gt_StartGameClassSelection = TriggerCreate("lib840A968C_gt_StartGameClassSelection_Func");
-    TriggerAddEventChatMessage(lib840A968C_gt_StartGameClassSelection, c_playerAny, "Start", true);
-}
-
-//--------------------------------------------------------------------------------------------------
 // Trigger: Mission Rewards
 //--------------------------------------------------------------------------------------------------
 bool lib840A968C_gt_MissionRewards_Func (bool testConds, bool runActions) {
@@ -3515,6 +3530,9 @@ void lib840A968C_InitTriggers () {
     lib840A968C_gt_RiotModeCheck_Init();
     lib840A968C_gt_ActivateHorde_Init();
     lib840A968C_gt_Intialization_Init();
+    lib840A968C_gt_PlayerOptionsOverride_Init();
+    lib840A968C_gt_AIIntialize_Init();
+    lib840A968C_gt_SetLogging_Init();
     lib840A968C_gt_GameStart_Init();
     lib840A968C_gt_PlayerLeavestheGame_Init();
     lib840A968C_gt_Victory_Init();
@@ -3544,7 +3562,6 @@ void lib840A968C_InitTriggers () {
     lib840A968C_gt_ForceHordeMode_Init();
     lib840A968C_gt_SetChapter_Init();
     lib840A968C_gt_DeveloperGodMode_Init();
-    lib840A968C_gt_StartGameClassSelection_Init();
     lib840A968C_gt_MissionRewards_Init();
     lib840A968C_gt_DisplayPlayerStats_Init();
     lib840A968C_gt_SkipClassSelection_Init();

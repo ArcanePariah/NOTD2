@@ -393,6 +393,7 @@
     </CActorRange>
     <CActorModel id="LightningField" parent="ModelAnimationStyleOneShot">
         <EditorCategories value=""/>
+        <On Terms="Abil.LightningField.SourceCastStart" Send="Create"/>
     </CActorModel>
     <CActorAction id="LittleBuster" parent="GenericAttack" effectImpact="LittleBusterDamageSearch" effectLaunch="LittleBuster">
         <EditorCategories value=""/>
@@ -465,6 +466,7 @@
     </CActorAction>
     <CActorMissile id="PiranhaMissileAttackMissile" parent="GenericAttackMissile" unitName="PiranhaMissileWeapon">
         <EditorCategories value=""/>
+        <Scale value="0.500000"/>
     </CActorMissile>
     <CActorAction id="PiranhaMissileAttack" parent="GenericAttack" effectImpact="PiranhaMissileDamage" effectLaunch="PiranhaMissile">
         <EditorCategories value=""/>
@@ -473,6 +475,7 @@
         <EditorCategories value=""/>
         <HighlightTooltip value="Unit/Name/Bogus"/>
         <LifeArmorIcon value="Assets\Textures\btn-upgrade-terran-vehicleplatinglevel0.dds"/>
+        <WalkAnimMoveSpeed value="2.5"/>
     </CActorUnit>
     <CActorModel id="ProvokeInitial" parent="ModelAnimationStyleContinuous">
         <EditorCategories value=""/>

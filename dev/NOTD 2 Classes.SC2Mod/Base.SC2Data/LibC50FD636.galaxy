@@ -122,6 +122,7 @@ int libC50FD636_gf_EquipmentGetItemWeight (int lp_ownerofEquipment, unit lp_item
 void libC50FD636_gf_UpdateNumberofMagazines (int lp_player, int lp_change);
 void libC50FD636_gf_UpdateAmmoMax (int lp_player);
 void libC50FD636_gf_CreateAmmoDisplay (int lp_player);
+void libC50FD636_gf_DestroyAmmoDisplay (int lp_player);
 void libC50FD636_gf_IntializeTalentMax ();
 bool libC50FD636_gf_TalentSelectionOption (int lp_tree, int lp_talent, int lp_talentPlayer);
 bool libC50FD636_gf_TalentTreeSelected (int lp_dialogItem);
@@ -129,6 +130,7 @@ bool libC50FD636_gf_TalentTreeAccess (int lp_talentTreePlayer, int lp_selectingP
 void libC50FD636_gf_UpdateTalentAbility (int lp_itemNo, int lp_triggPlayer, int lp_talentTree);
 void libC50FD636_gf_UpdateTalentSystem (int lp_talent, int lp_talentPlayer, int lp_talentTree);
 void libC50FD636_gf_UpdateAvailableTalents (int lp_dialogItem, int lp_text);
+void libC50FD636_gf_DisableTalentTree (int lp_player);
 void libC50FD636_gf_UpdateTalentText (int lp_talent, int lp_triggPlayer, int lp_tree);
 void libC50FD636_gf_UpdateTalentImage (int lp_talent, int lp_triggPlayer, int lp_tree);
 void libC50FD636_gf_UpdateAllTalentImages (int lp_triggPlayer);
@@ -197,8 +199,8 @@ trigger libC50FD636_gt_ExtendedMagazineUpgrade;
 trigger libC50FD636_gt_AmmoFeedUpgrade;
 trigger libC50FD636_gt_LevelUp;
 trigger libC50FD636_gt_TalentSelection;
-trigger libC50FD636_gt_TalentButtonHookup;
 trigger libC50FD636_gt_TalentTreeToggle;
+trigger libC50FD636_gt_TalentButtonHookup;
 trigger libC50FD636_gt_JumpUpgrade;
 trigger libC50FD636_gt_MedicalAssistanceUsage;
 trigger libC50FD636_gt_HeroTest;
@@ -511,6 +513,11 @@ bool auto_libC50FD636_gf_CreateAmmoDisplay_TriggerFunc (bool testConds, bool run
     return true;
 }
 
+void libC50FD636_gf_DestroyAmmoDisplay (int lp_player) {
+    // Implementation
+    DialogDestroy(libC50FD636_gv_ammoDisplay[lp_player].lv_ammoDialog);
+}
+
 void libC50FD636_gf_IntializeTalentMax () {
     // Implementation
     IntLoopBegin(1, libC50FD636_gv_numberofTalentTrees);
@@ -614,6 +621,11 @@ void libC50FD636_gf_UpdateTalentSystem (int lp_talent, int lp_talentPlayer, int 
 void libC50FD636_gf_UpdateAvailableTalents (int lp_dialogItem, int lp_text) {
     // Implementation
     libNtve_gf_SetDialogItemText(lp_dialogItem, (StringExternal("Param/Value/lib_C50FD636_12D31F0B") + IntToText(lp_text)), GameAttributePlayersForTeam(1));
+}
+
+void libC50FD636_gf_DisableTalentTree (int lp_player) {
+    // Implementation
+    DialogControlSetEnabled(libC50FD636_gv_talentButton, PlayerGroupSingle(lp_player), false);
 }
 
 void libC50FD636_gf_UpdateTalentText (int lp_talent, int lp_triggPlayer, int lp_tree) {
@@ -2334,11 +2346,6 @@ bool libC50FD636_gt_DisplayAmmoBarOnSelection_Func (bool testConds, bool runActi
         return true;
     }
 
-    UnitGroupLoopBegin(libC50FD636_gv_marinesUnitGroup);
-    for ( ; !UnitGroupLoopDone() ; UnitGroupLoopStep() ) {
-        DialogSetVisible(libC50FD636_gv_ammoDisplay[UnitGetOwner(UnitGroupLoopCurrent())].lv_ammoDialog, PlayerGroupSingle(EventPlayer()), false);
-    }
-    UnitGroupLoopEnd();
     DialogSetVisible(libC50FD636_gv_ammoDisplay[UnitGetOwner(EventUnit())].lv_ammoDialog, PlayerGroupSingle(EventPlayer()), true);
     return true;
 }
@@ -2657,27 +2664,6 @@ void libC50FD636_gt_TalentSelection_Init () {
 }
 
 //--------------------------------------------------------------------------------------------------
-// Trigger: Talent Button Hookup
-//--------------------------------------------------------------------------------------------------
-bool libC50FD636_gt_TalentButtonHookup_Func (bool testConds, bool runActions) {
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    DialogControlHookupStandard(c_triggerControlTypeButton, "UIContainer/FullscreenUpperContainer/MenuBar/TalentButton");
-    libC50FD636_gv_talentButton = DialogControlLastCreated();
-    TriggerAddEventDialogControl(libC50FD636_gt_TalentTreeToggle, c_playerAny, libC50FD636_gv_talentButton, c_triggerControlEventTypeClick);
-    return true;
-}
-
-//--------------------------------------------------------------------------------------------------
-void libC50FD636_gt_TalentButtonHookup_Init () {
-    libC50FD636_gt_TalentButtonHookup = TriggerCreate("libC50FD636_gt_TalentButtonHookup_Func");
-    TriggerAddEventMapInit(libC50FD636_gt_TalentButtonHookup);
-}
-
-//--------------------------------------------------------------------------------------------------
 // Trigger: Talent Tree Toggle
 //--------------------------------------------------------------------------------------------------
 bool libC50FD636_gt_TalentTreeToggle_Func (bool testConds, bool runActions) {
@@ -2704,6 +2690,27 @@ bool libC50FD636_gt_TalentTreeToggle_Func (bool testConds, bool runActions) {
 //--------------------------------------------------------------------------------------------------
 void libC50FD636_gt_TalentTreeToggle_Init () {
     libC50FD636_gt_TalentTreeToggle = TriggerCreate("libC50FD636_gt_TalentTreeToggle_Func");
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Talent Button Hookup
+//--------------------------------------------------------------------------------------------------
+bool libC50FD636_gt_TalentButtonHookup_Func (bool testConds, bool runActions) {
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    DialogControlHookupStandard(c_triggerControlTypeButton, "UIContainer/FullscreenUpperContainer/MenuBar/TalentButton");
+    libC50FD636_gv_talentButton = DialogControlLastCreated();
+    TriggerAddEventDialogControl(libC50FD636_gt_TalentTreeToggle, c_playerAny, libC50FD636_gv_talentButton, c_triggerControlEventTypeClick);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libC50FD636_gt_TalentButtonHookup_Init () {
+    libC50FD636_gt_TalentButtonHookup = TriggerCreate("libC50FD636_gt_TalentButtonHookup_Func");
+    TriggerAddEventMapInit(libC50FD636_gt_TalentButtonHookup);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -2915,8 +2922,8 @@ void libC50FD636_InitTriggers () {
     libC50FD636_gt_AmmoFeedUpgrade_Init();
     libC50FD636_gt_LevelUp_Init();
     libC50FD636_gt_TalentSelection_Init();
-    libC50FD636_gt_TalentButtonHookup_Init();
     libC50FD636_gt_TalentTreeToggle_Init();
+    libC50FD636_gt_TalentButtonHookup_Init();
     libC50FD636_gt_JumpUpgrade_Init();
     libC50FD636_gt_MedicalAssistanceUsage_Init();
     libC50FD636_gt_HeroTest_Init();

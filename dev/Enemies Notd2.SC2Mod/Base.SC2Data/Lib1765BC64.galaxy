@@ -90,7 +90,6 @@ unitgroup lib1765BC64_gf_GetLowLifeEnemies (unitgroup lp_scanGroup, fixed lp_lif
 order lib1765BC64_gf_EltradWaiting (int lp_player, unit lp_aiUnit, unitgroup lp_scanGroup);
 
 // Trigger Declarations
-trigger lib1765BC64_gt_ZombieSpawnerTest;
 trigger lib1765BC64_gt_ZombieSettings;
 trigger lib1765BC64_gt_SetupAmbientWave;
 trigger lib1765BC64_gt_OvergrownDamageReduction;
@@ -2138,114 +2137,6 @@ order lib1765BC64_gf_EltradWaiting (int lp_player, unit lp_aiUnit, unitgroup lp_
 
 // Triggers
 //--------------------------------------------------------------------------------------------------
-// Trigger: Zombie Spawner Test
-//--------------------------------------------------------------------------------------------------
-bool lib1765BC64_gt_ZombieSpawnerTest_Func (bool testConds, bool runActions) {
-    // Conditions
-    if (testConds) {
-        if (!(GameIsTestMap(false))) {
-            return false;
-        }
-    }
-
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    lib1E3F036D_gf_SetDifficulty(0);
-    lib1765BC64_gf_ZoneSpawning("AmbientSpawner", 24);
-    UnitGroupLoopBegin(lib1765BC64_gv_zombieSpawners);
-    for ( ; !UnitGroupLoopDone() ; UnitGroupLoopStep() ) {
-        UnitBehaviorRemove(UnitGroupLoopCurrent(), "ZombieUnitSpawnDisable", 1);
-    }
-    UnitGroupLoopEnd();
-    Wait(120.0, c_timeGame);
-    UnitGroupLoopBegin(UnitGroup("MarsColonistFemale2", c_playerAny, RegionEntireMap(), UnitFilter(0, 0, 0, 0), 0));
-    for ( ; !UnitGroupLoopDone() ; UnitGroupLoopStep() ) {
-        UnitKill(UnitGroupLoopCurrent());
-    }
-    UnitGroupLoopEnd();
-    UnitGroupLoopBegin(UnitGroup("MarsPrisoner2", c_playerAny, RegionEntireMap(), UnitFilter(0, 0, 0, 0), 0));
-    for ( ; !UnitGroupLoopDone() ; UnitGroupLoopStep() ) {
-        UnitKill(UnitGroupLoopCurrent());
-    }
-    UnitGroupLoopEnd();
-    UnitGroupLoopBegin(UnitGroup("MarsScientist2", c_playerAny, RegionEntireMap(), UnitFilter(0, 0, 0, 0), 0));
-    for ( ; !UnitGroupLoopDone() ; UnitGroupLoopStep() ) {
-        UnitKill(UnitGroupLoopCurrent());
-    }
-    UnitGroupLoopEnd();
-    UnitGroupLoopBegin(UnitGroup("MarsColonistMale2", c_playerAny, RegionEntireMap(), UnitFilter(0, 0, 0, 0), 0));
-    for ( ; !UnitGroupLoopDone() ; UnitGroupLoopStep() ) {
-        UnitKill(UnitGroupLoopCurrent());
-    }
-    UnitGroupLoopEnd();
-    if ((lib1765BC64_gv_zombieSpawners != UnitGroup(null, c_playerAny, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0))) {
-        TriggerDebugOutput(1, StringExternal("Param/Value/lib_1765BC64_972A0CE2"), true);
-    }
-    lib1E3F036D_gf_SetDifficulty(1);
-    UnitGroupLoopBegin(lib1765BC64_gv_zombieSpawners);
-    for ( ; !UnitGroupLoopDone() ; UnitGroupLoopStep() ) {
-        UnitBehaviorRemove(UnitGroupLoopCurrent(), "ZombieUnitSpawnDisable", 1);
-    }
-    UnitGroupLoopEnd();
-    Wait(120.0, c_timeGame);
-    UnitGroupLoopBegin(UnitGroup("MarsColonistFemale2", c_playerAny, RegionEntireMap(), UnitFilter(0, 0, 0, 0), 0));
-    for ( ; !UnitGroupLoopDone() ; UnitGroupLoopStep() ) {
-        UnitKill(UnitGroupLoopCurrent());
-    }
-    UnitGroupLoopEnd();
-    UnitGroupLoopBegin(UnitGroup("MarsPrisoner2", c_playerAny, RegionEntireMap(), UnitFilter(0, 0, 0, 0), 0));
-    for ( ; !UnitGroupLoopDone() ; UnitGroupLoopStep() ) {
-        UnitKill(UnitGroupLoopCurrent());
-    }
-    UnitGroupLoopEnd();
-    UnitGroupLoopBegin(UnitGroup("MarsScientist2", c_playerAny, RegionEntireMap(), UnitFilter(0, 0, 0, 0), 0));
-    for ( ; !UnitGroupLoopDone() ; UnitGroupLoopStep() ) {
-        UnitKill(UnitGroupLoopCurrent());
-    }
-    UnitGroupLoopEnd();
-    UnitGroupLoopBegin(UnitGroup("MarsColonistMale2", c_playerAny, RegionEntireMap(), UnitFilter(0, 0, 0, 0), 0));
-    for ( ; !UnitGroupLoopDone() ; UnitGroupLoopStep() ) {
-        UnitKill(UnitGroupLoopCurrent());
-    }
-    UnitGroupLoopEnd();
-    UnitGroupLoopBegin(UnitGroup("Hound", c_playerAny, RegionEntireMap(), UnitFilter(0, 0, 0, 0), 0));
-    for ( ; !UnitGroupLoopDone() ; UnitGroupLoopStep() ) {
-        UnitKill(UnitGroupLoopCurrent());
-    }
-    UnitGroupLoopEnd();
-    UnitGroupLoopBegin(UnitGroup("Stalker2", c_playerAny, RegionEntireMap(), UnitFilter(0, 0, 0, 0), 0));
-    for ( ; !UnitGroupLoopDone() ; UnitGroupLoopStep() ) {
-        UnitKill(UnitGroupLoopCurrent());
-    }
-    UnitGroupLoopEnd();
-    if ((lib1765BC64_gv_zombieSpawners != UnitGroup(null, c_playerAny, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0))) {
-        TriggerDebugOutput(1, StringExternal("Param/Value/lib_1765BC64_A9CBEFA1"), true);
-    }
-    lib1E3F036D_gf_SetDifficulty(2);
-    UnitGroupLoopBegin(lib1765BC64_gv_zombieSpawners);
-    for ( ; !UnitGroupLoopDone() ; UnitGroupLoopStep() ) {
-        UnitBehaviorRemove(UnitGroupLoopCurrent(), "ZombieUnitSpawnDisable", 1);
-    }
-    UnitGroupLoopEnd();
-    Wait(120.0, c_timeGame);
-    UnitGroupLoopBegin(UnitGroup(null, c_playerAny, RegionEntireMap(), UnitFilter(0, 0, 0, 0), 0));
-    for ( ; !UnitGroupLoopDone() ; UnitGroupLoopStep() ) {
-        UnitKill(UnitGroupLoopCurrent());
-    }
-    UnitGroupLoopEnd();
-    return true;
-}
-
-//--------------------------------------------------------------------------------------------------
-void lib1765BC64_gt_ZombieSpawnerTest_Init () {
-    lib1765BC64_gt_ZombieSpawnerTest = TriggerCreate("lib1765BC64_gt_ZombieSpawnerTest_Func");
-    TriggerAddEventChatMessage(lib1765BC64_gt_ZombieSpawnerTest, c_playerAny, "TestZombie", true);
-}
-
-//--------------------------------------------------------------------------------------------------
 // Trigger: Zombie Settings
 //--------------------------------------------------------------------------------------------------
 bool lib1765BC64_gt_ZombieSettings_Func (bool testConds, bool runActions) {
@@ -2351,7 +2242,6 @@ void lib1765BC64_gt_RadiationFieldUpgrade_Init () {
 }
 
 void lib1765BC64_InitTriggers () {
-    lib1765BC64_gt_ZombieSpawnerTest_Init();
     lib1765BC64_gt_ZombieSettings_Init();
     lib1765BC64_gt_SetupAmbientWave_Init();
     lib1765BC64_gt_OvergrownDamageReduction_Init();
