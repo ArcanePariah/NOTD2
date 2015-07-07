@@ -1569,31 +1569,31 @@ bool gt_RegisterMarineswithTriggers_Func (bool testConds, bool runActions) {
     autoA11C3D95_u = 1;
     for ( ; autoA11C3D95_u <= UnitGroupCount(autoA11C3D95_g, c_unitCountAll) ; autoA11C3D95_u += BoolToInt(gv_registrationUnit == UnitGroupUnit(autoA11C3D95_g, autoA11C3D95_u)) ) {
         gv_registrationUnit = UnitGroupUnit(autoA11C3D95_g, autoA11C3D95_u);
-        TriggerAddEventUnitRegion(gt_DeadBodiesDiscovered, UnitRefFromVariable("gv_registrationUnit"), RegionFromId(5), true);
-        TriggerAddEventUnitRegion(gt_MilitaryHQSpotted, UnitRefFromVariable("gv_registrationUnit"), RegionCircle(PointFromId(1930), 10.0), true);
-        TriggerAddEventUnitRegion(gt_EnteringMilitaryBase, UnitRefFromVariable("gv_registrationUnit"), RegionCircle(PointFromId(2070), 10.0), true);
-        TriggerAddEventUnitRegion(gt_CustomsLockup, UnitRefFromVariable("gv_registrationUnit"), RegionFromId(22), true);
-        TriggerAddEventUnitRegion(gt_WarzoneTransmission, UnitRefFromVariable("gv_registrationUnit"), RegionFromId(17), true);
-        TriggerAddEventUnitRegion(gt_WarzoneTransmission, UnitRefFromVariable("gv_registrationUnit"), RegionFromId(6), true);
-        TriggerAddEventUnitRegion(gt_WarzoneAmmoMarine1, UnitRefFromVariable("gv_registrationUnit"), RegionFromId(18), true);
-        TriggerAddEventUnitRegion(gt_WarzoneAmmoMarine2, UnitRefFromVariable("gv_registrationUnit"), RegionFromId(19), true);
-        TriggerAddEventUnitRegion(gt_WarzoneAmmoMarine3, UnitRefFromVariable("gv_registrationUnit"), RegionFromId(20), true);
-        TriggerAddEventUnitRegion(gt_WarzoneAmmoMarine4, UnitRefFromVariable("gv_registrationUnit"), RegionFromId(21), true);
-        TriggerAddEventUnitRangePoint(gt_PlayerReachesPeacekeepers, UnitRefFromVariable("gv_registrationUnit"), gv_peacekeeperHoldout, 10.0, true);
-        TriggerAddEventUnitRangePoint(gt_PlayerReturntoPeacekeeperHoldout, UnitRefFromVariable("gv_registrationUnit"), gv_peacekeeperHoldout, 8.0, true);
-        TriggerAddEventUnitRangePoint(gt_PlayerRescuesCivilians, UnitRefFromVariable("gv_registrationUnit"), gv_civilianRescuePoint, 10.0, true);
-        TriggerAddEventUnitRangePoint(gt_PlayersFailtoRescue, UnitRefFromVariable("gv_registrationUnit"), gv_civilianRescuePoint, 10.0, true);
-        TriggerAddEventUnitRegion(gt_ArmoryDoor, UnitRefFromVariable("gv_registrationUnit"), RegionFromId(25), true);
-        TriggerAddEventUnitRangePoint(gt_TeamReachesReactor, UnitRefFromVariable("gv_registrationUnit"), PointFromId(3280), 10.0, true);
-        TriggerAddEventUnitRangePoint(gt_LabEntranceChatter, UnitRefFromVariable("gv_registrationUnit"), PointFromId(4635), 4.0, true);
-        TriggerAddEventUnitRangePoint(gt_ReceptionAreaTransmission, UnitRefFromVariable("gv_registrationUnit"), PointFromId(4570), 6.0, true);
-        TriggerAddEventUnitRangePoint(gt_InfestationResearchTransmission, UnitRefFromVariable("gv_registrationUnit"), PointFromId(4573), 5.0, true);
-        TriggerAddEventUnitRangePoint(gt_CharliePen, UnitRefFromVariable("gv_registrationUnit"), PointFromId(4572), gv_distancetoDiscover, true);
-        TriggerAddEventUnitRangePoint(gt_DemeterWorkstation, UnitRefFromVariable("gv_registrationUnit"), PointFromId(4704), gv_distancetoDiscover, true);
-        TriggerAddEventUnitRangePoint(gt_DissectionWorkstation, UnitRefFromVariable("gv_registrationUnit"), PointFromId(4703), gv_distancetoDiscover, true);
-        TriggerAddEventUnitRangePoint(gt_PoolviewingDeck, UnitRefFromVariable("gv_registrationUnit"), PointFromId(4702), gv_distancetoDiscover, true);
-        TriggerAddEventUnitRangePoint(gt_WorkstationTX1, UnitRefFromVariable("gv_registrationUnit"), PointFromId(4699), gv_distancetoDiscover, true);
-        TriggerAddEventUnitRangePoint(gt_CharlieEscapeHole, UnitRefFromVariable("gv_registrationUnit"), PointFromId(4636), (3.0 * gv_distancetoDiscover), true);
+        TriggerAddEventUnitRegion(gt_DeadBodiesDiscovered, UnitRefFromUnit(lib09BE6BA8_gf_ReturnUnit(gv_registrationUnit)), RegionFromId(5), true);
+        TriggerAddEventUnitRegion(gt_MilitaryHQSpotted, UnitRefFromUnit(lib09BE6BA8_gf_ReturnUnit(gv_registrationUnit)), RegionCircle(PointFromId(1930), 10.0), true);
+        TriggerAddEventUnitRegion(gt_EnteringMilitaryBase, UnitRefFromUnit(lib09BE6BA8_gf_ReturnUnit(gv_registrationUnit)), RegionCircle(PointFromId(2070), 10.0), true);
+        TriggerAddEventUnitRegion(gt_CustomsLockup, UnitRefFromUnit(lib09BE6BA8_gf_ReturnUnit(gv_registrationUnit)), RegionFromId(22), true);
+        TriggerAddEventUnitRegion(gt_WarzoneTransmission, UnitRefFromUnit(lib09BE6BA8_gf_ReturnUnit(gv_registrationUnit)), RegionFromId(17), true);
+        TriggerAddEventUnitRegion(gt_WarzoneTransmission, UnitRefFromUnit(lib09BE6BA8_gf_ReturnUnit(gv_registrationUnit)), RegionFromId(6), true);
+        TriggerAddEventUnitRegion(gt_WarzoneAmmoMarine1, UnitRefFromUnit(lib09BE6BA8_gf_ReturnUnit(gv_registrationUnit)), RegionFromId(18), true);
+        TriggerAddEventUnitRegion(gt_WarzoneAmmoMarine2, UnitRefFromUnit(lib09BE6BA8_gf_ReturnUnit(gv_registrationUnit)), RegionFromId(19), true);
+        TriggerAddEventUnitRegion(gt_WarzoneAmmoMarine3, UnitRefFromUnit(lib09BE6BA8_gf_ReturnUnit(gv_registrationUnit)), RegionFromId(20), true);
+        TriggerAddEventUnitRegion(gt_WarzoneAmmoMarine4, UnitRefFromUnit(lib09BE6BA8_gf_ReturnUnit(gv_registrationUnit)), RegionFromId(21), true);
+        TriggerAddEventUnitRangePoint(gt_PlayerReachesPeacekeepers, UnitRefFromUnit(lib09BE6BA8_gf_ReturnUnit(gv_registrationUnit)), gv_peacekeeperHoldout, 10.0, true);
+        TriggerAddEventUnitRangePoint(gt_PlayerReturntoPeacekeeperHoldout, UnitRefFromUnit(lib09BE6BA8_gf_ReturnUnit(gv_registrationUnit)), gv_peacekeeperHoldout, 8.0, true);
+        TriggerAddEventUnitRangePoint(gt_PlayerRescuesCivilians, UnitRefFromUnit(lib09BE6BA8_gf_ReturnUnit(gv_registrationUnit)), gv_civilianRescuePoint, 10.0, true);
+        TriggerAddEventUnitRangePoint(gt_PlayersFailtoRescue, UnitRefFromUnit(lib09BE6BA8_gf_ReturnUnit(gv_registrationUnit)), gv_civilianRescuePoint, 10.0, true);
+        TriggerAddEventUnitRegion(gt_ArmoryDoor, UnitRefFromUnit(lib09BE6BA8_gf_ReturnUnit(gv_registrationUnit)), RegionFromId(25), true);
+        TriggerAddEventUnitRangePoint(gt_TeamReachesReactor, UnitRefFromUnit(lib09BE6BA8_gf_ReturnUnit(gv_registrationUnit)), PointFromId(3280), 10.0, true);
+        TriggerAddEventUnitRangePoint(gt_LabEntranceChatter, UnitRefFromUnit(lib09BE6BA8_gf_ReturnUnit(gv_registrationUnit)), PointFromId(4635), 4.0, true);
+        TriggerAddEventUnitRangePoint(gt_ReceptionAreaTransmission, UnitRefFromUnit(lib09BE6BA8_gf_ReturnUnit(gv_registrationUnit)), PointFromId(4570), 6.0, true);
+        TriggerAddEventUnitRangePoint(gt_InfestationResearchTransmission, UnitRefFromUnit(lib09BE6BA8_gf_ReturnUnit(gv_registrationUnit)), PointFromId(4573), 5.0, true);
+        TriggerAddEventUnitRangePoint(gt_CharliePen, UnitRefFromUnit(lib09BE6BA8_gf_ReturnUnit(gv_registrationUnit)), PointFromId(4572), gv_distancetoDiscover, true);
+        TriggerAddEventUnitRangePoint(gt_DemeterWorkstation, UnitRefFromUnit(lib09BE6BA8_gf_ReturnUnit(gv_registrationUnit)), PointFromId(4704), gv_distancetoDiscover, true);
+        TriggerAddEventUnitRangePoint(gt_DissectionWorkstation, UnitRefFromUnit(lib09BE6BA8_gf_ReturnUnit(gv_registrationUnit)), PointFromId(4703), gv_distancetoDiscover, true);
+        TriggerAddEventUnitRangePoint(gt_PoolviewingDeck, UnitRefFromUnit(lib09BE6BA8_gf_ReturnUnit(gv_registrationUnit)), PointFromId(4702), gv_distancetoDiscover, true);
+        TriggerAddEventUnitRangePoint(gt_WorkstationTX1, UnitRefFromUnit(lib09BE6BA8_gf_ReturnUnit(gv_registrationUnit)), PointFromId(4699), gv_distancetoDiscover, true);
+        TriggerAddEventUnitRangePoint(gt_CharlieEscapeHole, UnitRefFromUnit(lib09BE6BA8_gf_ReturnUnit(gv_registrationUnit)), PointFromId(4636), (3.0 * gv_distancetoDiscover), true);
     }
     return true;
 }
@@ -2464,10 +2464,6 @@ bool gt_PlayerReturntoPeacekeeperHoldout_Func (bool testConds, bool runActions) 
     // Conditions
     if (testConds) {
         if (!((((gv_civilianRescueSuccess == c_objectiveStateCompleted) && (UnitGroupCount(UnitGroupFilterRegion(gv_civiliansRescue, RegionCircle(gv_peacekeeperHoldout, 8.0), 0), c_unitCountAlive) == UnitGroupCount(gv_civiliansRescue, c_unitCountAlive))) || (gv_civilianRescueSuccess == c_objectiveStateFailed)))) {
-            return false;
-        }
-
-        if (!(lib09BE6BA8_gf_GroupNearPoint(lib840A968C_gf_GetMarineGroup(), gv_peacekeeperHoldout, 8.0))) {
             return false;
         }
     }

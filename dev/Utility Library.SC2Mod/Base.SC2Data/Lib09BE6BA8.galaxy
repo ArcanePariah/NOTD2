@@ -10,6 +10,7 @@ bool lib09BE6BA8_gf_GroupNearPoint (unitgroup lp_group, point lp_point, fixed lp
 bool lib09BE6BA8_gf_PointisVisibletoPlayerGroup (playergroup lp_group, point lp_point);
 bool lib09BE6BA8_gf_UnitisCarryingItemofType (unit lp_unit, string lp_carriedItem);
 int lib09BE6BA8_gf_GetRandomPlayerfromPlayerGroup (playergroup lp_playerGroup);
+unit lib09BE6BA8_gf_ReturnUnit (unit lp_unit);
 void lib09BE6BA8_gf_SmoothRotateActor (fixed lp_rotationTime, actor lp_actor, int lp_rotationPoints, fixed lp_forwardX, fixed lp_forwardY, fixed lp_forwardZ, fixed lp_upX, fixed lp_upY, fixed lp_upZ);
 
 // Functions
@@ -107,6 +108,11 @@ bool lib09BE6BA8_gf_UnitisCarryingItemofType (unit lp_unit, string lp_carriedIte
 int lib09BE6BA8_gf_GetRandomPlayerfromPlayerGroup (playergroup lp_playerGroup) {
     // Implementation
     return PlayerGroupPlayer(lp_playerGroup, RandomInt(1, PlayerGroupCount(lp_playerGroup)));
+}
+
+unit lib09BE6BA8_gf_ReturnUnit (unit lp_unit) {
+    // Implementation
+    return lp_unit;
 }
 
 void lib09BE6BA8_gf_SmoothRotateActor (fixed lp_rotationTime, actor lp_actor, int lp_rotationPoints, fixed lp_forwardX, fixed lp_forwardY, fixed lp_forwardZ, fixed lp_upX, fixed lp_upY, fixed lp_upZ) {
