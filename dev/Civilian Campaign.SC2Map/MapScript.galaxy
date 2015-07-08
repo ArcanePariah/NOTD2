@@ -3213,6 +3213,7 @@ bool gt_SarbusCorpseSpawn_Func (bool testConds, bool runActions) {
         return true;
     }
 
+    TriggerEnable(TriggerGetCurrent(), false);
     gv_sarbusCorpse = EventUnitCreatedUnit();
     return true;
 }
