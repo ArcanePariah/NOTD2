@@ -8,6 +8,15 @@
         <VolumeRolloffPoints Distance="10.000000"/>
         <VolumeRolloffPoints Distance="30.000000" Volume="-96.000000"/>
     </CSound>
+    <CSound id="Taunt">
+        <AssetArray File="Weapons\NOTD 2 work\Assault_Taunt 1.wav" Pitch="-1.000000,1.000000" FacialGroup=""/>
+        <AssetArray File="Weapons\NOTD 2 work\Assault_Taunt 2.wav" Pitch="-1.000000,1.000000" FacialGroup=""/>
+        <Mode value="3DWorld"/>
+        <Pitch value="-1.000000,0.000000"/>
+        <Volume value="0.000000,2.000000"/>
+        <VolumeRolloffPoints Distance="10.000000"/>
+        <VolumeRolloffPoints Distance="30.000000" Volume="-96.000000"/>
+    </CSound>
     <CSound id="SatchelBeep">
         <AssetArray File="Weapons\Weapons\Demo_Satchel_Beep.wav" FacialGroup=""/>
         <Mode value="3DWorld"/>
@@ -63,8 +72,8 @@
     <CSound id="PlasmaRifleShot" parent="Combat">
         <AssetArray>
             <File value="Weapons\Weapons\Work Work\Plasa_Rifle_Fire_1.wav"/>
-            <Pitch value="10.290000,10.290000"/>
-            <Volume value="-15.130000,-15.130000"/>
+            <Pitch value="6.290000,9.290000"/>
+            <Volume value="-13.130000,-11.130000"/>
             <FacialGroup value=""/>
         </AssetArray>
         <Pitch value="-1.000000,1.000000"/>
@@ -235,7 +244,7 @@
         <AssetArray File="Weapons\Weapons\Radio_Merc.wav" FacialGroup=""/>
     </CSound>
     <CSound id="ReloadAMRifleEnd">
-        <AssetArray File="Weapons\Weapons\Work Work\AMRIfle_Bolt.wav" Volume="5.000000,5.000000" FacialGroup=""/>
+        <AssetArray File="Reload\Sniper_Reload_End.ogg" Volume="5.000000,5.000000" FacialGroup=""/>
         <Mode value="3DWorld"/>
         <VolumeRolloffPoints Distance="10.000000"/>
         <VolumeRolloffPoints Distance="30.000000" Volume="-96.000000"/>
@@ -265,7 +274,7 @@
         <VolumeRolloffPoints Distance="30.000000" Volume="-96.000000"/>
     </CSound>
     <CSound id="ReloadAMRifleStart">
-        <AssetArray File="Weapons\Weapons\Work Work\AMRifle_Reload.wav" Volume="5.000000,5.000000" FacialGroup=""/>
+        <AssetArray File="Reload\Sniper_Reload_Start.ogg" Volume="5.000000,5.000000" FacialGroup=""/>
         <Mode value="3DWorld"/>
         <VolumeRolloffPoints Distance="10.000000"/>
         <VolumeRolloffPoints Distance="30.000000" Volume="-96.000000"/>
@@ -316,17 +325,32 @@
         <VolumeRolloffPoints Distance="30.000000" Volume="-96.000000"/>
     </CSound>
     <CSound id="SilencedRifleShot" parent="Combat">
-        <AssetArray File="Weapons\Sniper_Attack1.wav" Volume="-14.400000,-14.400000" FacialGroup=""/>
-        <AssetArray File="Weapons\Sniper_Attack2.wav" Volume="-14.400000,-14.400000" FacialGroup=""/>
-        <AssetArray File="Weapons\Sniper_Attack3.wav" Volume="-14.400000,-14.400000" FacialGroup=""/>
-        <AssetArray File="Weapons\Sniper_Attack4.wav" Volume="-14.400000,-14.400000" FacialGroup=""/>
-        <AssetArray File="Weapons\Sniper_Attack5.wav" Volume="-14.400000,-14.400000" FacialGroup=""/>
+        <AssetArray File="Weapons\Sniper_Attack1.wav" Volume="-9.400000,-9.400000" FacialGroup=""/>
+        <AssetArray File="Weapons\Sniper_Attack2.wav" Volume="-9.400000,-9.400000" FacialGroup=""/>
+        <AssetArray File="Weapons\Sniper_Attack3.wav" Volume="-9.400000,-9.400000" FacialGroup=""/>
+        <AssetArray File="Weapons\Sniper_Attack4.wav" Volume="-9.400000,-9.400000" FacialGroup=""/>
+        <AssetArray File="Weapons\Sniper_Attack5.wav" Volume="-9.400000,-9.400000" FacialGroup=""/>
         <Pitch value="-1.000000,1.000000"/>
     </CSound>
     <CSound id="HMGShot" parent="Combat">
-        <AssetArray File="Weapons\HMG_FIre1.wav" Volume="-8.570000,-8.570000" FacialGroup=""/>
-        <AssetArray File="Weapons\HMG_Fire2.wav" Volume="-8.570000,-8.570000" FacialGroup=""/>
-        <AssetArray File="Weapons\HMG_Fire3.wav" Volume="-8.570000,-8.570000" FacialGroup=""/>
+        <AssetArray>
+            <File value="Weapons\Weapons\HMG_Single_1.wav"/>
+            <Pitch value="-2.000000,0.000000"/>
+            <Volume value="-8.000000,-7.000000"/>
+            <FacialGroup value=""/>
+        </AssetArray>
+        <AssetArray>
+            <File value="Weapons\Weapons\HMG_Single_2.wav"/>
+            <Pitch value="-2.000000,0.000000"/>
+            <Volume value="-8.000000,-7.000000"/>
+            <FacialGroup value=""/>
+        </AssetArray>
+        <AssetArray>
+            <File value="Weapons\Weapons\HMG_Single_3.wav"/>
+            <Pitch value="-2.000000,0.000000"/>
+            <Volume value="-8.000000,-7.000000"/>
+            <FacialGroup value=""/>
+        </AssetArray>
         <Pitch value="-1.000000,1.000000"/>
     </CSound>
     <CSound id="AutomaticShotgunShot" parent="Combat">
@@ -344,13 +368,13 @@
         <Mode value="3DWorld"/>
     </CSound>
     <CSound id="ClipIn">
-        <AssetArray File="SOUNDClip In.ogg" FacialGroup=""/>
+        <AssetArray File="Reload\Rifle_Reload_end.ogg" FacialGroup=""/>
         <Mode value="3DWorld"/>
         <VolumeRolloffPoints Distance="10.000000"/>
         <VolumeRolloffPoints Distance="30.000000" Volume="-96.000000"/>
     </CSound>
     <CSound id="ClipOut">
-        <AssetArray File="SOUNDClip Out.ogg" FacialGroup=""/>
+        <AssetArray File="Reload\Rifle_Reload_Start.ogg" FacialGroup=""/>
         <Mode value="3DWorld"/>
         <VolumeRolloffPoints Distance="10.000000"/>
         <VolumeRolloffPoints Distance="30.000000" Volume="-96.000000"/>
@@ -371,10 +395,18 @@
         <Pitch value="-1.000000,1.000000"/>
     </CSound>
     <CSound id="MMGShot" parent="Combat">
-        <AssetArray File="Weapons\MMG_Attack1.wav" Volume="-8.570000,-8.570000" FacialGroup=""/>
-        <AssetArray File="Weapons\MMG_Attack2.wav" Volume="-8.570000,-8.570000" FacialGroup=""/>
-        <AssetArray File="Weapons\MMG_Fire3.wav" Volume="-8.570000,-8.570000" FacialGroup=""/>
-        <AssetArray File="Weapons\MMG_Fire4.wav" Volume="-8.570000,-8.570000" FacialGroup=""/>
+        <AssetArray>
+            <File value="Weapons\Weapons\Work Work\MMG_Alt_Fire_1.wav"/>
+            <Pitch value="-2.000000,0.000000"/>
+            <Volume value="-6.000000,-4.000000"/>
+            <FacialGroup value=""/>
+        </AssetArray>
+        <AssetArray>
+            <File value="Weapons\Weapons\Work Work\MMG_Alt_Fire_2.wav"/>
+            <Pitch value="-2.000000,0.000000"/>
+            <Volume value="-6.000000,-4.000000"/>
+            <FacialGroup value=""/>
+        </AssetArray>
         <Pitch value="-1.000000,1.000000"/>
     </CSound>
     <CSound id="LaserLockOn">
@@ -384,9 +416,24 @@
         <VolumeRolloffPoints Distance="30.000000" Volume="-47.080002"/>
     </CSound>
     <CSound id="AssaultRifleShot" parent="Combat">
-        <AssetArray File="Weapons\Weapons\GPR_Fire1.wav" Volume="-8.570000,-8.570000" FacialGroup=""/>
-        <AssetArray File="Weapons\Weapons\GPR_Fire2.wav" Volume="-8.570000,-8.570000" FacialGroup=""/>
-        <AssetArray File="Weapons\Weapons\GPR_Fire3.wav" Volume="-8.570000,-8.570000" FacialGroup=""/>
+        <AssetArray>
+            <File value="Weapons\Weapons\Work Work\CNC 3\AR_Fire_1.wav"/>
+            <Pitch value="-2.000000,0.000000"/>
+            <Volume value="-7.000000,-6.000000"/>
+            <FacialGroup value=""/>
+        </AssetArray>
+        <AssetArray>
+            <File value="Weapons\Weapons\Work Work\CNC 3\AR_Fire_2.wav"/>
+            <Pitch value="-2.000000,0.000000"/>
+            <Volume value="-7.000000,-6.000000"/>
+            <FacialGroup value=""/>
+        </AssetArray>
+        <AssetArray>
+            <File value="Weapons\Weapons\Work Work\CNC 3\AR_Fire_3.wav"/>
+            <Pitch value="-2.000000,0.000000"/>
+            <Volume value="-7.000000,-6.000000"/>
+            <FacialGroup value=""/>
+        </AssetArray>
         <Flags index="Purgable" value="0"/>
         <Category value="Voice"/>
         <Pitch value="-1.000000,1.000000"/>
@@ -395,10 +442,10 @@
         <VolumeRolloffPoints Distance="30.000000" Volume="-96.000000"/>
     </CSound>
     <CSound id="LaserRifleShot" parent="Combat">
-        <AssetArray File="Weapons\Laser_Fire1.wav" Volume="-8.570000,-8.570000" FacialGroup=""/>
-        <AssetArray File="Weapons\Laser_Fire2.wav" Volume="-8.570000,-8.570000" FacialGroup=""/>
-        <AssetArray File="Weapons\Laser_Fire3.wav" Volume="-8.570000,-8.570000" FacialGroup=""/>
-        <AssetArray File="Weapons\Laser_Fire4.wav" Volume="-8.570000,-8.570000" FacialGroup=""/>
+        <AssetArray File="Weapons\Laser_Fire1.wav" Volume="-5.570000,-5.570000" FacialGroup=""/>
+        <AssetArray File="Weapons\Laser_Fire2.wav" Volume="-5.570000,-5.570000" FacialGroup=""/>
+        <AssetArray File="Weapons\Laser_Fire3.wav" Volume="-5.570000,-5.570000" FacialGroup=""/>
+        <AssetArray File="Weapons\Laser_Fire4.wav" Volume="-5.570000,-5.570000" FacialGroup=""/>
         <Pitch value="-1.000000,1.000000"/>
     </CSound>
     <CSound id="NoAmmo">
@@ -451,14 +498,27 @@
         <VolumeRolloffPoints Distance="30.243902" Volume="-47.080002"/>
     </CSound>
     <CSound id="SubmachineGunShot" parent="Combat">
-        <AssetArray File="Weapons\PDW_Fire1.wav" Volume="-8.570000,-8.570000" FacialGroup=""/>
-        <AssetArray File="Weapons\PDW_Fire2.wav" Volume="-8.570000,-8.570000" FacialGroup=""/>
-        <AssetArray File="Weapons\PDW_Fire3.wav" Volume="-8.570000,-8.570000" FacialGroup=""/>
-        <AssetArray File="Weapons\PDW_Fire4.wav" Volume="-8.570000,-8.570000" FacialGroup=""/>
+        <AssetArray>
+            <File value="Weapons\Weapons\GPR_Fire1.wav"/>
+            <Pitch value="-1.000000,1.000000"/>
+            <Volume value="-10.570000,-10.570000"/>
+            <FacialGroup value=""/>
+        </AssetArray>
+        <AssetArray>
+            <File value="Weapons\Weapons\GPR_Fire2.wav"/>
+            <Pitch value="-1.000000,1.000000"/>
+            <Volume value="-10.570000,-10.570000"/>
+            <FacialGroup value=""/>
+        </AssetArray>
         <Pitch value="-1.000000,1.000000"/>
     </CSound>
     <CSound id="MarksmanRifleShot" parent="Combat">
-        <AssetArray File="Weapons\Weapons\MM_Fire1.wav" Volume="-12.940000,-12.940000" FacialGroup=""/>
+        <AssetArray>
+            <File value="Weapons\Weapons\MM_Fire1.wav"/>
+            <Pitch value="-2.000000,1.000000"/>
+            <Volume value="-8.940000,-8.940000"/>
+            <FacialGroup value=""/>
+        </AssetArray>
         <Pitch value="-1.000000,1.000000"/>
     </CSound>
     <CSound id="UGC_Has_Arrived" parent="MUSIC">
