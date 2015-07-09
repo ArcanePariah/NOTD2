@@ -1583,7 +1583,6 @@ bool gt_RegisterMarineswithTriggers_Func (bool testConds, bool runActions) {
         TriggerAddEventUnitRangePoint(gt_PlayerReturntoPeacekeeperHoldout, UnitRefFromUnit(lib09BE6BA8_gf_ReturnUnit(gv_registrationUnit)), gv_peacekeeperHoldout, 8.0, true);
         TriggerAddEventUnitRangePoint(gt_PlayerRescuesCivilians, UnitRefFromUnit(lib09BE6BA8_gf_ReturnUnit(gv_registrationUnit)), gv_civilianRescuePoint, 10.0, true);
         TriggerAddEventUnitRangePoint(gt_PlayersFailtoRescue, UnitRefFromUnit(lib09BE6BA8_gf_ReturnUnit(gv_registrationUnit)), gv_civilianRescuePoint, 10.0, true);
-        TriggerAddEventUnitRegion(gt_ArmoryDoor, UnitRefFromUnit(lib09BE6BA8_gf_ReturnUnit(gv_registrationUnit)), RegionFromId(25), true);
         TriggerAddEventUnitRangePoint(gt_TeamReachesReactor, UnitRefFromUnit(lib09BE6BA8_gf_ReturnUnit(gv_registrationUnit)), PointFromId(3280), 10.0, true);
         TriggerAddEventUnitRangePoint(gt_LabEntranceChatter, UnitRefFromUnit(lib09BE6BA8_gf_ReturnUnit(gv_registrationUnit)), PointFromId(4635), 4.0, true);
         TriggerAddEventUnitRangePoint(gt_ReceptionAreaTransmission, UnitRefFromUnit(lib09BE6BA8_gf_ReturnUnit(gv_registrationUnit)), PointFromId(4570), 6.0, true);
@@ -2952,7 +2951,7 @@ bool gt_CommunicationMission_Func (bool testConds, bool runActions) {
     gf_CommunicationArrayArmorySpawns();
     gf_CommunicationArrayLocations();
     gf_CommunicationArrayTimer();
-    TriggerEnable(gt_ArmoryDoor, true);
+    TriggerExecute(gt_ArmoryDoor, true, false);
     return true;
 }
 
