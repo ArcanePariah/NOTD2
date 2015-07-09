@@ -1066,7 +1066,7 @@ void gf_MonolithBriefing () {
     int lv_currentSpeaker;
 
     // Variable Initialization
-    lv_speakers = lib840A968C_gf_GetLivingMarineSquadPlayers();
+    lv_speakers = PlayerGroupCopy(lib840A968C_gf_GetLivingMarineSquadPlayers());
 
     // Implementation
     while (gv_transmissionLock) {
