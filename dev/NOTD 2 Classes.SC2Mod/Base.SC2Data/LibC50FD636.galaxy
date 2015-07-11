@@ -140,6 +140,7 @@ void libC50FD636_gf_TalentTree (int lp_treeDialogPanel, int lp_player, int lp_tr
 void libC50FD636_gf_TalentTreeCreation (int lp_player, string lp_class);
 
 // Trigger Declarations
+trigger libC50FD636_gt_TestEnableTechTreeRestrictions;
 trigger libC50FD636_gt_PredatorEventRegistration;
 trigger libC50FD636_gt_PredatorLevelUp;
 trigger libC50FD636_gt_TestIntializeAI;
@@ -806,6 +807,25 @@ bool auto_libC50FD636_gf_TalentTreeCreation_TriggerFunc (bool testConds, bool ru
 }
 
 // Triggers
+//--------------------------------------------------------------------------------------------------
+// Trigger: Test Enable Tech Tree Restrictions
+//--------------------------------------------------------------------------------------------------
+bool libC50FD636_gt_TestEnableTechTreeRestrictions_Func (bool testConds, bool runActions) {
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TechTreeRestrictionsEnable(1, true);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libC50FD636_gt_TestEnableTechTreeRestrictions_Init () {
+    libC50FD636_gt_TestEnableTechTreeRestrictions = TriggerCreate("libC50FD636_gt_TestEnableTechTreeRestrictions_Func");
+    TriggerAddEventMapInit(libC50FD636_gt_TestEnableTechTreeRestrictions);
+}
+
 //--------------------------------------------------------------------------------------------------
 // Trigger: Predator Event Registration
 //--------------------------------------------------------------------------------------------------
@@ -2863,6 +2883,7 @@ void libC50FD636_gt_HeroTest_Init () {
 }
 
 void libC50FD636_InitTriggers () {
+    libC50FD636_gt_TestEnableTechTreeRestrictions_Init();
     libC50FD636_gt_PredatorEventRegistration_Init();
     libC50FD636_gt_PredatorLevelUp_Init();
     libC50FD636_gt_TestIntializeAI_Init();
