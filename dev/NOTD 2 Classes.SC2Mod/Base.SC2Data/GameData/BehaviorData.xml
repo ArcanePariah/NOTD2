@@ -1244,6 +1244,18 @@
         <DamageResponse Chance="1" Handled="ReactiveShieldsDamageLevel3"/>
         <InfoFlags index="Hidden" value="1"/>
     </CBehaviorBuff>
+    <CBehaviorBuff id="ReconDetectorDetected">
+        <InfoFlags index="Hidden" value="1"/>
+        <InfoIcon value="Assets\Textures\btn-status-radar.dds"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="0.5"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="ReconDetectorDetection">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Period value="0.25"/>
+        <PeriodicEffect value="ReconDetectorDetection"/>
+    </CBehaviorBuff>
     <CBehaviorBuff id="RepulseHeroicSlow">
         <Alignment value="Negative"/>
         <InfoIcon value="Assets\Textures\btn-ability-protoss-gravitonbeam-color.dds"/>

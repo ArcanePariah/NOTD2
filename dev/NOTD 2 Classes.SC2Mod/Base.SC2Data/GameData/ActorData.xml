@@ -155,6 +155,102 @@
     <CActorRange id="ChainExplosiveRange" parent="RangeAbil" abil="ChainExplosive">
         <EditorCategories value=""/>
     </CActorRange>
+    <CActorRange id="DetectorRange2Detected">
+        <Terms value="Cap 1"/>
+        <EditorCategories value=""/>
+        <On Terms="Effect.ReconDetectorDetected.Start; At Target; ValidateUnit HasDetectionRange2" Send="Create"/>
+        <On Terms="Effect.ReconDetectorDetected.Start" Send="RefSetFromRequest ::actor.TargetList ReconDetectorList Implicit Find"/>
+        <On Terms="Behavior.ReconDetectorDetected.Off" Send="Destroy"/>
+        <On Terms="ActorCreation" Send="SetVisibility"/>
+        <On Terms="Behavior.ReconDetectorDetected.On" Target="::actor.TargetList" Send="Signal AddMe"/>
+        <On Terms="ActorDestruction" Target="::actor.TargetList" Send="Signal RemoveMe"/>
+        <Behavior value="Range2"/>
+        <IconArcLength value="1.250000"/>
+    </CActorRange>
+    <CActorRange id="DetectorRange3Detected">
+        <Terms value="Cap 1"/>
+        <EditorCategories value=""/>
+        <On Terms="Effect.ReconDetectorDetected.Start; At Target; ValidateUnit HasDetectionRange3" Send="Create"/>
+        <On Terms="Effect.ReconDetectorDetected.Start" Send="RefSetFromRequest ::actor.TargetList ReconDetectorList Implicit Find"/>
+        <On Terms="Behavior.ReconDetectorDetected.Off" Send="Destroy"/>
+        <On Terms="ActorCreation" Send="SetVisibility"/>
+        <On Terms="Behavior.ReconDetectorDetected.On" Target="::actor.TargetList" Send="Signal AddMe"/>
+        <On Terms="ActorDestruction" Target="::actor.TargetList" Send="Signal RemoveMe"/>
+        <Behavior value="Range3"/>
+        <IconArcLength value="1.250000"/>
+    </CActorRange>
+    <CActorRange id="DetectorRange4Detected">
+        <Terms value="Cap 1"/>
+        <EditorCategories value=""/>
+        <On Terms="Effect.ReconDetectorDetected.Start; At Target; ValidateUnit HasDetectionRange4" Send="Create"/>
+        <On Terms="Effect.ReconDetectorDetected.Start" Send="RefSetFromRequest ::actor.TargetList ReconDetectorList Implicit Find"/>
+        <On Terms="Behavior.ReconDetectorDetected.Off" Send="Destroy"/>
+        <On Terms="ActorCreation" Send="SetVisibility"/>
+        <On Terms="Behavior.ReconDetectorDetected.On" Target="::actor.TargetList" Send="Signal AddMe"/>
+        <On Terms="ActorDestruction" Target="::actor.TargetList" Send="Signal RemoveMe"/>
+        <Behavior value="Range4"/>
+        <IconArcLength value="1.250000"/>
+    </CActorRange>
+    <CActorRange id="DetectorRange5Detected">
+        <Terms value="Cap 1"/>
+        <EditorCategories value=""/>
+        <On Terms="Effect.ReconDetectorDetected.Start; At Target; ValidateUnit HasDetectionRange5" Send="Create"/>
+        <On Terms="Effect.ReconDetectorDetected.Start" Send="RefSetFromRequest ::actor.TargetList ReconDetectorList Implicit Find"/>
+        <On Terms="Behavior.ReconDetectorDetected.Off" Send="Destroy"/>
+        <On Terms="ActorCreation" Send="SetVisibility"/>
+        <On Terms="Behavior.ReconDetectorDetected.On" Target="::actor.TargetList" Send="Signal AddMe"/>
+        <On Terms="ActorDestruction" Target="::actor.TargetList" Send="Signal RemoveMe"/>
+        <Behavior value="Range5"/>
+        <IconArcLength value="1.250000"/>
+    </CActorRange>
+    <CActorRange id="DetectorRange9Detected">
+        <Terms value="Cap 1"/>
+        <EditorCategories value=""/>
+        <On Terms="Effect.ReconDetectorDetected.Start; At Target; ValidateUnit HasDetectionRange9" Send="Create"/>
+        <On Terms="Effect.ReconDetectorDetected.Start" Send="RefSetFromRequest ::actor.TargetList ReconDetectorList Implicit Find"/>
+        <On Terms="Behavior.ReconDetectorDetected.Off" Send="Destroy"/>
+        <On Terms="ActorCreation" Send="SetVisibility"/>
+        <On Terms="Behavior.ReconDetectorDetected.On" Target="::actor.TargetList" Send="Signal AddMe"/>
+        <On Terms="ActorDestruction" Target="::actor.TargetList" Send="Signal RemoveMe"/>
+        <Behavior value="Range9"/>
+        <IconArcLength value="1.250000"/>
+    </CActorRange>
+    <CActorRange id="DetectorRange8Detected">
+        <Terms value="Cap 1"/>
+        <EditorCategories value=""/>
+        <On Terms="Effect.ReconDetectorDetected.Start; At Target; ValidateUnit HasDetectionRange8" Send="Create"/>
+        <On Terms="Effect.ReconDetectorDetected.Start" Send="RefSetFromRequest ::actor.TargetList ReconDetectorList Implicit Find"/>
+        <On Terms="Behavior.ReconDetectorDetected.Off" Send="Destroy"/>
+        <On Terms="ActorCreation" Send="SetVisibility"/>
+        <On Terms="Behavior.ReconDetectorDetected.On" Target="::actor.TargetList" Send="Signal AddMe"/>
+        <On Terms="ActorDestruction" Target="::actor.TargetList" Send="Signal RemoveMe"/>
+        <Behavior value="Range8"/>
+        <IconArcLength value="1.250000"/>
+    </CActorRange>
+    <CActorRange id="DetectorRange7Detected">
+        <Terms value="Cap 1"/>
+        <EditorCategories value=""/>
+        <On Terms="Effect.ReconDetectorDetected.Start; At Target; ValidateUnit HasDetectionRange7" Send="Create"/>
+        <On Terms="Effect.ReconDetectorDetected.Start" Send="RefSetFromRequest ::actor.TargetList ReconDetectorList Implicit Find"/>
+        <On Terms="Behavior.ReconDetectorDetected.Off" Send="Destroy"/>
+        <On Terms="ActorCreation" Send="SetVisibility"/>
+        <On Terms="Behavior.ReconDetectorDetected.On" Target="::actor.TargetList" Send="Signal AddMe"/>
+        <On Terms="ActorDestruction" Target="::actor.TargetList" Send="Signal RemoveMe"/>
+        <Behavior value="Range7"/>
+        <IconArcLength value="1.250000"/>
+    </CActorRange>
+    <CActorRange id="DetectorRange6Detected">
+        <Terms value="Cap 1"/>
+        <EditorCategories value=""/>
+        <On Terms="Effect.ReconDetectorDetected.Start; At Target; ValidateUnit HasDetectionRange6" Send="Create"/>
+        <On Terms="Effect.ReconDetectorDetected.Start" Send="RefSetFromRequest ::actor.TargetList ReconDetectorList Implicit Find"/>
+        <On Terms="Behavior.ReconDetectorDetected.Off" Send="Destroy"/>
+        <On Terms="ActorCreation" Send="SetVisibility"/>
+        <On Terms="Behavior.ReconDetectorDetected.On" Target="::actor.TargetList" Send="Signal AddMe"/>
+        <On Terms="ActorDestruction" Target="::actor.TargetList" Send="Signal RemoveMe"/>
+        <Behavior value="Range6"/>
+        <IconArcLength value="1.250000"/>
+    </CActorRange>
     <CActorSplat id="DetonateAreaSplat" parent="TerranCursorSplat" abil="Detonate">
         <EditorCategories value=""/>
     </CActorSplat>
@@ -513,6 +609,18 @@
         <ScopeBearingsTracking value="ForceOff"/>
         <Scale value="2.000000"/>
     </CActorModel>
+    <CActorList id="ReconDetectorList">
+        <EditorCategories value=""/>
+        <On Terms="Behavior.ReconDetectorDetection.On" Send="Create"/>
+        <On Terms="Behavior.ReconDetectorDetection.Off" Send="Destroy"/>
+        <On Terms="Signal.*.AddMe" Send="RefSetFromMsg ::actor.DetectorToAdd ::Sender"/>
+        <On Terms="Signal.*.AddMe" Send="ListAdd ::actor.DetectorToAdd"/>
+        <On Terms="Signal.*.AddMe; Selected" Target="::actor.DetectorToAdd" Send="SetVisibility 1"/>
+        <On Terms="Signal.*.RemoveMe" Send="RefSetFromMsg ::actor.DetectorToRemove ::Sender"/>
+        <On Terms="Signal.*.RemoveMe" Send="ListRemove ::actor.DetectorToRemove"/>
+        <On Terms="SelectionLocalUpdate.*.Start" Target="::Contents" Send="SetVisibility 1"/>
+        <On Terms="SelectionLocalUpdate.*.Stop" Target="::Contents" Send="SetVisibility"/>
+    </CActorList>
     <CActorModel id="Refresher" parent="ModelAnimationStyleOneShot">
         <EditorCategories value=""/>
         <On Terms="Abil.Refresher.SourceCastStart" Send="Create"/>

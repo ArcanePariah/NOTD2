@@ -1561,6 +1561,15 @@
         <EditorCategories value=""/>
         <Amount value="20"/>
     </CEffectDamage>
+    <CEffectApplyBehavior id="ReconDetectorDetected">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectEnumArea id="ReconDetectorDetection">
+        <EditorCategories value=""/>
+        <Marker Link="Effect/HeroDetectorRadar"/>
+        <SearchFilters value="Visible,Detector;Player,Ally,Neutral"/>
+        <AreaArray Radius="20" Effect="ReconDetectorDetected"/>
+    </CEffectEnumArea>
     <CEffectModifyUnit id="Refresher">
         <EditorCategories value=""/>
         <VitalArray index="Energy" Change="45"/>
