@@ -383,10 +383,40 @@
     <CAbilLearn id="ForwardObserverLearn" parent="LearnTemplate">
         <Name value="Abil/Name/ForwardObserverLearn"/>
     </CAbilLearn>
-    <CAbilEffectTarget id="GroundIlluminationFlare" parent="3LevelEffectTargetAbility">
+    <CAbilEffectTarget id="SurveillanceFlare" parent="3LevelEffectTargetAbility">
+        <Flags index="RequireTargetVision" value="0"/>
         <Cost>
-            <Vital index="Energy" value="30"/>
-            <Cooldown TimeUse="45"/>
+            <Vital index="Energy" value="10"/>
+            <Charge>
+                <CountMax value="1"/>
+                <CountStart value="1"/>
+                <CountUse value="1"/>
+                <Link value="Abil/GroundIlluminationFlare"/>
+                <TimeUse value="40"/>
+            </Charge>
+            <Cooldown Link="Abil/GroundIlluminationFlare"/>
+        </Cost>
+        <Cost>
+            <Vital index="Energy" value="10"/>
+            <Charge>
+                <CountMax value="2"/>
+                <CountStart value="1"/>
+                <CountUse value="1"/>
+                <Link value="Abil/GroundIlluminationFlare"/>
+                <TimeUse value="40"/>
+            </Charge>
+            <Cooldown Link="Abil/GroundIlluminationFlare"/>
+        </Cost>
+        <Cost>
+            <Vital index="Energy" value="10"/>
+            <Charge>
+                <CountMax value="3"/>
+                <CountStart value="1"/>
+                <CountUse value="1"/>
+                <Link value="Abil/GroundIlluminationFlare"/>
+                <TimeUse value="40"/>
+            </Charge>
+            <Cooldown Link="Abil/GroundIlluminationFlare"/>
         </Cost>
         <Range value="9"/>
     </CAbilEffectTarget>
@@ -1169,7 +1199,7 @@
         <InfoArray index="Learn1" Abil="LaserDesignator">
             <Button DefaultButtonFace="LaserDesignator"/>
         </InfoArray>
-        <InfoArray index="Learn2" Abil="GroundIlluminationFlare"/>
+        <InfoArray index="Learn2" Abil="SurveillanceFlare"/>
         <InfoArray index="Learn3" Abil="MotionSensor"/>
         <InfoArray index="Learn4" Abil="SmokeGrenade"/>
         <InfoArray index="Learn5" Abil="SupplyDropOffensive">

@@ -1453,7 +1453,7 @@ bool libC50FD636_gt_GroundIlluminationFlareFlareGunVisionShare_Func (bool testCo
 //--------------------------------------------------------------------------------------------------
 void libC50FD636_gt_GroundIlluminationFlareFlareGunVisionShare_Init () {
     libC50FD636_gt_GroundIlluminationFlareFlareGunVisionShare = TriggerCreate("libC50FD636_gt_GroundIlluminationFlareFlareGunVisionShare_Func");
-    TriggerAddEventUnitCreated(libC50FD636_gt_GroundIlluminationFlareFlareGunVisionShare, null, "GroundIlluminationFlare", null);
+    TriggerAddEventUnitCreated(libC50FD636_gt_GroundIlluminationFlareFlareGunVisionShare, null, "SurveillanceFlare", null);
     TriggerAddEventUnitCreated(libC50FD636_gt_GroundIlluminationFlareFlareGunVisionShare, null, "FlareGunRecon", null);
 }
 
@@ -1469,7 +1469,7 @@ bool libC50FD636_gt_Refresher_Func (bool testConds, bool runActions) {
     UnitAbilityReset(EventUnit(), AbilityCommand("Execute", 0), c_spendLocationAll);
     UnitAbilityReset(EventUnit(), AbilityCommand("FlareGunRecon", 0), c_spendLocationAll);
     UnitAbilityReset(EventUnit(), AbilityCommand("EscapeSet", 0), c_spendLocationAll);
-    UnitAbilityReset(EventUnit(), AbilityCommand("GroundIlluminationFlare", 0), c_spendLocationAll);
+    UnitAbilityReset(EventUnit(), AbilityCommand("SurveillanceFlare", 0), c_spendLocationAll);
     UnitAbilityReset(EventUnit(), AbilityCommand("LaserDesignator", 0), c_spendLocationAll);
     UnitAbilityReset(EventUnit(), AbilityCommand("SmokeGrenade", 0), c_spendLocationAll);
     return true;

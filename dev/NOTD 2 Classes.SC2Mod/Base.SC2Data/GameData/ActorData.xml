@@ -449,9 +449,9 @@
     </CActorUnit>
     <CActorAction id="GroundIlluminationFlareLaunch" parent="GenericAttack">
         <EditorCategories value=""/>
-        <On index="0" Terms="Effect.GroundIlluminationFlareLevel1.Start; At Caster" Send="Create"/>
-        <On index="1" Terms="Effect.GroundIlluminationFlareLevel2.Start; At Caster" Send="Create"/>
-        <On index="2" Terms="Effect.GroundIlluminationFlareLevel3.Start; At Caster" Send="Create"/>
+        <On index="0" Terms="Effect.SurveillanceFlareLevel1.Start; At Caster" Send="Create"/>
+        <On index="1" Terms="Effect.SurveillanceFlareLevel2.Start; At Caster" Send="Create"/>
+        <On index="2" Terms="Effect.SurveillanceFlareLevel3.Start; At Caster" Send="Create"/>
         <On index="3" removed="1"/>
         <On index="4" removed="1"/>
         <On index="5" removed="1"/>
@@ -459,7 +459,7 @@
         <LaunchAttachQuery Methods="AMFilterWeapon02"/>
         <Missile value="RoadFlareMissile"/>
     </CActorAction>
-    <CActorRange id="GroundIlluminationFlareRange" parent="RangeAbil" abil="GroundIlluminationFlare">
+    <CActorRange id="GroundIlluminationFlareRange" parent="RangeAbil" abil="SurveillanceFlare">
         <EditorCategories value=""/>
     </CActorRange>
     <CActorAction id="KineticPayloadAttack" parent="GenericAttack" effectImpact="KineticPayloadDamage" effectLaunch="KineticPayloadMissile">
@@ -1435,7 +1435,7 @@
         <On index="61" Terms="ActorCreation" Send="AttachModel ReconTorso ReconBasicTorso {Hardpoint 0}"/>
         <On index="73" Terms="ActorCreation" Send="AttachModel ReconHelmet ReconBasicHelmet {Head 0}"/>
         <On index="76" Terms="ActorCreation" Send="AttachModel Flashlight MarineFlashlight {Head 0}"/>
-        <On Terms="Abil.GroundIlluminationFlare.SourceCastStart" Send="AnimPlay Throw Spell,Blast"/>
+        <On Terms="Abil.SurveillanceFlare.SourceCastStart" Send="AnimPlay Throw Spell,Blast"/>
         <On Terms="Abil.SmokeGrenade.SourceCastStart" Send="AnimPlay Throw Spell,Blast"/>
         <On Terms="Abil.FlareGunRecon.SourceCastStart" Send="AnimPlay Throw Spell,Blast"/>
     </CActorUnit>
