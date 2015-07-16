@@ -253,17 +253,19 @@
     </CEffectSet>
     <CEffectDamage id="AntiMaterialRifleDamage">
         <EditorCategories value=""/>
-        <Amount value="180"/>
-        <AreaArray Radius="0.15" Fraction="1"/>
-        <ExcludeArray Value="Target"/>
+        <Amount value="150"/>
         <Kind value="Ranged"/>
         <KindSplash value="Splash"/>
-        <SearchFilters value="-;Item,Invulnerable"/>
         <Death value="Silentkill"/>
         <DisplayFlags index="CollapseBuffed" value="1"/>
+        <AreaArray Arc="9.9975" Radius="3.5" Fraction="1"/>
+        <ExcludeArray Value="Target"/>
+        <SearchFilters value="-;Player,Ally,Neutral,Item,Invulnerable"/>
+        <SearchFlags index="OffsetByUnitRadius" value="1"/>
+        <SearchFlags index="OffsetAreaByAngle" value="1"/>
     </CEffectDamage>
     <CEffectDamage id="AntiMaterialRifleDamageCritical" parent="AntiMaterialRifleDamage">
-        <Amount value="405"/>
+        <Amount value="375"/>
         <Death value="Blast"/>
     </CEffectDamage>
     <CEffectApplyBehavior id="DeployAntiMaterialRifle">
@@ -298,13 +300,15 @@
         <AttributeBonus index="Massive" value="5"/>
         <ArmorReduction value="1.5"/>
         <Amount value="15"/>
-        <AreaArray Radius="0.75" Fraction="1"/>
+        <AreaArray Arc="5.7238" Radius="2.5" Fraction="0.5"/>
         <ExcludeArray Value="Target"/>
         <SearchFilters value="-;Player,Ally,Neutral,Item,Invulnerable"/>
         <Kind value="Ranged"/>
         <KindSplash value="Splash"/>
         <Death value="Impact"/>
         <DisplayFlags index="CollapseBuffed" value="1"/>
+        <SearchFlags index="OffsetByUnitRadius" value="1"/>
+        <SearchFlags index="OffsetAreaByAngle" value="1"/>
     </CEffectDamage>
     <CEffectDamage id="AssaultRifleBurstFireDamage">
         <EditorCategories value=""/>
@@ -312,13 +316,15 @@
         <AttributeBonus index="Massive" value="15"/>
         <ArmorReduction value="4.5"/>
         <Amount value="45"/>
-        <AreaArray Radius="0.75" Fraction="1"/>
+        <AreaArray Arc="5.7238" Radius="2.5" Fraction="0.5"/>
         <ExcludeArray Value="Target"/>
         <SearchFilters value="-;Player,Ally,Neutral,Item,Invulnerable"/>
         <Kind value="Ranged"/>
         <KindSplash value="Splash"/>
         <Death value="Eviscerate"/>
         <DisplayFlags index="CollapseBuffed" value="1"/>
+        <SearchFlags index="OffsetByUnitRadius" value="1"/>
+        <SearchFlags index="OffsetAreaByAngle" value="1"/>
     </CEffectDamage>
     <CEffectDamage id="AssaultRifleBurstFireDamageCritical" parent="AssaultRifleBurstFireDamage">
         <Amount value="90"/>
@@ -901,19 +907,21 @@
     <CEffectDamage id="HeavyMachineGunDamage">
         <EditorCategories value=""/>
         <ImpactLocation Value="TargetUnit"/>
-        <Amount value="45"/>
-        <AreaArray Radius="2" Fraction="1"/>
+        <Amount value="30"/>
+        <ValidatorArray value="HeavyMachineGunDeployed"/>
+        <Death value="Impact"/>
+        <DisplayFlags index="CollapseBuffed" value="1"/>
+        <AreaArray Arc="9.9975" Radius="3.5" Fraction="0.5"/>
         <ExcludeArray Value="Target"/>
         <SearchFilters value="-;Player,Ally,Neutral,Item,Invulnerable"/>
         <Kind value="Ranged"/>
         <KindSplash value="Splash"/>
-        <ValidatorArray value="HeavyMachineGunDeployed"/>
-        <Death value="Impact"/>
-        <DisplayFlags index="CollapseBuffed" value="1"/>
+        <SearchFlags index="OffsetByUnitRadius" value="1"/>
+        <SearchFlags index="OffsetAreaByAngle" value="1"/>
     </CEffectDamage>
     <CEffectDamage id="HeavyMachineGunDamageCritical" parent="HeavyMachineGunDamage">
         <Marker Link="Effect/HeavyMachineGunDamageCritical"/>
-        <Amount value="90"/>
+        <Amount value="75"/>
         <Death value="Blast"/>
     </CEffectDamage>
     <CEffectDamage id="LaserRifleDamage">
@@ -948,8 +956,8 @@
     <CEffectDamage id="MediumMachineGunDamage">
         <EditorCategories value=""/>
         <ArmorReduction value="0.75"/>
-        <Amount value="18"/>
-        <AreaArray Radius="1.25" Fraction="1"/>
+        <Amount value="15"/>
+        <AreaArray Arc="9.9975" Radius="2.5" Fraction="0.6665"/>
         <ExcludeArray Value="Target"/>
         <ImpactLocation Value="TargetUnit"/>
         <SearchFilters value="-;Player,Ally,Neutral,Item,Invulnerable"/>
@@ -957,9 +965,11 @@
         <KindSplash value="Splash"/>
         <Death value="Impact"/>
         <DisplayFlags index="CollapseBuffed" value="1"/>
+        <SearchFlags index="OffsetByUnitRadius" value="1"/>
+        <SearchFlags index="OffsetAreaByAngle" value="1"/>
     </CEffectDamage>
     <CEffectDamage id="MediumMachineGunDamageCritical" parent="MediumMachineGunDamage">
-        <Amount value="36"/>
+        <Amount value="37.5"/>
         <Death value="Blast"/>
     </CEffectDamage>
     <CEffectDamage id="PistolDamage">
@@ -1019,17 +1029,19 @@
         <EditorCategories value=""/>
         <ImpactLocation Value="TargetUnit"/>
         <ArmorReduction value="2"/>
-        <Amount value="65"/>
-        <AreaArray Radius="0.1" Fraction="1"/>
+        <Amount value="60"/>
+        <AreaArray Arc="5.7238" Radius="2" Fraction="0.3332"/>
         <ExcludeArray Value="Target"/>
         <SearchFilters value="-;Player,Ally,Neutral,Item,Invulnerable"/>
+        <SearchFlags index="OffsetByUnitRadius" value="1"/>
+        <SearchFlags index="OffsetAreaByAngle" value="1"/>
         <Kind value="Ranged"/>
         <KindSplash value="Splash"/>
         <Death value="Impact"/>
         <DisplayFlags index="CollapseBuffed" value="1"/>
     </CEffectDamage>
     <CEffectDamage id="MarksmanRifleDamageCritical" parent="MarksmanRifleDamage">
-        <Amount value="146.25"/>
+        <Amount value="150"/>
         <Death value="Blast"/>
     </CEffectDamage>
     <CEffectDamage id="PlasmaCutterDamageCritical" parent="PlasmaCutterDamage">
@@ -1161,6 +1173,58 @@
         <EditorCategories value=""/>
         <BehaviorLink value="BrokenLeg"/>
     </CEffectRemoveBehavior>
+    <CEffectCreatePersistent id="TestTarget">
+        <PeriodicOffsetArray value="-1.5,-1.5,0"/>
+        <PeriodicOffsetArray value="-0.5,-1.5,0"/>
+        <PeriodicOffsetArray value="0.5,-1.5,0"/>
+        <PeriodicOffsetArray value="1.5,-1.5,0"/>
+        <PeriodicOffsetArray value="-1.5,-0.5,0"/>
+        <PeriodicOffsetArray value="-0.5,-0.5,0"/>
+        <PeriodicOffsetArray value="0.5,-0.5,0"/>
+        <PeriodicOffsetArray value="1.5,-0.5,0"/>
+        <PeriodicOffsetArray value="-1.5,0.5,0"/>
+        <PeriodicOffsetArray value="-0.5,0.5,0"/>
+        <PeriodicOffsetArray value="0.5,0.5,0"/>
+        <PeriodicOffsetArray value="1.5,0.5,0"/>
+        <PeriodicOffsetArray value="-1.5,1.5,0"/>
+        <PeriodicOffsetArray value="-0.5,1.5,0"/>
+        <PeriodicOffsetArray value="0.5,1.5,0"/>
+        <PeriodicOffsetArray value="1.5,1.5,0"/>
+        <PeriodCount value="16"/>
+        <PeriodicEffectArray value="TestTargetCell"/>
+        <WhichLocation Value="CasterPoint"/>
+        <OffsetVectorStartLocation Value="TargetPoint"/>
+        <OffsetFacingFallback Value="CasterPoint"/>
+    </CEffectCreatePersistent>
+    <CEffectCreatePersistent id="TestTargetCell">
+        <PeriodicOffsetArray value="-0.375,-0.375,0"/>
+        <PeriodicOffsetArray value="-0.125,-0.375,0"/>
+        <PeriodicOffsetArray value="0.125,-0.375,0"/>
+        <PeriodicOffsetArray value="0.375,-0.375,0"/>
+        <PeriodicOffsetArray value="-0.375,-0.125,0"/>
+        <PeriodicOffsetArray value="-0.125,-0.125,0"/>
+        <PeriodicOffsetArray value="0.125,-0.125,0"/>
+        <PeriodicOffsetArray value="0.375,-0.125,0"/>
+        <PeriodicOffsetArray value="-0.375,0.125,0"/>
+        <PeriodicOffsetArray value="-0.125,0.125,0"/>
+        <PeriodicOffsetArray value="0.125,0.125,0"/>
+        <PeriodicOffsetArray value="0.375,0.125,0"/>
+        <PeriodicOffsetArray value="-0.375,0.375,0"/>
+        <PeriodicOffsetArray value="-0.125,0.375,0"/>
+        <PeriodicOffsetArray value="0.125,0.375,0"/>
+        <PeriodicOffsetArray value="0.375,0.375,0"/>
+        <PeriodCount value="16"/>
+        <PeriodicEffectArray value="TestTargetUnit"/>
+        <OffsetVectorStartLocation Value="TargetPoint"/>
+        <OffsetFacingFallback Value="TargetPoint"/>
+    </CEffectCreatePersistent>
+    <CEffectCreateUnit id="TestTargetUnit">
+        <SpawnOwner Value="Hostile"/>
+        <SpawnUnit value="TestTarget"/>
+        <WhichLocation Value="TargetPoint"/>
+        <Origin Value="TargetPoint"/>
+        <CreateFlags index="OffsetByRadius" value="0"/>
+    </CEffectCreateUnit>
     <CEffectApplyBehavior id="WeaponEquipDelay">
         <EditorCategories value=""/>
     </CEffectApplyBehavior>

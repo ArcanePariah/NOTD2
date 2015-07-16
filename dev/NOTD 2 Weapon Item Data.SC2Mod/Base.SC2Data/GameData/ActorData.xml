@@ -326,7 +326,8 @@
     </CActorUnit>
     <CActorAction id="AntiMaterialRifleAttack" parent="WeaponAttackTemplate" effectAttack="AntiMaterialRifleDamage">
         <LaunchAssets Model="AutoTurretAttackLaunch" Sound="AntiMaterialRifleShot"/>
-        <ImpactMap index="None" Model="PointDefenseBeamImpact" Sound="Ghost_SnipeImpact"/>
+        <ImpactMap index="None" Sound="Ghost_SnipeImpact"/>
+        <DamageMap index="None" AnimProps="Birth,01"/>
     </CActorAction>
     <CActorUnit id="Antivenom" parent="ConsumableTemplate" unitName="AntiVenom">
         <Model value="MedicalCrate"/>
@@ -379,7 +380,8 @@
     </CActorUnit>
     <CActorAction id="HeavyMachineGunAttack" parent="WeaponAttackTemplate" effectAttack="HeavyMachineGunDamage">
         <LaunchAssets Model="AutoTurretAttackLaunch" Sound="HMGShot"/>
-        <ImpactMap index="None" Model="AutoTurretAttackImpact" Sound="Terran_MachineGunLarge_Impact"/>
+        <ImpactMap index="None" Sound="Terran_MachineGunLarge_Impact"/>
+        <DamageMap index="None" AnimProps="Birth,01"/>
     </CActorAction>
     <CActorEventMacro id="HeavyMachineGunMacro">
         <On Terms="Abil.AlternateFireModes.Start; ValidateUnit DeployingHeavyMachineGun" Send="AnimPlay HeavyMachineGun Work,Large,Start 0 -1.000000 -1.000000 3.000000 AsDuration"/>
@@ -434,7 +436,8 @@
     <CActorAction id="MarksmanRifleAttack" parent="WeaponAttackTemplate" effectAttack="MarksmanRifleDamage">
         <LaunchAttachQuery Methods="AMFilterWeapon"/>
         <LaunchAssets Model="GhostAttackLaunch" Sound="MarksmanRifleShot"/>
-        <ImpactMap index="None" Model="GhostAttackImpact" Sound="Ghost_SnipeImpact"/>
+        <ImpactMap index="None" Sound="Ghost_SnipeImpact"/>
+        <DamageMap index="None" AnimProps="Birth,01"/>
     </CActorAction>
     <CActorUnit id="MediumMachineGun" parent="WeaponCrateTemplate" unitName="MediumMachineGun">
         <InfoText value="Button/Infotext/MediumMachineGun"/>
@@ -455,7 +458,8 @@
     <CActorAction id="MediumMachineGunAttack" parent="WeaponAttackTemplate" effectAttack="MediumMachineGunDamage">
         <LaunchAttachQuery Methods="AMFilterWeapon"/>
         <LaunchAssets Model="VikingAssaultAttackLaunch" Sound="MMGShot"/>
-        <ImpactMap index="None" Model="VikingAssaultAttackImpact" Sound="Marine_AttackImpact"/>
+        <ImpactMap index="None" Sound="Marine_AttackImpact"/>
+        <DamageMap index="None" AnimProps="Birth,01"/>
     </CActorAction>
     <CActorAction id="PistolAttack" parent="WeaponAttackTemplate" effectAttack="PistolDamage">
         <LaunchAttachQuery Methods="AMFilterWeapon"/>
@@ -503,9 +507,26 @@
         <On Terms="Effect.AssaultRifleBurstFireDamage.Start; At Caster" Send="Create"/>
         <On Terms="Effect.AssaultRifleBurstFireDamageCritical; At Caster" Send="Create"/>
         <LaunchAssets Model="MarineAttackLaunch" Sound="AssaultRifleShot"/>
-        <ImpactMap index="None" Model="MarineAttackImpact" Sound="Marine_AttackImpact"/>
+        <ImpactMap index="None" Sound="Marine_AttackImpact"/>
+        <DamageMap index="None" AnimProps="Birth,01"/>
     </CActorAction>
     <CActorUnit id="EnhancedProtectiveInsert" parent="ArmorCrateTemplate" unitName="EnhancedProtectiveInsert"/>
+    <CActorUnit id="TestTarget" parent="GenericUnitMinimal" unitName="TestTarget">
+        <EditorCategories value=""/>
+        <On Terms="ActorCreation" Send="SetTeamColor 255,255,255 {255,255,255 0.250000}"/>
+        <On Terms="UnitDamaged" Send="SetTintColor {255,0,0 2.000000} 0.000000 OneShot DamageTint"/>
+        <On Terms="UnitDamaged" Send="ClearTintColor 1.500000 DamageTint"/>
+        <HighlightTooltip value="Unit/Name/Bogus"/>
+        <StatusBarFlags index="Shields" value="0"/>
+        <StatusBarFlags index="Life" value="0"/>
+        <StatusBarFlags index="Energy" value="0"/>
+        <StatusBarFlags index="Cargo" value="0"/>
+        <StatusBarFlags index="Progress" value="0"/>
+        <StatusBarFlags index="Duration" value="0"/>
+        <StatusBarFlags index="Magazine" value="0"/>
+        <StatusBarFlags index="Workers" value="0"/>
+        <StatusBarFlags index="Custom" value="0"/>
+    </CActorUnit>
     <CActorModel id="WeaponAttackLaunch" parent="GenericAttackModel">
         <HostSiteOps Ops="SOpAttachWeapon"/>
     </CActorModel>

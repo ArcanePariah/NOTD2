@@ -3,7 +3,7 @@
     <CBehaviorBuff default="1" id="WeaponEquippedTemplate">
         <?token id="WeaponDamageEffect"?>
         <InfoFlags index="Hidden" value="1"/>
-        <EditorCategories value="AbilityorEffectType:Units"/>
+        <EditorCategories value="Race:Equip Weapon"/>
         <DamageResponse Chance="1" Handled="NoiseSearch" Location="Attacker">
             <Kind index="Spell" value="0"/>
             <Kind index="Splash" value="0"/>
@@ -15,7 +15,7 @@
     </CBehaviorBuff>
     <CBehaviorBuff default="1" id="WeaponNoiseTemplate">
         <InfoFlags index="Hidden" value="1"/>
-        <EditorCategories value="AbilityorEffectType:Units"/>
+        <EditorCategories value="Race:Weapon Noise Counter"/>
         <MaxStackCount value="5000"/>
         <Duration value="10"/>
         <DurationOverride Duration="20">
@@ -25,13 +25,65 @@
             <AttributeChangeArray Attribute="NoiseIndex" Points="1"/>
         </Modification>
     </CBehaviorBuff>
+    <CBehaviorBuff default="1" id="ReloadTemplate">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="Race:Weapon Reload Timer"/>
+        <DisplayDuration index="Self" value="1"/>
+        <DisplayDuration index="Ally" value="1"/>
+        <BuffFlags index="Extend" value="1"/>
+        <Duration value="1"/>
+        <DurationOverride>
+            <ValidatorArray value="EquippedWeaponisAssaultRifle"/>
+        </DurationOverride>
+        <DurationOverride>
+            <ValidatorArray value="EquippedWeaponisPistol"/>
+        </DurationOverride>
+        <DurationOverride>
+            <ValidatorArray value="EquippedWeaponisSubmachineGun"/>
+        </DurationOverride>
+        <DurationOverride>
+            <ValidatorArray value="EquippedWeaponisMediumMachineGun"/>
+        </DurationOverride>
+        <DurationOverride>
+            <ValidatorArray value="EquippedWeaponisHeavyMachineGun"/>
+        </DurationOverride>
+        <DurationOverride>
+            <ValidatorArray value="EquippedWeaponisMarksmanRifle"/>
+        </DurationOverride>
+        <DurationOverride>
+            <ValidatorArray value="EquippedWeaponisAntiMaterialRifle"/>
+        </DurationOverride>
+        <DurationOverride>
+            <ValidatorArray value="EquippedWeaponisLaserRifle"/>
+        </DurationOverride>
+        <DurationOverride>
+            <ValidatorArray value="EquippedWeaponisFlamethrower"/>
+        </DurationOverride>
+        <DurationOverride>
+            <ValidatorArray value="EquippedWeaponisPumpShotgun"/>
+        </DurationOverride>
+        <DurationOverride>
+            <ValidatorArray value="EquippedWeaponisAutomaticShotgun"/>
+        </DurationOverride>
+        <DurationOverride>
+            <ValidatorArray value="EquippedWeaponisChainsaw"/>
+        </DurationOverride>
+        <DurationOverride>
+            <ValidatorArray value="EquippedWeaponisPlasmaCutter"/>
+        </DurationOverride>
+        <Modification>
+            <StateFlags index="SuppressAttack" value="1"/>
+            <AbilLinkDisableArray value="AutomaticReload"/>
+            <AbilLinkDisableArray value="AutomaticReloadAssault"/>
+        </Modification>
+    </CBehaviorBuff>
     <CBehaviorBuff id="CommunicationArrayRadar">
-        <EditorCategories value="AbilityorEffectType:Units"/>
+        <EditorCategories value="Race:Vision Passive"/>
         <Modification Radar="25" RadarFilters="-;Player,Ally,Neutral,Item"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="DeployAntiMaterialRifle">
         <InfoFlags index="Hidden" value="1"/>
-        <EditorCategories value="AbilityorEffectType:Units"/>
+        <EditorCategories value="Race:Weapon Mode"/>
         <RemoveValidatorArray value="EquippedWeaponisAntiMaterialRifle"/>
         <Modification AttackSpeedMultiplier="3" WeaponRange="15">
             <ModifyFlags index="SuppressMoving" value="1"/>
@@ -40,6 +92,7 @@
     <CBehaviorBuff id="AntiMaterialRifleEquipped" parent="WeaponEquippedTemplate" WeaponDamageEffect="AntiMaterialRifleDamage"/>
     <CBehaviorBuff id="ArmoredProtectiveInsert">
         <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="Race:Equip Armor"/>
         <Modification LifeArmorBonus="2"/>
         <DamageResponse Chance="1" ModifyAmount="-5">
             <Kind index="Spell" value="0"/>
@@ -49,7 +102,7 @@
     </CBehaviorBuff>
     <CBehaviorBuff id="AssaultRifleBurstFireMode">
         <InfoFlags index="Hidden" value="1"/>
-        <EditorCategories value="AbilityorEffectType:Units"/>
+        <EditorCategories value="Race:Weapon Mode"/>
         <RemoveValidatorArray value="EquippedWeaponisAssaultRifle"/>
         <Modification>
             <WeaponArray Link="AssaultRifleBurstFire"/>
@@ -65,7 +118,7 @@
     </CBehaviorBuff>
     <CBehaviorBuff id="AutomaticShotgun">
         <InfoFlags index="Hidden" value="1"/>
-        <EditorCategories value="AbilityorEffectType:Units"/>
+        <EditorCategories value="Race:Equip Weapon"/>
         <Modification>
             <WeaponArray Link="AutomaticShotgun"/>
         </Modification>
@@ -73,7 +126,7 @@
     <CBehaviorBuff id="Expanding">
         <InfoFlags index="Hidden" value="1"/>
         <InfoIcon value="btn-tips-terran-penetrator-red.dds"/>
-        <EditorCategories value="AbilityorEffectType:Units"/>
+        <EditorCategories value="Race:Equip AmmoMod"/>
         <DamageResponse Chance="1" Handled="ExpandingSwitch" Location="Attacker">
             <RequireEffectArray value="AntiMaterialRifleDamageCritical"/>
             <RequireEffectArray value="AssaultRifleBurstFireDamageCritical"/>
@@ -88,14 +141,14 @@
     <CBehaviorBuff id="ExpandingHeroicSlow">
         <Alignment value="Negative"/>
         <InfoIcon value="btn-tips-terran-penetrator-red.dds"/>
-        <EditorCategories value="AbilityorEffectType:Units"/>
+        <EditorCategories value="Race:AmmoMod Slow Debuff"/>
         <Duration value="1"/>
         <Modification MoveSpeedMultiplier="0.85"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="ExpandingStun">
         <Alignment value="Negative"/>
         <InfoIcon value="btn-tips-terran-penetrator-red.dds"/>
-        <EditorCategories value="AbilityorEffectType:Units"/>
+        <EditorCategories value="Race:AmmoMod Stun Debuff"/>
         <Duration value="0.1"/>
         <Modification>
             <ModifyFlags index="DisableAbils" value="1"/>
@@ -109,7 +162,7 @@
     <CBehaviorBuff id="BatonEquipped" parent="WeaponEquippedTemplate"/>
     <CBehaviorBuff id="ArmorPiercing">
         <InfoIcon value="btn-techupgrade-terran-impalerrounds-color.dds"/>
-        <EditorCategories value="AbilityorEffectType:Units,Race:Terran"/>
+        <EditorCategories value="Race:Equip AmmoMod"/>
         <Modification>
             <DamageDealtFraction index="Ranged" value="0.15"/>
             <DamageDealtFraction index="Splash" value="0.15"/>
@@ -117,11 +170,11 @@
     </CBehaviorBuff>
     <CBehaviorBuff id="HammerEquipped" parent="WeaponEquippedTemplate"/>
     <CBehaviorBuff id="Blind">
-        <EditorCategories value="AbilityorEffectType:Units"/>
+        <EditorCategories value="Race:Vision Debuff"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="BrokenArm">
         <Alignment value="Negative"/>
-        <EditorCategories value="AbilityorEffectType:Units"/>
+        <EditorCategories value="Race:Injury Debuff"/>
         <TechAliasArray value="_BrokenBone"/>
         <Duration value="360"/>
         <Modification AttackSpeedMultiplier="0.35">
@@ -133,13 +186,13 @@
     </CBehaviorBuff>
     <CBehaviorBuff id="BrokenLeg">
         <Alignment value="Negative"/>
-        <EditorCategories value="AbilityorEffectType:Units"/>
+        <EditorCategories value="Race:Injury Debuff"/>
         <TechAliasArray value="_BrokenBone"/>
         <Duration value="360"/>
         <Modification MoveSpeedMultiplier="0.45"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="ChainsawBodyTrauma">
-        <EditorCategories value="AbilityorEffectType:Units"/>
+        <EditorCategories value="Race:Equip Weapon"/>
         <DamageResponse Chance="0.25" Handled="ChainsawBodyTraumaStun" Location="Attacker">
             <Kind index="Spell" value="0"/>
             <Kind index="Ranged" value="0"/>
@@ -149,7 +202,7 @@
     </CBehaviorBuff>
     <CBehaviorBuff id="ChainsawBodyTraumaStun">
         <Alignment value="Negative"/>
-        <EditorCategories value="AbilityorEffectType:Units"/>
+        <EditorCategories value="Race:Weapon Stun Debuff"/>
         <Duration value="0.1"/>
         <Modification>
             <ModifyFlags index="DisableAbils" value="1"/>
@@ -160,7 +213,7 @@
     <CBehaviorBuff id="CrowbarEquipped" parent="WeaponEquippedTemplate"/>
     <CBehaviorBuff id="AxeEquipped" parent="WeaponEquippedTemplate"/>
     <CBehaviorBuff id="EnhancedProtectiveInsert">
-        <EditorCategories value="AbilityorEffectType:Units,Race:Neutral"/>
+        <EditorCategories value="Race:Equip Armor"/>
         <Modification LifeArmorBonus="4"/>
         <InfoFlags index="Hidden" value="1"/>
         <DamageResponse Chance="1" ModifyAmount="-10">
@@ -170,19 +223,19 @@
         </DamageResponse>
     </CBehaviorBuff>
     <CBehaviorBuff id="ExtendedMagazine">
-        <EditorCategories value="AbilityorEffectType:Units"/>
+        <EditorCategories value="Race:Equip AmmoMod"/>
         <InfoFlags index="Hidden" value="1"/>
         <MaxStackCount value="2"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="FieldLights">
         <InfoFlags index="Hidden" value="1"/>
-        <EditorCategories value="AbilityorEffectType:Units"/>
+        <EditorCategories value="Race:Equip Accessory"/>
         <Period value="1"/>
         <InitialEffect value="FieldLightPersistent"/>
         <FinalEffect value="RemoveFieldLights"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="FiringStance">
-        <EditorCategories value="AbilityorEffectType:Units"/>
+        <EditorCategories value="Race:Weapon Mode"/>
         <Modification MoveSpeedMultiplier="0.25" WeaponRange="3">
             <DamageDealtScaled index="Ranged" value="3"/>
             <DamageDealtScaled index="Splash" value="3"/>
@@ -194,12 +247,12 @@
     </CBehaviorBuff>
     <CBehaviorBuff id="FlareGunSlow">
         <InfoFlags index="Hidden" value="1"/>
-        <EditorCategories value="AbilityorEffectType:Units"/>
+        <EditorCategories value="Race:Weapon Slow Debuff"/>
         <Duration value="10"/>
         <Modification MoveSpeedMultiplier="0.8"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="Flechette">
-        <EditorCategories value="AbilityorEffectType:Units,Race:Neutral"/>
+        <EditorCategories value="Race:Equip AmmoMod"/>
         <Modification>
             <DamageDealtFraction index="Melee" value="-0.4"/>
             <DamageDealtFraction index="Ranged" value="-0.4"/>
@@ -208,7 +261,7 @@
     </CBehaviorBuff>
     <CBehaviorBuff id="FractureArm">
         <Alignment value="Negative"/>
-        <EditorCategories value="AbilityorEffectType:Units"/>
+        <EditorCategories value="Race:Injury Debuff"/>
         <Duration value="180"/>
         <Modification AttackSpeedMultiplier="0.55">
             <DamageDealtFraction index="Spell" value="-0.15"/>
@@ -220,24 +273,24 @@
     </CBehaviorBuff>
     <CBehaviorBuff id="FractureLeg">
         <Alignment value="Negative"/>
-        <EditorCategories value="AbilityorEffectType:Units"/>
+        <EditorCategories value="Race:Injury Debuff"/>
         <Duration value="180"/>
         <Modification MoveSpeedMultiplier="0.65"/>
         <RefreshEffect value="FracturetoBrokenBone"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="GenericBehavior">
-        <EditorCategories value="AbilityorEffectType:Units"/>
+        <EditorCategories value="Race:???"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="PlasmaCoreDebuff">
         <InfoIcon value="btn-upgrade-terran-moebiusreactor-spectre.dds"/>
-        <EditorCategories value="AbilityorEffectType:Units,Race:Terran"/>
+        <EditorCategories value="Race:AmmoMod Fragile Debuff"/>
         <MaxStackCountPerCaster value="1"/>
         <Duration value="10"/>
         <Modification LifeArmorBonus="-2" ShieldArmorBonus="-2"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="DeployHeavyMachineGun">
         <InfoFlags index="Hidden" value="1"/>
-        <EditorCategories value="AbilityorEffectType:Units"/>
+        <EditorCategories value="Race:Weapon Mode"/>
         <RemoveValidatorArray value="EquippedWeaponisHeavyMachineGun"/>
         <Modification>
             <ModifyFlags index="SuppressMoving" value="1"/>
@@ -245,6 +298,7 @@
     </CBehaviorBuff>
     <CBehaviorBuff id="HeavyMachineGunEquipped" parent="WeaponEquippedTemplate" WeaponDamageEffect="HeavyMachineGunDamage"/>
     <CBehaviorBuff id="HeavyProtectiveInsert">
+        <EditorCategories value="Race:Equip Armor"/>
         <Modification LifeArmorBonus="6"/>
         <InfoFlags index="Hidden" value="1"/>
         <DamageResponse Chance="1" ModifyAmount="-15">
@@ -254,7 +308,7 @@
         </DamageResponse>
     </CBehaviorBuff>
     <CBehaviorBuff id="HecateModule">
-        <EditorCategories value="AbilityorEffectType:Units,Race:Neutral"/>
+        <EditorCategories value="Race:Equip AmmoMod"/>
         <Modification AttackSpeedMultiplier="1.15">
             <DamageDealtUnscaled index="Ranged" value="2"/>
             <DamageDealtUnscaled index="Splash" value="2"/>
@@ -262,10 +316,11 @@
         <Requirements value="HecateModuleFlamerLaser"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="HighCapacityMagazine">
+        <EditorCategories value="Race:Equip Accessory"/>
         <InfoFlags index="Hidden" value="1"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="HighExplosive">
-        <EditorCategories value="AbilityorEffectType:Units,Race:Neutral"/>
+        <EditorCategories value="Race:Equip AmmoMod"/>
         <Modification>
             <DamageDealtFraction index="Ranged" value="-0.4"/>
             <DamageDealtFraction index="Splash" value="-0.4"/>
@@ -284,60 +339,71 @@
         </DamageResponse>
     </CBehaviorBuff>
     <CBehaviorBuff id="ItemWeight1">
+        <EditorCategories value="Race:???"/>
         <InfoFlags index="Hidden" value="1"/>
         <MaxStackCountPerCaster value="1"/>
         <Modification MoveSpeedBonus="-0.0117"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="ItemWeight10">
+        <EditorCategories value="Race:???"/>
         <InfoFlags index="Hidden" value="1"/>
         <MaxStackCountPerCaster value="1"/>
         <Modification MoveSpeedBonus="-0.1015"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="ItemWeight100">
+        <EditorCategories value="Race:???"/>
         <InfoFlags index="Hidden" value="1"/>
         <MaxStackCountPerCaster value="1"/>
         <Modification MoveSpeedBonus="-1"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="ItemWeight1000">
+        <EditorCategories value="Race:???"/>
         <InfoFlags index="Hidden" value="1"/>
         <MaxStackCountPerCaster value="1"/>
         <Modification MoveSpeedBonus="-10"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="ItemWeight2">
+        <EditorCategories value="Race:???"/>
         <InfoFlags index="Hidden" value="1"/>
         <MaxStackCount value="2"/>
         <MaxStackCountPerCaster value="2"/>
         <Modification MoveSpeedBonus="-0.0195"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="ItemWeight20">
+        <EditorCategories value="Race:???"/>
         <InfoFlags index="Hidden" value="1"/>
         <MaxStackCount value="2"/>
         <MaxStackCountPerCaster value="2"/>
         <Modification MoveSpeedBonus="-0.1992"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="ItemWeight200">
+        <EditorCategories value="Race:???"/>
         <InfoFlags index="Hidden" value="1"/>
         <MaxStackCount value="2"/>
         <MaxStackCountPerCaster value="2"/>
         <Modification MoveSpeedBonus="-2"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="ItemWeight2000">
+        <EditorCategories value="Race:???"/>
         <InfoFlags index="Hidden" value="1"/>
         <MaxStackCount value="2"/>
         <MaxStackCountPerCaster value="2"/>
         <Modification MoveSpeedBonus="-20"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="ItemWeight5">
+        <EditorCategories value="Race:???"/>
         <InfoFlags index="Hidden" value="1"/>
         <MaxStackCountPerCaster value="1"/>
         <Modification MoveSpeedBonus="-0.0507"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="ItemWeight50">
+        <EditorCategories value="Race:???"/>
         <InfoFlags index="Hidden" value="1"/>
         <MaxStackCountPerCaster value="1"/>
         <Modification MoveSpeedBonus="-0.5"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="ItemWeight500">
+        <EditorCategories value="Race:???"/>
         <InfoFlags index="Hidden" value="1"/>
         <MaxStackCountPerCaster value="1"/>
         <Modification MoveSpeedBonus="-5"/>
@@ -355,7 +421,7 @@
     </CBehaviorBuff>
     <CBehaviorBuff id="PlasmaCore">
         <InfoIcon value="btn-upgrade-terran-moebiusreactor-spectre.dds"/>
-        <EditorCategories value="AbilityorEffectType:Units,Race:Terran"/>
+        <EditorCategories value="Race:Equip AmmoMod"/>
         <DamageResponse Chance="1" Handled="PlasmaCore" Location="Attacker">
             <Kind index="Spell" value="0"/>
             <Kind index="Melee" value="0"/>
@@ -368,7 +434,7 @@
     <CBehaviorBuff id="PlasmaCutterEquipped" parent="WeaponEquippedTemplate" WeaponDamageEffect="PlasmaCutterDamage"/>
     <CBehaviorBuff id="PumpShotgun">
         <InfoFlags index="Hidden" value="1"/>
-        <EditorCategories value="AbilityorEffectType:Units"/>
+        <EditorCategories value="Race:Equip Weapon"/>
         <Modification>
             <WeaponArray Link="PumpShotgun"/>
         </Modification>
@@ -378,224 +444,183 @@
         <TechAliasArray value="_GeminiWeapon"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="ReactiveProtectiveInsert">
-        <EditorCategories value="AbilityorEffectType:Units"/>
+        <EditorCategories value="Race:Equip Armor"/>
         <DamageResponse Chance="1" ModifyFraction="0.6"/>
         <InfoFlags index="Hidden" value="1"/>
     </CBehaviorBuff>
-    <CBehaviorBuff id="ReloadManual">
-        <EditorCategories value="AbilityorEffectType:Units"/>
-        <DisplayDuration index="Self" value="1"/>
-        <DisplayDuration index="Ally" value="1"/>
-        <DurationOverride Duration="2.8">
-            <ValidatorArray value="EquippedWeaponisAntiMaterialRifle"/>
+    <CBehaviorBuff id="ReloadNormal" parent="ReloadTemplate">
+        <DurationOverride index="0" Duration="1.75">
+            <ValidatorArray index="0" value="EquippedWeaponisAssaultRifle"/>
         </DurationOverride>
-        <DurationOverride Duration="1.4">
-            <ValidatorArray value="EquippedWeaponisAssaultRifle"/>
+        <DurationOverride index="1" Duration="1">
+            <ValidatorArray index="0" value="EquippedWeaponisPistol"/>
         </DurationOverride>
-        <DurationOverride Duration="0.7">
-            <ValidatorArray value="EquippedWeaponisPistol"/>
+        <DurationOverride index="2" Duration="1.5">
+            <ValidatorArray index="0" value="EquippedWeaponisSubmachineGun"/>
         </DurationOverride>
-        <DurationOverride Duration="1.05">
-            <ValidatorArray value="EquippedWeaponisSubmachineGun"/>
+        <DurationOverride index="3" Duration="3">
+            <ValidatorArray index="0" value="EquippedWeaponisMediumMachineGun"/>
         </DurationOverride>
-        <DurationOverride Duration="3.15">
-            <ValidatorArray value="EquippedWeaponisMediumMachineGun"/>
+        <DurationOverride index="4" Duration="3">
+            <ValidatorArray index="0" value="EquippedWeaponisHeavyMachineGun"/>
         </DurationOverride>
-        <DurationOverride Duration="2.1">
-            <ValidatorArray value="EquippedWeaponisPumpShotgun"/>
+        <DurationOverride index="5" Duration="1.75">
+            <ValidatorArray index="0" value="EquippedWeaponisMarksmanRifle"/>
         </DurationOverride>
-        <DurationOverride Duration="1.4">
-            <ValidatorArray value="EquippedWeaponisAutomaticShotgun"/>
+        <DurationOverride index="6" Duration="4">
+            <ValidatorArray index="0" value="EquippedWeaponisAntiMaterialRifle"/>
         </DurationOverride>
-        <DurationOverride Duration="1.575">
-            <ValidatorArray value="EquippedWeaponisMarksmanRifle"/>
+        <DurationOverride index="7" Duration="3">
+            <ValidatorArray index="0" value="EquippedWeaponisLaserRifle"/>
         </DurationOverride>
-        <DurationOverride Duration="2.45">
-            <ValidatorArray value="EquippedWeaponisFlamethrower"/>
+        <DurationOverride index="8" Duration="3">
+            <ValidatorArray index="0" value="EquippedWeaponisFlamethrower"/>
         </DurationOverride>
-        <DurationOverride Duration="2.45">
-            <ValidatorArray value="EquippedWeaponisLaserRifle"/>
+        <DurationOverride index="9" Duration="3">
+            <ValidatorArray index="0" value="EquippedWeaponisPumpShotgun"/>
         </DurationOverride>
-        <DurationOverride Duration="2.45">
-            <ValidatorArray value="EquippedWeaponisChainsaw"/>
+        <DurationOverride index="10" Duration="3">
+            <ValidatorArray index="0" value="EquippedWeaponisAutomaticShotgun"/>
         </DurationOverride>
-        <DurationOverride Duration="2.45">
-            <ValidatorArray value="EquippedWeaponisPlasmaCutter"/>
+        <DurationOverride index="11" Duration="3.5">
+            <ValidatorArray index="0" value="EquippedWeaponisChainsaw"/>
         </DurationOverride>
-        <DurationOverride Duration="3.2">
-            <ValidatorArray value="EquippedWeaponisHeavyMachineGun"/>
+        <DurationOverride index="12" Duration="3.5">
+            <ValidatorArray index="0" value="EquippedWeaponisPlasmaCutter"/>
         </DurationOverride>
-        <Modification>
-            <StateFlags index="SuppressAttack" value="1"/>
-            <AbilLinkDisableArray value="AutomaticReload"/>
-            <AbilLinkDisableArray value="AutomaticReloadAssault"/>
-        </Modification>
-        <InfoFlags index="Hidden" value="1"/>
-        <BuffFlags index="Extend" value="1"/>
     </CBehaviorBuff>
-    <CBehaviorBuff id="ReloadNightmare">
-        <InfoFlags index="Hidden" value="1"/>
-        <EditorCategories value="AbilityorEffectType:Units"/>
-        <DisplayDuration index="Self" value="1"/>
-        <DisplayDuration index="Ally" value="1"/>
-        <DurationOverride Duration="8">
-            <ValidatorArray value="EquippedWeaponisAntiMaterialRifle"/>
+    <CBehaviorBuff id="ReloadNightmare" parent="ReloadTemplate">
+        <DurationOverride index="0" Duration="3.5">
+            <ValidatorArray index="0" value="EquippedWeaponisAssaultRifle"/>
         </DurationOverride>
-        <DurationOverride Duration="4">
-            <ValidatorArray value="EquippedWeaponisAssaultRifle"/>
+        <DurationOverride index="1" Duration="2">
+            <ValidatorArray index="0" value="EquippedWeaponisPistol"/>
         </DurationOverride>
-        <DurationOverride Duration="2">
-            <ValidatorArray value="EquippedWeaponisPistol"/>
+        <DurationOverride index="2" Duration="3">
+            <ValidatorArray index="0" value="EquippedWeaponisSubmachineGun"/>
         </DurationOverride>
-        <DurationOverride Duration="3">
-            <ValidatorArray value="EquippedWeaponisSubmachineGun"/>
+        <DurationOverride index="3" Duration="6">
+            <ValidatorArray index="0" value="EquippedWeaponisMediumMachineGun"/>
         </DurationOverride>
-        <DurationOverride Duration="9">
-            <ValidatorArray value="EquippedWeaponisMediumMachineGun"/>
+        <DurationOverride index="4" Duration="6">
+            <ValidatorArray index="0" value="EquippedWeaponisHeavyMachineGun"/>
         </DurationOverride>
-        <DurationOverride Duration="6">
-            <ValidatorArray value="EquippedWeaponisPumpShotgun"/>
+        <DurationOverride index="5" Duration="3.5">
+            <ValidatorArray index="0" value="EquippedWeaponisMarksmanRifle"/>
         </DurationOverride>
-        <DurationOverride Duration="4">
-            <ValidatorArray value="EquippedWeaponisAutomaticShotgun"/>
+        <DurationOverride index="6" Duration="8">
+            <ValidatorArray index="0" value="EquippedWeaponisAntiMaterialRifle"/>
         </DurationOverride>
-        <DurationOverride Duration="4.5">
-            <ValidatorArray value="EquippedWeaponisMarksmanRifle"/>
+        <DurationOverride index="7" Duration="6">
+            <ValidatorArray index="0" value="EquippedWeaponisLaserRifle"/>
         </DurationOverride>
-        <DurationOverride Duration="7">
-            <ValidatorArray value="EquippedWeaponisFlamethrower"/>
+        <DurationOverride index="8" Duration="6">
+            <ValidatorArray index="0" value="EquippedWeaponisFlamethrower"/>
         </DurationOverride>
-        <DurationOverride Duration="7">
-            <ValidatorArray value="EquippedWeaponisLaserRifle"/>
+        <DurationOverride index="9" Duration="6">
+            <ValidatorArray index="0" value="EquippedWeaponisPumpShotgun"/>
         </DurationOverride>
-        <DurationOverride Duration="7">
-            <ValidatorArray value="EquippedWeaponisChainsaw"/>
+        <DurationOverride index="10" Duration="6">
+            <ValidatorArray index="0" value="EquippedWeaponisAutomaticShotgun"/>
         </DurationOverride>
-        <DurationOverride Duration="7">
-            <ValidatorArray value="EquippedWeaponisPlasmaCutter"/>
+        <DurationOverride index="11" Duration="7">
+            <ValidatorArray index="0" value="EquippedWeaponisChainsaw"/>
         </DurationOverride>
-        <DurationOverride Duration="12">
-            <ValidatorArray value="EquippedWeaponisHeavyMachineGun"/>
+        <DurationOverride index="12" Duration="7">
+            <ValidatorArray index="0" value="EquippedWeaponisPlasmaCutter"/>
         </DurationOverride>
-        <Modification>
-            <StateFlags index="SuppressAttack" value="1"/>
-            <AbilLinkDisableArray value="AutomaticReload"/>
-            <AbilLinkDisableArray value="AutomaticReloadAssault"/>
-        </Modification>
-        <BuffFlags index="Extend" value="1"/>
     </CBehaviorBuff>
-    <CBehaviorBuff id="ReloadNormal">
-        <InfoFlags index="Hidden" value="1"/>
-        <EditorCategories value="AbilityorEffectType:Units"/>
-        <DisplayDuration index="Self" value="1"/>
-        <DisplayDuration index="Ally" value="1"/>
-        <Duration value="1"/>
-        <DurationOverride Duration="4">
-            <ValidatorArray value="EquippedWeaponisAntiMaterialRifle"/>
+    <CBehaviorBuff id="ReloadManual" parent="ReloadTemplate">
+        <DurationOverride index="0" Duration="1.225">
+            <ValidatorArray index="0" value="EquippedWeaponisAssaultRifle"/>
         </DurationOverride>
-        <DurationOverride Duration="2">
-            <ValidatorArray value="EquippedWeaponisAssaultRifle"/>
+        <DurationOverride index="1" Duration="0.7">
+            <ValidatorArray index="0" value="EquippedWeaponisPistol"/>
         </DurationOverride>
-        <DurationOverride Duration="1">
-            <ValidatorArray value="EquippedWeaponisPistol"/>
+        <DurationOverride index="2" Duration="1.05">
+            <ValidatorArray index="0" value="EquippedWeaponisSubmachineGun"/>
         </DurationOverride>
-        <DurationOverride Duration="1.5">
-            <ValidatorArray value="EquippedWeaponisSubmachineGun"/>
+        <DurationOverride index="3" Duration="2.1">
+            <ValidatorArray index="0" value="EquippedWeaponisMediumMachineGun"/>
         </DurationOverride>
-        <DurationOverride Duration="4.5">
-            <ValidatorArray value="EquippedWeaponisMediumMachineGun"/>
+        <DurationOverride index="4" Duration="2.1">
+            <ValidatorArray index="0" value="EquippedWeaponisHeavyMachineGun"/>
         </DurationOverride>
-        <DurationOverride Duration="3">
-            <ValidatorArray value="EquippedWeaponisPumpShotgun"/>
+        <DurationOverride index="5" Duration="1.225">
+            <ValidatorArray index="0" value="EquippedWeaponisMarksmanRifle"/>
         </DurationOverride>
-        <DurationOverride Duration="2">
-            <ValidatorArray value="EquippedWeaponisAutomaticShotgun"/>
+        <DurationOverride index="6" Duration="2.8">
+            <ValidatorArray index="0" value="EquippedWeaponisAntiMaterialRifle"/>
         </DurationOverride>
-        <DurationOverride Duration="2.25">
-            <ValidatorArray value="EquippedWeaponisMarksmanRifle"/>
+        <DurationOverride index="7" Duration="2.1">
+            <ValidatorArray index="0" value="EquippedWeaponisLaserRifle"/>
         </DurationOverride>
-        <DurationOverride Duration="3.5">
-            <ValidatorArray value="EquippedWeaponisFlamethrower"/>
+        <DurationOverride index="8" Duration="2.1">
+            <ValidatorArray index="0" value="EquippedWeaponisFlamethrower"/>
         </DurationOverride>
-        <DurationOverride Duration="3.5">
-            <ValidatorArray value="EquippedWeaponisLaserRifle"/>
+        <DurationOverride index="9" Duration="2.1">
+            <ValidatorArray index="0" value="EquippedWeaponisPumpShotgun"/>
         </DurationOverride>
-        <DurationOverride Duration="3.5">
-            <ValidatorArray value="EquippedWeaponisChainsaw"/>
+        <DurationOverride index="10" Duration="2.1">
+            <ValidatorArray index="0" value="EquippedWeaponisAutomaticShotgun"/>
         </DurationOverride>
-        <DurationOverride Duration="3.5">
-            <ValidatorArray value="EquippedWeaponisPlasmaCutter"/>
+        <DurationOverride index="11" Duration="2.45">
+            <ValidatorArray index="0" value="EquippedWeaponisChainsaw"/>
         </DurationOverride>
-        <DurationOverride Duration="6">
-            <ValidatorArray value="EquippedWeaponisHeavyMachineGun"/>
+        <DurationOverride index="12" Duration="2.45">
+            <ValidatorArray index="0" value="EquippedWeaponisPlasmaCutter"/>
         </DurationOverride>
-        <Modification>
-            <StateFlags index="SuppressAttack" value="1"/>
-            <AbilLinkDisableArray value="AutomaticReload"/>
-            <AbilLinkDisableArray value="AutomaticReloadAssault"/>
-        </Modification>
-        <BuffFlags index="Extend" value="1"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="ReloadPerfect" parent="ReloadTemplate">
+        <DurationOverride index="0" Duration="0.875">
+            <ValidatorArray index="0" value="EquippedWeaponisAssaultRifle"/>
+        </DurationOverride>
+        <DurationOverride index="1" Duration="0.5">
+            <ValidatorArray index="0" value="EquippedWeaponisPistol"/>
+        </DurationOverride>
+        <DurationOverride index="2" Duration="0.75">
+            <ValidatorArray index="0" value="EquippedWeaponisSubmachineGun"/>
+        </DurationOverride>
+        <DurationOverride index="3" Duration="1.5">
+            <ValidatorArray index="0" value="EquippedWeaponisMediumMachineGun"/>
+        </DurationOverride>
+        <DurationOverride index="4" Duration="1.5">
+            <ValidatorArray index="0" value="EquippedWeaponisHeavyMachineGun"/>
+        </DurationOverride>
+        <DurationOverride index="5" Duration="0.875">
+            <ValidatorArray index="0" value="EquippedWeaponisMarksmanRifle"/>
+        </DurationOverride>
+        <DurationOverride index="6" Duration="2">
+            <ValidatorArray index="0" value="EquippedWeaponisAntiMaterialRifle"/>
+        </DurationOverride>
+        <DurationOverride index="7" Duration="1.5">
+            <ValidatorArray index="0" value="EquippedWeaponisLaserRifle"/>
+        </DurationOverride>
+        <DurationOverride index="8" Duration="1.5">
+            <ValidatorArray index="0" value="EquippedWeaponisFlamethrower"/>
+        </DurationOverride>
+        <DurationOverride index="9" Duration="1.5">
+            <ValidatorArray index="0" value="EquippedWeaponisPumpShotgun"/>
+        </DurationOverride>
+        <DurationOverride index="10" Duration="1">
+            <ValidatorArray index="0" value="EquippedWeaponisAutomaticShotgun"/>
+        </DurationOverride>
+        <DurationOverride index="11" Duration="1.75">
+            <ValidatorArray index="0" value="EquippedWeaponisChainsaw"/>
+        </DurationOverride>
+        <DurationOverride index="12" Duration="1.75">
+            <ValidatorArray index="0" value="EquippedWeaponisPlasmaCutter"/>
+        </DurationOverride>
     </CBehaviorBuff>
     <CBehaviorBuff id="RoadFlareVision">
-        <EditorCategories value="AbilityorEffectType:Units"/>
+        <EditorCategories value="Race:Vision Passive TimedLife"/>
         <Duration value="120"/>
         <ExpireEffect value="Suicide"/>
         <Modification Detect="8"/>
     </CBehaviorBuff>
-    <CBehaviorBuff id="ReloadPerfect">
-        <EditorCategories value="AbilityorEffectType:Units"/>
-        <DisplayDuration index="Self" value="1"/>
-        <DisplayDuration index="Ally" value="1"/>
-        <DurationOverride Duration="2">
-            <ValidatorArray value="EquippedWeaponisAntiMaterialRifle"/>
-        </DurationOverride>
-        <DurationOverride Duration="1">
-            <ValidatorArray value="EquippedWeaponisAssaultRifle"/>
-        </DurationOverride>
-        <DurationOverride Duration="0.5">
-            <ValidatorArray value="EquippedWeaponisPistol"/>
-        </DurationOverride>
-        <DurationOverride Duration="0.75">
-            <ValidatorArray value="EquippedWeaponisSubmachineGun"/>
-        </DurationOverride>
-        <DurationOverride Duration="2.25">
-            <ValidatorArray value="EquippedWeaponisMediumMachineGun"/>
-        </DurationOverride>
-        <DurationOverride Duration="1.5">
-            <ValidatorArray value="EquippedWeaponisPumpShotgun"/>
-        </DurationOverride>
-        <DurationOverride Duration="1">
-            <ValidatorArray value="EquippedWeaponisAutomaticShotgun"/>
-        </DurationOverride>
-        <DurationOverride Duration="1.125">
-            <ValidatorArray value="EquippedWeaponisMarksmanRifle"/>
-        </DurationOverride>
-        <DurationOverride Duration="1.75">
-            <ValidatorArray value="EquippedWeaponisFlamethrower"/>
-        </DurationOverride>
-        <DurationOverride Duration="1.75">
-            <ValidatorArray value="EquippedWeaponisLaserRifle"/>
-        </DurationOverride>
-        <DurationOverride Duration="1.75">
-            <ValidatorArray value="EquippedWeaponisChainsaw"/>
-        </DurationOverride>
-        <DurationOverride Duration="1.75">
-            <ValidatorArray value="EquippedWeaponisPlasmaCutter"/>
-        </DurationOverride>
-        <DurationOverride Duration="3">
-            <ValidatorArray value="EquippedWeaponisHeavyMachineGun"/>
-        </DurationOverride>
-        <Modification>
-            <StateFlags index="SuppressAttack" value="1"/>
-            <AbilLinkDisableArray value="AutomaticReload"/>
-            <AbilLinkDisableArray value="AutomaticReloadAssault"/>
-        </Modification>
-        <InfoFlags index="Hidden" value="1"/>
-        <BuffFlags index="Extend" value="1"/>
-    </CBehaviorBuff>
     <CBehaviorBuff id="RiotShield">
         <InfoFlags index="Hidden" value="1"/>
-        <EditorCategories value="AbilityorEffectType:Units"/>
+        <EditorCategories value="Race:Equip Accessory"/>
         <DisableValidatorArray value="noShields"/>
         <DamageResponse Chance="1" ModifyAmount="-5"/>
     </CBehaviorBuff>
@@ -605,13 +630,14 @@
         </Modification>
     </CBehaviorBuff>
     <CBehaviorBuff id="ShieldAugmentationInsert">
+        <EditorCategories value="Race:Equip Armor"/>
         <Modification ShieldArmorBonus="4">
             <VitalMaxFractionArray index="Shields" value="0.5"/>
         </Modification>
         <InfoFlags index="Hidden" value="1"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="AutomaticShotgunDamage">
-        <EditorCategories value="AbilityorEffectType:Units"/>
+        <EditorCategories value="Race:Weapon Effect Mediator"/>
         <FinalEffect value="AutomaticShotgunDamageSet"/>
         <Duration value="0.25"/>
         <DurationRandomMin value="0.2"/>
@@ -621,14 +647,14 @@
     </CBehaviorBuff>
     <CBehaviorBuff id="SpecialWeaponEquipped">
         <InfoFlags index="Hidden" value="1"/>
-        <EditorCategories value="AbilityorEffectType:Units"/>
+        <EditorCategories value="Race:Equip Special Weapon"/>
         <DisableValidatorArray value="CasterNotAttacking"/>
         <Modification>
             <StateFlags index="Passive" value="1"/>
         </Modification>
     </CBehaviorBuff>
     <CBehaviorBuff id="StartingWeapon">
-        <EditorCategories value="AbilityorEffectType:Units"/>
+        <EditorCategories value="Race:???"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="SubmachineGunEquipped" parent="WeaponEquippedTemplate" WeaponDamageEffect="SubmachineGunDamage">
         <TechAliasArray value="_GeminiWeapon"/>
@@ -638,7 +664,7 @@
     <CBehaviorBuff id="RocketLauncherEquipped" parent="WeaponEquippedTemplate"/>
     <CBehaviorBuff id="GrenadeLauncherEquipped" parent="WeaponEquippedTemplate"/>
     <CBehaviorBuff id="TX1">
-        <EditorCategories value="AbilityorEffectType:Units,Race:Neutral"/>
+        <EditorCategories value="Race:Equip AmmoMod"/>
         <DamageResponse Chance="1" Handled="TX1Poison" Location="Attacker">
             <Kind index="Spell" value="0"/>
             <Kind index="Melee" value="0"/>
@@ -646,7 +672,7 @@
         </DamageResponse>
     </CBehaviorBuff>
     <CBehaviorBuff id="TX1Poison">
-        <EditorCategories value="AbilityorEffectType:Units"/>
+        <EditorCategories value="Race:AmmoMod Damage Debuff"/>
         <Duration value="10"/>
         <Period value="1"/>
         <PeriodCount value="10"/>
@@ -655,7 +681,7 @@
     </CBehaviorBuff>
     <CBehaviorBuff id="PlasmaCannonArmorReduction">
         <Alignment value="Negative"/>
-        <EditorCategories value="AbilityorEffectType:Units"/>
+        <EditorCategories value="Race:Special Weapon Fragile Debuff"/>
         <Duration value="10"/>
         <Modification LifeArmorBonus="-6"/>
     </CBehaviorBuff>
@@ -747,7 +773,7 @@
     <CBehaviorBuff id="SuperGravityGunNoise" parent="WeaponNoiseTemplate"/>
     <CBehaviorBuff id="WeaponEquipDelay">
         <InfoFlags index="Hidden" value="1"/>
-        <EditorCategories value="AbilityorEffectType:Units"/>
+        <EditorCategories value="Race:Weapon Delay Timer"/>
         <DisplayDuration index="Self" value="1"/>
         <DisplayDuration index="Ally" value="1"/>
         <Duration value="1"/>
@@ -799,29 +825,29 @@
     </CBehaviorBuff>
     <CBehaviorBuff id="CombatMobilityAugment">
         <InfoFlags index="Hidden" value="1"/>
-        <EditorCategories value="Race:Terran,AbilityorEffectType:Units"/>
+        <EditorCategories value="Race:Equip Accessory"/>
         <Modification MoveSpeedMultiplier="1.1"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="ImprovedAccuracyModule">
         <InfoFlags index="Hidden" value="1"/>
-        <EditorCategories value="Race:Terran,AbilityorEffectType:Units"/>
+        <EditorCategories value="Race:Equip Accessory"/>
         <Modification AttackSpeedMultiplier="1.25"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="NanoHealthAugment">
         <InfoFlags index="Hidden" value="1"/>
-        <EditorCategories value="Race:Terran,AbilityorEffectType:Units"/>
+        <EditorCategories value="Race:Equip Accessory"/>
         <Modification>
             <VitalRegenArray index="Life" value="0.75"/>
         </Modification>
     </CBehaviorBuff>
     <CBehaviorBuff id="NightVisionModule">
         <InfoFlags index="Hidden" value="1"/>
-        <EditorCategories value="Race:Terran,AbilityorEffectType:Units"/>
+        <EditorCategories value="Race:Equip Accessory"/>
         <Modification SightBonus="5" Detect="8"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="PowerGeneratorAugment">
         <InfoFlags index="Hidden" value="1"/>
-        <EditorCategories value="Race:Terran,AbilityorEffectType:Units"/>
+        <EditorCategories value="Race:Equip Accessory"/>
         <Modification>
             <VitalRegenArray index="Energy" value="0.5"/>
         </Modification>
