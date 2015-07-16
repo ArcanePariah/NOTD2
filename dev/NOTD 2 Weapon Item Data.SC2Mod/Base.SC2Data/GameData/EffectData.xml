@@ -45,16 +45,6 @@
         <EffectArray value="ApplyBrokenArm"/>
         <EffectArray value="RemoveArmFracture"/>
     </CEffectSet>
-    <CEffectSwitch id="AutomaticShotgunDamageCritical">
-        <EditorCategories value=""/>
-        <CaseArray Validator="Target2RangeOrLessAway" Effect="AutomaticShotgunCriticalDamageRange1"/>
-        <CaseArray Validator="Target3RangeOrLessAway" Effect="AutomaticShotgunCriticalDamageRange2"/>
-        <CaseArray Validator="Target4RangeOrLessAway" Effect="AutomaticShotgunCriticalDamageRange3"/>
-        <CaseArray Validator="Target5RangeOrLessAway" Effect="AutomaticShotgunCriticalDamageRange4"/>
-        <CaseArray Validator="Target6RangeOrLessAway" Effect="AutomaticCriticalShotgunDamageRange5"/>
-        <CaseArray Validator="Target7RangeOrLessAway" Effect="AutomaticCriticalShotgunDamageRange7"/>
-        <CaseArray Validator="Target8RangeOrLessAway" Effect="AutomaticShotgunCriticalDamageRange6"/>
-    </CEffectSwitch>
     <CEffectDamage id="AutomaticShotgunCriticalDamageRange1" parent="AutomaticShotgunDamageTemplate">
         <AreaArray index="0" Radius="0.1" Fraction="2"/>
     </CEffectDamage>
@@ -109,16 +99,6 @@
         <AreaArray index="0" Radius="0.35" Fraction="1.1428"/>
         <Amount value="87.5"/>
     </CEffectDamage>
-    <CEffectSwitch id="AutomaticShotgunDamage">
-        <EditorCategories value=""/>
-        <CaseArray Validator="Target2RangeOrLessAway" Effect="AutomaticShotgunDamageRange1"/>
-        <CaseArray Validator="Target3RangeOrLessAway" Effect="AutomaticShotgunDamageRange2"/>
-        <CaseArray Validator="Target4RangeOrLessAway" Effect="AutomaticShotgunDamageRange3"/>
-        <CaseArray Validator="Target5RangeOrLessAway" Effect="AutomaticShotgunDamageRange4"/>
-        <CaseArray Validator="Target6RangeOrLessAway" Effect="AutomaticShotgunDamageRange5"/>
-        <CaseArray Validator="Target7RangeOrLessAway" Effect="AutomaticShotgunDamageRange6"/>
-        <CaseArray Validator="Target8RangeOrLessAway" Effect="AutomaticShotgunDamageRange7"/>
-    </CEffectSwitch>
     <CEffectDamage id="PumpShotgunCriticalDamageRange3" parent="PumpShotgunDamageTemplate">
         <AreaArray index="0" Radius="0.65" Fraction="0.8571"/>
         <Amount value="87.5"/>
@@ -1228,4 +1208,41 @@
     <CEffectApplyBehavior id="WeaponEquipDelay">
         <EditorCategories value=""/>
     </CEffectApplyBehavior>
+    <CEffectDamage id="AutomaticShotgunDamage">
+        <ImpactLocation Value="TargetUnit"/>
+        <ArmorReduction value="2"/>
+        <Kind value="Ranged"/>
+        <KindSplash value="Splash"/>
+        <Amount value="20"/>
+        <Death value="Blast"/>
+        <SearchFilters value="-;Player,Ally,Neutral,Item,Invulnerable"/>
+        <SearchFlags index="OffsetAreaByAngle" value="1"/>
+        <AreaArray Radius="0.25" Bonus="60" Validator="CasterToTargetRangeLE1"/>
+        <AreaArray Radius="0.5" Bonus="55" Validator="CasterToTargetRangeWithin2"/>
+        <AreaArray Radius="0.75" Bonus="50" Validator="CasterToTargetRangeWithin3"/>
+        <AreaArray Radius="1" Bonus="45" Validator="CasterToTargetRangeWithin4"/>
+        <AreaArray Radius="1.25" Bonus="40" Validator="CasterToTargetRangeWithin5"/>
+        <AreaArray Radius="1.5" Bonus="35" Validator="CasterToTargetRangeWithin6"/>
+        <AreaArray Radius="1.75" Bonus="30" Validator="CasterToTargetRangeWithin7"/>
+        <AreaArray Radius="2" Bonus="25" Validator="CasterToTargetRangeWithin8"/>
+        <AreaArray Radius="2.25" Bonus="20" Validator="CasterToTargetRangeWithin9"/>
+        <AreaArray Radius="2.5" Bonus="15" Validator="CasterToTargetRangeWithin10"/>
+        <AreaArray Radius="2.75" Bonus="10" Validator="CasterToTargetRangeWithin11"/>
+        <AreaArray Radius="3" Bonus="5" Validator="CasterToTargetRangeWithin12"/>
+    </CEffectDamage>
+    <CEffectDamage id="AutomaticShotgunDamageCritical" parent="AutomaticShotgunDamage">
+        <Amount value="50"/>
+        <AreaArray index="0" Radius="0.25" Bonus="150" Validator="CasterToTargetRangeLE1"/>
+        <AreaArray index="1" Radius="0.5" Bonus="137.5" Validator="CasterToTargetRangeWithin2"/>
+        <AreaArray index="2" Radius="0.75" Bonus="125" Validator="CasterToTargetRangeWithin3"/>
+        <AreaArray index="3" Radius="1" Bonus="112.5" Validator="CasterToTargetRangeWithin4"/>
+        <AreaArray index="4" Radius="1.25" Bonus="100" Validator="CasterToTargetRangeWithin5"/>
+        <AreaArray index="5" Radius="1.5" Bonus="87.5" Validator="CasterToTargetRangeWithin6"/>
+        <AreaArray index="6" Radius="1.75" Bonus="75" Validator="CasterToTargetRangeWithin7"/>
+        <AreaArray index="7" Radius="2" Bonus="62.5" Validator="CasterToTargetRangeWithin8"/>
+        <AreaArray index="8" Radius="2.25" Bonus="50" Validator="CasterToTargetRangeWithin9"/>
+        <AreaArray index="9" Radius="2.5" Bonus="37.5" Validator="CasterToTargetRangeWithin10"/>
+        <AreaArray index="10" Radius="2.75" Bonus="25" Validator="CasterToTargetRangeWithin11"/>
+        <AreaArray index="11" Radius="3" Bonus="12.5" Validator="CasterToTargetRangeWithin12"/>
+    </CEffectDamage>
 </Catalog>

@@ -810,4 +810,174 @@
     <CValidatorUnitWeaponFiring id="UsedWeaponisPumpShotgunSliug" parent="UsedWeaponTemplate" WeaponUsed="PumpShotgunSlugShot"/>
     <CValidatorUnitWeaponFiring id="UsedWeaponisSubMachineGun" parent="UsedWeaponTemplate" WeaponUsed="SubmachineGun"/>
     <CValidatorUnitCompareBehaviorCount id="EquippedWeaponisAutomaticShotgun" parent="EquippedWeaponTemplate" Weapon="AutomaticShotgunEquipped"/>
+    <CValidatorLocationCompareRange id="CasterToTargetRangeLE1">
+        <WhichLocation Value="TargetUnitOrPoint"/>
+        <Compare value="LE"/>
+        <Range value="1"/>
+    </CValidatorLocationCompareRange>
+    <CValidatorLocationCompareRange id="CasterToTargetRangeGT1">
+        <WhichLocation Value="TargetUnitOrPoint"/>
+        <Compare value="GT"/>
+        <Range value="1"/>
+    </CValidatorLocationCompareRange>
+    <CValidatorLocationCompareRange id="CasterToTargetRangeLE2">
+        <WhichLocation Value="TargetUnitOrPoint"/>
+        <Compare value="LE"/>
+        <Range value="2"/>
+    </CValidatorLocationCompareRange>
+    <CValidatorCombine id="CasterToTargetRangeWithin2">
+        <CombineArray value="CasterToTargetRangeGT1"/>
+        <CombineArray value="CasterToTargetRangeLE2"/>
+        <Type value="And"/>
+    </CValidatorCombine>
+    <CValidatorLocationCompareRange id="CasterToTargetRangeGT2">
+        <WhichLocation Value="TargetUnitOrPoint"/>
+        <Compare value="GT"/>
+        <Range value="2"/>
+    </CValidatorLocationCompareRange>
+    <CValidatorLocationCompareRange id="CasterToTargetRangeLE3">
+        <WhichLocation Value="TargetUnitOrPoint"/>
+        <Compare value="LE"/>
+        <Range value="3"/>
+    </CValidatorLocationCompareRange>
+    <CValidatorCombine id="CasterToTargetRangeWithin3">
+        <CombineArray value="CasterToTargetRangeGT2"/>
+        <CombineArray value="CasterToTargetRangeLE3"/>
+        <Type value="And"/>
+    </CValidatorCombine>
+    <CValidatorLocationCompareRange id="CasterToTargetRangeGT3">
+        <WhichLocation Value="TargetUnitOrPoint"/>
+        <Compare value="GT"/>
+        <Range value="3"/>
+    </CValidatorLocationCompareRange>
+    <CValidatorLocationCompareRange id="CasterToTargetRangeLE4">
+        <WhichLocation Value="TargetUnitOrPoint"/>
+        <Compare value="LE"/>
+        <Range value="4"/>
+    </CValidatorLocationCompareRange>
+    <CValidatorCombine id="CasterToTargetRangeWithin4">
+        <CombineArray value="CasterToTargetRangeGT3"/>
+        <CombineArray value="CasterToTargetRangeLE4"/>
+        <Type value="And"/>
+    </CValidatorCombine>
+    <CValidatorLocationCompareRange id="CasterToTargetRangeGT4">
+        <WhichLocation Value="TargetUnitOrPoint"/>
+        <Compare value="GT"/>
+        <Range value="4"/>
+    </CValidatorLocationCompareRange>
+    <CValidatorLocationCompareRange id="CasterToTargetRangeLE5">
+        <WhichLocation Value="TargetUnitOrPoint"/>
+        <Compare value="LE"/>
+        <Range value="5"/>
+    </CValidatorLocationCompareRange>
+    <CValidatorCombine id="CasterToTargetRangeWithin5">
+        <CombineArray value="CasterToTargetRangeGT4"/>
+        <CombineArray value="CasterToTargetRangeLE5"/>
+        <Type value="And"/>
+    </CValidatorCombine>
+    <CValidatorLocationCompareRange id="CasterToTargetRangeGT5">
+        <WhichLocation Value="TargetUnitOrPoint"/>
+        <Compare value="GT"/>
+        <Range value="5"/>
+    </CValidatorLocationCompareRange>
+    <CValidatorLocationCompareRange id="CasterToTargetRangeLE6">
+        <WhichLocation Value="TargetUnitOrPoint"/>
+        <Compare value="LE"/>
+        <Range value="6"/>
+    </CValidatorLocationCompareRange>
+    <CValidatorCombine id="CasterToTargetRangeWithin6">
+        <CombineArray value="CasterToTargetRangeGT5"/>
+        <CombineArray value="CasterToTargetRangeLE6"/>
+        <Type value="And"/>
+    </CValidatorCombine>
+    <CValidatorLocationCompareRange id="CasterToTargetRangeGT6">
+        <WhichLocation Value="TargetUnitOrPoint"/>
+        <Compare value="GT"/>
+        <Range value="6"/>
+    </CValidatorLocationCompareRange>
+    <CValidatorLocationCompareRange id="CasterToTargetRangeLE7">
+        <WhichLocation Value="TargetUnitOrPoint"/>
+        <Compare value="LE"/>
+        <Range value="7"/>
+    </CValidatorLocationCompareRange>
+    <CValidatorCombine id="CasterToTargetRangeWithin7">
+        <CombineArray value="CasterToTargetRangeGT6"/>
+        <CombineArray value="CasterToTargetRangeLE7"/>
+        <Type value="And"/>
+    </CValidatorCombine>
+    <CValidatorLocationCompareRange id="CasterToTargetRangeGT7">
+        <WhichLocation Value="TargetUnitOrPoint"/>
+        <Compare value="GT"/>
+        <Range value="7"/>
+    </CValidatorLocationCompareRange>
+    <CValidatorLocationCompareRange id="CasterToTargetRangeLE8">
+        <WhichLocation Value="TargetUnitOrPoint"/>
+        <Compare value="LE"/>
+        <Range value="8"/>
+    </CValidatorLocationCompareRange>
+    <CValidatorCombine id="CasterToTargetRangeWithin8">
+        <CombineArray value="CasterToTargetRangeGT7"/>
+        <CombineArray value="CasterToTargetRangeLE8"/>
+        <Type value="And"/>
+    </CValidatorCombine>
+    <CValidatorLocationCompareRange id="CasterToTargetRangeGT8">
+        <WhichLocation Value="TargetUnitOrPoint"/>
+        <Compare value="GT"/>
+        <Range value="8"/>
+    </CValidatorLocationCompareRange>
+    <CValidatorLocationCompareRange id="CasterToTargetRangeLE9">
+        <WhichLocation Value="TargetUnitOrPoint"/>
+        <Compare value="LE"/>
+        <Range value="9"/>
+    </CValidatorLocationCompareRange>
+    <CValidatorCombine id="CasterToTargetRangeWithin9">
+        <CombineArray value="CasterToTargetRangeGT8"/>
+        <CombineArray value="CasterToTargetRangeLE9"/>
+        <Type value="And"/>
+    </CValidatorCombine>
+    <CValidatorLocationCompareRange id="CasterToTargetRangeGT9">
+        <WhichLocation Value="TargetUnitOrPoint"/>
+        <Compare value="GT"/>
+        <Range value="9"/>
+    </CValidatorLocationCompareRange>
+    <CValidatorLocationCompareRange id="CasterToTargetRangeLE10">
+        <WhichLocation Value="TargetUnitOrPoint"/>
+        <Compare value="LE"/>
+        <Range value="10"/>
+    </CValidatorLocationCompareRange>
+    <CValidatorCombine id="CasterToTargetRangeWithin10">
+        <CombineArray value="CasterToTargetRangeGT9"/>
+        <CombineArray value="CasterToTargetRangeLE10"/>
+        <Type value="And"/>
+    </CValidatorCombine>
+    <CValidatorLocationCompareRange id="CasterToTargetRangeGT10">
+        <WhichLocation Value="TargetUnitOrPoint"/>
+        <Compare value="GT"/>
+        <Range value="10"/>
+    </CValidatorLocationCompareRange>
+    <CValidatorLocationCompareRange id="CasterToTargetRangeLE11">
+        <WhichLocation Value="TargetUnitOrPoint"/>
+        <Compare value="LE"/>
+        <Range value="11"/>
+    </CValidatorLocationCompareRange>
+    <CValidatorCombine id="CasterToTargetRangeWithin11">
+        <CombineArray value="CasterToTargetRangeGT10"/>
+        <CombineArray value="CasterToTargetRangeLE11"/>
+        <Type value="And"/>
+    </CValidatorCombine>
+    <CValidatorLocationCompareRange id="CasterToTargetRangeGT11">
+        <WhichLocation Value="TargetUnitOrPoint"/>
+        <Compare value="GT"/>
+        <Range value="11"/>
+    </CValidatorLocationCompareRange>
+    <CValidatorLocationCompareRange id="CasterToTargetRangeLE12">
+        <WhichLocation Value="TargetUnitOrPoint"/>
+        <Compare value="LE"/>
+        <Range value="12"/>
+    </CValidatorLocationCompareRange>
+    <CValidatorCombine id="CasterToTargetRangeWithin12">
+        <CombineArray value="CasterToTargetRangeGT11"/>
+        <CombineArray value="CasterToTargetRangeLE12"/>
+        <Type value="And"/>
+    </CValidatorCombine>
 </Catalog>
