@@ -1516,6 +1516,12 @@
     <CEffectApplyBehavior id="PredatorCloak">
         <EditorCategories value=""/>
     </CEffectApplyBehavior>
+    <CEffectIssueOrder id="ProvokeAttackOrder">
+        <EditorCategories value=""/>
+        <Abil value="attack"/>
+        <CmdFlags index="Preempt" value="1"/>
+        <Target Value="CasterUnit"/>
+    </CEffectIssueOrder>
     <CEffectApplyBehavior id="ProvokeLevel1">
         <EditorCategories value=""/>
     </CEffectApplyBehavior>
@@ -1528,12 +1534,12 @@
     <CEffectEnumArea id="ProvokeSearchLevel1">
         <EditorCategories value=""/>
         <SearchFilters value="-;Player,Ally,Neutral"/>
-        <AreaArray Radius="7" Effect="ProvokeLevel1Taunt"/>
+        <AreaArray Radius="7" Effect="ProvokeTauntSetLevel1"/>
     </CEffectEnumArea>
     <CEffectEnumArea id="ProvokeSearchLevel2">
         <EditorCategories value=""/>
         <SearchFilters value="-;Player,Ally,Neutral"/>
-        <AreaArray Radius="8" Effect="ProvokeLevel2Taunt"/>
+        <AreaArray Radius="8" Effect="ProvokeTauntSetLevel2"/>
     </CEffectEnumArea>
     <CEffectApplyBehavior id="ProvokeLevel2Taunt">
         <EditorCategories value=""/>
@@ -1544,8 +1550,23 @@
     <CEffectEnumArea id="ProvokeSearchLevel3">
         <EditorCategories value=""/>
         <SearchFilters value="-;Player,Ally,Neutral"/>
-        <AreaArray Radius="9" Effect="ProvokeLevel3Taunt"/>
+        <AreaArray Radius="9" Effect="ProvokeTauntSetLevel3"/>
     </CEffectEnumArea>
+    <CEffectSet id="ProvokeTauntSetLevel1">
+        <EditorCategories value=""/>
+        <EffectArray value="ProvokeLevel1Taunt"/>
+        <EffectArray value="ProvokeAttackOrder"/>
+    </CEffectSet>
+    <CEffectSet id="ProvokeTauntSetLevel2">
+        <EditorCategories value=""/>
+        <EffectArray value="ProvokeLevel2Taunt"/>
+        <EffectArray value="ProvokeAttackOrder"/>
+    </CEffectSet>
+    <CEffectSet id="ProvokeTauntSetLevel3">
+        <EditorCategories value=""/>
+        <EffectArray value="ProvokeLevel3Taunt"/>
+        <EffectArray value="ProvokeAttackOrder"/>
+    </CEffectSet>
     <CEffectDamage id="ReactiveShieldsDamageLevel1">
         <ValidatorArray value="ReactiveShieldsRange"/>
         <EditorCategories value=""/>
