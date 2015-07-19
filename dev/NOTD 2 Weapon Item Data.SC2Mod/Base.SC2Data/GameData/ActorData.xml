@@ -308,6 +308,7 @@
     <CActorAction id="PumpShotgunAttack" parent="WeaponAttackTemplate" effectAttack="PumpShotgunDamage">
         <LaunchAssets Sound="PumpShotgunShot"/>
         <ImpactMap index="None" Sound="Reaper_AttackImpact"/>
+        <DamageMap index="None" AnimProps="Birth,01"/>
     </CActorAction>
     <CActorUnit id="AmmunitionCase" parent="GenericUnitSelectableNoAutoSoundLinks" unitName="AmmunitionCase">
         <EditorCategories value=""/>
@@ -735,4 +736,106 @@
         <HighlightTooltip value="Unit/Name/Bogus"/>
         <InfoText value="Button/Tooltip/Bogus"/>
     </CActorUnit>
+    <CActorBeamSimple id="ShotgunScattershotBeam" parent="BeamSimpleAnimationStyleOneShot">
+        <On index="0" Terms="ActorCreation" Send="AnimBracketStart BSD Death {} {} ContentPlayOnce"/>
+        <Host Subject="_Selectable"/>
+        <HostLaunch Subject="ShotgunScattershotBeamLaunchSite" Scope="Caster" Actor="Create"/>
+        <HostImpact Subject="ShotgunScattershotBeamImpactSite"/>
+    </CActorBeamSimple>
+    <CActorBeamSimple id="ShotgunScattershotBeamCritical" parent="BeamSimpleAnimationStyleOneShot">
+        <Host Subject="_Selectable"/>
+        <HostLaunch Subject="ShotgunScattershotBeamLaunchSite" Scope="Caster" Actor="Create"/>
+        <HostImpact Subject="ShotgunScattershotBeamImpactSiteCritical"/>
+    </CActorBeamSimple>
+    <CActorSite id="ShotgunScattershotBeamLaunchSite" parent="SiteUNIT">
+        <Aliases value="_LaunchGuide"/>
+        <HostSiteOps Ops="SOpAttachWeapon" HoldPosition="1" HoldRotation="1"/>
+    </CActorSite>
+    <CActorSite id="ShotgunScattershotBeamImpact">
+        <On Terms="Effect.PumpShotgunDamage.Start" Send="Create"/>
+        <On Terms="Effect.AutomaticShotgunDamage.Start" Send="Create"/>
+        <On Terms="ActorCreation" Send="Create ShotgunScattershotBeamImpactSite"/>
+        <On Terms="ActorCreation" Send="Create ShotgunScattershotBeamImpactSite"/>
+        <HostSiteOps Ops="SOpTargetPoint SOpMoveUpByDot5"/>
+    </CActorSite>
+    <CActorSite id="ShotgunScattershotBeamImpactCritical">
+        <On Terms="Effect.PumpShotgunDamageCritical.Start" Send="Create"/>
+        <On Terms="Effect.AutomaticShotgunDamageCritical.Start" Send="Create"/>
+        <On Terms="ActorCreation" Send="Create ShotgunScattershotBeamImpactSite"/>
+        <On Terms="ActorCreation" Send="Create ShotgunScattershotBeamImpactSiteCritical"/>
+        <On Terms="ActorCreation" Send="Create ShotgunScattershotBeamImpactSiteCritical"/>
+        <On Terms="ActorCreation" Send="Create ShotgunScattershotBeamImpactSiteCritical"/>
+        <HostSiteOps Ops="SOpTargetPoint SOpMoveUpByDot5"/>
+    </CActorSite>
+    <CActorSite id="ShotgunScattershotBeamImpactSite">
+        <On Terms="ActorCreation; ValidateEffect CasterToTargetRangeLE1" Send="HostSiteOpsSet ::Host {SOpScattershotRadius0dot125 SOpRandomPointInSphereDot5}"/>
+        <On Terms="ActorCreation; ValidateEffect CasterToTargetRangeWithin2" Send="HostSiteOpsSet ::Host {SOpScattershotRadius0dot25 SOpRandomPointInSphereDot5}"/>
+        <On Terms="ActorCreation; ValidateEffect CasterToTargetRangeWithin3" Send="HostSiteOpsSet ::Host {SOpScattershotRadius0dot375 SOpRandomPointInSphereDot5}"/>
+        <On Terms="ActorCreation; ValidateEffect CasterToTargetRangeWithin4" Send="HostSiteOpsSet ::Host {SOpScattershotRadius0dot5 SOpRandomPointInSphereDot5}"/>
+        <On Terms="ActorCreation; ValidateEffect CasterToTargetRangeWithin5" Send="HostSiteOpsSet ::Host {SOpScattershotRadius0dot625 SOpRandomPointInSphereDot5}"/>
+        <On Terms="ActorCreation; ValidateEffect CasterToTargetRangeWithin6" Send="HostSiteOpsSet ::Host {SOpScattershotRadius0dot75 SOpRandomPointInSphereDot5}"/>
+        <On Terms="ActorCreation; ValidateEffect CasterToTargetRangeWithin7" Send="HostSiteOpsSet ::Host {SOpScattershotRadius0dot875 SOpRandomPointInSphereDot5}"/>
+        <On Terms="ActorCreation; ValidateEffect CasterToTargetRangeWithin8" Send="HostSiteOpsSet ::Host {SOpScattershotRadius1 SOpRandomPointInSphereDot5}"/>
+        <On Terms="ActorCreation; ValidateEffect CasterToTargetRangeWithin9" Send="HostSiteOpsSet ::Host {SOpScattershotRadius1dot125 SOpRandomPointInSphereDot5}"/>
+        <On Terms="ActorCreation; ValidateEffect CasterToTargetRangeWithin10" Send="HostSiteOpsSet ::Host {SOpScattershotRadius1dot25 SOpRandomPointInSphereDot5}"/>
+        <On Terms="ActorCreation; ValidateEffect CasterToTargetRangeWithin11" Send="HostSiteOpsSet ::Host {SOpScattershotRadius1dot375 SOpRandomPointInSphereDot5}"/>
+        <On Terms="ActorCreation; ValidateEffect CasterToTargetRangeGT11" Send="HostSiteOpsSet ::Host {SOpScattershotRadius1dot5 SOpRandomPointInSphereDot5}"/>
+        <On Terms="ActorCreation" Send="Create ShotgunScattershotBeam"/>
+        <HostSiteOps Ops="SOpTargetPoint SOpMoveUpByDot5"/>
+    </CActorSite>
+    <CActorSite id="ShotgunScattershotBeamImpactSiteCritical">
+        <On Terms="ActorCreation; ValidateEffect CasterToTargetRangeLE1" Send="HostSiteOpsSet ::Host {SOpScattershotRadius0dot125 SOpRandomPointInSphereDot5}"/>
+        <On Terms="ActorCreation; ValidateEffect CasterToTargetRangeWithin2" Send="HostSiteOpsSet ::Host {SOpScattershotRadius0dot25 SOpRandomPointInSphereDot5}"/>
+        <On Terms="ActorCreation; ValidateEffect CasterToTargetRangeWithin3" Send="HostSiteOpsSet ::Host {SOpScattershotRadius0dot375 SOpRandomPointInSphereDot5}"/>
+        <On Terms="ActorCreation; ValidateEffect CasterToTargetRangeWithin4" Send="HostSiteOpsSet ::Host {SOpScattershotRadius0dot5 SOpRandomPointInSphereDot5}"/>
+        <On Terms="ActorCreation; ValidateEffect CasterToTargetRangeWithin5" Send="HostSiteOpsSet ::Host {SOpScattershotRadius0dot625 SOpRandomPointInSphereDot5}"/>
+        <On Terms="ActorCreation; ValidateEffect CasterToTargetRangeWithin6" Send="HostSiteOpsSet ::Host {SOpScattershotRadius0dot75 SOpRandomPointInSphereDot5}"/>
+        <On Terms="ActorCreation; ValidateEffect CasterToTargetRangeWithin7" Send="HostSiteOpsSet ::Host {SOpScattershotRadius0dot875 SOpRandomPointInSphereDot5}"/>
+        <On Terms="ActorCreation; ValidateEffect CasterToTargetRangeWithin8" Send="HostSiteOpsSet ::Host {SOpScattershotRadius1 SOpRandomPointInSphereDot5}"/>
+        <On Terms="ActorCreation; ValidateEffect CasterToTargetRangeWithin9" Send="HostSiteOpsSet ::Host {SOpScattershotRadius1dot125 SOpRandomPointInSphereDot5}"/>
+        <On Terms="ActorCreation; ValidateEffect CasterToTargetRangeWithin10" Send="HostSiteOpsSet ::Host {SOpScattershotRadius1dot25 SOpRandomPointInSphereDot5}"/>
+        <On Terms="ActorCreation; ValidateEffect CasterToTargetRangeWithin11" Send="HostSiteOpsSet ::Host {SOpScattershotRadius1dot375 SOpRandomPointInSphereDot5}"/>
+        <On Terms="ActorCreation; ValidateEffect CasterToTargetRangeGT11" Send="HostSiteOpsSet ::Host {SOpScattershotRadius1dot5 SOpRandomPointInSphereDot5}"/>
+        <On Terms="ActorCreation" Send="Create ShotgunScattershotBeamCritical"/>
+        <HostSiteOps Ops="SOpTargetPoint SOpMoveUpByDot5"/>
+    </CActorSite>
+    <CActorSiteOpRandomPointInCircle id="SOpScattershotRadiusBase">
+        <Mean value="0.500000"/>
+    </CActorSiteOpRandomPointInCircle>
+    <CActorSiteOpRandomPointInCircle id="SOpScattershotRadius0dot125" parent="SOpScattershotRadiusBase">
+        <Radius value="0.125000"/>
+    </CActorSiteOpRandomPointInCircle>
+    <CActorSiteOpRandomPointInCircle id="SOpScattershotRadius0dot25" parent="SOpScattershotRadiusBase">
+        <Radius value="0.250000"/>
+    </CActorSiteOpRandomPointInCircle>
+    <CActorSiteOpRandomPointInCircle id="SOpScattershotRadius0dot375" parent="SOpScattershotRadiusBase">
+        <Radius value="0.375000"/>
+    </CActorSiteOpRandomPointInCircle>
+    <CActorSiteOpRandomPointInCircle id="SOpScattershotRadius0dot5" parent="SOpScattershotRadiusBase">
+        <Radius value="0.500000"/>
+    </CActorSiteOpRandomPointInCircle>
+    <CActorSiteOpRandomPointInCircle id="SOpScattershotRadius0dot625" parent="SOpScattershotRadiusBase">
+        <Radius value="0.625000"/>
+    </CActorSiteOpRandomPointInCircle>
+    <CActorSiteOpRandomPointInCircle id="SOpScattershotRadius0dot75" parent="SOpScattershotRadiusBase">
+        <Radius value="0.750000"/>
+    </CActorSiteOpRandomPointInCircle>
+    <CActorSiteOpRandomPointInCircle id="SOpScattershotRadius0dot875" parent="SOpScattershotRadiusBase">
+        <Radius value="0.875000"/>
+    </CActorSiteOpRandomPointInCircle>
+    <CActorSiteOpRandomPointInCircle id="SOpScattershotRadius1" parent="SOpScattershotRadiusBase">
+        <Radius value="1.000000"/>
+    </CActorSiteOpRandomPointInCircle>
+    <CActorSiteOpRandomPointInCircle id="SOpScattershotRadius1dot125" parent="SOpScattershotRadiusBase">
+        <Radius value="1.125000"/>
+    </CActorSiteOpRandomPointInCircle>
+    <CActorSiteOpRandomPointInCircle id="SOpScattershotRadius1dot25" parent="SOpScattershotRadiusBase">
+        <Radius value="1.250000"/>
+    </CActorSiteOpRandomPointInCircle>
+    <CActorSiteOpRandomPointInCircle id="SOpScattershotRadius1dot375" parent="SOpScattershotRadiusBase">
+        <Radius value="1.375000"/>
+    </CActorSiteOpRandomPointInCircle>
+    <CActorSiteOpRandomPointInCircle id="SOpScattershotRadius1dot5" parent="SOpScattershotRadiusBase">
+        <Radius value="1.500000"/>
+    </CActorSiteOpRandomPointInCircle>
 </Catalog>

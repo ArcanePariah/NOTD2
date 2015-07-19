@@ -1,15 +1,9 @@
 <?xml version="1.0" encoding="us-ascii"?>
 <Catalog>
-    <CModel id="AutomaticShotgunProjectileWeapon">
-        <Model value="Assets\Effects\Terran\GhostSnipeBeam\GhostSnipeBeam.m3"/>
-    </CModel>
     <CModel id="LaserAttackBeamImpact" parent="ImpactFX">
         <Model value="Assets\Effects\Protoss\ColossusBeamBurn\ColossusBeamBurn.m3"/>
         <ScaleMax value="0.500000,0.500000,0.500000"/>
         <ScaleMin value="0.500000,0.500000,0.500000"/>
-    </CModel>
-    <CModel id="PumpShotgunProjectileWeapon">
-        <Model value="Assets\Effects\Terran\GhostSnipeBeam\GhostSnipeBeam.m3"/>
     </CModel>
     <CModel id="PlasmaCannonImpact" parent="ImpactFX">
         <Model value="Assets\Effects\Terran\CerberusYamatoMissileImpact\CerberusYamatoMissileImpact.m3"/>
@@ -100,9 +94,6 @@
         <SelectionRadius value="0.555400"/>
         <ShadowRadius value="0.555400"/>
     </CModel>
-    <CModel id="PumpShotgunAttackImpact">
-        <Model value="Assets\Effects\Terran\WraithLaserMissileImpact\WraithLaserMissileImpact.m3"/>
-    </CModel>
     <CModel id="SpecialAmmo">
         <Model value="Assets\Doodads\MilitarySupplies\MilitarySupplies_03.m3"/>
     </CModel>
@@ -161,12 +152,40 @@
         <Model value="Assets\Effects\Terran\PointDefenseBeamImpact\PointDefenseBeamImpact.m3"/>
         <EditorCategories value="Race:Weapon Impact"/>
     </CModel>
+    <CModel id="PumpShotgunAttackLaunch" parent="LaunchFX">
+        <Model value="Assets\Effects\Terran\ReaperWeaponLaunch\ReaperWeaponLaunch.m3"/>
+        <AnimSpeed value="2.000000"/>
+        <EditorCategories value="Race:Weapon Launch"/>
+    </CModel>
+    <CModel id="PumpShotgunAttackDamage" parent="ImpactFX">
+        <Model value="Assets\Effects\Terran\ReaperHitSprite\ReaperHitSprite.m3"/>
+        <AnimSpeed value="2.000000"/>
+        <EditorCategories value="Race:Weapon Impact"/>
+    </CModel>
+    <CModel id="PumpShotgunAttackImpact" parent="ImpactFX">
+        <Model value="Assets\Effects\Terran\WraithLaserMissileImpact\WraithLaserMissileImpact.m3"/>
+        <EditorCategories value="Race:Weapon Impact"/>
+    </CModel>
+    <CModel id="AutomaticShotgunAttackLaunch" parent="LaunchFX">
+        <Model value="Assets\Effects\Terran\ReaperWeaponLaunch\ReaperWeaponLaunch.m3"/>
+        <AnimSpeed value="2.000000"/>
+        <EditorCategories value="Race:Weapon Launch"/>
+    </CModel>
     <CModel id="AutomaticShotgunAttackDamage" parent="ImpactFX">
         <Model value="Assets\Effects\Terran\ReaperHitSprite\ReaperHitSprite.m3"/>
+        <AnimSpeed value="2.000000"/>
         <EditorCategories value="Race:Weapon Impact"/>
     </CModel>
     <CModel id="AutomaticShotgunAttackImpact" parent="ImpactFX">
         <Model value="Assets\Effects\Terran\WraithLaserMissileImpact\WraithLaserMissileImpact.m3"/>
         <EditorCategories value="Race:Weapon Impact"/>
+    </CModel>
+    <CModel id="ShotgunScattershotBeam" parent="PersistentSpellFX">
+        <Model value="Assets\Effects\Terran\ArchangelAttackBeam\ArchangelAttackBeam.m3"/>
+        <AnimSpeed value="2.000000"/>
+    </CModel>
+    <CModel id="ShotgunScattershotBeamCritical" parent="PersistentSpellFX">
+        <Model value="Assets\Effects\Terran\GhostSnipeBeam\GhostSnipeBeam.m3"/>
+        <AnimSpeed value="2.000000"/>
     </CModel>
 </Catalog>
