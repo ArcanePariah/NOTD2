@@ -911,15 +911,24 @@
             <AbilClassDisableArray index="CAbilAttack" value="1"/>
         </Modification>
     </CBehaviorBuff>
+    <CBehaviorBuff id="MotionSensorDetected">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="0.5"/>
+    </CBehaviorBuff>
     <CBehaviorBuff id="MotionSensorLevel1" parent="LeveledPassiveTemplate">
         <InfoFlags index="Hidden" value="1"/>
-        <Modification Radar="20" RadarFilters="-;Neutral,Structure,Item"/>
+        <Modification Radar="40" RadarFilters="-;Player,Ally,Neutral,Structure,Item"/>
         <Requirements value="MotionSensorLevel1"/>
+        <Period value="0.25"/>
+        <PeriodicEffect value="MotionSensorSearchLevel1"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="MotionSensorLevel2" parent="LeveledPassiveTemplate">
         <InfoFlags index="Hidden" value="1"/>
         <Requirements value="MotionSensorLevel2"/>
-        <Modification Radar="40" RadarFilters="-;Neutral,Structure,Item"/>
+        <Modification Radar="40" RadarFilters="-;Player,Ally,Neutral,Structure,Item"/>
+        <Period value="0.25"/>
+        <PeriodicEffect value="MotionSensorSearchLevel2"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="NanoHasteLevel1">
         <Alignment value="Positive"/>

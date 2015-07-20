@@ -738,6 +738,21 @@
         <SearchFilters value="Biological;Player,Ally,Neutral,Heroic"/>
         <AreaArray Radius="5" Effect="FlareGunSlowLevel122"/>
     </CEffectEnumArea>
+    <CEffectApplyBehavior id="MotionSensorDetected">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectEnumArea id="MotionSensorSearchLevel1">
+        <EditorCategories value=""/>
+        <ImpactLocation Value="SourceUnit"/>
+        <SearchFilters value="-;Player,Ally,Neutral,Missile,Item"/>
+        <AreaArray Radius="20" Effect="MotionSensorDetected"/>
+    </CEffectEnumArea>
+    <CEffectEnumArea id="MotionSensorSearchLevel2">
+        <EditorCategories value=""/>
+        <ImpactLocation Value="SourceUnit"/>
+        <SearchFilters value="-;Player,Ally,Neutral,Missile,Item"/>
+        <AreaArray Radius="40" Effect="MotionSensorDetected"/>
+    </CEffectEnumArea>
     <CEffectLaunchMissile id="SurveillanceFlareLevel2">
         <EditorCategories value=""/>
         <ImpactLocation Value="TargetPoint"/>

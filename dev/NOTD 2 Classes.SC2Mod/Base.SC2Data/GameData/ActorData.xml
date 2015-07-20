@@ -542,6 +542,28 @@
     <CActorRange id="MD5Range" parent="RangeAbil" abil="MD5Mine">
         <EditorCategories value=""/>
     </CActorRange>
+    <CActorModel id="MotionSensorDetected" parent="ModelAddition">
+        <EditorCategories value=""/>
+        <Host Subject="_Unit"/>
+    </CActorModel>
+    <CActorRegionCircle id="MotionSensorDetectedRegion">
+        <EditorCategories value=""/>
+        <On Terms="Behavior.MotionSensorLevel1.On" Send="Create"/>
+        <On Terms="ActorCreation" Send="QueryPersistent MotionSensorQuery MotionSensorQueryLeave AgainstRadiusGame 0.500000"/>
+        <Host Subject="_Unit"/>
+        <QueryFilters value="-;Self,Player,Ally,Neutral,Item"/>
+        <Radius value="40.000000"/>
+    </CActorRegionCircle>
+    <CActorQueryResponse id="MotionSensorQuery">
+        <EditorCategories value=""/>
+        <Subject Filters="Unit" Terms="HasAllianceTypeWith Enemy ::QueryCaster"/>
+        <OnResponse Target="_Unit" Send="Create MotionSensorDetected"/>
+    </CActorQueryResponse>
+    <CActorQueryResponse id="MotionSensorQueryLeave">
+        <EditorCategories value=""/>
+        <Subject Filters="Unit"/>
+        <OnResponse Target="MotionSensorDetected" Send="Destroy"/>
+    </CActorQueryResponse>
     <CActorRange id="MotionSensorRangeLevel1" parent="RangeBehavior" behavior="MotionSensorLevel1">
         <EditorCategories value=""/>
         <RangeFlags index="GameWorld" value="0"/>
