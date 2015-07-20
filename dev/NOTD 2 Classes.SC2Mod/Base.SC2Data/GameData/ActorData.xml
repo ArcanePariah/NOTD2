@@ -545,32 +545,39 @@
     <CActorModel id="MotionSensorDetected" parent="ModelAddition">
         <EditorCategories value=""/>
         <Host Subject="_Unit"/>
+        <Inherits index="Visibility" value="0"/>
+        <FogVisibility value="Visible"/>
     </CActorModel>
     <CActorRegionCircle id="MotionSensorDetectedRegion">
         <EditorCategories value=""/>
-        <On Terms="Behavior.MotionSensorLevel1.On" Send="Create"/>
-        <On Terms="ActorCreation" Send="QueryPersistent MotionSensorQuery MotionSensorQueryLeave AgainstRadiusGame 0.500000"/>
+        <On Terms="UnitCreation.Recon" Send="Create"/>
+        <On Terms="Behavior.MotionSensorLevel1.On" Send="QueryPersistent MotionSensorQuery MotionSensorQueryLeave AgainstRadiusGame 0.250000"/>
         <Host Subject="_Unit"/>
-        <QueryFilters value="-;Self,Player,Ally,Neutral,Item"/>
         <Radius value="40.000000"/>
     </CActorRegionCircle>
     <CActorQueryResponse id="MotionSensorQuery">
         <EditorCategories value=""/>
-        <Subject Filters="Unit" Terms="HasAllianceTypeWith Enemy ::QueryCaster"/>
+        <Subject Filters="Unit" Terms="ValidateUnit TargetisnotVisible IncludeDerivedSnapshot Recon"/>
         <OnResponse Target="_Unit" Send="Create MotionSensorDetected"/>
     </CActorQueryResponse>
+    <CActorRange id="MotionSensorRangeLevel1" behavior="MotionSensorLevel1">
+        <EditorCategories value=""/>
+        <On Terms="Behavior.MotionSensorLevel1.On" Send="Create"/>
+        <On Terms="Behavior.MotionSensorLevel1.Off" Send="Destroy"/>
+        <Range value="40.000000"/>
+        <RangeFlags index="GameWorld" value="0"/>
+        <RangeFlags index="Minimap" value="1"/>
+    </CActorRange>
     <CActorQueryResponse id="MotionSensorQueryLeave">
         <EditorCategories value=""/>
         <Subject Filters="Unit"/>
         <OnResponse Target="MotionSensorDetected" Send="Destroy"/>
     </CActorQueryResponse>
-    <CActorRange id="MotionSensorRangeLevel1" parent="RangeBehavior" behavior="MotionSensorLevel1">
+    <CActorRange id="MotionSensorRangeLevel2" behavior="MotionSensorLevel2">
         <EditorCategories value=""/>
-        <RangeFlags index="GameWorld" value="0"/>
-        <RangeFlags index="Minimap" value="1"/>
-    </CActorRange>
-    <CActorRange id="MotionSensorRangeLevel2" parent="RangeBehavior" behavior="MotionSensorLevel2">
-        <EditorCategories value=""/>
+        <On Terms="Behavior.MotionSensorLevel2.On" Send="Create"/>
+        <On Terms="Behavior.MotionSensorLevel2.Off" Send="Destroy"/>
+        <Range value="40.000000"/>
         <RangeFlags index="GameWorld" value="0"/>
         <RangeFlags index="Minimap" value="1"/>
     </CActorRange>
