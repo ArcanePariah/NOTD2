@@ -464,15 +464,23 @@
     </CActorRange>
     <CActorQueryResponse id="ItemSensorLevel2AmmunitionQuery">
         <EditorCategories value=""/>
+        <Subject Filters="Unit" Terms="ScopeContains _Ammunition"/>
+        <OnResponse Target="SensorDetected" Send="SetTintColor 255,255,255 0.000000 OneShot Equipment"/>
     </CActorQueryResponse>
     <CActorQueryResponse id="ItemSensorLevel2EquipmentQuery">
         <EditorCategories value=""/>
+        <Subject Filters="Unit" Terms="ScopeContains _Equipment"/>
+        <OnResponse Target="SensorDetected" Send="SetTintColor 128,0,128 0.000000 OneShot Equipment"/>
     </CActorQueryResponse>
     <CActorQueryResponse id="ItemSensorLevel2EquipmentQuery2">
         <EditorCategories value=""/>
+        <Subject Filters="Unit" Terms="ScopeContains _Consumable"/>
+        <OnResponse Target="SensorDetected" Send="SetTintColor 0,0,255 0.000000 OneShot Equipment"/>
     </CActorQueryResponse>
     <CActorQueryResponse id="ItemSensorLevel2MedicalItemQuery">
         <EditorCategories value=""/>
+        <Subject Filters="Unit" Terms="ScopeContains _MedicalItem"/>
+        <OnResponse Target="SensorDetected" Send="SetTintColor 128,255,255 0.000000 OneShot Equipment"/>
     </CActorQueryResponse>
     <CActorQueryResponse id="ItemSensorLevel2Query">
         <EditorCategories value=""/>
@@ -481,9 +489,9 @@
     </CActorQueryResponse>
     <CActorRegionCircle id="ItemSensorLevel2DetectedRegion">
         <EditorCategories value=""/>
-        <On Terms="Behavior.MotionSensorLevel1.On" Send="Create"/>
-        <On Terms="Behavior.MotionSensorLevel1.On" Send="QueryPersistent MotionSensorLevel1Query SensorQueryLeave AgainstRadiusGame 0.250000"/>
-        <On Terms="Behavior.MotionSensorLevel1.Off" Send="Destroy"/>
+        <On Terms="Behavior.ItemSensorLevel2.On" Send="Create"/>
+        <On Terms="Behavior.ItemSensorLevel2.On" Send="QueryPersistent ItemSensorLevel2Query SensorQueryLeave AgainstRadiusGame 0.250000"/>
+        <On Terms="Behavior.ItemSensorLevel2.Off" Send="Destroy"/>
         <Host Subject="_Unit"/>
         <Radius value="40.000000"/>
     </CActorRegionCircle>
@@ -595,7 +603,7 @@
     <CActorRegionCircle id="ItemSensorLevel1DetectedRegion">
         <EditorCategories value=""/>
         <On Terms="Behavior.ItemSensorLevel1.On" Send="Create"/>
-        <On Terms="Behavior.MotionSensorLevel1.On" Send="QueryPersistent MotionSensorLevel1Query SensorQueryLeave AgainstRadiusGame 0.250000"/>
+        <On Terms="Behavior.ItemSensorLevel1.On" Send="QueryPersistent ItemSensorLevel1Query SensorQueryLeave AgainstRadiusGame 0.250000"/>
         <On Terms="Behavior.ItemSensorLevel1.Off" Send="Destroy"/>
         <Host Subject="_Unit"/>
         <Radius value="40.000000"/>
