@@ -93,6 +93,26 @@
         <CombineArray value="GameisNightmare"/>
         <CombineArray value="HordeModeNightmareNoise"/>
     </CValidatorCombine>
+    <CValidatorCombine id="MotionSensorLevel1DetectionSet">
+        <Type value="And"/>
+        <CombineArray value="TargetisnotVisible"/>
+        <CombineArray value="MotionSensorLevel1"/>
+    </CValidatorCombine>
+    <CValidatorCombine id="MotionSensorLevel2FlyingDetectionSet">
+        <Type value="And"/>
+        <CombineArray value="TargetisnotVisible"/>
+        <CombineArray value="IsFlying"/>
+    </CValidatorCombine>
+    <CValidatorCombine id="MotionSensorLevel2MassiveArmoredDetectionSet">
+        <Type value="And"/>
+        <CombineArray value="TargetisMassiveorArmored"/>
+        <CombineArray value="IsFlying"/>
+    </CValidatorCombine>
+    <CValidatorCombine id="MotionSensorLevel2NormalDetectionSet">
+        <Type value="And"/>
+        <CombineArray value="TargetisnotVisible"/>
+        <CombineArray value="TargetisnonMassiveorArmored"/>
+    </CValidatorCombine>
     <CValidatorUnitCompareSpeed id="Moving">
         <WhichUnit Value="Caster"/>
         <Compare value="NE"/>
@@ -285,6 +305,10 @@
         <CombineArray value="EquippedWeaponisPumpShotgun"/>
         <CombineArray value="EquippedWeaponisAutomaticShotgun"/>
     </CValidatorCombine>
+    <CValidatorPlayerRequirement id="MotionSensorLevel12">
+        <Find value="1"/>
+        <Value value="MotionSensorLevel2"/>
+    </CValidatorPlayerRequirement>
     <CValidatorUnitCompareBehaviorCount id="HordeModeRecruitNoise">
         <Compare value="GE"/>
         <Value value="200"/>
@@ -302,10 +326,6 @@
     <CValidatorPlayerRequirement id="MotionSensorLevel1">
         <Find value="1"/>
         <Value value="MotionSensorLevel1"/>
-    </CValidatorPlayerRequirement>
-    <CValidatorPlayerRequirement id="MotionSensorLevel12">
-        <Find value="1"/>
-        <Value value="MotionSensorLevel2"/>
     </CValidatorPlayerRequirement>
     <CValidatorUnitCompareBehaviorCount id="ProxmityTriggerArmed">
         <Value value="1"/>
@@ -386,6 +406,10 @@
         <CombineArray value="TargethasLaserDesignatorLevel2"/>
         <CombineArray value="TargethasLaserDesignatorLevel3"/>
     </CValidatorCombine>
+    <CValidatorCombine id="TargetisMassiveorArmored">
+        <CombineArray value="TargetisnonMassiveorArmored"/>
+        <Negate value="1"/>
+    </CValidatorCombine>
     <CValidatorUnitCompareBehaviorCount id="TargetisNanoShockedLevel1">
         <Value value="1"/>
         <Behavior value="NanoShockSlowLevel1"/>
@@ -406,6 +430,9 @@
         <CombineArray value="TargetisSlowed"/>
         <CombineArray value="TargetisStunned"/>
     </CValidatorCombine>
+    <CValidatorUnitFilters id="TargetisnonMassiveorArmored">
+        <Filters value="-;Armored,Massive"/>
+    </CValidatorUnitFilters>
     <CValidatorUnitFilters id="TargetisnotVisible">
         <Filters value="-;Visible"/>
     </CValidatorUnitFilters>
