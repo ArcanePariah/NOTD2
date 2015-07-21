@@ -337,6 +337,11 @@
     <CAbilInventory id="FlamethrowerInventory" parent="InventoryTemplate">
         <InfoArray index="2" removed="1"/>
     </CAbilInventory>
+    <CAbilBehavior id="ItemSensor">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <BehaviorArray value="ItemSensorLevel1"/>
+        <BehaviorArray value="ItemSensorLevel2"/>
+    </CAbilBehavior>
     <CAbilEffectInstant id="LightningField">
         <EditorCategories value="AbilityorEffectType:Units"/>
         <Cost>
@@ -1196,12 +1201,11 @@
     </CAbilInventory>
     <CAbilLearn id="ReconLearn" parent="LearnTemplate">
         <Name value="Abil/Name/ReconLearn"/>
-        <InfoArray index="Learn1" Abil="LaserDesignator">
+        <InfoArray index="Learn1" Abil="SurveillanceFlare">
             <Button DefaultButtonFace="LaserDesignator"/>
         </InfoArray>
-        <InfoArray index="Learn2" Abil="SurveillanceFlare"/>
+        <InfoArray index="Learn2" Abil="SmokeGrenade"/>
         <InfoArray index="Learn3" Abil="MotionSensor"/>
-        <InfoArray index="Learn4" Abil="SmokeGrenade"/>
         <InfoArray index="Learn5" Abil="SupplyDropOffensive">
             <Button DefaultButtonFace="SupplyDropOffensive"/>
         </InfoArray>

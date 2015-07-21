@@ -93,25 +93,25 @@
         <CombineArray value="GameisNightmare"/>
         <CombineArray value="HordeModeNightmareNoise"/>
     </CValidatorCombine>
-    <CValidatorCombine id="MotionSensorLevel1DetectionSet">
+    <CValidatorPlayerRequirement id="ItemSensorLevel1">
+        <Find value="1"/>
+        <Value value="ItemSensorLevel1"/>
+    </CValidatorPlayerRequirement>
+    <CValidatorPlayerRequirement id="ItemSensorLevel2">
+        <Find value="1"/>
+        <Value value="ItemSensorLevel2"/>
+    </CValidatorPlayerRequirement>
+    <CValidatorCombine id="MotionSensorUnitQuery">
         <Type value="And"/>
         <CombineArray value="TargetisnotVisible"/>
-        <CombineArray value="MotionSensorLevel1"/>
+        <CombineArray value="TargetisnotanItem"/>
     </CValidatorCombine>
-    <CValidatorCombine id="MotionSensorLevel2FlyingDetectionSet">
+    <!--We add the Hidden check because we don't want to see items being carried by other players.-->
+    <CValidatorCombine id="ItemSensorUnitQuery">
         <Type value="And"/>
         <CombineArray value="TargetisnotVisible"/>
-        <CombineArray value="IsFlying"/>
-    </CValidatorCombine>
-    <CValidatorCombine id="MotionSensorLevel2MassiveArmoredDetectionSet">
-        <Type value="And"/>
-        <CombineArray value="TargetisMassiveorArmored"/>
-        <CombineArray value="IsFlying"/>
-    </CValidatorCombine>
-    <CValidatorCombine id="MotionSensorLevel2NormalDetectionSet">
-        <Type value="And"/>
-        <CombineArray value="TargetisnotVisible"/>
-        <CombineArray value="TargetisnonMassiveorArmored"/>
+        <CombineArray value="TargetisanItem"/>
+        <CombineArray value="NotHidden"/>
     </CValidatorCombine>
     <CValidatorUnitCompareSpeed id="Moving">
         <WhichUnit Value="Caster"/>
@@ -430,11 +430,17 @@
         <CombineArray value="TargetisSlowed"/>
         <CombineArray value="TargetisStunned"/>
     </CValidatorCombine>
+    <CValidatorUnitFilters id="TargetisanItem">
+        <Filters value="Item;-"/>
+    </CValidatorUnitFilters>
     <CValidatorUnitFilters id="TargetisnonMassiveorArmored">
         <Filters value="-;Armored,Massive"/>
     </CValidatorUnitFilters>
     <CValidatorUnitFilters id="TargetisnotVisible">
         <Filters value="-;Visible"/>
+    </CValidatorUnitFilters>
+    <CValidatorUnitFilters id="TargetisnotanItem">
+        <Filters value="-;Item"/>
     </CValidatorUnitFilters>
     <CValidatorCombine id="UnitisNotChainExplosive">
         <Type value="And"/>

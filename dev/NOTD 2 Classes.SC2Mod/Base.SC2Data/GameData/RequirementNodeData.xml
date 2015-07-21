@@ -96,6 +96,11 @@
         <Tooltip value=""/>
         <Count Link="ImmovableObject" State="CompleteOnlyAtUnit"/>
     </CRequirementCountAbil>
+    <CRequirementCountAbil id="CountAbilItemSensorCompleteOnlyAtUnit">
+        <Flags index="TechTreeCheat" value="0"/>
+        <Tooltip value=""/>
+        <Count Link="ItemSensor" State="CompleteOnlyAtUnit"/>
+    </CRequirementCountAbil>
     <CRequirementCountAbil id="CountAbilMotionSensorCompleteOnlyAtUnit">
         <Flags index="TechTreeCheat" value="0"/>
         <Tooltip value=""/>
@@ -357,10 +362,20 @@
         <OperandArray index="0" value="CountAbilHealCompleteOnlyAtUnit"/>
         <OperandArray index="1" value="3"/>
     </CRequirementEq>
+    <CRequirementEq id="EqCountAbilItemSensorCompleteOnlyAtUnit1">
+        <Tooltip value=""/>
+        <OperandArray index="0" value="CountAbilItemSensorCompleteOnlyAtUnit"/>
+        <OperandArray index="1" value="1"/>
+    </CRequirementEq>
     <CRequirementEq id="EqCountAbilImmovableObjectCompleteOnlyAtUnit1">
         <Tooltip value=""/>
         <OperandArray index="0" value="CountAbilImmovableObjectCompleteOnlyAtUnit"/>
         <OperandArray index="1" value="1"/>
+    </CRequirementEq>
+    <CRequirementEq id="EqCountAbilItemSensorCompleteOnlyAtUnit2">
+        <Tooltip value=""/>
+        <OperandArray index="0" value="CountAbilItemSensorCompleteOnlyAtUnit"/>
+        <OperandArray index="1" value="2"/>
     </CRequirementEq>
     <CRequirementEq id="EqCountAbilMotionSensorCompleteOnlyAtUnit1">
         <Tooltip value=""/>

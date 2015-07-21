@@ -462,6 +462,31 @@
     <CActorRange id="GroundIlluminationFlareRange" parent="RangeAbil" abil="SurveillanceFlare">
         <EditorCategories value=""/>
     </CActorRange>
+    <CActorQueryResponse id="ItemSensorLevel2AmmunitionQuery">
+        <EditorCategories value=""/>
+    </CActorQueryResponse>
+    <CActorQueryResponse id="ItemSensorLevel2EquipmentQuery">
+        <EditorCategories value=""/>
+    </CActorQueryResponse>
+    <CActorQueryResponse id="ItemSensorLevel2EquipmentQuery2">
+        <EditorCategories value=""/>
+    </CActorQueryResponse>
+    <CActorQueryResponse id="ItemSensorLevel2MedicalItemQuery">
+        <EditorCategories value=""/>
+    </CActorQueryResponse>
+    <CActorQueryResponse id="ItemSensorLevel2Query">
+        <EditorCategories value=""/>
+        <Subject Filters="Unit" Terms="ValidateUnit ItemSensorUnitQuery IncludeDerivedSnapshot Recon"/>
+        <OnResponse Target="_Unit" Send="Create SensorDetected"/>
+    </CActorQueryResponse>
+    <CActorRegionCircle id="ItemSensorLevel2DetectedRegion">
+        <EditorCategories value=""/>
+        <On Terms="Behavior.MotionSensorLevel1.On" Send="Create"/>
+        <On Terms="Behavior.MotionSensorLevel1.On" Send="QueryPersistent MotionSensorLevel1Query SensorQueryLeave AgainstRadiusGame 0.250000"/>
+        <On Terms="Behavior.MotionSensorLevel1.Off" Send="Destroy"/>
+        <Host Subject="_Unit"/>
+        <Radius value="40.000000"/>
+    </CActorRegionCircle>
     <CActorAction id="KineticPayloadAttack" parent="GenericAttack" effectImpact="KineticPayloadDamage" effectLaunch="KineticPayloadMissile">
         <EditorCategories value=""/>
         <On index="6" Terms="Effect.KineticPayloadMissile.Start; At Source" Send="Create"/>
@@ -539,85 +564,92 @@
         <Range value="2.500000"/>
     </CActorRange>
     <CActorModel id="MD5MinePlaceholderModel" parent="MD5MinePlacementModel"/>
-    <CActorRange id="MD5Range" parent="RangeAbil" abil="MD5Mine">
+    <CActorQueryResponse id="ItemSensorLevel1Query">
         <EditorCategories value=""/>
-    </CActorRange>
-    <CActorModel id="MotionSensorDetected" parent="ModelAddition">
-        <EditorCategories value=""/>
-        <Host Subject="_Unit"/>
+        <Subject Filters="Unit" Terms="ValidateUnit ItemSensorUnitQuery IncludeDerivedSnapshot Recon"/>
+        <OnResponse Target="_Unit" Send="Create SensorDetected"/>
+    </CActorQueryResponse>
+    <CActorModel id="SensorDetected" parent="ModelAddition">
+        <InheritType value="None"/>
         <Inherits index="BaseModelScale" value="0"/>
         <Inherits index="Scale" value="0"/>
         <Inherits index="TeamColor" value="0"/>
         <Inherits index="TintColor" value="0"/>
         <Inherits index="Visibility" value="0"/>
         <FogVisibility value="Visible"/>
-        <InheritType value="None"/>
+        <EditorCategories value=""/>
+        <Host Subject="_Unit"/>
+        <Model value="MotionSensorDetected"/>
     </CActorModel>
+    <CActorRange id="MD5Range" parent="RangeAbil" abil="MD5Mine">
+        <EditorCategories value=""/>
+    </CActorRange>
     <CActorRegionCircle id="MotionSensorLevel1DetectedRegion">
         <EditorCategories value=""/>
         <On Terms="Behavior.MotionSensorLevel1.On" Send="Create"/>
-        <On Terms="Behavior.MotionSensorLevel1.On" Send="QueryPersistent MotionSensorLevel1Query MotionSensorLevel1QueryLeave AgainstRadiusGame 0.250000"/>
+        <On Terms="Behavior.MotionSensorLevel1.On" Send="QueryPersistent MotionSensorLevel1Query SensorQueryLeave AgainstRadiusGame 0.250000"/>
         <On Terms="Behavior.MotionSensorLevel1.Off" Send="Destroy"/>
+        <Host Subject="_Unit"/>
+        <Radius value="40.000000"/>
+    </CActorRegionCircle>
+    <CActorRegionCircle id="ItemSensorLevel1DetectedRegion">
+        <EditorCategories value=""/>
+        <On Terms="Behavior.ItemSensorLevel1.On" Send="Create"/>
+        <On Terms="Behavior.MotionSensorLevel1.On" Send="QueryPersistent MotionSensorLevel1Query SensorQueryLeave AgainstRadiusGame 0.250000"/>
+        <On Terms="Behavior.ItemSensorLevel1.Off" Send="Destroy"/>
         <Host Subject="_Unit"/>
         <Radius value="40.000000"/>
     </CActorRegionCircle>
     <CActorQueryResponse id="MotionSensorLevel2Query">
         <EditorCategories value=""/>
-        <Subject Filters="Unit" Terms="ValidateUnit TargetisnotVisible IncludeDerivedSnapshot Recon"/>
-        <OnResponse Target="_Unit" Send="Create MotionSensorDetected"/>
+        <Subject Filters="Unit" Terms="ValidateUnit MotionSensorUnitQuery IncludeDerivedSnapshot Recon"/>
+        <OnResponse Target="_Unit" Send="Create SensorDetected"/>
         <OnResponse Target="::QueryDirector" Send="QueryRegion MotionSensorLevel2DetectedRegion MotionSensorLevel2FlyingQuery AgainstRadiusGame" Scope="QueryDirector"/>
-        <OnResponse Target="::QueryDirector" Send="QueryRegion MotionSensorLevel2DetectedRegion MotionSensorLevel2FlyingQuery AgainstRadiusGame" Scope="QueryDirector"/>
-        <OnResponse Target="::QueryDirector" Send="QueryRegion MotionSensorLevel2DetectedRegion MotionSensorLevel2FlyingQuery AgainstRadiusGame" Scope="QueryDirector"/>
+        <OnResponse Target="::QueryDirector" Send="QueryRegion MotionSensorLevel2DetectedRegion MotionSensorLevel2NormalQuery AgainstRadiusGame" Scope="QueryDirector"/>
+        <OnResponse Target="::QueryDirector" Send="QueryRegion MotionSensorLevel2DetectedRegion MotionSensorLevel2MassiveArmoredQuery AgainstRadiusGame" Scope="QueryDirector"/>
     </CActorQueryResponse>
     <CActorRegionCircle id="MotionSensorLevel2DetectedRegion">
         <EditorCategories value=""/>
         <On Terms="Behavior.MotionSensorLevel2.On" Send="Create"/>
-        <On Terms="Behavior.MotionSensorLevel2.On" Send="QueryPersistent MotionSensorLevel2Query MotionSensorLevel1QueryLeave AgainstRadiusGame 0.250000"/>
+        <On Terms="Behavior.MotionSensorLevel2.On" Send="QueryPersistent MotionSensorLevel2Query SensorQueryLeave AgainstRadiusGame 0.250000"/>
         <On Terms="Behavior.MotionSensorLevel2.Off" Send="Destroy"/>
         <Host Subject="_Unit"/>
         <Radius value="40.000000"/>
     </CActorRegionCircle>
     <CActorQueryResponse id="MotionSensorLevel1Query">
         <EditorCategories value=""/>
-        <Subject Filters="Unit" Terms="ValidateUnit TargetisnotVisible IncludeDerivedSnapshot Recon"/>
-        <OnResponse Target="_Unit" Send="Create MotionSensorDetected"/>
+        <Subject Filters="Unit" Terms="ValidateUnit MotionSensorUnitQuery IncludeDerivedSnapshot Recon"/>
+        <OnResponse Target="_Unit" Send="Create SensorDetected"/>
     </CActorQueryResponse>
     <CActorQueryResponse id="MotionSensorLevel2FlyingQuery">
         <EditorCategories value=""/>
-        <Subject Filters="Unit" Terms="ValidateUnit MotionSensorLevel2FlyingDetectionSet IncludeDerivedSnapshot Recon"/>
-        <OnResponse Target="MotionSensorDetected" Send="SetTintColor 255,255,0 0.000000 OneShot Flyer"/>
+        <Subject Filters="Unit" Terms="ValidateUnit IsFlying IncludeDerivedSnapshot Recon"/>
+        <OnResponse Target="SensorDetected" Send="SetTintColor 255,255,0 0.000000 OneShot Flyer"/>
+    </CActorQueryResponse>
+    <CActorQueryResponse id="SensorQueryLeave">
+        <EditorCategories value=""/>
+        <Subject Filters="Unit"/>
+        <OnResponse Target="SensorDetected" Send="Destroy"/>
     </CActorQueryResponse>
     <CActorQueryResponse id="MotionSensorLevel2MassiveArmoredQuery">
         <EditorCategories value=""/>
-        <Subject Filters="Unit" Terms="ValidateUnit MotionSensorLevel2MassiveArmoredDetectionSet IncludeDerivedSnapshot Recon"/>
-        <OnResponse Target="MotionSensorDetected" Send="SetTintColor 255,0,0"/>
+        <Subject Filters="Unit" Terms="ValidateUnit TargetisMassiveorArmored IncludeDerivedSnapshot Recon"/>
+        <OnResponse Target="SensorDetected" Send="SetTintColor 255,0,0"/>
     </CActorQueryResponse>
     <CActorQueryResponse id="MotionSensorLevel2NormalQuery">
         <EditorCategories value=""/>
-        <Subject Filters="Unit" Terms="ValidateUnit MotionSensorLevel2NormalDetectionSet IncludeDerivedSnapshot Recon"/>
-        <OnResponse Target="MotionSensorDetected" Send="SetTintColor 255,128,0"/>
+        <Subject Filters="Unit" Terms="ValidateUnit TargetisnonMassiveorArmored IncludeDerivedSnapshot Recon"/>
+        <OnResponse Target="SensorDetected" Send="SetTintColor 255,128,0"/>
     </CActorQueryResponse>
-    <CActorRange id="MotionSensorRangeLevel1" behavior="MotionSensorLevel1">
+    <CActorRange id="SensorRange" behavior="MotionSensorLevel1">
         <EditorCategories value=""/>
         <On Terms="Behavior.MotionSensorLevel1.On" Send="Create"/>
-        <On Terms="Behavior.MotionSensorLevel1.Off" Send="Destroy"/>
+        <On Terms="Behavior.ItemSensorLevel1.On" Send="Create"/>
+        <Host Subject="_Unit"/>
         <Range value="40.000000"/>
         <RangeFlags index="GameWorld" value="0"/>
         <RangeFlags index="Minimap" value="1"/>
     </CActorRange>
-    <CActorRange id="MotionSensorRangeLevel2" behavior="MotionSensorLevel2">
-        <EditorCategories value=""/>
-        <On Terms="Behavior.MotionSensorLevel2.On" Send="Create"/>
-        <On Terms="Behavior.MotionSensorLevel2.Off" Send="Destroy"/>
-        <Range value="40.000000"/>
-        <RangeFlags index="GameWorld" value="0"/>
-        <RangeFlags index="Minimap" value="1"/>
-    </CActorRange>
-    <CActorQueryResponse id="MotionSensorLevel1QueryLeave">
-        <EditorCategories value=""/>
-        <Subject Filters="Unit"/>
-        <OnResponse Target="MotionSensorDetected" Send="Destroy"/>
-    </CActorQueryResponse>
     <!-- Bounce Segment 1                                                                        -->
     <CActorAction id="MutaliskAttackSegment1">
         <ImpactPhysics index="0" Name="GlaveWurmImpact" MatchKeys="Basic" Physics="MD5DetonationForce"/>
