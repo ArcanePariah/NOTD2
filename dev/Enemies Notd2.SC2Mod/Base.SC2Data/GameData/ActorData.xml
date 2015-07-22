@@ -29,7 +29,6 @@
             <IdlePeriod value="0.200000,0.400000"/>
             <RangeUp value="1.000000"/>
             <RangeDown value="1.000000"/>
-            <AttachQuery Methods="AMFilterCenter"/>
             <Visuals TerrainPhysicsMaterial="Water" ActorModel="TerrainSquibHarnessContinuous" ModelLink="WaterRippleTiny"/>
         </TerrainSquibs>
         <WalkAnimMoveSpeed value="2.5"/>
@@ -255,7 +254,7 @@
         <SoundArray index="Highlight" value="Zergling_Highlight"/>
     </CActorUnit>
     <CActorAction id="EltradTriadAttack" parent="GenericAttack" effectAttack="EltradBiteTriad">
-        <ImpactAttachQuery Methods="AMFilterTargetVolumes"/>
+        <ImpactAttachQuery Methods=""/>
         <ImpactMap index="None" Sound="Zergling_AttackImpact"/>
         <ShieldFlashType value="Header"/>
     </CActorAction>
@@ -276,7 +275,7 @@
         <SoundArray index="Highlight" value="Zergling_Highlight"/>
     </CActorUnit>
     <CActorAction id="EltradJoyrideAttack" parent="GenericAttack" effectAttack="EltradBiteJoyride">
-        <ImpactAttachQuery Methods="AMFilterTargetVolumes"/>
+        <ImpactAttachQuery Methods=""/>
         <ImpactMap index="None" Sound="Zergling_AttackImpact"/>
         <ShieldFlashType value="Header"/>
     </CActorAction>
@@ -314,12 +313,12 @@
         <SoundArray index="Highlight" value="Zergling_Highlight"/>
     </CActorUnit>
     <CActorAction id="EltradFlyingAttack" parent="GenericAttack" effectAttack="EltradBiteFlying">
-        <ImpactAttachQuery Methods="AMFilterTargetVolumes"/>
+        <ImpactAttachQuery Methods=""/>
         <ImpactMap index="None" Sound="Zergling_AttackImpact"/>
         <ShieldFlashType value="Header"/>
     </CActorAction>
     <CActorAction id="EltradFastHealingAttack" parent="GenericAttack" effectAttack="EltradBiteFastHealing">
-        <ImpactAttachQuery Methods="AMFilterTargetVolumes"/>
+        <ImpactAttachQuery Methods=""/>
         <ImpactMap index="None" Sound="Zergling_AttackImpact"/>
         <ShieldFlashType value="Header"/>
     </CActorAction>
@@ -351,7 +350,6 @@
     </CActorAction>
     <CActorAction id="BansheeClawAttack" parent="GenericAttack" effectImpact="BansheeClawDamage" effectLaunch="BansheeClawLaunchMissile">
         <LaunchSiteOps Ops="SOpAttachHarnessStationary"/>
-        <LaunchAttachQuery Methods="AMFilterWeapon"/>
         <LaunchAssets Sound="SpineCrawler_AttackLaunch"/>
         <ImpactSiteOps Ops="SOpAttachHarness SOpAttachVolumeStandard SOpForwardLaunchGuide"/>
         <ImpactSiteOpsReaction Ops="SOp2DRotation SOp180" HoldPosition="1" HoldRotation="1"/>
@@ -621,7 +619,6 @@
         <UnitFlags index="ShowBlobShadow" value="0"/>
     </CActorUnit>
     <CActorAction id="GorgonBlindingVomitAttack" parent="GenericAttack" effectImpact="GorgonBlindingVomitImpact" effectLaunch="GorgonBlindingVomitMissile">
-        <LaunchAttachQuery Methods="AMFilterWeapon"/>
         <Missile value="GorgonBlindingVomitMissile"/>
         <ImpactSiteOps Ops="SOpAttachHarness SOpAttachVolumeStandard SOpForwardLaunchGuide"/>
         <AccuracyHalfArc value="10.000000"/>
@@ -635,7 +632,6 @@
         <On Terms="Abil.GorgonBlindingVomit.SourcePrepStart" Send="Create"/>
         <Sound value="Spell_Puke_Launch"/>
     </CActorSound>
-    <CActorSplat id="BansheeScreamCursorSplat" parent="ZergCursorSplat" abil="BansheeScream"/>
     <CActorModel id="BansheeScreamImpact" parent="ModelAnimationStyleOneShot">
         <On Terms="Effect.BansheeScreamStunSearch.Start" Send="Create"/>
         <On Terms="ActorCreation" Send="SetTintColor {15,120,151 2.000000}"/>
@@ -648,7 +644,7 @@
     <CActorRange id="BansheeScreamRange" parent="RangeAbil" abil="BansheeScream"/>
     <CActorAction id="WitchClawAttack" parent="GenericAttack" effectImpact="WitchClawDamage" effectLaunch="WitchClawLaunchMissile">
         <LaunchSiteOps Ops="SOpAttachHarnessStationary"/>
-        <LaunchAttachQuery Methods="AMFilterUpgradeWeaponLeft AMFilterUpgradeWeaponRight"/>
+        <LaunchAttachQuery Methods=" "/>
         <LaunchAssets Sound="SpineCrawler_AttackLaunch"/>
         <ImpactSiteOps Ops="SOpAttachHarness SOpAttachVolumeStandard SOpForwardLaunchGuide"/>
         <ImpactSiteOpsReaction Ops="SOp2DRotation SOp180" HoldPosition="1" HoldRotation="1"/>
@@ -696,7 +692,7 @@
         <Scale value="0.200000"/>
     </CActorBeamSimple>
     <CActorAction id="BlinkClaws" parent="GenericAttack" effectAttack="BlinkClaws">
-        <LaunchAttachQuery Methods="AMFilterWeaponLeft" Fallback="Hardpoint"/>
+        <LaunchAttachQuery Fallback="Hardpoint"/>
         <LaunchAssets Model="VenomImpact" Sound="Archon_AttackLaunch"/>
         <BeamScope value="Caster"/>
         <ImpactSiteOps Ops="SOpAttachHarness SOpAttachVolumeNoVizEnhance VoidRaySOpForwardLaunch"/>
@@ -729,7 +725,6 @@
             <IdlePeriod value="0.700000,0.710000"/>
             <RangeDown value="5.000000"/>
             <RangeDownFade value="1.000000"/>
-            <AttachQuery Methods="AMFilterCenter"/>
             <Visuals TerrainPhysicsMaterial="Water" ActorModel="TerrainSquibHarnessContinuous" ModelLink="WaterRippleMassive"/>
         </TerrainSquibs>
         <WalkAnimMoveSpeed value="1"/>
@@ -896,7 +891,6 @@
             <IdlePeriod value="0.100000,0.250000"/>
             <RangeUp value="0.400000"/>
             <RangeDown value="0.400000"/>
-            <AttachQuery Methods="AMFilterCenter"/>
             <Visuals TerrainPhysicsMaterial="Water" ActorModel="TerrainSquibHarnessContinuous" ModelLink="WaterRippleSmall"/>
         </TerrainSquibs>
         <WalkAnimMoveSpeed value="2.25"/>
@@ -1035,7 +1029,7 @@
         <AcquisitionPitchHalfArc value="60.000000"/>
     </CActorAction>
     <CActorSiteOpAttach id="SOpAttachWeaponBottom">
-        <AttachQuery Methods="AMFilterWeaponBottom"/>
+        <AttachQuery Methods=""/>
     </CActorSiteOpAttach>
     <CActorMissile id="ClawAttackMissile" parent="GenericTentacleMissile" unitName="Claw">
         <Supporter>
@@ -1156,6 +1150,9 @@
     <CActorUnit id="MarsPrisoner2" parent="GenericUnitStandard" unitName="MarsPrisoner2">
         <On Terms="AbilMorph.MutatetoShambler.Finish; MorphTo Shambler" Send="Destroy"/>
         <On Terms="ActorCreation" Send="SetTeamColor 226,29,29 236,19,19"/>
+        <On Terms="TimerExpired" Send="TextureSelectById CivilianZombieDiffuse"/>
+        <On Terms="TimerExpired" Send="TextureSelectById CivilianZombieNormal"/>
+        <On Terms="ActorCreation" Send="TimerSet"/>
         <Baselines index="Walk" AnimProps="Walk,Fast"/>
         <DeathArray index="Normal" ModelLink="PrisonerCivilianDeath" SoundLink="PrimalZergling_Death"/>
         <DeathActorModel value="PrisonerCivilianDeath"/>
@@ -1224,6 +1221,9 @@
         <On Terms="UnitPortrait.*.Customize; ModelVariation 2" Send="PortraitCustomize Scientist2Portrait"/>
         <On Terms="AbilMorph.MutatetoShambler.Finish; MorphTo Shambler" Send="Destroy"/>
         <On Terms="ActorCreation" Send="SetTeamColor 226,29,29 236,19,19"/>
+        <On Terms="ActorCreation" Send="TimerSet"/>
+        <On Terms="TimerExpired" Send="TextureSelectById CivilianZombieDiffuse2"/>
+        <On Terms="TimerExpired" Send="TextureSelectById CivilianZombieNormal"/>
         <Baselines index="Walk" AnimProps="Walk,Fast"/>
         <DeathArray index="Normal" ModelLink="ScientistMaleDeath" SoundLink="PrimalZergling_Death"/>
         <DeathArray index="Disintegrate" ModelLink="ScientistMaleAcidDeath"/>
@@ -1320,7 +1320,6 @@
             <IdlePeriod value="0.100000,0.250000"/>
             <RangeUp value="1.000000"/>
             <RangeDown value="1.000000"/>
-            <AttachQuery Methods="AMFilterCenter"/>
             <Visuals TerrainPhysicsMaterial="Water" ActorModel="TerrainSquibHarnessContinuous" ModelLink="WaterRippleSmall"/>
         </TerrainSquibs>
         <WalkAnimMoveSpeed value="2"/>
@@ -1416,7 +1415,6 @@
             <IdlePeriod value="0.100000,0.250000"/>
             <RangeUp value="1.000000"/>
             <RangeDown value="1.000000"/>
-            <AttachQuery Methods="AMFilterCenter"/>
             <Visuals TerrainPhysicsMaterial="Water" ActorModel="TerrainSquibHarnessContinuous" ModelLink="WaterRippleSmall"/>
         </TerrainSquibs>
         <WalkAnimMoveSpeed value="2"/>
@@ -1668,7 +1666,6 @@
             <IdlePeriod value="0.100000,0.250000"/>
             <RangeUp value="0.400000"/>
             <RangeDown value="0.400000"/>
-            <AttachQuery Methods="AMFilterCenter"/>
             <Visuals TerrainPhysicsMaterial="Water" ActorModel="TerrainSquibHarnessContinuous" ModelLink="WaterRippleMedium"/>
         </TerrainSquibs>
         <WalkAnimMoveSpeed value="1.25"/>
@@ -1822,7 +1819,6 @@
             <IdlePeriod value="0.100000,0.250000"/>
             <RangeUp value="2.000000"/>
             <RangeDown value="2.000000"/>
-            <AttachQuery Methods="AMFilterCenter"/>
             <Visuals TerrainPhysicsMaterial="Water" ActorModel="TerrainSquibHarnessContinuous" ModelLink="WaterRippleSwarmQueen"/>
         </TerrainSquibs>
         <WalkAnimMoveSpeed value="1.7031"/>
@@ -1887,7 +1883,6 @@
             <IdlePeriod value="0.100000,0.250000"/>
             <RangeUp value="1.000000"/>
             <RangeDown value="1.000000"/>
-            <AttachQuery Methods="AMFilterCenter"/>
             <Visuals TerrainPhysicsMaterial="Water" ActorModel="TerrainSquibHarnessContinuous" ModelLink="WaterRippleSmall"/>
         </TerrainSquibs>
         <WalkAnimMoveSpeed value="2"/>
@@ -2002,7 +1997,7 @@
         <PortraitActor value="DehakaPortrait"/>
         <PortraitModel value="DehakaPortrait"/>
         <WalkAnimMoveSpeed value="2.1015"/>
-        <AbilSoundArray AbilCmd="DehakaMirrorImage,Execute" Sound="Dehaka_Silent"/>
+        <AbilSoundArray Sound="Dehaka_Silent"/>
         <BarWidth value="80"/>
         <GroupIcon>
             <Image value="Assets\Textures\Wireframe-Zerg-Dehaka.dds"/>
@@ -2075,7 +2070,6 @@
             <IdlePeriod value="0.500000,1.000000"/>
             <RangeUp value="0.500000"/>
             <RangeDown value="0.500000"/>
-            <AttachQuery Methods="AMFilterTargetSetB0"/>
             <Visuals TerrainPhysicsMaterial="Water" ActorModel="TerrainSquibHarnessContinuous" ModelLink="WaterRippleMedium"/>
         </TerrainSquibs>
         <TerrainSquibs>
@@ -2084,7 +2078,6 @@
             <IdlePeriod value="0.500000,1.000000"/>
             <RangeUp value="1.000000"/>
             <RangeDown value="1.000000"/>
-            <AttachQuery Methods="AMFilterCenter"/>
             <Visuals TerrainPhysicsMaterial="Water" ActorModel="TerrainSquibHarnessContinuous" ModelLink="WaterRippleLargeSilent"/>
         </TerrainSquibs>
         <WalkAnimMoveSpeed value="0.707"/>
@@ -2132,7 +2125,6 @@
             <IdlePeriod value="0.100000,0.250000"/>
             <RangeUp value="1.000000"/>
             <RangeDown value="1.000000"/>
-            <AttachQuery Methods="AMFilterCenter"/>
             <Visuals TerrainPhysicsMaterial="Water" ActorModel="TerrainSquibHarnessContinuous" ModelLink="WaterRippleSmall"/>
         </TerrainSquibs>
         <WalkAnimMoveSpeed value="2"/>
@@ -2218,7 +2210,6 @@
             <IdlePeriod value="0.100000,0.250000"/>
             <RangeUp value="1.000000"/>
             <RangeDown value="1.000000"/>
-            <AttachQuery Methods="AMFilterCenter"/>
             <Visuals TerrainPhysicsMaterial="Water" ActorModel="TerrainSquibHarnessContinuous" ModelLink="WaterRippleLarge"/>
         </TerrainSquibs>
         <WalkAnimMoveSpeed value="2.25"/>
@@ -2271,7 +2262,6 @@
             <IdlePeriod value="0.100000,0.250000"/>
             <RangeUp value="1.000000"/>
             <RangeDown value="1.000000"/>
-            <AttachQuery Methods="AMFilterCenter"/>
             <Visuals TerrainPhysicsMaterial="Water" ActorModel="TerrainSquibHarnessContinuous" ModelLink="WaterRippleLarge"/>
         </TerrainSquibs>
         <WalkAnimMoveSpeed value="2.25"/>
@@ -2322,7 +2312,6 @@
             <IdlePeriod value="0.100000,0.250000"/>
             <RangeUp value="2.000000"/>
             <RangeDown value="2.000000"/>
-            <AttachQuery Methods="AMFilterCenter"/>
             <Visuals TerrainPhysicsMaterial="Water" ActorModel="TerrainSquibHarnessContinuous" ModelLink="WaterRippleMedium25"/>
         </TerrainSquibs>
         <WalkAnimMoveSpeed value="2.25"/>
@@ -2501,7 +2490,6 @@
             <IdlePeriod value="0.100000,0.250000"/>
             <RangeUp value="2.000000"/>
             <RangeDown value="2.000000"/>
-            <AttachQuery Methods="AMFilterCenter"/>
             <Visuals TerrainPhysicsMaterial="Water" ActorModel="TerrainSquibHarnessContinuous" ModelLink="WaterRippleMedium3"/>
         </TerrainSquibs>
         <WalkAnimMoveSpeed value="1"/>
@@ -2547,7 +2535,6 @@
             <IdlePeriod value="0.100000,0.250000"/>
             <RangeUp value="0.800000"/>
             <RangeDown value="0.400000"/>
-            <AttachQuery Methods="AMFilterCenter"/>
             <Visuals TerrainPhysicsMaterial="Water" ActorModel="TerrainSquibHarnessContinuous" ModelLink="WaterRippleMedium15"/>
         </TerrainSquibs>
         <WalkAnimMoveSpeed value="1"/>
@@ -2678,7 +2665,6 @@
             <IdlePeriod value="0.100000,0.250000"/>
             <RangeUp value="2.000000"/>
             <RangeDown value="2.000000"/>
-            <AttachQuery Methods="AMFilterCenter"/>
             <Visuals TerrainPhysicsMaterial="Water" ActorModel="TerrainSquibHarnessContinuous" ModelLink="WaterRippleInfestor"/>
         </TerrainSquibs>
         <WalkAnimMoveSpeed value="1.875"/>
@@ -2689,7 +2675,6 @@
         </GroupIcon>
         <HeroIcon value="Assets\Textures\btn-unit-zerg-infestor.dds"/>
         <LifeArmorIcon value="Assets\Textures\btn-upgrade-zerg-groundcarapace-level0.dds"/>
-        <SelectAbilCmd value="FungalGrowth,Execute"/>
         <ShieldArmorIcon value="Assets\Textures\btn-upgrade-zerg-swarmfrenzy.dds"/>
         <SoundArray index="Ready" value="Infestor_Ready"/>
         <SoundArray index="What" value="Infestor_What"/>
@@ -2714,9 +2699,6 @@
         <HighlightTooltip value="Unit/Name/Infestor2"/>
         <BarHeight value="6"/>
     </CActorUnit>
-    <CActorSplat id="BonebreakerBoulderCursorSplat" parent="TerranCursorSplat" abil="BonebreakerBoulder">
-        <On Terms="Abil.BonebreakerLeap.Cursor" Send="Create"/>
-    </CActorSplat>
     <CActorMissile id="BonebreakerBoulderMissile" parent="GenericAttackMissile" unitName="BonebreakerBoulder"/>
     <CActorRange id="BonebreakerBoulderRange" parent="RangeAbil" abil="BonebreakerBoulder"/>
     <CActorAction id="BonebreakerBoulder" parent="GenericAttack" effectImpact="BonebreakerBoulderDamage" effectLaunch="BonebreakerBoulderLaunchMissile">
@@ -2822,7 +2804,6 @@
             <IdlePeriod value="0.200000,0.400000"/>
             <RangeUp value="1.000000"/>
             <RangeDown value="1.000000"/>
-            <AttachQuery Methods="AMFilterCenter"/>
             <Visuals TerrainPhysicsMaterial="Water" ActorModel="TerrainSquibHarnessContinuous" ModelLink="WaterRippleTiny"/>
         </TerrainSquibs>
         <WalkAnimMoveSpeed value="2"/>
@@ -2866,7 +2847,6 @@
             <IdlePeriod value="0.700000,0.710000"/>
             <RangeDown value="5.000000"/>
             <RangeDownFade value="1.000000"/>
-            <AttachQuery Methods="AMFilterCenter"/>
             <Visuals TerrainPhysicsMaterial="Water" ActorModel="TerrainSquibHarnessContinuous" ModelLink="WaterRippleMassive"/>
         </TerrainSquibs>
         <WalkAnimMoveSpeed value="1"/>
@@ -3005,7 +2985,6 @@
             <IdlePeriod value="0.100000,0.250000"/>
             <RangeUp value="2.000000"/>
             <RangeDown value="2.000000"/>
-            <AttachQuery Methods="AMFilterCenter"/>
             <Visuals TerrainPhysicsMaterial="Water" ActorModel="TerrainSquibHarnessContinuous" ModelLink="WaterRippleSwarmQueen"/>
         </TerrainSquibs>
         <WalkAnimMoveSpeed value="1.7031"/>
@@ -3113,7 +3092,6 @@
             <IdlePeriod value="0.100000,0.250000"/>
             <RangeUp value="1.000000"/>
             <RangeDown value="1.000000"/>
-            <AttachQuery Methods="AMFilterCenter"/>
             <Visuals TerrainPhysicsMaterial="Water" ActorModel="TerrainSquibHarnessContinuous" ModelLink="WaterRippleLarge"/>
         </TerrainSquibs>
         <WalkAnimMoveSpeed value="2.086"/>
@@ -3255,7 +3233,6 @@
             <IdlePeriod value="0.100000,0.250000"/>
             <RangeUp value="1.000000"/>
             <RangeDown value="1.000000"/>
-            <AttachQuery Methods="AMFilterCenter"/>
             <Visuals TerrainPhysicsMaterial="Water" ActorModel="TerrainSquibHarnessContinuous" ModelLink="WaterRippleLarge"/>
         </TerrainSquibs>
         <WalkAnimMoveSpeed value="2.086"/>
@@ -3335,7 +3312,6 @@
             <IdlePeriod value="0.100000,0.250000"/>
             <RangeUp value="1.000000"/>
             <RangeDown value="1.000000"/>
-            <AttachQuery Methods="AMFilterCenter"/>
             <Visuals TerrainPhysicsMaterial="Water" ActorModel="TerrainSquibHarnessContinuous" ModelLink="WaterRippleLarge"/>
         </TerrainSquibs>
         <WalkAnimMoveSpeed value="2.25"/>
@@ -3492,7 +3468,7 @@
         <SoundArray index="Highlight" value="Zergling_Highlight"/>
     </CActorUnit>
     <CActorAction id="EltradAttack" parent="GenericAttack" effectAttack="EltradBiteDamage">
-        <ImpactAttachQuery Methods="AMFilterTargetVolumes"/>
+        <ImpactAttachQuery Methods=""/>
         <ImpactMap index="None" Sound="Zergling_AttackImpact"/>
         <ShieldFlashType value="Header"/>
     </CActorAction>
@@ -3557,7 +3533,6 @@
             <IdlePeriod value="0.100000,0.250000"/>
             <RangeUp value="1.000000"/>
             <RangeDown value="1.000000"/>
-            <AttachQuery Methods="AMFilterCenter"/>
             <Visuals TerrainPhysicsMaterial="Water" ActorModel="TerrainSquibHarnessContinuous" ModelLink="WaterRippleLarge"/>
         </TerrainSquibs>
         <WalkAnimMoveSpeed value="2.086"/>
@@ -3743,7 +3718,6 @@
             <IdlePeriod value="0.100000,0.250000"/>
             <RangeUp value="1.500000"/>
             <RangeDown value="1.500000"/>
-            <AttachQuery Methods="AMFilterCenter"/>
             <Visuals TerrainPhysicsMaterial="Water" ActorModel="TerrainSquibHarnessContinuous" ModelLink="WaterRippleMedium25"/>
         </TerrainSquibs>
         <WalkAnimMoveSpeed value="1.3984"/>
@@ -3996,7 +3970,6 @@
             <IdlePeriod value="0.100000,0.250000"/>
             <RangeUp value="2.000000"/>
             <RangeDown value="2.000000"/>
-            <AttachQuery Methods="AMFilterCenter"/>
             <Visuals TerrainPhysicsMaterial="Water" ActorModel="TerrainSquibHarnessContinuous" ModelLink="WaterRippleUltralisk"/>
         </TerrainSquibs>
         <WalkAnimMoveSpeed value="2.9375"/>
@@ -4102,7 +4075,6 @@
             <IdlePeriod value="0.100000,0.250000"/>
             <RangeUp value="2.000000"/>
             <RangeDown value="2.000000"/>
-            <AttachQuery Methods="AMFilterCenter"/>
             <Visuals TerrainPhysicsMaterial="Water" ActorModel="TerrainSquibHarnessContinuous" ModelLink="WaterRippleUltralisk"/>
         </TerrainSquibs>
         <WalkAnimMoveSpeed value="2.9375"/>
@@ -4218,7 +4190,6 @@
             <IdlePeriod value="0.100000,0.250000"/>
             <RangeUp value="2.000000"/>
             <RangeDown value="2.000000"/>
-            <AttachQuery Methods="AMFilterCenter"/>
             <Visuals TerrainPhysicsMaterial="Water" ActorModel="TerrainSquibHarnessContinuous" ModelLink="WaterRippleUltralisk"/>
         </TerrainSquibs>
         <WalkAnimMoveSpeed value="2.9375"/>
@@ -4416,7 +4387,6 @@
             <IdlePeriod value="0.100000,0.250000"/>
             <RangeUp value="2.000000"/>
             <RangeDown value="2.000000"/>
-            <AttachQuery Methods="AMFilterCenter"/>
             <Visuals TerrainPhysicsMaterial="Water" ActorModel="TerrainSquibHarnessContinuous" ModelLink="WaterRippleUltralisk"/>
         </TerrainSquibs>
         <WalkAnimMoveSpeed value="2.9375"/>
