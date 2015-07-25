@@ -755,8 +755,47 @@
     </CEffectEnumArea>
     <CEffectEnumArea id="SmokeGrenadeAlliedEvasionSearchLevel2">
         <EditorCategories value=""/>
+        <SearchFilters value="-;Neutral,Enemy"/>
+        <AreaArray Radius="3.5" Effect="SmokeGrenadeAlliedEvasionLevel2"/>
     </CEffectEnumArea>
+    <CEffectApplyBehavior id="SmokeGrenadeAlliedEvasionLevel3">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="SmokeGrenadeAlliedEvasionLevel2">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectEnumArea id="SmokeGrenadeAlliedEvasionSearchLevel3">
+        <EditorCategories value=""/>
+        <SearchFilters value="-;Neutral,Enemy"/>
+        <AreaArray Radius="3.5" Effect="SmokeGrenadeAlliedEvasionLevel3"/>
+    </CEffectEnumArea>
+    <CEffectEnumArea id="SmokeGrenadeEnemySlowSearchLevel3">
+        <EditorCategories value=""/>
+        <SearchFilters value="-;Player,Ally,Neutral"/>
+        <AreaArray Radius="3.5" Effect="SmokeGrenadeEnemySlowLevel3"/>
+    </CEffectEnumArea>
+    <CEffectCreatePersistent id="SmokeGrenadePersistentLevel1">
+        <EditorCategories value=""/>
+        <PeriodCount value="120"/>
+        <PeriodicEffectArray value="SmokeGrenadeEnemySlowSearchLevel1"/>
+        <PeriodicPeriodArray value="0.25"/>
+    </CEffectCreatePersistent>
+    <CEffectCreatePersistent id="SmokeGrenadePersistentLevel2">
+        <EditorCategories value=""/>
+        <PeriodCount value="120"/>
+        <PeriodicEffectArray value="SmokeGrenadeSetLevel2"/>
+        <PeriodicPeriodArray value="0.25"/>
+    </CEffectCreatePersistent>
+    <CEffectCreatePersistent id="SmokeGrenadePersistentLevel3">
+        <EditorCategories value=""/>
+        <PeriodCount value="120"/>
+        <PeriodicEffectArray value="SmokeGrenadeSetLevel3"/>
+        <PeriodicPeriodArray value="0.25"/>
+    </CEffectCreatePersistent>
     <CEffectApplyBehavior id="SmokeGrenadeEnemySlowLevel2">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="SmokeGrenadeEnemySlowLevel3">
         <EditorCategories value=""/>
     </CEffectApplyBehavior>
     <CEffectEnumArea id="SmokeGrenadeEnemySlowSearchLevel1">
@@ -775,28 +814,18 @@
     <CEffectLaunchMissile id="SmokeGrenadeLevel3">
         <EditorCategories value=""/>
         <ImpactLocation Value="TargetPoint"/>
-        <ImpactEffect value="SmokeGrenadeUnitLevel2"/>
+        <ImpactEffect value="SmokeGrenadePersistentLevel3"/>
     </CEffectLaunchMissile>
-    <CEffectCreatePersistent id="SmokeGrenadePersistentLevel1">
-        <EditorCategories value=""/>
-        <PeriodCount value="60"/>
-        <PeriodicEffectArray value="SmokeGrenadeEnemySlowSearchLevel1"/>
-        <PeriodicPeriodArray value="0.5"/>
-    </CEffectCreatePersistent>
-    <CEffectCreatePersistent id="SmokeGrenadePersistentLevel12">
-        <EditorCategories value=""/>
-        <PeriodCount value="60"/>
-        <PeriodicEffectArray value="SmokeGrenadeEnemySlowSearchLevel1"/>
-        <PeriodicPeriodArray value="0.5"/>
-    </CEffectCreatePersistent>
-    <CEffectCreatePersistent id="SmokeGrenadePersistentLevel122">
-        <EditorCategories value=""/>
-        <PeriodCount value="60"/>
-        <PeriodicEffectArray value="SmokeGrenadeEnemySlowSearchLevel1"/>
-        <PeriodicPeriodArray value="0.5"/>
-    </CEffectCreatePersistent>
     <CEffectSet id="SmokeGrenadeSetLevel2">
         <EditorCategories value=""/>
+        <TargetLocationType value="Point"/>
+        <EffectArray value="SmokeGrenadeEnemySlowSearchLevel2"/>
+        <EffectArray value="SmokeGrenadeAlliedEvasionSearchLevel2"/>
+    </CEffectSet>
+    <CEffectSet id="SmokeGrenadeSetLevel3">
+        <EditorCategories value=""/>
+        <EffectArray value="SmokeGrenadeEnemySlowSearchLevel3"/>
+        <EffectArray value="SmokeGrenadeAlliedEvasionSearchLevel3"/>
         <TargetLocationType value="Point"/>
     </CEffectSet>
     <CEffectLaunchMissile id="SurveillanceFlareLevel2">
@@ -2119,7 +2148,7 @@
     <CEffectLaunchMissile id="SmokeGrenadeLevel2">
         <EditorCategories value=""/>
         <ImpactLocation Value="TargetPoint"/>
-        <ImpactEffect value="SmokeGrenadeUnitLevel2"/>
+        <ImpactEffect value="SmokeGrenadePersistentLevel2"/>
     </CEffectLaunchMissile>
     <CEffectApplyBehavior id="SonicTrapHeroicSlowLevel1">
         <EditorCategories value=""/>

@@ -67,6 +67,15 @@
         <Scale value="1.000000"/>
         <WalkAnimMoveSpeed value="3.25"/>
     </CActorUnit>
+    <CActorModel default="1" id="ModelAnimationContinous3Level" parent="ModelAnimationStyleContinuous">
+        <?token id="Effect"?>
+        <On Terms="Effect.##Effect##Level1.Start" Send="Create"/>
+        <On Terms="Effect.##Effect##Level2.Start" Send="Create"/>
+        <On Terms="Effect.##Effect##Level3.Start" Send="Create"/>
+        <On Terms="Effect.##Effect##Level1.Stop" Send="Destroy"/>
+        <On Terms="Effect.##Effect##Level2.Stop" Send="Destroy"/>
+        <On Terms="Effect.##Effect##Level3.Stop" Send="Destroy"/>
+    </CActorModel>
     <CActorForceConeRoundedEnd id="120mmSmoothboreAttackForce">
         <HostSiteOps Ops="SOpIncomingDirect1Dot5 SOpMoveDownByDot25"/>
         <Receiver Subject="::Main"/>
@@ -823,6 +832,13 @@
         <Angle value="90.000000"/>
         <Radius value="3.000000"/>
     </CActorRegionArc>
+    <CActorSplat id="SmokeGrenadeAoE" parent="CursorSplat" abil="SmokeGrenade">
+        <EditorCategories value=""/>
+    </CActorSplat>
+    <CActorModel id="SmokeGrenadeCloud" parent="ModelAnimationContinous3Level" Effect="SmokeGrenadePersistent">
+        <ModelFlags index="AllowHitTest" value="0"/>
+        <Scale value="0.500000"/>
+    </CActorModel>
     <CActorAction id="SmokeGrenadeLaunch" parent="GenericAttack" effectLaunch="SmokeGrenadeLevel1">
         <EditorCategories value=""/>
         <On index="0" Terms="Effect.SmokeGrenadeLevel1.Start; At Caster" Send="Create"/>
@@ -838,6 +854,7 @@
     <CActorMissile id="SmokeGrenadeMissile" parent="GenericAttackMissile" unitName="SmokeGrenadeLevel1Weapon">
         <EditorCategories value=""/>
         <On Terms="UnitBirth.SmokeGrenadeLevel2Weapon" Send="Create"/>
+        <On Terms="UnitBirth.SmokeGrenadeLevel3Weapon" Send="Create"/>
         <HostSiteOps Ops="RoadFlareTumble"/>
         <Model value="SmokeGrenadeMissile"/>
         <Scale value="0.800000"/>

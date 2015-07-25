@@ -170,6 +170,8 @@ Ability/LevelUpTooltip/ProvokeLevel2=Force enemies in a <d ref="Effect,ProvokeSe
 Ability/LevelUpTooltip/ProvokeLevel3=Force enemies in a <d ref="Effect,ProvokeSearchLevel3,AreaArray[0].Radius"/> radius to target the Demolitions for <d ref="Behavior,ProvokeLevel3,Duration"/> seconds and deal <d ref="-Behavior,ProvokeLevel3Taunt,Modification.DamageDealtFraction[Melee] *100"/>% less damage.
 Ability/LevelUpTooltip/SelfAidLevel2=Heals the Rifleman for <d ref="Effect,SelfAidHealLevel2,VitalArray[Life].Change"/> health and cures 1 Venom and 1 Open Wound. When under the effects of Repulse, use cures a fracture.<n/>
 Ability/LevelUpTooltip/ShieldBashLevel2=Deals <d ref="Effect,ShieldBashLevel2ReactiveShieldsLevel1,Amount - 5"/> damage and knocks back enemies a distance of 2 in a <d ref="Effect,ShieldBashLevel1,AreaArray[0].Arc"/> degree cone. Reactive Spikes adds its damage to this attack.
+Ability/LevelUpTooltip/SmokeGrenadeLevel2=Create a <d ref="Effect,SmokeGrenadeEnemySlowSearchLevel2,AreaArray[0].Radius" precision="1"/> radius cloud that lowers enemy Movement Speed by 25% and grants allied units 20% Evasion for <d ref="Effect,SmokeGrenadePersistentLevel2,PeriodCount * Effect,SmokeGrenadePersistentLevel2,PeriodicPeriodArray[0]"/> seconds.
+Ability/LevelUpTooltip/SmokeGrenadeLevel3=Create a <d ref="Effect,SmokeGrenadeEnemySlowSearchLevel3,AreaArray[0].Radius" precision="1"/> radius cloud that lowers enemy Movement and Attack Speed by 25% and grants allied units 20% Evasion for <d ref="Effect,SmokeGrenadePersistentLevel3,PeriodCount * Effect,SmokeGrenadePersistentLevel3,PeriodicPeriodArray[0]"/> seconds.
 Ability/LevelUpTooltip/SurveillanceFlareLevel2=Throw a flare at the target location, providing ground vision in a radius <d ref="Unit,GroundIlluminationFlareLevel2,Sight"/> of the targeted area for <d ref="Behavior,GroundIlluminationTimedLifeLevel2,Duration"/> seconds.
 Ability/LevelUpTooltip/SurveillanceFlareLevel3=Throw a flare at the target location, providing ground vision in a radius <d ref="Unit,GroundIlluminationFlareLevel3,Sight"/> of the targeted area for <d ref="Behavior,GroundIlluminationTimedLifeLevel3,Duration"/> seconds.
 Ability/LevelUpTooltip/VolatileInjectionLevel2=Deals <d ref="Effect,VolatileInjectionDamageLevel2,Amount"/> damage to all units within a <d ref="Effect,VolatileInjectionSearchLevel2,AreaArray[0].Radius"/> radius of the afflicted unit when it dies.
@@ -331,8 +333,11 @@ Behavior/Name/SatchelChargeDetonation=Satchel Charge Detonation
 Behavior/Name/SergeantAscalon=Sergeant Ascalon
 Behavior/Name/SergeantLefty=Sergeant Lefty
 Behavior/Name/ShieldBashLift=Shield Bash Lift
+Behavior/Name/SmokeGrenadeAlliedEvasionLevel2=Smoke Grenade Allied Evasion Level 2
+Behavior/Name/SmokeGrenadeAlliedEvasionLevel3=Smoke Grenade Allied Evasion Level 3
 Behavior/Name/SmokeGrenadeEnemySlowLevel1=Smoke Grenade Enemy Slow Level 1
 Behavior/Name/SmokeGrenadeEnemySlowLevel2=Smoke Grenade Enemy Slow Level 2
+Behavior/Name/SmokeGrenadeEnemySlowLevel3=Smoke Grenade Enemy Slow Level 3
 Behavior/Name/SonicTrapHeroicSlowLevel1=Sonic Trap Heroic Slow Level 1
 Behavior/Name/SonicTrapHeroicSlowLevel2=Sonic Trap Heroic Slow Level 2
 Behavior/Name/SonicTrapMassiveSlowLevel1=Sonic Trap Massive Slow Level 1
@@ -674,7 +679,7 @@ Button/Tooltip/SatchelCharge=Throw a Satchel Charge at the target location. Afte
 Button/Tooltip/SelfAid=Heals the Rifleman for <d ref="Effect,SelfAidHealLevel1,VitalArray[Life].Change"/> health and cures 1 Venom. When under the effects of Repulse, use cures a fracture.
 Button/Tooltip/SelfAidLevel2=
 Button/Tooltip/ShieldBash=Deals <d ref="Effect,ShieldBashLevel1ReactiveShieldsLevel1,Amount - 5"/> damage and knocks back enemies a distance of 1 in a <d ref="Effect,ShieldBashLevel1,AreaArray[0].Arc"/> degree cone. Reactive Spikes adds its damage to this attack.
-Button/Tooltip/SmokeGrenade=Conceals an area to enemies for 25 seconds and slows all non-heroic units within the cloud by 20%. Heroic units are slowed by 10%.
+Button/Tooltip/SmokeGrenade=Create a 3.5 radius cloud that lowers enemy Movement Speed by 25% for 30 seconds.
 Button/Tooltip/SonicTrap=Sets a Sonic Trap at the target location. When an enemy passes within 3 radius of the trap, all non-heroic and non-massive units in a <d ref="Effect,SonicTrapLevel1,AreaArray[0].Radius"/> radius are pushed back a distance of <d ref="Effect,SonicTrapPushbackLevel1,PlacementRange"/> and stunned for <d ref="Behavior,SonicTrapStunLevel1,Duration" precision="1"/> seconds. Massive units are slowed by <d ref="Behavior,SonicTrapMassiveSlowLevel1,Modification.MoveSpeedMultiplier-1*(-100)" precision="1"/>% and Heroic units are slowed by <d ref="Behavior,SonicTrapHeroicSlowLevel1,Modification.MoveSpeedMultiplier-1*(-100)" precision="1"/>% for <d ref="Behavior,SonicTrapHeroicSlowLevel1,Duration"/> seconds.
 Button/Tooltip/SonicTrapLevel2=Sets a Sonic Trap at the target location. When an enemy passes within 3 radius of the trap, all non-heroic and non-massive units in a <d ref="Effect,SonicTrapLevel2,AreaArray[0].Radius"/> radius are pushed back a distance of <d ref="Effect,SonicTrapPushbackLevel2,PlacementRange"/> and stunned for <d ref="Behavior,SonicTrapStunLevel2,Duration" precision="1"/> seconds. Massive units are slowed by <d ref="Behavior,SonicTrapMassiveSlowLevel2,Modification.MoveSpeedMultiplier-1*(-100)" precision="1"/>% and Heroic units are slowed by <d ref="Behavior,SonicTrapHeroicSlowLevel2,Modification.MoveSpeedMultiplier-1*(-100)" precision="1"/>% for <d ref="Behavior,SonicTrapHeroicSlowLevel2,Duration"/> seconds.
 Button/Tooltip/Sprint=Sprinting increases movement speed by <d ref="Behavior,Sprint,Modification.MoveSpeedMultiplier-1*100"/>% for <d ref="Behavior,Sprint,Duration"/> seconds. Sprinting with a fractured leg can possibly worsen the fracture.

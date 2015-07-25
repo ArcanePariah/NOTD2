@@ -1202,9 +1202,11 @@
     <CAbilLearn id="ReconLearn" parent="LearnTemplate">
         <Name value="Abil/Name/ReconLearn"/>
         <InfoArray index="Learn1" Abil="SurveillanceFlare">
-            <Button DefaultButtonFace="LaserDesignator"/>
+            <Button DefaultButtonFace="SurveillanceFlare"/>
         </InfoArray>
-        <InfoArray index="Learn2" Abil="SmokeGrenade"/>
+        <InfoArray index="Learn2" Abil="SmokeGrenade">
+            <Button DefaultButtonFace="SmokeGrenade"/>
+        </InfoArray>
         <InfoArray index="Learn3" Abil="MotionSensor"/>
         <InfoArray index="Learn4" Abil="ItemSensor"/>
         <InfoArray index="Learn5" Abil="SupplyDropOffensive">
@@ -1373,10 +1375,13 @@
     </CAbilEffectInstant>
     <CAbilEffectTarget id="SmokeGrenade" parent="3LevelEffectTargetAbility">
         <Cost>
-            <Vital index="Energy" value="30"/>
+            <Vital index="Energy" value="25"/>
             <Cooldown TimeUse="30"/>
         </Cost>
-        <Range value="9"/>
+        <Range value="12"/>
+        <CursorEffect value="SmokeGrenadeEnemySlowSearchLevel1"/>
+        <CursorEffect value="SmokeGrenadeEnemySlowSearchLevel2"/>
+        <CursorEffect value="SmokeGrenadeEnemySlowSearchLevel3"/>
     </CAbilEffectTarget>
     <CAbilInventory id="SquadLeaderInventory" parent="InventoryTemplate">
         <InfoArray index="2" removed="1"/>
