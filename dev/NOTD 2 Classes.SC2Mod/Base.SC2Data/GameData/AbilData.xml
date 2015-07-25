@@ -1371,15 +1371,12 @@
         </CmdButtonArray>
         <Flags index="Transient" value="1"/>
     </CAbilEffectInstant>
-    <CAbilEffectTarget id="SmokeGrenade" parent="AbilityWithButtonTargetTemplate">
-        <Effect index="0" value="SmokeGrenadeLevel1"/>
-        <Effect value="SmokeGrenadeLevel2"/>
-        <Range value="9"/>
+    <CAbilEffectTarget id="SmokeGrenade" parent="3LevelEffectTargetAbility">
         <Cost>
             <Vital index="Energy" value="30"/>
             <Cooldown TimeUse="30"/>
         </Cost>
-        <LevelButtonTooltip value="Button/Tooltip/SmokeGrenadeLevel2"/>
+        <Range value="9"/>
     </CAbilEffectTarget>
     <CAbilInventory id="SquadLeaderInventory" parent="InventoryTemplate">
         <InfoArray index="2" removed="1"/>

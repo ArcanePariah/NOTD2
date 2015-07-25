@@ -823,14 +823,6 @@
         <Angle value="90.000000"/>
         <Radius value="3.000000"/>
     </CActorRegionArc>
-    <CActorUnit id="SmokeGrenade" parent="GenericUnitMinimal" unitName="SmokeGrenadeLevel1">
-        <EditorCategories value=""/>
-        <On Terms="UnitBirth.SmokeGrenadeLevel2" Send="Create"/>
-        <Model value="SmokeGrenade"/>
-        <HighlightTooltip value="Unit/Name/Bogus"/>
-        <StatusBarFlags index="Life" value="0"/>
-        <StatusBarFlags index="Duration" value="0"/>
-    </CActorUnit>
     <CActorAction id="SmokeGrenadeLaunch" parent="GenericAttack" effectLaunch="SmokeGrenadeLevel1">
         <EditorCategories value=""/>
         <On index="0" Terms="Effect.SmokeGrenadeLevel1.Start; At Caster" Send="Create"/>
