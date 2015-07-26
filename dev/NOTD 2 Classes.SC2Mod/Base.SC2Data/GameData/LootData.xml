@@ -17,16 +17,26 @@
         <ChildArray Child="AntiVenom"/>
     </CLootSet>
     <CLootSet id="SupplyDropDefensiveSet">
-        <MaxCount value="1"/>
-        <ChildArray Chance="25" Child="SupplyDropDefensiveAntiVenomSet"/>
-        <ChildArray Chance="25" Child="SupplyDropDefensiveBandageSet"/>
-        <ChildArray Chance="25" Child="MendingPaste"/>
-        <ChildArray Chance="25" Child="FlareGun"/>
+        <MaxCount value="3"/>
+        <ChildArray Child="SupplyDropDefensiveAntiVenomSet"/>
+        <ChildArray Child="SupplyDropDefensiveBandageSet"/>
+        <ChildArray Child="SupplyDropMedkitSet"/>
+        <MinCount value="3"/>
+    </CLootSet>
+    <CLootSet id="SupplyDropMedkitSet">
+        <MinCount value="6"/>
+        <MaxCount value="6"/>
+        <ChildArray Child="Medkit"/>
     </CLootSet>
     <CLootSet id="SupplyDropOffensiveAmmoSet">
-        <MinCount value="4"/>
-        <MaxCount value="4"/>
-        <ChildArray Child="AmmunitionCase"/>
+        <MinCount value="9"/>
+        <MaxCount value="9"/>
+        <ChildArray Child="Magazine"/>
+        <ChildArray Child="Magazine"/>
+        <ChildArray Child="Magazine"/>
+        <ChildArray Child="Magazine"/>
+        <ChildArray Child="Magazine"/>
+        <ChildArray Child="Magazine"/>
         <ChildArray Child="Magazine"/>
         <ChildArray Child="Magazine"/>
         <ChildArray Child="Magazine"/>
