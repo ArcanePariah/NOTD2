@@ -1,4 +1,5 @@
 include "TriggerLibs/NativeLib"
+include "Lib09BE6BA8"
 
 //--------------------------------------------------------------------------------------------------
 // Library: Item Triggers
@@ -6,6 +7,7 @@ include "TriggerLibs/NativeLib"
 // Variables
 string libFEC22885_gv_defaultGameLighting;
 string libFEC22885_gv_nightVisionLighting;
+int libFEC22885_gv_flechetteEquiippedCount;
 
 void libFEC22885_InitVariables () {
     libFEC22885_gv_defaultGameLighting = "NOTD2Light";
@@ -18,6 +20,8 @@ trigger libFEC22885_gt_ArmorDowngradeVisual;
 trigger libFEC22885_gt_RoadFlareVisionShare;
 trigger libFEC22885_gt_SpecialAmmoUsage;
 trigger libFEC22885_gt_FlechetteOpenWound;
+trigger libFEC22885_gt_EnableFlechette;
+trigger libFEC22885_gt_DisableFlechette;
 
 // Triggers
 //--------------------------------------------------------------------------------------------------
@@ -249,7 +253,52 @@ bool libFEC22885_gt_FlechetteOpenWound_Func (bool testConds, bool runActions) {
 //--------------------------------------------------------------------------------------------------
 void libFEC22885_gt_FlechetteOpenWound_Init () {
     libFEC22885_gt_FlechetteOpenWound = TriggerCreate("libFEC22885_gt_FlechetteOpenWound_Func");
+    TriggerEnable(libFEC22885_gt_FlechetteOpenWound, false);
     TriggerAddEventUnitDamaged(libFEC22885_gt_FlechetteOpenWound, null, c_unitDamageTypeAny, c_unitDamageNonFatal, null);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Enable Flechette
+//--------------------------------------------------------------------------------------------------
+bool libFEC22885_gt_EnableFlechette_Func (bool testConds, bool runActions) {
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    libFEC22885_gv_flechetteEquiippedCount += 1;
+    if ((libFEC22885_gv_flechetteEquiippedCount > 0)) {
+        TriggerEnable(libFEC22885_gt_FlechetteOpenWound, true);
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libFEC22885_gt_EnableFlechette_Init () {
+    libFEC22885_gt_EnableFlechette = TriggerCreate("libFEC22885_gt_EnableFlechette_Func");
+    TriggerAddEventUnitBehaviorChange(libFEC22885_gt_EnableFlechette, null, "Flechette", c_unitBehaviorChangeIncrease);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Disable Flechette
+//--------------------------------------------------------------------------------------------------
+bool libFEC22885_gt_DisableFlechette_Func (bool testConds, bool runActions) {
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    libFEC22885_gv_flechetteEquiippedCount -= 1;
+    if ((libFEC22885_gv_flechetteEquiippedCount == 0)) {
+        TriggerEnable(libFEC22885_gt_FlechetteOpenWound, false);
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libFEC22885_gt_DisableFlechette_Init () {
+    libFEC22885_gt_DisableFlechette = TriggerCreate("libFEC22885_gt_DisableFlechette_Func");
+    TriggerAddEventUnitBehaviorChange(libFEC22885_gt_DisableFlechette, null, "Flechette", c_unitBehaviorChangeDecrease);
 }
 
 void libFEC22885_InitTriggers () {
@@ -258,6 +307,8 @@ void libFEC22885_InitTriggers () {
     libFEC22885_gt_RoadFlareVisionShare_Init();
     libFEC22885_gt_SpecialAmmoUsage_Init();
     libFEC22885_gt_FlechetteOpenWound_Init();
+    libFEC22885_gt_EnableFlechette_Init();
+    libFEC22885_gt_DisableFlechette_Init();
 }
 
 //--------------------------------------------------------------------------------------------------
