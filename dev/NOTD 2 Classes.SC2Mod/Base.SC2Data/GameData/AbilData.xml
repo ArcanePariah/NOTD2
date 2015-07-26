@@ -388,6 +388,12 @@
     <CAbilLearn id="ForwardObserverLearn" parent="LearnTemplate">
         <Name value="Abil/Name/ForwardObserverLearn"/>
     </CAbilLearn>
+    <CAbilEffectTarget id="SatelliteUplink" parent="AbilityWithButtonTargetTemplate">
+        <Cost>
+            <Cooldown TimeUse="4"/>
+        </Cost>
+        <Range value="500"/>
+    </CAbilEffectTarget>
     <CAbilEffectTarget id="SurveillanceFlare" parent="3LevelEffectTargetAbility">
         <Flags index="RequireTargetVision" value="0"/>
         <Cost>
@@ -1212,7 +1218,9 @@
         <InfoArray index="Learn5" Abil="AmmunitionDrop">
             <Button DefaultButtonFace="MedicalDrop"/>
         </InfoArray>
-        <InfoArray index="Learn6" Abil="CloseAirSupport"/>
+        <InfoArray index="Learn6" Abil="SatelliteUplink">
+            <Button DefaultButtonFace="SatelliteUplink"/>
+        </InfoArray>
         <InfoArray index="Learn7" Abil="FlareGunRecon"/>
         <InfoArray index="Learn8" Abil="EscapeSet"/>
         <InfoArray index="Learn9" Abil="Execute"/>
@@ -1405,21 +1413,24 @@
     </CAbilBehavior>
     <CAbilEffectTarget id="MedicalDrop" parent="AbilityWithButtonTargetTemplate">
         <Cost>
-            <Vital index="Energy" value="50"/>
+            <Vital index="Energy" value="20"/>
             <Charge Link="Abil/SupplyDropOffensive"/>
-            <Cooldown Link="Abil/SupplyDropOffensive" TimeUse="60"/>
+            <Cooldown Link="Abil/SupplyDropOffensive" TimeUse="30"/>
         </Cost>
-        <Range value="500"/>
+        <Range value="10"/>
         <Arc value="360"/>
+        <CmdButtonArray index="Execute" Requirements="SupplyDrop"/>
+        <Flags index="Transient" value="1"/>
     </CAbilEffectTarget>
     <CAbilEffectTarget id="AmmunitionDrop" parent="AbilityWithButtonTargetTemplate">
         <Cost>
-            <Vital index="Energy" value="50"/>
+            <Vital index="Energy" value="20"/>
             <Charge Link="Abil/SupplyDropOffensive"/>
-            <Cooldown Link="Abil/SupplyDropOffensive" TimeUse="60"/>
+            <Cooldown Link="Abil/SupplyDropOffensive" TimeUse="30"/>
         </Cost>
-        <Range value="500"/>
+        <Range value="10"/>
         <Arc value="360"/>
+        <Flags index="Transient" value="1"/>
     </CAbilEffectTarget>
     <CAbilEffectInstant id="TauntNOTD" parent="3LevelEffectInstantAbility">
         <Cost>

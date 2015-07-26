@@ -46,6 +46,11 @@
         <Tooltip value=""/>
         <Count Link="AmmoFeed" State="CompleteOnlyAtUnit"/>
     </CRequirementCountAbil>
+    <CRequirementCountAbil id="CountAbilAmmunitionDropCompleteOnlyAtUnit">
+        <Flags index="TechTreeCheat" value="0"/>
+        <Tooltip value=""/>
+        <Count Link="AmmunitionDrop" State="CompleteOnlyAtUnit"/>
+    </CRequirementCountAbil>
     <CRequirementCountAbil id="CountAbilArtilleryBeaconCompleteOnlyAtUnit">
         <Flags index="TechTreeCheat" value="0"/>
         <Tooltip value=""/>
@@ -100,11 +105,6 @@
         <Flags index="TechTreeCheat" value="0"/>
         <Tooltip value=""/>
         <Count Link="ItemSensor" State="CompleteOnlyAtUnit"/>
-    </CRequirementCountAbil>
-    <CRequirementCountAbil id="CountAbilMedicalDropCompleteOnlyAtUnit">
-        <Flags index="TechTreeCheat" value="0"/>
-        <Tooltip value=""/>
-        <Count Link="MedicalDrop" State="CompleteOnlyAtUnit"/>
     </CRequirementCountAbil>
     <CRequirementCountAbil id="CountAbilMotionSensorCompleteOnlyAtUnit">
         <Flags index="TechTreeCheat" value="0"/>
@@ -272,6 +272,11 @@
         <OperandArray index="0" value="CountAbilAmmoFeedCompleteOnlyAtUnit"/>
         <OperandArray index="1" value="1"/>
     </CRequirementEq>
+    <CRequirementEq id="EqCountAbilAmmunitionDropCompleteOnlyAtUnit1">
+        <Tooltip value=""/>
+        <OperandArray index="0" value="CountAbilAmmunitionDropCompleteOnlyAtUnit"/>
+        <OperandArray index="1" value="1"/>
+    </CRequirementEq>
     <CRequirementCountUpgrade id="CountUpgradeWeaponsProficiencyLevel12CompleteOnly">
         <Flags index="TechTreeCheat" value="0"/>
         <Tooltip value=""/>
@@ -370,11 +375,6 @@
     <CRequirementEq id="EqCountAbilImmovableObjectCompleteOnlyAtUnit1">
         <Tooltip value=""/>
         <OperandArray index="0" value="CountAbilImmovableObjectCompleteOnlyAtUnit"/>
-        <OperandArray index="1" value="1"/>
-    </CRequirementEq>
-    <CRequirementEq id="EqCountAbilMedicalDropCompleteOnlyAtUnit1">
-        <Tooltip value=""/>
-        <OperandArray index="0" value="CountAbilMedicalDropCompleteOnlyAtUnit"/>
         <OperandArray index="1" value="1"/>
     </CRequirementEq>
     <CRequirementEq id="EqCountAbilItemSensorCompleteOnlyAtUnit2">

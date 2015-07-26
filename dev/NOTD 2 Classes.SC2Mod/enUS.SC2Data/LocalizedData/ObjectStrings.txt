@@ -124,6 +124,7 @@ Abil/EditorPrefix/RiflemanInventory=Rifleman -
 Abil/EditorPrefix/RiflemanLearn=Rifleman -
 Abil/EditorPrefix/Sadist=Demolitions -
 Abil/EditorPrefix/SatchelCharge=Demolitions -
+Abil/EditorPrefix/SatelliteUplink=Recon -
 Abil/EditorPrefix/SelfAid=Rifleman -
 Abil/EditorPrefix/ShieldBash=Demolitions -
 Abil/EditorPrefix/SidearmMelee=Marine -
@@ -905,7 +906,6 @@ Button/EditorPrefix/Cohesion=Assault -
 Button/EditorPrefix/CollateralDamage=Demolitions -
 Button/EditorPrefix/CombatKnife=Marine -
 Button/EditorPrefix/CombatManeuvers=Squad Leader -
-Button/EditorPrefix/CommunicationUplink=Recon -
 Button/EditorPrefix/ConcentratedFire=Assault -
 Button/EditorPrefix/Conviction=Flamethrower -
 Button/EditorPrefix/CripplingFire=Rifleman -
@@ -1036,6 +1036,7 @@ Button/EditorPrefix/Righteousness=Flamethrower -
 Button/EditorPrefix/Ruthlessness=Marksman -
 Button/EditorPrefix/Sadist=Demo -
 Button/EditorPrefix/SatchelCharge=Demo -
+Button/EditorPrefix/SatelliteUplink=Recon -
 Button/EditorPrefix/Scapegoat=Psi Ops -
 Button/EditorPrefix/ScorchedEarth=Flamethrower -
 Button/EditorPrefix/SelfAid=Rifleman -
@@ -2443,6 +2444,7 @@ RequirementNode/Name/AndEqCountBehaviorMassreactiveTriggerCompleteOnlyAtUnit0GTE
 RequirementNode/Name/AndEqCountBehaviorProximityTriggerCompleteOnlyAtUnit0GTECountUpgradeMD5MineLevelDummyCompleteOnly3=CountBehavior(ProximityTrigger,CompleteOnlyAtUnit) == 0 && CountUpgrade(MD5MineLevelDummy,CompleteOnly) >= 3
 RequirementNode/Name/CountAbilAftershockCompleteOnlyAtUnit=CountAbil(Aftershock,CompleteOnlyAtUnit)
 RequirementNode/Name/CountAbilAmmoFeedCompleteOnlyAtUnit=CountAbil(AmmoFeed,CompleteOnlyAtUnit)
+RequirementNode/Name/CountAbilAmmunitionDropCompleteOnlyAtUnit=CountAbil(AmmunitionDrop,CompleteOnlyAtUnit)
 RequirementNode/Name/CountAbilArtilleryBeaconCompleteOnlyAtUnit=CountAbil(ArtilleryBeacon,CompleteOnlyAtUnit)
 RequirementNode/Name/CountAbilAssaultCriticalStrikeCompleteOnlyAtUnit=CountAbil(AssaultCriticalStrike,CompleteOnlyAtUnit)
 RequirementNode/Name/CountAbilCohesionCompleteOnlyAtUnit=CountAbil(Cohesion,CompleteOnlyAtUnit)
@@ -2454,7 +2456,6 @@ RequirementNode/Name/CountAbilGrenadierCompleteOnlyAtUnit=CountAbil(Grenadier,Co
 RequirementNode/Name/CountAbilHealCompleteOnlyAtUnit=CountAbil(Heal,CompleteOnlyAtUnit)
 RequirementNode/Name/CountAbilImmovableObjectCompleteOnlyAtUnit=CountAbil(ImmovableObject,CompleteOnlyAtUnit)
 RequirementNode/Name/CountAbilItemSensorCompleteOnlyAtUnit=CountAbil(ItemSensor,CompleteOnlyAtUnit)
-RequirementNode/Name/CountAbilMedicalDropCompleteOnlyAtUnit=CountAbil(MedicalDrop,CompleteOnlyAtUnit)
 RequirementNode/Name/CountAbilMotionSensorCompleteOnlyAtUnit=CountAbil(MotionSensor,CompleteOnlyAtUnit)
 RequirementNode/Name/CountAbilReactiveShieldsCompleteOnlyAtUnit=CountAbil(ReactiveShields,CompleteOnlyAtUnit)
 RequirementNode/Name/CountAbilSJHyperionBansheesCompleteOnlyAtUnit=CountAbil(SJHyperionBanshees,CompleteOnlyAtUnit)
@@ -2497,6 +2498,7 @@ RequirementNode/Name/EqCountAbilAftershockCompleteOnlyAtUnit1=CountAbil(Aftersho
 RequirementNode/Name/EqCountAbilAftershockCompleteOnlyAtUnit2=CountAbil(Aftershock,CompleteOnlyAtUnit) == 2
 RequirementNode/Name/EqCountAbilAmmoFeedCompleteOnlyAtUnit1=CountAbil(AmmoFeed,CompleteOnlyAtUnit) == 1
 RequirementNode/Name/EqCountAbilAmmoFeedCompleteOnlyAtUnit2=CountAbil(AmmoFeed,CompleteOnlyAtUnit) == 2
+RequirementNode/Name/EqCountAbilAmmunitionDropCompleteOnlyAtUnit1=CountAbil(AmmunitionDrop,CompleteOnlyAtUnit) == 1
 RequirementNode/Name/EqCountAbilArtilleryBeaconCompleteOnlyAtUnit0=CountAbil(ArtilleryBeacon,CompleteOnlyAtUnit) == 0
 RequirementNode/Name/EqCountAbilAssaultCriticalStrikeCompleteOnlyAtUnit1=CountAbil(AssaultCriticalStrike,CompleteOnlyAtUnit) == 1
 RequirementNode/Name/EqCountAbilAssaultCriticalStrikeCompleteOnlyAtUnit2=CountAbil(AssaultCriticalStrike,CompleteOnlyAtUnit) == 2
@@ -2517,7 +2519,6 @@ RequirementNode/Name/EqCountAbilHealCompleteOnlyAtUnit3=CountAbil(Heal,CompleteO
 RequirementNode/Name/EqCountAbilImmovableObjectCompleteOnlyAtUnit1=CountAbil(ImmovableObject,CompleteOnlyAtUnit) == 1
 RequirementNode/Name/EqCountAbilItemSensorCompleteOnlyAtUnit1=CountAbil(ItemSensor,CompleteOnlyAtUnit) == 1
 RequirementNode/Name/EqCountAbilItemSensorCompleteOnlyAtUnit2=CountAbil(ItemSensor,CompleteOnlyAtUnit) == 2
-RequirementNode/Name/EqCountAbilMedicalDropCompleteOnlyAtUnit1=CountAbil(MedicalDrop,CompleteOnlyAtUnit) == 1
 RequirementNode/Name/EqCountAbilMotionSensorCompleteOnlyAtUnit1=CountAbil(MotionSensor,CompleteOnlyAtUnit) == 1
 RequirementNode/Name/EqCountAbilMotionSensorCompleteOnlyAtUnit2=CountAbil(MotionSensor,CompleteOnlyAtUnit) == 2
 RequirementNode/Name/EqCountAbilReactiveShieldsCompleteOnlyAtUnit1=CountAbil(ReactiveShields,CompleteOnlyAtUnit) == 1
@@ -2694,6 +2695,7 @@ Unit/EditorPrefix/PsiOps=Marine -
 Unit/EditorPrefix/Recon=Marine -
 Unit/EditorPrefix/Rifleman=Marine -
 Unit/EditorPrefix/SatchelMissileWeapon=Demolitions -
+Unit/EditorPrefix/SatelliteUplinkSpy=Recon -
 Unit/EditorPrefix/SmokeGrenadeLevel1Weapon=Recon -
 Unit/EditorPrefix/SmokeGrenadeLevel2Weapon=Recon -
 Unit/EditorPrefix/SmokeGrenadeLevel3Weapon=Recon -

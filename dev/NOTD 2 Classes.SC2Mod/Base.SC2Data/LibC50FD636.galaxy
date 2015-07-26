@@ -64,6 +64,7 @@ struct libC50FD636_gs_Marine {
 fixed libC50FD636_gv_bulwarkAngle;
 unit libC50FD636_gv_bulwarkTargetUnit;
 unit libC50FD636_gv_bulwarkCaster;
+unit libC50FD636_gv_satelliteUplinkSpyUnit;
 bool libC50FD636_gv_inventoryMoveLock;
 bool[libC50FD636_gv_inventoryBagSize + 1][libC50FD636_gv_numberofPlayers + 1] libC50FD636_gv_openBagSlots;
 libC50FD636_gs_AmmoUIElements[libC50FD636_gv_numberofPlayers + 1] libC50FD636_gv_ammoDisplay;
@@ -168,6 +169,7 @@ trigger libC50FD636_gt_LaserDesignatorVisionShare;
 trigger libC50FD636_gt_GroundIlluminationFlareFlareGunVisionShare;
 trigger libC50FD636_gt_Refresher;
 trigger libC50FD636_gt_KineticPayload;
+trigger libC50FD636_gt_SatelliteMovementOrder;
 trigger libC50FD636_gt_DropItems;
 trigger libC50FD636_gt_WeaveAilmentRemoval;
 trigger libC50FD636_gt_CohesionAilmentResistence;
@@ -1004,13 +1006,15 @@ bool libC50FD636_gt_CommunicationUplinkLevelUp_Func (bool testConds, bool runAct
     }
 
     UnitCreateEffectUnit(EventUnit(), "CommunicationUplinkInitialSearch", EventUnit());
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "SatelliteUplinkSpy", 0, 1, UnitGetPosition(EventUnit()));
+    libC50FD636_gv_satelliteUplinkSpyUnit = UnitLastCreated();
     return true;
 }
 
 //--------------------------------------------------------------------------------------------------
 void libC50FD636_gt_CommunicationUplinkLevelUp_Init () {
     libC50FD636_gt_CommunicationUplinkLevelUp = TriggerCreate("libC50FD636_gt_CommunicationUplinkLevelUp_Func");
-    TriggerAddEventUnitAbility(libC50FD636_gt_CommunicationUplinkLevelUp, null, AbilityCommand("ReconLearn", 4), c_unitAbilStageComplete, false);
+    TriggerAddEventUnitAbility(libC50FD636_gt_CommunicationUplinkLevelUp, null, AbilityCommand("ReconLearn", 5), c_unitAbilStageComplete, false);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -1506,6 +1510,25 @@ bool libC50FD636_gt_KineticPayload_Func (bool testConds, bool runActions) {
 void libC50FD636_gt_KineticPayload_Init () {
     libC50FD636_gt_KineticPayload = TriggerCreate("libC50FD636_gt_KineticPayload_Func");
     TriggerAddEventPlayerEffectUsed(libC50FD636_gt_KineticPayload, c_playerAny, "KineticPayloadLaunch");
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Satellite Movement Order
+//--------------------------------------------------------------------------------------------------
+bool libC50FD636_gt_SatelliteMovementOrder_Func (bool testConds, bool runActions) {
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    UnitIssueOrder(libC50FD636_gv_satelliteUplinkSpyUnit, OrderTargetingPoint(AbilityCommand("move", 0), EventUnitTargetPoint()), c_orderQueueReplace);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libC50FD636_gt_SatelliteMovementOrder_Init () {
+    libC50FD636_gt_SatelliteMovementOrder = TriggerCreate("libC50FD636_gt_SatelliteMovementOrder_Func");
+    TriggerAddEventUnitAbility(libC50FD636_gt_SatelliteMovementOrder, null, AbilityCommand("SatelliteUplink", 0), c_unitAbilStageComplete, false);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -2911,6 +2934,7 @@ void libC50FD636_InitTriggers () {
     libC50FD636_gt_GroundIlluminationFlareFlareGunVisionShare_Init();
     libC50FD636_gt_Refresher_Init();
     libC50FD636_gt_KineticPayload_Init();
+    libC50FD636_gt_SatelliteMovementOrder_Init();
     libC50FD636_gt_DropItems_Init();
     libC50FD636_gt_WeaveAilmentRemoval_Init();
     libC50FD636_gt_CohesionAilmentResistence_Init();
