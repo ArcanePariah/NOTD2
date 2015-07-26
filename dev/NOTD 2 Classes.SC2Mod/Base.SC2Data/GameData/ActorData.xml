@@ -586,6 +586,19 @@
         <Subject Filters="Unit" Terms="ValidateUnit ItemSensorUnitQuery IncludeDerivedSnapshot Recon"/>
         <OnResponse Target="_Unit" Send="Create SensorDetected"/>
     </CActorQueryResponse>
+    <CActorUnit id="SatelliteUplinkSpy" parent="GenericUnitMinimal" unitName="SatelliteUplinkSpy">
+        <EditorCategories value=""/>
+        <HighlightTooltip value="Unit/Name/Bogus"/>
+        <StatusBarFlags index="Shields" value="0"/>
+        <StatusBarFlags index="Life" value="0"/>
+        <StatusBarFlags index="Energy" value="0"/>
+        <StatusBarFlags index="Cargo" value="0"/>
+        <StatusBarFlags index="Progress" value="0"/>
+        <StatusBarFlags index="Duration" value="0"/>
+        <StatusBarFlags index="Magazine" value="0"/>
+        <StatusBarFlags index="Workers" value="0"/>
+        <StatusBarFlags index="Custom" value="0"/>
+    </CActorUnit>
     <CActorModel id="SensorDetected" parent="ModelAddition">
         <InheritType value="None"/>
         <Inherits index="BaseModelScale" value="0"/>

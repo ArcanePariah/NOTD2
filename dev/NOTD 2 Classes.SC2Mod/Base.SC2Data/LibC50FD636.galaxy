@@ -1521,7 +1521,12 @@ bool libC50FD636_gt_SatelliteMovementOrder_Func (bool testConds, bool runActions
         return true;
     }
 
-    UnitIssueOrder(libC50FD636_gv_satelliteUplinkSpyUnit, OrderTargetingPoint(AbilityCommand("move", 0), EventUnitTargetPoint()), c_orderQueueReplace);
+    if ((EventUnitTargetUnit() == null)) {
+        UnitIssueOrder(libC50FD636_gv_satelliteUplinkSpyUnit, OrderTargetingPoint(AbilityCommand("move", 0), EventUnitTargetPoint()), c_orderQueueReplace);
+    }
+    else {
+        UnitIssueOrder(libC50FD636_gv_satelliteUplinkSpyUnit, OrderTargetingUnit(AbilityCommand("move", 0), EventUnitTargetUnit()), c_orderQueueReplace);
+    }
     return true;
 }
 
