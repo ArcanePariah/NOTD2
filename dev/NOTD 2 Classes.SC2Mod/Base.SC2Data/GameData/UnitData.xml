@@ -894,8 +894,8 @@
         <AbilArray Link="SurveillanceFlare"/>
         <AbilArray Link="MotionSensor"/>
         <AbilArray Link="SmokeGrenade"/>
-        <AbilArray Link="SupplyDropOffensive"/>
-        <AbilArray Link="SupplyDropDefensive"/>
+        <AbilArray Link="AmmunitionDrop"/>
+        <AbilArray Link="MedicalDrop"/>
         <AbilArray Link="CloseAirSupport"/>
         <AbilArray Link="EscapeSet"/>
         <AbilArray Link="FlareGunRecon"/>
@@ -916,7 +916,7 @@
             <LayoutButtons Face="LaserDesignator" Type="AbilCmd" AbilCmd="LaserDesignator,Execute" Row="2" Column="0"/>
             <LayoutButtons Face="SurveillanceFlare" Type="AbilCmd" AbilCmd="SurveillanceFlare,Execute" Row="2" Column="1"/>
             <LayoutButtons Face="SmokeGrenade" Type="AbilCmd" AbilCmd="SmokeGrenade,Execute" Row="2" Column="2"/>
-            <LayoutButtons Face="SupplyDropDefensive" Type="AbilCmd" AbilCmd="SupplyDropDefensive,Execute" Row="2" Column="3"/>
+            <LayoutButtons Face="AmmunitionDrop" Type="AbilCmd" AbilCmd="MedicalDrop,Execute" Row="2" Column="3"/>
             <LayoutButtons Face="CloseAirSupport" Type="AbilCmd" AbilCmd="CloseAirSupport,Ammo1" Row="2" Column="3"/>
             <LayoutButtons Face="Escape" Type="AbilCmd" AbilCmd="EscapeSet,Execute" Row="1" Column="0"/>
             <LayoutButtons Face="StealthMatrixActivate" Type="AbilCmd" AbilCmd="StealthMatrix,On" Row="1" Column="0"/>
@@ -927,7 +927,7 @@
             <LayoutButtons Face="KineticPayload" Type="AbilCmd" AbilCmd="KineticPayload,Execute" Row="1" Column="3"/>
             <LayoutButtons Face="ArtilleryBeacon" Type="AbilCmd" AbilCmd="ArtilleryBeacon,Execute" Row="1" Column="3"/>
             <LayoutButtons Face="Refresher" Type="AbilCmd" AbilCmd="Refresher,Execute" Row="1" Column="3"/>
-            <LayoutButtons Face="SupplyDropOffensive" Type="AbilCmd" AbilCmd="SupplyDropOffensive,Execute" Row="1" Column="3"/>
+            <LayoutButtons Face="MedicalDrop" Type="AbilCmd" AbilCmd="AmmunitionDrop,Execute" Row="1" Column="3"/>
         </CardLayouts>
         <CardLayouts index="1" CardId="0002">
             <LayoutButtons Row="0" Column="0"/>
@@ -1193,22 +1193,12 @@
     <CUnit id="SupplyDropOffensive">
         <Race value="Zombie"/>
         <EditorCategories value=""/>
-        <LootArray value="SupplyDropOffensiveSet"/>
-        <LootArray value="Magazine"/>
-        <LootArray value="Magazine"/>
-        <LootArray value="Magazine"/>
-        <LootArray value="Magazine"/>
-        <LootArray value="Magazine"/>
-        <LootArray value="Magazine"/>
+        <LootArray value="SupplyDropOffensiveAmmoSet"/>
     </CUnit>
     <CUnit id="SupplyDropDefensive">
         <Race value="Zombie"/>
         <EditorCategories value=""/>
         <LootArray value="SupplyDropDefensiveSet"/>
-        <LootArray value="RoadFlare"/>
-        <LootArray value="RoadFlare"/>
-        <LootArray value="Medkit"/>
-        <LootArray value="Medkit"/>
     </CUnit>
     <CUnit id="Technician" parent="BasicHeroTemplate" InventoryAbility="" LearnAbility="">
         <EnergyStart value="100"/>

@@ -1209,8 +1209,8 @@
         </InfoArray>
         <InfoArray index="Learn3" Abil="MotionSensor"/>
         <InfoArray index="Learn4" Abil="ItemSensor"/>
-        <InfoArray index="Learn5" Abil="SupplyDropOffensive">
-            <Button DefaultButtonFace="SupplyDropOffensive"/>
+        <InfoArray index="Learn5" Abil="AmmunitionDrop">
+            <Button DefaultButtonFace="MedicalDrop"/>
         </InfoArray>
         <InfoArray index="Learn6" Abil="CloseAirSupport"/>
         <InfoArray index="Learn7" Abil="FlareGunRecon"/>
@@ -1403,20 +1403,20 @@
         <BehaviorArray value="GenericBehavior"/>
         <BehaviorArray value="GenericBehavior"/>
     </CAbilBehavior>
-    <CAbilEffectTarget id="SupplyDropDefensive" parent="AbilityWithButtonTargetTemplate">
+    <CAbilEffectTarget id="MedicalDrop" parent="AbilityWithButtonTargetTemplate">
         <Cost>
             <Vital index="Energy" value="50"/>
             <Charge Link="Abil/SupplyDropOffensive"/>
             <Cooldown Link="Abil/SupplyDropOffensive" TimeUse="60"/>
         </Cost>
-        <Arc value="360"/>
         <Range value="500"/>
-        <CmdButtonArray index="Execute" Requirements="SupplyDrop"/>
+        <Arc value="360"/>
     </CAbilEffectTarget>
-    <CAbilEffectTarget id="SupplyDropOffensive" parent="AbilityWithButtonTargetTemplate">
+    <CAbilEffectTarget id="AmmunitionDrop" parent="AbilityWithButtonTargetTemplate">
         <Cost>
             <Vital index="Energy" value="50"/>
-            <Cooldown TimeUse="60"/>
+            <Charge Link="Abil/SupplyDropOffensive"/>
+            <Cooldown Link="Abil/SupplyDropOffensive" TimeUse="60"/>
         </Cost>
         <Range value="500"/>
         <Arc value="360"/>

@@ -101,6 +101,11 @@
         <Tooltip value=""/>
         <Count Link="ItemSensor" State="CompleteOnlyAtUnit"/>
     </CRequirementCountAbil>
+    <CRequirementCountAbil id="CountAbilMedicalDropCompleteOnlyAtUnit">
+        <Flags index="TechTreeCheat" value="0"/>
+        <Tooltip value=""/>
+        <Count Link="MedicalDrop" State="CompleteOnlyAtUnit"/>
+    </CRequirementCountAbil>
     <CRequirementCountAbil id="CountAbilMotionSensorCompleteOnlyAtUnit">
         <Flags index="TechTreeCheat" value="0"/>
         <Tooltip value=""/>
@@ -120,11 +125,6 @@
         <Flags index="TechTreeCheat" value="0"/>
         <Tooltip value=""/>
         <Count Link="StealthMatrix" State="CompleteOnlyAtUnit"/>
-    </CRequirementCountAbil>
-    <CRequirementCountAbil id="CountAbilSupplyDropOffensiveCompleteOnlyAtUnit">
-        <Flags index="TechTreeCheat" value="0"/>
-        <Tooltip value=""/>
-        <Count Link="SupplyDropOffensive" State="CompleteOnlyAtUnit"/>
     </CRequirementCountAbil>
     <CRequirementCountBehavior id="CountBehaviorDeployAntiMaterialRifleCompleteOnlyAtUnit">
         <Flags index="TechTreeCheat" value="0"/>
@@ -372,6 +372,11 @@
         <OperandArray index="0" value="CountAbilImmovableObjectCompleteOnlyAtUnit"/>
         <OperandArray index="1" value="1"/>
     </CRequirementEq>
+    <CRequirementEq id="EqCountAbilMedicalDropCompleteOnlyAtUnit1">
+        <Tooltip value=""/>
+        <OperandArray index="0" value="CountAbilMedicalDropCompleteOnlyAtUnit"/>
+        <OperandArray index="1" value="1"/>
+    </CRequirementEq>
     <CRequirementEq id="EqCountAbilItemSensorCompleteOnlyAtUnit2">
         <Tooltip value=""/>
         <OperandArray index="0" value="CountAbilItemSensorCompleteOnlyAtUnit"/>
@@ -416,11 +421,6 @@
         <Tooltip value=""/>
         <OperandArray index="0" value="CountAbilStealthMatrixCompleteOnlyAtUnit"/>
         <OperandArray index="1" value="2"/>
-    </CRequirementEq>
-    <CRequirementEq id="EqCountAbilSupplyDropOffensiveCompleteOnlyAtUnit1">
-        <Tooltip value=""/>
-        <OperandArray index="0" value="CountAbilSupplyDropOffensiveCompleteOnlyAtUnit"/>
-        <OperandArray index="1" value="1"/>
     </CRequirementEq>
     <CRequirementEq id="EqCountBehaviorDeployAntiMaterialRifleCompleteOnlyAtUnit1">
         <Tooltip value=""/>
