@@ -724,6 +724,7 @@
         <Scale value="3.500000"/>
         <ModelFlags index="AllowHitTest" value="0"/>
     </CActorModel>
+<<<<<<< HEAD
     <CActorModel id="ReactiveShieldsImpact" parent="ModelAnimationStyleOneShot">
         <EditorCategories value=""/>
         <On index="0" Terms="ActorCreation" Send="AnimPlay BSD Birth 0 0.000000 0.000000 2.000000 AsDuration 0.050000"/>
@@ -749,6 +750,24 @@
         <On Terms="SelectionLocalUpdate.*.Start" Target="::Contents" Send="SetVisibility 1"/>
         <On Terms="SelectionLocalUpdate.*.Stop" Target="::Contents" Send="SetVisibility"/>
     </CActorList>
+=======
+    <CActorShield id="ReactiveShieldsFacer" parent="ProtossShieldBase">
+        <EditorCategories value=""/>
+        <Ripple value="ProtossShieldFacerRipple"/>
+        <ScaleDamageMin value="5.000000"/>
+        <ScaleDamageMax value="45.000000"/>
+        <RadiusMin value="1.500000"/>
+        <RadiusMax value="3.000000"/>
+    </CActorShield>
+    <CActorShieldImpact id="ReactiveShieldImpact">
+        <EditorCategories value=""/>
+        <On Terms="Behavior.ReactiveShieldsLevel1.On" Send="Create"/>
+        <On Terms="Behavior.ReactiveShieldsLevel1.On" Target="ShieldImpact" Send="Destroy"/>
+        <VisualDirectionalFacer value="ReactiveShieldsFacer"/>
+        <VisualDirectionalHeader value="ReactiveShieldsFacer"/>
+        <VisualDirectionless value="ProtossShieldFull"/>
+    </CActorShieldImpact>
+>>>>>>> Main_Branch
     <CActorModel id="Refresher" parent="ModelAnimationStyleOneShot">
         <EditorCategories value=""/>
         <On Terms="Abil.Refresher.SourceCastStart" Send="Create"/>
@@ -811,26 +830,11 @@
     <CActorRange id="SatchelRange" parent="RangeAbil" abil="SatchelCharge">
         <EditorCategories value=""/>
     </CActorRange>
-    <CActorAction id="ShieldBash" parent="GenericAttack" effectAttack="ShieldBashDamageSwitchLevel1">
-        <EditorCategories value=""/>
-        <LaunchAttachQuery Methods="Center 0"/>
-        <LaunchAssets Model="ShieldBashPush"/>
-        <LaunchModel value="ShieldBashPush"/>
-        <ShieldFlashType value="Full"/>
-        <LaunchSiteOps Ops="SOpAttachHarness ShieldBashIncoming SOpMoveBy4"/>
-    </CActorAction>
-    <CActorSiteOpIncoming id="ShieldBashIncoming" parent="SOpIncomingDirect">
-        <EditorCategories value=""/>
-        <HostImpact Subject="GenericAttackImpactSite"/>
-        <Type value="Missile"/>
-        <PullBack value="1.000000"/>
-    </CActorSiteOpIncoming>
     <CActorModel id="ShieldBashPush" parent="ModelAnimationStyleOneShot">
         <Flags index="SuppressSaveLoad" value="0"/>
         <EditorCategories value=""/>
-        <On index="0" Terms="ActorCreation" Send="AnimPlay BSD Death"/>
-        <On index="1" Terms="AnimDone; AnimName BSD" Send="Destroy"/>
-        <On index="2" Terms="ActorCreation" Send="AnimSetCompletion BSD 23.000000"/>
+        <On Terms="Effect.ShieldBashLevel1.Start" Send="Create"/>
+        <On Terms="Effect.ShieldBashLevel2.Start" Send="Create"/>
         <Scale value="3.000000,3.000000,1.000000"/>
     </CActorModel>
     <CActorArc id="ShieldBashRangeIndicator" parent="GuideVisualArc" abil="ShieldBash">
