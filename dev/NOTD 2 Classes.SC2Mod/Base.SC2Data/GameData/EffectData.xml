@@ -21,6 +21,19 @@
         <ExcludeArray Value="Target"/>
         <SearchFilters value="-;Player,Ally,Neutral,Item,Invulnerable"/>
     </CEffectDamage>
+    <CEffectEnumArea id="BlackDiamond">
+        <EditorCategories value=""/>
+        <SearchFilters value="-;Player,Ally,Neutral"/>
+        <AreaArray Radius="6" Effect="BlackDiamondSet"/>
+    </CEffectEnumArea>
+    <CEffectDamage id="BlackDiamondBonusDamage">
+        <EditorCategories value=""/>
+    </CEffectDamage>
+    <CEffectSet id="BlackDiamondSet">
+        <EditorCategories value=""/>
+        <EffectArray value="BlackDiamondDamage"/>
+        <EffectArray value="BlackDiamondStun"/>
+    </CEffectSet>
     <CEffectCreatePersistent id="Bulwark">
         <EditorCategories value=""/>
         <WhichLocation Value="TargetUnitOrPoint"/>
@@ -158,6 +171,15 @@
         <SearchFilters value="-;Player,Ally,Neutral"/>
         <AreaArray Radius="5" Effect="ElbowRoomForcePersistent"/>
     </CEffectEnumArea>
+    <CEffectDamage id="ExecuteDamageLevel2Backstab">
+        <EditorCategories value=""/>
+        <Amount value="1000"/>
+    </CEffectDamage>
+    <CEffectSwitch id="ExecuteLevel2DamageSwitch">
+        <EditorCategories value=""/>
+        <CaseArray Validator="Backstab" Effect="ExecuteDamageLevel2Backstab"/>
+        <CaseDefault value="ExecuteDamageLevel2"/>
+    </CEffectSwitch>
     <CEffectDamage id="IFV25mmHEAutocannonDamage">
         <EditorCategories value=""/>
         <ImpactLocation Value="TargetUnit"/>
@@ -622,16 +644,16 @@
     </CEffectApplyBehavior>
     <CEffectDamage id="ExecuteDamageLevel1">
         <EditorCategories value=""/>
-        <Amount value="400"/>
+        <Amount value="500"/>
     </CEffectDamage>
     <CEffectDamage id="ExecuteDamageLevel2">
         <EditorCategories value=""/>
-        <Amount value="800"/>
+        <Amount value="500"/>
     </CEffectDamage>
     <CEffectSwitch id="ExecuteSwitchLevel2">
         <EditorCategories value=""/>
         <CaseArray Validator="NormalUnitNonMassiveorHeroic" Effect="Kill"/>
-        <CaseDefault value="ExecuteDamageLevel2"/>
+        <CaseDefault value="ExecuteLevel2DamageSwitch"/>
     </CEffectSwitch>
     <CEffectSwitch id="ExecuteSwitchLevel1">
         <EditorCategories value=""/>
@@ -831,6 +853,24 @@
         <EffectArray value="SmokeGrenadeEnemySlowSearchLevel3"/>
         <EffectArray value="SmokeGrenadeAlliedEvasionSearchLevel3"/>
         <TargetLocationType value="Point"/>
+    </CEffectSet>
+    <CEffectSet id="StealthMatrixSetLevel1">
+        <ValidatorArray value="ReconHasStealthMatrix"/>
+        <EditorCategories value=""/>
+        <EffectArray value="StealthMatrixOrder"/>
+        <EffectArray value="StealthMatrixEscapeCloakLevel1"/>
+    </CEffectSet>
+    <CEffectSet id="StealthMatrixSetLevel2">
+        <ValidatorArray value="ReconHasStealthMatrix"/>
+        <EditorCategories value=""/>
+        <EffectArray value="StealthMatrixOrder"/>
+        <EffectArray value="StealthMatrixEscapeCloakLevel2"/>
+    </CEffectSet>
+    <CEffectSet id="StealthMatrixSetLevel3">
+        <ValidatorArray value="ReconHasStealthMatrix"/>
+        <EditorCategories value=""/>
+        <EffectArray value="StealthMatrixOrder"/>
+        <EffectArray value="StealthMatrixEscapeCloakLevel3"/>
     </CEffectSet>
     <CEffectLaunchMissile id="SurveillanceFlareLevel2">
         <EditorCategories value=""/>
@@ -1840,18 +1880,15 @@
         <EffectArray value="CombatKnifeSearch"/>
     </CEffectSet>
     <CEffectDamage id="SnipeDamage">
-        <ValidatorArray value="Backstab"/>
+        <ValidatorArray value="NotAttacking2"/>
     </CEffectDamage>
     <CEffectApplyBehavior id="StealthMatrixEscapeCloakLevel1">
-        <ValidatorArray index="0" value="ReconHasStealthMatrix"/>
         <EditorCategories value=""/>
     </CEffectApplyBehavior>
     <CEffectApplyBehavior id="StealthMatrixEscapeCloakLevel2">
-        <ValidatorArray index="0" value="ReconHasStealthMatrix"/>
         <EditorCategories value=""/>
     </CEffectApplyBehavior>
     <CEffectApplyBehavior id="StealthMatrixEscapeCloakLevel3">
-        <ValidatorArray index="0" value="ReconHasStealthMatrix"/>
         <EditorCategories value=""/>
     </CEffectApplyBehavior>
     <CEffectIssueOrder id="StealthMatrixOrder">
@@ -2440,6 +2477,14 @@
         <ExcludeArray Value="Target"/>
         <SearchFilters value="-;Player,Ally,Neutral,Item,Invulnerable"/>
     </CEffectDamage>
+    <CEffectDamage id="BlackDiamondDamage">
+        <ValidatorArray value="BlackDiamondDamageTargetFilters"/>
+        <EditorCategories value=""/>
+        <Amount value="200"/>
+    </CEffectDamage>
+    <CEffectApplyBehavior id="BlackDiamondStun">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
     <CEffectDamage id="VolatileInjectionDamageLevel1">
         <EditorCategories value=""/>
         <Amount value="100"/>

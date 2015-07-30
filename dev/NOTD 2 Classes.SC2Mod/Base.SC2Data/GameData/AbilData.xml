@@ -201,13 +201,12 @@
         </Cost>
         <Range value="6"/>
     </CAbilEffectTarget>
-    <CAbilEffectTarget id="ArtilleryBeacon" parent="AbilityWithButtonTargetTemplate">
+    <CAbilEffectInstant id="BlackDiamond" parent="AbilityInstantTemplate">
         <Cost>
-            <Vital index="Energy" value="60"/>
-            <Cooldown TimeUse="60"/>
+            <Vital index="Energy" value="40"/>
+            <Cooldown TimeUse="30"/>
         </Cost>
-        <Range value="1.5"/>
-    </CAbilEffectTarget>
+    </CAbilEffectInstant>
     <CAbilEffectTarget id="Bulwark" parent="AbilityWithButtonTargetTemplate">
         <Range value="500"/>
         <Arc value="360"/>
@@ -246,20 +245,6 @@
         </Cost>
         <LevelButtonTooltip value="Button/Tooltip/ChargeNOTDLevel2"/>
     </CAbilEffectTarget>
-    <CAbilArmMagazine id="CloseAirSupport">
-        <EditorCategories value="AbilityorEffectType:Units"/>
-        <Launch value="ReleaseAtTarget"/>
-        <Leash value="1"/>
-        <InfoArray index="Ammo1" Manage="Recall" Unit="A10XGunship">
-            <Vital index="Energy" value="80"/>
-            <Charge Link="CloseAirSupport"/>
-            <Cooldown Link="CloseAirSupport" TimeUse="180"/>
-            <Button DefaultButtonFace="CloseAirSupport"/>
-            <Flags index="External" value="1"/>
-        </InfoArray>
-        <MaxCount value="1"/>
-        <EffectArray index="Create" value="MercAirDrop"/>
-    </CAbilArmMagazine>
     <CAbilBehavior id="CollateralDamage">
         <EditorCategories value="AbilityorEffectType:Units"/>
         <BehaviorArray value="GenericBehavior"/>
@@ -395,6 +380,10 @@
         <Range value="500"/>
         <Flags index="RequireTargetVision" value="0"/>
     </CAbilEffectTarget>
+    <CAbilBehavior id="SprintingShadow">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <BehaviorArray value="SprintingShadow"/>
+    </CAbilBehavior>
     <CAbilEffectTarget id="SurveillanceFlare" parent="3LevelEffectTargetAbility">
         <Flags index="RequireTargetVision" value="0"/>
         <Cost>
@@ -605,15 +594,12 @@
     </CAbilEffectInstant>
     <CAbilEffectInstant id="EscapeSet" parent="3LevelEffectInstantAbility">
         <Cost>
-            <Vital index="Energy" value="40"/>
+            <Vital index="Energy" value="30"/>
             <Charge Link="Abil/Escape"/>
             <Cooldown Link="Abil/Escape" TimeUse="20"/>
         </Cost>
         <CmdButtonArray index="Execute" DefaultButtonFace="Escape" Requirements="StealthMatrixNotActive"/>
-    </CAbilEffectInstant>
-    <CAbilEffectInstant id="KineticPayload" parent="AbilityInstantTemplate">
-        <AINotifyEffect value="KineticPayloadDummyPersistent"/>
-        <CmdButtonArray index="Execute" Requirements="KineticBombardmentBeaconSet"/>
+        <Flags index="Transient" value="1"/>
     </CAbilEffectInstant>
     <CAbilBehavior id="MassreactiveTrigger">
         <EditorCategories value="AbilityorEffectType:Units"/>
@@ -1226,17 +1212,11 @@
         <InfoArray index="Learn8" Abil="EscapeSet"/>
         <InfoArray index="Learn9" Abil="Execute"/>
         <InfoArray index="Learn10" Abil="StealthMatrix"/>
-        <InfoArray index="Learn11" Abil="Refresher"/>
+        <InfoArray index="Learn11" Abil="SprintingShadow"/>
         <InfoArray index="Learn12" Abil="ArtilleryBeacon">
             <Button DefaultButtonFace="ArtilleryBeacon"/>
         </InfoArray>
     </CAbilLearn>
-    <CAbilEffectInstant id="Refresher" parent="AbilityInstantTemplate">
-        <Cost>
-            <Vital index="Energy" value="-45"/>
-            <Cooldown TimeUse="45"/>
-        </Cost>
-    </CAbilEffectInstant>
     <CAbilEffectInstant id="Repulse">
         <EditorCategories value="AbilityorEffectType:Units"/>
         <Cost>
@@ -1537,4 +1517,8 @@
             <Flags index="ShowInGlossary" value="0"/>
         </CmdButtonArray>
     </CAbilEffectInstant>
+    <CAbilAttack id="attack">
+        <SmartFilters value="-;-"/>
+        <MinAttackSpeedMultiplier value="0.125"/>
+    </CAbilAttack>
 </Catalog>

@@ -135,6 +135,10 @@
         <Find value="1"/>
         <Value value="ReactiveShieldsLevel3"/>
     </CValidatorPlayerRequirement>
+    <CValidatorUnitOrderQueue id="ReconAttacking">
+        <AbilLink value="attack"/>
+    </CValidatorUnitOrderQueue>
+    <CValidatorUnitOrder id="ReconUsesBlackDiamond"/>
     <CValidatorLocationEnumArea id="SatchelChargeNoAlliedUnitsNear">
         <WhichLocation Value="CasterUnit"/>
         <AreaArray Radius="6" Validator="UnitisnotDemolitionsExplosive"/>
@@ -385,6 +389,17 @@
         <Find value="1"/>
         <Value value="StealthMatrixLevel1"/>
     </CValidatorPlayerRequirement>
+    <CValidatorCombine id="StealthMatrixLevel1Disable">
+        <Type value="And"/>
+    </CValidatorCombine>
+    <CValidatorUnitCompareBehaviorCount id="StealthMatrixLevel1Active">
+        <Value value="1"/>
+        <Behavior value="StealthMatrixLevel1"/>
+    </CValidatorUnitCompareBehaviorCount>
+    <CValidatorUnitCompareBehaviorCount id="StealthMatrixLevel2Active">
+        <Value value="1"/>
+        <Behavior value="StealthMatrixLevel2"/>
+    </CValidatorUnitCompareBehaviorCount>
     <CValidatorPlayerRequirement id="StealthMatrixLevel2">
         <Find value="1"/>
         <Value value="StealthMatrixLevel2"/>
@@ -523,6 +538,10 @@
     <CValidatorUnitOrder id="UnknownValidator">
         <AbilLink value="attack"/>
     </CValidatorUnitOrder>
+    <CValidatorCombine id="StealthMatrixActive">
+        <CombineArray value="StealthMatrixLevel1Active"/>
+        <CombineArray value="StealthMatrixLevel2Active"/>
+    </CValidatorCombine>
     <CValidatorPlayerRequirement id="UnstoppableForceComplete">
         <Find value="1"/>
         <Value value="UnstoppableForceComplete"/>
