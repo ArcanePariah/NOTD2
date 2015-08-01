@@ -171,6 +171,7 @@ trigger libC50FD636_gt_BlackDiamondStun;
 trigger libC50FD636_gt_BlackDiamondBonusDamage;
 trigger libC50FD636_gt_GroundIlluminationFlareFlareGunVisionShare;
 trigger libC50FD636_gt_SatelliteMovementOrder;
+trigger libC50FD636_gt_StealthMatrixDeactivate;
 trigger libC50FD636_gt_DropItems;
 trigger libC50FD636_gt_WeaveAilmentRemoval;
 trigger libC50FD636_gt_CohesionAilmentResistence;
@@ -1519,6 +1520,37 @@ bool libC50FD636_gt_SatelliteMovementOrder_Func (bool testConds, bool runActions
 void libC50FD636_gt_SatelliteMovementOrder_Init () {
     libC50FD636_gt_SatelliteMovementOrder = TriggerCreate("libC50FD636_gt_SatelliteMovementOrder_Func");
     TriggerAddEventUnitAbility(libC50FD636_gt_SatelliteMovementOrder, null, AbilityCommand("SatelliteUplink", 0), c_unitAbilStageComplete, false);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Stealth Matrix Deactivate
+//--------------------------------------------------------------------------------------------------
+bool libC50FD636_gt_StealthMatrixDeactivate_Func (bool testConds, bool runActions) {
+    // Conditions
+    if (testConds) {
+        if (!(UnitHasBehavior(EventUnit(), "StealthMatrixLevel1"))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    UnitBehaviorRemove(EventUnit(), "StealthMatrixLevel1", 1);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libC50FD636_gt_StealthMatrixDeactivate_Init () {
+    libC50FD636_gt_StealthMatrixDeactivate = TriggerCreate("libC50FD636_gt_StealthMatrixDeactivate_Func");
+    TriggerAddEventUnitAbility(libC50FD636_gt_StealthMatrixDeactivate, null, AbilityCommand("SmokeGrenade", 0), c_unitAbilStageExecute, true);
+    TriggerAddEventUnitAbility(libC50FD636_gt_StealthMatrixDeactivate, null, AbilityCommand("SurveillanceFlare", 0), c_unitAbilStageExecute, true);
+    TriggerAddEventUnitAbility(libC50FD636_gt_StealthMatrixDeactivate, null, AbilityCommand("BlackDiamond", 0), c_unitAbilStageExecute, true);
+    TriggerAddEventUnitAbility(libC50FD636_gt_StealthMatrixDeactivate, null, AbilityCommand("EscapeSet", 0), c_unitAbilStageExecute, true);
+    TriggerAddEventUnitAbility(libC50FD636_gt_StealthMatrixDeactivate, null, AbilityCommand("FlareGunRecon", 0), c_unitAbilStageExecute, true);
+    TriggerAddEventUnitAbility(libC50FD636_gt_StealthMatrixDeactivate, null, AbilityCommand("Execute", 0), c_unitAbilStageExecute, true);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -2925,6 +2957,7 @@ void libC50FD636_InitTriggers () {
     libC50FD636_gt_BlackDiamondBonusDamage_Init();
     libC50FD636_gt_GroundIlluminationFlareFlareGunVisionShare_Init();
     libC50FD636_gt_SatelliteMovementOrder_Init();
+    libC50FD636_gt_StealthMatrixDeactivate_Init();
     libC50FD636_gt_DropItems_Init();
     libC50FD636_gt_WeaveAilmentRemoval_Init();
     libC50FD636_gt_CohesionAilmentResistence_Init();

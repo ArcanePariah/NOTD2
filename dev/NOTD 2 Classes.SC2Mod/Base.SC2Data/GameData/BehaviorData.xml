@@ -633,25 +633,28 @@
         <InfoFlags index="Hidden" value="1"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
         <Duration value="0.6"/>
-        <Modification MoveSpeedMultiplier="0.8"/>
+        <Modification MoveSpeedMultiplier="0.75"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="FlareGunTimedLife">
         <EditorCategories value="AbilityorEffectType:Units"/>
-        <Duration value="12.5"/>
+        <Duration value="3.8"/>
         <Period value="0.5"/>
         <ExpireEffect value="Suicide"/>
+        <DurationOverride Duration="5.8">
+            <ValidatorArray value="UnitisReconFlareLevel3"/>
+        </DurationOverride>
     </CBehaviorBuff>
     <CBehaviorBuff id="FlareGunSlowLevel2">
         <InfoFlags index="Hidden" value="1"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
         <Duration value="0.6"/>
-        <Modification MoveSpeedMultiplier="0.65"/>
+        <Modification MoveSpeedMultiplier="0.75"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="FlareGunSlowLevel3">
         <InfoFlags index="Hidden" value="1"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
         <Duration value="0.6"/>
-        <Modification MoveSpeedMultiplier="0.5"/>
+        <Modification MoveSpeedMultiplier="0.75"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="FlashlightNOTD">
         <InfoFlags index="Hidden" value="1"/>
@@ -1467,6 +1470,7 @@
             <ExcludeEffectArray value="TomahawkDamage"/>
             <ExcludeEffectArray value="CombatKnifeDoubleDamage"/>
             <ExcludeEffectArray value="TomahawkDoubleDamage"/>
+            <ExcludeEffectArray value="ExecuteDamageLevel2Backstab"/>
         </DamageResponse>
     </CBehaviorBuff>
     <CBehaviorBuff id="TauntedLevel2">
