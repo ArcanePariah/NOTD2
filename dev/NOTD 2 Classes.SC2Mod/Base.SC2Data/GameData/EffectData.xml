@@ -1620,16 +1620,6 @@
         <ExcludeArray Value="Target"/>
         <SearchFilters value="-;Player,Ally,Neutral,Item,Invulnerable"/>
     </CEffectDamage>
-    <CEffectIssueOrder id="PickUpItem">
-        <EditorCategories value=""/>
-        <WhichUnit Value="Caster"/>
-        <Abil value="DemolitionsInventory"/>
-        <AbilCmdIndex value="2"/>
-        <CmdFlags index="Queued" value="1"/>
-        <CmdFlags index="Preempt" value="1"/>
-        <Player Value="Caster"/>
-        <Target Value="TargetUnit"/>
-    </CEffectIssueOrder>
     <CEffectCreatePersistent id="PiranhaMissiles">
         <EditorCategories value=""/>
         <WhichLocation Value="TargetUnit"/>
@@ -2397,12 +2387,6 @@
         <Amount value="25"/>
         <Death value="Eviscerate"/>
     </CEffectDamage>
-    <CEffectEnumArea id="TestAutoPickup">
-        <EditorCategories value=""/>
-        <ImpactLocation Value="CasterUnit"/>
-        <SearchFilters value="Item;-"/>
-        <AreaArray Radius="5" Effect="PickUpItem"/>
-    </CEffectEnumArea>
     <CEffectDamage id="ThunderballFistsDamage">
         <EditorCategories value=""/>
         <Amount value="25"/>
