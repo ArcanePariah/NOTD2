@@ -66,6 +66,7 @@ unit libC50FD636_gv_bulwarkTargetUnit;
 unit libC50FD636_gv_bulwarkCaster;
 unit libC50FD636_gv_blackDiamondCaster;
 unit libC50FD636_gv_satelliteUplinkSpyUnit;
+unitgroup libC50FD636_gv_uplinkSharedVisionGroup;
 bool libC50FD636_gv_inventoryMoveLock;
 bool[libC50FD636_gv_inventoryBagSize + 1][libC50FD636_gv_numberofPlayers + 1] libC50FD636_gv_openBagSlots;
 libC50FD636_gs_AmmoUIElements[libC50FD636_gv_numberofPlayers + 1] libC50FD636_gv_ammoDisplay;
@@ -80,6 +81,7 @@ void libC50FD636_InitVariables () {
     int init_i1;
     int init_i2;
 
+    libC50FD636_gv_uplinkSharedVisionGroup = UnitGroupEmpty();
     for (init_i = 0; init_i <= libC50FD636_gv_numberofPlayers; init_i += 1) {
         libC50FD636_gv_ammoDisplay[init_i].lv_ammoDialog = c_invalidDialogId;
         libC50FD636_gv_ammoDisplay[init_i].lv_ammoBar = c_invalidDialogControlId;
@@ -151,7 +153,7 @@ trigger libC50FD636_gt_MD5LevelUp;
 trigger libC50FD636_gt_CollateralDamageLevelUp;
 trigger libC50FD636_gt_StockpileLevelUp;
 trigger libC50FD636_gt_BulwarkLevelUp;
-trigger libC50FD636_gt_CommunicationUplinkLevelUp;
+trigger libC50FD636_gt_SatelliteUplinkLevelUp;
 trigger libC50FD636_gt_AssaultLevelUpUnstoppableForce;
 trigger libC50FD636_gt_AssaultLevelUpGeminiProtocol;
 trigger libC50FD636_gt_RiflemanLevelUpCriticalStrike;
@@ -171,6 +173,8 @@ trigger libC50FD636_gt_BlackDiamondStun;
 trigger libC50FD636_gt_BlackDiamondBonusDamage;
 trigger libC50FD636_gt_GroundIlluminationFlareFlareGunVisionShare;
 trigger libC50FD636_gt_SatelliteMovementOrder;
+trigger libC50FD636_gt_SatelliteKill;
+trigger libC50FD636_gt_SatelliteSharedVision;
 trigger libC50FD636_gt_StealthMatrixDeactivate;
 trigger libC50FD636_gt_DropItems;
 trigger libC50FD636_gt_WeaveAilmentRemoval;
@@ -999,24 +1003,25 @@ void libC50FD636_gt_BulwarkLevelUp_Init () {
 }
 
 //--------------------------------------------------------------------------------------------------
-// Trigger: Communication Uplink Level Up
+// Trigger: Satellite Uplink Level Up
 //--------------------------------------------------------------------------------------------------
-bool libC50FD636_gt_CommunicationUplinkLevelUp_Func (bool testConds, bool runActions) {
+bool libC50FD636_gt_SatelliteUplinkLevelUp_Func (bool testConds, bool runActions) {
     // Actions
     if (!runActions) {
         return true;
     }
 
     UnitCreateEffectUnit(EventUnit(), "CommunicationUplinkInitialSearch", EventUnit());
-    libNtve_gf_CreateUnitsWithDefaultFacing(1, "SatelliteUplinkSpy", 0, 1, UnitGetPosition(EventUnit()));
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "SatelliteUplinkSpy", 0, UnitGetOwner(EventUnit()), UnitGetPosition(EventUnit()));
     libC50FD636_gv_satelliteUplinkSpyUnit = UnitLastCreated();
+    TriggerAddEventUnitDied(libC50FD636_gt_SatelliteKill, UnitRefFromUnit(EventUnit()));
     return true;
 }
 
 //--------------------------------------------------------------------------------------------------
-void libC50FD636_gt_CommunicationUplinkLevelUp_Init () {
-    libC50FD636_gt_CommunicationUplinkLevelUp = TriggerCreate("libC50FD636_gt_CommunicationUplinkLevelUp_Func");
-    TriggerAddEventUnitAbility(libC50FD636_gt_CommunicationUplinkLevelUp, null, AbilityCommand("ReconLearn", 5), c_unitAbilStageComplete, false);
+void libC50FD636_gt_SatelliteUplinkLevelUp_Init () {
+    libC50FD636_gt_SatelliteUplinkLevelUp = TriggerCreate("libC50FD636_gt_SatelliteUplinkLevelUp_Func");
+    TriggerAddEventUnitAbility(libC50FD636_gt_SatelliteUplinkLevelUp, null, AbilityCommand("ReconLearn", 5), c_unitAbilStageComplete, false);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -1520,6 +1525,48 @@ bool libC50FD636_gt_SatelliteMovementOrder_Func (bool testConds, bool runActions
 void libC50FD636_gt_SatelliteMovementOrder_Init () {
     libC50FD636_gt_SatelliteMovementOrder = TriggerCreate("libC50FD636_gt_SatelliteMovementOrder_Func");
     TriggerAddEventUnitAbility(libC50FD636_gt_SatelliteMovementOrder, null, AbilityCommand("SatelliteUplink", 0), c_unitAbilStageComplete, false);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Satellite Kill
+//--------------------------------------------------------------------------------------------------
+bool libC50FD636_gt_SatelliteKill_Func (bool testConds, bool runActions) {
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    UnitKill(libC50FD636_gv_satelliteUplinkSpyUnit);
+    UnitGroupLoopBegin(libC50FD636_gv_uplinkSharedVisionGroup);
+    for ( ; !UnitGroupLoopDone() ; UnitGroupLoopStep() ) {
+        UnitBehaviorRemove(UnitGroupLoopCurrent(), "CommunicationUplink", 8);
+    }
+    UnitGroupLoopEnd();
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libC50FD636_gt_SatelliteKill_Init () {
+    libC50FD636_gt_SatelliteKill = TriggerCreate("libC50FD636_gt_SatelliteKill_Func");
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Satellite Shared Vision
+//--------------------------------------------------------------------------------------------------
+bool libC50FD636_gt_SatelliteSharedVision_Func (bool testConds, bool runActions) {
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    UnitGroupAdd(libC50FD636_gv_uplinkSharedVisionGroup, EventUnit());
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libC50FD636_gt_SatelliteSharedVision_Init () {
+    libC50FD636_gt_SatelliteSharedVision = TriggerCreate("libC50FD636_gt_SatelliteSharedVision_Func");
+    TriggerAddEventUnitBehaviorChange(libC50FD636_gt_SatelliteSharedVision, null, "CommunicationUplink", c_unitBehaviorChangeCreate);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -2937,7 +2984,7 @@ void libC50FD636_InitTriggers () {
     libC50FD636_gt_CollateralDamageLevelUp_Init();
     libC50FD636_gt_StockpileLevelUp_Init();
     libC50FD636_gt_BulwarkLevelUp_Init();
-    libC50FD636_gt_CommunicationUplinkLevelUp_Init();
+    libC50FD636_gt_SatelliteUplinkLevelUp_Init();
     libC50FD636_gt_AssaultLevelUpUnstoppableForce_Init();
     libC50FD636_gt_AssaultLevelUpGeminiProtocol_Init();
     libC50FD636_gt_RiflemanLevelUpCriticalStrike_Init();
@@ -2957,6 +3004,8 @@ void libC50FD636_InitTriggers () {
     libC50FD636_gt_BlackDiamondBonusDamage_Init();
     libC50FD636_gt_GroundIlluminationFlareFlareGunVisionShare_Init();
     libC50FD636_gt_SatelliteMovementOrder_Init();
+    libC50FD636_gt_SatelliteKill_Init();
+    libC50FD636_gt_SatelliteSharedVision_Init();
     libC50FD636_gt_StealthMatrixDeactivate_Init();
     libC50FD636_gt_DropItems_Init();
     libC50FD636_gt_WeaveAilmentRemoval_Init();
