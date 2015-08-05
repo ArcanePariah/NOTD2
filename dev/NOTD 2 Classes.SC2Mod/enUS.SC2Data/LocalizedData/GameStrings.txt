@@ -11,21 +11,21 @@ Abil/Name/AbilityWithButtonTargetTemplate=Ability With Button Target Template
 Abil/Name/AdvancedTargeting=Advanced Targeting
 Abil/Name/Aftershock=Aftershock
 Abil/Name/AmmoFeed=Ammo Feed
+Abil/Name/AmmunitionDrop=Ammunition Drop
 Abil/Name/Antivenom=Antivenom
-Abil/Name/ArtilleryBeacon=Artillery Beacon
 Abil/Name/AssaultCriticalStrike=Critical Strike
 Abil/Name/AssaultInventory=Assault Inventory
 Abil/Name/AssaultLearn=Assault Learn
 Abil/Name/AssaultRifleModes=Assault Rifle Modes
 Abil/Name/AutomaticReload=Automatic Reload
 Abil/Name/AutomaticReloadAssault=Automatic Reload Assault
+Abil/Name/BlackDiamond=Black Diamond
 Abil/Name/Bloodlust=Bloodlust
 Abil/Name/Bulwark=Bulwark
 Abil/Name/BulwarkHidden=Bulwark (Hidden)
 Abil/Name/CancelHealing=Cancel Healing
 Abil/Name/ChainExplosive=Chain Explosive
 Abil/Name/ChargeNOTD=Charge
-Abil/Name/CloseAirSupport=Close Air Support
 Abil/Name/Cohesion=Cohesion
 Abil/Name/CollateralDamage=Collateral Damage
 Abil/Name/CommandoInventory=Commando Inventory
@@ -69,7 +69,6 @@ Abil/Name/K9=K-9
 Abil/Name/K9Inventory=K-9 Inventory
 Abil/Name/K9Sprint=K-9 Sprint
 Abil/Name/K9Turret=K-9 Turret
-Abil/Name/KineticPayload=Kinetic Payload
 Abil/Name/LaserDesignator=Laser Designator
 Abil/Name/LearnTemplate=Learn Template
 Abil/Name/LightJump=Light Jump
@@ -87,6 +86,7 @@ Abil/Name/MassreactiveTrigger=Mass-reactive Trigger
 Abil/Name/Medic2Inventory=Medic Inventory
 Abil/Name/Medic2Learn=Medic Learn
 Abil/Name/MedicalAssistance=Medical Assistance
+Abil/Name/MedicalDrop=Medical Drop
 Abil/Name/MedicalExpertise=Medical Expertise
 Abil/Name/MediumJump=Medium Jump
 Abil/Name/MotionSensor=Motion Sensor
@@ -116,7 +116,6 @@ Abil/Name/PsiOpsLearn=Psi Ops Learn
 Abil/Name/ReactiveShields=Reactive Shields
 Abil/Name/ReconInventory=Recon Inventory
 Abil/Name/ReconLearn=Recon Learn
-Abil/Name/Refresher=Refresher
 Abil/Name/Reload=Reload
 Abil/Name/RemoteTrigger=Remote Trigger
 Abil/Name/Repulse=Repulse
@@ -124,6 +123,7 @@ Abil/Name/RiflemanInventory=Rifleman Inventory
 Abil/Name/RiflemanLearn=Rifleman Learn
 Abil/Name/Sadist=Sadist
 Abil/Name/SatchelCharge=Satchel Charge
+Abil/Name/SatelliteUplink=Satellite Uplink
 Abil/Name/SelfAid=Self Aid
 Abil/Name/ShieldBash=Shield Bash
 Abil/Name/SidearmMelee=Sidearm Melee
@@ -131,12 +131,11 @@ Abil/Name/SmokeGrenade=Smoke Grenade
 Abil/Name/SonicTrap=Sonic Trap
 Abil/Name/SonicTrapLevel1=Sonic Trap Level 1
 Abil/Name/SonicTrapLevel2=Sonic Trap Level 2
+Abil/Name/SprintingShadow=Sprinting Shadow
 Abil/Name/SquadLeaderInventory=Squad Leader Inventory
 Abil/Name/SquadLeaderLearn=Squad Leader Learn
 Abil/Name/StealthMatrix=Stealth Matrix
 Abil/Name/Stockpile=Stockpile
-Abil/Name/SupplyDropDefensive=Supply Drop Defensive
-Abil/Name/SupplyDropOffensive=Supply Drop Offensive
 Abil/Name/SurveillanceFlare=Surveillance Flare
 Abil/Name/TauntNOTD=Taunt
 Abil/Name/TechnicianInventory=Technician Inventory
@@ -170,6 +169,8 @@ Ability/LevelUpTooltip/ProvokeLevel2=Force enemies in a <d ref="Effect,ProvokeSe
 Ability/LevelUpTooltip/ProvokeLevel3=Force enemies in a <d ref="Effect,ProvokeSearchLevel3,AreaArray[0].Radius"/> radius to target the Demolitions for <d ref="Behavior,ProvokeLevel3,Duration"/> seconds and deal <d ref="-Behavior,ProvokeLevel3Taunt,Modification.DamageDealtFraction[Melee] *100"/>% less damage.
 Ability/LevelUpTooltip/SelfAidLevel2=Heals the Rifleman for <d ref="Effect,SelfAidHealLevel2,VitalArray[Life].Change"/> health and cures 1 Venom and 1 Open Wound. When under the effects of Repulse, use cures a fracture.<n/>
 Ability/LevelUpTooltip/ShieldBashLevel2=Deals <d ref="Effect,ShieldBashLevel2ReactiveShieldsLevel1,Amount - 5"/> damage and knocks back enemies a distance of 2 in a <d ref="Effect,ShieldBashLevel1,AreaArray[0].Arc"/> degree cone. Reactive Spikes adds its damage to this attack.
+Ability/LevelUpTooltip/SmokeGrenadeLevel2=Create a <d ref="Effect,SmokeGrenadeEnemySlowSearchLevel2,AreaArray[0].Radius" precision="1"/> radius cloud that lowers enemy Movement Speed by 25% and grants allied units 20% Evasion for <d ref="Effect,SmokeGrenadePersistentLevel2,PeriodCount * Effect,SmokeGrenadePersistentLevel2,PeriodicPeriodArray[0]"/> seconds.
+Ability/LevelUpTooltip/SmokeGrenadeLevel3=Create a <d ref="Effect,SmokeGrenadeEnemySlowSearchLevel3,AreaArray[0].Radius" precision="1"/> radius cloud that lowers enemy Movement and Attack Speed by 25% and grants allied units 20% Evasion for <d ref="Effect,SmokeGrenadePersistentLevel3,PeriodCount * Effect,SmokeGrenadePersistentLevel3,PeriodicPeriodArray[0]"/> seconds.
 Ability/LevelUpTooltip/SurveillanceFlareLevel2=Throw a flare at the target location, providing ground vision in a radius <d ref="Unit,GroundIlluminationFlareLevel2,Sight"/> of the targeted area for <d ref="Behavior,GroundIlluminationTimedLifeLevel2,Duration"/> seconds.
 Ability/LevelUpTooltip/SurveillanceFlareLevel3=Throw a flare at the target location, providing ground vision in a radius <d ref="Unit,GroundIlluminationFlareLevel3,Sight"/> of the targeted area for <d ref="Behavior,GroundIlluminationTimedLifeLevel3,Duration"/> seconds.
 Ability/LevelUpTooltip/VolatileInjectionLevel2=Deals <d ref="Effect,VolatileInjectionDamageLevel2,Amount"/> damage to all units within a <d ref="Effect,VolatileInjectionSearchLevel2,AreaArray[0].Radius"/> radius of the afflicted unit when it dies.
@@ -197,6 +198,7 @@ Behavior/Name/BackstabDamageBuffLevel2=Backstab Damage Buff Level 2
 Behavior/Name/BackstabLevel1=Backstab Level 1
 Behavior/Name/BackstabLevel2=Backstab Level 2
 Behavior/Name/BasicVeterency=Basic Veterency
+Behavior/Name/BlackDiamondStun=Black Diamond Stun
 Behavior/Name/BlastSuit=Blast Suit
 Behavior/Name/Bloodlust=Bloodlust
 Behavior/Name/BulwarkDamageBlock=Bulwark Damage Block
@@ -331,12 +333,11 @@ Behavior/Name/SatchelChargeDetonation=Satchel Charge Detonation
 Behavior/Name/SergeantAscalon=Sergeant Ascalon
 Behavior/Name/SergeantLefty=Sergeant Lefty
 Behavior/Name/ShieldBashLift=Shield Bash Lift
-Behavior/Name/SmokeGrenadeBlindHeroicLevel1=Smoke Grenade Blind Heroic Level 1
-Behavior/Name/SmokeGrenadeBlindHeroicLevel2=Smoke Grenade Blind Heroic Level 2
-Behavior/Name/SmokeGrenadeBlindLevel1=Smoke Grenade Blind Level 1
-Behavior/Name/SmokeGrenadeBlindLevel2=Smoke Grenade Blind Level 2
-Behavior/Name/SmokeGrenadeLevel1=Smoke Grenade Level 1
-Behavior/Name/SmokeGrenadeLevel2=Smoke Grenade Level 2
+Behavior/Name/SmokeGrenadeAlliedEvasionLevel2=Smoke Grenade Allied Evasion Level 2
+Behavior/Name/SmokeGrenadeAlliedEvasionLevel3=Smoke Grenade Allied Evasion Level 3
+Behavior/Name/SmokeGrenadeEnemySlowLevel1=Smoke Grenade Enemy Slow Level 1
+Behavior/Name/SmokeGrenadeEnemySlowLevel2=Smoke Grenade Enemy Slow Level 2
+Behavior/Name/SmokeGrenadeEnemySlowLevel3=Smoke Grenade Enemy Slow Level 3
 Behavior/Name/SonicTrapHeroicSlowLevel1=Sonic Trap Heroic Slow Level 1
 Behavior/Name/SonicTrapHeroicSlowLevel2=Sonic Trap Heroic Slow Level 2
 Behavior/Name/SonicTrapMassiveSlowLevel1=Sonic Trap Massive Slow Level 1
@@ -346,6 +347,7 @@ Behavior/Name/SonicTrapStunLevel2=Sonic Trap Stun Level 2
 Behavior/Name/SonicTrapSuicideLevel1=Sonic Trap Suicide Level 1
 Behavior/Name/SonicTrapSuicideLevel2=Sonic Trap Suicide Level 2
 Behavior/Name/Sprint=Sprint
+Behavior/Name/SprintingShadow=Sprinting Shadow
 Behavior/Name/StaffSergeantFenwick=Staff Sergeant Fenwick
 Behavior/Name/StealthMatrixEscapeCloakLevel1=Stealth Matrix Escape Cloak Level 1
 Behavior/Name/StealthMatrixEscapeCloakLevel2=Stealth Matrix Escape Cloak Level 2
@@ -370,6 +372,7 @@ Button/Name/AdvancedTargeting=Advanced Targeting
 Button/Name/Aftershock=Aftershock
 Button/Name/AimedShot=Aimed Shot
 Button/Name/AmmoFeed=Ammo Feed
+Button/Name/AmmunitionDrop=Ammunition Drop
 Button/Name/Antivenom=Antivenom
 Button/Name/ArmClaymore=Arm Claymore
 Button/Name/ArtilleryBeacon=Artillery Beacon
@@ -381,6 +384,7 @@ Button/Name/AssistantGunner=Assistant Gunner
 Button/Name/AttackGround=Attack Ground
 Button/Name/AutomaticReload=Automatic Reload
 Button/Name/AvatarBeat=Avatar Beat
+Button/Name/BlackDiamond=Black Diamond
 Button/Name/BlastSuit=Blast Suit
 Button/Name/Blitz=Blitz
 Button/Name/Blockade=Blockade
@@ -398,7 +402,6 @@ Button/Name/Cohesion=Cohesion
 Button/Name/CollateralDamage=Collateral Damage
 Button/Name/CombatKnife=Combat Knife
 Button/Name/CombatManeuvers=Combat Maneuvers
-Button/Name/CommunicationUplink=Communication Uplink
 Button/Name/ConcentratedFire=Concentrated Fire
 Button/Name/Conviction=Conviction
 Button/Name/CripplingFire=Crippling Fire
@@ -484,6 +487,7 @@ Button/Name/MarineWeaponFunctionEnable2=Weapon Function Disable
 Button/Name/Marksmanship=Marksmanship
 Button/Name/MassreactiveTrigger=Mass-reactive Trigger
 Button/Name/MedicalAssistance=Medical Assistance
+Button/Name/MedicalDrop=Medical Drop
 Button/Name/MedicalExpertise=Medical Expertise
 Button/Name/MedicalExpertiseLevel1=Medical Expertise Level 1
 Button/Name/MedicalExpertiseLevel2=Medical Expertise Level 2
@@ -532,6 +536,7 @@ Button/Name/Righteousness=Righteousness
 Button/Name/Ruthlessness=Ruthlessness
 Button/Name/Sadist=Sadist
 Button/Name/SatchelCharge=Satchel Charge
+Button/Name/SatelliteUplink=Satellite Uplink
 Button/Name/Scapegoat=Scapegoat
 Button/Name/ScorchedEarth=Scorched Earth
 Button/Name/SelfAid=Self Aid
@@ -550,8 +555,6 @@ Button/Name/Stealth=Stealth
 Button/Name/StealthMatrixActivate=Stealth Matrix Activate
 Button/Name/StealthMatrixDeactivate=Stealth Matrix Deactivate
 Button/Name/Stockpile=Stockpile
-Button/Name/SupplyDropDefensive=Supply Drop Defensive
-Button/Name/SupplyDropOffensive=Supply Drop Offensive
 Button/Name/SuppressiveFire=Suppressive Fire
 Button/Name/SurveillanceFlare=Surveillance Flare
 Button/Name/TacticalTomahawk=Tactical Tomahawk
@@ -575,12 +578,14 @@ Button/Tooltip/AdvancedTargeting=Increases damage by 20% and Critical Strike by 
 Button/Tooltip/AdvancedTargetingLevel2=
 Button/Tooltip/Aftershock=Deals current level of Volatile Injection damage to units previously damaged by Nano-Shock. Units still slowed by Nano-Shock are stunned for <d ref="Behavior,AftershockStunLevel1,Duration"/> second.
 Button/Tooltip/AftershockLevel2=
+Button/Tooltip/AmmunitionDrop=Drops a crate containing <d ref="Loot,SupplyDropOffensiveAmmoSet,MaxCount * Item,Magazine,EffectCost.Charge.CountStart"/> Magazines at the target location.
 Button/Tooltip/Antivenom=Removes 1 stack of venom and cures <d ref="Effect,AntivenomHeal,VitalArray[Life].Change"/> hitpoints on target unit.
 Button/Tooltip/ArtilleryBeacon=Place an artillery beacon at the target area.
 Button/Tooltip/Assault=Assaults are specialized soldiers that have undergone extensive gene therapy to provide them with enormous strength and durability. They use heavy weapons and armor to break enemy lines, attacking with a hail of gunfire or charging into the fray themselves.
 Button/Tooltip/AssaultCriticalStrikeLevel1=15% chance to deal bonus damage. Critical damage varies based on the weapon being used.
 Button/Tooltip/AssaultCriticalStrikeLevel2=30% chance to deal bonus damage. Critical damage varies based on the weapon being used.
 Button/Tooltip/AssaultCriticalStrikeLevel3=45% chance to deal bonus damage. Critical damage varies based on the weapon being used.
+Button/Tooltip/BlackDiamond=Enemies within a 6 radius take 200 damage and are stunned for 6 seconds. While stunned, enemies take 100% additional damage from the Recon.
 Button/Tooltip/Bloodlust=Gain <d ref="Behavior,Bloodlust,Modification.AttackSpeedMultiplier-1*100" precision="1"/>% bonus attack speed and weapon damage for <d ref="Behavior,Bloodlust,Duration" precision="1"/> seconds.
 Button/Tooltip/ChainExplosive=Chain Explosives deal 400 damage in a radius of 3.5 when triggered by explosive damage.
 Button/Tooltip/ChargeNOTD=Deals 50 (+50 vs Light) damage to all enemies in the Assault’s path, knocking them back and stunning them for 2 seconds. Heroic units are stunned for 1 second and Massive units cannot be knocked back.
@@ -645,6 +650,7 @@ Button/Tooltip/MarineAttack=Orders selected units to move to the target point, f
 Button/Tooltip/MassreactiveTrigger=Enable the MD-5 Mine to automatically detonate when a Massive or Heroic enemy passes within a 1.5 radius.
 Button/Tooltip/Medic2=Medics employ advanced nanotechnology and years of training to keep their squads ready, willing, and able. Their equipment and skills can be used to heal any wound or inflict terrible damage on enemies, making them forces to be reckoned with.
 Button/Tooltip/MedicalAssistance=Use a Medkit to heal the target unit. Advanced medical training will use other items to heal injured teammates.
+Button/Tooltip/MedicalDrop=Drops a crate containing <d ref="Loot,SupplyDropMedkitSet,MaxCount * Item,Medkit,EffectCost.Charge.CountStart"/> Medkits, <d ref="Loot,SupplyDropDefensiveBandageSet,MaxCount * Item,Bandage,EffectCost.Charge.CountStart"/> Bandages, and <d ref="Loot,SupplyDropDefensiveAntiVenomSet,MaxCount *Item,AntiVenom,EffectCost.Charge.CountStart"/> Antivenoms at the target location.
 Button/Tooltip/MedicalExpertiseLevel1=Heal cures Open Wounds every 8/6/4 seconds (Heal Level)  time and Haste converts Broken Bones to Fractures every 20 seconds, and Fractures are repaired every 10 seconds.
 Button/Tooltip/MedicalExpertiseLevel2=Heal cures Open Wounds every 8/6/4 seconds (Heal Level)  time and Haste converts Broken Bones to Fractures every 20 seconds, and Fractures are repaired every 10 seconds.. The energy cost of Antivenom is reduced by 50% and Weave cures a random ailment every 10/7 seconds (Weave Level).
 Button/Tooltip/MedicalTraining=Using the Medical Assistance ability will use a Medkit if the target is injured, a Bandage if the target has an Open Wound, or an Antivenom if the target is inflicted with Venom.
@@ -675,19 +681,17 @@ Button/Tooltip/Repulse=Non-Heroic units in a radius of <d ref="Effect,RepulseEne
 Button/Tooltip/RifleProficiency=Gain a 7.5% attack speed bonus when using their starting weapon if it is an Assault Rifle, Marksman Rifle, or Laser Rifle.
 Button/Tooltip/Rifleman=Riflemen are the backbone of any infantry squad, providing offensive and defensive skills in equal measure. While their equipment is basic compared to the specialized loadouts of other classes, Riflemen are extremely versatile and can fulfill many roles.
 Button/Tooltip/SatchelCharge=Throw a Satchel Charge at the target location. After a 5 second countdown, the Satchel Charge will explode, dealing 2500 damage to all enemies caught in the blast. Deals double damage to structures.
+Button/Tooltip/SatelliteUplink=Move the surveillance satellite's focus to the target area.
 Button/Tooltip/SelfAid=Heals the Rifleman for <d ref="Effect,SelfAidHealLevel1,VitalArray[Life].Change"/> health and cures 1 Venom. When under the effects of Repulse, use cures a fracture.
 Button/Tooltip/SelfAidLevel2=
 Button/Tooltip/ShieldBash=Deals <d ref="Effect,ShieldBashLevel1ReactiveShieldsLevel1,Amount - 5"/> damage and knocks back enemies a distance of 1 in a <d ref="Effect,ShieldBashLevel1,AreaArray[0].Arc"/> degree cone. Reactive Spikes adds its damage to this attack.
-Button/Tooltip/SmokeGrenade=Conceals an area to enemies for 25 seconds and slows all non-heroic units within the cloud by 20%. Heroic units are slowed by 10%.
-Button/Tooltip/SmokeGrenadeLevel2=Conceals an area to enemies for 50 seconds and slows all non-heroic units within the cloud by 40%. Heroic units are slowed by 20%.
+Button/Tooltip/SmokeGrenade=Create a 3.5 radius cloud that lowers enemy Movement Speed by 25% for 30 seconds.
 Button/Tooltip/SonicTrap=Sets a Sonic Trap at the target location. When an enemy passes within 3 radius of the trap, all non-heroic and non-massive units in a <d ref="Effect,SonicTrapLevel1,AreaArray[0].Radius"/> radius are pushed back a distance of <d ref="Effect,SonicTrapPushbackLevel1,PlacementRange"/> and stunned for <d ref="Behavior,SonicTrapStunLevel1,Duration" precision="1"/> seconds. Massive units are slowed by <d ref="Behavior,SonicTrapMassiveSlowLevel1,Modification.MoveSpeedMultiplier-1*(-100)" precision="1"/>% and Heroic units are slowed by <d ref="Behavior,SonicTrapHeroicSlowLevel1,Modification.MoveSpeedMultiplier-1*(-100)" precision="1"/>% for <d ref="Behavior,SonicTrapHeroicSlowLevel1,Duration"/> seconds.
 Button/Tooltip/SonicTrapLevel2=Sets a Sonic Trap at the target location. When an enemy passes within 3 radius of the trap, all non-heroic and non-massive units in a <d ref="Effect,SonicTrapLevel2,AreaArray[0].Radius"/> radius are pushed back a distance of <d ref="Effect,SonicTrapPushbackLevel2,PlacementRange"/> and stunned for <d ref="Behavior,SonicTrapStunLevel2,Duration" precision="1"/> seconds. Massive units are slowed by <d ref="Behavior,SonicTrapMassiveSlowLevel2,Modification.MoveSpeedMultiplier-1*(-100)" precision="1"/>% and Heroic units are slowed by <d ref="Behavior,SonicTrapHeroicSlowLevel2,Modification.MoveSpeedMultiplier-1*(-100)" precision="1"/>% for <d ref="Behavior,SonicTrapHeroicSlowLevel2,Duration"/> seconds.
 Button/Tooltip/Sprint=Sprinting increases movement speed by <d ref="Behavior,Sprint,Modification.MoveSpeedMultiplier-1*100"/>% for <d ref="Behavior,Sprint,Duration"/> seconds. Sprinting with a fractured leg can possibly worsen the fracture.
 Button/Tooltip/StealthMatrixActivate=Engage a personal cloak that also grants a 20% increase to movement speed. Drains 0.7 energy per second.
 Button/Tooltip/StealthMatrixDeactivate=Disable the personal cloak and ready Escape for use again.
-Button/Tooltip/SupplyDropDefensive=Orders a supply drop at the target location. The drop will always contain at least 6 Magazines with random additional supplies chosen from this list:<n/>1 Claymore, 1 Chain Explosive<n/>1 Satchel Charge<n/>6 Magazines
-Button/Tooltip/SupplyDropOffensive=Orders a supply drop at the target location. The drop will always contain at least 6 Magazines with random additional supplies chosen from this list:<n/>1 Claymore, 1 Chain Explosive<n/>1 Satchel Charge<n/>6 Magazines
-Button/Tooltip/SurveillanceFlare=Throw a flare at the target location, providing ground vision in a radius 8 of the targeted area for 80 seconds.
+Button/Tooltip/SurveillanceFlare=Throw a flare at the target location, providing ground vision in a radius <d ref="Unit,GroundIlluminationFlareLevel1,Sight"/> of the targeted area for <d ref="Behavior,GroundIlluminationTimedLifeLevel1,Duration"/> seconds.
 Button/Tooltip/TacticalTomahawk=Deals <d ref="Effect,TomahawkDamage,Amount"/> damage in front of the user. Has a <d ref="Effect,TomahawkDoubleDamage,Chance * 100" precision="2"/>% chance to deal double damage.
 Button/Tooltip/Talents=Access character talent trees and spend skillpoints.
 Button/Tooltip/TauntNOTD=Forces all enemies in a <d ref="Effect,TauntLevel1,AreaArray[0].Radius" precision="1"/> radius to attack at a <d ref="Behavior,TauntedLevel1,Modification.DamageDealtFraction[Melee]*(-100)" precision="1"/>% damage penalty for <d ref="Behavior,TauntedLevel1,Duration"/> seconds.
@@ -886,10 +890,10 @@ Unit/Name/PsiOps=Psi Ops
 Unit/Name/Recon=Recon
 Unit/Name/Rifleman=Rifleman
 Unit/Name/SatchelMissileWeapon=Satchel Missile Weapon
-Unit/Name/SmokeGrenadeLevel1=Smoke Grenade Level 1
+Unit/Name/SatelliteUplinkSpy=Satellite Uplink Spy
 Unit/Name/SmokeGrenadeLevel1Weapon=Smoke Grenade Level 1 Weapon
-Unit/Name/SmokeGrenadeLevel2=Smoke Grenade Level 2
 Unit/Name/SmokeGrenadeLevel2Weapon=Smoke Grenade Level 2 Weapon
+Unit/Name/SmokeGrenadeLevel3Weapon=Smoke Grenade Level 3 Weapon
 Unit/Name/SonicTrapLevel1=Sonic Trap Level 1
 Unit/Name/SonicTrapLevel12=Sonic Trap Level 2
 Unit/Name/SquadLeader=Squad Leader
@@ -1088,9 +1092,9 @@ UserData/TalentTree/Recon Mobility Tree_Talent Name_002=<s val="AchievementFrame
 UserData/TalentTree/Recon Mobility Tree_Talent Name_003=<s val="AchievementFrameName">Stealth Matrix</s>
 UserData/TalentTree/Recon Mobility Tree_Talent Name_004=<s val="AchievementFrameName">Sprinting Shadow</s>
 UserData/TalentTree/Recon Mobility Tree_Talent Name_005=<s val="AchievementFrameName">Black Diamond</s>
-UserData/TalentTree/Recon Mobility Tree_Talent Tooltips=Flare guns are devices that launch flares to provide brief visibility to the user or signaling for friendly forces. While not weapons, they can also be used to blind those unprepared for the intense brightness of the flare. <n/><n/><s val="AISurrenderTitle"><c val="F4CE4D">Level 1: </c></s><c val="FCF5C5">Reveals an area of 5 and lowers the movement speed of biological enemies by 20% for 5 seconds. Does not slow bosses.</c><n/><s val="AISurrenderTitle"><c val="F4CE4D">Level 2:</c></s> <c val="FCF5C5">Reveals an area of 6 and lowers the movement speed of biological enemies by 35% for 5 seconds. Does not slow bosses.</c><n/><s val="AISurrenderTitle"><c val="F4CE4D">Level 3:</c></s><c val="FCF5C5"> Reveals an area of 7 and lowers the movement speed of biological enemies by 50% for 5 seconds. Does not slow bosses.</c><n/><n/><s val="AchievementFrameDescription">“Good for checking corners and flashing gunners.”</s>
-UserData/TalentTree/Recon Mobility Tree_Talent Tooltips_001=The Recon’s specialized equipment can render them invisible for a brief time. Doing so releases a burst of energy, providing the Recon and allies in a radius of 10 with a 20% increase to movement speed and immunity to unit collision.<n/><n/><s val="AISurrenderTitle"><c val="F4CE4D">Level 1:</c></s><c val="FCF5C5"> Cloak and movement speed bonus last for 5 seconds.</c><n/><s val="AISurrenderTitle"><c val="F4CE4D">Level 2:</c></s><c val="FCF5C5"> Cloak and movement speed bonus last for 10 seconds.</c><n/><s val="AISurrenderTitle"><c val="F4CE4D">Level 3:</c> </s><c val="FCF5C5">Cloak and movement speed bonus last for 15 seconds.</c><n/><n/><s val="AchievementFrameDescription">“Never give up an opportunity to run away from a fight. You can only scout if you’re alive.”</s>
-UserData/TalentTree/Recon Mobility Tree_Talent Tooltips_002=Using their mobility and stealth, Recons can instantly kill non-Massive and non-Heroic enemies and gain bonus damage when attacking targets from behind. <n/><n/><s val="AISurrenderTitle"><c val="F4CE4D">Level 1:</c></s> <c val="FCF5C5">Massive or Heroic units take 400 damage, 30% backstab bonus.</c><n/><s val="AISurrenderTitle"><c val="F4CE4D">Level 2:</c></s><c val="FCF5C5"> Massive or Heroic units take 800 damage, 60% backstab bonus.</c><n/><n/><s val="AchievementFrameDescription">“Sometimes you’ll be in a position where escape isn’t an option, so even the odds while you still have the advantage of surprise.”</s>
+UserData/TalentTree/Recon Mobility Tree_Talent Tooltips= Quickly reveal an area and lower the Movement Speed of enemies within the area.<n/><n/><s val="AISurrenderTitle"><c val="F4CE4D">Level 1: </c></s><c val="FCF5C5">Reveals an area of <d ref="Effect,FlareGunSlowSearchLevel1,AreaArray[0].Radius"/> and slows enemies by <d ref="1 - Behavior,FlareGunSlowLevel1,Modification.MoveSpeedMultiplier * 100"/>% for <d ref="Effect,FlareGunPersistentLevel1,PeriodCount * Effect,FlareGunPersistentLevel1,PeriodicPeriodArray[0]"/> seconds.<n/><s val="AISurrenderTitle"><c val="F4CE4D">Level 2:</c></s> <c val="FCF5C5">Stores up to <d ref="Abil,FlareGunRecon,Cost[1].Charge.CountMax"/> charges. Range increased by <d ref="Abil,FlareGunRecon,Range[1] - Abil,FlareGunRecon,Range[0] "/>.<n/><s val="AISurrenderTitle"><c val="F4CE4D">Level 3:</c></s> <c val="FCF5C5">Stores up to <d ref="Abil,FlareGunRecon,Cost[2].Charge.CountMax"/> charges. Duration increased to <d ref="Effect,FlareGunPersistentLevel3,PeriodCount * Effect,FlareGunPersistentLevel3,PeriodicPeriodArray[0]"/>  seconds..</c><n/><n/><s val="AchievementFrameDescription">“Light the way with a flare.”</s>
+UserData/TalentTree/Recon Mobility Tree_Talent Tooltips_001=Render yourself and nearby allies invisible.<n/><n/><s val="AISurrenderTitle"><c val="F4CE4D">Level 1:</c></s><c val="FCF5C5"> Cloaks all allied units within a <d ref="Effect,EscapeAlliedSearchLevel1,AreaArray[0].Radius"/> radius for <d ref="Behavior,EscapeLevel1,Duration"/> seconds.</c><n/><s val="AISurrenderTitle"><c val="F4CE4D">Level 2:</c></s><c val="FCF5C5"> Cloaked units have <d ref="Behavior,EscapeLevel2,Modification.MoveSpeedMultiplier - 1 *100"/>% increased Movement Speed.</c><n/><s val="AISurrenderTitle"><c val="F4CE4D">Level 3:</c> </s><c val="FCF5C5">Cloaked units have no collision and can pass through other units.</c><n/><n/><s val="AchievementFrameDescription">“Never give up an opportunity to run away from a fight. You can only scout if you’re alive.”</s>
+UserData/TalentTree/Recon Mobility Tree_Talent Tooltips_002=Instantly kill or severely damage the target enemy with a stealth attack.<n/><n/><s val="AISurrenderTitle"><c val="F4CE4D">Level 1:</c></s> <c val="FCF5C5">Instantly kill any non-Massive enemy. Massive enemies take <d ref="Effect,ExecuteDamageLevel1,Amount"/> damage.</c><n/><s val="AISurrenderTitle"><c val="F4CE4D">Level 2: </c></s><c val="FCF5C5">Execute deals double damage from behind.</c><n/><n/><s val="AchievementFrameDescription">“Even the odds when you've got the advantage of surprise.”</s>
 UserData/TalentTree/Recon Mobility Tree_Talent Tooltips_003=The Stealth Matrix can maintain the personal invisibility of Escape for extended periods of time and provide teammates with a brief window of stealth. The Recon cannot attack while Stealth Matrix is active, but can still use abilities and sidearms.<n/><n/><s val="AISurrenderTitle"><c val="F4CE4D">Level 1:</c></s> <c val="FCF5C5">Personal cloak drains 1 energy per second and increases movement speed by 10%.</c><n/><s val="AISurrenderTitle"><c val="F4CE4D">Level 2:</c></s> <c val="FCF5C5">Personal cloak drains 0.7 energy per second, increases movement speed by 20%, and provides immunity to unit collision.</c><n/><n/><s val="AchievementFrameDescription">“The easiest way to avoid being shot is to not be seen.”</s>
 UserData/TalentTree/Recon Mobility Tree_Talent Tooltips_004=The Recon sends an echoing charge of energy throughout their suit, refreshing ability cooldowns and replenishing energy reserves.<n/><n/><s val="AISurrenderTitle"><c val="F4CE4D">Level 1:</c></s><c val="FCF5C5"> Resets the cooldown on all other Recon skills and restores 45 energy.</c><n/><n/><s val="AchievementFrameDescription">“This burns a year's worth of life off of your generator, but these things have about a thousand years before they go bad. If you need energy now? Don’t hesitate.”</s>
 UserData/TalentTree/Recon Mobility Tree_Talent Tooltips_005=UGC Reconnaissance Satellites are equipped with light kinetic payloads directed by artillery beacons for immediate artillery support should a scout require it.<n/><n/><s val="AISurrenderTitle"><c val="F4CE4D">Level 1:</c></s><c val="FCF5C5"> Gain access to Artillery Beacons that can call in fire support once placed.</c><n/><n/><s val="AchievementFrameDescription">“Treaty says sky eyes aren’t supposed to have guns. That’s fine, says us. We gave the sats gravity-powered space spears instead, and they can’t say no ‘cause they aren’t guns.”</s>
@@ -1098,15 +1102,15 @@ UserData/TalentTree/Recon Surveillance Tree_Header=<s val="AiurChefCenterSize22B
 UserData/TalentTree/Recon Surveillance Tree_Talent Name=<s val="AchievementFrameName">Surveillance Flare</s>
 UserData/TalentTree/Recon Surveillance Tree_Talent Name_001=<s val="AchievementFrameName">Smoke Grenade</s>
 UserData/TalentTree/Recon Surveillance Tree_Talent Name_002=<s val="AchievementFrameName">Motion Sensor</s> <s val="AchievementFrameName_Zerg">[Passive]</s>
-UserData/TalentTree/Recon Surveillance Tree_Talent Name_003=<s val="AchievementFrameName">Item Radar</s>
+UserData/TalentTree/Recon Surveillance Tree_Talent Name_003=<s val="AchievementFrameName">Item Radar</s> <s val="AchievementFrameName_Zerg">[Passive]</s>
 UserData/TalentTree/Recon Surveillance Tree_Talent Name_004=<s val="AchievementFrameName">Supply Drops</s>
 UserData/TalentTree/Recon Surveillance Tree_Talent Name_005=<s val="AchievementFrameName">Satellite Uplink</s>
 UserData/TalentTree/Recon Surveillance Tree_Talent Tooltips=Provides ground vision in an area for a long duration.<n/><n/><s val="AISurrenderTitle"><c val="F4CE4D">Level 1:</c></s> <c val="FCF5C5">Provides ground vision in a radius <d ref="Unit,GroundIlluminationFlareLevel1,Sight"/> of the targeted area for <d ref="Behavior,GroundIlluminationTimedLifeLevel1,Duration"/> seconds. Stores <d ref="Abil,SurveillanceFlare,Cost[0].Charge.CountMax"/> charge.<n/><s val="AISurrenderTitle"><c val="F4CE4D">Level 2:</c></s><c val="FCF5C5"> Provides ground vision in a radius <d ref="Unit,GroundIlluminationFlareLevel2,Sight"/> of the targeted area for <d ref="Behavior,GroundIlluminationTimedLifeLevel2,Duration"/> seconds. Stores <d ref="Abil,SurveillanceFlare,Cost[1].Charge.CountMax"/> charges.</c><n/><s val="AISurrenderTitle"><c val="F4CE4D">Level 3: </c></s><c val="FCF5C5">Provides ground vision in a radius <d ref="Unit,GroundIlluminationFlareLevel3,Sight"/> of the targeted area for <d ref="Behavior,GroundIlluminationTimedLifeLevel3,Duration"/> seconds. Stores <d ref="Abil,SurveillanceFlare,Cost[2].Charge.CountMax"/> charges.</c><n/><n/><s val="AchievementFrameDescription"><n/>“For when you need to keep an eye on something for a nice long while.”</s>
-UserData/TalentTree/Recon Surveillance Tree_Talent Tooltips_001=Smoke Grenades slow enemy units and can be used to provide cover for teammates.<n/><n/><s val="AISurrenderTitle"><c val="F4CE4D">Level 1:</c></s><c val="FCF5C5"> Reduces enemy Movement Speed by 25% while in the cloud.</c><n/><s val="AISurrenderTitle"><c val="F4CE4D">Level 2: </c></s><c val="FCF5C5">Allied units gain 20% Evasion while in the cloud.</c><n/><s val="AISurrenderTitle"><c val="F4CE4D">Level 3: </c></s><c val="FCF5C5">Reduces enemy Attack Speed by 25%. while in the cloud</c><n/><n/><s val="AchievementFrameDescription">“Good for crowds, good for cover, good for chasing. Just don’t breathe it, you’ll be coughing and crying for an hour.”</s>
+UserData/TalentTree/Recon Surveillance Tree_Talent Tooltips_001=Smoke Grenades slow enemy units and can be used to provide cover for teammates.<n/><n/><s val="AISurrenderTitle"><c val="F4CE4D">Level 1:</c></s><c val="FCF5C5"> Reduces enemy Movement Speed by <d ref="1- Behavior,SmokeGrenadeEnemySlowLevel1,Modification.MoveSpeedMultiplier * 100"/>% while in the cloud.</c><n/><s val="AISurrenderTitle"><c val="F4CE4D">Level 2: </c></s><c val="FCF5C5">Allied units gain <d ref="Behavior,SmokeGrenadeAlliedEvasionLevel2,DamageResponse.Chance *100"/>% Evasion while in the cloud.</c><n/><s val="AISurrenderTitle"><c val="F4CE4D">Level 3: </c></s><c val="FCF5C5">Reduces enemy Attack Speed by <d ref="1 - Behavior,SmokeGrenadeEnemySlowLevel3,Modification.AttackSpeedMultiplier * 100"/>%. while in the cloud</c><n/><n/><s val="AchievementFrameDescription">“Good for crowds, good for cover, good for chasing. Just don’t breathe it, you’ll be coughing and crying for an hour.”</s>
 UserData/TalentTree/Recon Surveillance Tree_Talent Tooltips_002=Reveals the location of units within the Fog of War.<n/><n/><s val="AISurrenderTitle"><c val="F4CE4D">Level 1:</c></s> <c val="FCF5C5">Reveals unit movement in a 40 radius.</c><n/><s val="AISurrenderTitle"><c val="F4CE4D">Level 2:</c></s><c val="FCF5C5"> Color-codes unit types.</c><n/><n/><s val="AchievementFrameDescription">“Just knowing something's out and about is often good enough.”</s>
 UserData/TalentTree/Recon Surveillance Tree_Talent Tooltips_003=Reveals the location of items within the Fog of War. <n/><n/><s val="AISurrenderTitle"><c val="F4CE4D">Level 1:</c></s> <c val="FCF5C5">Reveals items in a 40 radius.</c><n/><s val="AISurrenderTitle"><c val="F4CE4D">Level 2:</c></s><c val="FCF5C5"> Color-codes item types.</c><n/><n/><s val="AchievementFrameDescription">“How hard is it to dump the gear in one place? Sheesh.”</s>
-UserData/TalentTree/Recon Surveillance Tree_Talent Tooltips_004=The Recon has the tools to act as the team’s personal communication array, relaying data such as the location of teammates and their immediate situation. The Recon may also direct supply drops to bolster the team’s resources.<n/><n/><s val="AISurrenderTitle"><c val="F4CE4D">Level 1:</c></s><c val="FCF5C5"> Permanently reveals each player’s location and gain the ability to call in offensive and defensive supply drops.</c><n/><n/><s val="AchievementFrameDescription">“Wars are fought and won on full stomachs and loaded magazines. Make sure your team has both and you will succeed.”</s>
-UserData/TalentTree/Recon Surveillance Tree_Talent Tooltips_005=The Recon can call in an A-10X direct ground attack aircraft to provide heavy fire support for ground forces. The A-10X will strafe all nearby ground enemies with its 30mm cannon and fire air-to-surface missiles at designated targets.<n/><n/><s val="AISurrenderTitle"><c val="F4CE4D">Level 1: </c></s><c val="FCF5C5">Call in an A-10X for an attack run. The A-10X will fire its main cannon at enemy targets in its path and fire missiles at designated targets.</c><n/><n/><s val="AchievementFrameDescription">“Raw power with wings is a beautiful thing.”</s>
+UserData/TalentTree/Recon Surveillance Tree_Talent Tooltips_004=Requisition additional supply drops for your team.<n/><n/><s val="AISurrenderTitle"><c val="F4CE4D">Level 1:</c></s><c val="FCF5C5"> Gain the Ammunition Drop and Medical Drop abilities.</c><n/><n/><s val="AchievementFrameDescription">“Wars are fought and won on full stomachs and loaded magazines.”</s>
+UserData/TalentTree/Recon Surveillance Tree_Talent Tooltips_005=Gain control of a satellite that provides battlefield surveillance and shared vision.<n/><n/><s val="AISurrenderTitle"><c val="F4CE4D">Level 1: </c></s><c val="FCF5C5">Access a satellite that can reveal any area and shared vision for the entire team.</c><n/><n/><s val="AchievementFrameDescription">“Eyes in the sky.”</s>
 UserData/TalentTree/Rifleman Combat Tree_Header=<s val="AiurChefCenterSize22Bold"><c val="B61B0A">COMBAT</c></s>
 UserData/TalentTree/Rifleman Combat Tree_Talent Name=<s val="AchievementFrameName">Critical Strike</s> <s val="AchievementFrameName_Zerg">[Passive]</s>
 UserData/TalentTree/Rifleman Combat Tree_Talent Name_001=<s val="AchievementFrameName">Fire Up</s> <s val="AchievementFrameName_Zerg">[Passive]</s>

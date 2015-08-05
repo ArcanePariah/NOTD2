@@ -231,6 +231,14 @@
         <SharedXPRadius index="Kills" value="500"/>
         <SharedXPFraction index="Kills" value="1"/>
     </CBehaviorVeterancy>
+    <CBehaviorBuff id="BlackDiamondStun">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="6"/>
+        <Modification>
+            <StateFlags index="Stun" value="1"/>
+        </Modification>
+    </CBehaviorBuff>
     <CBehaviorBuff id="BlastSuit">
         <EditorCategories value="AbilityorEffectType:Units"/>
         <DamageResponse Chance="1" ModifyFraction="0">
@@ -564,56 +572,55 @@
     <CBehaviorBuff id="EscapeReconLevel1">
         <InfoFlags index="Hidden" value="1"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
-        <Duration value="5"/>
+        <Duration value="10"/>
         <Modification>
             <StateFlags index="Cloak" value="1"/>
         </Modification>
-        <ExpireEffect value="StealthMatrixOrder"/>
+        <ExpireEffect value="StealthMatrixSetLevel1"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="EscapeLevel1">
         <InfoFlags index="Hidden" value="1"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
-        <Duration value="5"/>
-        <Modification MoveSpeedMultiplier="1.2">
-            <StateFlags index="SuppressCollision" value="1"/>
+        <Duration value="10"/>
+        <Modification>
+            <StateFlags index="Cloak" value="1"/>
         </Modification>
-        <InitialEffect value="StealthMatrixEscapeCloakLevel1"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="EscapeLevel2">
         <InfoFlags index="Hidden" value="1"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
         <Duration value="10"/>
-        <Modification MoveSpeedMultiplier="1.2">
-            <StateFlags index="SuppressCollision" value="1"/>
+        <Modification MoveSpeedMultiplier="1.25">
+            <StateFlags index="Cloak" value="1"/>
         </Modification>
-        <InitialEffect value="StealthMatrixEscapeCloakLevel2"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="EscapeLevel3">
         <InfoFlags index="Hidden" value="1"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
-        <Duration value="15"/>
-        <Modification MoveSpeedMultiplier="1.2">
+        <Duration value="10"/>
+        <Modification MoveSpeedMultiplier="1.25">
+            <StateFlags index="Cloak" value="1"/>
             <StateFlags index="SuppressCollision" value="1"/>
         </Modification>
-        <InitialEffect value="StealthMatrixEscapeCloakLevel3"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="EscapeReconLevel2">
         <InfoFlags index="Hidden" value="1"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
         <Duration value="10"/>
-        <Modification>
+        <Modification MoveSpeedMultiplier="1.25">
             <StateFlags index="Cloak" value="1"/>
         </Modification>
-        <ExpireEffect value="StealthMatrixOrder"/>
+        <ExpireEffect value="StealthMatrixSetLevel2"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="EscapeReconLevel3">
         <InfoFlags index="Hidden" value="1"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
-        <Duration value="15"/>
-        <Modification>
+        <Duration value="10"/>
+        <Modification MoveSpeedMultiplier="1.25">
             <StateFlags index="Cloak" value="1"/>
+            <StateFlags index="SuppressCollision" value="1"/>
         </Modification>
-        <ExpireEffect value="StealthMatrixOrder"/>
+        <ExpireEffect value="StealthMatrixSetLevel3"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="ExtraLifeHeal">
         <EditorCategories value="AbilityorEffectType:Units"/>
@@ -629,25 +636,28 @@
         <InfoFlags index="Hidden" value="1"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
         <Duration value="0.6"/>
-        <Modification MoveSpeedMultiplier="0.8"/>
+        <Modification MoveSpeedMultiplier="0.75"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="FlareGunTimedLife">
         <EditorCategories value="AbilityorEffectType:Units"/>
-        <Duration value="12.5"/>
+        <Duration value="3.8"/>
         <Period value="0.5"/>
         <ExpireEffect value="Suicide"/>
+        <DurationOverride Duration="5.8">
+            <ValidatorArray value="UnitisReconFlareLevel3"/>
+        </DurationOverride>
     </CBehaviorBuff>
     <CBehaviorBuff id="FlareGunSlowLevel2">
         <InfoFlags index="Hidden" value="1"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
         <Duration value="0.6"/>
-        <Modification MoveSpeedMultiplier="0.65"/>
+        <Modification MoveSpeedMultiplier="0.75"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="FlareGunSlowLevel3">
         <InfoFlags index="Hidden" value="1"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
         <Duration value="0.6"/>
-        <Modification MoveSpeedMultiplier="0.5"/>
+        <Modification MoveSpeedMultiplier="0.75"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="FlashlightNOTD">
         <InfoFlags index="Hidden" value="1"/>
@@ -1323,45 +1333,35 @@
             <HeightTime index="Stop" value="0.125"/>
         </Modification>
     </CBehaviorBuff>
-    <CBehaviorBuff id="SmokeGrenadeBlindHeroicLevel2">
+    <CBehaviorBuff id="SmokeGrenadeAlliedEvasionLevel2">
         <InfoFlags index="Hidden" value="1"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
         <Duration value="0.5"/>
-        <Modification SightMaximum="0" MoveSpeedMultiplier="0.8"/>
+        <DamageResponse Chance="0.2" ModifyFraction="0" ModifyMinimumDamage="1"/>
     </CBehaviorBuff>
-    <CBehaviorBuff id="SmokeGrenadeBlindLevel1">
+    <CBehaviorBuff id="SmokeGrenadeAlliedEvasionLevel3">
         <InfoFlags index="Hidden" value="1"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
         <Duration value="0.5"/>
-        <Modification SightMaximum="0" MoveSpeedMultiplier="0.8"/>
+        <DamageResponse Chance="0.2" ModifyFraction="0" ModifyMinimumDamage="1"/>
     </CBehaviorBuff>
-    <CBehaviorBuff id="SmokeGrenadeBlindHeroicLevel1">
+    <CBehaviorBuff id="SmokeGrenadeEnemySlowLevel1">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Modification MoveSpeedMultiplier="0.75"/>
+        <Duration value="0.5"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="SmokeGrenadeEnemySlowLevel2">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Modification MoveSpeedMultiplier="0.75"/>
+        <Duration value="0.5"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="SmokeGrenadeEnemySlowLevel3">
         <InfoFlags index="Hidden" value="1"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
         <Duration value="0.5"/>
-        <Modification SightMaximum="0" MoveSpeedMultiplier="0.9"/>
-    </CBehaviorBuff>
-    <CBehaviorBuff id="SmokeGrenadeBlindLevel2">
-        <InfoFlags index="Hidden" value="1"/>
-        <EditorCategories value="AbilityorEffectType:Units"/>
-        <Duration value="0.5"/>
-        <Modification SightMaximum="0" MoveSpeedMultiplier="0.6"/>
-    </CBehaviorBuff>
-    <CBehaviorBuff id="SmokeGrenadeLevel2">
-        <InfoFlags index="Hidden" value="1"/>
-        <EditorCategories value="AbilityorEffectType:Units"/>
-        <Duration value="50"/>
-        <Period value="0.25"/>
-        <PeriodicEffect value="SmokeGrenadeBlindSearchLevel2"/>
-        <FinalEffect value="Suicide"/>
-    </CBehaviorBuff>
-    <CBehaviorBuff id="SmokeGrenadeLevel1">
-        <InfoFlags index="Hidden" value="1"/>
-        <EditorCategories value="AbilityorEffectType:Units"/>
-        <Duration value="25"/>
-        <Period value="0.25"/>
-        <PeriodicEffect value="SmokeGrenadeBlindSearchLevel1"/>
-        <FinalEffect value="Suicide"/>
+        <Modification MoveSpeedMultiplier="0.75" AttackSpeedMultiplier="0.75"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="SonicTrapHeroicSlowLevel1">
         <EditorCategories value="AbilityorEffectType:Units"/>
@@ -1420,24 +1420,28 @@
     </CBehaviorBuff>
     <CBehaviorBuff id="StealthMatrixEscapeCloakLevel1">
         <EditorCategories value="AbilityorEffectType:Units"/>
-        <Duration value="5"/>
         <Modification>
             <StateFlags index="Cloak" value="1"/>
         </Modification>
+        <InfoFlags index="Hidden" value="1"/>
+        <RemoveValidatorArray value="StealthMatrixActive"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="StealthMatrixEscapeCloakLevel2">
         <EditorCategories value="AbilityorEffectType:Units"/>
-        <Duration value="10"/>
-        <Modification>
+        <Modification MoveSpeedMultiplier="1.25">
             <StateFlags index="Cloak" value="1"/>
         </Modification>
+        <InfoFlags index="Hidden" value="1"/>
+        <RemoveValidatorArray value="StealthMatrixActive"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="StealthMatrixEscapeCloakLevel3">
         <EditorCategories value="AbilityorEffectType:Units"/>
-        <Duration value="15"/>
-        <Modification>
+        <Modification MoveSpeedMultiplier="1.25">
             <StateFlags index="Cloak" value="1"/>
+            <StateFlags index="SuppressCollision" value="1"/>
         </Modification>
+        <InfoFlags index="Hidden" value="1"/>
+        <RemoveValidatorArray value="StealthMatrixActive"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="StealthMatrixLevel1">
         <InfoFlags index="Hidden" value="1"/>
@@ -1445,20 +1449,11 @@
         <EditorCategories value="AbilityorEffectType:Units"/>
         <TechAliasArray value="_StealthMatrix"/>
         <RemoveValidatorArray value="CasterHasEnergy"/>
-        <Modification MoveSpeedMultiplier="1.1">
-            <StateFlags index="Cloak" value="1"/>
+        <Modification>
             <StateFlags index="Passive" value="1"/>
-            <VitalRegenArray index="Energy" value="-1"/>
+            <VitalRegenArray index="Energy" value="-0.8007"/>
         </Modification>
-        <DamageResponse Chance="1" Handled="DeactivateStealthMatrix" Location="Attacker">
-            <ExcludeEffectArray value="ExecuteDamageLevel1"/>
-            <ExcludeEffectArray value="ExecuteDamageLevel2"/>
-            <ExcludeEffectArray value="Kill"/>
-            <ExcludeEffectArray value="CombatKnifeDamage"/>
-            <ExcludeEffectArray value="TomahawkDamage"/>
-            <ExcludeEffectArray value="CombatKnifeDoubleDamage"/>
-            <ExcludeEffectArray value="TomahawkDoubleDamage"/>
-        </DamageResponse>
+        <DamageResponse Chance="1" Handled="DeactivateStealthMatrix" Location="Attacker"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="StealthMatrixLevel2">
         <InfoFlags index="Hidden" value="1"/>
@@ -1466,11 +1461,9 @@
         <EditorCategories value="AbilityorEffectType:Units"/>
         <TechAliasArray value="_StealthMatrix"/>
         <RemoveValidatorArray value="CasterHasEnergy"/>
-        <Modification MoveSpeedMultiplier="1.2">
-            <StateFlags index="Cloak" value="1"/>
+        <Modification>
             <StateFlags index="Passive" value="1"/>
-            <StateFlags index="SuppressCollision" value="1"/>
-            <VitalRegenArray index="Energy" value="-0.6992"/>
+            <VitalRegenArray index="Energy" value="-0.8007"/>
         </Modification>
         <DamageResponse Chance="1" Handled="DeactivateStealthMatrix" Location="Attacker">
             <ExcludeEffectArray value="ExecuteDamageLevel1"/>
@@ -1480,6 +1473,7 @@
             <ExcludeEffectArray value="TomahawkDamage"/>
             <ExcludeEffectArray value="CombatKnifeDoubleDamage"/>
             <ExcludeEffectArray value="TomahawkDoubleDamage"/>
+            <ExcludeEffectArray value="ExecuteDamageLevel2Backstab"/>
         </DamageResponse>
     </CBehaviorBuff>
     <CBehaviorBuff id="TauntedLevel2">
@@ -1517,6 +1511,15 @@
             <DamageDealtFraction index="Splash" value="-0.1"/>
         </Modification>
         <InfoIcon value="btn-custom-lightningshield.dds"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="SprintingShadow">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Requirements value="SprintingShadow"/>
+        <DisableValidatorArray value="Cloaked"/>
+        <Modification MoveSpeedMultiplier="1.4">
+            <VitalRegenArray index="Energy" value="0.5"/>
+        </Modification>
     </CBehaviorBuff>
     <CBehaviorBuff id="VolatileInjectionLevel2">
         <Alignment value="Negative"/>
