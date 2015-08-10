@@ -93,6 +93,26 @@
         <CombineArray value="GameisNightmare"/>
         <CombineArray value="HordeModeNightmareNoise"/>
     </CValidatorCombine>
+    <CValidatorPlayerRequirement id="ItemSensorLevel1">
+        <Find value="1"/>
+        <Value value="ItemSensorLevel1"/>
+    </CValidatorPlayerRequirement>
+    <CValidatorPlayerRequirement id="ItemSensorLevel2">
+        <Find value="1"/>
+        <Value value="ItemSensorLevel2"/>
+    </CValidatorPlayerRequirement>
+    <CValidatorCombine id="MotionSensorUnitQuery">
+        <Type value="And"/>
+        <CombineArray value="TargetisnotVisible"/>
+        <CombineArray value="TargetisnotanItem"/>
+    </CValidatorCombine>
+    <!--We add the Hidden check because we don't want to see items being carried by other players.-->
+    <CValidatorCombine id="ItemSensorUnitQuery">
+        <Type value="And"/>
+        <CombineArray value="TargetisnotVisible"/>
+        <CombineArray value="TargetisanItem"/>
+        <CombineArray value="NotHidden"/>
+    </CValidatorCombine>
     <CValidatorUnitCompareSpeed id="Moving">
         <WhichUnit Value="Caster"/>
         <Compare value="NE"/>
@@ -115,6 +135,10 @@
         <Find value="1"/>
         <Value value="ReactiveShieldsLevel3"/>
     </CValidatorPlayerRequirement>
+    <CValidatorUnitOrderQueue id="ReconAttacking">
+        <AbilLink value="attack"/>
+    </CValidatorUnitOrderQueue>
+    <CValidatorUnitOrder id="ReconUsesBlackDiamond"/>
     <CValidatorLocationEnumArea id="SatchelChargeNoAlliedUnitsNear">
         <WhichLocation Value="CasterUnit"/>
         <AreaArray Radius="6" Validator="UnitisnotDemolitionsExplosive"/>
@@ -285,6 +309,10 @@
         <CombineArray value="EquippedWeaponisPumpShotgun"/>
         <CombineArray value="EquippedWeaponisAutomaticShotgun"/>
     </CValidatorCombine>
+    <CValidatorPlayerRequirement id="MotionSensorLevel12">
+        <Find value="1"/>
+        <Value value="MotionSensorLevel2"/>
+    </CValidatorPlayerRequirement>
     <CValidatorUnitCompareBehaviorCount id="HordeModeRecruitNoise">
         <Compare value="GE"/>
         <Value value="200"/>
@@ -302,10 +330,6 @@
     <CValidatorPlayerRequirement id="MotionSensorLevel1">
         <Find value="1"/>
         <Value value="MotionSensorLevel1"/>
-    </CValidatorPlayerRequirement>
-    <CValidatorPlayerRequirement id="MotionSensorLevel12">
-        <Find value="1"/>
-        <Value value="MotionSensorLevel2"/>
     </CValidatorPlayerRequirement>
     <CValidatorUnitCompareBehaviorCount id="ProxmityTriggerArmed">
         <Value value="1"/>
@@ -365,6 +389,17 @@
         <Find value="1"/>
         <Value value="StealthMatrixLevel1"/>
     </CValidatorPlayerRequirement>
+    <CValidatorCombine id="StealthMatrixLevel1Disable">
+        <Type value="And"/>
+    </CValidatorCombine>
+    <CValidatorUnitCompareBehaviorCount id="StealthMatrixLevel1Active">
+        <Value value="1"/>
+        <Behavior value="StealthMatrixLevel1"/>
+    </CValidatorUnitCompareBehaviorCount>
+    <CValidatorUnitCompareBehaviorCount id="StealthMatrixLevel2Active">
+        <Value value="1"/>
+        <Behavior value="StealthMatrixLevel2"/>
+    </CValidatorUnitCompareBehaviorCount>
     <CValidatorPlayerRequirement id="StealthMatrixLevel2">
         <Find value="1"/>
         <Value value="StealthMatrixLevel2"/>
@@ -386,6 +421,10 @@
         <CombineArray value="TargethasLaserDesignatorLevel2"/>
         <CombineArray value="TargethasLaserDesignatorLevel3"/>
     </CValidatorCombine>
+    <CValidatorCombine id="TargetisMassiveorArmored">
+        <CombineArray value="TargetisnonMassiveorArmored"/>
+        <Negate value="1"/>
+    </CValidatorCombine>
     <CValidatorUnitCompareBehaviorCount id="TargetisNanoShockedLevel1">
         <Value value="1"/>
         <Behavior value="NanoShockSlowLevel1"/>
@@ -406,6 +445,18 @@
         <CombineArray value="TargetisSlowed"/>
         <CombineArray value="TargetisStunned"/>
     </CValidatorCombine>
+    <CValidatorUnitFilters id="TargetisanItem">
+        <Filters value="Item;-"/>
+    </CValidatorUnitFilters>
+    <CValidatorUnitFilters id="TargetisnonMassiveorArmored">
+        <Filters value="-;Armored,Massive"/>
+    </CValidatorUnitFilters>
+    <CValidatorUnitFilters id="TargetisnotVisible">
+        <Filters value="-;Visible"/>
+    </CValidatorUnitFilters>
+    <CValidatorUnitFilters id="TargetisnotanItem">
+        <Filters value="-;Item"/>
+    </CValidatorUnitFilters>
     <CValidatorCombine id="UnitisNotChainExplosive">
         <Type value="And"/>
         <CombineArray value="UnitisNotChainExplosiveLevel1"/>
@@ -435,6 +486,9 @@
     <CValidatorUnitType id="CasterisMD5Mine">
         <WhichUnit Value="Caster"/>
         <Value value="MD5Mine"/>
+    </CValidatorUnitType>
+    <CValidatorUnitType id="UnitisReconFlareLevel3">
+        <Value value="FlareGunProjectileLevel3"/>
     </CValidatorUnitType>
     <CValidatorCombine id="UnitisnotDemolitionsExplosive">
         <CombineArray value="UnitisNotChainExplosive"/>
@@ -487,6 +541,10 @@
     <CValidatorUnitOrder id="UnknownValidator">
         <AbilLink value="attack"/>
     </CValidatorUnitOrder>
+    <CValidatorCombine id="StealthMatrixActive">
+        <CombineArray value="StealthMatrixLevel1Active"/>
+        <CombineArray value="StealthMatrixLevel2Active"/>
+    </CValidatorCombine>
     <CValidatorPlayerRequirement id="UnstoppableForceComplete">
         <Find value="1"/>
         <Value value="UnstoppableForceComplete"/>

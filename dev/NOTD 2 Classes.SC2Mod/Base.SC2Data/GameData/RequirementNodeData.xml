@@ -46,6 +46,11 @@
         <Tooltip value=""/>
         <Count Link="AmmoFeed" State="CompleteOnlyAtUnit"/>
     </CRequirementCountAbil>
+    <CRequirementCountAbil id="CountAbilAmmunitionDropCompleteOnlyAtUnit">
+        <Flags index="TechTreeCheat" value="0"/>
+        <Tooltip value=""/>
+        <Count Link="AmmunitionDrop" State="CompleteOnlyAtUnit"/>
+    </CRequirementCountAbil>
     <CRequirementCountAbil id="CountAbilArtilleryBeaconCompleteOnlyAtUnit">
         <Flags index="TechTreeCheat" value="0"/>
         <Tooltip value=""/>
@@ -96,6 +101,11 @@
         <Tooltip value=""/>
         <Count Link="ImmovableObject" State="CompleteOnlyAtUnit"/>
     </CRequirementCountAbil>
+    <CRequirementCountAbil id="CountAbilItemSensorCompleteOnlyAtUnit">
+        <Flags index="TechTreeCheat" value="0"/>
+        <Tooltip value=""/>
+        <Count Link="ItemSensor" State="CompleteOnlyAtUnit"/>
+    </CRequirementCountAbil>
     <CRequirementCountAbil id="CountAbilMotionSensorCompleteOnlyAtUnit">
         <Flags index="TechTreeCheat" value="0"/>
         <Tooltip value=""/>
@@ -111,15 +121,15 @@
         <Tooltip value=""/>
         <Count Link="SJHyperionBanshees" State="CompleteOnlyAtUnit"/>
     </CRequirementCountAbil>
+    <CRequirementCountAbil id="CountAbilSprintingShadowCompleteOnlyAtUnit">
+        <Flags index="TechTreeCheat" value="0"/>
+        <Tooltip value=""/>
+        <Count Link="SprintingShadow" State="CompleteOnlyAtUnit"/>
+    </CRequirementCountAbil>
     <CRequirementCountAbil id="CountAbilStealthMatrixCompleteOnlyAtUnit">
         <Flags index="TechTreeCheat" value="0"/>
         <Tooltip value=""/>
         <Count Link="StealthMatrix" State="CompleteOnlyAtUnit"/>
-    </CRequirementCountAbil>
-    <CRequirementCountAbil id="CountAbilSupplyDropOffensiveCompleteOnlyAtUnit">
-        <Flags index="TechTreeCheat" value="0"/>
-        <Tooltip value=""/>
-        <Count Link="SupplyDropOffensive" State="CompleteOnlyAtUnit"/>
     </CRequirementCountAbil>
     <CRequirementCountBehavior id="CountBehaviorDeployAntiMaterialRifleCompleteOnlyAtUnit">
         <Flags index="TechTreeCheat" value="0"/>
@@ -267,6 +277,11 @@
         <OperandArray index="0" value="CountAbilAmmoFeedCompleteOnlyAtUnit"/>
         <OperandArray index="1" value="1"/>
     </CRequirementEq>
+    <CRequirementEq id="EqCountAbilAmmunitionDropCompleteOnlyAtUnit1">
+        <Tooltip value=""/>
+        <OperandArray index="0" value="CountAbilAmmunitionDropCompleteOnlyAtUnit"/>
+        <OperandArray index="1" value="1"/>
+    </CRequirementEq>
     <CRequirementCountUpgrade id="CountUpgradeWeaponsProficiencyLevel12CompleteOnly">
         <Flags index="TechTreeCheat" value="0"/>
         <Tooltip value=""/>
@@ -357,10 +372,20 @@
         <OperandArray index="0" value="CountAbilHealCompleteOnlyAtUnit"/>
         <OperandArray index="1" value="3"/>
     </CRequirementEq>
+    <CRequirementEq id="EqCountAbilItemSensorCompleteOnlyAtUnit1">
+        <Tooltip value=""/>
+        <OperandArray index="0" value="CountAbilItemSensorCompleteOnlyAtUnit"/>
+        <OperandArray index="1" value="1"/>
+    </CRequirementEq>
     <CRequirementEq id="EqCountAbilImmovableObjectCompleteOnlyAtUnit1">
         <Tooltip value=""/>
         <OperandArray index="0" value="CountAbilImmovableObjectCompleteOnlyAtUnit"/>
         <OperandArray index="1" value="1"/>
+    </CRequirementEq>
+    <CRequirementEq id="EqCountAbilItemSensorCompleteOnlyAtUnit2">
+        <Tooltip value=""/>
+        <OperandArray index="0" value="CountAbilItemSensorCompleteOnlyAtUnit"/>
+        <OperandArray index="1" value="2"/>
     </CRequirementEq>
     <CRequirementEq id="EqCountAbilMotionSensorCompleteOnlyAtUnit1">
         <Tooltip value=""/>
@@ -392,6 +417,11 @@
         <OperandArray index="0" value="CountAbilMotionSensorCompleteOnlyAtUnit"/>
         <OperandArray index="1" value="2"/>
     </CRequirementEq>
+    <CRequirementEq id="EqCountAbilSprintingShadowCompleteOnlyAtUnit1">
+        <Tooltip value=""/>
+        <OperandArray index="0" value="CountAbilSprintingShadowCompleteOnlyAtUnit"/>
+        <OperandArray index="1" value="1"/>
+    </CRequirementEq>
     <CRequirementEq id="EqCountAbilStealthMatrixCompleteOnlyAtUnit1">
         <Tooltip value=""/>
         <OperandArray index="0" value="CountAbilStealthMatrixCompleteOnlyAtUnit"/>
@@ -401,11 +431,6 @@
         <Tooltip value=""/>
         <OperandArray index="0" value="CountAbilStealthMatrixCompleteOnlyAtUnit"/>
         <OperandArray index="1" value="2"/>
-    </CRequirementEq>
-    <CRequirementEq id="EqCountAbilSupplyDropOffensiveCompleteOnlyAtUnit1">
-        <Tooltip value=""/>
-        <OperandArray index="0" value="CountAbilSupplyDropOffensiveCompleteOnlyAtUnit"/>
-        <OperandArray index="1" value="1"/>
     </CRequirementEq>
     <CRequirementEq id="EqCountBehaviorDeployAntiMaterialRifleCompleteOnlyAtUnit1">
         <Tooltip value=""/>
