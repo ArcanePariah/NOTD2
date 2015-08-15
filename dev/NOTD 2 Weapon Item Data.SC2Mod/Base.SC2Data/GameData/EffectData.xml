@@ -40,11 +40,6 @@
         <SearchFlags index="OffsetAreaByAngle" value="1"/>
         <Death value="Blast"/>
     </CEffectDamage>
-    <CEffectSet id="ArmFracturetoBrokenBone">
-        <EditorCategories value=""/>
-        <EffectArray value="ApplyBrokenArm"/>
-        <EffectArray value="RemoveArmFracture"/>
-    </CEffectSet>
     <CEffectSwitch id="AutomaticShotgunDamageCritical">
         <EditorCategories value=""/>
         <CaseArray Validator="Target2RangeOrLessAway" Effect="AutomaticShotgunCriticalDamageRange1"/>
@@ -246,11 +241,6 @@
         <Death value="Impact"/>
         <DisplayFlags index="CollapseBuffed" value="1"/>
     </CEffectDamage>
-    <CEffectSet id="FracturetoBrokenBone">
-        <EditorCategories value=""/>
-        <EffectArray value="ApplyBrokenLeg"/>
-        <EffectArray value="RemoveLegFracture"/>
-    </CEffectSet>
     <CEffectDamage id="AntiMaterialRifleDamage">
         <EditorCategories value=""/>
         <Amount value="180"/>
@@ -276,22 +266,6 @@
         <EditorCategories value=""/>
         <BehaviorLink value="DeployAntiMaterialRifle"/>
     </CEffectRemoveBehavior>
-    <CEffectApplyBehavior id="ApplyArmFracture">
-        <EditorCategories value=""/>
-        <Behavior value="FractureArm"/>
-    </CEffectApplyBehavior>
-    <CEffectApplyBehavior id="ApplyBrokenArm">
-        <EditorCategories value=""/>
-        <Behavior value="BrokenArm"/>
-    </CEffectApplyBehavior>
-    <CEffectApplyBehavior id="ApplyBrokenLeg">
-        <EditorCategories value=""/>
-        <Behavior value="BrokenLeg"/>
-    </CEffectApplyBehavior>
-    <CEffectApplyBehavior id="ApplyLegFracture">
-        <EditorCategories value=""/>
-        <Behavior value="FractureLeg"/>
-    </CEffectApplyBehavior>
     <CEffectDamage id="AssaultRifleDamage">
         <EditorCategories value=""/>
         <ImpactLocation Value="TargetUnit"/>
@@ -368,24 +342,6 @@
     <CEffectApplyBehavior id="ChainsawNoise">
         <EditorCategories value=""/>
     </CEffectApplyBehavior>
-    <CEffectSet id="ConvertBrokenLegtoLegFracture">
-        <EditorCategories value=""/>
-        <EffectArray value="RemoveBrokenLegTarget"/>
-        <EffectArray value="ApplyLegFracture"/>
-    </CEffectSet>
-    <CEffectSet id="ConvertBrokenArmtoArmFracture">
-        <EditorCategories value=""/>
-        <EffectArray value="RemoveBrokenArmTarget"/>
-        <EffectArray value="ApplyArmFracture"/>
-    </CEffectSet>
-    <CEffectSet id="ConvertRandomBrokenBonetoFracture">
-        <EditorCategories value=""/>
-        <EffectArray value="ConvertBrokenLegtoLegFracture"/>
-        <EffectArray value="ConvertBrokenArmtoArmFracture"/>
-        <Random value="1"/>
-        <MinCount value="1"/>
-        <MaxCount value="1"/>
-    </CEffectSet>
     <CEffectDamage id="CrowbarDamage">
         <EditorCategories value=""/>
         <ImpactLocation Value="TargetUnit"/>
@@ -760,39 +716,11 @@
     <CEffectApplyBehavior id="PumpShotgunNoise">
         <EditorCategories value=""/>
     </CEffectApplyBehavior>
-    <CEffectRemoveBehavior id="RemoveArmFracture">
-        <EditorCategories value=""/>
-        <BehaviorLink value="FractureArm"/>
-    </CEffectRemoveBehavior>
-    <CEffectRemoveBehavior id="RemoveBrokenArmTarget">
-        <EditorCategories value=""/>
-        <BehaviorLink value="BrokenArm"/>
-    </CEffectRemoveBehavior>
-    <CEffectSet id="RemoveBrokenBoneRandom">
-        <EditorCategories value=""/>
-        <EffectArray value="RemoveBrokenLegTarget"/>
-        <EffectArray value="RemoveBrokenArmTarget"/>
-        <Random value="1"/>
-        <MinCount value="1"/>
-        <MaxCount value="1"/>
-    </CEffectSet>
     <CEffectDestroyPersistent id="RemoveFieldLights">
         <EditorCategories value=""/>
         <Effect value="FieldLightPersistent"/>
         <Count value="500"/>
     </CEffectDestroyPersistent>
-    <CEffectRemoveBehavior id="RemoveLegFracture">
-        <EditorCategories value=""/>
-        <BehaviorLink value="FractureLeg"/>
-    </CEffectRemoveBehavior>
-    <CEffectSet id="RemoveRandomFracture">
-        <EditorCategories value=""/>
-        <EffectArray value="RemoveArmFracture"/>
-        <EffectArray value="RemoveLegFracture"/>
-        <Random value="1"/>
-        <MinCount value="1"/>
-        <MaxCount value="1"/>
-    </CEffectSet>
     <CEffectLaunchMissile id="RoadFlare">
         <EditorCategories value=""/>
         <ImpactLocation Value="TargetPoint"/>
@@ -1073,31 +1001,9 @@
         <EditorCategories value=""/>
         <WhichUnit Value="Caster"/>
     </CEffectApplyBehavior>
-    <CEffectRemoveBehavior id="RemoveBlindTarget">
-        <EditorCategories value=""/>
-        <BehaviorLink value="Blind"/>
-    </CEffectRemoveBehavior>
-    <CEffectRemoveBehavior id="RemoveOpenWoundTarget">
-        <EditorCategories value=""/>
-        <BehaviorLink value="OpenWound"/>
-    </CEffectRemoveBehavior>
-    <CEffectRemoveBehavior id="RemoveShortCircuitTarget">
-        <EditorCategories value=""/>
-        <BehaviorLink value="ShortCircuit"/>
-    </CEffectRemoveBehavior>
-    <CEffectRemoveBehavior id="RemoveVenomTarget">
-        <EditorCategories value=""/>
-        <BehaviorLink value="Venom"/>
-    </CEffectRemoveBehavior>
     <CEffectApplyBehavior id="RocketLauncherNoise">
         <EditorCategories value=""/>
     </CEffectApplyBehavior>
-    <CEffectSwitch id="FractureRemoval">
-        <EditorCategories value=""/>
-        <CaseArray Validator="UnithasArmandLegFracture" Effect="RemoveRandomFracture"/>
-        <CaseArray Validator="UnithasLegFracture" Effect="RemoveLegFracture"/>
-        <CaseArray Validator="UnithasArmFracture" Effect="RemoveArmFracture"/>
-    </CEffectSwitch>
     <CEffectDamage id="ShotgunSlugShotDamage">
         <EditorCategories value=""/>
         <ImpactLocation Value="TargetUnit"/>
@@ -1157,10 +1063,6 @@
         <Death value="Disintegrate"/>
         <DisplayFlags index="CollapseBuffed" value="1"/>
     </CEffectDamage>
-    <CEffectRemoveBehavior id="RemoveBrokenLegTarget">
-        <EditorCategories value=""/>
-        <BehaviorLink value="BrokenLeg"/>
-    </CEffectRemoveBehavior>
     <CEffectApplyBehavior id="WeaponEquipDelay">
         <EditorCategories value=""/>
     </CEffectApplyBehavior>

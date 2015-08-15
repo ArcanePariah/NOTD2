@@ -4,16 +4,41 @@
         <InfoFlags index="Hidden" value="1"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
     </CBehaviorBuff>
-    <CBehaviorBuff id="BuildingStasis">
-        <Modification>
-            <StateFlags index="Stun" value="0"/>
-        </Modification>
+    <CBehaviorBuff id="BrokenArm">
+        <Alignment value="Negative"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <TechAliasArray value="_BrokenBone"/>
+        <Duration value="360"/>
+        <Modification AttackSpeedMultiplier="0.2"/>
+        <ExpireEffect value="ArmFracture"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="BrokenLeg">
+        <Alignment value="Negative"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <TechAliasArray value="_BrokenBone"/>
+        <Duration value="300"/>
+        <Modification MoveSpeedMultiplier="0.4"/>
+        <ExpireEffect value="LegFracture"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="Blind">
         <Alignment value="Negative"/>
         <InfoIcon value="Assets\Textures\btn-ability-zerg-viper-ocularparasite.dds"/>
-        <Duration value="10"/>
-        <Modification SightBonus="-7" SightMaximum="2"/>
+        <Duration value="5"/>
+        <Modification SightBonus="-2" SightMaximum="0"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="ArmFracture">
+        <Alignment value="Negative"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="300"/>
+        <RefreshEffect value="ConvertArmFracturetoBrokenArm"/>
+        <Modification AttackSpeedMultiplier="0.55"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="LegFracture">
+        <Alignment value="Negative"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="300"/>
+        <RefreshEffect value="ConvertLegFracturetoBrokenLeg"/>
+        <Modification MoveSpeedMultiplier="0.65"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="NightmareDifficultyModifier">
         <InfoFlags index="Hidden" value="1"/>
@@ -35,11 +60,10 @@
         <Alignment value="Negative"/>
         <InfoIcon value="Assets\Textures\btn-upgrade-zerg-adrenaloverload.dds"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
-        <MaxStackCount value="5"/>
-        <Duration value="240"/>
-        <Modification>
-            <VitalRegenArray index="Life" value="-1"/>
-        </Modification>
+        <MaxStackCount value="20"/>
+        <Duration value="120"/>
+        <Period value="1"/>
+        <PeriodicEffect value="OpenWoundDamage"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="OpenWoundShieldsStart">
         <Alignment value="Positive"/>
@@ -96,11 +120,12 @@
         <Alignment value="Negative"/>
         <InfoIcon value="Assets\Textures\btn-ability-kerrigan-chainreaction.dds"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
-        <Duration value="70"/>
+        <Duration value="120"/>
         <Modification>
-            <VitalRegenArray index="Shields" value="-2"/>
-            <VitalRegenArray index="Energy" value="-2"/>
+            <StateFlags index="SuppressShieldsRegen" value="1"/>
+            <VitalRegenArray index="Energy" value="-0.75"/>
         </Modification>
+        <InitialEffect value="ShortCircuitShieldDrain"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="ShortCircuitAttacker">
         <InfoFlags index="Hidden" value="1"/>
@@ -113,25 +138,14 @@
             <Minimum value="10"/>
         </DamageResponse>
     </CBehaviorBuff>
-    <CBehaviorBuff id="TestBehavior">
-        <EditorCategories value="AbilityorEffectType:Units"/>
-        <DisplayDuration index="Self" value="1"/>
-        <Duration value="30"/>
-        <Modification>
-            <StateFlags index="Bury" value="1"/>
-            <StateFlags index="Cloak" value="1"/>
-            <VitalRegenArray index="Life" value="-1"/>
-        </Modification>
-    </CBehaviorBuff>
     <CBehaviorBuff id="Venom">
         <Alignment value="Negative"/>
         <InfoIcon value="Assets\Textures\btn-ability-zerg-banelingspooge.dds"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
-        <MaxStackCount value="15"/>
-        <Duration value="180"/>
-        <Modification MoveSpeedMultiplier="0.95">
-            <VitalRegenArray index="Life" value="-0.3984"/>
-        </Modification>
+        <MaxStackCount value="50"/>
+        <Duration value="120"/>
+        <Modification MoveSpeedMultiplier="0.99"/>
+        <DamageResponse Chance="1" ModifyFraction="1.01"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="VenomAttacker">
         <InfoFlags index="Hidden" value="1"/>
@@ -144,13 +158,5 @@
             <Location value="Attacker"/>
             <Minimum value="10"/>
         </DamageResponse>
-    </CBehaviorBuff>
-    <CBehaviorCreepSource id="makeCreep3x3">
-        <Delay value="5"/>
-        <Period value="1"/>
-    </CBehaviorCreepSource>
-    <CBehaviorBuff id="testbehavior2">
-        <EditorCategories value="AbilityorEffectType:Units"/>
-        <Modification MoveSpeedBonus="-1"/>
     </CBehaviorBuff>
 </Catalog>

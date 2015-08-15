@@ -211,6 +211,7 @@ trigger libC50FD636_gt_TalentSelection;
 trigger libC50FD636_gt_TalentTreeToggle;
 trigger libC50FD636_gt_TalentButtonHookup;
 trigger libC50FD636_gt_JumpUpgrade;
+trigger libC50FD636_gt_JumpReductionLegFracture;
 trigger libC50FD636_gt_MedicalAssistanceUsage;
 trigger libC50FD636_gt_HeroTest;
 
@@ -2857,6 +2858,37 @@ void libC50FD636_gt_JumpUpgrade_Init () {
 }
 
 //--------------------------------------------------------------------------------------------------
+// Trigger: Jump Reduction - Leg Fracture
+//--------------------------------------------------------------------------------------------------
+bool libC50FD636_gt_JumpReductionLegFracture_Func (bool testConds, bool runActions) {
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((EventUnitBehaviorChange() == c_unitBehaviorChangeCreate)) {
+        CatalogFieldValueSet(c_gameCatalogAbil, "HeavyJump", "Range[" + IntToString(0) + "]", UnitGetOwner(EventUnit()), IntToString((CatalogFieldValueGetAsInt(c_gameCatalogAbil, "HeavyJump", "Range[" + IntToString(0) + "]", UnitGetOwner(EventUnit())) - 1)));
+        CatalogFieldValueSet(c_gameCatalogAbil, "LightJump", "Range[" + IntToString(0) + "]", UnitGetOwner(EventUnit()), IntToString((CatalogFieldValueGetAsInt(c_gameCatalogAbil, "LightJump", "Range[" + IntToString(0) + "]", UnitGetOwner(EventUnit())) - 1)));
+        CatalogFieldValueSet(c_gameCatalogAbil, "MediumJump", "Range[" + IntToString(0) + "]", UnitGetOwner(EventUnit()), IntToString((CatalogFieldValueGetAsInt(c_gameCatalogAbil, "MediumJump", "Range[" + IntToString(0) + "]", UnitGetOwner(EventUnit())) - 1)));
+        CatalogFieldValueSet(c_gameCatalogAbil, "PathfinderJump", "Range[" + IntToString(0) + "]", UnitGetOwner(EventUnit()), IntToString((CatalogFieldValueGetAsInt(c_gameCatalogAbil, "PathfinderJump", "Range[" + IntToString(0) + "]", UnitGetOwner(EventUnit())) - 1)));
+    }
+    else {
+        CatalogFieldValueSet(c_gameCatalogAbil, "HeavyJump", "Range[" + IntToString(0) + "]", UnitGetOwner(EventUnit()), IntToString((CatalogFieldValueGetAsInt(c_gameCatalogAbil, "HeavyJump", "Range[" + IntToString(0) + "]", UnitGetOwner(EventUnit())) + 1)));
+        CatalogFieldValueSet(c_gameCatalogAbil, "LightJump", "Range[" + IntToString(0) + "]", UnitGetOwner(EventUnit()), IntToString((CatalogFieldValueGetAsInt(c_gameCatalogAbil, "LightJump", "Range[" + IntToString(0) + "]", UnitGetOwner(EventUnit())) + 1)));
+        CatalogFieldValueSet(c_gameCatalogAbil, "MediumJump", "Range[" + IntToString(0) + "]", UnitGetOwner(EventUnit()), IntToString((CatalogFieldValueGetAsInt(c_gameCatalogAbil, "MediumJump", "Range[" + IntToString(0) + "]", UnitGetOwner(EventUnit())) + 1)));
+        CatalogFieldValueSet(c_gameCatalogAbil, "PathfinderJump", "Range[" + IntToString(0) + "]", UnitGetOwner(EventUnit()), IntToString((CatalogFieldValueGetAsInt(c_gameCatalogAbil, "PathfinderJump", "Range[" + IntToString(0) + "]", UnitGetOwner(EventUnit())) + 1)));
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libC50FD636_gt_JumpReductionLegFracture_Init () {
+    libC50FD636_gt_JumpReductionLegFracture = TriggerCreate("libC50FD636_gt_JumpReductionLegFracture_Func");
+    TriggerAddEventUnitBehaviorChange(libC50FD636_gt_JumpReductionLegFracture, null, "LegFracture", c_unitBehaviorChangeCreate);
+    TriggerAddEventUnitBehaviorChange(libC50FD636_gt_JumpReductionLegFracture, null, "LegFracture", c_unitBehaviorChangeDestroy);
+}
+
+//--------------------------------------------------------------------------------------------------
 // Trigger: Medical Assistance Usage
 //--------------------------------------------------------------------------------------------------
 bool libC50FD636_gt_MedicalAssistanceUsage_Func (bool testConds, bool runActions) {
@@ -3042,6 +3074,7 @@ void libC50FD636_InitTriggers () {
     libC50FD636_gt_TalentTreeToggle_Init();
     libC50FD636_gt_TalentButtonHookup_Init();
     libC50FD636_gt_JumpUpgrade_Init();
+    libC50FD636_gt_JumpReductionLegFracture_Init();
     libC50FD636_gt_MedicalAssistanceUsage_Init();
     libC50FD636_gt_HeroTest_Init();
 }
