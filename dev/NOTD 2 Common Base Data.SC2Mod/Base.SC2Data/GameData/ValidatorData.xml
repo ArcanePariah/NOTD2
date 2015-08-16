@@ -4,6 +4,11 @@
         <Value value="##id##"/>
         <Find value="1"/>
     </CValidatorPlayerRequirement>
+    <CValidatorUnitCompareBehaviorCount default="1" id="AilmentTemplate">
+        <?token id="Ailment"?>
+        <Compare value="GT"/>
+        <Behavior value="##Ailment##"/>
+    </CValidatorUnitCompareBehaviorCount>
     <CValidatorPlayerRequirement id="Chapter1Complete" parent="ChapterComplete">
         <Value value="Chapter1Complete"/>
     </CValidatorPlayerRequirement>
@@ -77,6 +82,14 @@
         <Value value="1"/>
         <Behavior value="Range2"/>
     </CValidatorUnitCompareBehaviorCount>
+    <CValidatorUnitCompareBehaviorCount id="UnithasArmFracture" parent="AilmentTemplate" Ailment="ArmFracture"/>
+    <CValidatorUnitCompareBehaviorCount id="UnithasBlind" parent="AilmentTemplate" Ailment="Blind"/>
+    <CValidatorUnitCompareBehaviorCount id="UnithasBrokenArm" parent="AilmentTemplate" Ailment="BrokenArm"/>
+    <CValidatorUnitCompareBehaviorCount id="UnithasBrokenLeg" parent="AilmentTemplate" Ailment="BrokenLeg"/>
+    <CValidatorUnitCompareBehaviorCount id="UnithasLegFracture" parent="AilmentTemplate" Ailment="LegFracture"/>
+    <CValidatorUnitCompareBehaviorCount id="UnithasOpenWound" parent="AilmentTemplate" Ailment="OpenWound"/>
+    <CValidatorUnitCompareBehaviorCount id="UnithasShortCircuit" parent="AilmentTemplate" Ailment="ShortCircuit"/>
+    <CValidatorUnitCompareBehaviorCount id="UnithasVenom" parent="AilmentTemplate" Ailment="Venom"/>
     <CValidatorPlayerCompareRace id="UnitisfromZombies">
         <WhichPlayer Value="Target"/>
         <Value value="Zombie"/>
