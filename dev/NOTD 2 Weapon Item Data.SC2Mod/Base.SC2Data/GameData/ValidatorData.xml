@@ -210,6 +210,26 @@
         <Location value="Unit"/>
         <Value value="30"/>
     </CValidatorUnitCompareChargeUsed>
+    <CValidatorLocationCompareRange id="SubmachineGunCritRangeGT4dot5">
+        <WhichLocation Effect="SubmachineGunDamageCritical" Value="TargetUnit"/>
+        <Compare value="GT"/>
+        <Range value="4.5"/>
+    </CValidatorLocationCompareRange>
+    <CValidatorLocationCompareRange id="SubmachineGunCritRangeLE4dot5">
+        <WhichLocation Effect="SubmachineGunDamageCritical" Value="TargetUnit"/>
+        <Compare value="LE"/>
+        <Range value="4.5"/>
+    </CValidatorLocationCompareRange>
+    <CValidatorLocationCompareRange id="SubmachineGunRangeGT4dot5">
+        <WhichLocation Effect="SubmachineGunDamage" Value="TargetUnit"/>
+        <Compare value="GT"/>
+        <Range value="4.5"/>
+    </CValidatorLocationCompareRange>
+    <CValidatorLocationCompareRange id="SubmachineGunRangeLE4dot5">
+        <WhichLocation Effect="SubmachineGunDamage" Value="TargetUnit"/>
+        <Compare value="LE"/>
+        <Range value="4.5"/>
+    </CValidatorLocationCompareRange>
     <CValidatorLocationCompareRange id="Target1RangeOrLessAway">
         <WhichLocation Value="TargetUnit"/>
         <Compare value="LT"/>

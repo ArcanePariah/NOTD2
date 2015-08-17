@@ -278,7 +278,7 @@
         <EditorCategories value=""/>
         <ImpactLocation Value="TargetUnit"/>
         <AttributeBonus index="Massive" value="5"/>
-        <ArmorReduction value="1.5"/>
+        <ArmorReduction value="1"/>
         <Amount value="15"/>
         <AreaArray Arc="5.7238" Radius="2.5" Fraction="0.5"/>
         <ExcludeArray Value="Target"/>
@@ -335,21 +335,22 @@
     </CEffectApplyBehavior>
     <CEffectDamage id="ChainsawDamage">
         <EditorCategories value=""/>
-        <AttributeBonus index="Light" value="15"/>
-        <ArmorReduction value="1.5"/>
-        <Amount value="30"/>
+        <AttributeBonus index="Light" value="25"/>
+        <ArmorReduction value="2"/>
+        <Amount value="40"/>
         <Death value="Eviscerate"/>
-        <AreaArray Radius="1.5" Fraction="1"/>
+        <AreaArray MaxCount="4" Radius="1" Fraction="1"/>
         <ExcludeArray Value="Target"/>
         <SearchFilters value="-;Player,Ally,Neutral,Item,Invulnerable"/>
         <Kind value="Melee"/>
         <KindSplash value="Melee"/>
         <DisplayFlags index="CollapseBuffed" value="1"/>
+        <TargetSorts>
+            <SortArray value="TSDistanceToTarget"/>
+        </TargetSorts>
     </CEffectDamage>
     <CEffectDamage id="ChainsawDamageCritical" parent="ChainsawDamage">
-        <Marker Link="Effect/ChainsawDamageCritical"/>
-        <AttributeBonus index="Light" value="37.5"/>
-        <Amount value="75"/>
+        <Amount value="100"/>
     </CEffectDamage>
     <CEffectApplyBehavior id="ChainsawNoise">
         <EditorCategories value=""/>
@@ -375,7 +376,6 @@
     <CEffectDamage id="CrowbarDamage">
         <EditorCategories value=""/>
         <ImpactLocation Value="TargetUnit"/>
-        <ArmorReduction value="1"/>
         <Amount value="40"/>
         <ExcludeArray Value="Target"/>
         <SearchFilters value="-;Player,Ally,Neutral,Item,Invulnerable"/>
@@ -383,6 +383,10 @@
         <KindSplash value="Melee"/>
         <Death value="Impact"/>
         <DisplayFlags index="CollapseBuffed" value="1"/>
+        <AreaArray MaxCount="2" Radius="1" Fraction="1"/>
+        <TargetSorts>
+            <SortArray value="TSDistanceToTarget"/>
+        </TargetSorts>
     </CEffectDamage>
     <CEffectDamage id="CrowbarDamageCritical" parent="CrowbarDamage">
         <Amount value="100"/>
@@ -399,7 +403,7 @@
         <ImpactLocation Value="TargetPoint"/>
         <Kind value="Ranged"/>
         <KindSplash value="Splash"/>
-        <Amount value="7"/>
+        <Amount value="7.2"/>
         <AreaArray Radius="0.1875" Fraction="1"/>
         <SearchFilters value="Ground;Player,Ally,Neutral,Item,Invulnerable"/>
         <SearchFlags index="ExtendByUnitRadius" value="1"/>
@@ -892,7 +896,7 @@
     <CEffectDamage id="LaserRifleDamage">
         <EditorCategories value=""/>
         <ImpactLocation Value="TargetUnit"/>
-        <ArmorReduction value="-2"/>
+        <ArmorReduction value="-2.5"/>
         <Amount value="20"/>
         <AreaArray Radius="0.1" Fraction="1"/>
         <ExcludeArray Value="Target"/>
@@ -932,6 +936,7 @@
         <DisplayFlags index="CollapseBuffed" value="1"/>
         <SearchFlags index="OffsetByUnitRadius" value="1"/>
         <SearchFlags index="OffsetAreaByAngle" value="1"/>
+        <AttributeBonus index="Massive" value="5"/>
     </CEffectDamage>
     <CEffectDamage id="MediumMachineGunDamageCritical" parent="MediumMachineGunDamage">
         <Amount value="37.5"/>
@@ -947,7 +952,7 @@
         <DisplayFlags index="CollapseBuffed" value="1"/>
     </CEffectDamage>
     <CEffectDamage id="PistolDamageCritical" parent="PistolDamage">
-        <Amount value="70"/>
+        <Amount value="60"/>
         <Death value="Blast"/>
     </CEffectDamage>
     <CEffectApplyBehavior id="PlasmaCannonArmorReduction">
@@ -969,7 +974,7 @@
         <Kind value="Melee"/>
         <KindSplash value="Melee"/>
         <ImpactLocation Value="TargetUnit"/>
-        <Amount value="120"/>
+        <Amount value="150"/>
         <AreaArray Radius="0.1" Fraction="1"/>
         <ExcludeArray Value="Target"/>
         <Death value="Impact"/>
@@ -978,7 +983,7 @@
     <CEffectDamage id="MarksmanRifleDamage">
         <EditorCategories value=""/>
         <ImpactLocation Value="TargetUnit"/>
-        <ArmorReduction value="2"/>
+        <ArmorReduction value="3"/>
         <Amount value="60"/>
         <AreaArray Arc="5.7238" Radius="2" Fraction="0.3332"/>
         <ExcludeArray Value="Target"/>
@@ -995,7 +1000,7 @@
         <Death value="Blast"/>
     </CEffectDamage>
     <CEffectDamage id="PlasmaCutterDamageCritical" parent="PlasmaCutterDamage">
-        <Amount value="300"/>
+        <Amount value="375"/>
         <Death value="Blast"/>
     </CEffectDamage>
     <CEffectDamage id="RailgunDamage">
@@ -1089,19 +1094,36 @@
         <EditorCategories value=""/>
         <ImpactLocation Value="TargetUnit"/>
         <AttributeBonus index="Light" value="10"/>
-        <ArmorReduction value="2"/>
-        <Amount value="10"/>
-        <AreaArray Radius="1.75" Fraction="1"/>
-        <ExcludeArray Value="Target"/>
+        <ArmorReduction value="2.5"/>
+        <Amount value="15"/>
+        <AreaArray MaxCount="1" Fraction="1" Validator="SubmachineGunRangeLE4dot5"/>
+        <AreaArray>
+            <MaxCount value="2"/>
+            <Radius value="2"/>
+            <Fraction value="1"/>
+            <Validator value="SubmachineGunRangeGT4dot5"/>
+        </AreaArray>
         <SearchFilters value="-;Player,Ally,Neutral,Item,Invulnerable"/>
         <Kind value="Ranged"/>
         <KindSplash value="Splash"/>
         <Death value="Eviscerate"/>
         <DisplayFlags index="CollapseBuffed" value="1"/>
+        <ImpactUnitValidator value="SubmachineGunRangeLE4dot5"/>
+        <TargetSorts>
+            <SortArray value="TSDistanceToTarget"/>
+        </TargetSorts>
     </CEffectDamage>
     <CEffectDamage id="SubmachineGunDamageCritical" parent="SubmachineGunDamage">
         <Amount value="22.5"/>
         <Death value="Blast"/>
+        <ImpactUnitValidator value="SubmachineGunCritRangeLE4dot5"/>
+        <AreaArray index="0" MaxCount="1" Fraction="1" Validator="SubmachineGunCritRangeLE4dot5"/>
+        <AreaArray index="1">
+            <MaxCount value="2"/>
+            <Radius value="2"/>
+            <Fraction value="1"/>
+            <Validator value="SubmachineGunCritRangeGT4dot5"/>
+        </AreaArray>
     </CEffectDamage>
     <CEffectApplyBehavior id="SuperGravityGunNoise">
         <EditorCategories value=""/>
