@@ -170,6 +170,7 @@ trigger libC50FD636_gt_Bulwark;
 trigger libC50FD636_gt_BulwarkPositioning;
 trigger libC50FD636_gt_BulwarkPositioningUpdate;
 trigger libC50FD636_gt_ScamperTracking;
+trigger libC50FD636_gt_TrackingTagReveal;
 trigger libC50FD636_gt_BlackDiamondUsed;
 trigger libC50FD636_gt_BlackDiamondStun;
 trigger libC50FD636_gt_BlackDiamondBonusDamage;
@@ -1438,6 +1439,29 @@ bool libC50FD636_gt_ScamperTracking_Func (bool testConds, bool runActions) {
 void libC50FD636_gt_ScamperTracking_Init () {
     libC50FD636_gt_ScamperTracking = TriggerCreate("libC50FD636_gt_ScamperTracking_Func");
     TriggerAddEventUnitCreated(libC50FD636_gt_ScamperTracking, null, "Scamper", null);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Tracking Tag Reveal
+//--------------------------------------------------------------------------------------------------
+bool libC50FD636_gt_TrackingTagReveal_Func (bool testConds, bool runActions) {
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    IntLoopBegin(lib1E3F036D_gv_indexBaseValue, libC50FD636_gv_numberofPlayers);
+    for ( ; !IntLoopDone() ; IntLoopStep() ) {
+        UnitBehaviorAddPlayer(EventUnit(), "TrackingTag", IntLoopCurrent(), 1);
+    }
+    IntLoopEnd();
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libC50FD636_gt_TrackingTagReveal_Init () {
+    libC50FD636_gt_TrackingTagReveal = TriggerCreate("libC50FD636_gt_TrackingTagReveal_Func");
+    TriggerAddEventUnitBehaviorChange(libC50FD636_gt_TrackingTagReveal, null, "TrackingTag", c_unitBehaviorChangeCreate);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -3024,6 +3048,7 @@ void libC50FD636_InitTriggers () {
     libC50FD636_gt_BulwarkPositioning_Init();
     libC50FD636_gt_BulwarkPositioningUpdate_Init();
     libC50FD636_gt_ScamperTracking_Init();
+    libC50FD636_gt_TrackingTagReveal_Init();
     libC50FD636_gt_BlackDiamondUsed_Init();
     libC50FD636_gt_BlackDiamondStun_Init();
     libC50FD636_gt_BlackDiamondBonusDamage_Init();

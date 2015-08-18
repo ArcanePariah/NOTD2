@@ -362,6 +362,7 @@ Behavior/Name/StealthMatrixLevel2=Stealth Matrix Level 2
 Behavior/Name/TauntedLevel1=Taunted Level 1
 Behavior/Name/TauntedLevel2=Taunted Level 2
 Behavior/Name/TauntedLevel3=Taunted Level 3
+Behavior/Name/TrackingTag=Tracking Tag
 Behavior/Name/VolatileInjectionLevel1=Volatile Injection Level 1
 Behavior/Name/VolatileInjectionLevel2=Volatile Injection Level 2
 Behavior/Name/VolatileInjectionLevel3=Volatile Injection Level 3
@@ -407,6 +408,8 @@ Button/Name/Cohesion=Cohesion
 Button/Name/CollateralDamage=Collateral Damage
 Button/Name/CombatKnife=Combat Knife
 Button/Name/CombatManeuvers=Combat Maneuvers
+Button/Name/ConcealmentOff=Concealment Off
+Button/Name/ConcealmentOn=Concealment On
 Button/Name/ConcentratedFire=Concentrated Fire
 Button/Name/Conviction=Conviction
 Button/Name/CripplingFire=Crippling Fire
@@ -542,6 +545,7 @@ Button/Name/Ruthlessness=Ruthlessness
 Button/Name/Sadist=Sadist
 Button/Name/SatchelCharge=Satchel Charge
 Button/Name/SatelliteUplink=Satellite Uplink
+Button/Name/Scamper=Scamper
 Button/Name/Scapegoat=Scapegoat
 Button/Name/ScorchedEarth=Scorched Earth
 Button/Name/SelfAid=Self Aid
@@ -570,6 +574,7 @@ Button/Name/ThermobaricGrenade=Thermobaric Grenade
 Button/Name/ThoughtProcess=Thought Process
 Button/Name/ThousandAnts=Thousand Ants
 Button/Name/ThunderballFists=Thunderball Fists
+Button/Name/TrackingTag=Tracking Tag
 Button/Name/TrailblazerGear=Trailblazer Gear
 Button/Name/Vengeance=Vengeance
 Button/Name/VolatileInjection=Volatile Injection
@@ -597,6 +602,8 @@ Button/Tooltip/ChargeNOTD=Deals 50 (+50 vs Light) damage to all enemies in the A
 Button/Tooltip/ChargeNOTDLevel2=Deals 100 (+100 vs Light) damage to all enemies in the Assault’s path, knocking them back and stunning them for 4 seconds. Heroic units are stunned for 2 second and Massive units cannot be knocked back.<n/>
 Button/Tooltip/CloseAirSupport=Call in an A-10X for an attack run. The A-10X will fire its main cannon at enemy targets in its path and fire missiles at designated targets.
 Button/Tooltip/CombatKnife=Deals <d ref="Effect,CombatKnifeDamage,Amount"/> damage in front of the user and lowers the movespeed of damaged Light enemies by 70% and Non-Light enemies by 35% for 3 seconds. Does not slow Heroic units. Has a <d ref="Effect,CombatKnifeDoubleDamage,Chance * 100" precision="2"/>% chance to deal double damage.
+Button/Tooltip/ConcealmentOff=Become visible and return to normal Movement Speed.
+Button/Tooltip/ConcealmentOn=Reduces the Scamper's Movement Speed by <d ref="1 - Behavior,Concealment,Modification.MoveSpeedMultiplier * 100"/>% and renders it invisible.
 Button/Tooltip/ConcentratedFire=Increases Attack Speed by <d ref="Behavior,ConcentratedFireLevel1,Modification.AttackSpeedMultiplier-1*100" precision="2"/>% and Critical Strike by <d ref="Behavior,ConcentratedFireLevel1,Modification.CriticalAttackChanceUnscaledBonus*100" precision="1"/>% for <d ref="Behavior,ConcentratedFireLevel1,Duration"/> seconds.
 Button/Tooltip/ConcentratedFireLevel2=
 Button/Tooltip/ConcentratedFireLevel3=Increases Attack Speed by 150% and Critical Strike by 15% for 7 seconds.
@@ -702,6 +709,7 @@ Button/Tooltip/Talents=Access character talent trees and spend skillpoints.
 Button/Tooltip/TauntNOTD=Forces all enemies in a <d ref="Effect,TauntLevel1,AreaArray[0].Radius" precision="1"/> radius to attack at a <d ref="Behavior,TauntedLevel1,Modification.DamageDealtFraction[Melee]*(-100)" precision="1"/>% damage penalty for <d ref="Behavior,TauntedLevel1,Duration"/> seconds.
 Button/Tooltip/TeamLocation=Pings the locations of all teammembers on the minimap.
 Button/Tooltip/ThunderballFists=Engage the Thunderball Fists protocol, dragging enemies within a <d ref="Effect,ThunderballFistsSearch,AreaArray[0].Radius"/> radius to the Demolitions and dealing <d ref="Effect,ThunderballFistsDamage,Amount"/> damage every <d ref="Effect,ThunderballFists,PeriodicPeriodArray[0]" precision="2"/> seconds for <d ref="Effect,ThunderballFists,PeriodicPeriodArray[0] * Effect,ThunderballFists,PeriodCount" precision="2"/> seconds.
+Button/Tooltip/TrackingTag=Reveals the target unit to allied players for <d ref="Behavior,TrackingTag,Duration / 60"/> minutes.
 Button/Tooltip/VolatileInjection=Deals <d ref="Effect,VolatileInjectionDamageLevel1,Amount"/> damage to all units within a <d ref="Effect,VolatileInjectionSearchLevel1,AreaArray[0].Radius"/> radius of the afflicted unit when it dies.
 Button/Tooltip/VolatileInjectionLevel2=
 Button/Tooltip/VolatileInjectionLevel3=
