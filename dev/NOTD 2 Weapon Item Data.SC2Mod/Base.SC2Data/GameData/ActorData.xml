@@ -318,6 +318,7 @@
     <CActorAction id="PumpShotgunAttack" parent="WeaponAttackTemplate" effectAttack="PumpShotgunDamage">
         <LaunchAssets Sound="PumpShotgunShot"/>
         <ImpactMap index="None" Sound="Reaper_AttackImpact"/>
+        <DamageMap index="None" AnimProps="Birth,01"/>
     </CActorAction>
     <CActorUnit id="AmmunitionCase" parent="GenericUnitSelectableNoAutoSoundLinks" unitName="AmmunitionCase">
         <EditorCategories value=""/>
@@ -336,7 +337,8 @@
     </CActorUnit>
     <CActorAction id="AntiMaterialRifleAttack" parent="WeaponAttackTemplate" effectAttack="AntiMaterialRifleDamage">
         <LaunchAssets Model="AutoTurretAttackLaunch" Sound="AntiMaterialRifleShot"/>
-        <ImpactMap index="None" Model="PointDefenseBeamImpact" Sound="Ghost_SnipeImpact"/>
+        <ImpactMap index="None" Sound="Ghost_SnipeImpact"/>
+        <DamageMap index="None" AnimProps="Birth,01"/>
     </CActorAction>
     <CActorUnit id="Antivenom" parent="MedicalItemTemplate" unitName="AntiVenom"/>
     <CActorUnit id="AssaultRifle" parent="WeaponCrateTemplate" unitName="AssaultRifle">
@@ -383,7 +385,8 @@
     </CActorUnit>
     <CActorAction id="HeavyMachineGunAttack" parent="WeaponAttackTemplate" effectAttack="HeavyMachineGunDamage">
         <LaunchAssets Model="AutoTurretAttackLaunch" Sound="HMGShot"/>
-        <ImpactMap index="None" Model="AutoTurretAttackImpact" Sound="Terran_MachineGunLarge_Impact"/>
+        <ImpactMap index="None" Sound="Terran_MachineGunLarge_Impact"/>
+        <DamageMap index="None" AnimProps="Birth,01"/>
     </CActorAction>
     <CActorEventMacro id="HeavyMachineGunMacro">
         <On Terms="Abil.AlternateFireModes.Start; ValidateUnit DeployingHeavyMachineGun" Send="AnimPlay HeavyMachineGun Work,Large,Start 0 -1.000000 -1.000000 3.000000 AsDuration"/>
@@ -439,7 +442,8 @@
     <CActorAction id="MarksmanRifleAttack" parent="WeaponAttackTemplate" effectAttack="MarksmanRifleDamage">
         <LaunchAttachQuery Methods="AMFilterWeapon"/>
         <LaunchAssets Model="GhostAttackLaunch" Sound="MarksmanRifleShot"/>
-        <ImpactMap index="None" Model="GhostAttackImpact" Sound="Ghost_SnipeImpact"/>
+        <ImpactMap index="None" Sound="Ghost_SnipeImpact"/>
+        <DamageMap index="None" AnimProps="Birth,01"/>
     </CActorAction>
     <CActorUnit id="Medkit" parent="MedicalItemTemplate" unitName="Medkit"/>
     <CActorUnit id="MediumMachineGun" parent="WeaponCrateTemplate" unitName="MediumMachineGun">
@@ -457,7 +461,8 @@
     <CActorAction id="MediumMachineGunAttack" parent="WeaponAttackTemplate" effectAttack="MediumMachineGunDamage">
         <LaunchAttachQuery Methods="AMFilterWeapon"/>
         <LaunchAssets Model="VikingAssaultAttackLaunch" Sound="MMGShot"/>
-        <ImpactMap index="None" Model="VikingAssaultAttackImpact" Sound="Marine_AttackImpact"/>
+        <ImpactMap index="None" Sound="Marine_AttackImpact"/>
+        <DamageMap index="None" AnimProps="Birth,01"/>
     </CActorAction>
     <CActorAction id="PistolAttack" parent="WeaponAttackTemplate" effectAttack="PistolDamage">
         <LaunchAttachQuery Methods="AMFilterWeapon"/>
@@ -473,7 +478,7 @@
         <UnitIcon value="Weapons\btn-PumpShotgun.dds"/>
     </CActorUnit>
     <CActorAction id="AutomaticShotgunAttack" parent="WeaponAttackTemplate" effectAttack="AutomaticShotgunDamage">
-        <DamageMap index="None" Model="WraithGroundAttackImpact" Sound="Reaper_AttackImpact"/>
+        <DamageMap index="None" AnimProps="Birth,01" Sound="Reaper_AttackImpact"/>
         <LaunchAssets Sound="AutomaticShotgunShot"/>
         <ImpactMap index="None" Sound="Reaper_AttackImpact"/>
     </CActorAction>
@@ -498,16 +503,32 @@
     </CActorUnit>
     <CActorAction id="SubmachineGunAttack" parent="WeaponAttackTemplate" effectAttack="SubmachineGunDamage">
         <LaunchAttachQuery Methods="AMFilterWeapon"/>
-        <LaunchAssets Model="ReaperAttackLaunch" Sound="SubmachineGunShot"/>
-        <ImpactMap index="None" Model="MarineAttackImpact" Sound="Marine_AttackImpact"/>
+        <DamageSiteOps Ops="SOpAttachHarness"/>
     </CActorAction>
     <CActorAction id="AssaultRifleAttack" parent="WeaponAttackTemplate" effectAttack="AssaultRifleDamage">
         <On Terms="Effect.AssaultRifleBurstFireDamage.Start; At Caster" Send="Create"/>
         <On Terms="Effect.AssaultRifleBurstFireDamageCritical; At Caster" Send="Create"/>
         <LaunchAssets Model="MarineAttackLaunch" Sound="AssaultRifleShot"/>
-        <ImpactMap index="None" Model="MarineAttackImpact" Sound="Marine_AttackImpact"/>
+        <ImpactMap index="None" Sound="Marine_AttackImpact"/>
+        <DamageMap index="None" AnimProps="Birth,01"/>
     </CActorAction>
     <CActorUnit id="EnhancedProtectiveInsert" parent="ArmorCrateTemplate" unitName="EnhancedProtectiveInsert"/>
+    <CActorUnit id="TestTarget" parent="GenericUnitMinimal" unitName="TestTarget">
+        <EditorCategories value=""/>
+        <On Terms="ActorCreation" Send="SetTeamColor 255,255,255 {255,255,255 0.250000}"/>
+        <On Terms="UnitDamaged" Send="SetTintColor {255,0,0 2.000000} 0.000000 OneShot DamageTint"/>
+        <On Terms="UnitDamaged" Send="ClearTintColor 1.500000 DamageTint"/>
+        <HighlightTooltip value="Unit/Name/Bogus"/>
+        <StatusBarFlags index="Shields" value="0"/>
+        <StatusBarFlags index="Life" value="0"/>
+        <StatusBarFlags index="Energy" value="0"/>
+        <StatusBarFlags index="Cargo" value="0"/>
+        <StatusBarFlags index="Progress" value="0"/>
+        <StatusBarFlags index="Duration" value="0"/>
+        <StatusBarFlags index="Magazine" value="0"/>
+        <StatusBarFlags index="Workers" value="0"/>
+        <StatusBarFlags index="Custom" value="0"/>
+    </CActorUnit>
     <CActorModel id="WeaponAttackLaunch" parent="GenericAttackModel">
         <HostSiteOps Ops="SOpAttachWeapon"/>
     </CActorModel>
@@ -716,4 +737,106 @@
         <HighlightTooltip value="Unit/Name/Bogus"/>
         <InfoText value="Button/Tooltip/Bogus"/>
     </CActorUnit>
+    <CActorBeamSimple id="ShotgunScattershotBeam" parent="BeamSimpleAnimationStyleOneShot">
+        <On index="0" Terms="ActorCreation" Send="AnimBracketStart BSD Death {} {} ContentPlayOnce"/>
+        <Host Subject="_Selectable"/>
+        <HostLaunch Subject="ShotgunScattershotBeamLaunchSite" Scope="Caster" Actor="Create"/>
+        <HostImpact Subject="ShotgunScattershotBeamImpactSite"/>
+    </CActorBeamSimple>
+    <CActorBeamSimple id="ShotgunScattershotBeamCritical" parent="BeamSimpleAnimationStyleOneShot">
+        <Host Subject="_Selectable"/>
+        <HostLaunch Subject="ShotgunScattershotBeamLaunchSite" Scope="Caster" Actor="Create"/>
+        <HostImpact Subject="ShotgunScattershotBeamImpactSiteCritical"/>
+    </CActorBeamSimple>
+    <CActorSite id="ShotgunScattershotBeamLaunchSite" parent="SiteUNIT">
+        <Aliases value="_LaunchGuide"/>
+        <HostSiteOps Ops="SOpAttachWeapon" HoldPosition="1" HoldRotation="1"/>
+    </CActorSite>
+    <CActorSite id="ShotgunScattershotBeamImpact">
+        <On Terms="Effect.PumpShotgunDamage.Start" Send="Create"/>
+        <On Terms="Effect.AutomaticShotgunDamage.Start" Send="Create"/>
+        <On Terms="ActorCreation" Send="Create ShotgunScattershotBeamImpactSite"/>
+        <On Terms="ActorCreation" Send="Create ShotgunScattershotBeamImpactSite"/>
+        <HostSiteOps Ops="SOpTargetPoint SOpMoveUpByDot5"/>
+    </CActorSite>
+    <CActorSite id="ShotgunScattershotBeamImpactCritical">
+        <On Terms="Effect.PumpShotgunDamageCritical.Start" Send="Create"/>
+        <On Terms="Effect.AutomaticShotgunDamageCritical.Start" Send="Create"/>
+        <On Terms="ActorCreation" Send="Create ShotgunScattershotBeamImpactSite"/>
+        <On Terms="ActorCreation" Send="Create ShotgunScattershotBeamImpactSiteCritical"/>
+        <On Terms="ActorCreation" Send="Create ShotgunScattershotBeamImpactSiteCritical"/>
+        <On Terms="ActorCreation" Send="Create ShotgunScattershotBeamImpactSiteCritical"/>
+        <HostSiteOps Ops="SOpTargetPoint SOpMoveUpByDot5"/>
+    </CActorSite>
+    <CActorSite id="ShotgunScattershotBeamImpactSite">
+        <On Terms="ActorCreation; ValidateEffect CasterToTargetRangeLE1" Send="HostSiteOpsSet ::Host {SOpScattershotRadius0dot125 SOpRandomPointInSphereDot5}"/>
+        <On Terms="ActorCreation; ValidateEffect CasterToTargetRangeWithin2" Send="HostSiteOpsSet ::Host {SOpScattershotRadius0dot25 SOpRandomPointInSphereDot5}"/>
+        <On Terms="ActorCreation; ValidateEffect CasterToTargetRangeWithin3" Send="HostSiteOpsSet ::Host {SOpScattershotRadius0dot375 SOpRandomPointInSphereDot5}"/>
+        <On Terms="ActorCreation; ValidateEffect CasterToTargetRangeWithin4" Send="HostSiteOpsSet ::Host {SOpScattershotRadius0dot5 SOpRandomPointInSphereDot5}"/>
+        <On Terms="ActorCreation; ValidateEffect CasterToTargetRangeWithin5" Send="HostSiteOpsSet ::Host {SOpScattershotRadius0dot625 SOpRandomPointInSphereDot5}"/>
+        <On Terms="ActorCreation; ValidateEffect CasterToTargetRangeWithin6" Send="HostSiteOpsSet ::Host {SOpScattershotRadius0dot75 SOpRandomPointInSphereDot5}"/>
+        <On Terms="ActorCreation; ValidateEffect CasterToTargetRangeWithin7" Send="HostSiteOpsSet ::Host {SOpScattershotRadius0dot875 SOpRandomPointInSphereDot5}"/>
+        <On Terms="ActorCreation; ValidateEffect CasterToTargetRangeWithin8" Send="HostSiteOpsSet ::Host {SOpScattershotRadius1 SOpRandomPointInSphereDot5}"/>
+        <On Terms="ActorCreation; ValidateEffect CasterToTargetRangeWithin9" Send="HostSiteOpsSet ::Host {SOpScattershotRadius1dot125 SOpRandomPointInSphereDot5}"/>
+        <On Terms="ActorCreation; ValidateEffect CasterToTargetRangeWithin10" Send="HostSiteOpsSet ::Host {SOpScattershotRadius1dot25 SOpRandomPointInSphereDot5}"/>
+        <On Terms="ActorCreation; ValidateEffect CasterToTargetRangeWithin11" Send="HostSiteOpsSet ::Host {SOpScattershotRadius1dot375 SOpRandomPointInSphereDot5}"/>
+        <On Terms="ActorCreation; ValidateEffect CasterToTargetRangeGT11" Send="HostSiteOpsSet ::Host {SOpScattershotRadius1dot5 SOpRandomPointInSphereDot5}"/>
+        <On Terms="ActorCreation" Send="Create ShotgunScattershotBeam"/>
+        <HostSiteOps Ops="SOpTargetPoint SOpMoveUpByDot5"/>
+    </CActorSite>
+    <CActorSite id="ShotgunScattershotBeamImpactSiteCritical">
+        <On Terms="ActorCreation; ValidateEffect CasterToTargetRangeLE1" Send="HostSiteOpsSet ::Host {SOpScattershotRadius0dot125 SOpRandomPointInSphereDot5}"/>
+        <On Terms="ActorCreation; ValidateEffect CasterToTargetRangeWithin2" Send="HostSiteOpsSet ::Host {SOpScattershotRadius0dot25 SOpRandomPointInSphereDot5}"/>
+        <On Terms="ActorCreation; ValidateEffect CasterToTargetRangeWithin3" Send="HostSiteOpsSet ::Host {SOpScattershotRadius0dot375 SOpRandomPointInSphereDot5}"/>
+        <On Terms="ActorCreation; ValidateEffect CasterToTargetRangeWithin4" Send="HostSiteOpsSet ::Host {SOpScattershotRadius0dot5 SOpRandomPointInSphereDot5}"/>
+        <On Terms="ActorCreation; ValidateEffect CasterToTargetRangeWithin5" Send="HostSiteOpsSet ::Host {SOpScattershotRadius0dot625 SOpRandomPointInSphereDot5}"/>
+        <On Terms="ActorCreation; ValidateEffect CasterToTargetRangeWithin6" Send="HostSiteOpsSet ::Host {SOpScattershotRadius0dot75 SOpRandomPointInSphereDot5}"/>
+        <On Terms="ActorCreation; ValidateEffect CasterToTargetRangeWithin7" Send="HostSiteOpsSet ::Host {SOpScattershotRadius0dot875 SOpRandomPointInSphereDot5}"/>
+        <On Terms="ActorCreation; ValidateEffect CasterToTargetRangeWithin8" Send="HostSiteOpsSet ::Host {SOpScattershotRadius1 SOpRandomPointInSphereDot5}"/>
+        <On Terms="ActorCreation; ValidateEffect CasterToTargetRangeWithin9" Send="HostSiteOpsSet ::Host {SOpScattershotRadius1dot125 SOpRandomPointInSphereDot5}"/>
+        <On Terms="ActorCreation; ValidateEffect CasterToTargetRangeWithin10" Send="HostSiteOpsSet ::Host {SOpScattershotRadius1dot25 SOpRandomPointInSphereDot5}"/>
+        <On Terms="ActorCreation; ValidateEffect CasterToTargetRangeWithin11" Send="HostSiteOpsSet ::Host {SOpScattershotRadius1dot375 SOpRandomPointInSphereDot5}"/>
+        <On Terms="ActorCreation; ValidateEffect CasterToTargetRangeGT11" Send="HostSiteOpsSet ::Host {SOpScattershotRadius1dot5 SOpRandomPointInSphereDot5}"/>
+        <On Terms="ActorCreation" Send="Create ShotgunScattershotBeamCritical"/>
+        <HostSiteOps Ops="SOpTargetPoint SOpMoveUpByDot5"/>
+    </CActorSite>
+    <CActorSiteOpRandomPointInCircle id="SOpScattershotRadiusBase">
+        <Mean value="0.500000"/>
+    </CActorSiteOpRandomPointInCircle>
+    <CActorSiteOpRandomPointInCircle id="SOpScattershotRadius0dot125" parent="SOpScattershotRadiusBase">
+        <Radius value="0.125000"/>
+    </CActorSiteOpRandomPointInCircle>
+    <CActorSiteOpRandomPointInCircle id="SOpScattershotRadius0dot25" parent="SOpScattershotRadiusBase">
+        <Radius value="0.250000"/>
+    </CActorSiteOpRandomPointInCircle>
+    <CActorSiteOpRandomPointInCircle id="SOpScattershotRadius0dot375" parent="SOpScattershotRadiusBase">
+        <Radius value="0.375000"/>
+    </CActorSiteOpRandomPointInCircle>
+    <CActorSiteOpRandomPointInCircle id="SOpScattershotRadius0dot5" parent="SOpScattershotRadiusBase">
+        <Radius value="0.500000"/>
+    </CActorSiteOpRandomPointInCircle>
+    <CActorSiteOpRandomPointInCircle id="SOpScattershotRadius0dot625" parent="SOpScattershotRadiusBase">
+        <Radius value="0.625000"/>
+    </CActorSiteOpRandomPointInCircle>
+    <CActorSiteOpRandomPointInCircle id="SOpScattershotRadius0dot75" parent="SOpScattershotRadiusBase">
+        <Radius value="0.750000"/>
+    </CActorSiteOpRandomPointInCircle>
+    <CActorSiteOpRandomPointInCircle id="SOpScattershotRadius0dot875" parent="SOpScattershotRadiusBase">
+        <Radius value="0.875000"/>
+    </CActorSiteOpRandomPointInCircle>
+    <CActorSiteOpRandomPointInCircle id="SOpScattershotRadius1" parent="SOpScattershotRadiusBase">
+        <Radius value="1.000000"/>
+    </CActorSiteOpRandomPointInCircle>
+    <CActorSiteOpRandomPointInCircle id="SOpScattershotRadius1dot125" parent="SOpScattershotRadiusBase">
+        <Radius value="1.125000"/>
+    </CActorSiteOpRandomPointInCircle>
+    <CActorSiteOpRandomPointInCircle id="SOpScattershotRadius1dot25" parent="SOpScattershotRadiusBase">
+        <Radius value="1.250000"/>
+    </CActorSiteOpRandomPointInCircle>
+    <CActorSiteOpRandomPointInCircle id="SOpScattershotRadius1dot375" parent="SOpScattershotRadiusBase">
+        <Radius value="1.375000"/>
+    </CActorSiteOpRandomPointInCircle>
+    <CActorSiteOpRandomPointInCircle id="SOpScattershotRadius1dot5" parent="SOpScattershotRadiusBase">
+        <Radius value="1.500000"/>
+    </CActorSiteOpRandomPointInCircle>
 </Catalog>
