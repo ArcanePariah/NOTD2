@@ -1239,7 +1239,9 @@
             <Button DefaultButtonFace="SmokeGrenade"/>
         </InfoArray>
         <InfoArray index="Learn3" Abil="MotionSensor"/>
-        <InfoArray index="Learn4" Abil="ItemSensor"/>
+        <InfoArray index="Learn4" Abil="Scamper">
+            <Button DefaultButtonFace="Scamper"/>
+        </InfoArray>
         <InfoArray index="Learn5" Abil="AmmunitionDrop">
             <Button DefaultButtonFace="MedicalDrop"/>
         </InfoArray>
@@ -1543,6 +1545,12 @@
             <Cooldown TimeUse="40"/>
         </Cost>
     </CAbilEffectInstant>
+    <CAbilMorph id="ScamperUpgradeMorph">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="ScamperUpgradeMorph"/>
+        <Flags index="WaitUntilStopped" value="0"/>
+        <InfoArray Unit="ScamperLevel2"/>
+    </CAbilMorph>
     <CAbilEffectTarget id="VolatileInjection" parent="3LevelEffectTargetAbility">
         <Cost>
             <Vital index="Energy" value="20"/>
