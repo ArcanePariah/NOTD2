@@ -93,7 +93,7 @@
     </CActorModel>
     <CActorModel id="BlackDiamondImpact" parent="ModelAnimationStyleOneShot">
         <EditorCategories value=""/>
-        <On Terms="Effect.BlackDiamondStun.Impact" Send="Create"/>
+        <On Terms="Effect.BlackDiamondStun.Start" Send="Create"/>
         <Host Subject="_Unit"/>
     </CActorModel>
     <CActorModel id="BlackDiamondLaunch" parent="ModelAnimationStyleOneShot">
@@ -639,11 +639,12 @@
         <Inherits index="Visibility" value="0"/>
         <FogVisibility value="Visible"/>
         <EditorCategories value=""/>
-        <Host Subject="_Unit"/>
+        <Host Subject=""/>
         <Model value="MotionSensorDetected"/>
-        <On index="0" Terms="ActorCreation" Send="AnimBracketStart BSD Birth Stand Death 0 0.700000 AsTimeScale"/>
-        <On Terms="ActorCreation" Target="::Host" Send="SetVisibility 1"/>
+        <On index="0" Terms="ActorCreation" Send="AnimBracketStart BSD Birth Stand Death 0 0.800000 AsTimeScale"/>
+        <On Terms="SupporterDestruction" Send="Destroy"/>
         <HostSiteOps Ops="SOpShadowSyncGround SOp2DRotation SOpForwardNorth"/>
+        <Supporter Subject="_Unit"/>
     </CActorModel>
     <CActorRange id="MD5Range" parent="RangeAbil" abil="MD5Mine">
         <EditorCategories value=""/>

@@ -877,9 +877,8 @@
         <GlossaryPriority value="15"/>
     </CUnit>
     <CUnit id="Recon" parent="BasicHeroTemplate" InventoryAbility="ReconInventory" LearnAbility="ReconLearn">
-        <EnergyStart value="225"/>
-        <EnergyMax value="225"/>
-        <EnergyRegenRate value="0.6484"/>
+        <EnergyStart value="100"/>
+        <EnergyRegenRate value="1"/>
         <LifeStart value="140"/>
         <LifeMax value="140"/>
         <LifeRegenRate value="0.1484"/>
@@ -1052,6 +1051,54 @@
         <Mover value="Fly"/>
         <Height value="6"/>
         <MinimapRadius value="0"/>
+    </CUnit>
+    <CUnit id="ScamperLevel1">
+        <Race value="Human"/>
+        <PlaneArray index="Ground" value="1"/>
+        <Collide index="Ground" value="1"/>
+        <Attributes index="Mechanical" value="1"/>
+        <LifeStart value="100"/>
+        <LifeMax value="100"/>
+        <LifeArmor value="1"/>
+        <LifeRegenRate value="0.1015"/>
+        <Speed value="2.5"/>
+        <Acceleration value="1000"/>
+        <StationaryTurningRate value="540"/>
+        <TurningRate value="540"/>
+        <Sight value="10"/>
+        <AbilArray Link="move"/>
+        <AbilArray Link="stop"/>
+        <AbilArray Link="ScamperInventory"/>
+        <BehaviorArray Link="Benign"/>
+        <CardLayouts>
+            <LayoutButtons Face="Move" Type="AbilCmd" AbilCmd="move,Move" Row="0" Column="0"/>
+            <LayoutButtons Face="Stop" Type="AbilCmd" AbilCmd="stop,Stop" Row="0" Column="1"/>
+        </CardLayouts>
+        <EditorCategories value=""/>
+    </CUnit>
+    <CUnit id="ScamperLevel2">
+        <Race value="Human"/>
+        <PlaneArray index="Ground" value="1"/>
+        <Collide index="Ground" value="1"/>
+        <Attributes index="Mechanical" value="1"/>
+        <LifeStart value="100"/>
+        <LifeMax value="100"/>
+        <LifeArmor value="1"/>
+        <LifeRegenRate value="0.1015"/>
+        <Speed value="2.5"/>
+        <Acceleration value="1000"/>
+        <StationaryTurningRate value="540"/>
+        <TurningRate value="540"/>
+        <Sight value="10"/>
+        <AbilArray Link="move"/>
+        <AbilArray Link="stop"/>
+        <AbilArray Link="ScamperInventory"/>
+        <BehaviorArray Link="Benign"/>
+        <CardLayouts>
+            <LayoutButtons Face="Move" Type="AbilCmd" AbilCmd="move,Move" Row="0" Column="0"/>
+            <LayoutButtons Face="Stop" Type="AbilCmd" AbilCmd="stop,Stop" Row="0" Column="1"/>
+        </CardLayouts>
+        <EditorCategories value=""/>
     </CUnit>
     <CUnit id="SmokeGrenadeLevel1Weapon" parent="MISSILE">
         <Race value="Zombie"/>
