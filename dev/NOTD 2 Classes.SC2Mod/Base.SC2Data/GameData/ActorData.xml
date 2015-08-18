@@ -67,6 +67,15 @@
         <Scale value="1.000000"/>
         <WalkAnimMoveSpeed value="3.25"/>
     </CActorUnit>
+    <CActorModel default="1" id="ModelAnimationContinous3Level" parent="ModelAnimationStyleContinuous">
+        <?token id="Effect"?>
+        <On Terms="Effect.##Effect##Level1.Start" Send="Create"/>
+        <On Terms="Effect.##Effect##Level2.Start" Send="Create"/>
+        <On Terms="Effect.##Effect##Level3.Start" Send="Create"/>
+        <On Terms="Effect.##Effect##Level1.Stop" Send="Destroy"/>
+        <On Terms="Effect.##Effect##Level2.Stop" Send="Destroy"/>
+        <On Terms="Effect.##Effect##Level3.Stop" Send="Destroy"/>
+    </CActorModel>
     <CActorForceConeRoundedEnd id="120mmSmoothboreAttackForce">
         <HostSiteOps Ops="SOpIncomingDirect1Dot5 SOpMoveDownByDot25"/>
         <Receiver Subject="::Main"/>
@@ -81,6 +90,22 @@
     <!--         be misleading as far as how the attack actually works. -->
     <CActorModel id="BattlecruiserYamatoAttackImpactModel">
         <On Terms="ActorCreation; ValidateEffect Chapter1Complete" Send="SetTintColor 128,255,0"/>
+    </CActorModel>
+    <CActorModel id="BlackDiamondImpact" parent="ModelAnimationStyleOneShot">
+        <EditorCategories value=""/>
+        <On Terms="Effect.BlackDiamondStun.Impact" Send="Create"/>
+        <Host Subject="_Unit"/>
+    </CActorModel>
+    <CActorModel id="BlackDiamondLaunch" parent="ModelAnimationStyleOneShot">
+        <EditorCategories value=""/>
+        <On index="0" Terms="ActorCreation" Send="AnimBracketStart BSD Birth Stand Death ContentPlayOnce 1.400000 AsTimeScale"/>
+        <On Terms="Abil.BlackDiamond.SourceCastStart" Send="Create"/>
+        <HostSiteOps HoldPosition="1"/>
+    </CActorModel>
+    <CActorModel id="BlackDiamondStun" parent="ModelAnimationStyleContinuous">
+        <EditorCategories value=""/>
+        <On Terms="Behavior.BlackDiamondStun.On" Send="Create"/>
+        <On Terms="Behavior.BlackDiamondStun.Off" Send="Destroy"/>
     </CActorModel>
     <CActorSiteOpBasic id="BulwarkShieldBearings">
         <EditorCategories value=""/>
@@ -154,6 +179,102 @@
     <CActorModel id="ChainExplosivePlaceholderModel" parent="ChainExplosivePlacementModel"/>
     <CActorRange id="ChainExplosiveRange" parent="RangeAbil" abil="ChainExplosive">
         <EditorCategories value=""/>
+    </CActorRange>
+    <CActorRange id="DetectorRange2Detected">
+        <Terms value="Cap 1"/>
+        <EditorCategories value=""/>
+        <On Terms="Effect.ReconDetectorDetected.Start; At Target; ValidateUnit HasDetectionRange2" Send="Create"/>
+        <On Terms="Effect.ReconDetectorDetected.Start" Send="RefSetFromRequest ::actor.TargetList ReconDetectorList Implicit Find"/>
+        <On Terms="Behavior.ReconDetectorDetected.Off" Send="Destroy"/>
+        <On Terms="ActorCreation" Send="SetVisibility"/>
+        <On Terms="Behavior.ReconDetectorDetected.On" Target="::actor.TargetList" Send="Signal AddMe"/>
+        <On Terms="ActorDestruction" Target="::actor.TargetList" Send="Signal RemoveMe"/>
+        <Behavior value="Range2"/>
+        <IconArcLength value="1.250000"/>
+    </CActorRange>
+    <CActorRange id="DetectorRange3Detected">
+        <Terms value="Cap 1"/>
+        <EditorCategories value=""/>
+        <On Terms="Effect.ReconDetectorDetected.Start; At Target; ValidateUnit HasDetectionRange3" Send="Create"/>
+        <On Terms="Effect.ReconDetectorDetected.Start" Send="RefSetFromRequest ::actor.TargetList ReconDetectorList Implicit Find"/>
+        <On Terms="Behavior.ReconDetectorDetected.Off" Send="Destroy"/>
+        <On Terms="ActorCreation" Send="SetVisibility"/>
+        <On Terms="Behavior.ReconDetectorDetected.On" Target="::actor.TargetList" Send="Signal AddMe"/>
+        <On Terms="ActorDestruction" Target="::actor.TargetList" Send="Signal RemoveMe"/>
+        <Behavior value="Range3"/>
+        <IconArcLength value="1.250000"/>
+    </CActorRange>
+    <CActorRange id="DetectorRange4Detected">
+        <Terms value="Cap 1"/>
+        <EditorCategories value=""/>
+        <On Terms="Effect.ReconDetectorDetected.Start; At Target; ValidateUnit HasDetectionRange4" Send="Create"/>
+        <On Terms="Effect.ReconDetectorDetected.Start" Send="RefSetFromRequest ::actor.TargetList ReconDetectorList Implicit Find"/>
+        <On Terms="Behavior.ReconDetectorDetected.Off" Send="Destroy"/>
+        <On Terms="ActorCreation" Send="SetVisibility"/>
+        <On Terms="Behavior.ReconDetectorDetected.On" Target="::actor.TargetList" Send="Signal AddMe"/>
+        <On Terms="ActorDestruction" Target="::actor.TargetList" Send="Signal RemoveMe"/>
+        <Behavior value="Range4"/>
+        <IconArcLength value="1.250000"/>
+    </CActorRange>
+    <CActorRange id="DetectorRange5Detected">
+        <Terms value="Cap 1"/>
+        <EditorCategories value=""/>
+        <On Terms="Effect.ReconDetectorDetected.Start; At Target; ValidateUnit HasDetectionRange5" Send="Create"/>
+        <On Terms="Effect.ReconDetectorDetected.Start" Send="RefSetFromRequest ::actor.TargetList ReconDetectorList Implicit Find"/>
+        <On Terms="Behavior.ReconDetectorDetected.Off" Send="Destroy"/>
+        <On Terms="ActorCreation" Send="SetVisibility"/>
+        <On Terms="Behavior.ReconDetectorDetected.On" Target="::actor.TargetList" Send="Signal AddMe"/>
+        <On Terms="ActorDestruction" Target="::actor.TargetList" Send="Signal RemoveMe"/>
+        <Behavior value="Range5"/>
+        <IconArcLength value="1.250000"/>
+    </CActorRange>
+    <CActorRange id="DetectorRange9Detected">
+        <Terms value="Cap 1"/>
+        <EditorCategories value=""/>
+        <On Terms="Effect.ReconDetectorDetected.Start; At Target; ValidateUnit HasDetectionRange9" Send="Create"/>
+        <On Terms="Effect.ReconDetectorDetected.Start" Send="RefSetFromRequest ::actor.TargetList ReconDetectorList Implicit Find"/>
+        <On Terms="Behavior.ReconDetectorDetected.Off" Send="Destroy"/>
+        <On Terms="ActorCreation" Send="SetVisibility"/>
+        <On Terms="Behavior.ReconDetectorDetected.On" Target="::actor.TargetList" Send="Signal AddMe"/>
+        <On Terms="ActorDestruction" Target="::actor.TargetList" Send="Signal RemoveMe"/>
+        <Behavior value="Range9"/>
+        <IconArcLength value="1.250000"/>
+    </CActorRange>
+    <CActorRange id="DetectorRange8Detected">
+        <Terms value="Cap 1"/>
+        <EditorCategories value=""/>
+        <On Terms="Effect.ReconDetectorDetected.Start; At Target; ValidateUnit HasDetectionRange8" Send="Create"/>
+        <On Terms="Effect.ReconDetectorDetected.Start" Send="RefSetFromRequest ::actor.TargetList ReconDetectorList Implicit Find"/>
+        <On Terms="Behavior.ReconDetectorDetected.Off" Send="Destroy"/>
+        <On Terms="ActorCreation" Send="SetVisibility"/>
+        <On Terms="Behavior.ReconDetectorDetected.On" Target="::actor.TargetList" Send="Signal AddMe"/>
+        <On Terms="ActorDestruction" Target="::actor.TargetList" Send="Signal RemoveMe"/>
+        <Behavior value="Range8"/>
+        <IconArcLength value="1.250000"/>
+    </CActorRange>
+    <CActorRange id="DetectorRange7Detected">
+        <Terms value="Cap 1"/>
+        <EditorCategories value=""/>
+        <On Terms="Effect.ReconDetectorDetected.Start; At Target; ValidateUnit HasDetectionRange7" Send="Create"/>
+        <On Terms="Effect.ReconDetectorDetected.Start" Send="RefSetFromRequest ::actor.TargetList ReconDetectorList Implicit Find"/>
+        <On Terms="Behavior.ReconDetectorDetected.Off" Send="Destroy"/>
+        <On Terms="ActorCreation" Send="SetVisibility"/>
+        <On Terms="Behavior.ReconDetectorDetected.On" Target="::actor.TargetList" Send="Signal AddMe"/>
+        <On Terms="ActorDestruction" Target="::actor.TargetList" Send="Signal RemoveMe"/>
+        <Behavior value="Range7"/>
+        <IconArcLength value="1.250000"/>
+    </CActorRange>
+    <CActorRange id="DetectorRange6Detected">
+        <Terms value="Cap 1"/>
+        <EditorCategories value=""/>
+        <On Terms="Effect.ReconDetectorDetected.Start; At Target; ValidateUnit HasDetectionRange6" Send="Create"/>
+        <On Terms="Effect.ReconDetectorDetected.Start" Send="RefSetFromRequest ::actor.TargetList ReconDetectorList Implicit Find"/>
+        <On Terms="Behavior.ReconDetectorDetected.Off" Send="Destroy"/>
+        <On Terms="ActorCreation" Send="SetVisibility"/>
+        <On Terms="Behavior.ReconDetectorDetected.On" Target="::actor.TargetList" Send="Signal AddMe"/>
+        <On Terms="ActorDestruction" Target="::actor.TargetList" Send="Signal RemoveMe"/>
+        <Behavior value="Range6"/>
+        <IconArcLength value="1.250000"/>
     </CActorRange>
     <CActorSplat id="DetonateAreaSplat" parent="TerranCursorSplat" abil="Detonate">
         <EditorCategories value=""/>
@@ -283,6 +404,8 @@
     <CActorModel id="Escape" parent="ModelAnimationStyleOneShotUNIT">
         <EditorCategories value=""/>
         <On Terms="Abil.EscapeSet.SourceCastStart" Send="Create"/>
+        <On Terms="ActorCreation" Send="TimerSet 1.000000 Escape"/>
+        <On Terms="TimerExpired; TimerName Escape" Send="AnimBracketStop BSD"/>
     </CActorModel>
     <CActorModel id="EscapeImpact" parent="ModelAnimationStyleContinuous">
         <EditorCategories value=""/>
@@ -353,9 +476,9 @@
     </CActorUnit>
     <CActorAction id="GroundIlluminationFlareLaunch" parent="GenericAttack">
         <EditorCategories value=""/>
-        <On index="0" Terms="Effect.GroundIlluminationFlareLevel1.Start; At Caster" Send="Create"/>
-        <On index="1" Terms="Effect.GroundIlluminationFlareLevel2.Start; At Caster" Send="Create"/>
-        <On index="2" Terms="Effect.GroundIlluminationFlareLevel3.Start; At Caster" Send="Create"/>
+        <On index="0" Terms="Effect.SurveillanceFlareLevel1.Start; At Caster" Send="Create"/>
+        <On index="1" Terms="Effect.SurveillanceFlareLevel2.Start; At Caster" Send="Create"/>
+        <On index="2" Terms="Effect.SurveillanceFlareLevel3.Start; At Caster" Send="Create"/>
         <On index="3" removed="1"/>
         <On index="4" removed="1"/>
         <On index="5" removed="1"/>
@@ -363,9 +486,46 @@
         <LaunchAttachQuery Methods="AMFilterWeapon02"/>
         <Missile value="RoadFlareMissile"/>
     </CActorAction>
-    <CActorRange id="GroundIlluminationFlareRange" parent="RangeAbil" abil="GroundIlluminationFlare">
+    <CActorRange id="GroundIlluminationFlareRange" parent="RangeAbil" abil="SurveillanceFlare">
         <EditorCategories value=""/>
     </CActorRange>
+    <CActorQueryResponse id="ItemSensorLevel2AmmunitionQuery">
+        <EditorCategories value=""/>
+        <Subject Filters="Unit" Terms="ScopeContains _Ammunition"/>
+        <OnResponse Target="SensorDetected" Send="SetTintColor 255,255,255 0.000000 OneShot Equipment"/>
+    </CActorQueryResponse>
+    <CActorQueryResponse id="ItemSensorLevel2EquipmentQuery">
+        <EditorCategories value=""/>
+        <Subject Filters="Unit" Terms="ScopeContains _Equipment"/>
+        <OnResponse Target="SensorDetected" Send="SetTintColor 128,0,128 0.000000 OneShot Equipment"/>
+    </CActorQueryResponse>
+    <CActorQueryResponse id="ItemSensorLevel2ConsumableQuery">
+        <EditorCategories value=""/>
+        <Subject Filters="Unit" Terms="ScopeContains _Consumable"/>
+        <OnResponse Target="SensorDetected" Send="SetTintColor 0,0,255 0.000000 OneShot Equipment"/>
+    </CActorQueryResponse>
+    <CActorQueryResponse id="ItemSensorLevel2MedicalItemQuery">
+        <EditorCategories value=""/>
+        <Subject Filters="Unit" Terms="ScopeContains _MedicalItem"/>
+        <OnResponse Target="SensorDetected" Send="SetTintColor 0,193,193 0.000000 OneShot Equipment"/>
+    </CActorQueryResponse>
+    <CActorQueryResponse id="ItemSensorLevel2Query">
+        <EditorCategories value=""/>
+        <Subject Filters="Unit" Terms="ValidateUnit ItemSensorUnitQuery IncludeDerivedSnapshot Recon"/>
+        <OnResponse Target="_Unit" Send="Create SensorDetected"/>
+        <OnResponse Target="::QueryDirector" Send="QueryRegion ItemSensorLevel2DetectedRegion ItemSensorLevel2ConsumableQuery AgainstRadiusGame" Scope="QueryDirector"/>
+        <OnResponse Target="::QueryDirector" Send="QueryRegion ItemSensorLevel2DetectedRegion ItemSensorLevel2EquipmentQuery AgainstRadiusGame" Scope="QueryDirector"/>
+        <OnResponse Target="::QueryDirector" Send="QueryRegion ItemSensorLevel2DetectedRegion ItemSensorLevel2AmmunitionQuery AgainstRadiusGame" Scope="QueryDirector"/>
+        <OnResponse Target="::QueryDirector" Send="QueryRegion ItemSensorLevel2DetectedRegion ItemSensorLevel2MedicalItemQuery AgainstRadiusGame" Scope="QueryDirector"/>
+    </CActorQueryResponse>
+    <CActorRegionCircle id="ItemSensorLevel2DetectedRegion">
+        <EditorCategories value=""/>
+        <On Terms="Behavior.ItemSensorLevel2.On" Send="Create"/>
+        <On Terms="Behavior.ItemSensorLevel2.On" Send="QueryPersistent ItemSensorLevel2Query SensorQueryLeave AgainstRadiusGame 0.250000"/>
+        <On Terms="Behavior.ItemSensorLevel2.Off" Send="Destroy"/>
+        <Host Subject="_Unit"/>
+        <Radius value="40.000000"/>
+    </CActorRegionCircle>
     <CActorAction id="KineticPayloadAttack" parent="GenericAttack" effectImpact="KineticPayloadDamage" effectLaunch="KineticPayloadMissile">
         <EditorCategories value=""/>
         <On index="6" Terms="Effect.KineticPayloadMissile.Start; At Source" Send="Create"/>
@@ -443,16 +603,115 @@
         <Range value="2.500000"/>
     </CActorRange>
     <CActorModel id="MD5MinePlaceholderModel" parent="MD5MinePlacementModel"/>
+    <CActorQueryResponse id="ItemSensorLevel1Query">
+        <EditorCategories value=""/>
+        <Subject Filters="Unit" Terms="ValidateUnit ItemSensorUnitQuery IncludeDerivedSnapshot Recon"/>
+        <OnResponse Target="_Unit" Send="Create SensorDetected"/>
+        <OnResponse Target="SensorDetected" Send="SetTintColor 0,0,128"/>
+    </CActorQueryResponse>
+    <CActorSiteOpRotationExplicit id="SOpPointNorthWorld">
+        <Forward value="0.000000,1.000000,0.000000"/>
+        <Up value="0.000000,0.000000,1.000000"/>
+    </CActorSiteOpRotationExplicit>
+    <CActorUnit id="SatelliteUplinkSpy" parent="GenericUnitMinimal" unitName="SatelliteUplinkSpy">
+        <EditorCategories value=""/>
+        <HighlightTooltip value="Unit/Name/Bogus"/>
+        <StatusBarFlags index="Shields" value="0"/>
+        <StatusBarFlags index="Life" value="0"/>
+        <StatusBarFlags index="Energy" value="0"/>
+        <StatusBarFlags index="Cargo" value="0"/>
+        <StatusBarFlags index="Progress" value="0"/>
+        <StatusBarFlags index="Duration" value="0"/>
+        <StatusBarFlags index="Magazine" value="0"/>
+        <StatusBarFlags index="Workers" value="0"/>
+        <StatusBarFlags index="Custom" value="0"/>
+    </CActorUnit>
+    <CActorSiteOpBasic id="PositionFollow">
+        <EditorCategories value=""/>
+        <BasicType value="ActorPosition"/>
+    </CActorSiteOpBasic>
+    <CActorModel id="SensorDetected" parent="ModelAddition">
+        <InheritType value="None"/>
+        <Inherits index="BaseModelScale" value="0"/>
+        <Inherits index="Scale" value="0"/>
+        <Inherits index="TeamColor" value="0"/>
+        <Inherits index="TintColor" value="0"/>
+        <Inherits index="Visibility" value="0"/>
+        <FogVisibility value="Visible"/>
+        <EditorCategories value=""/>
+        <Host Subject="_Unit"/>
+        <Model value="MotionSensorDetected"/>
+        <On index="0" Terms="ActorCreation" Send="AnimBracketStart BSD Birth Stand Death 0 0.700000 AsTimeScale"/>
+        <On Terms="ActorCreation" Target="::Host" Send="SetVisibility 1"/>
+        <HostSiteOps Ops="SOpShadowSyncGround SOp2DRotation SOpForwardNorth"/>
+    </CActorModel>
     <CActorRange id="MD5Range" parent="RangeAbil" abil="MD5Mine">
         <EditorCategories value=""/>
     </CActorRange>
-    <CActorRange id="MotionSensorRangeLevel1" parent="RangeBehavior" behavior="MotionSensorLevel1">
+    <CActorRegionCircle id="MotionSensorLevel1DetectedRegion">
         <EditorCategories value=""/>
-        <RangeFlags index="GameWorld" value="0"/>
-        <RangeFlags index="Minimap" value="1"/>
-    </CActorRange>
-    <CActorRange id="MotionSensorRangeLevel2" parent="RangeBehavior" behavior="MotionSensorLevel2">
+        <On Terms="Behavior.MotionSensorLevel1.On" Send="Create"/>
+        <On Terms="Behavior.MotionSensorLevel1.On" Send="QueryPersistent MotionSensorLevel1Query SensorQueryLeave AgainstRadiusGame 0.250000"/>
+        <On Terms="Behavior.MotionSensorLevel1.Off" Send="Destroy"/>
+        <Host Subject="_Unit"/>
+        <Radius value="40.000000"/>
+    </CActorRegionCircle>
+    <CActorRegionCircle id="ItemSensorLevel1DetectedRegion">
         <EditorCategories value=""/>
+        <On Terms="Behavior.ItemSensorLevel1.On" Send="Create"/>
+        <On Terms="Behavior.ItemSensorLevel1.On" Send="QueryPersistent ItemSensorLevel1Query SensorQueryLeave AgainstRadiusGame 0.250000"/>
+        <On Terms="Behavior.ItemSensorLevel1.Off" Send="Destroy"/>
+        <Host Subject="_Unit"/>
+        <Radius value="40.000000"/>
+    </CActorRegionCircle>
+    <CActorQueryResponse id="MotionSensorLevel2Query">
+        <EditorCategories value=""/>
+        <Subject Filters="Unit" Terms="ValidateUnit MotionSensorUnitQuery IncludeDerivedSnapshot Recon"/>
+        <OnResponse Target="_Unit" Send="Create SensorDetected"/>
+        <OnResponse Target="::QueryDirector" Send="QueryRegion MotionSensorLevel2DetectedRegion MotionSensorLevel2FlyingQuery AgainstRadiusGame" Scope="QueryDirector"/>
+        <OnResponse Target="::QueryDirector" Send="QueryRegion MotionSensorLevel2DetectedRegion MotionSensorLevel2NormalQuery AgainstRadiusGame" Scope="QueryDirector"/>
+        <OnResponse Target="::QueryDirector" Send="QueryRegion MotionSensorLevel2DetectedRegion MotionSensorLevel2MassiveArmoredQuery AgainstRadiusGame" Scope="QueryDirector"/>
+    </CActorQueryResponse>
+    <CActorRegionCircle id="MotionSensorLevel2DetectedRegion">
+        <EditorCategories value=""/>
+        <On Terms="Behavior.MotionSensorLevel2.On" Send="Create"/>
+        <On Terms="Behavior.MotionSensorLevel2.On" Send="QueryPersistent MotionSensorLevel2Query SensorQueryLeave AgainstRadiusGame 0.250000"/>
+        <On Terms="Behavior.MotionSensorLevel2.Off" Send="Destroy"/>
+        <Host Subject="_Unit"/>
+        <Radius value="40.000000"/>
+    </CActorRegionCircle>
+    <CActorQueryResponse id="MotionSensorLevel1Query">
+        <EditorCategories value=""/>
+        <Subject Filters="Unit" Terms="ValidateUnit MotionSensorUnitQuery IncludeDerivedSnapshot Recon"/>
+        <OnResponse Target="_Unit" Send="Create SensorDetected"/>
+        <OnResponse Target="SensorDetected" Send="SetTintColor 255,0,0"/>
+    </CActorQueryResponse>
+    <CActorQueryResponse id="MotionSensorLevel2FlyingQuery">
+        <EditorCategories value=""/>
+        <Subject Filters="Unit" Terms="ValidateUnit IsFlying IncludeDerivedSnapshot Recon"/>
+        <OnResponse Target="SensorDetected" Send="SetTintColor 255,255,0 0.000000 OneShot Flyer"/>
+    </CActorQueryResponse>
+    <CActorQueryResponse id="SensorQueryLeave">
+        <EditorCategories value=""/>
+        <Subject Filters="Unit"/>
+        <OnResponse Target="SensorDetected" Send="Destroy"/>
+    </CActorQueryResponse>
+    <CActorQueryResponse id="MotionSensorLevel2MassiveArmoredQuery">
+        <EditorCategories value=""/>
+        <Subject Filters="Unit" Terms="ValidateUnit TargetisMassiveorArmored IncludeDerivedSnapshot Recon"/>
+        <OnResponse Target="SensorDetected" Send="SetTintColor 255,0,0"/>
+    </CActorQueryResponse>
+    <CActorQueryResponse id="MotionSensorLevel2NormalQuery">
+        <EditorCategories value=""/>
+        <Subject Filters="Unit" Terms="ValidateUnit TargetisnonMassiveorArmored IncludeDerivedSnapshot Recon"/>
+        <OnResponse Target="SensorDetected" Send="SetTintColor 255,128,0"/>
+    </CActorQueryResponse>
+    <CActorRange id="SensorRange" behavior="MotionSensorLevel1">
+        <EditorCategories value=""/>
+        <On Terms="Behavior.MotionSensorLevel1.On" Send="Create"/>
+        <On Terms="Behavior.ItemSensorLevel1.On" Send="Create"/>
+        <Host Subject="_Unit"/>
+        <Range value="40.000000"/>
         <RangeFlags index="GameWorld" value="0"/>
         <RangeFlags index="Minimap" value="1"/>
     </CActorRange>
@@ -500,6 +759,31 @@
         <Scale value="3.500000"/>
         <ModelFlags index="AllowHitTest" value="0"/>
     </CActorModel>
+    <CActorModel id="ReactiveShieldsImpact" parent="ModelAnimationStyleOneShot">
+        <EditorCategories value=""/>
+        <On index="0" Terms="ActorCreation" Send="AnimPlay BSD Birth 0 0.000000 0.000000 2.000000 AsDuration 0.050000"/>
+        <On index="1" Terms="AnimDone; AnimName BSD" Send="Destroy"/>
+        <On index="2" Terms="ActorOrphan" Send="AnimClear BSD"/>
+        <On Terms="Effect.ReactiveShieldsDamageLevel1.Start" Send="Create"/>
+        <On Terms="Effect.ReactiveShieldsDamageLevel2.Start" Send="Create"/>
+        <On Terms="Effect.ReactiveShieldsDamageLevel3.Start" Send="Create"/>
+        <Host Subject="_Unit" Scope="Target"/>
+        <HostSiteOps Ops="SOpAttachOverhead SOp180"/>
+        <ScopeBearingsTracking value="ForceOff"/>
+        <Scale value="2.000000"/>
+    </CActorModel>
+    <CActorList id="ReconDetectorList">
+        <EditorCategories value=""/>
+        <On Terms="Behavior.ReconDetectorDetection.On" Send="Create"/>
+        <On Terms="Behavior.ReconDetectorDetection.Off" Send="Destroy"/>
+        <On Terms="Signal.*.AddMe" Send="RefSetFromMsg ::actor.DetectorToAdd ::Sender"/>
+        <On Terms="Signal.*.AddMe" Send="ListAdd ::actor.DetectorToAdd"/>
+        <On Terms="Signal.*.AddMe; Selected" Target="::actor.DetectorToAdd" Send="SetVisibility 1"/>
+        <On Terms="Signal.*.RemoveMe" Send="RefSetFromMsg ::actor.DetectorToRemove ::Sender"/>
+        <On Terms="Signal.*.RemoveMe" Send="ListRemove ::actor.DetectorToRemove"/>
+        <On Terms="SelectionLocalUpdate.*.Start" Target="::Contents" Send="SetVisibility 1"/>
+        <On Terms="SelectionLocalUpdate.*.Stop" Target="::Contents" Send="SetVisibility"/>
+    </CActorList>
     <CActorShield id="ReactiveShieldsFacer" parent="ProtossShieldBase">
         <EditorCategories value=""/>
         <Ripple value="ProtossShieldFacerRipple"/>
@@ -597,14 +881,13 @@
         <Angle value="90.000000"/>
         <Radius value="3.000000"/>
     </CActorRegionArc>
-    <CActorUnit id="SmokeGrenade" parent="GenericUnitMinimal" unitName="SmokeGrenadeLevel1">
+    <CActorSplat id="SmokeGrenadeAoE" parent="CursorSplat" abil="SmokeGrenade">
         <EditorCategories value=""/>
-        <On Terms="UnitBirth.SmokeGrenadeLevel2" Send="Create"/>
-        <Model value="SmokeGrenade"/>
-        <HighlightTooltip value="Unit/Name/Bogus"/>
-        <StatusBarFlags index="Life" value="0"/>
-        <StatusBarFlags index="Duration" value="0"/>
-    </CActorUnit>
+    </CActorSplat>
+    <CActorModel id="SmokeGrenadeCloud" parent="ModelAnimationContinous3Level" Effect="SmokeGrenadePersistent">
+        <ModelFlags index="AllowHitTest" value="0"/>
+        <Scale value="0.500000"/>
+    </CActorModel>
     <CActorAction id="SmokeGrenadeLaunch" parent="GenericAttack" effectLaunch="SmokeGrenadeLevel1">
         <EditorCategories value=""/>
         <On index="0" Terms="Effect.SmokeGrenadeLevel1.Start; At Caster" Send="Create"/>
@@ -620,6 +903,7 @@
     <CActorMissile id="SmokeGrenadeMissile" parent="GenericAttackMissile" unitName="SmokeGrenadeLevel1Weapon">
         <EditorCategories value=""/>
         <On Terms="UnitBirth.SmokeGrenadeLevel2Weapon" Send="Create"/>
+        <On Terms="UnitBirth.SmokeGrenadeLevel3Weapon" Send="Create"/>
         <HostSiteOps Ops="RoadFlareTumble"/>
         <Model value="SmokeGrenadeMissile"/>
         <Scale value="0.800000"/>
@@ -643,8 +927,8 @@
     <CActorModel id="SupplyDrop" parent="ModelAnimationStyleOneShot">
         <EditorCategories value=""/>
         <On index="0" Terms="ActorCreation" Send="AnimBracketStart BSD Birth Spell Death ContentPlayOnce"/>
-        <On Terms="Effect.SupplyDropOffensive.Start" Send="Create"/>
-        <On Terms="Effect.SupplyDropDefensive.Start" Send="Create"/>
+        <On Terms="Effect.AmmunitionDrop.Start" Send="Create"/>
+        <On Terms="Effect.MedicalDrop.Start" Send="Create"/>
         <Scale value="0.500000"/>
     </CActorModel>
     <CActorUnit id="SupplyDropOffensiveUnit" parent="GenericUnitMinimal" unitName="SupplyDropOffensive">
@@ -1315,9 +1599,9 @@
         <On index="61" Terms="ActorCreation" Send="AttachModel ReconTorso ReconBasicTorso {Hardpoint 0}"/>
         <On index="73" Terms="ActorCreation" Send="AttachModel ReconHelmet ReconBasicHelmet {Head 0}"/>
         <On index="76" Terms="ActorCreation" Send="AttachModel Flashlight MarineFlashlight {Head 0}"/>
-        <On Terms="Abil.GroundIlluminationFlare.SourceCastStart" Send="AnimPlay Throw Spell,Blast"/>
+        <On Terms="Abil.SurveillanceFlare.SourceCastStart" Send="AnimPlay Throw Spell,Blast"/>
         <On Terms="Abil.SmokeGrenade.SourceCastStart" Send="AnimPlay Throw Spell,Blast"/>
-        <On Terms="Abil.FlareGunRecon.SourceCastStart" Send="AnimPlay Throw Spell,Blast"/>
+        <On Terms="Abil.FlareGunRecon.SourceCastStart" Send="AnimPlay Throw Attack"/>
     </CActorUnit>
     <CActorModel id="RepulseHeroicSlow" parent="ModelAddition">
         <EditorCategories value=""/>
