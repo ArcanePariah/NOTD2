@@ -1,5 +1,59 @@
 <?xml version="1.0" encoding="us-ascii"?>
 <Catalog>
+    <CModel default="1" id="HeavySlasherTemplate" parent="Unit">
+        <?token id="Race" value="Zerg"?>
+        <Model value="Assets\Units\Zerg\Hydralisk\Hydralisk.m3"/>
+        <RequiredAnims value="Assets\Units\Zerg\Hydralisk_SwarmAnims\Hydralisk_SwarmAnims.m3a"/>
+        <AttachProps Id="Ref_Weapon">
+            <Keys index="SetA" value="0"/>
+        </AttachProps>
+        <AttachProps Id="Ref_Weapon Right">
+            <Keys index="SetA" value="1"/>
+        </AttachProps>
+        <AttachProps Id="Ref_Weapon Left">
+            <Keys index="SetA" value="1"/>
+        </AttachProps>
+        <AttachProps Id="Ref_Center" SquibType="Shield" RadiusShield="0.350000"/>
+        <EditorCategories value="Race:Zerg"/>
+        <Events>
+            <Anim value="Attack,Cover,00"/>
+            <Name value="HydraliskAttackImpactMelee"/>
+            <Type value="Sound"/>
+            <Time value="0.500000"/>
+        </Events>
+        <Events>
+            <Anim value="Attack,Cover,00"/>
+            <Name value="HydraliskAttackImpactMelee"/>
+            <Type value="Sound"/>
+            <Time value="0.550000"/>
+        </Events>
+        <Events>
+            <Anim value="Attack,Cover,01"/>
+            <Name value="HydraliskAttackImpactMelee"/>
+            <Type value="Sound"/>
+            <Time value="0.230000"/>
+        </Events>
+        <Events>
+            <Anim value="Attack,Cover,01"/>
+            <Name value="HydraliskAttackImpactMelee"/>
+            <Type value="Sound"/>
+            <Time value="0.400000"/>
+        </Events>
+        <Lighting value="Slasher"/>
+        <Occlusion value="Show"/>
+        <PlanetPanelCamera value="Star2CameraMid08"/>
+        <Radius value="0.400000"/>
+        <ScaleMax value="0.850000,0.850000,0.950000"/>
+        <ScaleMin value="0.850000,0.850000,0.950000"/>
+        <SelectionRadius value="0.571000"/>
+        <ShadowRadius value="0.571000"/>
+        <SquibTypeDefault value="Flesh"/>
+        <TechPurchaseCamera value="Star2CameraMid08"/>
+        <Tipability value="0.750000"/>
+        <TipabilityLength value="0.800000"/>
+        <TipabilityWidth value="0.800000"/>
+        <UnitGlossaryCamera value="Star2CameraMid08"/>
+    </CModel>
     <CModel id="RentodusJump" parent="ImpactFX">
         <Model value="Assets\Effects\Other\JumpLandDust\JumpLandDust.m3"/>
     </CModel>
@@ -1433,6 +1487,10 @@
             <Keys index="Shield" value="1"/>
         </AttachProps>
     </CModel>
+    <CModel id="Scythe" parent="HeavySlasherTemplate">
+        <Model value="Assets\Units\Zerg\HydraliskEx1A\HydraliskEx1A.m3"/>
+        <Lighting value="Scythe"/>
+    </CModel>
     <CModel id="MarsScientist2" parent="Unit">
         <Model value="Assets\Units\Terran\ScientistMale\ScientistMale.m3"/>
         <RequiredAnims value="Assets\Units\Terran\ColonistMaleAnim\ColonistMaleAnim.m3a"/>
@@ -1446,57 +1504,6 @@
         <AttachProps Id="Ref_Center" SquibType="Shield" RadiusShield="0.350000">
             <Keys index="Shield" value="1"/>
         </AttachProps>
-    </CModel>
-    <CModel id="Scythe" parent="Unit" Race="Zerg">
-        <Model value="Assets\Units\Zerg\HydraliskEx1A\HydraliskEx1A.m3"/>
-        <RequiredAnims value="Assets\Units\Zerg\Hydralisk_SwarmAnims\Hydralisk_SwarmAnims.m3a"/>
-        <AttachProps Id="Ref_Weapon">
-            <Keys index="SetA" value="0"/>
-        </AttachProps>
-        <AttachProps Id="Ref_Weapon Right">
-            <Keys index="SetA" value="1"/>
-        </AttachProps>
-        <AttachProps Id="Ref_Weapon Left">
-            <Keys index="SetA" value="1"/>
-        </AttachProps>
-        <AttachProps Id="Ref_Center" SquibType="Shield" RadiusShield="0.350000"/>
-        <Events>
-            <Anim value="Attack,Cover,00"/>
-            <Name value="HydraliskAttackImpactMelee"/>
-            <Type value="Sound"/>
-            <Time value="0.500000"/>
-        </Events>
-        <Events>
-            <Anim value="Attack,Cover,00"/>
-            <Name value="HydraliskAttackImpactMelee"/>
-            <Type value="Sound"/>
-            <Time value="0.550000"/>
-        </Events>
-        <Events>
-            <Anim value="Attack,Cover,01"/>
-            <Name value="HydraliskAttackImpactMelee"/>
-            <Type value="Sound"/>
-            <Time value="0.230000"/>
-        </Events>
-        <Events>
-            <Anim value="Attack,Cover,01"/>
-            <Name value="HydraliskAttackImpactMelee"/>
-            <Type value="Sound"/>
-            <Time value="0.400000"/>
-        </Events>
-        <Occlusion value="Show"/>
-        <PlanetPanelCamera value="Star2CameraMid08"/>
-        <Radius value="0.400000"/>
-        <ScaleMax value="0.650000,0.650000,0.700000"/>
-        <ScaleMin value="0.650000,0.650000,0.700000"/>
-        <SelectionRadius value="0.571000"/>
-        <ShadowRadius value="0.571000"/>
-        <SquibTypeDefault value="Flesh"/>
-        <TechPurchaseCamera value="Star2CameraMid08"/>
-        <Tipability value="0.750000"/>
-        <TipabilityLength value="0.800000"/>
-        <TipabilityWidth value="0.800000"/>
-        <UnitGlossaryCamera value="Star2CameraMid08"/>
     </CModel>
     <CModel id="Shredder" parent="Unit" Race="Zerg">
         <Model value="Assets\Units\Zerg\Symbiote\Symbiote.m3"/>
@@ -1833,6 +1840,10 @@
         <Model value="Assets\Effects\Zerg\EyeStalk\EyeStalk.m3"/>
         <EditorCategories value="Race:Zerg"/>
     </CModel>
+    <CModel id="Racer" parent="HeavySlasherTemplate">
+        <Model value="Assets\Units\Zerg\HydraliskEx1B\HydraliskEx1B.m3"/>
+        <Lighting value="Racer"/>
+    </CModel>
     <CModel id="Bonebreaker" parent="Unit">
         <Model value="Assets\Units\Neutral\MatriarchSnowBeast\MatriarchSnowBeast.m3"/>
         <EditorCategories value="Race:Zerg"/>
@@ -1868,57 +1879,7 @@
             <Keys index="Shield" value="1"/>
         </AttachProps>
     </CModel>
-    <CModel id="Racer" parent="Unit" Race="Zerg">
-        <Model value="Assets\Units\Zerg\HydraliskEx1B\HydraliskEx1B.m3"/>
-        <RequiredAnims value="Assets\Units\Zerg\Hydralisk_SwarmAnims\Hydralisk_SwarmAnims.m3a"/>
-        <AttachProps Id="Ref_Weapon">
-            <Keys index="SetA" value="0"/>
-        </AttachProps>
-        <AttachProps Id="Ref_Weapon Right">
-            <Keys index="SetA" value="1"/>
-        </AttachProps>
-        <AttachProps Id="Ref_Weapon Left">
-            <Keys index="SetA" value="1"/>
-        </AttachProps>
-        <AttachProps Id="Ref_Center" SquibType="Shield" RadiusShield="0.350000"/>
-        <Events>
-            <Anim value="Attack,Cover,00"/>
-            <Name value="HydraliskAttackImpactMelee"/>
-            <Type value="Sound"/>
-            <Time value="0.500000"/>
-        </Events>
-        <Events>
-            <Anim value="Attack,Cover,00"/>
-            <Name value="HydraliskAttackImpactMelee"/>
-            <Type value="Sound"/>
-            <Time value="0.550000"/>
-        </Events>
-        <Events>
-            <Anim value="Attack,Cover,01"/>
-            <Name value="HydraliskAttackImpactMelee"/>
-            <Type value="Sound"/>
-            <Time value="0.230000"/>
-        </Events>
-        <Events>
-            <Anim value="Attack,Cover,01"/>
-            <Name value="HydraliskAttackImpactMelee"/>
-            <Type value="Sound"/>
-            <Time value="0.400000"/>
-        </Events>
-        <Occlusion value="Show"/>
-        <PlanetPanelCamera value="Star2CameraMid08"/>
-        <Radius value="0.400000"/>
-        <ScaleMax value="0.650000,0.650000,0.700000"/>
-        <ScaleMin value="0.650000,0.650000,0.700000"/>
-        <SelectionRadius value="0.571000"/>
-        <ShadowRadius value="0.571000"/>
-        <SquibTypeDefault value="Flesh"/>
-        <TechPurchaseCamera value="Star2CameraMid08"/>
-        <Tipability value="0.750000"/>
-        <TipabilityLength value="0.800000"/>
-        <TipabilityWidth value="0.800000"/>
-        <UnitGlossaryCamera value="Star2CameraMid08"/>
-    </CModel>
+    <CModel id="Slasher" parent="HeavySlasherTemplate"/>
     <CModel id="Splatter" parent="Unit" Race="Zerg">
         <Model value="Assets\Units\Zerg\Splitterling\Splitterling.m3"/>
         <Occlusion value="Show"/>
@@ -1938,57 +1899,6 @@
         <AttachProps Id="Ref_Center" SquibType="Shield" RadiusShield="0.350000">
             <Keys index="Shield" value="1"/>
         </AttachProps>
-    </CModel>
-    <CModel id="Slasher" parent="Unit" Race="Zerg">
-        <Model value="Assets\Units\Zerg\Hydralisk\Hydralisk.m3"/>
-        <RequiredAnims value="Assets\Units\Zerg\Hydralisk_SwarmAnims\Hydralisk_SwarmAnims.m3a"/>
-        <AttachProps Id="Ref_Weapon">
-            <Keys index="SetA" value="0"/>
-        </AttachProps>
-        <AttachProps Id="Ref_Weapon Right">
-            <Keys index="SetA" value="1"/>
-        </AttachProps>
-        <AttachProps Id="Ref_Weapon Left">
-            <Keys index="SetA" value="1"/>
-        </AttachProps>
-        <AttachProps Id="Ref_Center" SquibType="Shield" RadiusShield="0.350000"/>
-        <Events>
-            <Anim value="Attack,Cover,00"/>
-            <Name value="HydraliskAttackImpactMelee"/>
-            <Type value="Sound"/>
-            <Time value="0.500000"/>
-        </Events>
-        <Events>
-            <Anim value="Attack,Cover,00"/>
-            <Name value="HydraliskAttackImpactMelee"/>
-            <Type value="Sound"/>
-            <Time value="0.550000"/>
-        </Events>
-        <Events>
-            <Anim value="Attack,Cover,01"/>
-            <Name value="HydraliskAttackImpactMelee"/>
-            <Type value="Sound"/>
-            <Time value="0.230000"/>
-        </Events>
-        <Events>
-            <Anim value="Attack,Cover,01"/>
-            <Name value="HydraliskAttackImpactMelee"/>
-            <Type value="Sound"/>
-            <Time value="0.400000"/>
-        </Events>
-        <Occlusion value="Show"/>
-        <PlanetPanelCamera value="Star2CameraMid08"/>
-        <Radius value="0.400000"/>
-        <ScaleMax value="0.650000,0.650000,0.700000"/>
-        <ScaleMin value="0.650000,0.650000,0.700000"/>
-        <SelectionRadius value="0.571000"/>
-        <ShadowRadius value="0.571000"/>
-        <SquibTypeDefault value="Flesh"/>
-        <TechPurchaseCamera value="Star2CameraMid08"/>
-        <Tipability value="0.750000"/>
-        <TipabilityLength value="0.800000"/>
-        <TipabilityWidth value="0.800000"/>
-        <UnitGlossaryCamera value="Star2CameraMid08"/>
     </CModel>
     <CModel id="Rhino" parent="Unit" Race="Zerg">
         <Model value="Assets\Units\Zerg\LurkerEx1A\LurkerEx1A.m3"/>
@@ -2303,6 +2213,10 @@
             <Keys index="Shield" value="1"/>
         </AttachProps>
     </CModel>
+    <CModel id="Slayer" parent="HeavySlasherTemplate">
+        <Model value="Assets\Units\Zerg\PrimalZergHydralisk\PrimalZergHydralisk.m3"/>
+        <Lighting value="Slayer"/>
+    </CModel>
     <CModel id="MarsScientist" parent="Unit">
         <Model value="Assets\Units\Terran\ScientistMale\ScientistMale.m3"/>
         <RequiredAnims value="Assets\Units\Terran\ColonistMaleAnim\ColonistMaleAnim.m3a"/>
@@ -2344,57 +2258,6 @@
     <CModel id="K5KerriganLevelUp2" parent="OneShotSpellFX">
         <Model value="Assets\Effects\Zerg\KerriganRespawnImpact\KerriganRespawnImpact.m3"/>
         <EditorCategories value="Race:Zerg"/>
-    </CModel>
-    <CModel id="Slayer" parent="Unit" Race="Zerg">
-        <Model value="Assets\Units\Zerg\PrimalZergHydralisk\PrimalZergHydralisk.m3"/>
-        <RequiredAnims value="Assets\Units\Zerg\Hydralisk_SwarmAnims\Hydralisk_SwarmAnims.m3a"/>
-        <AttachProps Id="Ref_Weapon">
-            <Keys index="SetA" value="0"/>
-        </AttachProps>
-        <AttachProps Id="Ref_Weapon Right">
-            <Keys index="SetA" value="1"/>
-        </AttachProps>
-        <AttachProps Id="Ref_Weapon Left">
-            <Keys index="SetA" value="1"/>
-        </AttachProps>
-        <AttachProps Id="Ref_Center" SquibType="Shield" RadiusShield="0.350000"/>
-        <Events>
-            <Anim value="Attack,Cover,00"/>
-            <Name value="HydraliskAttackImpactMelee"/>
-            <Type value="Sound"/>
-            <Time value="0.500000"/>
-        </Events>
-        <Events>
-            <Anim value="Attack,Cover,00"/>
-            <Name value="HydraliskAttackImpactMelee"/>
-            <Type value="Sound"/>
-            <Time value="0.550000"/>
-        </Events>
-        <Events>
-            <Anim value="Attack,Cover,01"/>
-            <Name value="HydraliskAttackImpactMelee"/>
-            <Type value="Sound"/>
-            <Time value="0.230000"/>
-        </Events>
-        <Events>
-            <Anim value="Attack,Cover,01"/>
-            <Name value="HydraliskAttackImpactMelee"/>
-            <Type value="Sound"/>
-            <Time value="0.400000"/>
-        </Events>
-        <Occlusion value="Show"/>
-        <PlanetPanelCamera value="Star2CameraMid08"/>
-        <Radius value="0.400000"/>
-        <ScaleMax value="0.650000,0.650000,0.700000"/>
-        <ScaleMin value="0.650000,0.650000,0.700000"/>
-        <SelectionRadius value="0.571000"/>
-        <ShadowRadius value="0.571000"/>
-        <SquibTypeDefault value="Flesh"/>
-        <TechPurchaseCamera value="Star2CameraMid08"/>
-        <Tipability value="0.750000"/>
-        <TipabilityLength value="0.800000"/>
-        <TipabilityWidth value="0.800000"/>
-        <UnitGlossaryCamera value="Star2CameraMid08"/>
     </CModel>
     <CModel id="BonebreakerBoulder" parent="MissileFX">
         <Model value="Assets\Doodads\Rock\Rock_00.m3"/>

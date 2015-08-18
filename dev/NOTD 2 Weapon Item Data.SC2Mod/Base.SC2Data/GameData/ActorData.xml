@@ -17,6 +17,8 @@
         </Wireframe>
         <DeathArray index="Normal" ModelLink="TossGrenadeImpact" SoundLink="TychusTossGrenadeImpact"/>
         <Macros value="CrateOrangeGlowMacro"/>
+        <Aliases value="_AmmoModificationItem"/>
+        <Aliases value="_Equipment"/>
     </CActorUnit>
     <CActorUnit default="1" id="ConsumableTemplate" parent="GenericUnitSelectableNoAutoSoundLinks">
         <InfoText value="Button/Tooltip/##unitName##"/>
@@ -36,6 +38,7 @@
         </Wireframe>
         <DeathArray index="Normal" ModelLink="TossGrenadeImpact" SoundLink="TychusTossGrenadeImpact"/>
         <Macros value="CratePurpleGlowMacro"/>
+        <Aliases value="_Consumable"/>
     </CActorUnit>
     <CActorUnit default="1" id="AccessoryTemplate" parent="GenericUnitSelectableNoAutoSoundLinks">
         <Model value="ItemCrate"/>
@@ -54,6 +57,7 @@
         </Wireframe>
         <DeathArray index="Normal" ModelLink="TossGrenadeImpact" SoundLink="TychusTossGrenadeImpact"/>
         <Macros value="CrateYellowGlowMacro"/>
+        <Aliases value="_AccessoryItem"/>
     </CActorUnit>
     <CActorAction default="1" id="WeaponAttackTemplate" parent="GenericAttack">
         <EditorCategories value=""/>
@@ -80,6 +84,8 @@
         </Wireframe>
         <DeathArray index="Normal" ModelLink="TossGrenadeImpact" SoundLink="TychusTossGrenadeImpact"/>
         <Macros value="CrateBlueGlowMacro"/>
+        <Aliases value="_WeaponItem"/>
+        <Aliases value="_Equipment"/>
     </CActorUnit>
     <CActorUnit default="1" id="ArmorCrateTemplate" parent="GenericUnitSelectableNoAutoSoundLinks">
         <InfoText value="Button/Tooltip/##unitName##"/>
@@ -98,6 +104,13 @@
         </Wireframe>
         <DeathArray index="Normal" ModelLink="TossGrenadeImpact" SoundLink="TychusTossGrenadeImpact"/>
         <Macros value="CrateBlueGlowMacro"/>
+        <Aliases value="_ArmorItem"/>
+        <Aliases value="_Equipment"/>
+    </CActorUnit>
+    <CActorUnit default="1" id="MedicalItemTemplate" parent="ConsumableTemplate">
+        <Aliases value="_MedicalItem"/>
+        <Model value="MedicalCrate"/>
+        <Macros index="0" value="CrateRedGlowMacro"/>
     </CActorUnit>
     <CActorAction id="GrenadeLauncherAttack" parent="WeaponAttackTemplate"/>
     <CActorRange id="RoadFlareRange" parent="RangeAbil" abil="RoadFlare"/>
@@ -298,10 +311,7 @@
         <LaunchAssets Sound="Robot_servo"/>
         <ImpactMap index="None" Scale="2.000000" Sound="Ultralisk_AttackLaunch"/>
     </CActorAction>
-    <CActorUnit id="MendingPaste" parent="ConsumableTemplate" unitName="MendingPaste">
-        <Model value="MedicalCrate"/>
-        <Macros index="0" value="CrateRedGlowMacro"/>
-    </CActorUnit>
+    <CActorUnit id="MendingPaste" parent="MedicalItemTemplate" unitName="MendingPaste"/>
     <CActorUnit id="NightVisionModule" parent="AccessoryTemplate" unitName="NightVisionModule"/>
     <CActorUnit id="PowerGeneratorAugment" parent="AccessoryTemplate" unitName="PowerGeneratorAugment"/>
     <CActorUnit id="RiotShield" parent="AccessoryTemplate" unitName="RiotShield"/>
@@ -312,7 +322,6 @@
     </CActorAction>
     <CActorUnit id="AmmunitionCase" parent="GenericUnitSelectableNoAutoSoundLinks" unitName="AmmunitionCase">
         <EditorCategories value=""/>
-        <HighlightTooltip value="Unit/Name/Bogus"/>
         <StatusBarFlags index="Shields" value="0"/>
         <StatusBarFlags index="Life" value="0"/>
         <StatusBarFlags index="Energy" value="0"/>
@@ -324,16 +333,14 @@
         <StatusBarFlags index="Custom" value="0"/>
         <Scale value="0.600000"/>
         <DeathArray index="Normal" ModelLink="TossGrenadeImpact" SoundLink="TychusTossGrenadeImpact"/>
+        <Aliases value="_Ammunition"/>
     </CActorUnit>
     <CActorAction id="AntiMaterialRifleAttack" parent="WeaponAttackTemplate" effectAttack="AntiMaterialRifleDamage">
         <LaunchAssets Model="AutoTurretAttackLaunch" Sound="AntiMaterialRifleShot"/>
         <ImpactMap index="None" Sound="Ghost_SnipeImpact"/>
         <DamageMap index="None" AnimProps="Birth,01"/>
     </CActorAction>
-    <CActorUnit id="Antivenom" parent="ConsumableTemplate" unitName="AntiVenom">
-        <Model value="MedicalCrate"/>
-        <Macros index="0" value="CrateRedGlowMacro"/>
-    </CActorUnit>
+    <CActorUnit id="Antivenom" parent="MedicalItemTemplate" unitName="AntiVenom"/>
     <CActorUnit id="AssaultRifle" parent="WeaponCrateTemplate" unitName="AssaultRifle">
         <InfoText value="Button/Infotext/AssaultRifle"/>
         <UnitIcon value="Weapons\btn-AssaultRifle.dds"/>
@@ -342,10 +349,7 @@
         <InfoText value="Button/Imfotext/AutomaticShotgun"/>
         <UnitIcon value="Weapons\btn-AutomaticShotgun.dds"/>
     </CActorUnit>
-    <CActorUnit id="Bandage" parent="ConsumableTemplate" unitName="Bandage">
-        <Model value="MedicalCrate"/>
-        <Macros index="0" value="CrateRedGlowMacro"/>
-    </CActorUnit>
+    <CActorUnit id="Bandage" parent="MedicalItemTemplate" unitName="Bandage"/>
     <CActorUnit id="Chainsaw" parent="WeaponCrateTemplate" unitName="Chainsaw">
         <InfoText value="Button/Infotext/Chainsaw"/>
         <UnitIcon value="Weapons\btn-Chainsaw.dds"/>
@@ -429,6 +433,7 @@
         <Scale value="0.750000"/>
         <InfoText value="Button/Tooltip/Magazine"/>
         <DeathArray index="Normal" ModelLink="TossGrenadeImpact" SoundLink="TychusTossGrenadeImpact"/>
+        <Aliases value="_Ammunition"/>
     </CActorUnit>
     <CActorUnit id="MarksmanRifle" parent="WeaponCrateTemplate" unitName="MarksmanRifle">
         <InfoText value="Button/Infotext/MarksmanRifle"/>
@@ -440,13 +445,10 @@
         <ImpactMap index="None" Sound="Ghost_SnipeImpact"/>
         <DamageMap index="None" AnimProps="Birth,01"/>
     </CActorAction>
+    <CActorUnit id="Medkit" parent="MedicalItemTemplate" unitName="Medkit"/>
     <CActorUnit id="MediumMachineGun" parent="WeaponCrateTemplate" unitName="MediumMachineGun">
         <InfoText value="Button/Infotext/MediumMachineGun"/>
         <UnitIcon value="Weapons\btn-MediumMachineGun.dds"/>
-    </CActorUnit>
-    <CActorUnit id="Medkit" parent="ConsumableTemplate" unitName="Medkit">
-        <Model value="MedicalCrate"/>
-        <Macros index="0" value="CrateRedGlowMacro"/>
     </CActorUnit>
     <CActorUnit id="Pistol" parent="WeaponCrateTemplate" unitName="Pistol">
         <InfoText value="Button/Infotext/Pistol"/>

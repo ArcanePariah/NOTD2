@@ -243,26 +243,13 @@ Sound=##id##_Ambience
 id=Flechette
 Sound=##id##_Ambience
 parent=ConsumableTemplate
+default=MedicalItemTemplate
+Actor=CrateRedGlowMacro
+Model=MedicalCrate
 id=CommunicationsArrayItem
 Actor=CrateGreenGlowMacro
 Model=CommunicationsArray,MissionCrate
 Sound=CommunicationsArrayPackedUp_Ambience
-id=MendingPaste
-Actor=CrateRedGlowMacro
-Model=MedicalCrate
-Sound=##id##_Ambience
-id=Antivenom
-Actor=CrateRedGlowMacro
-Model=MedicalCrate
-Sound=AntiVenom_Ambience
-id=Bandage
-Actor=CrateRedGlowMacro
-Model=##id##,MedicalCrate
-Sound=##id##_Ambience
-id=Medkit
-Actor=CrateRedGlowMacro
-Model=MedicalCrate,##id##
-Sound=##id##_Ambience
 id=RoadFlare
 Sound=##id##_Ambience
 id=RoadFlareGun
@@ -416,6 +403,17 @@ Sound=##id##_Ambience
 id=ShieldAugmentationInsert
 Sound=##id##_Ambience
 id=EnhancedProtectiveInsert
+Sound=##id##_Ambience
+parent=MedicalItemTemplate
+id=MendingPaste
+Sound=##id##_Ambience
+id=Antivenom
+Sound=AntiVenom_Ambience
+id=Bandage
+Model
+Sound=##id##_Ambience
+id=Medkit
+Model
 Sound=##id##_Ambience
 
 [Behavior]
@@ -1579,13 +1577,14 @@ Actor=TerrainMgr
 
 [Sound]
 id=AutomaticShotgunShot
-1=SOUNDAutoShotgun.ogg
-0=Weapons\Weapons\Work Work\AutoShotGun_Fire.wav
+3=SOUNDAutoShotgun.ogg
+path=.wav
+0=widow_maker_shot_01
+1=widow_maker_shot_02
+2=widow_maker_shot_03
 Actor=TerrainMgr
 id=SubmachineGunShot
-path=Weapons\Weapons\Work Work\.wav
-1=SMG_Fire_Alt_1
-0=SMG_Fire_Alt_2
+0=GPR_Fire1.wav
 Actor=TerrainMgr
 id=PlasmaCannonShot
 0=Assets\Sounds\PirateCapitalShip_YamatoAttackLaunch_00.wav

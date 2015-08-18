@@ -21,6 +21,19 @@
         <ExcludeArray Value="Target"/>
         <SearchFilters value="-;Player,Ally,Neutral,Item,Invulnerable"/>
     </CEffectDamage>
+    <CEffectEnumArea id="BlackDiamond">
+        <EditorCategories value=""/>
+        <SearchFilters value="-;Player,Ally,Neutral"/>
+        <AreaArray Radius="6" Effect="BlackDiamondSet"/>
+    </CEffectEnumArea>
+    <CEffectDamage id="BlackDiamondBonusDamage">
+        <EditorCategories value=""/>
+    </CEffectDamage>
+    <CEffectSet id="BlackDiamondSet">
+        <EditorCategories value=""/>
+        <EffectArray value="BlackDiamondDamage"/>
+        <EffectArray value="BlackDiamondStun"/>
+    </CEffectSet>
     <CEffectCreatePersistent id="Bulwark">
         <EditorCategories value=""/>
         <WhichLocation Value="TargetUnitOrPoint"/>
@@ -158,6 +171,15 @@
         <SearchFilters value="-;Player,Ally,Neutral"/>
         <AreaArray Radius="5" Effect="ElbowRoomForcePersistent"/>
     </CEffectEnumArea>
+    <CEffectDamage id="ExecuteDamageLevel2Backstab">
+        <EditorCategories value=""/>
+        <Amount value="1000"/>
+    </CEffectDamage>
+    <CEffectSwitch id="ExecuteLevel2DamageSwitch">
+        <EditorCategories value=""/>
+        <CaseArray Validator="Backstab" Effect="ExecuteDamageLevel2Backstab"/>
+        <CaseDefault value="ExecuteDamageLevel2"/>
+    </CEffectSwitch>
     <CEffectDamage id="IFV25mmHEAutocannonDamage">
         <EditorCategories value=""/>
         <ImpactLocation Value="TargetUnit"/>
@@ -622,16 +644,16 @@
     </CEffectApplyBehavior>
     <CEffectDamage id="ExecuteDamageLevel1">
         <EditorCategories value=""/>
-        <Amount value="400"/>
+        <Amount value="500"/>
     </CEffectDamage>
     <CEffectDamage id="ExecuteDamageLevel2">
         <EditorCategories value=""/>
-        <Amount value="800"/>
+        <Amount value="500"/>
     </CEffectDamage>
     <CEffectSwitch id="ExecuteSwitchLevel2">
         <EditorCategories value=""/>
         <CaseArray Validator="NormalUnitNonMassiveorHeroic" Effect="Kill"/>
-        <CaseDefault value="ExecuteDamageLevel2"/>
+        <CaseDefault value="ExecuteLevel2DamageSwitch"/>
     </CEffectSwitch>
     <CEffectSwitch id="ExecuteSwitchLevel1">
         <EditorCategories value=""/>
@@ -666,10 +688,10 @@
     </CEffectLaunchMissile>
     <CEffectCreatePersistent id="FlareGunPersistentLevel3">
         <EditorCategories value=""/>
-        <PeriodCount value="16"/>
+        <PeriodCount value="12"/>
         <PeriodicEffectArray value="FlareGunSlowSearchLevel122"/>
         <PeriodicPeriodArray value="0.5"/>
-        <RevealRadius value="7"/>
+        <RevealRadius value="6"/>
         <RevealFlags index="Unfog" value="1"/>
         <RevealFlags index="Detect" value="1"/>
     </CEffectCreatePersistent>
@@ -687,7 +709,7 @@
     </CEffectSet>
     <CEffectCreatePersistent id="FlareGunPersistentLevel2">
         <EditorCategories value=""/>
-        <PeriodCount value="16"/>
+        <PeriodCount value="8"/>
         <PeriodicEffectArray value="FlareGunSlowSearchLevel12"/>
         <PeriodicPeriodArray value="0.5"/>
         <RevealRadius value="6"/>
@@ -696,10 +718,10 @@
     </CEffectCreatePersistent>
     <CEffectCreatePersistent id="FlareGunPersistentLevel1">
         <EditorCategories value=""/>
-        <PeriodCount value="16"/>
+        <PeriodCount value="8"/>
         <PeriodicEffectArray value="FlareGunSlowSearchLevel1"/>
         <PeriodicPeriodArray value="0.5"/>
-        <RevealRadius value="5"/>
+        <RevealRadius value="6"/>
         <RevealFlags index="Unfog" value="1"/>
         <RevealFlags index="Detect" value="1"/>
     </CEffectCreatePersistent>
@@ -723,22 +745,134 @@
     <CEffectEnumArea id="FlareGunSlowSearchLevel1">
         <EditorCategories value=""/>
         <ImpactLocation Value="SourceUnit"/>
-        <SearchFilters value="Biological;Player,Ally,Neutral,Heroic"/>
-        <AreaArray Radius="5" Effect="FlareGunSlowLevel1"/>
+        <SearchFilters value="-;Player,Ally,Neutral"/>
+        <AreaArray Radius="6" Effect="FlareGunSlowLevel1"/>
     </CEffectEnumArea>
     <CEffectEnumArea id="FlareGunSlowSearchLevel12">
         <EditorCategories value=""/>
         <ImpactLocation Value="SourceUnit"/>
-        <SearchFilters value="Biological;Player,Ally,Neutral,Heroic"/>
-        <AreaArray Radius="5" Effect="FlareGunSlowLevel12"/>
+        <SearchFilters value="-;Player,Ally,Neutral"/>
+        <AreaArray Radius="6" Effect="FlareGunSlowLevel12"/>
     </CEffectEnumArea>
     <CEffectEnumArea id="FlareGunSlowSearchLevel122">
         <EditorCategories value=""/>
         <ImpactLocation Value="SourceUnit"/>
-        <SearchFilters value="Biological;Player,Ally,Neutral,Heroic"/>
-        <AreaArray Radius="5" Effect="FlareGunSlowLevel122"/>
+        <SearchFilters value="-;Player,Ally,Neutral"/>
+        <AreaArray Radius="6" Effect="FlareGunSlowLevel122"/>
     </CEffectEnumArea>
-    <CEffectLaunchMissile id="GroundIlluminationFlareLevel2">
+    <CEffectApplyBehavior id="MotionSensorDetected">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectEnumArea id="MotionSensorSearchLevel1">
+        <EditorCategories value=""/>
+        <ImpactLocation Value="SourceUnit"/>
+        <SearchFilters value="-;Player,Ally,Neutral,Missile,Item"/>
+        <AreaArray Radius="20" Effect="MotionSensorDetected"/>
+    </CEffectEnumArea>
+    <CEffectEnumArea id="MotionSensorSearchLevel2">
+        <EditorCategories value=""/>
+        <ImpactLocation Value="SourceUnit"/>
+        <SearchFilters value="-;Player,Ally,Neutral,Missile,Item"/>
+        <AreaArray Radius="40" Effect="MotionSensorDetected"/>
+    </CEffectEnumArea>
+    <CEffectCreatePersistent id="SatelliteUplink">
+        <EditorCategories value=""/>
+        <WhichLocation Value="TargetUnitOrPoint"/>
+    </CEffectCreatePersistent>
+    <CEffectEnumArea id="SmokeGrenadeAlliedEvasionSearchLevel2">
+        <EditorCategories value=""/>
+        <SearchFilters value="-;Neutral,Enemy"/>
+        <AreaArray Radius="3.5" Effect="SmokeGrenadeAlliedEvasionLevel2"/>
+    </CEffectEnumArea>
+    <CEffectApplyBehavior id="SmokeGrenadeAlliedEvasionLevel3">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="SmokeGrenadeAlliedEvasionLevel2">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectEnumArea id="SmokeGrenadeAlliedEvasionSearchLevel3">
+        <EditorCategories value=""/>
+        <SearchFilters value="-;Neutral,Enemy"/>
+        <AreaArray Radius="3.5" Effect="SmokeGrenadeAlliedEvasionLevel3"/>
+    </CEffectEnumArea>
+    <CEffectEnumArea id="SmokeGrenadeEnemySlowSearchLevel3">
+        <EditorCategories value=""/>
+        <SearchFilters value="-;Player,Ally,Neutral"/>
+        <AreaArray Radius="3.5" Effect="SmokeGrenadeEnemySlowLevel3"/>
+    </CEffectEnumArea>
+    <CEffectCreatePersistent id="SmokeGrenadePersistentLevel1">
+        <EditorCategories value=""/>
+        <PeriodCount value="120"/>
+        <PeriodicEffectArray value="SmokeGrenadeEnemySlowSearchLevel1"/>
+        <PeriodicPeriodArray value="0.25"/>
+    </CEffectCreatePersistent>
+    <CEffectCreatePersistent id="SmokeGrenadePersistentLevel2">
+        <EditorCategories value=""/>
+        <PeriodCount value="120"/>
+        <PeriodicEffectArray value="SmokeGrenadeSetLevel2"/>
+        <PeriodicPeriodArray value="0.25"/>
+    </CEffectCreatePersistent>
+    <CEffectCreatePersistent id="SmokeGrenadePersistentLevel3">
+        <EditorCategories value=""/>
+        <PeriodCount value="120"/>
+        <PeriodicEffectArray value="SmokeGrenadeSetLevel3"/>
+        <PeriodicPeriodArray value="0.25"/>
+    </CEffectCreatePersistent>
+    <CEffectApplyBehavior id="SmokeGrenadeEnemySlowLevel2">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="SmokeGrenadeEnemySlowLevel3">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectEnumArea id="SmokeGrenadeEnemySlowSearchLevel1">
+        <EditorCategories value=""/>
+        <SearchFilters value="-;Player,Ally,Neutral"/>
+        <AreaArray Radius="3.5" Effect="SmokeGrenadeEnemySlowLevel1"/>
+    </CEffectEnumArea>
+    <CEffectApplyBehavior id="SmokeGrenadeEnemySlowLevel1">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectEnumArea id="SmokeGrenadeEnemySlowSearchLevel2">
+        <EditorCategories value=""/>
+        <SearchFilters value="-;Player,Ally,Neutral"/>
+        <AreaArray Radius="3.5" Effect="SmokeGrenadeEnemySlowLevel2"/>
+    </CEffectEnumArea>
+    <CEffectLaunchMissile id="SmokeGrenadeLevel3">
+        <EditorCategories value=""/>
+        <ImpactLocation Value="TargetPoint"/>
+        <ImpactEffect value="SmokeGrenadePersistentLevel3"/>
+    </CEffectLaunchMissile>
+    <CEffectSet id="SmokeGrenadeSetLevel2">
+        <EditorCategories value=""/>
+        <TargetLocationType value="Point"/>
+        <EffectArray value="SmokeGrenadeEnemySlowSearchLevel2"/>
+        <EffectArray value="SmokeGrenadeAlliedEvasionSearchLevel2"/>
+    </CEffectSet>
+    <CEffectSet id="SmokeGrenadeSetLevel3">
+        <EditorCategories value=""/>
+        <EffectArray value="SmokeGrenadeEnemySlowSearchLevel3"/>
+        <EffectArray value="SmokeGrenadeAlliedEvasionSearchLevel3"/>
+        <TargetLocationType value="Point"/>
+    </CEffectSet>
+    <CEffectSet id="StealthMatrixSetLevel1">
+        <ValidatorArray value="ReconHasStealthMatrix"/>
+        <EditorCategories value=""/>
+        <EffectArray value="StealthMatrixOrder"/>
+        <EffectArray value="StealthMatrixEscapeCloakLevel1"/>
+    </CEffectSet>
+    <CEffectSet id="StealthMatrixSetLevel2">
+        <ValidatorArray value="ReconHasStealthMatrix"/>
+        <EditorCategories value=""/>
+        <EffectArray value="StealthMatrixOrder"/>
+        <EffectArray value="StealthMatrixEscapeCloakLevel2"/>
+    </CEffectSet>
+    <CEffectSet id="StealthMatrixSetLevel3">
+        <ValidatorArray value="ReconHasStealthMatrix"/>
+        <EditorCategories value=""/>
+        <EffectArray value="StealthMatrixOrder"/>
+        <EffectArray value="StealthMatrixEscapeCloakLevel3"/>
+    </CEffectSet>
+    <CEffectLaunchMissile id="SurveillanceFlareLevel2">
         <EditorCategories value=""/>
         <ImpactLocation Value="TargetPoint"/>
         <ImpactEffect value="GroundIlluminationFlareCreationLevel2"/>
@@ -757,7 +891,7 @@
         <WhichLocation Value="TargetPoint"/>
         <SpawnUnit value="GroundIlluminationFlareLevel3"/>
     </CEffectCreateUnit>
-    <CEffectLaunchMissile id="GroundIlluminationFlareLevel3">
+    <CEffectLaunchMissile id="SurveillanceFlareLevel3">
         <EditorCategories value=""/>
         <ImpactLocation Value="TargetPoint"/>
         <ImpactEffect value="GroundIlluminationFlareCreationLevel3"/>
@@ -1486,16 +1620,6 @@
         <ExcludeArray Value="Target"/>
         <SearchFilters value="-;Player,Ally,Neutral,Item,Invulnerable"/>
     </CEffectDamage>
-    <CEffectIssueOrder id="PickUpItem">
-        <EditorCategories value=""/>
-        <WhichUnit Value="Caster"/>
-        <Abil value="DemolitionsInventory"/>
-        <AbilCmdIndex value="2"/>
-        <CmdFlags index="Queued" value="1"/>
-        <CmdFlags index="Preempt" value="1"/>
-        <Player Value="Caster"/>
-        <Target Value="TargetUnit"/>
-    </CEffectIssueOrder>
     <CEffectCreatePersistent id="PiranhaMissiles">
         <EditorCategories value=""/>
         <WhichLocation Value="TargetUnit"/>
@@ -1516,6 +1640,12 @@
     <CEffectApplyBehavior id="PredatorCloak">
         <EditorCategories value=""/>
     </CEffectApplyBehavior>
+    <CEffectIssueOrder id="ProvokeAttackOrder">
+        <EditorCategories value=""/>
+        <Abil value="attack"/>
+        <CmdFlags index="Preempt" value="1"/>
+        <Target Value="CasterUnit"/>
+    </CEffectIssueOrder>
     <CEffectApplyBehavior id="ProvokeLevel1">
         <EditorCategories value=""/>
     </CEffectApplyBehavior>
@@ -1528,12 +1658,12 @@
     <CEffectEnumArea id="ProvokeSearchLevel1">
         <EditorCategories value=""/>
         <SearchFilters value="-;Player,Ally,Neutral"/>
-        <AreaArray Radius="7" Effect="ProvokeLevel1Taunt"/>
+        <AreaArray Radius="7" Effect="ProvokeTauntSetLevel1"/>
     </CEffectEnumArea>
     <CEffectEnumArea id="ProvokeSearchLevel2">
         <EditorCategories value=""/>
         <SearchFilters value="-;Player,Ally,Neutral"/>
-        <AreaArray Radius="8" Effect="ProvokeLevel2Taunt"/>
+        <AreaArray Radius="8" Effect="ProvokeTauntSetLevel2"/>
     </CEffectEnumArea>
     <CEffectApplyBehavior id="ProvokeLevel2Taunt">
         <EditorCategories value=""/>
@@ -1544,8 +1674,23 @@
     <CEffectEnumArea id="ProvokeSearchLevel3">
         <EditorCategories value=""/>
         <SearchFilters value="-;Player,Ally,Neutral"/>
-        <AreaArray Radius="9" Effect="ProvokeLevel3Taunt"/>
+        <AreaArray Radius="9" Effect="ProvokeTauntSetLevel3"/>
     </CEffectEnumArea>
+    <CEffectSet id="ProvokeTauntSetLevel1">
+        <EditorCategories value=""/>
+        <EffectArray value="ProvokeLevel1Taunt"/>
+        <EffectArray value="ProvokeAttackOrder"/>
+    </CEffectSet>
+    <CEffectSet id="ProvokeTauntSetLevel2">
+        <EditorCategories value=""/>
+        <EffectArray value="ProvokeLevel2Taunt"/>
+        <EffectArray value="ProvokeAttackOrder"/>
+    </CEffectSet>
+    <CEffectSet id="ProvokeTauntSetLevel3">
+        <EditorCategories value=""/>
+        <EffectArray value="ProvokeLevel3Taunt"/>
+        <EffectArray value="ProvokeAttackOrder"/>
+    </CEffectSet>
     <CEffectDamage id="ReactiveShieldsDamageLevel1">
         <ValidatorArray value="ReactiveShieldsRange"/>
         <EditorCategories value=""/>
@@ -1561,6 +1706,15 @@
         <EditorCategories value=""/>
         <Amount value="20"/>
     </CEffectDamage>
+    <CEffectApplyBehavior id="ReconDetectorDetected">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectEnumArea id="ReconDetectorDetection">
+        <EditorCategories value=""/>
+        <Marker Link="Effect/HeroDetectorRadar"/>
+        <SearchFilters value="Visible,Detector;Player,Ally,Neutral"/>
+        <AreaArray Radius="20" Effect="ReconDetectorDetected"/>
+    </CEffectEnumArea>
     <CEffectModifyUnit id="Refresher">
         <EditorCategories value=""/>
         <VitalArray index="Energy" Change="45"/>
@@ -1716,18 +1870,15 @@
         <EffectArray value="CombatKnifeSearch"/>
     </CEffectSet>
     <CEffectDamage id="SnipeDamage">
-        <ValidatorArray value="Backstab"/>
+        <ValidatorArray value="NotAttacking2"/>
     </CEffectDamage>
     <CEffectApplyBehavior id="StealthMatrixEscapeCloakLevel1">
-        <ValidatorArray index="0" value="ReconHasStealthMatrix"/>
         <EditorCategories value=""/>
     </CEffectApplyBehavior>
     <CEffectApplyBehavior id="StealthMatrixEscapeCloakLevel2">
-        <ValidatorArray index="0" value="ReconHasStealthMatrix"/>
         <EditorCategories value=""/>
     </CEffectApplyBehavior>
     <CEffectApplyBehavior id="StealthMatrixEscapeCloakLevel3">
-        <ValidatorArray index="0" value="ReconHasStealthMatrix"/>
         <EditorCategories value=""/>
     </CEffectApplyBehavior>
     <CEffectIssueOrder id="StealthMatrixOrder">
@@ -1735,7 +1886,7 @@
         <Abil value="StealthMatrix"/>
         <CmdFlags index="Preempt" value="1"/>
     </CEffectIssueOrder>
-    <CEffectCreatePersistent id="SupplyDropOffensive">
+    <CEffectCreatePersistent id="AmmunitionDrop">
         <EditorCategories value=""/>
         <InitialDelay value="2"/>
         <InitialEffect value="SupplyDropOffensiveUnit"/>
@@ -1947,7 +2098,7 @@
         <EditorCategories value=""/>
         <Amount value="100"/>
     </CEffectDamage>
-    <CEffectLaunchMissile id="GroundIlluminationFlareLevel1">
+    <CEffectLaunchMissile id="SurveillanceFlareLevel1">
         <EditorCategories value=""/>
         <ImpactLocation Value="TargetPoint"/>
         <ImpactEffect value="GroundIlluminationFlareCreationLevel1"/>
@@ -2041,55 +2192,16 @@
         <ExcludeArray Value="Target"/>
         <SearchFilters value="-;Player,Ally,Neutral,Item,Invulnerable"/>
     </CEffectDamage>
-    <CEffectApplyBehavior id="SmokeGrenadeBlindHeroicLevel2">
-        <EditorCategories value=""/>
-    </CEffectApplyBehavior>
-    <CEffectApplyBehavior id="SmokeGrenadeBlindLevel1">
-        <EditorCategories value=""/>
-    </CEffectApplyBehavior>
-    <CEffectApplyBehavior id="SmokeGrenadeBlindLevel2">
-        <EditorCategories value=""/>
-    </CEffectApplyBehavior>
-    <CEffectCreateUnit id="SmokeGrenadeUnitLevel2">
-        <EditorCategories value=""/>
-        <WhichLocation Value="TargetPoint"/>
-        <SpawnUnit value="SmokeGrenadeLevel2"/>
-    </CEffectCreateUnit>
-    <CEffectEnumArea id="SmokeGrenadeBlindSearchLevel1">
-        <EditorCategories value=""/>
-        <SearchFilters value="-;Player,Ally,Neutral"/>
-        <AreaArray Radius="2.5" Effect="SmokeGrenadeBlindSwitchLevel1"/>
-    </CEffectEnumArea>
-    <CEffectEnumArea id="SmokeGrenadeBlindSearchLevel2">
-        <EditorCategories value=""/>
-        <SearchFilters value="-;Player,Ally,Neutral"/>
-        <AreaArray Radius="2.5" Effect="SmokeGrenadeBlindSwitchLevel2"/>
-    </CEffectEnumArea>
-    <CEffectSwitch id="SmokeGrenadeBlindSwitchLevel1">
-        <EditorCategories value=""/>
-        <CaseArray Validator="IsHeroic" Effect="SmokeGrenadeBlindHeroicLevel1"/>
-        <CaseDefault value="SmokeGrenadeBlindLevel1"/>
-    </CEffectSwitch>
-    <CEffectSwitch id="SmokeGrenadeBlindSwitchLevel2">
-        <EditorCategories value=""/>
-        <CaseArray Validator="IsHeroic" Effect="SmokeGrenadeBlindHeroicLevel2"/>
-        <CaseDefault value="SmokeGrenadeBlindLevel2"/>
-    </CEffectSwitch>
     <CEffectLaunchMissile id="SmokeGrenadeLevel1">
         <EditorCategories value=""/>
         <ImpactLocation Value="TargetPoint"/>
-        <ImpactEffect value="SmokeGrenadeUnitLevel1"/>
+        <ImpactEffect value="SmokeGrenadePersistentLevel1"/>
     </CEffectLaunchMissile>
     <CEffectLaunchMissile id="SmokeGrenadeLevel2">
         <EditorCategories value=""/>
         <ImpactLocation Value="TargetPoint"/>
-        <ImpactEffect value="SmokeGrenadeUnitLevel2"/>
+        <ImpactEffect value="SmokeGrenadePersistentLevel2"/>
     </CEffectLaunchMissile>
-    <CEffectCreateUnit id="SmokeGrenadeUnitLevel1">
-        <EditorCategories value=""/>
-        <WhichLocation Value="TargetPoint"/>
-        <SpawnUnit value="SmokeGrenadeLevel1"/>
-    </CEffectCreateUnit>
     <CEffectApplyBehavior id="SonicTrapHeroicSlowLevel1">
         <EditorCategories value=""/>
     </CEffectApplyBehavior>
@@ -2198,7 +2310,7 @@
     <CEffectApplyBehavior id="SonicTrapMassiveSlowLevel1">
         <EditorCategories value=""/>
     </CEffectApplyBehavior>
-    <CEffectCreatePersistent id="SupplyDropDefensive">
+    <CEffectCreatePersistent id="MedicalDrop">
         <EditorCategories value=""/>
         <InitialDelay value="2"/>
         <InitialEffect value="SupplyDropDefensiveUnit"/>
@@ -2262,9 +2374,6 @@
     <CEffectApplyBehavior id="TauntedLevel3">
         <EditorCategories value=""/>
     </CEffectApplyBehavior>
-    <CEffectApplyBehavior id="SmokeGrenadeBlindHeroicLevel1">
-        <EditorCategories value=""/>
-    </CEffectApplyBehavior>
     <CEffectApplyBehavior id="ProvokeLevel1Taunt">
         <EditorCategories value=""/>
     </CEffectApplyBehavior>
@@ -2278,12 +2387,6 @@
         <Amount value="25"/>
         <Death value="Eviscerate"/>
     </CEffectDamage>
-    <CEffectEnumArea id="TestAutoPickup">
-        <EditorCategories value=""/>
-        <ImpactLocation Value="CasterUnit"/>
-        <SearchFilters value="Item;-"/>
-        <AreaArray Radius="5" Effect="PickUpItem"/>
-    </CEffectEnumArea>
     <CEffectDamage id="ThunderballFistsDamage">
         <EditorCategories value=""/>
         <Amount value="25"/>
@@ -2358,6 +2461,14 @@
         <ExcludeArray Value="Target"/>
         <SearchFilters value="-;Player,Ally,Neutral,Item,Invulnerable"/>
     </CEffectDamage>
+    <CEffectDamage id="BlackDiamondDamage">
+        <ValidatorArray value="BlackDiamondDamageTargetFilters"/>
+        <EditorCategories value=""/>
+        <Amount value="200"/>
+    </CEffectDamage>
+    <CEffectApplyBehavior id="BlackDiamondStun">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
     <CEffectDamage id="VolatileInjectionDamageLevel1">
         <EditorCategories value=""/>
         <Amount value="100"/>
