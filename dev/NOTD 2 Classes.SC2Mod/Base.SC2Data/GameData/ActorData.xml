@@ -94,7 +94,7 @@
     </CActorModel>
     <CActorModel id="BlackDiamondImpact" parent="ModelAnimationStyleOneShot">
         <EditorCategories value=""/>
-        <On Terms="Effect.BlackDiamondStun.Impact" Send="Create"/>
+        <On Terms="Effect.BlackDiamondStun.Start" Send="Create"/>
         <Host Subject="_Unit"/>
     </CActorModel>
     <CActorModel id="BlackDiamondLaunch" parent="ModelAnimationStyleOneShot">
@@ -631,6 +631,54 @@
         <EditorCategories value=""/>
         <BasicType value="ActorPosition"/>
     </CActorSiteOpBasic>
+    <CActorUnit id="ScamperLevel1" parent="GenericUnitStandard" unitName="ScamperLevel1">
+        <EditorCategories value=""/>
+        <SoundArray index="Birth" value="Mule_Ready"/>
+        <SoundArray index="Ready" value="Mule_Ready"/>
+        <SoundArray index="Help" value="Alert_TerranEconomyUnderAttack"/>
+        <SoundArray index="What" value="Mule_What"/>
+        <SoundArray index="Yes" value="Mule_Yes"/>
+        <SoundArray index="Attack" value="Mule_Yes"/>
+        <SoundArray index="Pissed" value="Mule_Pissed"/>
+        <SoundArray index="Movement" value="SCVMovement"/>
+        <SoundArray index="Turning" value="SCVTurning"/>
+        <SoundArray index="Board" value="SCVBoard"/>
+        <SoundArray index="Click" value="MULE_Click"/>
+        <SoundArray index="ClickError" value="MULE_ClickError"/>
+        <SoundArray index="Highlight" value="MULE_Highlight"/>
+        <Model value="Scamper"/>
+        <BuildModel value="Scamper"/>
+        <DeathArray index="Normal" ModelLink="Scamper"/>
+        <PlacementModel value="Scamper"/>
+        <BarOffset value="30"/>
+        <Wireframe>
+            <Image value="Assets\Textures\wireframe-critter-cleaningbot.dds"/>
+        </Wireframe>
+    </CActorUnit>
+    <CActorUnit id="ScamperLevel2" parent="GenericUnitStandard" unitName="ScamperLevel2">
+        <EditorCategories value=""/>
+        <SoundArray index="Birth" value="Mule_Ready"/>
+        <SoundArray index="Ready" value="Mule_Ready"/>
+        <SoundArray index="Help" value="Alert_TerranEconomyUnderAttack"/>
+        <SoundArray index="What" value="Mule_What"/>
+        <SoundArray index="Yes" value="Mule_Yes"/>
+        <SoundArray index="Attack" value="Mule_Yes"/>
+        <SoundArray index="Pissed" value="Mule_Pissed"/>
+        <SoundArray index="Movement" value="SCVMovement"/>
+        <SoundArray index="Turning" value="SCVTurning"/>
+        <SoundArray index="Board" value="SCVBoard"/>
+        <SoundArray index="Click" value="MULE_Click"/>
+        <SoundArray index="ClickError" value="MULE_ClickError"/>
+        <SoundArray index="Highlight" value="MULE_Highlight"/>
+        <Model value="Scamper"/>
+        <BuildModel value="Scamper"/>
+        <DeathArray index="Normal" ModelLink="Scamper"/>
+        <PlacementModel value="Scamper"/>
+        <BarOffset value="30"/>
+        <Wireframe>
+            <Image value="Assets\Textures\wireframe-critter-cleaningbot.dds"/>
+        </Wireframe>
+    </CActorUnit>
     <CActorModel id="SensorDetected" parent="ModelAddition">
         <InheritType value="None"/>
         <Inherits index="BaseModelScale" value="0"/>
@@ -640,11 +688,12 @@
         <Inherits index="Visibility" value="0"/>
         <FogVisibility value="Visible"/>
         <EditorCategories value=""/>
-        <Host Subject="_Unit"/>
+        <Host Subject=""/>
         <Model value="MotionSensorDetected"/>
-        <On index="0" Terms="ActorCreation" Send="AnimBracketStart BSD Birth Stand Death 0 0.700000 AsTimeScale"/>
-        <On Terms="ActorCreation" Target="::Host" Send="SetVisibility 1"/>
+        <On index="0" Terms="ActorCreation" Send="AnimBracketStart BSD Birth Stand Death 0 0.800000 AsTimeScale"/>
+        <On Terms="SupporterDestruction" Send="Destroy"/>
         <HostSiteOps Ops="SOpShadowSyncGround SOp2DRotation SOpForwardNorth"/>
+        <Supporter Subject="_Unit"/>
     </CActorModel>
     <CActorRange id="MD5Range" parent="RangeAbil" abil="MD5Mine">
         <EditorCategories value=""/>

@@ -101,9 +101,13 @@
         <Find value="1"/>
         <Value value="ItemSensorLevel2"/>
     </CValidatorPlayerRequirement>
+    <CValidatorCombine id="MotionSenorVisibility">
+        <CombineArray value="TargetisnotVisible"/>
+        <CombineArray value="UnitisVisibleandCloaked"/>
+    </CValidatorCombine>
     <CValidatorCombine id="MotionSensorUnitQuery">
         <Type value="And"/>
-        <CombineArray value="TargetisnotVisible"/>
+        <CombineArray value="MotionSenorVisibility"/>
         <CombineArray value="TargetisnotanItem"/>
     </CValidatorCombine>
     <!--We add the Hidden check because we don't want to see items being carried by other players.-->
@@ -490,6 +494,9 @@
     <CValidatorUnitType id="UnitisReconFlareLevel3">
         <Value value="FlareGunProjectileLevel3"/>
     </CValidatorUnitType>
+    <CValidatorUnitFilters id="UnitisVisibleandCloaked">
+        <Filters value="Cloaked,Visible;-"/>
+    </CValidatorUnitFilters>
     <CValidatorCombine id="UnitisnotDemolitionsExplosive">
         <CombineArray value="UnitisNotChainExplosive"/>
         <CombineArray value="UnitisNotMD5Mine"/>

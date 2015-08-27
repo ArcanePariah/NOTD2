@@ -64,6 +64,7 @@ struct libC50FD636_gs_Marine {
 fixed libC50FD636_gv_bulwarkAngle;
 unit libC50FD636_gv_bulwarkTargetUnit;
 unit libC50FD636_gv_bulwarkCaster;
+unit libC50FD636_gv_scamperUnit;
 unit libC50FD636_gv_blackDiamondCaster;
 unit libC50FD636_gv_satelliteUplinkSpyUnit;
 unitgroup libC50FD636_gv_uplinkSharedVisionGroup;
@@ -154,6 +155,7 @@ trigger libC50FD636_gt_CollateralDamageLevelUp;
 trigger libC50FD636_gt_StockpileLevelUp;
 trigger libC50FD636_gt_BulwarkLevelUp;
 trigger libC50FD636_gt_SatelliteUplinkLevelUp;
+trigger libC50FD636_gt_ScamperLevelUp;
 trigger libC50FD636_gt_AssaultLevelUpUnstoppableForce;
 trigger libC50FD636_gt_AssaultLevelUpGeminiProtocol;
 trigger libC50FD636_gt_RiflemanLevelUpCriticalStrike;
@@ -168,13 +170,15 @@ trigger libC50FD636_gt_Sadist;
 trigger libC50FD636_gt_Bulwark;
 trigger libC50FD636_gt_BulwarkPositioning;
 trigger libC50FD636_gt_BulwarkPositioningUpdate;
+trigger libC50FD636_gt_ScamperTracking;
+trigger libC50FD636_gt_TrackingTagReveal;
 trigger libC50FD636_gt_BlackDiamondUsed;
 trigger libC50FD636_gt_BlackDiamondStun;
 trigger libC50FD636_gt_BlackDiamondBonusDamage;
-trigger libC50FD636_gt_GroundIlluminationFlareFlareGunVisionShare;
 trigger libC50FD636_gt_SatelliteMovementOrder;
 trigger libC50FD636_gt_SatelliteKill;
 trigger libC50FD636_gt_SatelliteSharedVision;
+trigger libC50FD636_gt_GroundIlluminationFlareFlareGunVisionShare;
 trigger libC50FD636_gt_StealthMatrixDeactivate;
 trigger libC50FD636_gt_DropItems;
 trigger libC50FD636_gt_WeaveAilmentRemoval;
@@ -1025,6 +1029,27 @@ void libC50FD636_gt_SatelliteUplinkLevelUp_Init () {
 }
 
 //--------------------------------------------------------------------------------------------------
+// Trigger: Scamper Level Up
+//--------------------------------------------------------------------------------------------------
+bool libC50FD636_gt_ScamperLevelUp_Func (bool testConds, bool runActions) {
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if (UnitIsAlive(libC50FD636_gv_scamperUnit)) {
+        UnitIssueOrder(libC50FD636_gv_scamperUnit, Order(AbilityCommand("ScamperUpgradeMorph", 0)), c_orderQueueAddToFront);
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libC50FD636_gt_ScamperLevelUp_Init () {
+    libC50FD636_gt_ScamperLevelUp = TriggerCreate("libC50FD636_gt_ScamperLevelUp_Func");
+    TriggerAddEventUnitAbility(libC50FD636_gt_ScamperLevelUp, null, AbilityCommand("ReconLearn", 3), c_unitAbilStageComplete, false);
+}
+
+//--------------------------------------------------------------------------------------------------
 // Trigger: Assault Level Up Unstoppable Force
 //--------------------------------------------------------------------------------------------------
 bool libC50FD636_gt_AssaultLevelUpUnstoppableForce_Func (bool testConds, bool runActions) {
@@ -1417,6 +1442,51 @@ void libC50FD636_gt_BulwarkPositioningUpdate_Init () {
 }
 
 //--------------------------------------------------------------------------------------------------
+// Trigger: Scamper Tracking
+//--------------------------------------------------------------------------------------------------
+bool libC50FD636_gt_ScamperTracking_Func (bool testConds, bool runActions) {
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((libC50FD636_gv_scamperUnit != null)) {
+        UnitKill(libC50FD636_gv_scamperUnit);
+    }
+    libC50FD636_gv_scamperUnit = EventUnitCreatedUnit();
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libC50FD636_gt_ScamperTracking_Init () {
+    libC50FD636_gt_ScamperTracking = TriggerCreate("libC50FD636_gt_ScamperTracking_Func");
+    TriggerAddEventUnitCreated(libC50FD636_gt_ScamperTracking, null, "Scamper", null);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Tracking Tag Reveal
+//--------------------------------------------------------------------------------------------------
+bool libC50FD636_gt_TrackingTagReveal_Func (bool testConds, bool runActions) {
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    IntLoopBegin(lib1E3F036D_gv_indexBaseValue, libC50FD636_gv_numberofPlayers);
+    for ( ; !IntLoopDone() ; IntLoopStep() ) {
+        UnitBehaviorAddPlayer(EventUnit(), "TrackingTag", IntLoopCurrent(), 1);
+    }
+    IntLoopEnd();
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libC50FD636_gt_TrackingTagReveal_Init () {
+    libC50FD636_gt_TrackingTagReveal = TriggerCreate("libC50FD636_gt_TrackingTagReveal_Func");
+    TriggerAddEventUnitBehaviorChange(libC50FD636_gt_TrackingTagReveal, null, "TrackingTag", c_unitBehaviorChangeCreate);
+}
+
+//--------------------------------------------------------------------------------------------------
 // Trigger: Black Diamond Used
 //--------------------------------------------------------------------------------------------------
 bool libC50FD636_gt_BlackDiamondUsed_Func (bool testConds, bool runActions) {
@@ -1477,30 +1547,6 @@ bool libC50FD636_gt_BlackDiamondBonusDamage_Func (bool testConds, bool runAction
 //--------------------------------------------------------------------------------------------------
 void libC50FD636_gt_BlackDiamondBonusDamage_Init () {
     libC50FD636_gt_BlackDiamondBonusDamage = TriggerCreate("libC50FD636_gt_BlackDiamondBonusDamage_Func");
-}
-
-//--------------------------------------------------------------------------------------------------
-// Trigger: Ground Illumination Flare/Flare Gun Vision Share 
-//--------------------------------------------------------------------------------------------------
-bool libC50FD636_gt_GroundIlluminationFlareFlareGunVisionShare_Func (bool testConds, bool runActions) {
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    PlayerGroupLoopBegin(GameAttributePlayersForTeam(1));
-    for ( ; !PlayerGroupLoopDone() ; PlayerGroupLoopStep() ) {
-        libNtve_gf_ShareVisionofUnit(EventUnitCreatedUnit(), true, PlayerGroupLoopCurrent());
-    }
-    PlayerGroupLoopEnd();
-    return true;
-}
-
-//--------------------------------------------------------------------------------------------------
-void libC50FD636_gt_GroundIlluminationFlareFlareGunVisionShare_Init () {
-    libC50FD636_gt_GroundIlluminationFlareFlareGunVisionShare = TriggerCreate("libC50FD636_gt_GroundIlluminationFlareFlareGunVisionShare_Func");
-    TriggerAddEventUnitCreated(libC50FD636_gt_GroundIlluminationFlareFlareGunVisionShare, null, "SurveillanceFlare", null);
-    TriggerAddEventUnitCreated(libC50FD636_gt_GroundIlluminationFlareFlareGunVisionShare, null, "FlareGunRecon", null);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -1567,6 +1613,30 @@ bool libC50FD636_gt_SatelliteSharedVision_Func (bool testConds, bool runActions)
 void libC50FD636_gt_SatelliteSharedVision_Init () {
     libC50FD636_gt_SatelliteSharedVision = TriggerCreate("libC50FD636_gt_SatelliteSharedVision_Func");
     TriggerAddEventUnitBehaviorChange(libC50FD636_gt_SatelliteSharedVision, null, "CommunicationUplink", c_unitBehaviorChangeCreate);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Ground Illumination Flare/Flare Gun Vision Share 
+//--------------------------------------------------------------------------------------------------
+bool libC50FD636_gt_GroundIlluminationFlareFlareGunVisionShare_Func (bool testConds, bool runActions) {
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    PlayerGroupLoopBegin(GameAttributePlayersForTeam(1));
+    for ( ; !PlayerGroupLoopDone() ; PlayerGroupLoopStep() ) {
+        libNtve_gf_ShareVisionofUnit(EventUnitCreatedUnit(), true, PlayerGroupLoopCurrent());
+    }
+    PlayerGroupLoopEnd();
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libC50FD636_gt_GroundIlluminationFlareFlareGunVisionShare_Init () {
+    libC50FD636_gt_GroundIlluminationFlareFlareGunVisionShare = TriggerCreate("libC50FD636_gt_GroundIlluminationFlareFlareGunVisionShare_Func");
+    TriggerAddEventUnitCreated(libC50FD636_gt_GroundIlluminationFlareFlareGunVisionShare, null, "SurveillanceFlare", null);
+    TriggerAddEventUnitCreated(libC50FD636_gt_GroundIlluminationFlareFlareGunVisionShare, null, "FlareGunRecon", null);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -2985,6 +3055,7 @@ void libC50FD636_InitTriggers () {
     libC50FD636_gt_StockpileLevelUp_Init();
     libC50FD636_gt_BulwarkLevelUp_Init();
     libC50FD636_gt_SatelliteUplinkLevelUp_Init();
+    libC50FD636_gt_ScamperLevelUp_Init();
     libC50FD636_gt_AssaultLevelUpUnstoppableForce_Init();
     libC50FD636_gt_AssaultLevelUpGeminiProtocol_Init();
     libC50FD636_gt_RiflemanLevelUpCriticalStrike_Init();
@@ -2999,13 +3070,15 @@ void libC50FD636_InitTriggers () {
     libC50FD636_gt_Bulwark_Init();
     libC50FD636_gt_BulwarkPositioning_Init();
     libC50FD636_gt_BulwarkPositioningUpdate_Init();
+    libC50FD636_gt_ScamperTracking_Init();
+    libC50FD636_gt_TrackingTagReveal_Init();
     libC50FD636_gt_BlackDiamondUsed_Init();
     libC50FD636_gt_BlackDiamondStun_Init();
     libC50FD636_gt_BlackDiamondBonusDamage_Init();
-    libC50FD636_gt_GroundIlluminationFlareFlareGunVisionShare_Init();
     libC50FD636_gt_SatelliteMovementOrder_Init();
     libC50FD636_gt_SatelliteKill_Init();
     libC50FD636_gt_SatelliteSharedVision_Init();
+    libC50FD636_gt_GroundIlluminationFlareFlareGunVisionShare_Init();
     libC50FD636_gt_StealthMatrixDeactivate_Init();
     libC50FD636_gt_DropItems_Init();
     libC50FD636_gt_WeaveAilmentRemoval_Init();

@@ -877,9 +877,8 @@
         <GlossaryPriority value="15"/>
     </CUnit>
     <CUnit id="Recon" parent="BasicHeroTemplate" InventoryAbility="ReconInventory" LearnAbility="ReconLearn">
-        <EnergyStart value="225"/>
-        <EnergyMax value="225"/>
-        <EnergyRegenRate value="0.6484"/>
+        <EnergyStart value="100"/>
+        <EnergyRegenRate value="1"/>
         <LifeStart value="140"/>
         <LifeMax value="140"/>
         <LifeRegenRate value="0.1484"/>
@@ -890,7 +889,7 @@
         <ShieldRegenRate value="2"/>
         <Speed value="2.5898"/>
         <GlossaryPriority value="4"/>
-        <AbilArray Link="ItemSensor"/>
+        <AbilArray Link="Scamper"/>
         <AbilArray Link="SurveillanceFlare"/>
         <AbilArray Link="MotionSensor"/>
         <AbilArray Link="SmokeGrenade"/>
@@ -909,22 +908,20 @@
         <BehaviorArray Link="MotionSensorLevel2"/>
         <BehaviorArray Link="BackstabLevel1"/>
         <BehaviorArray Link="BackstabLevel2"/>
-        <BehaviorArray Link="ItemSensorLevel1"/>
-        <BehaviorArray Link="ItemSensorLevel2"/>
         <BehaviorArray Link="SprintingShadow"/>
         <CardLayouts index="0">
-            <LayoutButtons Face="LaserDesignator" Type="AbilCmd" AbilCmd="LaserDesignator,Execute" Row="2" Column="0"/>
+            <LayoutButtons Face="Scamper" Type="AbilCmd" AbilCmd="Scamper,Execute" Row="2" Column="0"/>
             <LayoutButtons Face="SurveillanceFlare" Type="AbilCmd" AbilCmd="SurveillanceFlare,Execute" Row="2" Column="1"/>
             <LayoutButtons Face="SmokeGrenade" Type="AbilCmd" AbilCmd="SmokeGrenade,Execute" Row="2" Column="2"/>
             <LayoutButtons Face="AmmunitionDrop" Type="AbilCmd" AbilCmd="AmmunitionDrop,Execute" Row="2" Column="3"/>
             <LayoutButtons Face="SatelliteUplink" Type="AbilCmd" AbilCmd="SatelliteUplink,Execute" Row="2" Column="3"/>
+            <LayoutButtons Face="BlackDiamond" Type="AbilCmd" AbilCmd="BlackDiamond,Execute" Row="2" Column="3"/>
             <LayoutButtons Face="Escape" Type="AbilCmd" AbilCmd="EscapeSet,Execute" Row="1" Column="0"/>
             <LayoutButtons Face="StealthMatrixActivate" Type="AbilCmd" AbilCmd="StealthMatrix,On" Row="1" Column="0"/>
             <LayoutButtons Face="StealthMatrixDeactivate" Type="AbilCmd" AbilCmd="StealthMatrix,Off" Row="1" Column="0"/>
             <LayoutButtons Face="FlareGunRecon" Type="AbilCmd" AbilCmd="FlareGunRecon,Execute" Row="1" Column="1"/>
             <LayoutButtons Face="Execute" Type="AbilCmd" AbilCmd="Execute,Execute" Row="1" Column="2"/>
             <LayoutButtons Face="Jump" Type="AbilCmd" AbilCmd="LightJump,Execute" Row="0" Column="4"/>
-            <LayoutButtons Face="BlackDiamond" Type="AbilCmd" AbilCmd="BlackDiamond,Execute" Row="1" Column="3"/>
             <LayoutButtons Face="MedicalDrop" Type="AbilCmd" AbilCmd="MedicalDrop,Execute" Row="1" Column="3"/>
         </CardLayouts>
     </CUnit>
@@ -1052,6 +1049,59 @@
         <Mover value="Fly"/>
         <Height value="6"/>
         <MinimapRadius value="0"/>
+    </CUnit>
+    <CUnit id="ScamperLevel1">
+        <Race value="Human"/>
+        <PlaneArray index="Ground" value="1"/>
+        <Collide index="Ground" value="1"/>
+        <Attributes index="Mechanical" value="1"/>
+        <LifeStart value="100"/>
+        <LifeMax value="100"/>
+        <LifeArmor value="1"/>
+        <LifeRegenRate value="0.1015"/>
+        <Speed value="2.5"/>
+        <Acceleration value="1000"/>
+        <StationaryTurningRate value="540"/>
+        <TurningRate value="540"/>
+        <Sight value="10"/>
+        <AbilArray Link="move"/>
+        <AbilArray Link="stop"/>
+        <AbilArray Link="ScamperInventory"/>
+        <AbilArray Link="TrackingTag"/>
+        <AbilArray Link="ScamperUpgradeMorph"/>
+        <BehaviorArray Link="Benign"/>
+        <CardLayouts>
+            <LayoutButtons Face="Move" Type="AbilCmd" AbilCmd="move,Move" Row="0" Column="0"/>
+            <LayoutButtons Face="Stop" Type="AbilCmd" AbilCmd="stop,Stop" Row="0" Column="1"/>
+        </CardLayouts>
+        <EditorCategories value=""/>
+    </CUnit>
+    <CUnit id="ScamperLevel2">
+        <Race value="Human"/>
+        <PlaneArray index="Ground" value="1"/>
+        <Collide index="Ground" value="1"/>
+        <Attributes index="Mechanical" value="1"/>
+        <LifeStart value="100"/>
+        <LifeMax value="100"/>
+        <LifeArmor value="1"/>
+        <LifeRegenRate value="0.1015"/>
+        <Speed value="2.5"/>
+        <Acceleration value="1000"/>
+        <StationaryTurningRate value="540"/>
+        <TurningRate value="540"/>
+        <Sight value="10"/>
+        <AbilArray Link="move"/>
+        <AbilArray Link="stop"/>
+        <AbilArray Link="ScamperInventory"/>
+        <AbilArray Link="TrackingTag"/>
+        <AbilArray Link="Concealment"/>
+        <BehaviorArray Link="Benign"/>
+        <BehaviorArray Link="ItemSensorLevel1"/>
+        <CardLayouts>
+            <LayoutButtons Face="Move" Type="AbilCmd" AbilCmd="move,Move" Row="0" Column="0"/>
+            <LayoutButtons Face="Stop" Type="AbilCmd" AbilCmd="stop,Stop" Row="0" Column="1"/>
+        </CardLayouts>
+        <EditorCategories value=""/>
     </CUnit>
     <CUnit id="SmokeGrenadeLevel1Weapon" parent="MISSILE">
         <Race value="Zombie"/>
