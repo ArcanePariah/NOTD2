@@ -394,7 +394,6 @@
         <AutoScaleFromSelectionFactor value="1.000000"/>
     </CActorModel>
     <CActorSetQueried id="DualWieldTest">
-        <AttachQuery Methods="AssaultWeapons AssaultWeaponAttach"/>
         <SpawnTarget value="EquippedWeapon"/>
     </CActorSetQueried>
     <CActorModel id="EquippedWeapon">
@@ -1138,6 +1137,7 @@
     </CActorModel>
     <CActorUnit id="Assault" parent="BaseHeavyMarineActor" unitName="Assault">
         <Scale value="0.900000"/>
+        <Macros index="1" value="AssaultWeaponEquipMacro"/>
         <Macros index="5" value="WeaponHeavyAnimationGroups"/>
         <SoundArray index="Birth" value="WarHound_Birth"/>
         <SoundArray index="Ready" value="WarHound_Ready"/>

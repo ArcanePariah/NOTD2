@@ -651,6 +651,17 @@
         <On index="20" Terms="Behavior.FlamethrowerEquipped.On" Send="AttachModel Flamethrower {} {Weapon 3}"/>
         <On index="22" Terms="Behavior.ChainsawEquipped.On" Send="AttachModel Chainsaw {} {Weapon 3}"/>
     </CActorEventMacro>
+    <CActorEventMacro id="AssaultWeaponEquipMacro" parent="WeaponEquipHeavyMacro">
+        <On index="0" Terms="Behavior.AssaultRifleEquipped.Create" Send="AttachModel AssaultRifle {} {AssaultGeminiFilter AssaultOccupancyFilter}"/>
+        <On index="2" Terms="Behavior.AutomaticShotgunEquipped.On" Send="AttachModel AutomaticShotgun {} {AssaultGeminiFilter AssaultOccupancyFilter}"/>
+        <On index="4" Terms="Behavior.PumpShotgunEquipped.On" Send="AttachModel PumpShotgun {} {AssaultGeminiFilter AssaultOccupancyFilter}"/>
+        <On index="6" Terms="Behavior.SubmachineGunEquipped.On" Send="AttachModel SubmachineGun {} {AssaultGeminiFilter AssaultOccupancyFilter}"/>
+        <On index="8" Terms="Behavior.MarksmanRifleEquipped.On" Send="AttachModel MarksmanRifle {} {AssaultGeminiFilter AssaultOccupancyFilter}"/>
+        <On index="10" Terms="Behavior.PistolEquipped.On" Send="AttachModel Pistol {} {AssaultGeminiFilter AssaultOccupancyFilter} "/>
+        <On index="16" Terms="Behavior.LaserRifleEquipped.On" Send="AttachModel LaserRifle {} {AssaultGeminiFilter AssaultOccupancyFilter}"/>
+        <On index="18" Terms="Behavior.MediumMachineGunEquipped.On" Send="AttachModel MediumMachineGun {} {AssaultGeminiFilter AssaultOccupancyFilter}"/>
+        <On index="26" Terms="Behavior.AntiMaterialRifleEquipped.On" Send="AttachModel AntiMaterialRifle {} {AssaultGeminiFilter AssaultOccupancyFilter}"/>
+    </CActorEventMacro>
     <CActorEventMacro id="WeaponAnimationGroups">
         <EditorCategories value=""/>
         <On Terms="Abil.attack.ReadyStart; ValidateUnit EquippedWeaponisSubmachineGun" Send="AnimGroupRemove Ready Instant"/>
