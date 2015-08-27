@@ -382,6 +382,13 @@
         <PeriodicEffect value="CollateralDamageExplosiveTypeSwitch"/>
         <InfoFlags index="Hidden" value="1"/>
     </CBehaviorBuff>
+    <CBehaviorBuff id="Concealment">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Modification MoveSpeedMultiplier="0.75">
+            <StateFlags index="Cloak" value="1"/>
+        </Modification>
+        <InfoFlags index="Hidden" value="1"/>
+    </CBehaviorBuff>
     <CBehaviorBuff id="DefaultDetection">
         <EditorCategories value="AbilityorEffectType:Units"/>
         <Modification Detect="3"/>
@@ -785,9 +792,9 @@
             <StateFlags index="Passive" value="1"/>
         </Modification>
     </CBehaviorBuff>
-    <CBehaviorBuff id="ItemSensorLevel1" parent="LeveledPassiveTemplate">
-        <Requirements value="ItemSensorLevel1"/>
+    <CBehaviorBuff id="ItemSensorLevel1">
         <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="ItemSensorLevel2" parent="LeveledPassiveTemplate">
         <Requirements value="ItemSensorLevel2"/>
@@ -1519,6 +1526,15 @@
         <DisableValidatorArray value="Cloaked"/>
         <Modification MoveSpeedMultiplier="1.4">
             <VitalRegenArray index="Energy" value="0.5"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="TrackingTag">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <MaxStackCount value="8"/>
+        <Duration value="240"/>
+        <Modification>
+            <ModifyFlags index="Reveal" value="1"/>
         </Modification>
     </CBehaviorBuff>
     <CBehaviorBuff id="VolatileInjectionLevel2">

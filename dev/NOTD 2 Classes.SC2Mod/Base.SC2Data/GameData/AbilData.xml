@@ -258,6 +258,12 @@
     <CAbilLearn id="CommandoLearn" parent="LearnTemplate">
         <Name value="Abil/Name/CommandoLearn"/>
     </CAbilLearn>
+    <CAbilBehavior id="Concealment">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Flags index="Toggle" value="1"/>
+        <Flags index="Transient" value="1"/>
+        <BehaviorArray value="Concealment"/>
+    </CAbilBehavior>
     <CAbilInventory id="DemolitionsInventory" parent="InventoryTemplate">
         <InfoArray index="2" removed="1"/>
     </CAbilInventory>
@@ -402,6 +408,16 @@
         <Range value="500"/>
         <Flags index="RequireTargetVision" value="0"/>
     </CAbilEffectTarget>
+    <CAbilEffectInstant id="Scamper" parent="2LevelEffectInstantAbility">
+        <Cost>
+            <Vital index="Energy" value="50"/>
+            <Cooldown TimeUse="20"/>
+        </Cost>
+    </CAbilEffectInstant>
+    <CAbilInventory id="ScamperInventory" parent="PetInventoryTemplate">
+        <Name value="Abil/Name/ScamperInventory"/>
+        <InfoArray index="1" Container="ScamperInventory" EmptyFace="EmptyInventorySlot"/>
+    </CAbilInventory>
     <CAbilBehavior id="SprintingShadow">
         <EditorCategories value="AbilityorEffectType:Units"/>
         <BehaviorArray value="SprintingShadow"/>
@@ -1224,7 +1240,9 @@
             <Button DefaultButtonFace="SmokeGrenade"/>
         </InfoArray>
         <InfoArray index="Learn3" Abil="MotionSensor"/>
-        <InfoArray index="Learn4" Abil="ItemSensor"/>
+        <InfoArray index="Learn4" Abil="Scamper">
+            <Button DefaultButtonFace="Scamper"/>
+        </InfoArray>
         <InfoArray index="Learn5" Abil="AmmunitionDrop">
             <Button DefaultButtonFace="MedicalDrop"/>
         </InfoArray>
@@ -1510,6 +1528,12 @@
         </Cost>
         <Flags index="Transient" value="1"/>
     </CAbilEffectInstant>
+    <CAbilEffectTarget id="TrackingTag" parent="AbilityWithButtonTargetTemplate">
+        <Cost>
+            <Cooldown TimeUse="4"/>
+        </Cost>
+        <Range value="2"/>
+    </CAbilEffectTarget>
     <CAbilInventory id="UAVInventory" parent="InventoryTemplate">
         <InfoArray index="2" removed="1"/>
     </CAbilInventory>
@@ -1522,6 +1546,12 @@
             <Cooldown TimeUse="40"/>
         </Cost>
     </CAbilEffectInstant>
+    <CAbilMorph id="ScamperUpgradeMorph">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="ScamperUpgradeMorph"/>
+        <Flags index="WaitUntilStopped" value="0"/>
+        <InfoArray Unit="ScamperLevel2"/>
+    </CAbilMorph>
     <CAbilEffectTarget id="VolatileInjection" parent="3LevelEffectTargetAbility">
         <Cost>
             <Vital index="Energy" value="20"/>
