@@ -116,6 +116,10 @@
         <NodeArray index="Use" Link="CountAbilGrenadierCompleteOnlyAtUnit"/>
         <NodeArray index="Show" Link="CountAbilGrenadierCompleteOnlyAtUnit"/>
     </CRequirement>
+    <CRequirement id="HasFocusFire">
+        <NodeArray index="Use" Link="CountBehaviorFocusFireCompleteOnlyAtUnit"/>
+        <NodeArray index="Show" Link="CountBehaviorFocusFireCompleteOnlyAtUnit"/>
+    </CRequirement>
     <CRequirement id="Healing">
         <NodeArray index="Use" Link="EqCountBehaviorHealingCompleteOnlyAtUnit1"/>
         <NodeArray index="Show" Link="EqCountBehaviorHealingCompleteOnlyAtUnit1"/>
@@ -172,6 +176,10 @@
     </CRequirement>
     <CRequirement id="NoBrokenBones">
         <NodeArray index="Use" Link="EqCountBehavior_BrokenBoneCompleteOnlyAtUnit0"/>
+    </CRequirement>
+    <CRequirement id="NoFocusFire">
+        <NodeArray index="Use" Link="NotCountBehaviorFocusFireCompleteOnlyAtUnit"/>
+        <NodeArray index="Show" Link="NotCountBehaviorFocusFireCompleteOnlyAtUnit"/>
     </CRequirement>
     <CRequirement id="NoNightVision">
         <NodeArray index="Use" Link="EqCountBehaviorNightVisionModuleCompleteOnlyAtUnit0"/>
@@ -238,5 +246,14 @@
     </CRequirement>
     <CRequirement id="WeaponsProficiencyLevel2">
         <NodeArray index="Show" Link="EqCountUpgradeWeaponsProficiencyLevel12CompleteOnly1"/>
+    </CRequirement>
+    <CRequirement id="MeleeWeaponEquipped">
+        <NodeArray index="Use" Link="Or311213366CountBehaviorBatonEquippedCompleteOnlyAtUnitCountBehaviorHammerEquippedCompleteOnlyAtUnitCountBehaviorChainsawEquippedCompleteOnlyAtUnitCountBehaviorCrowbarEquippedCompleteOnlyAtUnitCountBe905629260"/>
+    </CRequirement>
+    <CRequirement id="RangedWeaponEquipped">
+        <NodeArray index="Use" Link="Or1185686619CountBehaviorFlamethrowerEquippedCompleteOnlyAtUnitCountBehaviorAntiMaterialRifleEquippedCompleteOnlyAtUnitCountBehaviorAssaultRifleEquippedCompleteOnlyAtUnitCountBehaviorAutomaticShotgunE751656344"/>
+    </CRequirement>
+    <CRequirement id="WeaponEquipped">
+        <NodeArray index="Use" Link="Or47941426CountBehaviorAntiMaterialRifleEquippedCompleteOnlyAtUnitCountBehaviorAssaultRifleEquippedCompleteOnlyAtUnitCountBehaviorAutomaticShotgunEquippedCompleteOnlyAtUnitCountBehaviorLaserRifleEquip2806341177"/>
     </CRequirement>
 </Catalog>

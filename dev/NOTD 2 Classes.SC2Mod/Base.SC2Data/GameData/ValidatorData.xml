@@ -63,6 +63,11 @@
         <Value value="Medic2"/>
         <Find value="0"/>
     </CValidatorUnitType>
+    <CValidatorUnitCompareBehaviorCount id="HasFocusFire">
+        <WhichUnit Value="Caster"/>
+        <Compare value="GT"/>
+        <Behavior value="FocusFire"/>
+    </CValidatorUnitCompareBehaviorCount>
     <CValidatorCombine id="HordeModeNoiseThresholds">
         <CombineArray value="HordeModeRecruitNoiseThreshold"/>
         <CombineArray value="HordeModeNormalNoiseThreshold"/>
@@ -117,12 +122,20 @@
         <WhichUnit Value="Caster"/>
         <Compare value="NE"/>
     </CValidatorUnitCompareSpeed>
+    <CValidatorUnitCompareBehaviorCount id="NoFocusFire">
+        <WhichUnit Value="Caster"/>
+        <Behavior value="FocusFire"/>
+    </CValidatorUnitCompareBehaviorCount>
     <CValidatorUnitCompareBehaviorCount id="PredatorLevel6">
         <WhichUnit Value="Caster"/>
         <Compare value="GE"/>
         <Value value="6"/>
         <Behavior value="PredatorPetVeterancy"/>
     </CValidatorUnitCompareBehaviorCount>
+    <CValidatorPlayerRequirement id="RangedWeaponEquipped">
+        <Find value="1"/>
+        <Value value="RangedWeaponEquipped"/>
+    </CValidatorPlayerRequirement>
     <CValidatorPlayerRequirement id="ReactiveShieldsLevel1">
         <Find value="1"/>
         <Value value="ReactiveShieldsLevel1"/>
@@ -285,6 +298,10 @@
         <Compare value="GE"/>
         <Value value="0.8"/>
     </CValidatorUnitCompareVital>
+    <CValidatorPlayerRequirement id="MeleeWeaponEquipped">
+        <Find value="1"/>
+        <Value value="MeleeWeaponEquipped"/>
+    </CValidatorPlayerRequirement>
     <CValidatorCombine id="MedicalAssistanceItems">
         <CombineArray value="UnithasBandage"/>
         <CombineArray value="MarinehasMedkit"/>
@@ -297,17 +314,6 @@
         <Type value="And"/>
         <CombineArray value="CasterisMedic"/>
         <CombineArray value="MedicalAssistanceItems"/>
-    </CValidatorCombine>
-    <CValidatorCombine id="MeleeWeaponEquipped">
-        <CombineArray value="EquippedWeaponisChainsaw"/>
-        <CombineArray value="EquippedWeaponisAxe"/>
-        <CombineArray value="EquippedWeaponisBaton"/>
-        <CombineArray value="EquippedWeaponisCrowbar"/>
-        <CombineArray value="EquippedWeaponisHammer"/>
-        <CombineArray value="EquippedWeaponisPlasmaCutter"/>
-        <CombineArray value="EquippedWeaponisFlamethrower"/>
-        <CombineArray value="EquippedWeaponisPumpShotgun"/>
-        <CombineArray value="EquippedWeaponisAutomaticShotgun"/>
     </CValidatorCombine>
     <CValidatorPlayerRequirement id="MotionSensorLevel12">
         <Find value="1"/>
@@ -554,4 +560,8 @@
         <CombineArray value="UnstoppableForceComplete"/>
         <Type value="And"/>
     </CValidatorCombine>
+    <CValidatorPlayerRequirement id="WeaponEquipped">
+        <Find value="1"/>
+        <Value value="WeaponEquipped"/>
+    </CValidatorPlayerRequirement>
 </Catalog>

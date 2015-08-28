@@ -744,12 +744,13 @@
     <CAbilBehavior id="FocusFire">
         <Alignment value="Positive"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
-        <CmdButtonArray index="On" DefaultButtonFace="FocusFire">
-            <Flags index="ShowInGlossary" value="0"/>
-        </CmdButtonArray>
-        <CmdButtonArray index="Off" DefaultButtonFace="FocusFire"/>
+        <CmdButtonArray index="On" DefaultButtonFace="FocusFire" Requirements="WeaponEquipped"/>
+        <CmdButtonArray index="Off" DefaultButtonFace="FocusFireOff" Requirements="WeaponEquipped"/>
         <Flags index="Toggle" value="1"/>
         <Flags index="Transient" value="1"/>
+        <Cost>
+            <Cooldown TimeUse="4"/>
+        </Cost>
         <BehaviorArray value="FocusFire"/>
     </CAbilBehavior>
     <CAbilEffectInstant id="FireUp">

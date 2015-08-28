@@ -669,15 +669,14 @@
         <Alignment value="Positive"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
         <Modification AttackSpeedMultiplier="0.8">
-            <DamageDealtFraction index="Spell" value="0.3"/>
-            <DamageDealtFraction index="Melee" value="0.3"/>
-            <DamageDealtFraction index="Ranged" value="0.3"/>
-            <DamageDealtFraction index="Splash" value="0.3"/>
+            <DamageDealtFraction index="Melee" value="0.2"/>
+            <DamageDealtFraction index="Ranged" value="0.2"/>
+            <DamageDealtFraction index="Splash" value="0.2"/>
             <VitalRegenArray index="Energy" value="-1"/>
         </Modification>
         <DamageResponse Handled="CripplingFire" Location="Attacker"/>
         <InfoIcon value="Assets\Textures\btn-ability-protoss-blink-color.dds"/>
-        <RemoveValidatorArray value="CasterHasEnergy"/>
+        <RemoveValidatorArray value="WeaponEquipped"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="FocusFireRangeNegationMelee">
         <InfoFlags index="Hidden" value="1"/>

@@ -435,6 +435,7 @@ Button/Name/FocusFire=Focus Fire
 Button/Name/FocusFireCripplingFire=Focus Fire
 Button/Name/FocusFireCripplingFiredUp=Focus Fire
 Button/Name/FocusFireFireUp=Focus Fire
+Button/Name/FocusFireOff=Focus Fire
 Button/Name/ForcePress=Force Press
 Button/Name/ForcePush=Force Push
 Button/Name/Fortitude=Fortitude
@@ -618,6 +619,7 @@ Button/Tooltip/FocusFire=Increases weapon damage by <d ref="Behavior,FocusFire,M
 Button/Tooltip/FocusFireCripplingFire=Increases weapon damage by <d ref="Behavior,FocusFire,Modification.DamageDealtFraction[Melee] * 100"/>%, weapon range by <d ref="Behavior,FocusFire,Modification.WeaponRange"/>, and modifies attack speed by <d ref="(Behavior,FocusFire,Modification.AttackSpeedMultiplier - 1) *100"/>%
 Button/Tooltip/FocusFireCripplingFiredUp=Increases weapon damage by <d ref="Behavior,FocusFire,Modification.DamageDealtFraction[Melee] * 100"/>%, weapon range by <d ref="Behavior,FocusFire,Modification.WeaponRange"/>, and modifies attack speed by <d ref="(Behavior,FocusFire,Modification.AttackSpeedMultiplier - 1) *100"/>%
 Button/Tooltip/FocusFireFireUp=Increases weapon damage by <d ref="Behavior,FocusFire,Modification.DamageDealtFraction[Melee] * 100"/>%, weapon range by <d ref="Behavior,FocusFire,Modification.WeaponRange"/>, and modifies attack speed by <d ref="(Behavior,FocusFire,Modification.AttackSpeedMultiplier - 1) *100"/>%
+Button/Tooltip/FocusFireOff=Turn off Focus Fire.
 Button/Tooltip/FragmentationGrenade=Throw a Fragmentation Grenade at the target area, dealing <d ref="Effect,FragmentationGrenadeDamageLevel1,Amount"/> damage to all enemies in a <d ref="Effect,FragmentationGrenadeDamageLevel1,AreaArray[0].Radius"/> radius on impact.<n/><n/><c val="FF0000">Damage is reduced by <d ref="Effect,FragmentationGrenadeDamageLevel1,AttributeFactor[Armored]*100*(-1)" precision="1"/>% against Armored units and <d ref="Effect,FragmentationGrenadeDamageLevel1,ShieldFactor*100*(-1)" precision="1"/>% against shields.</c>
 Button/Tooltip/FragmentationGrenadeLevel2=
 Button/Tooltip/FragmentationGrenadeLevel3=
@@ -778,6 +780,9 @@ Peacekeepers/Name/=
 Peacekeepers/Name/ChiefStrassner=Chief Strassner
 RequirementNode/Tooltip/Eq3869413126CountBehaviorLockdownNOTDCompleteOnlyAtUnit0=Can not undeploy while Lockdown is active
 RequirementNode/Tooltip/Eq4283948051SumCountBehaviorAntiMaterialRifleDeployCompleteOnlyAtUnitCountBehaviorFiringStanceCompleteOnlyAtUnitCountBehaviorHeavyMachineGunDeployCompleteOnlyAtUnit0=Can not use Lockdown while a weapon is deployed
+RequirementNode/Tooltip/Or1185686619CountBehaviorFlamethrowerEquippedCompleteOnlyAtUnitCountBehaviorAntiMaterialRifleEquippedCompleteOnlyAtUnitCountBehaviorAssaultRifleEquippedCompleteOnlyAtUnitCountBehaviorAutomaticShotgunE751656344=Equipped ranged weapon
+RequirementNode/Tooltip/Or311213366CountBehaviorBatonEquippedCompleteOnlyAtUnitCountBehaviorHammerEquippedCompleteOnlyAtUnitCountBehaviorChainsawEquippedCompleteOnlyAtUnitCountBehaviorCrowbarEquippedCompleteOnlyAtUnitCountBe905629260=Equipped melee weapon
+RequirementNode/Tooltip/Or47941426CountBehaviorAntiMaterialRifleEquippedCompleteOnlyAtUnitCountBehaviorAssaultRifleEquippedCompleteOnlyAtUnitCountBehaviorAutomaticShotgunEquippedCompleteOnlyAtUnitCountBehaviorLaserRifleEquip2806341177=Equipped Weapon
 ScoreValue/Name/PurpleHeartDamage=Purple Heart Damage
 UI/Difficulty00=Recruit
 UI/Difficulty00InGame=Recruit

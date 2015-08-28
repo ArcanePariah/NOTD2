@@ -180,6 +180,13 @@
         <CaseArray Validator="Backstab" Effect="ExecuteDamageLevel2Backstab"/>
         <CaseDefault value="ExecuteDamageLevel2"/>
     </CEffectSwitch>
+    <CEffectApplyBehavior id="FocusFire">
+        <WhichUnit Value="Caster"/>
+    </CEffectApplyBehavior>
+    <CEffectRemoveBehavior id="FocusFireOff">
+        <WhichUnit Value="Caster"/>
+        <BehaviorLink value="FocusFire"/>
+    </CEffectRemoveBehavior>
     <CEffectDamage id="IFV25mmHEAutocannonDamage">
         <EditorCategories value=""/>
         <ImpactLocation Value="TargetUnit"/>
@@ -1249,11 +1256,6 @@
         <Flags index="NoVitalAbsorbShields" value="1"/>
         <Amount value="50"/>
     </CEffectDamage>
-    <CEffectApplyBehavior id="FocusFire">
-        <EditorCategories value=""/>
-        <ValidatorArray index="0" value="AbilityTest"/>
-        <ValidatorArray value="AbilityTest2"/>
-    </CEffectApplyBehavior>
     <CEffectDamage id="FragmentationGrenadeDamageLevel1">
         <EditorCategories value=""/>
         <ImpactLocation Value="TargetPoint"/>
