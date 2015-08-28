@@ -282,6 +282,11 @@
     <CBehaviorBuff id="GenericBehavior">
         <EditorCategories value="Race:???"/>
     </CBehaviorBuff>
+    <CBehaviorBuff id="MeleeWeaponEquipped">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <MaxStackCount value="2"/>
+    </CBehaviorBuff>
     <CBehaviorBuff id="PlasmaCoreDebuff">
         <InfoIcon value="btn-upgrade-terran-moebiusreactor-spectre.dds"/>
         <EditorCategories value="Race:AmmoMod Fragile Debuff"/>
@@ -443,6 +448,11 @@
     <CBehaviorBuff id="PumpShotgunEquipped" parent="WeaponEquippedTemplate" WeaponDamageEffect="PumpShotgunDamage">
         <TechAliasArray value="_Shotgun"/>
         <TechAliasArray value="_GeminiWeapon"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="RangedWeaponEquipped">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <MaxStackCount value="2"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="ReactiveProtectiveInsert">
         <EditorCategories value="Race:Equip Armor"/>
@@ -772,6 +782,11 @@
         </Modification>
     </CBehaviorBuff>
     <CBehaviorBuff id="SuperGravityGunNoise" parent="WeaponNoiseTemplate"/>
+    <CBehaviorBuff id="UnderhandWeaponEquipped">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <MaxStackCount value="2"/>
+    </CBehaviorBuff>
     <CBehaviorBuff id="WeaponEquipDelay">
         <InfoFlags index="Hidden" value="1"/>
         <EditorCategories value="Race:Weapon Delay Timer"/>
@@ -852,5 +867,10 @@
         <Modification>
             <VitalRegenArray index="Energy" value="0.5"/>
         </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="WeaponEquipped">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <MaxStackCount value="2"/>
     </CBehaviorBuff>
 </Catalog>

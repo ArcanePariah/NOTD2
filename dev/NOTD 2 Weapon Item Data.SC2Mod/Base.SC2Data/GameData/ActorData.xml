@@ -150,6 +150,25 @@
         <On Terms="BehaviorLevel.MediumMachineGunEquipped.Start; Level 2" Send="AttachModel MediumMachineGun {} {AssaultGeminiFilter AssaultOccupancyFilter}"/>
         <On Terms="BehaviorLevel.MediumMachineGunEquipped.Start; Level 1; ScopeContains MediumMachineGun" Target="MediumMachineGun" Send="Destroy"/>
         <On Terms="BehaviorLevel.MediumMachineGunEquipped.Start; Level 1; ScopeContains MediumMachineGun" Send="AttachModel MediumMachineGun {} {AssaultGeminiFilter AssaultOccupancyFilter}"/>
+        <On Terms="BehaviorLevel.PistolEquipped.Start; Level 2" Send="AttachModel Pistol {} {AssaultGeminiFilter AssaultOccupancyFilter}"/>
+        <On Terms="BehaviorLevel.PistolEquipped.Start; Level 1; ScopeContains Pistol" Target="Pistol" Send="Destroy"/>
+        <On Terms="BehaviorLevel.PistolEquipped.Start; Level 1; ScopeContains Pistol" Send="AttachModel Pistol {} {AssaultGeminiFilter AssaultOccupancyFilter}"/>
+        <On Terms="BehaviorLevel.PlasmaCutterEquipped.Start; Level 2" Send="AttachModel PlasmaCutter {} {AssaultGeminiFilter AssaultOccupancyFilter}"/>
+        <On Terms="BehaviorLevel.PlasmaCutterEquipped.Start; Level 1; ScopeContains PlasmaCutter" Target="PlasmaCutter" Send="Destroy"/>
+        <On Terms="BehaviorLevel.PlasmaCutterEquipped.Start; Level 1; ScopeContains PlasmaCutter" Send="AttachModel PlasmaCutter {} {AssaultGeminiFilter AssaultOccupancyFilter}"/>
+        <On Terms="BehaviorLevel.PumpShotgunEquipped.Start; Level 2" Send="AttachModel PumpShotgun {} {AssaultGeminiFilter AssaultOccupancyFilter}"/>
+        <On Terms="BehaviorLevel.PumpShotgunEquipped.Start; Level 1; ScopeContains PumpShotgun" Target="PumpShotgun" Send="Destroy"/>
+        <On Terms="BehaviorLevel.PumpShotgunEquipped.Start; Level 1; ScopeContains PumpShotgun" Send="AttachModel PumpShotgun {} {AssaultGeminiFilter AssaultOccupancyFilter}"/>
+    </CActorEventMacro>
+    <CActorEventMacro id="AssaultDualWieldModelSwap">
+        <EditorCategories value=""/>
+        <On Terms="ActorCreation" Send="StatusSet WeaponCount 0"/>
+        <On Terms="StatusIncrement.*.WeaponCount; IsStatus WeaponCount 2" Send="ModelSwap HeavyMarineTwoHanded"/>
+        <On Terms="StatusDecrement.*.WeaponCount; IsStatus WeaponCount 1" Send="ModelSwap HeavyMarineOneHanded"/>
+        <On Terms="BehaviorLevel.WeaponEquipped.Stop; Level 0" Send="StatusIncrement WeaponCount"/>
+        <On Terms="BehaviorLevel.WeaponEquipped.Start; Level 0" Send="StatusDecrement WeaponCount"/>
+        <On Terms="BehaviorLevel.WeaponEquipped.Start; Level 2" Send="StatusIncrement WeaponCount"/>
+        <On Terms="BehaviorLevel.WeaponEquipped.Stop; Level 2" Send="StatusDecrement WeaponCount"/>
     </CActorEventMacro>
     <CActorModel id="AssaultRifle" parent="EquippedWeaponTemplate"/>
     <CActorModel id="AutomaticShotgun" parent="EquippedWeaponTemplate"/>
@@ -747,88 +766,27 @@
         <EditorCategories value=""/>
         <On Terms="Behavior.PistolEquipped.On" Send="ModelSwap LightMarineOne"/>
         <On Terms="Behavior.SubmachineGunEquipped.On" Send="ModelSwap LightMarineOne"/>
-        <On Terms="Behavior.CrowbarEquipped.On" Send="ModelSwap LightMarineMelee"/>
-        <On Terms="Behavior.PlasmaCutterEquipped.On" Send="ModelSwap LightMarineUnder"/>
-        <On Terms="Behavior.PlasmaCutterEquipped.Off" Send="ModelSwap LightMarineMelee"/>
-        <On Terms="Behavior.ChainsawEquipped.On" Send="ModelSwap LightMarineUnder"/>
-        <On Terms="Behavior.ChainsawEquipped.Off" Send="ModelSwap LightMarineMelee"/>
-        <On Terms="Behavior.FlamethrowerEquipped.On" Send="ModelSwap LightMarineUnder"/>
-        <On Terms="Behavior.FlamethrowerEquipped.Off" Send="ModelSwap LightMarineMelee"/>
-        <On Terms="Behavior.AxeEquipped.On" Send="ModelSwap LightMarineMelee"/>
-        <On Terms="Behavior.BatonEquipped.On" Send="ModelSwap LightMarineMelee"/>
-        <On Terms="Behavior.HammerEquipped.On" Send="ModelSwap LightMarineMelee"/>
-        <On Terms="Behavior.HeavyMachineGunEquipped.On" Send="ModelSwap LightMarineUnder"/>
-        <On Terms="Behavior.HeavyMachineGunEquipped.Off" Send="ModelSwap LightMarineMelee"/>
         <On Terms="Behavior.AssaultRifleEquipped.On" Send="ModelSwap LightMarineTwo"/>
-        <On Terms="Behavior.AssaultRifleEquipped.Off" Send="ModelSwap LightMarineMelee"/>
         <On Terms="Behavior.AntiMaterialRifleEquipped.On" Send="ModelSwap LightMarineTwo"/>
-        <On Terms="Behavior.AntiMaterialRifleEquipped.Off" Send="ModelSwap LightMarineMelee"/>
         <On Terms="Behavior.AutomaticShotgunEquipped.On" Send="ModelSwap LightMarineTwo"/>
-        <On Terms="Behavior.AutomaticShotgunEquipped.Off" Send="ModelSwap LightMarineMelee"/>
         <On Terms="Behavior.LaserRifleEquipped.On" Send="ModelSwap LightMarineTwo"/>
-        <On Terms="Behavior.LaserRifleEquipped.Off" Send="ModelSwap LightMarineMelee"/>
         <On Terms="Behavior.MarksmanRifleEquipped.On" Send="ModelSwap LightMarineTwo"/>
-        <On Terms="Behavior.MarksmanRifleEquipped.Off" Send="ModelSwap LightMarineMelee"/>
         <On Terms="Behavior.MediumMachineGunEquipped.On" Send="ModelSwap LightMarineTwo"/>
-        <On Terms="Behavior.MediumMachineGunEquipped.Off" Send="ModelSwap LightMarineMelee"/>
         <On Terms="Behavior.PumpShotgunEquipped.On" Send="ModelSwap LightMarineTwo"/>
-        <On Terms="Behavior.PumpShotgunEquipped.Off" Send="ModelSwap LightMarineMelee"/>
-        <On Terms="Behavior.AxeEquipped.On" Send="ModelSwap LightMarineMelee"/>
-        <On Terms="Behavior.BatonEquipped.On" Send="ModelSwap LightMarineMelee"/>
-        <On Terms="Behavior.HammerEquipped.On" Send="ModelSwap LightMarineMelee"/>
         <On Terms="Behavior.GrenadeLauncherEquipped.On" Send="ModelSwap LightMarineTwo"/>
-        <On Terms="Behavior.GrenadeLauncherEquipped.Off" Send="ModelSwap LightMarineMelee"/>
         <On Terms="Behavior.PlasmaCannonEquipped.On" Send="ModelSwap LightMarineUnder"/>
-        <On Terms="Behavior.PlasmaCannonEquipped.Off" Send="ModelSwap LightMarineMelee"/>
         <On Terms="Behavior.RailgunEquipped.On" Send="ModelSwap LightMarineUnder"/>
-        <On Terms="Behavior.RailgunEquipped.Off" Send="ModelSwap LightMarineMelee"/>
         <On Terms="Behavior.RocketLauncherEquipped.On" Send="ModelSwap LightMarineTwo"/>
-        <On Terms="Behavior.RocketLauncherEquipped.Off" Send="ModelSwap LightMarineMelee"/>
+        <On Terms="BehaviorLevel.UnderhandWeaponEquipped.Start; IsStatus WeaponCount 1" Send="ModelSwap LightMarineUnder"/>
+        <On Terms="BehaviorLevel.MeleeWeaponEquipped.Start; IsStatus WeaponCount 1" Send="ModelSwap LightMarineMelee"/>
+        <On Terms="BehaviorLevel.WeaponEquipped.Start; Level 0" Send="ModelSwap LightMarineMelee"/>
     </CActorEventMacro>
     <CActorEventMacro id="WeaponModelSwapGroupsHeavy">
         <EditorCategories value=""/>
-        <On Terms="Behavior.PistolEquipped.On" Send="ModelSwap HeavyMarineOneHanded"/>
-        <On Terms="Behavior.SubmachineGunEquipped.On" Send="ModelSwap HeavyMarineOneHanded"/>
-        <On Terms="Behavior.CrowbarEquipped.On" Send="ModelSwap HeavyMarineMelee"/>
-        <On Terms="Behavior.PlasmaCutterEquipped.On" Send="ModelSwap HeavyMarineUnderhanded"/>
-        <On Terms="Behavior.PlasmaCutterEquipped.Off" Send="ModelSwap HeavyMarineMelee"/>
-        <On Terms="Behavior.ChainsawEquipped.On" Send="ModelSwap HeavyMarineUnderhanded"/>
-        <On Terms="Behavior.ChainsawEquipped.Off" Send="ModelSwap HeavyMarineMelee"/>
-        <On Terms="Behavior.FlamethrowerEquipped.On" Send="ModelSwap HeavyMarineUnderhanded"/>
-        <On Terms="Behavior.FlamethrowerEquipped.Off" Send="ModelSwap HeavyMarineMelee"/>
-        <On Terms="Behavior.AxeEquipped.On" Send="ModelSwap HeavyMarineMelee"/>
-        <On Terms="Behavior.BatonEquipped.On" Send="ModelSwap HeavyMarineMelee"/>
-        <On Terms="Behavior.HammerEquipped.On" Send="ModelSwap HeavyMarineMelee"/>
-        <On Terms="Behavior.HeavyMachineGunEquipped.On" Send="ModelSwap HeavyMarineUnderhanded"/>
-        <On Terms="Behavior.HeavyMachineGunEquipped.Off" Send="ModelSwap HeavyMarineMelee"/>
-        <On Terms="Behavior.AssaultRifleEquipped.On" Send="ModelSwap HeavyMarineOneHanded"/>
-        <On Terms="Behavior.AssaultRifleEquipped.Off" Send="ModelSwap HeavyMarineMelee"/>
-        <On Terms="Behavior.AntiMaterialRifleEquipped.On" Send="ModelSwap HeavyMarineOneHanded"/>
-        <On Terms="Behavior.AntiMaterialRifleEquipped.Off" Send="ModelSwap HeavyMarineMelee"/>
-        <On Terms="Behavior.AutomaticShotgunEquipped.On" Send="ModelSwap HeavyMarineOneHanded"/>
-        <On Terms="Behavior.AutomaticShotgunEquipped.Off" Send="ModelSwap HeavyMarineMelee"/>
-        <On Terms="Behavior.LaserRifleEquipped.On" Send="ModelSwap HeavyMarineOneHanded"/>
-        <On Terms="Behavior.LaserRifleEquipped.Off" Send="ModelSwap HeavyMarineMelee"/>
-        <On Terms="Behavior.MarksmanRifleEquipped.On" Send="ModelSwap HeavyMarineOneHanded"/>
-        <On Terms="Behavior.MarksmanRifleEquipped.Off" Send="ModelSwap HeavyMarineMelee"/>
-        <On Terms="Behavior.MediumMachineGunEquipped.On" Send="ModelSwap HeavyMarineOneHanded"/>
-        <On Terms="Behavior.MediumMachineGunEquipped.Off" Send="ModelSwap HeavyMarineMelee"/>
-        <On Terms="Behavior.PumpShotgunEquipped.On" Send="ModelSwap HeavyMarineOneHanded"/>
-        <On Terms="Behavior.PumpShotgunEquipped.Off" Send="ModelSwap HeavyMarineMelee"/>
-        <On Terms="Behavior.PistolEquipped.Off" Send="ModelSwap HeavyMarineMelee"/>
-        <On Terms="Behavior.SubmachineGunEquipped.On" Send="ModelSwap HeavyMarineOneHanded"/>
-        <On Terms="Behavior.AxeEquipped.On" Send="ModelSwap HeavyMarineMelee"/>
-        <On Terms="Behavior.BatonEquipped.On" Send="ModelSwap HeavyMarineMelee"/>
-        <On Terms="Behavior.HammerEquipped.On" Send="ModelSwap HeavyMarineMelee"/>
-        <On Terms="Behavior.GrenadeLauncherEquipped.On" Send="ModelSwap HeavyMarineOneHanded"/>
-        <On Terms="Behavior.GrenadeLauncherEquipped.Off" Send="ModelSwap HeavyMarineMelee"/>
-        <On Terms="Behavior.SubmachineGunEquipped.Off" Send="ModelSwap HeavyMarineMelee"/>
-        <On Terms="Behavior.PlasmaCannonEquipped.On" Send="ModelSwap HeavyMarineOneHanded"/>
-        <On Terms="Behavior.PlasmaCannonEquipped.Off" Send="ModelSwap HeavyMarineMelee"/>
-        <On Terms="Behavior.RailgunEquipped.On" Send="ModelSwap HeavyMarineOneHanded"/>
-        <On Terms="Behavior.RailgunEquipped.Off" Send="ModelSwap HeavyMarineMelee"/>
-        <On Terms="Behavior.RocketLauncherEquipped.On" Send="ModelSwap HeavyMarineOneHanded"/>
-        <On Terms="Behavior.RocketLauncherEquipped.Off" Send="ModelSwap HeavyMarineMelee"/>
+        <On Terms="BehaviorLevel.UnderhandWeaponEquipped.Start; IsStatus WeaponCount 1" Send="ModelSwap HeavyMarineUnderhanded"/>
+        <On Terms="BehaviorLevel.RangedWeaponEquipped.Start; IsStatus WeaponCount 1" Send="ModelSwap HeavyMarineOneHanded"/>
+        <On Terms="BehaviorLevel.MeleeWeaponEquipped.Start; IsStatus WeaponCount 1" Send="ModelSwap HeavyMarineMelee"/>
+        <On Terms="BehaviorLevel.WeaponEquipped.Start; Level 0" Send="ModelSwap HeavyMarineMelee"/>
     </CActorEventMacro>
     <CActorEventMacro id="WeaponHeavyAnimationGroups">
         <EditorCategories value=""/>

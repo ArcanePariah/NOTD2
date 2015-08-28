@@ -85,20 +85,6 @@
         <HostEndSiteOps Ops="SOpIncomingDirect1Dot5 SOpMoveDownByDot25 SOpMoveBy3 SOpMoveUpByDot5"/>
         <Angle value="40.000000"/>
     </CActorForceConeRoundedEnd>
-    <CActorEventMacro id="AssaultDualWieldModelSwap">
-        <EditorCategories value=""/>
-        <On Terms="AttachModel" Send="StatusIncrement WeaponCount"/>
-        <On Terms="BehaviorLevel.AssaultRifleEquipped.Start; Level 1; ScopeContains AssaultRifle" Send="StatusSet WeaponCount 1"/>
-        <On Terms="BehaviorLevel.AutomaticShotgunEquipped.Start; Level 1; ScopeContains AutomaticShotgun" Send="StatusSet WeaponCount 1"/>
-        <On Terms="BehaviorLevel.AxeEquipped.Start; Level 1; ScopeContains Axe" Send="StatusSet WeaponCount 1"/>
-        <On Terms="BehaviorLevel.BatonEquipped.Start; Level 1; ScopeContains Baton" Send="StatusSet WeaponCount 1"/>
-        <On Terms="BehaviorLevel.ChainsawEquipped.Start; Level 1; ScopeContains Chainsaw" Send="StatusSet WeaponCount 1"/>
-        <On Terms="BehaviorLevel.CrowbarEquipped.Start; Level 1; ScopeContains Crowbar" Send="StatusSet WeaponCount 1"/>
-        <On Terms="BehaviorLevel.FlamethrowerEquipped.Start; Level 1; ScopeContains Flamethrower" Send="StatusSet WeaponCount 1"/>
-        <On Terms="BehaviorLevel.LaserRifleEquipped.Start; Level 1; ScopeContains LaserRifle" Send="StatusSet WeaponCount 1"/>
-        <On Terms="BehaviorLevel.MarksmanRifleEquipped.Start; Level 1; ScopeContains MarksmanRifle" Send="StatusSet WeaponCount 1"/>
-        <On Terms="BehaviorLevel.MediumMachineGunEquipped.Start; Level 1; ScopeContains MediumMachineGun" Send="StatusSet WeaponCount 1"/>
-    </CActorEventMacro>
     <!-- Have a separate model here b/c we want to track the target when the missile is in flight, but then freeze-->
     <!--         the explosion to its location on impact.  The explosion is mighty enough to look kind of dorky if it-->
     <!--         tracks the target.  But we don't want to have the missile itself not track the target, since that'll-->
@@ -406,11 +392,6 @@
         <Host Subject="_Unit"/>
         <HostSiteOps Ops="SOpAttachOverhead"/>
         <AutoScaleFromSelectionFactor value="1.000000"/>
-    </CActorModel>
-    <CActorModel id="EquippedWeapon">
-        <Supporter Subject="::Creator"/>
-        <Model value="AssaultRifle"/>
-        <On Terms="ActorCreation" Send="SetBearings 1.000000,1.000000,1.000000"/>
     </CActorModel>
     <CActorModel id="Escape" parent="ModelAnimationStyleOneShotUNIT">
         <EditorCategories value=""/>
@@ -1217,19 +1198,12 @@
         <On index="74" Terms="Abil.HeavyJump.SourceCastStart" Send="AnimPlay Jump Jump"/>
         <On Terms="Behavior.ChargeMovement.On" Send="AnimGroupApply Run"/>
         <On Terms="Behavior.ChargeMovement.Off" Send="AnimGroupRemove Run"/>
-        <On Terms="StatusIncrement.*.WeaponCount; IsStatus WeaponCount 2" Send="ModelSwap HeavyMarineTwoHanded"/>
-        <On Terms="StatusSet.*.WeaponCount; IsStatus WeaponCount 1" Send="ModelSwap HeavyMarineOneHanded"/>
-        <On Terms="ActorCreation" Send="TimerSet 0.200000 Delay"/>
-        <On Terms="TimerExpired; TimerName Delay" Send="StatusSet WeaponCount 0"/>
     </CActorUnit>
     <CActorUnit id="Commando" parent="BaseMarineActor" unitName="Commando">
         <HighlightTooltip value="Unit/Name/Bogus"/>
         <On index="76" Terms="ActorCreation" Send="AttachModel Flashlight MarineFlashlight {Head 0}"/>
         <On index="77" removed="1"/>
         <On index="78" removed="1"/>
-        <Macros index="3" value="AntiMaterialRifleMacro"/>
-        <Macros index="4" value="HeavyMachineGunMacro"/>
-        <Macros value="WeaponAnimationGroups"/>
     </CActorUnit>
     <CActorUnit id="Demolitions" parent="BaseHeavyMarineActor" unitName="Demolitions">
         <Scale value="0.900000"/>
@@ -1242,36 +1216,24 @@
         <On index="76" Terms="ActorCreation" Send="AttachModel Flashlight MarineFlashlight {Head 0}"/>
         <On index="77" removed="1"/>
         <On index="78" removed="1"/>
-        <Macros index="3" value="AntiMaterialRifleMacro"/>
-        <Macros index="4" value="HeavyMachineGunMacro"/>
-        <Macros value="WeaponAnimationGroups"/>
     </CActorUnit>
     <CActorUnit id="Engineer" parent="BaseMarineActor" unitName="Engineer">
         <HighlightTooltip value="Unit/Name/Bogus"/>
         <On index="76" Terms="ActorCreation" Send="AttachModel Flashlight MarineFlashlight {Head 0}"/>
         <On index="77" removed="1"/>
         <On index="78" removed="1"/>
-        <Macros index="3" value="AntiMaterialRifleMacro"/>
-        <Macros index="4" value="HeavyMachineGunMacro"/>
-        <Macros value="WeaponAnimationGroups"/>
     </CActorUnit>
     <CActorUnit id="Flamethrower2" parent="BaseMarineActor" unitName="Flamethrower2">
         <HighlightTooltip value="Unit/Name/Bogus"/>
         <On index="76" Terms="ActorCreation" Send="AttachModel Flashlight MarineFlashlight {Head 0}"/>
         <On index="77" removed="1"/>
         <On index="78" removed="1"/>
-        <Macros index="3" value="AntiMaterialRifleMacro"/>
-        <Macros index="4" value="HeavyMachineGunMacro"/>
-        <Macros value="WeaponAnimationGroups"/>
     </CActorUnit>
     <CActorUnit id="ForwardObserver" parent="BaseMarineActor" unitName="ForwardObserver">
         <HighlightTooltip value="Unit/Name/Bogus"/>
         <On index="76" Terms="ActorCreation" Send="AttachModel Flashlight MarineFlashlight {Head 0}"/>
         <On index="77" removed="1"/>
         <On index="78" removed="1"/>
-        <Macros index="3" value="AntiMaterialRifleMacro"/>
-        <Macros index="4" value="HeavyMachineGunMacro"/>
-        <Macros value="WeaponAnimationGroups"/>
     </CActorUnit>
     <CActorModel id="JumpImpact" parent="ModelAnimationStyleOneShot">
         <On Terms="Effect.LightJump.Impact; At Caster" Send="Create"/>
@@ -1562,11 +1524,7 @@
         <Baselines index="Walk" AnimProps="Walk,Fast"/>
         <WalkAnimMoveSpeed value="5.25"/>
     </CActorUnit>
-    <CActorUnit id="Marksman" parent="BaseMarineActor" unitName="Marksman">
-        <Macros index="3" value="AntiMaterialRifleMacro"/>
-        <Macros index="4" value="HeavyMachineGunMacro"/>
-        <Macros value="WeaponAnimationGroups"/>
-    </CActorUnit>
+    <CActorUnit id="Marksman" parent="BaseMarineActor" unitName="Marksman"/>
     <CActorUnit id="MedicNOTD" parent="BaseMarineActor" unitName="Medic2">
         <On index="61" Terms="ActorCreation" Send="AttachModel MedicTorso MedicBasicTorso {Hardpoint 0}"/>
         <On index="70" Terms="ActorCreation" Send="AttachModel MedicLeftForearm MedicBasicForearmLeft {Hardpoint 5}"/>
@@ -1589,9 +1547,6 @@
         <SoundArray index="Click" value="Medic_Click"/>
         <SoundArray index="ClickError" value="Medic_ClickError"/>
         <SoundArray index="Highlight" value="Medic_Highlight"/>
-        <Macros index="3" value="AntiMaterialRifleMacro"/>
-        <Macros index="4" value="HeavyMachineGunMacro"/>
-        <Macros value="WeaponAnimationGroups"/>
     </CActorUnit>
     <CActorModel id="NanoHasteBuff" parent="ModelAnimationStyleContinuous">
         <EditorCategories value=""/>
@@ -1645,9 +1600,6 @@
         <On index="76" Terms="ActorCreation" Send="AttachModel Flashlight MarineFlashlight {Head 0}"/>
         <On index="77" removed="1"/>
         <On index="78" removed="1"/>
-        <Macros index="3" value="AntiMaterialRifleMacro"/>
-        <Macros index="4" value="HeavyMachineGunMacro"/>
-        <Macros value="WeaponAnimationGroups"/>
     </CActorUnit>
     <CActorMissile id="PlasmaGrenadeMissile" parent="GenericAttackMissile" unitName="PlasmaGrenade">
         <EditorCategories value=""/>
@@ -1690,9 +1642,6 @@
         <On index="76" Terms="ActorCreation" Send="AttachModel Flashlight MarineFlashlight {Head 0}"/>
         <On index="77" removed="1"/>
         <On index="78" removed="1"/>
-        <Macros index="3" value="AntiMaterialRifleMacro"/>
-        <Macros index="4" value="HeavyMachineGunMacro"/>
-        <Macros value="WeaponAnimationGroups"/>
     </CActorUnit>
     <CActorUnit id="Recon" parent="BaseMarineActor" unitName="Recon">
         <On index="61" Terms="ActorCreation" Send="AttachModel ReconTorso ReconBasicTorso {Hardpoint 0}"/>
@@ -1701,9 +1650,6 @@
         <On Terms="Abil.SurveillanceFlare.SourceCastStart" Send="AnimPlay Throw Spell,Blast"/>
         <On Terms="Abil.SmokeGrenade.SourceCastStart" Send="AnimPlay Throw Spell,Blast"/>
         <On Terms="Abil.FlareGunRecon.SourceCastStart" Send="AnimPlay Throw Attack"/>
-        <Macros index="3" value="AntiMaterialRifleMacro"/>
-        <Macros index="4" value="HeavyMachineGunMacro"/>
-        <Macros value="WeaponAnimationGroups"/>
     </CActorUnit>
     <CActorModel id="RepulseHeroicSlow" parent="ModelAddition">
         <EditorCategories value=""/>
@@ -1752,9 +1698,6 @@
         <SoundArray index="Highlight" value="Marine_Highlight"/>
         <DeathCustomData index="2" SyncPassChance="100"/>
         <HeroIcon value="ClassButtons\btn-class-Rifleman.dds"/>
-        <Macros index="3" value="AntiMaterialRifleMacro"/>
-        <Macros index="4" value="HeavyMachineGunMacro"/>
-        <Macros value="WeaponAnimationGroups"/>
     </CActorUnit>
     <CActorSound id="RiflemanBloodlustCast" parent="SoundOneShot">
         <On Terms="Effect.Bloodlust.Start" Send="Create"/>
@@ -1839,9 +1782,6 @@
         <On index="76" Terms="ActorCreation" Send="AttachModel Flashlight MarineFlashlight {Head 0}"/>
         <On index="77" removed="1"/>
         <On index="78" removed="1"/>
-        <Macros index="3" value="AntiMaterialRifleMacro"/>
-        <Macros index="4" value="HeavyMachineGunMacro"/>
-        <Macros value="WeaponAnimationGroups"/>
     </CActorUnit>
     <CActorModel id="TauntCaster" parent="ModelAnimationStyleContinuous">
         <EditorCategories value=""/>
@@ -1871,9 +1811,6 @@
         <On index="76" Terms="ActorCreation" Send="AttachModel Flashlight MarineFlashlight {Head 0}"/>
         <On index="77" removed="1"/>
         <On index="78" removed="1"/>
-        <Macros index="3" value="AntiMaterialRifleMacro"/>
-        <Macros index="4" value="HeavyMachineGunMacro"/>
-        <Macros value="WeaponAnimationGroups"/>
     </CActorUnit>
     <CActorAction id="TopMachineGunAttack" parent="GenericAttack" effectAttack="TopMachineGunTurret">
         <EditorCategories value=""/>
@@ -1964,18 +1901,7 @@
     </CActorRange>
     <CActorSound id="WeaponEquipSound" parent="SoundOneShot">
         <EditorCategories value=""/>
-        <On Terms="Behavior.AntiMaterialRifleEquipped.Create" Send="Create"/>
-        <On Terms="Behavior.AssaultRifleEquipped.Create" Send="Create"/>
-        <On Terms="Behavior.AutomaticShotgunEquipped.Create" Send="Create"/>
-        <On Terms="Behavior.FlamethrowerEquipped.Create" Send="Create"/>
-        <On Terms="Behavior.HeavyMachineGunEquipped.Create" Send="Create"/>
-        <On Terms="Behavior.LaserRifleEquipped.Create" Send="Create"/>
-        <On Terms="Behavior.MarksmanRifleEquipped.Create" Send="Create"/>
-        <On Terms="Behavior.MediumMachineGunEquipped.Create" Send="Create"/>
-        <On Terms="Behavior.PistolEquipped.Create" Send="Create"/>
-        <On Terms="Behavior.PlasmaCutterEquipped.Create" Send="Create"/>
-        <On Terms="Behavior.PumpShotgunEquipped.Create" Send="Create"/>
-        <On Terms="Behavior.SubmachineGunEquipped.Create" Send="Create"/>
+        <On Terms="Behavior.WeaponEquipped.Create" Send="Create"/>
         <Sound value="BoltPull"/>
     </CActorSound>
     <CActorEventMacro id="WeaponMarineSwapMacro">
