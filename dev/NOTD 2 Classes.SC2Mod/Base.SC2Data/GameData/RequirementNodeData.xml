@@ -156,6 +156,11 @@
         <Tooltip value=""/>
         <Count Link="CrowbarEquipped" State="CompleteOnlyAtUnit"/>
     </CRequirementCountBehavior>
+    <CRequirementCountBehavior id="CountBehaviorBrokenLegCompleteOnlyAtUnit">
+        <Flags index="TechTreeCheat" value="0"/>
+        <Tooltip value=""/>
+        <Count Link="BrokenLeg" State="CompleteOnlyAtUnit"/>
+    </CRequirementCountBehavior>
     <CRequirementCountBehavior id="CountBehaviorDeployAntiMaterialRifleCompleteOnlyAtUnit">
         <Flags index="TechTreeCheat" value="0"/>
         <Tooltip value=""/>
@@ -511,6 +516,11 @@
         <Tooltip value=""/>
         <OperandArray index="0" value="CountAbilStealthMatrixCompleteOnlyAtUnit"/>
         <OperandArray index="1" value="2"/>
+    </CRequirementEq>
+    <CRequirementEq id="EqCountBehaviorBrokenLegCompleteOnlyAtUnit0">
+        <Tooltip value=""/>
+        <OperandArray index="0" value="CountBehaviorBrokenLegCompleteOnlyAtUnit"/>
+        <OperandArray index="1" value="0"/>
     </CRequirementEq>
     <CRequirementEq id="EqCountBehaviorDeployAntiMaterialRifleCompleteOnlyAtUnit1">
         <Tooltip value=""/>

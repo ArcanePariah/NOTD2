@@ -1,16 +1,76 @@
 <?xml version="1.0" encoding="us-ascii"?>
 <Catalog>
+    <CEffectApplyBehavior id="ArmFracture">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="BrokenArm">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="BrokenLeg">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectSet id="ConvertArmFracturetoBrokenArm">
+        <EditorCategories value=""/>
+        <EffectArray value="RemoveArmFracture"/>
+        <EffectArray value="BrokenArm"/>
+    </CEffectSet>
+    <CEffectSet id="ConvertLegFracturetoBrokenLeg">
+        <EditorCategories value=""/>
+        <EffectArray value="RemoveLegFracture"/>
+        <EffectArray value="BrokenLeg"/>
+    </CEffectSet>
+    <CEffectApplyBehavior id="LegFracture">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
     <CEffectApplyBehavior id="Blind">
         <EditorCategories value=""/>
     </CEffectApplyBehavior>
-    <CEffectDamage id="NukeDamage">
-        <SearchFilters value="-;Missile,Dead,Hidden"/>
-    </CEffectDamage>
     <CEffectApplyBehavior id="OpenWound">
         <ValidatorArray index="0" value="noShields"/>
         <ValidatorArray value="IsBiological"/>
         <EditorCategories value=""/>
     </CEffectApplyBehavior>
+    <CEffectDamage id="OpenWoundDamage">
+        <EditorCategories value=""/>
+        <Flags index="Live" value="1"/>
+        <Flags index="NoScaledDealtBonus" value="1"/>
+        <Flags index="NoFractionDealtBonus" value="1"/>
+        <Flags index="NoUnscaledDealtBonus" value="1"/>
+        <Flags index="NoBehaviorResponse" value="1"/>
+        <Amount value="1"/>
+    </CEffectDamage>
+    <CEffectRemoveBehavior id="RemoveArmFracture">
+        <EditorCategories value=""/>
+        <BehaviorLink value="ArmFracture"/>
+    </CEffectRemoveBehavior>
+    <CEffectRemoveBehavior id="RemoveLegFracture">
+        <EditorCategories value=""/>
+        <BehaviorLink value="LegFracture"/>
+    </CEffectRemoveBehavior>
+    <CEffectRemoveBehavior id="RemoveBlindTarget">
+        <EditorCategories value=""/>
+        <BehaviorLink value="Blind"/>
+    </CEffectRemoveBehavior>
+    <CEffectRemoveBehavior id="RemoveBrokenLeg">
+        <EditorCategories value=""/>
+        <BehaviorLink value="BrokenLeg"/>
+    </CEffectRemoveBehavior>
+    <CEffectRemoveBehavior id="RemoveBrokenArm">
+        <EditorCategories value=""/>
+        <BehaviorLink value="BrokenArm"/>
+    </CEffectRemoveBehavior>
+    <CEffectRemoveBehavior id="RemoveOpenWoundTarget">
+        <EditorCategories value=""/>
+        <BehaviorLink value="OpenWound"/>
+    </CEffectRemoveBehavior>
+    <CEffectRemoveBehavior id="RemoveShortCircuitTarget">
+        <EditorCategories value=""/>
+        <BehaviorLink value="ShortCircuit"/>
+    </CEffectRemoveBehavior>
+    <CEffectRemoveBehavior id="RemoveVenomTarget">
+        <EditorCategories value=""/>
+        <BehaviorLink value="Venom"/>
+    </CEffectRemoveBehavior>
     <CEffectApplyBehavior id="ShortCircuit">
         <EditorCategories value=""/>
     </CEffectApplyBehavior>
@@ -19,6 +79,10 @@
         <EditorCategories value=""/>
         <Behavior value="OpenWound"/>
     </CEffectApplyBehavior>
+    <CEffectModifyUnit id="ShortCircuitShieldDrain">
+        <EditorCategories value=""/>
+        <VitalArray index="Shields" ChangeFraction="-1"/>
+    </CEffectModifyUnit>
     <CEffectApplyBehavior id="Venom">
         <ValidatorArray index="0" value="noShields"/>
         <ValidatorArray value="IsBiological"/>
