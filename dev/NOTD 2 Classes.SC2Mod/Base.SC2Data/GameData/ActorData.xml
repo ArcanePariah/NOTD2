@@ -1400,6 +1400,7 @@
         <EditorCategories value=""/>
         <On Terms="Behavior.FocusFire.On; ValidateUnit RangedWeaponEquipped" Send="Create"/>
         <On Terms="Behavior.FocusFire.Off" Send="AnimBracketStop BSD Instant"/>
+        <On Terms="ActorCreation" Send="SetOpacity 0.125000 0.000000 LaserOpacity"/>
         <On Terms="ActorCreation" Send="SetTeamColor {0,255,0 0.500000} {0,255,0 0.500000} 0.000000 OneShot LaserTint"/>
         <Host Subject="_Weapon" FailOnNoHost="1"/>
         <HostSiteOps Ops="SOpAttachHardPoint"/>
