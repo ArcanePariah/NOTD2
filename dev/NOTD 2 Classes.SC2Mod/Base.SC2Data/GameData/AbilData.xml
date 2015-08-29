@@ -329,6 +329,19 @@
     <CAbilInventory id="FlamethrowerInventory" parent="InventoryTemplate">
         <InfoArray index="2" removed="1"/>
     </CAbilInventory>
+    <CAbilRedirectTarget id="GeminiProtocolAttackRedirect">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Abil value="attack"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="AttackRedirect"/>
+    </CAbilRedirectTarget>
+    <CAbilTransport id="GeminiProtocolTranport">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Flags index="ShowCargoSize" value="0"/>
+        <Flags index="ShowStatus" value="0"/>
+        <MaxCargoCount value="1"/>
+        <MaxCargoSize value="1"/>
+        <TotalCargoSpace value="1"/>
+    </CAbilTransport>
     <CAbilBehavior id="ItemSensor">
         <EditorCategories value="AbilityorEffectType:Units"/>
         <BehaviorArray value="ItemSensorLevel1"/>

@@ -61,6 +61,7 @@ struct libC50FD636_gs_Marine {
 };
 
 // Variables
+unit libC50FD636_gv_geminiProtocolUnit;
 fixed libC50FD636_gv_bulwarkAngle;
 unit libC50FD636_gv_bulwarkTargetUnit;
 unit libC50FD636_gv_bulwarkCaster;
@@ -190,6 +191,8 @@ trigger libC50FD636_gt_LockdownEnabled;
 trigger libC50FD636_gt_LockdownDisabled;
 trigger libC50FD636_gt_WeaponSwapLockdownRemoval;
 trigger libC50FD636_gt_GeminiProtocolWeaponEquip;
+trigger libC50FD636_gt_GeminiProtocolWeaponAdd;
+trigger libC50FD636_gt_GeminiProtocolWeaponRemove;
 trigger libC50FD636_gt_StackMagazinesIntoAmmoBoxes;
 trigger libC50FD636_gt_DisplayInventoryOnSelection;
 trigger libC50FD636_gt_UpdateBagSlotsonMove;
@@ -1079,8 +1082,8 @@ bool libC50FD636_gt_AssaultLevelUpGeminiProtocol_Func (bool testConds, bool runA
 
     TechTreeUpgradeAddLevel(UnitGetOwner(EventUnit()), "GeminiProtocol", 1);
     UnitInventoryContainerOpen(PlayerGroupAll(), EventUnit(), 3, true);
-    UnitAbilityEnable(EventUnit(), "DeployAntiMaterialRifle", false);
-    UnitAbilityEnable(EventUnit(), "PackUpAntiMaterialRifle", false);
+    UnitCargoCreate(EventUnit(), "GeminiProtocolDummyUnit", 1);
+    libC50FD636_gv_geminiProtocolUnit = UnitCargoLastCreated();
     return true;
 }
 
@@ -1999,6 +2002,88 @@ bool libC50FD636_gt_GeminiProtocolWeaponEquip_Func (bool testConds, bool runActi
 void libC50FD636_gt_GeminiProtocolWeaponEquip_Init () {
     libC50FD636_gt_GeminiProtocolWeaponEquip = TriggerCreate("libC50FD636_gt_GeminiProtocolWeaponEquip_Func");
     TriggerAddEventUnitInventoryChange(libC50FD636_gt_GeminiProtocolWeaponEquip, null, c_unitInventoryChangeGains, null);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Gemini Protocol Weapon Add
+//--------------------------------------------------------------------------------------------------
+bool libC50FD636_gt_GeminiProtocolWeaponAdd_Func (bool testConds, bool runActions) {
+    // Conditions
+    if (testConds) {
+        if (!((UnitBehaviorCount(EventUnit(), EventUnitBehavior()) == 2))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    UnitWeaponAdd(libC50FD636_gv_geminiProtocolUnit, "LaserRifle", null);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libC50FD636_gt_GeminiProtocolWeaponAdd_Init () {
+    libC50FD636_gt_GeminiProtocolWeaponAdd = TriggerCreate("libC50FD636_gt_GeminiProtocolWeaponAdd_Func");
+    TriggerAddEventUnitBehaviorChange(libC50FD636_gt_GeminiProtocolWeaponAdd, null, "AntiMaterialRifleEquipped", c_unitBehaviorChangeIncrease);
+    TriggerAddEventUnitBehaviorChange(libC50FD636_gt_GeminiProtocolWeaponAdd, null, "AssaultRifleEquipped", c_unitBehaviorChangeIncrease);
+    TriggerAddEventUnitBehaviorChange(libC50FD636_gt_GeminiProtocolWeaponAdd, null, "AutomaticShotgunEquipped", c_unitBehaviorChangeIncrease);
+    TriggerAddEventUnitBehaviorChange(libC50FD636_gt_GeminiProtocolWeaponAdd, null, "AxeEquipped", c_unitBehaviorChangeIncrease);
+    TriggerAddEventUnitBehaviorChange(libC50FD636_gt_GeminiProtocolWeaponAdd, null, "BatonEquipped", c_unitBehaviorChangeIncrease);
+    TriggerAddEventUnitBehaviorChange(libC50FD636_gt_GeminiProtocolWeaponAdd, null, "ChainsawEquipped", c_unitBehaviorChangeIncrease);
+    TriggerAddEventUnitBehaviorChange(libC50FD636_gt_GeminiProtocolWeaponAdd, null, "CrowbarEquipped", c_unitBehaviorChangeIncrease);
+    TriggerAddEventUnitBehaviorChange(libC50FD636_gt_GeminiProtocolWeaponAdd, null, "FlamethrowerEquipped", c_unitBehaviorChangeIncrease);
+    TriggerAddEventUnitBehaviorChange(libC50FD636_gt_GeminiProtocolWeaponAdd, null, "HammerEquipped", c_unitBehaviorChangeIncrease);
+    TriggerAddEventUnitBehaviorChange(libC50FD636_gt_GeminiProtocolWeaponAdd, null, "LaserRifleEquipped", c_unitBehaviorChangeIncrease);
+    TriggerAddEventUnitBehaviorChange(libC50FD636_gt_GeminiProtocolWeaponAdd, null, "MarksmanRifleEquipped", c_unitBehaviorChangeIncrease);
+    TriggerAddEventUnitBehaviorChange(libC50FD636_gt_GeminiProtocolWeaponAdd, null, "MediumMachineGunEquipped", c_unitBehaviorChangeIncrease);
+    TriggerAddEventUnitBehaviorChange(libC50FD636_gt_GeminiProtocolWeaponAdd, null, "PistolEquipped", c_unitBehaviorChangeIncrease);
+    TriggerAddEventUnitBehaviorChange(libC50FD636_gt_GeminiProtocolWeaponAdd, null, "PlasmaCutterEquipped", c_unitBehaviorChangeIncrease);
+    TriggerAddEventUnitBehaviorChange(libC50FD636_gt_GeminiProtocolWeaponAdd, null, "PumpShotgunEquipped", c_unitBehaviorChangeIncrease);
+    TriggerAddEventUnitBehaviorChange(libC50FD636_gt_GeminiProtocolWeaponAdd, null, "SubmachineGunEquipped", c_unitBehaviorChangeIncrease);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Gemini Protocol Weapon Remove
+//--------------------------------------------------------------------------------------------------
+bool libC50FD636_gt_GeminiProtocolWeaponRemove_Func (bool testConds, bool runActions) {
+    // Conditions
+    if (testConds) {
+        if (!((UnitBehaviorCount(EventUnit(), EventUnitBehavior()) == 1))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    UnitBehaviorRemovePlayer(libC50FD636_gv_geminiProtocolUnit, EventUnitBehavior(), UnitGetOwner(EventUnit()), 1);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libC50FD636_gt_GeminiProtocolWeaponRemove_Init () {
+    libC50FD636_gt_GeminiProtocolWeaponRemove = TriggerCreate("libC50FD636_gt_GeminiProtocolWeaponRemove_Func");
+    TriggerAddEventUnitBehaviorChange(libC50FD636_gt_GeminiProtocolWeaponRemove, null, "AntiMaterialRifleEquipped", c_unitBehaviorChangeDecrease);
+    TriggerAddEventUnitBehaviorChange(libC50FD636_gt_GeminiProtocolWeaponRemove, null, "AssaultRifleEquipped", c_unitBehaviorChangeDecrease);
+    TriggerAddEventUnitBehaviorChange(libC50FD636_gt_GeminiProtocolWeaponRemove, null, "AutomaticShotgunEquipped", c_unitBehaviorChangeDecrease);
+    TriggerAddEventUnitBehaviorChange(libC50FD636_gt_GeminiProtocolWeaponRemove, null, "AxeEquipped", c_unitBehaviorChangeDecrease);
+    TriggerAddEventUnitBehaviorChange(libC50FD636_gt_GeminiProtocolWeaponRemove, null, "BatonEquipped", c_unitBehaviorChangeDecrease);
+    TriggerAddEventUnitBehaviorChange(libC50FD636_gt_GeminiProtocolWeaponRemove, null, "ChainsawEquipped", c_unitBehaviorChangeDecrease);
+    TriggerAddEventUnitBehaviorChange(libC50FD636_gt_GeminiProtocolWeaponRemove, null, "CrowbarEquipped", c_unitBehaviorChangeDecrease);
+    TriggerAddEventUnitBehaviorChange(libC50FD636_gt_GeminiProtocolWeaponRemove, null, "FlamethrowerEquipped", c_unitBehaviorChangeDecrease);
+    TriggerAddEventUnitBehaviorChange(libC50FD636_gt_GeminiProtocolWeaponRemove, null, "HammerEquipped", c_unitBehaviorChangeDecrease);
+    TriggerAddEventUnitBehaviorChange(libC50FD636_gt_GeminiProtocolWeaponRemove, null, "LaserRifleEquipped", c_unitBehaviorChangeDecrease);
+    TriggerAddEventUnitBehaviorChange(libC50FD636_gt_GeminiProtocolWeaponRemove, null, "MarksmanRifleEquipped", c_unitBehaviorChangeDecrease);
+    TriggerAddEventUnitBehaviorChange(libC50FD636_gt_GeminiProtocolWeaponRemove, null, "MediumMachineGunEquipped", c_unitBehaviorChangeDecrease);
+    TriggerAddEventUnitBehaviorChange(libC50FD636_gt_GeminiProtocolWeaponRemove, null, "PistolEquipped", c_unitBehaviorChangeDecrease);
+    TriggerAddEventUnitBehaviorChange(libC50FD636_gt_GeminiProtocolWeaponRemove, null, "PlasmaCutterEquipped", c_unitBehaviorChangeDecrease);
+    TriggerAddEventUnitBehaviorChange(libC50FD636_gt_GeminiProtocolWeaponRemove, null, "PumpShotgunEquipped", c_unitBehaviorChangeDecrease);
+    TriggerAddEventUnitBehaviorChange(libC50FD636_gt_GeminiProtocolWeaponRemove, null, "SubmachineGunEquipped", c_unitBehaviorChangeDecrease);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -3090,6 +3175,8 @@ void libC50FD636_InitTriggers () {
     libC50FD636_gt_LockdownDisabled_Init();
     libC50FD636_gt_WeaponSwapLockdownRemoval_Init();
     libC50FD636_gt_GeminiProtocolWeaponEquip_Init();
+    libC50FD636_gt_GeminiProtocolWeaponAdd_Init();
+    libC50FD636_gt_GeminiProtocolWeaponRemove_Init();
     libC50FD636_gt_StackMagazinesIntoAmmoBoxes_Init();
     libC50FD636_gt_DisplayInventoryOnSelection_Init();
     libC50FD636_gt_UpdateBagSlotsonMove_Init();
