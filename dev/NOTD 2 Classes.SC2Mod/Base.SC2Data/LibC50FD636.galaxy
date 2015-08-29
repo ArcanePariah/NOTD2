@@ -2008,9 +2008,11 @@ void libC50FD636_gt_GeminiProtocolWeaponEquip_Init () {
 // Trigger: Gemini Protocol Weapon Add
 //--------------------------------------------------------------------------------------------------
 bool libC50FD636_gt_GeminiProtocolWeaponAdd_Func (bool testConds, bool runActions) {
+    string auto504FF8CD_val;
+
     // Conditions
     if (testConds) {
-        if (!((UnitBehaviorCount(EventUnit(), EventUnitBehavior()) == 2))) {
+        if (!(((UnitBehaviorCount(EventUnit(), EventUnitBehavior()) == 2) || ((UnitBehaviorCount(EventUnit(), EventUnitBehavior()) == 1) && (UnitBehaviorCount(EventUnit(), "WeaponEquipped") == 2))))) {
             return false;
         }
     }
@@ -2020,7 +2022,57 @@ bool libC50FD636_gt_GeminiProtocolWeaponAdd_Func (bool testConds, bool runAction
         return true;
     }
 
-    UnitWeaponAdd(libC50FD636_gv_geminiProtocolUnit, "LaserRifle", null);
+    auto504FF8CD_val = EventUnitBehavior();
+    if (auto504FF8CD_val == "AntiMaterialRifleEquipped") {
+        UnitWeaponAdd(libC50FD636_gv_geminiProtocolUnit, "AntiMaterialRifle", null);
+    }
+    else if (auto504FF8CD_val == "AssaultRifleEquipped") {
+        UnitWeaponAdd(libC50FD636_gv_geminiProtocolUnit, "AssaultRifle", null);
+    }
+    else if (auto504FF8CD_val == "AutomaticShotgunEquipped") {
+        UnitWeaponAdd(libC50FD636_gv_geminiProtocolUnit, "AutomaticShotgun", null);
+    }
+    else if (auto504FF8CD_val == "AxeEquipped") {
+        UnitWeaponAdd(libC50FD636_gv_geminiProtocolUnit, "Axe", null);
+    }
+    else if (auto504FF8CD_val == "BatonEquipped") {
+        UnitWeaponAdd(libC50FD636_gv_geminiProtocolUnit, "Baton", null);
+    }
+    else if (auto504FF8CD_val == "ChainsawEquipped") {
+        UnitWeaponAdd(libC50FD636_gv_geminiProtocolUnit, "Chainsaw", null);
+    }
+    else if (auto504FF8CD_val == "CrowbarEquipped") {
+        UnitWeaponAdd(libC50FD636_gv_geminiProtocolUnit, "Crowbar", null);
+    }
+    else if (auto504FF8CD_val == "FlamethrowerEquipped") {
+        UnitWeaponAdd(libC50FD636_gv_geminiProtocolUnit, "Flamethrower", null);
+    }
+    else if (auto504FF8CD_val == "HammerEquipped") {
+        UnitWeaponAdd(libC50FD636_gv_geminiProtocolUnit, "Hammer", null);
+    }
+    else if (auto504FF8CD_val == "LaserRifleEquipped") {
+        UnitWeaponAdd(libC50FD636_gv_geminiProtocolUnit, "LaserRifle", null);
+    }
+    else if (auto504FF8CD_val == "MarksmanRifleEquipped") {
+        UnitWeaponAdd(libC50FD636_gv_geminiProtocolUnit, "MarksmanRifle", null);
+    }
+    else if (auto504FF8CD_val == "MediumMachineGunEquipped") {
+        UnitWeaponAdd(libC50FD636_gv_geminiProtocolUnit, "MediumMachineGun", null);
+    }
+    else if (auto504FF8CD_val == "PistolEquipped") {
+        UnitWeaponAdd(libC50FD636_gv_geminiProtocolUnit, "Pistol", null);
+    }
+    else if (auto504FF8CD_val == "PlasmaCutterEquipped") {
+        UnitWeaponAdd(libC50FD636_gv_geminiProtocolUnit, "PlasmaCutter", null);
+    }
+    else if (auto504FF8CD_val == "PumpShotgunEquipped") {
+        UnitWeaponAdd(libC50FD636_gv_geminiProtocolUnit, "PumpShotgun", null);
+    }
+    else if (auto504FF8CD_val == "SubmachineGunEquipped") {
+        UnitWeaponAdd(libC50FD636_gv_geminiProtocolUnit, "SubmachineGun", null);
+    }
+    else {
+    }
     return true;
 }
 
@@ -2049,6 +2101,8 @@ void libC50FD636_gt_GeminiProtocolWeaponAdd_Init () {
 // Trigger: Gemini Protocol Weapon Remove
 //--------------------------------------------------------------------------------------------------
 bool libC50FD636_gt_GeminiProtocolWeaponRemove_Func (bool testConds, bool runActions) {
+    string autoE2694757_val;
+
     // Conditions
     if (testConds) {
         if (!((UnitBehaviorCount(EventUnit(), EventUnitBehavior()) == 1))) {
@@ -2061,7 +2115,57 @@ bool libC50FD636_gt_GeminiProtocolWeaponRemove_Func (bool testConds, bool runAct
         return true;
     }
 
-    UnitBehaviorRemovePlayer(libC50FD636_gv_geminiProtocolUnit, EventUnitBehavior(), UnitGetOwner(EventUnit()), 1);
+    autoE2694757_val = EventUnitBehavior();
+    if (autoE2694757_val == "AntiMaterialRifleEquipped") {
+        UnitWeaponRemove(libC50FD636_gv_geminiProtocolUnit, "AntiMaterialRifle");
+    }
+    else if (autoE2694757_val == "AssaultRifleEquipped") {
+        UnitWeaponRemove(libC50FD636_gv_geminiProtocolUnit, "AssaultRifle");
+    }
+    else if (autoE2694757_val == "AutomaticShotgunEquipped") {
+        UnitWeaponRemove(libC50FD636_gv_geminiProtocolUnit, "AutomaticShotgun");
+    }
+    else if (autoE2694757_val == "AxeEquipped") {
+        UnitWeaponRemove(libC50FD636_gv_geminiProtocolUnit, "Axe");
+    }
+    else if (autoE2694757_val == "BatonEquipped") {
+        UnitWeaponRemove(libC50FD636_gv_geminiProtocolUnit, "Baton");
+    }
+    else if (autoE2694757_val == "ChainsawEquipped") {
+        UnitWeaponRemove(libC50FD636_gv_geminiProtocolUnit, "Chainsaw");
+    }
+    else if (autoE2694757_val == "CrowbarEquipped") {
+        UnitWeaponRemove(libC50FD636_gv_geminiProtocolUnit, "Crowbar");
+    }
+    else if (autoE2694757_val == "FlamethrowerEquipped") {
+        UnitWeaponRemove(libC50FD636_gv_geminiProtocolUnit, "Flamethrower");
+    }
+    else if (autoE2694757_val == "HammerEquipped") {
+        UnitWeaponRemove(libC50FD636_gv_geminiProtocolUnit, "Hammer");
+    }
+    else if (autoE2694757_val == "LaserRifleEquipped") {
+        UnitWeaponRemove(libC50FD636_gv_geminiProtocolUnit, "LaserRifle");
+    }
+    else if (autoE2694757_val == "MarksmanRifleEquipped") {
+        UnitWeaponRemove(libC50FD636_gv_geminiProtocolUnit, "MarksmanRifle");
+    }
+    else if (autoE2694757_val == "MediumMachineGunEquipped") {
+        UnitWeaponRemove(libC50FD636_gv_geminiProtocolUnit, "MediumMachineGun");
+    }
+    else if (autoE2694757_val == "PistolEquipped") {
+        UnitWeaponRemove(libC50FD636_gv_geminiProtocolUnit, "Pistol");
+    }
+    else if (autoE2694757_val == "PlasmaCutterEquipped") {
+        UnitWeaponRemove(libC50FD636_gv_geminiProtocolUnit, "PlasmaCutter");
+    }
+    else if (autoE2694757_val == "PumpShotgunEquipped") {
+        UnitWeaponRemove(libC50FD636_gv_geminiProtocolUnit, "PumpShotgun");
+    }
+    else if (autoE2694757_val == "SubmachineGunEquipped") {
+        UnitWeaponRemove(libC50FD636_gv_geminiProtocolUnit, "SubmachineGun");
+    }
+    else {
+    }
     return true;
 }
 

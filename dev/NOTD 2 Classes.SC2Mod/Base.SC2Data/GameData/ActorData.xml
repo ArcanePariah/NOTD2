@@ -85,6 +85,11 @@
         <HostEndSiteOps Ops="SOpIncomingDirect1Dot5 SOpMoveDownByDot25 SOpMoveBy3 SOpMoveUpByDot5"/>
         <Angle value="40.000000"/>
     </CActorForceConeRoundedEnd>
+    <CActorAction id="AssaultRifleAttack">
+        <ContainerAttachQuery Methods="AMFilterWeapon"/>
+        <ContainerAssets Model="MarineAttackLaunch" Sound="AssaultRifleShot"/>
+        <ContainerModel value="WeaponAttackLaunch"/>
+    </CActorAction>
     <!-- Have a separate model here b/c we want to track the target when the missile is in flight, but then freeze-->
     <!--         the explosion to its location on impact.  The explosion is mighty enough to look kind of dorky if it-->
     <!--         tracks the target.  But we don't want to have the missile itself not track the target, since that'll-->
