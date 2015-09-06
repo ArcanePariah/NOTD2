@@ -157,7 +157,7 @@ trigger libC50FD636_gt_SatelliteUplinkLevelUp;
 trigger libC50FD636_gt_AssaultLevelUpUnstoppableForce;
 trigger libC50FD636_gt_AssaultLevelUpGeminiProtocol;
 trigger libC50FD636_gt_RiflemanLevelUpCriticalStrike;
-trigger libC50FD636_gt_RiflemanLevelUpFireUp;
+trigger libC50FD636_gt_RiflemanLevelUpAccurateFire;
 trigger libC50FD636_gt_RiflemanLevelUpWeaponProficiency;
 trigger libC50FD636_gt_RiflemanLevelUpFragGrenadeLevel3;
 trigger libC50FD636_gt_RiflemanLevelUpCripplingFire;
@@ -1086,17 +1086,17 @@ void libC50FD636_gt_RiflemanLevelUpCriticalStrike_Init () {
 }
 
 //--------------------------------------------------------------------------------------------------
-// Trigger: Rifleman Level Up Fire Up
+// Trigger: Rifleman Level Up Accurate Fire
 //--------------------------------------------------------------------------------------------------
-bool libC50FD636_gt_RiflemanLevelUpFireUp_Func (bool testConds, bool runActions) {
+bool libC50FD636_gt_RiflemanLevelUpAccurateFire_Func (bool testConds, bool runActions) {
     // Actions
     if (!runActions) {
         return true;
     }
 
-    TechTreeUpgradeAddLevel(UnitGetOwner(EventUnit()), "FireUp", 1);
-    if ((TechTreeUpgradeCount(UnitGetOwner(EventUnit()), "CripplingFire", c_techCountCompleteOnly) > 0)) {
-        TechTreeUpgradeAddLevel(UnitGetOwner(EventUnit()), "CripplingFireandFireUpButton", 1);
+    TechTreeUpgradeAddLevel(UnitGetOwner(EventUnit()), "AccurateFire", 1);
+    if ((TechTreeUpgradeCount(UnitGetOwner(EventUnit()), "SuppressiveFire", c_techCountCompleteOnly) > 0)) {
+        TechTreeUpgradeAddLevel(UnitGetOwner(EventUnit()), "SuppressiveAccurateFireButton", 1);
     }
     else {
     }
@@ -1104,9 +1104,9 @@ bool libC50FD636_gt_RiflemanLevelUpFireUp_Func (bool testConds, bool runActions)
 }
 
 //--------------------------------------------------------------------------------------------------
-void libC50FD636_gt_RiflemanLevelUpFireUp_Init () {
-    libC50FD636_gt_RiflemanLevelUpFireUp = TriggerCreate("libC50FD636_gt_RiflemanLevelUpFireUp_Func");
-    TriggerAddEventUnitAbility(libC50FD636_gt_RiflemanLevelUpFireUp, null, AbilityCommand("RiflemanLearn", 1), c_unitAbilStageComplete, false);
+void libC50FD636_gt_RiflemanLevelUpAccurateFire_Init () {
+    libC50FD636_gt_RiflemanLevelUpAccurateFire = TriggerCreate("libC50FD636_gt_RiflemanLevelUpAccurateFire_Func");
+    TriggerAddEventUnitAbility(libC50FD636_gt_RiflemanLevelUpAccurateFire, null, AbilityCommand("RiflemanLearn", 1), c_unitAbilStageComplete, false);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -1171,9 +1171,9 @@ bool libC50FD636_gt_RiflemanLevelUpCripplingFire_Func (bool testConds, bool runA
         return true;
     }
 
-    TechTreeUpgradeAddLevel(UnitGetOwner(EventUnit()), "CripplingFire", 1);
-    if ((TechTreeUpgradeCount(UnitGetOwner(EventUnit()), "FireUp", c_techCountCompleteOnly) > 0)) {
-        TechTreeUpgradeAddLevel(UnitGetOwner(EventUnit()), "CripplingFireandFireUpButton", 1);
+    TechTreeUpgradeAddLevel(UnitGetOwner(EventUnit()), "SuppressiveFire", 1);
+    if ((TechTreeUpgradeCount(UnitGetOwner(EventUnit()), "AccurateFire", c_techCountCompleteOnly) > 0)) {
+        TechTreeUpgradeAddLevel(UnitGetOwner(EventUnit()), "SuppressiveAccurateFireButton", 1);
     }
     else {
     }
@@ -3020,7 +3020,7 @@ void libC50FD636_InitTriggers () {
     libC50FD636_gt_AssaultLevelUpUnstoppableForce_Init();
     libC50FD636_gt_AssaultLevelUpGeminiProtocol_Init();
     libC50FD636_gt_RiflemanLevelUpCriticalStrike_Init();
-    libC50FD636_gt_RiflemanLevelUpFireUp_Init();
+    libC50FD636_gt_RiflemanLevelUpAccurateFire_Init();
     libC50FD636_gt_RiflemanLevelUpWeaponProficiency_Init();
     libC50FD636_gt_RiflemanLevelUpFragGrenadeLevel3_Init();
     libC50FD636_gt_RiflemanLevelUpCripplingFire_Init();

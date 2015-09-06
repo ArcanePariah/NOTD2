@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="us-ascii"?>
 <Catalog>
-    <CValidatorPlayerRequirement id="AftershockLevel1">
+    <CValidatorPlayerRequirement default="1">
         <Find value="1"/>
+        <Value value="##id##"/>
+    </CValidatorPlayerRequirement>
+    <CValidatorPlayerRequirement id="AftershockLevel1">
         <Value value="AftershockLevel1"/>
     </CValidatorPlayerRequirement>
     <CValidatorPlayerRequirement id="AftershockLevel12">
-        <Find value="1"/>
         <Value value="AftershockLevel12"/>
     </CValidatorPlayerRequirement>
     <CValidatorCombine id="AftershockSlowCheck">
@@ -40,11 +42,6 @@
         <SearchFilters value="Biological,Heroic;Ally,Neutral,Enemy"/>
         <ExcludeArray Value="Target"/>
     </CValidatorLocationEnumArea>
-    <CValidatorUnitCompareBehaviorCount id="CasterhasFocusFireActive">
-        <WhichUnit Value="Caster"/>
-        <Compare value="GT"/>
-        <Behavior value="FocusFire"/>
-    </CValidatorUnitCompareBehaviorCount>
     <CValidatorUnitCompareBehaviorCount id="CasterhasRepulse">
         <WhichUnit Value="Caster"/>
         <Value value="1"/>
@@ -63,11 +60,6 @@
         <Value value="Medic2"/>
         <Find value="0"/>
     </CValidatorUnitType>
-    <CValidatorUnitCompareBehaviorCount id="HasFocusFire">
-        <WhichUnit Value="Caster"/>
-        <Compare value="GT"/>
-        <Behavior value="FocusFire"/>
-    </CValidatorUnitCompareBehaviorCount>
     <CValidatorCombine id="HordeModeNoiseThresholds">
         <CombineArray value="HordeModeRecruitNoiseThreshold"/>
         <CombineArray value="HordeModeNormalNoiseThreshold"/>
@@ -99,11 +91,9 @@
         <CombineArray value="HordeModeNightmareNoise"/>
     </CValidatorCombine>
     <CValidatorPlayerRequirement id="ItemSensorLevel1">
-        <Find value="1"/>
         <Value value="ItemSensorLevel1"/>
     </CValidatorPlayerRequirement>
     <CValidatorPlayerRequirement id="ItemSensorLevel2">
-        <Find value="1"/>
         <Value value="ItemSensorLevel2"/>
     </CValidatorPlayerRequirement>
     <CValidatorCombine id="MotionSensorUnitQuery">
@@ -122,10 +112,6 @@
         <WhichUnit Value="Caster"/>
         <Compare value="NE"/>
     </CValidatorUnitCompareSpeed>
-    <CValidatorUnitCompareBehaviorCount id="NoFocusFire">
-        <WhichUnit Value="Caster"/>
-        <Behavior value="FocusFire"/>
-    </CValidatorUnitCompareBehaviorCount>
     <CValidatorUnitCompareBehaviorCount id="PredatorLevel6">
         <WhichUnit Value="Caster"/>
         <Compare value="GE"/>
@@ -133,19 +119,15 @@
         <Behavior value="PredatorPetVeterancy"/>
     </CValidatorUnitCompareBehaviorCount>
     <CValidatorPlayerRequirement id="RangedWeaponEquipped">
-        <Find value="1"/>
         <Value value="RangedWeaponEquipped"/>
     </CValidatorPlayerRequirement>
     <CValidatorPlayerRequirement id="ReactiveShieldsLevel1">
-        <Find value="1"/>
         <Value value="ReactiveShieldsLevel1"/>
     </CValidatorPlayerRequirement>
     <CValidatorPlayerRequirement id="ReactiveShieldsLevel2">
-        <Find value="1"/>
         <Value value="ReactiveShieldsLevel2"/>
     </CValidatorPlayerRequirement>
     <CValidatorPlayerRequirement id="ReactiveShieldsLevel3">
-        <Find value="1"/>
         <Value value="ReactiveShieldsLevel3"/>
     </CValidatorPlayerRequirement>
     <CValidatorUnitOrderQueue id="ReconAttacking">
@@ -167,17 +149,14 @@
     <CValidatorPlayerRequirement id="CollateralDamageLevel1">
         <Value value="CollateralDamageLevel1"/>
         <WhichPlayer Value="Caster"/>
-        <Find value="1"/>
     </CValidatorPlayerRequirement>
     <CValidatorPlayerRequirement id="CollateralDamageLevel2">
         <Value value="CollateralDamageLevel2"/>
         <WhichPlayer Value="Caster"/>
-        <Find value="1"/>
     </CValidatorPlayerRequirement>
     <CValidatorPlayerRequirement id="CollateralDamageLevel3">
         <Value value="CollateralDamageLevel3"/>
         <WhichPlayer Value="Caster"/>
-        <Find value="1"/>
     </CValidatorPlayerRequirement>
     <CValidatorLocationEnumArea id="EnemyNear">
         <WhichLocation Value="CasterUnit"/>
@@ -197,17 +176,60 @@
     <CValidatorUnitCompareBehaviorCount id="EnemyNotAftershocked">
         <Behavior value="AftershockedEnemy"/>
     </CValidatorUnitCompareBehaviorCount>
-    <CValidatorPlayerRequirement id="FireUpLevel1">
-        <Find value="1"/>
-        <Value value="FireUpLevel1"/>
+    <CValidatorUnitCompareBehaviorCount id="NoFocusFire">
+        <WhichUnit Value="Caster"/>
+        <Behavior value="FocusFire"/>
+    </CValidatorUnitCompareBehaviorCount>
+    <CValidatorUnitCompareBehaviorCount id="HasFocusFire">
+        <WhichUnit Value="Caster"/>
+        <Compare value="GT"/>
+        <Behavior value="FocusFire"/>
+    </CValidatorUnitCompareBehaviorCount>
+    <CValidatorPlayerRequirement id="NoAccurateFire">
+        <Value value="NoAccurateFire"/>
     </CValidatorPlayerRequirement>
-    <CValidatorPlayerRequirement id="FireUpLevel2">
-        <Find value="1"/>
-        <Value value="FireUpLevel2"/>
+    <CValidatorPlayerRequirement id="AccurateFireLevel1">
+        <Value value="AccurateFireLevel1"/>
     </CValidatorPlayerRequirement>
-    <CValidatorPlayerRequirement id="FireUpLevel3">
-        <Find value="1"/>
-        <Value value="FireUpLevel3"/>
+    <CValidatorPlayerRequirement id="AccurateFireLevel2">
+        <Value value="AccurateFireLevel2"/>
+    </CValidatorPlayerRequirement>
+    <CValidatorPlayerRequirement id="AccurateFireLevel3">
+        <Value value="AccurateFireLevel3"/>
+    </CValidatorPlayerRequirement>
+    <CValidatorPlayerRequirement id="NoSuppressiveFire">
+        <Value value="NoSuppressiveFire"/>
+    </CValidatorPlayerRequirement>
+    <CValidatorPlayerRequirement id="SuppressiveFireLevel1">
+        <Value value="SuppressiveFireLevel1"/>
+    </CValidatorPlayerRequirement>
+    <CValidatorPlayerRequirement id="SuppressiveFireLevel2">
+        <Value value="SuppressiveFireLevel2"/>
+    </CValidatorPlayerRequirement>
+    <CValidatorPlayerRequirement id="SuppressiveFireLevel3">
+        <Value value="SuppressiveFireLevel3"/>
+    </CValidatorPlayerRequirement>
+    <CValidatorCombine id="NoSuppressiveAccurateFire">
+        <Type value="And"/>
+        <CombineArray value="NoSuppressiveFire"/>
+        <CombineArray value="NoAccurateFire"/>
+    </CValidatorCombine>
+    <CValidatorCombine id="SuppressiveAccurateFire">
+        <Type value="And"/>
+        <CombineArray value="SuppressiveFireLevel1"/>
+        <CombineArray value="AccurateFireLevel1"/>
+    </CValidatorCombine>
+    <CValidatorPlayerRequirement id="NoFirstAid">
+        <Value value="NoFirstAid"/>
+    </CValidatorPlayerRequirement>
+    <CValidatorPlayerRequirement id="FirstAidLevel1">
+        <Value value="FirstAidLevel1"/>
+    </CValidatorPlayerRequirement>
+    <CValidatorPlayerRequirement id="FirstAidLevel2">
+        <Value value="FirstAidLevel2"/>
+    </CValidatorPlayerRequirement>
+    <CValidatorPlayerRequirement id="FirstAidLevel3">
+        <Value value="FirstAidLevel3"/>
     </CValidatorPlayerRequirement>
     <CValidatorCombine id="HaveMedicalExpertise">
         <CombineArray value="MedicalExpertiseLevel1"/>
@@ -299,7 +321,6 @@
         <Value value="0.8"/>
     </CValidatorUnitCompareVital>
     <CValidatorPlayerRequirement id="MeleeWeaponEquipped">
-        <Find value="1"/>
         <Value value="MeleeWeaponEquipped"/>
     </CValidatorPlayerRequirement>
     <CValidatorCombine id="MedicalAssistanceItems">
@@ -316,7 +337,6 @@
         <CombineArray value="MedicalAssistanceItems"/>
     </CValidatorCombine>
     <CValidatorPlayerRequirement id="MotionSensorLevel12">
-        <Find value="1"/>
         <Value value="MotionSensorLevel2"/>
     </CValidatorPlayerRequirement>
     <CValidatorUnitCompareBehaviorCount id="HordeModeRecruitNoise">
@@ -334,7 +354,6 @@
         <Negate value="1"/>
     </CValidatorCombine>
     <CValidatorPlayerRequirement id="MotionSensorLevel1">
-        <Find value="1"/>
         <Value value="MotionSensorLevel1"/>
     </CValidatorPlayerRequirement>
     <CValidatorUnitCompareBehaviorCount id="ProxmityTriggerArmed">
@@ -367,12 +386,10 @@
     </CValidatorUnitCompareChargeUsed>
     <CValidatorPlayerRequirement id="MedicalExpertiseLevel1">
         <WhichPlayer Value="Caster"/>
-        <Find value="1"/>
         <Value value="MedicalExpertiseLevel1"/>
     </CValidatorPlayerRequirement>
     <CValidatorPlayerRequirement id="MedicalExpertiseLevel2">
         <WhichPlayer Value="Caster"/>
-        <Find value="1"/>
         <Value value="MedicalExpertiseLevel2"/>
     </CValidatorPlayerRequirement>
     <CValidatorUnitFilters id="NormalUnitNonMassiveorHeroic"/>
@@ -392,7 +409,6 @@
         <Behavior value="NanoPlague"/>
     </CValidatorUnitCompareBehaviorCount>
     <CValidatorPlayerRequirement id="StealthMatrixLevel1">
-        <Find value="1"/>
         <Value value="StealthMatrixLevel1"/>
     </CValidatorPlayerRequirement>
     <CValidatorCombine id="StealthMatrixLevel1Disable">
@@ -407,7 +423,6 @@
         <Behavior value="StealthMatrixLevel2"/>
     </CValidatorUnitCompareBehaviorCount>
     <CValidatorPlayerRequirement id="StealthMatrixLevel2">
-        <Find value="1"/>
         <Value value="StealthMatrixLevel2"/>
     </CValidatorPlayerRequirement>
     <CValidatorUnitCompareBehaviorCount id="TargethasLaserDesignatorLevel1">
@@ -552,7 +567,6 @@
         <CombineArray value="StealthMatrixLevel2Active"/>
     </CValidatorCombine>
     <CValidatorPlayerRequirement id="UnstoppableForceComplete">
-        <Find value="1"/>
         <Value value="UnstoppableForceComplete"/>
     </CValidatorPlayerRequirement>
     <CValidatorCombine id="UnstoppableForceKnockbackMassive">
@@ -561,7 +575,6 @@
         <Type value="And"/>
     </CValidatorCombine>
     <CValidatorPlayerRequirement id="WeaponEquipped">
-        <Find value="1"/>
         <Value value="WeaponEquipped"/>
     </CValidatorPlayerRequirement>
 </Catalog>

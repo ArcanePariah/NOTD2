@@ -183,17 +183,6 @@
         <EffectArray Reference="Abil,MediumJump,Range[0]" Value="1"/>
         <EffectArray Reference="Abil,PathfinderJump,Range[0]" Value="1"/>
     </CUpgrade>
-    <CUpgrade id="CripplingFire" parent="DefaultUpgradeOverride">
-        <EffectArray Operation="Set" Reference="Behavior,FocusFire,DamageResponse.Chance" Value="1"/>
-        <EffectArray Operation="Subtract" Reference="Behavior,CripplingFire,Modification.AttackSpeedMultiplier" Value="0.05"/>
-        <EffectArray Operation="Subtract" Reference="Behavior,CripplingFire,Modification.MoveSpeedMultiplier" Value="0.05"/>
-        <EffectArray Operation="Set" Reference="Button,FocusFire,Tooltip" Value="Button/Tooltip/FocusFireCripplingFire"/>
-        <MaxLevel value="3"/>
-    </CUpgrade>
-    <CUpgrade id="CripplingFireandFireUpButton" parent="DefaultUpgradeOverride">
-        <EffectArray Operation="Set" Reference="Button,FocusFire,Tooltip" Value="Button/Tooltip/FocusFireCripplingFiredUp"/>
-        <MaxLevel value="6"/>
-    </CUpgrade>
     <CUpgrade id="CriticalStrikeRifleman" parent="DefaultUpgradeOverride">
         <EffectArray Reference="Effect,PrecisionShotBonusCriticalDamageLevel1,Chance" Value="0.1"/>
         <EffectArray Reference="Effect,PrecisionShotBonusCriticalDamageLevel2,Chance" Value="0.1"/>
@@ -224,12 +213,28 @@
     <CUpgrade id="EnhancedProtectiveInsert" parent="ArmorVisualTemplate" ArmorIcon="Items\btn-item-armour-EnhancedProtectiveInsert.dds" ArmorName="Button/Name/EnhancedProtectiveInsert" ArmorTip="Button/Tooltip/EnhancedProtectiveInsert">
         <EditorCategories value=""/>
     </CUpgrade>
-    <CUpgrade id="FireUp">
+    <CUpgrade id="SuppressiveFire" parent="DefaultUpgradeOverride">
+        <EffectArray Operation="Set" Reference="Behavior,FocusFire,DamageResponse.Chance" Value="1"/>
+        <EffectArray Operation="Subtract" Reference="Behavior,CripplingFire,Modification.AttackSpeedMultiplier" Value="0.05"/>
+        <EffectArray Operation="Subtract" Reference="Behavior,CripplingFire,Modification.MoveSpeedMultiplier" Value="0.05"/>
+        <EffectArray Operation="Set" Reference="Button,FocusFire,Tooltip" Value="Button/Tooltip/FocusFireCripplingFire"/>
+        <MaxLevel value="3"/>
+    </CUpgrade>
+    <CUpgrade id="SuppressiveAccurateFireButton" parent="DefaultUpgradeOverride">
+        <EffectArray Operation="Set" Reference="Button,FocusFire,Tooltip" Value="Button/Tooltip/FocusFireCripplingFiredUp"/>
+        <MaxLevel value="6"/>
+    </CUpgrade>
+    <CUpgrade id="AccurateFire">
         <Flags index="UpgradeCheat" value="0"/>
         <Alert value=""/>
-        <EffectArray Reference="Behavior,FocusFire,Modification.AttackSpeedMultiplier" Value="0.15"/>
+        <EffectArray Operation="Set" Reference="Button,FocusFire,Tooltip" Value="Button/Tooltip/FocusFireAccurate"/>
         <EffectArray Reference="Behavior,FocusFire,Modification.WeaponRange" Value="1"/>
-        <EffectArray Operation="Set" Reference="Button,FocusFire,Tooltip" Value="Button/Tooltip/FocusFireFireUp"/>
+        <EffectArray Reference="Behavior,FocusFire,Modification.DamageDealtFraction[Melee]" Value="0.15"/>
+        <EffectArray Reference="Behavior,FocusFire,Modification.DamageDealtFraction[Ranged]" Value="0.15"/>
+        <EffectArray Reference="Behavior,FocusFire,Modification.DamageDealtFraction[Melee]" Value="0.15"/>
+        <MaxLevel value="3"/>
+    </CUpgrade>
+    <CUpgrade id="FirstAid" parent="DefaultUpgradeOverride">
         <MaxLevel value="3"/>
     </CUpgrade>
     <CUpgrade id="GeminiProtocol"/>

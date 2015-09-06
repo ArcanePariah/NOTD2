@@ -2055,7 +2055,7 @@
     </CEffectSet>
     <CEffectSwitch id="PrecisionShotSwitchLevel2">
         <EditorCategories value=""/>
-        <CaseArray Validator="CasterhasFocusFireActive" Effect="PrecisionShotDamageBonusSetLevel2"/>
+        <CaseArray Validator="HasFocusFire" Effect="PrecisionShotDamageBonusSetLevel2"/>
         <CaseDefault value="PrecisionShotDamageNormalSetLevel2"/>
     </CEffectSwitch>
     <CEffectDamage id="PrecisionShotNormalCriticalDamageLevel3">
@@ -2082,7 +2082,7 @@
     </CEffectSet>
     <CEffectSwitch id="PrecisionShotSwitchLevel3">
         <EditorCategories value=""/>
-        <CaseArray Validator="CasterhasFocusFireActive" Effect="PrecisionShotDamageBonusSetLevel3"/>
+        <CaseArray Validator="HasFocusFire" Effect="PrecisionShotDamageBonusSetLevel3"/>
         <CaseDefault value="PrecisionShotDamageNormalSetLevel3"/>
     </CEffectSwitch>
     <CEffectApplyBehavior id="PrecisionShotSlowLevel1">
@@ -2090,7 +2090,7 @@
     </CEffectApplyBehavior>
     <CEffectSwitch id="PrecisionShotSwitchLevel1">
         <EditorCategories value=""/>
-        <CaseArray Validator="CasterhasFocusFireActive" Effect="PrecisionShotDamageBonusSetLevel1"/>
+        <CaseArray Validator="HasFocusFire" Effect="PrecisionShotDamageBonusSetLevel1"/>
         <CaseDefault value="PrecisionShotDamageNormalSetLevel1"/>
     </CEffectSwitch>
     <CEffectSet id="ReconDeathEffects" parent="MarineDeathEffects">
@@ -2109,23 +2109,25 @@
         <AmmoUnit value="RoadFlareTossed"/>
         <Movers Link="RoadFlare"/>
     </CEffectLaunchMissile>
-    <CEffectSet id="SelfAidLevel1">
+    <CEffectSwitch id="SelfAid">
         <EditorCategories value=""/>
-        <EffectArray value="SelfAidHealLevel1"/>
-        <EffectArray value="RemoveVenomTarget"/>
-        <EffectArray value="SelfAidRemoveFracture"/>
-    </CEffectSet>
+        <CaseArray Validator="NoFirstAid" Effect="SelfAidHeal" FallThrough="1"/>
+        <CaseArray Validator="FirstAidLevel1" Effect="SelfAidHealUpgrade" FallThrough="1"/>
+        <CaseArray Validator="FirstAidLevel2" Effect="RemoveVenomTarget" FallThrough="1"/>
+        <CaseArray Validator="FirstAidLevel3" Effect="RemoveOpenWoundTarget" FallThrough="1"/>
+    </CEffectSwitch>
+    <CEffectModifyUnit id="SelfAidHeal">
+        <EditorCategories value=""/>
+        <VitalArray index="Life" Change="25"/>
+    </CEffectModifyUnit>
+    <CEffectModifyUnit id="SelfAidHealUpgrade">
+        <EditorCategories value=""/>
+        <VitalArray index="Life" Change="75"/>
+    </CEffectModifyUnit>
     <CEffectSet id="Repulse">
         <EditorCategories value=""/>
         <EffectArray value="RepulseEnemySearch"/>
         <EffectArray value="RepulseSelfBuff"/>
-    </CEffectSet>
-    <CEffectSet id="SelfAidLevel2">
-        <EditorCategories value=""/>
-        <EffectArray value="SelfAidHealLevel2"/>
-        <EffectArray value="RemoveVenomTarget"/>
-        <EffectArray value="SelfAidRemoveFracture"/>
-        <EffectArray value="RemoveOpenWoundTarget"/>
     </CEffectSet>
     <CEffectEnumArea id="RepulseEnemySearch">
         <EditorCategories value=""/>
@@ -2157,21 +2159,6 @@
     <CEffectApplyBehavior id="RepulseStun">
         <EditorCategories value=""/>
     </CEffectApplyBehavior>
-    <CEffectModifyUnit id="SelfAidHealLevel1">
-        <EditorCategories value=""/>
-        <VitalArray index="Life" Change="30"/>
-    </CEffectModifyUnit>
-    <CEffectModifyUnit id="SelfAidHealLevel2">
-        <EditorCategories value=""/>
-        <VitalArray index="Life" Change="60"/>
-    </CEffectModifyUnit>
-    <CEffectSwitch id="SelfAidRemoveFracture">
-        <ValidatorArray value="CasterhasRepulse"/>
-        <EditorCategories value=""/>
-        <CaseArray Validator="UnithasArmandLegFracture" Effect="RemoveRandomFracture"/>
-        <CaseArray Validator="UnithasLegFracture" Effect="RemoveLegFracture"/>
-        <CaseArray Validator="UnithasArmFracture" Effect="RemoveArmFracture"/>
-    </CEffectSwitch>
     <CEffectEnumArea id="SonicTrapSearchLevel2">
         <EditorCategories value=""/>
         <SearchFilters value="-;Player,Ally,Neutral"/>

@@ -1396,12 +1396,21 @@
         <On index="4" Terms="Behavior.FlashlightNOTD.On" Send="SetVisibility 1"/>
         <On Terms="Behavior.FlashlightNOTD.Off" Send="SetVisibility"/>
     </CActorModel>
-    <CActorModel id="FocusFireCaster" parent="BuffContinuous">
+    <CActorModel id="FocusFireModel" parent="BuffContinuous">
         <EditorCategories value=""/>
         <On Terms="Behavior.FocusFire.On; ValidateUnit RangedWeaponEquipped" Send="Create"/>
         <On Terms="Behavior.FocusFire.Off" Send="AnimBracketStop BSD Instant"/>
         <On Terms="ActorCreation" Send="SetOpacity 0.125000 0.000000 LaserOpacity"/>
         <On Terms="ActorCreation" Send="SetTeamColor {0,255,0 0.500000} {0,255,0 0.500000} 0.000000 OneShot LaserTint"/>
+        <On Terms="ActorCreation; ValidatePlayer AccurateFireLevel1" Send="SetTeamColor {255,0,0 0.500000} {255,0,0 0.500000} 0.000000 OneShot LaserTint"/>
+        <On Terms="ActorCreation; ValidatePlayer SuppressiveFireLevel1" Send="SetTeamColor {0,0,255 2.000000} {0,0,255 2.000000} 0.000000 OneShot LaserTint"/>
+        <On Terms="ActorCreation; ValidatePlayer SuppressiveAccurateFire" Send="SetTeamColor {128,0,255 0.750000} {128,0,255 0.750000} 0.000000 OneShot LaserTint"/>
+        <On Terms="ActorCreation" Send="TimerSet 1.000000 LaserTintTimer"/>
+        <On Terms="TimerExpired; TimerName LaserTintTimer" Send="TimerSet 1.000000 LaserTintTimer"/>
+        <On Terms="TimerExpired; TimerName LaserTintTimer; ValidatePlayer NoSuppressiveAccurateFire" Send="SetTeamColor {0,255,0 0.500000} {0,255,0 0.500000} 1.000000 OneShot LaserTint"/>
+        <On Terms="TimerExpired; TimerName LaserTintTimer; ValidatePlayer AccurateFireLevel1" Send="SetTeamColor {255,0,0 0.500000} {255,0,0 0.500000} 1.000000 OneShot LaserTint"/>
+        <On Terms="TimerExpired; TimerName LaserTintTimer; ValidatePlayer SuppressiveFireLevel1" Send="SetTeamColor {0,0,255 2.000000} {0,0,255 2.000000} 1.000000 OneShot LaserTint"/>
+        <On Terms="TimerExpired; TimerName LaserTintTimer; ValidatePlayer SuppressiveAccurateFire" Send="SetTeamColor {128,0,255 0.750000} {128,0,255 0.750000} 1.000000 OneShot LaserTint"/>
         <Host Subject="_Weapon" FailOnNoHost="1"/>
         <HostSiteOps Ops="SOpAttachHardPoint"/>
         <Model value="FocusFireLaserSight"/>
@@ -1683,9 +1692,8 @@
         <On Terms="Effect.SonicTrapLevel1Switch.Start" Send="Create"/>
         <On Terms="Effect.SonicTrapLevel2Switch.Start" Send="Create"/>
     </CActorSound>
-    <CActorSound id="RiflemanSelfAid" parent="SoundOneShot">
-        <On Terms="Effect.SelfAidHealLevel1" Send="Create"/>
-        <On Terms="Effect.SelfAidHealLevel2" Send="Create"/>
+    <CActorSound id="SelfAidSound" parent="SoundOneShot">
+        <On Terms="Effect.SelfAid.Start; At Target" Send="Create"/>
         <Sound value="Marine_Stimpack"/>
     </CActorSound>
     <CActorSound id="RiflemanTossGrenadeLaunch" parent="SoundOneShot">
@@ -1699,10 +1707,12 @@
         <On Terms="Effect.SonicTrapSearchLevel2" Send="Create"/>
         <Sound value="RiflemanSinicTrapCast"/>
     </CActorSound>
-    <CActorModel id="SelfAid" parent="ModelAnimationStyleOneShot">
+    <CActorModel id="SelfAidModel" parent="ModelAnimationStyleOneShot">
         <EditorCategories value=""/>
-        <On Terms="Abil.SelfAid.SourceCastStart" Send="Create"/>
+        <On Terms="Effect.SelfAid.Start; At Target" Send="Create"/>
+        <Host Subject="_Selectable"/>
         <HostSiteOps Ops="SOpAttachHardPoint"/>
+        <Model value="SelfAid"/>
         <Scale value="1.500000"/>
     </CActorModel>
     <CActorUnit id="SonicTrap" parent="GenericUnitMinimal" unitName="SonicTrapLevel1">
