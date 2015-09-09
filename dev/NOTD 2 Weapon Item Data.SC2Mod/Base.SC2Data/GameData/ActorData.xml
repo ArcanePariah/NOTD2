@@ -68,8 +68,13 @@
     <CActorAction default="1" id="WeaponAttackTemplate" parent="GenericAttack">
         <EditorCategories value=""/>
         <LaunchSiteOps Ops=""/>
-        <LaunchModel value="WeaponAttackLaunch"/>
         <On Terms="Effect.##effectAttack##Critical.Start; At Caster" Send="Create"/>
+        <LaunchAttachQuery Methods="" Fallback="IGNORE"/>
+        <ContainerSiteOps Ops=""/>
+        <ContainerAttachQuery Methods="" Fallback="IGNORE"/>
+        <LaunchSiteFallback value="##id##Site"/>
+        <ContainerSite value="##id##Site"/>
+        <ActionFlags index="LaunchForceSite" value="1"/>
     </CActorAction>
     <CActorUnit default="1" id="WeaponCrateTemplate" parent="GenericUnitSelectableNoAutoSoundLinks">
         <EditorCategories value=""/>
@@ -117,6 +122,10 @@
         <Model value="MedicalCrate"/>
         <Macros index="0" value="CrateRedGlowMacro"/>
     </CActorUnit>
+    <CActorSite default="1" id="WeaponAttackSiteTemplate">
+        <EditorCategories value=""/>
+        <HostSiteOps Ops="SOpAttachWeapon"/>
+    </CActorSite>
     <CActorModel id="AntiMaterialRifle" parent="EquippedWeaponTemplate"/>
     <CActorEventMacro id="AssaultGeminiDualWieldEquipMacro">
         <EditorCategories value=""/>
@@ -159,6 +168,9 @@
         <On Terms="BehaviorLevel.PumpShotgunEquipped.Start; Level 2" Send="AttachModel PumpShotgun {} {AssaultGeminiFilter AssaultOccupancyFilter}"/>
         <On Terms="BehaviorLevel.PumpShotgunEquipped.Start; Level 1; ScopeContains PumpShotgun" Target="PumpShotgun" Send="Destroy"/>
         <On Terms="BehaviorLevel.PumpShotgunEquipped.Start; Level 1; ScopeContains PumpShotgun" Send="AttachModel PumpShotgun {} {AssaultGeminiFilter AssaultOccupancyFilter}"/>
+        <On Terms="BehaviorLevel.AntiMaterialRifleEquipped.Start; Level 2" Send="AttachModel AntiMaterialRifle {} {AssaultGeminiFilter AssaultOccupancyFilter}"/>
+        <On Terms="BehaviorLevel.AntiMaterialRifleEquipped.Start; Level 1; ScopeContains AntiMaterialRifle" Target="AntiMaterialRifle" Send="Destroy"/>
+        <On Terms="BehaviorLevel.AntiMaterialRifleEquipped.Start; Level 1; ScopeContains AntiMaterialRifle" Send="AttachModel AntiMaterialRifle {} {AssaultGeminiFilter AssaultOccupancyFilter}"/>
     </CActorEventMacro>
     <CActorEventMacro id="AssaultDualWieldModelSwap">
         <EditorCategories value=""/>
@@ -178,9 +190,7 @@
     <CActorModel id="Crowbar" parent="EquippedWeaponTemplate"/>
     <CActorModel id="Flamethrower" parent="EquippedWeaponTemplate"/>
     <CActorModel id="GrenadeLauncher" parent="EquippedWeaponTemplate"/>
-    <CActorAction id="GrenadeLauncherAttack" parent="WeaponAttackTemplate">
-        <LaunchRequest Subject="_Weapon"/>
-    </CActorAction>
+    <CActorAction id="GrenadeLauncherAttack" parent="WeaponAttackTemplate"/>
     <CActorModel id="Hammer" parent="EquippedWeaponTemplate"/>
     <CActorModel id="HeavyMachineGun" parent="EquippedWeaponTemplate"/>
     <CActorModel id="LaserRifle" parent="EquippedWeaponTemplate"/>
@@ -195,9 +205,7 @@
     <CActorModel id="RailGun" parent="EquippedWeaponTemplate"/>
     <CActorRange id="RoadFlareRange" parent="RangeAbil" abil="RoadFlare"/>
     <CActorModel id="RocketLauncher" parent="EquippedWeaponTemplate"/>
-    <CActorAction id="RocketLauncherAttack" parent="WeaponAttackTemplate">
-        <LaunchRequest Subject="_Weapon"/>
-    </CActorAction>
+    <CActorAction id="RocketLauncherAttack" parent="WeaponAttackTemplate"/>
     <CActorSound id="AntiVenomUse" parent="SoundOneShot">
         <EditorCategories value=""/>
         <On Terms="Item.AntiVenom" Send="Create"/>
@@ -282,6 +290,7 @@
         <EditorCategories value=""/>
         <LaunchAssets Sound="Broodling_AttackLaunch"/>
         <ImpactMap index="None" Model="CrowbarImpactModel" Sound="PhysicsImpactMetalLightHeavy"/>
+        <ContainerAssets Model="AxeAttackLaunch" Sound="Broodling_AttackLaunch"/>
     </CActorAction>
     <CActorModel id="BandageModel" parent="ModelAddition">
         <On Terms="Effect.BandageHeal.Start" Send="Create"/>
@@ -344,9 +353,7 @@
     <CActorUnit id="CommunicationsArray" parent="GenericUnitStandard" unitName="CommunicationsArray">
         <On Terms="ActorCreation" Send="AnimGroupApply Work Work,Stand,Start Work,Stand,End"/>
     </CActorUnit>
-    <CActorAction id="RailGunAttack" parent="WeaponAttackTemplate">
-        <LaunchRequest Subject="_Weapon"/>
-    </CActorAction>
+    <CActorAction id="RailGunAttack" parent="WeaponAttackTemplate"/>
     <CActorModel id="SubmachineGun" parent="EquippedWeaponTemplate"/>
     <CActorUnit id="TX1" parent="AmmoModificationTemplate" unitName="TX1"/>
     <CActorUnit id="ArmorPiercing" parent="AmmoModificationTemplate" unitName="ArmorPiercing"/>
@@ -383,7 +390,6 @@
         <ImpactPhysics Name="K-9TurretImpact" MatchKeys="Basic" Physics="K9TurretAttackDeathForce"/>
         <DamageMap index="None" Model="AssaultRifleAttackDamage" Sound="AssaultRifleAttackDamage" ModelReaction="AssaultRifleAttackDamageReaction"/>
         <DamageMap index="Shield" Sound="AssaultRifleAttackDamageShield" ModelReaction="AssaultRifleAttackDamageReactionShield"/>
-        <LaunchRequest Subject="_Weapon"/>
     </CActorAction>
     <CActorEventMacro id="CrateWhiteTextureMacro">
         <EditorCategories value=""/>
@@ -415,7 +421,7 @@
         <LaunchAssets Sound="PumpShotgunShot"/>
         <ImpactMap index="None" Sound="Reaper_AttackImpact"/>
         <DamageMap index="None" AnimProps="Birth,01"/>
-        <LaunchRequest Subject="_Weapon"/>
+        <ContainerAssets Model="PumpShotgunAttackLaunch" Sound="PumpShotgunShot"/>
     </CActorAction>
     <CActorUnit id="ChainsawItem" parent="WeaponCrateTemplate" unitName="Chainsaw">
         <HighlightTooltip value="Unit/Name/ChainsawItem"/>
@@ -461,7 +467,7 @@
         <LaunchAssets Model="AutoTurretAttackLaunch" Sound="AntiMaterialRifleShot"/>
         <ImpactMap index="None" Sound="Ghost_SnipeImpact"/>
         <DamageMap index="None" AnimProps="Birth,01"/>
-        <LaunchRequest Subject="AntiMaterialRifle"/>
+        <ContainerAssets Model="AutoTurretAttackLaunch" Sound="AntiMaterialRifleShot"/>
     </CActorAction>
     <CActorUnit id="FlamethrowerItem" parent="WeaponCrateTemplate" unitName="Flamethrower">
         <HighlightTooltip value="Unit/Name/FlamethrowerItem"/>
@@ -496,7 +502,7 @@
         <DamageMap index="None" Sound="Hellion_AttackImpact"/>
         <ShieldFlashType value="Full"/>
         <On index="3" Terms="Effect.SplashDamage.Start; FromEffectTreeDescendant; Cap 1"/>
-        <LaunchRequest Subject="_Weapon"/>
+        <ContainerAssets Model="FlamethrowerAttackLaunch" Scale="1.000000,4.000000,1.000000" Sound="HellionTank_AttackLaunch"/>
     </CActorAction>
     <CActorUnit id="MediumMachineGunItem" parent="WeaponCrateTemplate" unitName="MediumMachineGun">
         <HighlightTooltip value="Unit/Name/MediumMachineGunItem"/>
@@ -517,7 +523,7 @@
         <LaunchAssets Model="AutoTurretAttackLaunch" Sound="HMGShot"/>
         <ImpactMap index="None" Sound="Terran_MachineGunLarge_Impact"/>
         <DamageMap index="None" AnimProps="Birth,01"/>
-        <LaunchRequest Subject="_Weapon"/>
+        <ContainerAssets Model="AutoTurretAttackLaunch" Sound="HMGShot"/>
     </CActorAction>
     <CActorEventMacro id="HeavyMachineGunMacro">
         <On Terms="Abil.AlternateFireModes.Start; ValidateUnit DeployingHeavyMachineGun" Send="AnimPlay HeavyMachineGun Work,Large,Start 0 -1.000000 -1.000000 3.000000 AsDuration"/>
@@ -543,14 +549,13 @@
         <BeamScope value="Caster"/>
         <ImpactMap index="None" Model="LaserAttackBeamImpact" Sound="Raven_PointDefenseDroneAttackImpact"/>
         <ImpactModel value="LaserImpactModel"/>
-        <LaunchRequest Subject="LaserRifle"/>
+        <ContainerAssets Model="LaserRifleAttackLaunch" Sound="LaserRifleShot"/>
     </CActorAction>
     <CActorBeamSimple id="LaserRifleAttackBeam" parent="BeamSimpleAnimationStyleOneShot">
         <EditorCategories value=""/>
         <ModelFlags index="AllowHitTest" value="0"/>
-        <HostLaunchSiteOps Ops="SOpAttachWeapon"/>
         <On index="0" Terms="ActorCreation" Send="AnimBracketStart BSD Birth Stand Death ContentPlayOnce 30.000000 AsTimeScale"/>
-        <HostLaunch Subject="LaserRifle" Scope="Caster" Actor="Find"/>
+        <HostLaunch Subject="LaserRifleAttackSite"/>
     </CActorBeamSimple>
     <CActorUnit id="Magazine" parent="GenericUnitSelectableNoAutoSoundLinks" unitName="Magazine">
         <EditorCategories value=""/>
@@ -574,36 +579,33 @@
         <UnitIcon value="Weapons\btn-SubMachineGun.dds"/>
     </CActorUnit>
     <CActorAction id="MarksmanRifleAttack" parent="WeaponAttackTemplate" effectAttack="MarksmanRifleDamage">
-        <LaunchAttachQuery Methods="AMFilterWeapon"/>
         <LaunchAssets Model="GhostAttackLaunch" Sound="MarksmanRifleShot"/>
         <ImpactMap index="None" Sound="Ghost_SnipeImpact"/>
         <DamageMap index="None" AnimProps="Birth,01"/>
-        <LaunchRequest Subject="_Weapon"/>
+        <ContainerAssets Model="GhostAttackLaunch" Sound="MarksmanRifleShot"/>
     </CActorAction>
     <CActorUnit id="Medkit" parent="MedicalItemTemplate" unitName="Medkit"/>
     <CActorAction id="MediumMachineGunAttack" parent="WeaponAttackTemplate" effectAttack="MediumMachineGunDamage">
-        <LaunchAttachQuery Methods="AMFilterWeapon"/>
         <LaunchAssets Model="VikingAssaultAttackLaunch" Sound="MMGShot"/>
         <ImpactMap index="None" Sound="Marine_AttackImpact"/>
         <DamageMap index="None" AnimProps="Birth,01"/>
-        <LaunchRequest Subject="_Weapon"/>
+        <ContainerAssets Model="VikingAssaultAttackLaunch" Sound="MMGShot"/>
     </CActorAction>
     <CActorAction id="PistolAttack" parent="WeaponAttackTemplate" effectAttack="PistolDamage">
-        <LaunchAttachQuery Methods="AMFilterWeapon"/>
         <LaunchAssets Model="ReaperAttackLaunch" Sound="PistolShot"/>
         <ImpactMap index="None" Model="ReaperAttackImpact" Sound="Reaper_AttackImpact"/>
-        <LaunchRequest Subject="_Weapon"/>
+        <ContainerAssets Model="ReaperAttackLaunch" Sound="PistolShot"/>
     </CActorAction>
     <CActorAction id="PlasmaCutterAttack" parent="WeaponAttackTemplate" effectAttack="PlasmaCutterDamage">
         <ImpactMap index="None" Model="DarkTemplarAttackImpact" Scale="3.000000" Sound="Stalker_AttackImpact"/>
         <LaunchAssets Sound="Zealot_AttackLaunch"/>
-        <LaunchRequest Subject="_Weapon"/>
+        <ContainerAssets Model="PlasmaCutterAttackLaunch" Sound="Zealot_AttackLaunch"/>
     </CActorAction>
     <CActorAction id="AutomaticShotgunAttack" parent="WeaponAttackTemplate" effectAttack="AutomaticShotgunDamage">
         <DamageMap index="None" AnimProps="Birth,01" Sound="Reaper_AttackImpact"/>
         <LaunchAssets Sound="AutomaticShotgunShot"/>
         <ImpactMap index="None" Sound="Reaper_AttackImpact"/>
-        <LaunchRequest Subject="_Weapon"/>
+        <ContainerAssets Model="AutomaticShotgunAttackLaunch" Sound="AutomaticShotgunShot"/>
     </CActorAction>
     <CActorUnit id="ReactiveProtectiveInsert" parent="ArmorCrateTemplate" unitName="ReactiveProtectiveInsert"/>
     <CActorUnit id="GrenadeLauncherItem" parent="WeaponCrateTemplate" unitName="GrenadeLauncher">
@@ -616,7 +618,6 @@
     <CActorAction id="ShotgunSlugShotAttack" parent="WeaponAttackTemplate" effectAttack="ShotgunSlugShotDamage">
         <ImpactMap index="None" Model="ReaperAttackImpact"/>
         <On index="7" removed="1"/>
-        <LaunchRequest Subject="_Weapon"/>
     </CActorAction>
     <CActorUnit id="RocketLauncherItem" parent="WeaponCrateTemplate" unitName="RocketLauncher">
         <HighlightTooltip value="Unit/Name/Bogus"/>
@@ -634,17 +635,14 @@
         <InfoText value="Button/Tooltip/PlasmaCannonItem"/>
     </CActorUnit>
     <CActorAction id="SubmachineGunAttack" parent="WeaponAttackTemplate" effectAttack="SubmachineGunDamage">
-        <LaunchAttachQuery Methods="AMFilterWeapon"/>
         <DamageSiteOps Ops="SOpAttachHarness"/>
-        <LaunchRequest Subject="_Weapon"/>
+        <ContainerAssets Model="SubmachineGunAttackLaunch" Sound="SubmachineGunAttackLaunch"/>
     </CActorAction>
     <CActorAction id="AssaultRifleAttack" parent="WeaponAttackTemplate" effectAttack="AssaultRifleDamage">
-        <On Terms="Effect.AssaultRifleBurstFireDamage.Start; At Caster" Send="Create"/>
-        <On Terms="Effect.AssaultRifleBurstFireDamageCritical; At Caster" Send="Create"/>
         <LaunchAssets Model="MarineAttackLaunch" Sound="AssaultRifleShot"/>
         <ImpactMap index="None" Sound="Marine_AttackImpact"/>
         <DamageMap index="None" AnimProps="Birth,01"/>
-        <LaunchRequest Subject="AssaultRifle"/>
+        <ContainerAssets Model="MarineAttackLaunch" Sound="AssaultRifleShot"/>
     </CActorAction>
     <CActorUnit id="AntiMaterialRifleItem" parent="WeaponCrateTemplate" unitName="AntiMaterialRifle">
         <HighlightTooltip value="Unit/Name/AntiMaterialRifleItem"/>
@@ -668,9 +666,42 @@
         <StatusBarFlags index="Workers" value="0"/>
         <StatusBarFlags index="Custom" value="0"/>
     </CActorUnit>
-    <CActorModel id="WeaponAttackLaunch" parent="GenericAttackModel">
-        <HostSiteOps Ops="SOpAttachWeapon"/>
-    </CActorModel>
+    <CActorSite id="AssaultRifleAttackSite" parent="WeaponAttackSiteTemplate">
+        <Host Subject="AssaultRifle"/>
+    </CActorSite>
+    <CActorSite id="AntiMaterialRifleAttackSite" parent="WeaponAttackSiteTemplate">
+        <Host Subject="AntiMaterialRifle"/>
+    </CActorSite>
+    <CActorSite id="AutomaticShotgunAttackSite" parent="WeaponAttackSiteTemplate">
+        <Host Subject="AutomaticShotgun"/>
+    </CActorSite>
+    <CActorSite id="FlamethrowerAttackSite" parent="WeaponAttackSiteTemplate">
+        <Host Subject="Flamethrower"/>
+    </CActorSite>
+    <CActorSite id="HeavyMachineGunAttackSite" parent="WeaponAttackSiteTemplate">
+        <Host Subject="HeavyMachineGun"/>
+    </CActorSite>
+    <CActorSite id="LaserRifleAttackSite" parent="WeaponAttackSiteTemplate">
+        <Host Subject="LaserRifle"/>
+    </CActorSite>
+    <CActorSite id="MarksmanRifleAttackSite" parent="WeaponAttackSiteTemplate">
+        <Host Subject="MarksmanRifle"/>
+    </CActorSite>
+    <CActorSite id="MediumMachineGunAttackSite" parent="WeaponAttackSiteTemplate">
+        <Host Subject="MediumMachineGun"/>
+    </CActorSite>
+    <CActorSite id="PistolAttackSite" parent="WeaponAttackSiteTemplate">
+        <Host Subject="Pistol"/>
+    </CActorSite>
+    <CActorSite id="PlasmaCutterAttackSite" parent="WeaponAttackSiteTemplate">
+        <Host Subject="PlasmaCutter"/>
+    </CActorSite>
+    <CActorSite id="PumpShotgunAttackSite" parent="WeaponAttackSiteTemplate">
+        <Host Subject="PumpShotgun"/>
+    </CActorSite>
+    <CActorSite id="SubmachineGunAttackSite" parent="WeaponAttackSiteTemplate">
+        <Host Subject="SubmachineGun"/>
+    </CActorSite>
     <CActorEventMacro id="WeaponEquipMacro">
         <EditorCategories value=""/>
         <On Terms="Behavior.AssaultRifleEquipped.On" Send="AttachModel AssaultRifle {} {Weapon 1}"/>

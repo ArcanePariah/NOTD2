@@ -352,7 +352,6 @@
                 <Column value="2"/>
             </LayoutButtons>
             <LayoutButtons Face="ChargeNOTD" Type="AbilCmd" AbilCmd="ChargeNOTD,Execute" Row="2" Column="3"/>
-            <LayoutButtons Face="AttackRedirect" Type="AbilCmd" AbilCmd="GeminiProtocolAttackRedirect,Execute" Row="1" Column="1"/>
         </CardLayouts>
         <EnergyStart value="100"/>
         <EnergyRegenRate value="1"/>
@@ -583,6 +582,8 @@
     </CUnit>
     <CUnit id="GeminiProtocolDummyUnit">
         <Race value="Zombie"/>
+        <FlagArray index="Unselectable" value="1"/>
+        <FlagArray index="Untargetable" value="1"/>
         <FlagArray index="Invulnerable" value="1"/>
         <Speed value="10"/>
         <Acceleration value="1000"/>
@@ -590,6 +591,12 @@
         <AbilArray Link="move"/>
         <CargoSize value="1"/>
         <EditorCategories value=""/>
+        <LifeStart value="100000"/>
+        <LifeMax value="100000"/>
+        <LifeArmor value="50000"/>
+        <LifeRegenRate value="100000"/>
+        <BehaviorArray Link="GeminiProtocolAttackSpeedSlowInternal"/>
+        <BehaviorArray Link="GeminiUnitInvulnerabilty"/>
     </CUnit>
     <CUnit id="GroundIlluminationFlareLevel2">
         <Race value="Zombie"/>
