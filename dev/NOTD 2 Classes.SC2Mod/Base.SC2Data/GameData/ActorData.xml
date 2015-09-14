@@ -181,6 +181,11 @@
     <CActorRange id="ChainExplosiveRange" parent="RangeAbil" abil="ChainExplosive">
         <EditorCategories value=""/>
     </CActorRange>
+    <CActorModel id="DefaultExplosionProtossLarge2" parent="ModelAnimationStyleOneShot">
+        <Host Subject="::Creator"/>
+        <HostSiteOps Ops="SOpAttachWeapon SOpForwardTargetPoint"/>
+        <Model value="MarineAttackLaunch"/>
+    </CActorModel>
     <CActorRange id="DetectorRange2Detected">
         <Terms value="Cap 1"/>
         <EditorCategories value=""/>
@@ -297,16 +302,16 @@
         <On Terms="UnitDeath.MD5Mine" Send="Create"/>
         <AutoScaleFactor value="1.000000"/>
     </CActorModel>
-    <CActorModel id="GeminiAttackLaunch" parent="GenericAttackLaunchModel">
-        <EditorCategories value=""/>
-        <Host Subject="_Weapon"/>
-        <HostSiteOps Ops="SOpAttachWeapon"/>
-    </CActorModel>
     <CActorUnit id="GeminiDummyUnit" parent="GenericUnitMinimal" unitName="GeminiProtocolDummyUnit">
         <EditorCategories value=""/>
         <Model value="Invisible"/>
         <HighlightTooltip value="Unit/Name/Bogus"/>
     </CActorUnit>
+    <CActorSite id="GenericAttackSite">
+        <EditorCategories value=""/>
+        <Host Subject="MarksmanRifle"/>
+        <HostSiteOps Ops="SOpAttachWeapon"/>
+    </CActorSite>
     <CActorAction id="IFV25mmHEAutocannonAttack" parent="GenericAttack" effectImpact="IFV25mmHEAutocannonDamage" effectLaunch="IFV25mmHEAutocannonSet">
         <EditorCategories value=""/>
         <LaunchRequest Subject="IFV25mmHEAutocannonModel"/>

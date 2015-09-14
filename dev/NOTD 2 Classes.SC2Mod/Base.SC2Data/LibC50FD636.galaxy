@@ -70,6 +70,7 @@ unit libC50FD636_gv_blackDiamondCaster;
 unit libC50FD636_gv_satelliteUplinkSpyUnit;
 unitgroup libC50FD636_gv_uplinkSharedVisionGroup;
 string[libC50FD636_gv_numberofPlayers + 1] libC50FD636_gv_geminiUnitWeapon;
+string[libC50FD636_gv_numberofPlayers + 1] libC50FD636_gv_geminiAssaultUnitWeapon;
 bool libC50FD636_gv_inventoryMoveLock;
 bool[libC50FD636_gv_inventoryBagSize + 1][libC50FD636_gv_numberofPlayers + 1] libC50FD636_gv_openBagSlots;
 libC50FD636_gs_AmmoUIElements[libC50FD636_gv_numberofPlayers + 1] libC50FD636_gv_ammoDisplay;
@@ -225,6 +226,7 @@ trigger libC50FD636_gt_TalentButtonHookup;
 trigger libC50FD636_gt_JumpUpgrade;
 trigger libC50FD636_gt_MedicalAssistanceUsage;
 trigger libC50FD636_gt_HeroTest;
+trigger libC50FD636_gt_TestDualWeapons;
 
 // Functions
 void libC50FD636_gf_CrusaderAIThink (int lp_player, unit lp_unit, unitgroup lp_scanGroup) {
@@ -1152,6 +1154,8 @@ bool libC50FD636_gt_AssaultLevelUpGeminiProtocol_Func (bool testConds, bool runA
     UnitInventoryContainerOpen(PlayerGroupAll(), EventUnit(), 3, true);
     UnitCargoCreate(EventUnit(), "GeminiProtocolDummyUnit", 1);
     libC50FD636_gv_geminiProtocolUnit[EventPlayer()] = UnitCargoLastCreated();
+    TriggerEnable(libC50FD636_gt_GeminiProtocolWeaponAdd, true);
+    TriggerEnable(libC50FD636_gt_GeminiProtocolWeaponRemove, true);
     return true;
 }
 
@@ -1953,6 +1957,7 @@ void libC50FD636_gt_GeminiProtocolReload_Init () {
     TriggerAddEventUnitBehaviorChange(libC50FD636_gt_GeminiProtocolReload, null, "ReloadNightmare", c_unitBehaviorChangeCreate);
     TriggerAddEventUnitBehaviorChange(libC50FD636_gt_GeminiProtocolReload, null, "ReloadPerfect", c_unitBehaviorChangeCreate);
     TriggerAddEventUnitBehaviorChange(libC50FD636_gt_GeminiProtocolReload, null, "ReloadNormal", c_unitBehaviorChangeCreate);
+    TriggerAddEventUnitBehaviorChange(libC50FD636_gt_GeminiProtocolReload, null, "WeaponEquipDelay", c_unitBehaviorChangeCreate);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -2053,9 +2058,15 @@ void libC50FD636_gt_GeminiProtocolWeaponEquip_Init () {
 // Trigger: Gemini Protocol Weapon Add
 //--------------------------------------------------------------------------------------------------
 bool libC50FD636_gt_GeminiProtocolWeaponAdd_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    int lv_owningPlayer;
+
+    // Variable Initialization
+    lv_owningPlayer = UnitGetOwner(EventUnit());
+
     // Conditions
     if (testConds) {
-        if (!(((UnitBehaviorCount(EventUnit(), EventUnitBehavior()) == 2) || ((UnitBehaviorCount(EventUnit(), EventUnitBehavior()) == 1) && (UnitBehaviorCount(EventUnit(), "WeaponEquipped") == 2) && (UnitWeaponCount(libC50FD636_gv_geminiProtocolUnit[UnitGetOwner(EventUnit())]) == 0))))) {
+        if (!((UnitBehaviorCount(EventUnit(), "WeaponEquipped") == 2))) {
             return false;
         }
     }
@@ -2065,14 +2076,20 @@ bool libC50FD636_gt_GeminiProtocolWeaponAdd_Func (bool testConds, bool runAction
         return true;
     }
 
-    libC50FD636_gv_geminiUnitWeapon[UnitGetOwner(EventUnit())] = libC50FD636_gf_GetWeapon(EventUnitBehavior());
-    UnitWeaponAdd(libC50FD636_gv_geminiProtocolUnit[UnitGetOwner(EventUnit())], libC50FD636_gv_geminiUnitWeapon[UnitGetOwner(EventUnit())], null);
+    libC50FD636_gv_geminiUnitWeapon[lv_owningPlayer] = libC50FD636_gf_GetWeapon(EventUnitBehavior());
+    TextExpressionSetToken("Param/Expression/lib_C50FD636_B0CBB8EC", "A", StringToText((libC50FD636_gv_geminiUnitWeapon[lv_owningPlayer])));
+    TriggerDebugOutput(1, TextExpressionAssemble("Param/Expression/lib_C50FD636_B0CBB8EC"), true);
+    UnitWeaponAdd(libC50FD636_gv_geminiProtocolUnit[lv_owningPlayer], libC50FD636_gv_geminiUnitWeapon[lv_owningPlayer], null);
+    if ((UnitWeaponCount(EventUnit()) != 1)) {
+        UnitWeaponRemove(EventUnit(), libC50FD636_gv_geminiUnitWeapon[lv_owningPlayer]);
+    }
     return true;
 }
 
 //--------------------------------------------------------------------------------------------------
 void libC50FD636_gt_GeminiProtocolWeaponAdd_Init () {
     libC50FD636_gt_GeminiProtocolWeaponAdd = TriggerCreate("libC50FD636_gt_GeminiProtocolWeaponAdd_Func");
+    TriggerEnable(libC50FD636_gt_GeminiProtocolWeaponAdd, false);
     TriggerAddEventUnitBehaviorChange(libC50FD636_gt_GeminiProtocolWeaponAdd, null, "AntiMaterialRifleEquipped", c_unitBehaviorChangeIncrease);
     TriggerAddEventUnitBehaviorChange(libC50FD636_gt_GeminiProtocolWeaponAdd, null, "AssaultRifleEquipped", c_unitBehaviorChangeIncrease);
     TriggerAddEventUnitBehaviorChange(libC50FD636_gt_GeminiProtocolWeaponAdd, null, "AutomaticShotgunEquipped", c_unitBehaviorChangeIncrease);
@@ -2097,7 +2114,11 @@ void libC50FD636_gt_GeminiProtocolWeaponAdd_Init () {
 bool libC50FD636_gt_GeminiProtocolWeaponRemove_Func (bool testConds, bool runActions) {
     // Conditions
     if (testConds) {
-        if (!((UnitWeaponGet(libC50FD636_gv_geminiProtocolUnit[UnitGetOwner(EventUnit())], 1) == libC50FD636_gf_GetWeapon(EventUnitBehavior())))) {
+        if (!((UnitBehaviorCount(EventUnit(), "WeaponEquipped") == 1))) {
+            return false;
+        }
+
+        if (!((libC50FD636_gf_GetWeapon(EventUnitBehavior()) == libC50FD636_gv_geminiUnitWeapon[UnitGetOwner(EventUnit())]))) {
             return false;
         }
     }
@@ -2107,6 +2128,7 @@ bool libC50FD636_gt_GeminiProtocolWeaponRemove_Func (bool testConds, bool runAct
         return true;
     }
 
+    TriggerDebugOutput(1, StringExternal("Param/Value/lib_C50FD636_7D201C37"), true);
     UnitWeaponRemove(libC50FD636_gv_geminiProtocolUnit[UnitGetOwner(EventUnit())], libC50FD636_gv_geminiUnitWeapon[UnitGetOwner(EventUnit())]);
     return true;
 }
@@ -2114,6 +2136,7 @@ bool libC50FD636_gt_GeminiProtocolWeaponRemove_Func (bool testConds, bool runAct
 //--------------------------------------------------------------------------------------------------
 void libC50FD636_gt_GeminiProtocolWeaponRemove_Init () {
     libC50FD636_gt_GeminiProtocolWeaponRemove = TriggerCreate("libC50FD636_gt_GeminiProtocolWeaponRemove_Func");
+    TriggerEnable(libC50FD636_gt_GeminiProtocolWeaponRemove, false);
     TriggerAddEventUnitBehaviorChange(libC50FD636_gt_GeminiProtocolWeaponRemove, null, "AntiMaterialRifleEquipped", c_unitBehaviorChangeDecrease);
     TriggerAddEventUnitBehaviorChange(libC50FD636_gt_GeminiProtocolWeaponRemove, null, "AssaultRifleEquipped", c_unitBehaviorChangeDecrease);
     TriggerAddEventUnitBehaviorChange(libC50FD636_gt_GeminiProtocolWeaponRemove, null, "AutomaticShotgunEquipped", c_unitBehaviorChangeDecrease);
@@ -2915,7 +2938,9 @@ bool libC50FD636_gt_Reload_Func (bool testConds, bool runActions) {
         return true;
     }
 
-    PlayerAddChargeUsed(lv_reloadingPlayer, "CurrentMagazine", (libC50FD636_gv_marines[lv_reloadingPlayer].lv_currentMaxMagazineSize * -1.0));
+    if ((EventUnit() != libC50FD636_gv_geminiProtocolUnit[UnitGetOwner(EventUnit())])) {
+        PlayerAddChargeUsed(lv_reloadingPlayer, "CurrentMagazine", (libC50FD636_gv_marines[lv_reloadingPlayer].lv_currentMaxMagazineSize * -1.0));
+    }
     libC50FD636_gf_UpdateNumberofMagazines(lv_reloadingPlayer, libC50FD636_gv_marines[lv_reloadingPlayer].lv_numberofMagzinesPerReload);
     libNtve_gf_SetDialogItemCurrentValue(libC50FD636_gv_ammoDisplay[lv_reloadingPlayer].lv_ammoBar, (libC50FD636_gv_marines[lv_reloadingPlayer].lv_currentMaxMagazineSize - PlayerGetChargeUsed(lv_reloadingPlayer, "CurrentMagazine")), PlayerGroupAll());
     libNtve_gf_SetDialogItemText(libC50FD636_gv_ammoDisplay[lv_reloadingPlayer].lv_ammoLabel, (FixedToText(libC50FD636_gv_marines[lv_reloadingPlayer].lv_currentMaxMagazineSize, c_fixedPrecisionAny) + StringExternal("Param/Value/lib_C50FD636_543B63C9") + IntToText(libC50FD636_gv_marines[lv_reloadingPlayer].lv_currentMaxMagazineSize)), PlayerGroupAll());
@@ -3284,6 +3309,25 @@ void libC50FD636_gt_HeroTest_Init () {
     TriggerAddEventChatMessage(libC50FD636_gt_HeroTest, 1, "MakeHero", false);
 }
 
+//--------------------------------------------------------------------------------------------------
+// Trigger: Test Dual Weapons
+//--------------------------------------------------------------------------------------------------
+bool libC50FD636_gt_TestDualWeapons_Func (bool testConds, bool runActions) {
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TriggerDebugOutput(1, IntToText(UnitWeaponCount(EventUnit())), true);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libC50FD636_gt_TestDualWeapons_Init () {
+    libC50FD636_gt_TestDualWeapons = TriggerCreate("libC50FD636_gt_TestDualWeapons_Func");
+    TriggerAddEventUnitBehaviorChange(libC50FD636_gt_TestDualWeapons, null, "AssaultRifleEquipped", c_unitBehaviorChangeIncrease);
+}
+
 void libC50FD636_InitTriggers () {
     libC50FD636_gt_TestEnableTechTreeRestrictions_Init();
     libC50FD636_gt_PredatorEventRegistration_Init();
@@ -3362,6 +3406,7 @@ void libC50FD636_InitTriggers () {
     libC50FD636_gt_JumpUpgrade_Init();
     libC50FD636_gt_MedicalAssistanceUsage_Init();
     libC50FD636_gt_HeroTest_Init();
+    libC50FD636_gt_TestDualWeapons_Init();
 }
 
 //--------------------------------------------------------------------------------------------------
