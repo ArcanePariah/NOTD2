@@ -226,7 +226,6 @@ trigger libC50FD636_gt_TalentButtonHookup;
 trigger libC50FD636_gt_JumpUpgrade;
 trigger libC50FD636_gt_MedicalAssistanceUsage;
 trigger libC50FD636_gt_HeroTest;
-trigger libC50FD636_gt_TestDualWeapons;
 
 // Functions
 void libC50FD636_gf_CrusaderAIThink (int lp_player, unit lp_unit, unitgroup lp_scanGroup) {
@@ -2077,8 +2076,6 @@ bool libC50FD636_gt_GeminiProtocolWeaponAdd_Func (bool testConds, bool runAction
     }
 
     libC50FD636_gv_geminiUnitWeapon[lv_owningPlayer] = libC50FD636_gf_GetWeapon(EventUnitBehavior());
-    TextExpressionSetToken("Param/Expression/lib_C50FD636_B0CBB8EC", "A", StringToText((libC50FD636_gv_geminiUnitWeapon[lv_owningPlayer])));
-    TriggerDebugOutput(1, TextExpressionAssemble("Param/Expression/lib_C50FD636_B0CBB8EC"), true);
     UnitWeaponAdd(libC50FD636_gv_geminiProtocolUnit[lv_owningPlayer], libC50FD636_gv_geminiUnitWeapon[lv_owningPlayer], null);
     if ((UnitWeaponCount(EventUnit()) != 1)) {
         UnitWeaponRemove(EventUnit(), libC50FD636_gv_geminiUnitWeapon[lv_owningPlayer]);
@@ -2128,7 +2125,6 @@ bool libC50FD636_gt_GeminiProtocolWeaponRemove_Func (bool testConds, bool runAct
         return true;
     }
 
-    TriggerDebugOutput(1, StringExternal("Param/Value/lib_C50FD636_7D201C37"), true);
     UnitWeaponRemove(libC50FD636_gv_geminiProtocolUnit[UnitGetOwner(EventUnit())], libC50FD636_gv_geminiUnitWeapon[UnitGetOwner(EventUnit())]);
     return true;
 }
@@ -3309,25 +3305,6 @@ void libC50FD636_gt_HeroTest_Init () {
     TriggerAddEventChatMessage(libC50FD636_gt_HeroTest, 1, "MakeHero", false);
 }
 
-//--------------------------------------------------------------------------------------------------
-// Trigger: Test Dual Weapons
-//--------------------------------------------------------------------------------------------------
-bool libC50FD636_gt_TestDualWeapons_Func (bool testConds, bool runActions) {
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    TriggerDebugOutput(1, IntToText(UnitWeaponCount(EventUnit())), true);
-    return true;
-}
-
-//--------------------------------------------------------------------------------------------------
-void libC50FD636_gt_TestDualWeapons_Init () {
-    libC50FD636_gt_TestDualWeapons = TriggerCreate("libC50FD636_gt_TestDualWeapons_Func");
-    TriggerAddEventUnitBehaviorChange(libC50FD636_gt_TestDualWeapons, null, "AssaultRifleEquipped", c_unitBehaviorChangeIncrease);
-}
-
 void libC50FD636_InitTriggers () {
     libC50FD636_gt_TestEnableTechTreeRestrictions_Init();
     libC50FD636_gt_PredatorEventRegistration_Init();
@@ -3406,7 +3383,6 @@ void libC50FD636_InitTriggers () {
     libC50FD636_gt_JumpUpgrade_Init();
     libC50FD636_gt_MedicalAssistanceUsage_Init();
     libC50FD636_gt_HeroTest_Init();
-    libC50FD636_gt_TestDualWeapons_Init();
 }
 
 //--------------------------------------------------------------------------------------------------
