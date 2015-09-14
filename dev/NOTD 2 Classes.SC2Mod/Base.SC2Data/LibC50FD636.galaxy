@@ -61,6 +61,7 @@ struct libC50FD636_gs_Marine {
 };
 
 // Variables
+unit[libC50FD636_gv_numberofPlayers + 1] libC50FD636_gv_geminiProtocolUnit;
 fixed libC50FD636_gv_bulwarkAngle;
 unit libC50FD636_gv_bulwarkTargetUnit;
 unit libC50FD636_gv_bulwarkCaster;
@@ -68,6 +69,8 @@ unit libC50FD636_gv_scamperUnit;
 unit libC50FD636_gv_blackDiamondCaster;
 unit libC50FD636_gv_satelliteUplinkSpyUnit;
 unitgroup libC50FD636_gv_uplinkSharedVisionGroup;
+string[libC50FD636_gv_numberofPlayers + 1] libC50FD636_gv_geminiUnitWeapon;
+string[libC50FD636_gv_numberofPlayers + 1] libC50FD636_gv_geminiAssaultUnitWeapon;
 bool libC50FD636_gv_inventoryMoveLock;
 bool[libC50FD636_gv_inventoryBagSize + 1][libC50FD636_gv_numberofPlayers + 1] libC50FD636_gv_openBagSlots;
 libC50FD636_gs_AmmoUIElements[libC50FD636_gv_numberofPlayers + 1] libC50FD636_gv_ammoDisplay;
@@ -121,6 +124,7 @@ void libC50FD636_gf_CrusaderAIThink (int lp_player, unit lp_unit, unitgroup lp_s
 void libC50FD636_gf_ClassCreation (point lp_deploymentPoint, int lp_player);
 bool libC50FD636_gf_BulwarkAngleDamageCheck (fixed lp_damageAngle);
 bool libC50FD636_gf_GeminiSlotEmpty (unit lp_assault);
+string libC50FD636_gf_GetWeapon (string lp_weaponEquippedBehavior);
 int libC50FD636_gf_GetOpenBagSlot (unit lp_inventoryUnit);
 void libC50FD636_gf_EquipmentUpdateMarineWeight (int lp_ownerOfEquipment);
 int libC50FD636_gf_EquipmentGetItemWeight (int lp_ownerofEquipment, unit lp_item);
@@ -182,14 +186,19 @@ trigger libC50FD636_gt_GroundIlluminationFlareFlareGunVisionShare;
 trigger libC50FD636_gt_StealthMatrixDeactivate;
 trigger libC50FD636_gt_DropItems;
 trigger libC50FD636_gt_WeaveAilmentRemoval;
-trigger libC50FD636_gt_CohesionAilmentResistence;
-trigger libC50FD636_gt_CriticalHitText;
-trigger libC50FD636_gt_UnstoppableForceDamage;
 trigger libC50FD636_gt_LockdownEnabledonEquip;
 trigger libC50FD636_gt_LockdownEnabled;
 trigger libC50FD636_gt_LockdownDisabled;
 trigger libC50FD636_gt_WeaponSwapLockdownRemoval;
+trigger libC50FD636_gt_GeminiProtocolReload;
+trigger libC50FD636_gt_GeminiProtocolBehaviors;
+trigger libC50FD636_gt_GeminiProtocolCriticalStrike;
 trigger libC50FD636_gt_GeminiProtocolWeaponEquip;
+trigger libC50FD636_gt_GeminiProtocolWeaponAdd;
+trigger libC50FD636_gt_GeminiProtocolWeaponRemove;
+trigger libC50FD636_gt_CohesionAilmentResistence;
+trigger libC50FD636_gt_CriticalHitText;
+trigger libC50FD636_gt_UnstoppableForceDamage;
 trigger libC50FD636_gt_StackMagazinesIntoAmmoBoxes;
 trigger libC50FD636_gt_DisplayInventoryOnSelection;
 trigger libC50FD636_gt_UpdateBagSlotsonMove;
@@ -217,6 +226,7 @@ trigger libC50FD636_gt_TalentButtonHookup;
 trigger libC50FD636_gt_JumpUpgrade;
 trigger libC50FD636_gt_MedicalAssistanceUsage;
 trigger libC50FD636_gt_HeroTest;
+trigger libC50FD636_gt_TestDualWeapons;
 
 // Functions
 void libC50FD636_gf_CrusaderAIThink (int lp_player, unit lp_unit, unitgroup lp_scanGroup) {
@@ -303,6 +313,69 @@ bool libC50FD636_gf_GeminiSlotEmpty (unit lp_assault) {
     }
     UnitGroupLoopEnd();
     return true;
+}
+
+string libC50FD636_gf_GetWeapon (string lp_weaponEquippedBehavior) {
+    string autoEABE56CC_val;
+
+    // Variable Declarations
+    string lv_weapon;
+
+    // Variable Initialization
+
+    // Implementation
+    autoEABE56CC_val = lp_weaponEquippedBehavior;
+    if (autoEABE56CC_val == "AntiMaterialRifleEquipped") {
+        lv_weapon = "AntiMaterialRifle";
+    }
+    else if (autoEABE56CC_val == "AssaultRifleEquipped") {
+        lv_weapon = "AssaultRifle";
+    }
+    else if (autoEABE56CC_val == "AutomaticShotgunEquipped") {
+        lv_weapon = "AutomaticShotgun";
+    }
+    else if (autoEABE56CC_val == "AxeEquipped") {
+        lv_weapon = "Axe";
+    }
+    else if (autoEABE56CC_val == "BatonEquipped") {
+        lv_weapon = "Baton";
+    }
+    else if (autoEABE56CC_val == "ChainsawEquipped") {
+        lv_weapon = "Chainsaw";
+    }
+    else if (autoEABE56CC_val == "CrowbarEquipped") {
+        lv_weapon = "Crowbar";
+    }
+    else if (autoEABE56CC_val == "FlamethrowerEquipped") {
+        lv_weapon = "Flamethrower";
+    }
+    else if (autoEABE56CC_val == "HammerEquipped") {
+        lv_weapon = "Hammer";
+    }
+    else if (autoEABE56CC_val == "LaserRifleEquipped") {
+        lv_weapon = "LaserRifle";
+    }
+    else if (autoEABE56CC_val == "MarksmanRifleEquipped") {
+        lv_weapon = "MarksmanRifle";
+    }
+    else if (autoEABE56CC_val == "MediumMachineGunEquipped") {
+        lv_weapon = "MediumMachineGun";
+    }
+    else if (autoEABE56CC_val == "PistolEquipped") {
+        lv_weapon = "Pistol";
+    }
+    else if (autoEABE56CC_val == "PlasmaCutterEquipped") {
+        lv_weapon = "PlasmaCutter";
+    }
+    else if (autoEABE56CC_val == "PumpShotgunEquipped") {
+        lv_weapon = "PumpShotgun";
+    }
+    else if (autoEABE56CC_val == "SubmachineGunEquipped") {
+        lv_weapon = "SubmachineGun";
+    }
+    else {
+    }
+    return lv_weapon;
 }
 
 int libC50FD636_gf_GetOpenBagSlot (unit lp_inventoryUnit) {
@@ -1079,8 +1152,10 @@ bool libC50FD636_gt_AssaultLevelUpGeminiProtocol_Func (bool testConds, bool runA
 
     TechTreeUpgradeAddLevel(UnitGetOwner(EventUnit()), "GeminiProtocol", 1);
     UnitInventoryContainerOpen(PlayerGroupAll(), EventUnit(), 3, true);
-    UnitAbilityEnable(EventUnit(), "DeployAntiMaterialRifle", false);
-    UnitAbilityEnable(EventUnit(), "PackUpAntiMaterialRifle", false);
+    UnitCargoCreate(EventUnit(), "GeminiProtocolDummyUnit", 1);
+    libC50FD636_gv_geminiProtocolUnit[EventPlayer()] = UnitCargoLastCreated();
+    TriggerEnable(libC50FD636_gt_GeminiProtocolWeaponAdd, true);
+    TriggerEnable(libC50FD636_gt_GeminiProtocolWeaponRemove, true);
     return true;
 }
 
@@ -1732,115 +1807,6 @@ void libC50FD636_gt_WeaveAilmentRemoval_Init () {
 }
 
 //--------------------------------------------------------------------------------------------------
-// Trigger: Cohesion Ailment Resistence
-//--------------------------------------------------------------------------------------------------
-bool libC50FD636_gt_CohesionAilmentResistence_Func (bool testConds, bool runActions) {
-    // Variable Declarations
-    string lv_ailmentApplied;
-
-    // Variable Initialization
-    lv_ailmentApplied = EventUnitBehavior();
-
-    // Conditions
-    if (testConds) {
-        if (!((UnitHasBehavior(EventUnit(), "CohesionArmorLevel1") || UnitHasBehavior(EventUnit(), "CohesionArmorLevel2")))) {
-            return false;
-        }
-    }
-
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    if (UnitHasBehavior(EventUnit(), "CohesionArmorLevel1") && (libNtve_gf_RandomPercent() <= 20.0)) {
-        UnitBehaviorRemove(EventUnit(), lv_ailmentApplied, 1);
-    }
-    if (UnitHasBehavior(EventUnit(), "CohesionArmorLevel2") && (libNtve_gf_RandomPercent() <= 40.0)) {
-        UnitBehaviorRemove(EventUnit(), lv_ailmentApplied, 1);
-    }
-    return true;
-}
-
-//--------------------------------------------------------------------------------------------------
-void libC50FD636_gt_CohesionAilmentResistence_Init () {
-    libC50FD636_gt_CohesionAilmentResistence = TriggerCreate("libC50FD636_gt_CohesionAilmentResistence_Func");
-    TriggerAddEventUnitBehaviorChange(libC50FD636_gt_CohesionAilmentResistence, null, "FractureArm", c_unitBehaviorChangeIncrease);
-    TriggerAddEventUnitBehaviorChange(libC50FD636_gt_CohesionAilmentResistence, null, "FractureLeg", c_unitBehaviorChangeIncrease);
-    TriggerAddEventUnitBehaviorChange(libC50FD636_gt_CohesionAilmentResistence, null, "OpenWound", c_unitBehaviorChangeIncrease);
-    TriggerAddEventUnitBehaviorChange(libC50FD636_gt_CohesionAilmentResistence, null, "ShortCircuit", c_unitBehaviorChangeIncrease);
-    TriggerAddEventUnitBehaviorChange(libC50FD636_gt_CohesionAilmentResistence, null, "Venom", c_unitBehaviorChangeIncrease);
-}
-
-//--------------------------------------------------------------------------------------------------
-// Trigger: Critical Hit Text
-//--------------------------------------------------------------------------------------------------
-bool libC50FD636_gt_CriticalHitText_Func (bool testConds, bool runActions) {
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    TextTagCreate(FixedToText(EventUnitDamageAmount(), 1), 24, UnitGetPosition(EventUnitDamageSourceUnit()), 0.5, true, false, PlayerGroupAll());
-    TextTagSetColor(TextTagLastCreated(), c_textTagColorText, Color(100.00, 0.00, 0.00));
-    TextTagSetTime(TextTagLastCreated(), c_textTagTimeDuration, 1.0);
-    TextTagSetTime(TextTagLastCreated(), c_textTagTimeFadeOut, 1.0);
-    TextTagSetVelocity(TextTagLastCreated(), 0.5, 90.0);
-    return true;
-}
-
-//--------------------------------------------------------------------------------------------------
-void libC50FD636_gt_CriticalHitText_Init () {
-    libC50FD636_gt_CriticalHitText = TriggerCreate("libC50FD636_gt_CriticalHitText_Func");
-    TriggerAddEventUnitDamaged(libC50FD636_gt_CriticalHitText, null, c_unitDamageTypeRanged, c_unitDamageEither, "AntiMaterialRifleDamageCritical");
-    TriggerAddEventUnitDamaged(libC50FD636_gt_CriticalHitText, null, c_unitDamageTypeRanged, c_unitDamageEither, "AssaultRifleBurstFireDamageCritical");
-    TriggerAddEventUnitDamaged(libC50FD636_gt_CriticalHitText, null, c_unitDamageTypeRanged, c_unitDamageEither, "AssaultRifleDamageCritical");
-    TriggerAddEventUnitDamaged(libC50FD636_gt_CriticalHitText, null, c_unitDamageTypeRanged, c_unitDamageEither, "AxeDamageCritical");
-    TriggerAddEventUnitDamaged(libC50FD636_gt_CriticalHitText, null, c_unitDamageTypeRanged, c_unitDamageEither, "ChainsawDamageCritical");
-    TriggerAddEventUnitDamaged(libC50FD636_gt_CriticalHitText, null, c_unitDamageTypeRanged, c_unitDamageEither, "BatonDamageCritical");
-    TriggerAddEventUnitDamaged(libC50FD636_gt_CriticalHitText, null, c_unitDamageTypeRanged, c_unitDamageEither, "SubmachineGunDamageCritical");
-    TriggerAddEventUnitDamaged(libC50FD636_gt_CriticalHitText, null, c_unitDamageTypeRanged, c_unitDamageEither, "CrowbarDamageCritical");
-    TriggerAddEventUnitDamaged(libC50FD636_gt_CriticalHitText, null, c_unitDamageTypeRanged, c_unitDamageEither, "FlamethrowerDamageCritical");
-    TriggerAddEventUnitDamaged(libC50FD636_gt_CriticalHitText, null, c_unitDamageTypeRanged, c_unitDamageEither, "HammerDamageCritical");
-    TriggerAddEventUnitDamaged(libC50FD636_gt_CriticalHitText, null, c_unitDamageTypeRanged, c_unitDamageEither, "HeavyMachineGunDamageCritical");
-    TriggerAddEventUnitDamaged(libC50FD636_gt_CriticalHitText, null, c_unitDamageTypeRanged, c_unitDamageEither, "LaserRifleDamageCritical");
-    TriggerAddEventUnitDamaged(libC50FD636_gt_CriticalHitText, null, c_unitDamageTypeRanged, c_unitDamageEither, "MarksmanRifleDamageCritical");
-    TriggerAddEventUnitDamaged(libC50FD636_gt_CriticalHitText, null, c_unitDamageTypeRanged, c_unitDamageEither, "MediumMachineGunDamageCritical");
-    TriggerAddEventUnitDamaged(libC50FD636_gt_CriticalHitText, null, c_unitDamageTypeRanged, c_unitDamageEither, "PistolDamageCritical");
-    TriggerAddEventUnitDamaged(libC50FD636_gt_CriticalHitText, null, c_unitDamageTypeRanged, c_unitDamageEither, "PlasmaCutterDamageCritical");
-    TriggerAddEventUnitDamaged(libC50FD636_gt_CriticalHitText, null, c_unitDamageTypeRanged, c_unitDamageEither, "AntiMaterialRifleDamageCritical");
-}
-
-//--------------------------------------------------------------------------------------------------
-// Trigger: Unstoppable Force Damage
-//--------------------------------------------------------------------------------------------------
-bool libC50FD636_gt_UnstoppableForceDamage_Func (bool testConds, bool runActions) {
-    // Variable Declarations
-    unit lv_damagedUnit;
-    unit lv_assault;
-
-    // Variable Initialization
-    lv_damagedUnit = EventUnit();
-    lv_assault = EventUnitDamageSourceUnit();
-
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    UnitDamage(lv_assault, "ChargeBonusDamage", lv_damagedUnit, (15.0 * UnitGetPropertyFixed(lv_assault, c_unitPropLifeArmor, c_unitPropCurrent)));
-    return true;
-}
-
-//--------------------------------------------------------------------------------------------------
-void libC50FD636_gt_UnstoppableForceDamage_Init () {
-    libC50FD636_gt_UnstoppableForceDamage = TriggerCreate("libC50FD636_gt_UnstoppableForceDamage_Func");
-    TriggerEnable(libC50FD636_gt_UnstoppableForceDamage, false);
-    TriggerAddEventUnitDamaged(libC50FD636_gt_UnstoppableForceDamage, null, c_unitDamageTypeSpell, c_unitDamageEither, "ChargeDamageLevel1");
-    TriggerAddEventUnitDamaged(libC50FD636_gt_UnstoppableForceDamage, null, c_unitDamageTypeSpell, c_unitDamageEither, "ChargeDamageLevel12");
-}
-
-//--------------------------------------------------------------------------------------------------
 // Trigger: Lockdown Enabled on Equip
 //--------------------------------------------------------------------------------------------------
 bool libC50FD636_gt_LockdownEnabledonEquip_Func (bool testConds, bool runActions) {
@@ -1960,6 +1926,93 @@ void libC50FD636_gt_WeaponSwapLockdownRemoval_Init () {
 }
 
 //--------------------------------------------------------------------------------------------------
+// Trigger: Gemini Protocol Reload
+//--------------------------------------------------------------------------------------------------
+bool libC50FD636_gt_GeminiProtocolReload_Func (bool testConds, bool runActions) {
+    // Conditions
+    if (testConds) {
+        if (!((UnitGetType(EventUnit()) == "Assault"))) {
+            return false;
+        }
+
+        if (!((UnitGroupCount(UnitCargoGroup(EventUnit()), c_unitCountAlive) == 1))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    UnitBehaviorAddPlayer(libC50FD636_gv_geminiProtocolUnit[UnitGetOwner(EventUnit())], EventUnitBehavior(), UnitGetOwner(EventUnit()), 1);
+    UnitBehaviorSetDuration(libC50FD636_gv_geminiProtocolUnit[UnitGetOwner(EventUnit())], EventUnitBehavior(), UnitBehaviorDuration(EventUnit(), EventUnitBehavior()));
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libC50FD636_gt_GeminiProtocolReload_Init () {
+    libC50FD636_gt_GeminiProtocolReload = TriggerCreate("libC50FD636_gt_GeminiProtocolReload_Func");
+    TriggerAddEventUnitBehaviorChange(libC50FD636_gt_GeminiProtocolReload, null, "ReloadManual", c_unitBehaviorChangeCreate);
+    TriggerAddEventUnitBehaviorChange(libC50FD636_gt_GeminiProtocolReload, null, "ReloadNightmare", c_unitBehaviorChangeCreate);
+    TriggerAddEventUnitBehaviorChange(libC50FD636_gt_GeminiProtocolReload, null, "ReloadPerfect", c_unitBehaviorChangeCreate);
+    TriggerAddEventUnitBehaviorChange(libC50FD636_gt_GeminiProtocolReload, null, "ReloadNormal", c_unitBehaviorChangeCreate);
+    TriggerAddEventUnitBehaviorChange(libC50FD636_gt_GeminiProtocolReload, null, "WeaponEquipDelay", c_unitBehaviorChangeCreate);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Gemini Protocol Behaviors
+//--------------------------------------------------------------------------------------------------
+bool libC50FD636_gt_GeminiProtocolBehaviors_Func (bool testConds, bool runActions) {
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    UnitBehaviorAddPlayer(libC50FD636_gv_geminiProtocolUnit[UnitGetOwner(EventUnit())], EventUnitBehavior(), UnitGetOwner(EventUnit()), 1);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libC50FD636_gt_GeminiProtocolBehaviors_Init () {
+    libC50FD636_gt_GeminiProtocolBehaviors = TriggerCreate("libC50FD636_gt_GeminiProtocolBehaviors_Func");
+    TriggerAddEventUnitBehaviorChange(libC50FD636_gt_GeminiProtocolBehaviors, null, "ConcentratedFireLevel1", c_unitBehaviorChangeCreate);
+    TriggerAddEventUnitBehaviorChange(libC50FD636_gt_GeminiProtocolBehaviors, null, "ConcentratedFireLevel2", c_unitBehaviorChangeCreate);
+    TriggerAddEventUnitBehaviorChange(libC50FD636_gt_GeminiProtocolBehaviors, null, "ConcentratedFireLevel3", c_unitBehaviorChangeCreate);
+    TriggerAddEventUnitBehaviorChange(libC50FD636_gt_GeminiProtocolBehaviors, null, "AdvancedTargetingLevel1", c_unitBehaviorChangeCreate);
+    TriggerAddEventUnitBehaviorChange(libC50FD636_gt_GeminiProtocolBehaviors, null, "AdvancedTargetingLevel2", c_unitBehaviorChangeCreate);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Gemini Protocol Critical Strike
+//--------------------------------------------------------------------------------------------------
+bool libC50FD636_gt_GeminiProtocolCriticalStrike_Func (bool testConds, bool runActions) {
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((EventUnitBehaviorChange() == c_unitBehaviorChangeActivate)) {
+        UnitBehaviorAddPlayer(libC50FD636_gv_geminiProtocolUnit[UnitGetOwner(EventUnit())], EventUnitBehavior(), UnitGetOwner(EventUnit()), 1);
+    }
+    if ((EventUnitBehaviorChange() == c_unitBehaviorChangeDeactivate)) {
+        UnitBehaviorRemovePlayer(libC50FD636_gv_geminiProtocolUnit[UnitGetOwner(EventUnit())], EventUnitBehavior(), UnitGetOwner(EventUnit()), 1);
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libC50FD636_gt_GeminiProtocolCriticalStrike_Init () {
+    libC50FD636_gt_GeminiProtocolCriticalStrike = TriggerCreate("libC50FD636_gt_GeminiProtocolCriticalStrike_Func");
+    TriggerAddEventUnitBehaviorChange(libC50FD636_gt_GeminiProtocolCriticalStrike, null, "AssaultCriticalStrikeLevel1", c_unitBehaviorChangeActivate);
+    TriggerAddEventUnitBehaviorChange(libC50FD636_gt_GeminiProtocolCriticalStrike, null, "AssaultCriticalStrikeLevel2", c_unitBehaviorChangeActivate);
+    TriggerAddEventUnitBehaviorChange(libC50FD636_gt_GeminiProtocolCriticalStrike, null, "AssaultCriticalStrikeLevel3", c_unitBehaviorChangeActivate);
+    TriggerAddEventUnitBehaviorChange(libC50FD636_gt_GeminiProtocolCriticalStrike, null, "AssaultCriticalStrikeLevel1", c_unitBehaviorChangeDeactivate);
+    TriggerAddEventUnitBehaviorChange(libC50FD636_gt_GeminiProtocolCriticalStrike, null, "AssaultCriticalStrikeLevel2", c_unitBehaviorChangeDeactivate);
+    TriggerAddEventUnitBehaviorChange(libC50FD636_gt_GeminiProtocolCriticalStrike, null, "AssaultCriticalStrikeLevel3", c_unitBehaviorChangeDeactivate);
+}
+
+//--------------------------------------------------------------------------------------------------
 // Trigger: Gemini Protocol Weapon Equip
 //--------------------------------------------------------------------------------------------------
 bool libC50FD636_gt_GeminiProtocolWeaponEquip_Func (bool testConds, bool runActions) {
@@ -1999,6 +2052,216 @@ bool libC50FD636_gt_GeminiProtocolWeaponEquip_Func (bool testConds, bool runActi
 void libC50FD636_gt_GeminiProtocolWeaponEquip_Init () {
     libC50FD636_gt_GeminiProtocolWeaponEquip = TriggerCreate("libC50FD636_gt_GeminiProtocolWeaponEquip_Func");
     TriggerAddEventUnitInventoryChange(libC50FD636_gt_GeminiProtocolWeaponEquip, null, c_unitInventoryChangeGains, null);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Gemini Protocol Weapon Add
+//--------------------------------------------------------------------------------------------------
+bool libC50FD636_gt_GeminiProtocolWeaponAdd_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    int lv_owningPlayer;
+
+    // Variable Initialization
+    lv_owningPlayer = UnitGetOwner(EventUnit());
+
+    // Conditions
+    if (testConds) {
+        if (!((UnitBehaviorCount(EventUnit(), "WeaponEquipped") == 2))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    libC50FD636_gv_geminiUnitWeapon[lv_owningPlayer] = libC50FD636_gf_GetWeapon(EventUnitBehavior());
+    TextExpressionSetToken("Param/Expression/lib_C50FD636_B0CBB8EC", "A", StringToText((libC50FD636_gv_geminiUnitWeapon[lv_owningPlayer])));
+    TriggerDebugOutput(1, TextExpressionAssemble("Param/Expression/lib_C50FD636_B0CBB8EC"), true);
+    UnitWeaponAdd(libC50FD636_gv_geminiProtocolUnit[lv_owningPlayer], libC50FD636_gv_geminiUnitWeapon[lv_owningPlayer], null);
+    if ((UnitWeaponCount(EventUnit()) != 1)) {
+        UnitWeaponRemove(EventUnit(), libC50FD636_gv_geminiUnitWeapon[lv_owningPlayer]);
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libC50FD636_gt_GeminiProtocolWeaponAdd_Init () {
+    libC50FD636_gt_GeminiProtocolWeaponAdd = TriggerCreate("libC50FD636_gt_GeminiProtocolWeaponAdd_Func");
+    TriggerEnable(libC50FD636_gt_GeminiProtocolWeaponAdd, false);
+    TriggerAddEventUnitBehaviorChange(libC50FD636_gt_GeminiProtocolWeaponAdd, null, "AntiMaterialRifleEquipped", c_unitBehaviorChangeIncrease);
+    TriggerAddEventUnitBehaviorChange(libC50FD636_gt_GeminiProtocolWeaponAdd, null, "AssaultRifleEquipped", c_unitBehaviorChangeIncrease);
+    TriggerAddEventUnitBehaviorChange(libC50FD636_gt_GeminiProtocolWeaponAdd, null, "AutomaticShotgunEquipped", c_unitBehaviorChangeIncrease);
+    TriggerAddEventUnitBehaviorChange(libC50FD636_gt_GeminiProtocolWeaponAdd, null, "AxeEquipped", c_unitBehaviorChangeIncrease);
+    TriggerAddEventUnitBehaviorChange(libC50FD636_gt_GeminiProtocolWeaponAdd, null, "BatonEquipped", c_unitBehaviorChangeIncrease);
+    TriggerAddEventUnitBehaviorChange(libC50FD636_gt_GeminiProtocolWeaponAdd, null, "ChainsawEquipped", c_unitBehaviorChangeIncrease);
+    TriggerAddEventUnitBehaviorChange(libC50FD636_gt_GeminiProtocolWeaponAdd, null, "CrowbarEquipped", c_unitBehaviorChangeIncrease);
+    TriggerAddEventUnitBehaviorChange(libC50FD636_gt_GeminiProtocolWeaponAdd, null, "FlamethrowerEquipped", c_unitBehaviorChangeIncrease);
+    TriggerAddEventUnitBehaviorChange(libC50FD636_gt_GeminiProtocolWeaponAdd, null, "HammerEquipped", c_unitBehaviorChangeIncrease);
+    TriggerAddEventUnitBehaviorChange(libC50FD636_gt_GeminiProtocolWeaponAdd, null, "LaserRifleEquipped", c_unitBehaviorChangeIncrease);
+    TriggerAddEventUnitBehaviorChange(libC50FD636_gt_GeminiProtocolWeaponAdd, null, "MarksmanRifleEquipped", c_unitBehaviorChangeIncrease);
+    TriggerAddEventUnitBehaviorChange(libC50FD636_gt_GeminiProtocolWeaponAdd, null, "MediumMachineGunEquipped", c_unitBehaviorChangeIncrease);
+    TriggerAddEventUnitBehaviorChange(libC50FD636_gt_GeminiProtocolWeaponAdd, null, "PistolEquipped", c_unitBehaviorChangeIncrease);
+    TriggerAddEventUnitBehaviorChange(libC50FD636_gt_GeminiProtocolWeaponAdd, null, "PlasmaCutterEquipped", c_unitBehaviorChangeIncrease);
+    TriggerAddEventUnitBehaviorChange(libC50FD636_gt_GeminiProtocolWeaponAdd, null, "PumpShotgunEquipped", c_unitBehaviorChangeIncrease);
+    TriggerAddEventUnitBehaviorChange(libC50FD636_gt_GeminiProtocolWeaponAdd, null, "SubmachineGunEquipped", c_unitBehaviorChangeIncrease);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Gemini Protocol Weapon Remove
+//--------------------------------------------------------------------------------------------------
+bool libC50FD636_gt_GeminiProtocolWeaponRemove_Func (bool testConds, bool runActions) {
+    // Conditions
+    if (testConds) {
+        if (!((UnitBehaviorCount(EventUnit(), "WeaponEquipped") == 1))) {
+            return false;
+        }
+
+        if (!((libC50FD636_gf_GetWeapon(EventUnitBehavior()) == libC50FD636_gv_geminiUnitWeapon[UnitGetOwner(EventUnit())]))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TriggerDebugOutput(1, StringExternal("Param/Value/lib_C50FD636_7D201C37"), true);
+    UnitWeaponRemove(libC50FD636_gv_geminiProtocolUnit[UnitGetOwner(EventUnit())], libC50FD636_gv_geminiUnitWeapon[UnitGetOwner(EventUnit())]);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libC50FD636_gt_GeminiProtocolWeaponRemove_Init () {
+    libC50FD636_gt_GeminiProtocolWeaponRemove = TriggerCreate("libC50FD636_gt_GeminiProtocolWeaponRemove_Func");
+    TriggerEnable(libC50FD636_gt_GeminiProtocolWeaponRemove, false);
+    TriggerAddEventUnitBehaviorChange(libC50FD636_gt_GeminiProtocolWeaponRemove, null, "AntiMaterialRifleEquipped", c_unitBehaviorChangeDecrease);
+    TriggerAddEventUnitBehaviorChange(libC50FD636_gt_GeminiProtocolWeaponRemove, null, "AssaultRifleEquipped", c_unitBehaviorChangeDecrease);
+    TriggerAddEventUnitBehaviorChange(libC50FD636_gt_GeminiProtocolWeaponRemove, null, "AutomaticShotgunEquipped", c_unitBehaviorChangeDecrease);
+    TriggerAddEventUnitBehaviorChange(libC50FD636_gt_GeminiProtocolWeaponRemove, null, "AxeEquipped", c_unitBehaviorChangeDecrease);
+    TriggerAddEventUnitBehaviorChange(libC50FD636_gt_GeminiProtocolWeaponRemove, null, "BatonEquipped", c_unitBehaviorChangeDecrease);
+    TriggerAddEventUnitBehaviorChange(libC50FD636_gt_GeminiProtocolWeaponRemove, null, "ChainsawEquipped", c_unitBehaviorChangeDecrease);
+    TriggerAddEventUnitBehaviorChange(libC50FD636_gt_GeminiProtocolWeaponRemove, null, "CrowbarEquipped", c_unitBehaviorChangeDecrease);
+    TriggerAddEventUnitBehaviorChange(libC50FD636_gt_GeminiProtocolWeaponRemove, null, "FlamethrowerEquipped", c_unitBehaviorChangeDecrease);
+    TriggerAddEventUnitBehaviorChange(libC50FD636_gt_GeminiProtocolWeaponRemove, null, "HammerEquipped", c_unitBehaviorChangeDecrease);
+    TriggerAddEventUnitBehaviorChange(libC50FD636_gt_GeminiProtocolWeaponRemove, null, "LaserRifleEquipped", c_unitBehaviorChangeDecrease);
+    TriggerAddEventUnitBehaviorChange(libC50FD636_gt_GeminiProtocolWeaponRemove, null, "MarksmanRifleEquipped", c_unitBehaviorChangeDecrease);
+    TriggerAddEventUnitBehaviorChange(libC50FD636_gt_GeminiProtocolWeaponRemove, null, "MediumMachineGunEquipped", c_unitBehaviorChangeDecrease);
+    TriggerAddEventUnitBehaviorChange(libC50FD636_gt_GeminiProtocolWeaponRemove, null, "PistolEquipped", c_unitBehaviorChangeDecrease);
+    TriggerAddEventUnitBehaviorChange(libC50FD636_gt_GeminiProtocolWeaponRemove, null, "PlasmaCutterEquipped", c_unitBehaviorChangeDecrease);
+    TriggerAddEventUnitBehaviorChange(libC50FD636_gt_GeminiProtocolWeaponRemove, null, "PumpShotgunEquipped", c_unitBehaviorChangeDecrease);
+    TriggerAddEventUnitBehaviorChange(libC50FD636_gt_GeminiProtocolWeaponRemove, null, "SubmachineGunEquipped", c_unitBehaviorChangeDecrease);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Cohesion Ailment Resistence
+//--------------------------------------------------------------------------------------------------
+bool libC50FD636_gt_CohesionAilmentResistence_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    string lv_ailmentApplied;
+
+    // Variable Initialization
+    lv_ailmentApplied = EventUnitBehavior();
+
+    // Conditions
+    if (testConds) {
+        if (!((UnitHasBehavior(EventUnit(), "CohesionArmorLevel1") || UnitHasBehavior(EventUnit(), "CohesionArmorLevel2")))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if (UnitHasBehavior(EventUnit(), "CohesionArmorLevel1") && (libNtve_gf_RandomPercent() <= 20.0)) {
+        UnitBehaviorRemove(EventUnit(), lv_ailmentApplied, 1);
+    }
+    if (UnitHasBehavior(EventUnit(), "CohesionArmorLevel2") && (libNtve_gf_RandomPercent() <= 40.0)) {
+        UnitBehaviorRemove(EventUnit(), lv_ailmentApplied, 1);
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libC50FD636_gt_CohesionAilmentResistence_Init () {
+    libC50FD636_gt_CohesionAilmentResistence = TriggerCreate("libC50FD636_gt_CohesionAilmentResistence_Func");
+    TriggerAddEventUnitBehaviorChange(libC50FD636_gt_CohesionAilmentResistence, null, "FractureArm", c_unitBehaviorChangeIncrease);
+    TriggerAddEventUnitBehaviorChange(libC50FD636_gt_CohesionAilmentResistence, null, "FractureLeg", c_unitBehaviorChangeIncrease);
+    TriggerAddEventUnitBehaviorChange(libC50FD636_gt_CohesionAilmentResistence, null, "OpenWound", c_unitBehaviorChangeIncrease);
+    TriggerAddEventUnitBehaviorChange(libC50FD636_gt_CohesionAilmentResistence, null, "ShortCircuit", c_unitBehaviorChangeIncrease);
+    TriggerAddEventUnitBehaviorChange(libC50FD636_gt_CohesionAilmentResistence, null, "Venom", c_unitBehaviorChangeIncrease);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Critical Hit Text
+//--------------------------------------------------------------------------------------------------
+bool libC50FD636_gt_CriticalHitText_Func (bool testConds, bool runActions) {
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TextTagCreate(FixedToText(EventUnitDamageAmount(), 1), 24, UnitGetPosition(EventUnitDamageSourceUnit()), 0.5, true, false, PlayerGroupAll());
+    TextTagSetColor(TextTagLastCreated(), c_textTagColorText, Color(100.00, 0.00, 0.00));
+    TextTagSetTime(TextTagLastCreated(), c_textTagTimeDuration, 1.0);
+    TextTagSetTime(TextTagLastCreated(), c_textTagTimeFadeOut, 1.0);
+    TextTagSetVelocity(TextTagLastCreated(), 0.5, 90.0);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libC50FD636_gt_CriticalHitText_Init () {
+    libC50FD636_gt_CriticalHitText = TriggerCreate("libC50FD636_gt_CriticalHitText_Func");
+    TriggerAddEventUnitDamaged(libC50FD636_gt_CriticalHitText, null, c_unitDamageTypeRanged, c_unitDamageEither, "AntiMaterialRifleDamageCritical");
+    TriggerAddEventUnitDamaged(libC50FD636_gt_CriticalHitText, null, c_unitDamageTypeRanged, c_unitDamageEither, "AssaultRifleBurstFireDamageCritical");
+    TriggerAddEventUnitDamaged(libC50FD636_gt_CriticalHitText, null, c_unitDamageTypeRanged, c_unitDamageEither, "AssaultRifleDamageCritical");
+    TriggerAddEventUnitDamaged(libC50FD636_gt_CriticalHitText, null, c_unitDamageTypeRanged, c_unitDamageEither, "AxeDamageCritical");
+    TriggerAddEventUnitDamaged(libC50FD636_gt_CriticalHitText, null, c_unitDamageTypeRanged, c_unitDamageEither, "ChainsawDamageCritical");
+    TriggerAddEventUnitDamaged(libC50FD636_gt_CriticalHitText, null, c_unitDamageTypeRanged, c_unitDamageEither, "BatonDamageCritical");
+    TriggerAddEventUnitDamaged(libC50FD636_gt_CriticalHitText, null, c_unitDamageTypeRanged, c_unitDamageEither, "SubmachineGunDamageCritical");
+    TriggerAddEventUnitDamaged(libC50FD636_gt_CriticalHitText, null, c_unitDamageTypeRanged, c_unitDamageEither, "CrowbarDamageCritical");
+    TriggerAddEventUnitDamaged(libC50FD636_gt_CriticalHitText, null, c_unitDamageTypeRanged, c_unitDamageEither, "FlamethrowerDamageCritical");
+    TriggerAddEventUnitDamaged(libC50FD636_gt_CriticalHitText, null, c_unitDamageTypeRanged, c_unitDamageEither, "HammerDamageCritical");
+    TriggerAddEventUnitDamaged(libC50FD636_gt_CriticalHitText, null, c_unitDamageTypeRanged, c_unitDamageEither, "HeavyMachineGunDamageCritical");
+    TriggerAddEventUnitDamaged(libC50FD636_gt_CriticalHitText, null, c_unitDamageTypeRanged, c_unitDamageEither, "LaserRifleDamageCritical");
+    TriggerAddEventUnitDamaged(libC50FD636_gt_CriticalHitText, null, c_unitDamageTypeRanged, c_unitDamageEither, "MarksmanRifleDamageCritical");
+    TriggerAddEventUnitDamaged(libC50FD636_gt_CriticalHitText, null, c_unitDamageTypeRanged, c_unitDamageEither, "MediumMachineGunDamageCritical");
+    TriggerAddEventUnitDamaged(libC50FD636_gt_CriticalHitText, null, c_unitDamageTypeRanged, c_unitDamageEither, "PistolDamageCritical");
+    TriggerAddEventUnitDamaged(libC50FD636_gt_CriticalHitText, null, c_unitDamageTypeRanged, c_unitDamageEither, "PlasmaCutterDamageCritical");
+    TriggerAddEventUnitDamaged(libC50FD636_gt_CriticalHitText, null, c_unitDamageTypeRanged, c_unitDamageEither, "AntiMaterialRifleDamageCritical");
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Unstoppable Force Damage
+//--------------------------------------------------------------------------------------------------
+bool libC50FD636_gt_UnstoppableForceDamage_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    unit lv_damagedUnit;
+    unit lv_assault;
+
+    // Variable Initialization
+    lv_damagedUnit = EventUnit();
+    lv_assault = EventUnitDamageSourceUnit();
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    UnitDamage(lv_assault, "ChargeBonusDamage", lv_damagedUnit, (15.0 * UnitGetPropertyFixed(lv_assault, c_unitPropLifeArmor, c_unitPropCurrent)));
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libC50FD636_gt_UnstoppableForceDamage_Init () {
+    libC50FD636_gt_UnstoppableForceDamage = TriggerCreate("libC50FD636_gt_UnstoppableForceDamage_Func");
+    TriggerEnable(libC50FD636_gt_UnstoppableForceDamage, false);
+    TriggerAddEventUnitDamaged(libC50FD636_gt_UnstoppableForceDamage, null, c_unitDamageTypeSpell, c_unitDamageEither, "ChargeDamageLevel1");
+    TriggerAddEventUnitDamaged(libC50FD636_gt_UnstoppableForceDamage, null, c_unitDamageTypeSpell, c_unitDamageEither, "ChargeDamageLevel12");
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -2675,7 +2938,9 @@ bool libC50FD636_gt_Reload_Func (bool testConds, bool runActions) {
         return true;
     }
 
-    PlayerAddChargeUsed(lv_reloadingPlayer, "CurrentMagazine", (libC50FD636_gv_marines[lv_reloadingPlayer].lv_currentMaxMagazineSize * -1.0));
+    if ((EventUnit() != libC50FD636_gv_geminiProtocolUnit[UnitGetOwner(EventUnit())])) {
+        PlayerAddChargeUsed(lv_reloadingPlayer, "CurrentMagazine", (libC50FD636_gv_marines[lv_reloadingPlayer].lv_currentMaxMagazineSize * -1.0));
+    }
     libC50FD636_gf_UpdateNumberofMagazines(lv_reloadingPlayer, libC50FD636_gv_marines[lv_reloadingPlayer].lv_numberofMagzinesPerReload);
     libNtve_gf_SetDialogItemCurrentValue(libC50FD636_gv_ammoDisplay[lv_reloadingPlayer].lv_ammoBar, (libC50FD636_gv_marines[lv_reloadingPlayer].lv_currentMaxMagazineSize - PlayerGetChargeUsed(lv_reloadingPlayer, "CurrentMagazine")), PlayerGroupAll());
     libNtve_gf_SetDialogItemText(libC50FD636_gv_ammoDisplay[lv_reloadingPlayer].lv_ammoLabel, (FixedToText(libC50FD636_gv_marines[lv_reloadingPlayer].lv_currentMaxMagazineSize, c_fixedPrecisionAny) + StringExternal("Param/Value/lib_C50FD636_543B63C9") + IntToText(libC50FD636_gv_marines[lv_reloadingPlayer].lv_currentMaxMagazineSize)), PlayerGroupAll());
@@ -3044,6 +3309,25 @@ void libC50FD636_gt_HeroTest_Init () {
     TriggerAddEventChatMessage(libC50FD636_gt_HeroTest, 1, "MakeHero", false);
 }
 
+//--------------------------------------------------------------------------------------------------
+// Trigger: Test Dual Weapons
+//--------------------------------------------------------------------------------------------------
+bool libC50FD636_gt_TestDualWeapons_Func (bool testConds, bool runActions) {
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TriggerDebugOutput(1, IntToText(UnitWeaponCount(EventUnit())), true);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libC50FD636_gt_TestDualWeapons_Init () {
+    libC50FD636_gt_TestDualWeapons = TriggerCreate("libC50FD636_gt_TestDualWeapons_Func");
+    TriggerAddEventUnitBehaviorChange(libC50FD636_gt_TestDualWeapons, null, "AssaultRifleEquipped", c_unitBehaviorChangeIncrease);
+}
+
 void libC50FD636_InitTriggers () {
     libC50FD636_gt_TestEnableTechTreeRestrictions_Init();
     libC50FD636_gt_PredatorEventRegistration_Init();
@@ -3082,14 +3366,19 @@ void libC50FD636_InitTriggers () {
     libC50FD636_gt_StealthMatrixDeactivate_Init();
     libC50FD636_gt_DropItems_Init();
     libC50FD636_gt_WeaveAilmentRemoval_Init();
-    libC50FD636_gt_CohesionAilmentResistence_Init();
-    libC50FD636_gt_CriticalHitText_Init();
-    libC50FD636_gt_UnstoppableForceDamage_Init();
     libC50FD636_gt_LockdownEnabledonEquip_Init();
     libC50FD636_gt_LockdownEnabled_Init();
     libC50FD636_gt_LockdownDisabled_Init();
     libC50FD636_gt_WeaponSwapLockdownRemoval_Init();
+    libC50FD636_gt_GeminiProtocolReload_Init();
+    libC50FD636_gt_GeminiProtocolBehaviors_Init();
+    libC50FD636_gt_GeminiProtocolCriticalStrike_Init();
     libC50FD636_gt_GeminiProtocolWeaponEquip_Init();
+    libC50FD636_gt_GeminiProtocolWeaponAdd_Init();
+    libC50FD636_gt_GeminiProtocolWeaponRemove_Init();
+    libC50FD636_gt_CohesionAilmentResistence_Init();
+    libC50FD636_gt_CriticalHitText_Init();
+    libC50FD636_gt_UnstoppableForceDamage_Init();
     libC50FD636_gt_StackMagazinesIntoAmmoBoxes_Init();
     libC50FD636_gt_DisplayInventoryOnSelection_Init();
     libC50FD636_gt_UpdateBagSlotsonMove_Init();
@@ -3117,6 +3406,7 @@ void libC50FD636_InitTriggers () {
     libC50FD636_gt_JumpUpgrade_Init();
     libC50FD636_gt_MedicalAssistanceUsage_Init();
     libC50FD636_gt_HeroTest_Init();
+    libC50FD636_gt_TestDualWeapons_Init();
 }
 
 //--------------------------------------------------------------------------------------------------

@@ -312,6 +312,8 @@
         <AbilArray Link="ImmovableObject"/>
         <AbilArray Link="HeavyJump"/>
         <AbilArray Link="LockdownDisable"/>
+        <AbilArray Link="GeminiProtocolAttackRedirect"/>
+        <AbilArray Link="GeminiProtocolTranport"/>
         <CardLayouts index="0">
             <LayoutButtons index="5">
                 <Face value="Reload"/>
@@ -376,6 +378,7 @@
         <BehaviorArray Link="GeminiProtocolAttackSpeedSlow"/>
         <BehaviorArray Link="ImmovableObject"/>
         <GlossaryPriority value="3"/>
+        <FlagArray index="HiddenCargoUI" value="1"/>
     </CUnit>
     <CUnit id="BulwarkShield">
         <Race value="Human"/>
@@ -576,6 +579,24 @@
         <LifeRegenRate value="0.1718"/>
         <LateralAcceleration value="1000"/>
         <GlossaryPriority value="10"/>
+    </CUnit>
+    <CUnit id="GeminiProtocolDummyUnit">
+        <Race value="Zombie"/>
+        <FlagArray index="Unselectable" value="1"/>
+        <FlagArray index="Untargetable" value="1"/>
+        <FlagArray index="Invulnerable" value="1"/>
+        <Speed value="10"/>
+        <Acceleration value="1000"/>
+        <AbilArray Link="attack"/>
+        <AbilArray Link="move"/>
+        <CargoSize value="1"/>
+        <EditorCategories value=""/>
+        <LifeStart value="100000"/>
+        <LifeMax value="100000"/>
+        <LifeArmor value="50000"/>
+        <LifeRegenRate value="100000"/>
+        <BehaviorArray Link="GeminiProtocolAttackSpeedSlowInternal"/>
+        <BehaviorArray Link="GeminiUnitInvulnerabilty"/>
     </CUnit>
     <CUnit id="GroundIlluminationFlareLevel2">
         <Race value="Zombie"/>

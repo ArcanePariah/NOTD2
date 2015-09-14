@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<Catalog>
+    <CAttachMethodNodeOccupancy2 default="1" id="AssaultGeminiOccupancyTemplate">
+        <Targets value="MarksmanRifle"/>
+        <Targets value="AntiMaterialRifle"/>
+        <Targets value="AssaultRifle"/>
+        <Targets value="AutomaticShotgun"/>
+        <Targets value="Axe"/>
+        <Targets value="Baton"/>
+        <Targets value="Chainsaw"/>
+        <Targets value="Crowbar"/>
+        <Targets value="Flamethrower"/>
+        <Targets value="Hammer"/>
+        <Targets value="LaserRifle"/>
+        <Targets value="MediumMachineGun"/>
+        <Targets value="Pistol"/>
+        <Targets value="PlasmaCutter"/>
+        <Targets value="SubmachineGun"/>
+        <Targets value="PumpShotgun"/>
+        <Logic value="RequireNone"/>
+    </CAttachMethodNodeOccupancy2>
+    <CAttachMethodFilter id="AssaultGeminiFilter">
+        <Keys Keyword="Weapon" Index="1"/>
+        <Keys Keyword="Weapon" Index="2"/>
+        <Logic value="OR"/>
+    </CAttachMethodFilter>
+    <CAttachMethodNodeOccupancy2 id="AssaultOccupancyFilter" parent="AssaultGeminiOccupancyTemplate"/>
+</Catalog>

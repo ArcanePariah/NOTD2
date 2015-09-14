@@ -66,6 +66,7 @@ Behavior/Name/MarksmanRifleEquipped=Marksman Rifle Equipped
 Behavior/Name/MarksmanRifleNoise=Marksman Rifle Noise
 Behavior/Name/MediumMachineGunEquipped=Medium Machine Gun Equipped
 Behavior/Name/MediumMachineGunNoise=Medium Machine Gun Noise
+Behavior/Name/MeleeWeaponEquipped=Melee Weapon Equipped
 Behavior/Name/NanoHealthAugment=Nano Health Augment
 Behavior/Name/NightVisionModule=Night Vision Module
 Behavior/Name/PistolEquipped=Pistol Equipped
@@ -83,6 +84,7 @@ Behavior/Name/PumpShotgunEquipped=Pump Shotgun Equipped
 Behavior/Name/PumpShotgunNoise=Pump Shotgun Noise
 Behavior/Name/RailgunEquipped=Railgun Equipped
 Behavior/Name/RailgunNoise=Railgun Noise
+Behavior/Name/RangedWeaponEquipped=Ranged Weapon Equipped
 Behavior/Name/ReactiveProtectiveInsert=Reactive Protective Insert
 Behavior/Name/ReloadManual=Reload Manual
 Behavior/Name/ReloadNightmare=Reload Nightmare
@@ -101,24 +103,26 @@ Behavior/Name/SubmachineGunNoise=Submachine Gun Noise
 Behavior/Name/SuperGravityGunNoise=Super Gravity Gun Noise
 Behavior/Name/TX1=TX-1
 Behavior/Name/TX1Poison=TX-1 Poison
+Behavior/Name/UnderhandWeaponEquipped=Underhand Weapon Equipped
 Behavior/Name/WeaponEquipDelay=Weapon Equip Delay
+Behavior/Name/WeaponEquipped=Weapon Equipped
 Behavior/Name/WeaponEquippedTemplate=Weapon Equipped Template
 Behavior/Name/WeaponNoiseTemplate=Weapon Noise Template
 Behavior/Name/ZombieUnitSpawnDisable=Zombie Unit Spawn Disable
-Button/Imfotext/AutomaticShotgun=Shotgun that features a higher attack speed but shorter range.
-Button/Infotext/AntiMaterialRifle=A more powerful sniper that is effective against armored targets.
-Button/Infotext/AssaultRifle=Standard issue assault rifle, boasts no real strengths or weaknesses.
-Button/Infotext/Chainsaw=Chainsaw that is effective in close range. Uses magazines as fuel.
-Button/Infotext/Crowbar=Just an ordinary crowbar...IN SPACE!
-Button/Infotext/Flamethrower=Flamethrower that shoots jets of plasma. More effective up close.
-Button/Infotext/HeavyMachineGun=Massive weapon that excels in firepower and attack speed.
-Button/Infotext/LaserRifle=Laser that sears through enemy armor, dealing additional damage.
-Button/Infotext/MarksmanRifle=Sniper rifle that has high range and damage, but a slow attack.
-Button/Infotext/MediumMachineGun=General purpose machine gun for laying down suppressive fire.
-Button/Infotext/Pistol=Standard issue handgun. Has a strong kick but very short range.
-Button/Infotext/PlasmaCutter=Industrial tool that is lethal at close range. Uses magazines for fuel.
-Button/Infotext/PumpShotgun=Shotgun with high range and splash, but suffers in attack speed.
-Button/Infotext/SubmachineGun=Lightweight rapid fire weapon that suffers against armored foes.
+Button/Imfotext/AutomaticShotgunItem=Shotgun that features a higher attack speed but shorter range.
+Button/Infotext/AntiMaterialRifleItem=A more powerful sniper that is effective against armored targets.
+Button/Infotext/AssaultRifleItem=Standard issue assault rifle, boasts no real strengths or weaknesses.
+Button/Infotext/ChainsawItem=Chainsaw that is effective in close range. Uses magazines as fuel.
+Button/Infotext/CrowbarItem=Just an ordinary crowbar...IN SPACE!
+Button/Infotext/FlamethrowerItem=Flamethrower that shoots jets of plasma. More effective up close.
+Button/Infotext/HeavyMachineGunItem=Massive weapon that excels in firepower and attack speed.
+Button/Infotext/LaserRifleItem=Laser that sears through enemy armor, dealing additional damage.
+Button/Infotext/MarksmanRifleItem=Sniper rifle that has high range and damage, but a slow attack.
+Button/Infotext/MediumMachineGunItem=General purpose machine gun for laying down suppressive fire.
+Button/Infotext/PistolItem=Standard issue handgun. Has a strong kick but very short range.
+Button/Infotext/PlasmaCutterItem=Industrial tool that is lethal at close range. Uses magazines for fuel.
+Button/Infotext/PumpShotgunItem=Shotgun with high range and splash, but suffers in attack speed.
+Button/Infotext/SubmachineGunItem=Lightweight rapid fire weapon that suffers against armored foes.
 Button/Name/AmmunitionCase=Ammunition Case
 Button/Name/AntiMaterialRifle=Anti-Material Rifle
 Button/Name/AntiVenom=Anti-Venom
@@ -195,9 +199,9 @@ Button/Tooltip/ArmoredProtectiveInsert=<c val="FFCC33">Increases life armor by <
 Button/Tooltip/AssaultRifle=Damage: <d ref="Effect,AssaultRifleDamage,Amount" precision="2"/><n/>Bonus: +<d ref="Effect,AssaultRifleDamage,AttributeBonus[Massive]" precision="2"/> vs. Massive<n/>Armor Reduction: <d ref="Effect,AssaultRifleDamage,ArmorReduction" precision="2"/><n/>Attack Speed: <d ref="Weapon,AssaultRifle,Period" precision="2"/><n/>Splash: <d ref="Effect,AssaultRifleDamage,AreaArray[0].Radius" precision="2"/><n/>Range: <d ref="Weapon,AssaultRifle,Range"/><n/>Reload time: 2<n/>Equip time: 2<n/>Weight: 8<n/>Critical Damage: 200%
 Button/Tooltip/AssaultRifleBurstFire=Switching firing mode from full auto to burst fire.<n/><n/><c val="FFCC33">Attack mode changes to spaced three round bursts.</c>
 Button/Tooltip/AutomaticShotgun=Damage: <d ref="Effect,AutomaticShotgunDamageRange10,Amount" precision="2"/> x <d ref="Weapon,AutomaticShotgun,DisplayAttackCount"/> pellets<n/>Bonus: +<d ref="Effect,AutomaticShotgunDamageRange10,AttributeBonus[Light]" precision="2"/> vs Light<n/>Armor Reduction: <d ref="Effect,AutomaticShotgunDamageRange10,ArmorReduction" precision="2"/><n/>Attack Speed: <d ref="Weapon,AutomaticShotgun,Period" precision="2"/><n/>Splash: 0.35 per pellet, pellets scattered in an area of 4 at range 10<n/>Range: <d ref="Weapon,AutomaticShotgun,Range" precision="2"/><n/>Reload time: 2<n/>Equip time: 2.5<n/>Weight: 12<n/>Critical Damage: 180%
-Button/Tooltip/Axe=Still just an ordinary axe… in space.
+Button/Tooltip/AxeItem=Still just an ordinary axe… in space.
 Button/Tooltip/Bandage=Heals <d ref="Effect,BandageHeal,VitalArray[Life].Change"/> hitpoints instantly and cures 1 Open Wound on use.
-Button/Tooltip/Baton=Still just an ordinary baton… in space.
+Button/Tooltip/BatonItem=Still just an ordinary baton… in space.
 Button/Tooltip/Chainsaw=Damage: <d ref="Effect,ChainsawDamage,Amount" precision="2"/><n/>Bonus: +<d ref="Effect,ChainsawDamage,AttributeBonus[Light]" precision="2"/> vs Light<n/>Armor Reduction: <d ref="Effect,ChainsawDamage,ArmorReduction" precision="2"/><n/>Attack Speed: <d ref="Weapon,Chainsaw,Period" precision="2"/><n/>Splash: <d ref="Effect,ChainsawDamage,AreaArray[0].Radius" precision="2"/><n/>Range: <d ref="Weapon,Chainsaw,Range" precision="2"/> (Ground only)<n/>Reload time: 3.5<n/>Equip time: 1.5<n/>Weight: 15<n/>Critical Damage: 250%
 Button/Tooltip/CombatMobilityAugment=<c val="FFCC33">Increases movement speed by 10% and jump distance by 1.</c>
 Button/Tooltip/CommunicationsArray=Reveals units through the fog of war when deployed.
@@ -217,8 +221,8 @@ Button/Tooltip/FieldLights=<c val="FFCC33">Reveals and detects in a radius of 7 
 Button/Tooltip/Flamethrower=Damage: <d ref="Effect,FlamethrowerDamage,Amount" precision="2"/> x <d ref="Weapon,Flamethrower,DisplayAttackCount" precision="2"/><n/>Armor Reduction: <d ref="Effect,FlamethrowerDamage,ArmorReduction" precision="2"/><n/>Attack Speed: <d ref="Weapon,Flamethrower,Period" precision="2"/><n/>Splash: <d ref="Effect,FlamethrowerDamage,AreaArray[0].Radius" precision="2"/> width, 4.5 length<n/>Range: <d ref="Weapon,Flamethrower,Range" precision="2"/> (Ground only)<n/>Reload time: 3.5<n/>Equip time: 2.5<n/>Weight: 16<n/>Critical Damage: 120%
 Button/Tooltip/FlareGun=Reveals a <d ref="Effect,FlareGun,RevealRadius"/> radius area for <d ref="Effect,FlareGun,ExpireDelay"/> seconds. Enemies in the area of effect will be slowed by <d ref="1-Behavior,FlareGunSlow,Modification.MoveSpeedMultiplier*100" precision="1"/>%.
 Button/Tooltip/Flechette=<c val="FFCC33">Attacks have a chance to apply an open wound to the target based on damage dealt.</c>
-Button/Tooltip/GrenadeLauncher=
-Button/Tooltip/Hammer=Still just an ordinary hammer… in space.
+Button/Tooltip/GrenadeLauncherItem=
+Button/Tooltip/HammerItem=Still just an ordinary hammer… in space.
 Button/Tooltip/HeavyMachineGun=Damage: Damage: <d ref="Effect,HeavyMachineGunDamage,Amount" precision="2"/><n/>Armor Reduction: <d ref="Effect,HeavyMachineGunDamage,ArmorReduction" precision="2"/><n/>Attack Speed: <d ref="Weapon,HeavyMachineGun,Period" precision="2"/><n/>Splash: <d ref="Effect,HeavyMachineGunDamage,AreaArray[0].Radius" precision="2"/><n/>Range: <d ref="Weapon,HeavyMachineGun,Range" precision="2"/><n/>Reload time: 6<n/>Equip time: 1<n/>Weight: 40<n/>Critical damage: 200%
 Button/Tooltip/HeavyProtectiveInsert=<c val="FFCC33">Increases life armor by <d ref="Behavior,HeavyProtectiveInsert,Modification.LifeArmorBonus"/> and reduces ranged damage by <d ref="Behavior,HeavyProtectiveInsert,DamageResponse.ModifyAmount*(-1)"/>.</c>
 Button/Tooltip/HecateModule=<c val="FFCC33">Increases the Flamethrower's damage by 2 and attack speed by 15%.</c>
@@ -237,7 +241,7 @@ Button/Tooltip/PackUpAntiMaterialRifle=Pack up the bipod and return the weapon t
 Button/Tooltip/PackUpFiringStance=Exit the braced position, returning to normal firing stance.<n/><n/><c val="FFCC33">Loses range and damage bonuses but regaining normal movespeed.</c>
 Button/Tooltip/PackUpHeavyMachineGun=Pack Heavy Machine Gun, rendering it unfirable again.<n/><n/><c val="FFCC33">Restores mobility but removes ability to attack with HMG.</c>
 Button/Tooltip/Pistol=Damage: <d ref="Effect,PistolDamage,Amount" precision="2"/><n/>Bonus: None<n/>Armor Reduction: <d ref="Effect,PistolDamage,ArmorReduction" precision="2"/><n/>Attack Speed: <d ref="Weapon,Pistol,Period" precision="2"/><n/>Splash: 0<n/>Range: <d ref="Weapon,Pistol,Range" precision="2"/><n/>Reload time: 1.1<n/>Equip time: 0.3<n/>Weight: 2<n/>Critical Damage: 175%
-Button/Tooltip/PlasmaCannon=
+Button/Tooltip/PlasmaCannonItem=
 Button/Tooltip/PlasmaCore=<c val="FFCC33">Reduces target armor and shield armor by <d ref="Behavior,PlasmaCoreDebuff,Modification.LifeArmorBonus*(-1)"/> on hit.</c>
 Button/Tooltip/PlasmaCutter=Damage: <d ref="Effect,PlasmaCutterDamage,Amount" precision="2"/><n/>Armor Reduction: <d ref="Effect,PlasmaCutterDamage,ArmorReduction" precision="2"/><n/>Attack Speed: <d ref="Weapon,PlasmaCutter,Period" precision="2"/><n/>Splash: <d ref="Effect,PlasmaCutterDamage,AreaArray[0].Radius" precision="2"/><n/>Range: <d ref="Weapon,PlasmaCutter,Range" precision="2"/> (Ground only)<n/>Reload time: 3.5<n/>Equip time: 2<n/>Weight: 20<n/>Critical Damage: 250%
 Button/Tooltip/PowerGeneratorAugment=<c val="FFCC33">Increases energy regeneration by <d ref="Behavior,PowerGeneratorAugment,Modification.VitalRegenArray[Energy]" precision="1"/>.</c>
@@ -325,33 +329,43 @@ Unit/LifeArmorTooltip/UGCMarines=Standard UGC Armor plating, good for defending 
 Unit/Name/40mmGrenade=40mm Grenade
 Unit/Name/AmmunitionCase=Ammunition Case
 Unit/Name/AntiMaterialRifle=Anti Material Rifle
+Unit/Name/AntiMaterialRifleItem=Anti Material Rifle
 Unit/Name/AntiVenom=Anti-Venom
 Unit/Name/ArmorPiercing=AP Rounds
 Unit/Name/ArmoredProtectiveInsert=Light Armor Plates
 Unit/Name/AssaultRifle=Assault Rifle
+Unit/Name/AssaultRifleItem=Assault Rifle
 Unit/Name/AutomaticShotgun=Automatic Shotgun
+Unit/Name/AutomaticShotgunItem=Automatic Shotgun
 Unit/Name/AutomaticShotgunProjectileWeapon=Automatic Shotgun Projectile Weapon
 Unit/Name/Axe=Axe
+Unit/Name/AxeItem=Axe
 Unit/Name/Bandage=Bandage
 Unit/Name/Baton=Baton
+Unit/Name/BatonItem=Baton
 Unit/Name/Bogus=
 Unit/Name/ChainExplosive=Chain Explosive
 Unit/Name/Chainsaw=Chainsaw
+Unit/Name/ChainsawItem=Chainsaw
 Unit/Name/ClaymoreMine=Claymore Mine
 Unit/Name/CombatMobilityAugment=Mobility Augment
 Unit/Name/CommunicationsArray=Communications Array
 Unit/Name/CommunicationsArrayPackedUp=Communications Array
 Unit/Name/Crowbar=Crowbar
+Unit/Name/CrowbarItem=Crowbar
 Unit/Name/DisposableRocketLauncher=Disposable Rocket Launcher
 Unit/Name/EnhancedProtectiveInsert=Medium Armor Plates
 Unit/Name/Expanding=Expanding Rounds
 Unit/Name/FieldLights=Field Light
 Unit/Name/Flamethrower=Flamethrower
+Unit/Name/FlamethrowerItem=Flamethrower
 Unit/Name/FlareGun=Flare Gun
 Unit/Name/Flechette=Flechette Rounds
-Unit/Name/GrenadeLauncher=Grenade Launcher
+Unit/Name/GrenadeLauncherItem=Grenade Launcher
 Unit/Name/Hammer=Hammer
+Unit/Name/HammerItem=Hammer
 Unit/Name/HeavyMachineGun=Heavy Machine Gun
+Unit/Name/HeavyMachineGunItem=Heavy Machine Gun
 Unit/Name/HeavyProtectiveInsert=Heavy Armor Plates
 Unit/Name/HecateModule=Hecate Module
 Unit/Name/HighCapacityMagazine=High Capacity Magazine
@@ -359,24 +373,30 @@ Unit/Name/HighExplosive=HE Rounds
 Unit/Name/ImprovedAccuracyModule=Recoil Limiter
 Unit/Name/K-9=K-9
 Unit/Name/LaserRifle=Laser Rifle
+Unit/Name/LaserRifleItem=Laser Rifle
 Unit/Name/Magazine=Magazine
 Unit/Name/MarksmanRifle=Marksman Rifle
+Unit/Name/MarksmanRifleItem=Marksman Rifle
 Unit/Name/MedicNOTD=Rifleman
 Unit/Name/MediumMachineGun=Medium Machine Gun
+Unit/Name/MediumMachineGunItem=Medium Machine Gun
 Unit/Name/Medkit=Medkit
 Unit/Name/MendingPaste=Mending Paste
 Unit/Name/NOTDItem=NOTD Item
 Unit/Name/NanoHealthAugment=Regeneration Module
 Unit/Name/NightVisionModule=Night Vision Module
 Unit/Name/Pistol=Pistol
-Unit/Name/PlasmaCannon=Plasma Cannon
+Unit/Name/PistolItem=Pistol
 Unit/Name/PlasmaCannonBall=Plasma Cannon Ball
+Unit/Name/PlasmaCannonItem=Plasma Cannon
 Unit/Name/PlasmaCannonProjectile=Plasma Cannon Projectile
 Unit/Name/PlasmaCoil=Plasma Coil
 Unit/Name/PlasmaCore=Plasma Rounds
 Unit/Name/PlasmaCutter=Plasma Cutter
+Unit/Name/PlasmaCutterItem=Plasma Cutter
 Unit/Name/PowerGeneratorAugment=Generator Module
 Unit/Name/PumpShotgun=Pump Shotgun
+Unit/Name/PumpShotgunItem=Pump Shotgun
 Unit/Name/Railgun=Railgun
 Unit/Name/ReactiveProtectiveInsert=Reactive Armor
 Unit/Name/RiotShield=Riot Shield
@@ -387,6 +407,7 @@ Unit/Name/RocketLauncher=Rocket Launcher
 Unit/Name/SatchelCharge=Satchel Charge
 Unit/Name/ShieldAugmentationInsert=Shield Booster Plates
 Unit/Name/SubmachineGun=Submachine Gun
+Unit/Name/SubmachineGunItem=Submachine Gun
 Unit/Name/TX1=TX-1 Rounds
 Unit/Name/TestTarget=Test Target
 Unit/Name/TestTemplate=TestTemplate

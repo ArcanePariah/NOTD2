@@ -3,7 +3,6 @@
     <CActorUnit default="1" id="BaseMarineActor" parent="GenericUnitStandardNoAutoSoundLinks">
         <Macros value="WeaponEquipMacro"/>
         <Macros value="WeaponModelSwapGroups"/>
-        <Macros value="AntiMaterialRifleMacro"/>
         <Macros value="HeavyMachineGunMacro"/>
         <Macros value="WeaponAnimationGroups"/>
         <EditorCategories value=""/>
@@ -48,6 +47,7 @@
     <CActorUnit default="1" id="BaseHeavyMarineActor" parent="BaseMarineActor">
         <Macros index="1" value="WeaponEquipHeavyMacro"/>
         <Macros index="2" value="WeaponModelSwapGroupsHeavy"/>
+        <Macros index="4" value="WeaponHeavyAnimationGroups"/>
         <On index="61" Terms="ActorCreation" Send="AttachModel Torso CraftTorso {Hardpoint 0}"/>
         <On index="62" Terms="ActorCreation" Send="AttachModel Waist CraftWaist {Hardpoint 3}"/>
         <On index="63" Terms="ActorCreation" Send="AttachModel RightShoulder CraftShoulderRight {Hardpoint 8}"/>
@@ -181,6 +181,11 @@
     <CActorRange id="ChainExplosiveRange" parent="RangeAbil" abil="ChainExplosive">
         <EditorCategories value=""/>
     </CActorRange>
+    <CActorModel id="DefaultExplosionProtossLarge2" parent="ModelAnimationStyleOneShot">
+        <Host Subject="::Creator"/>
+        <HostSiteOps Ops="SOpAttachWeapon SOpForwardTargetPoint"/>
+        <Model value="MarineAttackLaunch"/>
+    </CActorModel>
     <CActorRange id="DetectorRange2Detected">
         <Terms value="Cap 1"/>
         <EditorCategories value=""/>
@@ -297,6 +302,16 @@
         <On Terms="UnitDeath.MD5Mine" Send="Create"/>
         <AutoScaleFactor value="1.000000"/>
     </CActorModel>
+    <CActorUnit id="GeminiDummyUnit" parent="GenericUnitMinimal" unitName="GeminiProtocolDummyUnit">
+        <EditorCategories value=""/>
+        <Model value="Invisible"/>
+        <HighlightTooltip value="Unit/Name/Bogus"/>
+    </CActorUnit>
+    <CActorSite id="GenericAttackSite">
+        <EditorCategories value=""/>
+        <Host Subject="MarksmanRifle"/>
+        <HostSiteOps Ops="SOpAttachWeapon"/>
+    </CActorSite>
     <CActorAction id="IFV25mmHEAutocannonAttack" parent="GenericAttack" effectImpact="IFV25mmHEAutocannonDamage" effectLaunch="IFV25mmHEAutocannonSet">
         <EditorCategories value=""/>
         <LaunchRequest Subject="IFV25mmHEAutocannonModel"/>
@@ -366,12 +381,6 @@
     <CActorMissile id="A10XHellfireMissileAttackMissile" parent="GenericAttackMissile" unitName="A10XLaunchHellfireMissilesWeapon">
         <EditorCategories value=""/>
     </CActorMissile>
-    <CActorEventMacro id="AntiMaterialRifleMacro">
-        <On index="0" Terms="Abil.DeployAntiMaterialRifle.SourceCastStart" Send="AnimGroupApply Work Work,Start Work,End 0 3.000000 AsDuration"/>
-        <On index="1" Terms="Abil.PackUpAntiMaterialRifle.SourceCastStart" Send="AnimGroupRemove Work 0 0.500000 AsDuration"/>
-        <On Terms="Abil.LockdownNOTD.SourceCastStart" Send="AnimGroupApply Work Work,Start Work,End 0 1.000000 AsDuration"/>
-        <On Terms="Abil.LockdownDisable.SourceCastStart" Send="AnimGroupRemove Work 0 1.000000 AsDuration"/>
-    </CActorEventMacro>
     <CActorUnit id="ArtillaryBeacon" parent="GenericUnitMinimal" unitName="ArtilleryBeacon">
         <EditorCategories value=""/>
         <Model value="ArtillaryBeacon"/>
@@ -392,15 +401,6 @@
         <Host Subject="_Unit"/>
         <HostSiteOps Ops="SOpAttachOverhead"/>
         <AutoScaleFromSelectionFactor value="1.000000"/>
-    </CActorModel>
-    <CActorSetQueried id="DualWieldTest">
-        <AttachQuery Methods="AssaultWeapons AssaultWeaponAttach"/>
-        <SpawnTarget value="EquippedWeapon"/>
-    </CActorSetQueried>
-    <CActorModel id="EquippedWeapon">
-        <Supporter Subject="::Creator"/>
-        <Model value="AssaultRifle"/>
-        <On Terms="ActorCreation" Send="SetBearings 1.000000,1.000000,1.000000"/>
     </CActorModel>
     <CActorModel id="Escape" parent="ModelAnimationStyleOneShotUNIT">
         <EditorCategories value=""/>
@@ -765,14 +765,6 @@
         <RangeFlags index="GameWorld" value="0"/>
         <RangeFlags index="Minimap" value="1"/>
     </CActorRange>
-    <!-- Bounce Segment 1                                                                        -->
-    <CActorAction id="MutaliskAttackSegment1">
-        <ImpactPhysics index="0" Name="GlaveWurmImpact" MatchKeys="Basic" Physics="MD5DetonationForce"/>
-    </CActorAction>
-    <!-- Bounce Segment 2                                                                        -->
-    <CActorAction id="MutaliskAttackSegment2">
-        <ImpactPhysics index="0" Name="GlaveWurmImpact" MatchKeys="Basic" Physics="MD5DetonationForce"/>
-    </CActorAction>
     <CActorMissile id="PiranhaMissileAttackMissile" parent="GenericAttackMissile" unitName="PiranhaMissileWeapon">
         <EditorCategories value=""/>
         <Scale value="0.500000"/>
@@ -993,9 +985,6 @@
         <Model value="Invisible"/>
         <HighlightTooltip value="Unit/Name/Bogus"/>
     </CActorUnit>
-    <CActorLookAt id="TestLookAt">
-        <EditorCategories value=""/>
-    </CActorLookAt>
     <CActorModel id="ThunderballFists" parent="ModelAnimationStyleContinuous">
         <EditorCategories value=""/>
         <On Terms="Abil.ThunderballFists.SourceCastStart" Send="Create"/>
@@ -1187,7 +1176,9 @@
     </CActorModel>
     <CActorUnit id="Assault" parent="BaseHeavyMarineActor" unitName="Assault">
         <Scale value="0.900000"/>
-        <Macros index="5" value="WeaponHeavyAnimationGroups"/>
+        <Macros index="1" value="AssaultWeaponEquipMacro"/>
+        <Macros value="AssaultGeminiDualWieldEquipMacro"/>
+        <Macros value="AssaultDualWieldModelSwap"/>
         <SoundArray index="Birth" value="WarHound_Birth"/>
         <SoundArray index="Ready" value="WarHound_Ready"/>
         <SoundArray index="Help" value="WarHound_Help"/>
@@ -1205,7 +1196,6 @@
         <On index="74" Terms="Abil.HeavyJump.SourceCastStart" Send="AnimPlay Jump Jump"/>
         <On Terms="Behavior.ChargeMovement.On" Send="AnimGroupApply Run"/>
         <On Terms="Behavior.ChargeMovement.Off" Send="AnimGroupRemove Run"/>
-        <ErrorArray index="0" removed="1"/>
     </CActorUnit>
     <CActorUnit id="Commando" parent="BaseMarineActor" unitName="Commando">
         <HighlightTooltip value="Unit/Name/Bogus"/>
@@ -1218,8 +1208,6 @@
         <On index="61" Terms="ActorCreation" Send="AttachModel DemolitionTorso DemolitionCraftTorso {Hardpoint 0}"/>
         <On Terms="Effect.Bulwark.Start; !ScopeContains BulwarkShieldModel" Send="Create BulwarkShieldModel"/>
         <On Terms="ActorDestruction" Target="BulwarkShieldModel" Send="Destroy"/>
-        <Macros index="5" value="WeaponHeavyAnimationGroups"/>
-        <ErrorArray index="0" removed="1"/>
     </CActorUnit>
     <CActorUnit id="Drone2" parent="BaseMarineActor" unitName="Drone2">
         <HighlightTooltip value="Unit/Name/Bogus"/>
@@ -1385,11 +1373,17 @@
         <On index="63" Terms="ActorCreation" Send="AttachModel NPCRightShoulder BasicShoulderRight {Hardpoint 8}"/>
         <On index="77" Terms="AttachModel" Target="_ArmorCustom" Send="Signal Peacekeeper"/>
         <On index="78" removed="1"/>
+        <Macros index="3" value="AntiMaterialRifleMacro"/>
+        <Macros index="4" value="HeavyMachineGunMacro"/>
+        <Macros value="WeaponAnimationGroups"/>
     </CActorUnit>
     <CActorUnit id="Paratrooper" parent="BaseMarineActor" unitName="Paratrooper">
         <On index="61" Terms="ActorCreation" Send="AttachModel NPCTorso BasicTorso {Hardpoint 0}"/>
         <On index="77" Terms="AttachModel" Target="_ArmorCustom" Send="Signal Breach"/>
         <On index="78" removed="1"/>
+        <Macros index="3" value="AntiMaterialRifleMacro"/>
+        <Macros index="4" value="HeavyMachineGunMacro"/>
+        <Macros value="WeaponAnimationGroups"/>
     </CActorUnit>
     <CActorRange id="PrecisionShotRange" parent="RangeAbil" abil="PrecisionShot">
         <EditorCategories value=""/>
@@ -1462,6 +1456,7 @@
         <LaunchSiteOps Ops="SOpAttachWeapon"/>
         <LaunchAssets Sound="Tychus_TossGrenadeVO"/>
         <ImpactMap index="None" Sound="TossGrenadeImpact"/>
+        <Lifetime value="0.200000"/>
     </CActorAction>
     <CActorMissile id="FragmentationGrenadeMissile" parent="GenericAttackMissile" unitName="FragmentationGrenade">
         <EditorCategories value=""/>
@@ -1486,6 +1481,7 @@
         <On index="7" removed="1"/>
         <LaunchSiteOps Ops="SOpAttachWeapon"/>
         <LaunchAssets Sound="Tychus_TossGrenadeVO"/>
+        <Lifetime value="0.200000"/>
     </CActorAction>
     <CActorMissile id="ImpalerGrenadeMissile" parent="GenericAttackMissile" unitName="ImpalerGrenade">
         <EditorCategories value=""/>
@@ -1616,6 +1612,7 @@
         <LaunchSiteOps Ops="SOpAttachWeapon"/>
         <LaunchAssets Sound="Tychus_TossGrenadeVO"/>
         <ImpactMap index="None" Sound="TossGrenadeImpact"/>
+        <Lifetime value="0.200000"/>
     </CActorAction>
     <CActorAction id="PrecisionShot" parent="GenericAttack">
         <EditorCategories value=""/>
@@ -1902,18 +1899,7 @@
     </CActorRange>
     <CActorSound id="WeaponEquipSound" parent="SoundOneShot">
         <EditorCategories value=""/>
-        <On Terms="Behavior.AntiMaterialRifleEquipped.Create" Send="Create"/>
-        <On Terms="Behavior.AssaultRifleEquipped.Create" Send="Create"/>
-        <On Terms="Behavior.AutomaticShotgunEquipped.Create" Send="Create"/>
-        <On Terms="Behavior.FlamethrowerEquipped.Create" Send="Create"/>
-        <On Terms="Behavior.HeavyMachineGunEquipped.Create" Send="Create"/>
-        <On Terms="Behavior.LaserRifleEquipped.Create" Send="Create"/>
-        <On Terms="Behavior.MarksmanRifleEquipped.Create" Send="Create"/>
-        <On Terms="Behavior.MediumMachineGunEquipped.Create" Send="Create"/>
-        <On Terms="Behavior.PistolEquipped.Create" Send="Create"/>
-        <On Terms="Behavior.PlasmaCutterEquipped.Create" Send="Create"/>
-        <On Terms="Behavior.PumpShotgunEquipped.Create" Send="Create"/>
-        <On Terms="Behavior.SubmachineGunEquipped.Create" Send="Create"/>
+        <On Terms="Behavior.WeaponEquipped.Create" Send="Create"/>
         <Sound value="BoltPull"/>
     </CActorSound>
     <CActorEventMacro id="WeaponMarineSwapMacro">

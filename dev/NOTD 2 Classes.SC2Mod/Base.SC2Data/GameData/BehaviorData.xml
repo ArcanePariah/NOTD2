@@ -409,6 +409,15 @@
             <HeightTime index="Stop" value="0.25"/>
         </Modification>
     </CBehaviorBuff>
+    <CBehaviorBuff id="GeminiProtocolAttackSpeedSlowInternal">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Modification AttackSpeedMultiplier="0.75"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="GeminiUnitInvulnerabilty">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <DamageResponse Chance="1" ModifyFraction="0" ModifyMinimumDamage="1"/>
+    </CBehaviorBuff>
     <CBehaviorBuff id="IFV25mmHEAutocannonStun">
         <InfoFlags index="Hidden" value="1"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
@@ -778,11 +787,6 @@
     <CBehaviorBuff id="Healing">
         <InfoFlags index="Hidden" value="1"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
-    </CBehaviorBuff>
-    <CBehaviorBuff id="HeavyMachineGunEquipped">
-        <DamageResponse>
-            <RequireEffectArray value="HeavyMachineGunDamageCritical"/>
-        </DamageResponse>
     </CBehaviorBuff>
     <CBehaviorBuff id="HoldFire">
         <InfoIcon value="btn-ability-terran-holdfire-color.dds"/>
