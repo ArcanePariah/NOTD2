@@ -61,6 +61,8 @@ struct libC50FD636_gs_Marine {
 };
 
 // Variables
+int libC50FD636_gv_geminiProtocolSecondWeaponButton;
+int libC50FD636_gv_geminiProtocolFirstWeaponButton;
 unit[libC50FD636_gv_numberofPlayers + 1] libC50FD636_gv_geminiProtocolUnit;
 fixed libC50FD636_gv_bulwarkAngle;
 unit libC50FD636_gv_bulwarkTargetUnit;
@@ -85,6 +87,8 @@ void libC50FD636_InitVariables () {
     int init_i1;
     int init_i2;
 
+    libC50FD636_gv_geminiProtocolSecondWeaponButton = c_invalidDialogControlId;
+    libC50FD636_gv_geminiProtocolFirstWeaponButton = c_invalidDialogControlId;
     libC50FD636_gv_uplinkSharedVisionGroup = UnitGroupEmpty();
     for (init_i = 0; init_i <= libC50FD636_gv_numberofPlayers; init_i += 1) {
         libC50FD636_gv_ammoDisplay[init_i].lv_ammoDialog = c_invalidDialogId;
@@ -120,10 +124,12 @@ void libC50FD636_InitVariables () {
 }
 
 // Function Declarations
+void libC50FD636_gf_AssaultUIChange (int lp_assaultPlayer);
+void libC50FD636_gf_GeminiProtocolUIChange (int lp_player);
 void libC50FD636_gf_CrusaderAIThink (int lp_player, unit lp_unit, unitgroup lp_scanGroup);
 void libC50FD636_gf_ClassCreation (point lp_deploymentPoint, int lp_player);
+void libC50FD636_gf_ClassSpecificChanges (int lp_player, string lp_playerClass);
 bool libC50FD636_gf_BulwarkAngleDamageCheck (fixed lp_damageAngle);
-bool libC50FD636_gf_GeminiSlotEmpty (unit lp_assault);
 string libC50FD636_gf_GetWeapon (string lp_weaponEquippedBehavior);
 int libC50FD636_gf_GetOpenBagSlot (unit lp_inventoryUnit);
 void libC50FD636_gf_EquipmentUpdateMarineWeight (int lp_ownerOfEquipment);
@@ -193,7 +199,6 @@ trigger libC50FD636_gt_WeaponSwapLockdownRemoval;
 trigger libC50FD636_gt_GeminiProtocolReload;
 trigger libC50FD636_gt_GeminiProtocolBehaviors;
 trigger libC50FD636_gt_GeminiProtocolCriticalStrike;
-trigger libC50FD636_gt_GeminiProtocolWeaponEquip;
 trigger libC50FD636_gt_GeminiProtocolWeaponAdd;
 trigger libC50FD636_gt_GeminiProtocolWeaponRemove;
 trigger libC50FD636_gt_CohesionAilmentResistence;
@@ -228,6 +233,40 @@ trigger libC50FD636_gt_MedicalAssistanceUsage;
 trigger libC50FD636_gt_HeroTest;
 
 // Functions
+void libC50FD636_gf_AssaultUIChange (int lp_assaultPlayer) {
+    // Variable Declarations
+    int lv_slot;
+
+    // Variable Initialization
+    lv_slot = c_invalidDialogControlId;
+
+    // Implementation
+    DialogControlHookupStandard(c_triggerControlTypeButton, "UIContainer/ConsoleUIContainer/InventoryPanel/ContainerPanel00/Slot09");
+    lv_slot = DialogControlLastCreated();
+    DialogControlSetPosition(lv_slot, PlayerGroupSingle(lp_assaultPlayer), c_anchorTopLeft, 70, 119);
+    DialogControlHookupStandard(c_triggerControlTypeButton, "UIContainer/ConsoleUIContainer/InventoryPanel/ContainerPanel00/Slot17");
+    lv_slot = DialogControlLastCreated();
+    DialogControlSetPosition(lv_slot, PlayerGroupSingle(lp_assaultPlayer), c_anchorTopLeft, 70, 163);
+    DialogControlHookupStandard(c_triggerControlTypeButton, "UIContainer/ConsoleUIContainer/InventoryPanel/ContainerPanel00/Slot25");
+    lv_slot = DialogControlLastCreated();
+    DialogControlSetPosition(lv_slot, PlayerGroupSingle(lp_assaultPlayer), c_anchorTopLeft, 70, 207);
+    DialogControlHookupStandard(c_triggerControlTypeButton, "UIContainer/ConsoleUIContainer/InventoryPanel/ContainerPanel00/Slot33");
+    lv_slot = DialogControlLastCreated();
+    DialogControlSetPosition(lv_slot, PlayerGroupSingle(lp_assaultPlayer), c_anchorTopLeft, 70, 251);
+    DialogControlHookupStandard(c_triggerControlTypeButton, "UIContainer/ConsoleUIContainer/InventoryPanel/ContainerPanel00/Slot01");
+    libC50FD636_gv_geminiProtocolFirstWeaponButton = DialogControlLastCreated();
+    DialogControlSetPosition(libC50FD636_gv_geminiProtocolFirstWeaponButton, PlayerGroupSingle(lp_assaultPlayer), c_anchorTopLeft, 70, 75);
+    DialogControlHookupStandard(c_triggerControlTypeButton, "UIContainer/ConsoleUIContainer/InventoryPanel/ContainerPanel00/Slot02");
+    libC50FD636_gv_geminiProtocolSecondWeaponButton = DialogControlLastCreated();
+    DialogControlSetPosition(libC50FD636_gv_geminiProtocolSecondWeaponButton, PlayerGroupSingle(lp_assaultPlayer), c_anchorTopLeft, 500, 75);
+}
+
+void libC50FD636_gf_GeminiProtocolUIChange (int lp_player) {
+    // Implementation
+    DialogControlSetPosition(libC50FD636_gv_geminiProtocolFirstWeaponButton, PlayerGroupSingle(lp_player), c_anchorTopLeft, 48, 75);
+    DialogControlSetPosition(libC50FD636_gv_geminiProtocolSecondWeaponButton, PlayerGroupSingle(lp_player), c_anchorTopLeft, 92, 75);
+}
+
 void libC50FD636_gf_CrusaderAIThink (int lp_player, unit lp_unit, unitgroup lp_scanGroup) {
     unitgroup autoF650846E_g;
     int autoF650846E_u;
@@ -285,6 +324,23 @@ void libC50FD636_gf_ClassCreation (point lp_deploymentPoint, int lp_player) {
     UnitInventoryCreate(libC50FD636_gv_marines[lp_player].lv_unit, UserDataGetUnit("Classes", libC50FD636_gv_marines[lp_player].lv_class, "Default Weapon", 1));
     UnitInventoryContainerOpen(PlayerGroupSingle(lp_player), libC50FD636_gv_marines[lp_player].lv_unit, 1, true);
     UnitInventoryContainerOpen(PlayerGroupSingle(lp_player), libC50FD636_gv_marines[lp_player].lv_unit, 2, true);
+    libC50FD636_gf_ClassSpecificChanges(lp_player, libC50FD636_gv_marines[lp_player].lv_unitType);
+}
+
+void libC50FD636_gf_ClassSpecificChanges (int lp_player, string lp_playerClass) {
+    string auto0794D683_val;
+
+    // Implementation
+    auto0794D683_val = lp_playerClass;
+    if (auto0794D683_val == "Rifleman") {
+    }
+    else if (auto0794D683_val == "Medic2") {
+    }
+    else if (auto0794D683_val == "Assault") {
+        libC50FD636_gf_AssaultUIChange(lp_player);
+    }
+    else {
+    }
 }
 
 bool libC50FD636_gf_BulwarkAngleDamageCheck (fixed lp_damageAngle) {
@@ -298,20 +354,6 @@ bool libC50FD636_gf_BulwarkAngleDamageCheck (fixed lp_damageAngle) {
 
     // Implementation
     return (((lv_adjustBulwarkAngle - lv_adjustedAngle) >= -45.0) && ((lv_adjustBulwarkAngle - lv_adjustedAngle) <= 45.0));
-}
-
-bool libC50FD636_gf_GeminiSlotEmpty (unit lp_assault) {
-    // Implementation
-    UnitGroupLoopBegin(UnitInventoryGroup(lp_assault));
-    for ( ; !UnitGroupLoopDone() ; UnitGroupLoopStep() ) {
-        if ((UnitInventoryContainer(UnitGroupLoopCurrent()) == 3)) {
-            return false;
-        }
-        else {
-        }
-    }
-    UnitGroupLoopEnd();
-    return true;
 }
 
 string libC50FD636_gf_GetWeapon (string lp_weaponEquippedBehavior) {
@@ -1155,6 +1197,7 @@ bool libC50FD636_gt_AssaultLevelUpGeminiProtocol_Func (bool testConds, bool runA
     libC50FD636_gv_geminiProtocolUnit[EventPlayer()] = UnitCargoLastCreated();
     TriggerEnable(libC50FD636_gt_GeminiProtocolWeaponAdd, true);
     TriggerEnable(libC50FD636_gt_GeminiProtocolWeaponRemove, true);
+    libC50FD636_gf_GeminiProtocolUIChange(EventPlayer());
     return true;
 }
 
@@ -2009,48 +2052,6 @@ void libC50FD636_gt_GeminiProtocolCriticalStrike_Init () {
     TriggerAddEventUnitBehaviorChange(libC50FD636_gt_GeminiProtocolCriticalStrike, null, "AssaultCriticalStrikeLevel1", c_unitBehaviorChangeDeactivate);
     TriggerAddEventUnitBehaviorChange(libC50FD636_gt_GeminiProtocolCriticalStrike, null, "AssaultCriticalStrikeLevel2", c_unitBehaviorChangeDeactivate);
     TriggerAddEventUnitBehaviorChange(libC50FD636_gt_GeminiProtocolCriticalStrike, null, "AssaultCriticalStrikeLevel3", c_unitBehaviorChangeDeactivate);
-}
-
-//--------------------------------------------------------------------------------------------------
-// Trigger: Gemini Protocol Weapon Equip
-//--------------------------------------------------------------------------------------------------
-bool libC50FD636_gt_GeminiProtocolWeaponEquip_Func (bool testConds, bool runActions) {
-    // Conditions
-    if (testConds) {
-        if (!((CatalogFieldValueGet(c_gameCatalogItem, UnitGetType(EventUnitInventoryItem()), "Class", c_playerAny) == ("NormalWeapon")))) {
-            return false;
-        }
-
-        if (!((UnitGetType(EventUnit()) == "Assault"))) {
-            return false;
-        }
-
-        if (!((EventUnitInventoryItemContainer() == 2))) {
-            return false;
-        }
-
-        if (!((TechTreeUpgradeCount(UnitGetOwner(EventUnit()), "GeminiProtocol", c_techCountCompleteOnly) == 1))) {
-            return false;
-        }
-
-        if (!(libC50FD636_gf_GeminiSlotEmpty(UnitInventoryUnit(EventUnitInventoryItem())))) {
-            return false;
-        }
-    }
-
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    UnitInventoryMove(EventUnitInventoryItem(), 3, 1);
-    return true;
-}
-
-//--------------------------------------------------------------------------------------------------
-void libC50FD636_gt_GeminiProtocolWeaponEquip_Init () {
-    libC50FD636_gt_GeminiProtocolWeaponEquip = TriggerCreate("libC50FD636_gt_GeminiProtocolWeaponEquip_Func");
-    TriggerAddEventUnitInventoryChange(libC50FD636_gt_GeminiProtocolWeaponEquip, null, c_unitInventoryChangeGains, null);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -3295,6 +3296,8 @@ bool libC50FD636_gt_HeroTest_Func (bool testConds, bool runActions) {
     UnitSetPropertyFixed(UnitLastCreated(), c_unitPropLevel, 1.0);
     UnitGroupAdd(libC50FD636_gv_marinesUnitGroup, UnitLastCreated());
     libC50FD636_gv_marines[EventPlayer()].lv_unit = UnitLastCreated();
+    libC50FD636_gv_marines[EventPlayer()].lv_unitType = (StringWord(EventChatMessage(false), 2));
+    libC50FD636_gf_ClassSpecificChanges(EventPlayer(), libC50FD636_gv_marines[EventPlayer()].lv_unitType);
     TriggerAddEventUnitGainLevel(libC50FD636_gt_LevelUp, UnitRefFromUnit(UnitLastCreated()));
     return true;
 }
@@ -3350,7 +3353,6 @@ void libC50FD636_InitTriggers () {
     libC50FD636_gt_GeminiProtocolReload_Init();
     libC50FD636_gt_GeminiProtocolBehaviors_Init();
     libC50FD636_gt_GeminiProtocolCriticalStrike_Init();
-    libC50FD636_gt_GeminiProtocolWeaponEquip_Init();
     libC50FD636_gt_GeminiProtocolWeaponAdd_Init();
     libC50FD636_gt_GeminiProtocolWeaponRemove_Init();
     libC50FD636_gt_CohesionAilmentResistence_Init();

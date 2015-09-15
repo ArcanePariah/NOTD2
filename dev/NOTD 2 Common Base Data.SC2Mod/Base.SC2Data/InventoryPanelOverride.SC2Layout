@@ -39,7 +39,7 @@
 
     <Frame type="InventoryPanel" name="GameUI\UIContainer\ConsoleUIContainer\InventoryPanel" file="GameUI">
         <RenderPriority val="100"/>
-        <Anchor side="Left" relative="$parent" pos="Max" offset="-775"/>
+        <Anchor side="Left" relative="$parent" pos="Max" offset="-815"/>
         <Anchor side="Right" relative="$parent" pos="Max" offset="-468"/>
         <Anchor side="Bottom" relative="$parent" pos="Max" offset="3"/>
 
@@ -105,6 +105,10 @@
             </Frame>
 
             <Frame type="CommandButton" name="Slot01" template="InventoryPanelOverride/EquipmentButtonTemplate">
+            </Frame>
+
+            <Frame type="CommandButton" name="Slot02" template="InventoryPanelOverride/EquipmentButtonTemplate">
+                <Anchor side="Left" relative="$parent/Slot01" pos="Max" offset="#EquipmentButtonGap"/>
             </Frame>
 
             <Frame type="CommandButton" name="Slot08" template="InventoryPanelOverride/EquipmentButtonTemplate">
