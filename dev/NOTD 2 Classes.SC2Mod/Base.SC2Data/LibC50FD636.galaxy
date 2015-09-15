@@ -130,7 +130,6 @@ void libC50FD636_gf_CrusaderAIThink (int lp_player, unit lp_unit, unitgroup lp_s
 void libC50FD636_gf_ClassCreation (point lp_deploymentPoint, int lp_player);
 void libC50FD636_gf_ClassSpecificChanges (int lp_player, string lp_playerClass);
 bool libC50FD636_gf_BulwarkAngleDamageCheck (fixed lp_damageAngle);
-bool libC50FD636_gf_GeminiSlotEmpty (unit lp_assault);
 string libC50FD636_gf_GetWeapon (string lp_weaponEquippedBehavior);
 int libC50FD636_gf_GetOpenBagSlot (unit lp_inventoryUnit);
 void libC50FD636_gf_EquipmentUpdateMarineWeight (int lp_ownerOfEquipment);
@@ -200,7 +199,6 @@ trigger libC50FD636_gt_WeaponSwapLockdownRemoval;
 trigger libC50FD636_gt_GeminiProtocolReload;
 trigger libC50FD636_gt_GeminiProtocolBehaviors;
 trigger libC50FD636_gt_GeminiProtocolCriticalStrike;
-trigger libC50FD636_gt_GeminiProtocolWeaponEquip;
 trigger libC50FD636_gt_GeminiProtocolWeaponAdd;
 trigger libC50FD636_gt_GeminiProtocolWeaponRemove;
 trigger libC50FD636_gt_CohesionAilmentResistence;
@@ -356,20 +354,6 @@ bool libC50FD636_gf_BulwarkAngleDamageCheck (fixed lp_damageAngle) {
 
     // Implementation
     return (((lv_adjustBulwarkAngle - lv_adjustedAngle) >= -45.0) && ((lv_adjustBulwarkAngle - lv_adjustedAngle) <= 45.0));
-}
-
-bool libC50FD636_gf_GeminiSlotEmpty (unit lp_assault) {
-    // Implementation
-    UnitGroupLoopBegin(UnitInventoryGroup(lp_assault));
-    for ( ; !UnitGroupLoopDone() ; UnitGroupLoopStep() ) {
-        if ((UnitInventoryContainer(UnitGroupLoopCurrent()) == 3)) {
-            return false;
-        }
-        else {
-        }
-    }
-    UnitGroupLoopEnd();
-    return true;
 }
 
 string libC50FD636_gf_GetWeapon (string lp_weaponEquippedBehavior) {
@@ -2071,48 +2055,6 @@ void libC50FD636_gt_GeminiProtocolCriticalStrike_Init () {
 }
 
 //--------------------------------------------------------------------------------------------------
-// Trigger: Gemini Protocol Weapon Equip
-//--------------------------------------------------------------------------------------------------
-bool libC50FD636_gt_GeminiProtocolWeaponEquip_Func (bool testConds, bool runActions) {
-    // Conditions
-    if (testConds) {
-        if (!((CatalogFieldValueGet(c_gameCatalogItem, UnitGetType(EventUnitInventoryItem()), "Class", c_playerAny) == ("NormalWeapon")))) {
-            return false;
-        }
-
-        if (!((UnitGetType(EventUnit()) == "Assault"))) {
-            return false;
-        }
-
-        if (!((EventUnitInventoryItemContainer() == 2))) {
-            return false;
-        }
-
-        if (!((TechTreeUpgradeCount(UnitGetOwner(EventUnit()), "GeminiProtocol", c_techCountCompleteOnly) == 1))) {
-            return false;
-        }
-
-        if (!(libC50FD636_gf_GeminiSlotEmpty(UnitInventoryUnit(EventUnitInventoryItem())))) {
-            return false;
-        }
-    }
-
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    UnitInventoryMove(EventUnitInventoryItem(), 3, 1);
-    return true;
-}
-
-//--------------------------------------------------------------------------------------------------
-void libC50FD636_gt_GeminiProtocolWeaponEquip_Init () {
-    libC50FD636_gt_GeminiProtocolWeaponEquip = TriggerCreate("libC50FD636_gt_GeminiProtocolWeaponEquip_Func");
-    TriggerAddEventUnitInventoryChange(libC50FD636_gt_GeminiProtocolWeaponEquip, null, c_unitInventoryChangeGains, null);
-}
-
-//--------------------------------------------------------------------------------------------------
 // Trigger: Gemini Protocol Weapon Add
 //--------------------------------------------------------------------------------------------------
 bool libC50FD636_gt_GeminiProtocolWeaponAdd_Func (bool testConds, bool runActions) {
@@ -3411,7 +3353,6 @@ void libC50FD636_InitTriggers () {
     libC50FD636_gt_GeminiProtocolReload_Init();
     libC50FD636_gt_GeminiProtocolBehaviors_Init();
     libC50FD636_gt_GeminiProtocolCriticalStrike_Init();
-    libC50FD636_gt_GeminiProtocolWeaponEquip_Init();
     libC50FD636_gt_GeminiProtocolWeaponAdd_Init();
     libC50FD636_gt_GeminiProtocolWeaponRemove_Init();
     libC50FD636_gt_CohesionAilmentResistence_Init();
