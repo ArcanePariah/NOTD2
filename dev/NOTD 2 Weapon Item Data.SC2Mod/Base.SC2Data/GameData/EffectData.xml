@@ -238,7 +238,12 @@
         <KindSplash value="Splash"/>
         <Death value="Silentkill"/>
         <DisplayFlags index="CollapseBuffed" value="1"/>
-        <AreaArray Arc="9.9975" Radius="3.5" Fraction="1"/>
+        <AreaArray>
+            <Arc value="0"/>
+            <Radius value="4"/>
+            <Fraction value="1"/>
+            <Validator value="CasterIsMarksman"/>
+        </AreaArray>
         <ExcludeArray Value="Target"/>
         <SearchFilters value="-;Player,Ally,Neutral,Item,Invulnerable"/>
         <SearchFlags index="OffsetByUnitRadius" value="1"/>
@@ -985,7 +990,12 @@
         <ImpactLocation Value="TargetUnit"/>
         <ArmorReduction value="3"/>
         <Amount value="60"/>
-        <AreaArray Arc="5.7238" Radius="2" Fraction="0.3332"/>
+        <AreaArray>
+            <Arc value="0"/>
+            <Radius value="4"/>
+            <Fraction value="0.3332"/>
+            <Validator value="CasterIsMarksman"/>
+        </AreaArray>
         <ExcludeArray Value="Target"/>
         <SearchFilters value="-;Player,Ally,Neutral,Item,Invulnerable"/>
         <SearchFlags index="OffsetByUnitRadius" value="1"/>
