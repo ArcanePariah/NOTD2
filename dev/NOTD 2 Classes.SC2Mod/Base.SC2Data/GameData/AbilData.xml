@@ -673,9 +673,7 @@
         </CmdButtonArray>
     </CAbilEffectInstant>
     <CAbilInventory id="AssaultInventory" parent="InventoryTemplate">
-        <InfoArray index="2" Alignment="Left" Container="AssaultGeminiProtocolLoadout" EmptyFace="EmptyInventorySlot">
-            <Classes index="0" removed="1"/>
-        </InfoArray>
+        <InfoArray index="0" Alignment="Left" Container="AssaultLoadout" EmptyFace="EmptyInventorySlot"/>
     </CAbilInventory>
     <CAbilLearn id="AssaultLearn" parent="LearnTemplate">
         <Name value="Abil/Name/AssaultLearn"/>
@@ -1531,12 +1529,6 @@
     <CAbilLearn id="TechnicianLearn" parent="LearnTemplate">
         <Name value="Abil/Name/TechnicianLearn"/>
     </CAbilLearn>
-    <CAbilEffectInstant id="TestAutoPickup">
-        <EditorCategories value="AbilityorEffectType:Units"/>
-        <Flags index="Transient" value="1"/>
-        <Arc value="360"/>
-        <CmdButtonArray index="Execute" DefaultButtonFace="DropMagazine"/>
-    </CAbilEffectInstant>
     <CAbilEffectInstant id="ThunderballFists" parent="AbilityInstantTemplate">
         <Cost>
             <Vital index="Energy" value="50"/>
