@@ -1710,6 +1710,7 @@
     <CActorModel id="SelfAidModel" parent="ModelAnimationStyleOneShot">
         <EditorCategories value=""/>
         <On Terms="Effect.SelfAid.Start; At Target" Send="Create"/>
+        <On Terms="ActorCreation; ValidatePlayer FirstAidLevel1" Send="SetTintColorBlendPair 0,255,255 {0,255,255 3.000000} 0.500000 Bounce FirstAidTint"/>
         <Host Subject="_Selectable"/>
         <HostSiteOps Ops="SOpAttachHardPoint"/>
         <Model value="SelfAid"/>
