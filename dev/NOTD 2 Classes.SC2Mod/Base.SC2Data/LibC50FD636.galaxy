@@ -317,6 +317,7 @@ void libC50FD636_gf_ClassCreation (point lp_deploymentPoint, int lp_player) {
     libC50FD636_gf_CreateAmmoDisplay(lp_player);
     UnitCreate(1, UserDataGetUnit("Classes", libC50FD636_gv_marines[lp_player].lv_class, "Class Unit", 1), 0, lp_player, lp_deploymentPoint, libNtve_gf_RandomAngle());
     libC50FD636_gv_marines[lp_player].lv_unit = UnitLastCreated();
+    libC50FD636_gv_marines[lp_player].lv_unitType = UserDataGetUnit("Classes", libC50FD636_gv_marines[lp_player].lv_class, "Class Unit", 1);
     UnitControlGroupAddUnit(lp_player, 1, UnitLastCreated());
     UnitSelect(UnitLastCreated(), lp_player, true);
     UnitGroupAdd(libC50FD636_gv_marinesUnitGroup, UnitLastCreated());
@@ -2112,11 +2113,7 @@ void libC50FD636_gt_GeminiProtocolWeaponAdd_Init () {
 bool libC50FD636_gt_GeminiProtocolWeaponRemove_Func (bool testConds, bool runActions) {
     // Conditions
     if (testConds) {
-        if (!((UnitBehaviorCount(EventUnit(), "WeaponEquipped") == 1))) {
-            return false;
-        }
-
-        if (!((libC50FD636_gf_GetWeapon(EventUnitBehavior()) == libC50FD636_gv_geminiUnitWeapon[UnitGetOwner(EventUnit())]))) {
+        if (!((((UnitBehaviorCount(EventUnit(), "WeaponEquipped") == 1) && (libC50FD636_gf_GetWeapon(EventUnitBehavior()) == libC50FD636_gv_geminiUnitWeapon[UnitGetOwner(EventUnit())])) || (UnitBehaviorCount(EventUnit(), "WeaponEquipped") == 0)))) {
             return false;
         }
     }
