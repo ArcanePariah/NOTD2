@@ -2077,11 +2077,18 @@ bool libC50FD636_gt_GeminiProtocolWeaponAdd_Func (bool testConds, bool runAction
         return true;
     }
 
-    libC50FD636_gv_geminiUnitWeapon[lv_owningPlayer] = libC50FD636_gf_GetWeapon(EventUnitBehavior());
-    UnitWeaponAdd(libC50FD636_gv_geminiProtocolUnit[lv_owningPlayer], libC50FD636_gv_geminiUnitWeapon[lv_owningPlayer], null);
-    if ((UnitWeaponCount(EventUnit()) != 1)) {
-        UnitWeaponRemove(EventUnit(), libC50FD636_gv_geminiUnitWeapon[lv_owningPlayer]);
+    if ((UnitWeaponCount(EventUnit()) == 1)) {
+        libC50FD636_gv_geminiUnitWeapon[lv_owningPlayer] = libC50FD636_gf_GetWeapon(EventUnitBehavior());
     }
+    else {
+        if ((UnitWeaponGet(EventUnit(), 1) == libC50FD636_gf_GetWeapon(EventUnitBehavior()))) {
+            libC50FD636_gv_geminiUnitWeapon[lv_owningPlayer] = UnitWeaponGet(EventUnit(), 2);
+        }
+        else {
+            libC50FD636_gv_geminiUnitWeapon[lv_owningPlayer] = UnitWeaponGet(EventUnit(), 1);
+        }
+    }
+    UnitWeaponAdd(libC50FD636_gv_geminiProtocolUnit[lv_owningPlayer], libC50FD636_gv_geminiUnitWeapon[lv_owningPlayer], null);
     return true;
 }
 
@@ -2111,13 +2118,6 @@ void libC50FD636_gt_GeminiProtocolWeaponAdd_Init () {
 // Trigger: Gemini Protocol Weapon Remove
 //--------------------------------------------------------------------------------------------------
 bool libC50FD636_gt_GeminiProtocolWeaponRemove_Func (bool testConds, bool runActions) {
-    // Conditions
-    if (testConds) {
-        if (!((((UnitBehaviorCount(EventUnit(), "WeaponEquipped") == 1) && (libC50FD636_gf_GetWeapon(EventUnitBehavior()) == libC50FD636_gv_geminiUnitWeapon[UnitGetOwner(EventUnit())])) || (UnitBehaviorCount(EventUnit(), "WeaponEquipped") == 0)))) {
-            return false;
-        }
-    }
-
     // Actions
     if (!runActions) {
         return true;
