@@ -644,7 +644,6 @@
     <CActorRange id="BansheeScreamRange" parent="RangeAbil" abil="BansheeScream"/>
     <CActorAction id="WitchClawAttack" parent="GenericAttack" effectImpact="WitchClawDamage" effectLaunch="WitchClawLaunchMissile">
         <LaunchSiteOps Ops="SOpAttachHarnessStationary"/>
-        <LaunchAttachQuery Methods=" "/>
         <LaunchAssets Sound="SpineCrawler_AttackLaunch"/>
         <ImpactSiteOps Ops="SOpAttachHarness SOpAttachVolumeStandard SOpForwardLaunchGuide"/>
         <ImpactSiteOpsReaction Ops="SOp2DRotation SOp180" HoldPosition="1" HoldRotation="1"/>
@@ -944,7 +943,8 @@
         <On Terms="UnitPortrait.*.Customize; TextureSlotSatisfiesExpression main {RequireAll female,05}" Send="PortraitCustomize FemaleCivilian3Portrait"/>
         <On Terms="TimerExpired" Send="TextureSelectById InfestedTerranDiffuse"/>
         <On Terms="ActorCreation" Send="SetTeamColor 226,29,29 236,19,19"/>
-        <Baselines index="Walk" AnimProps="Walk,Fast"/>
+        <Baselines index="Stand" AnimProps="Wounded,Stand"/>
+        <Baselines index="Walk" AnimProps="Wounded,Walk"/>
         <DeathArray index="Normal" SoundLink="Queen_Death"/>
         <PortraitModel value="FemaleCivilian1Portrait"/>
         <WalkAnimMoveSpeed value="1.5"/>
@@ -986,7 +986,8 @@
         <On Terms="TimerExpired" Send="TextureSelectById CivilianZombieDiffuse"/>
         <On Terms="TimerExpired" Send="TextureSelectById CivilianZombieNormal"/>
         <On Terms="ActorCreation" Send="SetTeamColor 226,29,29 236,19,19"/>
-        <Baselines index="Walk" AnimProps="Walk,Fast"/>
+        <Baselines index="Stand" AnimProps="Wounded,Stand"/>
+        <Baselines index="Walk" AnimProps="Wounded,Walk"/>
         <DeathArray index="Normal" SoundLink="PrimalZergling_Death"/>
         <DeathArray index="Fire" ModelLink="ColonistMaleDeathFire"/>
         <WalkAnimMoveSpeed value="1.5"/>
@@ -1153,7 +1154,7 @@
         <On Terms="TimerExpired" Send="TextureSelectById CivilianZombieDiffuse"/>
         <On Terms="TimerExpired" Send="TextureSelectById CivilianZombieNormal"/>
         <On Terms="ActorCreation" Send="TimerSet"/>
-        <Baselines index="Walk" AnimProps="Walk,Fast"/>
+        <Baselines index="Walk" AnimProps="Wounded,Walk"/>
         <DeathArray index="Normal" ModelLink="PrisonerCivilianDeath" SoundLink="PrimalZergling_Death"/>
         <DeathActorModel value="PrisonerCivilianDeath"/>
         <PortraitModel value="MaleCivilian6Portrait"/>
@@ -1224,7 +1225,7 @@
         <On Terms="ActorCreation" Send="TimerSet"/>
         <On Terms="TimerExpired" Send="TextureSelectById CivilianZombieDiffuse2"/>
         <On Terms="TimerExpired" Send="TextureSelectById CivilianZombieNormal"/>
-        <Baselines index="Walk" AnimProps="Walk,Fast"/>
+        <Baselines index="Walk" AnimProps="Wounded,Walk"/>
         <DeathArray index="Normal" ModelLink="ScientistMaleDeath" SoundLink="PrimalZergling_Death"/>
         <DeathArray index="Disintegrate" ModelLink="ScientistMaleAcidDeath"/>
         <DeathArray index="Fire" ModelLink="ScientistMaleFireDeath"/>
