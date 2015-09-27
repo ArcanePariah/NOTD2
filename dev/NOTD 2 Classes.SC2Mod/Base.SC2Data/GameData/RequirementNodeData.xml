@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="us-ascii"?>
 <Catalog>
+    <CRequirementCountEffect default="1">
+        <Flags index="TechTreeCheat" value="1"/>
+    </CRequirementCountEffect>
     <CRequirementCountAbil default="1" id="LeveledAbilityCountTemplate">
         <Count Link="Ability" State="CompleteOnlyAtUnit"/>
     </CRequirementCountAbil>
@@ -349,6 +352,11 @@
         <Tooltip value=""/>
         <Count Link="UseRangeAssistance" State="CompleteOnly"/>
     </CRequirementCountUpgrade>
+    <CRequirementCountUpgrade id="CountUpgradeWeaponProficiencyCompleteOnly">
+        <Flags index="TechTreeCheat" value="0"/>
+        <Tooltip value=""/>
+        <Count Link="WeaponProficiency" State="CompleteOnly"/>
+    </CRequirementCountUpgrade>
     <CRequirementEq id="Eq3869413126CountBehaviorLockdownNOTDCompleteOnlyAtUnit0">
         <OperandArray index="0" value="CountBehaviorLockdownNOTDCompleteOnlyAtUnit"/>
         <OperandArray index="1" value="0"/>
@@ -377,11 +385,6 @@
         <OperandArray index="0" value="CountAbilAmmunitionDropCompleteOnlyAtUnit"/>
         <OperandArray index="1" value="1"/>
     </CRequirementEq>
-    <CRequirementCountUpgrade id="CountUpgradeWeaponsProficiencyLevel12CompleteOnly">
-        <Flags index="TechTreeCheat" value="0"/>
-        <Tooltip value=""/>
-        <Count Link="WeaponsProficiencyLevel12" State="CompleteOnly"/>
-    </CRequirementCountUpgrade>
     <CRequirementEq id="EqCountAbilArtilleryBeaconCompleteOnlyAtUnit0">
         <Tooltip value=""/>
         <OperandArray index="0" value="CountAbilArtilleryBeaconCompleteOnlyAtUnit"/>
@@ -412,11 +415,6 @@
         <OperandArray index="0" value="CountAbilCohesionCompleteOnlyAtUnit"/>
         <OperandArray index="1" value="1"/>
     </CRequirementEq>
-    <CRequirementCountUpgrade id="CountUpgradeWeaponsProficiencyLevel1CompleteOnly">
-        <Flags index="TechTreeCheat" value="0"/>
-        <Tooltip value=""/>
-        <Count Link="WeaponsProficiencyLevel1" State="CompleteOnly"/>
-    </CRequirementCountUpgrade>
     <CRequirementEq id="EqCountAbilCohesionCompleteOnlyAtUnit2">
         <Tooltip value=""/>
         <OperandArray index="0" value="CountAbilCohesionCompleteOnlyAtUnit"/>
@@ -647,16 +645,6 @@
         <OperandArray index="0" value="CountUpgradeIntolerableCrueltyCompleteOnly"/>
         <OperandArray index="1" value="2"/>
     </CRequirementEq>
-    <CRequirementEq id="EqCountUpgradeWeaponsProficiencyLevel12CompleteOnly1">
-        <Tooltip value=""/>
-        <OperandArray index="0" value="CountUpgradeWeaponsProficiencyLevel12CompleteOnly"/>
-        <OperandArray index="1" value="1"/>
-    </CRequirementEq>
-    <CRequirementEq id="EqCountUpgradeWeaponsProficiencyLevel1CompleteOnly1">
-        <Tooltip value=""/>
-        <OperandArray index="0" value="CountUpgradeWeaponsProficiencyLevel1CompleteOnly"/>
-        <OperandArray index="1" value="1"/>
-    </CRequirementEq>
     <CRequirementGT id="GTCountUpgradeUseRangeAssistanceCompleteOnly0">
         <Tooltip value=""/>
         <OperandArray index="0" value="CountUpgradeUseRangeAssistanceCompleteOnly"/>
@@ -692,6 +680,11 @@
         <OperandArray index="0" value="CountUpgradeSuppressiveFireCompleteOnly"/>
         <OperandArray index="1" value="3"/>
     </CRequirementGTE>
+    <CRequirementGTE id="GTECountUpgradeWeaponProficiencyCompleteOnly2">
+        <Tooltip value=""/>
+        <OperandArray index="0" value="CountUpgradeWeaponProficiencyCompleteOnly"/>
+        <OperandArray index="1" value="2"/>
+    </CRequirementGTE>
     <CRequirementNot id="NotCountUpgradeAccurateFireCompleteOnly">
         <Tooltip value=""/>
         <OperandArray index="0" value="CountUpgradeAccurateFireCompleteOnly"/>
@@ -703,6 +696,10 @@
     <CRequirementNot id="NotCountUpgradeSuppressiveFireCompleteOnly">
         <Tooltip value=""/>
         <OperandArray index="0" value="CountUpgradeSuppressiveFireCompleteOnly"/>
+    </CRequirementNot>
+    <CRequirementNot id="NotCountUpgradeWeaponProficiencyCompleteOnly">
+        <Tooltip value=""/>
+        <OperandArray index="0" value="CountUpgradeWeaponProficiencyCompleteOnly"/>
     </CRequirementNot>
     <CRequirementOr id="Or1185686619CountBehaviorFlamethrowerEquippedCompleteOnlyAtUnitCountBehaviorAntiMaterialRifleEquippedCompleteOnlyAtUnitCountBehaviorAssaultRifleEquippedCompleteOnlyAtUnitCountBehaviorAutomaticShotgunE751656344">
         <OperandArray value="CountBehaviorFlamethrowerEquippedCompleteOnlyAtUnit"/>

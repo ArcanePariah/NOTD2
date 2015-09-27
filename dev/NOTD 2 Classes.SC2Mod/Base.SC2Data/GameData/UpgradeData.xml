@@ -183,15 +183,6 @@
         <EffectArray Reference="Abil,MediumJump,Range[0]" Value="1"/>
         <EffectArray Reference="Abil,PathfinderJump,Range[0]" Value="1"/>
     </CUpgrade>
-    <CUpgrade id="CriticalStrikeRifleman" parent="DefaultUpgradeOverride">
-        <EffectArray Reference="Effect,PrecisionShotBonusCriticalDamageLevel1,Chance" Value="0.1"/>
-        <EffectArray Reference="Effect,PrecisionShotBonusCriticalDamageLevel2,Chance" Value="0.1"/>
-        <EffectArray Reference="Effect,PrecisionShotBonusCriticalDamageLevel3,Chance" Value="0.1"/>
-        <EffectArray Reference="Effect,PrecisionShotNormalCriticalDamageLevel1,Chance" Value="0.1"/>
-        <EffectArray Reference="Effect,PrecisionShotNormalCriticalDamageLevel2,Chance" Value="0.1"/>
-        <EffectArray Reference="Effect,PrecisionShotNormalCriticalDamageLevel3,Chance" Value="0.1"/>
-        <MaxLevel value="3"/>
-    </CUpgrade>
     <CUpgrade id="EnergyRegeneration" parent="DefaultUpgradeOverride">
         <EditorCategories value="UpgradeType:Character Modification"/>
         <EffectArray Reference="Unit,Assault,EnergyRegenRate" Value="0.2"/>
@@ -212,30 +203,6 @@
     </CUpgrade>
     <CUpgrade id="EnhancedProtectiveInsert" parent="ArmorVisualTemplate" ArmorIcon="Items\btn-item-armour-EnhancedProtectiveInsert.dds" ArmorName="Button/Name/EnhancedProtectiveInsert" ArmorTip="Button/Tooltip/EnhancedProtectiveInsert">
         <EditorCategories value=""/>
-    </CUpgrade>
-    <CUpgrade id="SuppressiveFire" parent="DefaultUpgradeOverride">
-        <EffectArray Operation="Set" Reference="Behavior,FocusFire,DamageResponse.Chance" Value="1"/>
-        <EffectArray Operation="Subtract" Reference="Behavior,CripplingFire,Modification.AttackSpeedMultiplier" Value="0.05"/>
-        <EffectArray Operation="Subtract" Reference="Behavior,CripplingFire,Modification.MoveSpeedMultiplier" Value="0.05"/>
-        <EffectArray Operation="Set" Reference="Button,FocusFire,Tooltip" Value="Button/Tooltip/FocusFireCripplingFire"/>
-        <MaxLevel value="3"/>
-    </CUpgrade>
-    <CUpgrade id="SuppressiveAccurateFireButton" parent="DefaultUpgradeOverride">
-        <EffectArray Operation="Set" Reference="Button,FocusFire,Tooltip" Value="Button/Tooltip/FocusFireCripplingFiredUp"/>
-        <MaxLevel value="6"/>
-    </CUpgrade>
-    <CUpgrade id="AccurateFire">
-        <Flags index="UpgradeCheat" value="0"/>
-        <Alert value=""/>
-        <EffectArray Operation="Set" Reference="Button,FocusFire,Tooltip" Value="Button/Tooltip/FocusFireAccurate"/>
-        <EffectArray Reference="Behavior,FocusFire,Modification.WeaponRange" Value="1"/>
-        <EffectArray Reference="Behavior,FocusFire,Modification.DamageDealtFraction[Melee]" Value="0.15"/>
-        <EffectArray Reference="Behavior,FocusFire,Modification.DamageDealtFraction[Ranged]" Value="0.15"/>
-        <EffectArray Reference="Behavior,FocusFire,Modification.DamageDealtFraction[Melee]" Value="0.15"/>
-        <MaxLevel value="3"/>
-    </CUpgrade>
-    <CUpgrade id="FirstAid" parent="DefaultUpgradeOverride">
-        <MaxLevel value="3"/>
     </CUpgrade>
     <CUpgrade id="GeminiProtocol"/>
     <CUpgrade id="HALSoldiers" parent="DefaultUpgradeOverride">
@@ -606,28 +573,46 @@
         <EffectArray Reference="Weapon,LaserRifle,Range" Value="3"/>
         <EffectArray Reference="Weapon,HeavyMachineGun,Range" Value="3"/>
     </CUpgrade>
-    <CUpgrade id="WeaponsProficiencyLevel1" parent="DefaultUpgradeOverride">
-        <EffectArray Operation="Multiply" Reference="Behavior,ReloadManual,Duration" Value="0.850000"/>
-        <EffectArray Operation="Multiply" Reference="Behavior,ReloadNightmare,Duration" Value="0.850000"/>
-        <EffectArray Operation="Multiply" Reference="Behavior,ReloadNormal,Duration" Value="0.850000"/>
-        <EffectArray Operation="Multiply" Reference="Behavior,ReloadPerfect,Duration" Value="0.850000"/>
-        <EffectArray Reference="Behavior,FocusFire,Modification.DamageDealtFraction[Melee]" Value="0.05"/>
-        <EffectArray Reference="Behavior,FocusFire,Modification.DamageDealtFraction[Ranged]" Value="0.05"/>
-        <EffectArray Reference="Behavior,FocusFire,Modification.DamageDealtFraction[Splash]" Value="0.05"/>
-        <EffectArray Reference="Behavior,FocusFire,Modification.DamageDealtFraction[Spell]" Value="0.05"/>
-    </CUpgrade>
-    <CUpgrade id="WeaponsProficiencyLevel12" parent="DefaultUpgradeOverride">
-        <EffectArray Operation="Multiply" Reference="Behavior,ReloadManual,Duration" Value="0.700000"/>
-        <EffectArray Operation="Multiply" Reference="Behavior,ReloadNormal,Duration" Value="0.700000"/>
-        <EffectArray Operation="Multiply" Reference="Behavior,ReloadPerfect,Duration" Value="0.700000"/>
-        <EffectArray Operation="Multiply" Reference="Behavior,ReloadNightmare,Duration" Value="0.700000"/>
-        <EffectArray Reference="Behavior,FocusFire,Modification.DamageDealtFraction[Melee]" Value="0.1"/>
-        <EffectArray Reference="Behavior,FocusFire,Modification.DamageDealtFraction[Ranged]" Value="0.1"/>
-        <EffectArray Reference="Behavior,FocusFire,Modification.DamageDealtFraction[Splash]" Value="0.1"/>
-        <EffectArray Reference="Behavior,FocusFire,Modification.DamageDealtFraction[Spell]" Value="0.1"/>
-    </CUpgrade>
     <!--Placeholder, upgrade level will be checked in triggers when calculating weight-->
     <CUpgrade id="WeightTolerance" parent="DefaultUpgradeOverride">
         <EditorCategories value="UpgradeType:Character Modification"/>
+    </CUpgrade>
+    <CUpgrade id="AccurateFire" parent="DefaultUpgradeOverride">
+        <EffectArray Operation="Set" Reference="Button,FocusFire,Tooltip" Value="Button/Tooltip/FocusFireAccurate"/>
+        <EffectArray Reference="Behavior,FocusFire,Modification.WeaponRange" Value="1"/>
+        <EffectArray Operation="Subtract" Reference="Behavior,FocusFireMeleeRange,Modification.WeaponRange" Value="1"/>
+        <EffectArray Reference="Behavior,FocusFire,Modification.DamageDealtFraction[Melee]" Value="0.15"/>
+        <EffectArray Reference="Behavior,FocusFire,Modification.DamageDealtFraction[Ranged]" Value="0.15"/>
+        <MaxLevel value="3"/>
+    </CUpgrade>
+    <CUpgrade id="WeaponProficiency" parent="DefaultUpgradeOverride">
+        <EffectArray Operation="Multiply" Reference="Behavior,ReloadManual,Duration" Value="0.800000"/>
+        <EffectArray Operation="Multiply" Reference="Behavior,ReloadNightmare,Duration" Value="0.800000"/>
+        <EffectArray Operation="Multiply" Reference="Behavior,ReloadNormal,Duration" Value="0.800000"/>
+        <EffectArray Operation="Multiply" Reference="Behavior,ReloadPerfect,Duration" Value="0.800000"/>
+        <EffectArray Reference="Behavior,FocusFire,Modification.AttackSpeedMultiplier" Value="0.2"/>
+        <MaxLevel value="2"/>
+    </CUpgrade>
+    <CUpgrade id="SuppressiveFire" parent="DefaultUpgradeOverride">
+        <EffectArray Operation="Set" Reference="Behavior,FocusFire,DamageResponse.Chance" Value="1"/>
+        <EffectArray Operation="Set" Reference="Button,FocusFire,Tooltip" Value="Button/Tooltip/FocusFireCripplingFire"/>
+        <EffectArray Operation="Subtract" Reference="Behavior,SuppressiveFire,Modification.MoveSpeedMultiplier" Value="0.1"/>
+        <MaxLevel value="3"/>
+    </CUpgrade>
+    <CUpgrade id="SuppressiveAccurateFireButton" parent="DefaultUpgradeOverride">
+        <EffectArray Operation="Set" Reference="Button,FocusFire,Tooltip" Value="Button/Tooltip/FocusFireCripplingFiredUp"/>
+        <MaxLevel value="6"/>
+    </CUpgrade>
+    <CUpgrade id="FirstAid" parent="DefaultUpgradeOverride">
+        <MaxLevel value="3"/>
+    </CUpgrade>
+    <CUpgrade id="CriticalStrikeRifleman" parent="DefaultUpgradeOverride">
+        <EffectArray Reference="Effect,PrecisionShotBonusCriticalDamageLevel1,Chance" Value="0.1"/>
+        <EffectArray Reference="Effect,PrecisionShotBonusCriticalDamageLevel2,Chance" Value="0.1"/>
+        <EffectArray Reference="Effect,PrecisionShotBonusCriticalDamageLevel3,Chance" Value="0.1"/>
+        <EffectArray Reference="Effect,PrecisionShotNormalCriticalDamageLevel1,Chance" Value="0.1"/>
+        <EffectArray Reference="Effect,PrecisionShotNormalCriticalDamageLevel2,Chance" Value="0.1"/>
+        <EffectArray Reference="Effect,PrecisionShotNormalCriticalDamageLevel3,Chance" Value="0.1"/>
+        <MaxLevel value="3"/>
     </CUpgrade>
 </Catalog>

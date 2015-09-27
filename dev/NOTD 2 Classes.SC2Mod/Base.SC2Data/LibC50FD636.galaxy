@@ -160,7 +160,7 @@ trigger libC50FD636_gt_RiflemanLevelUpCriticalStrike;
 trigger libC50FD636_gt_RiflemanLevelUpAccurateFire;
 trigger libC50FD636_gt_RiflemanLevelUpWeaponProficiency;
 trigger libC50FD636_gt_RiflemanLevelUpFragGrenadeLevel3;
-trigger libC50FD636_gt_RiflemanLevelUpCripplingFire;
+trigger libC50FD636_gt_RiflemanLevelUpSuppressiveFire;
 trigger libC50FD636_gt_MedicLevelUpAntivenom;
 trigger libC50FD636_gt_MedicLevelUpMedicalExpertise;
 trigger libC50FD636_gt_MedicLevelUpIntolerableCruelty;
@@ -1118,11 +1118,11 @@ bool libC50FD636_gt_RiflemanLevelUpWeaponProficiency_Func (bool testConds, bool 
         return true;
     }
 
-    if ((TechTreeUpgradeCount(UnitGetOwner(EventUnit()), "WeaponsProficiencyLevel1", c_techCountCompleteOnly) == 1)) {
+    if ((TechTreeUpgradeCount(UnitGetOwner(EventUnit()), "WeaponProficiency", c_techCountCompleteOnly) == 1)) {
         TechTreeUpgradeAddLevel(UnitGetOwner(EventUnit()), "WeaponsProficiencyLevel12", 1);
     }
     else {
-        TechTreeUpgradeAddLevel(UnitGetOwner(EventUnit()), "WeaponsProficiencyLevel1", 1);
+        TechTreeUpgradeAddLevel(UnitGetOwner(EventUnit()), "WeaponProficiency", 1);
     }
     return true;
 }
@@ -1163,9 +1163,9 @@ void libC50FD636_gt_RiflemanLevelUpFragGrenadeLevel3_Init () {
 }
 
 //--------------------------------------------------------------------------------------------------
-// Trigger: Rifleman Level Up Crippling Fire
+// Trigger: Rifleman Level Up Suppressive Fire
 //--------------------------------------------------------------------------------------------------
-bool libC50FD636_gt_RiflemanLevelUpCripplingFire_Func (bool testConds, bool runActions) {
+bool libC50FD636_gt_RiflemanLevelUpSuppressiveFire_Func (bool testConds, bool runActions) {
     // Actions
     if (!runActions) {
         return true;
@@ -1181,9 +1181,9 @@ bool libC50FD636_gt_RiflemanLevelUpCripplingFire_Func (bool testConds, bool runA
 }
 
 //--------------------------------------------------------------------------------------------------
-void libC50FD636_gt_RiflemanLevelUpCripplingFire_Init () {
-    libC50FD636_gt_RiflemanLevelUpCripplingFire = TriggerCreate("libC50FD636_gt_RiflemanLevelUpCripplingFire_Func");
-    TriggerAddEventUnitAbility(libC50FD636_gt_RiflemanLevelUpCripplingFire, null, AbilityCommand("RiflemanLearn", 7), c_unitAbilStageComplete, false);
+void libC50FD636_gt_RiflemanLevelUpSuppressiveFire_Init () {
+    libC50FD636_gt_RiflemanLevelUpSuppressiveFire = TriggerCreate("libC50FD636_gt_RiflemanLevelUpSuppressiveFire_Func");
+    TriggerAddEventUnitAbility(libC50FD636_gt_RiflemanLevelUpSuppressiveFire, null, AbilityCommand("RiflemanLearn", 7), c_unitAbilStageComplete, false);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -3023,7 +3023,7 @@ void libC50FD636_InitTriggers () {
     libC50FD636_gt_RiflemanLevelUpAccurateFire_Init();
     libC50FD636_gt_RiflemanLevelUpWeaponProficiency_Init();
     libC50FD636_gt_RiflemanLevelUpFragGrenadeLevel3_Init();
-    libC50FD636_gt_RiflemanLevelUpCripplingFire_Init();
+    libC50FD636_gt_RiflemanLevelUpSuppressiveFire_Init();
     libC50FD636_gt_MedicLevelUpAntivenom_Init();
     libC50FD636_gt_MedicLevelUpMedicalExpertise_Init();
     libC50FD636_gt_MedicLevelUpIntolerableCruelty_Init();

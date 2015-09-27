@@ -782,6 +782,12 @@
         <SearchFilters value="-;Player,Ally,Neutral,Missile,Item"/>
         <AreaArray Radius="40" Effect="MotionSensorDetected"/>
     </CEffectEnumArea>
+    <CEffectIssueOrder id="AccurateFirePassive">
+        <EditorCategories value=""/>
+        <WhichUnit Value="Caster"/>
+        <Abil value="RiflemanResearch"/>
+        <Player Value="Caster"/>
+    </CEffectIssueOrder>
     <CEffectCreatePersistent id="SatelliteUplink">
         <EditorCategories value=""/>
         <WhichLocation Value="TargetUnitOrPoint"/>
@@ -1121,7 +1127,7 @@
     <CEffectApplyBehavior id="ChargeKnockbackHeight">
         <EditorCategories value=""/>
     </CEffectApplyBehavior>
-    <CEffectApplyBehavior id="CripplingFire">
+    <CEffectApplyBehavior id="SuppressiveFire">
         <EditorCategories value=""/>
     </CEffectApplyBehavior>
     <CEffectSet id="HeavyJumpImpactSet">
@@ -1256,40 +1262,31 @@
         <Flags index="NoVitalAbsorbShields" value="1"/>
         <Amount value="50"/>
     </CEffectDamage>
-    <CEffectDamage id="FragmentationGrenadeDamageLevel1">
-        <EditorCategories value=""/>
-        <ImpactLocation Value="TargetPoint"/>
-        <AttributeFactor index="Armored" value="-0.5"/>
-        <ShieldFactor value="-0.95"/>
-        <Amount value="100"/>
-        <AreaArray Radius="2" Fraction="1"/>
-        <SearchFilters value="-;Player,Ally,Item,Invulnerable"/>
-    </CEffectDamage>
-    <CEffectDamage id="FragmentationGrenadeDamageLevel2">
-        <EditorCategories value=""/>
-        <ImpactLocation Value="TargetPoint"/>
-        <AttributeFactor index="Armored" value="-0.5"/>
-        <ShieldFactor value="-0.95"/>
-        <Amount value="200"/>
-        <AreaArray Radius="3" Fraction="1"/>
-        <SearchFilters value="-;Player,Ally,Item,Invulnerable"/>
-    </CEffectDamage>
-    <CEffectDamage id="FragmentationGrenadeDamageLevel3">
-        <EditorCategories value=""/>
-        <ImpactLocation Value="TargetPoint"/>
-        <AttributeFactor index="Armored" value="-0.5"/>
-        <ShieldFactor value="-0.95"/>
-        <Amount value="250"/>
-        <AreaArray Radius="3" Fraction="1"/>
-        <SearchFilters value="-;Player,Ally,Item,Invulnerable"/>
-    </CEffectDamage>
     <CEffectLaunchMissile id="FragmentationGrenadeLevel1">
-        <EditorCategories value=""/>
         <ImpactLocation Value="TargetPoint"/>
         <ImpactEffect value="FragmentationGrenadeDamageLevel1"/>
         <AmmoUnit value="FragmentationGrenadeThrown"/>
         <Movers Link="FragmentationGrenadeThrown"/>
     </CEffectLaunchMissile>
+    <CEffectLaunchMissile id="FragmentationGrenadeLevel2" parent="FragmentationGrenadeLevel1">
+        <ImpactEffect value="FragmentationGrenadeDamageLevel2"/>
+    </CEffectLaunchMissile>
+    <CEffectLaunchMissile id="FragmentationGrenadeLevel3" parent="FragmentationGrenadeLevel2">
+        <ImpactEffect value="FragmentationGrenadeDamageLevel3"/>
+        <Movers Link="Grenadier"/>
+    </CEffectLaunchMissile>
+    <CEffectDamage id="FragmentationGrenadeDamageLevel1">
+        <ImpactLocation Value="TargetPoint"/>
+        <Amount value="200"/>
+        <AreaArray Radius="1.5" Fraction="1"/>
+        <AreaArray Radius="3" Fraction="0.5"/>
+        <SearchFilters value="-;Player,Ally,Item,Invulnerable"/>
+    </CEffectDamage>
+    <CEffectDamage id="FragmentationGrenadeDamageLevel2" parent="FragmentationGrenadeDamageLevel1">
+        <AreaArray index="0" Radius="2" Fraction="1"/>
+        <AreaArray index="1" Radius="4" Fraction="0.5"/>
+    </CEffectDamage>
+    <CEffectDamage id="FragmentationGrenadeDamageLevel3" parent="FragmentationGrenadeDamageLevel2"/>
     <CEffectDestroyPersistent id="HealRemoveOpenWoundsDestroyPersistentLevel12">
         <EditorCategories value=""/>
         <WhichLocation Value="TargetUnit"/>
@@ -1322,20 +1319,6 @@
         <PeriodicEffectArray value="RemoveOpenWoundTarget"/>
         <PeriodicPeriodArray value="8"/>
     </CEffectCreatePersistent>
-    <CEffectLaunchMissile id="FragmentationGrenadeLevel2">
-        <EditorCategories value=""/>
-        <ImpactLocation Value="TargetPoint"/>
-        <ImpactEffect value="FragmentationGrenadeDamageLevel2"/>
-        <AmmoUnit value="FragmentationGrenadeThrown"/>
-        <Movers Link="FragmentationGrenadeThrown"/>
-    </CEffectLaunchMissile>
-    <CEffectLaunchMissile id="FragmentationGrenadeLevel3">
-        <EditorCategories value=""/>
-        <ImpactLocation Value="TargetPoint"/>
-        <ImpactEffect value="FragmentationGrenadeDamageLevel3"/>
-        <AmmoUnit value="FragmentationGrenade"/>
-        <Movers Link="Grenadier"/>
-    </CEffectLaunchMissile>
     <CEffectCreateHealer id="HealLevel1">
         <EditorCategories value=""/>
         <Flags index="Channeled" value="0"/>

@@ -57,18 +57,6 @@
     <CRequirement id="CollateralDamageLevel3">
         <NodeArray index="Use" Link="EqCountUpgradeCollateralDamageDummyCompleteOnly3"/>
     </CRequirement>
-    <CRequirement id="NoSuppressiveFire">
-        <NodeArray index="Use" Link="NotCountUpgradeSuppressiveFireCompleteOnly"/>
-    </CRequirement>
-    <CRequirement id="SuppressiveFireLevel1">
-        <NodeArray index="Use" Link="CountUpgradeSuppressiveFireCompleteOnly"/>
-    </CRequirement>
-    <CRequirement id="SuppressiveFireLevel2">
-        <NodeArray index="Use" Link="GTECountUpgradeSuppressiveFireCompleteOnly2"/>
-    </CRequirement>
-    <CRequirement id="SuppressiveFireLevel3">
-        <NodeArray index="Use" Link="GTECountUpgradeSuppressiveFireCompleteOnly3"/>
-    </CRequirement>
     <CRequirement id="CriticalStrikeLevel2">
         <NodeArray index="Use" Link="EqCountAbilCriticalStrikeCompleteOnlyAtUnit2"/>
         <NodeArray index="Show" Link="EqCountAbilCriticalStrikeCompleteOnlyAtUnit2"/>
@@ -100,44 +88,12 @@
         <NodeArray index="Use" Link="EqCountBehaviorDisableInventoryTransferCompleteOnlyAtUnit1"/>
         <NodeArray index="Show" Link="EqCountBehaviorDisableInventoryTransferCompleteOnlyAtUnit1"/>
     </CRequirement>
-    <CRequirement id="NoAccurateFire">
-        <NodeArray index="Use" Link="NotCountUpgradeAccurateFireCompleteOnly"/>
-    </CRequirement>
-    <CRequirement id="AccurateFireLevel1">
-        <NodeArray index="Use" Link="CountUpgradeAccurateFireCompleteOnly"/>
-    </CRequirement>
-    <CRequirement id="AccurateFireLevel2">
-        <NodeArray index="Use" Link="GTECountUpgradeAccurateFireCompleteOnly2"/>
-    </CRequirement>
-    <CRequirement id="AccurateFireLevel3">
-        <NodeArray index="Use" Link="GTECountUpgradeAccurateFireCompleteOnly3"/>
-    </CRequirement>
-    <CRequirement id="NoFirstAid">
-        <NodeArray index="Use" Link="NotCountUpgradeFirstAidCompleteOnly"/>
-    </CRequirement>
-    <CRequirement id="FirstAidLevel1">
-        <NodeArray index="Use" Link="CountUpgradeFirstAidCompleteOnly"/>
-    </CRequirement>
-    <CRequirement id="FirstAidLevel2">
-        <NodeArray index="Use" Link="GTECountUpgradeFirstAidCompleteOnly2"/>
-    </CRequirement>
-    <CRequirement id="FirstAidLevel3">
-        <NodeArray index="Use" Link="GTECountUpgradeFirstAidCompleteOnly3"/>
-    </CRequirement>
     <CRequirement id="GeminiProtocolAttackSlow">
         <NodeArray index="Use" Link="EqCountBehavior_WeaponCompleteOnlyAtUnit2"/>
     </CRequirement>
     <CRequirement id="GeminiProtocolComplete">
         <NodeArray index="Use" Link="EqCountUpgradeGeminiProtocolCompleteOnly1"/>
         <NodeArray index="Show" Link="EqCountUpgradeGeminiProtocolCompleteOnly1"/>
-    </CRequirement>
-    <CRequirement id="Grenadier">
-        <NodeArray index="Use" Link="CountAbilGrenadierCompleteOnlyAtUnit"/>
-        <NodeArray index="Show" Link="CountAbilGrenadierCompleteOnlyAtUnit"/>
-    </CRequirement>
-    <CRequirement id="HasFocusFire">
-        <NodeArray index="Use" Link="CountBehaviorFocusFireCompleteOnlyAtUnit"/>
-        <NodeArray index="Show" Link="CountBehaviorFocusFireCompleteOnlyAtUnit"/>
     </CRequirement>
     <CRequirement id="Healing">
         <NodeArray index="Use" Link="EqCountBehaviorHealingCompleteOnlyAtUnit1"/>
@@ -196,10 +152,6 @@
     <CRequirement id="NoBrokenBones">
         <NodeArray index="Use" Link="EqCountBehavior_BrokenBoneCompleteOnlyAtUnit0"/>
     </CRequirement>
-    <CRequirement id="NoFocusFire">
-        <NodeArray index="Use" Link="NotCountBehaviorFocusFireCompleteOnlyAtUnit"/>
-        <NodeArray index="Show" Link="NotCountBehaviorFocusFireCompleteOnlyAtUnit"/>
-    </CRequirement>
     <CRequirement id="NoBrokenLeg">
         <NodeArray index="Use" Link="EqCountBehaviorBrokenLegCompleteOnlyAtUnit0"/>
     </CRequirement>
@@ -230,9 +182,6 @@
     <CRequirement id="ReactiveShieldsLevel3">
         <NodeArray index="Use" Link="EqCountAbilReactiveShieldsCompleteOnlyAtUnit3"/>
     </CRequirement>
-    <CRequirement id="RifleProficiency">
-        <NodeArray index="Use" Link="CountBehaviorStartingWeaponCompleteOnlyAtUnit"/>
-    </CRequirement>
     <CRequirement id="CriticalStrikeLevel1">
         <NodeArray index="Use" Link="EqCountAbilCriticalStrikeCompleteOnlyAtUnit1"/>
         <NodeArray index="Show" Link="EqCountAbilCriticalStrikeCompleteOnlyAtUnit1"/>
@@ -259,12 +208,6 @@
     <CRequirement id="WeaponFunctionLockdown">
         <NodeArray index="Use" Link="Eq4283948051SumCountBehaviorAntiMaterialRifleDeployCompleteOnlyAtUnitCountBehaviorFiringStanceCompleteOnlyAtUnitCountBehaviorHeavyMachineGunDeployCompleteOnlyAtUnit0"/>
     </CRequirement>
-    <CRequirement id="WeaponsProficiencyLevel1">
-        <NodeArray index="Show" Link="EqCountUpgradeWeaponsProficiencyLevel1CompleteOnly1"/>
-    </CRequirement>
-    <CRequirement id="WeaponsProficiencyLevel2">
-        <NodeArray index="Show" Link="EqCountUpgradeWeaponsProficiencyLevel12CompleteOnly1"/>
-    </CRequirement>
     <CRequirement id="MeleeWeaponEquipped">
         <NodeArray index="Use" Link="Or311213366CountBehaviorBatonEquippedCompleteOnlyAtUnitCountBehaviorHammerEquippedCompleteOnlyAtUnitCountBehaviorChainsawEquippedCompleteOnlyAtUnitCountBehaviorCrowbarEquippedCompleteOnlyAtUnitCountBe905629260"/>
     </CRequirement>
@@ -273,5 +216,65 @@
     </CRequirement>
     <CRequirement id="WeaponEquipped">
         <NodeArray index="Use" Link="Or47941426CountBehaviorAntiMaterialRifleEquippedCompleteOnlyAtUnitCountBehaviorAssaultRifleEquippedCompleteOnlyAtUnitCountBehaviorAutomaticShotgunEquippedCompleteOnlyAtUnitCountBehaviorLaserRifleEquip2806341177"/>
+    </CRequirement>
+    <CRequirement id="NoFocusFire">
+        <NodeArray index="Use" Link="NotCountBehaviorFocusFireCompleteOnlyAtUnit"/>
+        <NodeArray index="Show" Link="NotCountBehaviorFocusFireCompleteOnlyAtUnit"/>
+    </CRequirement>
+    <CRequirement id="HasFocusFire">
+        <NodeArray index="Use" Link="CountBehaviorFocusFireCompleteOnlyAtUnit"/>
+        <NodeArray index="Show" Link="CountBehaviorFocusFireCompleteOnlyAtUnit"/>
+    </CRequirement>
+    <CRequirement id="NoAccurateFire">
+        <NodeArray index="Use" Link="NotCountUpgradeAccurateFireCompleteOnly"/>
+    </CRequirement>
+    <CRequirement id="AccurateFireLevel1">
+        <NodeArray index="Use" Link="CountUpgradeAccurateFireCompleteOnly"/>
+    </CRequirement>
+    <CRequirement id="AccurateFireLevel2">
+        <NodeArray index="Use" Link="GTECountUpgradeAccurateFireCompleteOnly2"/>
+    </CRequirement>
+    <CRequirement id="AccurateFireLevel3">
+        <NodeArray index="Use" Link="GTECountUpgradeAccurateFireCompleteOnly3"/>
+    </CRequirement>
+    <CRequirement id="NoWeaponProficiency">
+        <NodeArray index="Use" Link="NotCountUpgradeWeaponProficiencyCompleteOnly"/>
+    </CRequirement>
+    <CRequirement id="WeaponProficiencyLevel1">
+        <NodeArray index="Use" Link="CountUpgradeWeaponProficiencyCompleteOnly"/>
+    </CRequirement>
+    <CRequirement id="WeaponProficiencyLevel2">
+        <NodeArray index="Use" Link="GTECountUpgradeWeaponProficiencyCompleteOnly2"/>
+    </CRequirement>
+    <CRequirement id="NoSuppressiveFire">
+        <NodeArray index="Use" Link="NotCountUpgradeSuppressiveFireCompleteOnly"/>
+    </CRequirement>
+    <CRequirement id="SuppressiveFireLevel1">
+        <NodeArray index="Use" Link="CountUpgradeSuppressiveFireCompleteOnly"/>
+    </CRequirement>
+    <CRequirement id="SuppressiveFireLevel2">
+        <NodeArray index="Use" Link="GTECountUpgradeSuppressiveFireCompleteOnly2"/>
+    </CRequirement>
+    <CRequirement id="SuppressiveFireLevel3">
+        <NodeArray index="Use" Link="GTECountUpgradeSuppressiveFireCompleteOnly3"/>
+    </CRequirement>
+    <CRequirement id="NoFirstAid">
+        <NodeArray index="Use" Link="NotCountUpgradeFirstAidCompleteOnly"/>
+    </CRequirement>
+    <CRequirement id="FirstAidLevel1">
+        <NodeArray index="Use" Link="CountUpgradeFirstAidCompleteOnly"/>
+    </CRequirement>
+    <CRequirement id="FirstAidLevel2">
+        <NodeArray index="Use" Link="GTECountUpgradeFirstAidCompleteOnly2"/>
+    </CRequirement>
+    <CRequirement id="FirstAidLevel3">
+        <NodeArray index="Use" Link="GTECountUpgradeFirstAidCompleteOnly3"/>
+    </CRequirement>
+    <CRequirement id="Grenadier">
+        <NodeArray index="Use" Link="CountAbilGrenadierCompleteOnlyAtUnit"/>
+        <NodeArray index="Show" Link="CountAbilGrenadierCompleteOnlyAtUnit"/>
+    </CRequirement>
+    <CRequirement id="RifleProficiency">
+        <NodeArray index="Use" Link="CountBehaviorStartingWeaponCompleteOnlyAtUnit"/>
     </CRequirement>
 </Catalog>
