@@ -151,6 +151,20 @@
         <On Terms="TimerExpired" Send="SetLocalTintColor 237,120,41"/>
         <On Terms="TimerExpired" Send="TextureSelectById CivilianZombieNormal"/>
     </CActorModel>
+    <CActorModel id="ScientistColonistDeathActor" parent="UnitDeathModel">
+        <EditorCategories value=""/>
+        <On Terms="ActorCreation" Send="TimerSet"/>
+        <On Terms="TimerExpired" Send="TextureSelectById CivilianZombieDiffuse"/>
+        <On Terms="TimerExpired" Send="SetLocalTintColor 237,120,41"/>
+        <On Terms="TimerExpired" Send="TextureSelectById CivilianZombieNormal"/>
+    </CActorModel>
+    <CActorModel id="PrisonerColonistDeathActor" parent="UnitDeathModel">
+        <EditorCategories value=""/>
+        <On Terms="ActorCreation" Send="TimerSet"/>
+        <On Terms="TimerExpired" Send="TextureSelectById CivilianZombieDiffuse2"/>
+        <On Terms="TimerExpired" Send="SetLocalTintColor 254,48,24"/>
+        <On Terms="TimerExpired" Send="TextureSelectById CivilianZombieNormal"/>
+    </CActorModel>
     <CActorUnit id="PowerPlantReactor" parent="GenericUnitMinimal" unitName="PowerPlantReactor">
         <EditorCategories value=""/>
         <Model value="Invisible"/>
@@ -1156,7 +1170,7 @@
         <On Terms="ActorCreation" Send="TimerSet"/>
         <Baselines index="Walk" AnimProps="Wounded,Walk"/>
         <DeathArray index="Normal" ModelLink="PrisonerCivilianDeath" SoundLink="PrimalZergling_Death"/>
-        <DeathActorModel value="PrisonerCivilianDeath"/>
+        <DeathActorModel value="PrisonerColonistDeathActor"/>
         <PortraitModel value="MaleCivilian6Portrait"/>
         <WalkAnimMoveSpeed value="1.2968"/>
         <BarOffset value="20"/>
@@ -1221,7 +1235,7 @@
     <CActorUnit id="MarsScientist2" parent="GenericUnitStandard" unitName="MarsScientist2">
         <On Terms="UnitPortrait.*.Customize; ModelVariation 2" Send="PortraitCustomize Scientist2Portrait"/>
         <On Terms="AbilMorph.MutatetoShambler.Finish; MorphTo Shambler" Send="Destroy"/>
-        <On Terms="ActorCreation" Send="SetTeamColor 226,29,29 236,19,19"/>
+        <On Terms="ActorCreation" Send="SetTeamColor 228,133,27 236,19,19"/>
         <On Terms="ActorCreation" Send="TimerSet"/>
         <On Terms="TimerExpired" Send="TextureSelectById CivilianZombieDiffuse2"/>
         <On Terms="TimerExpired" Send="TextureSelectById CivilianZombieNormal"/>
@@ -1262,6 +1276,7 @@
             <Image value="Assets\Textures\Wireframe-Terran-scientist03.dds"/>
         </WireframeVariations>
         <BarHeight value="2"/>
+        <DeathActorModel value="ScientistColonistDeathActor"/>
     </CActorUnit>
     <CActorModel id="SpeedMultiBlitzerAura" parent="ModelAddition">
         <On Terms="Behavior.SpeedMultiBlitzerStart.On" Send="Create"/>
