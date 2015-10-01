@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="us-ascii"?>
 <Catalog>
+    <const id="$WeaponAttach" value="AssaultGeminiFilter AssaultOccupancyFilter"/>
     <CActorUnit default="1" id="AmmoModificationTemplate" parent="GenericUnitSelectableNoAutoSoundLinks">
         <Model value="ItemCrate"/>
         <InfoText value="Button/Tooltip/##unitName##"/>
@@ -122,62 +123,6 @@
         <Host Subject="::Creator"/>
         <HostSiteOps Ops="SOpAttachWeapon SOpForwardTargetPoint"/>
     </CActorModel>
-    <CActorModel id="AntiMaterialRifle" parent="EquippedWeaponTemplate"/>
-    <CActorEventMacro id="AssaultGeminiDualWieldEquipMacro">
-        <EditorCategories value=""/>
-        <On Terms="BehaviorLevel.AssaultRifleEquipped.Start; Level 2" Send="AttachModel AssaultRifle {} {AssaultGeminiFilter AssaultOccupancyFilter}"/>
-        <On Terms="BehaviorLevel.AssaultRifleEquipped.Start; Level 1; ScopeContains AssaultRifle" Target="AssaultRifle" Send="Destroy"/>
-        <On Terms="BehaviorLevel.AssaultRifleEquipped.Start; Level 1; ScopeContains AssaultRifle" Send="AttachModel AssaultRifle {} {AssaultGeminiFilter AssaultOccupancyFilter}"/>
-        <On Terms="BehaviorLevel.AutomaticShotgunEquipped.Start; Level 2" Send="AttachModel AutomaticShotgun {} {AssaultGeminiFilter AssaultOccupancyFilter}"/>
-        <On Terms="BehaviorLevel.AutomaticShotgunEquipped.Start; Level 1; ScopeContains AutomaticShotgun" Target="AutomaticShotgun" Send="Destroy"/>
-        <On Terms="BehaviorLevel.AutomaticShotgunEquipped.Start; Level 1; ScopeContains AutomaticShotgun" Send="AttachModel AutomaticShotgun {} {AssaultGeminiFilter AssaultOccupancyFilter}"/>
-        <On Terms="BehaviorLevel.AxeEquipped.Start; Level 2" Send="AttachModel Axe {} {AssaultGeminiFilter AssaultOccupancyFilter}"/>
-        <On Terms="BehaviorLevel.AxeEquipped.Start; Level 1; ScopeContains Axe" Target="Axe" Send="Destroy"/>
-        <On Terms="BehaviorLevel.AxeEquipped.Start; Level 1; ScopeContains Axe" Send="AttachModel Axe {} {AssaultGeminiFilter AssaultOccupancyFilter}"/>
-        <On Terms="BehaviorLevel.BatonEquipped.Start; Level 2" Send="AttachModel Baton {} {AssaultGeminiFilter AssaultOccupancyFilter}"/>
-        <On Terms="BehaviorLevel.BatonEquipped.Start; Level 1; ScopeContains Baton" Target="Baton" Send="Destroy"/>
-        <On Terms="BehaviorLevel.BatonEquipped.Start; Level 1; ScopeContains Baton" Send="AttachModel Baton {} {AssaultGeminiFilter AssaultOccupancyFilter}"/>
-        <On Terms="BehaviorLevel.ChainsawEquipped.Start; Level 2" Send="AttachModel Chainsaw {} {AssaultGeminiFilter AssaultOccupancyFilter}"/>
-        <On Terms="BehaviorLevel.ChainsawEquipped.Start; Level 1; ScopeContains Chainsaw" Target="Chainsaw" Send="Destroy"/>
-        <On Terms="BehaviorLevel.ChainsawEquipped.Start; Level 1; ScopeContains Chainsaw" Send="AttachModel Chainsaw {} {AssaultGeminiFilter AssaultOccupancyFilter}"/>
-        <On Terms="BehaviorLevel.CrowbarEquipped.Start; Level 2" Send="AttachModel Crowbar {} {AssaultGeminiFilter AssaultOccupancyFilter}"/>
-        <On Terms="BehaviorLevel.CrowbarEquipped.Start; Level 1; ScopeContains Crowbar" Target="Crowbar" Send="Destroy"/>
-        <On Terms="BehaviorLevel.CrowbarEquipped.Start; Level 1; ScopeContains Crowbar" Send="AttachModel Crowbar {} {AssaultGeminiFilter AssaultOccupancyFilter}"/>
-        <On Terms="BehaviorLevel.FlamethrowerEquipped.Start; Level 2" Send="AttachModel Flamethrower {} {AssaultGeminiFilter AssaultOccupancyFilter}"/>
-        <On Terms="BehaviorLevel.FlamethrowerEquipped.Start; Level 1; ScopeContains Flamethrower" Target="Flamethrower" Send="Destroy"/>
-        <On Terms="BehaviorLevel.FlamethrowerEquipped.Start; Level 1; ScopeContains Flamethrower" Send="AttachModel Flamethrower {} {AssaultGeminiFilter AssaultOccupancyFilter}"/>
-        <On Terms="BehaviorLevel.LaserRifleEquipped.Start; Level 2" Send="AttachModel LaserRifle {} {AssaultGeminiFilter AssaultOccupancyFilter}"/>
-        <On Terms="BehaviorLevel.LaserRifleEquipped.Start; Level 1; ScopeContains LaserRifle" Target="LaserRifle" Send="Destroy"/>
-        <On Terms="BehaviorLevel.LaserRifleEquipped.Start; Level 1; ScopeContains LaserRifle" Send="AttachModel LaserRifle {} {AssaultGeminiFilter AssaultOccupancyFilter}"/>
-        <On Terms="BehaviorLevel.MarksmanRifleEquipped.Start; Level 2" Send="AttachModel MarksmanRifle {} {AssaultGeminiFilter AssaultOccupancyFilter}"/>
-        <On Terms="BehaviorLevel.MarksmanRifleEquipped.Start; Level 1; ScopeContains MarksmanRifle" Target="MarksmanRifle" Send="Destroy"/>
-        <On Terms="BehaviorLevel.MarksmanRifleEquipped.Start; Level 1; ScopeContains MarksmanRifle" Send="AttachModel MarksmanRifle {} {AssaultGeminiFilter AssaultOccupancyFilter}"/>
-        <On Terms="BehaviorLevel.MediumMachineGunEquipped.Start; Level 2" Send="AttachModel MediumMachineGun {} {AssaultGeminiFilter AssaultOccupancyFilter}"/>
-        <On Terms="BehaviorLevel.MediumMachineGunEquipped.Start; Level 1; ScopeContains MediumMachineGun" Target="MediumMachineGun" Send="Destroy"/>
-        <On Terms="BehaviorLevel.MediumMachineGunEquipped.Start; Level 1; ScopeContains MediumMachineGun" Send="AttachModel MediumMachineGun {} {AssaultGeminiFilter AssaultOccupancyFilter}"/>
-        <On Terms="BehaviorLevel.PistolEquipped.Start; Level 2" Send="AttachModel Pistol {} {AssaultGeminiFilter AssaultOccupancyFilter}"/>
-        <On Terms="BehaviorLevel.PistolEquipped.Start; Level 1; ScopeContains Pistol" Target="Pistol" Send="Destroy"/>
-        <On Terms="BehaviorLevel.PistolEquipped.Start; Level 1; ScopeContains Pistol" Send="AttachModel Pistol {} {AssaultGeminiFilter AssaultOccupancyFilter}"/>
-        <On Terms="BehaviorLevel.PlasmaCutterEquipped.Start; Level 2" Send="AttachModel PlasmaCutter {} {AssaultGeminiFilter AssaultOccupancyFilter}"/>
-        <On Terms="BehaviorLevel.PlasmaCutterEquipped.Start; Level 1; ScopeContains PlasmaCutter" Target="PlasmaCutter" Send="Destroy"/>
-        <On Terms="BehaviorLevel.PlasmaCutterEquipped.Start; Level 1; ScopeContains PlasmaCutter" Send="AttachModel PlasmaCutter {} {AssaultGeminiFilter AssaultOccupancyFilter}"/>
-        <On Terms="BehaviorLevel.PumpShotgunEquipped.Start; Level 2" Send="AttachModel PumpShotgun {} {AssaultGeminiFilter AssaultOccupancyFilter}"/>
-        <On Terms="BehaviorLevel.PumpShotgunEquipped.Start; Level 1; ScopeContains PumpShotgun" Target="PumpShotgun" Send="Destroy"/>
-        <On Terms="BehaviorLevel.PumpShotgunEquipped.Start; Level 1; ScopeContains PumpShotgun" Send="AttachModel PumpShotgun {} {AssaultGeminiFilter AssaultOccupancyFilter}"/>
-        <On Terms="BehaviorLevel.AntiMaterialRifleEquipped.Start; Level 2" Send="AttachModel AntiMaterialRifle {} {AssaultGeminiFilter AssaultOccupancyFilter}"/>
-        <On Terms="BehaviorLevel.AntiMaterialRifleEquipped.Start; Level 1; ScopeContains AntiMaterialRifle" Target="AntiMaterialRifle" Send="Destroy"/>
-        <On Terms="BehaviorLevel.AntiMaterialRifleEquipped.Start; Level 1; ScopeContains AntiMaterialRifle" Send="AttachModel AntiMaterialRifle {} {AssaultGeminiFilter AssaultOccupancyFilter}"/>
-    </CActorEventMacro>
-    <CActorEventMacro id="AssaultDualWieldModelSwap">
-        <EditorCategories value=""/>
-        <On Terms="ActorCreation" Send="StatusSet WeaponCount 0"/>
-        <On Terms="StatusIncrement.*.WeaponCount; IsStatus WeaponCount 2" Send="ModelSwap HeavyMarineTwoHanded"/>
-        <On Terms="StatusDecrement.*.WeaponCount; IsStatus WeaponCount 1" Send="ModelSwap HeavyMarineOneHanded"/>
-        <On Terms="BehaviorLevel.WeaponEquipped.Stop; Level 0" Send="StatusIncrement WeaponCount"/>
-        <On Terms="BehaviorLevel.WeaponEquipped.Start; Level 0" Send="StatusDecrement WeaponCount"/>
-        <On Terms="BehaviorLevel.WeaponEquipped.Start; Level 2" Send="StatusIncrement WeaponCount"/>
-        <On Terms="BehaviorLevel.WeaponEquipped.Stop; Level 2" Send="StatusDecrement WeaponCount"/>
-    </CActorEventMacro>
     <CActorModel id="AssaultRifle" parent="EquippedWeaponTemplate"/>
     <CActorModel id="AutomaticShotgun" parent="EquippedWeaponTemplate" DamageEffect=""/>
     <CActorModel id="Axe" parent="EquippedWeaponTemplate" DamageEffect=""/>
@@ -531,7 +476,6 @@
         <On Terms="Abil.AlternateFireModes.Stop; AnimPlaying HeavyMachineGun" Send="AnimClear HeavyMachineGun"/>
         <On Terms="Abil.AlternateFireModes.Stop; AnimPlaying HeavyMachineGunUndeploy" Send="AnimClear HeavyMachineGunUndeploy"/>
         <On Terms="UnitMovementUpdate.*.Walk" Send="AnimGroupRemove Work Instant"/>
-        <EditorCategories value=""/>
     </CActorEventMacro>
     <CActorUnit id="HeavyProtectiveInsert" parent="ArmorCrateTemplate" unitName="HeavyProtectiveInsert"/>
     <CActorUnit id="PumpShotgunItem" parent="WeaponCrateTemplate" unitName="PumpShotgun">
@@ -668,6 +612,58 @@
         <StatusBarFlags index="Custom" value="0"/>
     </CActorUnit>
     <CActorEventMacro id="WeaponEquipMacro">
+        <On Terms="BehaviorLevel.AssaultRifleEquipped.Start; Level 1" Send="AttachModel AssaultRifle {} {$WeaponAttach}"/>
+        <On Terms="BehaviorLevel.AssaultRifleEquipped.Start; Level 0" Target="AssaultRifle" Send="Destroy Immediate"/>
+        <On Terms="BehaviorLevel.AutomaticShotgunEquipped.Start; Level 1" Send="AttachModel AutomaticShotgun {} {$WeaponAttach}"/>
+        <On Terms="BehaviorLevel.AutomaticShotgunEquipped.Start; Level 0" Target="AutomaticShotgun" Send="Destroy Immediate"/>
+        <On Terms="BehaviorLevel.PumpShotgunEquipped.Start; Level 1" Send="AttachModel PumpShotgun {} {$WeaponAttach}"/>
+        <On Terms="BehaviorLevel.PumpShotgunEquipped.Start; Level 0" Target="PumpShotgun" Send="Destroy Immediate"/>
+        <On Terms="BehaviorLevel.SubmachineGunEquipped.Start; Level 1" Send="AttachModel SubmachineGun {} {$WeaponAttach}"/>
+        <On Terms="BehaviorLevel.SubmachineGunEquipped.Start; Level 0" Target="SubmachineGun" Send="Destroy Immediate"/>
+        <On Terms="BehaviorLevel.MarksmanRifleEquipped.Start; Level 1" Send="AttachModel MarksmanRifle {} {$WeaponAttach}"/>
+        <On Terms="BehaviorLevel.MarksmanRifleEquipped.Start; Level 0" Target="MarksmanRifle" Send="Destroy Immediate"/>
+        <On Terms="BehaviorLevel.PistolEquipped.Start; Level 1" Send="AttachModel Pistol {} {$WeaponAttach}"/>
+        <On Terms="BehaviorLevel.PistolEquipped.Start; Level 0" Target="Pistol" Send="Destroy Immediate"/>
+        <On Terms="BehaviorLevel.PlasmaCutterEquipped.Start; Level 1" Send="AttachModel PlasmaCutter {} {$WeaponAttach}"/>
+        <On Terms="BehaviorLevel.PlasmaCutterEquipped.Start; Level 0" Target="PlasmaCutter" Send="Destroy Immediate"/>
+        <On Terms="BehaviorLevel.HeavyMachineGunEquipped.Start; Level 1" Send="AttachModel HeavyMachineGun {} {$WeaponAttach}"/>
+        <On Terms="BehaviorLevel.HeavyMachineGunEquipped.Start; Level 0" Target="HeavyMachineGun" Send="Destroy Immediate"/>
+        <On Terms="BehaviorLevel.LaserRifleEquipped.Start; Level 1" Send="AttachModel LaserRifle {} {$WeaponAttach}"/>
+        <On Terms="BehaviorLevel.LaserRifleEquipped.Start; Level 0" Target="LaserRifle" Send="Destroy Immediate"/>
+        <On Terms="BehaviorLevel.MediumMachineGunEquipped.Start; Level 1" Send="AttachModel MediumMachineGun {} {$WeaponAttach}"/>
+        <On Terms="BehaviorLevel.MediumMachineGunEquipped.Start; Level 0" Target="MediumMachineGun" Send="Destroy Immediate"/>
+        <On Terms="BehaviorLevel.FlamethrowerEquipped.Start; Level 1" Send="AttachModel Flamethrower {} {$WeaponAttach}"/>
+        <On Terms="BehaviorLevel.FlamethrowerEquipped.Start; Level 0" Target="Flamethrower" Send="Destroy Immediate"/>
+        <On Terms="BehaviorLevel.ChainsawEquipped.Start; Level 1" Send="AttachModel Chainsaw {} {$WeaponAttach}"/>
+        <On Terms="BehaviorLevel.ChainsawEquipped.Start; Level 0" Target="Chainsaw" Send="Destroy Immediate"/>
+        <On Terms="BehaviorLevel.CrowbarEquipped.Start; Level 1" Send="AttachModel Crowbar {} {$WeaponAttach}"/>
+        <On Terms="BehaviorLevel.CrowbarEquipped.Start; Level 0" Target="_Weapon" Send="Destroy Immediate"/>
+        <On Terms="BehaviorLevel.AntiMaterialRifleEquipped.Start; Level 1" Send="AttachModel AntiMaterialRifle {} {$WeaponAttach}"/>
+        <On Terms="BehaviorLevel.AntiMaterialRifleEquipped.Start; Level 0" Target="AntiMaterialRifle" Send="Destroy Immediate"/>
+        <On Terms="BehaviorLevel.AxeEquipped.Start; Level 1" Send="AttachModel Axe {} {$WeaponAttach}"/>
+        <On Terms="BehaviorLevel.AxeEquipped.Start; Level 0" Target="Axe" Send="Destroy Immediate"/>
+        <On Terms="BehaviorLevel.BatonEquipped.Start; Level 1" Send="AttachModel Baton {} {$WeaponAttach}"/>
+        <On Terms="BehaviorLevel.BatonEquipped.Start; Level 0" Target="Baton" Send="Destroy Immediate"/>
+        <On Terms="BehaviorLevel.HammerEquipped.Start; Level 1" Send="AttachModel Hammer {} {$WeaponAttach}"/>
+        <On Terms="BehaviorLevel.HammerEquipped.Start; Level 0" Target="Hammer" Send="Destroy Immediate"/>
+        <On Terms="BehaviorLevel.GrenadeLauncherEquipped.Start; Level 1" Send="AttachModel GrenadeLauncher {} {$WeaponAttach}"/>
+        <On Terms="BehaviorLevel.GrenadeLauncherEquipped.Start; Level 0" Target="GrenadeLauncher" Send="Destroy Immediate"/>
+        <On Terms="BehaviorLevel.PlasmaCannonEquipped.Start; Level 1" Send="AttachModel PlasmaCannon {} {$WeaponAttach}"/>
+        <On Terms="BehaviorLevel.PlasmaCannonEquipped.Start; Level 0" Target="PlasmaCannon" Send="Destroy Immediate"/>
+        <On Terms="BehaviorLevel.RailgunEquipped.Start; Level 1" Send="AttachModel RailGun {} {$WeaponAttach}"/>
+        <On Terms="BehaviorLevel.RailgunEquipped.Start; Level 0" Target="RailGun" Send="Destroy Immediate"/>
+        <On Terms="BehaviorLevel.RocketLauncherEquipped.Start; Level 1" Send="AttachModel RocketLauncher {} {$WeaponAttach}"/>
+        <On Terms="BehaviorLevel.RocketLauncherEquipped.Start; Level 0" Target="RocketLauncher" Send="Destroy Immediate"/>
+    </CActorEventMacro>
+    <CActorEventMacro id="WeaponEquipHeavyMacro" parent="WeaponEquipMacro">
+        <On index="12" Terms="BehaviorLevel.PlasmaCutterEquipped.Start; Level 1" Send="AttachModel PlasmaCutter {} {$WeaponAttach} SOpMoveBackByDot3"/>
+        <On index="14" Terms="BehaviorLevel.HeavyMachineGunEquipped.Start; Level 1" Send="AttachModel HeavyMachineGun {} {$WeaponAttach} SOpMoveBackByDot3"/>
+        <On index="20" Terms="BehaviorLevel.FlamethrowerEquipped.Start; Level 1" Send="AttachModel Flamethrower {} {$WeaponAttach} SOpMoveBackByDot3"/>
+        <On index="22" Terms="BehaviorLevel.ChainsawEquipped.Start; Level 1" Send="AttachModel Chainsaw {} {$WeaponAttach} SOpMoveBackByDot3"/>
+    </CActorEventMacro>
+    <CActorEventMacro id="AssaultWeaponEquipMacro" parent="WeaponEquipHeavyMacro"/>
+    <!--
+    <CActorEventMacro id="WeaponEquipMacro">
         <EditorCategories value=""/>
         <On Terms="Behavior.AssaultRifleEquipped.On" Send="AttachModel AssaultRifle {} {Weapon 1}"/>
         <On Terms="Behavior.AssaultRifleEquipped.Off" Target="AssaultRifle" Send="Destroy Immediate"/>
@@ -724,11 +720,12 @@
         <On index="4" Terms="Behavior.PumpShotgunEquipped.On" Send="AttachModel PumpShotgun {} {AssaultGeminiFilter AssaultOccupancyFilter}"/>
         <On index="6" Terms="Behavior.SubmachineGunEquipped.On" Send="AttachModel SubmachineGun {} {AssaultGeminiFilter AssaultOccupancyFilter}"/>
         <On index="8" Terms="Behavior.MarksmanRifleEquipped.On" Send="AttachModel MarksmanRifle {} {AssaultGeminiFilter AssaultOccupancyFilter}"/>
-        <On index="10" Terms="Behavior.PistolEquipped.On" Send="AttachModel Pistol {} {AssaultGeminiFilter AssaultOccupancyFilter} "/>
+        <On index="10" Terms="Behavior.PistolEquipped.On" Send="AttachModel Pistol {} {AssaultGeminiFilter AssaultOccupancyFilter}"/>
         <On index="16" Terms="Behavior.LaserRifleEquipped.On" Send="AttachModel LaserRifle {} {AssaultGeminiFilter AssaultOccupancyFilter}"/>
         <On index="18" Terms="Behavior.MediumMachineGunEquipped.On" Send="AttachModel MediumMachineGun {} {AssaultGeminiFilter AssaultOccupancyFilter}"/>
         <On index="26" Terms="Behavior.AntiMaterialRifleEquipped.On" Send="AttachModel AntiMaterialRifle {} {AssaultGeminiFilter AssaultOccupancyFilter}"/>
     </CActorEventMacro>
+    -->
     <CActorEventMacro id="WeaponAnimationGroups">
         <EditorCategories value=""/>
         <On Terms="Abil.attack.ReadyStart; ValidateUnit EquippedWeaponisSubmachineGun" Send="AnimGroupRemove Ready Instant"/>
@@ -773,17 +770,116 @@
         <On Terms="Behavior.PlasmaCannonEquipped.On" Send="ModelSwap LightMarineUnder"/>
         <On Terms="Behavior.RailgunEquipped.On" Send="ModelSwap LightMarineUnder"/>
         <On Terms="Behavior.RocketLauncherEquipped.On" Send="ModelSwap LightMarineTwo"/>
-        <On Terms="BehaviorLevel.UnderhandWeaponEquipped.Start; IsStatus WeaponCount 1" Send="ModelSwap LightMarineUnder"/>
-        <On Terms="BehaviorLevel.MeleeWeaponEquipped.Start; IsStatus WeaponCount 1" Send="ModelSwap LightMarineMelee"/>
+        <On Terms="BehaviorLevel.UnderhandWeaponEquipped.Start; Level 1" Send="ModelSwap LightMarineUnder"/>
+        <On Terms="BehaviorLevel.MeleeWeaponEquipped.Start; Level 1" Send="ModelSwap LightMarineMelee"/>
         <On Terms="BehaviorLevel.WeaponEquipped.Start; Level 0" Send="ModelSwap LightMarineMelee"/>
     </CActorEventMacro>
     <CActorEventMacro id="WeaponModelSwapGroupsHeavy">
         <EditorCategories value=""/>
-        <On Terms="BehaviorLevel.UnderhandWeaponEquipped.Start; IsStatus WeaponCount 1" Send="ModelSwap HeavyMarineUnderhanded"/>
-        <On Terms="BehaviorLevel.RangedWeaponEquipped.Start; IsStatus WeaponCount 1" Send="ModelSwap HeavyMarineOneHanded"/>
-        <On Terms="BehaviorLevel.MeleeWeaponEquipped.Start; IsStatus WeaponCount 1" Send="ModelSwap HeavyMarineMelee"/>
+        <On Terms="BehaviorLevel.UnderhandWeaponEquipped.Start; Level 1" Send="ModelSwap HeavyMarineUnderhanded"/>
+        <On Terms="BehaviorLevel.RangedWeaponEquipped.Start; Level 1" Send="ModelSwap HeavyMarineOneHanded"/>
+        <On Terms="BehaviorLevel.MeleeWeaponEquipped.Start; Level 1" Send="ModelSwap HeavyMarineMelee"/>
         <On Terms="BehaviorLevel.WeaponEquipped.Start; Level 0" Send="ModelSwap HeavyMarineMelee"/>
     </CActorEventMacro>
+    <CActorEventMacro id="AssaultGeminiDualWieldEquipMacro">
+        <On Terms="BehaviorLevel.AntiMaterialRifleEquipped.Start; Level 2" Send="AttachModel AntiMaterialRifle {} {$WeaponAttach}"/>
+        <On Terms="BehaviorLevel.AntiMaterialRifleEquipped.Stop; Level 2" Target="AntiMaterialRifle" Send="Destroy Immediate"/>
+        <On Terms="BehaviorLevel.AssaultRifleEquipped.Start; Level 2" Send="AttachModel AssaultRifle {} {$WeaponAttach}"/>
+        <On Terms="BehaviorLevel.AssaultRifleEquipped.Stop; Level 2" Target="AssaultRifle" Send="Destroy Immediate"/>
+        <On Terms="BehaviorLevel.AutomaticShotgunEquipped.Start; Level 2" Send="AttachModel AutomaticShotgun {} {$WeaponAttach}"/>
+        <On Terms="BehaviorLevel.AutomaticShotgunEquipped.Stop; Level 2" Target="AutomaticShotgun" Send="Destroy Immediate"/>
+        <On Terms="BehaviorLevel.AxeEquipped.Start; Level 2" Send="AttachModel Axe {} {$WeaponAttach}"/>
+        <On Terms="BehaviorLevel.AxeEquipped.Stop; Level 2" Target="Axe" Send="Destroy Immediate"/>
+        <On Terms="BehaviorLevel.BatonEquipped.Start; Level 2" Send="AttachModel Baton {} {$WeaponAttach}"/>
+        <On Terms="BehaviorLevel.BatonEquipped.Stop; Level 2" Target="Baton" Send="Destroy Immediate"/>
+        <On Terms="BehaviorLevel.ChainsawEquipped.Start; Level 2" Send="AttachModel Chainsaw {} {$WeaponAttach}"/>
+        <On Terms="BehaviorLevel.ChainsawEquipped.Stop; Level 2" Target="Chainsaw" Send="Destroy Immediate"/>
+        <On Terms="BehaviorLevel.CrowbarEquipped.Start; Level 2" Send="AttachModel Crowbar {} {$WeaponAttach}"/>
+        <On Terms="BehaviorLevel.CrowbarEquipped.Stop; Level 2" Target="Crowbar" Send="Destroy Immediate"/>
+        <On Terms="BehaviorLevel.FlamethrowerEquipped.Start; Level 2" Send="AttachModel Flamethrower {} {$WeaponAttach}"/>
+        <On Terms="BehaviorLevel.FlamethrowerEquipped.Stop; Level 2" Target="Flamethrower" Send="Destroy Immediate"/>
+        <On Terms="BehaviorLevel.HeavyMachineGunEquipped.Start; Level 2" Send="AttachModel HeavyMachineGun {} {$WeaponAttach}"/>
+        <On Terms="BehaviorLevel.HeavyMachineGunEquipped.Stop; Level 2" Target="HeavyMachineGun" Send="Destroy Immediate"/>
+        <On Terms="BehaviorLevel.LaserRifleEquipped.Start; Level 2" Send="AttachModel LaserRifle {} {$WeaponAttach}"/>
+        <On Terms="BehaviorLevel.LaserRifleEquipped.Stop; Level 2" Target="LaserRifle" Send="Destroy Immediate"/>
+        <On Terms="BehaviorLevel.MarksmanRifleEquipped.Start; Level 2" Send="AttachModel MarksmanRifle {} {$WeaponAttach}"/>
+        <On Terms="BehaviorLevel.MarksmanRifleEquipped.Stop; Level 2" Target="MarksmanRifle" Send="Destroy Immediate"/>
+        <On Terms="BehaviorLevel.MediumMachineGunEquipped.Start; Level 2" Send="AttachModel MediumMachineGun {} {$WeaponAttach}"/>
+        <On Terms="BehaviorLevel.MediumMachineGunEquipped.Stop; Level 2" Target="MediumMachineGun" Send="Destroy Immediate"/>
+        <On Terms="BehaviorLevel.PistolEquipped.Start; Level 2" Send="AttachModel Pistol {} {$WeaponAttach}"/>
+        <On Terms="BehaviorLevel.PistolEquipped.Stop; Level 2" Target="Pistol" Send="Destroy Immediate"/>
+        <On Terms="BehaviorLevel.PlasmaCutterEquipped.Start; Level 2" Send="AttachModel PlasmaCutter {} {$WeaponAttach}"/>
+        <On Terms="BehaviorLevel.PlasmaCutterEquipped.Stop; Level 2" Target="PlasmaCutter" Send="Destroy Immediate"/>
+        <On Terms="BehaviorLevel.PumpShotgunEquipped.Start; Level 2" Send="AttachModel PumpShotgun {} {$WeaponAttach}"/>
+        <On Terms="BehaviorLevel.PumpShotgunEquipped.Stop; Level 2" Target="PumpShotgun" Send="Destroy Immediate"/>
+    </CActorEventMacro>
+    <!--
+    <CActorEventMacro id="AssaultGeminiDualWieldEquipMacro">
+        <On Terms="BehaviorLevel.AntiMaterialRifleEquipped.Start; Level 2" Send="AttachModel AntiMaterialRifle {} {AssaultGeminiFilter AssaultOccupancyFilter}"/>
+        <On Terms="BehaviorLevel.AntiMaterialRifleEquipped.Start; Level 1; ScopeContains AntiMaterialRifle" Target="AntiMaterialRifle" Send="Destroy"/>
+        <On Terms="BehaviorLevel.AntiMaterialRifleEquipped.Start; Level 1; ScopeContains AntiMaterialRifle" Send="AttachModel AntiMaterialRifle {} {AssaultGeminiFilter AssaultOccupancyFilter}"/>
+        <On Terms="BehaviorLevel.AssaultRifleEquipped.Start; Level 2" Send="AttachModel AssaultRifle {} {AssaultGeminiFilter AssaultOccupancyFilter}"/>
+        <On Terms="BehaviorLevel.AssaultRifleEquipped.Start; Level 1; ScopeContains AssaultRifle" Target="AssaultRifle" Send="Destroy"/>
+        <On Terms="BehaviorLevel.AssaultRifleEquipped.Start; Level 1; ScopeContains AssaultRifle" Send="AttachModel AssaultRifle {} {AssaultGeminiFilter AssaultOccupancyFilter}"/>
+        <On Terms="BehaviorLevel.AutomaticShotgunEquipped.Start; Level 2" Send="AttachModel AutomaticShotgun {} {AssaultGeminiFilter AssaultOccupancyFilter}"/>
+        <On Terms="BehaviorLevel.AutomaticShotgunEquipped.Start; Level 1; ScopeContains AutomaticShotgun" Target="AutomaticShotgun" Send="Destroy"/>
+        <On Terms="BehaviorLevel.AutomaticShotgunEquipped.Start; Level 1; ScopeContains AutomaticShotgun" Send="AttachModel AutomaticShotgun {} {AssaultGeminiFilter AssaultOccupancyFilter}"/>
+        <On Terms="BehaviorLevel.AxeEquipped.Start; Level 2" Send="AttachModel Axe {} {AssaultGeminiFilter AssaultOccupancyFilter}"/>
+        <On Terms="BehaviorLevel.AxeEquipped.Start; Level 1; ScopeContains Axe" Target="Axe" Send="Destroy"/>
+        <On Terms="BehaviorLevel.AxeEquipped.Start; Level 1; ScopeContains Axe" Send="AttachModel Axe {} {AssaultGeminiFilter AssaultOccupancyFilter}"/>
+        <On Terms="BehaviorLevel.BatonEquipped.Start; Level 2" Send="AttachModel Baton {} {AssaultGeminiFilter AssaultOccupancyFilter}"/>
+        <On Terms="BehaviorLevel.BatonEquipped.Start; Level 1; ScopeContains Baton" Target="Baton" Send="Destroy"/>
+        <On Terms="BehaviorLevel.BatonEquipped.Start; Level 1; ScopeContains Baton" Send="AttachModel Baton {} {AssaultGeminiFilter AssaultOccupancyFilter}"/>
+        <On Terms="BehaviorLevel.ChainsawEquipped.Start; Level 2" Send="AttachModel Chainsaw {} {AssaultGeminiFilter AssaultOccupancyFilter}"/>
+        <On Terms="BehaviorLevel.ChainsawEquipped.Start; Level 1; ScopeContains Chainsaw" Target="Chainsaw" Send="Destroy"/>
+        <On Terms="BehaviorLevel.ChainsawEquipped.Start; Level 1; ScopeContains Chainsaw" Send="AttachModel Chainsaw {} {AssaultGeminiFilter AssaultOccupancyFilter}"/>
+        <On Terms="BehaviorLevel.CrowbarEquipped.Start; Level 2" Send="AttachModel Crowbar {} {AssaultGeminiFilter AssaultOccupancyFilter}"/>
+        <On Terms="BehaviorLevel.CrowbarEquipped.Start; Level 1; ScopeContains Crowbar" Target="Crowbar" Send="Destroy"/>
+        <On Terms="BehaviorLevel.CrowbarEquipped.Start; Level 1; ScopeContains Crowbar" Send="AttachModel Crowbar {} {AssaultGeminiFilter AssaultOccupancyFilter}"/>
+        <On Terms="BehaviorLevel.FlamethrowerEquipped.Start; Level 2" Send="AttachModel Flamethrower {} {AssaultGeminiFilter AssaultOccupancyFilter}"/>
+        <On Terms="BehaviorLevel.FlamethrowerEquipped.Start; Level 1; ScopeContains Flamethrower" Target="Flamethrower" Send="Destroy"/>
+        <On Terms="BehaviorLevel.FlamethrowerEquipped.Start; Level 1; ScopeContains Flamethrower" Send="AttachModel Flamethrower {} {AssaultGeminiFilter AssaultOccupancyFilter}"/>
+        <On Terms="BehaviorLevel.HeavyMachineGunEquipped.Start; Level 2" Send="AttachModel HeavyMachineGun {} {AssaultGeminiFilter AssaultOccupancyFilter}"/>
+        <On Terms="BehaviorLevel.HeavyMachineGunEquipped.Start; Level 1; ScopeContains HeavyMachineGun" Target="HeavyMachineGun" Send="Destroy"/>
+        <On Terms="BehaviorLevel.HeavyMachineGunEquipped.Start; Level 1; ScopeContains HeavyMachineGun" Send="AttachModel HeavyMachineGun {} {AssaultGeminiFilter AssaultOccupancyFilter}"/>
+        <On Terms="BehaviorLevel.LaserRifleEquipped.Start; Level 2" Send="AttachModel LaserRifle {} {AssaultGeminiFilter AssaultOccupancyFilter}"/>
+        <On Terms="BehaviorLevel.LaserRifleEquipped.Start; Level 1; ScopeContains LaserRifle" Target="LaserRifle" Send="Destroy"/>
+        <On Terms="BehaviorLevel.LaserRifleEquipped.Start; Level 1; ScopeContains LaserRifle" Send="AttachModel LaserRifle {} {AssaultGeminiFilter AssaultOccupancyFilter}"/>
+        <On Terms="BehaviorLevel.MarksmanRifleEquipped.Start; Level 2" Send="AttachModel MarksmanRifle {} {AssaultGeminiFilter AssaultOccupancyFilter}"/>
+        <On Terms="BehaviorLevel.MarksmanRifleEquipped.Start; Level 1; ScopeContains MarksmanRifle" Target="MarksmanRifle" Send="Destroy"/>
+        <On Terms="BehaviorLevel.MarksmanRifleEquipped.Start; Level 1; ScopeContains MarksmanRifle" Send="AttachModel MarksmanRifle {} {AssaultGeminiFilter AssaultOccupancyFilter}"/>
+        <On Terms="BehaviorLevel.MediumMachineGunEquipped.Start; Level 2" Send="AttachModel MediumMachineGun {} {AssaultGeminiFilter AssaultOccupancyFilter}"/>
+        <On Terms="BehaviorLevel.MediumMachineGunEquipped.Start; Level 1; ScopeContains MediumMachineGun" Target="MediumMachineGun" Send="Destroy"/>
+        <On Terms="BehaviorLevel.MediumMachineGunEquipped.Start; Level 1; ScopeContains MediumMachineGun" Send="AttachModel MediumMachineGun {} {AssaultGeminiFilter AssaultOccupancyFilter}"/>
+        <On Terms="BehaviorLevel.PistolEquipped.Start; Level 2" Send="AttachModel Pistol {} {AssaultGeminiFilter AssaultOccupancyFilter}"/>
+        <On Terms="BehaviorLevel.PistolEquipped.Start; Level 1; ScopeContains Pistol" Target="Pistol" Send="Destroy"/>
+        <On Terms="BehaviorLevel.PistolEquipped.Start; Level 1; ScopeContains Pistol" Send="AttachModel Pistol {} {AssaultGeminiFilter AssaultOccupancyFilter}"/>
+        <On Terms="BehaviorLevel.PlasmaCutterEquipped.Start; Level 2" Send="AttachModel PlasmaCutter {} {AssaultGeminiFilter AssaultOccupancyFilter}"/>
+        <On Terms="BehaviorLevel.PlasmaCutterEquipped.Start; Level 1; ScopeContains PlasmaCutter" Target="PlasmaCutter" Send="Destroy"/>
+        <On Terms="BehaviorLevel.PlasmaCutterEquipped.Start; Level 1; ScopeContains PlasmaCutter" Send="AttachModel PlasmaCutter {} {AssaultGeminiFilter AssaultOccupancyFilter}"/>
+        <On Terms="BehaviorLevel.PumpShotgunEquipped.Start; Level 2" Send="AttachModel PumpShotgun {} {AssaultGeminiFilter AssaultOccupancyFilter}"/>
+        <On Terms="BehaviorLevel.PumpShotgunEquipped.Start; Level 1; ScopeContains PumpShotgun" Target="PumpShotgun" Send="Destroy"/>
+        <On Terms="BehaviorLevel.PumpShotgunEquipped.Start; Level 1; ScopeContains PumpShotgun" Send="AttachModel PumpShotgun {} {AssaultGeminiFilter AssaultOccupancyFilter}"/>
+    </CActorEventMacro>
+    -->
+    <CActorEventMacro id="AssaultDualWieldModelSwap">
+        <On Terms="ActorCreation" Send="StatusSet WeaponCount 0"/>
+        <On Terms="BehaviorLevel.WeaponEquipped.Start; Level 0 GT" Send="StatusIncrement WeaponCount"/>
+        <On Terms="BehaviorLevel.WeaponEquipped.Stop; Level 0 GT" Send="StatusDecrement WeaponCount"/>
+        <On Terms="StatusIncrement.*.WeaponCount; IsStatus WeaponCount 2" Send="ModelSwap HeavyMarineTwoHanded"/>
+        <On Terms="StatusDecrement.*.WeaponCount; IsStatus WeaponCount 1" Send="ModelSwap HeavyMarineOneHanded"/>
+    </CActorEventMacro>
+    <!--
+    <CActorEventMacro id="AssaultDualWieldModelSwap">
+        <On Terms="ActorCreation" Send="StatusSet WeaponCount 0"/>
+        <On Terms="StatusIncrement.*.WeaponCount; IsStatus WeaponCount 2" Send="ModelSwap HeavyMarineTwoHanded"/>
+        <On Terms="StatusDecrement.*.WeaponCount; IsStatus WeaponCount 1" Send="ModelSwap HeavyMarineOneHanded"/>
+        <On Terms="BehaviorLevel.WeaponEquipped.Stop; Level 0" Send="StatusIncrement WeaponCount"/>
+        <On Terms="BehaviorLevel.WeaponEquipped.Start; Level 0" Send="StatusDecrement WeaponCount"/>
+        <On Terms="BehaviorLevel.WeaponEquipped.Start; Level 2" Send="StatusIncrement WeaponCount"/>
+        <On Terms="BehaviorLevel.WeaponEquipped.Stop; Level 2" Send="StatusDecrement WeaponCount"/>
+    </CActorEventMacro>
+    -->
     <CActorEventMacro id="WeaponHeavyAnimationGroups">
         <EditorCategories value=""/>
         <On Terms="Abil.attack.ReadyStart; ValidateUnit EquippedWeaponisSubmachineGun" Send="AnimGroupRemove Ready Instant"/>
@@ -812,6 +908,7 @@
         <On Terms="Abil.attack.ReadyStart; ValidateUnit EquippedWeaponisRocketLauncher" Send="AnimGroupApply Blast"/>
         <On Terms="Abil.attack.ReadyStop" Send="AnimGroupRemove Blast"/>
     </CActorEventMacro>
+    <CActorModel id="AntiMaterialRifle" parent="EquippedWeaponTemplate"/>
     <CActorBeamSimple id="ShotgunScattershotBeam" parent="BeamSimpleAnimationStyleOneShot">
         <On index="0" Terms="ActorCreation" Send="AnimBracketStart BSD Death {} {} ContentPlayOnce"/>
         <Host Subject="_Selectable"/>
@@ -875,6 +972,9 @@
         <On Terms="ActorCreation" Send="Create ShotgunScattershotBeamCritical"/>
         <HostSiteOps Ops="SOpTargetPoint SOpMoveUpByDot5"/>
     </CActorSite>
+    <CActorSiteOpLocalOffset id="SOpMoveBackByDot3">
+        <LocalOffset value="0.000000,0.200000,0.000000"/>
+    </CActorSiteOpLocalOffset>
     <CActorSiteOpRandomPointInCircle id="SOpScattershotRadiusBase">
         <Mean value="0.500000"/>
     </CActorSiteOpRandomPointInCircle>
