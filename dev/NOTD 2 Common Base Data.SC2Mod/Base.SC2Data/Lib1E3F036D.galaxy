@@ -26,9 +26,15 @@ struct lib1E3F036D_gs_PlayerStatusUI {
 
 // Variables
 int lib1E3F036D_gv_teamUIDialog;
+int[lib1E3F036D_gv_numberofPlayers + 1] lib1E3F036D_gv_playerStatus;
 
 void lib1E3F036D_InitVariables () {
+    int init_i;
+
     lib1E3F036D_gv_teamUIDialog = c_invalidDialogId;
+    for (init_i = 0; init_i <= lib1E3F036D_gv_numberofPlayers; init_i += 1) {
+        lib1E3F036D_gv_playerStatus[init_i] = c_invalidDialogControlId;
+    }
 }
 
 // Function Declarations
@@ -47,7 +53,7 @@ trigger lib1E3F036D_gt_ConstructTeamUI;
 // Functions
 void lib1E3F036D_gf_CreateTeamUI () {
     // Implementation
-    DialogCreate(200, 800, c_anchorTopRight, 0, 100, true);
+    DialogCreate(156, 850, c_anchorTopRight, 0, 50, true);
     lib1E3F036D_gv_teamUIDialog = DialogLastCreated();
     DialogSetImageVisible(lib1E3F036D_gv_teamUIDialog, false);
     lib1E3F036D_gf_CreatePlayerFrame(lib1E3F036D_gv_teamUIDialog);
@@ -55,20 +61,28 @@ void lib1E3F036D_gf_CreateTeamUI () {
 }
 
 void lib1E3F036D_gf_CreatePlayerFrame (int lp_teamUIDialog) {
+    int autoC3353684_ae;
+    int autoC3353684_ai;
+
     // Variable Declarations
+    int lv_masterFrame;
     int lv_templateFrame;
     int lv_sidebarFrame;
     int lv_portraitFrame;
     int lv_unitStatus;
+    int lv_loop;
 
     // Variable Initialization
+    lv_masterFrame = c_invalidDialogControlId;
     lv_templateFrame = c_invalidDialogControlId;
     lv_sidebarFrame = c_invalidDialogControlId;
     lv_portraitFrame = c_invalidDialogControlId;
     lv_unitStatus = c_invalidDialogControlId;
 
     // Implementation
-    DialogControlCreateFromTemplate(lp_teamUIDialog, c_triggerControlTypePanel, "TeamUI/PlayerStatusTemplate");
+    DialogControlCreateFromTemplate(lp_teamUIDialog, c_triggerControlTypePanel, "TeamUI/TeamUI");
+    lv_masterFrame = DialogControlLastCreated();
+    DialogControlHookup(lv_masterFrame, c_triggerControlTypePanel, "TopPlayer");
     lv_templateFrame = DialogControlLastCreated();
     DialogControlHookup(lv_templateFrame, c_triggerControlTypePanel, "PlayerInfoSideBar");
     lv_sidebarFrame = DialogControlLastCreated();
@@ -78,6 +92,14 @@ void lib1E3F036D_gf_CreatePlayerFrame (int lp_teamUIDialog) {
     lv_unitStatus = DialogControlLastCreated();
     libNtve_gf_CreateUnitsWithDefaultFacing(1, "HighTemplar", 0, 1, RegionGetCenter(RegionEntireMap()));
     libNtve_gf_SetDialogItemUnit(lv_unitStatus, UnitLastCreated(), PlayerGroupAll());
+    autoC3353684_ae = lib1E3F036D_gv_numberofPlayers;
+    autoC3353684_ai = 1;
+    lv_loop = lib1E3F036D_gv_indexBaseValue;
+    for ( ; ( (autoC3353684_ai >= 0 && lv_loop <= autoC3353684_ae) || (autoC3353684_ai <= 0 && lv_loop >= autoC3353684_ae) ) ; lv_loop += autoC3353684_ai ) {
+        DialogControlHookup(lv_masterFrame, c_triggerControlTypePanel, "Player" + IntToString(lv_loop));
+        lib1E3F036D_gv_playerStatus[lv_loop] = DialogControlLastCreated();
+        DialogControlSetVisible(DialogControlLastCreated(), PlayerGroupSingle(lv_loop), false);
+    }
 }
 
 void lib1E3F036D_gf_SetGameDifficultyforPlayerGroup (playergroup lp_players, int lp_difficulty) {
