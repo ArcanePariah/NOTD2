@@ -91,13 +91,10 @@
 
             <Frame type="UnitStatusEnergyBar" name="PlayerEnergyBar">
                 <Texture val="UI\ui_ingame_unitstatus_bar.dds"/>
-                <BarCount val="2"/>
+                <BarCount val="1"/>
                 <OwnerColor val="255,0,255" index="0"/>
                 <AllyColor val="255,0,255" index="0"/>
-                <ReductionColor val="255,128,0" index="0"/>
-                <ReductionShown val="true" index="0"/>
-                <IncreaseDuration val="0" index="0"/>
-                <DecreaseDuration val="2000" index="0"/>
+                <ReductionShown val="false" index="0"/>
                 <Height val="10"/>
                 <BarInsetRect top="0" left="3" bottom="0" right="0"/>
                 <Anchor side="Top" relative="$parent/PlayerHealthShieldBar" pos="Max" offset="2"/>
@@ -119,9 +116,9 @@
         </Frame>
 
         <Frame type="Frame" name="PlayerInfoSideBar">
-            <Anchor side="Left" relative="$parent" pos="Min" offset="8"/>
-            <Anchor side="Top" relative="$parent" pos="Min" offset="8"/>
-            <Anchor side="Bottom" relative="$parent" pos="Max" offset="-32"/>
+            <Anchor side="Left" relative="$parent" pos="Min" offset="7"/>
+            <Anchor side="Top" relative="$parent" pos="Min" offset="7"/>
+            <Anchor side="Bottom" relative="$parent" pos="Max" offset="-31"/>
             <Anchor side="Right" relative="$parent" pos="Min" offset="29"/>
 
             <Frame type="Label" name="PlayerNumber">
@@ -176,11 +173,10 @@
         </Frame>
 
         <Frame type="UnitStatusFrame" name="PlayerStatus">
-            <Anchor side="Top" relative="$parent/PlayerInfoSideBar" pos="Max" offset="5"/>
+            <Anchor side="Top" relative="$parent/PlayerInfoSideBar" pos="Max" offset="4"/>
             <Anchor side="Left" relative="$parent" pos="Min" offset="0"/>
             <Anchor side="Right" relative="$parent" pos="Max" offset="0"/>
             <Anchor side="Bottom" relative="$parent" pos="Max" offset="2"/>
-            <Height val="30"/>
 
             <Frame type="UnitStatusShieldedHealthBar" name="PlayerHealthShieldBar">
                 <Texture val="UI\ui_ingame_unitstatus_bar.dds"/>
@@ -199,23 +195,20 @@
                 <ApplyToTotal val="true" index="1"/>
                 <IncreaseDuration val="0" index="1"/>
                 <DecreaseDuration val="2000" index="1"/>
-                <Height val="16"/>
-                <Anchor side="Top" relative="$parent" pos="Min" offset="1"/>
-                <Anchor side="Left" relative="$parent" pos="Min" offset="7"/>
+                <Anchor side="Top" relative="$parent" pos="Min" offset="0"/>
+                <Anchor side="Left" relative="$parent" pos="Min" offset="5"/>
                 <Anchor side="Right" relative="$parent" pos="Max" offset="-3"/>
+                <Anchor side="Bottom" relative="$parent" pos="Max" offset="-16"/>
             </Frame>
 
             <Frame type="UnitStatusEnergyBar" name="PlayerEnergyBar">
-                <BarInsetRect top="0" left="3" bottom="0" right="0"/>
+                <BarInsetRect top="0" left="2" bottom="0" right="0"/>
                 <Texture val="UI\ui_ingame_unitstatus_bar.dds"/>
-                <BarCount val="2"/>
+                <BarCount val="1"/>
                 <OwnerColor val="255,0,255" index="0"/>
                 <AllyColor val="255,0,255" index="0"/>
-                <ReductionColor val="255,128,0" index="0"/>
-                <ReductionShown val="true" index="0"/>
-                <IncreaseDuration val="0" index="0"/>
-                <DecreaseDuration val="2000" index="0"/>
-                <Height val="14"/>
+                <ReductionShown val="false" index="0"/>
+                <Height val="10"/>
                 <Anchor side="Top" relative="$parent/PlayerHealthShieldBar" pos="Max" offset="2"/>
                 <Anchor side="Left" relative="$parent/PlayerHealthShieldBar" pos="Min" offset="0"/>
                 <Anchor side="Right" relative="$parent/PlayerHealthShieldBar" pos="Max" offset="0"/>
