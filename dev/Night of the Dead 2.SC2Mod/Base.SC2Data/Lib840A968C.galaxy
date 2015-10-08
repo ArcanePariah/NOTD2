@@ -5,150 +5,32 @@ include "LibFEC22885"
 include "LibC50FD636"
 include "Lib1765BC64"
 
+include "Lib840A968C_h"
+
 //--------------------------------------------------------------------------------------------------
 // Library: Night of the Dead
 //--------------------------------------------------------------------------------------------------
-// Constants
-const string lib840A968C_gv_classCustomizationEvent = "CustomizeUnits";
-const string lib840A968C_gv_intializeEvent = "Initialize";
-const string lib840A968C_gv_shopIntialization = "Shop Intialize";
-const string lib840A968C_gv_victory = "Victory";
-const string lib840A968C_gv_defeat = "Defeat";
-const int lib840A968C_gv_numberofClasses = 15;
-const string lib840A968C_gv_classSelectionEvent = "Class Selection";
-const string lib840A968C_gv_difficultySelectionEvent = "DifficultySelection";
-const int lib840A968C_gv_mISSION_MAX_COUNT = 32;
-const int lib840A968C_gv_numberofDifficulties = 3;
-const int lib840A968C_gv_numberofPlayers = lib1E3F036D_gv_numberofPlayers;
-const string lib840A968C_gv_eventRegistrationSignal = "Register Event";
-const string lib840A968C_gv_playerDataBankName = "NightoftheDead2";
-const string lib840A968C_gv_playerCustomizationDataBankName = "NOTD2Customization";
-const string lib840A968C_gv_playerUnlocksBankName = "NOTD2Unlocks";
-const string lib840A968C_gv_save = "Save";
-const string lib840A968C_gv_load = "Load";
-const fixed lib840A968C_gv_recruitRatingGainPerXP = 1.0;
-const fixed lib840A968C_gv_normalRatingGainPerXP = 1.5;
-const fixed lib840A968C_gv_nightmareRatingGainPerXP = 2.0;
-const int lib840A968C_gv_gameEvents = 1;
-const int lib840A968C_gv_bossEvents = 3;
-const int lib840A968C_gv_playerEvents = 2;
-const int lib840A968C_gv_summary = 4;
-const int lib840A968C_gv_asserts = 5;
-const int lib840A968C_gv_banks = 6;
-const string lib840A968C_gv_gameEventLogFile = "Game Event Log";
-const string lib840A968C_gv_bossEventLogFile = "Boss Log";
-const string lib840A968C_gv_playerEventsLogFile = "Player Log";
-const string lib840A968C_gv_summaryLogFile = "Summary Log";
-const string lib840A968C_gv_assertsLogFile = "Unit Tests";
-const string lib840A968C_gv_bankLogFile = "Bank Statistics";
+// External Library Initialization
+void lib840A968C_InitLibraries () {
+    libNtve_InitVariables();
+    lib1E3F036D_InitVariables();
+    libFEC22885_InitVariables();
+    libC50FD636_InitVariables();
+    lib1765BC64_InitVariables();
+}
 
-// Structures
-struct lib840A968C_gs_DifficultSelectionItems {
-    playergroup lv_votes;
-    int lv_optionButton;
-    int lv_optionLabel;
-};
-
-struct lib840A968C_gs_Mission {
-    string lv_missionData;
-    int lv_missionObjective;
-    trigger lv_missionProgression;
-    string lv_nextMissionSignal;
-};
-
-struct lib840A968C_gs_PlayerStatusUI {
-    int lv_classIcon;
-    int lv_rankIcon;
-    int lv_playerNumber;
-    int lv_playerPortrait;
-    int lv_playerStatusFrame;
-};
-
-struct lib840A968C_gs_ClassCustomizationData {
-    string lv_serviceBranch;
-    string[4] lv_characterModifications;
-    string lv_sidearm;
-    string lv_pet;
-};
-
-struct lib840A968C_gs_Stats {
-    int lv_strength;
-    int lv_intelligance;
-    int lv_agility;
-    int lv_perception;
-    int lv_endurance;
-    int lv_total;
-    int lv_available;
-};
-
-struct lib840A968C_gs_GameplayStats {
-    int lv_hits;
-    int lv_damageTaken;
-    fixed lv_ratingLossFromHits;
-};
-
-struct lib840A968C_gs_PlayerData {
-    int lv_totalExperience;
-    int lv_availableExperience;
-    int lv_credits;
-    fixed lv_rating;
-    int lv_gamesPlayed;
-    string lv_currentRank;
-    int lv_currentRankIndex;
-    lib840A968C_gs_Stats lv_stats;
-    lib840A968C_gs_GameplayStats lv_currentGameStats;
-    lib840A968C_gs_ClassCustomizationData lv_classCustomization;
-};
-
-struct lib840A968C_gs_PlayerBanks {
-    bank lv_playerData;
-    bank lv_currentProfile;
-    bank lv_customizationUnlocks;
-};
-
-// Variables
-int lib840A968C_gv_numberofArmorSets;
-int lib840A968C_gv_testVaraible;
-bool lib840A968C_gv_riotMode;
-bool lib840A968C_gv_hordeLock;
-bool lib840A968C_gv_messageControl;
-string lib840A968C_gv_currentChapterData;
-int lib840A968C_gv_currentChapter;
-bool lib840A968C_gv_gameSetupComplete;
-int lib840A968C_gv_difficulty;
-int[lib840A968C_gv_numberofClasses + 1] lib840A968C_gv_classSelectionItems;
-timer lib840A968C_gv_classSelectionTimer;
-int lib840A968C_gv_classSelectionDialog;
-int lib840A968C_gv_classSelectionPanel;
-int lib840A968C_gv_classLoreFrame;
-int lib840A968C_gv_classModelFrame;
-int lib840A968C_gv_difficultySelectionDialog;
-lib840A968C_gs_DifficultSelectionItems[4] lib840A968C_gv_difficultySelectionOptions;
-lib840A968C_gs_Mission[lib840A968C_gv_mISSION_MAX_COUNT + 1] lib840A968C_gv_missionData;
-int lib840A968C_gv_missionIndex;
-string lib840A968C_gv_missionStep;
-int lib840A968C_gv_squadRating;
-int lib840A968C_gv_currentTransmission;
-bool lib840A968C_gv_nightmareModeSet;
-bool lib840A968C_gv_recruitMode;
-int lib840A968C_gv_scalingFactor;
-int lib840A968C_gv_sideMissionCount;
-int lib840A968C_gv_nightVisionButton;
-int lib840A968C_gv_teamLocationButton;
-int lib840A968C_gv_teamUIDialog;
-playergroup lib840A968C_gv_marineSquad;
-playergroup lib840A968C_gv_livingMarines;
-playergroup lib840A968C_gv_pets;
-playergroup lib840A968C_gv_deadMarines;
-lib840A968C_gs_PlayerBanks[lib840A968C_gv_numberofPlayers + 1] lib840A968C_gv_playerBanks;
-timer[lib840A968C_gv_numberofPlayers + 1][lib840A968C_gv_numberofPlayers + 1] lib840A968C_gv_damageNearDeathPenaltyTimer;
-lib840A968C_gs_PlayerData[lib840A968C_gv_numberofPlayers + 1] lib840A968C_gv_players;
-revealer[lib840A968C_gv_numberofPlayers + 1] lib840A968C_gv_mapHackRevealerDeveloper;
-bool[lib840A968C_gv_numberofPlayers + 1] lib840A968C_gv_revealerActive;
+// Variable Initialization
+bool lib840A968C_InitVariables_completed = false;
 
 void lib840A968C_InitVariables () {
     int init_i;
     int init_j;
+
+    if (lib840A968C_InitVariables_completed) {
+        return;
+    }
+
+    lib840A968C_InitVariables_completed = true;
 
     lib840A968C_gv_numberofArmorSets = UserDataInstanceCount("ArmorSet");
     lib840A968C_gv_currentChapterData = "Chapter 0";
@@ -188,145 +70,7 @@ void lib840A968C_InitVariables () {
     }
 }
 
-// Function Declarations
-bool lib840A968C_gf_ItemhasbeenPurchased (string lp_bankConditionID);
-void lib840A968C_gf_CreateUnlockBankKeys (bank lp_bank);
-void lib840A968C_gf_ApplyPlayerCustomization ();
-void lib840A968C_gf_ApplyCustomModel (int lp_player);
-void lib840A968C_gf_ApplyCustomColor (int lp_player);
-void lib840A968C_gf_ApplyCustomName ();
-int lib840A968C_gf_GetSlotActor (string lp_class);
-string lib840A968C_gf_GetSlotModelSet (string lp_slotName);
-void lib840A968C_gf_ApplyServiceBranchUpgrade (int lp_player);
-void lib840A968C_gf_ApplyCustomSidearm (int lp_player);
-void lib840A968C_gf_ApplyCharacterMods (int lp_player);
-void lib840A968C_gf_SendTransmission (text lp_speakerName, text lp_message, int lp_overrideCurrentMessage, int lp_type, int lp_messageDisplayLocation, int lp_speakerFaction, unit lp_speakingUnit);
-int lib840A968C_gf_GetMessagesfromMessageArea (int lp_messageLocation);
-soundlink lib840A968C_gf_GetFactionRadioSound (int lp_senderFaction);
-color lib840A968C_gf_GetMessageColor (int lp_event);
-void lib840A968C_gf_ChapterStart (int lp_chapterPreset);
-void lib840A968C_gf_MedicalDropPoolItemSpawn (point lp_location);
-void lib840A968C_gf_FlareDropPoolItemSpawn (point lp_location);
-void lib840A968C_gf_FieldLightDropPoolItemSpawn (point lp_location);
-void lib840A968C_gf_AmmoModificationDropPoolItemSpawn (point lp_location);
-void lib840A968C_gf_MagazineDropPoolItemSpawn (point lp_location);
-void lib840A968C_gf_SpawnItem (point lp_point, string lp_item, int lp_spawnType);
-void lib840A968C_gf_PlayerSetup ();
-void lib840A968C_gf_DefaultAllianceStates ();
-bool lib840A968C_gf_PlayerHasClassUnlocked (int lp_player, int lp_classSlot);
-void lib840A968C_gf_ClassUnlocked (int lp_classSlot);
-void lib840A968C_gf_SetGameDifficulty ();
-void lib840A968C_gf_CreateDifficultySelection ();
-bool lib840A968C_gf_GetMissionType (string lp_mission);
-trigger lib840A968C_gf_GetMissionProgression (int lp_missionToken);
-string lib840A968C_gf_GetMissionSignal (int lp_missionToken);
-int lib840A968C_gf_MissionStart (string lp_mission, trigger lp_progressionTrigger, string lp_nextMissionSignal);
-void lib840A968C_gf_MissionEnd (int lp_missionOutcome, int lp_missionToken);
-void lib840A968C_gf_MissonRewards (string lp_mission);
-bool lib840A968C_gf_PointNotNearUnitGroupUnits (point lp_targetPoint, unitgroup lp_unitGroup, fixed lp_distance);
-playergroup lib840A968C_gf_GetMarineSquadPlayers ();
-playergroup lib840A968C_gf_GetLivingMarineSquadPlayers ();
-playergroup lib840A968C_gf_GetDeadMarineSquadPlayers ();
-playergroup lib840A968C_gf_GetPets ();
-unit lib840A968C_gf_GetMarine (int lp_player);
-unitgroup lib840A968C_gf_GetMarineGroup ();
-bool lib840A968C_gf_IsAMarine (unit lp_unit);
-void lib840A968C_gf_RatingFromDeath (int lp_player);
-void lib840A968C_gf_DeathShareVision (int lp_deadPlayer);
-bool lib840A968C_gf_PlayerHasPet (int lp_player);
-void lib840A968C_gf_SpawnPet (int lp_player, fixed lp_deadMarineExperience, point lp_spawnPosition);
-void lib840A968C_gf_DropEquippedMagazines (point lp_dropPoint, int lp_numberofMagazines);
-void lib840A968C_gf_CreateTeamUI ();
-void lib840A968C_gf_CreatePlayerFrame (int lp_teamUIDialog);
-void lib840A968C_gf_SetRankData (int lp_player);
-void lib840A968C_gf_CreateBankDefaultKeyValues (bank lp_bank);
-void lib840A968C_gf_PreloadBanks ();
-void lib840A968C_gf_LoadBanks ();
-void lib840A968C_gf_LoadDataBankData (int lp_player, bank lp_bank);
-void lib840A968C_gf_LoadCustomizationBankData (int lp_player, bank lp_bank);
-void lib840A968C_gf_DataBoundsCheck (int lp_player);
-void lib840A968C_gf_SaveDataBank (int lp_player, bank lp_bank);
-void lib840A968C_gf_SaveCustomizationBank (int lp_player, bank lp_bank);
-string lib840A968C_gf_GetSectionName (string lp_section);
-string lib840A968C_gf_GetKeyName (string lp_key);
-void lib840A968C_gf_CreateProfileBank (int lp_player, int lp_profile);
-void lib840A968C_gf_LoadActiveProfile (int lp_player);
-void lib840A968C_gf_AwardRating (int lp_experienceGained, int lp_player);
-void lib840A968C_gf_RatingBonusAdjustment (int lp_player);
-void lib840A968C_gf_AwardPlayerXP (int lp_player, int lp_xP);
-void lib840A968C_gf_AwardTeamXP (int lp_xP);
-void lib840A968C_gf_AwardUnitXP (fixed lp_xP, unit lp_unit);
-void lib840A968C_gf_AwardTeamMarineXP (fixed lp_xP);
-void lib840A968C_gf_AwardCredits (int lp_player, int lp_credits);
-void lib840A968C_gf_AwardTeamCredits (int lp_credits);
-void lib840A968C_gf_RankUp (int lp_player);
-bool lib840A968C_gf_RankUpCheck (int lp_player);
-fixed lib840A968C_gf_RatingLoss (int lp_player);
-text lib840A968C_gf_GetPlayerNamewithrank (int lp_player);
-void lib840A968C_gf_BackgroundDialog (unit lp_unit, text lp_speaker, text lp_speechText, int lp_speechType, fixed lp_dialogDuration);
-void lib840A968C_gf_Assert (string lp_test, string lp_expectedValue, string lp_testMessage);
-void lib840A968C_gf_AssertBankLoad ();
-void lib840A968C_gf_AssertBankCreation ();
-void lib840A968C_gf_AssertBankSave ();
-void lib840A968C_gf_AssertXPAward ();
-void lib840A968C_gf_AssertMarineExperienceAward ();
-void lib840A968C_gf_AssertClassCreation ();
-bool lib840A968C_gf_IsaDeveloper (string lp_handle);
-
-// Trigger Declarations
-trigger lib840A968C_gt_ShopIntialize;
-trigger lib840A968C_gt_BankLoad;
-trigger lib840A968C_gt_ApplyServiceBranches;
-trigger lib840A968C_gt_ApplySidearms;
-trigger lib840A968C_gt_ApplyCharacterModifications;
-trigger lib840A968C_gt_ParasiteAttacks;
-trigger lib840A968C_gt_AmbientAttacksOnPlayers;
-trigger lib840A968C_gt_RiotModeCheck;
-trigger lib840A968C_gt_ActivateHorde;
-trigger lib840A968C_gt_Intialization;
-trigger lib840A968C_gt_PlayerOptionsOverride;
-trigger lib840A968C_gt_AIIntialize;
-trigger lib840A968C_gt_SetLogging;
-trigger lib840A968C_gt_GameStart;
-trigger lib840A968C_gt_PlayerLeavestheGame;
-trigger lib840A968C_gt_Victory;
-trigger lib840A968C_gt_Defeat;
-trigger lib840A968C_gt_DisplayClassSelection;
-trigger lib840A968C_gt_ClassSelection;
-trigger lib840A968C_gt_EndClassSelection;
-trigger lib840A968C_gt_DifficultySelection;
-trigger lib840A968C_gt_DifficultyVote;
-trigger lib840A968C_gt_EventRegistrationForMarineUnits;
-trigger lib840A968C_gt_NightVisionModuleLightingChange;
-trigger lib840A968C_gt_NightVisionUIHookup;
-trigger lib840A968C_gt_NightVisionToggle;
-trigger lib840A968C_gt_TeamLocation;
-trigger lib840A968C_gt_HookupTeamLocationButton;
-trigger lib840A968C_gt_PlayerMarineDies;
-trigger lib840A968C_gt_ConstructTeamUI;
-trigger lib840A968C_gt_BankSave;
-trigger lib840A968C_gt_RatingLossfromLives;
-trigger lib840A968C_gt_RatingLossfromFriendlyFire;
-trigger lib840A968C_gt_HitsUpdate;
-trigger lib840A968C_gt_CamoSwitch;
-trigger lib840A968C_gt_ModelLightMarine;
-trigger lib840A968C_gt_ModelHeavyMarine;
-trigger lib840A968C_gt_ColorSwitching;
-trigger lib840A968C_gt_RunUnitTests;
-trigger lib840A968C_gt_ForceHordeMode;
-trigger lib840A968C_gt_SetChapter;
-trigger lib840A968C_gt_DeveloperGodMode;
-trigger lib840A968C_gt_MissionRewards;
-trigger lib840A968C_gt_DisplayPlayerStats;
-trigger lib840A968C_gt_SkipClassSelection;
-trigger lib840A968C_gt_Weapons;
-trigger lib840A968C_gt_RandomArmor;
-trigger lib840A968C_gt_AllianceStates;
-trigger lib840A968C_gt_SpawnItem;
-trigger lib840A968C_gt_MapReveal;
-trigger lib840A968C_gt_MaxLevelHero;
-trigger lib840A968C_gt_HPScaling;
-
+// Presets
 // Functions
 bool lib840A968C_gf_ItemhasbeenPurchased (string lp_bankConditionID) {
     // Implementation
@@ -501,7 +245,7 @@ void lib840A968C_gf_SendTransmission (text lp_speakerName, text lp_message, int 
     }
     lib840A968C_gv_messageControl = true;
     SoundPlay(lib840A968C_gf_GetFactionRadioSound(lp_speakerFaction), PlayerGroupAll(), 100.0, 0.0);
-    if ((lp_overrideCurrentMessage == 0)) {
+    if ((lp_overrideCurrentMessage == lib840A968C_ge_PreemptMessage_Preempt)) {
         UIClearMessages(PlayerGroupAll(), lib840A968C_gf_GetMessagesfromMessageArea(lp_messageDisplayLocation));
     }
     else {
@@ -555,22 +299,22 @@ soundlink lib840A968C_gf_GetFactionRadioSound (int lp_senderFaction) {
 
     // Implementation
     autoE09415A6_val = lp_senderFaction;
-    if (autoE09415A6_val == 0) {
+    if (autoE09415A6_val == lib840A968C_ge_Faction_UGC) {
         return SoundLink("RadioActivateUGC", -1);
     }
-    else if (autoE09415A6_val == 2) {
+    else if (autoE09415A6_val == lib840A968C_ge_Faction_Zombies) {
         return null;
     }
-    else if (autoE09415A6_val == 4) {
+    else if (autoE09415A6_val == lib840A968C_ge_Faction_Peacekeepers) {
         return SoundLink("RadioActivateCiv", -1);
     }
-    else if (autoE09415A6_val == 1) {
+    else if (autoE09415A6_val == lib840A968C_ge_Faction_HAL) {
         return SoundLink("RadioActivateMerc", -1);
     }
-    else if (autoE09415A6_val == 6) {
+    else if (autoE09415A6_val == lib840A968C_ge_Faction_Mechanicals) {
         return null;
     }
-    else if (autoE09415A6_val == 5) {
+    else if (autoE09415A6_val == lib840A968C_ge_Faction_Marines) {
         return SoundLink("RadioActivatePlayer", -1);
     }
     else {
@@ -583,22 +327,22 @@ color lib840A968C_gf_GetMessageColor (int lp_event) {
 
     // Implementation
     autoB8B1FF29_val = lp_event;
-    if (autoB8B1FF29_val == 0) {
+    if (autoB8B1FF29_val == lib840A968C_ge_MessageEventType_AlliedCommunication) {
         return Color(100.00, 100.00, 50.20);
     }
-    else if (autoB8B1FF29_val == 2) {
+    else if (autoB8B1FF29_val == lib840A968C_ge_MessageEventType_EnemyCommunication) {
         return Color(100.00, 0.00, 0.00);
     }
-    else if (autoB8B1FF29_val == 5) {
+    else if (autoB8B1FF29_val == lib840A968C_ge_MessageEventType_AllianceStateUpdate) {
         return Color(0.00, 0.00, 100.00);
     }
-    else if (autoB8B1FF29_val == 3) {
+    else if (autoB8B1FF29_val == lib840A968C_ge_MessageEventType_EnemyEvent) {
         return Color(100.00, 0.00, 0.00);
     }
-    else if (autoB8B1FF29_val == 4) {
+    else if (autoB8B1FF29_val == lib840A968C_ge_MessageEventType_MissionFailure) {
         return Color(100.00, 0.00, 0.00);
     }
-    else if (autoB8B1FF29_val == 1) {
+    else if (autoB8B1FF29_val == lib840A968C_ge_MessageEventType_GameEvent) {
         return Color(0.00, 100.00, 0.00);
     }
     else {
@@ -648,22 +392,22 @@ bool auto_lib840A968C_gf_MedicalDropPoolItemSpawn_TriggerFunc (bool testConds, b
     auto3ABD229D_roll = RandomFixed(0.0, 100.0);
     if (auto3ABD229D_roll >= auto3ABD229D_chance && auto3ABD229D_roll <= (auto3ABD229D_chance + 60.0))
     {
-        lib840A968C_gf_SpawnItem(lp_location, "Medkit", 0);
+        lib840A968C_gf_SpawnItem(lp_location, "Medkit", lib840A968C_ge_DropMethod_Locker);
     }
     auto3ABD229D_chance += 60.0;
     if (auto3ABD229D_roll >= auto3ABD229D_chance && auto3ABD229D_roll <= (auto3ABD229D_chance + 20.0))
     {
-        lib840A968C_gf_SpawnItem(lp_location, "Bandage", 0);
+        lib840A968C_gf_SpawnItem(lp_location, "Bandage", lib840A968C_ge_DropMethod_Locker);
     }
     auto3ABD229D_chance += 20.0;
     if (auto3ABD229D_roll >= auto3ABD229D_chance && auto3ABD229D_roll <= (auto3ABD229D_chance + 10.0))
     {
-        lib840A968C_gf_SpawnItem(lp_location, "AntiVenom", 0);
+        lib840A968C_gf_SpawnItem(lp_location, "AntiVenom", lib840A968C_ge_DropMethod_Locker);
     }
     auto3ABD229D_chance += 10.0;
     if (auto3ABD229D_roll >= auto3ABD229D_chance && auto3ABD229D_roll <= (auto3ABD229D_chance + 10.0))
     {
-        lib840A968C_gf_SpawnItem(lp_location, "MendingPaste", 0);
+        lib840A968C_gf_SpawnItem(lp_location, "MendingPaste", lib840A968C_ge_DropMethod_Locker);
     }
     auto3ABD229D_chance += 10.0;
 
@@ -694,12 +438,12 @@ bool auto_lib840A968C_gf_FlareDropPoolItemSpawn_TriggerFunc (bool testConds, boo
     auto4DA3A24B_roll = RandomFixed(0.0, 100.0);
     if (auto4DA3A24B_roll >= auto4DA3A24B_chance && auto4DA3A24B_roll <= (auto4DA3A24B_chance + 75.0))
     {
-        lib840A968C_gf_SpawnItem(lp_location, "RoadFlare", 0);
+        lib840A968C_gf_SpawnItem(lp_location, "RoadFlare", lib840A968C_ge_DropMethod_Locker);
     }
     auto4DA3A24B_chance += 75.0;
     if (auto4DA3A24B_roll >= auto4DA3A24B_chance && auto4DA3A24B_roll <= (auto4DA3A24B_chance + 25.0))
     {
-        lib840A968C_gf_SpawnItem(lp_location, "FlareGun", 0);
+        lib840A968C_gf_SpawnItem(lp_location, "FlareGun", lib840A968C_ge_DropMethod_Locker);
     }
     auto4DA3A24B_chance += 25.0;
 
@@ -723,7 +467,7 @@ bool auto_lib840A968C_gf_FieldLightDropPoolItemSpawn_TriggerFunc (bool testConds
     point lp_location = auto_lib840A968C_gf_FieldLightDropPoolItemSpawn_lp_location;
 
     // Implementation
-    lib840A968C_gf_SpawnItem(lp_location, "FieldLights", 0);
+    lib840A968C_gf_SpawnItem(lp_location, "FieldLights", lib840A968C_ge_DropMethod_Locker);
     return true;
 }
 
@@ -751,22 +495,22 @@ bool auto_lib840A968C_gf_AmmoModificationDropPoolItemSpawn_TriggerFunc (bool tes
     auto29BAACFA_roll = RandomFixed(0.0, 100.0);
     if (auto29BAACFA_roll >= auto29BAACFA_chance && auto29BAACFA_roll <= (auto29BAACFA_chance + 25.0))
     {
-        lib840A968C_gf_SpawnItem(lp_location, "HighExplosive", 0);
+        lib840A968C_gf_SpawnItem(lp_location, "HighExplosive", lib840A968C_ge_DropMethod_Locker);
     }
     auto29BAACFA_chance += 25.0;
     if (auto29BAACFA_roll >= auto29BAACFA_chance && auto29BAACFA_roll <= (auto29BAACFA_chance + 25.0))
     {
-        lib840A968C_gf_SpawnItem(lp_location, "ArmorPiercing", 0);
+        lib840A968C_gf_SpawnItem(lp_location, "ArmorPiercing", lib840A968C_ge_DropMethod_Locker);
     }
     auto29BAACFA_chance += 25.0;
     if (auto29BAACFA_roll >= auto29BAACFA_chance && auto29BAACFA_roll <= (auto29BAACFA_chance + 25.0))
     {
-        lib840A968C_gf_SpawnItem(lp_location, "Expanding", 0);
+        lib840A968C_gf_SpawnItem(lp_location, "Expanding", lib840A968C_ge_DropMethod_Locker);
     }
     auto29BAACFA_chance += 25.0;
     if (auto29BAACFA_roll >= auto29BAACFA_chance && auto29BAACFA_roll <= (auto29BAACFA_chance + 25.0))
     {
-        lib840A968C_gf_SpawnItem(lp_location, "Flechette", 0);
+        lib840A968C_gf_SpawnItem(lp_location, "Flechette", lib840A968C_ge_DropMethod_Locker);
     }
     auto29BAACFA_chance += 25.0;
 
@@ -805,7 +549,7 @@ bool auto_lib840A968C_gf_MagazineDropPoolItemSpawn_TriggerFunc (bool testConds, 
     {
         auto349FC4BA_n = 2;
         for (auto349FC4BA_i = 1; auto349FC4BA_i <= auto349FC4BA_n; auto349FC4BA_i += 1) {
-            lib840A968C_gf_SpawnItem(lp_location, "Magazine", 0);
+            lib840A968C_gf_SpawnItem(lp_location, "Magazine", lib840A968C_ge_DropMethod_Locker);
         }
     }
     auto23AA3173_chance += 50.0;
@@ -813,7 +557,7 @@ bool auto_lib840A968C_gf_MagazineDropPoolItemSpawn_TriggerFunc (bool testConds, 
     {
         auto880855DB_n = 3;
         for (auto880855DB_i = 1; auto880855DB_i <= auto880855DB_n; auto880855DB_i += 1) {
-            lib840A968C_gf_SpawnItem(lp_location, "Magazine", 0);
+            lib840A968C_gf_SpawnItem(lp_location, "Magazine", lib840A968C_ge_DropMethod_Locker);
         }
     }
     auto23AA3173_chance += 35.0;
@@ -821,7 +565,7 @@ bool auto_lib840A968C_gf_MagazineDropPoolItemSpawn_TriggerFunc (bool testConds, 
     {
         auto8A13D3CB_n = 4;
         for (auto8A13D3CB_i = 1; auto8A13D3CB_i <= auto8A13D3CB_n; auto8A13D3CB_i += 1) {
-            lib840A968C_gf_SpawnItem(lp_location, "Magazine", 0);
+            lib840A968C_gf_SpawnItem(lp_location, "Magazine", lib840A968C_ge_DropMethod_Locker);
         }
     }
     auto23AA3173_chance += 15.0;
@@ -852,7 +596,7 @@ bool auto_lib840A968C_gf_SpawnItem_TriggerFunc (bool testConds, bool runActions)
     int lp_spawnType = auto_lib840A968C_gf_SpawnItem_lp_spawnType;
 
     // Implementation
-    if (lib09BE6BA8_gf_PointisVisibletoPlayerGroup(lib840A968C_gf_GetMarineSquadPlayers(), lp_point) && (lp_spawnType != 0)) {
+    if (lib09BE6BA8_gf_PointisVisibletoPlayerGroup(lib840A968C_gf_GetMarineSquadPlayers(), lp_point) && (lp_spawnType != lib840A968C_ge_DropMethod_Locker)) {
         libNtve_gf_CreateActorAtPoint("BarracksDropPod", lp_point);
         Wait(2.2, c_timeGame);
     }
@@ -895,21 +639,21 @@ void lib840A968C_gf_PlayerSetup () {
 
 void lib840A968C_gf_DefaultAllianceStates () {
     // Implementation
-    libNtve_gf_SetPlayerGroupAlliance(lib840A968C_gv_marineSquad, 0);
+    libNtve_gf_SetPlayerGroupAlliance(lib840A968C_gv_marineSquad, libNtve_ge_AllianceSetting_Ally);
     PlayerGroupLoopBegin(lib840A968C_gv_marineSquad);
     for ( ; !PlayerGroupLoopDone() ; PlayerGroupLoopStep() ) {
-        libNtve_gf_SetAlliance(PlayerGroupLoopCurrent(), lib1E3F036D_gv_peacekeeperPlayer, 1);
+        libNtve_gf_SetAlliance(PlayerGroupLoopCurrent(), lib1E3F036D_gv_peacekeeperPlayer, libNtve_ge_AllianceSetting_AllyWithSharedVision);
         PlayerSetAlliance(lib1E3F036D_gv_peacekeeperPlayer, c_allianceIdPushable, PlayerGroupLoopCurrent(), true);
-        libNtve_gf_SetAlliance(PlayerGroupLoopCurrent(), lib1E3F036D_gv_zombiePlayer, 5);
-        libNtve_gf_SetAlliance(PlayerGroupLoopCurrent(), lib1E3F036D_gv_hALPlayer, 5);
-        libNtve_gf_SetAlliance(PlayerGroupLoopCurrent(), lib1E3F036D_gv_testSubjects, 5);
-        libNtve_gf_SetAlliance(PlayerGroupLoopCurrent(), lib1E3F036D_gv_mercenaryPlayer, 7);
+        libNtve_gf_SetAlliance(PlayerGroupLoopCurrent(), lib1E3F036D_gv_zombiePlayer, libNtve_ge_AllianceSetting_Enemy);
+        libNtve_gf_SetAlliance(PlayerGroupLoopCurrent(), lib1E3F036D_gv_hALPlayer, libNtve_ge_AllianceSetting_Enemy);
+        libNtve_gf_SetAlliance(PlayerGroupLoopCurrent(), lib1E3F036D_gv_testSubjects, libNtve_ge_AllianceSetting_Enemy);
+        libNtve_gf_SetAlliance(PlayerGroupLoopCurrent(), lib1E3F036D_gv_mercenaryPlayer, libNtve_ge_AllianceSetting_Neutral);
     }
     PlayerGroupLoopEnd();
-    libNtve_gf_SetAlliance(lib1E3F036D_gv_peacekeeperPlayer, lib1E3F036D_gv_zombiePlayer, 5);
-    libNtve_gf_SetAlliance(lib1E3F036D_gv_hALPlayer, lib1E3F036D_gv_zombiePlayer, 5);
-    libNtve_gf_SetAlliance(lib1E3F036D_gv_mercenaryPlayer, lib1E3F036D_gv_zombiePlayer, 5);
-    libNtve_gf_SetAlliance(lib1E3F036D_gv_testSubjects, lib1E3F036D_gv_zombiePlayer, 5);
+    libNtve_gf_SetAlliance(lib1E3F036D_gv_peacekeeperPlayer, lib1E3F036D_gv_zombiePlayer, libNtve_ge_AllianceSetting_Enemy);
+    libNtve_gf_SetAlliance(lib1E3F036D_gv_hALPlayer, lib1E3F036D_gv_zombiePlayer, libNtve_ge_AllianceSetting_Enemy);
+    libNtve_gf_SetAlliance(lib1E3F036D_gv_mercenaryPlayer, lib1E3F036D_gv_zombiePlayer, libNtve_ge_AllianceSetting_Enemy);
+    libNtve_gf_SetAlliance(lib1E3F036D_gv_testSubjects, lib1E3F036D_gv_zombiePlayer, libNtve_ge_AllianceSetting_Enemy);
     PlayerSetColorIndex(lib1E3F036D_gv_zombiePlayer, 12, true);
     PlayerSetColorIndex(lib1E3F036D_gv_testSubjects, 0, true);
     PlayerSetColorIndex(lib1E3F036D_gv_peacekeeperPlayer, 3, true);
@@ -2075,15 +1819,8 @@ bool lib840A968C_gt_GameStart_Func (bool testConds, bool runActions) {
     while (!(lib840A968C_gv_gameSetupComplete)) {
         Wait(0.0625, c_timeGame);
     }
-    if (((GameAttributeGameValue("1") == "0001") || GameIsTestMap(false))) {
-        TriggerDebugOutput(lib840A968C_gv_gameEvents, StringExternal("Param/Value/lib_840A968C_5EF69773"), false);
-        TriggerSendEvent(lib840A968C_gv_difficultySelectionEvent);
-    }
-    else if ((GameAttributeGameValue("1") == "0003")) {
-    }
-    else if ((GameAttributeGameValue("1") == "0002")) {
-        TriggerSendEvent(lib840A968C_gv_shopIntialization);
-    }
+    TriggerDebugOutput(lib840A968C_gv_gameEvents, StringExternal("Param/Value/lib_840A968C_5EF69773"), false);
+    TriggerSendEvent(lib840A968C_gv_difficultySelectionEvent);
     return true;
 }
 
@@ -3390,7 +3127,7 @@ bool lib840A968C_gt_AllianceStates_Func (bool testConds, bool runActions) {
         return true;
     }
 
-    libNtve_gf_SetAlliance(1, 10, 5);
+    libNtve_gf_SetAlliance(1, 10, libNtve_ge_AllianceSetting_Enemy);
     return true;
 }
 
@@ -3584,9 +3321,10 @@ void lib840A968C_InitLib () {
         return;
     }
 
+    lib840A968C_InitLib_completed = true;
+
+    lib840A968C_InitLibraries();
     lib840A968C_InitVariables();
     lib840A968C_InitTriggers();
-
-    lib840A968C_InitLib_completed = true;
 }
 

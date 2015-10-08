@@ -94,8 +94,10 @@
     </CActorModel>
     <CActorModel id="BlackDiamondImpact" parent="ModelAnimationStyleOneShot">
         <EditorCategories value=""/>
-        <On Terms="Effect.BlackDiamondStun.Start" Send="Create"/>
+        <On Terms="Effect.BlackDiamondDamage.Start; At Target" Send="Create"/>
         <Host Subject="_Unit"/>
+        <HostSiteOps Ops="SOpAttachOverhead"/>
+        <AutoScaleFactor value="1.500000"/>
     </CActorModel>
     <CActorModel id="BlackDiamondLaunch" parent="ModelAnimationStyleOneShot">
         <EditorCategories value=""/>
@@ -107,6 +109,8 @@
         <EditorCategories value=""/>
         <On Terms="Behavior.BlackDiamondStun.On" Send="Create"/>
         <On Terms="Behavior.BlackDiamondStun.Off" Send="Destroy"/>
+        <Host Subject="_Unit"/>
+        <HostSiteOps Ops="SOpAttachOverhead"/>
     </CActorModel>
     <CActorSiteOpBasic id="BulwarkShieldBearings">
         <EditorCategories value=""/>

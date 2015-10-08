@@ -1,0 +1,91 @@
+include "TriggerLibs/natives"
+
+//--------------------------------------------------------------------------------------------------
+// Library: Enemy Triggers
+//--------------------------------------------------------------------------------------------------
+// Constants
+const string lib1765BC64_gv_zombieIntialize = "ZombiesStart";
+
+// Variable Declarations
+waveinfo lib1765BC64_gv_ambientWaveInfo;
+unitgroup lib1765BC64_gv_zombieSpawners;
+int lib1765BC64_gv_spawnZones;
+int lib1765BC64_gv_numberofSpawners;
+int lib1765BC64_gv_houndCount;
+int lib1765BC64_gv_roamerCount;
+int lib1765BC64_gv_blinderCount;
+int lib1765BC64_gv_stalkerCount;
+int lib1765BC64_gv_broodMotherCount;
+int lib1765BC64_gv_brainBugCount;
+int lib1765BC64_gv_busterCount;
+int lib1765BC64_gv_slasherCount;
+int lib1765BC64_gv_gargoyleCount;
+int lib1765BC64_gv_immortalCount;
+int lib1765BC64_gv_gorgonCount;
+int lib1765BC64_gv_creeperCount;
+int lib1765BC64_gv_hopliteCount;
+int lib1765BC64_gv_suppyLimitPerPlayer;
+int lib1765BC64_gv_roamerLimit;
+int lib1765BC64_gv_houndLimit;
+int lib1765BC64_gv_blinderLimit;
+int lib1765BC64_gv_stalkerLimit;
+int lib1765BC64_gv_broodMotherLimit;
+int lib1765BC64_gv_brainBugLimit;
+int lib1765BC64_gv_busterLimit;
+int lib1765BC64_gv_slasherLimit;
+int lib1765BC64_gv_gargoyleLimit;
+int lib1765BC64_gv_immortalLimit;
+int lib1765BC64_gv_gorgonLimit;
+int lib1765BC64_gv_creeperLimit;
+int lib1765BC64_gv_hopliteLimit;
+fixed lib1765BC64_gv_hordeMutationChance;
+wave lib1765BC64_gv_currentHordeWave;
+timer lib1765BC64_gv_eltradWaitTimer;
+bool lib1765BC64_gv_eltradFleeing;
+unit lib1765BC64_gv_sarbus;
+unit lib1765BC64_gv_sarbusTarget;
+
+// Function Declarations
+void lib1765BC64_gf_PlaceZombieSpawner (string lp_spawnerType, int lp_zone, fixed lp_zoneSize, int lp_numberofZones);
+void lib1765BC64_gf_ZoneSpawning (string lp_spawner, int lp_numberofSpawners);
+waveinfo lib1765BC64_gf_GetRecruitHorde (int lp_currentChapter, int lp_numberofPlayers, point lp_spawnPoint);
+void lib1765BC64_gf_SetRecruitHordeLimits (int lp_numberofPlayers, int lp_currentChapter);
+string lib1765BC64_gf_GetRecruitHordeUnit (int lp_currentChapter);
+string lib1765BC64_gf_GetChapter1RecruitHordeUnit ();
+string lib1765BC64_gf_GetChapter2RecruitHordeUnit ();
+string lib1765BC64_gf_GetChapter3RecruitHordeUnit ();
+string lib1765BC64_gf_GetChapter4RecruitHordeUnit ();
+string lib1765BC64_gf_GetChapter5RecruitHordeUnit ();
+waveinfo lib1765BC64_gf_GetNormalHorde (int lp_currentChapter, int lp_numberofPlayers, point lp_spawnPoint);
+void lib1765BC64_gf_SetNormalHordeLimits (int lp_numberofPlayers, int lp_currentChapter);
+string lib1765BC64_gf_GetNormalHordeUnit (int lp_currentChapter);
+string lib1765BC64_gf_GetChapter1NormalHordeUnit ();
+string lib1765BC64_gf_GetChapter2NormalHordeUnit ();
+string lib1765BC64_gf_GetChapter3NormalHordeUnit ();
+string lib1765BC64_gf_GetChapter4NormalHordeUnit ();
+string lib1765BC64_gf_GetChapter5NormalHordeUnit ();
+waveinfo lib1765BC64_gf_GetNightmareHorde (int lp_currentChapter, int lp_supplyLimit, point lp_spawnPoint);
+void lib1765BC64_gf_SetNightmareHordeLimits (int lp_numberofPlayers, int lp_currentChapter);
+string lib1765BC64_gf_GetNightmareHordeUnit (int lp_currentChapter);
+string lib1765BC64_gf_GetChapter1NightmareHordeUnit ();
+string lib1765BC64_gf_GetChapter2NightmareHordeUnit ();
+string lib1765BC64_gf_GetChapter3NightmareHordeUnit ();
+string lib1765BC64_gf_GetChapter4NightmareHordeUnit ();
+string lib1765BC64_gf_GetChapter5NightmareHordeUnit ();
+waveinfo lib1765BC64_gf_GetHordeWave (int lp_currentChapter, int lp_difficulty, int lp_numberofPlayers, point lp_spawnPoint);
+void lib1765BC64_gf_HordeMode (wavetarget lp_attackPoint, point lp_spawnLocation, int lp_numberofCurrentPlayers, int lp_currentChapter);
+void lib1765BC64_gf_ResetHordeCounts ();
+void lib1765BC64_gf_AttackWaveFromInfoImmediateGather (int lp_player, point lp_rallyPoint, waveinfo lp_waveInfo, wavetarget lp_attackTarget, int lp_attackTime);
+void lib1765BC64_gf_AIThinkEltrad (int lp_player, unit lp_aiUnit, unitgroup lp_scanGroup);
+unitgroup lib1765BC64_gf_GetLowLifeEnemies (unitgroup lp_scanGroup, fixed lp_lifeThreshold);
+order lib1765BC64_gf_EltradWaiting (int lp_player, unit lp_aiUnit, unitgroup lp_scanGroup);
+
+// Trigger Declarations
+trigger lib1765BC64_gt_ZombieSettings;
+trigger lib1765BC64_gt_SetupAmbientWave;
+trigger lib1765BC64_gt_OvergrownDamageReduction;
+trigger lib1765BC64_gt_RadiationFieldUpgrade;
+
+// Library Initialization
+void lib1765BC64_InitVariables ();
+
