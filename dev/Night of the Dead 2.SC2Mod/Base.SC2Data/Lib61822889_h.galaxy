@@ -1,0 +1,62 @@
+include "TriggerLibs/natives"
+
+//--------------------------------------------------------------------------------------------------
+// Library: Customization System
+//--------------------------------------------------------------------------------------------------
+// Structures
+struct lib61822889_gs_PlayerColorItem {
+    int lv_slider;
+    int lv_editBox;
+};
+
+struct lib61822889_gs_PlayerColorDialog {
+    lib61822889_gs_PlayerColorItem lv_emissiveRed;
+    lib61822889_gs_PlayerColorItem lv_emissiveGreen;
+    lib61822889_gs_PlayerColorItem lv_emissiveBlue;
+    lib61822889_gs_PlayerColorItem lv_diffuseRed;
+    lib61822889_gs_PlayerColorItem lv_diffuseGreen;
+    lib61822889_gs_PlayerColorItem lv_diffuseBlue;
+    lib61822889_gs_PlayerColorItem lv_hDR;
+};
+
+struct lib61822889_gs_PlayerColor {
+    fixed lv_emissiveRed;
+    fixed lv_emissiveGreen;
+    fixed lv_emissiveBlue;
+    fixed lv_diffuseRed;
+    fixed lv_diffuseGreen;
+    fixed lv_diffuseBlue;
+    lib61822889_gs_PlayerColorDialog lv_colorSelectionDialogItems;
+    int lv_colorSelectionPanel;
+    int lv_emissivePanel;
+    int lv_diffusePanel;
+    unit lv_demoModel;
+};
+
+// Variable Declarations
+lib61822889_gs_PlayerColor lib61822889_gv_playerColors;
+int lib61822889_gv_colorCustomizationDialog;
+
+// Function Declarations
+color lib61822889_gf_GetCustomTeamEmissive (int lp_player);
+color lib61822889_gf_GetCustomTeamDiffuse (int lp_player);
+color lib61822889_gf_GetCustomTint (int lp_player);
+void lib61822889_gf_CreateColorSelection (int lp_dialog, int lp_player);
+void lib61822889_gf_CreateColorMenu (int lp_player);
+void lib61822889_gf_CreateEmissivePanel (int lp_player);
+void lib61822889_gf_CreateDiffusePanel (int lp_player);
+void lib61822889_gf_CreateDemoPortrait (int lp_panel, int lp_player);
+void lib61822889_gf_UpdateColorPanel (int lp_player);
+void lib61822889_gf_UpdateEditBoxes (int lp_player);
+void lib61822889_gf_UpdateSliders (int lp_player);
+void lib61822889_gf_UpdateDemoModel (int lp_player);
+fixed lib61822889_gf_EditBoxValue (int lp_dialogItem);
+
+// Trigger Declarations
+trigger lib61822889_gt_ColorCustomizer;
+trigger lib61822889_gt_ColorMenuSelection;
+trigger lib61822889_gt_ColorSync;
+
+// Library Initialization
+void lib61822889_InitVariables ();
+
