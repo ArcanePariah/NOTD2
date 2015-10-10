@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <Desc>
-
     <Frame type="Frame" name="TopPlayerStatusTemplate">
         <Width val="156"/>
         <Height val="144"/>
@@ -54,6 +53,8 @@
             <Frame type="Button" name="PlayerPortraitButton">
                 <Anchor relative="$parent"/>
 
+               
+
                 <Frame type="StandardTooltip" name="PortraitTooltipFrame" template="StandardTooltip/StandardTooltip">
                 </Frame>
             </Frame>
@@ -90,13 +91,13 @@
             </Frame>
 
             <Frame type="UnitStatusEnergyBar" name="PlayerEnergyBar">
+                <Height val="10"/>
+                <BarInsetRect top="0" left="3" bottom="0" right="0"/>
                 <Texture val="UI\ui_ingame_unitstatus_bar.dds"/>
                 <BarCount val="1"/>
                 <OwnerColor val="255,0,255" index="0"/>
                 <AllyColor val="255,0,255" index="0"/>
                 <ReductionShown val="false" index="0"/>
-                <Height val="10"/>
-                <BarInsetRect top="0" left="3" bottom="0" right="0"/>
                 <Anchor side="Top" relative="$parent/PlayerHealthShieldBar" pos="Max" offset="2"/>
                 <Anchor side="Left" relative="$parent/PlayerHealthShieldBar" pos="Min" offset="0"/>
                 <Anchor side="Right" relative="$parent/PlayerHealthShieldBar" pos="Max" offset="0"/>
@@ -108,6 +109,7 @@
         <Height val="92"/>
         <Width val="105"/>
         <CollapseLayout val="true"/>
+        <Visible val="false"/>
 
         <Frame type="Image" name="BackgroundImage">
             <RenderPriority val="520"/>
@@ -135,6 +137,9 @@
                 <TooltipFrame val="RankTooltipFrame"/>
 
                 <Frame type="StandardTooltip" name="RankTooltipFrame" template="StandardTooltip/StandardTooltip">
+                </Frame>
+
+                <Frame type="Animation" name="HideSelf">
                 </Frame>
             </Frame>
 
@@ -219,6 +224,7 @@
     <Frame type="Frame" name="TeamUI">
         <Height val="850"/>
         <Width val="160"/>
+        <Visible val="true"/>
 
         <Frame type="Frame" name="TopPlayer" template="TeamUI/TopPlayerStatusTemplate">
             <Anchor side="Left" relative="$parent" pos="Min" offset="0"/>
