@@ -2348,7 +2348,7 @@ bool lib840A968C_gt_PlayerMarineDies_Func (bool testConds, bool runActions) {
 
     PlayerGroupRemove(lib840A968C_gv_livingMarines, lv_deadPlayer);
     libC50FD636_gf_DestroyAmmoDisplay(lv_deadPlayer);
-    libC50FD636_gf_DisableTalentTree(lv_deadPlayer);
+    libC50FD636_gf_DisableTalentButton(lv_deadPlayer);
     IntLoopBegin(1, lib840A968C_gv_numberofPlayers);
     for ( ; !IntLoopDone() ; IntLoopStep() ) {
         if ((TimerGetDuration(lib840A968C_gv_damageNearDeathPenaltyTimer[IntLoopCurrent()][lv_deadPlayer]) > 0.0)) {

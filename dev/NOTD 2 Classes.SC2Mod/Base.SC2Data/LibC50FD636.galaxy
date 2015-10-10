@@ -36,16 +36,21 @@ void libC50FD636_InitVariables () {
         libC50FD636_gv_ammoDisplay[init_i].lv_ammoLabel = c_invalidDialogControlId;
         libC50FD636_gv_ammoDisplay[init_i].lv_ammoHitTestFrame = c_invalidDialogControlId;
     }
+    for (init_i = 0; init_i <= libC50FD636_gv_numberofPlayers; init_i += 1) {
+        libC50FD636_gv_talentAvailable[init_i] = 1;
+    }
     libC50FD636_gv_talentTreeFrame = c_invalidDialogControlId;
     libC50FD636_gv_talentTrees.lv_treeDialog = c_invalidDialogId;
     for (init_i1 = 0; init_i1 <= libC50FD636_gv_numberofTalentTrees; init_i1 += 1) {
         libC50FD636_gv_talentTrees.lv_tree[init_i1].lv_talentTreeDialog = c_invalidDialogControlId;
+        libC50FD636_gv_talentTrees.lv_tree[init_i1].lv_talentTreeTitle = c_invalidDialogControlId;
         for (init_i2 = 0; init_i2 <= libC50FD636_gv_numberofTalents; init_i2 += 1) {
             libC50FD636_gv_talentTrees.lv_tree[init_i1].lv_talentButtons[init_i2].lv_talentTooltipText = c_invalidDialogControlId;
             libC50FD636_gv_talentTrees.lv_tree[init_i1].lv_talentButtons[init_i2].lv_borderIntital = c_invalidDialogControlId;
             libC50FD636_gv_talentTrees.lv_tree[init_i1].lv_talentButtons[init_i2].lv_borderFinal = c_invalidDialogControlId;
             libC50FD636_gv_talentTrees.lv_tree[init_i1].lv_talentButtons[init_i2].lv_button = c_invalidDialogControlId;
             libC50FD636_gv_talentTrees.lv_tree[init_i1].lv_talentButtons[init_i2].lv_talentImage = c_invalidDialogControlId;
+            libC50FD636_gv_talentTrees.lv_tree[init_i1].lv_talentButtons[init_i2].lv_talentFrame = c_invalidDialogControlId;
         }
     }
     libC50FD636_gv_talentTrees.lv_className = c_invalidDialogControlId;
@@ -497,7 +502,7 @@ bool libC50FD636_gf_TalentSelectionOption (int lp_tree, int lp_talent, int lp_ta
 
     // Implementation
     if (((lp_talent >= 1) && (lp_talent <= 2))) {
-        if (((libC50FD636_gv_talentTrees.lv_tree[lp_tree].lv_talentButtons[lp_talent].lv_abilityLevel >= 0) && (libC50FD636_gv_talentTrees.lv_tree[lp_tree].lv_talentButtons[lp_talent].lv_abilityLevel <= (libC50FD636_gv_talentMax[lp_tree][lp_talent] - 1)))) {
+        if (((libC50FD636_gv_talentLevels[lp_talentPlayer][lp_tree][lp_talent] >= 0) && (libC50FD636_gv_talentLevels[lp_talentPlayer][lp_tree][lp_talent] <= (libC50FD636_gv_talentMax[lp_tree][lp_talent] - 1)))) {
             return true;
         }
         else {
@@ -505,9 +510,9 @@ bool libC50FD636_gf_TalentSelectionOption (int lp_tree, int lp_talent, int lp_ta
         }
     }
     else {
-        lv_talentsTotal += (libC50FD636_gv_talentTrees.lv_tree[lp_tree].lv_talentButtons[1].lv_abilityLevel + libC50FD636_gv_talentTrees.lv_tree[lp_tree].lv_talentButtons[2].lv_abilityLevel);
+        lv_talentsTotal += (libC50FD636_gv_talentLevels[lp_talentPlayer][lp_tree][1] + libC50FD636_gv_talentLevels[lp_talentPlayer][lp_tree][2]);
         if ((lv_talentsTotal >= 4) && ((lp_talent >= 3) && (lp_talent <= 4))) {
-            if (((libC50FD636_gv_talentTrees.lv_tree[lp_tree].lv_talentButtons[lp_talent].lv_abilityLevel >= 0) && (libC50FD636_gv_talentTrees.lv_tree[lp_tree].lv_talentButtons[lp_talent].lv_abilityLevel <= (libC50FD636_gv_talentMax[lp_tree][lp_talent] - 1)))) {
+            if (((libC50FD636_gv_talentLevels[lp_talentPlayer][lp_tree][lp_talent] >= 0) && (libC50FD636_gv_talentLevels[lp_talentPlayer][lp_tree][lp_talent] <= (libC50FD636_gv_talentMax[lp_tree][lp_talent] - 1)))) {
                 return true;
             }
             else {
@@ -515,8 +520,8 @@ bool libC50FD636_gf_TalentSelectionOption (int lp_tree, int lp_talent, int lp_ta
             }
         }
         else {
-            lv_talentsTotal += (libC50FD636_gv_talentTrees.lv_tree[lp_tree].lv_talentButtons[3].lv_abilityLevel + libC50FD636_gv_talentTrees.lv_tree[lp_tree].lv_talentButtons[4].lv_abilityLevel);
-            if ((lv_talentsTotal >= 8) && ((lp_talent >= 5) && (lp_talent <= 6)) && (libC50FD636_gv_talentTrees.lv_tree[lp_tree].lv_talentButtons[5].lv_abilityLevel == 0) && (libC50FD636_gv_talentTrees.lv_tree[lp_tree].lv_talentButtons[6].lv_abilityLevel == 0)) {
+            lv_talentsTotal += (libC50FD636_gv_talentLevels[lp_talentPlayer][lp_tree][3] + libC50FD636_gv_talentLevels[lp_talentPlayer][lp_tree][4]);
+            if ((lv_talentsTotal >= 8) && ((lp_talent >= 5) && (lp_talent <= 6)) && (libC50FD636_gv_talentLevels[lp_talentPlayer][lp_tree][5] == 0) && (libC50FD636_gv_talentLevels[lp_talentPlayer][lp_tree][6] == 0)) {
                 return true;
             }
             else {
@@ -524,29 +529,6 @@ bool libC50FD636_gf_TalentSelectionOption (int lp_tree, int lp_talent, int lp_ta
             }
         }
     }
-}
-
-bool libC50FD636_gf_TalentTreeSelected (int lp_dialogItem) {
-    int autoE1126377_ae;
-    int autoE1126377_ai;
-
-    // Variable Declarations
-    int lv_index;
-
-    // Variable Initialization
-
-    // Implementation
-    autoE1126377_ae = lib1E3F036D_gv_numberofPlayers;
-    autoE1126377_ai = 1;
-    lv_index = 1;
-    for ( ; ( (autoE1126377_ai >= 0 && lv_index <= autoE1126377_ae) || (autoE1126377_ai <= 0 && lv_index >= autoE1126377_ae) ) ; lv_index += autoE1126377_ai ) {
-        if ((DialogControlGetDialog(lp_dialogItem) == libC50FD636_gv_talentTrees.lv_treeDialog)) {
-            return true;
-        }
-        else {
-        }
-    }
-    return false;
 }
 
 bool libC50FD636_gf_TalentTreeAccess (int lp_talentTreePlayer, int lp_selectingPlayer) {
@@ -568,7 +550,7 @@ void libC50FD636_gf_UpdateTalentAbility (int lp_itemNo, int lp_triggPlayer, int 
 void libC50FD636_gf_UpdateTalentSystem (int lp_talent, int lp_talentPlayer, int lp_talentTree) {
     // Implementation
     libC50FD636_gv_talentAvailable[lp_talentPlayer] -= 1;
-    libC50FD636_gv_talentTrees.lv_tree[lp_talentTree].lv_talentButtons[lp_talent].lv_abilityLevel += 1;
+    libC50FD636_gv_talentLevels[lp_talentPlayer][lp_talentTree][lp_talent] += 1;
     libC50FD636_gf_UpdateTalentAbility(lp_talent, lp_talentPlayer, lp_talentTree);
     libC50FD636_gf_UpdateTalentVisuals(lp_talentPlayer, lp_talent, lp_talentTree);
     libC50FD636_gf_UpdateAllTalentImages(lp_talentPlayer);
@@ -580,9 +562,14 @@ void libC50FD636_gf_UpdateAvailableTalents (int lp_player, int lp_dialogItem, in
     libNtve_gf_SetDialogItemText(lp_dialogItem, (StringExternal("Param/Value/lib_C50FD636_12D31F0B") + IntToText(lp_text)), PlayerGroupSingle(lp_player));
 }
 
+void libC50FD636_gf_DisableTalentButton (int lp_player) {
+    // Implementation
+    DialogControlSetEnabled(libC50FD636_gv_talentButton, PlayerGroupSingle(lp_player), false);
+}
+
 void libC50FD636_gf_UpdateTalentText (int lp_talent, int lp_triggPlayer, int lp_tree) {
     // Implementation
-    TextExpressionSetToken("Param/Expression/lib_C50FD636_BB8A5508", "A", IntToText(libC50FD636_gv_talentTrees.lv_tree[lp_tree].lv_talentButtons[lp_talent].lv_abilityLevel));
+    TextExpressionSetToken("Param/Expression/lib_C50FD636_BB8A5508", "A", IntToText(libC50FD636_gv_talentLevels[lp_triggPlayer][lp_tree][lp_talent]));
     TextExpressionSetToken("Param/Expression/lib_C50FD636_BB8A5508", "B", IntToText(libC50FD636_gv_talentMax[lp_tree][lp_talent]));
     libNtve_gf_SetDialogItemText(libC50FD636_gv_talentTrees.lv_tree[lp_tree].lv_talentButtons[lp_talent].lv_talentTooltipText, TextExpressionAssemble("Param/Expression/lib_C50FD636_BB8A5508"), PlayerGroupSingle(lp_triggPlayer));
 }
@@ -597,7 +584,7 @@ void libC50FD636_gf_UpdateTalentImage (int lp_talent, int lp_triggPlayer, int lp
 
     // Variable Initialization
     lv_talentsAvailable = (libC50FD636_gv_talentAvailable[lp_triggPlayer] > 0);
-    lv_currentTalentLevel = libC50FD636_gv_talentTrees.lv_tree[lp_tree].lv_talentButtons[lp_talent].lv_abilityLevel;
+    lv_currentTalentLevel = libC50FD636_gv_talentLevels[lp_triggPlayer][lp_tree][lp_talent];
     lv_dialogItem = libC50FD636_gv_talentTrees.lv_tree[lp_tree].lv_talentButtons[lp_talent].lv_talentImage;
     lv_dialogBorderInitial = libC50FD636_gv_talentTrees.lv_tree[lp_tree].lv_talentButtons[lp_talent].lv_borderIntital;
     lv_dialogBorderFinal = libC50FD636_gv_talentTrees.lv_tree[lp_tree].lv_talentButtons[lp_talent].lv_borderFinal;
@@ -655,32 +642,7 @@ void libC50FD636_gf_UpdateTalentVisuals (int lp_player, int lp_talent, int lp_tr
     libC50FD636_gf_UpdateAllTalentImages(lp_player);
 }
 
-void libC50FD636_gf_TalentButton (int lp_treePanel, int lp_player, int lp_talentNumber, int lp_tree, string lp_class) {
-    // Variable Declarations
-    int lv_talentPanel;
-
-    // Variable Initialization
-    lv_talentPanel = c_invalidDialogControlId;
-
-    // Implementation
-    DialogControlHookup(lp_treePanel, c_triggerControlTypePanel, "Talent" + IntToString(lp_talentNumber));
-    lv_talentPanel = DialogControlLastCreated();
-    DialogControlHookup(lv_talentPanel, c_triggerControlTypeButton, "Button");
-    libC50FD636_gv_talentTrees.lv_tree[lp_tree].lv_talentButtons[lp_talentNumber].lv_button = DialogControlLastCreated();
-    TriggerAddEventDialogControl(libC50FD636_gt_TalentSelection, c_playerAny, DialogControlLastCreated(), c_triggerControlEventTypeClick);
-    libNtve_gf_SetDialogItemTooltip(DialogControlLastCreated(), (StringExternal("Param/Value/lib_C50FD636_4CF33B07") + UserDataGetText("TalentTree", UserDataGetUserInstance("TalentTrees", UserDataGetUserInstance("Classes", lp_class, "Talent Tree", 1), "Trees", lp_tree), "Talent Name", lp_talentNumber) + StringExternal("Param/Value/lib_C50FD636_0DE50407") + UserDataGetText("TalentTree", UserDataGetUserInstance("TalentTrees", UserDataGetUserInstance("Classes", lp_class, "Talent Tree", 1), "Trees", lp_tree), "Talent Tooltips", lp_talentNumber)), PlayerGroupAll());
-    DialogControlHookup(lv_talentPanel, c_triggerControlTypeImage, "TalentImageIntial");
-    libC50FD636_gv_talentTrees.lv_tree[lp_tree].lv_talentButtons[lp_talentNumber].lv_borderIntital = DialogControlLastCreated();
-    DialogControlHookup(lv_talentPanel, c_triggerControlTypeImage, "TalentImageFinal");
-    libC50FD636_gv_talentTrees.lv_tree[lp_tree].lv_talentButtons[lp_talentNumber].lv_borderFinal = DialogControlLastCreated();
-    DialogControlHookup(lv_talentPanel, c_triggerControlTypeImage, "TalentImage");
-    libC50FD636_gv_talentTrees.lv_tree[lp_tree].lv_talentButtons[lp_talentNumber].lv_talentImage = DialogControlLastCreated();
-    libNtve_gf_SetDialogItemImage(DialogControlLastCreated(), UserDataGetImagePath("TalentTree", UserDataGetUserInstance("TalentTrees", UserDataGetUserInstance("Classes", lp_class, "Talent Tree", 1), "Trees", lp_tree), "Talent Icon", lp_talentNumber), PlayerGroupAll());
-    DialogControlHookup(lv_talentPanel, c_triggerControlTypeLabel, "TalentLevelLabel");
-    libC50FD636_gv_talentTrees.lv_tree[lp_tree].lv_talentButtons[lp_talentNumber].lv_talentTooltipText = DialogControlLastCreated();
-}
-
-void libC50FD636_gf_TalentTree (int lp_treeDialogPanel, int lp_player, int lp_tree, string lp_class) {
+void libC50FD636_gf_TalentTree (int lp_player, int lp_tree, string lp_class) {
     int auto25338DB5_ae;
     int auto25338DB5_ai;
 
@@ -690,16 +652,19 @@ void libC50FD636_gf_TalentTree (int lp_treeDialogPanel, int lp_player, int lp_tr
     // Variable Initialization
 
     // Implementation
-    DialogControlHookup(lp_treeDialogPanel, c_triggerControlTypePanel, "Tree" + IntToString(lp_tree));
-    libC50FD636_gv_talentTrees.lv_tree[lp_tree].lv_talentTreeDialog = DialogControlLastCreated();
     auto25338DB5_ae = libC50FD636_gv_numberofTalents;
     auto25338DB5_ai = 1;
     lv_talent = lib1E3F036D_gv_indexBaseValue;
     for ( ; ( (auto25338DB5_ai >= 0 && lv_talent <= auto25338DB5_ae) || (auto25338DB5_ai <= 0 && lv_talent >= auto25338DB5_ae) ) ; lv_talent += auto25338DB5_ai ) {
-        libC50FD636_gf_TalentButton(libC50FD636_gv_talentTrees.lv_tree[lp_tree].lv_talentTreeDialog, lp_player, lv_talent, lp_tree, lp_class);
+        libC50FD636_gf_TalentButton(lp_player, lv_talent, lp_tree, lp_class);
     }
-    DialogControlHookup(libC50FD636_gv_talentTrees.lv_tree[lp_tree].lv_talentTreeDialog, c_triggerControlTypeLabel, "TalentTreeTitle");
-    libNtve_gf_SetDialogItemText(DialogControlLastCreated(), UserDataGetText("TalentTree", UserDataGetUserInstance("TalentTrees", UserDataGetUserInstance("Classes", lp_class, "Talent Tree", 1), "Trees", lp_tree), "Header", 1), PlayerGroupSingle(lp_player));
+    libNtve_gf_SetDialogItemText(libC50FD636_gv_talentTrees.lv_tree[lp_tree].lv_talentTreeTitle, UserDataGetText("TalentTree", UserDataGetUserInstance("TalentTrees", UserDataGetUserInstance("Classes", lp_class, "Talent Tree", 1), "Trees", lp_tree), "Header", 1), PlayerGroupSingle(lp_player));
+}
+
+void libC50FD636_gf_TalentButton (int lp_player, int lp_talentNumber, int lp_tree, string lp_class) {
+    // Implementation
+    libNtve_gf_SetDialogItemTooltip(libC50FD636_gv_talentTrees.lv_tree[lp_tree].lv_talentButtons[lp_talentNumber].lv_button, (StringExternal("Param/Value/lib_C50FD636_4CF33B07") + UserDataGetText("TalentTree", UserDataGetUserInstance("TalentTrees", UserDataGetUserInstance("Classes", lp_class, "Talent Tree", 1), "Trees", lp_tree), "Talent Name", lp_talentNumber) + StringExternal("Param/Value/lib_C50FD636_0DE50407") + UserDataGetText("TalentTree", UserDataGetUserInstance("TalentTrees", UserDataGetUserInstance("Classes", lp_class, "Talent Tree", 1), "Trees", lp_tree), "Talent Tooltips", lp_talentNumber)), PlayerGroupSingle(lp_player));
+    libNtve_gf_SetDialogItemImage(libC50FD636_gv_talentTrees.lv_tree[lp_tree].lv_talentButtons[lp_talentNumber].lv_talentImage, UserDataGetImagePath("TalentTree", UserDataGetUserInstance("TalentTrees", UserDataGetUserInstance("Classes", lp_class, "Talent Tree", 1), "Trees", lp_tree), "Talent Icon", lp_talentNumber), PlayerGroupSingle(lp_player));
 }
 
 trigger auto_libC50FD636_gf_TalentTreeCreation_Trigger = null;
@@ -730,17 +695,13 @@ bool auto_libC50FD636_gf_TalentTreeCreation_TriggerFunc (bool testConds, bool ru
     // Variable Initialization
 
     // Implementation
-    DialogControlHookupStandard(c_triggerControlTypePanel, "UIContainer/FullscreenUpperContainer/TalentPanel");
-    libC50FD636_gv_talentTreeFrame = DialogControlLastCreated();
-    DialogControlHookup(libC50FD636_gv_talentTreeFrame, c_triggerControlTypeLabel, "TalentsAvailable");
-    libC50FD636_gv_talentTrees.lv_numberAvailableLabel = DialogControlLastCreated();
     TextExpressionSetToken("Param/Expression/lib_C50FD636_5E5C0951", "A", IntToText(libC50FD636_gv_talentAvailable[lp_player]));
-    libNtve_gf_SetDialogItemText(DialogControlLastCreated(), TextExpressionAssemble("Param/Expression/lib_C50FD636_5E5C0951"), PlayerGroupSingle(lp_player));
+    libNtve_gf_SetDialogItemText(libC50FD636_gv_talentTrees.lv_numberAvailableLabel, TextExpressionAssemble("Param/Expression/lib_C50FD636_5E5C0951"), PlayerGroupSingle(lp_player));
     auto64E5A61F_ae = libC50FD636_gv_numberofTalentTrees;
     auto64E5A61F_ai = 1;
     lv_tree = lib1E3F036D_gv_indexBaseValue;
     for ( ; ( (auto64E5A61F_ai >= 0 && lv_tree <= auto64E5A61F_ae) || (auto64E5A61F_ai <= 0 && lv_tree >= auto64E5A61F_ae) ) ; lv_tree += auto64E5A61F_ai ) {
-        libC50FD636_gf_TalentTree(libC50FD636_gv_talentTreeFrame, lp_player, lv_tree, lp_class);
+        libC50FD636_gf_TalentTree(lp_player, lv_tree, lp_class);
     }
     libC50FD636_gf_UpdateTalentImage(1, lp_player, 1);
     libC50FD636_gf_UpdateTalentImage(2, lp_player, 1);
@@ -1100,12 +1061,12 @@ bool libC50FD636_gt_RiflemanLevelUpFragGrenadeLevel3_Func (bool testConds, bool 
         return true;
     }
 
-    if ((EventUnitAbility() == AbilityCommand("RiflemanLearn", 3)) && (libC50FD636_gv_talentTrees.lv_tree[1].lv_talentButtons[6].lv_abilityLevel == 1)) {
+    if ((EventUnitAbility() == AbilityCommand("RiflemanLearn", 3)) && (libC50FD636_gv_talentLevels[UnitGetOwner(EventUnit())][1][6] == 1)) {
         UnitIssueOrder(EventUnit(), Order(AbilityCommand("RiflemanLearn", 3)), c_orderQueueAddToFront);
     }
     else {
     }
-    if ((EventUnitAbility() == AbilityCommand("RiflemanLearn", 5)) && (libC50FD636_gv_talentTrees.lv_tree[1].lv_talentButtons[4].lv_abilityLevel == 2)) {
+    if ((EventUnitAbility() == AbilityCommand("RiflemanLearn", 5)) && (libC50FD636_gv_talentLevels[UnitGetOwner(EventUnit())][1][4] == 2)) {
         UnitIssueOrder(EventUnit(), Order(AbilityCommand("RiflemanLearn", 3)), c_orderQueueAddToFront);
     }
     else {
@@ -1226,12 +1187,12 @@ bool libC50FD636_gt_Sadist_Func (bool testConds, bool runActions) {
         return true;
     }
 
-    if ((libC50FD636_gv_talentTrees.lv_tree[2].lv_talentButtons[4].lv_abilityLevel == 1)) {
+    if ((libC50FD636_gv_talentLevels[UnitGetOwner(libNtve_gf_KillingUnit())][2][4] == 1)) {
         UnitSetPropertyFixed(libNtve_gf_KillingUnit(), c_unitPropEnergy, (UnitGetPropertyFixed(libNtve_gf_KillingUnit(), c_unitPropEnergy, c_unitPropCurrent) + 0.25));
         UnitSetPropertyFixed(libNtve_gf_KillingUnit(), c_unitPropShields, (UnitGetPropertyFixed(libNtve_gf_KillingUnit(), c_unitPropShields, c_unitPropCurrent) + 1.5));
         libNtve_gf_AttachActorToUnit(libNtve_gf_KillingUnit(), "Sadist", "Ref_Head");
     }
-    else if ((libC50FD636_gv_talentTrees.lv_tree[2].lv_talentButtons[4].lv_abilityLevel == 2)) {
+    else if ((libC50FD636_gv_talentLevels[UnitGetOwner(libNtve_gf_KillingUnit())][2][4] == 2)) {
         UnitSetPropertyFixed(libNtve_gf_KillingUnit(), c_unitPropEnergy, (UnitGetPropertyFixed(libNtve_gf_KillingUnit(), c_unitPropEnergy, c_unitPropCurrent) + 0.5));
         UnitSetPropertyFixed(libNtve_gf_KillingUnit(), c_unitPropShields, (UnitGetPropertyFixed(libNtve_gf_KillingUnit(), c_unitPropShields, c_unitPropCurrent) + 3.0));
         libNtve_gf_AttachActorToUnit(libNtve_gf_KillingUnit(), "Sadist", "Ref_Head");
@@ -1265,7 +1226,7 @@ bool libC50FD636_gt_Bulwark_Func (bool testConds, bool runActions) {
     lv_damageTaken = EventUnitDamageAbsorbed();
     lv_shieldArmor = CatalogFieldValueGetAsInt(c_gameCatalogUnit, "Demolitions", "ShieldArmor", UnitGetOwner(lv_damagedUnit));
     lv_lifeArmor = CatalogFieldValueGetAsInt(c_gameCatalogUnit, "Demolitions", "LifeArmor", UnitGetOwner(lv_damagedUnit));
-    lv_reactiveShieldLevel = ("ReactiveShieldsLevel" + IntToString(libC50FD636_gv_talentTrees.lv_tree[2].lv_talentButtons[1].lv_abilityLevel));
+    lv_reactiveShieldLevel = ("ReactiveShieldsLevel" + IntToString(libC50FD636_gv_talentLevels[UnitGetOwner(lv_damagedUnit)][2][4]));
 
     // Conditions
     if (testConds) {
@@ -2919,6 +2880,86 @@ void libC50FD636_gt_TalentSelection_Init () {
 }
 
 //--------------------------------------------------------------------------------------------------
+// Trigger: Hookup Talent Button
+//--------------------------------------------------------------------------------------------------
+bool libC50FD636_gt_HookupTalentButton_Func (bool testConds, bool runActions) {
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    DialogControlHookupStandard(c_triggerControlTypeButton, "UIContainer\\FullscreenUpperContainer\\MenuBar\\TalentButton");
+    libC50FD636_gv_talentButton = DialogControlLastCreated();
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libC50FD636_gt_HookupTalentButton_Init () {
+    libC50FD636_gt_HookupTalentButton = TriggerCreate("libC50FD636_gt_HookupTalentButton_Func");
+    TriggerAddEventMapInit(libC50FD636_gt_HookupTalentButton);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Talent Tree Hookup
+//--------------------------------------------------------------------------------------------------
+bool libC50FD636_gt_TalentTreeHookup_Func (bool testConds, bool runActions) {
+    int auto4298B0B1_ae;
+    int auto4298B0B1_ai;
+    int auto68410F6F_ae;
+    int auto68410F6F_ai;
+
+    // Variable Declarations
+    int lv_tree;
+    int lv_talent;
+
+    // Variable Initialization
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    DialogControlHookupStandard(c_triggerControlTypePanel, "UIContainer/FullscreenUpperContainer/TalentPanel");
+    libC50FD636_gv_talentTreeFrame = DialogControlLastCreated();
+    DialogControlHookup(libC50FD636_gv_talentTreeFrame, c_triggerControlTypeLabel, "TalentsAvailable");
+    libC50FD636_gv_talentTrees.lv_numberAvailableLabel = DialogControlLastCreated();
+    auto4298B0B1_ae = libC50FD636_gv_numberofTalentTrees;
+    auto4298B0B1_ai = 1;
+    lv_tree = lib1E3F036D_gv_indexBaseValue;
+    for ( ; ( (auto4298B0B1_ai >= 0 && lv_tree <= auto4298B0B1_ae) || (auto4298B0B1_ai <= 0 && lv_tree >= auto4298B0B1_ae) ) ; lv_tree += auto4298B0B1_ai ) {
+        DialogControlHookup(libC50FD636_gv_talentTreeFrame, c_triggerControlTypePanel, libNtve_gf_ConvertStringToUILayoutFrameName(("Tree" + IntToString(lv_tree))));
+        libC50FD636_gv_talentTrees.lv_tree[lv_tree].lv_talentTreeDialog = DialogControlLastCreated();
+        DialogControlHookup(libC50FD636_gv_talentTrees.lv_tree[lv_tree].lv_talentTreeDialog, c_triggerControlTypeLabel, "TalentTreeTitle");
+        libC50FD636_gv_talentTrees.lv_tree[lv_tree].lv_talentTreeTitle = DialogControlLastCreated();
+        auto68410F6F_ae = libC50FD636_gv_numberofTalents;
+        auto68410F6F_ai = 1;
+        lv_talent = lib1E3F036D_gv_indexBaseValue;
+        for ( ; ( (auto68410F6F_ai >= 0 && lv_talent <= auto68410F6F_ae) || (auto68410F6F_ai <= 0 && lv_talent >= auto68410F6F_ae) ) ; lv_talent += auto68410F6F_ai ) {
+            DialogControlHookup(libC50FD636_gv_talentTrees.lv_tree[lv_tree].lv_talentTreeDialog, c_triggerControlTypePanel, libNtve_gf_ConvertStringToUILayoutFrameName(("Talent" + IntToString(lv_talent))));
+            libC50FD636_gv_talentTrees.lv_tree[lv_tree].lv_talentButtons[lv_talent].lv_talentFrame = DialogControlLastCreated();
+            DialogControlHookup(libC50FD636_gv_talentTrees.lv_tree[lv_tree].lv_talentButtons[lv_talent].lv_talentFrame, c_triggerControlTypeButton, "Button");
+            libC50FD636_gv_talentTrees.lv_tree[lv_tree].lv_talentButtons[lv_talent].lv_button = DialogControlLastCreated();
+            TriggerAddEventDialogControl(libC50FD636_gt_TalentSelection, c_playerAny, libC50FD636_gv_talentTrees.lv_tree[lv_tree].lv_talentButtons[lv_talent].lv_button, c_triggerControlEventTypeClick);
+            DialogControlHookup(libC50FD636_gv_talentTrees.lv_tree[lv_tree].lv_talentButtons[lv_talent].lv_talentFrame, c_triggerControlTypeImage, "TalentImageIntial");
+            libC50FD636_gv_talentTrees.lv_tree[lv_tree].lv_talentButtons[lv_talent].lv_borderIntital = DialogControlLastCreated();
+            DialogControlHookup(libC50FD636_gv_talentTrees.lv_tree[lv_tree].lv_talentButtons[lv_talent].lv_talentFrame, c_triggerControlTypeImage, "TalentImageFinal");
+            libC50FD636_gv_talentTrees.lv_tree[lv_tree].lv_talentButtons[lv_talent].lv_borderFinal = DialogControlLastCreated();
+            DialogControlHookup(libC50FD636_gv_talentTrees.lv_tree[lv_tree].lv_talentButtons[lv_talent].lv_talentFrame, c_triggerControlTypeImage, "TalentImage");
+            libC50FD636_gv_talentTrees.lv_tree[lv_tree].lv_talentButtons[lv_talent].lv_talentImage = DialogControlLastCreated();
+            DialogControlHookup(libC50FD636_gv_talentTrees.lv_tree[lv_tree].lv_talentButtons[lv_talent].lv_talentFrame, c_triggerControlTypeLabel, "TalentLevelLabel");
+            libC50FD636_gv_talentTrees.lv_tree[lv_tree].lv_talentButtons[lv_talent].lv_talentTooltipText = DialogControlLastCreated();
+        }
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libC50FD636_gt_TalentTreeHookup_Init () {
+    libC50FD636_gt_TalentTreeHookup = TriggerCreate("libC50FD636_gt_TalentTreeHookup_Func");
+    TriggerAddEventMapInit(libC50FD636_gt_TalentTreeHookup);
+}
+
+//--------------------------------------------------------------------------------------------------
 // Trigger: Jump Upgrade
 //--------------------------------------------------------------------------------------------------
 bool libC50FD636_gt_JumpUpgrade_Func (bool testConds, bool runActions) {
@@ -3141,6 +3182,8 @@ void libC50FD636_InitTriggers () {
     libC50FD636_gt_AmmoFeedUpgrade_Init();
     libC50FD636_gt_LevelUp_Init();
     libC50FD636_gt_TalentSelection_Init();
+    libC50FD636_gt_HookupTalentButton_Init();
+    libC50FD636_gt_TalentTreeHookup_Init();
     libC50FD636_gt_JumpUpgrade_Init();
     libC50FD636_gt_MedicalAssistanceUsage_Init();
     libC50FD636_gt_HeroTest_Init();
