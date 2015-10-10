@@ -109,6 +109,9 @@
         <Type value="And"/>
         <CombineArray value="MotionSenorVisibility"/>
         <CombineArray value="TargetisnotanItem"/>
+        <CombineArray value="NotDead"/>
+        <CombineArray value="NotStructure"/>
+        <CombineArray value="TargetCanMove"/>
     </CValidatorCombine>
     <!--We add the Hidden check because we don't want to see items being carried by other players.-->
     <CValidatorCombine id="ItemSensorUnitQuery">
@@ -408,6 +411,11 @@
         <Find value="1"/>
         <Value value="StealthMatrixLevel2"/>
     </CValidatorPlayerRequirement>
+    <CValidatorUnitCompareField id="TargetCanMove">
+        <Compare value="GT"/>
+        <Field value="Speed"/>
+        <Value value="0"/>
+    </CValidatorUnitCompareField>
     <CValidatorUnitCompareBehaviorCount id="TargethasLaserDesignatorLevel1">
         <Value value="1"/>
         <Behavior value="LaserDesignatedLevel1"/>

@@ -1,0 +1,52 @@
+include "TriggerLibs/natives"
+
+//--------------------------------------------------------------------------------------------------
+// Library: Common Library
+//--------------------------------------------------------------------------------------------------
+// Preset Declarations
+
+// Constants
+const int lib1E3F036D_gv_indexBaseValue = 1;
+const int lib1E3F036D_gv_numberofPlayers = 8;
+const int lib1E3F036D_gv_numberofProfiles = 5;
+const int lib1E3F036D_gv_peacekeeperPlayer = 9;
+const int lib1E3F036D_gv_hALPlayer = 13;
+const int lib1E3F036D_gv_testSubjects = 14;
+const int lib1E3F036D_gv_mechanicalPlayer = 11;
+const int lib1E3F036D_gv_mercenaryPlayer = 12;
+const int lib1E3F036D_gv_zombiePlayer = 10;
+
+// Structures
+struct lib1E3F036D_gs_PlayerStatusUI {
+    int lv_classIcon;
+    int lv_rankIcon;
+    int lv_playerNumber;
+    int lv_playerPortraitFrame;
+    int lv_playerSidebarFrame;
+    int lv_playerStatusFrame;
+    int lv_playerFrame;
+};
+
+// Variable Declarations
+int lib1E3F036D_gv_teamUIDialog;
+int lib1E3F036D_gv_teamUIFrame;
+lib1E3F036D_gs_PlayerStatusUI[lib1E3F036D_gv_numberofPlayers + 1] lib1E3F036D_gv_playerStatus;
+lib1E3F036D_gs_PlayerStatusUI lib1E3F036D_gv_topPlayerStatus;
+
+// Function Declarations
+void lib1E3F036D_gf_CreateTeamUI ();
+void lib1E3F036D_gf_CreatePlayerFrame (int lp_teamUIDialog);
+void lib1E3F036D_gf_SetPlayerFrame (int lp_player, unit lp_playerMarine, string lp_playerPortrait);
+void lib1E3F036D_gf_SetGameDifficultyforPlayerGroup (playergroup lp_players, int lp_difficulty);
+void lib1E3F036D_gf_SetGameDifficulty (int lp_player, int lp_gameDifficulty);
+int lib1E3F036D_gf_GameDifficultyInteger (int lp_recruit, int lp_normal, int lp_nightmare);
+fixed lib1E3F036D_gf_GameDifficultyReal (fixed lp_recruit, fixed lp_normal, fixed lp_nightmare);
+int lib1E3F036D_gf_GameType ();
+string lib1E3F036D_gf_UnitTypeDifficulty (string lp_recruit, string lp_normal, string lp_nightmare);
+
+// Trigger Declarations
+trigger lib1E3F036D_gt_ConstructTeamUI;
+
+// Library Initialization
+void lib1E3F036D_InitVariables ();
+
