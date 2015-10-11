@@ -1,5 +1,4 @@
 include "TriggerLibs/NativeLib"
-include "Lib09BE6BA8"
 
 include "Lib1E3F036D_h"
 
@@ -45,53 +44,6 @@ void lib1E3F036D_InitVariables () {
 
 // Presets
 // Functions
-void lib1E3F036D_gf_CreateTeamUI () {
-    // Implementation
-    DialogCreate(156, 850, c_anchorTopRight, 0, 50, true);
-    lib1E3F036D_gv_teamUIDialog = DialogLastCreated();
-    DialogSetImageVisible(lib1E3F036D_gv_teamUIDialog, false);
-    lib1E3F036D_gf_CreatePlayerFrame(lib1E3F036D_gv_teamUIDialog);
-    libNtve_gf_CreateUnitsWithDefaultFacing(1, "HighTemplar", 0, 1, RegionGetBoundsMin(RegionEntireMap()));
-    lib1E3F036D_gf_SetPlayerFrame(1, UnitLastCreated(), null);
-    DialogSetVisible(lib1E3F036D_gv_teamUIDialog, PlayerGroupAll(), true);
-}
-
-void lib1E3F036D_gf_CreatePlayerFrame (int lp_teamUIDialog) {
-    int autoC3353684_ae;
-    int autoC3353684_ai;
-
-    // Variable Declarations
-    int lv_loop;
-
-    // Variable Initialization
-
-    // Implementation
-    DialogControlCreateFromTemplate(lp_teamUIDialog, c_triggerControlTypePanel, "TeamUI/TeamUI");
-    lib1E3F036D_gv_teamUIFrame = DialogControlLastCreated();
-    DialogControlHookup(lib1E3F036D_gv_teamUIFrame, c_triggerControlTypePanel, "TopPlayer");
-    lib1E3F036D_gv_topPlayerStatus.lv_playerFrame = DialogControlLastCreated();
-    DialogControlHookup(lib1E3F036D_gv_topPlayerStatus.lv_playerFrame, c_triggerControlTypePanel, "PlayerInfoSideBar");
-    lib1E3F036D_gv_topPlayerStatus.lv_playerSidebarFrame = DialogControlLastCreated();
-    DialogControlHookup(lib1E3F036D_gv_topPlayerStatus.lv_playerFrame, c_triggerControlTypePanel, "PlayerPortrait");
-    lib1E3F036D_gv_topPlayerStatus.lv_playerPortraitFrame = DialogControlLastCreated();
-    DialogControlHookup(lib1E3F036D_gv_topPlayerStatus.lv_playerFrame, c_triggerControlTypeUnitStatus, "PlayerStatus");
-    lib1E3F036D_gv_topPlayerStatus.lv_playerStatusFrame = DialogControlLastCreated();
-    autoC3353684_ae = lib1E3F036D_gv_numberofPlayers;
-    autoC3353684_ai = 1;
-    lv_loop = lib1E3F036D_gv_indexBaseValue;
-    for ( ; ( (autoC3353684_ai >= 0 && lv_loop <= autoC3353684_ae) || (autoC3353684_ai <= 0 && lv_loop >= autoC3353684_ae) ) ; lv_loop += autoC3353684_ai ) {
-        DialogControlHookup(lib1E3F036D_gv_teamUIFrame, c_triggerControlTypePanel, "Player" + IntToString(lv_loop));
-        lib1E3F036D_gv_playerStatus[lv_loop].lv_playerFrame = DialogControlLastCreated();
-        DialogControlSetVisible(DialogControlLastCreated(), PlayerGroupSingle(lv_loop), false);
-        DialogControlHookup(lib1E3F036D_gv_playerStatus[lv_loop].lv_playerFrame, c_triggerControlTypePanel, "PlayerInfoSideBar");
-        lib1E3F036D_gv_playerStatus[lv_loop].lv_playerSidebarFrame = DialogControlLastCreated();
-        DialogControlHookup(lib1E3F036D_gv_playerStatus[lv_loop].lv_playerFrame, c_triggerControlTypePanel, "PlayerPortrait");
-        lib1E3F036D_gv_playerStatus[lv_loop].lv_playerPortraitFrame = DialogControlLastCreated();
-        DialogControlHookup(lib1E3F036D_gv_playerStatus[lv_loop].lv_playerFrame, c_triggerControlTypeUnitStatus, "PlayerStatus");
-        lib1E3F036D_gv_playerStatus[lv_loop].lv_playerStatusFrame = DialogControlLastCreated();
-    }
-}
-
 void lib1E3F036D_gf_SetPlayerFrame (int lp_player, unit lp_playerMarine, string lp_playerPortrait) {
     // Implementation
     libNtve_gf_SetDialogItemUnit(lib1E3F036D_gv_playerStatus[lp_player].lv_playerStatusFrame, lp_playerMarine, PlayerGroupAll());
@@ -204,19 +156,50 @@ string lib1E3F036D_gf_UnitTypeDifficulty (string lp_recruit, string lp_normal, s
 // Trigger: Construct Team UI
 //--------------------------------------------------------------------------------------------------
 bool lib1E3F036D_gt_ConstructTeamUI_Func (bool testConds, bool runActions) {
+    int autoC3353684_ae;
+    int autoC3353684_ai;
+
+    // Variable Declarations
+    int lv_loop;
+
+    // Variable Initialization
+
     // Actions
     if (!runActions) {
         return true;
     }
 
-    lib1E3F036D_gf_CreateTeamUI();
+    DialogControlHookupStandard(c_triggerControlTypePanel, "UIContainer/FullscreenUpperContainer/TeamUI");
+    lib1E3F036D_gv_teamUIFrame = DialogControlLastCreated();
+    DialogControlHookup(lib1E3F036D_gv_teamUIFrame, c_triggerControlTypePanel, "TopPlayer");
+    lib1E3F036D_gv_topPlayerStatus.lv_playerFrame = DialogControlLastCreated();
+    DialogControlHookup(lib1E3F036D_gv_topPlayerStatus.lv_playerFrame, c_triggerControlTypePanel, "PlayerInfoSideBar");
+    lib1E3F036D_gv_topPlayerStatus.lv_playerSidebarFrame = DialogControlLastCreated();
+    DialogControlHookup(lib1E3F036D_gv_topPlayerStatus.lv_playerFrame, c_triggerControlTypePanel, "PlayerPortrait");
+    lib1E3F036D_gv_topPlayerStatus.lv_playerPortraitFrame = DialogControlLastCreated();
+    DialogControlHookup(lib1E3F036D_gv_topPlayerStatus.lv_playerFrame, c_triggerControlTypeUnitStatus, "PlayerStatus");
+    lib1E3F036D_gv_topPlayerStatus.lv_playerStatusFrame = DialogControlLastCreated();
+    autoC3353684_ae = lib1E3F036D_gv_numberofPlayers;
+    autoC3353684_ai = 1;
+    lv_loop = lib1E3F036D_gv_indexBaseValue;
+    for ( ; ( (autoC3353684_ai >= 0 && lv_loop <= autoC3353684_ae) || (autoC3353684_ai <= 0 && lv_loop >= autoC3353684_ae) ) ; lv_loop += autoC3353684_ai ) {
+        DialogControlHookup(lib1E3F036D_gv_teamUIFrame, c_triggerControlTypePanel, libNtve_gf_ConvertStringToUILayoutFrameName(("Player" + IntToString(lv_loop))));
+        lib1E3F036D_gv_playerStatus[lv_loop].lv_playerFrame = DialogControlLastCreated();
+        DialogControlSetVisible(DialogControlLastCreated(), PlayerGroupSingle(lv_loop), false);
+        DialogControlHookup(lib1E3F036D_gv_playerStatus[lv_loop].lv_playerFrame, c_triggerControlTypePanel, "PlayerInfoSideBar");
+        lib1E3F036D_gv_playerStatus[lv_loop].lv_playerSidebarFrame = DialogControlLastCreated();
+        DialogControlHookup(lib1E3F036D_gv_playerStatus[lv_loop].lv_playerFrame, c_triggerControlTypePanel, "PlayerPortrait");
+        lib1E3F036D_gv_playerStatus[lv_loop].lv_playerPortraitFrame = DialogControlLastCreated();
+        DialogControlHookup(lib1E3F036D_gv_playerStatus[lv_loop].lv_playerFrame, c_triggerControlTypeUnitStatus, "PlayerStatus");
+        lib1E3F036D_gv_playerStatus[lv_loop].lv_playerStatusFrame = DialogControlLastCreated();
+    }
     return true;
 }
 
 //--------------------------------------------------------------------------------------------------
 void lib1E3F036D_gt_ConstructTeamUI_Init () {
     lib1E3F036D_gt_ConstructTeamUI = TriggerCreate("lib1E3F036D_gt_ConstructTeamUI_Func");
-    TriggerAddEventChatMessage(lib1E3F036D_gt_ConstructTeamUI, c_playerAny, "UITest", true);
+    TriggerAddEventMapInit(lib1E3F036D_gt_ConstructTeamUI);
 }
 
 void lib1E3F036D_InitTriggers () {
