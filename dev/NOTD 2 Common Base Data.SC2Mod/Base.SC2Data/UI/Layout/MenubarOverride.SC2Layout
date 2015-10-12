@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <Desc>
-
     <Frame type="Frame" name="GameUI\UIContainer\FullscreenUpperContainer\MenuBarConsoleAnchor" file="GameUI">
         <Width val="310"/>
         <Height val="60"/>
     </Frame>
 
     <Frame type="MenuBar" name="GameUI\UIContainer\FullscreenUpperContainer\MenuBar" file="GameUI">
-
         <Frame type="Image" name="MenuBarBackgroundImage">
             <Texture val="@UI/MenuBorder"/>
         </Frame>
@@ -53,6 +51,16 @@
                 <Anchor side="Right" relative="$parent" pos="Max" offset="0"/>
                 <Style val="@@MenuBarButton"/>
                 <Text val="Talents"/>
+            </Frame>
+
+            <Frame type="Animation" name="TalentShowHide">
+                <Event event="OnClick" action="Play" frame="$this"/>
+				<Event event="OnHidden" action="Pause,DirectionReverse" frame="$parent/$parent/TalentPanel"/>
+				<Event event="OnShown" action="Pause,DirectionForward" frame="$parent/$parent/TalentPanel"/>
+                <Controller name="Visibility_0" type="Visibility" end="Pause" frame="$parent/$parent/TalentPanel">
+                    <Key type="Bool" time="0.000" value="true"/>
+                    <Key type="Bool" time="0.050" value="false"/>
+                </Controller>
             </Frame>
         </Frame>
 

@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <Desc>
-
     <Frame type="GameUI" name="GameUI" file="GameUI">
         <ConsoleWorldBottomOffset val="0"/>
 
         <Frame type="Frame" name="UIContainer">
-
             <Frame type="Frame" name="FullscreenUpperContainer">
-
                 <Frame type="ResourcePanel" name="ResourcePanel">
                     <Anchor side="Left" relative="$parent" pos="Max" offset="0"/>
                 </Frame>
@@ -27,10 +24,18 @@
                     <Anchor side="Bottom" relative="$parent" pos="Min" offset="0"/>
                     <Height val="100"/>
                 </Frame>
+
+                <Frame type="Frame" name="TalentPanel" template="TalentTreeTemplateLayout/TalentTreeFrameTemplate">
+                    <Anchor side="Right" relative="$parent" pos="Max" offset="-273"/>
+                    <Anchor side="Bottom" relative="$parent" pos="Max" offset="-433"/>
+                </Frame>
+				<Frame type ="Frame" name = "TeamUI" template="TeamUI/TeamUI">
+					<Anchor side="Right" relative="$parent" pos="Max" offset="0"/>
+                    <Anchor side="Top" relative="$parent" pos="Min" offset="50"/>
+				</Frame>
             </Frame>
 
             <Frame type="Frame" name="ConsoleUIContainer">
-
                 <Frame type="ControlGroupPanel" name="ControlGroupPanel">
                     <Anchor side="Left" relative="$parent" pos="Max" offset="0"/>
                 </Frame>
@@ -55,7 +60,7 @@
 
                     <Frame type="Minimap" name="Minimap">
                         <Anchor side="Top" relative="$parent" pos="Min" offset="35"/>
-                        <Anchor side="Left" relative="$parent" pos="Min" offset="13"/>
+                        <Anchor side="Left" relative="$parent" pos="Min" offset="11"/>
                         <Height val="270"/>
                         <Width val="300"/>
                     </Frame>
@@ -89,7 +94,6 @@
             </Frame>
 
             <Frame type="ConsolePanel" name="ConsolePanel">
-
                 <Frame type="PortraitPanel" name="PortraitPanel">
                     <Anchor side="Bottom" relative="$parent" pos="Max" offset="500"/>
                 </Frame>

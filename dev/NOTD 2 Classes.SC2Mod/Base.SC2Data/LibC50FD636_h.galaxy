@@ -32,19 +32,19 @@ struct libC50FD636_gs_Talent {
     int lv_button;
     int lv_talentImage;
     text lv_abilityLevelText;
+    int lv_talentFrame;
     int lv_abilityLevel;
 };
 
 struct libC50FD636_gs_TalentTree {
     int lv_talentTreeDialog;
+    int lv_talentTreeTitle;
     libC50FD636_gs_Talent[libC50FD636_gv_numberofTalents + 1] lv_talentButtons;
 };
 
 struct libC50FD636_gs_Talents {
     int lv_treeDialog;
     libC50FD636_gs_TalentTree[libC50FD636_gv_numberofTalentTrees + 1] lv_tree;
-    int lv_numberAvailable;
-    bool lv_treeOpen;
     int lv_className;
     int lv_numberAvailableLabel;
 };
@@ -74,7 +74,10 @@ string[libC50FD636_gv_numberofPlayers + 1] libC50FD636_gv_geminiAssaultUnitWeapo
 bool libC50FD636_gv_inventoryMoveLock;
 bool[libC50FD636_gv_inventoryBagSize + 1][libC50FD636_gv_numberofPlayers + 1] libC50FD636_gv_openBagSlots;
 libC50FD636_gs_AmmoUIElements[libC50FD636_gv_numberofPlayers + 1] libC50FD636_gv_ammoDisplay;
-libC50FD636_gs_Talents[libC50FD636_gv_numberofPlayers + 1] libC50FD636_gv_talentTrees;
+int[libC50FD636_gv_numberofPlayers + 1][libC50FD636_gv_numberofTalentTrees + 1][libC50FD636_gv_numberofTalents + 1] libC50FD636_gv_talentLevels;
+int[libC50FD636_gv_numberofPlayers + 1] libC50FD636_gv_talentAvailable;
+int libC50FD636_gv_talentTreeFrame;
+libC50FD636_gs_Talents libC50FD636_gv_talentTrees;
 int libC50FD636_gv_talentButton;
 int[libC50FD636_gv_numberofTalentTrees + 1][libC50FD636_gv_numberofTalents + 1] libC50FD636_gv_talentMax;
 unitgroup libC50FD636_gv_marinesUnitGroup;
@@ -97,18 +100,17 @@ void libC50FD636_gf_CreateAmmoDisplay (int lp_player);
 void libC50FD636_gf_DestroyAmmoDisplay (int lp_player);
 void libC50FD636_gf_IntializeTalentMax ();
 bool libC50FD636_gf_TalentSelectionOption (int lp_tree, int lp_talent, int lp_talentPlayer);
-bool libC50FD636_gf_TalentTreeSelected (int lp_dialogItem);
 bool libC50FD636_gf_TalentTreeAccess (int lp_talentTreePlayer, int lp_selectingPlayer);
 void libC50FD636_gf_UpdateTalentAbility (int lp_itemNo, int lp_triggPlayer, int lp_talentTree);
 void libC50FD636_gf_UpdateTalentSystem (int lp_talent, int lp_talentPlayer, int lp_talentTree);
-void libC50FD636_gf_UpdateAvailableTalents (int lp_dialogItem, int lp_text);
-void libC50FD636_gf_DisableTalentTree (int lp_player);
+void libC50FD636_gf_UpdateAvailableTalents (int lp_player, int lp_dialogItem, int lp_text);
+void libC50FD636_gf_DisableTalentButton (int lp_player);
 void libC50FD636_gf_UpdateTalentText (int lp_talent, int lp_triggPlayer, int lp_tree);
 void libC50FD636_gf_UpdateTalentImage (int lp_talent, int lp_triggPlayer, int lp_tree);
 void libC50FD636_gf_UpdateAllTalentImages (int lp_triggPlayer);
 void libC50FD636_gf_UpdateTalentVisuals (int lp_player, int lp_talent, int lp_tree);
-void libC50FD636_gf_TalentButton (int lp_treePanel, int lp_player, int lp_talentNumber, int lp_tree, string lp_class);
-void libC50FD636_gf_TalentTree (int lp_treeDialogPanel, int lp_player, int lp_tree, string lp_class);
+void libC50FD636_gf_TalentTree (int lp_player, int lp_tree, string lp_class);
+void libC50FD636_gf_TalentButton (int lp_player, int lp_talentNumber, int lp_tree, string lp_class);
 void libC50FD636_gf_TalentTreeCreation (int lp_player, string lp_class);
 
 // Trigger Declarations
@@ -183,8 +185,8 @@ trigger libC50FD636_gt_ExtendedMagazineUpgrade;
 trigger libC50FD636_gt_AmmoFeedUpgrade;
 trigger libC50FD636_gt_LevelUp;
 trigger libC50FD636_gt_TalentSelection;
-trigger libC50FD636_gt_TalentTreeToggle;
-trigger libC50FD636_gt_TalentButtonHookup;
+trigger libC50FD636_gt_HookupTalentButton;
+trigger libC50FD636_gt_TalentTreeHookup;
 trigger libC50FD636_gt_JumpUpgrade;
 trigger libC50FD636_gt_MedicalAssistanceUsage;
 trigger libC50FD636_gt_HeroTest;
