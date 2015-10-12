@@ -3093,15 +3093,9 @@ bool libC50FD636_gt_HeroTest_Func (bool testConds, bool runActions) {
             lv_classtoCreate = UserDataInstance("Classes", lv_classIndex);
         }
     }
-    libC50FD636_gf_TalentTreeCreation(EventPlayer(), lv_classtoCreate);
-    libC50FD636_gf_CreateAmmoDisplay(EventPlayer());
-    libNtve_gf_CreateUnitsWithDefaultFacing(1, (StringWord(EventChatMessage(false), 2)), 0, EventPlayer(), CameraGetTarget(1));
-    UnitSetPropertyFixed(UnitLastCreated(), c_unitPropLevel, 1.0);
-    UnitGroupAdd(libC50FD636_gv_marinesUnitGroup, UnitLastCreated());
-    libC50FD636_gv_marines[EventPlayer()].lv_unit = UnitLastCreated();
-    libC50FD636_gv_marines[EventPlayer()].lv_unitType = (StringWord(EventChatMessage(false), 2));
-    libC50FD636_gf_ClassSpecificChanges(EventPlayer(), libC50FD636_gv_marines[EventPlayer()].lv_unitType);
-    TriggerAddEventUnitGainLevel(libC50FD636_gt_LevelUp, UnitRefFromUnit(UnitLastCreated()));
+    libC50FD636_gv_marines[1].lv_class = lv_classtoCreate;
+    libC50FD636_gf_ClassCreation(CameraGetTarget(1), 1);
+    TriggerAddEventUnitGainLevel(libC50FD636_gt_LevelUp, UnitRefFromUnit(lib09BE6BA8_gf_ReturnUnit(libC50FD636_gv_marines[1].lv_unit)));
     return true;
 }
 

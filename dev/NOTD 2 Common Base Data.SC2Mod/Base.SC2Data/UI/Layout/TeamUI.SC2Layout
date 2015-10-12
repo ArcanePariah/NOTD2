@@ -52,7 +52,9 @@
 
             <Frame type="Button" name="PlayerPortraitButton">
                 <Anchor relative="$parent"/>
-
+				<Frame name = "PlayerPortrait" type = "Image">
+					<Anchor relative = "$parent"/>
+				</Frame>
                
 
                 <Frame type="StandardTooltip" name="PortraitTooltipFrame" template="StandardTooltip/StandardTooltip">
@@ -137,9 +139,6 @@
 
                 <Frame type="StandardTooltip" name="RankTooltipFrame" template="StandardTooltip/StandardTooltip">
                 </Frame>
-
-                <Frame type="Animation" name="HideSelf">
-                </Frame>
             </Frame>
 
             <Frame type="Button" name="PlayerClassIcon">
@@ -162,14 +161,17 @@
             <Anchor side="Bottom" relative="$parent/PlayerInfoSideBar" pos="Max" offset="0"/>
             <Anchor side="Left" relative="$parent/PlayerInfoSideBar" pos="Max" offset="7"/>
             <Anchor side="Right" relative="$parent" pos="Max" offset="-7"/>
-
-            <Frame type="Button" name="PlayerPortraitButton">
-                <Anchor relative="$parent"/>
-
-                <Frame type="Image" name="BackgroundImage">
+			<Frame type="Image" name="BackgroundImage">
                     <Anchor relative="$parent"/>
                     <Texture val="UI\ui_teamstatus_topplayer_background_a.dds"/>
                 </Frame>
+            <Frame type="Button" name="PlayerPortraitButton">
+                <Anchor relative="$parent"/>
+
+                
+				<Frame name = "PlayerPortrait" type = "Image">
+					<Anchor relative = "$parent"/>
+				</Frame>
 
                 <Frame type="StandardTooltip" name="PortraitTooltipFrame" template="StandardTooltip/StandardTooltip">
                 </Frame>

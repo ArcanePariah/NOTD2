@@ -32,6 +32,7 @@ void lib1E3F036D_InitVariables () {
         lib1E3F036D_gv_playerStatus[init_i].lv_playerSidebarFrame = c_invalidDialogControlId;
         lib1E3F036D_gv_playerStatus[init_i].lv_playerStatusFrame = c_invalidDialogControlId;
         lib1E3F036D_gv_playerStatus[init_i].lv_playerFrame = c_invalidDialogControlId;
+        lib1E3F036D_gv_playerStatus[init_i].lv_playerPortraitButton = c_invalidDialogControlId;
     }
     lib1E3F036D_gv_topPlayerStatus.lv_classIcon = c_invalidDialogControlId;
     lib1E3F036D_gv_topPlayerStatus.lv_rankIcon = c_invalidDialogControlId;
@@ -40,6 +41,7 @@ void lib1E3F036D_InitVariables () {
     lib1E3F036D_gv_topPlayerStatus.lv_playerSidebarFrame = c_invalidDialogControlId;
     lib1E3F036D_gv_topPlayerStatus.lv_playerStatusFrame = c_invalidDialogControlId;
     lib1E3F036D_gv_topPlayerStatus.lv_playerFrame = c_invalidDialogControlId;
+    lib1E3F036D_gv_topPlayerStatus.lv_playerPortraitButton = c_invalidDialogControlId;
 }
 
 // Presets
@@ -48,6 +50,18 @@ void lib1E3F036D_gf_SetPlayerFrame (int lp_player, unit lp_playerMarine, string 
     // Implementation
     libNtve_gf_SetDialogItemUnit(lib1E3F036D_gv_playerStatus[lp_player].lv_playerStatusFrame, lp_playerMarine, PlayerGroupAll());
     libNtve_gf_SetDialogItemUnit(lib1E3F036D_gv_topPlayerStatus.lv_playerStatusFrame, lp_playerMarine, PlayerGroupSingle(lp_player));
+    lib1E3F036D_gf_SetPlayerPortrait(lp_player, lp_playerPortrait);
+}
+
+void lib1E3F036D_gf_SetPlayerPortrait (int lp_player, string lp_playerPortrait) {
+    // Implementation
+    libNtve_gf_SetDialogItemImage(lib1E3F036D_gv_playerStatus[lp_player].lv_classIcon, lp_playerPortrait, PlayerGroupAll());
+    libNtve_gf_SetDialogItemImage(lib1E3F036D_gv_topPlayerStatus.lv_classIcon, lp_playerPortrait, PlayerGroupSingle(lp_player));
+}
+
+void lib1E3F036D_gf_ShowHideTeamUI (bool lp_visible) {
+    // Implementation
+    DialogControlSetVisible(lib1E3F036D_gv_teamUIFrame, PlayerGroupAll(), lp_visible);
 }
 
 void lib1E3F036D_gf_SetGameDifficultyforPlayerGroup (playergroup lp_players, int lp_difficulty) {
@@ -179,6 +193,10 @@ bool lib1E3F036D_gt_ConstructTeamUI_Func (bool testConds, bool runActions) {
     lib1E3F036D_gv_topPlayerStatus.lv_playerPortraitFrame = DialogControlLastCreated();
     DialogControlHookup(lib1E3F036D_gv_topPlayerStatus.lv_playerFrame, c_triggerControlTypeUnitStatus, "PlayerStatus");
     lib1E3F036D_gv_topPlayerStatus.lv_playerStatusFrame = DialogControlLastCreated();
+    DialogControlHookup(lib1E3F036D_gv_topPlayerStatus.lv_playerPortraitFrame, c_triggerControlTypeButton, "PlayerPortraitButton");
+    lib1E3F036D_gv_topPlayerStatus.lv_playerPortraitButton = DialogControlLastCreated();
+    DialogControlHookup(lib1E3F036D_gv_topPlayerStatus.lv_playerPortraitButton, c_triggerControlTypeImage, "PlayerPortrait");
+    lib1E3F036D_gv_topPlayerStatus.lv_classIcon = DialogControlLastCreated();
     autoC3353684_ae = lib1E3F036D_gv_numberofPlayers;
     autoC3353684_ai = 1;
     lv_loop = lib1E3F036D_gv_indexBaseValue;
@@ -192,6 +210,10 @@ bool lib1E3F036D_gt_ConstructTeamUI_Func (bool testConds, bool runActions) {
         lib1E3F036D_gv_playerStatus[lv_loop].lv_playerPortraitFrame = DialogControlLastCreated();
         DialogControlHookup(lib1E3F036D_gv_playerStatus[lv_loop].lv_playerFrame, c_triggerControlTypeUnitStatus, "PlayerStatus");
         lib1E3F036D_gv_playerStatus[lv_loop].lv_playerStatusFrame = DialogControlLastCreated();
+        DialogControlHookup(lib1E3F036D_gv_playerStatus[lv_loop].lv_playerPortraitFrame, c_triggerControlTypeButton, "PlayerPortraitButton");
+        lib1E3F036D_gv_playerStatus[lv_loop].lv_playerPortraitButton = DialogControlLastCreated();
+        DialogControlHookup(lib1E3F036D_gv_playerStatus[lv_loop].lv_playerPortraitButton, c_triggerControlTypeImage, "PlayerPortrait");
+        lib1E3F036D_gv_playerStatus[lv_loop].lv_classIcon = DialogControlLastCreated();
     }
     return true;
 }

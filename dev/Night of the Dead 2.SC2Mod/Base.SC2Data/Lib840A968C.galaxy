@@ -2002,6 +2002,7 @@ bool lib840A968C_gt_ClassSelection_Func (bool testConds, bool runActions) {
     TextExpressionSetToken("Param/Expression/lib_840A968C_17A6A483", "Class", UnitTypeGetName(UserDataGetUnit("Classes", libC50FD636_gv_marines[lv_selectingPlayer].lv_class, "Class Unit", 1)));
     TriggerDebugOutput(lib840A968C_gv_playerEvents, TextExpressionAssemble("Param/Expression/lib_840A968C_17A6A483"), false);
     libNtve_gf_SetDialogItemText(lib840A968C_gv_classLoreFrame, UserDataGetText("Classes", libC50FD636_gv_marines[lv_selectingPlayer].lv_class, "Class Lore", 1), PlayerGroupSingle(lv_selectingPlayer));
+    lib1E3F036D_gf_SetPlayerPortrait(lv_selectingPlayer, UserDataGetImagePath("Classes", libC50FD636_gv_marines[lv_selectingPlayer].lv_class, "Class Image", 1));
     IntLoopBegin(lib1E3F036D_gv_indexBaseValue, lib840A968C_gv_numberofClasses);
     for ( ; !IntLoopDone() ; IntLoopStep() ) {
         if ((lib840A968C_gv_classSelectionItems[IntLoopCurrent()] != EventDialogControl())) {
