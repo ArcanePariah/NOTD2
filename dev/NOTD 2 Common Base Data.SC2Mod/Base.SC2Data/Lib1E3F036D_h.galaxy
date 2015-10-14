@@ -17,15 +17,22 @@ const int lib1E3F036D_gv_mercenaryPlayer = 12;
 const int lib1E3F036D_gv_zombiePlayer = 10;
 
 // Structures
-struct lib1E3F036D_gs_PlayerStatusUI {
-    int lv_classIcon;
+struct lib1E3F036D_gs_PlayerStatusSidebar {
+    int lv_sideBarFrame;
     int lv_rankIcon;
-    int lv_playerNumber;
-    int lv_playerPortraitFrame;
-    int lv_playerSidebarFrame;
+    int lv_classIcon;
+};
+
+struct lib1E3F036D_gs_PlayerStatusPortrait {
+    int lv_portraitFrame;
+    int lv_portraitImage;
+};
+
+struct lib1E3F036D_gs_PlayerStatusUI {
+    lib1E3F036D_gs_PlayerStatusSidebar lv_playerSidebar;
+    lib1E3F036D_gs_PlayerStatusPortrait lv_playerPortrait;
     int lv_playerStatusFrame;
     int lv_playerFrame;
-    int lv_playerPortraitButton;
 };
 
 // Variable Declarations
@@ -35,7 +42,7 @@ lib1E3F036D_gs_PlayerStatusUI[lib1E3F036D_gv_numberofPlayers + 1] lib1E3F036D_gv
 lib1E3F036D_gs_PlayerStatusUI lib1E3F036D_gv_topPlayerStatus;
 
 // Function Declarations
-void lib1E3F036D_gf_SetPlayerFrame (int lp_player, unit lp_playerMarine, string lp_playerPortrait);
+void lib1E3F036D_gf_SetPlayerFrame (int lp_player, unit lp_playerMarine, string lp_playerPortrait, string lp_rankImage, string lp_classIcon);
 void lib1E3F036D_gf_SetPlayerPortrait (int lp_player, string lp_playerPortrait);
 void lib1E3F036D_gf_ShowHideTeamUI (bool lp_visible);
 void lib1E3F036D_gf_SetGameDifficultyforPlayerGroup (playergroup lp_players, int lp_difficulty);
