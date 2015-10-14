@@ -44,15 +44,19 @@ void lib1E3F036D_InitVariables () {
 
 // Presets
 // Functions
-void lib1E3F036D_gf_SetPlayerFrame (int lp_player, unit lp_playerMarine, string lp_playerPortrait, string lp_rankImage, string lp_classIcon) {
+void lib1E3F036D_gf_SetPlayerFrame (int lp_player, unit lp_playerMarine, string lp_playerPortrait, string lp_classIcon) {
     // Implementation
     libNtve_gf_SetDialogItemUnit(lib1E3F036D_gv_topPlayerStatus.lv_playerStatusFrame, lp_playerMarine, PlayerGroupSingle(lp_player));
     libNtve_gf_SetDialogItemUnit(lib1E3F036D_gv_playerStatus[lp_player].lv_playerStatusFrame, lp_playerMarine, PlayerGroupAll());
     lib1E3F036D_gf_SetPlayerPortrait(lp_player, lp_playerPortrait);
-    libNtve_gf_SetDialogItemImage(lib1E3F036D_gv_topPlayerStatus.lv_playerSidebar.lv_rankIcon, lp_rankImage, PlayerGroupSingle(lp_player));
-    libNtve_gf_SetDialogItemImage(lib1E3F036D_gv_playerStatus[lp_player].lv_playerSidebar.lv_rankIcon, lp_rankImage, PlayerGroupAll());
     libNtve_gf_SetDialogItemImage(lib1E3F036D_gv_topPlayerStatus.lv_playerSidebar.lv_classIcon, lp_classIcon, PlayerGroupSingle(lp_player));
     libNtve_gf_SetDialogItemImage(lib1E3F036D_gv_playerStatus[lp_player].lv_playerSidebar.lv_classIcon, lp_classIcon, PlayerGroupAll());
+}
+
+void lib1E3F036D_gf_SetPlayerRank (int lp_player, string lp_playerRank) {
+    // Implementation
+    libNtve_gf_SetDialogItemImage(lib1E3F036D_gv_topPlayerStatus.lv_playerSidebar.lv_rankIcon, lp_playerRank, PlayerGroupSingle(lp_player));
+    libNtve_gf_SetDialogItemImage(lib1E3F036D_gv_playerStatus[lp_player].lv_playerSidebar.lv_rankIcon, lp_playerRank, PlayerGroupAll());
 }
 
 void lib1E3F036D_gf_SetPlayerPortrait (int lp_player, string lp_playerPortrait) {
@@ -222,7 +226,7 @@ bool lib1E3F036D_gt_ConstructTeamUI_Func (bool testConds, bool runActions) {
         lib1E3F036D_gv_playerStatus[lv_loop].lv_playerStatusFrame = DialogControlLastCreated();
     }
     libNtve_gf_CreateUnitsWithDefaultFacing(1, "HighTemplar", 0, 1, RegionGetBoundsMin(RegionEntireMap()));
-    lib1E3F036D_gf_SetPlayerFrame(1, UnitLastCreated(), "Weapons\\btn-ability-Burst-fire-Assault_Rifle.dds", "Rank 14 - MG.dds", "ClassButtons\\btn-class-Rifleman.dds");
+    lib1E3F036D_gf_SetPlayerFrame(2, UnitLastCreated(), "Weapons\\btn-ability-Burst-fire-Assault_Rifle.dds", "ClassButtons\\btn-class-Rifleman.dds");
     return true;
 }
 

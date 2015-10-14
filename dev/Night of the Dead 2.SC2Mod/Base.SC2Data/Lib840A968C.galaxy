@@ -55,7 +55,6 @@ void lib840A968C_InitVariables () {
     lib840A968C_gv_sideMissionCount = lib1E3F036D_gf_GameDifficultyInteger(0, 2, 4);
     lib840A968C_gv_nightVisionButton = c_invalidDialogControlId;
     lib840A968C_gv_teamLocationButton = c_invalidDialogControlId;
-    lib840A968C_gv_teamUIDialog = c_invalidDialogId;
     lib840A968C_gv_marineSquad = PlayerGroupEmpty();
     lib840A968C_gv_livingMarines = PlayerGroupEmpty();
     lib840A968C_gv_pets = PlayerGroupEmpty();
@@ -633,6 +632,7 @@ void lib840A968C_gf_PlayerSetup () {
     for ( ; auto47A70290_p <= PlayerGroupCount(auto47A70290_g) ; auto47A70290_p += BoolToInt(lv_player == PlayerGroupPlayer(auto47A70290_g, auto47A70290_p)) ) {
         lv_player = PlayerGroupPlayer(auto47A70290_g, auto47A70290_p);
         lib840A968C_gv_players[lv_player].lv_gamesPlayed += 1;
+        lib1E3F036D_gf_SetPlayerRank(lv_player, UserDataGetImagePath("Ranks", lib840A968C_gv_players[lv_player].lv_currentRank, "Icon", 1));
     }
     lib840A968C_gf_ApplyPlayerCustomization();
 }
@@ -897,37 +897,6 @@ void lib840A968C_gf_DropEquippedMagazines (point lp_dropPoint, int lp_numberofMa
     }
     else {
     }
-}
-
-void lib840A968C_gf_CreateTeamUI () {
-    // Implementation
-    DialogCreate(200, 800, c_anchorTopRight, 0, 100, true);
-    lib840A968C_gv_teamUIDialog = DialogLastCreated();
-    DialogSetImageVisible(lib840A968C_gv_teamUIDialog, false);
-    lib840A968C_gf_CreatePlayerFrame(lib840A968C_gv_teamUIDialog);
-    DialogSetVisible(DialogLastCreated(), PlayerGroupAll(), true);
-}
-
-void lib840A968C_gf_CreatePlayerFrame (int lp_teamUIDialog) {
-    // Variable Declarations
-    int lv_templateFrame;
-    int lv_sidebarFrame;
-    int lv_portraitFrame;
-
-    // Variable Initialization
-    lv_templateFrame = c_invalidDialogControlId;
-    lv_sidebarFrame = c_invalidDialogControlId;
-    lv_portraitFrame = c_invalidDialogControlId;
-
-    // Implementation
-    DialogControlCreateFromTemplate(lp_teamUIDialog, c_triggerControlTypePanel, "TeamUI/PlayerStatusTemplate");
-    lv_templateFrame = DialogControlLastCreated();
-    DialogControlSetPosition(DialogControlLastCreated(), PlayerGroupAll(), c_anchorTopRight, 0, 0);
-    DialogControlHookup(lv_templateFrame, c_triggerControlTypePanel, "PlayerInfoSideBar");
-    lv_sidebarFrame = DialogControlLastCreated();
-    DialogControlHookup(lv_templateFrame, c_triggerControlTypePanel, "PlayerPortrait");
-    lv_portraitFrame = DialogControlLastCreated();
-    DialogControlSetPosition(DialogControlLastCreated(), PlayerGroupAll(), c_anchorTopRight, 0, 0);
 }
 
 void lib840A968C_gf_SetRankData (int lp_player) {
@@ -2393,25 +2362,6 @@ void lib840A968C_gt_PlayerMarineDies_Init () {
 }
 
 //--------------------------------------------------------------------------------------------------
-// Trigger: Construct Team UI
-//--------------------------------------------------------------------------------------------------
-bool lib840A968C_gt_ConstructTeamUI_Func (bool testConds, bool runActions) {
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    lib840A968C_gf_CreateTeamUI();
-    return true;
-}
-
-//--------------------------------------------------------------------------------------------------
-void lib840A968C_gt_ConstructTeamUI_Init () {
-    lib840A968C_gt_ConstructTeamUI = TriggerCreate("lib840A968C_gt_ConstructTeamUI_Func");
-    TriggerAddEventChatMessage(lib840A968C_gt_ConstructTeamUI, c_playerAny, "UITest", true);
-}
-
-//--------------------------------------------------------------------------------------------------
 // Trigger: Bank Save
 //--------------------------------------------------------------------------------------------------
 bool lib840A968C_gt_BankSave_Func (bool testConds, bool runActions) {
@@ -3285,7 +3235,6 @@ void lib840A968C_InitTriggers () {
     lib840A968C_gt_TeamLocation_Init();
     lib840A968C_gt_HookupTeamLocationButton_Init();
     lib840A968C_gt_PlayerMarineDies_Init();
-    lib840A968C_gt_ConstructTeamUI_Init();
     lib840A968C_gt_BankSave_Init();
     lib840A968C_gt_RatingLossfromLives_Init();
     lib840A968C_gt_RatingLossfromFriendlyFire_Init();
