@@ -211,7 +211,12 @@ bool lib1E3F036D_gt_ConstructTeamUI_Func (bool testConds, bool runActions) {
     for ( ; ( (autoC3353684_ai >= 0 && lv_loop <= autoC3353684_ae) || (autoC3353684_ai <= 0 && lv_loop >= autoC3353684_ae) ) ; lv_loop += autoC3353684_ai ) {
         DialogControlHookup(lib1E3F036D_gv_teamUIFrame, c_triggerControlTypePanel, libNtve_gf_ConvertStringToUILayoutFrameName(("Player" + IntToString(lv_loop))));
         lib1E3F036D_gv_playerStatus[lv_loop].lv_playerFrame = DialogControlLastCreated();
-        DialogControlSetVisible(DialogControlLastCreated(), PlayerGroupSingle(lv_loop), false);
+        if ((PlayerStatus(lv_loop) == c_playerStatusActive)) {
+            DialogControlSetVisible(DialogControlLastCreated(), PlayerGroupSingle(lv_loop), false);
+        }
+        else {
+            DialogControlSetVisible(DialogControlLastCreated(), PlayerGroupAll(), false);
+        }
         DialogControlHookup(lib1E3F036D_gv_playerStatus[lv_loop].lv_playerFrame, c_triggerControlTypePanel, "PlayerInfoSideBar");
         lib1E3F036D_gv_playerStatus[lv_loop].lv_playerSidebar.lv_sideBarFrame = DialogControlLastCreated();
         DialogControlHookup(lib1E3F036D_gv_playerStatus[lv_loop].lv_playerSidebar.lv_sideBarFrame, c_triggerControlTypeImage, "PlayerClassIcon");
@@ -225,8 +230,6 @@ bool lib1E3F036D_gt_ConstructTeamUI_Func (bool testConds, bool runActions) {
         DialogControlHookup(lib1E3F036D_gv_playerStatus[lv_loop].lv_playerFrame, c_triggerControlTypeUnitStatus, "PlayerStatus");
         lib1E3F036D_gv_playerStatus[lv_loop].lv_playerStatusFrame = DialogControlLastCreated();
     }
-    libNtve_gf_CreateUnitsWithDefaultFacing(1, "HighTemplar", 0, 1, RegionGetBoundsMin(RegionEntireMap()));
-    lib1E3F036D_gf_SetPlayerFrame(2, UnitLastCreated(), "Weapons\\btn-ability-Burst-fire-Assault_Rifle.dds", "ClassButtons\\btn-class-Rifleman.dds");
     return true;
 }
 
