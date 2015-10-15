@@ -2364,6 +2364,47 @@ void lib840A968C_gt_PlayerMarineDies_Init () {
 }
 
 //--------------------------------------------------------------------------------------------------
+// Trigger: Periodic UI Update
+//--------------------------------------------------------------------------------------------------
+bool lib840A968C_gt_PeriodicUIUpdate_Func (bool testConds, bool runActions) {
+    playergroup autoF2256345_g;
+    int autoF2256345_p;
+
+    // Variable Declarations
+    int lv_player;
+
+    // Variable Initialization
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    while (true) {
+        Wait(1.0, c_timeGame);
+        autoF2256345_g = lib840A968C_gf_GetMarineSquadPlayers(); 
+        autoF2256345_p = 1;
+        for ( ; autoF2256345_p <= PlayerGroupCount(autoF2256345_g) ; autoF2256345_p += BoolToInt(lv_player == PlayerGroupPlayer(autoF2256345_g, autoF2256345_p)) ) {
+            lv_player = PlayerGroupPlayer(autoF2256345_g, autoF2256345_p);
+            TextExpressionSetToken("Param/Expression/lib_840A968C_28BE6BBF", "Experience", IntToText(lib840A968C_gv_players[lv_player].lv_totalExperience));
+            TextExpressionSetToken("Param/Expression/lib_840A968C_28BE6BBF", "Rating", FixedToText(lib840A968C_gv_players[lv_player].lv_rating, c_fixedPrecisionAny));
+            TextExpressionSetToken("Param/Expression/lib_840A968C_28BE6BBF", "Games", IntToText(lib840A968C_gv_players[lv_player].lv_gamesPlayed));
+            lib1E3F036D_gf_UpdateRankIconTooltip(lv_player, TextExpressionAssemble("Param/Expression/lib_840A968C_28BE6BBF"));
+            TextExpressionSetToken("Param/Expression/lib_840A968C_2CC02426", "TalentTree1Name", UserDataGetText("TalentTree", UserDataGetUserInstance("TalentTrees", UserDataGetUserInstance("Classes", libC50FD636_gv_marines[lv_player].lv_class, "Talent Tree", 1), "Trees", 2), "Header", 1));
+            TextExpressionSetToken("Param/Expression/lib_840A968C_2CC02426", "TalentTree2Name", UserDataGetText("TalentTree", UserDataGetUserInstance("TalentTrees", UserDataGetUserInstance("Classes", libC50FD636_gv_marines[lv_player].lv_class, "Talent Tree", 1), "Trees", 1), "Header", 1));
+            lib1E3F036D_gf_UpdateClassIconTooltip(lv_player, TextExpressionAssemble("Param/Expression/lib_840A968C_2CC02426"));
+        }
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib840A968C_gt_PeriodicUIUpdate_Init () {
+    lib840A968C_gt_PeriodicUIUpdate = TriggerCreate("lib840A968C_gt_PeriodicUIUpdate_Func");
+    TriggerAddEventTimer(lib840A968C_gt_PeriodicUIUpdate, lib840A968C_gv_classSelectionTimer);
+}
+
+//--------------------------------------------------------------------------------------------------
 // Trigger: Bank Save
 //--------------------------------------------------------------------------------------------------
 bool lib840A968C_gt_BankSave_Func (bool testConds, bool runActions) {
@@ -3237,6 +3278,7 @@ void lib840A968C_InitTriggers () {
     lib840A968C_gt_TeamLocation_Init();
     lib840A968C_gt_HookupTeamLocationButton_Init();
     lib840A968C_gt_PlayerMarineDies_Init();
+    lib840A968C_gt_PeriodicUIUpdate_Init();
     lib840A968C_gt_BankSave_Init();
     lib840A968C_gt_RatingLossfromLives_Init();
     lib840A968C_gt_RatingLossfromFriendlyFire_Init();
