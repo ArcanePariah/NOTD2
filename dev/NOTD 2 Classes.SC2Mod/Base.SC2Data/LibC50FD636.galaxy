@@ -152,7 +152,7 @@ void libC50FD636_gf_ClassCreation (point lp_deploymentPoint, int lp_player) {
     UnitCreate(1, UserDataGetUnit("Classes", libC50FD636_gv_marines[lp_player].lv_class, "Class Unit", 1), 0, lp_player, lp_deploymentPoint, libNtve_gf_RandomAngle());
     libC50FD636_gv_marines[lp_player].lv_unit = UnitLastCreated();
     libC50FD636_gv_marines[lp_player].lv_unitType = UserDataGetUnit("Classes", libC50FD636_gv_marines[lp_player].lv_class, "Class Unit", 1);
-    lib1E3F036D_gf_SetPlayerFrame(lp_player, libC50FD636_gv_marines[lp_player].lv_unit, UserDataGetImagePath("Classes", libC50FD636_gv_marines[lp_player].lv_class, "Class Image", 1));
+    lib1E3F036D_gf_SetPlayerFrame(lp_player, libC50FD636_gv_marines[lp_player].lv_unit, UserDataGetImagePath("Classes", libC50FD636_gv_marines[lp_player].lv_class, "Class Image", 1), UserDataGetImagePath("Classes", libC50FD636_gv_marines[lp_player].lv_class, "Class Image", 1));
     UnitControlGroupAddUnit(lp_player, 1, UnitLastCreated());
     UnitSelect(UnitLastCreated(), lp_player, true);
     UnitGroupAdd(libC50FD636_gv_marinesUnitGroup, UnitLastCreated());
