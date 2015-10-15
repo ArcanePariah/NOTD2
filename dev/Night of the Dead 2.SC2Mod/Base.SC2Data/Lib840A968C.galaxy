@@ -632,7 +632,6 @@ void lib840A968C_gf_PlayerSetup () {
     for ( ; auto47A70290_p <= PlayerGroupCount(auto47A70290_g) ; auto47A70290_p += BoolToInt(lv_player == PlayerGroupPlayer(auto47A70290_g, auto47A70290_p)) ) {
         lv_player = PlayerGroupPlayer(auto47A70290_g, auto47A70290_p);
         lib840A968C_gv_players[lv_player].lv_gamesPlayed += 1;
-        lib1E3F036D_gf_SetPlayerRank(lv_player, UserDataGetImagePath("Ranks", lib840A968C_gv_players[lv_player].lv_currentRank, "Icon", 1));
     }
     lib840A968C_gf_ApplyPlayerCustomization();
 }
@@ -1677,6 +1676,7 @@ bool lib840A968C_gt_Intialization_Func (bool testConds, bool runActions) {
         return true;
     }
 
+    lib1E3F036D_gf_ShowHideTeamUI(false);
     lib840A968C_gf_PlayerSetup();
     libC50FD636_gf_IntializeTalentMax();
     lib840A968C_gf_DefaultAllianceStates();
@@ -1936,8 +1936,10 @@ bool lib840A968C_gt_DisplayClassSelection_Func (bool testConds, bool runActions)
         TextExpressionSetToken("Param/Expression/lib_840A968C_65BE9F6D", "B", UserDataGetText("Ranks", lib840A968C_gv_players[lv_player].lv_currentRank, "Title Full", 1));
         TextExpressionSetToken("Param/Expression/lib_840A968C_65BE9F6D", "A", PlayerName(lv_player));
         libNtve_gf_SetDialogItemText(lv_playerNameLabel, TextExpressionAssemble("Param/Expression/lib_840A968C_65BE9F6D"), PlayerGroupSingle(lv_player));
+        lib1E3F036D_gf_SetPlayerRank(lv_player, UserDataGetImagePath("Ranks", lib840A968C_gv_players[lv_player].lv_currentRank, "Icon", 1));
     }
     DialogSetVisible(lib840A968C_gv_classSelectionDialog, PlayerGroupAll(), true);
+    lib1E3F036D_gf_ShowHideTeamUI(true);
     return true;
 }
 
