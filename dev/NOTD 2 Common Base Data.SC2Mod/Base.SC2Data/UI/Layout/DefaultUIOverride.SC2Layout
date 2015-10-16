@@ -33,6 +33,13 @@
 					<Anchor side="Right" relative="$parent" pos="Max" offset="0"/>
                     <Anchor side="Top" relative="$parent" pos="Min" offset="50"/>
 				</Frame>
+				
+				<Frame type = "Frame" name = "Ammo" template = "AmmoDisplay/AmmoDisplayTemplate">
+					
+					<Anchor side="Right" relative="$parent" pos="Max" offset="-425"/>
+                    <Anchor side="Bottom" relative="$parent" pos="Max" offset="-265"/>
+				
+				</Frame>
             </Frame>
 
             <Frame type="Frame" name="ConsoleUIContainer">
@@ -54,17 +61,6 @@
                     <Anchor side="Left" relative="$parent" pos="Max" offset="0"/>
                 </Frame>
 
-                <Frame type="MinimapPanel" name="MinimapPanel">
-                    <Height val="300"/>
-                    <Width val="355"/>
-
-                    <Frame type="Minimap" name="Minimap">
-                        <Anchor side="Top" relative="$parent" pos="Min" offset="35"/>
-                        <Anchor side="Left" relative="$parent" pos="Min" offset="11"/>
-                        <Height val="270"/>
-                        <Width val="300"/>
-                    </Frame>
-                </Frame>
 
                 <Frame type="CommandPanel" name="CommandPanel">
                     <Anchor side="Bottom" relative="$parent" pos="Max" offset="-10"/>
@@ -73,26 +69,24 @@
                 </Frame>
 
                 <Frame type="Image" name="CommandBorderImage">
-                    <Anchor side="Top" relative="$parent/CommandPanel" pos="Min" offset="-55"/>
-                    <Anchor side="Left" relative="$parent/CommandPanel" pos="Min" offset="-70"/>
+                    <Anchor side="Top" relative="$parent/CommandPanel" pos="Min" offset="-40"/>
+                    <Anchor side="Left" relative="$parent/CommandPanel" pos="Min" offset="-45"/>
                     <Anchor side="Right" relative="$parent/CommandPanel" pos="Max" offset="10"/>
                     <Anchor side="Bottom" relative="$parent/CommandPanel" pos="Max" offset="10"/>
                     <RenderPriority val="401"/>
                     <Color val="192,192,192"/>
-                    <Texture val="UI\UI-Command-Card_border.dds"/>
+                    <Texture val="UI\ui_commandcard_border.dds"/>
                     <TextureType val="Normal"/>
                 </Frame>
 
                 <Frame type="Image" name="CommandBackgroundImage">
-                    <Anchor side="Top" relative="$parent/CommandBorderImage" pos="Min" offset="30"/>
-                    <Anchor side="Left" relative="$parent/CommandBorderImage" pos="Min" offset="30"/>
-                    <Anchor side="Right" relative="$parent/CommandBorderImage" pos="Max" offset="10"/>
-                    <Anchor side="Bottom" relative="$parent/CommandBorderImage" pos="Max" offset="0"/>
+                    <Anchor relative="$parent/CommandBorderImage" pos="Min" offset="0"/>
                     <RenderPriority val="400"/>
-                    <Texture val="UI\UI-Command-Card_background.dds"/>
+                    <Texture val="UI\ui_commandcard_background.dds"/>
                 </Frame>
             </Frame>
 
+			<!-- Displaces the default models -->
             <Frame type="ConsolePanel" name="ConsolePanel">
                 <Frame type="PortraitPanel" name="PortraitPanel">
                     <Anchor side="Bottom" relative="$parent" pos="Max" offset="500"/>

@@ -10,10 +10,19 @@
         <Frame type="Frame" name="UIContainer">
             <Frame type="Frame" name="ConsoleUIContainer">
                 <Frame type="MinimapPanel" name="MinimapPanel">
+				    <Height val="316"/>
+                    <Width val="320"/>
+
+                    <Frame type="Minimap" name="Minimap">
+                        <Anchor side="Top" relative="$parent" pos="Min" offset="37"/>
+                        <Anchor side="Left" relative="$parent" pos="Min" offset="7"/>
+                        <Height val="275"/>
+                        <Width val="275"/>
+                    </Frame>
                     <Frame type="Image" name="BackgroundImage">
                         <RenderPriority val="500"/>
                         <Anchor relative="$parent"/>
-                        <Texture val="UI\UI-Minimap_border.dds"/>
+                        <Texture val="UI\ui_minimap_border.dds"/>
                     </Frame>
 
                     <Frame type="Button" name="ColorButton">

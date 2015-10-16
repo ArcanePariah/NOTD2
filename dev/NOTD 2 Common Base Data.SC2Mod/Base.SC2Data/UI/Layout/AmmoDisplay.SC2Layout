@@ -1,15 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <Desc>
     <Frame type="Frame" name="AmmoDisplayTemplate">
-        <Width val="200"/>
-        <Height val="50"/>
-
+		<Visible val = "false" />
+        <Width val="272"/>
+        <Height val="76"/>
+		<Frame type = "Image" name = "BackgroundImage">
+			<Texture val = "UI/ui_ammobar.dds"/>
+			<Anchor relative = "$parent"/>
+		</Frame>
         <Frame type="ProgressBar" name="AmmoBar">
             <Height val="20"/>
             <Width val="200"/>
             <Anchor side="Left" relative="$parent" pos="Min" offset="0"/>
             <Anchor side="Top" relative="$parent" pos="Min" offset="25"/>
-            <ColorStep val="0,0,255"/>
+            <ColorStep val="128,255,255"/>
             <MinValue val="0.000000"/>
             <Color val="0,0,0"/>
         </Frame>
@@ -24,9 +28,16 @@
         <Frame type="Button" name="HitTestFrame">
             <Height val="20"/>
             <Width val="200"/>
-            <Anchor side="Left" relative="$parent" pos="Min" offset="0"/>
-            <Anchor side="Top" relative="$parent" pos="Min" offset="25"/>
+            <Anchor side="Left" relative="$parent/AmmoCount" pos="Max" offset="0"/>
+            <Anchor side="Top" relative="$parent/AmmoCount" pos="Min" offset="0"/>
             <Shortcut val="M"/>
+			<Label val = "DropMagLabel"/>
+			<Frame type = "Label" name = "DropMagLabel">
+				<Anchor side = "Left" relative = "$parent" pos = "Min" offset = "0"/>
+				<Anchor side = "Right" relative = "$parent" pos = "Mid" offset = "0"/>
+				<Anchor side = "Top" relative = "$parent" pos = "Min" offset = "0"/>
+				<Anchor side = "Bottom" relative = "$parent" pos = "Max" offset = "0"/>
+			</Frame>
         </Frame>
     </Frame>
 </Desc>

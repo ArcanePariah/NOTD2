@@ -2367,16 +2367,36 @@ void lib840A968C_gt_PlayerMarineDies_Init () {
 // Trigger: Portrait Camera Center
 //--------------------------------------------------------------------------------------------------
 bool lib840A968C_gt_PortraitCameraCenter_Func (bool testConds, bool runActions) {
+    int auto319B2F30_ae;
+    int auto319B2F30_ai;
+
+    // Variable Declarations
+    int lv_player;
+
+    // Variable Initialization
+
     // Actions
     if (!runActions) {
         return true;
     }
 
-    if (true) {
+    if ((EventDialogControl() == lib1E3F036D_gv_topPlayerStatus.lv_playerPortrait.lv_portraitImage)) {
+        CameraPan(EventPlayer(), UnitGetPosition(lib840A968C_gf_GetMarine(EventPlayer())), 0.25, -1, 10.0, false);
     }
     else {
+        auto319B2F30_ae = lib1E3F036D_gv_numberofPlayers;
+        auto319B2F30_ai = 1;
+        lv_player = lib1E3F036D_gv_indexBaseValue;
+        for ( ; ( (auto319B2F30_ai >= 0 && lv_player <= auto319B2F30_ae) || (auto319B2F30_ai <= 0 && lv_player >= auto319B2F30_ae) ) ; lv_player += auto319B2F30_ai ) {
+            if ((EventDialogControl() == lib1E3F036D_gv_playerStatus[lv_player].lv_playerPortrait.lv_portraitImage)) {
+                libNtve_gf_SendActorMessageToUnit(lib840A968C_gf_GetMarine(lv_player), "HaloSetColor 0,255,0");
+                libNtve_gf_SendActorMessageToUnit(lib840A968C_gf_GetMarine(lv_player), "HaloStart");
+                Wait(5.0, c_timeGame);
+                libNtve_gf_SendActorMessageToUnit(lib840A968C_gf_GetMarine(lv_player), "HaloStop");
+                break;
+            }
+        }
     }
-    CameraPan(EventPlayer(), RegionGetCenter(EventUnitRegion()), 2.0, -1, 10.0, false);
     return true;
 }
 

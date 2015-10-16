@@ -133,24 +133,23 @@
                 <Frame type="InfoPanel" name="InfoPanel">
                     <RenderPriority val="300"/>
                     <Height val="250"/>
-                    <Width val="410"/>
-                    <Anchor side="Left" relative="$parent/MinimapPanel" pos="Max" offset="-10"/>
+                    <Anchor side="Left" relative="$parent/MinimapPanel" pos="Max" offset="-20"/>
                     <Anchor side="Bottom" relative="$parent" pos="Max" offset="0"/>
-                    <Anchor side="Right" relative="$this" pos="Max" offset="0"/>
+                    <Anchor side="Right" relative="$this" pos="Min" offset="380"/>
 
                     <Frame type="Image" name="BackgroundImage">
                         <RenderPriority val="399"/>
-                        <Anchor side="Left" relative="$parent" pos="Min" offset="-8"/>
-                        <Anchor side="Top" relative="$parent" pos="Min" offset="20"/>
+                        <Anchor side="Left" relative="$parent" pos="Min" offset="0"/>
+                        <Anchor side="Top" relative="$parent" pos="Min" offset="0"/>
                         <Anchor side="Bottom" relative="$parent" pos="Max" offset="0"/>
-                        <Anchor side="Right" relative="$parent" pos="Max" offset="-38"/>
-                        <Texture val="UI\UI-Info-Panel_background.dds"/>
+                        <Anchor side="Right" relative="$parent" pos="Max" offset="8"/>
+                        <Texture val="UI\ui_infopanel_background.dds"/>
                     </Frame>
 
                     <Frame type="Image" name="BorderImage">
                         <RenderPriority val="400"/>
                         <Anchor relative="$parent"/>
-                        <Texture val="UI\UI-Info-Panel_border.dds"/>
+                        <Texture val="UI\ui_infopanel_border.dds"/>
                     </Frame>
 
                     <Frame type="Frame" name="UnitPanel">
@@ -159,7 +158,7 @@
                         </Frame>
 
                         <Frame type="UnitWireframe" name="UnitWireframe">
-                            <Anchor side="Top" relative="$parent" pos="Mid" offset="-50"/>
+                            <Anchor side="Top" relative="$parent" pos="Mid" offset="-45"/>
                             <Anchor side="Left" relative="$parent" pos="Min" offset="67"/>
                             <Width val="60"/>
                             <Height val="60"/>
@@ -199,7 +198,7 @@
                         </Frame>
 
                         <Frame type="Label" name="ExperienceLabel">
-                            <Anchor side="Top" relative="$parent/ExperienceBar" pos="Min" offset="2"/>
+                            <Anchor side="Top" relative="$parent/ExperienceBar" pos="Min" offset="1"/>
                             <Anchor side="Left" relative="$parent/ExperienceBar" pos="Min" offset="0"/>
                             <Anchor side="Right" relative="$parent/ExperienceBar" pos="Max" offset="0"/>
                         </Frame>
@@ -215,7 +214,7 @@
                         </Frame>
 
                         <Frame type="EquipmentIcon" name="ArmorIcon">
-                            <Anchor side="Top" relative="$parent/$parent/UnitPanel/UnitWireframe" pos="Min" offset="0"/>
+                            <Anchor side="Top" relative="$parent/$parent/UnitPanel/UnitWireframe" pos="Min" offset="5"/>
                             <Anchor side="Left" relative="$parent" pos="Mid" offset="0"/>
                         </Frame>
 
@@ -231,7 +230,7 @@
                         </Frame>
 
                         <Frame type="Label" name="NameLabel">
-                            <Anchor side="Top" relative="$parent" pos="Min" offset="0"/>
+                            <Anchor side="Top" relative="$parent" pos="Min" offset="22"/>
                             <Anchor side="Left" relative="$parent" pos="Mid" offset="0"/>
                             <Anchor side="Right" relative="$parent" pos="Mid" offset="0"/>
                             <Width val="160"/>
