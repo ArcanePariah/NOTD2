@@ -1007,6 +1007,10 @@
         <On index="58" Terms="WeaponStart.TopMachineGunTurret.AttackStart" Target="TopMachineGunModel" Send="AnimPlay TopTurretAttack Attack"/>
         <On index="59" Terms="WeaponStart.SideMachineGun.AttackStart" Target="SideMachineGunModel" Send="AnimPlay SideGunAttack Attack"/>
         <On index="60" removed="1"/>
+        <On index="61" removed="1"/>
+        <On index="62" removed="1"/>
+        <On index="63" removed="1"/>
+        <On index="64" removed="1"/>
         <Model value="UGCCrusaderTank"/>
         <EventDataFootprint index="0" Actor="UnitFootprint" Model="MengskSiegeTankFootprint"/>
         <DeathArray index="Normal" ModelLink="UGCCrusaderTankDeath" SoundLink="SiegeBreaker_Explode" VoiceLink="MengskSiegeTankDeathVoice"/>
@@ -1183,13 +1187,13 @@
         <Macros index="1" value="AssaultWeaponEquipMacro"/>
         <Macros value="AssaultGeminiDualWieldEquipMacro"/>
         <Macros value="AssaultDualWieldModelSwap"/>
-        <SoundArray index="Birth" value="WarHound_Birth"/>
-        <SoundArray index="Ready" value="WarHound_Ready"/>
-        <SoundArray index="Help" value="WarHound_Help"/>
-        <SoundArray index="What" value="WarHound_What"/>
-        <SoundArray index="Yes" value="WarHound_Yes"/>
-        <SoundArray index="Attack" value="WarHound_Attack"/>
-        <SoundArray index="Pissed" value="WarHound_Pissed"/>
+        <SoundArray index="Birth" value="Viking_Ready"/>
+        <SoundArray index="Ready" value="Viking_Ready"/>
+        <SoundArray index="Help" value="Viking_Help"/>
+        <SoundArray index="What" value="Viking_What"/>
+        <SoundArray index="Yes" value="Viking_Yes"/>
+        <SoundArray index="Attack" value="Viking_Attack"/>
+        <SoundArray index="Pissed" value="Viking_Pissed"/>
         <SoundArray index="Movement" value="WarHound_Movement"/>
         <SoundArray index="Turning" value="WarHound_Turning"/>
         <SoundArray index="Board" value="WarHound_Board"/>
@@ -1206,36 +1210,62 @@
         <On index="76" Terms="ActorCreation" Send="AttachModel Flashlight MarineFlashlight {Head 0}"/>
         <On index="77" removed="1"/>
         <On index="78" removed="1"/>
+        <On index="79" removed="1"/>
+        <On index="80" removed="1"/>
+        <On index="81" removed="1"/>
+        <On index="82" removed="1"/>
     </CActorUnit>
     <CActorUnit id="Demolitions" parent="BaseHeavyMarineActor" unitName="Demolitions">
         <Scale value="0.900000"/>
         <On index="61" Terms="ActorCreation" Send="AttachModel DemolitionTorso DemolitionCraftTorso {Hardpoint 0}"/>
         <On Terms="Effect.Bulwark.Start; !ScopeContains BulwarkShieldModel" Send="Create BulwarkShieldModel"/>
         <On Terms="ActorDestruction" Target="BulwarkShieldModel" Send="Destroy"/>
+        <SoundArray index="Ready" value="Marauder_Ready"/>
+        <SoundArray index="Help" value="Marauder_Help"/>
+        <SoundArray index="What" value="Marauder_What"/>
+        <SoundArray index="Yes" value="Marauder_Yes"/>
+        <SoundArray index="Attack" value="Marauder_Attack"/>
+        <SoundArray index="Pissed" value="Marauder_Pissed"/>
     </CActorUnit>
     <CActorUnit id="Drone2" parent="BaseMarineActor" unitName="Drone2">
         <HighlightTooltip value="Unit/Name/Bogus"/>
         <On index="76" Terms="ActorCreation" Send="AttachModel Flashlight MarineFlashlight {Head 0}"/>
         <On index="77" removed="1"/>
         <On index="78" removed="1"/>
+        <On index="79" removed="1"/>
+        <On index="80" removed="1"/>
+        <On index="81" removed="1"/>
+        <On index="82" removed="1"/>
     </CActorUnit>
     <CActorUnit id="Engineer" parent="BaseMarineActor" unitName="Engineer">
         <HighlightTooltip value="Unit/Name/Bogus"/>
         <On index="76" Terms="ActorCreation" Send="AttachModel Flashlight MarineFlashlight {Head 0}"/>
         <On index="77" removed="1"/>
         <On index="78" removed="1"/>
+        <On index="79" removed="1"/>
+        <On index="80" removed="1"/>
+        <On index="81" removed="1"/>
+        <On index="82" removed="1"/>
     </CActorUnit>
     <CActorUnit id="Flamethrower2" parent="BaseMarineActor" unitName="Flamethrower2">
         <HighlightTooltip value="Unit/Name/Bogus"/>
         <On index="76" Terms="ActorCreation" Send="AttachModel Flashlight MarineFlashlight {Head 0}"/>
         <On index="77" removed="1"/>
         <On index="78" removed="1"/>
+        <On index="79" removed="1"/>
+        <On index="80" removed="1"/>
+        <On index="81" removed="1"/>
+        <On index="82" removed="1"/>
     </CActorUnit>
     <CActorUnit id="ForwardObserver" parent="BaseMarineActor" unitName="ForwardObserver">
         <HighlightTooltip value="Unit/Name/Bogus"/>
         <On index="76" Terms="ActorCreation" Send="AttachModel Flashlight MarineFlashlight {Head 0}"/>
         <On index="77" removed="1"/>
         <On index="78" removed="1"/>
+        <On index="79" removed="1"/>
+        <On index="80" removed="1"/>
+        <On index="81" removed="1"/>
+        <On index="82" removed="1"/>
     </CActorUnit>
     <CActorModel id="JumpImpact" parent="ModelAnimationStyleOneShot">
         <On Terms="Effect.LightJump.Impact; At Caster" Send="Create"/>
@@ -1377,6 +1407,10 @@
         <On index="63" Terms="ActorCreation" Send="AttachModel NPCRightShoulder BasicShoulderRight {Hardpoint 8}"/>
         <On index="77" Terms="AttachModel" Target="_ArmorCustom" Send="Signal Peacekeeper"/>
         <On index="78" removed="1"/>
+        <On index="79" removed="1"/>
+        <On index="80" removed="1"/>
+        <On index="81" removed="1"/>
+        <On index="82" removed="1"/>
         <Macros index="3" value="AntiMaterialRifleMacro"/>
         <Macros index="4" value="HeavyMachineGunMacro"/>
         <Macros value="WeaponAnimationGroups"/>
@@ -1385,6 +1419,10 @@
         <On index="61" Terms="ActorCreation" Send="AttachModel NPCTorso BasicTorso {Hardpoint 0}"/>
         <On index="77" Terms="AttachModel" Target="_ArmorCustom" Send="Signal Breach"/>
         <On index="78" removed="1"/>
+        <On index="79" removed="1"/>
+        <On index="80" removed="1"/>
+        <On index="81" removed="1"/>
+        <On index="82" removed="1"/>
         <Macros index="3" value="AntiMaterialRifleMacro"/>
         <Macros index="4" value="HeavyMachineGunMacro"/>
         <Macros value="WeaponAnimationGroups"/>
@@ -1604,6 +1642,10 @@
         <On index="76" Terms="ActorCreation" Send="AttachModel Flashlight MarineFlashlight {Head 0}"/>
         <On index="77" removed="1"/>
         <On index="78" removed="1"/>
+        <On index="79" removed="1"/>
+        <On index="80" removed="1"/>
+        <On index="81" removed="1"/>
+        <On index="82" removed="1"/>
     </CActorUnit>
     <CActorMissile id="PlasmaGrenadeMissile" parent="GenericAttackMissile" unitName="PlasmaGrenade">
         <EditorCategories value=""/>
@@ -1647,6 +1689,10 @@
         <On index="76" Terms="ActorCreation" Send="AttachModel Flashlight MarineFlashlight {Head 0}"/>
         <On index="77" removed="1"/>
         <On index="78" removed="1"/>
+        <On index="79" removed="1"/>
+        <On index="80" removed="1"/>
+        <On index="81" removed="1"/>
+        <On index="82" removed="1"/>
     </CActorUnit>
     <CActorUnit id="Recon" parent="BaseMarineActor" unitName="Recon">
         <On index="61" Terms="ActorCreation" Send="AttachModel ReconTorso ReconBasicTorso {Hardpoint 0}"/>
@@ -1655,6 +1701,13 @@
         <On Terms="Abil.SurveillanceFlare.SourceCastStart" Send="AnimPlay Throw Spell,Blast"/>
         <On Terms="Abil.SmokeGrenade.SourceCastStart" Send="AnimPlay Throw Spell,Blast"/>
         <On Terms="Abil.FlareGunRecon.SourceCastStart" Send="AnimPlay Throw Attack"/>
+        <SoundArray index="Birth" value="Spectre_Attack"/>
+        <SoundArray index="Ready" value="Spectre_Ready"/>
+        <SoundArray index="Help" value="Spectre_Help"/>
+        <SoundArray index="What" value="Spectre_What"/>
+        <SoundArray index="Yes" value="Spectre_Yes"/>
+        <SoundArray index="Attack" value="Spectre_Attack"/>
+        <SoundArray index="Pissed" value="Spectre_Pissed"/>
     </CActorUnit>
     <CActorModel id="RepulseHeroicSlow" parent="ModelAddition">
         <EditorCategories value=""/>
@@ -1787,6 +1840,10 @@
         <On index="76" Terms="ActorCreation" Send="AttachModel Flashlight MarineFlashlight {Head 0}"/>
         <On index="77" removed="1"/>
         <On index="78" removed="1"/>
+        <On index="79" removed="1"/>
+        <On index="80" removed="1"/>
+        <On index="81" removed="1"/>
+        <On index="82" removed="1"/>
     </CActorUnit>
     <CActorModel id="TauntCaster" parent="ModelAnimationStyleContinuous">
         <EditorCategories value=""/>
@@ -1816,6 +1873,10 @@
         <On index="76" Terms="ActorCreation" Send="AttachModel Flashlight MarineFlashlight {Head 0}"/>
         <On index="77" removed="1"/>
         <On index="78" removed="1"/>
+        <On index="79" removed="1"/>
+        <On index="80" removed="1"/>
+        <On index="81" removed="1"/>
+        <On index="82" removed="1"/>
     </CActorUnit>
     <CActorAction id="TopMachineGunAttack" parent="GenericAttack" effectAttack="TopMachineGunTurret">
         <EditorCategories value=""/>
@@ -1846,6 +1907,10 @@
         <On index="58" Terms="WeaponStart.IFVSideMachineGun" Target="SideMachineGunModel" Send="AnimPlay SideGunAttack Attack"/>
         <On index="59" removed="1"/>
         <On index="60" removed="1"/>
+        <On index="61" removed="1"/>
+        <On index="62" removed="1"/>
+        <On index="63" removed="1"/>
+        <On index="64" removed="1"/>
         <Model value="UGCJavelingIFV"/>
         <Scale value="1.500000"/>
         <EventDataFootprint index="0" Actor="UnitFootprint" Model="MengskSiegeTankFootprint"/>
