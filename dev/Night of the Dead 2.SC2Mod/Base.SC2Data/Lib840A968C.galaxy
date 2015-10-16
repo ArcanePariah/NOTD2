@@ -2364,6 +2364,61 @@ void lib840A968C_gt_PlayerMarineDies_Init () {
 }
 
 //--------------------------------------------------------------------------------------------------
+// Trigger: Portrait Camera Center
+//--------------------------------------------------------------------------------------------------
+bool lib840A968C_gt_PortraitCameraCenter_Func (bool testConds, bool runActions) {
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if (true) {
+    }
+    else {
+    }
+    CameraPan(EventPlayer(), RegionGetCenter(EventUnitRegion()), 2.0, -1, 10.0, false);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib840A968C_gt_PortraitCameraCenter_Init () {
+    lib840A968C_gt_PortraitCameraCenter = TriggerCreate("lib840A968C_gt_PortraitCameraCenter_Func");
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Hookup Portrait Image for Camera Focus
+//--------------------------------------------------------------------------------------------------
+bool lib840A968C_gt_HookupPortraitImageforCameraFocus_Func (bool testConds, bool runActions) {
+    int auto84015EFE_ae;
+    int auto84015EFE_ai;
+
+    // Variable Declarations
+    int lv_player;
+
+    // Variable Initialization
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TriggerAddEventDialogControl(lib840A968C_gt_PortraitCameraCenter, c_playerAny, lib1E3F036D_gv_topPlayerStatus.lv_playerPortrait.lv_portraitImage, c_triggerControlEventTypeClick);
+    auto84015EFE_ae = lib1E3F036D_gv_numberofPlayers;
+    auto84015EFE_ai = 1;
+    lv_player = lib1E3F036D_gv_indexBaseValue;
+    for ( ; ( (auto84015EFE_ai >= 0 && lv_player <= auto84015EFE_ae) || (auto84015EFE_ai <= 0 && lv_player >= auto84015EFE_ae) ) ; lv_player += auto84015EFE_ai ) {
+        TriggerAddEventDialogControl(lib840A968C_gt_PortraitCameraCenter, c_playerAny, lib1E3F036D_gv_playerStatus[lv_player].lv_playerPortrait.lv_portraitImage, c_triggerControlEventTypeClick);
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib840A968C_gt_HookupPortraitImageforCameraFocus_Init () {
+    lib840A968C_gt_HookupPortraitImageforCameraFocus = TriggerCreate("lib840A968C_gt_HookupPortraitImageforCameraFocus_Func");
+    TriggerAddEventMapInit(lib840A968C_gt_HookupPortraitImageforCameraFocus);
+}
+
+//--------------------------------------------------------------------------------------------------
 // Trigger: Periodic UI Update
 //--------------------------------------------------------------------------------------------------
 bool lib840A968C_gt_PeriodicUIUpdate_Func (bool testConds, bool runActions) {
@@ -2391,8 +2446,14 @@ bool lib840A968C_gt_PeriodicUIUpdate_Func (bool testConds, bool runActions) {
             TextExpressionSetToken("Param/Expression/lib_840A968C_28BE6BBF", "Games", IntToText(lib840A968C_gv_players[lv_player].lv_gamesPlayed));
             lib1E3F036D_gf_UpdateRankIconTooltip(lv_player, TextExpressionAssemble("Param/Expression/lib_840A968C_28BE6BBF"));
             TextExpressionSetToken("Param/Expression/lib_840A968C_2CC02426", "TalentTree1Name", UserDataGetText("TalentTree", UserDataGetUserInstance("TalentTrees", UserDataGetUserInstance("Classes", libC50FD636_gv_marines[lv_player].lv_class, "Talent Tree", 1), "Trees", 2), "Header", 1));
+            TextExpressionSetToken("Param/Expression/lib_840A968C_2CC02426", "TalentTree1Points", IntToText((libC50FD636_gv_talentLevels[lv_player][1][1] + libC50FD636_gv_talentLevels[lv_player][1][2] + libC50FD636_gv_talentLevels[lv_player][1][3] + libC50FD636_gv_talentLevels[lv_player][1][4] + libC50FD636_gv_talentLevels[lv_player][1][5] + libC50FD636_gv_talentLevels[lv_player][1][6])));
             TextExpressionSetToken("Param/Expression/lib_840A968C_2CC02426", "TalentTree2Name", UserDataGetText("TalentTree", UserDataGetUserInstance("TalentTrees", UserDataGetUserInstance("Classes", libC50FD636_gv_marines[lv_player].lv_class, "Talent Tree", 1), "Trees", 1), "Header", 1));
             lib1E3F036D_gf_UpdateClassIconTooltip(lv_player, TextExpressionAssemble("Param/Expression/lib_840A968C_2CC02426"));
+            TextExpressionSetToken("Param/Expression/lib_840A968C_BC359D66", "Hits", IntToText(lib840A968C_gv_players[lv_player].lv_currentGameStats.lv_hits));
+            TextExpressionSetToken("Param/Expression/lib_840A968C_BC359D66", "Kills", IntToText(PlayerScoreValueGetAsInt(lv_player, "UnitsKilledCount")));
+            TextExpressionSetToken("Param/Expression/lib_840A968C_BC359D66", "DamageTaken", IntToText(lib840A968C_gv_players[lv_player].lv_currentGameStats.lv_damageTaken));
+            TextExpressionSetToken("Param/Expression/lib_840A968C_BC359D66", "SC2ID", StringToText(PlayerHandle(lv_player)));
+            lib1E3F036D_gf_UpdatePortraitTooltip(lv_player, TextExpressionAssemble("Param/Expression/lib_840A968C_BC359D66"));
         }
     }
     return true;
@@ -3278,6 +3339,8 @@ void lib840A968C_InitTriggers () {
     lib840A968C_gt_TeamLocation_Init();
     lib840A968C_gt_HookupTeamLocationButton_Init();
     lib840A968C_gt_PlayerMarineDies_Init();
+    lib840A968C_gt_PortraitCameraCenter_Init();
+    lib840A968C_gt_HookupPortraitImageforCameraFocus_Init();
     lib840A968C_gt_PeriodicUIUpdate_Init();
     lib840A968C_gt_BankSave_Init();
     lib840A968C_gt_RatingLossfromLives_Init();
