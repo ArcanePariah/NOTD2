@@ -30,13 +30,11 @@ void libC50FD636_InitVariables () {
     libC50FD636_gv_geminiProtocolSecondWeaponButton = c_invalidDialogControlId;
     libC50FD636_gv_geminiProtocolFirstWeaponButton = c_invalidDialogControlId;
     libC50FD636_gv_uplinkSharedVisionGroup = UnitGroupEmpty();
-    libC50FD636_gv_ammoUI.lv_ammoDialog = c_invalidDialogId;
     libC50FD636_gv_ammoUI.lv_ammoBar = c_invalidDialogControlId;
     libC50FD636_gv_ammoUI.lv_ammoLabel = c_invalidDialogControlId;
     libC50FD636_gv_ammoUI.lv_ammoHitTestFrame = c_invalidDialogControlId;
     libC50FD636_gv_ammoUI.lv_ammoFrame = c_invalidDialogControlId;
     for (init_i = 0; init_i <= libC50FD636_gv_numberofPlayers; init_i += 1) {
-        libC50FD636_gv_ammoDisplay[init_i].lv_ammoDialog = c_invalidDialogId;
         libC50FD636_gv_ammoDisplay[init_i].lv_ammoBar = c_invalidDialogControlId;
         libC50FD636_gv_ammoDisplay[init_i].lv_ammoLabel = c_invalidDialogControlId;
         libC50FD636_gv_ammoDisplay[init_i].lv_ammoHitTestFrame = c_invalidDialogControlId;
@@ -462,29 +460,25 @@ bool auto_libC50FD636_gf_CreateAmmoDisplay_TriggerFunc (bool testConds, bool run
     lv_tempAmmoPanel = c_invalidDialogControlId;
 
     // Implementation
-    DialogCreate(305, 50, c_anchorBottomRight, 425, 265, true);
-    DialogSetImageVisible(DialogLastCreated(), false);
-    libC50FD636_gv_ammoDisplay[lp_player].lv_ammoDialog = DialogLastCreated();
-    DialogControlCreateFromTemplate(DialogLastCreated(), c_triggerControlTypePanel, "AmmoDisplay/AmmoDisplayTemplate");
-    lv_tempAmmoPanel = DialogControlLastCreated();
-    DialogControlSetPosition(DialogControlLastCreated(), PlayerGroupAll(), c_anchorTopLeft, 0, 0);
-    DialogControlHookup(lv_tempAmmoPanel, c_triggerControlTypeProgressBar, "AmmoBar");
+    DialogControlHookupStandard(c_triggerControlTypePanel, ("UIContainer/ConsoleUIContainer/" + "Ammo" + IntToString(lp_player)));
+    libC50FD636_gv_ammoDisplay[lp_player].lv_ammoFrame = DialogControlLastCreated();
+    DialogControlHookup(libC50FD636_gv_ammoDisplay[lp_player].lv_ammoFrame, c_triggerControlTypeProgressBar, "AmmoBar");
     libC50FD636_gv_ammoDisplay[lp_player].lv_ammoBar = DialogControlLastCreated();
-    DialogControlHookup(lv_tempAmmoPanel, c_triggerControlTypeLabel, "AmmoCount");
+    DialogControlHookup(libC50FD636_gv_ammoDisplay[lp_player].lv_ammoFrame, c_triggerControlTypeLabel, "AmmoCount");
     libC50FD636_gv_ammoDisplay[lp_player].lv_ammoLabel = DialogControlLastCreated();
-    DialogControlHookup(lv_tempAmmoPanel, c_triggerControlTypeButton, "HitTestFrame");
+    DialogControlHookup(libC50FD636_gv_ammoDisplay[lp_player].lv_ammoFrame, c_triggerControlTypeButton, "HitTestFrame");
     libC50FD636_gv_ammoDisplay[lp_player].lv_ammoHitTestFrame = DialogControlLastCreated();
     TriggerAddEventDialogControl(libC50FD636_gt_DropMagazineUIClick, c_playerAny, DialogControlLastCreated(), c_triggerControlEventTypeClick);
     libNtve_gf_SetDialogItemMaximumValue(libC50FD636_gv_ammoDisplay[lp_player].lv_ammoBar, libC50FD636_gv_marines[lp_player].lv_currentMaxMagazineSize, PlayerGroupAll());
     libNtve_gf_SetDialogItemCurrentValue(libC50FD636_gv_ammoDisplay[lp_player].lv_ammoBar, libC50FD636_gv_marines[lp_player].lv_currentMaxMagazineSize, PlayerGroupAll());
     libNtve_gf_SetDialogItemText(libC50FD636_gv_ammoDisplay[lp_player].lv_ammoLabel, (IntToText(libC50FD636_gv_marines[lp_player].lv_currentMaxMagazineSize) + StringExternal("Param/Value/lib_C50FD636_3238FD09") + IntToText(libC50FD636_gv_marines[lp_player].lv_currentMaxMagazineSize)), PlayerGroupAll());
-    DialogSetVisible(DialogLastCreated(), PlayerGroupSingle(lp_player), true);
+    DialogControlSetVisible(libC50FD636_gv_ammoDisplay[lp_player].lv_ammoFrame, PlayerGroupSingle(lp_player), true);
     return true;
 }
 
 void libC50FD636_gf_DestroyAmmoDisplay (int lp_player) {
     // Implementation
-    DialogDestroy(libC50FD636_gv_ammoDisplay[lp_player].lv_ammoDialog);
+    DialogControlDestroy(libC50FD636_gv_ammoDisplay[lp_player].lv_ammoFrame);
 }
 
 void libC50FD636_gf_IntializeTalentMax () {
@@ -2564,12 +2558,26 @@ void libC50FD636_gt_DropMagazineUIClick_Init () {
 // Trigger: Display Ammo Bar On Selection
 //--------------------------------------------------------------------------------------------------
 bool libC50FD636_gt_DisplayAmmoBarOnSelection_Func (bool testConds, bool runActions) {
+    playergroup autoB2FD338C_g;
+    int autoB2FD338C_p;
+
+    // Variable Declarations
+    int lv_player;
+
+    // Variable Initialization
+
     // Actions
     if (!runActions) {
         return true;
     }
 
-    DialogSetVisible(libC50FD636_gv_ammoDisplay[UnitGetOwner(EventUnit())].lv_ammoDialog, PlayerGroupSingle(EventPlayer()), true);
+    autoB2FD338C_g = GameAttributePlayersForTeam(1); 
+    autoB2FD338C_p = 1;
+    for ( ; autoB2FD338C_p <= PlayerGroupCount(autoB2FD338C_g) ; autoB2FD338C_p += BoolToInt(lv_player == PlayerGroupPlayer(autoB2FD338C_g, autoB2FD338C_p)) ) {
+        lv_player = PlayerGroupPlayer(autoB2FD338C_g, autoB2FD338C_p);
+        DialogControlSetVisible(libC50FD636_gv_ammoDisplay[lv_player].lv_ammoFrame, PlayerGroupSingle(EventPlayer()), false);
+    }
+    DialogControlSetVisible(libC50FD636_gv_ammoDisplay[UnitGetOwner(EventUnit())].lv_ammoFrame, PlayerGroupSingle(EventPlayer()), true);
     return true;
 }
 
