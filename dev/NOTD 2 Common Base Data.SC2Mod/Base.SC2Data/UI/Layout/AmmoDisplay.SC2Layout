@@ -8,7 +8,7 @@
 		<Frame type = "Image" name = "BackgroundImage">
 			<Texture val = "UI/ui_ammobar.dds"/>
 			<Anchor relative = "$parent"/>
-			<RenderPriority val = "401"/>
+			<RenderPriority val = "430"/>
 		</Frame>
         <Frame type="ProgressBar" name="AmmoBar">
 			<Texture val="UI\ui_ingame_unitstatus_bar.dds"/>
@@ -26,15 +26,24 @@
         <Frame type="Label" name="AmmoCount">
             <Anchor side="Left" relative="$parent/AmmoBar" pos="Min" offset="0"/>
             <Anchor side="Top" relative="$parent/AmmoBar" pos="Max" offset="0"/>
-            <Height val="25"/>
-            <Width val="100"/>
+            <Height val="20"/>
+            <Width val="72"/>
+			<Style val = "AmmoCount"/>
         </Frame>
 
         <Frame type="Button" name="HitTestFrame">
-            <Height val="20"/>
-            <Width val="200"/>
-            <Anchor side="Left" relative="$parent/AmmoCount" pos="Min" offset="0"/>
-            <Anchor side="Top" relative="$parent/AmmoCount" pos="Max" offset="0"/>
+			<RenderPriority val = "400"/>
+            <Height val="24"/>
+            <Anchor side="Left" relative="$parent/AmmoCount" pos="Max" offset="0"/>
+			<Anchor side="Right" relative="$parent/AmmoBar" pos="Max" offset="0"/>
+            <Anchor side="Top" relative="$parent/AmmoCount" pos="Min" offset="0"/>
+			<NormalImage val = "NormalImage"/>
+			<HoverImage val = "NormalImage"/>
+			<Frame type = "Image" name = "NormalImage">
+				<Anchor relative = "$parent"/>
+				<Texture val = "UI/ui_ammobar_btn_hoveroverandpressedover.dds"/>
+				<StateCount val = "3"/>
+			</Frame>
             <Shortcut val="M"/>
 			<Label val = "DropMagLabel"/>
 			<Frame type = "Label" name = "DropMagLabel">
