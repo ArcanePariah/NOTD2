@@ -1,77 +1,91 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <Desc>
     <Frame type="Frame" name="GameUI\UIContainer\FullscreenUpperContainer\MenuBarConsoleAnchor" file="GameUI">
-        <Width val="310"/>
+		<Anchor side="Bottom" relative="$parent/$parent/ConsoleUIContainer/CommandBorderImage" pos="Min" offset="7"/>
+        <Width val="330"/>
         <Height val="60"/>
     </Frame>
 
     <Frame type="MenuBar" name="GameUI\UIContainer\FullscreenUpperContainer\MenuBar" file="GameUI">
+		<Width val="330"/>
+        <Height val="60"/>
         <Frame type="Image" name="MenuBarBackgroundImage">
             <Texture val="@UI/MenuBorder"/>
+			<RenderPriority val = "513"/>
         </Frame>
-        <Frame type="Button" name="HelpButton">
-            <Anchor side="Left" relative="$parent/MenuBarBackgroundImage" pos="Min" offset="96"/>
+		<Frame type="Button" name="MenuButton">
+			<Anchor side="Right" relative="$parent/MenuBarBackgroundImage" pos="Max" offset="-7"/>
+			<Anchor side="Top" relative="$parent/MenuBarBackgroundImage" pos="Min" offset="-2"/>
+			<Width val = "82" />
+			<Height val = "64" />
 			<Frame type="Image" name="NormalImage">
-				<Texture val="UI/ui_menu_helpbtn.dds" layer="0"/>
+				<Texture val="UI/ui_menu_menubtn.dds" layer="0"/>
 				<StateCount val="3"/>
 			</Frame>
 
 			<Frame type="Image" name="HoverImage">
-				<Texture val="UI/ui_menu_helpbtn.dds" layer="0"/>
+				<Texture val="UI/ui_menu_menubtn.dds" layer="0"/>
 				<StateCount val="3"/>
 			</Frame>
         </Frame>
+
 
         <Frame type="SocialButton" name="SocialButton">
-            <Anchor side="Left" relative="$parent/MenuBarBackgroundImage" pos="Min" offset="147"/>
+			<Height val = "60" />
+			<Width val = "46" />
+			<Anchor side="Top" relative="$parent/MenuBarBackgroundImage" pos="Min" offset="0"/>
+			<Anchor side="Left" relative="$parent/MenuButton" pos="Min" offset="-48"/>
+
 			<Frame type="Image" name="NormalImage">
 				<Texture val="UI/ui_menu_friendbtn.dds" layer="0"/>
 				<StateCount val="3"/>
 			</Frame>
-
+			
 			<Frame type="Image" name="HoverImage">
 				<Texture val="UI/ui_menu_friendbtn.dds" layer="0"/>
 				<StateCount val="3"/>
 			</Frame>
         </Frame>
-
-        <Frame type="Button" name="MenuButton">
-            <Anchor side="Right" relative="$parent/MenuBarBackgroundImage" pos="Max" offset="-8"/>
+		
+		<Frame type="Button" name="HelpButton">
+			<Height val = "60" />
+			<Width val = "52" />
+			<Anchor side="Top" relative="$parent/MenuBarBackgroundImage" pos="Min" offset="0"/>
+			<Anchor side="Left" relative="$parent/SocialButton" pos="Min" offset="-56"/>
 			<Frame type="Image" name="NormalImage">
-				<Texture val="UI/ui_menu_menubtn.dds" layer="0"/>
+				<Texture val="UI/ui_menu_helpbtn.dds" layer="0"/>
 				<StateCount val="3"/>
 			</Frame>
 
 			<Frame type="Image" name="HoverImage">
-				<Texture val="UI/ui_menu_menubtn.dds" layer="0"/>
+				<Texture val="UI/ui_menu_helpbtn.dds" layer="0"/>
 				<StateCount val="3"/>
 			</Frame>
         </Frame>
+
+
 
         <Frame type="Button" name="TalentButton">
             <NormalImage val="NormalImage"/>
-            <Width val="76"/>
-            <Height val="38"/>
+			<Width val = "82" />
+			<Height val = "64" />
             <ClickSound val="@UI_MiniMapPanelButtonSelect"/>
-            <Anchor side="Left" relative="$parent/MenuBarBackgroundImage" pos="Min" offset="8"/>
-            <Anchor side="Bottom" relative="$parent/MenuBarBackgroundImage" pos="Max" offset="-12"/>
+            <Anchor side="Right" relative="$parent/HelpButton" pos="Min" offset="-2"/>
+            <Anchor side="Top" relative="$parent/MenuBarBackgroundImage" pos="Min" offset="-2"/>
             <Shortcut val="B"/>
             <Tooltip val="Access character talent trees and spend skillpoints."/>
             <Label val="TalentLabel"/>
 
             <Frame type="Image" name="NormalImage">
                 <RenderPriority val="500"/>
-                <Anchor side="Top" relative="$parent" pos="Min" offset="0"/>
-                <Anchor side="Bottom" relative="$parent" pos="Max" offset="0"/>
-                <Anchor side="Left" relative="$parent" pos="Min" offset="0"/>
-                <Anchor side="Right" relative="$parent" pos="Max" offset="0"/>
+                <Anchor relative="$parent" offset="0"/>
                 <Texture val="UI/ui_menu_talentbtn.dds"/>
                 <TextureType val="Normal"/>
                 <StateCount val="3"/>
             </Frame>
 
             <Frame type="Label" name="TalentLabel">
-                <Anchor side="Top" relative="$parent" pos="Min" offset="5"/>
+                <Anchor side="Top" relative="$parent" pos="Min" offset="3"/>
                 <Anchor side="Bottom" relative="$parent" pos="Max" offset="0"/>
                 <Anchor side="Left" relative="$parent" pos="Min" offset="2"/>
                 <Anchor side="Right" relative="$parent" pos="Max" offset="0"/>
@@ -93,21 +107,17 @@
         <Frame type="Button" name="NightVisionButton">
             <NormalImage val="NormalImage"/>
             <HoverImage val="NormalImage"/>
-            <Height val="38"/>
-            <Width val="38"/>
+            <Height val="60"/>
+            <Width val="46"/>
             <ClickSound val="@UI_MiniMapPanelButtonSelect"/>
-            <Anchor side="Right" relative="$parent/TalentButton" pos="Min" offset="0"/>
-            <Anchor side="Bottom" relative="$parent/TalentButton" pos="Max" offset="0"/>
+            <Anchor side="Right" relative="$parent/TalentButton" pos="Min" offset="-2"/>
+            <Anchor side="Bottom" relative="$parent/MenuBarBackgroundImage" pos="Max" offset="0"/>
             <Shortcut val="N"/>
 
             <Frame type="Image" name="NormalImage">
                 <RenderPriority val="500"/>
-                <Anchor side="Top" relative="$parent" pos="Min" offset="0"/>
-                <Anchor side="Bottom" relative="$parent" pos="Max" offset="0"/>
-                <Anchor side="Left" relative="$parent" pos="Min" offset="0"/>
-                <Anchor side="Right" relative="$parent" pos="Max" offset="0"/>
-                <Texture val="Assets\Textures\btn-ability-terran-microfiltering.dds"/>
-                <TextureType val="Normal"/>
+                <Anchor relative="$parent" offset="0"/>
+                <Texture val="UI/Explosion Green 76.dds"/>
             </Frame>
         </Frame>
     </Frame>

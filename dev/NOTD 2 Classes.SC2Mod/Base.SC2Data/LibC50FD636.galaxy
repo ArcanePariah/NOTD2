@@ -3119,6 +3119,32 @@ void libC50FD636_gt_HeroTest_Init () {
     TriggerAddEventChatMessage(libC50FD636_gt_HeroTest, 1, "MakeHero", false);
 }
 
+//--------------------------------------------------------------------------------------------------
+// Trigger: Test Race Config
+//--------------------------------------------------------------------------------------------------
+bool libC50FD636_gt_TestRaceConfig_Func (bool testConds, bool runActions) {
+    // Conditions
+    if (testConds) {
+        if (!(GameIsTestMap(false))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    PlayerSetRace(1, "Terr");
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libC50FD636_gt_TestRaceConfig_Init () {
+    libC50FD636_gt_TestRaceConfig = TriggerCreate("libC50FD636_gt_TestRaceConfig_Func");
+    TriggerAddEventMapInit(libC50FD636_gt_TestRaceConfig);
+}
+
 void libC50FD636_InitTriggers () {
     libC50FD636_gt_TestEnableTechTreeRestrictions_Init();
     libC50FD636_gt_PredatorEventRegistration_Init();
@@ -3196,6 +3222,7 @@ void libC50FD636_InitTriggers () {
     libC50FD636_gt_JumpUpgrade_Init();
     libC50FD636_gt_MedicalAssistanceUsage_Init();
     libC50FD636_gt_HeroTest_Init();
+    libC50FD636_gt_TestRaceConfig_Init();
 }
 
 //--------------------------------------------------------------------------------------------------
