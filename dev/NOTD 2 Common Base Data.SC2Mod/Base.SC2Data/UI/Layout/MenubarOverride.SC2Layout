@@ -9,17 +9,43 @@
         <Frame type="Image" name="MenuBarBackgroundImage">
             <Texture val="@UI/MenuBorder"/>
         </Frame>
-
         <Frame type="Button" name="HelpButton">
             <Anchor side="Left" relative="$parent/MenuBarBackgroundImage" pos="Min" offset="96"/>
+			<Frame type="Image" name="NormalImage">
+				<Texture val="UI/ui_menu_helpbtn.dds" layer="0"/>
+				<StateCount val="3"/>
+			</Frame>
+
+			<Frame type="Image" name="HoverImage">
+				<Texture val="UI/ui_menu_helpbtn.dds" layer="0"/>
+				<StateCount val="3"/>
+			</Frame>
         </Frame>
 
         <Frame type="SocialButton" name="SocialButton">
             <Anchor side="Left" relative="$parent/MenuBarBackgroundImage" pos="Min" offset="147"/>
+			<Frame type="Image" name="NormalImage">
+				<Texture val="UI/ui_menu_friendbtn.dds" layer="0"/>
+				<StateCount val="3"/>
+			</Frame>
+
+			<Frame type="Image" name="HoverImage">
+				<Texture val="UI/ui_menu_friendbtn.dds" layer="0"/>
+				<StateCount val="3"/>
+			</Frame>
         </Frame>
 
         <Frame type="Button" name="MenuButton">
             <Anchor side="Right" relative="$parent/MenuBarBackgroundImage" pos="Max" offset="-8"/>
+			<Frame type="Image" name="NormalImage">
+				<Texture val="UI/ui_menu_menubtn.dds" layer="0"/>
+				<StateCount val="3"/>
+			</Frame>
+
+			<Frame type="Image" name="HoverImage">
+				<Texture val="UI/ui_menu_menubtn.dds" layer="0"/>
+				<StateCount val="3"/>
+			</Frame>
         </Frame>
 
         <Frame type="Button" name="TalentButton">
@@ -39,9 +65,9 @@
                 <Anchor side="Bottom" relative="$parent" pos="Max" offset="0"/>
                 <Anchor side="Left" relative="$parent" pos="Min" offset="0"/>
                 <Anchor side="Right" relative="$parent" pos="Max" offset="0"/>
-                <Texture val="Assets\Textures\ui_gamemenu_menubutton_normalpressed_protoss.dds"/>
+                <Texture val="UI/ui_menu_talentbtn.dds"/>
                 <TextureType val="Normal"/>
-                <StateCount val="2"/>
+                <StateCount val="3"/>
             </Frame>
 
             <Frame type="Label" name="TalentLabel">
