@@ -45,10 +45,15 @@
                 <Frame type="MissionTimePanel" name="MissionTimePanel">
                     <Anchor side="Bottom" relative="$parent/MinimapPanel" pos="Min" offset="45"/>
                     <Anchor side="Left" relative="$parent" pos="Min" offset="15"/>
-
+					<Width val = "108"/>
+					<Frame type = "Label" name = "TimeLabel">
+						<Anchor side = "Top" relative = "$parent" pos = "Min" offset = "8" />
+					</Frame>
                     <Frame type="Image" name="BackgroundImage">
-                        <RenderPriority val="1"/>
-                        <Texture val="Assets\Textures\black.dds"/>
+                        <RenderPriority val="350"/>
+                        <Texture val="UI\ui_minimap_gameclock.dds"/>
+						<TextureType val = "Normal"/>
+						<Anchor side = "Right" relative = "$parent" pos = "Max" offset = "0" />
                     </Frame>
                 </Frame>
 
