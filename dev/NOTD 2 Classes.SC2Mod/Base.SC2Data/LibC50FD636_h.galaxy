@@ -19,10 +19,10 @@ const int libC50FD636_gv_numberofTalentTrees = 2;
 
 // Structures
 struct libC50FD636_gs_AmmoUIElements {
-    int lv_ammoDialog;
     int lv_ammoBar;
     int lv_ammoLabel;
     int lv_ammoHitTestFrame;
+    int lv_ammoFrame;
 };
 
 struct libC50FD636_gs_Talent {
@@ -73,6 +73,7 @@ string[libC50FD636_gv_numberofPlayers + 1] libC50FD636_gv_geminiUnitWeapon;
 string[libC50FD636_gv_numberofPlayers + 1] libC50FD636_gv_geminiAssaultUnitWeapon;
 bool libC50FD636_gv_inventoryMoveLock;
 bool[libC50FD636_gv_inventoryBagSize + 1][libC50FD636_gv_numberofPlayers + 1] libC50FD636_gv_openBagSlots;
+libC50FD636_gs_AmmoUIElements libC50FD636_gv_ammoUI;
 libC50FD636_gs_AmmoUIElements[libC50FD636_gv_numberofPlayers + 1] libC50FD636_gv_ammoDisplay;
 int[libC50FD636_gv_numberofPlayers + 1][libC50FD636_gv_numberofTalentTrees + 1][libC50FD636_gv_numberofTalents + 1] libC50FD636_gv_talentLevels;
 int[libC50FD636_gv_numberofPlayers + 1] libC50FD636_gv_talentAvailable;
@@ -190,6 +191,7 @@ trigger libC50FD636_gt_TalentTreeHookup;
 trigger libC50FD636_gt_JumpUpgrade;
 trigger libC50FD636_gt_MedicalAssistanceUsage;
 trigger libC50FD636_gt_HeroTest;
+trigger libC50FD636_gt_TestRaceConfig;
 
 // Library Initialization
 void libC50FD636_InitVariables ();

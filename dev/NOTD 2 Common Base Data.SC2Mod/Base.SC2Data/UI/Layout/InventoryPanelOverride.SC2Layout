@@ -5,7 +5,7 @@
     <Constant name="EquipmentButtonGap" val="4"/>
     <Constant name="InventoryButtonGap" val="12"/>
     <Constant name="InventoryButtonVerticalGap" val="12"/>
-    <Constant name="InventoryBuffer" val="22"/>
+    <Constant name="InventoryBuffer" val="18"/>
 
     <Frame type="CommandButton" name="InventoryButtonTemplate" template="CommandButton/CommandButtonTemplate">
         <Toggleable val="true"/>
@@ -39,8 +39,8 @@
 
     <Frame type="InventoryPanel" name="GameUI\UIContainer\ConsoleUIContainer\InventoryPanel" file="GameUI">
         <RenderPriority val="100"/>
-        <Anchor side="Left" relative="$parent" pos="Max" offset="-815"/>
-        <Anchor side="Right" relative="$parent" pos="Max" offset="-468"/>
+        <Anchor side="Left" relative="$parent/CommandBorderImage" pos="Min" offset="-250"/>
+        <Anchor side="Right" relative="$parent/CommandBorderImage" pos="Min" offset="5"/>
         <Anchor side="Bottom" relative="$parent" pos="Max" offset="3"/>
 
         <Frame type="Image" name="InventoryBorder">
@@ -48,28 +48,28 @@
             <Anchor side="Right" relative="$parent/ContainerPanel01" pos="Max" offset="0"/>
             <Anchor side="Top" relative="$parent/ContainerPanel01" pos="Min" offset="-47"/>
             <Anchor side="Bottom" relative="$parent/ContainerPanel01" pos="Max" offset="0"/>
-            <Texture val="UI\UI-Inventory_border.dds"/>
+            <Texture val="UI\ui_inventory_border.dds"/>
             <TextureType val="Normal"/>
-            <RenderPriority val="40"/>
+            <RenderPriority val="500"/>
             <Color val="192,192,192"/>
         </Frame>
 
         <Frame type="Image" name="InventoryBackgroundImage">
-            <Texture val="UI\UI-Inventory_background.dds"/>
+            <Texture val="UI\ui_inventory_background.dds"/>
             <TextureType val="Normal"/>
-            <RenderPriority val="40"/>
-            <Anchor side="Left" relative="$parent/ContainerPanel01" pos="Min" offset="20"/>
-            <Anchor side="Right" relative="$parent/ContainerPanel01" pos="Max" offset="0"/>
-            <Anchor side="Top" relative="$parent/ContainerPanel01" pos="Min" offset="-22"/>
-            <Anchor side="Bottom" relative="$parent/ContainerPanel01" pos="Max" offset="0"/>
-            <Color val="192,192,192"/>
+            <RenderPriority val="500"/>
+            <Anchor side="Left" relative="$parent/InventoryBorder" pos="Min" offset="-5"/>
+            <Anchor side="Right" relative="$parent/InventoryBorder" pos="Max" offset="0"/>
+            <Anchor side="Top" relative="$parent/InventoryBorder" pos="Min" offset="0"/>
+            <Anchor side="Bottom" relative="$parent/InventoryBorder" pos="Max" offset="0"/>
         </Frame>
 
         <Frame type="Image" name="EquipmentBackgroundImage">
-            <Texture val="UI\UI-Equipment-border.dds"/>
+            <Texture val="UI\ui_equipment_border.dds"/>
             <TextureType val="Normal"/>
+			<RenderPriority val="495"/>
             <Anchor side="Left" relative="$parent/ContainerPanel00" pos="Min" offset="0"/>
-            <Anchor side="Right" relative="$parent/ContainerPanel00" pos="Max" offset="20"/>
+            <Anchor side="Right" relative="$parent/ContainerPanel00" pos="Max" offset="0"/>
             <Anchor side="Top" relative="$parent/ContainerPanel00" pos="Min" offset="45"/>
             <Anchor side="Bottom" relative="$parent/ContainerPanel00" pos="Max" offset="0"/>
             <Color val="192,192,192"/>
@@ -79,20 +79,20 @@
             <Frame type="Button" name="Close">
                 <Visible val="false"/>
             </Frame>
-
+			<RenderPriority val="495"/>
             <Frame type="Label" name="Name">
                 <Visible val="false"/>
             </Frame>
 
             <Frame type="Image" name="BackgroundImage">
-                <Texture val="UI\UI-Equipment-background.dds"/>
+                <Texture val="UI\ui_equipment_background.dds"/>
                 <TextureType val="Normal"/>
                 <Tiled val="false"/>
-                <Anchor side="Top" relative="$parent" pos="Min" offset="50"/>
-                <Anchor side="Right" relative="$parent" pos="Max" offset="0"/>
-                <Anchor side="Left" relative="$parent" pos="Min" offset="0"/>
+                <Anchor side="Top" relative="$parent" pos="Min" offset="40"/>
+                <Anchor side="Right" relative="$parent" pos="Max" offset="5"/>
+                <Anchor side="Left" relative="$parent" pos="Min" offset="-3"/>
                 <Anchor side="Bottom" relative="$parent" pos="Max" offset="0"/>
-                <RenderPriority val="500"/>
+                <RenderPriority val="494"/>
             </Frame>
 
             <Frame type="CommandButton" name="Button">
@@ -101,6 +101,7 @@
 
             <Frame type="CommandButton" name="Slot00" template="InventoryPanelOverride/EquipmentButtonTemplate">
                 <Anchor side="Top" relative="$parent" pos="Min" offset="75"/>
+				<Anchor side="Left" relative="$parent" pos="Min" offset="0"/>
             </Frame>
 
             <Frame type="CommandButton" name="Slot01" template="InventoryPanelOverride/EquipmentButtonTemplate">
@@ -143,7 +144,7 @@
             <Frame type="Button" name="Close">
                 <Visible val="false"/>
             </Frame>
-
+			<RenderPriority val="500"/>
             <Frame type="CommandButton" name="Button">
                 <Visible val="false"/>
             </Frame>

@@ -26,13 +26,15 @@
                 </Frame>
 
                 <Frame type="Frame" name="TalentPanel" template="TalentTreeTemplateLayout/TalentTreeFrameTemplate">
-                    <Anchor side="Right" relative="$parent" pos="Max" offset="-240"/>
-                    <Anchor side="Bottom" relative="$parent" pos="Max" offset="-433"/>
+                    <Anchor side="Right" relative="$parent" pos="Max" offset="-200"/>
+                    <Anchor side="Bottom" relative="$parent" pos="Max" offset="-390"/>
                 </Frame>
 				<Frame type ="Frame" name = "TeamUI" template="TeamUI/TeamUI">
 					<Anchor side="Right" relative="$parent" pos="Max" offset="0"/>
                     <Anchor side="Top" relative="$parent" pos="Min" offset="50"/>
 				</Frame>
+				
+
             </Frame>
 
             <Frame type="Frame" name="ConsoleUIContainer">
@@ -43,10 +45,15 @@
                 <Frame type="MissionTimePanel" name="MissionTimePanel">
                     <Anchor side="Bottom" relative="$parent/MinimapPanel" pos="Min" offset="45"/>
                     <Anchor side="Left" relative="$parent" pos="Min" offset="15"/>
-
+					<Width val = "108"/>
+					<Frame type = "Label" name = "TimeLabel">
+						<Anchor side = "Top" relative = "$parent" pos = "Min" offset = "8" />
+					</Frame>
                     <Frame type="Image" name="BackgroundImage">
-                        <RenderPriority val="1"/>
-                        <Texture val="Assets\Textures\black.dds"/>
+                        <RenderPriority val="350"/>
+                        <Texture val="UI\ui_minimap_gameclock.dds"/>
+						<TextureType val = "Normal"/>
+						<Anchor side = "Right" relative = "$parent" pos = "Max" offset = "0" />
                     </Frame>
                 </Frame>
 
@@ -54,17 +61,6 @@
                     <Anchor side="Left" relative="$parent" pos="Max" offset="0"/>
                 </Frame>
 
-                <Frame type="MinimapPanel" name="MinimapPanel">
-                    <Height val="300"/>
-                    <Width val="355"/>
-
-                    <Frame type="Minimap" name="Minimap">
-                        <Anchor side="Top" relative="$parent" pos="Min" offset="35"/>
-                        <Anchor side="Left" relative="$parent" pos="Min" offset="11"/>
-                        <Height val="270"/>
-                        <Width val="300"/>
-                    </Frame>
-                </Frame>
 
                 <Frame type="CommandPanel" name="CommandPanel">
                     <Anchor side="Bottom" relative="$parent" pos="Max" offset="-10"/>
@@ -73,26 +69,62 @@
                 </Frame>
 
                 <Frame type="Image" name="CommandBorderImage">
-                    <Anchor side="Top" relative="$parent/CommandPanel" pos="Min" offset="-55"/>
-                    <Anchor side="Left" relative="$parent/CommandPanel" pos="Min" offset="-70"/>
+                    <Anchor side="Top" relative="$parent/CommandPanel" pos="Min" offset="-41"/>
+                    <Anchor side="Left" relative="$parent/CommandPanel" pos="Min" offset="-45"/>
                     <Anchor side="Right" relative="$parent/CommandPanel" pos="Max" offset="10"/>
                     <Anchor side="Bottom" relative="$parent/CommandPanel" pos="Max" offset="10"/>
-                    <RenderPriority val="401"/>
+                    <RenderPriority val="515"/>
                     <Color val="192,192,192"/>
-                    <Texture val="UI\UI-Command-Card_border.dds"/>
+                    <Texture val="UI\ui_commandcard_border.dds"/>
                     <TextureType val="Normal"/>
                 </Frame>
 
                 <Frame type="Image" name="CommandBackgroundImage">
-                    <Anchor side="Top" relative="$parent/CommandBorderImage" pos="Min" offset="30"/>
-                    <Anchor side="Left" relative="$parent/CommandBorderImage" pos="Min" offset="30"/>
-                    <Anchor side="Right" relative="$parent/CommandBorderImage" pos="Max" offset="10"/>
-                    <Anchor side="Bottom" relative="$parent/CommandBorderImage" pos="Max" offset="0"/>
-                    <RenderPriority val="400"/>
-                    <Texture val="UI\UI-Command-Card_background.dds"/>
+                    <Anchor relative="$parent/CommandBorderImage" offset="0"/>
+                    <RenderPriority val="449"/>
+                    <Texture val="UI\ui_commandcard_background.dds"/>
                 </Frame>
+				<Frame type = "Frame" name = "Ammo1" template = "AmmoDisplay/AmmoDisplayTemplate">
+					<Anchor side="Right" relative="$parent" pos="Max" offset="-408"/>
+                    <Anchor side="Bottom" relative="$parent" pos="Max" offset="-242"/>
+				
+				</Frame>
+				<Frame type = "Frame" name = "Ammo2" template = "AmmoDisplay/AmmoDisplayTemplate">
+					<Anchor side="Right" relative="$parent" pos="Max" offset="-408"/>
+                    <Anchor side="Bottom" relative="$parent" pos="Max" offset="-242"/>
+				
+				</Frame>
+				<Frame type = "Frame" name = "Ammo3" template = "AmmoDisplay/AmmoDisplayTemplate">
+					<Anchor side="Right" relative="$parent" pos="Max" offset="-408"/>
+                    <Anchor side="Bottom" relative="$parent" pos="Max" offset="-242"/>
+				
+				</Frame>
+				<Frame type = "Frame" name = "Ammo4" template = "AmmoDisplay/AmmoDisplayTemplate">
+					<Anchor side="Right" relative="$parent" pos="Max" offset="-408"/>
+                    <Anchor side="Bottom" relative="$parent" pos="Max" offset="-242"/>
+				
+				</Frame>
+				<Frame type = "Frame" name = "Ammo5" template = "AmmoDisplay/AmmoDisplayTemplate">
+					<Anchor side="Right" relative="$parent" pos="Max" offset="-408"/>
+                    <Anchor side="Bottom" relative="$parent" pos="Max" offset="-242"/>
+				
+				</Frame>
+				<Frame type = "Frame" name = "Ammo6" template = "AmmoDisplay/AmmoDisplayTemplate">
+					<Anchor side="Right" relative="$parent" pos="Max" offset="-408"/>
+                    <Anchor side="Bottom" relative="$parent" pos="Max" offset="-242"/>
+				
+				</Frame>
+				<Frame type = "Frame" name = "Ammo7" template = "AmmoDisplay/AmmoDisplayTemplate">
+					<Anchor side="Right" relative="$parent" pos="Max" offset="-408"/>
+                    <Anchor side="Bottom" relative="$parent" pos="Max" offset="-242"/>
+				</Frame>
+				<Frame type = "Frame" name = "Ammo8" template = "AmmoDisplay/AmmoDisplayTemplate">
+					<Anchor side="Right" relative="$parent" pos="Max" offset="-408"/>
+                    <Anchor side="Bottom" relative="$parent" pos="Max" offset="-242"/>
+				</Frame>
             </Frame>
 
+			<!-- Displaces the default models -->
             <Frame type="ConsolePanel" name="ConsolePanel">
                 <Frame type="PortraitPanel" name="PortraitPanel">
                     <Anchor side="Bottom" relative="$parent" pos="Max" offset="500"/>

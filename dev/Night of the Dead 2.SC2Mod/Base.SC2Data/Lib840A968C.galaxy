@@ -632,7 +632,6 @@ void lib840A968C_gf_PlayerSetup () {
     for ( ; auto47A70290_p <= PlayerGroupCount(auto47A70290_g) ; auto47A70290_p += BoolToInt(lv_player == PlayerGroupPlayer(auto47A70290_g, auto47A70290_p)) ) {
         lv_player = PlayerGroupPlayer(auto47A70290_g, auto47A70290_p);
         lib840A968C_gv_players[lv_player].lv_gamesPlayed += 1;
-        lib1E3F036D_gf_SetPlayerRank(lv_player, UserDataGetImagePath("Ranks", lib840A968C_gv_players[lv_player].lv_currentRank, "Icon", 1));
     }
     lib840A968C_gf_ApplyPlayerCustomization();
 }
@@ -1677,6 +1676,7 @@ bool lib840A968C_gt_Intialization_Func (bool testConds, bool runActions) {
         return true;
     }
 
+    lib1E3F036D_gf_ShowHideTeamUI(false);
     lib840A968C_gf_PlayerSetup();
     libC50FD636_gf_IntializeTalentMax();
     lib840A968C_gf_DefaultAllianceStates();
@@ -1936,8 +1936,10 @@ bool lib840A968C_gt_DisplayClassSelection_Func (bool testConds, bool runActions)
         TextExpressionSetToken("Param/Expression/lib_840A968C_65BE9F6D", "B", UserDataGetText("Ranks", lib840A968C_gv_players[lv_player].lv_currentRank, "Title Full", 1));
         TextExpressionSetToken("Param/Expression/lib_840A968C_65BE9F6D", "A", PlayerName(lv_player));
         libNtve_gf_SetDialogItemText(lv_playerNameLabel, TextExpressionAssemble("Param/Expression/lib_840A968C_65BE9F6D"), PlayerGroupSingle(lv_player));
+        lib1E3F036D_gf_SetPlayerRank(lv_player, UserDataGetImagePath("Ranks", lib840A968C_gv_players[lv_player].lv_currentRank, "Icon", 1));
     }
     DialogSetVisible(lib840A968C_gv_classSelectionDialog, PlayerGroupAll(), true);
+    lib1E3F036D_gf_ShowHideTeamUI(true);
     return true;
 }
 
@@ -2359,6 +2361,128 @@ bool lib840A968C_gt_PlayerMarineDies_Func (bool testConds, bool runActions) {
 //--------------------------------------------------------------------------------------------------
 void lib840A968C_gt_PlayerMarineDies_Init () {
     lib840A968C_gt_PlayerMarineDies = TriggerCreate("lib840A968C_gt_PlayerMarineDies_Func");
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Portrait Camera Center
+//--------------------------------------------------------------------------------------------------
+bool lib840A968C_gt_PortraitCameraCenter_Func (bool testConds, bool runActions) {
+    int auto319B2F30_ae;
+    int auto319B2F30_ai;
+
+    // Variable Declarations
+    int lv_player;
+
+    // Variable Initialization
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((EventDialogControl() == lib1E3F036D_gv_topPlayerStatus.lv_playerPortrait.lv_portraitImage)) {
+        CameraPan(EventPlayer(), UnitGetPosition(lib840A968C_gf_GetMarine(EventPlayer())), 0.25, -1, 10.0, false);
+    }
+    else {
+        auto319B2F30_ae = lib1E3F036D_gv_numberofPlayers;
+        auto319B2F30_ai = 1;
+        lv_player = lib1E3F036D_gv_indexBaseValue;
+        for ( ; ( (auto319B2F30_ai >= 0 && lv_player <= auto319B2F30_ae) || (auto319B2F30_ai <= 0 && lv_player >= auto319B2F30_ae) ) ; lv_player += auto319B2F30_ai ) {
+            if ((EventDialogControl() == lib1E3F036D_gv_playerStatus[lv_player].lv_playerPortrait.lv_portraitImage)) {
+                libNtve_gf_SendActorMessageToUnit(lib840A968C_gf_GetMarine(lv_player), "HaloSetColor 0,255,0");
+                libNtve_gf_SendActorMessageToUnit(lib840A968C_gf_GetMarine(lv_player), "HaloStart");
+                Wait(5.0, c_timeGame);
+                libNtve_gf_SendActorMessageToUnit(lib840A968C_gf_GetMarine(lv_player), "HaloStop");
+                break;
+            }
+        }
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib840A968C_gt_PortraitCameraCenter_Init () {
+    lib840A968C_gt_PortraitCameraCenter = TriggerCreate("lib840A968C_gt_PortraitCameraCenter_Func");
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Hookup Portrait Image for Camera Focus
+//--------------------------------------------------------------------------------------------------
+bool lib840A968C_gt_HookupPortraitImageforCameraFocus_Func (bool testConds, bool runActions) {
+    int auto84015EFE_ae;
+    int auto84015EFE_ai;
+
+    // Variable Declarations
+    int lv_player;
+
+    // Variable Initialization
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TriggerAddEventDialogControl(lib840A968C_gt_PortraitCameraCenter, c_playerAny, lib1E3F036D_gv_topPlayerStatus.lv_playerPortrait.lv_portraitImage, c_triggerControlEventTypeClick);
+    auto84015EFE_ae = lib1E3F036D_gv_numberofPlayers;
+    auto84015EFE_ai = 1;
+    lv_player = lib1E3F036D_gv_indexBaseValue;
+    for ( ; ( (auto84015EFE_ai >= 0 && lv_player <= auto84015EFE_ae) || (auto84015EFE_ai <= 0 && lv_player >= auto84015EFE_ae) ) ; lv_player += auto84015EFE_ai ) {
+        TriggerAddEventDialogControl(lib840A968C_gt_PortraitCameraCenter, c_playerAny, lib1E3F036D_gv_playerStatus[lv_player].lv_playerPortrait.lv_portraitImage, c_triggerControlEventTypeClick);
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib840A968C_gt_HookupPortraitImageforCameraFocus_Init () {
+    lib840A968C_gt_HookupPortraitImageforCameraFocus = TriggerCreate("lib840A968C_gt_HookupPortraitImageforCameraFocus_Func");
+    TriggerAddEventMapInit(lib840A968C_gt_HookupPortraitImageforCameraFocus);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Periodic UI Update
+//--------------------------------------------------------------------------------------------------
+bool lib840A968C_gt_PeriodicUIUpdate_Func (bool testConds, bool runActions) {
+    playergroup autoF2256345_g;
+    int autoF2256345_p;
+
+    // Variable Declarations
+    int lv_player;
+
+    // Variable Initialization
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    while (true) {
+        Wait(1.0, c_timeGame);
+        autoF2256345_g = lib840A968C_gf_GetMarineSquadPlayers(); 
+        autoF2256345_p = 1;
+        for ( ; autoF2256345_p <= PlayerGroupCount(autoF2256345_g) ; autoF2256345_p += BoolToInt(lv_player == PlayerGroupPlayer(autoF2256345_g, autoF2256345_p)) ) {
+            lv_player = PlayerGroupPlayer(autoF2256345_g, autoF2256345_p);
+            TextExpressionSetToken("Param/Expression/lib_840A968C_28BE6BBF", "Experience", IntToText(lib840A968C_gv_players[lv_player].lv_totalExperience));
+            TextExpressionSetToken("Param/Expression/lib_840A968C_28BE6BBF", "Rating", FixedToText(lib840A968C_gv_players[lv_player].lv_rating, c_fixedPrecisionAny));
+            TextExpressionSetToken("Param/Expression/lib_840A968C_28BE6BBF", "Games", IntToText(lib840A968C_gv_players[lv_player].lv_gamesPlayed));
+            lib1E3F036D_gf_UpdateRankIconTooltip(lv_player, TextExpressionAssemble("Param/Expression/lib_840A968C_28BE6BBF"));
+            TextExpressionSetToken("Param/Expression/lib_840A968C_2CC02426", "TalentTree1Name", UserDataGetText("TalentTree", UserDataGetUserInstance("TalentTrees", UserDataGetUserInstance("Classes", libC50FD636_gv_marines[lv_player].lv_class, "Talent Tree", 1), "Trees", 2), "Header", 1));
+            TextExpressionSetToken("Param/Expression/lib_840A968C_2CC02426", "TalentTree1Points", IntToText((libC50FD636_gv_talentLevels[lv_player][1][1] + libC50FD636_gv_talentLevels[lv_player][1][2] + libC50FD636_gv_talentLevels[lv_player][1][3] + libC50FD636_gv_talentLevels[lv_player][1][4] + libC50FD636_gv_talentLevels[lv_player][1][5] + libC50FD636_gv_talentLevels[lv_player][1][6])));
+            TextExpressionSetToken("Param/Expression/lib_840A968C_2CC02426", "TalentTree2Name", UserDataGetText("TalentTree", UserDataGetUserInstance("TalentTrees", UserDataGetUserInstance("Classes", libC50FD636_gv_marines[lv_player].lv_class, "Talent Tree", 1), "Trees", 1), "Header", 1));
+            lib1E3F036D_gf_UpdateClassIconTooltip(lv_player, TextExpressionAssemble("Param/Expression/lib_840A968C_2CC02426"));
+            TextExpressionSetToken("Param/Expression/lib_840A968C_BC359D66", "Hits", IntToText(lib840A968C_gv_players[lv_player].lv_currentGameStats.lv_hits));
+            TextExpressionSetToken("Param/Expression/lib_840A968C_BC359D66", "Kills", IntToText(PlayerScoreValueGetAsInt(lv_player, "UnitsKilledCount")));
+            TextExpressionSetToken("Param/Expression/lib_840A968C_BC359D66", "DamageTaken", IntToText(lib840A968C_gv_players[lv_player].lv_currentGameStats.lv_damageTaken));
+            TextExpressionSetToken("Param/Expression/lib_840A968C_BC359D66", "SC2ID", StringToText(PlayerHandle(lv_player)));
+            lib1E3F036D_gf_UpdatePortraitTooltip(lv_player, TextExpressionAssemble("Param/Expression/lib_840A968C_BC359D66"));
+        }
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib840A968C_gt_PeriodicUIUpdate_Init () {
+    lib840A968C_gt_PeriodicUIUpdate = TriggerCreate("lib840A968C_gt_PeriodicUIUpdate_Func");
+    TriggerAddEventTimer(lib840A968C_gt_PeriodicUIUpdate, lib840A968C_gv_classSelectionTimer);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -3235,6 +3359,9 @@ void lib840A968C_InitTriggers () {
     lib840A968C_gt_TeamLocation_Init();
     lib840A968C_gt_HookupTeamLocationButton_Init();
     lib840A968C_gt_PlayerMarineDies_Init();
+    lib840A968C_gt_PortraitCameraCenter_Init();
+    lib840A968C_gt_HookupPortraitImageforCameraFocus_Init();
+    lib840A968C_gt_PeriodicUIUpdate_Init();
     lib840A968C_gt_BankSave_Init();
     lib840A968C_gt_RatingLossfromLives_Init();
     lib840A968C_gt_RatingLossfromFriendlyFire_Init();

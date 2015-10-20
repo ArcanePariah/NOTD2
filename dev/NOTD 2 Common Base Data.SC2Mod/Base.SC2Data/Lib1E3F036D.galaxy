@@ -48,9 +48,9 @@ void lib1E3F036D_gf_SetPlayerFrame (int lp_player, unit lp_playerMarine, string 
     // Implementation
     libNtve_gf_SetDialogItemUnit(lib1E3F036D_gv_topPlayerStatus.lv_playerStatusFrame, lp_playerMarine, PlayerGroupSingle(lp_player));
     libNtve_gf_SetDialogItemUnit(lib1E3F036D_gv_playerStatus[lp_player].lv_playerStatusFrame, lp_playerMarine, PlayerGroupAll());
-    lib1E3F036D_gf_SetPlayerPortrait(lp_player, lp_playerPortrait);
     libNtve_gf_SetDialogItemImage(lib1E3F036D_gv_topPlayerStatus.lv_playerSidebar.lv_classIcon, lp_classIcon, PlayerGroupSingle(lp_player));
     libNtve_gf_SetDialogItemImage(lib1E3F036D_gv_playerStatus[lp_player].lv_playerSidebar.lv_classIcon, lp_classIcon, PlayerGroupAll());
+    lib1E3F036D_gf_SetPlayerPortrait(lp_player, lp_playerPortrait);
 }
 
 void lib1E3F036D_gf_SetPlayerRank (int lp_player, string lp_playerRank) {
@@ -68,6 +68,24 @@ void lib1E3F036D_gf_SetPlayerPortrait (int lp_player, string lp_playerPortrait) 
 void lib1E3F036D_gf_ShowHideTeamUI (bool lp_visible) {
     // Implementation
     DialogControlSetVisible(lib1E3F036D_gv_teamUIFrame, PlayerGroupAll(), lp_visible);
+}
+
+void lib1E3F036D_gf_UpdateRankIconTooltip (int lp_player, text lp_tooltipText) {
+    // Implementation
+    libNtve_gf_SetDialogItemTooltip(lib1E3F036D_gv_topPlayerStatus.lv_playerSidebar.lv_rankIcon, lp_tooltipText, PlayerGroupSingle(lp_player));
+    libNtve_gf_SetDialogItemTooltip(lib1E3F036D_gv_playerStatus[lp_player].lv_playerSidebar.lv_rankIcon, lp_tooltipText, PlayerGroupAll());
+}
+
+void lib1E3F036D_gf_UpdateClassIconTooltip (int lp_player, text lp_tooltipText) {
+    // Implementation
+    libNtve_gf_SetDialogItemTooltip(lib1E3F036D_gv_topPlayerStatus.lv_playerSidebar.lv_classIcon, lp_tooltipText, PlayerGroupSingle(lp_player));
+    libNtve_gf_SetDialogItemTooltip(lib1E3F036D_gv_playerStatus[lp_player].lv_playerSidebar.lv_classIcon, lp_tooltipText, PlayerGroupAll());
+}
+
+void lib1E3F036D_gf_UpdatePortraitTooltip (int lp_player, text lp_tooltipText) {
+    // Implementation
+    libNtve_gf_SetDialogItemTooltip(lib1E3F036D_gv_topPlayerStatus.lv_playerPortrait.lv_portraitImage, lp_tooltipText, PlayerGroupSingle(lp_player));
+    libNtve_gf_SetDialogItemTooltip(lib1E3F036D_gv_playerStatus[lp_player].lv_playerPortrait.lv_portraitImage, lp_tooltipText, PlayerGroupAll());
 }
 
 void lib1E3F036D_gf_SetGameDifficultyforPlayerGroup (playergroup lp_players, int lp_difficulty) {

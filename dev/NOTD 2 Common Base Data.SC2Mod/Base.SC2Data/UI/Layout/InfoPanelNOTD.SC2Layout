@@ -133,24 +133,23 @@
                 <Frame type="InfoPanel" name="InfoPanel">
                     <RenderPriority val="300"/>
                     <Height val="250"/>
-                    <Width val="410"/>
-                    <Anchor side="Left" relative="$parent/MinimapPanel" pos="Max" offset="-10"/>
+                    <Anchor side="Left" relative="$parent/MinimapPanel" pos="Max" offset="-20"/>
                     <Anchor side="Bottom" relative="$parent" pos="Max" offset="0"/>
-                    <Anchor side="Right" relative="$this" pos="Max" offset="0"/>
+                    <Anchor side="Right" relative="$this" pos="Min" offset="380"/>
 
                     <Frame type="Image" name="BackgroundImage">
                         <RenderPriority val="399"/>
-                        <Anchor side="Left" relative="$parent" pos="Min" offset="-8"/>
-                        <Anchor side="Top" relative="$parent" pos="Min" offset="20"/>
+                        <Anchor side="Left" relative="$parent" pos="Min" offset="0"/>
+                        <Anchor side="Top" relative="$parent" pos="Min" offset="-1"/>
                         <Anchor side="Bottom" relative="$parent" pos="Max" offset="0"/>
-                        <Anchor side="Right" relative="$parent" pos="Max" offset="-38"/>
-                        <Texture val="UI\UI-Info-Panel_background.dds"/>
+                        <Anchor side="Right" relative="$parent" pos="Max" offset="8"/>
+                        <Texture val="UI\ui_infopanel_background.dds"/>
                     </Frame>
 
                     <Frame type="Image" name="BorderImage">
                         <RenderPriority val="400"/>
                         <Anchor relative="$parent"/>
-                        <Texture val="UI\UI-Info-Panel_border.dds"/>
+                        <Texture val="UI\ui_infopanel_border.dds"/>
                     </Frame>
 
                     <Frame type="Frame" name="UnitPanel">
@@ -159,7 +158,7 @@
                         </Frame>
 
                         <Frame type="UnitWireframe" name="UnitWireframe">
-                            <Anchor side="Top" relative="$parent" pos="Mid" offset="-50"/>
+                            <Anchor side="Top" relative="$parent" pos="Mid" offset="-25"/>
                             <Anchor side="Left" relative="$parent" pos="Min" offset="67"/>
                             <Width val="60"/>
                             <Height val="60"/>
@@ -199,14 +198,16 @@
                         </Frame>
 
                         <Frame type="Label" name="ExperienceLabel">
-                            <Anchor side="Top" relative="$parent/ExperienceBar" pos="Min" offset="2"/>
+                            <Anchor side="Top" relative="$parent/ExperienceBar" pos="Min" offset="1"/>
                             <Anchor side="Left" relative="$parent/ExperienceBar" pos="Min" offset="0"/>
                             <Anchor side="Right" relative="$parent/ExperienceBar" pos="Max" offset="0"/>
                         </Frame>
 
                         <Frame type="EquipmentIcon" name="WeaponIcon">
-                            <Anchor side="Top" relative="$parent/ArmorIcon" pos="Min" offset="40"/>
-                            <Anchor side="Left" relative="$parent/ArmorIcon" pos="Min" offset="0"/>
+                            <Anchor side="Top" relative="$parent/$parent/UnitPanel/UnitWireframe" pos="Min" offset="5"/>
+                            <Anchor side="Left" relative="$parent" pos="Mid" offset="0"/>
+							<LayerCount val="3"/>
+							<LayerVisible val="false" layer="2"/>
                         </Frame>
 
                         <Frame type="Label" name="WeaponLabel">
@@ -215,8 +216,8 @@
                         </Frame>
 
                         <Frame type="EquipmentIcon" name="ArmorIcon">
-                            <Anchor side="Top" relative="$parent/$parent/UnitPanel/UnitWireframe" pos="Min" offset="0"/>
-                            <Anchor side="Left" relative="$parent" pos="Mid" offset="0"/>
+							<Anchor side="Top" relative="$parent/WeaponIcon" pos="Min" offset="40"/>
+                            <Anchor side="Left" relative="$parent/WeaponIcon" pos="Min" offset="0"/>
                         </Frame>
 
                         <Frame type="Label" name="ArmorLabel">
@@ -224,6 +225,43 @@
                             <Anchor side="Bottom" relative="$parent/ArmorIcon" pos="Max" offset="0"/>
                             <Anchor side="Left" relative="$parent/ArmorIcon" pos="Max" offset="4"/>
                         </Frame>
+						
+						<Frame type ="Image" name = "LivesIcon" >
+							<LayerCount val="2"/>
+							<AcceptsMouse val = "True" />
+							<TextureType val="Normal" layer="0"/>
+							<Texture val = "btn-custom-terran-heart.dds" layer = "0" />	  
+							<Tooltip val = "On taking fatal damage, become invulnerable for 5 seconds and restore 40% health." />
+							<TooltipAnchorPosition val="TopRight"/>
+							<TextureType val="Normal" layer="1"/>
+							<TextureCoords top="0.0" left="0.0" bottom="0.125" right="0.0625" layer="1"/>
+							<Texture val="@UI/ButtonCooldown" layer="1"/>
+							<AnimColumns val="16" layer="1"/>
+							<AnimCount val="128" layer="1"/>
+							<Animating val="True" layer="1"/>
+							<ManagedAnim val="False" layer="1"/>
+							<LayerVisible val="False" layer="1" />
+							<Width val="32"/>
+							<Height val="32"/>
+							<Frame type="Label" name="LevelLabel">
+								<RenderPriority val="650"/>
+								<Style val="EquipmentIconLevel"/>
+								<Anchor side="Bottom" relative="$parent" pos="Max" offset="-3"/>
+								<Anchor side="Right" relative="$parent" pos="Max" offset="-8"/>
+							</Frame>
+							
+							<Frame type="Image" name="EquipmentIconBorder">
+								<RenderPriority val="600"/>
+								<Anchor relative="$parent"/>
+								<LayerCount val="1"/>
+								<TextureType val="Normal" layer="0"/>
+								<LayerColor val="##StandardButtonBorder" layer="0"/>
+								<Texture val="@@UI/ButtonBorderEquipment" layer="0"/>
+							</Frame>
+
+							<Anchor side="Top" relative="$parent/ArmorIcon" pos="Min" offset="40"/>
+                            <Anchor side="Left" relative="$parent/ArmorIcon" pos="Min" offset="0"/>
+						</Frame>
 
                         <Frame type="Label" name="TypeLabel">
                             <Anchor side="Top" relative="$parent" pos="Max" offset="-30"/>
@@ -231,21 +269,22 @@
                         </Frame>
 
                         <Frame type="Label" name="NameLabel">
-                            <Anchor side="Top" relative="$parent" pos="Min" offset="0"/>
+                            <Anchor side="Top" relative="$parent" pos="Min" offset="22"/>
                             <Anchor side="Left" relative="$parent" pos="Mid" offset="0"/>
                             <Anchor side="Right" relative="$parent" pos="Mid" offset="0"/>
                             <Width val="160"/>
-                            <Height val="28"/>
+                            <Height val="31"/>
                         </Frame>
-
+						
                         <Frame type="Label" name="AttributeLabel1">
-                            <Anchor side="Top" relative="$parent/TypeLabel" pos="Max" offset="-45"/>
-                            <Anchor side="Left" relative="$parent" pos="Min" offset="45"/>
+                            <Anchor side="Top" relative="$parent/LivesIcon" pos="Min" offset="0"/>
+                            <Anchor side="Bottom" relative="$parent/LivesIcon" pos="Max" offset="0"/>
+                            <Anchor side="Left" relative="$parent/LivesIcon" pos="Max" offset="4"/>
                         </Frame>
-
+                        
                         <Frame type="Label" name="AttributeLabel2">
-                            <Anchor side="Top" relative="$parent/AttributeLabel1" pos="Min" offset="0"/>
-                            <Anchor side="Left" relative="$parent/AttributeLabel1" pos="Max" offset="4"/>
+							<Anchor side="Top" relative="$parent/TypeLabel" pos="Max" offset="-45"/>
+							<Anchor side="Left" relative="$parent" pos="Min" offset="45"/>
                         </Frame>
 
                         <Frame type="Label" name="AttributeLabel3">
