@@ -1403,15 +1403,9 @@
         <EditorCategories value=""/>
     </CActorRange>
     <CActorUnit id="Peacekeeper" parent="BaseMarineActor" unitName="Peacekeeper">
-        <On index="61" Terms="ActorCreation" Send="AttachModel NPCTorso BasicTorso {Hardpoint 0}"/>
-        <On index="63" Terms="ActorCreation" Send="AttachModel NPCRightShoulder BasicShoulderRight {Hardpoint 8}"/>
-        <On index="77" Terms="AttachModel" Target="_ArmorCustom" Send="Signal Peacekeeper"/>
-        <On index="78" removed="1"/>
-        <On index="79" removed="1"/>
-        <On index="80" removed="1"/>
-        <On index="81" removed="1"/>
-        <On index="82" removed="1"/>
-        <Macros index="3" value="AntiMaterialRifleMacro"/>
+        <On index="65" Terms="ActorCreation" Send="AttachModel NPCTorso BasicTorso {Hardpoint 0}"/>
+        <On index="67" Terms="ActorCreation" Send="AttachModel NPCRightShoulder BasicShoulderRight {Hardpoint 8}"/>
+        <On Terms="AttachModel" Target="_ArmorCustom" Send="Signal Peacekeeper"/>
         <Macros index="4" value="HeavyMachineGunMacro"/>
         <Macros value="WeaponAnimationGroups"/>
     </CActorUnit>
