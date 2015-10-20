@@ -44,8 +44,8 @@
 
                 <Frame type="MissionTimePanel" name="MissionTimePanel">
                     <Anchor side="Bottom" relative="$parent/MinimapPanel" pos="Min" offset="45"/>
-                    <Anchor side="Left" relative="$parent" pos="Min" offset="15"/>
-					<Width val = "108"/>
+                    <Anchor side="Left" relative="$parent" pos="Min" offset="0"/>
+					<Width val = "126"/>
 					<Frame type = "Label" name = "TimeLabel">
 						<Anchor side = "Top" relative = "$parent" pos = "Min" offset = "8" />
 					</Frame>
@@ -80,7 +80,10 @@
                 </Frame>
 
                 <Frame type="Image" name="CommandBackgroundImage">
-                    <Anchor relative="$parent/CommandBorderImage" offset="0"/>
+                    <Anchor side="Top" relative="$parent/CommandBorderImage" pos="Min" offset="-1"/>
+                    <Anchor side="Left" relative="$parent/CommandBorderImage" pos="Min" offset="-0"/>
+                    <Anchor side="Right" relative="$parent/CommandBorderImage" pos="Max" offset="0"/>
+                    <Anchor side="Bottom" relative="$parent/CommandBorderImage" pos="Max" offset="0"/>
                     <RenderPriority val="449"/>
                     <Texture val="UI\ui_commandcard_background.dds"/>
                 </Frame>
