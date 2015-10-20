@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <Desc>
     <Frame type="Frame" name="GameUI\UIContainer\FullscreenUpperContainer\MenuBarConsoleAnchor" file="GameUI">
-		<Anchor side="Bottom" relative="$parent/$parent/ConsoleUIContainer/CommandBorderImage" pos="Min" offset="7"/>
+		<Anchor side="Bottom" relative="$parent/$parent/ConsoleUIContainer/CommandBorderImage" pos="Min" offset="12"/>
         <Width val="330"/>
         <Height val="60"/>
     </Frame>
@@ -42,7 +42,7 @@
 			</Frame>
 			
 			<Frame type="Image" name="HoverImage">
-				<Texture val="UI/ui_menu_friendbtn.dds" layer="0"/>
+				<Texture val="UI/ui_menu_friendbtn_hover.dds" layer="0"/>
 				<StateCount val="3"/>
 			</Frame>
         </Frame>
@@ -58,7 +58,7 @@
 			</Frame>
 
 			<Frame type="Image" name="HoverImage">
-				<Texture val="UI/ui_menu_helpbtn.dds" layer="0"/>
+				<Texture val="UI/ui_menu_helpbtn_hover.dds" layer="0"/>
 				<StateCount val="3"/>
 			</Frame>
         </Frame>
@@ -106,7 +106,7 @@
 
         <Frame type="Button" name="NightVisionButton">
             <NormalImage val="NormalImage"/>
-            <HoverImage val="NormalImage"/>
+            <HoverImage val="HoverImage"/>
             <Height val="60"/>
             <Width val="46"/>
             <ClickSound val="@UI_MiniMapPanelButtonSelect"/>
@@ -120,6 +120,13 @@
                 <Texture val="UI/ui_menu_nightvisionbtn.dds"/>
 				<StateCount val = "3"/>
             </Frame>
+			<Frame type="Image" name="HoverImage">
+                <RenderPriority val="500"/>
+                <Anchor relative="$parent" offset="0"/>
+                <Texture val="UI/ui_menu_nightvisionbtn_hover.dds"/>
+				<StateCount val = "3"/>
+            </Frame>
         </Frame>
+		
     </Frame>
 </Desc>
