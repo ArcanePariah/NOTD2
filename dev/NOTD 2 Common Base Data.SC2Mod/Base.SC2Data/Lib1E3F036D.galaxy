@@ -22,6 +22,9 @@ void lib1E3F036D_InitVariables () {
 
     lib1E3F036D_InitVariables_completed = true;
 
+    lib1E3F036D_gv_bossBar.lv_bossBarFrame = c_invalidDialogControlId;
+    lib1E3F036D_gv_bossBar.lv_bossBarStatusFrame = c_invalidDialogControlId;
+    lib1E3F036D_gv_bossBar.lv_bossBarNameLabel = c_invalidDialogControlId;
     lib1E3F036D_gv_teamUIDialog = c_invalidDialogId;
     lib1E3F036D_gv_teamUIFrame = c_invalidDialogControlId;
     for (init_i = 0; init_i <= lib1E3F036D_gv_numberofPlayers; init_i += 1) {
@@ -44,6 +47,12 @@ void lib1E3F036D_InitVariables () {
 
 // Presets
 // Functions
+void lib1E3F036D_gf_SetBossforBossBar (unit lp_boss) {
+    // Implementation
+    libNtve_gf_SetDialogItemUnit(lib1E3F036D_gv_bossBar.lv_bossBarStatusFrame, lp_boss, PlayerGroupAll());
+    libNtve_gf_SetDialogItemText(lib1E3F036D_gv_bossBar.lv_bossBarNameLabel, UnitGetName(lp_boss), PlayerGroupAll());
+}
+
 void lib1E3F036D_gf_SetPlayerFrame (int lp_player, unit lp_playerMarine, string lp_playerPortrait, string lp_classIcon) {
     // Implementation
     libNtve_gf_SetDialogItemUnit(lib1E3F036D_gv_topPlayerStatus.lv_playerStatusFrame, lp_playerMarine, PlayerGroupSingle(lp_player));
@@ -191,6 +200,33 @@ string lib1E3F036D_gf_UnitTypeDifficulty (string lp_recruit, string lp_normal, s
 
 // Triggers
 //--------------------------------------------------------------------------------------------------
+// Trigger: Boss Bar Hookup
+//--------------------------------------------------------------------------------------------------
+bool lib1E3F036D_gt_BossBarHookup_Func (bool testConds, bool runActions) {
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    DialogControlHookupStandard(c_triggerControlTypePanel, "UIContainer/FullscreenUpperContainer/BossBar");
+    lib1E3F036D_gv_bossBar.lv_bossBarFrame = DialogControlLastCreated();
+    DialogControlHookup(lib1E3F036D_gv_bossBar.lv_bossBarFrame, c_triggerControlTypeUnitStatus, "BossStatusFrame");
+    lib1E3F036D_gv_bossBar.lv_bossBarStatusFrame = DialogControlLastCreated();
+    DialogControlHookup(lib1E3F036D_gv_bossBar.lv_bossBarFrame, c_triggerControlTypeImage, "BossNameBackgroundImage");
+    DialogControlHookup(DialogControlLastCreated(), c_triggerControlTypeLabel, "BossLabel");
+    lib1E3F036D_gv_bossBar.lv_bossBarNameLabel = DialogControlLastCreated();
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "HighTemplar", 0, 2, RegionGetBoundsMin(RegionEntireMap()));
+    lib1E3F036D_gf_SetBossforBossBar(UnitLastCreated());
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib1E3F036D_gt_BossBarHookup_Init () {
+    lib1E3F036D_gt_BossBarHookup = TriggerCreate("lib1E3F036D_gt_BossBarHookup_Func");
+    TriggerAddEventMapInit(lib1E3F036D_gt_BossBarHookup);
+}
+
+//--------------------------------------------------------------------------------------------------
 // Trigger: Construct Team UI
 //--------------------------------------------------------------------------------------------------
 bool lib1E3F036D_gt_ConstructTeamUI_Func (bool testConds, bool runActions) {
@@ -258,6 +294,7 @@ void lib1E3F036D_gt_ConstructTeamUI_Init () {
 }
 
 void lib1E3F036D_InitTriggers () {
+    lib1E3F036D_gt_BossBarHookup_Init();
     lib1E3F036D_gt_ConstructTeamUI_Init();
 }
 
