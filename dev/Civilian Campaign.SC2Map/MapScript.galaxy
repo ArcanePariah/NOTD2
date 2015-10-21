@@ -3121,10 +3121,7 @@ bool gt_TeamReachesReactor_Func (bool testConds, bool runActions) {
     PingDestroy(gv_reactorPing);
     gf_ReactorBriefing();
     TriggerSendEvent(gv_sarbusSpawnSignal);
-    libNtve_gf_DisplayBossBar(1, "btn-upgrade-terran-behemothreactor-dark.dds", StringExternal("Param/Value/B3206B88"), 100, PlayerGroupAll());
-    libNtve_gf_SetBossBarBoss(1, gv_reactor, true);
-    libNtve_gf_SetBossBarRace(1, libNtve_ge_BossBarRace_Terran, true);
-
+    lib1E3F036D_gf_StartBossFight(gv_reactor);
     return true;
 }
 
@@ -3184,7 +3181,7 @@ bool gt_SarbusDeath_Func (bool testConds, bool runActions) {
 
     TriggerEnable(TriggerGetCurrent(), false);
     PingDestroy(gv_sarbusPing);
-    libNtve_gf_ShowHideBossBar(false, 1);
+    lib1E3F036D_gf_EndBossFight();
     lib840A968C_gf_MissionEnd(c_objectiveStateCompleted, gv_restorePowerMissionToken);
     return true;
 }
@@ -3548,6 +3545,7 @@ bool gt_TarionSpawn_Func (bool testConds, bool runActions) {
 
     libNtve_gf_CreateUnitsWithDefaultFacing(1, "Tarion", 0, lib1E3F036D_gv_zombiePlayer, PointFromId(2318));
     gv_tarion = UnitLastCreated();
+    lib1E3F036D_gf_StartBossFight(gv_tarion);
     TriggerEnable(gt_TarionDeath, true);
     AIAttackWaveUseUnit(lib1E3F036D_gv_zombiePlayer, gv_tarion);
     AIAttackWaveSetTargetUnitGroup(lib1E3F036D_gv_zombiePlayer, lib840A968C_gf_GetMarineGroup());
@@ -3580,6 +3578,7 @@ bool gt_TarionDeath_Func (bool testConds, bool runActions) {
 
     TriggerEnable(TriggerGetCurrent(), false);
     TriggerEnable(gt_TarionHordes, false);
+    lib1E3F036D_gf_EndBossFight();
     PingDestroy(gv_tarionPing);
     lib840A968C_gf_AwardTeamMarineXP(150);
     return true;
@@ -3652,16 +3651,17 @@ bool gt_RentodusSpawn_Func (bool testConds, bool runActions) {
         return true;
     }
 
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "Rentodus", 0, lib1E3F036D_gv_zombiePlayer, RegionRandomPoint(RegionFromId(16)));
+    gv_rentodus = UnitLastCreated();
+    lib1E3F036D_gf_StartBossFight(gv_rentodus);
+    AIAttackWaveUseUnit(lib1E3F036D_gv_zombiePlayer, gv_rentodus);
+    AIAttackWaveSetTargetUnitGroup(lib1E3F036D_gv_zombiePlayer, lib840A968C_gf_GetMarineGroup());
+    AIAttackWaveSend(lib1E3F036D_gv_zombiePlayer, 0, false);
     lv_superHeavies[1] = "Behemoth";
     lv_superHeavies[2] = "Blitzer";
     lv_superHeavies[3] = "Bloodseeker";
     lv_superHeavies[4] = "Bonebreaker";
     lv_superHeavies[5] = "Stonewall";
-    libNtve_gf_CreateUnitsWithDefaultFacing(1, "Rentodus", 0, lib1E3F036D_gv_zombiePlayer, RegionRandomPoint(RegionFromId(16)));
-    gv_rentodus = UnitLastCreated();
-    AIAttackWaveUseUnit(lib1E3F036D_gv_zombiePlayer, gv_rentodus);
-    AIAttackWaveSetTargetUnitGroup(lib1E3F036D_gv_zombiePlayer, lib840A968C_gf_GetMarineGroup());
-    AIAttackWaveSend(lib1E3F036D_gv_zombiePlayer, 0, false);
     Wait(1.0, c_timeGame);
     IntLoopBegin(1, lv_superHeavyCount);
     for ( ; !IntLoopDone() ; IntLoopStep() ) {
@@ -3707,6 +3707,7 @@ bool gt_RentodusDeath_Func (bool testConds, bool runActions) {
 
     TriggerEnable(TriggerGetCurrent(), false);
     TriggerEnable(gt_RentodusMobs, false);
+    lib1E3F036D_gf_EndBossFight();
     UnitGroupLoopBegin(lib840A968C_gf_GetMarineGroup());
     for ( ; !UnitGroupLoopDone() ; UnitGroupLoopStep() ) {
         libNtve_gf_MakeUnitInvulnerable(UnitGroupLoopCurrent(), true);
