@@ -9,7 +9,7 @@ Alert=Error
 id=CommandCenter
 path=Assets\Textures\.dds
 asset=Wireframe-Terran-##id##,btn-building-terran-commandcenter,btn-upgrade-protoss-shieldslevel0,btn-upgrade-terran-buildingarmor,ui_ingame_workercount_bg,decal_terran_0002_01
-Actor=BuildingCrushQueryResponse,BuildingTerrainFlatten,BuildingTerrainFlattenEditor,BuildingTerrainFlattenInstant,CliffLocalSelection,CliffPreSelection,##id##Build,##id##MorphDeath,##id##Reactor,##id##ReactorDeath,DeadAnimationMacro,EditorSelection,FlyerHelperSplat,FlyerShadow,GroundLocalFlashingSelection,GroundLocalSelection,GroundPreSelection,GroundShadow,GroundSyncFlashingSelection,GroundSyncSelection,Infestation##id##,LabGate,LabGate2,ModelPretargetGround,PlaceholderModel,PlacementModel,PlayerLogoDoodadList,PortraitActor,QueueAnim,Snapshot,SoundEmitter,TerrainMgr,TerrainSquibAnimations,TerrainSquibHarnessContinuous,UnitDeathModel,UnitDeathModelUnscaled,UnitDeathSound,UnitDeathVoice,UnitFootprint,UnitSound
+Actor=BuildingCrushQueryResponse,BuildingTerrainFlatten,BuildingTerrainFlattenEditor,BuildingTerrainFlattenInstant,CliffLocalSelection,CliffPreSelection,##id##Build,##id##MorphDeath,##id##Reactor,##id##ReactorDeath,DeadAnimationMacro,EditorSelection,FlyerHelperSplat,FlyerShadow,GroundLocalFlashingSelection,GroundLocalSelection,GroundLocalSelectionObserver,GroundPreSelection,GroundPreSelectionObserver,GroundShadow,GroundSyncFlashingSelection,GroundSyncSelection,Infestation##id##,LabGate,LabGate2,ModelPretargetGround,PlaceholderModel,PlacementModel,PlayerLogoDoodadList,PortraitActor,PrimaryGroundSyncSelectionObserver,QueueAnim,SecondaryGroundSyncSelectionObserver,Snapshot,SoundEmitter,TerrainMgr,TerrainSquibAnimations,TerrainSquibHarnessContinuous,UnitDeathModel,UnitDeathModelUnscaled,UnitDeathSound,UnitDeathVoice,UnitFootprint,UnitSound
 Model=AdjutantPortrait,##id##,##id##Death,##id##DeathLow,##id##FlyDeath,##id##Placement,Invisible,OrbitalCommandDeath,OrbitalCommandFlyDeath,ProtossSmallUnitDeathLow,TerranLargeBuildingDeath,TerranSmallUnitDeathLow,WaterRippleMassive3,ZergSmallUnitDeathLow
 PhysicsMaterial=Water
 Sound=##id##_Ambience,##id##_Movement2,##id##_Ready,##id##_What,Terran_BuildingPlacement,Terran_ConstructionWhat
@@ -76,22 +76,12 @@ Actor=LabGate,LabGate2,SoundEmitter,TerrainMgr
 Model=UmojanLabCatwalkSection45Right
 Sound=Doodad_##id##
 
-[Light]
-id=BrightShit
-Actor=LabGate,LabGate2,TerrainMgr
-id=CustomLight
-Actor=LabGate,LabGate2,TerrainMgr
-id=NOTD2Flashlight
-Actor=LabGate,LabGate2,TerrainMgr
-id=NOTD2Regular
-Actor=LabGate,LabGate2,TerrainMgr
-
 [Model]
 id=CommandCenter
-0=Assets\Buildings\Terran\##id##Ex1\##id##Ex1.m3
+asset=Assets\Buildings\Terran\##id##Ex1\##id##Ex1.m3
 Actor=LabGate,LabGate2,TerrainMgr
 id=Starport
-0=Assets\Buildings\Terran\##id##Ex1\##id##Ex1.m3
+asset=Assets\Buildings\Terran\##id##Ex1\##id##Ex1.m3
 Actor=LabGate,LabGate2,TerrainMgr
 id=KorhalBuilding
 path=Assets\Doodads\##id##\.m3
@@ -107,24 +97,24 @@ path=Assets\Doodads\##id##\.m3
 9=##id##_09
 Actor=LabGate,LabGate2,TerrainMgr
 id=Bunker2
-0=Assets\Buildings\Terran\BunkerEx1\BunkerEx1.m3
+asset=Assets\Buildings\Terran\BunkerEx1\BunkerEx1.m3
 Actor=LabGate,LabGate2,TerrainMgr
 id=Bunker3
-0=Assets\Buildings\Terran\BunkerEx1\BunkerEx1.m3
+asset=Assets\Buildings\Terran\BunkerEx1\BunkerEx1.m3
 Actor=LabGate,LabGate2,TerrainMgr
 id=DockingBayGround2
-0=Assets\Doodads\DockingBayGround\DockingBayGround.m3
+asset=Assets\Doodads\DockingBayGround\DockingBayGround.m3
 Actor=LabGate,LabGate2,TerrainMgr
 id=DockingBayGround3
-0=Assets\Doodads\DockingBayGround\DockingBayGround.m3
+asset=Assets\Doodads\DockingBayGround\DockingBayGround.m3
 Actor=LabGate,LabGate2,TerrainMgr
 id=FuelBarrel
-0=Assets\Doodads\##id##\##id##.m3
+asset=Assets\Doodads\##id##\##id##.m3
 Actor=LabGate,LabGate2,TerrainMgr
 id=InfestationResearchPing
 Actor=LabGate,LabGate2,TerrainMgr
 id=InfestedDominionHousing12
-0=Assets\Buildings\Terran\InfestedDominionHousing\InfestedDominionHousing_00.m3
+asset=Assets\Buildings\Terran\InfestedDominionHousing\InfestedDominionHousing_00.m3
 Actor=LabGate,LabGate2,TerrainMgr
 Sound=Garrison01_Infest,Garrison01_Revert
 
@@ -137,7 +127,6 @@ id=NOTD2
 path=Assets\Textures\.dds
 asset=CreepEdgeNormal,creepedgenormal,creepheight,creepspecularmask
 Actor=LabGate,LabGate2,TerrainMgr
-Light=CustomLight
 TerrainTex=AiurGrass,AvernusMesh,DominionLab3,KorhalCity3,NewFolsomDirtCracked,PortZionMesh,PrisonShip5,PrisonShip8
 
 [Unit]
