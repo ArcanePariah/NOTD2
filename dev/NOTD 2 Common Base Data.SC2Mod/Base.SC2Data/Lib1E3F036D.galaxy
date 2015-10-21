@@ -1,4 +1,5 @@
 include "TriggerLibs/NativeLib"
+include "Lib09BE6BA8"
 
 include "Lib1E3F036D_h"
 
@@ -47,6 +48,17 @@ void lib1E3F036D_InitVariables () {
 
 // Presets
 // Functions
+void lib1E3F036D_gf_StartBossFight (unit lp_bossUnit) {
+    // Implementation
+    DataTableSetUnit(false, TriggerEventParamName(lib1E3F036D_gv_bossFightStart, lib1E3F036D_gv_bossUnit), lp_bossUnit);
+    TriggerSendEvent(lib1E3F036D_gv_bossFightStart);
+}
+
+void lib1E3F036D_gf_EndBossFight () {
+    // Implementation
+    TriggerSendEvent(lib1E3F036D_gv_bossFightEnd);
+}
+
 void lib1E3F036D_gf_SetBossforBossBar (unit lp_boss) {
     // Implementation
     libNtve_gf_SetDialogItemUnit(lib1E3F036D_gv_bossBar.lv_bossBarStatusFrame, lp_boss, PlayerGroupAll());
@@ -215,8 +227,6 @@ bool lib1E3F036D_gt_BossBarHookup_Func (bool testConds, bool runActions) {
     DialogControlHookup(lib1E3F036D_gv_bossBar.lv_bossBarFrame, c_triggerControlTypeImage, "BossNameBackgroundImage");
     DialogControlHookup(DialogControlLastCreated(), c_triggerControlTypeLabel, "BossLabel");
     lib1E3F036D_gv_bossBar.lv_bossBarNameLabel = DialogControlLastCreated();
-    libNtve_gf_CreateUnitsWithDefaultFacing(1, "HighTemplar", 0, 2, RegionGetBoundsMin(RegionEntireMap()));
-    lib1E3F036D_gf_SetBossforBossBar(UnitLastCreated());
     return true;
 }
 
@@ -224,6 +234,32 @@ bool lib1E3F036D_gt_BossBarHookup_Func (bool testConds, bool runActions) {
 void lib1E3F036D_gt_BossBarHookup_Init () {
     lib1E3F036D_gt_BossBarHookup = TriggerCreate("lib1E3F036D_gt_BossBarHookup_Func");
     TriggerAddEventMapInit(lib1E3F036D_gt_BossBarHookup);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Boss Bar UI
+//--------------------------------------------------------------------------------------------------
+bool lib1E3F036D_gt_BossBarUI_Func (bool testConds, bool runActions) {
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((EventGenericName() == lib1E3F036D_gv_bossFightStart)) {
+        lib1E3F036D_gf_SetBossforBossBar(DataTableGetUnit(false, TriggerEventParamName(lib1E3F036D_gv_bossFightStart, lib1E3F036D_gv_bossUnit)));
+        DialogControlSetVisible(lib1E3F036D_gv_bossBar.lv_bossBarFrame, PlayerGroupAll(), true);
+    }
+    if ((EventGenericName() == lib1E3F036D_gv_bossFightEnd)) {
+        DialogControlSetVisible(lib1E3F036D_gv_bossBar.lv_bossBarFrame, PlayerGroupAll(), false);
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib1E3F036D_gt_BossBarUI_Init () {
+    lib1E3F036D_gt_BossBarUI = TriggerCreate("lib1E3F036D_gt_BossBarUI_Func");
+    TriggerAddEventGeneric(lib1E3F036D_gt_BossBarUI, lib1E3F036D_gv_bossFightStart);
+    TriggerAddEventGeneric(lib1E3F036D_gt_BossBarUI, lib1E3F036D_gv_bossFightEnd);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -295,6 +331,7 @@ void lib1E3F036D_gt_ConstructTeamUI_Init () {
 
 void lib1E3F036D_InitTriggers () {
     lib1E3F036D_gt_BossBarHookup_Init();
+    lib1E3F036D_gt_BossBarUI_Init();
     lib1E3F036D_gt_ConstructTeamUI_Init();
 }
 

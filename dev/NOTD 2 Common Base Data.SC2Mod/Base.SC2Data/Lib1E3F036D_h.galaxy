@@ -6,6 +6,9 @@ include "TriggerLibs/natives"
 // Preset Declarations
 
 // Constants
+const string lib1E3F036D_gv_bossFightStart = "StartBossFight";
+const string lib1E3F036D_gv_bossFightEnd = "EndBossFight";
+const string lib1E3F036D_gv_bossUnit = "Boss";
 const int lib1E3F036D_gv_indexBaseValue = 1;
 const int lib1E3F036D_gv_numberofPlayers = 8;
 const int lib1E3F036D_gv_numberofProfiles = 5;
@@ -49,6 +52,8 @@ lib1E3F036D_gs_PlayerStatusUI[lib1E3F036D_gv_numberofPlayers + 1] lib1E3F036D_gv
 lib1E3F036D_gs_PlayerStatusUI lib1E3F036D_gv_topPlayerStatus;
 
 // Function Declarations
+void lib1E3F036D_gf_StartBossFight (unit lp_bossUnit);
+void lib1E3F036D_gf_EndBossFight ();
 void lib1E3F036D_gf_SetBossforBossBar (unit lp_boss);
 void lib1E3F036D_gf_SetPlayerFrame (int lp_player, unit lp_playerMarine, string lp_playerPortrait, string lp_classIcon);
 void lib1E3F036D_gf_SetPlayerRank (int lp_player, string lp_playerRank);
@@ -66,6 +71,7 @@ string lib1E3F036D_gf_UnitTypeDifficulty (string lp_recruit, string lp_normal, s
 
 // Trigger Declarations
 trigger lib1E3F036D_gt_BossBarHookup;
+trigger lib1E3F036D_gt_BossBarUI;
 trigger lib1E3F036D_gt_ConstructTeamUI;
 
 // Library Initialization
