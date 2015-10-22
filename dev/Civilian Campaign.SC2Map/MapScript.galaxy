@@ -2895,6 +2895,7 @@ bool gt_EltradSpawn_Func (bool testConds, bool runActions) {
     }
     libNtve_gf_CreateUnitsWithDefaultFacing(1, "Eltrad", 0, lib1E3F036D_gv_zombiePlayer, lv_spawnPoint);
     gv_eltrad = UnitLastCreated();
+    lib1E3F036D_gf_StartBossFight(gv_eltrad);
     TriggerEnable(gt_EltradDeath, true);
     return true;
 }
@@ -2915,6 +2916,7 @@ bool gt_EltradDeath_Func (bool testConds, bool runActions) {
     }
 
     TriggerEnable(TriggerGetCurrent(), false);
+    lib1E3F036D_gf_EndBossFight();
     if (UnitIsAlive(gv_chiefStrassner)) {
         lib840A968C_gf_BackgroundDialog(gv_chiefStrassner, StringExternal("Param/Value/FFAE3888"), StringExternal("Param/Value/A34E806D"), lib840A968C_ge_DialogDuration_Short, 4.0);
     }
