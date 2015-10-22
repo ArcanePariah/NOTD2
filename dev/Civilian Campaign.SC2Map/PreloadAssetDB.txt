@@ -15,18 +15,19 @@ id=HybridLabCurtain
 Actor=LabGate,LabGate2,SoundEmitter,TerrainMgr
 Model
 Sound=Doodad_##id##
+id=SpaceElevatorRamp
+Actor=LabGate,LabGate2,SoundEmitter,TerrainMgr
+Model
+Sound=Doodad_##id##
 id=AbandonedBunker
-Actor=LabGate,LabGate2,SoundEmitter,TerrainMgr
+Actor=LabGate,LabGate2,TerrainMgr
 Model=Bunker
-Sound=Doodad_BunkerWrecked
 id=AbandonedBunker2
-Actor=LabGate,LabGate2,SoundEmitter,TerrainMgr
+Actor=LabGate,LabGate2,TerrainMgr
 Model=ExplodingBarrelLarge
-Sound=Doodad_BunkerWrecked
 id=AbandonedBunker3
-Actor=LabGate,LabGate2,SoundEmitter,TerrainMgr
+Actor=LabGate,LabGate2,TerrainMgr
 Model=HybridLabCurtain
-Sound=Doodad_BunkerWrecked
 id=Housing1
 Actor=LabGate,LabGate2,SoundEmitter,TerrainMgr
 Model=InfestedDominion##id##
@@ -104,8 +105,6 @@ Actor=LabGate,LabGate2,TerrainMgr
 id=FuelBarrel
 asset=Assets\Doodads\##id##\##id##.m3
 Actor=LabGate,LabGate2,TerrainMgr
-id=InfestationResearchPing
-Actor=LabGate,LabGate2,TerrainMgr
 id=InfestedDominionHousing12
 asset=Assets\Buildings\Terran\InfestedDominionHousing\InfestedDominionHousing_00.m3
 Actor=LabGate,LabGate2,TerrainMgr
@@ -116,11 +115,18 @@ id=CasinoMusic
 Actor=LabGate,LabGate2,TerrainMgr
 
 [Terrain]
+id=Harbl
+path=Assets\Textures\.dds
+asset=CreepEdgeNormal,CreepSpecularMask,creepedgenormal,creepheight,creepspecularmask
+Actor=LabGate,LabGate2,TerrainMgr
+TerrainTex=AiurGrass,AvernusMesh,AvernusMetal,DominionLab3,KorhalCity3,PrisonShip8,RedstoneRock,Valhalla7
 id=NOTD2
 path=Assets\Textures\.dds
 asset=CreepEdgeNormal,creepedgenormal,creepheight,creepspecularmask
 Actor=LabGate,LabGate2,TerrainMgr
-TerrainTex=AiurGrass,AvernusMesh,DominionLab3,KorhalCity3,NewFolsomDirtCracked,PortZionMesh,PrisonShip5,PrisonShip8
+Light=##id##Light
+Soundtrack=Chapter0Ambience
+TerrainTex=AiurGrass,AvernusLargeTiles,CastanarTiles,CharRock,DominionLab3,KorhalPlatform1,PrisonShip8,ShakurasHextiles
 
 [Water]
 id=Agria
