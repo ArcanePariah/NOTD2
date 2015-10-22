@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <Desc>
-    <Constant name="Tier1Offset" val="73"/>
-    <Constant name="Tier2Offset" val="213"/>
-    <Constant name="Tier3Offset" val="353"/>
+    <Constant name="Tier1Offset" val="50"/>
+    <Constant name="Tier2Offset" val="-38"/>
+    <Constant name="Tier3Offset" val="-38"/>
     <Constant name="Tree1LeftOffset" val="62"/>
     <Constant name="Tree1RightOffset" val="172"/>
 
@@ -13,9 +13,9 @@
         <Frame type="Button" name="Button">
             <Anchor side="Left" relative="$parent" pos="Min" offset="38"/>
             <Anchor side="Top" relative="$parent" pos="Min" offset="38"/>
+            <Anchor side="Right" relative="$parent" pos="Max" offset="-38"/>
+            <Anchor side="Bottom" relative="$parent" pos="Max" offset="-38"/>
             <ClickSound val="@UI_ActionButtonSelect"/>
-            <Height val="100"/>
-            <Width val="100"/>
         </Frame>
 
         <Frame type="Image" name="TalentImageIntial">
@@ -23,27 +23,26 @@
             <Anchor side="Top" relative="$parent" pos="Min" offset="38"/>
             <Height val="113"/>
             <Width val="113"/>
-            <Texture val="Assets\Textures\ui_techtree_iconframe_protoss.dds"/>
+            <Texture val="Assets\Textures\ui_techtree_iconframe_terran.dds"/>
             <TextureType val="Normal"/>
             <BlendMode val="Normal"/>
         </Frame>
 
         <Frame type="Image" name="TalentImageFinal">
-            <Anchor side="Left" relative="$parent" pos="Min" offset="0"/>
-            <Anchor side="Top" relative="$parent" pos="Min" offset="0"/>
-            <Height val="176"/>
-            <Width val="176"/>
+            <Anchor relative="$parent" offset="0"/>
             <Texture val="Assets\Textures\ui_research_button_protoss_researched.dds"/>
             <TextureType val="Normal"/>
             <BlendMode val="Normal"/>
+			<Desaturated val = "true" />
+			<DesaturationColor  val = "##StandardButtonIcon"/>
             <Visible val="false"/>
         </Frame>
 
         <Frame type="Image" name="TalentImage">
             <Anchor side="Left" relative="$parent" pos="Min" offset="38"/>
             <Anchor side="Top" relative="$parent" pos="Min" offset="38"/>
-            <Height val="100"/>
-            <Width val="100"/>
+            <Anchor side="Right" relative="$parent" pos="Max" offset="-38"/>
+            <Anchor side="Bottom" relative="$parent" pos="Max" offset="-38"/>
             <TextureType val="Normal"/>
             <BlendMode val="Add"/>
             <Color val="85,85,255"/>
@@ -51,9 +50,9 @@
 
         <Frame type="Label" name="TalentLevelLabel">
             <Style val="HeaderExtendedTemplate"/>
-            <Height val="50"/>
+            <Height val="22"/>
             <Width val="50"/>
-            <Anchor side="Bottom" relative="$parent/Button" pos="Max" offset="30"/>
+            <Anchor side="Bottom" relative="$parent/Button" pos="Max" offset="0"/>
             <Anchor side="Right" relative="$parent/Button" pos="Max" offset="0"/>
         </Frame>
     </Frame>
@@ -61,10 +60,15 @@
     <Frame type="Frame" name="TalentTreeTemplate">
         <Height val="500"/>
         <Width val="300"/>
-
+        <Frame type="Label" name="TalentTreeTitle">
+            <Anchor side="Left" relative="$parent/Talent1" pos="Min" offset="0"/>
+            <Anchor side="Right" relative="$parent/Talent2" pos="Max" offset="0"/>
+            <Anchor side="Top" relative="$parent" pos="Min" offset="60"/>
+            <Style val="HelpPanelListBoxItemTitleCentered"/>
+        </Frame>
         <Frame type="Frame" name="Talent1" template="TalentTreeTemplateLayout/TalentButtonTemplate">
             <Anchor side="Right" relative="$parent" pos="Mid" offset="25"/>
-            <Anchor side="Top" relative="$parent" pos="Min" offset="#Tier1Offset"/>
+            <Anchor side="Top" relative="$parent/TalentTreeTitle" pos="Max" offset="-30"/>
 
             <Frame type="Label" name="TalentLevelLabel">
                 <Text val="0/3"/>
@@ -82,7 +86,7 @@
 
         <Frame type="Frame" name="Talent3" template="TalentTreeTemplateLayout/TalentButtonTemplate">
             <Anchor side="Left" relative="$parent/Talent1" pos="Min" offset="0"/>
-            <Anchor side="Top" relative="$parent" pos="Min" offset="#Tier2Offset"/>
+            <Anchor side="Top" relative="$parent/Talent1" pos="Max" offset="#Tier2Offset"/>
 
             <Frame type="Label" name="TalentLevelLabel">
                 <Text val="0/2"/>
@@ -100,7 +104,7 @@
 
         <Frame type="Frame" name="Talent5" template="TalentTreeTemplateLayout/TalentButtonTemplate">
             <Anchor side="Left" relative="$parent/Talent1" pos="Min" offset="0"/>
-            <Anchor side="Top" relative="$parent" pos="Min" offset="#Tier3Offset"/>
+            <Anchor side="Top" relative="$parent/Talent3" pos="Max" offset="#Tier3Offset"/>
 
             <Frame type="Label" name="TalentLevelLabel">
                 <Text val="0/1"/>
@@ -116,27 +120,28 @@
             </Frame>
         </Frame>
 
-        <Frame type="Label" name="TalentTreeTitle">
-            <Anchor side="Left" relative="$parent/Talent1" pos="Min" offset="0"/>
-            <Anchor side="Right" relative="$parent/Talent2" pos="Max" offset="0"/>
-            <Anchor side="Top" relative="$parent" pos="Min" offset="80"/>
-            <Style val="HelpPanelListBoxItemTitleCentered"/>
-        </Frame>
+
     </Frame>
 
     <Frame type="Frame" name="TalentTreeFrameTemplate">
-        <Width val="690"/>
-        <Height val="610"/>
+        <Width val="689"/>
+        <Height val="650"/>
+        <Visible val="false"/>
+
+        <Frame type="Image" name="TalentTreeBackgroundBorderImage">
+            <Anchor relative="$parent"/>
+            <Texture val="UI\ui_talentselection_border.dds"/>
+        </Frame>
 
         <Frame type="Image" name="TalentTreeBackgroundImage">
-            <Anchor relative="$parent"/>
-            <Texture val="Assets\Textures\ui_battlenet_glue_frame_bucket_long.dds"/>
+            <Anchor relative="$parent" offset="5"/>
+            <Texture val="UI\ui_talentselection_background.dds"/>
         </Frame>
 
         <Frame type="Label" name="TalentHeader">
             <Anchor side="Left" relative="$parent" pos="Min" offset="0"/>
             <Anchor side="Right" relative="$parent" pos="Max" offset="0"/>
-            <Anchor side="Top" relative="$parent" pos="Min" offset="29"/>
+            <Anchor side="Top" relative="$parent" pos="Min" offset="45"/>
             <Text val="Talents"/>
             <Style val="HelpMenuDialogTitleCentered"/>
         </Frame>
@@ -150,12 +155,12 @@
 
         <Frame type="Frame" name="Tree1" template="TalentTreeTemplateLayout/TalentTreeTemplate">
             <Anchor side="Right" relative="$parent" pos="Mid" offset="0"/>
-            <Anchor side="Top" relative="$parent" pos="Min" offset="0"/>
+            <Anchor side="Bottom" relative="$parent" pos="Max" offset="-100"/>
         </Frame>
 
         <Frame type="Frame" name="Tree2" template="TalentTreeTemplateLayout/TalentTreeTemplate">
             <Anchor side="Left" relative="$parent" pos="Mid" offset="0"/>
-            <Anchor side="Top" relative="$parent" pos="Min" offset="0"/>
+            <Anchor side="Bottom" relative="$parent" pos="Max" offset="-100"/>
         </Frame>
     </Frame>
 </Desc>

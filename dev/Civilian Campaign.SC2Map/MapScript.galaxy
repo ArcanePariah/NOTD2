@@ -433,22 +433,22 @@ void gf_RecruitArrivalTransmission () {
         Wait(1.0, c_timeGame);
     }
     gv_transmissionLock = true;
-    lib840A968C_gf_SendTransmission(StringExternal("Param/Value/8070BF33"), StringExternal("Param/Value/C9CB0A85"), 1, 0, c_messageAreaError, 0, null);
-    lib840A968C_gf_SendTransmission(StringExternal("Param/Value/5E2D7AFA"), StringExternal("Param/Value/BA428501"), 1, 0, c_messageAreaError, 0, null);
+    lib840A968C_gf_SendTransmission(StringExternal("Param/Value/8070BF33"), StringExternal("Param/Value/C9CB0A85"), lib840A968C_ge_PreemptMessage_DontPreempt, lib840A968C_ge_MessageEventType_AlliedCommunication, c_messageAreaError, lib840A968C_ge_Faction_UGC, null);
+    lib840A968C_gf_SendTransmission(StringExternal("Param/Value/5E2D7AFA"), StringExternal("Param/Value/BA428501"), lib840A968C_ge_PreemptMessage_DontPreempt, lib840A968C_ge_MessageEventType_AlliedCommunication, c_messageAreaError, lib840A968C_ge_Faction_UGC, null);
     lv_speaker = lib09BE6BA8_gf_GetRandomPlayerfromPlayerGroup(lv_speakers);
     PlayerGroupRemove(lv_speakers, lv_speaker);
-    lib840A968C_gf_SendTransmission(lib840A968C_gf_GetPlayerNamewithrank(lv_speaker), StringExternal("Param/Value/C69186AD"), 1, 0, c_messageAreaError, 5, lib840A968C_gf_GetMarine(lv_speaker));
+    lib840A968C_gf_SendTransmission(lib840A968C_gf_GetPlayerNamewithrank(lv_speaker), StringExternal("Param/Value/C69186AD"), lib840A968C_ge_PreemptMessage_DontPreempt, lib840A968C_ge_MessageEventType_AlliedCommunication, c_messageAreaError, lib840A968C_ge_Faction_Marines, lib840A968C_gf_GetMarine(lv_speaker));
     if ((PlayerGroupCount(lv_speakers) > 0)) {
         lv_speaker = lib09BE6BA8_gf_GetRandomPlayerfromPlayerGroup(lv_speakers);
         PlayerGroupRemove(lv_speakers, lv_speaker);
-        lib840A968C_gf_SendTransmission(lib840A968C_gf_GetPlayerNamewithrank(lv_speaker), StringExternal("Param/Value/CB072A86"), 1, 0, c_messageAreaError, 5, lib840A968C_gf_GetMarine(lv_speaker));
+        lib840A968C_gf_SendTransmission(lib840A968C_gf_GetPlayerNamewithrank(lv_speaker), StringExternal("Param/Value/CB072A86"), lib840A968C_ge_PreemptMessage_DontPreempt, lib840A968C_ge_MessageEventType_AlliedCommunication, c_messageAreaError, lib840A968C_ge_Faction_Marines, lib840A968C_gf_GetMarine(lv_speaker));
     }
     else {
     }
     if ((PlayerGroupCount(lv_speakers) > 0)) {
         lv_speaker = lib09BE6BA8_gf_GetRandomPlayerfromPlayerGroup(lv_speakers);
         PlayerGroupRemove(lv_speakers, lv_speaker);
-        lib840A968C_gf_SendTransmission(lib840A968C_gf_GetPlayerNamewithrank(lv_speaker), StringExternal("Param/Value/BC6D33C5"), 1, 0, c_messageAreaError, 5, lib840A968C_gf_GetMarine(lv_speaker));
+        lib840A968C_gf_SendTransmission(lib840A968C_gf_GetPlayerNamewithrank(lv_speaker), StringExternal("Param/Value/BC6D33C5"), lib840A968C_ge_PreemptMessage_DontPreempt, lib840A968C_ge_MessageEventType_AlliedCommunication, c_messageAreaError, lib840A968C_ge_Faction_Marines, lib840A968C_gf_GetMarine(lv_speaker));
     }
     else {
     }
@@ -473,13 +473,13 @@ void gf_NormalArrivalTransmission (int lp_player) {
         Wait(1.0, c_timeGame);
     }
     gv_transmissionLock = true;
-    lib840A968C_gf_SendTransmission(StringExternal("Param/Value/18858747"), StringExternal("Param/Value/42D93B1B"), 1, 0, c_messageAreaError, 0, null);
-    lib840A968C_gf_SendTransmission(lib840A968C_gf_GetPlayerNamewithrank(lp_player), StringExternal("Param/Value/51DAE582"), 1, 0, c_messageAreaError, 5, lib840A968C_gf_GetMarine(lp_player));
-    lib840A968C_gf_SendTransmission(StringExternal("Param/Value/E715EBB1"), StringExternal("Param/Value/BD0F3C99"), 1, 0, c_messageAreaError, 0, null);
-    lib840A968C_gf_SendTransmission(StringExternal("Param/Value/A80939C8"), StringExternal("Param/Value/82AD27D1"), 1, 0, c_messageAreaError, 0, null);
-    lib840A968C_gf_SendTransmission(lib840A968C_gf_GetPlayerNamewithrank(lp_player), StringExternal("Param/Value/EB53A4B8"), 1, 0, c_messageAreaError, 5, lib840A968C_gf_GetMarine(lp_player));
-    lib840A968C_gf_SendTransmission(StringExternal("Param/Value/D7D4F0E9"), StringExternal("Param/Value/D18D17B9"), 1, 0, c_messageAreaError, 0, null);
-    lib840A968C_gf_SendTransmission(lib840A968C_gf_GetPlayerNamewithrank(lp_player), StringExternal("Param/Value/A00EA8CC"), 1, 0, c_messageAreaError, 5, lib840A968C_gf_GetMarine(lp_player));
+    lib840A968C_gf_SendTransmission(StringExternal("Param/Value/18858747"), StringExternal("Param/Value/42D93B1B"), lib840A968C_ge_PreemptMessage_DontPreempt, lib840A968C_ge_MessageEventType_AlliedCommunication, c_messageAreaError, lib840A968C_ge_Faction_UGC, null);
+    lib840A968C_gf_SendTransmission(lib840A968C_gf_GetPlayerNamewithrank(lp_player), StringExternal("Param/Value/51DAE582"), lib840A968C_ge_PreemptMessage_DontPreempt, lib840A968C_ge_MessageEventType_AlliedCommunication, c_messageAreaError, lib840A968C_ge_Faction_Marines, lib840A968C_gf_GetMarine(lp_player));
+    lib840A968C_gf_SendTransmission(StringExternal("Param/Value/E715EBB1"), StringExternal("Param/Value/BD0F3C99"), lib840A968C_ge_PreemptMessage_DontPreempt, lib840A968C_ge_MessageEventType_AlliedCommunication, c_messageAreaError, lib840A968C_ge_Faction_UGC, null);
+    lib840A968C_gf_SendTransmission(StringExternal("Param/Value/A80939C8"), StringExternal("Param/Value/82AD27D1"), lib840A968C_ge_PreemptMessage_DontPreempt, lib840A968C_ge_MessageEventType_AlliedCommunication, c_messageAreaError, lib840A968C_ge_Faction_UGC, null);
+    lib840A968C_gf_SendTransmission(lib840A968C_gf_GetPlayerNamewithrank(lp_player), StringExternal("Param/Value/EB53A4B8"), lib840A968C_ge_PreemptMessage_DontPreempt, lib840A968C_ge_MessageEventType_AlliedCommunication, c_messageAreaError, lib840A968C_ge_Faction_Marines, lib840A968C_gf_GetMarine(lp_player));
+    lib840A968C_gf_SendTransmission(StringExternal("Param/Value/D7D4F0E9"), StringExternal("Param/Value/D18D17B9"), lib840A968C_ge_PreemptMessage_DontPreempt, lib840A968C_ge_MessageEventType_AlliedCommunication, c_messageAreaError, lib840A968C_ge_Faction_UGC, null);
+    lib840A968C_gf_SendTransmission(lib840A968C_gf_GetPlayerNamewithrank(lp_player), StringExternal("Param/Value/A00EA8CC"), lib840A968C_ge_PreemptMessage_DontPreempt, lib840A968C_ge_MessageEventType_AlliedCommunication, c_messageAreaError, lib840A968C_ge_Faction_Marines, lib840A968C_gf_GetMarine(lp_player));
     gv_transmissionLock = false;
 }
 
@@ -608,12 +608,12 @@ void gf_PeacekeeperTransmission (int lp_foregroundPlayer, int lp_backgroundPlaye
         Wait(1.0, c_timeGame);
     }
     gv_transmissionLock = true;
-    lib840A968C_gf_SendTransmission(StringExternal("Param/Value/3FE8B251"), StringExternal("Param/Value/3F8F97EB"), 1, 0, c_messageAreaError, 0, null);
-    lib840A968C_gf_SendTransmission(lib840A968C_gf_GetPlayerNamewithrank(lp_foregroundPlayer), StringExternal("Param/Value/0134A3F2"), 1, 0, c_messageAreaError, 5, lib840A968C_gf_GetMarine(lp_foregroundPlayer));
-    lib840A968C_gf_SendTransmission(StringExternal("Param/Value/8E40AEA5"), StringExternal("Param/Value/E10CE0BB"), 1, 0, c_messageAreaError, 0, null);
-    lib840A968C_gf_BackgroundDialog(lib840A968C_gf_GetMarine(lp_backgroundPlayer), lib840A968C_gf_GetPlayerNamewithrank(lp_backgroundPlayer), StringExternal("Param/Value/ED4452C4"), 0, 6.0);
-    lib840A968C_gf_SendTransmission(StringExternal("Param/Value/963E86B2"), StringExternal("Param/Value/83D48F7E"), 1, 0, c_messageAreaError, 0, gv_chiefStrassner);
-    lib840A968C_gf_SendTransmission(StringExternal("Param/Value/C415AE91"), StringExternal("Param/Value/8520B6E3"), 1, 0, c_messageAreaError, 0, null);
+    lib840A968C_gf_SendTransmission(StringExternal("Param/Value/3FE8B251"), StringExternal("Param/Value/3F8F97EB"), lib840A968C_ge_PreemptMessage_DontPreempt, lib840A968C_ge_MessageEventType_AlliedCommunication, c_messageAreaError, lib840A968C_ge_Faction_UGC, null);
+    lib840A968C_gf_SendTransmission(lib840A968C_gf_GetPlayerNamewithrank(lp_foregroundPlayer), StringExternal("Param/Value/0134A3F2"), lib840A968C_ge_PreemptMessage_DontPreempt, lib840A968C_ge_MessageEventType_AlliedCommunication, c_messageAreaError, lib840A968C_ge_Faction_Marines, lib840A968C_gf_GetMarine(lp_foregroundPlayer));
+    lib840A968C_gf_SendTransmission(StringExternal("Param/Value/8E40AEA5"), StringExternal("Param/Value/E10CE0BB"), lib840A968C_ge_PreemptMessage_DontPreempt, lib840A968C_ge_MessageEventType_AlliedCommunication, c_messageAreaError, lib840A968C_ge_Faction_UGC, null);
+    lib840A968C_gf_BackgroundDialog(lib840A968C_gf_GetMarine(lp_backgroundPlayer), lib840A968C_gf_GetPlayerNamewithrank(lp_backgroundPlayer), StringExternal("Param/Value/ED4452C4"), lib840A968C_ge_DialogDuration_Short, 6.0);
+    lib840A968C_gf_SendTransmission(StringExternal("Param/Value/963E86B2"), StringExternal("Param/Value/83D48F7E"), lib840A968C_ge_PreemptMessage_DontPreempt, lib840A968C_ge_MessageEventType_AlliedCommunication, c_messageAreaError, lib840A968C_ge_Faction_UGC, gv_chiefStrassner);
+    lib840A968C_gf_SendTransmission(StringExternal("Param/Value/C415AE91"), StringExternal("Param/Value/8520B6E3"), lib840A968C_ge_PreemptMessage_DontPreempt, lib840A968C_ge_MessageEventType_AlliedCommunication, c_messageAreaError, lib840A968C_ge_Faction_UGC, null);
     gv_transmissionLock = false;
 }
 
@@ -629,9 +629,9 @@ void gf_CivilianRescueBriefing () {
         Wait(1.0, c_timeGame);
     }
     gv_transmissionLock = true;
-    lib840A968C_gf_SendTransmission(StringExternal("Param/Value/4FD09351"), StringExternal("Param/Value/D420BDED"), 1, 0, c_messageAreaError, 0, gv_chiefStrassner);
-    lib840A968C_gf_SendTransmission(StringExternal("Param/Value/C1B6F01B"), StringExternal("Param/Value/C4011AB4"), 1, 0, c_messageAreaError, 0, gv_chiefStrassner);
-    lib840A968C_gf_SendTransmission(lib840A968C_gf_GetPlayerNamewithrank(lv_speaker), StringExternal("Param/Value/50D98DF0"), 1, 0, c_messageAreaError, 5, lib840A968C_gf_GetMarine(lv_speaker));
+    lib840A968C_gf_SendTransmission(StringExternal("Param/Value/4FD09351"), StringExternal("Param/Value/D420BDED"), lib840A968C_ge_PreemptMessage_DontPreempt, lib840A968C_ge_MessageEventType_AlliedCommunication, c_messageAreaError, lib840A968C_ge_Faction_UGC, gv_chiefStrassner);
+    lib840A968C_gf_SendTransmission(StringExternal("Param/Value/C1B6F01B"), StringExternal("Param/Value/C4011AB4"), lib840A968C_ge_PreemptMessage_DontPreempt, lib840A968C_ge_MessageEventType_AlliedCommunication, c_messageAreaError, lib840A968C_ge_Faction_UGC, gv_chiefStrassner);
+    lib840A968C_gf_SendTransmission(lib840A968C_gf_GetPlayerNamewithrank(lv_speaker), StringExternal("Param/Value/50D98DF0"), lib840A968C_ge_PreemptMessage_DontPreempt, lib840A968C_ge_MessageEventType_AlliedCommunication, c_messageAreaError, lib840A968C_ge_Faction_Marines, lib840A968C_gf_GetMarine(lv_speaker));
     gv_transmissionLock = false;
 }
 
@@ -776,17 +776,17 @@ void gf_ExtractionBeginningDialog () {
     if ((PlayerGroupCount(lv_speakers) > 2)) {
         lv_currentSpeaker = lib09BE6BA8_gf_GetRandomPlayerfromPlayerGroup(lv_speakers);
         PlayerGroupRemove(lv_speakers, lv_currentSpeaker);
-        lib840A968C_gf_BackgroundDialog(lib840A968C_gf_GetMarine(lv_currentSpeaker), lib840A968C_gf_GetPlayerNamewithrank(lv_currentSpeaker), StringExternal("Param/Value/79A71ED4"), 0, 5.0);
+        lib840A968C_gf_BackgroundDialog(lib840A968C_gf_GetMarine(lv_currentSpeaker), lib840A968C_gf_GetPlayerNamewithrank(lv_currentSpeaker), StringExternal("Param/Value/79A71ED4"), lib840A968C_ge_DialogDuration_Short, 5.0);
         lv_currentSpeaker = lib09BE6BA8_gf_GetRandomPlayerfromPlayerGroup(lv_speakers);
         PlayerGroupRemove(lv_speakers, lv_currentSpeaker);
-        lib840A968C_gf_BackgroundDialog(lib840A968C_gf_GetMarine(lv_currentSpeaker), lib840A968C_gf_GetPlayerNamewithrank(lv_currentSpeaker), StringExternal("Param/Value/CB48FA82"), 0, 4.0);
+        lib840A968C_gf_BackgroundDialog(lib840A968C_gf_GetMarine(lv_currentSpeaker), lib840A968C_gf_GetPlayerNamewithrank(lv_currentSpeaker), StringExternal("Param/Value/CB48FA82"), lib840A968C_ge_DialogDuration_Short, 4.0);
     }
     else {
     }
     lv_currentSpeaker = lib09BE6BA8_gf_GetRandomPlayerfromPlayerGroup(lv_speakers);
     PlayerGroupRemove(lv_speakers, lv_currentSpeaker);
-    lib840A968C_gf_SendTransmission(StringExternal("Param/Value/22B94A4F"), StringExternal("Param/Value/CA4C016F"), 1, 0, c_messageAreaError, 0, null);
-    lib840A968C_gf_SendTransmission(lib840A968C_gf_GetPlayerNamewithrank(lv_currentSpeaker), StringExternal("Param/Value/6C8E7901"), 1, 0, c_messageAreaError, 5, lib840A968C_gf_GetMarine(lv_currentSpeaker));
+    lib840A968C_gf_SendTransmission(StringExternal("Param/Value/22B94A4F"), StringExternal("Param/Value/CA4C016F"), lib840A968C_ge_PreemptMessage_DontPreempt, lib840A968C_ge_MessageEventType_AlliedCommunication, c_messageAreaError, lib840A968C_ge_Faction_UGC, null);
+    lib840A968C_gf_SendTransmission(lib840A968C_gf_GetPlayerNamewithrank(lv_currentSpeaker), StringExternal("Param/Value/6C8E7901"), lib840A968C_ge_PreemptMessage_DontPreempt, lib840A968C_ge_MessageEventType_AlliedCommunication, c_messageAreaError, lib840A968C_ge_Faction_Marines, lib840A968C_gf_GetMarine(lv_currentSpeaker));
     gv_transmissionLock = false;
 }
 
@@ -796,10 +796,10 @@ void gf_ExtractionParatrooperDialog () {
         Wait(1.0, c_timeGame);
     }
     gv_transmissionLock = true;
-    lib840A968C_gf_SendTransmission(StringExternal("Param/Value/880F3FA0"), StringExternal("Param/Value/CC2B6753"), 1, 0, c_messageAreaError, 0, gv_staffSergeantFenwick);
-    lib840A968C_gf_BackgroundDialog(gv_chiefStrassner, StringExternal("Param/Value/DF5C8F23"), StringExternal("Param/Value/F9BBB8A4"), 0, 6.0);
-    lib840A968C_gf_BackgroundDialog(gv_staffSergeantFenwick, StringExternal("Param/Value/B5074E42"), StringExternal("Param/Value/6181F3CF"), 1, 6.0);
-    lib840A968C_gf_BackgroundDialog(gv_chiefStrassner, StringExternal("Param/Value/040D4FF3"), StringExternal("Param/Value/FC17B165"), 0, 2.0);
+    lib840A968C_gf_SendTransmission(StringExternal("Param/Value/880F3FA0"), StringExternal("Param/Value/CC2B6753"), lib840A968C_ge_PreemptMessage_DontPreempt, lib840A968C_ge_MessageEventType_AlliedCommunication, c_messageAreaError, lib840A968C_ge_Faction_UGC, gv_staffSergeantFenwick);
+    lib840A968C_gf_BackgroundDialog(gv_chiefStrassner, StringExternal("Param/Value/DF5C8F23"), StringExternal("Param/Value/F9BBB8A4"), lib840A968C_ge_DialogDuration_Short, 6.0);
+    lib840A968C_gf_BackgroundDialog(gv_staffSergeantFenwick, StringExternal("Param/Value/B5074E42"), StringExternal("Param/Value/6181F3CF"), lib840A968C_ge_DialogDuration_Long, 6.0);
+    lib840A968C_gf_BackgroundDialog(gv_chiefStrassner, StringExternal("Param/Value/040D4FF3"), StringExternal("Param/Value/FC17B165"), lib840A968C_ge_DialogDuration_Short, 2.0);
     gv_transmissionLock = false;
 }
 
@@ -815,8 +815,8 @@ void gf_ExtractionEndDialog () {
         Wait(1.0, c_timeGame);
     }
     gv_transmissionLock = true;
-    lib840A968C_gf_SendTransmission(StringExternal("Param/Value/99F1B67C"), StringExternal("Param/Value/36D082AC"), 1, 0, c_messageAreaError, 0, gv_staffSergeantFenwick);
-    lib840A968C_gf_SendTransmission(lib840A968C_gf_GetPlayerNamewithrank(lv_speaker), StringExternal("Param/Value/EE9E7972"), 1, 0, c_messageAreaError, 5, lib840A968C_gf_GetMarine(lv_speaker));
+    lib840A968C_gf_SendTransmission(StringExternal("Param/Value/99F1B67C"), StringExternal("Param/Value/36D082AC"), lib840A968C_ge_PreemptMessage_DontPreempt, lib840A968C_ge_MessageEventType_AlliedCommunication, c_messageAreaError, lib840A968C_ge_Faction_UGC, gv_staffSergeantFenwick);
+    lib840A968C_gf_SendTransmission(lib840A968C_gf_GetPlayerNamewithrank(lv_speaker), StringExternal("Param/Value/EE9E7972"), lib840A968C_ge_PreemptMessage_DontPreempt, lib840A968C_ge_MessageEventType_AlliedCommunication, c_messageAreaError, lib840A968C_ge_Faction_Marines, lib840A968C_gf_GetMarine(lv_speaker));
     gv_transmissionLock = false;
 }
 
@@ -869,17 +869,17 @@ void gf_CommunicationArrayTransmission () {
     }
     gv_transmissionLock = true;
     PlayerGroupRemove(lv_speakers, lv_currentSpeaker);
-    lib840A968C_gf_SendTransmission(StringExternal("Param/Value/BDDE9DF1"), StringExternal("Param/Value/6218C255"), 1, 0, c_messageAreaError, 0, null);
-    lib840A968C_gf_BackgroundDialog(lib840A968C_gf_GetMarine(lv_currentSpeaker), lib840A968C_gf_GetPlayerNamewithrank(lv_currentSpeaker), StringExternal("Param/Value/DAC146F8"), 1, 6.0);
+    lib840A968C_gf_SendTransmission(StringExternal("Param/Value/BDDE9DF1"), StringExternal("Param/Value/6218C255"), lib840A968C_ge_PreemptMessage_DontPreempt, lib840A968C_ge_MessageEventType_AlliedCommunication, c_messageAreaError, lib840A968C_ge_Faction_UGC, null);
+    lib840A968C_gf_BackgroundDialog(lib840A968C_gf_GetMarine(lv_currentSpeaker), lib840A968C_gf_GetPlayerNamewithrank(lv_currentSpeaker), StringExternal("Param/Value/DAC146F8"), lib840A968C_ge_DialogDuration_Long, 6.0);
     if ((lib1E3F036D_gf_GameType() == 2)) {
-        lib840A968C_gf_SendTransmission(StringExternal("Param/Value/EA06FC91"), StringExternal("Param/Value/BB21F111"), 1, 0, c_messageAreaError, 0, null);
+        lib840A968C_gf_SendTransmission(StringExternal("Param/Value/EA06FC91"), StringExternal("Param/Value/BB21F111"), lib840A968C_ge_PreemptMessage_DontPreempt, lib840A968C_ge_MessageEventType_AlliedCommunication, c_messageAreaError, lib840A968C_ge_Faction_UGC, null);
     }
     else {
-        lib840A968C_gf_SendTransmission(StringExternal("Param/Value/A7A33875"), StringExternal("Param/Value/CC08032B"), 1, 0, c_messageAreaError, 0, null);
+        lib840A968C_gf_SendTransmission(StringExternal("Param/Value/A7A33875"), StringExternal("Param/Value/CC08032B"), lib840A968C_ge_PreemptMessage_DontPreempt, lib840A968C_ge_MessageEventType_AlliedCommunication, c_messageAreaError, lib840A968C_ge_Faction_UGC, null);
     }
     if ((PlayerGroupCount(lv_speakers) != 0)) {
         lv_currentSpeaker = lib09BE6BA8_gf_GetRandomPlayerfromPlayerGroup(lv_speakers);
-        lib840A968C_gf_SendTransmission(lib840A968C_gf_GetPlayerNamewithrank(lv_currentSpeaker), StringExternal("Param/Value/83D66BEA"), 1, 0, c_messageAreaError, 5, lib840A968C_gf_GetMarine(lv_currentSpeaker));
+        lib840A968C_gf_SendTransmission(lib840A968C_gf_GetPlayerNamewithrank(lv_currentSpeaker), StringExternal("Param/Value/83D66BEA"), lib840A968C_ge_PreemptMessage_DontPreempt, lib840A968C_ge_MessageEventType_AlliedCommunication, c_messageAreaError, lib840A968C_ge_Faction_Marines, lib840A968C_gf_GetMarine(lv_currentSpeaker));
     }
     else {
     }
@@ -965,8 +965,8 @@ bool gf_ArrayPlacedCorrectly (unit lp_arrayPlaced) {
 
 void gf_RestorePowerBriefing () {
     // Implementation
-    lib840A968C_gf_SendTransmission(StringExternal("Param/Value/C5CEAF44"), StringExternal("Param/Value/F9333D6F"), 1, 0, c_messageAreaError, 0, null);
-    lib840A968C_gf_SendTransmission(StringExternal("Param/Value/58980713"), StringExternal("Param/Value/DC746DF6"), 1, 0, c_messageAreaError, 0, null);
+    lib840A968C_gf_SendTransmission(StringExternal("Param/Value/C5CEAF44"), StringExternal("Param/Value/F9333D6F"), lib840A968C_ge_PreemptMessage_DontPreempt, lib840A968C_ge_MessageEventType_AlliedCommunication, c_messageAreaError, lib840A968C_ge_Faction_UGC, null);
+    lib840A968C_gf_SendTransmission(StringExternal("Param/Value/58980713"), StringExternal("Param/Value/DC746DF6"), lib840A968C_ge_PreemptMessage_DontPreempt, lib840A968C_ge_MessageEventType_AlliedCommunication, c_messageAreaError, lib840A968C_ge_Faction_UGC, null);
 }
 
 void gf_ReactorBriefing () {
@@ -980,21 +980,21 @@ void gf_ReactorBriefing () {
     // Implementation
     lv_currentSpeaker = lib09BE6BA8_gf_GetRandomPlayerfromPlayerGroup(lv_speakers);
     PlayerGroupRemove(lv_speakers, lv_currentSpeaker);
-    lib840A968C_gf_SendTransmission(lib840A968C_gf_GetPlayerNamewithrank(lv_currentSpeaker), StringExternal("Param/Value/C51FFE2D"), 1, 0, c_messageAreaError, 5, lib840A968C_gf_GetMarine(lv_currentSpeaker));
+    lib840A968C_gf_SendTransmission(lib840A968C_gf_GetPlayerNamewithrank(lv_currentSpeaker), StringExternal("Param/Value/C51FFE2D"), lib840A968C_ge_PreemptMessage_DontPreempt, lib840A968C_ge_MessageEventType_AlliedCommunication, c_messageAreaError, lib840A968C_ge_Faction_Marines, lib840A968C_gf_GetMarine(lv_currentSpeaker));
     if ((PlayerGroupCount(lv_speakers) > 0)) {
         lv_currentSpeaker = lib09BE6BA8_gf_GetRandomPlayerfromPlayerGroup(lv_speakers);
         PlayerGroupRemove(lv_speakers, lv_currentSpeaker);
-        lib840A968C_gf_SendTransmission(lib840A968C_gf_GetPlayerNamewithrank(lv_currentSpeaker), StringExternal("Param/Value/629BAF57"), 1, 0, c_messageAreaError, 5, lib840A968C_gf_GetMarine(lv_currentSpeaker));
+        lib840A968C_gf_SendTransmission(lib840A968C_gf_GetPlayerNamewithrank(lv_currentSpeaker), StringExternal("Param/Value/629BAF57"), lib840A968C_ge_PreemptMessage_DontPreempt, lib840A968C_ge_MessageEventType_AlliedCommunication, c_messageAreaError, lib840A968C_ge_Faction_Marines, lib840A968C_gf_GetMarine(lv_currentSpeaker));
     }
     else {
     }
-    lib840A968C_gf_SendTransmission(StringExternal("Param/Value/1B4C6413"), StringExternal("Param/Value/97CDCE00"), 1, 0, c_messageAreaError, 0, null);
-    lib840A968C_gf_SendTransmission(StringExternal("Param/Value/A57C5CF0"), StringExternal("Param/Value/2FBCAFBD"), 1, 0, c_messageAreaError, 0, null);
-    lib840A968C_gf_SendTransmission(StringExternal("Param/Value/AA9232CB"), StringExternal("Param/Value/454AF384"), 1, 0, c_messageAreaError, 0, null);
+    lib840A968C_gf_SendTransmission(StringExternal("Param/Value/1B4C6413"), StringExternal("Param/Value/97CDCE00"), lib840A968C_ge_PreemptMessage_DontPreempt, lib840A968C_ge_MessageEventType_AlliedCommunication, c_messageAreaError, lib840A968C_ge_Faction_UGC, null);
+    lib840A968C_gf_SendTransmission(StringExternal("Param/Value/A57C5CF0"), StringExternal("Param/Value/2FBCAFBD"), lib840A968C_ge_PreemptMessage_DontPreempt, lib840A968C_ge_MessageEventType_AlliedCommunication, c_messageAreaError, lib840A968C_ge_Faction_UGC, null);
+    lib840A968C_gf_SendTransmission(StringExternal("Param/Value/AA9232CB"), StringExternal("Param/Value/454AF384"), lib840A968C_ge_PreemptMessage_DontPreempt, lib840A968C_ge_MessageEventType_AlliedCommunication, c_messageAreaError, lib840A968C_ge_Faction_UGC, null);
     if ((PlayerGroupCount(lv_speakers) > 0)) {
         lv_currentSpeaker = lib09BE6BA8_gf_GetRandomPlayerfromPlayerGroup(lv_speakers);
         PlayerGroupRemove(lv_speakers, lv_currentSpeaker);
-        lib840A968C_gf_SendTransmission(lib840A968C_gf_GetPlayerNamewithrank(lv_currentSpeaker), StringExternal("Param/Value/3540938B"), 1, 0, c_messageAreaError, 5, lib840A968C_gf_GetMarine(lv_currentSpeaker));
+        lib840A968C_gf_SendTransmission(lib840A968C_gf_GetPlayerNamewithrank(lv_currentSpeaker), StringExternal("Param/Value/3540938B"), lib840A968C_ge_PreemptMessage_DontPreempt, lib840A968C_ge_MessageEventType_AlliedCommunication, c_messageAreaError, lib840A968C_ge_Faction_Marines, lib840A968C_gf_GetMarine(lv_currentSpeaker));
     }
     else {
     }
@@ -1006,8 +1006,8 @@ void gf_InvestigationBriefing () {
         Wait(1.0, c_timeGame);
     }
     gv_transmissionLock = true;
-    lib840A968C_gf_SendTransmission(StringExternal("Param/Value/4E05B011"), StringExternal("Param/Value/C680DD11"), 1, 0, c_messageAreaError, 0, null);
-    lib840A968C_gf_SendTransmission(StringExternal("Param/Value/1715BF1F"), StringExternal("Param/Value/2C880FC4"), 1, 0, c_messageAreaError, 0, null);
+    lib840A968C_gf_SendTransmission(StringExternal("Param/Value/4E05B011"), StringExternal("Param/Value/C680DD11"), lib840A968C_ge_PreemptMessage_DontPreempt, lib840A968C_ge_MessageEventType_AlliedCommunication, c_messageAreaError, lib840A968C_ge_Faction_UGC, null);
+    lib840A968C_gf_SendTransmission(StringExternal("Param/Value/1715BF1F"), StringExternal("Param/Value/2C880FC4"), lib840A968C_ge_PreemptMessage_DontPreempt, lib840A968C_ge_MessageEventType_AlliedCommunication, c_messageAreaError, lib840A968C_ge_Faction_UGC, null);
     gv_transmissionLock = false;
 }
 
@@ -1032,12 +1032,12 @@ void gf_InvestigationChatter () {
     }
     else {
     }
-    lib840A968C_gf_BackgroundDialog(lib840A968C_gf_GetMarine(lv_currentSpeaker[1]), lib840A968C_gf_GetPlayerNamewithrank(lv_currentSpeaker[1]), StringExternal("Param/Value/6E013AD3"), 1, 5.0);
+    lib840A968C_gf_BackgroundDialog(lib840A968C_gf_GetMarine(lv_currentSpeaker[1]), lib840A968C_gf_GetPlayerNamewithrank(lv_currentSpeaker[1]), StringExternal("Param/Value/6E013AD3"), lib840A968C_ge_DialogDuration_Long, 5.0);
     if ((lv_currentSpeaker[2] != 0)) {
-        lib840A968C_gf_BackgroundDialog(lib840A968C_gf_GetMarine(lv_currentSpeaker[2]), lib840A968C_gf_GetPlayerNamewithrank(lv_currentSpeaker[2]), StringExternal("Param/Value/71BEDE61"), 0, 4.0);
-        lib840A968C_gf_BackgroundDialog(lib840A968C_gf_GetMarine(lv_currentSpeaker[3]), lib840A968C_gf_GetPlayerNamewithrank(lv_currentSpeaker[3]), StringExternal("Param/Value/79264110"), 0, 4.0);
-        lib840A968C_gf_BackgroundDialog(lib840A968C_gf_GetMarine(lv_currentSpeaker[2]), lib840A968C_gf_GetPlayerNamewithrank(lv_currentSpeaker[2]), StringExternal("Param/Value/AAA8DF4E"), 0, 4.0);
-        lib840A968C_gf_BackgroundDialog(lib840A968C_gf_GetMarine(lv_currentSpeaker[3]), lib840A968C_gf_GetPlayerNamewithrank(lv_currentSpeaker[3]), StringExternal("Param/Value/2C5E2A44"), 1, 4.0);
+        lib840A968C_gf_BackgroundDialog(lib840A968C_gf_GetMarine(lv_currentSpeaker[2]), lib840A968C_gf_GetPlayerNamewithrank(lv_currentSpeaker[2]), StringExternal("Param/Value/71BEDE61"), lib840A968C_ge_DialogDuration_Short, 4.0);
+        lib840A968C_gf_BackgroundDialog(lib840A968C_gf_GetMarine(lv_currentSpeaker[3]), lib840A968C_gf_GetPlayerNamewithrank(lv_currentSpeaker[3]), StringExternal("Param/Value/79264110"), lib840A968C_ge_DialogDuration_Short, 4.0);
+        lib840A968C_gf_BackgroundDialog(lib840A968C_gf_GetMarine(lv_currentSpeaker[2]), lib840A968C_gf_GetPlayerNamewithrank(lv_currentSpeaker[2]), StringExternal("Param/Value/AAA8DF4E"), lib840A968C_ge_DialogDuration_Short, 4.0);
+        lib840A968C_gf_BackgroundDialog(lib840A968C_gf_GetMarine(lv_currentSpeaker[3]), lib840A968C_gf_GetPlayerNamewithrank(lv_currentSpeaker[3]), StringExternal("Param/Value/2C5E2A44"), lib840A968C_ge_DialogDuration_Long, 4.0);
     }
     else {
     }
@@ -1055,8 +1055,8 @@ void gf_InvestigationTarionTransmission () {
         Wait(1.0, c_timeGame);
     }
     gv_transmissionLock = true;
-    lib840A968C_gf_SendTransmission(StringExternal("Param/Value/970E374B"), StringExternal("Param/Value/B9825995"), 1, 0, c_messageAreaError, 0, null);
-    lib840A968C_gf_SendTransmission(StringExternal("Param/Value/2E901756"), StringExternal("Param/Value/63374128"), 1, 0, c_messageAreaError, 0, null);
+    lib840A968C_gf_SendTransmission(StringExternal("Param/Value/970E374B"), StringExternal("Param/Value/B9825995"), lib840A968C_ge_PreemptMessage_DontPreempt, lib840A968C_ge_MessageEventType_AlliedCommunication, c_messageAreaError, lib840A968C_ge_Faction_UGC, null);
+    lib840A968C_gf_SendTransmission(StringExternal("Param/Value/2E901756"), StringExternal("Param/Value/63374128"), lib840A968C_ge_PreemptMessage_DontPreempt, lib840A968C_ge_MessageEventType_AlliedCommunication, c_messageAreaError, lib840A968C_ge_Faction_UGC, null);
     gv_transmissionLock = false;
 }
 
@@ -1073,17 +1073,17 @@ void gf_MonolithBriefing () {
         Wait(1.0, c_timeGame);
     }
     gv_transmissionLock = true;
-    lib840A968C_gf_SendTransmission(StringExternal("Param/Value/89F74CB0"), StringExternal("Param/Value/EE1D2C6F"), 1, 0, c_messageAreaError, 0, null);
+    lib840A968C_gf_SendTransmission(StringExternal("Param/Value/89F74CB0"), StringExternal("Param/Value/EE1D2C6F"), lib840A968C_ge_PreemptMessage_DontPreempt, lib840A968C_ge_MessageEventType_AlliedCommunication, c_messageAreaError, lib840A968C_ge_Faction_UGC, null);
     if ((PlayerGroupCount(lv_speakers) != 0)) {
         lv_currentSpeaker = lib09BE6BA8_gf_GetRandomPlayerfromPlayerGroup(lv_speakers);
-        lib840A968C_gf_SendTransmission(lib840A968C_gf_GetPlayerNamewithrank(lv_currentSpeaker), StringExternal("Param/Value/0C4BFE5B"), 1, 0, c_messageAreaError, 5, lib840A968C_gf_GetMarine(lv_currentSpeaker));
+        lib840A968C_gf_SendTransmission(lib840A968C_gf_GetPlayerNamewithrank(lv_currentSpeaker), StringExternal("Param/Value/0C4BFE5B"), lib840A968C_ge_PreemptMessage_DontPreempt, lib840A968C_ge_MessageEventType_AlliedCommunication, c_messageAreaError, lib840A968C_ge_Faction_Marines, lib840A968C_gf_GetMarine(lv_currentSpeaker));
     }
     else {
     }
-    lib840A968C_gf_SendTransmission(StringExternal("Param/Value/9C18A9E1"), StringExternal("Param/Value/60E642FE"), 1, 0, c_messageAreaError, 0, null);
-    lib840A968C_gf_SendTransmission(lib840A968C_gf_GetPlayerNamewithrank(lv_currentSpeaker), StringExternal("Param/Value/CFC93932"), 1, 0, c_messageAreaError, 5, lib840A968C_gf_GetMarine(lv_currentSpeaker));
-    lib840A968C_gf_SendTransmission(StringExternal("Param/Value/36C94946"), StringExternal("Param/Value/DBBFB2E1"), 1, 0, c_messageAreaError, 0, null);
-    lib840A968C_gf_SendTransmission(StringExternal("Param/Value/32614EEB"), StringExternal("Param/Value/73768597"), 1, 0, c_messageAreaError, 0, null);
+    lib840A968C_gf_SendTransmission(StringExternal("Param/Value/9C18A9E1"), StringExternal("Param/Value/60E642FE"), lib840A968C_ge_PreemptMessage_DontPreempt, lib840A968C_ge_MessageEventType_AlliedCommunication, c_messageAreaError, lib840A968C_ge_Faction_UGC, null);
+    lib840A968C_gf_SendTransmission(lib840A968C_gf_GetPlayerNamewithrank(lv_currentSpeaker), StringExternal("Param/Value/CFC93932"), lib840A968C_ge_PreemptMessage_DontPreempt, lib840A968C_ge_MessageEventType_AlliedCommunication, c_messageAreaError, lib840A968C_ge_Faction_Marines, lib840A968C_gf_GetMarine(lv_currentSpeaker));
+    lib840A968C_gf_SendTransmission(StringExternal("Param/Value/36C94946"), StringExternal("Param/Value/DBBFB2E1"), lib840A968C_ge_PreemptMessage_DontPreempt, lib840A968C_ge_MessageEventType_AlliedCommunication, c_messageAreaError, lib840A968C_ge_Faction_UGC, null);
+    lib840A968C_gf_SendTransmission(StringExternal("Param/Value/32614EEB"), StringExternal("Param/Value/73768597"), lib840A968C_ge_PreemptMessage_DontPreempt, lib840A968C_ge_MessageEventType_AlliedCommunication, c_messageAreaError, lib840A968C_ge_Faction_UGC, null);
     gv_transmissionLock = false;
 }
 
@@ -1102,7 +1102,7 @@ void gf_MonolithReinforcements () {
         Wait(1.0, c_timeGame);
     }
     gv_transmissionLock = true;
-    lib840A968C_gf_SendTransmission(StringExternal("Param/Value/A8C1C70A"), StringExternal("Param/Value/849D27AF"), 1, 0, c_messageAreaError, 0, null);
+    lib840A968C_gf_SendTransmission(StringExternal("Param/Value/A8C1C70A"), StringExternal("Param/Value/849D27AF"), lib840A968C_ge_PreemptMessage_DontPreempt, lib840A968C_ge_MessageEventType_AlliedCommunication, c_messageAreaError, lib840A968C_ge_Faction_UGC, null);
     gv_transmissionLock = false;
     auto6A242A3C_n = gv_numberofSurvivingParatroopers;
     for (auto6A242A3C_i = 1; auto6A242A3C_i <= auto6A242A3C_n; auto6A242A3C_i += 1) {
@@ -1126,7 +1126,7 @@ void gf_MonolithReinforcements () {
             Wait(1.0, c_timeGame);
         }
         gv_transmissionLock = true;
-        lib840A968C_gf_SendTransmission(StringExternal("Param/Value/DC0EB3E1"), StringExternal("Param/Value/3115D03A"), 1, 0, c_messageAreaError, 4, gv_staffSergeantFenwick);
+        lib840A968C_gf_SendTransmission(StringExternal("Param/Value/DC0EB3E1"), StringExternal("Param/Value/3115D03A"), lib840A968C_ge_PreemptMessage_DontPreempt, lib840A968C_ge_MessageEventType_AlliedCommunication, c_messageAreaError, lib840A968C_ge_Faction_Peacekeepers, gv_staffSergeantFenwick);
         gv_transmissionLock = false;
     }
     Wait(1.5, c_timeGame);
@@ -1135,7 +1135,7 @@ void gf_MonolithReinforcements () {
             Wait(1.0, c_timeGame);
         }
         gv_transmissionLock = true;
-        lib840A968C_gf_SendTransmission(StringExternal("Param/Value/4C2EE41C"), StringExternal("Param/Value/3640484C"), 1, 0, c_messageAreaError, 4, gv_staffSergeantFenwick);
+        lib840A968C_gf_SendTransmission(StringExternal("Param/Value/4C2EE41C"), StringExternal("Param/Value/3640484C"), lib840A968C_ge_PreemptMessage_DontPreempt, lib840A968C_ge_MessageEventType_AlliedCommunication, c_messageAreaError, lib840A968C_ge_Faction_Peacekeepers, gv_staffSergeantFenwick);
         gv_transmissionLock = false;
     }
     Wait(1.5, c_timeGame);
@@ -1156,7 +1156,7 @@ void gf_MonolithReinforcements () {
             Wait(1.0, c_timeGame);
         }
         gv_transmissionLock = true;
-        lib840A968C_gf_SendTransmission(StringExternal("Param/Value/DA363574"), StringExternal("Param/Value/AD61331E"), 1, 0, c_messageAreaError, 4, gv_staffSergeantFenwick);
+        lib840A968C_gf_SendTransmission(StringExternal("Param/Value/DA363574"), StringExternal("Param/Value/AD61331E"), lib840A968C_ge_PreemptMessage_DontPreempt, lib840A968C_ge_MessageEventType_AlliedCommunication, c_messageAreaError, lib840A968C_ge_Faction_Peacekeepers, gv_staffSergeantFenwick);
         gv_transmissionLock = false;
     }
     AIAttackWaveUseGroup(lib1E3F036D_gv_peacekeeperPlayer, gv_paratroopers);
@@ -1181,32 +1181,32 @@ void gf_ArmoryItemDrops () {
     // Implementation
     autoB14EC5BE_n = 10;
     for (autoB14EC5BE_i = 1; autoB14EC5BE_i <= autoB14EC5BE_n; autoB14EC5BE_i += 1) {
-        lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(11)), "Magazine", 0);
+        lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(11)), "Magazine", lib840A968C_ge_DropMethod_Locker);
     }
     auto757D1595_n = 2;
     for (auto757D1595_i = 1; auto757D1595_i <= auto757D1595_n; auto757D1595_i += 1) {
-        lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(11)), "RoadFlare", 0);
+        lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(11)), "RoadFlare", lib840A968C_ge_DropMethod_Locker);
     }
     autoCC79FED7_n = 2;
     for (autoCC79FED7_i = 1; autoCC79FED7_i <= autoCC79FED7_n; autoCC79FED7_i += 1) {
-        lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(23)), "ArmoredProtectiveInsert", 0);
+        lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(23)), "ArmoredProtectiveInsert", lib840A968C_ge_DropMethod_Locker);
     }
-    lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(23)), "EnhancedProtectiveInsert", 0);
+    lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(23)), "EnhancedProtectiveInsert", lib840A968C_ge_DropMethod_Locker);
     auto054F80EB_n = 2;
     for (auto054F80EB_i = 1; auto054F80EB_i <= auto054F80EB_n; auto054F80EB_i += 1) {
-        lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(23)), "ImprovedAccuracyModule", 0);
+        lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(23)), "ImprovedAccuracyModule", lib840A968C_ge_DropMethod_Locker);
     }
     autoC032B21B_n = 2;
     for (autoC032B21B_i = 1; autoC032B21B_i <= autoC032B21B_n; autoC032B21B_i += 1) {
-        lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(8)), "Flamethrower", 0);
+        lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(8)), "Flamethrower", lib840A968C_ge_DropMethod_Locker);
     }
     autoCAF55FE3_n = 2;
     for (autoCAF55FE3_i = 1; autoCAF55FE3_i <= autoCAF55FE3_n; autoCAF55FE3_i += 1) {
-        lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(8)), "MarksmanRifle", 0);
+        lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(8)), "MarksmanRifle", lib840A968C_ge_DropMethod_Locker);
     }
-    lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(8)), "MediumMachineGun", 0);
-    lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(8)), "AutomaticShotgun", 0);
-    lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(8)), "PumpShotgun", 0);
+    lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(8)), "MediumMachineGun", lib840A968C_ge_DropMethod_Locker);
+    lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(8)), "AutomaticShotgun", lib840A968C_ge_DropMethod_Locker);
+    lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(8)), "PumpShotgun", lib840A968C_ge_DropMethod_Locker);
 }
 
 void gf_Chapter1AirItemDrops () {
@@ -1248,85 +1248,85 @@ void gf_Chapter1AirItemDrops () {
     // Implementation
     auto3D7CF007_n = 30;
     for (auto3D7CF007_i = 1; auto3D7CF007_i <= auto3D7CF007_n; auto3D7CF007_i += 1) {
-        lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "Magazine", 1);
+        lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "Magazine", lib840A968C_ge_DropMethod_Orbital);
     }
     autoC2B3695E_n = 2;
     for (autoC2B3695E_i = 1; autoC2B3695E_i <= autoC2B3695E_n; autoC2B3695E_i += 1) {
-        lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "AmmunitionCase", 1);
+        lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "AmmunitionCase", lib840A968C_ge_DropMethod_Orbital);
     }
     auto648672B2_n = 6;
     for (auto648672B2_i = 1; auto648672B2_i <= auto648672B2_n; auto648672B2_i += 1) {
-        lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "Medkit", 1);
+        lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "Medkit", lib840A968C_ge_DropMethod_Orbital);
     }
     autoFD994822_n = 4;
     for (autoFD994822_i = 1; autoFD994822_i <= autoFD994822_n; autoFD994822_i += 1) {
-        lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "Bandage", 1);
+        lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "Bandage", lib840A968C_ge_DropMethod_Orbital);
     }
     autoCED4AA4B_n = 4;
     for (autoCED4AA4B_i = 1; autoCED4AA4B_i <= autoCED4AA4B_n; autoCED4AA4B_i += 1) {
-        lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "AntiVenom", 1);
+        lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "AntiVenom", lib840A968C_ge_DropMethod_Orbital);
     }
     autoB3F62833_n = 2;
     for (autoB3F62833_i = 1; autoB3F62833_i <= autoB3F62833_n; autoB3F62833_i += 1) {
-        lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "MendingPaste", 1);
+        lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "MendingPaste", lib840A968C_ge_DropMethod_Orbital);
     }
     auto75F66EA4_n = 4;
     for (auto75F66EA4_i = 1; auto75F66EA4_i <= auto75F66EA4_n; auto75F66EA4_i += 1) {
-        lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "RoadFlare", 1);
+        lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "RoadFlare", lib840A968C_ge_DropMethod_Orbital);
     }
     auto30A5FCF4_n = 4;
     for (auto30A5FCF4_i = 1; auto30A5FCF4_i <= auto30A5FCF4_n; auto30A5FCF4_i += 1) {
-        lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "FlareGun", 1);
+        lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "FlareGun", lib840A968C_ge_DropMethod_Orbital);
     }
 
     auto67A12241_n = 4;
     for (auto67A12241_i = 1; auto67A12241_i <= auto67A12241_n; auto67A12241_i += 1) {
-        lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "ArmoredProtectiveInsert", 1);
+        lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "ArmoredProtectiveInsert", lib840A968C_ge_DropMethod_Orbital);
     }
     autoEBDBC88D_n = 2;
     for (autoEBDBC88D_i = 1; autoEBDBC88D_i <= autoEBDBC88D_n; autoEBDBC88D_i += 1) {
-        lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "EnhancedProtectiveInsert", 1);
+        lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "EnhancedProtectiveInsert", lib840A968C_ge_DropMethod_Orbital);
     }
 
     auto6D5BBB26_n = 2;
     for (auto6D5BBB26_i = 1; auto6D5BBB26_i <= auto6D5BBB26_n; auto6D5BBB26_i += 1) {
-        lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "FieldLights", 1);
+        lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "FieldLights", lib840A968C_ge_DropMethod_Orbital);
     }
-    lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "RiotShield", 1);
-    lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "HighCapacityMagazine", 1);
-    lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "ImprovedAccuracyModule", 1);
+    lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "RiotShield", lib840A968C_ge_DropMethod_Orbital);
+    lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "HighCapacityMagazine", lib840A968C_ge_DropMethod_Orbital);
+    lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "ImprovedAccuracyModule", lib840A968C_ge_DropMethod_Orbital);
 
     auto151D018F_n = 2;
     for (auto151D018F_i = 1; auto151D018F_i <= auto151D018F_n; auto151D018F_i += 1) {
-        lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "ArmorPiercing", 1);
+        lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "ArmorPiercing", lib840A968C_ge_DropMethod_Orbital);
     }
     autoE972A8CC_n = 2;
     for (autoE972A8CC_i = 1; autoE972A8CC_i <= autoE972A8CC_n; autoE972A8CC_i += 1) {
-        lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "HighExplosive", 1);
+        lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "HighExplosive", lib840A968C_ge_DropMethod_Orbital);
     }
-    lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "Flechette", 1);
-    lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "HecateModule", 1);
-    lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "Expanding", 1);
-    lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "PlasmaCore", 1);
+    lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "Flechette", lib840A968C_ge_DropMethod_Orbital);
+    lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "HecateModule", lib840A968C_ge_DropMethod_Orbital);
+    lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "Expanding", lib840A968C_ge_DropMethod_Orbital);
+    lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "PlasmaCore", lib840A968C_ge_DropMethod_Orbital);
 
     autoB5452822_n = 3;
     for (autoB5452822_i = 1; autoB5452822_i <= autoB5452822_n; autoB5452822_i += 1) {
-        lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "Flamethrower", 1);
+        lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "Flamethrower", lib840A968C_ge_DropMethod_Orbital);
     }
     auto84CD1C57_n = 3;
     for (auto84CD1C57_i = 1; auto84CD1C57_i <= auto84CD1C57_n; auto84CD1C57_i += 1) {
-        lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "MarksmanRifle", 1);
+        lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "MarksmanRifle", lib840A968C_ge_DropMethod_Orbital);
     }
     auto10B4A214_n = 2;
     for (auto10B4A214_i = 1; auto10B4A214_i <= auto10B4A214_n; auto10B4A214_i += 1) {
-        lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "PumpShotgun", 1);
+        lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "PumpShotgun", lib840A968C_ge_DropMethod_Orbital);
     }
     autoDA4A5507_n = 2;
     for (autoDA4A5507_i = 1; autoDA4A5507_i <= autoDA4A5507_n; autoDA4A5507_i += 1) {
-        lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "SubmachineGun", 1);
+        lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "SubmachineGun", lib840A968C_ge_DropMethod_Orbital);
     }
-    lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "MediumMachineGun", 1);
-    lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "AutomaticShotgun", 1);
+    lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "MediumMachineGun", lib840A968C_ge_DropMethod_Orbital);
+    lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "AutomaticShotgun", lib840A968C_ge_DropMethod_Orbital);
 
 }
 
@@ -1367,84 +1367,84 @@ void gf_Chapter3AirItemDrops () {
     // Implementation
     autoC1155CB6_n = 20;
     for (autoC1155CB6_i = 1; autoC1155CB6_i <= autoC1155CB6_n; autoC1155CB6_i += 1) {
-        lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "Magazine", 1);
+        lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "Magazine", lib840A968C_ge_DropMethod_Orbital);
     }
     auto02623865_n = 2;
     for (auto02623865_i = 1; auto02623865_i <= auto02623865_n; auto02623865_i += 1) {
-        lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "AmmunitionCase", 1);
+        lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "AmmunitionCase", lib840A968C_ge_DropMethod_Orbital);
     }
     auto4DF36D52_n = 2;
     for (auto4DF36D52_i = 1; auto4DF36D52_i <= auto4DF36D52_n; auto4DF36D52_i += 1) {
-        lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "Medkit", 1);
+        lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "Medkit", lib840A968C_ge_DropMethod_Orbital);
     }
     autoA547DE1F_n = 2;
     for (autoA547DE1F_i = 1; autoA547DE1F_i <= autoA547DE1F_n; autoA547DE1F_i += 1) {
-        lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "Bandage", 1);
+        lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "Bandage", lib840A968C_ge_DropMethod_Orbital);
     }
     auto8260DB4E_n = 2;
     for (auto8260DB4E_i = 1; auto8260DB4E_i <= auto8260DB4E_n; auto8260DB4E_i += 1) {
-        lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "AntiVenom", 1);
+        lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "AntiVenom", lib840A968C_ge_DropMethod_Orbital);
     }
     auto022D714E_n = 2;
     for (auto022D714E_i = 1; auto022D714E_i <= auto022D714E_n; auto022D714E_i += 1) {
-        lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "MendingPaste", 1);
+        lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "MendingPaste", lib840A968C_ge_DropMethod_Orbital);
     }
     autoE1B10C21_n = 2;
     for (autoE1B10C21_i = 1; autoE1B10C21_i <= autoE1B10C21_n; autoE1B10C21_i += 1) {
-        lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "RoadFlare", 1);
+        lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "RoadFlare", lib840A968C_ge_DropMethod_Orbital);
     }
     auto234FF5CF_n = 2;
     for (auto234FF5CF_i = 1; auto234FF5CF_i <= auto234FF5CF_n; auto234FF5CF_i += 1) {
-        lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "FlareGun", 1);
+        lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "FlareGun", lib840A968C_ge_DropMethod_Orbital);
     }
 
     autoAF2F1D85_n = 2;
     for (autoAF2F1D85_i = 1; autoAF2F1D85_i <= autoAF2F1D85_n; autoAF2F1D85_i += 1) {
-        lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "EnhancedProtectiveInsert", 1);
+        lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "EnhancedProtectiveInsert", lib840A968C_ge_DropMethod_Orbital);
     }
     autoFBE6586C_n = 2;
     for (autoFBE6586C_i = 1; autoFBE6586C_i <= autoFBE6586C_n; autoFBE6586C_i += 1) {
-        lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "HeavyProtectiveInsert", 1);
+        lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "HeavyProtectiveInsert", lib840A968C_ge_DropMethod_Orbital);
     }
-    lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "ReactiveProtectiveInsert", 1);
-    lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "ShieldAugmentationInsert", 1);
+    lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "ReactiveProtectiveInsert", lib840A968C_ge_DropMethod_Orbital);
+    lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "ShieldAugmentationInsert", lib840A968C_ge_DropMethod_Orbital);
 
-    lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "RiotShield", 1);
-    lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "HighCapacityMagazine", 1);
-    lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "ImprovedAccuracyModule", 1);
-    lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "NanoHealthAugment", 1);
-    lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "CombatMobilityAugment", 1);
-    lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "PowerGeneratorAugment", 1);
+    lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "RiotShield", lib840A968C_ge_DropMethod_Orbital);
+    lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "HighCapacityMagazine", lib840A968C_ge_DropMethod_Orbital);
+    lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "ImprovedAccuracyModule", lib840A968C_ge_DropMethod_Orbital);
+    lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "NanoHealthAugment", lib840A968C_ge_DropMethod_Orbital);
+    lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "CombatMobilityAugment", lib840A968C_ge_DropMethod_Orbital);
+    lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "PowerGeneratorAugment", lib840A968C_ge_DropMethod_Orbital);
 
     auto4EDE4524_n = 2;
     for (auto4EDE4524_i = 1; auto4EDE4524_i <= auto4EDE4524_n; auto4EDE4524_i += 1) {
-        lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "HecateModule", 1);
+        lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "HecateModule", lib840A968C_ge_DropMethod_Orbital);
     }
     autoFC6998F3_n = 2;
     for (autoFC6998F3_i = 1; autoFC6998F3_i <= autoFC6998F3_n; autoFC6998F3_i += 1) {
-        lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "Expanding", 1);
+        lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "Expanding", lib840A968C_ge_DropMethod_Orbital);
     }
     auto7291F8D3_n = 2;
     for (auto7291F8D3_i = 1; auto7291F8D3_i <= auto7291F8D3_n; auto7291F8D3_i += 1) {
-        lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "PlasmaCore", 1);
+        lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "PlasmaCore", lib840A968C_ge_DropMethod_Orbital);
     }
-    lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "ArmorPiercing", 1);
+    lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "ArmorPiercing", lib840A968C_ge_DropMethod_Orbital);
 
     autoE49CBBDD_n = 2;
     for (autoE49CBBDD_i = 1; autoE49CBBDD_i <= autoE49CBBDD_n; autoE49CBBDD_i += 1) {
-        lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "Flamethrower", 1);
+        lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "Flamethrower", lib840A968C_ge_DropMethod_Orbital);
     }
     autoC2BB22E2_n = 2;
     for (autoC2BB22E2_i = 1; autoC2BB22E2_i <= autoC2BB22E2_n; autoC2BB22E2_i += 1) {
-        lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "LaserRifle", 1);
+        lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "LaserRifle", lib840A968C_ge_DropMethod_Orbital);
     }
     auto3AFDFBCF_n = 2;
     for (auto3AFDFBCF_i = 1; auto3AFDFBCF_i <= auto3AFDFBCF_n; auto3AFDFBCF_i += 1) {
-        lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "MediumMachineGun", 1);
+        lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "MediumMachineGun", lib840A968C_ge_DropMethod_Orbital);
     }
-    lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "AntiMaterialRifle", 1);
-    lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "HeavyMachineGun", 1);
-    lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "AutomaticShotgun", 1);
+    lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "AntiMaterialRifle", lib840A968C_ge_DropMethod_Orbital);
+    lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "HeavyMachineGun", lib840A968C_ge_DropMethod_Orbital);
+    lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "AutomaticShotgun", lib840A968C_ge_DropMethod_Orbital);
 
 }
 
@@ -1481,58 +1481,58 @@ void gf_Chapter5AirItemDrops () {
     // Implementation
     auto53E57557_n = 20;
     for (auto53E57557_i = 1; auto53E57557_i <= auto53E57557_n; auto53E57557_i += 1) {
-        lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "Magazine", 1);
+        lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "Magazine", lib840A968C_ge_DropMethod_Orbital);
     }
     auto4B049E5C_n = 2;
     for (auto4B049E5C_i = 1; auto4B049E5C_i <= auto4B049E5C_n; auto4B049E5C_i += 1) {
-        lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "Medkit", 1);
+        lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "Medkit", lib840A968C_ge_DropMethod_Orbital);
     }
     auto9E213753_n = 2;
     for (auto9E213753_i = 1; auto9E213753_i <= auto9E213753_n; auto9E213753_i += 1) {
-        lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "Bandage", 1);
+        lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "Bandage", lib840A968C_ge_DropMethod_Orbital);
     }
     autoC2146671_n = 2;
     for (autoC2146671_i = 1; autoC2146671_i <= autoC2146671_n; autoC2146671_i += 1) {
-        lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "AntiVenom", 1);
+        lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "AntiVenom", lib840A968C_ge_DropMethod_Orbital);
     }
     autoB9BA0BF8_n = 2;
     for (autoB9BA0BF8_i = 1; autoB9BA0BF8_i <= autoB9BA0BF8_n; autoB9BA0BF8_i += 1) {
-        lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "MendingPaste", 1);
+        lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "MendingPaste", lib840A968C_ge_DropMethod_Orbital);
     }
     auto07B8B3EE_n = 2;
     for (auto07B8B3EE_i = 1; auto07B8B3EE_i <= auto07B8B3EE_n; auto07B8B3EE_i += 1) {
-        lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "RoadFlare", 1);
+        lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "RoadFlare", lib840A968C_ge_DropMethod_Orbital);
     }
     auto763CE08C_n = 2;
     for (auto763CE08C_i = 1; auto763CE08C_i <= auto763CE08C_n; auto763CE08C_i += 1) {
-        lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "FlareGun", 1);
+        lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "FlareGun", lib840A968C_ge_DropMethod_Orbital);
     }
 
     auto4650B3EB_n = 2;
     for (auto4650B3EB_i = 1; auto4650B3EB_i <= auto4650B3EB_n; auto4650B3EB_i += 1) {
-        lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "HeavyProtectiveInsert", 1);
+        lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "HeavyProtectiveInsert", lib840A968C_ge_DropMethod_Orbital);
     }
-    lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "ReactiveProtectiveInsert", 1);
-    lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "ShieldAugmentationInsert", 1);
+    lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "ReactiveProtectiveInsert", lib840A968C_ge_DropMethod_Orbital);
+    lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "ShieldAugmentationInsert", lib840A968C_ge_DropMethod_Orbital);
 
-    lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "HighCapacityMagazine", 1);
-    lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "ImprovedAccuracyModule", 1);
-    lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "NanoHealthAugment", 1);
-    lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "CombatMobilityAugment", 1);
-    lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "PowerGeneratorAugment", 1);
+    lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "HighCapacityMagazine", lib840A968C_ge_DropMethod_Orbital);
+    lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "ImprovedAccuracyModule", lib840A968C_ge_DropMethod_Orbital);
+    lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "NanoHealthAugment", lib840A968C_ge_DropMethod_Orbital);
+    lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "CombatMobilityAugment", lib840A968C_ge_DropMethod_Orbital);
+    lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "PowerGeneratorAugment", lib840A968C_ge_DropMethod_Orbital);
 
     autoFBC81AE2_n = 2;
     for (autoFBC81AE2_i = 1; autoFBC81AE2_i <= autoFBC81AE2_n; autoFBC81AE2_i += 1) {
-        lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "HecateModule", 1);
+        lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "HecateModule", lib840A968C_ge_DropMethod_Orbital);
     }
     autoDD8E14FC_n = 2;
     for (autoDD8E14FC_i = 1; autoDD8E14FC_i <= autoDD8E14FC_n; autoDD8E14FC_i += 1) {
-        lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "PlasmaCore", 1);
+        lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "PlasmaCore", lib840A968C_ge_DropMethod_Orbital);
     }
     if ((gv_tX1Discovered == true)) {
         autoF2ECBFB5_n = 4;
         for (autoF2ECBFB5_i = 1; autoF2ECBFB5_i <= autoF2ECBFB5_n; autoF2ECBFB5_i += 1) {
-            lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "TX1", 1);
+            lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "TX1", lib840A968C_ge_DropMethod_Orbital);
         }
     }
     else {
@@ -1540,15 +1540,15 @@ void gf_Chapter5AirItemDrops () {
 
     autoCC644450_n = 2;
     for (autoCC644450_i = 1; autoCC644450_i <= autoCC644450_n; autoCC644450_i += 1) {
-        lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "AntiMaterialRifle", 1);
+        lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "AntiMaterialRifle", lib840A968C_ge_DropMethod_Orbital);
     }
     autoD6D9EF2A_n = 2;
     for (autoD6D9EF2A_i = 1; autoD6D9EF2A_i <= autoD6D9EF2A_n; autoD6D9EF2A_i += 1) {
-        lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "LaserRifle", 1);
+        lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "LaserRifle", lib840A968C_ge_DropMethod_Orbital);
     }
     autoCC5A3339_n = 2;
     for (autoCC5A3339_i = 1; autoCC5A3339_i <= autoCC5A3339_n; autoCC5A3339_i += 1) {
-        lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "HeavyMachineGun", 1);
+        lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "HeavyMachineGun", lib840A968C_ge_DropMethod_Orbital);
     }
 
 }
@@ -1761,10 +1761,10 @@ bool gt_DeadBodiesDiscovered_Func (bool testConds, bool runActions) {
         Wait(1.0, c_timeGame);
     }
     gv_transmissionLock = true;
-    lib840A968C_gf_SendTransmission(lib840A968C_gf_GetPlayerNamewithrank(lv_discoveringPlayer), StringExternal("Param/Value/032B5FAA"), 1, 0, c_messageAreaError, 5, lib840A968C_gf_GetMarine(lv_discoveringPlayer));
-    lib840A968C_gf_SendTransmission(StringExternal("Param/Value/7B7A3F56"), StringExternal("Param/Value/0A8C1626"), 1, 0, c_messageAreaError, 0, null);
-    lib840A968C_gf_SendTransmission(lib840A968C_gf_GetPlayerNamewithrank(lv_discoveringPlayer), StringExternal("Param/Value/392B816B"), 1, 0, c_messageAreaError, 5, lib840A968C_gf_GetMarine(lv_discoveringPlayer));
-    lib840A968C_gf_SendTransmission(StringExternal("Param/Value/E93C9795"), StringExternal("Param/Value/0D484FC3"), 1, 0, c_messageAreaError, 0, null);
+    lib840A968C_gf_SendTransmission(lib840A968C_gf_GetPlayerNamewithrank(lv_discoveringPlayer), StringExternal("Param/Value/032B5FAA"), lib840A968C_ge_PreemptMessage_DontPreempt, lib840A968C_ge_MessageEventType_AlliedCommunication, c_messageAreaError, lib840A968C_ge_Faction_Marines, lib840A968C_gf_GetMarine(lv_discoveringPlayer));
+    lib840A968C_gf_SendTransmission(StringExternal("Param/Value/7B7A3F56"), StringExternal("Param/Value/0A8C1626"), lib840A968C_ge_PreemptMessage_DontPreempt, lib840A968C_ge_MessageEventType_AlliedCommunication, c_messageAreaError, lib840A968C_ge_Faction_UGC, null);
+    lib840A968C_gf_SendTransmission(lib840A968C_gf_GetPlayerNamewithrank(lv_discoveringPlayer), StringExternal("Param/Value/392B816B"), lib840A968C_ge_PreemptMessage_DontPreempt, lib840A968C_ge_MessageEventType_AlliedCommunication, c_messageAreaError, lib840A968C_ge_Faction_Marines, lib840A968C_gf_GetMarine(lv_discoveringPlayer));
+    lib840A968C_gf_SendTransmission(StringExternal("Param/Value/E93C9795"), StringExternal("Param/Value/0D484FC3"), lib840A968C_ge_PreemptMessage_DontPreempt, lib840A968C_ge_MessageEventType_AlliedCommunication, c_messageAreaError, lib840A968C_ge_Faction_UGC, null);
     gv_transmissionLock = false;
     return true;
 }
@@ -1795,8 +1795,8 @@ bool gt_MilitaryHQSpotted_Func (bool testConds, bool runActions) {
         Wait(1.0, c_timeGame);
     }
     gv_transmissionLock = true;
-    lib840A968C_gf_SendTransmission(lib840A968C_gf_GetPlayerNamewithrank(lv_discoveringPlayer), StringExternal("Param/Value/FBCDF929"), 1, 0, c_messageAreaError, 5, lib840A968C_gf_GetMarine(lv_discoveringPlayer));
-    lib840A968C_gf_SendTransmission(StringExternal("Param/Value/F55E45F0"), StringExternal("Param/Value/9094517D"), 1, 0, c_messageAreaError, 0, null);
+    lib840A968C_gf_SendTransmission(lib840A968C_gf_GetPlayerNamewithrank(lv_discoveringPlayer), StringExternal("Param/Value/FBCDF929"), lib840A968C_ge_PreemptMessage_DontPreempt, lib840A968C_ge_MessageEventType_AlliedCommunication, c_messageAreaError, lib840A968C_ge_Faction_Marines, lib840A968C_gf_GetMarine(lv_discoveringPlayer));
+    lib840A968C_gf_SendTransmission(StringExternal("Param/Value/F55E45F0"), StringExternal("Param/Value/9094517D"), lib840A968C_ge_PreemptMessage_DontPreempt, lib840A968C_ge_MessageEventType_AlliedCommunication, c_messageAreaError, lib840A968C_ge_Faction_UGC, null);
     gv_transmissionLock = false;
     lib840A968C_gf_MissionEnd(c_objectiveStateCompleted, gv_recruitArrivalMissionToken);
     return true;
@@ -1818,7 +1818,7 @@ bool gt_EnteringMilitaryBase_Func (bool testConds, bool runActions) {
 
     TriggerEnable(TriggerGetCurrent(), false);
     Wait(RandomFixed(2.0, 5.0), c_timeGame);
-    lib840A968C_gf_BackgroundDialog(EventUnit(), lib840A968C_gf_GetPlayerNamewithrank(EventPlayer()), StringExternal("Param/Value/8CFD6DF9"), 0, 4.0);
+    lib840A968C_gf_BackgroundDialog(EventUnit(), lib840A968C_gf_GetPlayerNamewithrank(EventPlayer()), StringExternal("Param/Value/8CFD6DF9"), lib840A968C_ge_DialogDuration_Short, 4.0);
     return true;
 }
 
@@ -1845,7 +1845,7 @@ bool gt_CustomsLockup_Func (bool testConds, bool runActions) {
     }
 
     TriggerEnable(TriggerGetCurrent(), false);
-    lib840A968C_gf_BackgroundDialog(lib840A968C_gf_GetMarine(lv_discoveringPlayer), lib840A968C_gf_GetPlayerNamewithrank(lv_discoveringPlayer), StringExternal("Param/Value/E366C9FD"), 0, 5.0);
+    lib840A968C_gf_BackgroundDialog(lib840A968C_gf_GetMarine(lv_discoveringPlayer), lib840A968C_gf_GetPlayerNamewithrank(lv_discoveringPlayer), StringExternal("Param/Value/E366C9FD"), lib840A968C_ge_DialogDuration_Short, 5.0);
     return true;
 }
 
@@ -1882,7 +1882,7 @@ bool gt_HeadtoCustomsLockup_Func (bool testConds, bool runActions) {
         Wait(1.0, c_timeGame);
     }
     gv_transmissionLock = true;
-    lib840A968C_gf_SendTransmission(StringExternal("Param/Value/F487A5A5"), StringExternal("Param/Value/D8AF1F57"), 1, 0, c_messageAreaError, 0, null);
+    lib840A968C_gf_SendTransmission(StringExternal("Param/Value/F487A5A5"), StringExternal("Param/Value/D8AF1F57"), lib840A968C_ge_PreemptMessage_DontPreempt, lib840A968C_ge_MessageEventType_AlliedCommunication, c_messageAreaError, lib840A968C_ge_Faction_UGC, null);
     gv_transmissionLock = false;
     PlayerGroupLoopBegin(lib840A968C_gf_GetLivingMarineSquadPlayers());
     for ( ; !PlayerGroupLoopDone() ; PlayerGroupLoopStep() ) {
@@ -2016,8 +2016,8 @@ bool gt_WarzoneTransmission_Func (bool testConds, bool runActions) {
         Wait(1.0, c_timeGame);
     }
     gv_transmissionLock = true;
-    lib840A968C_gf_SendTransmission(lib840A968C_gf_GetPlayerNamewithrank(lv_discoveringPlayer), StringExternal("Param/Value/A6A19592"), 1, 0, c_messageAreaError, 5, lib840A968C_gf_GetMarine(lv_discoveringPlayer));
-    lib840A968C_gf_SendTransmission(StringExternal("Param/Value/00A68CC7"), StringExternal("Param/Value/B33EB1B1"), 1, 0, c_messageAreaError, 0, null);
+    lib840A968C_gf_SendTransmission(lib840A968C_gf_GetPlayerNamewithrank(lv_discoveringPlayer), StringExternal("Param/Value/A6A19592"), lib840A968C_ge_PreemptMessage_DontPreempt, lib840A968C_ge_MessageEventType_AlliedCommunication, c_messageAreaError, lib840A968C_ge_Faction_Marines, lib840A968C_gf_GetMarine(lv_discoveringPlayer));
+    lib840A968C_gf_SendTransmission(StringExternal("Param/Value/00A68CC7"), StringExternal("Param/Value/B33EB1B1"), lib840A968C_ge_PreemptMessage_DontPreempt, lib840A968C_ge_MessageEventType_AlliedCommunication, c_messageAreaError, lib840A968C_ge_Faction_UGC, null);
     gv_transmissionLock = false;
     return true;
 }
@@ -2054,10 +2054,10 @@ bool gt_SecurityGateTransmission_Func (bool testConds, bool runActions) {
         Wait(1.0, c_timeGame);
     }
     gv_transmissionLock = true;
-    lib840A968C_gf_SendTransmission(lib840A968C_gf_GetPlayerNamewithrank(lv_discoveringPlayer), StringExternal("Param/Value/806B2518"), 1, 0, c_messageAreaError, 5, lib840A968C_gf_GetMarine(lv_discoveringPlayer));
-    lib840A968C_gf_SendTransmission(StringExternal("Param/Value/719847FC"), StringExternal("Param/Value/86D55CDE"), 1, 0, c_messageAreaError, 0, null);
-    lib840A968C_gf_SendTransmission(lib840A968C_gf_GetPlayerNamewithrank(lv_discoveringPlayer), StringExternal("Param/Value/0C190CCA"), 1, 0, c_messageAreaError, 5, lib840A968C_gf_GetMarine(lv_discoveringPlayer));
-    lib840A968C_gf_SendTransmission(StringExternal("Param/Value/AB2715AF"), StringExternal("Param/Value/7EE66995"), 1, 0, c_messageAreaError, 0, null);
+    lib840A968C_gf_SendTransmission(lib840A968C_gf_GetPlayerNamewithrank(lv_discoveringPlayer), StringExternal("Param/Value/806B2518"), lib840A968C_ge_PreemptMessage_DontPreempt, lib840A968C_ge_MessageEventType_AlliedCommunication, c_messageAreaError, lib840A968C_ge_Faction_Marines, lib840A968C_gf_GetMarine(lv_discoveringPlayer));
+    lib840A968C_gf_SendTransmission(StringExternal("Param/Value/719847FC"), StringExternal("Param/Value/86D55CDE"), lib840A968C_ge_PreemptMessage_DontPreempt, lib840A968C_ge_MessageEventType_AlliedCommunication, c_messageAreaError, lib840A968C_ge_Faction_UGC, null);
+    lib840A968C_gf_SendTransmission(lib840A968C_gf_GetPlayerNamewithrank(lv_discoveringPlayer), StringExternal("Param/Value/0C190CCA"), lib840A968C_ge_PreemptMessage_DontPreempt, lib840A968C_ge_MessageEventType_AlliedCommunication, c_messageAreaError, lib840A968C_ge_Faction_Marines, lib840A968C_gf_GetMarine(lv_discoveringPlayer));
+    lib840A968C_gf_SendTransmission(StringExternal("Param/Value/AB2715AF"), StringExternal("Param/Value/7EE66995"), lib840A968C_ge_PreemptMessage_DontPreempt, lib840A968C_ge_MessageEventType_AlliedCommunication, c_messageAreaError, lib840A968C_ge_Faction_UGC, null);
     gv_transmissionLock = false;
     return true;
 }
@@ -2278,7 +2278,7 @@ bool gt_PlayerReachesPeacekeepers_Func (bool testConds, bool runActions) {
         Wait(1.0, c_timeGame);
     }
     gv_transmissionLock = true;
-    lib840A968C_gf_SendTransmission(StringExternal("Param/Value/FF7B8F81"), StringExternal("Param/Value/68A12B9D"), 1, 0, c_messageAreaError, 0, gv_chiefStrassner);
+    lib840A968C_gf_SendTransmission(StringExternal("Param/Value/FF7B8F81"), StringExternal("Param/Value/68A12B9D"), lib840A968C_ge_PreemptMessage_DontPreempt, lib840A968C_ge_MessageEventType_AlliedCommunication, c_messageAreaError, lib840A968C_ge_Faction_UGC, gv_chiefStrassner);
     gv_transmissionLock = false;
     lib840A968C_gf_MissionEnd(c_objectiveStateCompleted, gv_peacekeeperMissionToken);
     return true;
@@ -2372,8 +2372,8 @@ bool gt_PlayerRescuesCivilians_Func (bool testConds, bool runActions) {
         Wait(1.0, c_timeGame);
     }
     gv_transmissionLock = true;
-    lib840A968C_gf_SendTransmission(lib840A968C_gf_GetPlayerNamewithrank(lv_arrivingPlayer), StringExternal("Param/Value/E370D9C2"), 1, 0, c_messageAreaError, 5, lib840A968C_gf_GetMarine(lv_arrivingPlayer));
-    lib840A968C_gf_SendTransmission(StringExternal("Param/Value/7AE3CECA"), StringExternal("Param/Value/CD48BFA7"), 1, 0, c_messageAreaError, 0, gv_sergeantAscalon);
+    lib840A968C_gf_SendTransmission(lib840A968C_gf_GetPlayerNamewithrank(lv_arrivingPlayer), StringExternal("Param/Value/E370D9C2"), lib840A968C_ge_PreemptMessage_DontPreempt, lib840A968C_ge_MessageEventType_AlliedCommunication, c_messageAreaError, lib840A968C_ge_Faction_Marines, lib840A968C_gf_GetMarine(lv_arrivingPlayer));
+    lib840A968C_gf_SendTransmission(StringExternal("Param/Value/7AE3CECA"), StringExternal("Param/Value/CD48BFA7"), lib840A968C_ge_PreemptMessage_DontPreempt, lib840A968C_ge_MessageEventType_AlliedCommunication, c_messageAreaError, lib840A968C_ge_Faction_UGC, gv_sergeantAscalon);
     gv_transmissionLock = false;
     libNtve_gf_RescueUnit2(gv_civiliansRescue, lv_arrivingPlayer, true);
     AIAttackWaveSetTargetEscort(9, gv_civiliansRescue, 0);
@@ -2425,8 +2425,8 @@ bool gt_PlayersFailtoRescue_Func (bool testConds, bool runActions) {
         Wait(1.0, c_timeGame);
     }
     gv_transmissionLock = true;
-    lib840A968C_gf_SendTransmission(lib840A968C_gf_GetPlayerNamewithrank(lv_arrivingPlayer), StringExternal("Param/Value/308D9E51"), 1, 0, c_messageAreaError, 5, lib840A968C_gf_GetMarine(lv_arrivingPlayer));
-    lib840A968C_gf_SendTransmission(StringExternal("Param/Value/88D52407"), StringExternal("Param/Value/C1C6FA51"), 1, 0, c_messageAreaError, 0, gv_chiefStrassner);
+    lib840A968C_gf_SendTransmission(lib840A968C_gf_GetPlayerNamewithrank(lv_arrivingPlayer), StringExternal("Param/Value/308D9E51"), lib840A968C_ge_PreemptMessage_DontPreempt, lib840A968C_ge_MessageEventType_AlliedCommunication, c_messageAreaError, lib840A968C_ge_Faction_Marines, lib840A968C_gf_GetMarine(lv_arrivingPlayer));
+    lib840A968C_gf_SendTransmission(StringExternal("Param/Value/88D52407"), StringExternal("Param/Value/C1C6FA51"), lib840A968C_ge_PreemptMessage_DontPreempt, lib840A968C_ge_MessageEventType_AlliedCommunication, c_messageAreaError, lib840A968C_ge_Faction_UGC, gv_chiefStrassner);
     gv_transmissionLock = false;
     gv_civilianRescueSuccess = c_objectiveStateFailed;
     if (lib09BE6BA8_gf_GroupNearPoint(lib840A968C_gf_GetMarineGroup(), gv_peacekeeperHoldout, 10.0)) {
@@ -2437,7 +2437,7 @@ bool gt_PlayersFailtoRescue_Func (bool testConds, bool runActions) {
             Wait(1.0, c_timeGame);
         }
         gv_transmissionLock = true;
-        lib840A968C_gf_SendTransmission(StringExternal("Param/Value/35604287"), StringExternal("Param/Value/E76D5DB5"), 1, 0, c_messageAreaError, 0, gv_chiefStrassner);
+        lib840A968C_gf_SendTransmission(StringExternal("Param/Value/35604287"), StringExternal("Param/Value/E76D5DB5"), lib840A968C_ge_PreemptMessage_DontPreempt, lib840A968C_ge_MessageEventType_AlliedCommunication, c_messageAreaError, lib840A968C_ge_Faction_UGC, gv_chiefStrassner);
         gv_transmissionLock = false;
         TriggerEnable(gt_PlayerReturntoPeacekeeperHoldout, true);
     }
@@ -2522,7 +2522,7 @@ bool gt_Holdout_Func (bool testConds, bool runActions) {
         Wait(1.0, c_timeGame);
     }
     gv_transmissionLock = true;
-    lib840A968C_gf_SendTransmission(StringExternal("Param/Value/CC55861B"), StringExternal("Param/Value/469F57A2"), 1, 0, c_messageAreaError, 0, gv_chiefStrassner);
+    lib840A968C_gf_SendTransmission(StringExternal("Param/Value/CC55861B"), StringExternal("Param/Value/469F57A2"), lib840A968C_ge_PreemptMessage_DontPreempt, lib840A968C_ge_MessageEventType_AlliedCommunication, c_messageAreaError, lib840A968C_ge_Faction_UGC, gv_chiefStrassner);
     gv_transmissionLock = false;
     autoDD3C8C61_n = lib1E3F036D_gf_GameDifficultyInteger(2, 3, 4);
     for (autoDD3C8C61_i = 1; autoDD3C8C61_i <= autoDD3C8C61_n; autoDD3C8C61_i += 1) {
@@ -2535,26 +2535,26 @@ bool gt_Holdout_Func (bool testConds, bool runActions) {
         Wait(1.0, c_timeGame);
     }
     gv_transmissionLock = true;
-    lib840A968C_gf_SendTransmission(lib840A968C_gf_GetPlayerNamewithrank(lv_currentSpeaker), StringExternal("Param/Value/37E2A6A3"), 1, 0, c_messageAreaError, 5, lib840A968C_gf_GetMarine(lv_currentSpeaker));
+    lib840A968C_gf_SendTransmission(lib840A968C_gf_GetPlayerNamewithrank(lv_currentSpeaker), StringExternal("Param/Value/37E2A6A3"), lib840A968C_ge_PreemptMessage_DontPreempt, lib840A968C_ge_MessageEventType_AlliedCommunication, c_messageAreaError, lib840A968C_ge_Faction_Marines, lib840A968C_gf_GetMarine(lv_currentSpeaker));
     gv_transmissionLock = false;
     if ((PlayerGroupCount(lv_speakers) != 0)) {
         lv_currentSpeaker = lib09BE6BA8_gf_GetRandomPlayerfromPlayerGroup(lv_speakers);
         PlayerGroupRemove(lv_speakers, lv_currentSpeaker);
-        lib840A968C_gf_BackgroundDialog(lib840A968C_gf_GetMarine(lv_currentSpeaker), lib840A968C_gf_GetPlayerNamewithrank(lv_currentSpeaker), StringExternal("Param/Value/4E9FE919"), 0, 6.0);
+        lib840A968C_gf_BackgroundDialog(lib840A968C_gf_GetMarine(lv_currentSpeaker), lib840A968C_gf_GetPlayerNamewithrank(lv_currentSpeaker), StringExternal("Param/Value/4E9FE919"), lib840A968C_ge_DialogDuration_Short, 6.0);
     }
     else {
     }
     if ((PlayerGroupCount(lv_speakers) != 0)) {
         lv_currentSpeaker = lib09BE6BA8_gf_GetRandomPlayerfromPlayerGroup(lv_speakers);
         PlayerGroupRemove(lv_speakers, lv_currentSpeaker);
-        lib840A968C_gf_BackgroundDialog(lib840A968C_gf_GetMarine(lv_currentSpeaker), lib840A968C_gf_GetPlayerNamewithrank(lv_currentSpeaker), StringExternal("Param/Value/99BA8395"), 0, 6.0);
+        lib840A968C_gf_BackgroundDialog(lib840A968C_gf_GetMarine(lv_currentSpeaker), lib840A968C_gf_GetPlayerNamewithrank(lv_currentSpeaker), StringExternal("Param/Value/99BA8395"), lib840A968C_ge_DialogDuration_Short, 6.0);
     }
     else {
     }
     if ((PlayerGroupCount(lv_speakers) != 0)) {
         lv_currentSpeaker = lib09BE6BA8_gf_GetRandomPlayerfromPlayerGroup(lv_speakers);
         PlayerGroupRemove(lv_speakers, lv_currentSpeaker);
-        lib840A968C_gf_BackgroundDialog(lib840A968C_gf_GetMarine(lv_currentSpeaker), lib840A968C_gf_GetPlayerNamewithrank(lv_currentSpeaker), StringExternal("Param/Value/9FC733C0"), 0, 3.0);
+        lib840A968C_gf_BackgroundDialog(lib840A968C_gf_GetMarine(lv_currentSpeaker), lib840A968C_gf_GetPlayerNamewithrank(lv_currentSpeaker), StringExternal("Param/Value/9FC733C0"), lib840A968C_ge_DialogDuration_Short, 3.0);
     }
     else {
     }
@@ -2563,16 +2563,16 @@ bool gt_Holdout_Func (bool testConds, bool runActions) {
         Wait(1.0, c_timeGame);
     }
     gv_transmissionLock = true;
-    lib840A968C_gf_SendTransmission(StringExternal("Param/Value/80C4BD30"), StringExternal("Param/Value/EE9D6700"), 1, 0, c_messageAreaError, 0, gv_chiefStrassner);
+    lib840A968C_gf_SendTransmission(StringExternal("Param/Value/80C4BD30"), StringExternal("Param/Value/EE9D6700"), lib840A968C_ge_PreemptMessage_DontPreempt, lib840A968C_ge_MessageEventType_AlliedCommunication, c_messageAreaError, lib840A968C_ge_Faction_UGC, gv_chiefStrassner);
     gv_transmissionLock = false;
     lv_speakers = lib840A968C_gf_GetLivingMarineSquadPlayers();
     lv_currentSpeaker = lib09BE6BA8_gf_GetRandomPlayerfromPlayerGroup(lv_speakers);
     PlayerGroupRemove(lv_speakers, lv_currentSpeaker);
-    lib840A968C_gf_BackgroundDialog(lib840A968C_gf_GetMarine(lv_currentSpeaker), lib840A968C_gf_GetPlayerNamewithrank(lv_currentSpeaker), StringExternal("Param/Value/A7B92638"), 0, 2.5);
+    lib840A968C_gf_BackgroundDialog(lib840A968C_gf_GetMarine(lv_currentSpeaker), lib840A968C_gf_GetPlayerNamewithrank(lv_currentSpeaker), StringExternal("Param/Value/A7B92638"), lib840A968C_ge_DialogDuration_Short, 2.5);
     if ((PlayerGroupCount(lv_speakers) != 0)) {
         lv_currentSpeaker = lib09BE6BA8_gf_GetRandomPlayerfromPlayerGroup(lv_speakers);
         PlayerGroupRemove(lv_speakers, lv_currentSpeaker);
-        lib840A968C_gf_BackgroundDialog(lib840A968C_gf_GetMarine(lv_currentSpeaker), lib840A968C_gf_GetPlayerNamewithrank(lv_currentSpeaker), StringExternal("Param/Value/B5F9E978"), 0, 3.0);
+        lib840A968C_gf_BackgroundDialog(lib840A968C_gf_GetMarine(lv_currentSpeaker), lib840A968C_gf_GetPlayerNamewithrank(lv_currentSpeaker), StringExternal("Param/Value/B5F9E978"), lib840A968C_ge_DialogDuration_Short, 3.0);
     }
     else {
     }
@@ -2654,8 +2654,8 @@ bool gt_ExtractionBegin_Func (bool testConds, bool runActions) {
         Wait(1.0, c_timeGame);
     }
     gv_transmissionLock = true;
-    lib840A968C_gf_SendTransmission(StringExternal("Param/Value/3C2E1404"), StringExternal("Param/Value/2D37AE24"), 1, 0, c_messageAreaError, 0, null);
-    lib840A968C_gf_SendTransmission(StringExternal("Param/Value/B10F482E"), StringExternal("Param/Value/1E5E31EF"), 1, 0, c_messageAreaError, 0, null);
+    lib840A968C_gf_SendTransmission(StringExternal("Param/Value/3C2E1404"), StringExternal("Param/Value/2D37AE24"), lib840A968C_ge_PreemptMessage_DontPreempt, lib840A968C_ge_MessageEventType_AlliedCommunication, c_messageAreaError, lib840A968C_ge_Faction_UGC, null);
+    lib840A968C_gf_SendTransmission(StringExternal("Param/Value/B10F482E"), StringExternal("Param/Value/1E5E31EF"), lib840A968C_ge_PreemptMessage_DontPreempt, lib840A968C_ge_MessageEventType_AlliedCommunication, c_messageAreaError, lib840A968C_ge_Faction_UGC, null);
     gv_transmissionLock = false;
     gf_Chapter1AirItemDrops();
     TriggerEnable(gt_PeriodicZombieAttacksCivilianExtraction, true);
@@ -2916,12 +2916,12 @@ bool gt_EltradDeath_Func (bool testConds, bool runActions) {
 
     TriggerEnable(TriggerGetCurrent(), false);
     if (UnitIsAlive(gv_chiefStrassner)) {
-        lib840A968C_gf_BackgroundDialog(gv_chiefStrassner, StringExternal("Param/Value/FFAE3888"), StringExternal("Param/Value/A34E806D"), 0, 4.0);
+        lib840A968C_gf_BackgroundDialog(gv_chiefStrassner, StringExternal("Param/Value/FFAE3888"), StringExternal("Param/Value/A34E806D"), lib840A968C_ge_DialogDuration_Short, 4.0);
     }
     else {
     }
     if (UnitIsAlive(gv_staffSergeantFenwick)) {
-        lib840A968C_gf_BackgroundDialog(gv_staffSergeantFenwick, StringExternal("Param/Value/53504F67"), StringExternal("Param/Value/1DF850AC"), 0, 4.0);
+        lib840A968C_gf_BackgroundDialog(gv_staffSergeantFenwick, StringExternal("Param/Value/53504F67"), StringExternal("Param/Value/1DF850AC"), lib840A968C_ge_DialogDuration_Short, 4.0);
     }
     else {
     }
@@ -3041,11 +3041,11 @@ bool gt_CommunicationMissionEnd_Func (bool testConds, bool runActions) {
             UnitRemove(UnitGroupLoopCurrent());
         }
         UnitGroupLoopEnd();
-        lib840A968C_gf_SendTransmission(StringExternal("Param/Value/256F026F"), StringExternal("Param/Value/28348C82"), 1, 0, c_messageAreaError, 0, null);
+        lib840A968C_gf_SendTransmission(StringExternal("Param/Value/256F026F"), StringExternal("Param/Value/28348C82"), lib840A968C_ge_PreemptMessage_DontPreempt, lib840A968C_ge_MessageEventType_AlliedCommunication, c_messageAreaError, lib840A968C_ge_Faction_UGC, null);
         ObjectiveSetState(gv_communicationArrays, gv_communicationArraysCompleted);
     }
     else {
-        lib840A968C_gf_SendTransmission(StringExternal("Param/Value/7E8A3358"), StringExternal("Param/Value/0ED9585E"), 1, 0, c_messageAreaError, 0, null);
+        lib840A968C_gf_SendTransmission(StringExternal("Param/Value/7E8A3358"), StringExternal("Param/Value/0ED9585E"), lib840A968C_ge_PreemptMessage_DontPreempt, lib840A968C_ge_MessageEventType_AlliedCommunication, c_messageAreaError, lib840A968C_ge_Faction_UGC, null);
         gv_bossTracking = true;
     }
     lib840A968C_gf_MissionEnd(gv_communicationArraysCompleted, gv_communicationArrayMissionToken);
@@ -3121,10 +3121,7 @@ bool gt_TeamReachesReactor_Func (bool testConds, bool runActions) {
     PingDestroy(gv_reactorPing);
     gf_ReactorBriefing();
     TriggerSendEvent(gv_sarbusSpawnSignal);
-    libNtve_gf_DisplayBossBar(1, "btn-upgrade-terran-behemothreactor-dark.dds", StringExternal("Param/Value/B3206B88"), 100, PlayerGroupAll());
-    libNtve_gf_SetBossBarBoss(1, gv_reactor, true);
-    libNtve_gf_SetBossBarRace(1, 0, true);
-
+    lib1E3F036D_gf_StartBossFight(gv_reactor);
     return true;
 }
 
@@ -3184,7 +3181,7 @@ bool gt_SarbusDeath_Func (bool testConds, bool runActions) {
 
     TriggerEnable(TriggerGetCurrent(), false);
     PingDestroy(gv_sarbusPing);
-    libNtve_gf_ShowHideBossBar(false, 1);
+    lib1E3F036D_gf_EndBossFight();
     lib840A968C_gf_MissionEnd(c_objectiveStateCompleted, gv_restorePowerMissionToken);
     return true;
 }
@@ -3299,11 +3296,11 @@ bool gt_LabEntranceChatter_Func (bool testConds, bool runActions) {
     TriggerEnable(TriggerGetCurrent(), false);
     PingDestroy(gv_labEntrancePing);
     PlayerGroupRemove(lv_speakers, lv_currentSpeaker);
-    lib840A968C_gf_BackgroundDialog(lib840A968C_gf_GetMarine(lv_currentSpeaker), lib840A968C_gf_GetPlayerNamewithrank(lv_currentSpeaker), StringExternal("Param/Value/3157DF40"), 0, 5.0);
+    lib840A968C_gf_BackgroundDialog(lib840A968C_gf_GetMarine(lv_currentSpeaker), lib840A968C_gf_GetPlayerNamewithrank(lv_currentSpeaker), StringExternal("Param/Value/3157DF40"), lib840A968C_ge_DialogDuration_Short, 5.0);
     if ((PlayerGroupCount(lv_speakers) > 0)) {
         lv_currentSpeaker = lib09BE6BA8_gf_GetRandomPlayerfromPlayerGroup(lv_speakers);
         PlayerGroupRemove(lv_speakers, lv_currentSpeaker);
-        lib840A968C_gf_BackgroundDialog(lib840A968C_gf_GetMarine(lv_currentSpeaker), lib840A968C_gf_GetPlayerNamewithrank(lv_currentSpeaker), StringExternal("Param/Value/19E062E3"), 0, 4.0);
+        lib840A968C_gf_BackgroundDialog(lib840A968C_gf_GetMarine(lv_currentSpeaker), lib840A968C_gf_GetPlayerNamewithrank(lv_currentSpeaker), StringExternal("Param/Value/19E062E3"), lib840A968C_ge_DialogDuration_Short, 4.0);
     }
     else {
     }
@@ -3327,7 +3324,7 @@ bool gt_ReceptionAreaTransmission_Func (bool testConds, bool runActions) {
     }
 
     TriggerEnable(TriggerGetCurrent(), false);
-    lib840A968C_gf_SendTransmission(StringExternal("Param/Value/2929EB41"), StringExternal("Param/Value/DA624995"), 1, 0, c_messageAreaError, 0, null);
+    lib840A968C_gf_SendTransmission(StringExternal("Param/Value/2929EB41"), StringExternal("Param/Value/DA624995"), lib840A968C_ge_PreemptMessage_DontPreempt, lib840A968C_ge_MessageEventType_AlliedCommunication, c_messageAreaError, lib840A968C_ge_Faction_UGC, null);
     return true;
 }
 
@@ -3347,7 +3344,7 @@ bool gt_InfestationResearchTransmission_Func (bool testConds, bool runActions) {
     }
 
     TriggerEnable(TriggerGetCurrent(), false);
-    lib840A968C_gf_SendTransmission(StringExternal("Param/Value/275241C9"), StringExternal("Param/Value/7D7A1EC4"), 1, 0, c_messageAreaError, 0, null);
+    lib840A968C_gf_SendTransmission(StringExternal("Param/Value/275241C9"), StringExternal("Param/Value/7D7A1EC4"), lib840A968C_ge_PreemptMessage_DontPreempt, lib840A968C_ge_MessageEventType_AlliedCommunication, c_messageAreaError, lib840A968C_ge_Faction_UGC, null);
     TimerStart(gv_investigationIntialTimer, 120.0, false, c_timeGame);
     return true;
 }
@@ -3371,8 +3368,8 @@ bool gt_WorkstationTX1_Func (bool testConds, bool runActions) {
         Wait(1.0, c_timeGame);
     }
     gv_transmissionLock = true;
-    lib840A968C_gf_SendTransmission(lib840A968C_gf_GetPlayerNamewithrank(UnitGetOwner(EventUnit())), StringExternal("Param/Value/EB20F580"), 1, 0, c_messageAreaError, 5, EventUnit());
-    lib840A968C_gf_SendTransmission(StringExternal("Param/Value/232EFE87"), StringExternal("Param/Value/C28ED0EE"), 1, 0, c_messageAreaError, 0, null);
+    lib840A968C_gf_SendTransmission(lib840A968C_gf_GetPlayerNamewithrank(UnitGetOwner(EventUnit())), StringExternal("Param/Value/EB20F580"), lib840A968C_ge_PreemptMessage_DontPreempt, lib840A968C_ge_MessageEventType_AlliedCommunication, c_messageAreaError, lib840A968C_ge_Faction_Marines, EventUnit());
+    lib840A968C_gf_SendTransmission(StringExternal("Param/Value/232EFE87"), StringExternal("Param/Value/C28ED0EE"), lib840A968C_ge_PreemptMessage_DontPreempt, lib840A968C_ge_MessageEventType_AlliedCommunication, c_messageAreaError, lib840A968C_ge_Faction_UGC, null);
     gv_transmissionLock = false;
     TriggerEnable(TriggerGetCurrent(), false);
     gv_tX1Discovered = true;
@@ -3396,7 +3393,7 @@ bool gt_DissectionWorkstation_Func (bool testConds, bool runActions) {
     }
 
     TriggerEnable(TriggerGetCurrent(), false);
-    lib840A968C_gf_BackgroundDialog(EventUnit(), lib840A968C_gf_GetPlayerNamewithrank(UnitGetOwner(EventUnit())), StringExternal("Param/Value/E03D4BEF"), 0, 2.0);
+    lib840A968C_gf_BackgroundDialog(EventUnit(), lib840A968C_gf_GetPlayerNamewithrank(UnitGetOwner(EventUnit())), StringExternal("Param/Value/E03D4BEF"), lib840A968C_ge_DialogDuration_Short, 2.0);
     lib840A968C_gf_AwardTeamXP(2);
     TriggerExecute(lib840A968C_gf_GetMissionProgression(gv_investiagationMissionToken), true, false);
     return true;
@@ -3418,7 +3415,7 @@ bool gt_DemeterWorkstation_Func (bool testConds, bool runActions) {
     }
 
     TriggerEnable(TriggerGetCurrent(), false);
-    lib840A968C_gf_BackgroundDialog(EventUnit(), lib840A968C_gf_GetPlayerNamewithrank(UnitGetOwner(EventUnit())), StringExternal("Param/Value/18C14E0F"), 0, 2.0);
+    lib840A968C_gf_BackgroundDialog(EventUnit(), lib840A968C_gf_GetPlayerNamewithrank(UnitGetOwner(EventUnit())), StringExternal("Param/Value/18C14E0F"), lib840A968C_ge_DialogDuration_Short, 2.0);
     lib840A968C_gf_AwardTeamXP(2);
     TriggerExecute(lib840A968C_gf_GetMissionProgression(gv_investiagationMissionToken), true, false);
     return true;
@@ -3440,7 +3437,7 @@ bool gt_PoolviewingDeck_Func (bool testConds, bool runActions) {
     }
 
     TriggerEnable(TriggerGetCurrent(), false);
-    lib840A968C_gf_BackgroundDialog(EventUnit(), lib840A968C_gf_GetPlayerNamewithrank(UnitGetOwner(EventUnit())), StringExternal("Param/Value/6E363C8B"), 0, 3.5);
+    lib840A968C_gf_BackgroundDialog(EventUnit(), lib840A968C_gf_GetPlayerNamewithrank(UnitGetOwner(EventUnit())), StringExternal("Param/Value/6E363C8B"), lib840A968C_ge_DialogDuration_Short, 3.5);
     lib840A968C_gf_AwardTeamXP(1);
     TriggerExecute(lib840A968C_gf_GetMissionProgression(gv_investiagationMissionToken), true, false);
     return true;
@@ -3462,7 +3459,7 @@ bool gt_CharlieEscapeHole_Func (bool testConds, bool runActions) {
     }
 
     TriggerEnable(TriggerGetCurrent(), false);
-    lib840A968C_gf_BackgroundDialog(EventUnit(), lib840A968C_gf_GetPlayerNamewithrank(UnitGetOwner(EventUnit())), StringExternal("Param/Value/B26871EF"), 0, 3.5);
+    lib840A968C_gf_BackgroundDialog(EventUnit(), lib840A968C_gf_GetPlayerNamewithrank(UnitGetOwner(EventUnit())), StringExternal("Param/Value/B26871EF"), lib840A968C_ge_DialogDuration_Short, 3.5);
     lib840A968C_gf_AwardTeamXP(3);
     TriggerExecute(lib840A968C_gf_GetMissionProgression(gv_investiagationMissionToken), true, false);
     return true;
@@ -3484,7 +3481,7 @@ bool gt_CharliePen_Func (bool testConds, bool runActions) {
     }
 
     TriggerEnable(TriggerGetCurrent(), false);
-    lib840A968C_gf_BackgroundDialog(EventUnit(), lib840A968C_gf_GetPlayerNamewithrank(UnitGetOwner(EventUnit())), StringExternal("Param/Value/5F6B3972"), 0, 3.5);
+    lib840A968C_gf_BackgroundDialog(EventUnit(), lib840A968C_gf_GetPlayerNamewithrank(UnitGetOwner(EventUnit())), StringExternal("Param/Value/5F6B3972"), lib840A968C_ge_DialogDuration_Short, 3.5);
     lib840A968C_gf_AwardTeamXP(4);
     TriggerExecute(lib840A968C_gf_GetMissionProgression(gv_investiagationMissionToken), true, false);
     return true;
@@ -3548,6 +3545,7 @@ bool gt_TarionSpawn_Func (bool testConds, bool runActions) {
 
     libNtve_gf_CreateUnitsWithDefaultFacing(1, "Tarion", 0, lib1E3F036D_gv_zombiePlayer, PointFromId(2318));
     gv_tarion = UnitLastCreated();
+    lib1E3F036D_gf_StartBossFight(gv_tarion);
     TriggerEnable(gt_TarionDeath, true);
     AIAttackWaveUseUnit(lib1E3F036D_gv_zombiePlayer, gv_tarion);
     AIAttackWaveSetTargetUnitGroup(lib1E3F036D_gv_zombiePlayer, lib840A968C_gf_GetMarineGroup());
@@ -3580,6 +3578,7 @@ bool gt_TarionDeath_Func (bool testConds, bool runActions) {
 
     TriggerEnable(TriggerGetCurrent(), false);
     TriggerEnable(gt_TarionHordes, false);
+    lib1E3F036D_gf_EndBossFight();
     PingDestroy(gv_tarionPing);
     lib840A968C_gf_AwardTeamMarineXP(150);
     return true;
@@ -3652,16 +3651,17 @@ bool gt_RentodusSpawn_Func (bool testConds, bool runActions) {
         return true;
     }
 
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "Rentodus", 0, lib1E3F036D_gv_zombiePlayer, RegionRandomPoint(RegionFromId(16)));
+    gv_rentodus = UnitLastCreated();
+    lib1E3F036D_gf_StartBossFight(gv_rentodus);
+    AIAttackWaveUseUnit(lib1E3F036D_gv_zombiePlayer, gv_rentodus);
+    AIAttackWaveSetTargetUnitGroup(lib1E3F036D_gv_zombiePlayer, lib840A968C_gf_GetMarineGroup());
+    AIAttackWaveSend(lib1E3F036D_gv_zombiePlayer, 0, false);
     lv_superHeavies[1] = "Behemoth";
     lv_superHeavies[2] = "Blitzer";
     lv_superHeavies[3] = "Bloodseeker";
     lv_superHeavies[4] = "Bonebreaker";
     lv_superHeavies[5] = "Stonewall";
-    libNtve_gf_CreateUnitsWithDefaultFacing(1, "Rentodus", 0, lib1E3F036D_gv_zombiePlayer, RegionRandomPoint(RegionFromId(16)));
-    gv_rentodus = UnitLastCreated();
-    AIAttackWaveUseUnit(lib1E3F036D_gv_zombiePlayer, gv_rentodus);
-    AIAttackWaveSetTargetUnitGroup(lib1E3F036D_gv_zombiePlayer, lib840A968C_gf_GetMarineGroup());
-    AIAttackWaveSend(lib1E3F036D_gv_zombiePlayer, 0, false);
     Wait(1.0, c_timeGame);
     IntLoopBegin(1, lv_superHeavyCount);
     for ( ; !IntLoopDone() ; IntLoopStep() ) {
@@ -3707,6 +3707,7 @@ bool gt_RentodusDeath_Func (bool testConds, bool runActions) {
 
     TriggerEnable(TriggerGetCurrent(), false);
     TriggerEnable(gt_RentodusMobs, false);
+    lib1E3F036D_gf_EndBossFight();
     UnitGroupLoopBegin(lib840A968C_gf_GetMarineGroup());
     for ( ; !UnitGroupLoopDone() ; UnitGroupLoopStep() ) {
         libNtve_gf_MakeUnitInvulnerable(UnitGroupLoopCurrent(), true);
@@ -3718,11 +3719,11 @@ bool gt_RentodusDeath_Func (bool testConds, bool runActions) {
     gv_transmissionLock = true;
     if ((PlayerGroupCount(lv_speakers) != 0)) {
         lv_currentSpeaker = lib09BE6BA8_gf_GetRandomPlayerfromPlayerGroup(lv_speakers);
-        lib840A968C_gf_SendTransmission(lib840A968C_gf_GetPlayerNamewithrank(lv_currentSpeaker), StringExternal("Param/Value/A40610C9"), 1, 0, c_messageAreaError, 5, lib840A968C_gf_GetMarine(lv_currentSpeaker));
+        lib840A968C_gf_SendTransmission(lib840A968C_gf_GetPlayerNamewithrank(lv_currentSpeaker), StringExternal("Param/Value/A40610C9"), lib840A968C_ge_PreemptMessage_DontPreempt, lib840A968C_ge_MessageEventType_AlliedCommunication, c_messageAreaError, lib840A968C_ge_Faction_Marines, lib840A968C_gf_GetMarine(lv_currentSpeaker));
     }
     else {
     }
-    lib840A968C_gf_SendTransmission(StringExternal("Param/Value/EE7BAF6C"), StringExternal("Param/Value/C77B184E"), 1, 0, c_messageAreaError, 0, null);
+    lib840A968C_gf_SendTransmission(StringExternal("Param/Value/EE7BAF6C"), StringExternal("Param/Value/C77B184E"), lib840A968C_ge_PreemptMessage_DontPreempt, lib840A968C_ge_MessageEventType_AlliedCommunication, c_messageAreaError, lib840A968C_ge_Faction_UGC, null);
     gv_transmissionLock = false;
     CinematicFade(false, 10.0, c_fadeStyleNormal, Color(0.00, 0.00, 0.00), 0.0, true);
     lib840A968C_gf_MissionEnd(c_objectiveStateCompleted, gv_monolithMissionToken);
@@ -3967,19 +3968,19 @@ bool gt_PeackeeperWeapons_Func (bool testConds, bool runActions) {
         for (autoC9922637_i = 1; autoC9922637_i <= autoC9922637_n; autoC9922637_i += 1) {
             lv_itemSpawnChance = RandomFixed(0.0, 100.0);
             if (((lv_itemSpawnChance >= 0) && (lv_itemSpawnChance <= 25))) {
-                lib840A968C_gf_SpawnItem(PointFromId(4607), "AutomaticShotgun", 0);
+                lib840A968C_gf_SpawnItem(PointFromId(4607), "AutomaticShotgun", lib840A968C_ge_DropMethod_Locker);
             }
             else if (((lv_itemSpawnChance >= 25) && (lv_itemSpawnChance <= 50))) {
-                lib840A968C_gf_SpawnItem(PointFromId(4607), "SubmachineGun", 0);
+                lib840A968C_gf_SpawnItem(PointFromId(4607), "SubmachineGun", lib840A968C_ge_DropMethod_Locker);
             }
             else if (((lv_itemSpawnChance >= 50) && (lv_itemSpawnChance <= 75))) {
-                lib840A968C_gf_SpawnItem(PointFromId(4607), "RiotShield", 0);
+                lib840A968C_gf_SpawnItem(PointFromId(4607), "RiotShield", lib840A968C_ge_DropMethod_Locker);
             }
             else if (((lv_itemSpawnChance >= 75) && (lv_itemSpawnChance <= 95))) {
-                lib840A968C_gf_SpawnItem(PointFromId(4607), "MarksmanRifle", 0);
+                lib840A968C_gf_SpawnItem(PointFromId(4607), "MarksmanRifle", lib840A968C_ge_DropMethod_Locker);
             }
             else if (((lv_itemSpawnChance >= 95) && (lv_itemSpawnChance <= 100))) {
-                lib840A968C_gf_SpawnItem(PointFromId(4607), "MediumMachineGun", 0);
+                lib840A968C_gf_SpawnItem(PointFromId(4607), "MediumMachineGun", lib840A968C_ge_DropMethod_Locker);
             }
         }
     }
@@ -4016,7 +4017,7 @@ bool gt_Lab1_Func (bool testConds, bool runActions) {
         auto43ADEC7A_roll = RandomFixed(0.0, 100.0);
         if (auto43ADEC7A_roll >= auto43ADEC7A_chance && auto43ADEC7A_roll <= (auto43ADEC7A_chance + 100.0))
         {
-            lib840A968C_gf_SpawnItem(PointFromId(4631), "LaserRifle", 0);
+            lib840A968C_gf_SpawnItem(PointFromId(4631), "LaserRifle", lib840A968C_ge_DropMethod_Locker);
         }
         auto43ADEC7A_chance += 100.0;
 
@@ -4054,7 +4055,7 @@ bool gt_Lab2_Func (bool testConds, bool runActions) {
         auto585A28D1_roll = RandomFixed(0.0, 100.0);
         if (auto585A28D1_roll >= auto585A28D1_chance && auto585A28D1_roll <= (auto585A28D1_chance + 100.0))
         {
-            lib840A968C_gf_SpawnItem(PointFromId(4632), "LaserRifle", 0);
+            lib840A968C_gf_SpawnItem(PointFromId(4632), "LaserRifle", lib840A968C_ge_DropMethod_Locker);
         }
         auto585A28D1_chance += 100.0;
 
@@ -4092,7 +4093,7 @@ bool gt_Lab3_Func (bool testConds, bool runActions) {
         auto2E97684E_roll = RandomFixed(0.0, 100.0);
         if (auto2E97684E_roll >= auto2E97684E_chance && auto2E97684E_roll <= (auto2E97684E_chance + 100.0))
         {
-            lib840A968C_gf_SpawnItem(PointFromId(4633), "LaserRifle", 0);
+            lib840A968C_gf_SpawnItem(PointFromId(4633), "LaserRifle", lib840A968C_ge_DropMethod_Locker);
         }
         auto2E97684E_chance += 100.0;
 

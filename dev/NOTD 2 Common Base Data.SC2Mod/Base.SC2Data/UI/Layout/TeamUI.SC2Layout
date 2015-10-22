@@ -1,77 +1,68 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <Desc>
-
-    <Frame type="Frame" name="TeamUI">
-
-        <Frame type="Image" name="BackgroundImage">
-            <Texture val="Assets\Textures\btn-border-protoss-normal.dds"/>
-        </Frame>
-    </Frame>
-
-    <Frame type="Frame" name="PlayerStatusTemplate">
-        <Height val="120"/>
-        <Width val="120"/>
+    <Frame type="Frame" name="TopPlayerStatusTemplate">
+        <Width val="156"/>
+        <Height val="144"/>
 
         <Frame type="Image" name="BackgroundImage">
             <Anchor relative="$parent"/>
-            <Texture val="Assets\Textures\btn-border-ability.dds"/>
+            <Texture val="UI\ui_teamstatus_topplayer_border.dds"/>
+            <RenderPriority val="520"/>
         </Frame>
 
         <Frame type="Frame" name="PlayerInfoSideBar">
-            <Anchor side="Left" relative="$parent" pos="Min" offset="15"/>
-            <Anchor side="Top" relative="$parent" pos="Min" offset="10"/>
-            <Height val="60"/>
-            <Width val="25"/>
-
-            <Frame type="Label" name="PlayerNumber">
-                <Anchor side="Left" relative="$parent" pos="Min" offset="0"/>
-                <Anchor side="Right" relative="$parent" pos="Max" offset="0"/>
-                <Anchor side="Top" relative="$parent" pos="Min" offset="5"/>
-                <Height val="5"/>
-            </Frame>
-
-            <Frame type="Button" name="PlayerRank">
-                <Anchor side="Top" relative="$parent/PlayerNumber" pos="Max" offset="5"/>
-                <Anchor side="Left" relative="$parent" pos="Min" offset="0"/>
-                <Anchor side="Right" relative="$parent" pos="Max" offset="0"/>
-                <TooltipFrame val="RankTooltipFrame"/>
-
-                <Frame type="StandardTooltip" name="RankTooltipFrame" template="StandardTooltip/StandardTooltip">
-                </Frame>
-            </Frame>
-
-            <Frame type="Button" name="PlayerClassIcon">
-                <Anchor side="Top" relative="$parent/PlayerRank" pos="Max" offset="5"/>
-                <Anchor side="Left" relative="$parent" pos="Min" offset="0"/>
-                <Anchor side="Right" relative="$parent" pos="Max" offset="0"/>
-
-                <Frame type="StandardTooltip" name="ClassIconTooltipFrame" template="StandardTooltip/StandardTooltip">
-                </Frame>
-            </Frame>
+            <Anchor side="Left" relative="$parent" pos="Min" offset="14"/>
+            <Anchor side="Top" relative="$parent" pos="Min" offset="20"/>
+            <Height val="88"/>
+            <Width val="44"/>
 
             <Frame type="Image" name="BackgroundImage">
                 <Anchor relative="$parent"/>
-                <Texture val="Assets\Textures\btn-border-protoss-normal.dds"/>
+                <Texture val="UI\ui_teamstatus_topplayer_background_b.dds"/>
+            </Frame>
+
+            <Frame type="Image" name="PlayerRank">
+                <Anchor side="Top" relative="$parent" pos="Min" offset="5"/>
+                <Anchor side="Left" relative="$parent" pos="Min" offset="5"/>
+                <Anchor side="Right" relative="$parent" pos="Max" offset="0"/>
+				<Anchor side = "Bottom" relative = "$parent" pos = "Mid" offset="0"/>
+                <TooltipFrame val="RankTooltipFrame"/>
+				<Texture val = "Assets\Textures\black.dds" />
+				<RenderPriority val = "513" />
+                <Frame type="StandardTooltip" name="RankTooltipFrame" template="StandardTooltip/StandardTooltip">
+                </Frame>
+				<Texture val = "Assets\Textures\black.dds" />
+            </Frame>
+			
+			<Frame type="Image" name="PlayerClassIcon">
+                <Anchor side="Top" relative="$parent/PlayerRank" pos="Max" offset="0"/>
+                <Anchor side="Left" relative="$parent/PlayerRank" pos="Min" offset="0"/>
+                <Anchor side="Right" relative="$parent" pos="Max" offset="0"/>
+				<Anchor side = "Bottom" relative = "$parent" pos = "Max" offset="-5"/>
+				<Texture val = "Assets\Textures\black.dds" />
+				<RenderPriority val = "513" />
+                <Frame type="StandardTooltip" name="ClassIconTooltipFrame" template="StandardTooltip/StandardTooltip">
+                </Frame>
             </Frame>
         </Frame>
 
         <Frame type="Frame" name="PlayerPortrait">
-            <Anchor side="Top" relative="$parent/PlayerInfoSideBar" pos="Min" offset="0"/>
-            <Anchor side="Bottom" relative="$parent/PlayerInfoSideBar" pos="Max" offset="0"/>
+            <Anchor side="Top" relative="$parent/PlayerInfoSideBar" pos="Min" offset="4"/>
             <Anchor side="Left" relative="$parent/PlayerInfoSideBar" pos="Max" offset="10"/>
-            <Anchor side="Right" relative="$parent" pos="Max" offset="-10"/>
+            <Height val="80"/>
+            <Width val="80"/>
 
-            <Frame type="Button" name="PlayerPortraitButton">
+            <Frame type="Image" name="BackgroundImage">
                 <Anchor relative="$parent"/>
-
-                <Frame type="Image" name="BackgroundImage">
-                    <Anchor relative="$parent"/>
-                    <Texture val="Assets\Textures\btn-border-protoss-normal.dds"/>
-                </Frame>
-
-                <Frame type="StandardTooltip" name="PortraitTooltipFrame" template="StandardTooltip/StandardTooltip">
-                </Frame>
+                <Texture val="UI\ui_teamstatus_topplayer_background_a.dds"/>
             </Frame>
+
+			<Frame name = "PlayerPortrait" type = "Image">
+				<Anchor relative = "$parent"/>
+				<Texture val = "Assets\Textures\black.dds" />
+				<Frame type="StandardTooltip" name="PortraitTooltipFrame" template="StandardTooltip/StandardTooltip">
+                </Frame>
+			</Frame>
         </Frame>
 
         <Frame type="UnitStatusFrame" name="PlayerStatus">
@@ -81,43 +72,219 @@
             <Anchor side="Bottom" relative="$parent" pos="Max" offset="2"/>
             <Height val="30"/>
 
-            <Frame type="UnitStatusShieldedHealthBar" name="PlayerHealthShieldBar">
-                <Texture val="@UI/HotS_HeroUnit_Status_Bar"/>
-                <BarCount val="2"/>
+            <Frame type="UnitStatusHealthBar" name="PlayerHealthBar">
+                <Texture val="UI\ui_ingame_unitstatus_bar.dds"/>
                 <OwnerColor val="0,255,0" index="0"/>
                 <AllyColor val="0,255,0" index="0"/>
+                <ReductionColor val="255,0,0" index="0"/>
+                <ReductionShown val="true" index="0"/>
+				<ApplyToTotal val="true" index="0"/>
+                <IncreaseDuration val="0" index="0"/>
+                <DecreaseDuration val="2000" index="0"/>
+                <Height val="14"/>
+                <Anchor side="Top" relative="$parent" pos="Min" offset="0"/>
+                <Anchor side="Left" relative="$parent" pos="Min" offset="12"/>
+                <Anchor side="Right" relative="$parent" pos="Max" offset="-4"/>
+				<Expansion val="Left"/>
+            </Frame>
+			<Frame type="UnitStatusShieldsBar" name="PlayerShieldBar">
+                <Texture val="UI\ui_ingame_unitstatus_bar.dds"/>
+                <OwnerColor val="0,0,255" index="0"/>
+                <AllyColor val="0,0,255" index="0"/>
                 <ReductionColor val="255,0,0" index="0"/>
                 <ReductionShown val="true" index="0"/>
                 <ApplyToTotal val="true" index="0"/>
                 <IncreaseDuration val="0" index="0"/>
                 <DecreaseDuration val="2000" index="0"/>
-                <OwnerColor val="0,0,255" index="1"/>
-                <AllyColor val="0,0,255" index="1"/>
-                <ReductionColor val="0,0,128" index="1"/>
-                <ReductionShown val="true" index="1"/>
-                <ApplyToTotal val="true" index="1"/>
-                <IncreaseDuration val="0" index="1"/>
-                <DecreaseDuration val="2000" index="1"/>
-                <Height val="18"/>
-                <Anchor side="Top" relative="$parent" pos="Min" offset="2"/>
-                <Anchor side="Left" relative="$parent" pos="Min" offset="0"/>
-                <Anchor side="Right" relative="$parent" pos="Max" offset="0"/>
+                <Anchor side="Top" relative="$parent/PlayerHealthBar" pos="Min" offset="0"/>
+                <Anchor side="Left" relative="$parent/PlayerHealthBar" pos="Min" offset="0"/>
+                <Anchor side="Right" relative="$parent/PlayerHealthBar" pos="Max" offset="0"/>
+				<Anchor side="Bottom" relative="$parent/PlayerHealthBar" pos="Mid" offset="0"/>
+				<Expansion val="Left"/>
             </Frame>
 
             <Frame type="UnitStatusEnergyBar" name="PlayerEnergyBar">
-                <Texture val="@UI/HotS_HeroUnit_Status_Bar"/>
-                <BarCount val="2"/>
+                <Height val="10"/>
+                <BarInsetRect top="0" left="3" bottom="0" right="0"/>
+                <Texture val="UI\ui_ingame_unitstatus_bar.dds"/>
+                <BarCount val="1"/>
                 <OwnerColor val="255,0,255" index="0"/>
                 <AllyColor val="255,0,255" index="0"/>
-                <ReductionColor val="255,128,0" index="0"/>
-                <ReductionShown val="true" index="0"/>
-                <IncreaseDuration val="0" index="0"/>
-                <DecreaseDuration val="2000" index="0"/>
-                <Height val="8"/>
-                <Anchor side="Top" relative="$parent/PlayerHealthShieldBar" pos="Max" offset="2"/>
+                <ReductionShown val="false" index="0"/>
+                <Anchor side="Top" relative="$parent/PlayerHealthBar" pos="Max" offset="2"/>
+                <Anchor side="Left" relative="$parent/PlayerHealthBar" pos="Min" offset="0"/>
+                <Anchor side="Right" relative="$parent/PlayerHealthBar" pos="Max" offset="0"/>
+				<Expansion val="Left"/>
+            </Frame>
+        </Frame>
+    </Frame>
+
+    <Frame type="Frame" name="PlayerStatusTemplate">
+        <Height val="92"/>
+        <Width val="105"/>
+        <CollapseLayout val="true"/>
+
+        <Frame type="Image" name="BackgroundImage">
+            <RenderPriority val="520"/>
+            <Anchor relative="$parent"/>
+            <Texture val="UI\ui_teamstatus_player_border.dds"/>
+        </Frame>
+
+        <Frame type="Frame" name="PlayerInfoSideBar">
+            <Anchor side="Left" relative="$parent" pos="Min" offset="7"/>
+            <Anchor side="Top" relative="$parent" pos="Min" offset="7"/>
+            <Anchor side="Bottom" relative="$parent" pos="Max" offset="-31"/>
+            <Anchor side="Right" relative="$parent" pos="Min" offset="29"/>
+
+			<Frame type="Image" name="BackgroundImage">
+                <Anchor relative="$parent"/>
+                <Texture val="UI\ui_teamstatus_player_background_b.dds"/>
+            </Frame>
+			
+            <Frame type="Image" name="PlayerRank">
+                <Anchor side="Top" relative="$parent" pos="Min" offset="5"/>
                 <Anchor side="Left" relative="$parent" pos="Min" offset="0"/>
                 <Anchor side="Right" relative="$parent" pos="Max" offset="0"/>
+				<Height val = "22"/>
+				<RenderPriority val = "513" />
+				<Texture val = "Assets\Textures\black.dds" />
+                <TooltipFrame val="RankTooltipFrame"/>
+
+                <Frame type="StandardTooltip" name="RankTooltipFrame" template="StandardTooltip/StandardTooltip">
+                </Frame>
             </Frame>
+
+            <Frame type="Image" name="PlayerClassIcon">
+                <Anchor side="Top" relative="$parent/PlayerRank" pos="Max" offset="5"/>
+                <Anchor side="Left" relative="$parent" pos="Min" offset="0"/>
+                <Anchor side="Right" relative="$parent" pos="Max" offset="0"/>
+				<Height val = "22"/>
+				<RenderPriority val = "513" />
+				<Texture val = "Assets\Textures\black.dds" />
+                <Frame type="StandardTooltip" name="ClassIconTooltipFrame" template="StandardTooltip/StandardTooltip">
+                </Frame>
+            </Frame>
+
+
+        </Frame>
+
+        <Frame type="Frame" name="PlayerPortrait">
+            <Anchor side="Top" relative="$parent/PlayerInfoSideBar" pos="Min" offset="-1"/>
+            <Anchor side="Bottom" relative="$parent/PlayerInfoSideBar" pos="Max" offset="0"/>
+            <Anchor side="Left" relative="$parent/PlayerInfoSideBar" pos="Max" offset="7"/>
+            <Anchor side="Right" relative="$parent" pos="Max" offset="-7"/>
+			<Frame type="Image" name="BackgroundImage">
+				<Anchor relative="$parent"/>
+				<Texture val="UI\ui_teamstatus_topplayer_background_a.dds"/>
+			</Frame>
+			<Frame name = "PlayerPortrait" type = "Image">
+				<Anchor relative = "$parent"/>
+			</Frame>
+
+			<Frame type="StandardTooltip" name="PortraitTooltipFrame" template="StandardTooltip/StandardTooltip">
+			</Frame>
+        </Frame>
+
+        <Frame type="UnitStatusFrame" name="PlayerStatus">
+            <Anchor side="Top" relative="$parent/PlayerInfoSideBar" pos="Max" offset="4"/>
+            <Anchor side="Left" relative="$parent" pos="Min" offset="0"/>
+            <Anchor side="Right" relative="$parent" pos="Max" offset="0"/>
+            <Anchor side="Bottom" relative="$parent" pos="Max" offset="2"/>
+
+            <Frame type="UnitStatusHealthBar" name="PlayerHealthBar">
+                <Texture val="UI\ui_ingame_unitstatus_bar.dds"/>
+               <OwnerColor val="0,255,0" index="0"/>
+                <AllyColor val="0,255,0" index="0"/>
+                <ReductionColor val="255,0,0" index="0"/>
+                <ReductionShown val="true" index="0"/>
+				<ApplyToTotal val="true" index="0"/>
+                <IncreaseDuration val="0" index="0"/>
+                <DecreaseDuration val="2000" index="0"/>
+                <Anchor side="Top" relative="$parent" pos="Min" offset="0"/>
+                <Anchor side="Left" relative="$parent" pos="Min" offset="5"/>
+                <Anchor side="Right" relative="$parent" pos="Max" offset="-3"/>
+                <Anchor side="Bottom" relative="$parent" pos="Max" offset="-16"/>
+				<Expansion val="Left"/>
+            </Frame>
+			<Frame type="UnitStatusShieldsBar" name="PlayerShieldBar">
+                <Texture val="UI\ui_ingame_unitstatus_bar.dds"/>
+                <OwnerColor val="0,0,255" index="0"/>
+                <AllyColor val="0,0,255" index="0"/>
+                <ReductionColor val="0,0,128" index="0"/>
+                <ReductionShown val="true" index="0"/>
+                <ApplyToTotal val="true" index="0"/>
+                <IncreaseDuration val="0" index="0"/>
+                <DecreaseDuration val="2000" index="0"/>
+                <Anchor side="Top" relative="$parent/PlayerHealthBar" pos="Min" offset="0"/>
+                <Anchor side="Left" relative="$parent/PlayerHealthBar" pos="Min" offset="0"/>
+                <Anchor side="Right" relative="$parent/PlayerHealthBar" pos="Max" offset="0"/>
+				<Anchor side="Bottom" relative="$parent/PlayerHealthBar" pos="Mid" offset="0"/>
+				<Expansion val="Left"/>
+            </Frame>
+
+            <Frame type="UnitStatusEnergyBar" name="PlayerEnergyBar">
+                <BarInsetRect top="0" left="2" bottom="0" right="0"/>
+                <Texture val="UI\ui_ingame_unitstatus_bar.dds"/>
+                <OwnerColor val="255,0,255" index="0"/>
+                <AllyColor val="255,0,255" index="0"/>
+                <ReductionShown val="false" index="0"/>
+                <Height val="10"/>
+                <Anchor side="Top" relative="$parent/PlayerHealthBar" pos="Max" offset="2"/>
+                <Anchor side="Left" relative="$parent/PlayerHealthBar" pos="Min" offset="0"/>
+                <Anchor side="Right" relative="$parent/PlayerHealthBar" pos="Max" offset="0"/>
+				<Expansion val="Left"/>
+            </Frame>
+        </Frame>
+    </Frame>
+
+    <Frame type="Frame" name="TeamUI">
+        <Height val="850"/>
+        <Width val="160"/>
+        <Visible val="true"/>
+
+        <Frame type="Frame" name="TopPlayer" template="TeamUI/TopPlayerStatusTemplate">
+            <Anchor side="Left" relative="$parent" pos="Min" offset="0"/>
+            <Anchor side="Top" relative="$parent" pos="Min" offset="0"/>
+        </Frame>
+
+        <Frame type="Frame" name="Player1" template="TeamUI/PlayerStatusTemplate">
+            <Anchor side="Right" relative="$parent" pos="Max" offset="0"/>
+            <Anchor side="Top" relative="$parent/TopPlayer" pos="Max" offset="0"/>
+        </Frame>
+
+        <Frame type="Frame" name="Player2" template="TeamUI/PlayerStatusTemplate">
+            <Anchor side="Right" relative="$parent" pos="Max" offset="0"/>
+            <Anchor side="Top" relative="$parent/Player1" pos="Max" offset="0"/>
+        </Frame>
+
+        <Frame type="Frame" name="Player3" template="TeamUI/PlayerStatusTemplate">
+            <Anchor side="Right" relative="$parent" pos="Max" offset="0"/>
+            <Anchor side="Top" relative="$parent/Player2" pos="Max" offset="0"/>
+        </Frame>
+
+        <Frame type="Frame" name="Player4" template="TeamUI/PlayerStatusTemplate">
+            <Anchor side="Right" relative="$parent" pos="Max" offset="0"/>
+            <Anchor side="Top" relative="$parent/Player3" pos="Max" offset="0"/>
+        </Frame>
+
+        <Frame type="Frame" name="Player5" template="TeamUI/PlayerStatusTemplate">
+            <Anchor side="Right" relative="$parent" pos="Max" offset="0"/>
+            <Anchor side="Top" relative="$parent/Player4" pos="Max" offset="0"/>
+        </Frame>
+
+        <Frame type="Frame" name="Player6" template="TeamUI/PlayerStatusTemplate">
+            <Anchor side="Right" relative="$parent" pos="Max" offset="0"/>
+            <Anchor side="Top" relative="$parent/Player5" pos="Max" offset="0"/>
+        </Frame>
+
+        <Frame type="Frame" name="Player7" template="TeamUI/PlayerStatusTemplate">
+            <Anchor side="Right" relative="$parent" pos="Max" offset="0"/>
+            <Anchor side="Top" relative="$parent/Player6" pos="Max" offset="0"/>
+        </Frame>
+
+        <Frame type="Frame" name="Player8" template="TeamUI/PlayerStatusTemplate">
+            <Anchor side="Right" relative="$parent" pos="Max" offset="0"/>
+            <Anchor side="Top" relative="$parent/Player7" pos="Max" offset="0"/>
         </Frame>
     </Frame>
 </Desc>
