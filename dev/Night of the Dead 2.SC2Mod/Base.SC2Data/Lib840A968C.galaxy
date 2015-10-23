@@ -2188,7 +2188,6 @@ bool lib840A968C_gt_NightVisionUIHookup_Func (bool testConds, bool runActions) {
 
     DialogControlHookupStandard(c_triggerControlTypeButton, "UIContainer\\FullscreenUpperContainer\\MenuBar\\NightVisionButton");
     lib840A968C_gv_nightVisionButton = DialogControlLastCreated();
-    libNtve_gf_SetDialogItemTooltip(DialogControlLastCreated(), StringExternal("Param/Value/lib_840A968C_03083B17"), PlayerGroupAll());
     TriggerAddEventDialogControl(lib840A968C_gt_NightVisionToggle, c_playerAny, DialogControlLastCreated(), c_triggerControlEventTypeClick);
     return true;
 }
@@ -2210,13 +2209,9 @@ bool lib840A968C_gt_NightVisionToggle_Func (bool testConds, bool runActions) {
 
     if ((UnitHasBehavior(libC50FD636_gv_marines[EventPlayer()].lv_unit, "NightVisionModule") == true)) {
         UnitBehaviorRemovePlayer(libC50FD636_gv_marines[EventPlayer()].lv_unit, "NightVisionModule", EventPlayer(), 1);
-        libNtve_gf_SetDialogItemImage(lib840A968C_gv_nightVisionButton, "Assets\\Textures\\btn-ability-terran-microfiltering.dds", PlayerGroupSingle(EventPlayer()));
-        libNtve_gf_SetDialogItemImage2(lib840A968C_gv_nightVisionButton, "Assets\\Textures\\btn-ability-terran-microfiltering.dds", PlayerGroupSingle(EventPlayer()));
     }
     else {
         UnitBehaviorAddPlayer(libC50FD636_gv_marines[EventPlayer()].lv_unit, "NightVisionModule", EventPlayer(), 1);
-        libNtve_gf_SetDialogItemImage(lib840A968C_gv_nightVisionButton, "Assets\\Textures\\btn-research-terran-microfiltering.dds", PlayerGroupSingle(EventPlayer()));
-        libNtve_gf_SetDialogItemImage2(lib840A968C_gv_nightVisionButton, "Assets\\Textures\\btn-research-terran-microfiltering.dds", PlayerGroupSingle(EventPlayer()));
     }
     return true;
 }
