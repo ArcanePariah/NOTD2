@@ -224,6 +224,239 @@
         <Flags index="WaitUntilStopped" value="0"/>
         <InfoArray Unit="ScamperLevel2"/>
     </CAbilMorph>
+    <!--Recon Gunship for Close Air Support. Used as a Magazine Unit only.-->
+    <CUnit id="A10XGunship">
+        <Race value="Zombie"/>
+        <FlagArray index="Unselectable" value="1"/>
+        <FlagArray index="Untargetable" value="1"/>
+        <FlagArray index="Invulnerable" value="1"/>
+        <Collide index="FlyingEscorts" value="1"/>
+        <Mover value="Fly"/>
+        <Speed value="4.5"/>
+        <Acceleration value="1000"/>
+        <Sight value="15"/>
+        <Height value="8"/>
+        <VisionHeight value="6"/>
+        <AbilArray Link="move"/>
+        <AbilArray Link="attack"/>
+        <AbilArray Link="stop"/>
+        <WeaponArray Link="A10XCannon" Turret="A10XCannonTurret"/>
+        <WeaponArray Link="A10XHellfireMissiles" Turret="A10XHellfireMissileTurret"/>
+        <EditorCategories value=""/>
+        <BehaviorArray Link="GunshipTimedLife"/>
+    </CUnit>
+    <CUnit id="A10XLaunchHellfireMissilesWeapon" parent="MISSILE">
+        <Race value="Zombie"/>
+        <EditorCategories value=""/>
+    </CUnit>
+    <CUnit id="ArtilleryBeacon">
+        <Race value="Zombie"/>
+        <FlagArray index="Turnable" value="0"/>
+        <FlagArray index="Movable" value="0"/>
+        <FlagArray index="Unselectable" value="1"/>
+        <FlagArray index="Untargetable" value="1"/>
+        <FlagArray index="Invulnerable" value="1"/>
+        <Attributes index="Robotic" value="1"/>
+        <Attributes index="Summoned" value="1"/>
+        <EditorCategories value=""/>
+    </CUnit>
+    <CUnit id="FlareGunProjectileLevel1" parent="MISSILE_INVULNERABLE">
+        <Mover value="FlareGunProjectile"/>
+        <BehaviorArray Link="FlareGunTimedLife"/>
+    </CUnit>
+    <CUnit id="FlareGunProjectileLevel2" parent="MISSILE_INVULNERABLE">
+        <Mover value="FlareGunProjectile"/>
+        <BehaviorArray Link="FlareGunTimedLife"/>
+    </CUnit>
+    <CUnit id="FlareGunProjectileLevel3" parent="MISSILE_INVULNERABLE">
+        <Mover value="FlareGunProjectile"/>
+        <BehaviorArray Link="FlareGunTimedLife"/>
+    </CUnit>
+    <CUnit id="GroundIlluminationFlareLevel2">
+        <Race value="Zombie"/>
+        <FlagArray index="Turnable" value="0"/>
+        <FlagArray index="Movable" value="0"/>
+        <FlagArray index="Unselectable" value="1"/>
+        <FlagArray index="Untargetable" value="1"/>
+        <FlagArray index="Uncloakable" value="1"/>
+        <FlagArray index="Unradarable" value="1"/>
+        <FlagArray index="UseLineOfSight" value="1"/>
+        <FlagArray index="Invulnerable" value="1"/>
+        <Sight value="8"/>
+        <BehaviorArray Link="GroundIlluminationTimedLifeLevel2"/>
+        <EditorCategories value="ObjectType:Projectile"/>
+    </CUnit>
+    <CUnit id="GroundIlluminationFlareLevel3">
+        <Race value="Zombie"/>
+        <FlagArray index="Turnable" value="0"/>
+        <FlagArray index="Movable" value="0"/>
+        <FlagArray index="Unselectable" value="1"/>
+        <FlagArray index="Untargetable" value="1"/>
+        <FlagArray index="Uncloakable" value="1"/>
+        <FlagArray index="Unradarable" value="1"/>
+        <FlagArray index="UseLineOfSight" value="1"/>
+        <FlagArray index="Invulnerable" value="1"/>
+        <Sight value="8"/>
+        <BehaviorArray Link="GroundIlluminationTimedLifeLevel3"/>
+        <EditorCategories value="ObjectType:Projectile"/>
+    </CUnit>
+    <CUnit id="GroundIlluminationFlareLevel1">
+        <Race value="Zombie"/>
+        <Sight value="8"/>
+        <BehaviorArray Link="GroundIlluminationTimedLifeLevel1"/>
+        <EditorCategories value="ObjectType:Projectile"/>
+        <FlagArray index="Turnable" value="0"/>
+        <FlagArray index="Movable" value="0"/>
+        <FlagArray index="Unselectable" value="1"/>
+        <FlagArray index="Untargetable" value="1"/>
+        <FlagArray index="Uncloakable" value="1"/>
+        <FlagArray index="Unradarable" value="1"/>
+        <FlagArray index="UseLineOfSight" value="1"/>
+        <FlagArray index="Invulnerable" value="1"/>
+    </CUnit>
+    <CUnit id="KineticPayloadMissileWeapon" parent="MISSILE"/>
+    <CUnit id="Recon" parent="BasicHeroTemplate" InventoryAbility="ReconInventory" LearnAbility="ReconLearn">
+        <EnergyStart value="100"/>
+        <EnergyRegenRate value="1"/>
+        <LifeStart value="140"/>
+        <LifeMax value="140"/>
+        <LifeRegenRate value="0.1484"/>
+        <LateralAcceleration value="1000"/>
+        <ShieldsStart value="40"/>
+        <ShieldsMax value="40"/>
+        <ShieldRegenDelay value="0"/>
+        <ShieldRegenRate value="2"/>
+        <Speed value="2.5898"/>
+        <GlossaryPriority value="4"/>
+        <AbilArray Link="Scamper"/>
+        <AbilArray Link="SurveillanceFlare"/>
+        <AbilArray Link="MotionSensor"/>
+        <AbilArray Link="SmokeGrenade"/>
+        <AbilArray Link="AmmunitionDrop"/>
+        <AbilArray Link="MedicalDrop"/>
+        <AbilArray Link="EscapeSet"/>
+        <AbilArray Link="FlareGunRecon"/>
+        <AbilArray Link="Execute"/>
+        <AbilArray Link="StealthMatrix"/>
+        <AbilArray Link="LightJump"/>
+        <AbilArray Link="SatelliteUplink"/>
+        <AbilArray Link="SprintingShadow"/>
+        <AbilArray Link="BlackDiamond"/>
+        <BehaviorArray Link="ReconDetectorDetection"/>
+        <BehaviorArray Link="MotionSensorLevel1"/>
+        <BehaviorArray Link="MotionSensorLevel2"/>
+        <BehaviorArray Link="BackstabLevel1"/>
+        <BehaviorArray Link="BackstabLevel2"/>
+        <BehaviorArray Link="SprintingShadow"/>
+        <CardLayouts index="0">
+            <LayoutButtons Face="Scamper" Type="AbilCmd" AbilCmd="Scamper,Execute" Row="2" Column="0"/>
+            <LayoutButtons Face="SurveillanceFlare" Type="AbilCmd" AbilCmd="SurveillanceFlare,Execute" Row="2" Column="1"/>
+            <LayoutButtons Face="SmokeGrenade" Type="AbilCmd" AbilCmd="SmokeGrenade,Execute" Row="2" Column="2"/>
+            <LayoutButtons Face="AmmunitionDrop" Type="AbilCmd" AbilCmd="AmmunitionDrop,Execute" Row="2" Column="3"/>
+            <LayoutButtons Face="SatelliteUplink" Type="AbilCmd" AbilCmd="SatelliteUplink,Execute" Row="2" Column="3"/>
+            <LayoutButtons Face="BlackDiamond" Type="AbilCmd" AbilCmd="BlackDiamond,Execute" Row="2" Column="3"/>
+            <LayoutButtons Face="Escape" Type="AbilCmd" AbilCmd="EscapeSet,Execute" Row="1" Column="0"/>
+            <LayoutButtons Face="StealthMatrixActivate" Type="AbilCmd" AbilCmd="StealthMatrix,On" Row="1" Column="0"/>
+            <LayoutButtons Face="StealthMatrixDeactivate" Type="AbilCmd" AbilCmd="StealthMatrix,Off" Row="1" Column="0"/>
+            <LayoutButtons Face="FlareGunRecon" Type="AbilCmd" AbilCmd="FlareGunRecon,Execute" Row="1" Column="1"/>
+            <LayoutButtons Face="Execute" Type="AbilCmd" AbilCmd="Execute,Execute" Row="1" Column="2"/>
+            <LayoutButtons Face="Jump" Type="AbilCmd" AbilCmd="LightJump,Execute" Row="0" Column="4"/>
+            <LayoutButtons Face="MedicalDrop" Type="AbilCmd" AbilCmd="MedicalDrop,Execute" Row="1" Column="3"/>
+        </CardLayouts>
+    </CUnit>
+    <CUnit id="SatelliteUplinkSpy">
+        <Race value="Zombie"/>
+        <FlagArray index="Unradarable" value="1"/>
+        <FlagArray index="Invulnerable" value="1"/>
+        <Speed value="2.5"/>
+        <Acceleration value="1000"/>
+        <Sight value="10"/>
+        <AbilArray Link="move"/>
+        <AbilArray Link="stop"/>
+        <BehaviorArray Link="Range10"/>
+        <EditorCategories value=""/>
+        <Mover value="Fly"/>
+        <Height value="6"/>
+        <MinimapRadius value="0"/>
+    </CUnit>
+    <CUnit id="ScamperLevel1">
+        <Race value="Human"/>
+        <PlaneArray index="Ground" value="1"/>
+        <Collide index="Ground" value="1"/>
+        <Attributes index="Mechanical" value="1"/>
+        <LifeStart value="100"/>
+        <LifeMax value="100"/>
+        <LifeArmor value="1"/>
+        <LifeRegenRate value="0.1015"/>
+        <Speed value="2.5"/>
+        <Acceleration value="1000"/>
+        <StationaryTurningRate value="540"/>
+        <TurningRate value="540"/>
+        <Sight value="10"/>
+        <AbilArray Link="move"/>
+        <AbilArray Link="stop"/>
+        <AbilArray Link="ScamperInventory"/>
+        <AbilArray Link="TrackingTag"/>
+        <AbilArray Link="ScamperUpgradeMorph"/>
+        <BehaviorArray Link="Benign"/>
+        <CardLayouts>
+            <LayoutButtons Face="Move" Type="AbilCmd" AbilCmd="move,Move" Row="0" Column="0"/>
+            <LayoutButtons Face="Stop" Type="AbilCmd" AbilCmd="stop,Stop" Row="0" Column="1"/>
+        </CardLayouts>
+        <EditorCategories value=""/>
+    </CUnit>
+    <CUnit id="ScamperLevel2">
+        <Race value="Human"/>
+        <PlaneArray index="Ground" value="1"/>
+        <Collide index="Ground" value="1"/>
+        <Attributes index="Mechanical" value="1"/>
+        <LifeStart value="100"/>
+        <LifeMax value="100"/>
+        <LifeArmor value="1"/>
+        <LifeRegenRate value="0.1015"/>
+        <Speed value="2.5"/>
+        <Acceleration value="1000"/>
+        <StationaryTurningRate value="540"/>
+        <TurningRate value="540"/>
+        <Sight value="10"/>
+        <AbilArray Link="move"/>
+        <AbilArray Link="stop"/>
+        <AbilArray Link="ScamperInventory"/>
+        <AbilArray Link="TrackingTag"/>
+        <AbilArray Link="Concealment"/>
+        <BehaviorArray Link="Benign"/>
+        <BehaviorArray Link="ItemSensorLevel1"/>
+        <CardLayouts>
+            <LayoutButtons Face="Move" Type="AbilCmd" AbilCmd="move,Move" Row="0" Column="0"/>
+            <LayoutButtons Face="Stop" Type="AbilCmd" AbilCmd="stop,Stop" Row="0" Column="1"/>
+        </CardLayouts>
+        <EditorCategories value=""/>
+    </CUnit>
+    <CUnit id="SmokeGrenadeLevel1Weapon" parent="MISSILE">
+        <Race value="Zombie"/>
+        <Mover value="RoadFlare"/>
+        <EditorCategories value=""/>
+    </CUnit>
+    <CUnit id="SmokeGrenadeLevel2Weapon" parent="MISSILE">
+        <Race value="Zombie"/>
+        <Mover value="RoadFlare"/>
+        <EditorCategories value=""/>
+    </CUnit>
+    <CUnit id="SmokeGrenadeLevel3Weapon" parent="MISSILE">
+        <Race value="Zombie"/>
+        <Mover value="RoadFlare"/>
+        <EditorCategories value=""/>
+    </CUnit>
+    <CUnit id="SupplyDropOffensive">
+        <Race value="Zombie"/>
+        <EditorCategories value=""/>
+        <LootArray value="SupplyDropOffensiveAmmoSet"/>
+    </CUnit>
+    <CUnit id="SupplyDropDefensive">
+        <Race value="Zombie"/>
+        <EditorCategories value=""/>
+        <LootArray value="SupplyDropDefensiveSet"/>
+    </CUnit>
     <CValidatorLocationEnumArea id="Backstab">
         <WhichLocation Value="TargetUnit"/>
         <AreaArray Arc="270" Radius="500"/>

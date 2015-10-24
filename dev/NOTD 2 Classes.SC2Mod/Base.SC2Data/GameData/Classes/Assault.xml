@@ -110,6 +110,109 @@
             <Cooldown TimeUse="40"/>
         </Cost>
     </CAbilEffectInstant>
+    <CUnit id="Assault" parent="BasicHeroTemplate" InventoryAbility="AssaultInventory" LearnAbility="AssaultLearn">
+        <AbilArray index="5" Link="AutomaticReloadAssault"/>
+        <AbilArray index="6" Link="ManualReloadAssault"/>
+        <AbilArray Link="AssaultCriticalStrike"/>
+        <AbilArray Link="ConcentratedFire"/>
+        <AbilArray Link="AmmoFeed"/>
+        <AbilArray Link="AdvancedTargeting"/>
+        <AbilArray Link="LockdownNOTD"/>
+        <AbilArray Link="GeminiProtocol"/>
+        <AbilArray Link="TauntNOTD"/>
+        <AbilArray Link="DefensivePlating"/>
+        <AbilArray Link="ChargeNOTD"/>
+        <AbilArray Link="Cohesion"/>
+        <AbilArray Link="ElbowRoom"/>
+        <AbilArray Link="ImmovableObject"/>
+        <AbilArray Link="HeavyJump"/>
+        <AbilArray Link="LockdownDisable"/>
+        <AbilArray Link="GeminiProtocolAttackRedirect"/>
+        <AbilArray Link="GeminiProtocolTranport"/>
+        <CardLayouts index="0">
+            <LayoutButtons index="5">
+                <Face value="Reload"/>
+                <Type value="AbilCmd"/>
+                <AbilCmd value="ManualReloadAssault,Execute"/>
+                <ShowInGlossary value="0"/>
+                <Row value="0"/>
+                <Column value="2"/>
+            </LayoutButtons>
+            <LayoutButtons Face="Jump" Type="AbilCmd" AbilCmd="HeavyJump,Execute" Row="0" Column="4"/>
+            <LayoutButtons Face="LockdownNOTD2" Type="AbilCmd" AbilCmd="LockdownDisable,Execute" Row="1" Column="0"/>
+            <LayoutButtons Face="LockdownNOTD" Type="AbilCmd" AbilCmd="LockdownNOTD,Execute" Row="1" Column="0"/>
+            <LayoutButtons Face="ElbowRoom" Type="AbilCmd" AbilCmd="ElbowRoom,Execute" Row="1" Column="0"/>
+            <LayoutButtons>
+                <Face value="ConcentratedFire"/>
+                <Type value="AbilCmd"/>
+                <AbilCmd value="ConcentratedFire,Execute"/>
+                <ShowInGlossary value="0"/>
+                <Row value="2"/>
+                <Column value="0"/>
+            </LayoutButtons>
+            <LayoutButtons>
+                <Face value="AdvancedTargeting"/>
+                <Type value="AbilCmd"/>
+                <AbilCmd value="AdvancedTargeting,Execute"/>
+                <ShowInGlossary value="0"/>
+                <Row value="2"/>
+                <Column value="1"/>
+            </LayoutButtons>
+            <LayoutButtons>
+                <Face value="TauntNOTD"/>
+                <Type value="AbilCmd"/>
+                <AbilCmd value="TauntNOTD,Execute"/>
+                <ShowInGlossary value="0"/>
+                <Row value="2"/>
+                <Column value="2"/>
+            </LayoutButtons>
+            <LayoutButtons Face="ChargeNOTD" Type="AbilCmd" AbilCmd="ChargeNOTD,Execute" Row="2" Column="3"/>
+        </CardLayouts>
+        <EnergyStart value="100"/>
+        <EnergyRegenRate value="1"/>
+        <LifeStart value="265"/>
+        <LifeMax value="265"/>
+        <LifeArmor value="4"/>
+        <LifeRegenRate value="0.3515"/>
+        <LateralAcceleration value="1000"/>
+        <ShieldsStart value="50"/>
+        <ShieldsMax value="50"/>
+        <ShieldRegenRate value="1.5"/>
+        <Speed value="2.1992"/>
+        <BehaviorArray Link="CohesionLevel1"/>
+        <BehaviorArray Link="CohesionLevel2"/>
+        <BehaviorArray Link="AssaultCriticalStrikeLevel1"/>
+        <BehaviorArray Link="AssaultCriticalStrikeLevel2"/>
+        <BehaviorArray Link="AssaultCriticalStrikeLevel3"/>
+        <BehaviorArray Link="DefensivePlatingLevel1"/>
+        <BehaviorArray Link="DefensivePlatingLevel2"/>
+        <BehaviorArray Link="DefensivePlatingLevel3"/>
+        <BehaviorArray Link="AmmoFeedLevel1"/>
+        <BehaviorArray Link="AmmoFeedLevel2"/>
+        <BehaviorArray Link="ExtendedMagazine"/>
+        <BehaviorArray Link="GeminiProtocolAttackSpeedSlow"/>
+        <BehaviorArray Link="ImmovableObject"/>
+        <GlossaryPriority value="3"/>
+        <FlagArray index="HiddenCargoUI" value="1"/>
+    </CUnit>
+    <CUnit id="GeminiProtocolDummyUnit">
+        <Race value="Zombie"/>
+        <FlagArray index="Unselectable" value="1"/>
+        <FlagArray index="Untargetable" value="1"/>
+        <FlagArray index="Invulnerable" value="1"/>
+        <Speed value="10"/>
+        <Acceleration value="1000"/>
+        <AbilArray Link="attack"/>
+        <AbilArray Link="move"/>
+        <CargoSize value="1"/>
+        <EditorCategories value=""/>
+        <LifeStart value="100000"/>
+        <LifeMax value="100000"/>
+        <LifeArmor value="50000"/>
+        <LifeRegenRate value="100000"/>
+        <BehaviorArray Link="GeminiProtocolAttackSpeedSlowInternal"/>
+        <BehaviorArray Link="GeminiUnitInvulnerabilty"/>
+    </CUnit>
     <CValidatorUnitCompareMarkerCount id="ChargeDamageLevel1">
         <WhichUnit Effect="ChargeImpactSetLevel1"/>
     </CValidatorUnitCompareMarkerCount>

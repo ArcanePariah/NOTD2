@@ -191,6 +191,118 @@
         </Cost>
         <Flags index="Transient" value="1"/>
     </CAbilEffectInstant>
+    <CUnit id="BulwarkShield">
+        <Race value="Human"/>
+        <FlagArray index="Unselectable" value="1"/>
+        <FlagArray index="Untargetable" value="1"/>
+        <FlagArray index="Unradarable" value="1"/>
+        <FlagArray index="Invulnerable" value="1"/>
+        <Speed value="160"/>
+        <Acceleration value="1000"/>
+        <TurningRate value="999.8437"/>
+        <Height value="0.5"/>
+        <AbilArray Link="stop"/>
+        <AbilArray Link="attack"/>
+        <AbilArray Link="move"/>
+        <MinimapRadius value="0"/>
+        <EditorCategories value=""/>
+    </CUnit>
+    <CUnit id="ChainExplosiveLevel1">
+        <Race value="Human"/>
+        <BehaviorArray Link="CollateralDamagePeriodicSearch"/>
+        <BehaviorArray Link="ChainExplosiveDetonateLevel1"/>
+        <EditorCategories value=""/>
+        <LifeStart value="50"/>
+        <LifeMax value="50"/>
+    </CUnit>
+    <CUnit id="ChainExplosiveLevel2">
+        <Race value="Human"/>
+        <BehaviorArray Link="CollateralDamagePeriodicSearch"/>
+        <BehaviorArray Link="ChainExplosiveDetonateLevel2"/>
+        <EditorCategories value=""/>
+        <LifeStart value="50"/>
+        <LifeMax value="50"/>
+    </CUnit>
+    <CUnit id="DemoSatchelCharge">
+        <Race value="Zombie"/>
+        <BehaviorArray Link="SatchelChargeDetonation"/>
+        <EditorCategories value=""/>
+        <Height value="0.25"/>
+    </CUnit>
+    <CUnit id="Demolitions" parent="BasicHeroTemplate" InventoryAbility="" LearnAbility="">
+        <LifeStart value="100"/>
+        <LifeMax value="100"/>
+        <LifeArmor value="2"/>
+        <LifeRegenRate value="0.1484"/>
+        <EnergyStart value="100"/>
+        <EnergyRegenRate value="1"/>
+        <LateralAcceleration value="1000"/>
+        <ShieldsStart value="120"/>
+        <ShieldsMax value="120"/>
+        <ShieldArmor value="1"/>
+        <ShieldRegenDelay value="0"/>
+        <ShieldRegenRate value="2.5"/>
+        <Speed value="2.3632"/>
+        <GlossaryPriority value="6"/>
+        <AbilArray Link="MD5Mine"/>
+        <AbilArray Link="CollateralDamage"/>
+        <AbilArray Link="ChainExplosive"/>
+        <AbilArray Link="Stockpile"/>
+        <AbilArray Link="SatchelCharge"/>
+        <AbilArray Link="LittleBuster"/>
+        <AbilArray Link="ReactiveShields"/>
+        <AbilArray Link="Provoke"/>
+        <AbilArray Link="ShieldBash"/>
+        <AbilArray Link="Sadist"/>
+        <AbilArray Link="ThunderballFists"/>
+        <AbilArray Link="Bulwark"/>
+        <AbilArray Link="Detonate"/>
+        <AbilArray Link="HeavyJump"/>
+        <BehaviorArray Link="ReactiveShieldsLevel1"/>
+        <BehaviorArray Link="ReactiveShieldsLevel2"/>
+        <BehaviorArray Link="ReactiveShieldsLevel3"/>
+        <CardLayouts index="0">
+            <LayoutButtons Face="ChainExplosive" Type="AbilCmd" AbilCmd="ChainExplosive,Execute" Row="1" Column="1"/>
+            <LayoutButtons Face="SatchelCharge" Type="AbilCmd" AbilCmd="SatchelCharge,Execute" Row="1" Column="2"/>
+            <LayoutButtons Face="LittleBuster" Type="AbilCmd" AbilCmd="LittleBuster,Execute" Row="1" Column="2"/>
+            <LayoutButtons Face="ThunderballFists" Type="AbilCmd" AbilCmd="ThunderballFists,Execute" Row="1" Column="2"/>
+            <LayoutButtons Face="Bulwark" Type="AbilCmd" AbilCmd="Bulwark,Execute" Row="1" Column="2"/>
+            <LayoutButtons Face="Provoke" Type="AbilCmd" AbilCmd="Provoke,Execute" Row="2" Column="0"/>
+            <LayoutButtons Face="ShieldBash" Type="AbilCmd" AbilCmd="ShieldBash,Execute" Row="2" Column="1"/>
+            <LayoutButtons Face="Detonate" Type="AbilCmd" AbilCmd="Detonate,Execute" Row="2" Column="3"/>
+            <LayoutButtons Face="Jump" Type="AbilCmd" AbilCmd="HeavyJump,Execute" Row="0" Column="4"/>
+            <LayoutButtons Face="MD5Mine" Type="AbilCmd" AbilCmd="MD5Mine,Execute" Row="1" Column="0"/>
+        </CardLayouts>
+    </CUnit>
+    <CUnit id="LittleBusterWeapon" parent="MISSILE">
+        <Race value="Zombie"/>
+        <EditorCategories value=""/>
+    </CUnit>
+    <CUnit id="MD5Mine">
+        <LifeStart value="50"/>
+        <LifeMax value="50"/>
+        <AbilArray Link="MassreactiveTrigger"/>
+        <AbilArray Link="ProximityTrigger"/>
+        <AbilArray Link="DetonateHidden"/>
+        <AbilArray Link="DetonateHeroicHidden"/>
+        <AbilArray Link="DetonateMassiveHidden"/>
+        <AbilArray Link="RemoteTrigger"/>
+        <BehaviorArray Link="MD5MineExplosion"/>
+        <BehaviorArray Link="CollateralDamagePeriodicSearch"/>
+        <Radius value="0"/>
+        <EditorCategories value=""/>
+        <Race value="Human"/>
+        <CardLayouts>
+            <LayoutButtons Face="RemoteTrigger" Type="AbilCmd" AbilCmd="RemoteTrigger,Execute" Row="0" Column="0"/>
+            <LayoutButtons Face="MassreactiveTrigger" Type="AbilCmd" AbilCmd="MassreactiveTrigger,On" Row="0" Column="1"/>
+            <LayoutButtons Face="ProxmityTrigger" Type="AbilCmd" AbilCmd="ProximityTrigger,On" Row="0" Column="2"/>
+        </CardLayouts>
+        <EquipmentArray Effect="MD5MineDamage" Icon="Assets\Textures\btn-ability-terran-spidermine.dds" Name="Equipment/Name/MD5Mine"/>
+    </CUnit>
+    <CUnit id="SatchelMissileWeapon" parent="MISSILE_INVULNERABLE">
+        <Race value="Human"/>
+        <EditorCategories value=""/>
+    </CUnit>
     <CUpgrade id="CollateralDamageDummy" parent="DefaultUpgradeOverride">
         <MaxLevel value="3"/>
     </CUpgrade>
