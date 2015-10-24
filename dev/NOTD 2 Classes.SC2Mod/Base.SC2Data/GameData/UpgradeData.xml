@@ -160,9 +160,6 @@
         <EffectArray Reference="Unit,Technician,LifeArmor" Value="1"/>
         <EditorCategories value="UpgradeType:Character Modification"/>
     </CUpgrade>
-    <CUpgrade id="CollateralDamageDummy" parent="DefaultUpgradeOverride">
-        <MaxLevel value="3"/>
-    </CUpgrade>
     <CUpgrade id="CombatKnifeRankUpgrade" parent="DefaultUpgradeOverride">
         <EffectArray Reference="Effect,CombatKnifeDamage,Amount" Value="0.5"/>
         <EffectArray Reference="Effect,CombatKnifeDoubleDamage,Chance" Value="0.025"/>
@@ -182,26 +179,6 @@
         <EffectArray Reference="Abil,LightJump,Range[0]" Value="1"/>
         <EffectArray Reference="Abil,MediumJump,Range[0]" Value="1"/>
         <EffectArray Reference="Abil,PathfinderJump,Range[0]" Value="1"/>
-    </CUpgrade>
-    <CUpgrade id="CripplingFire" parent="DefaultUpgradeOverride">
-        <EffectArray Operation="Set" Reference="Behavior,FocusFire,DamageResponse.Chance" Value="1"/>
-        <EffectArray Operation="Subtract" Reference="Behavior,CripplingFire,Modification.AttackSpeedMultiplier" Value="0.05"/>
-        <EffectArray Operation="Subtract" Reference="Behavior,CripplingFire,Modification.MoveSpeedMultiplier" Value="0.05"/>
-        <EffectArray Operation="Set" Reference="Button,FocusFire,Tooltip" Value="Button/Tooltip/FocusFireCripplingFire"/>
-        <MaxLevel value="3"/>
-    </CUpgrade>
-    <CUpgrade id="CripplingFireandFireUpButton" parent="DefaultUpgradeOverride">
-        <EffectArray Operation="Set" Reference="Button,FocusFire,Tooltip" Value="Button/Tooltip/FocusFireCripplingFiredUp"/>
-        <MaxLevel value="6"/>
-    </CUpgrade>
-    <CUpgrade id="CriticalStrikeRifleman" parent="DefaultUpgradeOverride">
-        <EffectArray Reference="Effect,PrecisionShotBonusCriticalDamageLevel1,Chance" Value="0.1"/>
-        <EffectArray Reference="Effect,PrecisionShotBonusCriticalDamageLevel2,Chance" Value="0.1"/>
-        <EffectArray Reference="Effect,PrecisionShotBonusCriticalDamageLevel3,Chance" Value="0.1"/>
-        <EffectArray Reference="Effect,PrecisionShotNormalCriticalDamageLevel1,Chance" Value="0.1"/>
-        <EffectArray Reference="Effect,PrecisionShotNormalCriticalDamageLevel2,Chance" Value="0.1"/>
-        <EffectArray Reference="Effect,PrecisionShotNormalCriticalDamageLevel3,Chance" Value="0.1"/>
-        <MaxLevel value="3"/>
     </CUpgrade>
     <CUpgrade id="EnergyRegeneration" parent="DefaultUpgradeOverride">
         <EditorCategories value="UpgradeType:Character Modification"/>
@@ -224,14 +201,6 @@
     <CUpgrade id="EnhancedProtectiveInsert" parent="ArmorVisualTemplate" ArmorIcon="Items\btn-item-armour-EnhancedProtectiveInsert.dds" ArmorName="Button/Name/EnhancedProtectiveInsert" ArmorTip="Button/Tooltip/EnhancedProtectiveInsert">
         <EditorCategories value=""/>
     </CUpgrade>
-    <CUpgrade id="FireUp">
-        <Flags index="UpgradeCheat" value="0"/>
-        <Alert value=""/>
-        <EffectArray Reference="Behavior,FocusFire,Modification.AttackSpeedMultiplier" Value="0.15"/>
-        <EffectArray Reference="Behavior,FocusFire,Modification.WeaponRange" Value="1"/>
-        <EffectArray Operation="Set" Reference="Button,FocusFire,Tooltip" Value="Button/Tooltip/FocusFireFireUp"/>
-        <MaxLevel value="3"/>
-    </CUpgrade>
     <CUpgrade id="GeminiProtocol"/>
     <CUpgrade id="HALSoldiers" parent="DefaultUpgradeOverride">
         <LeaderAlias value="UGCMarines"/>
@@ -244,40 +213,12 @@
     <CUpgrade id="IntegratedSuppressor" parent="DefaultUpgradeOverride">
         <EditorCategories value="UpgradeType:Character Modification"/>
     </CUpgrade>
-    <CUpgrade id="MD5MineLevelDummy" parent="DefaultUpgradeOverride">
-        <MaxLevel value="3"/>
-    </CUpgrade>
-    <CUpgrade id="MedicalExpertiseLevel2" parent="DefaultUpgradeOverride">
-        <Flags index="UpgradeCheat" value="1"/>
-        <EffectArray Operation="Divide" Reference="Abil,Antivenom,Cost[0].Vital[Energy]" Value="2"/>
-    </CUpgrade>
     <CUpgrade id="HighCapacityAmmo" parent="AmmoUpgradeMagazineTemplate" AmmoChange="30"/>
     <CUpgrade id="HighCapacityAmmoAssault" parent="AmmoUpgradeMagazineTemplate" AmmoChange="40">
         <MaxLevel value="3"/>
     </CUpgrade>
     <CUpgrade id="HighCapacityAmmoAssaultwithModification" parent="AmmoUpgradeMagazineTemplate" AmmoChange="50">
         <MaxLevel value="3"/>
-    </CUpgrade>
-    <CUpgrade id="IntolerableCruelty" parent="DefaultUpgradeOverride">
-        <Flags index="UpgradeCheat" value="1"/>
-        <EffectArray Operation="Set" Reference="Behavior,VolatileInjectionLevel1,PeriodCount" Value="30"/>
-        <EffectArray Operation="Set" Reference="Behavior,VolatileInjectionLevel1,Period" Value="1.000000"/>
-        <EffectArray Reference="Effect,IntolerableCrueltyDamage,Amount" Value="3"/>
-        <EffectArray Operation="Set" Reference="Behavior,VolatileInjectionLevel2,Period" Value="1.000000"/>
-        <EffectArray Operation="Set" Reference="Behavior,VolatileInjectionLevel3,Period" Value="1.000000"/>
-        <EffectArray Operation="Set" Reference="Behavior,VolatileInjectionLevel2,PeriodCount" Value="30"/>
-        <EffectArray Operation="Set" Reference="Behavior,VolatileInjectionLevel3,PeriodCount" Value="30"/>
-        <EffectArray Reference="Effect,VolatileInjectionSearchLevel1,AreaArray[0].Radius" Value="1"/>
-        <EffectArray Reference="Effect,VolatileInjectionSearchLevel2,AreaArray[0].Radius" Value="1"/>
-        <EffectArray Reference="Effect,VolatileInjectionSearchLevel3,AreaArray[0].Radius" Value="1"/>
-        <MaxLevel value="2"/>
-    </CUpgrade>
-    <CUpgrade id="MedicalExpertiseLevel1" parent="DefaultUpgradeOverride">
-        <Flags index="UpgradeCheat" value="1"/>
-        <EffectArray Operation="Set" Reference="Behavior,NanoHasteLevel1,Period" Value="20.000000"/>
-        <EffectArray Operation="Set" Reference="Behavior,NanoHasteLevel2,Period" Value="20.000000"/>
-        <EffectArray Operation="Set" Reference="Behavior,NanoHasteLevel3,Period" Value="20.000000"/>
-        <EffectArray Operation="Set" Reference="Effect,NanoHasteFractureRepair,PeriodCount" Value="2"/>
     </CUpgrade>
     <CUpgrade id="Mercernary" parent="DefaultUpgradeOverride">
         <LeaderAlias value="UGCMarines"/>
@@ -438,22 +379,6 @@
     <CUpgrade id="StandardArmor" parent="ArmorVisualTemplate" ArmorIcon="Assets\Textures\btn-upgrade-terran-infantryarmorlevel0.dds" ArmorName="Unit/LifeArmor/UGC Marine Forces" ArmorTip="Unit/LifeArmorTooltip/UGCMarines">
         <EditorCategories value=""/>
     </CUpgrade>
-    <CUpgrade id="StockpileLevel1" parent="DefaultUpgradeOverride">
-        <EffectArray Operation="Set" Reference="Abil,MD5Mine,Cost[0].Charge.CountMax" Value="3"/>
-        <EffectArray Operation="Set" Reference="Abil,MD5Mine,Cost[0].Charge.CountUse" Value="1"/>
-        <EffectArray Operation="Set" Reference="Abil,MD5Mine,Cost[0].Charge.CountStart" Value="3"/>
-        <EffectArray Operation="Set" Reference="Abil,MD5Mine,Cost[0].Charge.TimeUse" Value="10.000000"/>
-        <EffectArray Operation="Set" Reference="Abil,MD5Mine,Cost[0].Cooldown.TimeUse" Value="0.000000"/>
-        <EffectArray Operation="Set" Reference="Abil,ChainExplosive,Cost[0].Charge.CountMax" Value="3"/>
-        <EffectArray Operation="Set" Reference="Abil,ChainExplosive,Cost[0].Charge.CountUse" Value="1"/>
-        <EffectArray Operation="Set" Reference="Abil,ChainExplosive,Cost[0].Charge.CountStart" Value="3"/>
-        <EffectArray Operation="Set" Reference="Abil,ChainExplosive,Cost[0].Charge.TimeUse" Value="10.000000"/>
-        <EffectArray Operation="Set" Reference="Abil,ChainExplosive,Cost[0].Cooldown.TimeUse" Value="0.000000"/>
-    </CUpgrade>
-    <CUpgrade id="StockpileLevel2" parent="DefaultUpgradeOverride">
-        <EffectArray Operation="Set" Reference="Abil,MD5Mine,Cost[0].Charge.CountMax" Value="5"/>
-        <EffectArray Operation="Set" Reference="Abil,ChainExplosive,Cost[0].Charge.CountMax" Value="5"/>
-    </CUpgrade>
     <!--Currently, duration override in behaviors can not be upgrades. May need to use triggers for this with catalog writes, however, this upgrade will still be used to start that trigger.-->
     <CUpgrade id="SwapSpeed" parent="DefaultUpgradeOverride">
         <EditorCategories value="UpgradeType:Character Modification"/>
@@ -464,9 +389,6 @@
         <EffectArray Reference="Effect,TomahawkDoubleDamage,Chance" Value="0.05"/>
         <EffectArray Reference="Effect,TomahawkDoubleDamage,Amount" Value="1"/>
         <EditorCategories value="UpgradeType:AttackBonus"/>
-    </CUpgrade>
-    <CUpgrade id="TestUpgrade">
-        <EffectArray Reference="Unit,Recon,VisionHeight" Value="0.5"/>
     </CUpgrade>
     <CUpgrade id="TomahawkSidearm">
         <Alert value=""/>
@@ -600,26 +522,6 @@
         <EffectArray Reference="Weapon,SubmachineGun,Range" Value="3"/>
         <EffectArray Reference="Weapon,LaserRifle,Range" Value="3"/>
         <EffectArray Reference="Weapon,HeavyMachineGun,Range" Value="3"/>
-    </CUpgrade>
-    <CUpgrade id="WeaponsProficiencyLevel1" parent="DefaultUpgradeOverride">
-        <EffectArray Operation="Multiply" Reference="Behavior,ReloadManual,Duration" Value="0.850000"/>
-        <EffectArray Operation="Multiply" Reference="Behavior,ReloadNightmare,Duration" Value="0.850000"/>
-        <EffectArray Operation="Multiply" Reference="Behavior,ReloadNormal,Duration" Value="0.850000"/>
-        <EffectArray Operation="Multiply" Reference="Behavior,ReloadPerfect,Duration" Value="0.850000"/>
-        <EffectArray Reference="Behavior,FocusFire,Modification.DamageDealtFraction[Melee]" Value="0.05"/>
-        <EffectArray Reference="Behavior,FocusFire,Modification.DamageDealtFraction[Ranged]" Value="0.05"/>
-        <EffectArray Reference="Behavior,FocusFire,Modification.DamageDealtFraction[Splash]" Value="0.05"/>
-        <EffectArray Reference="Behavior,FocusFire,Modification.DamageDealtFraction[Spell]" Value="0.05"/>
-    </CUpgrade>
-    <CUpgrade id="WeaponsProficiencyLevel12" parent="DefaultUpgradeOverride">
-        <EffectArray Operation="Multiply" Reference="Behavior,ReloadManual,Duration" Value="0.700000"/>
-        <EffectArray Operation="Multiply" Reference="Behavior,ReloadNormal,Duration" Value="0.700000"/>
-        <EffectArray Operation="Multiply" Reference="Behavior,ReloadPerfect,Duration" Value="0.700000"/>
-        <EffectArray Operation="Multiply" Reference="Behavior,ReloadNightmare,Duration" Value="0.700000"/>
-        <EffectArray Reference="Behavior,FocusFire,Modification.DamageDealtFraction[Melee]" Value="0.1"/>
-        <EffectArray Reference="Behavior,FocusFire,Modification.DamageDealtFraction[Ranged]" Value="0.1"/>
-        <EffectArray Reference="Behavior,FocusFire,Modification.DamageDealtFraction[Splash]" Value="0.1"/>
-        <EffectArray Reference="Behavior,FocusFire,Modification.DamageDealtFraction[Spell]" Value="0.1"/>
     </CUpgrade>
     <!--Placeholder, upgrade level will be checked in triggers when calculating weight-->
     <CUpgrade id="WeightTolerance" parent="DefaultUpgradeOverride">

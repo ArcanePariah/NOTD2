@@ -1,0 +1,1008 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<Catalog>
+    <CAbilEffectTarget id="Bulwark" parent="AbilityWithButtonTargetTemplate">
+        <Range value="500"/>
+        <Arc value="360"/>
+    </CAbilEffectTarget>
+    <CAbilArmMagazine id="BulwarkHidden">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Leash value="2"/>
+        <InfoArray index="Ammo1" Distance="2" Manage="Recall" Unit="BulwarkShield">
+            <Charge Link="Abil/##id##"/>
+            <Cooldown Link="Abil/##id##"/>
+            <Button DefaultButtonFace="Bulwark"/>
+            <Flags index="External" value="1"/>
+        </InfoArray>
+        <ExternalAngle value="90"/>
+        <MaxCount value="1"/>
+    </CAbilArmMagazine>
+    <CAbilEffectTarget id="ChainExplosive" parent="AbilityWithButtonTargetTemplate">
+        <Cost>
+            <Vital index="Energy" value="15"/>
+            <Cooldown TimeUse="10"/>
+        </Cost>
+        <Effect index="0" value="ChainExplosiveLevel1"/>
+        <Effect value="ChainExplosiveLevel2"/>
+        <Placeholder value="ChainExplosiveLevel1"/>
+        <TargetFilters value="Visible;Player,Ally,Neutral,Enemy"/>
+        <Range value="6"/>
+        <PlaceUnit value="ChainExplosiveLevel1"/>
+    </CAbilEffectTarget>
+    <CAbilBehavior id="CollateralDamage">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <BehaviorArray value="GenericBehavior"/>
+        <BehaviorArray value="GenericBehavior"/>
+        <BehaviorArray value="GenericBehavior"/>
+    </CAbilBehavior>
+    <CAbilInventory id="DemolitionsInventory" parent="InventoryTemplate">
+        <InfoArray index="2" removed="1"/>
+    </CAbilInventory>
+    <CAbilLearn id="DemolitionsLearn" parent="LearnTemplate">
+        <Name value="Abil/Name/DemolitionsLearn"/>
+        <InfoArray index="Learn1" Abil="MD5Mine">
+            <Button DefaultButtonFace="MD5Mine"/>
+        </InfoArray>
+        <InfoArray index="Learn2" Abil="CollateralDamage">
+            <Button DefaultButtonFace="CollateralDamage"/>
+        </InfoArray>
+        <InfoArray index="Learn3" Abil="ChainExplosive"/>
+        <InfoArray index="Learn4" Abil="Stockpile">
+            <Button DefaultButtonFace="Stockpile"/>
+        </InfoArray>
+        <InfoArray index="Learn5" Abil="SatchelCharge"/>
+        <InfoArray index="Learn6" Abil="LittleBuster"/>
+        <InfoArray index="Learn7" Abil="ReactiveShields"/>
+        <InfoArray index="Learn8" Abil="Provoke"/>
+        <InfoArray index="Learn9" Abil="ShieldBash"/>
+        <InfoArray index="Learn10" Abil="Sadist"/>
+        <InfoArray index="Learn11" Abil="ThunderballFists"/>
+        <InfoArray index="Learn12" Abil="Bulwark">
+            <Button DefaultButtonFace="Bulwark"/>
+        </InfoArray>
+    </CAbilLearn>
+    <CAbilEffectTarget id="Detonate" parent="AbilityWithButtonTargetTemplate">
+        <Flags index="BestUnit" value="0"/>
+        <Flags index="RequireTargetVision" value="0"/>
+        <Range value="500"/>
+        <CursorEffect value="Detonate"/>
+    </CAbilEffectTarget>
+    <CAbilEffectInstant id="Provoke" parent="3LevelEffectInstantAbility">
+        <Cost>
+            <Vital index="Energy" value="10"/>
+            <Cooldown TimeUse="10"/>
+        </Cost>
+    </CAbilEffectInstant>
+    <CAbilEffectTarget id="LittleBuster" parent="AbilityWithButtonTargetTemplate">
+        <Flags index="RequireTargetVision" value="0"/>
+        <Cost>
+            <Vital index="Energy" value="30"/>
+            <Cooldown TimeUse="90"/>
+        </Cost>
+        <RefundFraction Cooldown="1">
+            <Vital index="Energy" value="1"/>
+        </RefundFraction>
+        <Range value="20"/>
+        <CastIntroTime value="3"/>
+        <ShowProgressArray index="Cast" value="1"/>
+        <ProgressButtonArray index="Cast" value="LittleBuster"/>
+    </CAbilEffectTarget>
+    <CAbilEffectTarget id="MD5Mine" parent="AbilityWithButtonTargetTemplate">
+        <Effect value="MD5Mine"/>
+        <Effect value="MD5Mine"/>
+        <Cost>
+            <Vital index="Energy" value="10"/>
+            <Cooldown TimeUse="10"/>
+        </Cost>
+        <TargetFilters value="Visible;Player,Ally,Neutral,Enemy"/>
+        <Range value="6"/>
+        <Placeholder value="MD5Mine"/>
+        <PlaceUnit value="MD5Mine"/>
+    </CAbilEffectTarget>
+    <CAbilBehavior id="ReactiveShields">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <BehaviorArray value="GenericBehavior"/>
+        <BehaviorArray value="GenericBehavior"/>
+        <BehaviorArray value="GenericBehavior"/>
+    </CAbilBehavior>
+    <CAbilEffectInstant id="RemoteTrigger" parent="AbilityInstantTemplate"/>
+    <CAbilEffectInstant id="DetonateHeroicHidden">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Effect index="0" value="RemoteTrigger"/>
+        <Flags index="AutoCast" value="1"/>
+        <Flags index="AutoCastOn" value="1"/>
+        <AutoCastFilters value="Visible;-"/>
+        <AutoCastValidatorArray value="MassreactiveTriggerArmed"/>
+        <AutoCastValidatorArray value="HeroicEnemyNear"/>
+        <CmdButtonArray index="Execute">
+            <Flags index="Hidden" value="1"/>
+        </CmdButtonArray>
+    </CAbilEffectInstant>
+    <CAbilEffectInstant id="DetonateMassiveHidden">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Effect index="0" value="RemoteTrigger"/>
+        <Flags index="AutoCast" value="1"/>
+        <Flags index="AutoCastOn" value="1"/>
+        <AutoCastFilters value="Visible;-"/>
+        <AutoCastValidatorArray value="MassreactiveTriggerArmed"/>
+        <AutoCastValidatorArray value="MassiveEnemyNear"/>
+        <CmdButtonArray index="Execute">
+            <Flags index="Hidden" value="1"/>
+        </CmdButtonArray>
+    </CAbilEffectInstant>
+    <CAbilEffectInstant id="DetonateHidden">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Effect index="0" value="RemoteTrigger"/>
+        <Flags index="AutoCast" value="1"/>
+        <Flags index="AutoCastOn" value="1"/>
+        <AutoCastFilters value="Visible;-"/>
+        <AutoCastValidatorArray value="ProxmityTriggerArmed"/>
+        <AutoCastValidatorArray value="EnemyNear"/>
+        <CmdButtonArray index="Execute">
+            <Flags index="Hidden" value="1"/>
+        </CmdButtonArray>
+    </CAbilEffectInstant>
+    <CAbilBehavior id="MassreactiveTrigger">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <CmdButtonArray index="On" DefaultButtonFace="MassreactiveTrigger" Requirements="MassreactiveTriggerAvailable"/>
+        <Flags index="Toggle" value="1"/>
+        <BehaviorArray value="MassreactiveTrigger"/>
+    </CAbilBehavior>
+    <CAbilBehavior id="ProximityTrigger">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <CmdButtonArray index="On" DefaultButtonFace="ProxmityTrigger" Requirements="ProximityTriggerAvailable"/>
+        <Flags index="Toggle" value="1"/>
+        <BehaviorArray value="ProximityTrigger"/>
+    </CAbilBehavior>
+    <CAbilBehavior id="Sadist">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <BehaviorArray value="GenericBehavior"/>
+        <BehaviorArray value="GenericBehavior"/>
+    </CAbilBehavior>
+    <CAbilEffectTarget id="SatchelCharge" parent="AbilityWithButtonTargetTemplate">
+        <Flags index="RequireTargetVision" value="0"/>
+        <Cost>
+            <Vital index="Energy" value="40"/>
+            <Cooldown TimeUse="75"/>
+        </Cost>
+        <Placeholder value="DemoSatchelCharge"/>
+        <Range value="8"/>
+        <ShowProgressArray index="Cast" value="1"/>
+        <ProgressButtonArray index="Cast" value="SatchelCharge"/>
+        <PlaceUnit value="DemoSatchelCharge"/>
+        <Effect index="0" value="SatchelMissile"/>
+    </CAbilEffectTarget>
+    <CAbilEffectTarget id="ShieldBash" parent="2LevelEffectTargetAbility">
+        <Flags index="Transient" value="1"/>
+        <Cost>
+            <Vital index="Energy" value="30"/>
+        </Cost>
+        <Range value="500"/>
+        <Arc value="360"/>
+    </CAbilEffectTarget>
+    <CAbilBehavior id="Stockpile">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <BehaviorArray value="GenericBehavior"/>
+        <BehaviorArray value="GenericBehavior"/>
+    </CAbilBehavior>
+    <CAbilEffectInstant id="ThunderballFists" parent="AbilityInstantTemplate">
+        <Cost>
+            <Vital index="Energy" value="50"/>
+            <Cooldown TimeUse="10"/>
+        </Cost>
+        <Flags index="Transient" value="1"/>
+    </CAbilEffectInstant>
+    <CUnit id="BulwarkShield">
+        <Race value="Human"/>
+        <FlagArray index="Unselectable" value="1"/>
+        <FlagArray index="Untargetable" value="1"/>
+        <FlagArray index="Unradarable" value="1"/>
+        <FlagArray index="Invulnerable" value="1"/>
+        <Speed value="160"/>
+        <Acceleration value="1000"/>
+        <TurningRate value="999.8437"/>
+        <Height value="0.5"/>
+        <AbilArray Link="stop"/>
+        <AbilArray Link="attack"/>
+        <AbilArray Link="move"/>
+        <MinimapRadius value="0"/>
+        <EditorCategories value=""/>
+    </CUnit>
+    <CUnit id="ChainExplosiveLevel1">
+        <Race value="Human"/>
+        <BehaviorArray Link="CollateralDamagePeriodicSearch"/>
+        <BehaviorArray Link="ChainExplosiveDetonateLevel1"/>
+        <EditorCategories value=""/>
+        <LifeStart value="50"/>
+        <LifeMax value="50"/>
+    </CUnit>
+    <CUnit id="ChainExplosiveLevel2">
+        <Race value="Human"/>
+        <BehaviorArray Link="CollateralDamagePeriodicSearch"/>
+        <BehaviorArray Link="ChainExplosiveDetonateLevel2"/>
+        <EditorCategories value=""/>
+        <LifeStart value="50"/>
+        <LifeMax value="50"/>
+    </CUnit>
+    <CUnit id="DemoSatchelCharge">
+        <Race value="Zombie"/>
+        <BehaviorArray Link="SatchelChargeDetonation"/>
+        <EditorCategories value=""/>
+        <Height value="0.25"/>
+    </CUnit>
+    <CUnit id="Demolitions" parent="BasicHeroTemplate" InventoryAbility="" LearnAbility="">
+        <LifeStart value="100"/>
+        <LifeMax value="100"/>
+        <LifeArmor value="2"/>
+        <LifeRegenRate value="0.1484"/>
+        <EnergyStart value="100"/>
+        <EnergyRegenRate value="1"/>
+        <LateralAcceleration value="1000"/>
+        <ShieldsStart value="120"/>
+        <ShieldsMax value="120"/>
+        <ShieldArmor value="1"/>
+        <ShieldRegenDelay value="0"/>
+        <ShieldRegenRate value="2.5"/>
+        <Speed value="2.3632"/>
+        <GlossaryPriority value="6"/>
+        <AbilArray Link="MD5Mine"/>
+        <AbilArray Link="CollateralDamage"/>
+        <AbilArray Link="ChainExplosive"/>
+        <AbilArray Link="Stockpile"/>
+        <AbilArray Link="SatchelCharge"/>
+        <AbilArray Link="LittleBuster"/>
+        <AbilArray Link="ReactiveShields"/>
+        <AbilArray Link="Provoke"/>
+        <AbilArray Link="ShieldBash"/>
+        <AbilArray Link="Sadist"/>
+        <AbilArray Link="ThunderballFists"/>
+        <AbilArray Link="Bulwark"/>
+        <AbilArray Link="Detonate"/>
+        <AbilArray Link="HeavyJump"/>
+        <BehaviorArray Link="ReactiveShieldsLevel1"/>
+        <BehaviorArray Link="ReactiveShieldsLevel2"/>
+        <BehaviorArray Link="ReactiveShieldsLevel3"/>
+        <CardLayouts index="0">
+            <LayoutButtons Face="ChainExplosive" Type="AbilCmd" AbilCmd="ChainExplosive,Execute" Row="1" Column="1"/>
+            <LayoutButtons Face="SatchelCharge" Type="AbilCmd" AbilCmd="SatchelCharge,Execute" Row="1" Column="2"/>
+            <LayoutButtons Face="LittleBuster" Type="AbilCmd" AbilCmd="LittleBuster,Execute" Row="1" Column="2"/>
+            <LayoutButtons Face="ThunderballFists" Type="AbilCmd" AbilCmd="ThunderballFists,Execute" Row="1" Column="2"/>
+            <LayoutButtons Face="Bulwark" Type="AbilCmd" AbilCmd="Bulwark,Execute" Row="1" Column="2"/>
+            <LayoutButtons Face="Provoke" Type="AbilCmd" AbilCmd="Provoke,Execute" Row="2" Column="0"/>
+            <LayoutButtons Face="ShieldBash" Type="AbilCmd" AbilCmd="ShieldBash,Execute" Row="2" Column="1"/>
+            <LayoutButtons Face="Detonate" Type="AbilCmd" AbilCmd="Detonate,Execute" Row="2" Column="3"/>
+            <LayoutButtons Face="Jump" Type="AbilCmd" AbilCmd="HeavyJump,Execute" Row="0" Column="4"/>
+            <LayoutButtons Face="MD5Mine" Type="AbilCmd" AbilCmd="MD5Mine,Execute" Row="1" Column="0"/>
+        </CardLayouts>
+    </CUnit>
+    <CUnit id="LittleBusterWeapon" parent="MISSILE">
+        <Race value="Zombie"/>
+        <EditorCategories value=""/>
+    </CUnit>
+    <CUnit id="MD5Mine">
+        <LifeStart value="50"/>
+        <LifeMax value="50"/>
+        <AbilArray Link="MassreactiveTrigger"/>
+        <AbilArray Link="ProximityTrigger"/>
+        <AbilArray Link="DetonateHidden"/>
+        <AbilArray Link="DetonateHeroicHidden"/>
+        <AbilArray Link="DetonateMassiveHidden"/>
+        <AbilArray Link="RemoteTrigger"/>
+        <BehaviorArray Link="MD5MineExplosion"/>
+        <BehaviorArray Link="CollateralDamagePeriodicSearch"/>
+        <Radius value="0"/>
+        <EditorCategories value=""/>
+        <Race value="Human"/>
+        <CardLayouts>
+            <LayoutButtons Face="RemoteTrigger" Type="AbilCmd" AbilCmd="RemoteTrigger,Execute" Row="0" Column="0"/>
+            <LayoutButtons Face="MassreactiveTrigger" Type="AbilCmd" AbilCmd="MassreactiveTrigger,On" Row="0" Column="1"/>
+            <LayoutButtons Face="ProxmityTrigger" Type="AbilCmd" AbilCmd="ProximityTrigger,On" Row="0" Column="2"/>
+        </CardLayouts>
+        <EquipmentArray Effect="MD5MineDamage" Icon="Assets\Textures\btn-ability-terran-spidermine.dds" Name="Equipment/Name/MD5Mine"/>
+    </CUnit>
+    <CUnit id="SatchelMissileWeapon" parent="MISSILE_INVULNERABLE">
+        <Race value="Human"/>
+        <EditorCategories value=""/>
+    </CUnit>
+    <CUpgrade id="CollateralDamageDummy" parent="DefaultUpgradeOverride">
+        <MaxLevel value="3"/>
+    </CUpgrade>
+    <CUpgrade id="MD5MineLevelDummy" parent="DefaultUpgradeOverride">
+        <MaxLevel value="3"/>
+    </CUpgrade>
+    <CUpgrade id="StockpileLevel1" parent="DefaultUpgradeOverride">
+        <EffectArray Operation="Set" Reference="Abil,MD5Mine,Cost[0].Charge.CountMax" Value="3"/>
+        <EffectArray Operation="Set" Reference="Abil,MD5Mine,Cost[0].Charge.CountUse" Value="1"/>
+        <EffectArray Operation="Set" Reference="Abil,MD5Mine,Cost[0].Charge.CountStart" Value="3"/>
+        <EffectArray Operation="Set" Reference="Abil,MD5Mine,Cost[0].Charge.TimeUse" Value="10.000000"/>
+        <EffectArray Operation="Set" Reference="Abil,MD5Mine,Cost[0].Cooldown.TimeUse" Value="0.000000"/>
+        <EffectArray Operation="Set" Reference="Abil,ChainExplosive,Cost[0].Charge.CountMax" Value="3"/>
+        <EffectArray Operation="Set" Reference="Abil,ChainExplosive,Cost[0].Charge.CountUse" Value="1"/>
+        <EffectArray Operation="Set" Reference="Abil,ChainExplosive,Cost[0].Charge.CountStart" Value="3"/>
+        <EffectArray Operation="Set" Reference="Abil,ChainExplosive,Cost[0].Charge.TimeUse" Value="10.000000"/>
+        <EffectArray Operation="Set" Reference="Abil,ChainExplosive,Cost[0].Cooldown.TimeUse" Value="0.000000"/>
+    </CUpgrade>
+    <CUpgrade id="StockpileLevel2" parent="DefaultUpgradeOverride">
+        <EffectArray Operation="Set" Reference="Abil,MD5Mine,Cost[0].Charge.CountMax" Value="5"/>
+        <EffectArray Operation="Set" Reference="Abil,ChainExplosive,Cost[0].Charge.CountMax" Value="5"/>
+    </CUpgrade>
+    <CValidatorUnitType id="CasterisChainExplosiveLevel1">
+        <WhichUnit Value="Caster"/>
+        <Value value="ChainExplosiveLevel1"/>
+    </CValidatorUnitType>
+    <CValidatorUnitType id="CasterisChainExplosiveLevel2">
+        <WhichUnit Value="Caster"/>
+        <Value value="ChainExplosiveLevel2"/>
+    </CValidatorUnitType>
+    <CValidatorPlayerRequirement id="ReactiveShieldsLevel1">
+        <Find value="1"/>
+        <Value value="ReactiveShieldsLevel1"/>
+    </CValidatorPlayerRequirement>
+    <CValidatorPlayerRequirement id="ReactiveShieldsLevel2">
+        <Find value="1"/>
+        <Value value="ReactiveShieldsLevel2"/>
+    </CValidatorPlayerRequirement>
+    <CValidatorPlayerRequirement id="ReactiveShieldsLevel3">
+        <Find value="1"/>
+        <Value value="ReactiveShieldsLevel3"/>
+    </CValidatorPlayerRequirement>
+    <CValidatorLocationEnumArea id="SatchelChargeNoAlliedUnitsNear">
+        <WhichLocation Value="CasterUnit"/>
+        <AreaArray Radius="6" Validator="UnitisnotDemolitionsExplosive"/>
+        <Compare value="Eq"/>
+        <SearchFilters value="-;Self,Neutral,Enemy"/>
+    </CValidatorLocationEnumArea>
+    <CValidatorPlayerRequirement id="CollateralDamageLevel1">
+        <Value value="CollateralDamageLevel1"/>
+        <WhichPlayer Value="Caster"/>
+        <Find value="1"/>
+    </CValidatorPlayerRequirement>
+    <CValidatorPlayerRequirement id="CollateralDamageLevel2">
+        <Value value="CollateralDamageLevel2"/>
+        <WhichPlayer Value="Caster"/>
+        <Find value="1"/>
+    </CValidatorPlayerRequirement>
+    <CValidatorPlayerRequirement id="CollateralDamageLevel3">
+        <Value value="CollateralDamageLevel3"/>
+        <WhichPlayer Value="Caster"/>
+        <Find value="1"/>
+    </CValidatorPlayerRequirement>
+    <CValidatorLocationEnumArea id="EnemyNear">
+        <WhichLocation Value="CasterUnit"/>
+        <AreaArray Radius="1.5"/>
+        <SearchFilters value="Visible;Player,Ally,Neutral"/>
+    </CValidatorLocationEnumArea>
+    <CValidatorLocationEnumArea id="MassiveEnemyNear">
+        <WhichLocation Value="CasterUnit"/>
+        <AreaArray Radius="1.5"/>
+        <SearchFilters value="Massive,Visible;Player,Ally,Neutral"/>
+    </CValidatorLocationEnumArea>
+    <CValidatorLocationEnumArea id="HeroicEnemyNear">
+        <WhichLocation Value="CasterUnit"/>
+        <AreaArray Radius="1.5"/>
+        <SearchFilters value="Heroic,Visible;Player,Ally,Neutral"/>
+    </CValidatorLocationEnumArea>
+    <CValidatorLocationEnumArea id="MD5NoAlliedUnitsNear">
+        <AreaArray Radius="2.5" Validator="UnitisnotDemolitionsExplosive"/>
+        <Compare value="Eq"/>
+        <SearchFilters value="-;Self,Neutral,Enemy"/>
+        <WhichLocation Value="CasterUnit"/>
+    </CValidatorLocationEnumArea>
+    <CValidatorLocationEnumArea id="ChainExplosiveNoAlliedUnitsNear">
+        <AreaArray Radius="3.5" Validator="UnitisnotDemolitionsExplosive"/>
+        <Compare value="Eq"/>
+        <SearchFilters value="-;Self,Neutral,Enemy"/>
+        <WhichLocation Value="CasterUnit"/>
+    </CValidatorLocationEnumArea>
+    <CValidatorCombine id="MineTriggerArmed">
+        <CombineArray value="MassreactiveTriggerArmed"/>
+        <CombineArray value="ProxmityTriggerArmed"/>
+    </CValidatorCombine>
+    <CValidatorCombine id="MinenotTriggerArmed">
+        <CombineArray value="MassreactiveTriggerArmed"/>
+        <CombineArray value="ProxmityTriggerArmed"/>
+        <Negate value="1"/>
+    </CValidatorCombine>
+    <CValidatorUnitCompareBehaviorCount id="ProxmityTriggerArmed">
+        <Value value="1"/>
+        <Behavior value="ProximityTrigger"/>
+    </CValidatorUnitCompareBehaviorCount>
+    <CValidatorUnitCompareBehaviorCount id="MassreactiveTriggerArmed">
+        <Value value="1"/>
+        <Behavior value="MassreactiveTrigger"/>
+    </CValidatorUnitCompareBehaviorCount>
+    <CValidatorLocationCompareRange id="ReactiveShieldsRange">
+        <WhichLocation Value="TargetUnit"/>
+        <Compare value="LE"/>
+        <Range value="2"/>
+    </CValidatorLocationCompareRange>
+    <CValidatorCombine id="CasterisChainExplosive">
+        <CombineArray value="CasterisChainExplosiveLevel1"/>
+        <CombineArray value="CasterisChainExplosiveLevel2"/>
+    </CValidatorCombine>
+    <CValidatorCombine id="UnitisNotChainExplosive">
+        <Type value="And"/>
+        <CombineArray value="UnitisNotChainExplosiveLevel1"/>
+        <CombineArray value="UnitisNotChainExplosiveLevel12"/>
+    </CValidatorCombine>
+    <CValidatorCombine id="UnitisDemolitionsExplosive">
+        <CombineArray value="UnitisChainExplosive"/>
+        <CombineArray value="UnitisMD5Mine"/>
+        <CombineArray value="UnitisSatchelCharge"/>
+    </CValidatorCombine>
+    <CValidatorUnitType id="UnitisNotChainExplosiveLevel1">
+        <Value value="ChainExplosiveLevel1"/>
+        <Find value="0"/>
+    </CValidatorUnitType>
+    <CValidatorUnitType id="UnitisNotChainExplosiveLevel12">
+        <Value value="ChainExplosiveLevel2"/>
+        <Find value="0"/>
+    </CValidatorUnitType>
+    <CValidatorUnitType id="UnitisNotMD5Mine">
+        <Value value="MD5Mine"/>
+        <Find value="0"/>
+    </CValidatorUnitType>
+    <CValidatorUnitType id="UnitisNotSatchelCharge">
+        <Value value="DemoSatchelCharge"/>
+        <Find value="0"/>
+    </CValidatorUnitType>
+    <CValidatorUnitType id="CasterisMD5Mine">
+        <WhichUnit Value="Caster"/>
+        <Value value="MD5Mine"/>
+    </CValidatorUnitType>
+    <CValidatorCombine id="UnitisnotDemolitionsExplosive">
+        <CombineArray value="UnitisNotChainExplosive"/>
+        <CombineArray value="UnitisNotMD5Mine"/>
+        <CombineArray value="UnitisNotSatchelCharge"/>
+        <Type value="And"/>
+    </CValidatorCombine>
+    <CValidatorUnitType id="UnitisMD5Mine">
+        <Value value="MD5Mine"/>
+    </CValidatorUnitType>
+    <CValidatorUnitType id="UnitisSatchelCharge">
+        <Value value="DemoSatchelCharge"/>
+    </CValidatorUnitType>
+    <CValidatorUnitType id="UnitisChainExplosive">
+        <Value value="ChainExplosiveLevel1"/>
+    </CValidatorUnitType>
+    <CEffectDamage id="BulwarkDamageAmplification">
+        <EditorCategories value=""/>
+    </CEffectDamage>
+    <CEffectDamage id="BulwarkDamageReflect">
+        <EditorCategories value=""/>
+    </CEffectDamage>
+    <CEffectDamage id="ChainExplosiveDamage">
+        <EditorCategories value=""/>
+        <DamageModifierSource Value="Source"/>
+        <ImpactLocation Value="TargetUnit"/>
+        <Amount value="400"/>
+    </CEffectDamage>
+    <CEffectEnumArea id="ChainExplosiveDamageSearchLevel1">
+        <ValidatorArray value="ChainExplosiveNoAlliedUnitsNear"/>
+        <EditorCategories value=""/>
+        <ImpactLocation Value="CasterPoint"/>
+        <AreaArray Radius="3.5" Effect="ChainExplosiveDamage"/>
+    </CEffectEnumArea>
+    <CEffectEnumArea id="ChainExplosiveDamageSearchLevel2">
+        <ValidatorArray value="ChainExplosiveNoAlliedUnitsNear"/>
+        <EditorCategories value=""/>
+        <ImpactLocation Value="CasterPoint"/>
+        <AreaArray Radius="1" Effect="ChainExplosiveDamage"/>
+    </CEffectEnumArea>
+    <CEffectSet id="ChainExplosiveDamageSetLevel1">
+        <EditorCategories value=""/>
+        <EffectArray value="ChainExplosiveDamageSearchLevel1"/>
+        <EffectArray value="Suicide"/>
+    </CEffectSet>
+    <CEffectSet id="ChainExplosiveDamageSetLevel2">
+        <EditorCategories value=""/>
+        <EffectArray value="ChainExplosiveDamageSearchLevel1"/>
+        <EffectArray value="ChainExplosiveDamageSearchLevel2"/>
+        <EffectArray value="Suicide"/>
+    </CEffectSet>
+    <CEffectCreateUnit id="ChainExplosiveLevel1">
+        <EditorCategories value=""/>
+        <WhichLocation Value="TargetPoint"/>
+        <SpawnUnit value="ChainExplosiveLevel1"/>
+    </CEffectCreateUnit>
+    <CEffectCreateUnit id="ChainExplosiveLevel2">
+        <EditorCategories value=""/>
+        <WhichLocation Value="TargetPoint"/>
+        <SpawnUnit value="ChainExplosiveLevel2"/>
+    </CEffectCreateUnit>
+    <CEffectApplyBehavior id="CollateralDamageBuffLevel1">
+        <EditorCategories value=""/>
+        <WhichUnit Value="Caster"/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="CollateralDamageBuffLevel2">
+        <EditorCategories value=""/>
+        <WhichUnit Value="Caster"/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="CollateralDamageBuffLevel3">
+        <EditorCategories value=""/>
+        <WhichUnit Value="Caster"/>
+    </CEffectApplyBehavior>
+    <CEffectEnumArea id="CollateralDamageChainExplosiveSearch">
+        <EditorCategories value=""/>
+        <SearchFilters value="-;Player,Ally,Neutral"/>
+        <AreaArray Radius="3.5" Effect="CollateralDamageTypeSwitch"/>
+        <ImpactLocation Value="SourceUnit"/>
+    </CEffectEnumArea>
+    <CEffectSwitch id="CollateralDamageExplosiveTypeSwitch">
+        <EditorCategories value=""/>
+        <CaseArray Validator="CasterisChainExplosive" Effect="CollateralDamageChainExplosiveSearch"/>
+        <CaseArray Validator="CasterisMD5Mine" Effect="CollateralDamageMineSearch"/>
+    </CEffectSwitch>
+    <CEffectEnumArea id="CollateralDamageMineSearch">
+        <EditorCategories value=""/>
+        <SearchFilters value="-;Player,Ally,Neutral"/>
+        <AreaArray Radius="2.5" Effect="CollateralDamageTypeSwitch"/>
+        <ImpactLocation Value="SourceUnit"/>
+    </CEffectEnumArea>
+    <CEffectSwitch id="CollateralDamageTypeSwitch">
+        <EditorCategories value=""/>
+        <CaseArray Validator="CollateralDamageLevel1" Effect="CollateralDamageBuffLevel1"/>
+        <CaseArray Validator="CollateralDamageLevel2" Effect="CollateralDamageBuffLevel2"/>
+        <CaseArray Validator="CollateralDamageLevel3" Effect="CollateralDamageBuffLevel3"/>
+    </CEffectSwitch>
+    <CEffectEnumArea id="Detonate">
+        <EditorCategories value=""/>
+        <SearchFilters value="-;Ally,Neutral,Enemy"/>
+        <AreaArray Radius="3" Effect="MD5DetonateOrder"/>
+    </CEffectEnumArea>
+    <CEffectLaunchMissile id="LittleBuster">
+        <EditorCategories value=""/>
+        <ImpactLocation Value="TargetPoint"/>
+        <ImpactEffect value="LittleBusterDamageSearch"/>
+    </CEffectLaunchMissile>
+    <CEffectDamage id="LittleBusterDamage">
+        <EditorCategories value=""/>
+        <ImpactLocation Value="TargetUnit"/>
+        <Amount value="5000"/>
+    </CEffectDamage>
+    <CEffectEnumArea id="LittleBusterDamageSearch">
+        <EditorCategories value=""/>
+        <ImpactLocation Value="TargetPoint"/>
+        <AreaArray Radius="1.5" Effect="LittleBusterDamage"/>
+    </CEffectEnumArea>
+    <CEffectDamage id="MD5MineDamage">
+        <EditorCategories value=""/>
+        <DamageModifierSource Value="Source"/>
+        <ImpactLocation Value="TargetUnit"/>
+        <Amount value="300"/>
+    </CEffectDamage>
+    <CEffectEnumArea id="MD5DamageSearch">
+        <ValidatorArray value="MD5NoAlliedUnitsNear"/>
+        <EditorCategories value=""/>
+        <ImpactLocation Value="CasterPoint"/>
+        <AreaArray Radius="2.5" Effect="MD5MineDamage"/>
+    </CEffectEnumArea>
+    <CEffectIssueOrder id="MD5DetonateOrder">
+        <EditorCategories value=""/>
+        <Abil value="RemoteTrigger"/>
+    </CEffectIssueOrder>
+    <CEffectCreateUnit id="MD5Mine">
+        <EditorCategories value=""/>
+        <WhichLocation Value="TargetPoint"/>
+        <SpawnUnit value="MD5Mine"/>
+    </CEffectCreateUnit>
+    <CEffectIssueOrder id="ProvokeAttackOrder">
+        <EditorCategories value=""/>
+        <Abil value="attack"/>
+        <CmdFlags index="Preempt" value="1"/>
+        <Target Value="CasterUnit"/>
+    </CEffectIssueOrder>
+    <CEffectApplyBehavior id="ProvokeLevel1">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="ProvokeLevel2">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="ProvokeLevel3">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectEnumArea id="ProvokeSearchLevel1">
+        <EditorCategories value=""/>
+        <SearchFilters value="-;Player,Ally,Neutral"/>
+        <AreaArray Radius="7" Effect="ProvokeTauntSetLevel1"/>
+    </CEffectEnumArea>
+    <CEffectEnumArea id="ProvokeSearchLevel2">
+        <EditorCategories value=""/>
+        <SearchFilters value="-;Player,Ally,Neutral"/>
+        <AreaArray Radius="8" Effect="ProvokeTauntSetLevel2"/>
+    </CEffectEnumArea>
+    <CEffectApplyBehavior id="ProvokeLevel2Taunt">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="ProvokeLevel3Taunt">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectEnumArea id="ProvokeSearchLevel3">
+        <EditorCategories value=""/>
+        <SearchFilters value="-;Player,Ally,Neutral"/>
+        <AreaArray Radius="9" Effect="ProvokeTauntSetLevel3"/>
+    </CEffectEnumArea>
+    <CEffectSet id="ProvokeTauntSetLevel1">
+        <EditorCategories value=""/>
+        <EffectArray value="ProvokeLevel1Taunt"/>
+        <EffectArray value="ProvokeAttackOrder"/>
+    </CEffectSet>
+    <CEffectSet id="ProvokeTauntSetLevel2">
+        <EditorCategories value=""/>
+        <EffectArray value="ProvokeLevel2Taunt"/>
+        <EffectArray value="ProvokeAttackOrder"/>
+    </CEffectSet>
+    <CEffectSet id="ProvokeTauntSetLevel3">
+        <EditorCategories value=""/>
+        <EffectArray value="ProvokeLevel3Taunt"/>
+        <EffectArray value="ProvokeAttackOrder"/>
+    </CEffectSet>
+    <CEffectDamage id="ReactiveShieldsDamageLevel1">
+        <ValidatorArray value="ReactiveShieldsRange"/>
+        <EditorCategories value=""/>
+        <Amount value="5"/>
+    </CEffectDamage>
+    <CEffectDamage id="ReactiveShieldsDamageLevel2">
+        <ValidatorArray value="ReactiveShieldsRange"/>
+        <EditorCategories value=""/>
+        <Amount value="10"/>
+    </CEffectDamage>
+    <CEffectDamage id="ReactiveShieldsDamageLevel3">
+        <ValidatorArray value="ReactiveShieldsRange"/>
+        <EditorCategories value=""/>
+        <Amount value="20"/>
+    </CEffectDamage>
+    <CEffectDamage id="RemoteTrigger">
+        <EditorCategories value=""/>
+        <Flags index="Kill" value="1"/>
+    </CEffectDamage>
+    <CEffectCreateUnit id="SatchelCharge">
+        <EditorCategories value=""/>
+        <WhichLocation Value="TargetPoint"/>
+        <SpawnUnit value="DemoSatchelCharge"/>
+    </CEffectCreateUnit>
+    <CEffectDamage id="SatchelChargeDamage">
+        <EditorCategories value=""/>
+        <AttributeFactor index="Structure" value="1"/>
+        <Amount value="2500"/>
+    </CEffectDamage>
+    <CEffectEnumArea id="SatchelChargeDamageSearch">
+        <ValidatorArray value="SatchelChargeNoAlliedUnitsNear"/>
+        <EditorCategories value=""/>
+        <ImpactLocation Value="CasterPoint"/>
+        <AreaArray Radius="6" Effect="SatchelChargeDamage"/>
+    </CEffectEnumArea>
+    <CEffectSet id="SatchelDetonationSet">
+        <EditorCategories value=""/>
+        <EffectArray value="SatchelChargeDamageSearch"/>
+        <EffectArray value="Suicide"/>
+    </CEffectSet>
+    <CEffectLaunchMissile id="SatchelMissile">
+        <EditorCategories value=""/>
+        <ImpactLocation Value="TargetPoint"/>
+        <ImpactEffect value="SatchelCharge"/>
+    </CEffectLaunchMissile>
+    <CEffectSwitch id="ShieldBashDamageSwitchLevel1">
+        <EditorCategories value=""/>
+        <CaseArray Validator="ReactiveShieldsLevel1" Effect="ShieldBashLevel1ReactiveShieldsLevel1"/>
+        <CaseArray Validator="ReactiveShieldsLevel2" Effect="ShieldBashLevel1ReactiveShieldsLevel2"/>
+        <CaseArray Validator="ReactiveShieldsLevel3" Effect="ShieldBashLevel1ReactiveShieldsLevel3"/>
+    </CEffectSwitch>
+    <CEffectSwitch id="ShieldBashDamageSwitchLevel2">
+        <EditorCategories value=""/>
+        <CaseArray Validator="ReactiveShieldsLevel1" Effect="ShieldBashLevel2ReactiveShieldsLevel1"/>
+        <CaseArray Validator="ReactiveShieldsLevel2" Effect="ShieldBashLevel2ReactiveShieldsLevel2"/>
+        <CaseArray Validator="ReactiveShieldsLevel3" Effect="ShieldBashLevel2ReactiveShieldsLevel3"/>
+    </CEffectSwitch>
+    <CEffectApplyForce id="ShieldBashForce">
+        <EditorCategories value=""/>
+        <WhichLocation Value="CasterUnit"/>
+        <Amount value="1"/>
+    </CEffectApplyForce>
+    <CEffectEnumArea id="ShieldBashLevel2">
+        <EditorCategories value=""/>
+        <ImpactLocation Value="TargetPoint"/>
+        <SearchFilters value="-;Player,Ally,Neutral"/>
+        <AreaArray Arc="90" Radius="2.5" Effect="ShieldBashSetLevel2"/>
+        <SearchFlags index="CenterAtLaunch" value="1"/>
+        <SearchFlags index="OffsetByUnitRadius" value="1"/>
+    </CEffectEnumArea>
+    <CEffectEnumArea id="ShieldBashLevel1">
+        <EditorCategories value=""/>
+        <ImpactLocation Value="TargetPoint"/>
+        <SearchFilters value="-;Player,Ally,Neutral"/>
+        <AreaArray Arc="90" Radius="2.5" Effect="ShieldBashSetLevel1"/>
+        <SearchFlags index="CenterAtLaunch" value="1"/>
+        <SearchFlags index="OffsetByUnitRadius" value="1"/>
+    </CEffectEnumArea>
+    <CEffectDamage id="ShieldBashLevel1ReactiveShieldsLevel1">
+        <EditorCategories value=""/>
+        <ImpactLocation Value="TargetUnit"/>
+        <Amount value="85"/>
+    </CEffectDamage>
+    <CEffectDamage id="ShieldBashLevel2ReactiveShieldsLevel1">
+        <EditorCategories value=""/>
+        <ImpactLocation Value="TargetUnit"/>
+        <Amount value="165"/>
+    </CEffectDamage>
+    <CEffectDamage id="ShieldBashLevel1ReactiveShieldsLevel2">
+        <EditorCategories value=""/>
+        <ImpactLocation Value="TargetUnit"/>
+        <Amount value="90"/>
+    </CEffectDamage>
+    <CEffectDamage id="ShieldBashLevel1ReactiveShieldsLevel3">
+        <EditorCategories value=""/>
+        <ImpactLocation Value="TargetUnit"/>
+        <Amount value="100"/>
+    </CEffectDamage>
+    <CEffectDamage id="ShieldBashLevel2ReactiveShieldsLevel2">
+        <EditorCategories value=""/>
+        <ImpactLocation Value="TargetUnit"/>
+        <Amount value="170"/>
+    </CEffectDamage>
+    <CEffectDamage id="ShieldBashLevel2ReactiveShieldsLevel3">
+        <EditorCategories value=""/>
+        <ImpactLocation Value="TargetUnit"/>
+        <Amount value="180"/>
+    </CEffectDamage>
+    <CEffectApplyBehavior id="ShieldBashLift">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectCreatePersistent id="ShieldBashPersistentLevel2">
+        <EditorCategories value=""/>
+        <WhichLocation Value="TargetUnit"/>
+        <InitialEffect value="ShieldBashLift"/>
+        <FinalEffect value="ShieldBashLiftRemove"/>
+        <PeriodCount value="4"/>
+        <PeriodicEffectArray value="ShieldBashForce"/>
+        <PeriodicPeriodArray value="0.0625"/>
+    </CEffectCreatePersistent>
+    <CEffectRemoveBehavior id="ShieldBashLiftRemove">
+        <EditorCategories value=""/>
+        <BehaviorLink value="ShieldBashLift"/>
+    </CEffectRemoveBehavior>
+    <CEffectSet id="ShieldBashSetLevel2">
+        <EditorCategories value=""/>
+        <EffectArray value="ShieldBashDamageSwitchLevel2"/>
+        <EffectArray value="ShieldBashPersistentLevel2"/>
+        <TargetLocationType value="Point"/>
+    </CEffectSet>
+    <CEffectCreatePersistent id="ShieldBashPersistentLevel1">
+        <EditorCategories value=""/>
+        <WhichLocation Value="TargetUnit"/>
+        <InitialEffect value="ShieldBashLift"/>
+        <FinalEffect value="ShieldBashLiftRemove"/>
+        <PeriodCount value="2"/>
+        <PeriodicEffectArray value="ShieldBashForce"/>
+        <PeriodicPeriodArray value="0.0625"/>
+    </CEffectCreatePersistent>
+    <CEffectSet id="ShieldBashSetLevel1">
+        <EditorCategories value=""/>
+        <EffectArray value="ShieldBashDamageSwitchLevel1"/>
+        <EffectArray value="ShieldBashPersistentLevel1"/>
+        <TargetLocationType value="Point"/>
+    </CEffectSet>
+    <CEffectApplyBehavior id="ProvokeLevel1Taunt">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectDamage id="ThunderballFistsDamage">
+        <EditorCategories value=""/>
+        <Amount value="25"/>
+    </CEffectDamage>
+    <CEffectApplyForce id="ThunderballFistsPull">
+        <EditorCategories value=""/>
+        <WhichLocation Value="CasterUnit"/>
+        <Amount value="-5"/>
+    </CEffectApplyForce>
+    <CEffectCreatePersistent id="ThunderballFistsPullPersistent">
+        <EditorCategories value=""/>
+        <WhichLocation Value="TargetUnit"/>
+        <PeriodCount value="5"/>
+        <PeriodicEffectArray value="ThunderballFistsPull"/>
+        <PeriodicPeriodArray value="0.0625"/>
+    </CEffectCreatePersistent>
+    <CEffectEnumArea id="ThunderballFistsSearch">
+        <EditorCategories value=""/>
+        <ImpactLocation Value="CasterUnit"/>
+        <SearchFilters value="-;Player,Ally,Neutral"/>
+        <AreaArray Radius="5" Effect="ThunderballFistsSet"/>
+        <SearchFlags index="SameCliff" value="1"/>
+    </CEffectEnumArea>
+    <CEffectSet id="ThunderballFistsSet">
+        <EditorCategories value=""/>
+        <EffectArray value="ThunderballFistsDamage"/>
+        <EffectArray value="ThunderballFistsPullPersistent"/>
+    </CEffectSet>
+    <CEffectCreatePersistent id="ThunderballFists">
+        <EditorCategories value=""/>
+        <WhichLocation Value="CasterUnit"/>
+        <PeriodCount value="40"/>
+        <PeriodicPeriodArray value="0.25"/>
+        <PeriodicEffectArray value="ThunderballFistsSearch"/>
+    </CEffectCreatePersistent>
+    <CBehaviorBuff id="BlastSuit">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <DamageResponse Chance="1" ModifyFraction="0">
+            <RequireEffectArray value="ChainExplosiveDamage"/>
+            <RequireEffectArray value="ChainExplosiveDamageLevel2"/>
+            <RequireEffectArray value="MD5MineDamage"/>
+        </DamageResponse>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="BulwarkDamageBlock">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <DamageResponse Chance="1" ModifyFraction="0.5">
+            <ExcludeEffectArray value="BulwarkDamageAmplification"/>
+        </DamageResponse>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="ChainExplosiveDetonateLevel1">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <DamageResponse>
+            <Chance value="1"/>
+            <Exhausted value="ChainExplosiveDamageSetLevel1"/>
+            <ModifyAmount value="2"/>
+            <ModifyLimit value="1"/>
+            <ModifyMinimumDamage value="1"/>
+            <RequireEffectArray value="MD5MineDamage"/>
+            <RequireEffectArray value="ChainExplosiveDamage"/>
+            <RequireEffectArray value="SatchelChargeDamage"/>
+            <RequireEffectArray value="LittleBusterDamage"/>
+        </DamageResponse>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="ChainExplosiveDetonateLevel2">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <DamageResponse>
+            <Chance value="1"/>
+            <Exhausted value="ChainExplosiveDamageSetLevel2"/>
+            <ModifyAmount value="2"/>
+            <ModifyLimit value="1"/>
+            <ModifyMinimumDamage value="1"/>
+            <RequireEffectArray value="MD5MineDamage"/>
+            <RequireEffectArray value="ChainExplosiveDamage"/>
+            <RequireEffectArray value="SatchelChargeDamage"/>
+            <RequireEffectArray value="LittleBusterDamage"/>
+        </DamageResponse>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="CollateralDamageBuffLevel1">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <MaxStackCount value="20"/>
+        <Duration value="0.3125"/>
+        <Modification>
+            <DamageDealtFraction index="Spell" value="0.05"/>
+        </Modification>
+        <Requirements value="CollateralDamageLevel1"/>
+        <MaxStackCountPerCaster value="20"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="CollateralDamageBuffLevel2">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <MaxStackCount value="20"/>
+        <Duration value="0.3125"/>
+        <Modification>
+            <DamageDealtFraction index="Spell" value="0.1"/>
+        </Modification>
+        <Requirements value="CollateralDamageLevel2"/>
+        <MaxStackCountPerCaster value="20"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="CollateralDamageBuffLevel3">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <MaxStackCount value="20"/>
+        <Duration value="0.3125"/>
+        <Modification>
+            <DamageDealtFraction index="Spell" value="0.15"/>
+        </Modification>
+        <Requirements value="CollateralDamageLevel3"/>
+        <MaxStackCountPerCaster value="20"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="CollateralDamagePeriodicSearch">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Period value="0.25"/>
+        <PeriodicEffect value="CollateralDamageExplosiveTypeSwitch"/>
+        <InfoFlags index="Hidden" value="1"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="MD5MineExplosion">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Modification>
+            <DeathResponse Chance="1" Effect="MD5DamageSearch"/>
+        </Modification>
+        <InfoFlags index="Hidden" value="1"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="ProvokeLevel1">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="4"/>
+        <Period value="0.5"/>
+        <PeriodicEffect value="ProvokeSearchLevel1"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="ProvokeLevel2">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="5"/>
+        <Period value="0.5"/>
+        <PeriodicEffect value="ProvokeSearchLevel2"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="ProvokeLevel3">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="6"/>
+        <Period value="0.5"/>
+        <PeriodicEffect value="ProvokeSearchLevel3"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="ProvokeLevel1Taunt">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="0.625"/>
+        <Modification>
+            <DamageDealtFraction index="Spell" value="-0.15"/>
+            <DamageDealtFraction index="Melee" value="-0.15"/>
+            <DamageDealtFraction index="Ranged" value="-0.15"/>
+            <DamageDealtFraction index="Splash" value="-0.15"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="ProvokeLevel2Taunt">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="0.625"/>
+        <Modification>
+            <DamageDealtFraction index="Spell" value="-0.3"/>
+            <DamageDealtFraction index="Melee" value="-0.3"/>
+            <DamageDealtFraction index="Ranged" value="-0.3"/>
+            <DamageDealtFraction index="Splash" value="-0.3"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="ProvokeLevel3Taunt">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="0.625"/>
+        <Modification>
+            <DamageDealtFraction index="Spell" value="-0.45"/>
+            <DamageDealtFraction index="Melee" value="-0.45"/>
+            <DamageDealtFraction index="Ranged" value="-0.45"/>
+            <DamageDealtFraction index="Splash" value="-0.45"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="ProximityTrigger">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="MassreactiveTrigger">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="ReactiveShieldsLevel1">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Requirements value="ReactiveShieldsLevel1"/>
+        <Modification ShieldArmorBonus="1"/>
+        <DamageResponse Chance="1" Handled="ReactiveShieldsDamageLevel1"/>
+        <InfoFlags index="Hidden" value="1"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="ReactiveShieldsLevel2">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Requirements value="ReactiveShieldsLevel2"/>
+        <Modification ShieldArmorBonus="2"/>
+        <DamageResponse Chance="1" Handled="ReactiveShieldsDamageLevel2"/>
+        <InfoFlags index="Hidden" value="1"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="ReactiveShieldsLevel3">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Requirements value="ReactiveShieldsLevel3"/>
+        <Modification ShieldArmorBonus="4"/>
+        <DamageResponse Chance="1" Handled="ReactiveShieldsDamageLevel3"/>
+        <InfoFlags index="Hidden" value="1"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="SatchelChargeDetonation">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <DisplayDuration index="Self" value="1"/>
+        <DisplayDuration index="Ally" value="1"/>
+        <DisplayDuration index="Neutral" value="1"/>
+        <DisplayDuration index="Enemy" value="1"/>
+        <Duration value="5"/>
+        <ExpireEffect value="SatchelDetonationSet"/>
+        <DamageResponse Chance="1" Handled="SatchelDetonationSet" ModifyFraction="0">
+            <RequireEffectArray value="MD5MineDamage"/>
+            <RequireEffectArray value="ChainExplosiveDamage"/>
+            <RequireEffectArray value="SatchelChargeDamage"/>
+        </DamageResponse>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="ShieldBashLift">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Modification Height="0.5" MoveSpeedBonus="9">
+            <HeightTime index="Start" value="0.125"/>
+            <HeightTime index="Stop" value="0.125"/>
+        </Modification>
+    </CBehaviorBuff>
+</Catalog>
