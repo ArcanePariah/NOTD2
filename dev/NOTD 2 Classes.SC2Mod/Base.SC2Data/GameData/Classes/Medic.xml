@@ -1,0 +1,845 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<Catalog>
+    <CAbilEffectInstant id="Aftershock" parent="2LevelEffectInstantAbility">
+        <Effect index="0" value="Aftershock"/>
+        <Effect index="1" value="Aftershock"/>
+        <Cost>
+            <Vital index="Energy" value="10"/>
+            <Cooldown TimeUse="5"/>
+        </Cost>
+        <Cost>
+            <Vital index="Energy" value="10"/>
+            <Cooldown TimeUse="3"/>
+        </Cost>
+        <CmdButtonArray index="Execute" Requirements="Aftershock"/>
+    </CAbilEffectInstant>
+    <CAbilEffectTarget id="Antivenom" parent="AbilityWithButtonTargetTemplate">
+        <Effect value="Antivenom"/>
+        <Effect value="Antivenom"/>
+        <Cost>
+            <Vital index="Energy" value="10"/>
+            <Cooldown TimeUse="15"/>
+        </Cost>
+        <Cost>
+            <Vital index="Energy" value="10"/>
+            <Cooldown TimeUse="10"/>
+        </Cost>
+        <Cost>
+            <Vital index="Energy" value="10"/>
+            <Cooldown TimeUse="5"/>
+        </Cost>
+        <Range value="6"/>
+    </CAbilEffectTarget>
+    <CAbilEffectTarget id="Heal" parent="3LevelEffectTargetAbility">
+        <TargetFilters value="Biological;Neutral,Enemy,Item"/>
+        <Range value="3"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="HealNOTD"/>
+    </CAbilEffectTarget>
+    <CAbilEffectTarget id="NanoHaste" parent="3LevelEffectTargetAbility">
+        <Cost>
+            <Vital index="Energy" value="10"/>
+            <Cooldown TimeUse="60"/>
+        </Cost>
+        <Cost>
+            <Vital index="Energy" value="10"/>
+            <Cooldown TimeUse="50"/>
+        </Cost>
+        <Cost>
+            <Vital index="Energy" value="10"/>
+            <Cooldown TimeUse="40"/>
+        </Cost>
+        <TargetFilters value="-;Neutral,Enemy"/>
+        <Range value="6"/>
+    </CAbilEffectTarget>
+    <CAbilEffectTarget id="NanoPlague" parent="AbilityWithButtonTargetTemplate">
+        <Cost>
+            <Vital index="Energy" value="60"/>
+            <Cooldown TimeUse="120"/>
+        </Cost>
+        <Range value="15"/>
+        <TargetFilters value="-;Self,Player,Ally,Neutral"/>
+    </CAbilEffectTarget>
+    <CAbilEffectTarget id="NanoSear" parent="AbilityWithButtonTargetTemplate">
+        <Cost>
+            <Vital index="Energy" value="40"/>
+            <Cooldown TimeUse="90"/>
+        </Cost>
+        <Range value="15"/>
+    </CAbilEffectTarget>
+    <CAbilEffectTarget id="NanoShield" parent="AbilityWithButtonTargetTemplate">
+        <Flags index="BestUnit" value="0"/>
+        <Cost>
+            <Vital index="Energy" value="55"/>
+            <Cooldown TimeUse="90"/>
+        </Cost>
+        <Range value="10"/>
+    </CAbilEffectTarget>
+    <CAbilEffectTarget id="NanoShock" parent="3LevelEffectTargetAbility">
+        <Cost>
+            <Vital index="Energy" value="20"/>
+            <Cooldown TimeUse="8"/>
+        </Cost>
+        <Range value="12"/>
+        <CursorEffect value="NanoShockLevel1"/>
+        <CursorEffect value="NanoShockLevel2"/>
+        <CursorEffect value="NanoShockLevel3"/>
+    </CAbilEffectTarget>
+    <CAbilEffectTarget id="NanoStrength" parent="AbilityWithButtonTargetTemplate">
+        <Cost>
+            <Vital index="Energy" value="25"/>
+            <Cooldown TimeUse="60"/>
+        </Cost>
+        <Range value="6"/>
+    </CAbilEffectTarget>
+    <CAbilEffectTarget id="NanoWeave" parent="2LevelEffectTargetAbility">
+        <Cost>
+            <Vital index="Energy" value="40"/>
+            <Cooldown TimeUse="15"/>
+        </Cost>
+        <TargetFilters value="Biological;Neutral,Enemy,Item"/>
+        <Range value="6"/>
+    </CAbilEffectTarget>
+    <CAbilEffectInstant id="CancelHealing" parent="AbilityInstantTemplate">
+        <Flags index="Transient" value="1"/>
+        <CmdButtonArray index="Execute" Requirements="Healing"/>
+    </CAbilEffectInstant>
+    <CAbilEffectInstant id="IntolerableCruelty" parent="AbilityInstantTemplate">
+        <Effect index="0" value="GenericDummyEffect"/>
+        <Effect value="GenericDummyEffect"/>
+    </CAbilEffectInstant>
+    <CAbilInventory id="Medic2Inventory" parent="InventoryTemplate">
+        <InfoArray index="2" removed="1"/>
+    </CAbilInventory>
+    <CAbilEffectInstant id="MedicalExpertise" parent="AbilityInstantTemplate">
+        <Effect index="0" value="GenericDummyEffect"/>
+        <Effect value="GenericDummyEffect"/>
+    </CAbilEffectInstant>
+    <CAbilEffectTarget id="VolatileInjection" parent="3LevelEffectTargetAbility">
+        <Cost>
+            <Vital index="Energy" value="20"/>
+            <Charge TimeUse="10"/>
+        </Cost>
+        <TargetFilters value="-;Player,Ally,Neutral"/>
+        <Range value="12"/>
+    </CAbilEffectTarget>
+    <CValidatorPlayerRequirement id="AftershockLevel1">
+        <Find value="1"/>
+        <Value value="AftershockLevel1"/>
+    </CValidatorPlayerRequirement>
+    <CValidatorPlayerRequirement id="AftershockLevel12">
+        <Find value="1"/>
+        <Value value="AftershockLevel12"/>
+    </CValidatorPlayerRequirement>
+    <CValidatorCombine id="AftershockSlowCheck">
+        <CombineArray value="TargetisNanoShockedLevel1"/>
+        <CombineArray value="TargetisNanoShockedLevel12"/>
+        <CombineArray value="TargetisNanoShockedLevel122"/>
+        <CombineArray value="TargetisNanoShockedLevel1"/>
+        <CombineArray value="TargetisNanoShockedLevel12"/>
+        <CombineArray value="TargetisNanoShockedLevel122"/>
+    </CValidatorCombine>
+    <CValidatorUnitCompareBehaviorCount id="AftershockedLevel1">
+        <WhichUnit Effect="NanoShockLevel1" Value="Caster"/>
+        <Value value="1"/>
+        <Behavior value="Aftershock"/>
+    </CValidatorUnitCompareBehaviorCount>
+    <CValidatorUnitCompareBehaviorCount id="AftershockedLevel12">
+        <WhichUnit Effect="NanoShockLevel2" Value="Caster"/>
+        <Value value="1"/>
+        <Behavior value="Aftershock"/>
+    </CValidatorUnitCompareBehaviorCount>
+    <CValidatorUnitCompareBehaviorCount id="AftershockedLevel122">
+        <WhichUnit Effect="NanoShockLevel3" Value="Caster"/>
+        <Value value="1"/>
+        <Behavior value="Aftershock"/>
+    </CValidatorUnitCompareBehaviorCount>
+    <CValidatorUnitCompareBehaviorCount id="EnemyNotAftershocked">
+        <Behavior value="AftershockedEnemy"/>
+    </CValidatorUnitCompareBehaviorCount>
+    <CValidatorCombine id="HaveMedicalExpertise">
+        <CombineArray value="MedicalExpertiseLevel1"/>
+        <CombineArray value="MedicalExpertiseLevel2"/>
+    </CValidatorCombine>
+    <CValidatorLocationCompareRange id="HealRange">
+        <WhichLocation Value="TargetUnit"/>
+        <Compare value="LE"/>
+        <Range value="3"/>
+    </CValidatorLocationCompareRange>
+    <CValidatorUnitCompareBehaviorCount id="IsHealing">
+        <WhichUnit Value="Caster"/>
+        <Compare value="GT"/>
+        <Behavior value="Healing"/>
+    </CValidatorUnitCompareBehaviorCount>
+    <CValidatorUnitCompareDamageTakenTime id="MedicOutofCombat">
+        <WhichUnit Value="Caster"/>
+        <Compare value="GT"/>
+        <Value value="0.5"/>
+    </CValidatorUnitCompareDamageTakenTime>
+    <CValidatorCombine id="MedicalAssistanceMedic">
+        <Type value="And"/>
+        <CombineArray value="CasterisMedic"/>
+        <CombineArray value="MedicalAssistanceItems"/>
+    </CValidatorCombine>
+    <CValidatorPlayerRequirement id="MedicalExpertiseLevel1">
+        <WhichPlayer Value="Caster"/>
+        <Find value="1"/>
+        <Value value="MedicalExpertiseLevel1"/>
+    </CValidatorPlayerRequirement>
+    <CValidatorPlayerRequirement id="MedicalExpertiseLevel2">
+        <WhichPlayer Value="Caster"/>
+        <Find value="1"/>
+        <Value value="MedicalExpertiseLevel2"/>
+    </CValidatorPlayerRequirement>
+    <CValidatorUnitCompareBehaviorCount id="SourcehasNanoPlague">
+        <WhichUnit Value="Source"/>
+        <Value value="1"/>
+        <Behavior value="NanoPlague"/>
+    </CValidatorUnitCompareBehaviorCount>
+    <CValidatorUnitCompareBehaviorCount id="TargetisNanoShockedLevel1">
+        <Value value="1"/>
+        <Behavior value="NanoShockSlowLevel1"/>
+    </CValidatorUnitCompareBehaviorCount>
+    <CValidatorUnitCompareBehaviorCount id="TargetisNanoShockedLevel12">
+        <Value value="1"/>
+        <Behavior value="NanoShockSlowLevel2"/>
+    </CValidatorUnitCompareBehaviorCount>
+    <CValidatorUnitCompareBehaviorCount id="TargetisNanoShockedLevel122">
+        <Value value="1"/>
+        <Behavior value="NanoShockSlowLevel3"/>
+    </CValidatorUnitCompareBehaviorCount>
+    <CEffectApplyBehavior id="Aftershock">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="AftershockPassive">
+        <EditorCategories value=""/>
+        <WhichUnit Value="Caster"/>
+    </CEffectApplyBehavior>
+    <CEffectSet id="AftershockSetLevel1">
+        <ValidatorArray value="AftershockedLevel1"/>
+        <ValidatorArray value="EnemyNotAftershocked"/>
+        <EditorCategories value=""/>
+        <EffectArray value="AftershockedEnemy"/>
+        <EffectArray value="NanoShockDamageLevel1"/>
+        <EffectArray value="AftershockSwitch"/>
+    </CEffectSet>
+    <CEffectSet id="AftershockSetLevel2">
+        <ValidatorArray value="AftershockedLevel12"/>
+        <ValidatorArray value="EnemyNotAftershocked"/>
+        <EditorCategories value=""/>
+        <EffectArray value="AftershockedEnemy"/>
+        <EffectArray value="NanoShockDamageLevel2"/>
+        <EffectArray value="AftershockSwitch"/>
+    </CEffectSet>
+    <CEffectSet id="AftershockSetLevel3">
+        <ValidatorArray value="AftershockedLevel122"/>
+        <ValidatorArray value="EnemyNotAftershocked"/>
+        <EditorCategories value=""/>
+        <EffectArray value="AftershockedEnemy"/>
+        <EffectArray value="NanoShockDamageLevel3"/>
+        <EffectArray value="AftershockSwitch"/>
+    </CEffectSet>
+    <CEffectApplyBehavior id="AftershockStunLevel1">
+        <ValidatorArray index="0" value="AftershockSlowCheck"/>
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="AftershockStunLevel12">
+        <ValidatorArray index="0" value="AftershockSlowCheck"/>
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectSwitch id="AftershockSwitch">
+        <EditorCategories value=""/>
+        <CaseArray Validator="AftershockLevel1" Effect="AftershockStunLevel1"/>
+        <CaseArray Validator="AftershockLevel12" Effect="AftershockStunLevel12"/>
+    </CEffectSwitch>
+    <CEffectApplyBehavior id="AftershockedEnemy">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectSet id="Antivenom">
+        <EditorCategories value=""/>
+        <EffectArray value="RemoveVenomTarget"/>
+        <EffectArray value="AntivenomHeal"/>
+    </CEffectSet>
+    <CEffectModifyUnit id="AntivenomHeal">
+        <EditorCategories value=""/>
+        <VitalArray index="Life" Change="10"/>
+    </CEffectModifyUnit>
+    <CEffectSwitch id="BrokenBonetoFractureConversion">
+        <EditorCategories value=""/>
+        <CaseArray Validator="UnithasBrokenArmandLeg" Effect="ConvertRandomBrokenBonetoFracture"/>
+        <CaseArray Validator="UnithasBrokenLeg" Effect="ConvertBrokenLegtoLegFracture"/>
+        <CaseArray Validator="UnithasBrokenArm" Effect="ConvertBrokenArmtoArmFracture"/>
+    </CEffectSwitch>
+    <CEffectRemoveBehavior id="CancelHealing">
+        <EditorCategories value=""/>
+        <BehaviorLink value="Healing"/>
+        <WhichUnit Value="Caster"/>
+    </CEffectRemoveBehavior>
+    <CEffectSet id="MedicalAssistanceAntiVenom">
+        <ValidatorArray value="UnithasVenom"/>
+        <EditorCategories value=""/>
+        <EffectArray value="Antivenom"/>
+    </CEffectSet>
+    <CEffectSet id="MedicalAssistanceHealing">
+        <ValidatorArray value="MedicalAssistanceHealingabove80"/>
+        <EditorCategories value=""/>
+        <EffectArray value="Medkit"/>
+    </CEffectSet>
+    <CEffectSwitch id="MedicalAssistanceMedic">
+        <EditorCategories value=""/>
+        <CaseArray Validator="UnithasBandage" Effect="MedicalAssistanceOpenWound" FallThrough="1"/>
+        <CaseArray Validator="MarinehasMedkit" Effect="MedicalAssistanceHealing" FallThrough="1"/>
+        <CaseArray Validator="MarinehasAntiVenom" Effect="MedicalAssistanceAntiVenom"/>
+    </CEffectSwitch>
+    <CEffectSet id="MedicalAssistanceOpenWound">
+        <ValidatorArray value="UnithasOpenWound"/>
+        <EditorCategories value=""/>
+        <EffectArray value="Bandage"/>
+    </CEffectSet>
+    <CEffectDestroyPersistent id="HealRemoveOpenWoundsDestroyPersistentLevel12">
+        <EditorCategories value=""/>
+        <WhichLocation Value="TargetUnit"/>
+        <Effect value="HealRemoveOpenWoundsPersistentLevel2"/>
+        <Count value="1"/>
+    </CEffectDestroyPersistent>
+    <CEffectDestroyPersistent id="HealRemoveOpenWoundsDestroyPersistentLevel122">
+        <EditorCategories value=""/>
+        <WhichLocation Value="TargetUnit"/>
+        <Effect value="HealRemoveOpenWoundsDestroyPersistentLevel122"/>
+        <Count value="1"/>
+    </CEffectDestroyPersistent>
+    <CEffectSet id="HealRemoveOpenWoundsDestroyPersistentSet">
+        <EditorCategories value=""/>
+        <EffectArray value="HealRemoveOpenWoundsDestroyPersistentLevel1"/>
+        <EffectArray value="HealRemoveOpenWoundsDestroyPersistentLevel12"/>
+        <EffectArray value="HealRemoveOpenWoundsDestroyPersistentLevel122"/>
+        <EffectArray value="CancelHealing"/>
+    </CEffectSet>
+    <CEffectDestroyPersistent id="HealRemoveOpenWoundsDestroyPersistentLevel1">
+        <EditorCategories value=""/>
+        <WhichLocation Value="TargetUnit"/>
+        <Effect value="HealRemoveOpenWoundsPersistentLevel1"/>
+        <Count value="1"/>
+    </CEffectDestroyPersistent>
+    <CEffectCreatePersistent id="HealRemoveOpenWoundsPersistentLevel1">
+        <ValidatorArray value="HaveMedicalExpertise"/>
+        <EditorCategories value=""/>
+        <Flags index="PersistUntilDestroyed" value="1"/>
+        <PeriodicEffectArray value="RemoveOpenWoundTarget"/>
+        <PeriodicPeriodArray value="8"/>
+    </CEffectCreatePersistent>
+    <CEffectCreateHealer id="HealLevel1">
+        <EditorCategories value=""/>
+        <Flags index="Channeled" value="0"/>
+        <PeriodicValidator value="Healing"/>
+        <DrainVital value="Energy"/>
+        <DrainVitalCostFactor value="0.625"/>
+        <RechargeVitalRate value="4"/>
+        <InitialEffect value="HealingIntialSet"/>
+        <FinalEffect value="HealRemoveOpenWoundsDestroyPersistentSet"/>
+        <PeriodicPeriod value="0.25"/>
+    </CEffectCreateHealer>
+    <CEffectCreateHealer id="HealLevel2">
+        <EditorCategories value=""/>
+        <Flags index="Channeled" value="0"/>
+        <PeriodicValidator value="Healing"/>
+        <DrainVital value="Energy"/>
+        <DrainVitalCostFactor value="0.4167"/>
+        <RechargeVitalRate value="6"/>
+        <InitialEffect value="HealingIntialSetLevel2"/>
+        <FinalEffect value="HealRemoveOpenWoundsDestroyPersistentSet"/>
+        <PeriodicPeriod value="0.25"/>
+    </CEffectCreateHealer>
+    <CEffectCreateHealer id="HealLevel3">
+        <EditorCategories value=""/>
+        <Flags index="Channeled" value="0"/>
+        <PeriodicValidator value="Healing"/>
+        <DrainVital value="Energy"/>
+        <DrainVitalCostFactor value="0.3125"/>
+        <RechargeVitalRate value="8"/>
+        <InitialEffect value="HealingIntialSetLevel3"/>
+        <FinalEffect value="HealRemoveOpenWoundsDestroyPersistentSet"/>
+        <PeriodicPeriod value="0.25"/>
+    </CEffectCreateHealer>
+    <CEffectCreatePersistent id="HealRemoveOpenWoundsPersistentLevel2">
+        <ValidatorArray value="HaveMedicalExpertise"/>
+        <EditorCategories value=""/>
+        <Flags index="PersistUntilDestroyed" value="1"/>
+        <PeriodicEffectArray value="RemoveOpenWoundTarget"/>
+        <PeriodicPeriodArray value="6"/>
+    </CEffectCreatePersistent>
+    <CEffectCreatePersistent id="HealRemoveOpenWoundsPersistentLevel3">
+        <ValidatorArray value="HaveMedicalExpertise"/>
+        <EditorCategories value=""/>
+        <Flags index="PersistUntilDestroyed" value="1"/>
+        <PeriodicEffectArray value="RemoveOpenWoundTarget"/>
+        <PeriodicPeriodArray value="4"/>
+    </CEffectCreatePersistent>
+    <CEffectApplyBehavior id="Healing">
+        <EditorCategories value=""/>
+        <WhichUnit Value="Caster"/>
+    </CEffectApplyBehavior>
+    <CEffectSet id="HealingIntialSet">
+        <EditorCategories value=""/>
+        <EffectArray value="Healing"/>
+        <EffectArray value="HealRemoveOpenWoundsPersistentLevel1"/>
+    </CEffectSet>
+    <CEffectSet id="HealingIntialSetLevel2">
+        <EditorCategories value=""/>
+        <EffectArray value="Healing"/>
+        <EffectArray value="HealRemoveOpenWoundsPersistentLevel2"/>
+    </CEffectSet>
+    <CEffectSet id="HealingIntialSetLevel3">
+        <EditorCategories value=""/>
+        <EffectArray value="Healing"/>
+        <EffectArray value="HealRemoveOpenWoundsPersistentLevel3"/>
+    </CEffectSet>
+    <CEffectDamage id="IntolerableCrueltyDamage">
+        <EditorCategories value=""/>
+    </CEffectDamage>
+    <CEffectCreatePersistent id="NanoHasteFractureRepair">
+        <EditorCategories value=""/>
+        <WhichLocation Value="TargetUnit"/>
+        <PeriodicEffectArray value="FractureRemoval"/>
+        <PeriodicPeriodArray value="10"/>
+    </CEffectCreatePersistent>
+    <CEffectApplyBehavior id="NanoHasteLevel1">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="NanoHasteLevel2">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="NanoHasteLevel3">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="NanoPlague">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectDamage id="NanoPlagueDamage">
+        <EditorCategories value=""/>
+        <Amount value="40"/>
+    </CEffectDamage>
+    <CEffectApplyBehavior id="NanoPlagueSecondary">
+        <ValidatorArray index="0" value="SourcehasNanoPlague"/>
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectCreatePersistent id="NanoSear">
+        <EditorCategories value=""/>
+        <PeriodCount value="60"/>
+        <PeriodicEffectArray value="NanoSearSearch"/>
+        <PeriodicPeriodArray value="1"/>
+    </CEffectCreatePersistent>
+    <CEffectDamage id="NanoSearDamage">
+        <EditorCategories value=""/>
+        <ImpactLocation Value="TargetUnit"/>
+        <Amount value="15"/>
+    </CEffectDamage>
+    <CEffectApplyBehavior id="NanoSearDamageDoT">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectEnumArea id="NanoSearSearch">
+        <EditorCategories value=""/>
+        <ImpactLocation Value="TargetPoint"/>
+        <SearchFilters value="-;Player,Ally,Neutral"/>
+        <AreaArray Radius="3.5" Effect="NanoSearSet"/>
+    </CEffectEnumArea>
+    <CEffectSet id="NanoSearSet">
+        <EditorCategories value=""/>
+        <EffectArray value="NanoSearDamage"/>
+        <EffectArray value="NanoSearSlow"/>
+        <EffectArray value="NanoSearDamageDoT"/>
+    </CEffectSet>
+    <CEffectApplyBehavior id="NanoSearSlow">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectEnumArea id="NanoShield">
+        <EditorCategories value=""/>
+        <SearchFilters value="-;Neutral,Enemy"/>
+        <AreaArray Radius="2.5" Effect="NanoShieldSet"/>
+    </CEffectEnumArea>
+    <CEffectApplyBehavior id="NanoShieldArmor">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectSet id="NanoShieldSet">
+        <EditorCategories value=""/>
+        <EffectArray value="NanoShieldShieldRestore"/>
+        <EffectArray value="NanoShieldArmor"/>
+    </CEffectSet>
+    <CEffectModifyUnit id="NanoShieldShieldRestore">
+        <EditorCategories value=""/>
+        <VitalArray index="Shields" ChangeFraction="1"/>
+    </CEffectModifyUnit>
+    <CEffectDamage id="NanoShockDamageLevel2">
+        <EditorCategories value=""/>
+        <ImpactLocation Value="TargetUnit"/>
+        <Amount value="100"/>
+    </CEffectDamage>
+    <CEffectEnumArea id="NanoShockLevel2">
+        <EditorCategories value=""/>
+        <ImpactLocation Value="TargetPoint"/>
+        <SearchFilters value="-;Player,Ally,Neutral"/>
+        <AreaArray Radius="3.5" Effect="NanoShockSetLevel2"/>
+    </CEffectEnumArea>
+    <CEffectDamage id="NanoShockDamageLevel1">
+        <EditorCategories value=""/>
+        <ImpactLocation Value="TargetUnit"/>
+        <Amount value="50"/>
+    </CEffectDamage>
+    <CEffectDamage id="NanoShockDamageLevel3">
+        <EditorCategories value=""/>
+        <ImpactLocation Value="TargetUnit"/>
+        <Amount value="150"/>
+    </CEffectDamage>
+    <CEffectEnumArea id="NanoShockLevel1">
+        <EditorCategories value=""/>
+        <ImpactLocation Value="TargetPoint"/>
+        <SearchFilters value="-;Player,Ally,Neutral"/>
+        <AreaArray Radius="3.5" Effect="NanoShockSetLevel1"/>
+    </CEffectEnumArea>
+    <CEffectSet id="NanoShockSetLevel2">
+        <EditorCategories value=""/>
+        <EffectArray value="NanoShockSlowLevel2"/>
+        <EffectArray value="NanoShockShockedLevel2"/>
+        <EffectArray value="NanoShockDamageLevel2"/>
+        <EffectArray value="AftershockPassive"/>
+    </CEffectSet>
+    <CEffectEnumArea id="NanoShockLevel3">
+        <EditorCategories value=""/>
+        <ImpactLocation Value="TargetPoint"/>
+        <SearchFilters value="-;Player,Ally,Neutral"/>
+        <AreaArray Radius="3.5" Effect="NanoShockSetLevel3"/>
+    </CEffectEnumArea>
+    <CEffectSet id="NanoShockSetLevel3">
+        <EditorCategories value=""/>
+        <Marker Link="Effect/NanoShockSetLevel2"/>
+        <EffectArray value="NanoShockSlowLevel3"/>
+        <EffectArray value="NanoShockShockedLevel3"/>
+        <EffectArray value="NanoShockDamageLevel3"/>
+        <EffectArray value="AftershockPassive"/>
+    </CEffectSet>
+    <CEffectSet id="NanoShockSetLevel1">
+        <EditorCategories value=""/>
+        <EffectArray value="NanoShockSlowLevel1"/>
+        <EffectArray value="NanoShockShockedLevel1"/>
+        <EffectArray value="NanoShockDamageLevel1"/>
+        <EffectArray value="AftershockPassive"/>
+    </CEffectSet>
+    <CEffectApplyBehavior id="NanoShockShockedLevel2">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="NanoShockSlowLevel2">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectSet id="NanoWeaveLevel1">
+        <EditorCategories value=""/>
+        <EffectArray value="NanoWeavePersistentLevel1"/>
+        <EffectArray value="WeaveAilmentHealLevel1"/>
+    </CEffectSet>
+    <CEffectSet id="NanoWeaveLevel2">
+        <EditorCategories value=""/>
+        <EffectArray value="NanoWeavePersistentLevel2"/>
+        <EffectArray value="WeaveAilmentHealLevel12"/>
+    </CEffectSet>
+    <CEffectCreatePersistent id="NanoWeavePersistentLevel2">
+        <EditorCategories value=""/>
+        <WhichLocation Value="TargetUnit"/>
+        <PeriodCount value="15"/>
+        <PeriodicEffectArray value="NanoWeaveHealLevel2"/>
+        <PeriodicPeriodArray value="1"/>
+    </CEffectCreatePersistent>
+    <CEffectApplyBehavior id="NanoShockShockedLevel3">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectCreatePersistent id="NanoWeavePersistentLevel1">
+        <EditorCategories value=""/>
+        <WhichLocation Value="TargetUnit"/>
+        <PeriodCount value="15"/>
+        <PeriodicEffectArray value="NanoWeaveHealLevel1"/>
+        <PeriodicPeriodArray value="1"/>
+    </CEffectCreatePersistent>
+    <CEffectApplyBehavior id="NanoShockShockedLevel1">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="NanoShockSlowLevel1">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="NanoShockSlowLevel3">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="NanoStrength">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectModifyUnit id="NanoWeaveHealLevel1">
+        <EditorCategories value=""/>
+        <VitalArray index="Life" Change="5"/>
+    </CEffectModifyUnit>
+    <CEffectModifyUnit id="NanoWeaveHealLevel2">
+        <EditorCategories value=""/>
+        <VitalArray index="Life" Change="8"/>
+    </CEffectModifyUnit>
+    <CEffectDamage id="VolatileInjectionDamageLevel1">
+        <EditorCategories value=""/>
+        <Amount value="100"/>
+        <SearchFilters value="-;Player,Ally,Neutral"/>
+        <SearchFlags index="ExtendByUnitRadius" value="1"/>
+    </CEffectDamage>
+    <CEffectDamage id="VolatileInjectionDamageLevel2">
+        <EditorCategories value=""/>
+        <Amount value="150"/>
+        <SearchFilters value="-;Player,Ally,Neutral"/>
+    </CEffectDamage>
+    <CEffectDamage id="VolatileInjectionDamageLevel3">
+        <EditorCategories value=""/>
+        <Amount value="200"/>
+        <SearchFilters value="-;Player,Ally,Neutral"/>
+    </CEffectDamage>
+    <CEffectApplyBehavior id="VolatileInjectionLevel2">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="VolatileInjectionLevel3">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="VolatileInjectionLevel1">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectEnumArea id="VolatileInjectionSearchLevel1">
+        <EditorCategories value=""/>
+        <ImpactLocation Value="TargetPoint"/>
+        <SearchFilters value="-;Player,Ally,Neutral"/>
+        <AreaArray Radius="2" Effect="VolatileInjectionSetLevel1"/>
+    </CEffectEnumArea>
+    <CEffectSet id="VolatileInjectionSetLevel1">
+        <EditorCategories value=""/>
+        <EffectArray value="VolatileInjectionDamageLevel1"/>
+        <EffectArray value="NanoPlagueSecondary"/>
+    </CEffectSet>
+    <CEffectEnumArea id="VolatileInjectionSearchLevel2">
+        <EditorCategories value=""/>
+        <ImpactLocation Value="TargetPoint"/>
+        <SearchFilters value="-;Player,Ally,Neutral"/>
+        <AreaArray Radius="2" Effect="VolatileInjectionSetLevel2"/>
+    </CEffectEnumArea>
+    <CEffectEnumArea id="VolatileInjectionSearchLevel3">
+        <EditorCategories value=""/>
+        <ImpactLocation Value="TargetPoint"/>
+        <SearchFilters value="-;Player,Ally,Neutral"/>
+        <AreaArray Radius="2" Effect="VolatileInjectionSetLevel3"/>
+    </CEffectEnumArea>
+    <CEffectSet id="VolatileInjectionSetLevel2">
+        <EditorCategories value=""/>
+        <EffectArray value="VolatileInjectionDamageLevel2"/>
+        <EffectArray value="NanoPlagueSecondary"/>
+    </CEffectSet>
+    <CEffectSet id="VolatileInjectionSetLevel3">
+        <EditorCategories value=""/>
+        <EffectArray value="VolatileInjectionDamageLevel3"/>
+        <EffectArray value="NanoPlagueSecondary"/>
+    </CEffectSet>
+    <CEffectApplyBehavior id="WeaveAilmentHealLevel1">
+        <ValidatorArray index="0" value="HaveMedicalExpertise"/>
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="WeaveAilmentHealLevel12">
+        <ValidatorArray index="0" value="HaveMedicalExpertise"/>
+        <EditorCategories value=""/>
+        <Behavior value="WeaveAilmentHealLevel2"/>
+    </CEffectApplyBehavior>
+    <CBehaviorBuff id="Aftershock">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="0.0937"/>
+        <InfoFlags index="Hidden" value="1"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AftershockPassive">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="8"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AftershockStunLevel1">
+        <InfoIcon value="btn-ability-terran-tosh-mindblast-yellow.dds"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="1"/>
+        <Modification>
+            <StateFlags index="Stun" value="1"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AftershockStunLevel12">
+        <InfoIcon value="btn-ability-terran-tosh-mindblast-yellow.dds"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="2"/>
+        <Modification>
+            <StateFlags index="Stun" value="1"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AftershockedEnemy">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="2"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="Healing">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="NanoHasteLevel1">
+        <Alignment value="Positive"/>
+        <InfoIcon value="btn-tomahawkpowercell.dds"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="40"/>
+        <InitialEffect value="NanoHasteFractureRepair"/>
+        <PeriodicEffect value="BrokenBonetoFractureConversion"/>
+        <Modification MoveSpeedMultiplier="1.1" AttackSpeedMultiplier="1.1"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="NanoHasteLevel2">
+        <Alignment value="Positive"/>
+        <InfoIcon value="btn-tomahawkpowercell.dds"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="50"/>
+        <InitialEffect value="NanoHasteFractureRepair"/>
+        <PeriodicEffect value="BrokenBonetoFractureConversion"/>
+        <Modification MoveSpeedMultiplier="1.15" AttackSpeedMultiplier="1.15"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="NanoHasteLevel3">
+        <Alignment value="Positive"/>
+        <InfoIcon value="btn-tomahawkpowercell.dds"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="60"/>
+        <InitialEffect value="NanoHasteFractureRepair"/>
+        <PeriodicEffect value="BrokenBonetoFractureConversion"/>
+        <Modification MoveSpeedMultiplier="1.2" AttackSpeedMultiplier="1.2"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="NanoPlague">
+        <BehaviorFlags index="EnabledWhileDead" value="1"/>
+        <InfoIcon value="btn-DOTA-Arthas-spell1.dds"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="90"/>
+        <Period value="1"/>
+        <PeriodicEffect value="NanoPlagueDamage"/>
+        <Modification LifeArmorBonus="-5"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="NanoPlagueSecondary">
+        <BehaviorFlags index="EnabledWhileDead" value="1"/>
+        <InfoIcon value="btn-DOTA-Arthas-spell1.dds"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="90"/>
+        <Period value="1"/>
+        <PeriodicEffect value="NanoPlagueDamage"/>
+        <Modification LifeArmorBonus="-5"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="NanoSearDamageDoT">
+        <Alignment value="Negative"/>
+        <InfoIcon value="btn-ability-zerg-corruption-orange.dds"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="60"/>
+        <Period value="1"/>
+        <PeriodicEffect value="NanoSearDamage"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="NanoStrength">
+        <Alignment value="Positive"/>
+        <InfoIcon value="Assets\Textures\btn-ability-protoss-protoncharge-color.dds"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="60"/>
+        <Modification MoveSpeedMultiplier="0.6667" UnifiedMoveSpeedFactor="0.5">
+            <DamageDealtFraction index="Melee" value="1"/>
+            <DamageDealtFraction index="Ranged" value="0.5"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="NanoSearSlow">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <BuffFlags index="RefreshStack" value="1"/>
+        <MaxStackCount value="5"/>
+        <Duration value="1.1"/>
+        <Modification MoveSpeedMultiplier="0.9"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="NanoShieldArmor">
+        <Alignment value="Positive"/>
+        <InfoIcon value="Assets\Textures\btn-ability-protoss-timewarp.dds"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="30"/>
+        <Modification ShieldArmorBonus="4">
+            <VitalMaxArray index="Shields" value="75"/>
+        </Modification>
+        <RemoveValidatorArray value="hasShields"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="NanoShockShockedLevel1">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <BuffFlags index="UpdateDurationWhileDisabled" value="1"/>
+        <Duration value="8"/>
+        <Period value="0.0625"/>
+        <PeriodicEffect value="AftershockSetLevel1"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="NanoShockShockedLevel2">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <BuffFlags index="UpdateDurationWhileDisabled" value="1"/>
+        <Duration value="8"/>
+        <Period value="0.0625"/>
+        <PeriodicEffect value="AftershockSetLevel2"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="NanoShockShockedLevel3">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <BuffFlags index="UpdateDurationWhileDisabled" value="1"/>
+        <Duration value="8"/>
+        <Period value="0.0625"/>
+        <PeriodicEffect value="AftershockSetLevel3"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="NanoShockSlowLevel2">
+        <Alignment value="Negative"/>
+        <InfoIcon value="Assets\Textures\btn-ability-terran-emp-color.dds"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="2"/>
+        <Modification MoveSpeedMultiplier="0.55" AttackSpeedMultiplier="0.55"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="NanoShockSlowLevel1">
+        <Alignment value="Negative"/>
+        <InfoIcon value="Assets\Textures\btn-ability-terran-emp-color.dds"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="1"/>
+        <Modification MoveSpeedMultiplier="0.55" AttackSpeedMultiplier="0.55"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="NanoShockSlowLevel3">
+        <Alignment value="Negative"/>
+        <InfoIcon value="Assets\Textures\btn-ability-terran-emp-color.dds"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="3"/>
+        <Modification MoveSpeedMultiplier="0.55" AttackSpeedMultiplier="0.55"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="VolatileInjectionLevel2">
+        <Alignment value="Negative"/>
+        <InfoIcon value="Assets\Textures\btn-ability-zerg-corrosiveblast.dds"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <PeriodCount value="0"/>
+        <PeriodicEffect value="IntolerableCrueltyDamage"/>
+        <Modification>
+            <DeathResponse Chance="1" Effect="VolatileInjectionSearchLevel2"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="VolatileInjectionLevel3">
+        <Alignment value="Negative"/>
+        <InfoIcon value="Assets\Textures\btn-ability-zerg-corrosiveblast.dds"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <PeriodCount value="0"/>
+        <PeriodicEffect value="IntolerableCrueltyDamage"/>
+        <Modification>
+            <DeathResponse Chance="1" Effect="VolatileInjectionSearchLevel3"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="VolatileInjectionLevel1">
+        <Alignment value="Negative"/>
+        <InfoIcon value="Assets\Textures\btn-ability-zerg-corrosiveblast.dds"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <PeriodCount value="0"/>
+        <PeriodicEffect value="IntolerableCrueltyDamage"/>
+        <Modification>
+            <DeathResponse Chance="1" Effect="VolatileInjectionSearchLevel1"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="WeaveAilmentHealLevel1">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="10"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="WeaveAilmentHealLevel2">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="7"/>
+    </CBehaviorBuff>
+</Catalog>
