@@ -246,6 +246,54 @@
             <Flags index="ShowInGlossary" value="0"/>
         </CmdButtonArray>
     </CAbilEffectInstant>
+    <CUpgrade id="CripplingFire" parent="DefaultUpgradeOverride">
+        <EffectArray Operation="Set" Reference="Behavior,FocusFire,DamageResponse.Chance" Value="1"/>
+        <EffectArray Operation="Subtract" Reference="Behavior,CripplingFire,Modification.AttackSpeedMultiplier" Value="0.05"/>
+        <EffectArray Operation="Subtract" Reference="Behavior,CripplingFire,Modification.MoveSpeedMultiplier" Value="0.05"/>
+        <EffectArray Operation="Set" Reference="Button,FocusFire,Tooltip" Value="Button/Tooltip/FocusFireCripplingFire"/>
+        <MaxLevel value="3"/>
+    </CUpgrade>
+    <CUpgrade id="CripplingFireandFireUpButton" parent="DefaultUpgradeOverride">
+        <EffectArray Operation="Set" Reference="Button,FocusFire,Tooltip" Value="Button/Tooltip/FocusFireCripplingFiredUp"/>
+        <MaxLevel value="6"/>
+    </CUpgrade>
+    <CUpgrade id="CriticalStrikeRifleman" parent="DefaultUpgradeOverride">
+        <EffectArray Reference="Effect,PrecisionShotBonusCriticalDamageLevel1,Chance" Value="0.1"/>
+        <EffectArray Reference="Effect,PrecisionShotBonusCriticalDamageLevel2,Chance" Value="0.1"/>
+        <EffectArray Reference="Effect,PrecisionShotBonusCriticalDamageLevel3,Chance" Value="0.1"/>
+        <EffectArray Reference="Effect,PrecisionShotNormalCriticalDamageLevel1,Chance" Value="0.1"/>
+        <EffectArray Reference="Effect,PrecisionShotNormalCriticalDamageLevel2,Chance" Value="0.1"/>
+        <EffectArray Reference="Effect,PrecisionShotNormalCriticalDamageLevel3,Chance" Value="0.1"/>
+        <MaxLevel value="3"/>
+    </CUpgrade>
+    <CUpgrade id="FireUp">
+        <Flags index="UpgradeCheat" value="0"/>
+        <Alert value=""/>
+        <EffectArray Reference="Behavior,FocusFire,Modification.AttackSpeedMultiplier" Value="0.15"/>
+        <EffectArray Reference="Behavior,FocusFire,Modification.WeaponRange" Value="1"/>
+        <EffectArray Operation="Set" Reference="Button,FocusFire,Tooltip" Value="Button/Tooltip/FocusFireFireUp"/>
+        <MaxLevel value="3"/>
+    </CUpgrade>
+    <CUpgrade id="WeaponsProficiencyLevel1" parent="DefaultUpgradeOverride">
+        <EffectArray Operation="Multiply" Reference="Behavior,ReloadManual,Duration" Value="0.850000"/>
+        <EffectArray Operation="Multiply" Reference="Behavior,ReloadNightmare,Duration" Value="0.850000"/>
+        <EffectArray Operation="Multiply" Reference="Behavior,ReloadNormal,Duration" Value="0.850000"/>
+        <EffectArray Operation="Multiply" Reference="Behavior,ReloadPerfect,Duration" Value="0.850000"/>
+        <EffectArray Reference="Behavior,FocusFire,Modification.DamageDealtFraction[Melee]" Value="0.05"/>
+        <EffectArray Reference="Behavior,FocusFire,Modification.DamageDealtFraction[Ranged]" Value="0.05"/>
+        <EffectArray Reference="Behavior,FocusFire,Modification.DamageDealtFraction[Splash]" Value="0.05"/>
+        <EffectArray Reference="Behavior,FocusFire,Modification.DamageDealtFraction[Spell]" Value="0.05"/>
+    </CUpgrade>
+    <CUpgrade id="WeaponsProficiencyLevel12" parent="DefaultUpgradeOverride">
+        <EffectArray Operation="Multiply" Reference="Behavior,ReloadManual,Duration" Value="0.700000"/>
+        <EffectArray Operation="Multiply" Reference="Behavior,ReloadNormal,Duration" Value="0.700000"/>
+        <EffectArray Operation="Multiply" Reference="Behavior,ReloadPerfect,Duration" Value="0.700000"/>
+        <EffectArray Operation="Multiply" Reference="Behavior,ReloadNightmare,Duration" Value="0.700000"/>
+        <EffectArray Reference="Behavior,FocusFire,Modification.DamageDealtFraction[Melee]" Value="0.1"/>
+        <EffectArray Reference="Behavior,FocusFire,Modification.DamageDealtFraction[Ranged]" Value="0.1"/>
+        <EffectArray Reference="Behavior,FocusFire,Modification.DamageDealtFraction[Splash]" Value="0.1"/>
+        <EffectArray Reference="Behavior,FocusFire,Modification.DamageDealtFraction[Spell]" Value="0.1"/>
+    </CUpgrade>
     <CValidatorUnitCompareBehaviorCount id="CasterhasFocusFireActive">
         <WhichUnit Value="Caster"/>
         <Compare value="GT"/>

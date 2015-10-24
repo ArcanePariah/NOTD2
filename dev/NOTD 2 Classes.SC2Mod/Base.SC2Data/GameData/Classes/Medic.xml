@@ -122,6 +122,31 @@
         <TargetFilters value="-;Player,Ally,Neutral"/>
         <Range value="12"/>
     </CAbilEffectTarget>
+    <CUpgrade id="MedicalExpertiseLevel2" parent="DefaultUpgradeOverride">
+        <Flags index="UpgradeCheat" value="1"/>
+        <EffectArray Operation="Divide" Reference="Abil,Antivenom,Cost[0].Vital[Energy]" Value="2"/>
+    </CUpgrade>
+    <CUpgrade id="IntolerableCruelty" parent="DefaultUpgradeOverride">
+        <Flags index="UpgradeCheat" value="1"/>
+        <EffectArray Operation="Set" Reference="Behavior,VolatileInjectionLevel1,PeriodCount" Value="30"/>
+        <EffectArray Operation="Set" Reference="Behavior,VolatileInjectionLevel1,Period" Value="1.000000"/>
+        <EffectArray Reference="Effect,IntolerableCrueltyDamage,Amount" Value="3"/>
+        <EffectArray Operation="Set" Reference="Behavior,VolatileInjectionLevel2,Period" Value="1.000000"/>
+        <EffectArray Operation="Set" Reference="Behavior,VolatileInjectionLevel3,Period" Value="1.000000"/>
+        <EffectArray Operation="Set" Reference="Behavior,VolatileInjectionLevel2,PeriodCount" Value="30"/>
+        <EffectArray Operation="Set" Reference="Behavior,VolatileInjectionLevel3,PeriodCount" Value="30"/>
+        <EffectArray Reference="Effect,VolatileInjectionSearchLevel1,AreaArray[0].Radius" Value="1"/>
+        <EffectArray Reference="Effect,VolatileInjectionSearchLevel2,AreaArray[0].Radius" Value="1"/>
+        <EffectArray Reference="Effect,VolatileInjectionSearchLevel3,AreaArray[0].Radius" Value="1"/>
+        <MaxLevel value="2"/>
+    </CUpgrade>
+    <CUpgrade id="MedicalExpertiseLevel1" parent="DefaultUpgradeOverride">
+        <Flags index="UpgradeCheat" value="1"/>
+        <EffectArray Operation="Set" Reference="Behavior,NanoHasteLevel1,Period" Value="20.000000"/>
+        <EffectArray Operation="Set" Reference="Behavior,NanoHasteLevel2,Period" Value="20.000000"/>
+        <EffectArray Operation="Set" Reference="Behavior,NanoHasteLevel3,Period" Value="20.000000"/>
+        <EffectArray Operation="Set" Reference="Effect,NanoHasteFractureRepair,PeriodCount" Value="2"/>
+    </CUpgrade>
     <CValidatorPlayerRequirement id="AftershockLevel1">
         <Find value="1"/>
         <Value value="AftershockLevel1"/>

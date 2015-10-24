@@ -191,6 +191,28 @@
         </Cost>
         <Flags index="Transient" value="1"/>
     </CAbilEffectInstant>
+    <CUpgrade id="CollateralDamageDummy" parent="DefaultUpgradeOverride">
+        <MaxLevel value="3"/>
+    </CUpgrade>
+    <CUpgrade id="MD5MineLevelDummy" parent="DefaultUpgradeOverride">
+        <MaxLevel value="3"/>
+    </CUpgrade>
+    <CUpgrade id="StockpileLevel1" parent="DefaultUpgradeOverride">
+        <EffectArray Operation="Set" Reference="Abil,MD5Mine,Cost[0].Charge.CountMax" Value="3"/>
+        <EffectArray Operation="Set" Reference="Abil,MD5Mine,Cost[0].Charge.CountUse" Value="1"/>
+        <EffectArray Operation="Set" Reference="Abil,MD5Mine,Cost[0].Charge.CountStart" Value="3"/>
+        <EffectArray Operation="Set" Reference="Abil,MD5Mine,Cost[0].Charge.TimeUse" Value="10.000000"/>
+        <EffectArray Operation="Set" Reference="Abil,MD5Mine,Cost[0].Cooldown.TimeUse" Value="0.000000"/>
+        <EffectArray Operation="Set" Reference="Abil,ChainExplosive,Cost[0].Charge.CountMax" Value="3"/>
+        <EffectArray Operation="Set" Reference="Abil,ChainExplosive,Cost[0].Charge.CountUse" Value="1"/>
+        <EffectArray Operation="Set" Reference="Abil,ChainExplosive,Cost[0].Charge.CountStart" Value="3"/>
+        <EffectArray Operation="Set" Reference="Abil,ChainExplosive,Cost[0].Charge.TimeUse" Value="10.000000"/>
+        <EffectArray Operation="Set" Reference="Abil,ChainExplosive,Cost[0].Cooldown.TimeUse" Value="0.000000"/>
+    </CUpgrade>
+    <CUpgrade id="StockpileLevel2" parent="DefaultUpgradeOverride">
+        <EffectArray Operation="Set" Reference="Abil,MD5Mine,Cost[0].Charge.CountMax" Value="5"/>
+        <EffectArray Operation="Set" Reference="Abil,ChainExplosive,Cost[0].Charge.CountMax" Value="5"/>
+    </CUpgrade>
     <CValidatorUnitType id="CasterisChainExplosiveLevel1">
         <WhichUnit Value="Caster"/>
         <Value value="ChainExplosiveLevel1"/>
