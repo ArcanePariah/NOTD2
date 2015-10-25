@@ -126,7 +126,7 @@
     <Frame type="Frame" name="TalentTreeFrameTemplate">
         <Width val="689"/>
         <Height val="650"/>
-        <Visible val="false"/>
+		<Visible val="false"/>
 
         <Frame type="Image" name="TalentTreeBackgroundBorderImage">
             <Anchor relative="$parent"/>
@@ -162,5 +162,29 @@
             <Anchor side="Left" relative="$parent" pos="Mid" offset="0"/>
             <Anchor side="Bottom" relative="$parent" pos="Max" offset="-100"/>
         </Frame>
+		
+		<Frame type = "Button" name = "CloseButton">
+		<NormalImage val = "NormalImage"/>
+		<HoverImage val = "NormalImage"/>
+		<Anchor side = "Right" pos = "Max" relative = "$parent" offset = "-80" />
+		<Anchor side = "Top" pos = "Min" relative = "$parent" offset = "47" />
+		<Shortcut val="Escape"/>
+		<Height val = "48"/>
+		<Width val = "48"/>
+		<Frame type = "Image" name = "NormalImage">
+			<Anchor relative = "$parent"/>
+			<Texture val = "Assets\Textures\ui_ingame_pingmenu_closebtnup.dds"/>
+			<ColorAdjustMode val = "Colorize"/>
+			<AdjustmentColor val = "11,142,131"/>
+		</Frame>
+			<Frame type="Animation" name="TalentShowHide">
+                <Event event="OnClick" action="Reset,Play" frame="$this"/>
+                <Controller name="Visibility_0" type="Visibility" end="Pause" frame="$parent">
+                    <Key type="Bool" time="0.000" value="true"/>
+                    <Key type="Bool" time="0.050" value="false"/>
+                </Controller>
+            </Frame>
+		
+		</Frame>
     </Frame>
 </Desc>

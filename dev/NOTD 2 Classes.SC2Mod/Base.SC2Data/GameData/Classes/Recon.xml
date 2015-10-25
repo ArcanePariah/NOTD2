@@ -1,0 +1,1484 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<Catalog>
+    <CAbilEffectInstant id="BlackDiamond" parent="AbilityInstantTemplate">
+        <Cost>
+            <Vital index="Energy" value="40"/>
+            <Cooldown TimeUse="30"/>
+        </Cost>
+        <AbilSetId value="StealthMatrixDeactivate"/>
+    </CAbilEffectInstant>
+    <CAbilBehavior id="Concealment">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Flags index="Toggle" value="1"/>
+        <Flags index="Transient" value="1"/>
+        <BehaviorArray value="Concealment"/>
+    </CAbilBehavior>
+    <CAbilEffectTarget id="Execute" parent="AbilityWithButtonTargetTemplate">
+        <Effect index="0" value="ExecuteSwitchLevel1"/>
+        <Effect value="ExecuteSwitchLevel2"/>
+        <Cost>
+            <Vital index="Energy" value="20"/>
+            <Cooldown TimeUse="20"/>
+        </Cost>
+        <Cost>
+            <Vital index="Energy" value="20"/>
+            <Cooldown TimeUse="10"/>
+        </Cost>
+        <Range value="1.25"/>
+        <LevelButtonTooltip value="Button/Tooltip/ExecuteLevel2"/>
+        <TargetFilters value="-;Player,Ally,Neutral"/>
+    </CAbilEffectTarget>
+    <CAbilBehavior id="ItemSensor">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <BehaviorArray value="ItemSensorLevel1"/>
+        <BehaviorArray value="ItemSensorLevel2"/>
+    </CAbilBehavior>
+    <CAbilEffectTarget id="FlareGunRecon" parent="3LevelEffectTargetAbility">
+        <Flags index="RequireTargetVision" value="0"/>
+        <Flags index="UpdateChargesOnLevelChange" value="0"/>
+        <Cost>
+            <Vital index="Energy" value="10"/>
+            <Cooldown TimeUse="8"/>
+        </Cost>
+        <Cost>
+            <Vital index="Energy" value="10"/>
+            <Charge>
+                <CountMax value="2"/>
+                <CountStart value="2"/>
+                <CountUse value="1"/>
+                <TimeUse value="8"/>
+            </Charge>
+        </Cost>
+        <Cost>
+            <Vital index="Energy" value="10"/>
+            <Charge>
+                <CountMax value="4"/>
+                <CountStart value="4"/>
+                <CountUse value="1"/>
+                <TimeUse value="8"/>
+            </Charge>
+        </Cost>
+        <Range value="10"/>
+        <Range value="15"/>
+        <Range value="15"/>
+        <AINotifyEffect value="FlareGun"/>
+    </CAbilEffectTarget>
+    <CAbilEffectTarget id="SatelliteUplink" parent="AbilityWithButtonTargetTemplate">
+        <Cost>
+            <Cooldown TimeUse="4"/>
+        </Cost>
+        <Range value="500"/>
+        <Flags index="RequireTargetVision" value="0"/>
+    </CAbilEffectTarget>
+    <CAbilEffectInstant id="Scamper" parent="2LevelEffectInstantAbility">
+        <Cost>
+            <Vital index="Energy" value="50"/>
+            <Cooldown TimeUse="20"/>
+        </Cost>
+    </CAbilEffectInstant>
+    <CAbilInventory id="ScamperInventory" parent="PetInventoryTemplate">
+        <Name value="Abil/Name/ScamperInventory"/>
+        <InfoArray index="1" Container="ScamperInventory" EmptyFace="EmptyInventorySlot"/>
+    </CAbilInventory>
+    <CAbilBehavior id="SprintingShadow">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <BehaviorArray value="SprintingShadow"/>
+    </CAbilBehavior>
+    <CAbilEffectTarget id="SurveillanceFlare" parent="3LevelEffectTargetAbility">
+        <Flags index="RequireTargetVision" value="0"/>
+        <Flags index="UpdateChargesOnLevelChange" value="0"/>
+        <Cost>
+            <Vital index="Energy" value="10"/>
+            <Charge>
+                <CountMax value="1"/>
+                <CountStart value="1"/>
+                <CountUse value="1"/>
+                <Link value="Abil/GroundIlluminationFlare"/>
+                <TimeUse value="40"/>
+            </Charge>
+            <Cooldown Link="Abil/GroundIlluminationFlare"/>
+        </Cost>
+        <Cost>
+            <Vital index="Energy" value="10"/>
+            <Charge>
+                <CountMax value="2"/>
+                <CountStart value="1"/>
+                <CountUse value="1"/>
+                <Link value="Abil/GroundIlluminationFlare"/>
+                <TimeUse value="40"/>
+            </Charge>
+            <Cooldown Link="Abil/GroundIlluminationFlare"/>
+        </Cost>
+        <Cost>
+            <Vital index="Energy" value="10"/>
+            <Charge>
+                <CountMax value="3"/>
+                <CountStart value="1"/>
+                <CountUse value="1"/>
+                <Link value="Abil/GroundIlluminationFlare"/>
+                <TimeUse value="40"/>
+            </Charge>
+            <Cooldown Link="Abil/GroundIlluminationFlare"/>
+        </Cost>
+        <Range value="9"/>
+    </CAbilEffectTarget>
+    <CAbilEffectTarget id="LaserDesignator" parent="3LevelEffectTargetAbility">
+        <Cost>
+            <Vital index="Energy" value="10"/>
+            <Cooldown TimeUse="15"/>
+        </Cost>
+        <TargetFilters value="-;Player,Ally"/>
+        <Range value="20"/>
+    </CAbilEffectTarget>
+    <CAbilEffectInstant id="EscapeSet" parent="3LevelEffectInstantAbility">
+        <Cost>
+            <Vital index="Energy" value="30"/>
+            <Charge Link="Abil/Escape"/>
+            <Cooldown Link="Abil/Escape" TimeUse="20"/>
+        </Cost>
+        <CmdButtonArray index="Execute" DefaultButtonFace="Escape" Requirements="StealthMatrixNotActive"/>
+        <Flags index="Transient" value="1"/>
+    </CAbilEffectInstant>
+    <CAbilBehavior id="MotionSensor">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <BehaviorArray value="MotionSensorLevel1"/>
+        <BehaviorArray value="MotionSensorLevel2"/>
+    </CAbilBehavior>
+    <CAbilInventory id="ReconInventory" parent="InventoryTemplate">
+        <InfoArray index="2" removed="1"/>
+    </CAbilInventory>
+    <CAbilLearn id="ReconLearn" parent="LearnTemplate">
+        <Name value="Abil/Name/ReconLearn"/>
+        <InfoArray index="Learn1" Abil="SurveillanceFlare">
+            <Button DefaultButtonFace="SurveillanceFlare"/>
+        </InfoArray>
+        <InfoArray index="Learn2" Abil="SmokeGrenade">
+            <Button DefaultButtonFace="SmokeGrenade"/>
+        </InfoArray>
+        <InfoArray index="Learn3" Abil="MotionSensor"/>
+        <InfoArray index="Learn4" Abil="Scamper">
+            <Button DefaultButtonFace="Scamper"/>
+        </InfoArray>
+        <InfoArray index="Learn5" Abil="AmmunitionDrop">
+            <Button DefaultButtonFace="MedicalDrop"/>
+        </InfoArray>
+        <InfoArray index="Learn6" Abil="SatelliteUplink">
+            <Button DefaultButtonFace="SatelliteUplink"/>
+        </InfoArray>
+        <InfoArray index="Learn7" Abil="FlareGunRecon"/>
+        <InfoArray index="Learn8" Abil="EscapeSet"/>
+        <InfoArray index="Learn9" Abil="Execute"/>
+        <InfoArray index="Learn10" Abil="StealthMatrix"/>
+        <InfoArray index="Learn11" Abil="SprintingShadow"/>
+        <InfoArray index="Learn12" Abil="BlackDiamond"/>
+    </CAbilLearn>
+    <CAbilEffectTarget id="SmokeGrenade" parent="3LevelEffectTargetAbility">
+        <Cost>
+            <Vital index="Energy" value="25"/>
+            <Cooldown TimeUse="30"/>
+        </Cost>
+        <Range value="12"/>
+        <CursorEffect value="SmokeGrenadeEnemySlowSearchLevel1"/>
+        <CursorEffect value="SmokeGrenadeEnemySlowSearchLevel2"/>
+        <CursorEffect value="SmokeGrenadeEnemySlowSearchLevel3"/>
+    </CAbilEffectTarget>
+    <CAbilBehavior id="StealthMatrix">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <CmdButtonArray index="On" DefaultButtonFace="StealthMatrixActivate"/>
+        <CmdButtonArray index="Off" DefaultButtonFace="StealthMatrixDeactivate"/>
+        <Flags index="Toggle" value="1"/>
+        <Flags index="Transient" value="1"/>
+        <BehaviorArray value="StealthMatrixLevel1"/>
+        <BehaviorArray value="StealthMatrixLevel2"/>
+    </CAbilBehavior>
+    <CAbilEffectTarget id="MedicalDrop" parent="AbilityWithButtonTargetTemplate">
+        <Cost>
+            <Vital index="Energy" value="20"/>
+            <Charge Link="Abil/SupplyDropOffensive" Location="Unit"/>
+            <Cooldown Link="Abil/SupplyDropOffensive" Location="Unit" TimeUse="30"/>
+        </Cost>
+        <Range value="10"/>
+        <Arc value="360"/>
+        <CmdButtonArray index="Execute" Requirements="SupplyDrop"/>
+        <Flags index="Transient" value="1"/>
+    </CAbilEffectTarget>
+    <CAbilEffectTarget id="AmmunitionDrop" parent="AbilityWithButtonTargetTemplate">
+        <Cost>
+            <Vital index="Energy" value="20"/>
+            <Charge Link="Abil/SupplyDropOffensive" Location="Unit"/>
+            <Cooldown Link="Abil/SupplyDropOffensive" Location="Unit" TimeUse="30"/>
+        </Cost>
+        <Range value="10"/>
+        <Arc value="360"/>
+        <Flags index="Transient" value="1"/>
+    </CAbilEffectTarget>
+    <CAbilEffectTarget id="TrackingTag" parent="AbilityWithButtonTargetTemplate">
+        <Cost>
+            <Cooldown TimeUse="4"/>
+        </Cost>
+        <Range value="2"/>
+    </CAbilEffectTarget>
+    <CAbilMorph id="ScamperUpgradeMorph">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="ScamperUpgradeMorph"/>
+        <Flags index="WaitUntilStopped" value="0"/>
+        <InfoArray Unit="ScamperLevel2"/>
+    </CAbilMorph>
+    <!--Recon Gunship for Close Air Support. Used as a Magazine Unit only.-->
+    <CUnit id="A10XGunship">
+        <Race value="Zombie"/>
+        <FlagArray index="Unselectable" value="1"/>
+        <FlagArray index="Untargetable" value="1"/>
+        <FlagArray index="Invulnerable" value="1"/>
+        <Collide index="FlyingEscorts" value="1"/>
+        <Mover value="Fly"/>
+        <Speed value="4.5"/>
+        <Acceleration value="1000"/>
+        <Sight value="15"/>
+        <Height value="8"/>
+        <VisionHeight value="6"/>
+        <AbilArray Link="move"/>
+        <AbilArray Link="attack"/>
+        <AbilArray Link="stop"/>
+        <WeaponArray Link="A10XCannon" Turret="A10XCannonTurret"/>
+        <WeaponArray Link="A10XHellfireMissiles" Turret="A10XHellfireMissileTurret"/>
+        <EditorCategories value=""/>
+        <BehaviorArray Link="GunshipTimedLife"/>
+    </CUnit>
+    <CUnit id="A10XLaunchHellfireMissilesWeapon" parent="MISSILE">
+        <Race value="Zombie"/>
+        <EditorCategories value=""/>
+    </CUnit>
+    <CUnit id="ArtilleryBeacon">
+        <Race value="Zombie"/>
+        <FlagArray index="Turnable" value="0"/>
+        <FlagArray index="Movable" value="0"/>
+        <FlagArray index="Unselectable" value="1"/>
+        <FlagArray index="Untargetable" value="1"/>
+        <FlagArray index="Invulnerable" value="1"/>
+        <Attributes index="Robotic" value="1"/>
+        <Attributes index="Summoned" value="1"/>
+        <EditorCategories value=""/>
+    </CUnit>
+    <CUnit id="FlareGunProjectileLevel1" parent="MISSILE_INVULNERABLE">
+        <Mover value="FlareGunProjectile"/>
+        <BehaviorArray Link="FlareGunTimedLife"/>
+    </CUnit>
+    <CUnit id="FlareGunProjectileLevel2" parent="MISSILE_INVULNERABLE">
+        <Mover value="FlareGunProjectile"/>
+        <BehaviorArray Link="FlareGunTimedLife"/>
+    </CUnit>
+    <CUnit id="FlareGunProjectileLevel3" parent="MISSILE_INVULNERABLE">
+        <Mover value="FlareGunProjectile"/>
+        <BehaviorArray Link="FlareGunTimedLife"/>
+    </CUnit>
+    <CUnit id="GroundIlluminationFlareLevel2">
+        <Race value="Zombie"/>
+        <FlagArray index="Turnable" value="0"/>
+        <FlagArray index="Movable" value="0"/>
+        <FlagArray index="Unselectable" value="1"/>
+        <FlagArray index="Untargetable" value="1"/>
+        <FlagArray index="Uncloakable" value="1"/>
+        <FlagArray index="Unradarable" value="1"/>
+        <FlagArray index="UseLineOfSight" value="1"/>
+        <FlagArray index="Invulnerable" value="1"/>
+        <Sight value="8"/>
+        <BehaviorArray Link="GroundIlluminationTimedLifeLevel2"/>
+        <EditorCategories value="ObjectType:Projectile"/>
+    </CUnit>
+    <CUnit id="GroundIlluminationFlareLevel3">
+        <Race value="Zombie"/>
+        <FlagArray index="Turnable" value="0"/>
+        <FlagArray index="Movable" value="0"/>
+        <FlagArray index="Unselectable" value="1"/>
+        <FlagArray index="Untargetable" value="1"/>
+        <FlagArray index="Uncloakable" value="1"/>
+        <FlagArray index="Unradarable" value="1"/>
+        <FlagArray index="UseLineOfSight" value="1"/>
+        <FlagArray index="Invulnerable" value="1"/>
+        <Sight value="8"/>
+        <BehaviorArray Link="GroundIlluminationTimedLifeLevel3"/>
+        <EditorCategories value="ObjectType:Projectile"/>
+    </CUnit>
+    <CUnit id="GroundIlluminationFlareLevel1">
+        <Race value="Zombie"/>
+        <Sight value="8"/>
+        <BehaviorArray Link="GroundIlluminationTimedLifeLevel1"/>
+        <EditorCategories value="ObjectType:Projectile"/>
+        <FlagArray index="Turnable" value="0"/>
+        <FlagArray index="Movable" value="0"/>
+        <FlagArray index="Unselectable" value="1"/>
+        <FlagArray index="Untargetable" value="1"/>
+        <FlagArray index="Uncloakable" value="1"/>
+        <FlagArray index="Unradarable" value="1"/>
+        <FlagArray index="UseLineOfSight" value="1"/>
+        <FlagArray index="Invulnerable" value="1"/>
+    </CUnit>
+    <CUnit id="KineticPayloadMissileWeapon" parent="MISSILE"/>
+    <CUnit id="Recon" parent="BasicHeroTemplate" InventoryAbility="ReconInventory" LearnAbility="ReconLearn">
+        <EnergyStart value="100"/>
+        <EnergyRegenRate value="1"/>
+        <LifeStart value="140"/>
+        <LifeMax value="140"/>
+        <LifeRegenRate value="0.1484"/>
+        <LateralAcceleration value="1000"/>
+        <ShieldsStart value="40"/>
+        <ShieldsMax value="40"/>
+        <ShieldRegenDelay value="0"/>
+        <ShieldRegenRate value="2"/>
+        <Speed value="2.5898"/>
+        <GlossaryPriority value="4"/>
+        <AbilArray Link="Scamper"/>
+        <AbilArray Link="SurveillanceFlare"/>
+        <AbilArray Link="MotionSensor"/>
+        <AbilArray Link="SmokeGrenade"/>
+        <AbilArray Link="AmmunitionDrop"/>
+        <AbilArray Link="MedicalDrop"/>
+        <AbilArray Link="EscapeSet"/>
+        <AbilArray Link="FlareGunRecon"/>
+        <AbilArray Link="Execute"/>
+        <AbilArray Link="StealthMatrix"/>
+        <AbilArray Link="LightJump"/>
+        <AbilArray Link="SatelliteUplink"/>
+        <AbilArray Link="SprintingShadow"/>
+        <AbilArray Link="BlackDiamond"/>
+        <BehaviorArray Link="ReconDetectorDetection"/>
+        <BehaviorArray Link="MotionSensorLevel1"/>
+        <BehaviorArray Link="MotionSensorLevel2"/>
+        <BehaviorArray Link="BackstabLevel1"/>
+        <BehaviorArray Link="BackstabLevel2"/>
+        <BehaviorArray Link="SprintingShadow"/>
+        <CardLayouts index="0">
+            <LayoutButtons Face="Scamper" Type="AbilCmd" AbilCmd="Scamper,Execute" Row="2" Column="0"/>
+            <LayoutButtons Face="SurveillanceFlare" Type="AbilCmd" AbilCmd="SurveillanceFlare,Execute" Row="2" Column="1"/>
+            <LayoutButtons Face="SmokeGrenade" Type="AbilCmd" AbilCmd="SmokeGrenade,Execute" Row="2" Column="2"/>
+            <LayoutButtons Face="AmmunitionDrop" Type="AbilCmd" AbilCmd="AmmunitionDrop,Execute" Row="2" Column="3"/>
+            <LayoutButtons Face="SatelliteUplink" Type="AbilCmd" AbilCmd="SatelliteUplink,Execute" Row="2" Column="3"/>
+            <LayoutButtons Face="BlackDiamond" Type="AbilCmd" AbilCmd="BlackDiamond,Execute" Row="2" Column="3"/>
+            <LayoutButtons Face="Escape" Type="AbilCmd" AbilCmd="EscapeSet,Execute" Row="1" Column="0"/>
+            <LayoutButtons Face="StealthMatrixActivate" Type="AbilCmd" AbilCmd="StealthMatrix,On" Row="1" Column="0"/>
+            <LayoutButtons Face="StealthMatrixDeactivate" Type="AbilCmd" AbilCmd="StealthMatrix,Off" Row="1" Column="0"/>
+            <LayoutButtons Face="FlareGunRecon" Type="AbilCmd" AbilCmd="FlareGunRecon,Execute" Row="1" Column="1"/>
+            <LayoutButtons Face="Execute" Type="AbilCmd" AbilCmd="Execute,Execute" Row="1" Column="2"/>
+            <LayoutButtons Face="Jump" Type="AbilCmd" AbilCmd="LightJump,Execute" Row="0" Column="4"/>
+            <LayoutButtons Face="MedicalDrop" Type="AbilCmd" AbilCmd="MedicalDrop,Execute" Row="1" Column="3"/>
+        </CardLayouts>
+    </CUnit>
+    <CUnit id="SatelliteUplinkSpy">
+        <Race value="Zombie"/>
+        <FlagArray index="Unradarable" value="1"/>
+        <FlagArray index="Invulnerable" value="1"/>
+        <Speed value="2.5"/>
+        <Acceleration value="1000"/>
+        <Sight value="10"/>
+        <AbilArray Link="move"/>
+        <AbilArray Link="stop"/>
+        <BehaviorArray Link="Range10"/>
+        <EditorCategories value=""/>
+        <Mover value="Fly"/>
+        <Height value="6"/>
+        <MinimapRadius value="0"/>
+    </CUnit>
+    <CUnit id="ScamperLevel1">
+        <Race value="Human"/>
+        <PlaneArray index="Ground" value="1"/>
+        <Collide index="Ground" value="1"/>
+        <Attributes index="Mechanical" value="1"/>
+        <LifeStart value="100"/>
+        <LifeMax value="100"/>
+        <LifeArmor value="1"/>
+        <LifeRegenRate value="0.1015"/>
+        <Speed value="2.5"/>
+        <Acceleration value="1000"/>
+        <StationaryTurningRate value="540"/>
+        <TurningRate value="540"/>
+        <Sight value="10"/>
+        <AbilArray Link="move"/>
+        <AbilArray Link="stop"/>
+        <AbilArray Link="ScamperInventory"/>
+        <AbilArray Link="TrackingTag"/>
+        <AbilArray Link="ScamperUpgradeMorph"/>
+        <BehaviorArray Link="Benign"/>
+        <CardLayouts>
+            <LayoutButtons Face="Move" Type="AbilCmd" AbilCmd="move,Move" Row="0" Column="0"/>
+            <LayoutButtons Face="Stop" Type="AbilCmd" AbilCmd="stop,Stop" Row="0" Column="1"/>
+        </CardLayouts>
+        <EditorCategories value=""/>
+    </CUnit>
+    <CUnit id="ScamperLevel2">
+        <Race value="Human"/>
+        <PlaneArray index="Ground" value="1"/>
+        <Collide index="Ground" value="1"/>
+        <Attributes index="Mechanical" value="1"/>
+        <LifeStart value="100"/>
+        <LifeMax value="100"/>
+        <LifeArmor value="1"/>
+        <LifeRegenRate value="0.1015"/>
+        <Speed value="2.5"/>
+        <Acceleration value="1000"/>
+        <StationaryTurningRate value="540"/>
+        <TurningRate value="540"/>
+        <Sight value="10"/>
+        <AbilArray Link="move"/>
+        <AbilArray Link="stop"/>
+        <AbilArray Link="ScamperInventory"/>
+        <AbilArray Link="TrackingTag"/>
+        <AbilArray Link="Concealment"/>
+        <BehaviorArray Link="Benign"/>
+        <BehaviorArray Link="ItemSensorLevel1"/>
+        <CardLayouts>
+            <LayoutButtons Face="Move" Type="AbilCmd" AbilCmd="move,Move" Row="0" Column="0"/>
+            <LayoutButtons Face="Stop" Type="AbilCmd" AbilCmd="stop,Stop" Row="0" Column="1"/>
+        </CardLayouts>
+        <EditorCategories value=""/>
+    </CUnit>
+    <CUnit id="SmokeGrenadeLevel1Weapon" parent="MISSILE">
+        <Race value="Zombie"/>
+        <Mover value="RoadFlare"/>
+        <EditorCategories value=""/>
+    </CUnit>
+    <CUnit id="SmokeGrenadeLevel2Weapon" parent="MISSILE">
+        <Race value="Zombie"/>
+        <Mover value="RoadFlare"/>
+        <EditorCategories value=""/>
+    </CUnit>
+    <CUnit id="SmokeGrenadeLevel3Weapon" parent="MISSILE">
+        <Race value="Zombie"/>
+        <Mover value="RoadFlare"/>
+        <EditorCategories value=""/>
+    </CUnit>
+    <CUnit id="SupplyDropOffensive">
+        <Race value="Zombie"/>
+        <EditorCategories value=""/>
+        <LootArray value="SupplyDropOffensiveAmmoSet"/>
+    </CUnit>
+    <CUnit id="SupplyDropDefensive">
+        <Race value="Zombie"/>
+        <EditorCategories value=""/>
+        <LootArray value="SupplyDropDefensiveSet"/>
+    </CUnit>
+    <CValidatorLocationEnumArea id="Backstab">
+        <WhichLocation Value="TargetUnit"/>
+        <AreaArray Arc="270" Radius="500"/>
+        <Compare value="Eq"/>
+        <SearchFlags index="CenterAtLaunch" value="1"/>
+        <LaunchLocation Value="TargetUnit"/>
+        <SearchFilters value="Biological,Heroic;Ally,Neutral,Enemy"/>
+        <ExcludeArray Value="Target"/>
+    </CValidatorLocationEnumArea>
+    <CValidatorPlayerRequirement id="ItemSensorLevel1">
+        <Find value="1"/>
+        <Value value="ItemSensorLevel1"/>
+    </CValidatorPlayerRequirement>
+    <CValidatorPlayerRequirement id="ItemSensorLevel2">
+        <Find value="1"/>
+        <Value value="ItemSensorLevel2"/>
+    </CValidatorPlayerRequirement>
+    <CValidatorCombine id="MotionSenorVisibility">
+        <CombineArray value="TargetisnotVisible"/>
+        <CombineArray value="UnitisVisibleandCloaked"/>
+    </CValidatorCombine>
+    <CValidatorCombine id="MotionSensorUnitQuery">
+        <Type value="And"/>
+        <CombineArray value="MotionSenorVisibility"/>
+        <CombineArray value="TargetisnotanItem"/>
+        <CombineArray value="NotDead"/>
+        <CombineArray value="NotStructure"/>
+        <CombineArray value="TargetCanMove"/>
+    </CValidatorCombine>
+    <!--We add the Hidden check because we don't want to see items being carried by other players.-->
+    <CValidatorCombine id="ItemSensorUnitQuery">
+        <Type value="And"/>
+        <CombineArray value="TargetisnotVisible"/>
+        <CombineArray value="TargetisanItem"/>
+        <CombineArray value="NotHidden"/>
+    </CValidatorCombine>
+    <CValidatorUnitOrderQueue id="ReconAttacking">
+        <AbilLink value="attack"/>
+    </CValidatorUnitOrderQueue>
+    <CValidatorUnitOrder id="ReconUsesBlackDiamond"/>
+    <CValidatorLocationEnumArea id="LaserDesignatedTargetsinRange">
+        <WhichLocation Value="CasterUnit"/>
+        <AreaArray Radius="500" Validator="TargetisLaserDesignated"/>
+        <SearchFilters value="Visible;Player,Ally,Neutral"/>
+    </CValidatorLocationEnumArea>
+    <CValidatorPlayerRequirement id="MotionSensorLevel12">
+        <Find value="1"/>
+        <Value value="MotionSensorLevel2"/>
+    </CValidatorPlayerRequirement>
+    <CValidatorPlayerRequirement id="MotionSensorLevel1">
+        <Find value="1"/>
+        <Value value="MotionSensorLevel1"/>
+    </CValidatorPlayerRequirement>
+    <CValidatorCombine id="ReconHasStealthMatrix">
+        <CombineArray value="StealthMatrixLevel1"/>
+        <CombineArray value="StealthMatrixLevel2"/>
+    </CValidatorCombine>
+    <CValidatorPlayerRequirement id="StealthMatrixLevel1">
+        <Find value="1"/>
+        <Value value="StealthMatrixLevel1"/>
+    </CValidatorPlayerRequirement>
+    <CValidatorCombine id="StealthMatrixLevel1Disable">
+        <Type value="And"/>
+    </CValidatorCombine>
+    <CValidatorUnitCompareBehaviorCount id="StealthMatrixLevel1Active">
+        <Value value="1"/>
+        <Behavior value="StealthMatrixLevel1"/>
+    </CValidatorUnitCompareBehaviorCount>
+    <CValidatorUnitCompareBehaviorCount id="StealthMatrixLevel2Active">
+        <Value value="1"/>
+        <Behavior value="StealthMatrixLevel2"/>
+    </CValidatorUnitCompareBehaviorCount>
+    <CValidatorPlayerRequirement id="StealthMatrixLevel2">
+        <Find value="1"/>
+        <Value value="StealthMatrixLevel2"/>
+    </CValidatorPlayerRequirement>
+    <CValidatorUnitCompareBehaviorCount id="TargethasLaserDesignatorLevel1">
+        <Value value="1"/>
+        <Behavior value="LaserDesignatedLevel1"/>
+    </CValidatorUnitCompareBehaviorCount>
+    <CValidatorUnitCompareBehaviorCount id="TargethasLaserDesignatorLevel2">
+        <Value value="1"/>
+        <Behavior value="LaserDesignatedLevel2"/>
+    </CValidatorUnitCompareBehaviorCount>
+    <CValidatorUnitCompareBehaviorCount id="TargethasLaserDesignatorLevel3">
+        <Value value="1"/>
+        <Behavior value="LaserDesignatedLevel3"/>
+    </CValidatorUnitCompareBehaviorCount>
+    <CValidatorCombine id="TargetisLaserDesignated">
+        <CombineArray value="TargethasLaserDesignatorLevel1"/>
+        <CombineArray value="TargethasLaserDesignatorLevel2"/>
+        <CombineArray value="TargethasLaserDesignatorLevel3"/>
+    </CValidatorCombine>
+    <CValidatorUnitFilters id="TargetisnotVisible">
+        <Filters value="-;Visible"/>
+    </CValidatorUnitFilters>
+    <CValidatorUnitType id="UnitisReconFlareLevel3">
+        <Value value="FlareGunProjectileLevel3"/>
+    </CValidatorUnitType>
+    <CValidatorUnitFilters id="UnitisVisibleandCloaked">
+        <Filters value="Cloaked,Visible;-"/>
+    </CValidatorUnitFilters>
+    <CValidatorCombine id="StealthMatrixActive">
+        <CombineArray value="StealthMatrixLevel1Active"/>
+        <CombineArray value="StealthMatrixLevel2Active"/>
+    </CValidatorCombine>
+    <CEffectEnumArea id="BlackDiamond">
+        <EditorCategories value=""/>
+        <SearchFilters value="-;Player,Ally,Neutral"/>
+        <AreaArray Radius="6" Effect="BlackDiamondSet"/>
+    </CEffectEnumArea>
+    <CEffectDamage id="BlackDiamondBonusDamage">
+        <EditorCategories value=""/>
+    </CEffectDamage>
+    <CEffectSet id="BlackDiamondSet">
+        <EditorCategories value=""/>
+        <EffectArray value="BlackDiamondDamage"/>
+        <EffectArray value="BlackDiamondStun"/>
+    </CEffectSet>
+    <CEffectDamage id="ExecuteDamageLevel2Backstab">
+        <EditorCategories value=""/>
+        <Amount value="1000"/>
+    </CEffectDamage>
+    <CEffectSwitch id="ExecuteLevel2DamageSwitch">
+        <EditorCategories value=""/>
+        <CaseArray Validator="Backstab" Effect="ExecuteDamageLevel2Backstab"/>
+        <CaseDefault value="ExecuteDamageLevel2"/>
+    </CEffectSwitch>
+    <CEffectDamage id="A10XCannonDamage">
+        <EditorCategories value=""/>
+        <ImpactLocation Value="TargetUnit"/>
+        <Kind value="Ranged"/>
+        <KindSplash value="Splash"/>
+        <Amount value="45"/>
+        <Death value="Impact"/>
+        <AreaArray Radius="2" Fraction="1"/>
+        <ExcludeArray Value="Target"/>
+        <SearchFilters value="-;Player,Ally,Neutral,Item,Invulnerable"/>
+        <DisplayFlags index="CollapseBuffed" value="1"/>
+    </CEffectDamage>
+    <CEffectDamage id="A10XHellfireMissileDamage">
+        <EditorCategories value=""/>
+        <ImpactLocation Value="TargetUnit"/>
+        <Kind value="Ranged"/>
+        <KindSplash value="Splash"/>
+        <Amount value="50"/>
+        <AreaArray Radius="2.5" Fraction="1"/>
+        <ExcludeArray Value="Target"/>
+        <SearchFilters value="-;Player,Ally,Neutral,Item"/>
+    </CEffectDamage>
+    <CEffectEnumArea id="A10XHellfireMissiles">
+        <ValidatorArray value="LaserDesignatedTargetsinRange"/>
+        <EditorCategories value=""/>
+        <ImpactLocation Value="CasterUnit"/>
+        <SearchFilters value="Visible;Player,Ally,Neutral"/>
+        <AreaArray Radius="500" Effect="A10XLaunchHellfireMissiles"/>
+    </CEffectEnumArea>
+    <CEffectLaunchMissile id="A10XLaunchHellfireMissiles">
+        <ValidatorArray index="0" value="TargetisLaserDesignated"/>
+        <EditorCategories value=""/>
+        <ImpactEffect value="A10XHellfireMissileDamage"/>
+    </CEffectLaunchMissile>
+    <CEffectCreateUnit id="ArtilleryBeacon">
+        <EditorCategories value=""/>
+        <WhichLocation Value="TargetPoint"/>
+        <SpawnUnit value="ArtilleryBeacon"/>
+    </CEffectCreateUnit>
+    <CEffectApplyBehavior id="BackstabDamageBuffLevel1">
+        <ValidatorArray index="0" value="Backstab"/>
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="BackstabDamageBuffLevel2">
+        <ValidatorArray index="0" value="Backstab"/>
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="CommunicationUplink">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectEnumArea id="CommunicationUplinkInitialSearch">
+        <EditorCategories value=""/>
+        <SearchFilters value="Heroic;Player,Neutral"/>
+        <AreaArray Radius="500" Effect="CommunicationUplinkPersistent"/>
+    </CEffectEnumArea>
+    <CEffectCreatePersistent id="CommunicationUplinkPersistent">
+        <EditorCategories value=""/>
+        <WhichLocation Value="TargetUnit"/>
+        <InitialDelay value="0.5"/>
+        <InitialEffect value="CommunicationUplinkShareSearch"/>
+    </CEffectCreatePersistent>
+    <CEffectRemoveBehavior id="CommunicationUplinkRemove">
+        <EditorCategories value=""/>
+        <BehaviorLink value="CommunicationUplink"/>
+        <Count value="1"/>
+    </CEffectRemoveBehavior>
+    <CEffectEnumArea id="CommunicationUplinkRemoveSearch">
+        <EditorCategories value=""/>
+        <SearchFilters value="Heroic;Player,Neutral,Enemy"/>
+        <AreaArray Radius="500" Effect="CommunicationUplinkRemove"/>
+    </CEffectEnumArea>
+    <CEffectEnumArea id="CommunicationUplinkShareSearch">
+        <EditorCategories value=""/>
+        <SearchFilters value="Heroic;Player,Neutral"/>
+        <AreaArray Radius="500" Effect="CommunicationUplink"/>
+    </CEffectEnumArea>
+    <CEffectRemoveBehavior id="DeactivateStealthMatrix">
+        <EditorCategories value=""/>
+        <WhichUnit Value="Caster"/>
+        <BehaviorCategories index="Temporary" value="1"/>
+        <Count value="1"/>
+    </CEffectRemoveBehavior>
+    <CEffectApplyBehavior id="EscapeLevel1">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectEnumArea id="EscapeAlliedSearchLevel2">
+        <EditorCategories value=""/>
+        <ImpactLocation Value="CasterUnit"/>
+        <AreaArray Radius="10" Effect="EscapeLevel2"/>
+        <SearchFilters value="-;Self,Neutral,Enemy"/>
+    </CEffectEnumArea>
+    <CEffectEnumArea id="EscapeAlliedSearchLevel3">
+        <EditorCategories value=""/>
+        <ImpactLocation Value="CasterUnit"/>
+        <AreaArray Radius="10" Effect="EscapeLevel3"/>
+        <SearchFilters value="-;Self,Neutral,Enemy"/>
+    </CEffectEnumArea>
+    <CEffectSet id="EscapeSetLevel1">
+        <EditorCategories value=""/>
+        <EffectArray value="EscapeReconLevel1"/>
+        <EffectArray value="EscapeAlliedSearchLevel1"/>
+    </CEffectSet>
+    <CEffectEnumArea id="EscapeAlliedSearchLevel1">
+        <EditorCategories value=""/>
+        <ImpactLocation Value="CasterUnit"/>
+        <AreaArray Radius="10" Effect="EscapeLevel1"/>
+        <SearchFilters value="-;Self,Neutral,Enemy"/>
+    </CEffectEnumArea>
+    <CEffectApplyBehavior id="EscapeLevel2">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectSet id="EscapeSetLevel2">
+        <EditorCategories value=""/>
+        <EffectArray value="EscapeReconLevel2"/>
+        <EffectArray value="EscapeAlliedSearchLevel2"/>
+    </CEffectSet>
+    <CEffectApplyBehavior id="EscapeLevel3">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectSet id="EscapeSetLevel3">
+        <EditorCategories value=""/>
+        <EffectArray value="EscapeReconLevel3"/>
+        <EffectArray value="EscapeAlliedSearchLevel3"/>
+    </CEffectSet>
+    <CEffectApplyBehavior id="EscapeReconLevel2">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="EscapeReconLevel3">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="EscapeReconLevel1">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectDamage id="ExecuteDamageLevel1">
+        <EditorCategories value=""/>
+        <Amount value="500"/>
+    </CEffectDamage>
+    <CEffectDamage id="ExecuteDamageLevel2">
+        <EditorCategories value=""/>
+        <Amount value="500"/>
+    </CEffectDamage>
+    <CEffectSwitch id="ExecuteSwitchLevel2">
+        <EditorCategories value=""/>
+        <CaseArray Validator="NormalUnitNonMassiveorHeroic" Effect="Kill"/>
+        <CaseDefault value="ExecuteLevel2DamageSwitch"/>
+    </CEffectSwitch>
+    <CEffectSwitch id="ExecuteSwitchLevel1">
+        <EditorCategories value=""/>
+        <CaseArray Validator="NormalUnitNonMassiveorHeroic" Effect="Kill"/>
+        <CaseDefault value="ExecuteDamageLevel1"/>
+    </CEffectSwitch>
+    <CEffectLaunchMissile id="FlareGunLaunchLevel1">
+        <EditorCategories value=""/>
+        <ImpactLocation Value="TargetPoint"/>
+        <AmmoUnit value="FlareGunProjectileLevel1"/>
+        <DeathType value="Unknown"/>
+    </CEffectLaunchMissile>
+    <CEffectLaunchMissile id="FlareGunLaunchLevel2">
+        <EditorCategories value=""/>
+        <ImpactLocation Value="TargetPoint"/>
+        <AmmoUnit value="FlareGunProjectileLevel2"/>
+        <DeathType value="Unknown"/>
+    </CEffectLaunchMissile>
+    <CEffectLaunchMissile id="FlareGunLaunchLevel3">
+        <EditorCategories value=""/>
+        <ImpactLocation Value="TargetPoint"/>
+        <AmmoUnit value="FlareGunProjectileLevel3"/>
+        <DeathType value="Unknown"/>
+    </CEffectLaunchMissile>
+    <CEffectCreatePersistent id="FlareGunPersistentLevel3">
+        <EditorCategories value=""/>
+        <PeriodCount value="12"/>
+        <PeriodicEffectArray value="FlareGunSlowSearchLevel122"/>
+        <PeriodicPeriodArray value="0.5"/>
+        <RevealRadius value="6"/>
+        <RevealFlags index="Unfog" value="1"/>
+        <RevealFlags index="Detect" value="1"/>
+    </CEffectCreatePersistent>
+    <CEffectSet id="FlareGunReconLevel1">
+        <EditorCategories value=""/>
+        <EffectArray value="FlareGunPersistentLevel1"/>
+        <EffectArray value="FlareGunLaunchLevel1"/>
+        <TargetLocationType value="Point"/>
+    </CEffectSet>
+    <CEffectSet id="FlareGunReconLevel2">
+        <EditorCategories value=""/>
+        <EffectArray value="FlareGunPersistentLevel2"/>
+        <EffectArray value="FlareGunLaunchLevel2"/>
+        <TargetLocationType value="Point"/>
+    </CEffectSet>
+    <CEffectCreatePersistent id="FlareGunPersistentLevel2">
+        <EditorCategories value=""/>
+        <PeriodCount value="8"/>
+        <PeriodicEffectArray value="FlareGunSlowSearchLevel12"/>
+        <PeriodicPeriodArray value="0.5"/>
+        <RevealRadius value="6"/>
+        <RevealFlags index="Unfog" value="1"/>
+        <RevealFlags index="Detect" value="1"/>
+    </CEffectCreatePersistent>
+    <CEffectCreatePersistent id="FlareGunPersistentLevel1">
+        <EditorCategories value=""/>
+        <PeriodCount value="8"/>
+        <PeriodicEffectArray value="FlareGunSlowSearchLevel1"/>
+        <PeriodicPeriodArray value="0.5"/>
+        <RevealRadius value="6"/>
+        <RevealFlags index="Unfog" value="1"/>
+        <RevealFlags index="Detect" value="1"/>
+    </CEffectCreatePersistent>
+    <CEffectSet id="FlareGunReconLevel3">
+        <EditorCategories value=""/>
+        <EffectArray value="FlareGunPersistentLevel3"/>
+        <EffectArray value="FlareGunLaunchLevel3"/>
+        <TargetLocationType value="Point"/>
+    </CEffectSet>
+    <CEffectApplyBehavior id="FlareGunSlowLevel1">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="FlareGunSlowLevel12">
+        <EditorCategories value=""/>
+        <Behavior value="FlareGunSlowLevel2"/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="FlareGunSlowLevel122">
+        <EditorCategories value=""/>
+        <Behavior value="FlareGunSlowLevel3"/>
+    </CEffectApplyBehavior>
+    <CEffectEnumArea id="FlareGunSlowSearchLevel1">
+        <EditorCategories value=""/>
+        <ImpactLocation Value="SourceUnit"/>
+        <SearchFilters value="-;Player,Ally,Neutral"/>
+        <AreaArray Radius="6" Effect="FlareGunSlowLevel1"/>
+    </CEffectEnumArea>
+    <CEffectEnumArea id="FlareGunSlowSearchLevel12">
+        <EditorCategories value=""/>
+        <ImpactLocation Value="SourceUnit"/>
+        <SearchFilters value="-;Player,Ally,Neutral"/>
+        <AreaArray Radius="6" Effect="FlareGunSlowLevel12"/>
+    </CEffectEnumArea>
+    <CEffectEnumArea id="FlareGunSlowSearchLevel122">
+        <EditorCategories value=""/>
+        <ImpactLocation Value="SourceUnit"/>
+        <SearchFilters value="-;Player,Ally,Neutral"/>
+        <AreaArray Radius="6" Effect="FlareGunSlowLevel122"/>
+    </CEffectEnumArea>
+    <CEffectApplyBehavior id="MotionSensorDetected">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectEnumArea id="MotionSensorSearchLevel1">
+        <EditorCategories value=""/>
+        <ImpactLocation Value="SourceUnit"/>
+        <SearchFilters value="-;Player,Ally,Neutral,Missile,Item"/>
+        <AreaArray Radius="20" Effect="MotionSensorDetected"/>
+    </CEffectEnumArea>
+    <CEffectEnumArea id="MotionSensorSearchLevel2">
+        <EditorCategories value=""/>
+        <ImpactLocation Value="SourceUnit"/>
+        <SearchFilters value="-;Player,Ally,Neutral,Missile,Item"/>
+        <AreaArray Radius="40" Effect="MotionSensorDetected"/>
+    </CEffectEnumArea>
+    <CEffectCreatePersistent id="SatelliteUplink">
+        <EditorCategories value=""/>
+        <WhichLocation Value="TargetUnitOrPoint"/>
+    </CEffectCreatePersistent>
+    <CEffectCreateUnit id="ScamperLevel1">
+        <EditorCategories value=""/>
+        <WhichLocation Value="CasterUnit"/>
+    </CEffectCreateUnit>
+    <CEffectCreateUnit id="ScamperLevel2">
+        <EditorCategories value=""/>
+        <WhichLocation Value="CasterUnit"/>
+    </CEffectCreateUnit>
+    <CEffectEnumArea id="SmokeGrenadeAlliedEvasionSearchLevel2">
+        <EditorCategories value=""/>
+        <SearchFilters value="-;Neutral,Enemy"/>
+        <AreaArray Radius="3.5" Effect="SmokeGrenadeAlliedEvasionLevel2"/>
+    </CEffectEnumArea>
+    <CEffectApplyBehavior id="SmokeGrenadeAlliedEvasionLevel3">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="SmokeGrenadeAlliedEvasionLevel2">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectEnumArea id="SmokeGrenadeAlliedEvasionSearchLevel3">
+        <EditorCategories value=""/>
+        <SearchFilters value="-;Neutral,Enemy"/>
+        <AreaArray Radius="3.5" Effect="SmokeGrenadeAlliedEvasionLevel3"/>
+    </CEffectEnumArea>
+    <CEffectEnumArea id="SmokeGrenadeEnemySlowSearchLevel3">
+        <EditorCategories value=""/>
+        <SearchFilters value="-;Player,Ally,Neutral"/>
+        <AreaArray Radius="3.5" Effect="SmokeGrenadeEnemySlowLevel3"/>
+    </CEffectEnumArea>
+    <CEffectCreatePersistent id="SmokeGrenadePersistentLevel1">
+        <EditorCategories value=""/>
+        <PeriodCount value="120"/>
+        <PeriodicEffectArray value="SmokeGrenadeEnemySlowSearchLevel1"/>
+        <PeriodicPeriodArray value="0.25"/>
+    </CEffectCreatePersistent>
+    <CEffectCreatePersistent id="SmokeGrenadePersistentLevel2">
+        <EditorCategories value=""/>
+        <PeriodCount value="120"/>
+        <PeriodicEffectArray value="SmokeGrenadeSetLevel2"/>
+        <PeriodicPeriodArray value="0.25"/>
+    </CEffectCreatePersistent>
+    <CEffectCreatePersistent id="SmokeGrenadePersistentLevel3">
+        <EditorCategories value=""/>
+        <PeriodCount value="120"/>
+        <PeriodicEffectArray value="SmokeGrenadeSetLevel3"/>
+        <PeriodicPeriodArray value="0.25"/>
+    </CEffectCreatePersistent>
+    <CEffectApplyBehavior id="SmokeGrenadeEnemySlowLevel2">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="SmokeGrenadeEnemySlowLevel3">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectEnumArea id="SmokeGrenadeEnemySlowSearchLevel1">
+        <EditorCategories value=""/>
+        <SearchFilters value="-;Player,Ally,Neutral"/>
+        <AreaArray Radius="3.5" Effect="SmokeGrenadeEnemySlowLevel1"/>
+    </CEffectEnumArea>
+    <CEffectApplyBehavior id="SmokeGrenadeEnemySlowLevel1">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectEnumArea id="SmokeGrenadeEnemySlowSearchLevel2">
+        <EditorCategories value=""/>
+        <SearchFilters value="-;Player,Ally,Neutral"/>
+        <AreaArray Radius="3.5" Effect="SmokeGrenadeEnemySlowLevel2"/>
+    </CEffectEnumArea>
+    <CEffectLaunchMissile id="SmokeGrenadeLevel3">
+        <EditorCategories value=""/>
+        <ImpactLocation Value="TargetPoint"/>
+        <ImpactEffect value="SmokeGrenadePersistentLevel3"/>
+    </CEffectLaunchMissile>
+    <CEffectSet id="SmokeGrenadeSetLevel2">
+        <EditorCategories value=""/>
+        <TargetLocationType value="Point"/>
+        <EffectArray value="SmokeGrenadeEnemySlowSearchLevel2"/>
+        <EffectArray value="SmokeGrenadeAlliedEvasionSearchLevel2"/>
+    </CEffectSet>
+    <CEffectSet id="SmokeGrenadeSetLevel3">
+        <EditorCategories value=""/>
+        <EffectArray value="SmokeGrenadeEnemySlowSearchLevel3"/>
+        <EffectArray value="SmokeGrenadeAlliedEvasionSearchLevel3"/>
+        <TargetLocationType value="Point"/>
+    </CEffectSet>
+    <CEffectSet id="StealthMatrixSetLevel1">
+        <ValidatorArray value="ReconHasStealthMatrix"/>
+        <EditorCategories value=""/>
+        <EffectArray value="StealthMatrixOrder"/>
+        <EffectArray value="StealthMatrixEscapeCloakLevel1"/>
+    </CEffectSet>
+    <CEffectSet id="StealthMatrixSetLevel2">
+        <ValidatorArray value="ReconHasStealthMatrix"/>
+        <EditorCategories value=""/>
+        <EffectArray value="StealthMatrixOrder"/>
+        <EffectArray value="StealthMatrixEscapeCloakLevel2"/>
+    </CEffectSet>
+    <CEffectSet id="StealthMatrixSetLevel3">
+        <ValidatorArray value="ReconHasStealthMatrix"/>
+        <EditorCategories value=""/>
+        <EffectArray value="StealthMatrixOrder"/>
+        <EffectArray value="StealthMatrixEscapeCloakLevel3"/>
+    </CEffectSet>
+    <CEffectLaunchMissile id="SurveillanceFlareLevel2">
+        <EditorCategories value=""/>
+        <ImpactLocation Value="TargetPoint"/>
+        <ImpactEffect value="GroundIlluminationFlareCreationLevel2"/>
+        <Flags index="2D" value="1"/>
+        <Flags index="PointFallback" value="0"/>
+        <AmmoUnit value="RoadFlareTossed"/>
+        <Movers Link="RoadFlare"/>
+    </CEffectLaunchMissile>
+    <CEffectCreateUnit id="GroundIlluminationFlareCreationLevel2">
+        <EditorCategories value=""/>
+        <WhichLocation Value="TargetPoint"/>
+        <SpawnUnit value="GroundIlluminationFlareLevel2"/>
+    </CEffectCreateUnit>
+    <CEffectCreateUnit id="GroundIlluminationFlareCreationLevel3">
+        <EditorCategories value=""/>
+        <WhichLocation Value="TargetPoint"/>
+        <SpawnUnit value="GroundIlluminationFlareLevel3"/>
+    </CEffectCreateUnit>
+    <CEffectLaunchMissile id="SurveillanceFlareLevel3">
+        <EditorCategories value=""/>
+        <ImpactLocation Value="TargetPoint"/>
+        <ImpactEffect value="GroundIlluminationFlareCreationLevel3"/>
+        <Flags index="2D" value="1"/>
+        <Flags index="PointFallback" value="0"/>
+        <AmmoUnit value="RoadFlareTossed"/>
+        <Movers Link="RoadFlare"/>
+    </CEffectLaunchMissile>
+    <CEffectCreateUnit id="GroundIlluminationFlareCreationLevel1">
+        <EditorCategories value=""/>
+        <WhichLocation Value="TargetPoint"/>
+        <SpawnUnit value="GroundIlluminationFlareLevel1"/>
+    </CEffectCreateUnit>
+    <CEffectApplyBehavior id="KineticPayloadLaunch">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectLaunchMissile id="KineticPayloadMissile">
+        <EditorCategories value=""/>
+        <ImpactLocation Value="TargetPoint"/>
+        <ImpactEffect value="KineticPayloadDamage"/>
+    </CEffectLaunchMissile>
+    <CEffectEnumArea id="KineticPayload">
+        <EditorCategories value=""/>
+        <SearchFilters value="Robotic,Summoned;Ally,Neutral,Enemy"/>
+        <AreaArray MaxCount="1" Radius="500" Effect="KineticPayloadLaunch"/>
+    </CEffectEnumArea>
+    <CEffectDamage id="KineticPayloadDamage">
+        <EditorCategories value=""/>
+        <Amount value="500"/>
+        <AreaArray Radius="4" Fraction="1"/>
+        <SearchFilters value="-;Player,Ally,Neutral,Robotic,Item,Invulnerable"/>
+    </CEffectDamage>
+    <CEffectApplyBehavior id="LaserDesignatedLevel1">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectSet id="LaserDesignatorLevel1">
+        <EditorCategories value=""/>
+        <EffectArray value="LaserDesignatedLevel1"/>
+        <EffectArray value="LaserDesignatorSwitchLevel1"/>
+    </CEffectSet>
+    <CEffectSet id="LaserDesignatorLevel2">
+        <EditorCategories value=""/>
+        <EffectArray value="LaserDesignatedLevel2"/>
+        <EffectArray value="LaserDesignatorSwitchLevel2"/>
+    </CEffectSet>
+    <CEffectApplyBehavior id="LaserDesignatedLevel2">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectSet id="LaserDesignatorLevel3">
+        <EditorCategories value=""/>
+        <EffectArray value="LaserDesignatedLevel3"/>
+        <EffectArray value="LaserDesignatorSwitchLevel22"/>
+    </CEffectSet>
+    <CEffectApplyBehavior id="LaserDesignatedLevel3">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectEnumArea id="LaserDesignatorSearchLevel1MotionSensorLevel1">
+        <EditorCategories value=""/>
+        <ImpactLocation Value="TargetUnit"/>
+        <ExcludeArray Value="Target"/>
+        <SearchFilters value="-;Player,Ally,Neutral"/>
+        <AreaArray Radius="5" Effect="LaserDesignatedLevel1"/>
+        <MaxCount value="3"/>
+    </CEffectEnumArea>
+    <CEffectEnumArea id="LaserDesignatorSearchLevel2MotionSensorLevel1">
+        <EditorCategories value=""/>
+        <ImpactLocation Value="TargetUnit"/>
+        <ExcludeArray Value="Target"/>
+        <SearchFilters value="-;Player,Ally,Neutral"/>
+        <AreaArray Radius="5" Effect="LaserDesignatedLevel2"/>
+        <MaxCount value="3"/>
+    </CEffectEnumArea>
+    <CEffectEnumArea id="LaserDesignatorSearchLevel3MotionSensorLevel1">
+        <EditorCategories value=""/>
+        <ImpactLocation Value="TargetUnit"/>
+        <ExcludeArray Value="Target"/>
+        <SearchFilters value="-;Player,Ally,Neutral"/>
+        <AreaArray Radius="5" Effect="LaserDesignatedLevel3"/>
+        <MaxCount value="3"/>
+    </CEffectEnumArea>
+    <CEffectEnumArea id="LaserDesignatorSearchLevel3MotionSensorLevel2">
+        <EditorCategories value=""/>
+        <ImpactLocation Value="TargetUnit"/>
+        <ExcludeArray Value="Target"/>
+        <SearchFilters value="-;Player,Ally,Neutral"/>
+        <AreaArray Radius="5" Effect="LaserDesignatedLevel3"/>
+        <MaxCount value="6"/>
+    </CEffectEnumArea>
+    <CEffectSwitch id="LaserDesignatorSwitchLevel2">
+        <EditorCategories value=""/>
+        <CaseArray Validator="MotionSensorLevel1" Effect="LaserDesignatorSearchLevel2MotionSensorLevel1"/>
+        <CaseArray Validator="MotionSensorLevel12" Effect="LaserDesignatorSearchLevel2MotionSensorLevel2"/>
+    </CEffectSwitch>
+    <CEffectEnumArea id="LaserDesignatorSearchLevel1MotionSensorLevel2">
+        <EditorCategories value=""/>
+        <ImpactLocation Value="TargetUnit"/>
+        <ExcludeArray Value="Target"/>
+        <SearchFilters value="-;Player,Ally,Neutral"/>
+        <AreaArray Radius="5" Effect="LaserDesignatedLevel1"/>
+        <MaxCount value="6"/>
+    </CEffectEnumArea>
+    <CEffectEnumArea id="LaserDesignatorSearchLevel2MotionSensorLevel2">
+        <EditorCategories value=""/>
+        <ImpactLocation Value="TargetUnit"/>
+        <ExcludeArray Value="Target"/>
+        <SearchFilters value="-;Player,Ally,Neutral"/>
+        <AreaArray Radius="5" Effect="LaserDesignatedLevel2"/>
+        <MaxCount value="6"/>
+    </CEffectEnumArea>
+    <CEffectSwitch id="LaserDesignatorSwitchLevel1">
+        <EditorCategories value=""/>
+        <CaseArray Validator="MotionSensorLevel1" Effect="LaserDesignatorSearchLevel1MotionSensorLevel1"/>
+        <CaseArray Validator="MotionSensorLevel12" Effect="LaserDesignatorSearchLevel1MotionSensorLevel2"/>
+    </CEffectSwitch>
+    <CEffectSwitch id="LaserDesignatorSwitchLevel22">
+        <EditorCategories value=""/>
+        <CaseArray Validator="MotionSensorLevel1" Effect="LaserDesignatorSearchLevel3MotionSensorLevel1"/>
+        <CaseArray Validator="MotionSensorLevel12" Effect="LaserDesignatorSearchLevel3MotionSensorLevel2"/>
+    </CEffectSwitch>
+    <CEffectApplyBehavior id="ReconDetectorDetected">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectEnumArea id="ReconDetectorDetection">
+        <EditorCategories value=""/>
+        <Marker Link="Effect/HeroDetectorRadar"/>
+        <SearchFilters value="Visible,Detector;Player,Ally,Neutral"/>
+        <AreaArray Radius="20" Effect="ReconDetectorDetected"/>
+    </CEffectEnumArea>
+    <CEffectModifyUnit id="Refresher">
+        <EditorCategories value=""/>
+        <VitalArray index="Energy" Change="45"/>
+    </CEffectModifyUnit>
+    <CEffectApplyBehavior id="StealthMatrixEscapeCloakLevel1">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="StealthMatrixEscapeCloakLevel2">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="StealthMatrixEscapeCloakLevel3">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectIssueOrder id="StealthMatrixOrder">
+        <EditorCategories value=""/>
+        <Abil value="StealthMatrix"/>
+        <CmdFlags index="Preempt" value="1"/>
+    </CEffectIssueOrder>
+    <CEffectCreatePersistent id="AmmunitionDrop">
+        <EditorCategories value=""/>
+        <InitialDelay value="2"/>
+        <InitialEffect value="SupplyDropOffensiveUnit"/>
+    </CEffectCreatePersistent>
+    <CEffectSet id="ReconDeathEffects" parent="MarineDeathEffects">
+        <EffectArray value="CommunicationUplinkRemoveSearch"/>
+    </CEffectSet>
+    <CEffectLaunchMissile id="SurveillanceFlareLevel1">
+        <EditorCategories value=""/>
+        <ImpactLocation Value="TargetPoint"/>
+        <ImpactEffect value="GroundIlluminationFlareCreationLevel1"/>
+        <Flags index="2D" value="1"/>
+        <Flags index="PointFallback" value="0"/>
+        <AmmoUnit value="RoadFlareTossed"/>
+        <Movers Link="RoadFlare"/>
+    </CEffectLaunchMissile>
+    <CEffectLaunchMissile id="SmokeGrenadeLevel1">
+        <EditorCategories value=""/>
+        <ImpactLocation Value="TargetPoint"/>
+        <ImpactEffect value="SmokeGrenadePersistentLevel1"/>
+    </CEffectLaunchMissile>
+    <CEffectLaunchMissile id="SmokeGrenadeLevel2">
+        <EditorCategories value=""/>
+        <ImpactLocation Value="TargetPoint"/>
+        <ImpactEffect value="SmokeGrenadePersistentLevel2"/>
+    </CEffectLaunchMissile>
+    <CEffectCreatePersistent id="MedicalDrop">
+        <EditorCategories value=""/>
+        <InitialDelay value="2"/>
+        <InitialEffect value="SupplyDropDefensiveUnit"/>
+    </CEffectCreatePersistent>
+    <CEffectCreateUnit id="SupplyDropOffensiveUnit">
+        <EditorCategories value=""/>
+        <WhichLocation Value="TargetPoint"/>
+        <SpawnEffect value="Kill"/>
+        <SpawnUnit value="SupplyDropOffensive"/>
+    </CEffectCreateUnit>
+    <CEffectCreateUnit id="SupplyDropDefensiveUnit">
+        <EditorCategories value=""/>
+        <WhichLocation Value="TargetPoint"/>
+        <SpawnEffect value="Kill"/>
+        <SpawnUnit value="SupplyDropDefensive"/>
+    </CEffectCreateUnit>
+    <CEffectDamage id="BlackDiamondDamage">
+        <EditorCategories value=""/>
+        <Amount value="200"/>
+    </CEffectDamage>
+    <CEffectApplyBehavior id="BlackDiamondStun">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="TrackingTag">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CBehaviorBuff id="BackstabDamageBuffLevel1">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="0.0312"/>
+        <DamageResponse Chance="1" ModifyFraction="1.3"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="BackstabDamageBuffLevel2">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="0.0312"/>
+        <DamageResponse Chance="1" ModifyFraction="1.6"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="BackstabLevel2">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Requirements value="BackstabLevel2"/>
+        <DamageResponse Chance="1" Handled="BackstabDamageBuffLevel2" Location="Attacker"/>
+        <InfoFlags index="Hidden" value="1"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="BackstabLevel1">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Requirements value="BackstabLevel1"/>
+        <DamageResponse Chance="1" Handled="BackstabDamageBuffLevel1" Location="Attacker"/>
+        <InfoFlags index="Hidden" value="1"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="BlackDiamondStun">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="6"/>
+        <Modification>
+            <StateFlags index="Stun" value="1"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="Concealment">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Modification MoveSpeedMultiplier="0.75">
+            <StateFlags index="Cloak" value="1"/>
+        </Modification>
+        <InfoFlags index="Hidden" value="1"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="CommunicationUplink">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <MaxStackCount value="8"/>
+        <MaxStackCountPerCaster value="1"/>
+        <Modification>
+            <ModifyFlags index="Reveal" value="1"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="EscapeReconLevel1">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="10"/>
+        <Modification>
+            <StateFlags index="Cloak" value="1"/>
+        </Modification>
+        <ExpireEffect value="StealthMatrixSetLevel1"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="EscapeLevel1">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="10"/>
+        <Modification>
+            <StateFlags index="Cloak" value="1"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="EscapeLevel2">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="10"/>
+        <Modification MoveSpeedMultiplier="1.25">
+            <StateFlags index="Cloak" value="1"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="EscapeLevel3">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="10"/>
+        <Modification MoveSpeedMultiplier="1.25">
+            <StateFlags index="Cloak" value="1"/>
+            <StateFlags index="SuppressCollision" value="1"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="EscapeReconLevel2">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="10"/>
+        <Modification MoveSpeedMultiplier="1.25">
+            <StateFlags index="Cloak" value="1"/>
+        </Modification>
+        <ExpireEffect value="StealthMatrixSetLevel2"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="EscapeReconLevel3">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="10"/>
+        <Modification MoveSpeedMultiplier="1.25">
+            <StateFlags index="Cloak" value="1"/>
+            <StateFlags index="SuppressCollision" value="1"/>
+        </Modification>
+        <ExpireEffect value="StealthMatrixSetLevel3"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="FlareGunSlowLevel1">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="0.6"/>
+        <Modification MoveSpeedMultiplier="0.75"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="FlareGunTimedLife">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="3.8"/>
+        <Period value="0.5"/>
+        <ExpireEffect value="Suicide"/>
+        <DurationOverride Duration="5.8">
+            <ValidatorArray value="UnitisReconFlareLevel3"/>
+        </DurationOverride>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="FlareGunSlowLevel2">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="0.6"/>
+        <Modification MoveSpeedMultiplier="0.75"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="FlareGunSlowLevel3">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="0.6"/>
+        <Modification MoveSpeedMultiplier="0.75"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="GroundIlluminationTimedLifeLevel1">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="120"/>
+        <ExpireEffect value="Suicide"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="GroundIlluminationTimedLifeLevel2">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="120"/>
+        <ExpireEffect value="Suicide"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="GroundIlluminationTimedLifeLevel3">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="120"/>
+        <ExpireEffect value="Suicide"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="GunshipTimedLife">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="23"/>
+        <ExpireEffect value="MercAirLiftApplyBehavior"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="ItemSensorLevel1">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="ItemSensorLevel2" parent="LeveledPassiveTemplate">
+        <Requirements value="ItemSensorLevel2"/>
+        <InfoFlags index="Hidden" value="1"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="KineticPayloadLaunch">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Modification Height="40"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="LaserDesignatedLevel1">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <RemoveValidatorArray value="NotHidden"/>
+        <Modification>
+            <ModifyFlags index="Reveal" value="1"/>
+        </Modification>
+        <DamageResponse Chance="1" ModifyFraction="1.05"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="LaserDesignatedLevel2">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <RemoveValidatorArray value="NotHidden"/>
+        <Modification>
+            <ModifyFlags index="Reveal" value="1"/>
+        </Modification>
+        <DamageResponse Chance="1" ModifyFraction="1.05"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="LaserDesignatedLevel3">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <RemoveValidatorArray value="NotHidden"/>
+        <Modification>
+            <ModifyFlags index="Reveal" value="1"/>
+        </Modification>
+        <DamageResponse Chance="1" ModifyFraction="1.05"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="MotionSensorDetected">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="0.5"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="MotionSensorLevel1" parent="LeveledPassiveTemplate">
+        <InfoFlags index="Hidden" value="1"/>
+        <Requirements value="MotionSensorLevel1"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="MotionSensorLevel2" parent="LeveledPassiveTemplate">
+        <InfoFlags index="Hidden" value="1"/>
+        <Requirements value="MotionSensorLevel2"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="ReconDetectorDetected">
+        <InfoFlags index="Hidden" value="1"/>
+        <InfoIcon value="Assets\Textures\btn-status-radar.dds"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="0.5"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="ReconDetectorDetection">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Period value="0.25"/>
+        <PeriodicEffect value="ReconDetectorDetection"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="SmokeGrenadeAlliedEvasionLevel2">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="0.5"/>
+        <DamageResponse Chance="0.2" ModifyFraction="0" ModifyMinimumDamage="1"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="SmokeGrenadeAlliedEvasionLevel3">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="0.5"/>
+        <DamageResponse Chance="0.2" ModifyFraction="0" ModifyMinimumDamage="1"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="SmokeGrenadeEnemySlowLevel1">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Modification MoveSpeedMultiplier="0.75"/>
+        <Duration value="0.5"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="SmokeGrenadeEnemySlowLevel2">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Modification MoveSpeedMultiplier="0.75"/>
+        <Duration value="0.5"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="SmokeGrenadeEnemySlowLevel3">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="0.5"/>
+        <Modification MoveSpeedMultiplier="0.75" AttackSpeedMultiplier="0.75"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="StealthMatrixEscapeCloakLevel1">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Modification>
+            <StateFlags index="Cloak" value="1"/>
+        </Modification>
+        <InfoFlags index="Hidden" value="1"/>
+        <RemoveValidatorArray value="StealthMatrixActive"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="StealthMatrixEscapeCloakLevel2">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Modification MoveSpeedMultiplier="1.25">
+            <StateFlags index="Cloak" value="1"/>
+        </Modification>
+        <InfoFlags index="Hidden" value="1"/>
+        <RemoveValidatorArray value="StealthMatrixActive"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="StealthMatrixEscapeCloakLevel3">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Modification MoveSpeedMultiplier="1.25">
+            <StateFlags index="Cloak" value="1"/>
+            <StateFlags index="SuppressCollision" value="1"/>
+        </Modification>
+        <InfoFlags index="Hidden" value="1"/>
+        <RemoveValidatorArray value="StealthMatrixActive"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="StealthMatrixLevel1">
+        <InfoFlags index="Hidden" value="1"/>
+        <BehaviorCategories index="Temporary" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <TechAliasArray value="_StealthMatrix"/>
+        <RemoveValidatorArray value="CasterHasEnergy"/>
+        <Modification>
+            <StateFlags index="Passive" value="1"/>
+            <VitalRegenArray index="Energy" value="-0.8007"/>
+        </Modification>
+        <DamageResponse Chance="1" Handled="DeactivateStealthMatrix" Location="Attacker"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="StealthMatrixLevel2">
+        <InfoFlags index="Hidden" value="1"/>
+        <BehaviorCategories index="Temporary" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <TechAliasArray value="_StealthMatrix"/>
+        <RemoveValidatorArray value="CasterHasEnergy"/>
+        <Modification>
+            <StateFlags index="Passive" value="1"/>
+            <VitalRegenArray index="Energy" value="-0.8007"/>
+        </Modification>
+        <DamageResponse Chance="1" Handled="DeactivateStealthMatrix" Location="Attacker">
+            <ExcludeEffectArray value="ExecuteDamageLevel1"/>
+            <ExcludeEffectArray value="ExecuteDamageLevel2"/>
+            <ExcludeEffectArray value="Kill"/>
+            <ExcludeEffectArray value="CombatKnifeDamage"/>
+            <ExcludeEffectArray value="TomahawkDamage"/>
+            <ExcludeEffectArray value="CombatKnifeDoubleDamage"/>
+            <ExcludeEffectArray value="TomahawkDoubleDamage"/>
+            <ExcludeEffectArray value="ExecuteDamageLevel2Backstab"/>
+        </DamageResponse>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="SprintingShadow">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Requirements value="SprintingShadow"/>
+        <DisableValidatorArray value="Cloaked"/>
+        <Modification MoveSpeedMultiplier="1.4">
+            <VitalRegenArray index="Energy" value="0.5"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="TrackingTag">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <MaxStackCount value="8"/>
+        <Duration value="240"/>
+        <Modification>
+            <ModifyFlags index="Reveal" value="1"/>
+        </Modification>
+    </CBehaviorBuff>
+</Catalog>
