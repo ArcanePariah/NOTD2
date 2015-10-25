@@ -2,30 +2,30 @@
 <Catalog>
     <CActorDoodad id="AbandonedBunker">
         <EditorCategories value="DoodadType:Debris"/>
-        <On index="0" Terms="ActorCreation" Send="Create SoundEmitter Doodad_BunkerWrecked"/>
+        <On index="0" Terms="ActorCreation" Send="$Stand PlayForever,RandomStartOffset"/>
+        <On index="1" removed="1"/>
         <Model value="Bunker"/>
-        <Footprint value="FootprintDoodad3x3"/>
         <RandomScaleRange value="1.000000,1.000000"/>
     </CActorDoodad>
     <CActorDoodad id="AbandonedBunker2">
         <EditorCategories value="DoodadType:Debris"/>
-        <On index="0" Terms="ActorCreation" Send="Create SoundEmitter Doodad_BunkerWrecked"/>
+        <On index="0" Terms="ActorCreation" Send="$Stand PlayForever,RandomStartOffset"/>
+        <On index="1" removed="1"/>
         <Model value="ExplodingBarrelLarge"/>
         <RandomScaleRange value="1.000000,1.000000"/>
     </CActorDoodad>
     <CActorDoodad id="AbandonedBunker3">
         <EditorCategories value="DoodadType:Debris"/>
-        <On index="0" Terms="ActorCreation" Send="Create SoundEmitter Doodad_BunkerWrecked"/>
+        <On index="0" Terms="ActorCreation" Send="$Stand PlayForever,RandomStartOffset"/>
+        <On index="1" removed="1"/>
         <Model value="HybridLabCurtain"/>
         <Scale value="0.250000,0.250000,1.000000"/>
-        <Footprint value="Footprint1x1"/>
         <RandomScaleRange value="1.000000,1.000000"/>
     </CActorDoodad>
     <CActorDoodad id="Housing1">
         <EditorCategories value="DoodadType:Debris"/>
         <On index="0" Terms="ActorCreation" Send="Create SoundEmitter Doodad_BunkerWrecked"/>
         <Model value="InfestedDominionHousing1"/>
-        <Footprint value="Footprint1x1"/>
         <RandomScaleRange value="1.000000,1.000000"/>
     </CActorDoodad>
     <CActorDoodad id="Helipad">
@@ -40,21 +40,18 @@
         <EditorCategories value="DoodadType:Debris"/>
         <On index="0" Terms="ActorCreation" Send="Create SoundEmitter Doodad_BunkerWrecked"/>
         <Model value="InfestedDominionHousing2"/>
-        <Footprint value="Footprint1x12"/>
         <RandomScaleRange value="1.000000,1.000000"/>
     </CActorDoodad>
     <CActorDoodad id="Housing122">
         <EditorCategories value="DoodadType:Debris"/>
         <On index="0" Terms="ActorCreation" Send="Create SoundEmitter Doodad_BunkerWrecked"/>
         <Model value="InfestedDominionHousing3"/>
-        <Footprint value="Footprint1x122"/>
         <RandomScaleRange value="1.000000,1.000000"/>
     </CActorDoodad>
     <CActorDoodad id="Housing1222">
         <EditorCategories value="DoodadType:Debris"/>
         <On index="0" Terms="ActorCreation" Send="Create SoundEmitter Doodad_BunkerWrecked"/>
         <Model value="WarfieldBasePlatform"/>
-        <Footprint value="Footprint1x122"/>
         <RandomScaleRange value="1.000000,1.000000"/>
     </CActorDoodad>
     <CActorDoodad id="HybridLabCurtain">
@@ -147,9 +144,9 @@
         <Footprint value="ShortBridgeVertical"/>
         <RandomScaleRange value="1.000000,1.000000"/>
     </CActorDoodad>
-    <!--                                                                                         -->
-    <!-- Special Ops Dropship .................................................................. -->
-    <!--                                                                                         -->
+    <CActorDoodad id="SpaceElevatorRamp">
+        <BoostedCliffLevel value="1"/>
+    </CActorDoodad>
     <CActorDoodad id="UmajonLabCatwalkCard">
         <EditorCategories value="DoodadType:Structures"/>
         <Model value="UmojanLabCatwalkSection45Right"/>

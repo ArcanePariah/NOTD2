@@ -1,63 +1,5 @@
 <?xml version="1.0" encoding="us-ascii"?>
 <Catalog>
-    <CValidatorPlayerRequirement id="AftershockLevel1">
-        <Find value="1"/>
-        <Value value="AftershockLevel1"/>
-    </CValidatorPlayerRequirement>
-    <CValidatorPlayerRequirement id="AftershockLevel12">
-        <Find value="1"/>
-        <Value value="AftershockLevel12"/>
-    </CValidatorPlayerRequirement>
-    <CValidatorCombine id="AftershockSlowCheck">
-        <CombineArray value="TargetisNanoShockedLevel1"/>
-        <CombineArray value="TargetisNanoShockedLevel12"/>
-        <CombineArray value="TargetisNanoShockedLevel122"/>
-        <CombineArray value="TargetisNanoShockedLevel1"/>
-        <CombineArray value="TargetisNanoShockedLevel12"/>
-        <CombineArray value="TargetisNanoShockedLevel122"/>
-    </CValidatorCombine>
-    <CValidatorUnitCompareBehaviorCount id="AftershockedLevel1">
-        <WhichUnit Effect="NanoShockLevel1" Value="Caster"/>
-        <Value value="1"/>
-        <Behavior value="Aftershock"/>
-    </CValidatorUnitCompareBehaviorCount>
-    <CValidatorUnitCompareBehaviorCount id="AftershockedLevel12">
-        <WhichUnit Effect="NanoShockLevel2" Value="Caster"/>
-        <Value value="1"/>
-        <Behavior value="Aftershock"/>
-    </CValidatorUnitCompareBehaviorCount>
-    <CValidatorUnitCompareBehaviorCount id="AftershockedLevel122">
-        <WhichUnit Effect="NanoShockLevel3" Value="Caster"/>
-        <Value value="1"/>
-        <Behavior value="Aftershock"/>
-    </CValidatorUnitCompareBehaviorCount>
-    <CValidatorLocationEnumArea id="Backstab">
-        <WhichLocation Value="TargetUnit"/>
-        <AreaArray Arc="270" Radius="500"/>
-        <Compare value="Eq"/>
-        <SearchFlags index="CenterAtLaunch" value="1"/>
-        <LaunchLocation Value="TargetUnit"/>
-        <SearchFilters value="Biological,Heroic;Ally,Neutral,Enemy"/>
-        <ExcludeArray Value="Target"/>
-    </CValidatorLocationEnumArea>
-    <CValidatorUnitCompareBehaviorCount id="CasterhasFocusFireActive">
-        <WhichUnit Value="Caster"/>
-        <Compare value="GT"/>
-        <Behavior value="FocusFire"/>
-    </CValidatorUnitCompareBehaviorCount>
-    <CValidatorUnitCompareBehaviorCount id="CasterhasRepulse">
-        <WhichUnit Value="Caster"/>
-        <Value value="1"/>
-        <Behavior value="RepulseSelfBuff"/>
-    </CValidatorUnitCompareBehaviorCount>
-    <CValidatorUnitType id="CasterisChainExplosiveLevel1">
-        <WhichUnit Value="Caster"/>
-        <Value value="ChainExplosiveLevel1"/>
-    </CValidatorUnitType>
-    <CValidatorUnitType id="CasterisChainExplosiveLevel2">
-        <WhichUnit Value="Caster"/>
-        <Value value="ChainExplosiveLevel2"/>
-    </CValidatorUnitType>
     <CValidatorUnitType id="CasterisNotMedic">
         <WhichUnit Value="Caster"/>
         <Value value="Medic2"/>
@@ -93,33 +35,6 @@
         <CombineArray value="GameisNightmare"/>
         <CombineArray value="HordeModeNightmareNoise"/>
     </CValidatorCombine>
-    <CValidatorPlayerRequirement id="ItemSensorLevel1">
-        <Find value="1"/>
-        <Value value="ItemSensorLevel1"/>
-    </CValidatorPlayerRequirement>
-    <CValidatorPlayerRequirement id="ItemSensorLevel2">
-        <Find value="1"/>
-        <Value value="ItemSensorLevel2"/>
-    </CValidatorPlayerRequirement>
-    <CValidatorCombine id="MotionSenorVisibility">
-        <CombineArray value="TargetisnotVisible"/>
-        <CombineArray value="UnitisVisibleandCloaked"/>
-    </CValidatorCombine>
-    <CValidatorCombine id="MotionSensorUnitQuery">
-        <Type value="And"/>
-        <CombineArray value="MotionSenorVisibility"/>
-        <CombineArray value="TargetisnotanItem"/>
-        <CombineArray value="NotDead"/>
-        <CombineArray value="NotStructure"/>
-        <CombineArray value="TargetCanMove"/>
-    </CValidatorCombine>
-    <!--We add the Hidden check because we don't want to see items being carried by other players.-->
-    <CValidatorCombine id="ItemSensorUnitQuery">
-        <Type value="And"/>
-        <CombineArray value="TargetisnotVisible"/>
-        <CombineArray value="TargetisanItem"/>
-        <CombineArray value="NotHidden"/>
-    </CValidatorCombine>
     <CValidatorUnitCompareSpeed id="Moving">
         <WhichUnit Value="Caster"/>
         <Compare value="NE"/>
@@ -130,99 +45,12 @@
         <Value value="6"/>
         <Behavior value="PredatorPetVeterancy"/>
     </CValidatorUnitCompareBehaviorCount>
-    <CValidatorPlayerRequirement id="ReactiveShieldsLevel1">
-        <Find value="1"/>
-        <Value value="ReactiveShieldsLevel1"/>
-    </CValidatorPlayerRequirement>
-    <CValidatorPlayerRequirement id="ReactiveShieldsLevel2">
-        <Find value="1"/>
-        <Value value="ReactiveShieldsLevel2"/>
-    </CValidatorPlayerRequirement>
-    <CValidatorPlayerRequirement id="ReactiveShieldsLevel3">
-        <Find value="1"/>
-        <Value value="ReactiveShieldsLevel3"/>
-    </CValidatorPlayerRequirement>
-    <CValidatorUnitOrderQueue id="ReconAttacking">
-        <AbilLink value="attack"/>
-    </CValidatorUnitOrderQueue>
-    <CValidatorUnitOrder id="ReconUsesBlackDiamond"/>
-    <CValidatorLocationEnumArea id="SatchelChargeNoAlliedUnitsNear">
-        <WhichLocation Value="CasterUnit"/>
-        <AreaArray Radius="6" Validator="UnitisnotDemolitionsExplosive"/>
-        <Compare value="Eq"/>
-        <SearchFilters value="-;Self,Neutral,Enemy"/>
-    </CValidatorLocationEnumArea>
-    <CValidatorUnitCompareMarkerCount id="ChargeDamageLevel1">
-        <WhichUnit Effect="ChargeImpactSetLevel1"/>
-    </CValidatorUnitCompareMarkerCount>
-    <CValidatorUnitCompareMarkerCount id="ChargeDamageLevel12">
-        <WhichUnit Effect="ChargeImpactSetLevel2"/>
-    </CValidatorUnitCompareMarkerCount>
-    <CValidatorPlayerRequirement id="CollateralDamageLevel1">
-        <Value value="CollateralDamageLevel1"/>
-        <WhichPlayer Value="Caster"/>
-        <Find value="1"/>
-    </CValidatorPlayerRequirement>
-    <CValidatorPlayerRequirement id="CollateralDamageLevel2">
-        <Value value="CollateralDamageLevel2"/>
-        <WhichPlayer Value="Caster"/>
-        <Find value="1"/>
-    </CValidatorPlayerRequirement>
-    <CValidatorPlayerRequirement id="CollateralDamageLevel3">
-        <Value value="CollateralDamageLevel3"/>
-        <WhichPlayer Value="Caster"/>
-        <Find value="1"/>
-    </CValidatorPlayerRequirement>
-    <CValidatorLocationEnumArea id="EnemyNear">
-        <WhichLocation Value="CasterUnit"/>
-        <AreaArray Radius="1.5"/>
-        <SearchFilters value="Visible;Player,Ally,Neutral"/>
-    </CValidatorLocationEnumArea>
-    <CValidatorLocationEnumArea id="MassiveEnemyNear">
-        <WhichLocation Value="CasterUnit"/>
-        <AreaArray Radius="1.5"/>
-        <SearchFilters value="Massive,Visible;Player,Ally,Neutral"/>
-    </CValidatorLocationEnumArea>
-    <CValidatorLocationEnumArea id="HeroicEnemyNear">
-        <WhichLocation Value="CasterUnit"/>
-        <AreaArray Radius="1.5"/>
-        <SearchFilters value="Heroic,Visible;Player,Ally,Neutral"/>
-    </CValidatorLocationEnumArea>
-    <CValidatorUnitCompareBehaviorCount id="EnemyNotAftershocked">
-        <Behavior value="AftershockedEnemy"/>
-    </CValidatorUnitCompareBehaviorCount>
-    <CValidatorPlayerRequirement id="FireUpLevel1">
-        <Find value="1"/>
-        <Value value="FireUpLevel1"/>
-    </CValidatorPlayerRequirement>
-    <CValidatorPlayerRequirement id="FireUpLevel2">
-        <Find value="1"/>
-        <Value value="FireUpLevel2"/>
-    </CValidatorPlayerRequirement>
-    <CValidatorPlayerRequirement id="FireUpLevel3">
-        <Find value="1"/>
-        <Value value="FireUpLevel3"/>
-    </CValidatorPlayerRequirement>
-    <CValidatorCombine id="HaveMedicalExpertise">
-        <CombineArray value="MedicalExpertiseLevel1"/>
-        <CombineArray value="MedicalExpertiseLevel2"/>
-    </CValidatorCombine>
-    <CValidatorLocationCompareRange id="HealRange">
-        <WhichLocation Value="TargetUnit"/>
-        <Compare value="LE"/>
-        <Range value="3"/>
-    </CValidatorLocationCompareRange>
     <CValidatorCombine id="Healing">
         <Type value="And"/>
         <CombineArray value="HealRange"/>
         <CombineArray value="IsHealing"/>
         <CombineArray value="MedicOutofCombat"/>
     </CValidatorCombine>
-    <CValidatorUnitCompareBehaviorCount id="IsHealing">
-        <WhichUnit Value="Caster"/>
-        <Compare value="GT"/>
-        <Behavior value="Healing"/>
-    </CValidatorUnitCompareBehaviorCount>
     <CValidatorUnitCompareVital id="IsLE80Life">
         <Compare value="LE"/>
         <Type value="Fraction"/>
@@ -257,23 +85,6 @@
         <WhichPlayer Value="Target"/>
         <Value value="Computer"/>
     </CValidatorPlayerCompareType>
-    <CValidatorLocationEnumArea id="LaserDesignatedTargetsinRange">
-        <WhichLocation Value="CasterUnit"/>
-        <AreaArray Radius="500" Validator="TargetisLaserDesignated"/>
-        <SearchFilters value="Visible;Player,Ally,Neutral"/>
-    </CValidatorLocationEnumArea>
-    <CValidatorLocationEnumArea id="MD5NoAlliedUnitsNear">
-        <AreaArray Radius="2.5" Validator="UnitisnotDemolitionsExplosive"/>
-        <Compare value="Eq"/>
-        <SearchFilters value="-;Self,Neutral,Enemy"/>
-        <WhichLocation Value="CasterUnit"/>
-    </CValidatorLocationEnumArea>
-    <CValidatorLocationEnumArea id="ChainExplosiveNoAlliedUnitsNear">
-        <AreaArray Radius="3.5" Validator="UnitisnotDemolitionsExplosive"/>
-        <Compare value="Eq"/>
-        <SearchFilters value="-;Self,Neutral,Enemy"/>
-        <WhichLocation Value="CasterUnit"/>
-    </CValidatorLocationEnumArea>
     <CValidatorCombine id="MarineDeathSwitch">
         <CombineArray value="SourceLastDamagedbyAlly"/>
         <CombineArray value="SourceLastDamagedbyEnemy"/>
@@ -283,11 +94,6 @@
         <Value value="5"/>
         <Behavior value="LifeRemoval"/>
     </CValidatorUnitCompareBehaviorCount>
-    <CValidatorUnitCompareDamageTakenTime id="MedicOutofCombat">
-        <WhichUnit Value="Caster"/>
-        <Compare value="GT"/>
-        <Value value="0.5"/>
-    </CValidatorUnitCompareDamageTakenTime>
     <CValidatorUnitCompareVital id="MedicalAssistanceHealingabove80">
         <Compare value="GE"/>
         <Value value="0.8"/>
@@ -300,11 +106,6 @@
         <CombineArray value="MarinehasMedkit"/>
         <CombineArray value="MarinehasAntiVenom"/>
     </CValidatorCombine>
-    <CValidatorCombine id="MedicalAssistanceMedic">
-        <Type value="And"/>
-        <CombineArray value="CasterisMedic"/>
-        <CombineArray value="MedicalAssistanceItems"/>
-    </CValidatorCombine>
     <CValidatorCombine id="MeleeWeaponEquipped">
         <CombineArray value="EquippedWeaponisChainsaw"/>
         <CombineArray value="EquippedWeaponisAxe"/>
@@ -316,66 +117,17 @@
         <CombineArray value="EquippedWeaponisPumpShotgun"/>
         <CombineArray value="EquippedWeaponisAutomaticShotgun"/>
     </CValidatorCombine>
-    <CValidatorPlayerRequirement id="MotionSensorLevel12">
-        <Find value="1"/>
-        <Value value="MotionSensorLevel2"/>
-    </CValidatorPlayerRequirement>
     <CValidatorUnitCompareBehaviorCount id="HordeModeRecruitNoise">
         <Compare value="GE"/>
         <Value value="200"/>
         <Behavior value="NoiseIndex"/>
     </CValidatorUnitCompareBehaviorCount>
-    <CValidatorCombine id="MineTriggerArmed">
-        <CombineArray value="MassreactiveTriggerArmed"/>
-        <CombineArray value="ProxmityTriggerArmed"/>
-    </CValidatorCombine>
-    <CValidatorCombine id="MinenotTriggerArmed">
-        <CombineArray value="MassreactiveTriggerArmed"/>
-        <CombineArray value="ProxmityTriggerArmed"/>
-        <Negate value="1"/>
-    </CValidatorCombine>
-    <CValidatorPlayerRequirement id="MotionSensorLevel1">
-        <Find value="1"/>
-        <Value value="MotionSensorLevel1"/>
-    </CValidatorPlayerRequirement>
-    <CValidatorUnitCompareBehaviorCount id="ProxmityTriggerArmed">
-        <Value value="1"/>
-        <Behavior value="ProximityTrigger"/>
-    </CValidatorUnitCompareBehaviorCount>
-    <CValidatorUnitCompareBehaviorCount id="MassreactiveTriggerArmed">
-        <Value value="1"/>
-        <Behavior value="MassreactiveTrigger"/>
-    </CValidatorUnitCompareBehaviorCount>
-    <CValidatorLocationCompareRange id="ReactiveShieldsRange">
-        <WhichLocation Value="TargetUnit"/>
-        <Compare value="LE"/>
-        <Range value="2"/>
-    </CValidatorLocationCompareRange>
-    <CValidatorCombine id="ReconHasStealthMatrix">
-        <CombineArray value="StealthMatrixLevel1"/>
-        <CombineArray value="StealthMatrixLevel2"/>
-    </CValidatorCombine>
-    <CValidatorLocationEnumArea id="SonicTrapActivation">
-        <WhichLocation Value="CasterUnit"/>
-        <AreaArray Radius="3"/>
-        <SearchFilters value="Visible;Player,Ally,Neutral"/>
-    </CValidatorLocationEnumArea>
     <CValidatorUnitCompareChargeUsed id="SonicTrapSuicideLevel2">
         <Compare value="LT"/>
         <ChargeLink value="Abil/SonicTrapLevel2"/>
         <Ability value="SonicTrapLevel2"/>
         <Value value="6"/>
     </CValidatorUnitCompareChargeUsed>
-    <CValidatorPlayerRequirement id="MedicalExpertiseLevel1">
-        <WhichPlayer Value="Caster"/>
-        <Find value="1"/>
-        <Value value="MedicalExpertiseLevel1"/>
-    </CValidatorPlayerRequirement>
-    <CValidatorPlayerRequirement id="MedicalExpertiseLevel2">
-        <WhichPlayer Value="Caster"/>
-        <Find value="1"/>
-        <Value value="MedicalExpertiseLevel2"/>
-    </CValidatorPlayerRequirement>
     <CValidatorUnitFilters id="NormalUnitNonMassiveorHeroic"/>
     <CValidatorUnitCompareChargeUsed id="SonicTrapSuicideLevel1">
         <Compare value="LT"/>
@@ -387,75 +139,14 @@
         <WhichUnit Value="Source"/>
         <Relationship value="Ally"/>
     </CValidatorUnitLastDamagePlayer>
-    <CValidatorUnitCompareBehaviorCount id="SourcehasNanoPlague">
-        <WhichUnit Value="Source"/>
-        <Value value="1"/>
-        <Behavior value="NanoPlague"/>
-    </CValidatorUnitCompareBehaviorCount>
-    <CValidatorPlayerRequirement id="StealthMatrixLevel1">
-        <Find value="1"/>
-        <Value value="StealthMatrixLevel1"/>
-    </CValidatorPlayerRequirement>
-    <CValidatorCombine id="StealthMatrixLevel1Disable">
-        <Type value="And"/>
-    </CValidatorCombine>
-    <CValidatorUnitCompareBehaviorCount id="StealthMatrixLevel1Active">
-        <Value value="1"/>
-        <Behavior value="StealthMatrixLevel1"/>
-    </CValidatorUnitCompareBehaviorCount>
-    <CValidatorUnitCompareBehaviorCount id="StealthMatrixLevel2Active">
-        <Value value="1"/>
-        <Behavior value="StealthMatrixLevel2"/>
-    </CValidatorUnitCompareBehaviorCount>
-    <CValidatorPlayerRequirement id="StealthMatrixLevel2">
-        <Find value="1"/>
-        <Value value="StealthMatrixLevel2"/>
-    </CValidatorPlayerRequirement>
     <CValidatorUnitCompareField id="TargetCanMove">
         <Compare value="GT"/>
         <Field value="Speed"/>
         <Value value="0"/>
     </CValidatorUnitCompareField>
-    <CValidatorUnitCompareBehaviorCount id="TargethasLaserDesignatorLevel1">
-        <Value value="1"/>
-        <Behavior value="LaserDesignatedLevel1"/>
-    </CValidatorUnitCompareBehaviorCount>
-    <CValidatorUnitCompareBehaviorCount id="TargethasLaserDesignatorLevel2">
-        <Value value="1"/>
-        <Behavior value="LaserDesignatedLevel2"/>
-    </CValidatorUnitCompareBehaviorCount>
-    <CValidatorUnitCompareBehaviorCount id="TargethasLaserDesignatorLevel3">
-        <Value value="1"/>
-        <Behavior value="LaserDesignatedLevel3"/>
-    </CValidatorUnitCompareBehaviorCount>
-    <CValidatorCombine id="TargetisLaserDesignated">
-        <CombineArray value="TargethasLaserDesignatorLevel1"/>
-        <CombineArray value="TargethasLaserDesignatorLevel2"/>
-        <CombineArray value="TargethasLaserDesignatorLevel3"/>
-    </CValidatorCombine>
     <CValidatorCombine id="TargetisMassiveorArmored">
         <CombineArray value="TargetisnonMassiveorArmored"/>
         <Negate value="1"/>
-    </CValidatorCombine>
-    <CValidatorUnitCompareBehaviorCount id="TargetisNanoShockedLevel1">
-        <Value value="1"/>
-        <Behavior value="NanoShockSlowLevel1"/>
-    </CValidatorUnitCompareBehaviorCount>
-    <CValidatorUnitCompareBehaviorCount id="TargetisNanoShockedLevel12">
-        <Value value="1"/>
-        <Behavior value="NanoShockSlowLevel2"/>
-    </CValidatorUnitCompareBehaviorCount>
-    <CValidatorCombine id="CasterisChainExplosive">
-        <CombineArray value="CasterisChainExplosiveLevel1"/>
-        <CombineArray value="CasterisChainExplosiveLevel2"/>
-    </CValidatorCombine>
-    <CValidatorUnitCompareBehaviorCount id="TargetisNanoShockedLevel122">
-        <Value value="1"/>
-        <Behavior value="NanoShockSlowLevel3"/>
-    </CValidatorUnitCompareBehaviorCount>
-    <CValidatorCombine id="TargetisSlowedorStunned">
-        <CombineArray value="TargetisSlowed"/>
-        <CombineArray value="TargetisStunned"/>
     </CValidatorCombine>
     <CValidatorUnitFilters id="TargetisanItem">
         <Filters value="Item;-"/>
@@ -463,54 +154,9 @@
     <CValidatorUnitFilters id="TargetisnonMassiveorArmored">
         <Filters value="-;Armored,Massive"/>
     </CValidatorUnitFilters>
-    <CValidatorUnitFilters id="TargetisnotVisible">
-        <Filters value="-;Visible"/>
-    </CValidatorUnitFilters>
     <CValidatorUnitFilters id="TargetisnotanItem">
         <Filters value="-;Item"/>
     </CValidatorUnitFilters>
-    <CValidatorCombine id="UnitisNotChainExplosive">
-        <Type value="And"/>
-        <CombineArray value="UnitisNotChainExplosiveLevel1"/>
-        <CombineArray value="UnitisNotChainExplosiveLevel12"/>
-    </CValidatorCombine>
-    <CValidatorCombine id="UnitisDemolitionsExplosive">
-        <CombineArray value="UnitisChainExplosive"/>
-        <CombineArray value="UnitisMD5Mine"/>
-        <CombineArray value="UnitisSatchelCharge"/>
-    </CValidatorCombine>
-    <CValidatorUnitType id="UnitisNotChainExplosiveLevel1">
-        <Value value="ChainExplosiveLevel1"/>
-        <Find value="0"/>
-    </CValidatorUnitType>
-    <CValidatorUnitType id="UnitisNotChainExplosiveLevel12">
-        <Value value="ChainExplosiveLevel2"/>
-        <Find value="0"/>
-    </CValidatorUnitType>
-    <CValidatorUnitType id="UnitisNotMD5Mine">
-        <Value value="MD5Mine"/>
-        <Find value="0"/>
-    </CValidatorUnitType>
-    <CValidatorUnitType id="UnitisNotSatchelCharge">
-        <Value value="DemoSatchelCharge"/>
-        <Find value="0"/>
-    </CValidatorUnitType>
-    <CValidatorUnitType id="CasterisMD5Mine">
-        <WhichUnit Value="Caster"/>
-        <Value value="MD5Mine"/>
-    </CValidatorUnitType>
-    <CValidatorUnitType id="UnitisReconFlareLevel3">
-        <Value value="FlareGunProjectileLevel3"/>
-    </CValidatorUnitType>
-    <CValidatorUnitFilters id="UnitisVisibleandCloaked">
-        <Filters value="Cloaked,Visible;-"/>
-    </CValidatorUnitFilters>
-    <CValidatorCombine id="UnitisnotDemolitionsExplosive">
-        <CombineArray value="UnitisNotChainExplosive"/>
-        <CombineArray value="UnitisNotMD5Mine"/>
-        <CombineArray value="UnitisNotSatchelCharge"/>
-        <Type value="And"/>
-    </CValidatorCombine>
     <CValidatorUnitFilters id="UnitisLight">
         <Filters value="Light;-"/>
     </CValidatorUnitFilters>
@@ -541,32 +187,7 @@
         <WhichUnit Value="Source"/>
         <Relationship value="Enemy"/>
     </CValidatorUnitLastDamagePlayer>
-    <CValidatorUnitType id="UnitisMD5Mine">
-        <Value value="MD5Mine"/>
-    </CValidatorUnitType>
-    <CValidatorUnitType id="UnitisSatchelCharge">
-        <Value value="DemoSatchelCharge"/>
-    </CValidatorUnitType>
-    <CValidatorUnitType id="UnitisChainExplosive">
-        <Value value="ChainExplosiveLevel1"/>
-    </CValidatorUnitType>
     <CValidatorUnitFilters id="UnitisnotLight">
         <Filters value="-;Light"/>
     </CValidatorUnitFilters>
-    <CValidatorUnitOrder id="UnknownValidator">
-        <AbilLink value="attack"/>
-    </CValidatorUnitOrder>
-    <CValidatorCombine id="StealthMatrixActive">
-        <CombineArray value="StealthMatrixLevel1Active"/>
-        <CombineArray value="StealthMatrixLevel2Active"/>
-    </CValidatorCombine>
-    <CValidatorPlayerRequirement id="UnstoppableForceComplete">
-        <Find value="1"/>
-        <Value value="UnstoppableForceComplete"/>
-    </CValidatorPlayerRequirement>
-    <CValidatorCombine id="UnstoppableForceKnockbackMassive">
-        <CombineArray value="TargetisMassive"/>
-        <CombineArray value="UnstoppableForceComplete"/>
-        <Type value="And"/>
-    </CValidatorCombine>
 </Catalog>

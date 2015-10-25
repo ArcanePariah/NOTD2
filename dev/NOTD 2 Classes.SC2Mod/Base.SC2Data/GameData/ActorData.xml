@@ -48,21 +48,21 @@
         <Macros index="1" value="WeaponEquipHeavyMacro"/>
         <Macros index="2" value="WeaponModelSwapGroupsHeavy"/>
         <Macros index="4" value="WeaponHeavyAnimationGroups"/>
-        <On index="61" Terms="ActorCreation" Send="AttachModel Torso CraftTorso {Hardpoint 0}"/>
-        <On index="62" Terms="ActorCreation" Send="AttachModel Waist CraftWaist {Hardpoint 3}"/>
-        <On index="63" Terms="ActorCreation" Send="AttachModel RightShoulder CraftShoulderRight {Hardpoint 8}"/>
-        <On index="64" Terms="ActorCreation" Send="AttachModel RightShin CraftShinRight {Hardpoint 11}"/>
-        <On index="65" Terms="ActorCreation" Send="AttachModel RightLeg CraftLegRight {Hardpoint 10}"/>
-        <On index="66" Terms="ActorCreation" Send="AttachModel RightForearm CraftForearmRight {Hardpoint 2}"/>
-        <On index="67" Terms="ActorCreation" Send="AttachModel LeftShoulder CraftShoulderLeft {Hardpoint 4}"/>
-        <On index="68" Terms="ActorCreation" Send="AttachModel LeftShin CraftShinLeft {Hardpoint 7}"/>
-        <On index="69" Terms="ActorCreation" Send="AttachModel LeftLeg CraftLegLeft {Hardpoint 6}"/>
-        <On index="70" Terms="ActorCreation" Send="AttachModel LeftForearm CraftForearmLeft {Hardpoint 1}"/>
-        <On index="71" Terms="ActorCreation" Send="AttachModel LeftFoot CraftFootLeft {Hardpoint 13}"/>
-        <On index="72" Terms="ActorCreation" Send="AttachModel RightFoot CraftFootRight {Hardpoint 12}"/>
-        <On index="73" Terms="ActorCreation" Send="AttachModel Helmet CraftHelmet {Head 0}"/>
-        <On index="76" Terms="ActorCreation" Send="AttachModel Flashlight MarineFlashlight {Hardpoint 14}"/>
-        <On index="78" Terms="ActorCreation" Send="AttachModel LeftArm CraftArmLeft {Hardpoint 5}"/>
+        <On index="65" Terms="ActorCreation" Send="AttachModel Torso CraftTorso {Hardpoint 0}"/>
+        <On index="66" Terms="ActorCreation" Send="AttachModel Waist CraftWaist {Hardpoint 3}"/>
+        <On index="67" Terms="ActorCreation" Send="AttachModel RightShoulder CraftShoulderRight {Hardpoint 8}"/>
+        <On index="68" Terms="ActorCreation" Send="AttachModel RightShin CraftShinRight {Hardpoint 11}"/>
+        <On index="69" Terms="ActorCreation" Send="AttachModel RightLeg CraftLegRight {Hardpoint 10}"/>
+        <On index="70" Terms="ActorCreation" Send="AttachModel RightForearm CraftForearmRight {Hardpoint 2}"/>
+        <On index="71" Terms="ActorCreation" Send="AttachModel LeftShoulder CraftShoulderLeft {Hardpoint 4}"/>
+        <On index="72" Terms="ActorCreation" Send="AttachModel LeftShin CraftShinLeft {Hardpoint 7}"/>
+        <On index="73" Terms="ActorCreation" Send="AttachModel LeftLeg CraftLegLeft {Hardpoint 6}"/>
+        <On index="74" Terms="ActorCreation" Send="AttachModel LeftForearm CraftForearmLeft {Hardpoint 1}"/>
+        <On index="75" Terms="ActorCreation" Send="AttachModel LeftFoot CraftFootLeft {Hardpoint 13}"/>
+        <On index="76" Terms="ActorCreation" Send="AttachModel RightFoot CraftFootRight {Hardpoint 12}"/>
+        <On index="77" Terms="ActorCreation" Send="AttachModel Helmet CraftHelmet {Head 0}"/>
+        <On index="80" Terms="ActorCreation" Send="AttachModel Flashlight MarineFlashlight {Hardpoint 14}"/>
+        <On Terms="ActorCreation" Send="AttachModel LeftArm CraftArmLeft {Hardpoint 5}"/>
         <On Terms="ActorCreation" Send="AttachModel RightArm CraftArmRight {Hardpoint 9}"/>
         <Model value="HeavyMarineMelee"/>
         <Scale value="1.000000"/>
@@ -85,13 +85,6 @@
         <HostEndSiteOps Ops="SOpIncomingDirect1Dot5 SOpMoveDownByDot25 SOpMoveBy3 SOpMoveUpByDot5"/>
         <Angle value="40.000000"/>
     </CActorForceConeRoundedEnd>
-    <!-- Have a separate model here b/c we want to track the target when the missile is in flight, but then freeze-->
-    <!--         the explosion to its location on impact.  The explosion is mighty enough to look kind of dorky if it-->
-    <!--         tracks the target.  But we don't want to have the missile itself not track the target, since that'll-->
-    <!--         be misleading as far as how the attack actually works. -->
-    <CActorModel id="BattlecruiserYamatoAttackImpactModel">
-        <On Terms="ActorCreation; ValidateEffect Chapter1Complete" Send="SetTintColor 128,255,0"/>
-    </CActorModel>
     <CActorModel id="BlackDiamondImpact" parent="ModelAnimationStyleOneShot">
         <EditorCategories value=""/>
         <On Terms="Effect.BlackDiamondDamage.Start; At Target" Send="Create"/>
@@ -1200,24 +1193,15 @@
         <SoundArray index="Click" value="WarHound_Click"/>
         <SoundArray index="ClickError" value="WarHound_ClickError"/>
         <SoundArray index="Highlight" value="WarHound_Highlight"/>
-        <On index="61" Terms="ActorCreation" Send="AttachModel AssaultTorso AssaultCraftTorso {Hardpoint 0}"/>
-        <On index="74" Terms="Abil.HeavyJump.SourceCastStart" Send="AnimPlay Jump Jump"/>
+        <On index="65" Terms="ActorCreation" Send="AttachModel AssaultTorso AssaultCraftTorso {Hardpoint 0}"/>
+        <On index="78" Terms="Abil.HeavyJump.SourceCastStart" Send="AnimPlay Jump Jump"/>
         <On Terms="Behavior.ChargeMovement.On" Send="AnimGroupApply Run"/>
         <On Terms="Behavior.ChargeMovement.Off" Send="AnimGroupRemove Run"/>
     </CActorUnit>
-    <CActorUnit id="Commando" parent="BaseMarineActor" unitName="Commando">
-        <HighlightTooltip value="Unit/Name/Bogus"/>
-        <On index="76" Terms="ActorCreation" Send="AttachModel Flashlight MarineFlashlight {Head 0}"/>
-        <On index="77" removed="1"/>
-        <On index="78" removed="1"/>
-        <On index="79" removed="1"/>
-        <On index="80" removed="1"/>
-        <On index="81" removed="1"/>
-        <On index="82" removed="1"/>
-    </CActorUnit>
+    <CActorUnit id="Commando" parent="BaseMarineActor" unitName="Commando"/>
     <CActorUnit id="Demolitions" parent="BaseHeavyMarineActor" unitName="Demolitions">
         <Scale value="0.900000"/>
-        <On index="61" Terms="ActorCreation" Send="AttachModel DemolitionTorso DemolitionCraftTorso {Hardpoint 0}"/>
+        <On index="65" Terms="ActorCreation" Send="AttachModel DemolitionTorso DemolitionCraftTorso {Hardpoint 0}"/>
         <On Terms="Effect.Bulwark.Start; !ScopeContains BulwarkShieldModel" Send="Create BulwarkShieldModel"/>
         <On Terms="ActorDestruction" Target="BulwarkShieldModel" Send="Destroy"/>
         <SoundArray index="Ready" value="Marauder_Ready"/>
@@ -1227,46 +1211,10 @@
         <SoundArray index="Attack" value="Marauder_Attack"/>
         <SoundArray index="Pissed" value="Marauder_Pissed"/>
     </CActorUnit>
-    <CActorUnit id="Drone2" parent="BaseMarineActor" unitName="Drone2">
-        <HighlightTooltip value="Unit/Name/Bogus"/>
-        <On index="76" Terms="ActorCreation" Send="AttachModel Flashlight MarineFlashlight {Head 0}"/>
-        <On index="77" removed="1"/>
-        <On index="78" removed="1"/>
-        <On index="79" removed="1"/>
-        <On index="80" removed="1"/>
-        <On index="81" removed="1"/>
-        <On index="82" removed="1"/>
-    </CActorUnit>
-    <CActorUnit id="Engineer" parent="BaseMarineActor" unitName="Engineer">
-        <HighlightTooltip value="Unit/Name/Bogus"/>
-        <On index="76" Terms="ActorCreation" Send="AttachModel Flashlight MarineFlashlight {Head 0}"/>
-        <On index="77" removed="1"/>
-        <On index="78" removed="1"/>
-        <On index="79" removed="1"/>
-        <On index="80" removed="1"/>
-        <On index="81" removed="1"/>
-        <On index="82" removed="1"/>
-    </CActorUnit>
-    <CActorUnit id="Flamethrower2" parent="BaseMarineActor" unitName="Flamethrower2">
-        <HighlightTooltip value="Unit/Name/Bogus"/>
-        <On index="76" Terms="ActorCreation" Send="AttachModel Flashlight MarineFlashlight {Head 0}"/>
-        <On index="77" removed="1"/>
-        <On index="78" removed="1"/>
-        <On index="79" removed="1"/>
-        <On index="80" removed="1"/>
-        <On index="81" removed="1"/>
-        <On index="82" removed="1"/>
-    </CActorUnit>
-    <CActorUnit id="ForwardObserver" parent="BaseMarineActor" unitName="ForwardObserver">
-        <HighlightTooltip value="Unit/Name/Bogus"/>
-        <On index="76" Terms="ActorCreation" Send="AttachModel Flashlight MarineFlashlight {Head 0}"/>
-        <On index="77" removed="1"/>
-        <On index="78" removed="1"/>
-        <On index="79" removed="1"/>
-        <On index="80" removed="1"/>
-        <On index="81" removed="1"/>
-        <On index="82" removed="1"/>
-    </CActorUnit>
+    <CActorUnit id="Drone2" parent="BaseMarineActor" unitName="Drone2"/>
+    <CActorUnit id="Engineer" parent="BaseMarineActor" unitName="Engineer"/>
+    <CActorUnit id="Flamethrower2" parent="BaseMarineActor" unitName="Flamethrower2"/>
+    <CActorUnit id="ForwardObserver" parent="BaseMarineActor" unitName="ForwardObserver"/>
     <CActorModel id="JumpImpact" parent="ModelAnimationStyleOneShot">
         <On Terms="Effect.LightJump.Impact; At Caster" Send="Create"/>
         <On Terms="Effect.MediumJump.Impact; At Caster" Send="Create"/>
@@ -1410,14 +1358,8 @@
         <Macros value="WeaponAnimationGroups"/>
     </CActorUnit>
     <CActorUnit id="Paratrooper" parent="BaseMarineActor" unitName="Paratrooper">
-        <On index="61" Terms="ActorCreation" Send="AttachModel NPCTorso BasicTorso {Hardpoint 0}"/>
-        <On index="77" Terms="AttachModel" Target="_ArmorCustom" Send="Signal Breach"/>
-        <On index="78" removed="1"/>
-        <On index="79" removed="1"/>
-        <On index="80" removed="1"/>
-        <On index="81" removed="1"/>
-        <On index="82" removed="1"/>
-        <Macros index="3" value="AntiMaterialRifleMacro"/>
+        <On index="65" Terms="ActorCreation" Send="AttachModel NPCTorso BasicTorso {Hardpoint 0}"/>
+        <On Terms="AttachModel" Target="_ArmorCustom" Send="Signal Breach"/>
         <Macros index="4" value="HeavyMachineGunMacro"/>
         <Macros value="WeaponAnimationGroups"/>
     </CActorUnit>
@@ -1562,14 +1504,9 @@
     </CActorUnit>
     <CActorUnit id="Marksman" parent="BaseMarineActor" unitName="Marksman"/>
     <CActorUnit id="MedicNOTD" parent="BaseMarineActor" unitName="Medic2">
-        <On index="61" Terms="ActorCreation" Send="AttachModel MedicTorso MedicBasicTorso {Hardpoint 0}"/>
-        <On index="70" Terms="ActorCreation" Send="AttachModel MedicLeftForearm MedicBasicForearmLeft {Hardpoint 5}"/>
-        <On index="73" Terms="ActorCreation" Send="AttachModel MedicHelmet MedicBasicHelmet {Head 0}"/>
-        <DeathCustoms index="0" removed="1"/>
-        <DeathCustoms index="1" removed="1"/>
-        <DeathCustoms index="2" removed="1"/>
-        <DeathCustoms index="3" removed="1"/>
-        <DeathCustoms index="4" removed="1"/>
+        <On index="65" Terms="ActorCreation" Send="AttachModel MedicTorso MedicBasicTorso {Hardpoint 0}"/>
+        <On index="74" Terms="ActorCreation" Send="AttachModel MedicLeftForearm MedicBasicForearmLeft {Hardpoint 5}"/>
+        <On index="77" Terms="ActorCreation" Send="AttachModel MedicHelmet MedicBasicHelmet {Head 0}"/>
         <SoundArray index="Birth" value="Medic_Birth"/>
         <SoundArray index="Ready" value="Medic_Ready"/>
         <SoundArray index="Help" value="Medic_Help"/>
@@ -1678,20 +1615,10 @@
         <On Terms="Behavior.PrecisionShotSlowLevel3.Off" Send="Destroy"/>
         <HostSiteOps Ops="SOpAttachOverhead"/>
     </CActorModel>
-    <CActorUnit id="PsiOps" parent="BaseMarineActor" unitName="PsiOps">
-        <HighlightTooltip value="Unit/Name/Bogus"/>
-        <On index="76" Terms="ActorCreation" Send="AttachModel Flashlight MarineFlashlight {Head 0}"/>
-        <On index="77" removed="1"/>
-        <On index="78" removed="1"/>
-        <On index="79" removed="1"/>
-        <On index="80" removed="1"/>
-        <On index="81" removed="1"/>
-        <On index="82" removed="1"/>
-    </CActorUnit>
+    <CActorUnit id="PsiOps" parent="BaseMarineActor" unitName="PsiOps"/>
     <CActorUnit id="Recon" parent="BaseMarineActor" unitName="Recon">
         <On index="65" Terms="ActorCreation" Send="AttachModel ReconTorso ReconBasicTorso {Hardpoint 0}"/>
-        <On index="73" Terms="ActorCreation" Send="AttachModel ReconHelmet ReconBasicHelmet {Head 0}"/>
-        <On index="76" Terms="ActorCreation" Send="AttachModel Flashlight MarineFlashlight {Head 0}"/>
+        <On index="77" Terms="ActorCreation" Send="AttachModel ReconHelmet ReconBasicHelmet {Head 0}"/>
         <On Terms="Abil.SurveillanceFlare.SourceCastStart" Send="AnimPlay Throw Spell,Blast"/>
         <On Terms="Abil.SmokeGrenade.SourceCastStart" Send="AnimPlay Throw Spell,Blast"/>
         <On Terms="Abil.FlareGunRecon.SourceCastStart" Send="AnimPlay Throw Attack"/>
