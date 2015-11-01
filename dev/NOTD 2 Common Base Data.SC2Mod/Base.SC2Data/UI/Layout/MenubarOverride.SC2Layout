@@ -90,7 +90,20 @@
                 <Style val="@@MenuBarButton"/>
                 <Text val="Talents"/>
             </Frame>
-
+			<Animation name="Pulse">
+				<Event event="TalentAvailable" action="DirectionForward, Play" frame="$this"/>
+				<Event event="TalentUnavailable" action="Restart, Pause" frame="$this"/>
+				<Controller type="Color" end="Loop" >
+					<Key type="Curve" time="0" value="155;255;190" />
+					<Key type="Curve" time="0.75" value="204;255;204" />
+					<Key type="Curve" time="1.5" value="155;255;190" />
+				</Controller>
+				<Controller type="Fade" end="Loop" >
+					<Key type="Curve" time="0" value="255"  />
+					<Key type="Curve" time="0.75" value="190"  />
+					<Key type="Curve" time="1.5" value="255" />
+				</Controller>
+			</Animation>
             <Frame type="Animation" name="TalentShowHide">
                 <Event event="OnClick" action="Play" frame="$this"/>
 				<Event event="OnHidden" action="Pause,DirectionReverse" frame="$parent/$parent/TalentPanel"/>
