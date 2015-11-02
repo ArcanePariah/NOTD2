@@ -1,4 +1,4 @@
-Abil/Name/RoadFlare=Road Flare
+﻿Abil/Name/RoadFlare=Road Flare
 Behavior/Name/AntiMaterialRifleEquipped=Anti-Material Rifle Equipped
 Behavior/Name/AntiMaterialRifleNoise=Anti-Material Rifle Noise
 Behavior/Name/ArmorPiercing=Armor Piercing
@@ -128,7 +128,7 @@ Button/Name/AntiMaterialRifle=Anti-Material Rifle
 Button/Name/AntiVenom=Anti-Venom
 Button/Name/ArmorButtonTemplate=Armor Button Template
 Button/Name/ArmorPiercing=Armor Piercing
-Button/Name/ArmoredProtectiveInsert=Armored Protective Insert
+Button/Name/ArmoredProtectiveInsert=Light Armor Plates
 Button/Name/AssaultRifle=Assault Rifle
 Button/Name/AssaultRifleBurstFire=Assault Rifle Burst Fire
 Button/Name/AssaultRifleSingleShot=Assault Rifle Single Shot
@@ -137,7 +137,7 @@ Button/Name/Axe=Axe
 Button/Name/Bandage=Bandage
 Button/Name/Baton=Baton
 Button/Name/Chainsaw=Chainsaw
-Button/Name/CombatMobilityAugment=Combat Mobility Augment
+Button/Name/CombatMobilityAugment=Mobility Augment
 Button/Name/CommunicationsArray=Communications Array
 Button/Name/CriticalStrike=Critical Strike
 Button/Name/CriticalStrikeLevel1=Critical Strike Level 1
@@ -148,20 +148,20 @@ Button/Name/DeployAntiMaterialRifle=Deploy Anti-Material Rifle
 Button/Name/DeployFiringStance=Deploy Firing Stance
 Button/Name/DeployHeavyMachineGun=Deploy Heavy Machine Gun
 Button/Name/EmptyInventorySlot=Empty Inventory Slot
-Button/Name/EnhancedProtectiveInsert=Enhanced Protective Insert
+Button/Name/EnhancedProtectiveInsert=Medium Armor Plates
 Button/Name/Expanding=Expanding
-Button/Name/FieldLights=Field Lights
+Button/Name/FieldLights=Field Light
 Button/Name/Flamethrower=Flamethrower
 Button/Name/FlareGun=Flare Gun
 Button/Name/Flechette=Flechette
 Button/Name/Hammer=Hammer
 Button/Name/HeavyMachineGun=Heavy Machine Gun
-Button/Name/HeavyProtectiveInsert=Heavy Protective Insert
+Button/Name/HeavyProtectiveInsert=Heavy Armor Plates
 Button/Name/HecateModule=Hecate Module
 Button/Name/HighCapacityMagazine=High Capacity Magazine
 Button/Name/HighExplosive=High Explosive
 Button/Name/HireDevilDogsPH=God
-Button/Name/ImprovedAccuracyModule=Improved Accuracy Module
+Button/Name/ImprovedAccuracyModule=Recoil Limiter
 Button/Name/InventoryDrop=Inventory Drop
 Button/Name/InventoryMove=Inventory Move
 Button/Name/InventoryTake=Inventory Take
@@ -174,7 +174,7 @@ Button/Name/MarksmanRifle=Marksman Rifle
 Button/Name/MediumMachineGun=Medium Machine Gun
 Button/Name/Medkit=Medkit
 Button/Name/MendingPaste=Mending Paste
-Button/Name/NanoHealthAugment=Nano Health Augment
+Button/Name/NanoHealthAugment=Regeneration Module
 Button/Name/NightVisionModule=Night Vision Module
 Button/Name/PackUpAntiMaterialRifle=Pack Up Anti-Material Rifle
 Button/Name/PackUpFiringStance=Pack Up Firing Stance
@@ -182,75 +182,78 @@ Button/Name/PackUpHeavyMachineGun=Pack Up Heavy Machine Gun
 Button/Name/Pistol=Pistol
 Button/Name/PlasmaCore=Plasma Core
 Button/Name/PlasmaCutter=Plasma Cutter
-Button/Name/PowerGeneratorAugment=Power Generator Augment
+Button/Name/PowerGeneratorAugment=Generator Module
 Button/Name/PumpShotgun=Pump Shotgun
-Button/Name/ReactiveProtectiveInsert=Reactive Protective Insert
+Button/Name/ReactiveProtectiveInsert=Reactive Armor
 Button/Name/RiotShield=Riot Shield
 Button/Name/RoadFlare=Road Flare
-Button/Name/ShieldAugmentationInsert=Shield Augmentation Insert
+Button/Name/ShieldAugmentationInsert=Shield Booster
 Button/Name/SubmachineGun=Submachine Gun
 Button/Name/TX1=TX-1
 Button/Tooltip/=
 Button/Tooltip/AmmunitionCase=<c val="FFCC33">Can hold up to <d ref="Item,AmmunitionCase,EffectCost.Charge.CountMax"/> Magazines in a single slot.</c><n/><n/>Can only store Magazines, cannot store specialized ammunition.
-Button/Tooltip/AntiMaterialRifle=Damage: <d ref="Effect,AntiMaterialRifleDamage,Amount"/><n/>Armor Reduction: <d ref="Effect,AntiMaterialRifleDamage,ArmorReduction"/><n/>Attack Speed: <d ref="Weapon,AntiMaterialRifle,Period"/><n/>Splash: 2.5 linear, <d ref="Effect,AntiMaterialRifleDamage,AreaArray[0].Radius" precision="2"/> width at target<n/>Range: <d ref="Weapon,AntiMaterialRifle,Range"/><n/>Reload time: 4<n/>Equip time: 1<n/>Weight: 25<n/>Critical Damage: 250%
+Button/Tooltip/AntiMaterialRifle=<c val="FFCC00">Damage:</c> <d ref="Effect,AntiMaterialRifleDamage,Amount"/><n/><c val="F2403C">Critical: </c><d ref="Effect,AntiMaterialRifleDamageCritical,Amount" precision="2"/><n/><c val="FFCC00">Armor Reduction: </c><d ref="Effect,AntiMaterialRifleDamage,ArmorReduction"/><n/><c val="FFCC00">Attack Speed: </c><d ref="Weapon,AntiMaterialRifle,Period"/><n/><c val="FFCC00">Splash Type:</c> Single Target<n/><c val="FFCC00">Range: </c><d ref="Weapon,AntiMaterialRifle,Range"/><n/><c val="FFCC00">Reload: </c>4 Seconds<n/><c val="FFCC00">Equip:</c> 4 Seconds<n/><c val="FFCC00">Weight: </c>35
 Button/Tooltip/AntiVenom=Heals 10 hitpoints instantly and cures 1 Venom on use.
 Button/Tooltip/ArmorPiercing=<c val="FFCC33">Increases damage by <d ref="Behavior,ArmorPiercing,Modification.DamageDealtFraction[Ranged]*100" precision="2"/>%.</c>
 Button/Tooltip/ArmoredProtectiveInsert=<c val="FFCC33">Increases life armor by <d ref="Behavior,ArmoredProtectiveInsert,Modification.LifeArmorBonus"/> and reduces ranged damage by <d ref="Behavior,ArmoredProtectiveInsert,DamageResponse.ModifyAmount*(-1)"/>.</c>
-Button/Tooltip/AssaultRifle=Damage: <d ref="Effect,AssaultRifleDamage,Amount" precision="2"/><n/>Bonus: +<d ref="Effect,AssaultRifleDamage,AttributeBonus[Massive]" precision="2"/> vs. Massive<n/>Armor Reduction: <d ref="Effect,AssaultRifleDamage,ArmorReduction" precision="2"/><n/>Attack Speed: <d ref="Weapon,AssaultRifle,Period" precision="2"/><n/>Splash: <d ref="Effect,AssaultRifleDamage,AreaArray[0].Radius" precision="2"/><n/>Range: <d ref="Weapon,AssaultRifle,Range"/><n/>Reload time: 2<n/>Equip time: 2<n/>Weight: 8<n/>Critical Damage: 200%
+Button/Tooltip/AssaultRifle=<c val="FFCC00">Damage:</c> <d ref="Effect,AssaultRifleDamage,Amount" precision="2"/> <c val="B5F3FB">+ <d ref="Effect,AssaultRifleDamage,AttributeBonus[Massive]" precision="2"/> vs. Massive</c><n/><c val="F2403C">Critical: </c><d ref="Effect,AssaultRifleDamageCritical,Amount" precision="2"/><n/><c val="FFCC00">Armor Reduction:</c> <d ref="Effect,AssaultRifleDamage,ArmorReduction" precision="2"/><n/><c val="FFCC00">Attack Speed: </c><d ref="Weapon,AssaultRifle,Period" precision="2"/><n/><c val="FFCC00">Splash Type:</c> Penetration<n/><c val="FFCC00">Range: </c><d ref="Weapon,AssaultRifle,Range"/><n/><c val="FFCC00">Reload: </c>1.75 Seconds<n/><c val="FFCC00">Equip:</c> 1.5 Seconds<n/><c val="FFCC00">Weight:</c> 8
 Button/Tooltip/AssaultRifleBurstFire=Switching firing mode from full auto to burst fire.<n/><n/><c val="FFCC33">Attack mode changes to spaced three round bursts.</c>
-Button/Tooltip/AutomaticShotgun=Damage: <d ref="Effect,AutomaticShotgunDamageRange10,Amount" precision="2"/> x <d ref="Weapon,AutomaticShotgun,DisplayAttackCount"/> pellets<n/>Bonus: +<d ref="Effect,AutomaticShotgunDamageRange10,AttributeBonus[Light]" precision="2"/> vs Light<n/>Armor Reduction: <d ref="Effect,AutomaticShotgunDamageRange10,ArmorReduction" precision="2"/><n/>Attack Speed: <d ref="Weapon,AutomaticShotgun,Period" precision="2"/><n/>Splash: 0.35 per pellet, pellets scattered in an area of 4 at range 10<n/>Range: <d ref="Weapon,AutomaticShotgun,Range" precision="2"/><n/>Reload time: 2<n/>Equip time: 2.5<n/>Weight: 12<n/>Critical Damage: 180%
+Button/Tooltip/AutomaticShotgun=<c val="FFCC00">Damage:</c> <d ref="Effect,AutomaticShotgunDamage,Amount" precision="2"/><n/><c val="F2403C">Critical: </c><d ref="Effect,AutomaticShotgunDamageCritical,Amount" precision="2"/><n/><c val="FFCC00">Armor Reduction:</c><d ref="Effect,AutomaticShotgunDamage,ArmorReduction" precision="2"/><n/><c val="FFCC00">Attack Speed: </c><d ref="Weapon,AutomaticShotgun,Period" precision="2"/><n/><c val="FFCC00">Splash Type:</c> Scattershot<n/><c val="FFCC00">Range: </c><d ref="Weapon,AutomaticShotgun,Range" precision="2"/><n/><c val="FFCC00">Reload:</c> 3 Seconds<n/><c val="FFCC00">Equip: </c>2.5 Seconds<n/><c val="FFCC00">Weight: </c>15
+Button/Tooltip/Axe=<c val="FFCC00">Damage:</c> <d ref="Effect,CrowbarDamage,Amount" precision="2"/><n/><c val="F2403C">Critical:</c> <d ref="Effect,CrowbarDamageCritical,Amount" precision="2"/><n/><c val="FFCC00">Armor Reduction:</c> <d ref="Effect,CrowbarDamage,ArmorReduction" precision="2"/><n/><c val="FFCC00">Attack Speed: </c><d ref="Weapon,Crowbar,Period" precision="2"/><n/><c val="FFCC00">Splash Type:</c> Cleave<n/><c val="FFCC00">Range: </c><d ref="Weapon,Crowbar,Range" precision="2"/> (Ground only)<n/><c val="FFCC00">Equip</c>: 0.1 Seconds<n/><c val="FFCC00">Weight: </c>4
 Button/Tooltip/AxeItem=Still just an ordinary axe… in space.
 Button/Tooltip/Bandage=Heals <d ref="Effect,BandageHeal,VitalArray[Life].Change"/> hitpoints instantly and cures 1 Open Wound on use.
+Button/Tooltip/Baton=<c val="FFCC00">Damage:</c> <d ref="Effect,CrowbarDamage,Amount" precision="2"/><n/><c val="F2403C">Critical:</c> <d ref="Effect,CrowbarDamageCritical,Amount" precision="2"/><n/><c val="FFCC00">Armor Reduction:</c> <d ref="Effect,CrowbarDamage,ArmorReduction" precision="2"/><n/><c val="FFCC00">Attack Speed: </c><d ref="Weapon,Crowbar,Period" precision="2"/><n/><c val="FFCC00">Splash Type:</c> Cleave<n/><c val="FFCC00">Range: </c><d ref="Weapon,Crowbar,Range" precision="2"/> (Ground only)<n/><c val="FFCC00">Equip</c>: 0.1 Seconds<n/><c val="FFCC00">Weight: </c>4
 Button/Tooltip/BatonItem=Still just an ordinary baton… in space.
-Button/Tooltip/Chainsaw=Damage: <d ref="Effect,ChainsawDamage,Amount" precision="2"/><n/>Bonus: +<d ref="Effect,ChainsawDamage,AttributeBonus[Light]" precision="2"/> vs Light<n/>Armor Reduction: <d ref="Effect,ChainsawDamage,ArmorReduction" precision="2"/><n/>Attack Speed: <d ref="Weapon,Chainsaw,Period" precision="2"/><n/>Splash: <d ref="Effect,ChainsawDamage,AreaArray[0].Radius" precision="2"/><n/>Range: <d ref="Weapon,Chainsaw,Range" precision="2"/> (Ground only)<n/>Reload time: 3.5<n/>Equip time: 1.5<n/>Weight: 15<n/>Critical Damage: 250%
+Button/Tooltip/Chainsaw=<c val="FFCC00">Damage: </c><d ref="Effect,ChainsawDamage,Amount" precision="2"/> <c val="F2403C">+ <d ref="Effect,ChainsawDamage,AttributeBonus[Light]" precision="2"/> vs Light</c><n/><c val="F2403C">Critical:</c> <d ref="Effect,ChainsawDamageCritical,Amount" precision="2"/><n/><c val="FFCC00">Armor Reduction:</c> <d ref="Effect,ChainsawDamage,ArmorReduction" precision="2"/><n/><c val="FFCC00">Attack Speed: </c><d ref="Weapon,Chainsaw,Period" precision="2"/><n/><c val="FFCC00">Splash Type: </c>Greater Cleave<n/><c val="FFCC00">Range:</c> <d ref="Weapon,Chainsaw,Range" precision="2"/> (Ground only)<n/><c val="FFCC00">Reload: </c>3.5 Seconds<n/><c val="FFCC00">Equip: </c>1.5 Seconds<n/><c val="FFCC00">Weight: </c>15
 Button/Tooltip/CombatMobilityAugment=<c val="FFCC33">Increases movement speed by 10% and jump distance by 1.</c>
 Button/Tooltip/CommunicationsArray=Reveals units through the fog of war when deployed.
 Button/Tooltip/CommunicationsArrayItem=Communication and Survelliance Array that can be deployed to monitor an area.
-Button/Tooltip/CommunicationsArrayPackedUp=Communications Array
+Button/Tooltip/CommunicationsArrayPackedUp=Reveals units through the fog of war when deployed.
 Button/Tooltip/CriticalStrike=
 Button/Tooltip/CriticalStrikeLevel1=10% chance to deal bonus damage. Critical damage varies based on the weapon being used.
 Button/Tooltip/CriticalStrikeLevel2=20% chance to deal bonus damage. Critical damage varies based on the weapon being used.
 Button/Tooltip/CriticalStrikeLevel3=30% chance to deal bonus damage. Critical damage varies based on the weapon being used.
-Button/Tooltip/Crowbar=Damage: <d ref="Effect,CrowbarDamage,Amount" precision="2"/><n/>Armor Reduction: <d ref="Effect,CrowbarDamage,ArmorReduction" precision="2"/><n/>Attack Speed: <d ref="Weapon,Crowbar,Period" precision="2"/><n/>Splash: 1.0<n/>Range: <d ref="Weapon,Crowbar,Range" precision="2"/> (Ground only)<n/>Equip time: 0.1<n/>Weight: 4<n/>Critical Damage: 250%
+Button/Tooltip/Crowbar=<c val="FFCC00">Damage:</c> <d ref="Effect,CrowbarDamage,Amount" precision="2"/><n/><c val="F2403C">Critical:</c> <d ref="Effect,CrowbarDamageCritical,Amount" precision="2"/><n/><c val="FFCC00">Armor Reduction:</c> <d ref="Effect,CrowbarDamage,ArmorReduction" precision="2"/><n/><c val="FFCC00">Attack Speed: </c><d ref="Weapon,Crowbar,Period" precision="2"/><n/><c val="FFCC00">Splash Type:</c> Cleave<n/><c val="FFCC00">Range: </c><d ref="Weapon,Crowbar,Range" precision="2"/> (Ground only)<n/><c val="FFCC00">Equip</c>: 0.1 Seconds<n/><c val="FFCC00">Weight: </c>4
 Button/Tooltip/DeployAntiMaterialRifle=The Anti-Materiel Rifle has a great deal of recoil that can be largely negated by setting up its bipod.<n/><n/><c val="FFCC33">Brings attack speed down to <d ref="Weapon,AntiMaterialRifle,Period/Behavior,AntiMaterialRifleDeploy,Modification.AttackSpeedMultiplier" precision="2"/> and increasing its range to <d ref="Behavior,AntiMaterialRifleDeploy,Modification.WeaponRange+Weapon,AntiMaterialRifle,Range" precision="1"/>.</c> <n/><n/><c val="FF0000">Setup time is 3 seconds, but canceling setup is instant.</c>
 Button/Tooltip/DeployFiringStance=Enter into a braced position, allowing better aim and stabilizing the weapon against recoil. <n/><n/><c val="FFCC33">Base damage increased to <d ref="Behavior,FiringStance,Modification.DamageDealtScaled[Ranged]+Effect,MediumMachineGunDamage,Amount" precision="1"/> and range increased by <d ref="Behavior,FiringStance,Modification.WeaponRange" precision="3"/>, movespeed reduced by <d ref="1-Behavior,FiringStance,Modification.MoveSpeedMultiplier*100" precision="3"/>%.</c>
 Button/Tooltip/DeployHeavyMachineGun=Setting up a Heavy Machine Gun for firing takes 3 seconds and packing it up takes 2 seconds. <n/><n/><c val="FF0000">The user can't move while the Heavy Machine Gun is deployed, and must pack it up to restore movement.</c>
 Button/Tooltip/EnhancedProtectiveInsert=<c val="FFCC33">Increases life armor by <d ref="Behavior,EnhancedProtectiveInsert,Modification.LifeArmorBonus"/> and reduces ranged damage by <d ref="Behavior,EnhancedProtectiveInsert,DamageResponse.ModifyAmount*(-1)"/>.</c>
 Button/Tooltip/Expanding=<c val="FFCC33">Attacks have a chance to stun the target based on damage dealt.</c>
 Button/Tooltip/FieldLights=<c val="FFCC33">Reveals and detects in a radius of 7 around the user.</c>
-Button/Tooltip/Flamethrower=Damage: <d ref="Effect,FlamethrowerDamage,Amount" precision="2"/> x <d ref="Weapon,Flamethrower,DisplayAttackCount" precision="2"/><n/>Armor Reduction: <d ref="Effect,FlamethrowerDamage,ArmorReduction" precision="2"/><n/>Attack Speed: <d ref="Weapon,Flamethrower,Period" precision="2"/><n/>Splash: <d ref="Effect,FlamethrowerDamage,AreaArray[0].Radius" precision="2"/> width, 4.5 length<n/>Range: <d ref="Weapon,Flamethrower,Range" precision="2"/> (Ground only)<n/>Reload time: 3.5<n/>Equip time: 2.5<n/>Weight: 16<n/>Critical Damage: 120%
+Button/Tooltip/Flamethrower=<c val="FFCC00">Damage:</c> <d ref="Effect,FlamethrowerDamage,Amount" precision="2"/> x <d ref="Weapon,Flamethrower,DisplayAttackCount" precision="2"/><n/><c val="F2403C">Critical: </c><d ref="Effect,FlamethrowerDamageCritical,Amount" precision="2"/> x 12<n/><c val="FFCC00">Armor Reduction:</c> <d ref="Effect,FlamethrowerDamage,ArmorReduction" precision="2"/><n/><c val="FFCC00">Attack Speed:</c> <d ref="Weapon,Flamethrower,Period" precision="2"/><n/><c val="FFCC00">Splash Type:</c> Proximity<n/><c val="FFCC00">Range:</c> <d ref="Weapon,Flamethrower,Range" precision="2"/> (Ground only)<n/><c val="FFCC00">Reload: </c>3 Seconds<n/><c val="FFCC00">Equip:</c> 2 Seconds<n/><c val="FFCC00">Weight:</c> 16
 Button/Tooltip/FlareGun=Reveals a <d ref="Effect,FlareGun,RevealRadius"/> radius area for <d ref="Effect,FlareGun,ExpireDelay"/> seconds. Enemies in the area of effect will be slowed by <d ref="1-Behavior,FlareGunSlow,Modification.MoveSpeedMultiplier*100" precision="1"/>%.
 Button/Tooltip/Flechette=<c val="FFCC33">Attacks have a chance to apply an open wound to the target based on damage dealt.</c>
 Button/Tooltip/GrenadeLauncherItem=
+Button/Tooltip/Hammer=<c val="FFCC00">Damage:</c> <d ref="Effect,CrowbarDamage,Amount" precision="2"/><n/><c val="F2403C">Critical:</c> <d ref="Effect,CrowbarDamageCritical,Amount" precision="2"/><n/><c val="FFCC00">Armor Reduction:</c> <d ref="Effect,CrowbarDamage,ArmorReduction" precision="2"/><n/><c val="FFCC00">Attack Speed: </c><d ref="Weapon,Crowbar,Period" precision="2"/><n/><c val="FFCC00">Splash Type:</c> Cleave<n/><c val="FFCC00">Range: </c><d ref="Weapon,Crowbar,Range" precision="2"/> (Ground only)<n/><c val="FFCC00">Equip</c>: 0.1 Seconds<n/><c val="FFCC00">Weight: </c>4
 Button/Tooltip/HammerItem=Still just an ordinary hammer… in space.
-Button/Tooltip/HeavyMachineGun=Damage: Damage: <d ref="Effect,HeavyMachineGunDamage,Amount" precision="2"/><n/>Armor Reduction: <d ref="Effect,HeavyMachineGunDamage,ArmorReduction" precision="2"/><n/>Attack Speed: <d ref="Weapon,HeavyMachineGun,Period" precision="2"/><n/>Splash: <d ref="Effect,HeavyMachineGunDamage,AreaArray[0].Radius" precision="2"/><n/>Range: <d ref="Weapon,HeavyMachineGun,Range" precision="2"/><n/>Reload time: 6<n/>Equip time: 1<n/>Weight: 40<n/>Critical damage: 200%
+Button/Tooltip/HeavyMachineGun=<c val="FFCC00">Damage:</c> <d ref="Effect,HeavyMachineGunDamage,Amount" precision="2"/><n/><c val="F2403C">Critical:</c> <d ref="Effect,HeavyMachineGunDamageCritical,Amount" precision="2"/><n/><c val="FFCC00">Armor Reduction: </c><d ref="Effect,HeavyMachineGunDamage,ArmorReduction" precision="2"/><n/><c val="FFCC00">Attack Speed: </c><d ref="Weapon,HeavyMachineGun,Period" precision="2"/><n/><c val="FFCC00">Splash Type:</c> Penetration<n/><c val="FFCC00">Range: </c><d ref="Weapon,HeavyMachineGun,Range" precision="2"/><n/><c val="FFCC00">Reload:</c> 3 Seconds<n/><c val="FFCC00">Equip: </c>4 Seconds<n/><c val="FFCC00">Weight:</c> 40
 Button/Tooltip/HeavyProtectiveInsert=<c val="FFCC33">Increases life armor by <d ref="Behavior,HeavyProtectiveInsert,Modification.LifeArmorBonus"/> and reduces ranged damage by <d ref="Behavior,HeavyProtectiveInsert,DamageResponse.ModifyAmount*(-1)"/>.</c>
 Button/Tooltip/HecateModule=<c val="FFCC33">Increases the Flamethrower's damage by 2 and attack speed by 15%.</c>
 Button/Tooltip/HighCapacityMagazine=<c val="FFCC33">Adds an additional Magazine worth of ammo when reloading.</c>
 Button/Tooltip/HighExplosive=<c val="FFCC33">Reduces base weapon damage by 35% but adds 5 +10 vs Light damage in a 1.5 radius per hit.</c>
 Button/Tooltip/ImprovedAccuracyModule=<c val="FFCC33">Increases attack speed by 25%.</c>
-Button/Tooltip/LaserRifle=Damage: <d ref="Effect,LaserRifleDamage,Amount" precision="2"/><n/>Armor Reduction: <d ref="Effect,LaserRifleDamage,ArmorReduction" precision="2"/><n/>Attack Speed: <d ref="Weapon,LaserRifle,Period" precision="2"/><n/>Splash: <d ref="Effect,LaserRifleDamage,AreaArray[0].Radius" precision="2"/><n/>Range: <d ref="Weapon,LaserRifle,Range" precision="2"/><n/>Reload time: 3.5<n/>Equip time: 2<n/>Weight: 10<n/>Critical Damage: 200%
+Button/Tooltip/LaserRifle=<c val="FFCC00">Damage:</c> <d ref="Effect,LaserRifleDamage,Amount" precision="2"/><n/><c val="F2403C">Critical: </c><d ref="Effect,LaserRifleDamageCritical,Amount" precision="2"/><n/><c val="FFCC00">Armor Reduction: </c><d ref="Effect,LaserRifleDamage,ArmorReduction" precision="2"/><n/><c val="FFCC00">Attack Speed: </c><d ref="Weapon,LaserRifle,Period" precision="2"/><n/><c val="FFCC00">Splash: </c>Single Target<n/><c val="FFCC00">Range:</c> <d ref="Weapon,LaserRifle,Range" precision="2"/><n/><c val="FFCC00">Reload:</c> 3 Seconds<n/><c val="FFCC00">Equip:</c> 2 Seconds<n/><c val="FFCC00">Weight:</c> 10
 Button/Tooltip/Magazine=<c val="FFCC33">Increases Ammunition Stock by <d ref="Effect,EquipAmmoNormal,Cost.ChargeCountUse*(-1)"/> when consumed.</c>
-Button/Tooltip/MarksmanRifle=Damage: <d ref="Effect,MarksmanRifleDamage,Amount" precision="2"/><n/>Armor Reduction: <d ref="Effect,MarksmanRifleDamage,ArmorReduction" precision="2"/><n/>Attack Speed: <d ref="Weapon,MarksmanRifle,Period" precision="2"/><n/>Splash: <d ref="Effect,MarksmanRifleDamage,AreaArray[0].Radius" precision="2"/><n/>Range: <d ref="Weapon,MarksmanRifle,Range" precision="2"/><n/>Reload time: 2.25<n/>Equip time: 2.5<n/>Weight: 8<n/>Critical Damage: 225%
-Button/Tooltip/MediumMachineGun=Damage: <d ref="Effect,MediumMachineGunDamage,Amount" precision="2"/><n/>Bonus: +<d ref="Effect,MediumMachineGunDamage,AttributeBonus[Massive]" precision="2"/> vs Massive<n/>Armor Reduction: <d ref="Effect,MediumMachineGunDamage,ArmorReduction" precision="2"/><n/>Attack Speed: <d ref="Weapon,MediumMachineGun,Period" precision="2"/><n/>Splash: <d ref="Effect,MediumMachineGunDamage,AreaArray[0].Radius" precision="2"/><n/>Range: <d ref="Weapon,MediumMachineGun,Range" precision="2"/><n/>Reload time: 4.5<n/>Equip time: 2.5<n/>Weight: 18<n/>Critical Damage: 200%
-Button/Tooltip/Medkit=Heals <d ref="Effect,MedkitHeal,VitalArray[Life].Change*Effect,Medkit,PeriodCount" precision="1"/> hitpoints over <d ref="Effect,Medkit,PeriodCount*Effect,Medkit,PeriodicPeriodArray[0]" precision="1"/> seconds on use. <n/><n/><c val="FFCC33">Medical Assistance (Default Hotkey X under Marine Actions) allows usage on other targets.</c>
+Button/Tooltip/MarksmanRifle=<c val="FFCC00">Damage:</c> <d ref="Effect,MarksmanRifleDamage,Amount" precision="2"/><n/><c val="F2403C">Critical: </c><d ref="Effect,MarksmanRifleDamageCritical,Amount" precision="2"/><n/><c val="FFCC00">Armor Reduction:</c> <d ref="Effect,MarksmanRifleDamage,ArmorReduction" precision="2"/><n/><c val="FFCC00">Attack Speed:</c> <d ref="Weapon,MarksmanRifle,Period" precision="2"/><n/><c val="FFCC00">Splash Type:</c> Single Target<n/><c val="FFCC00">Range: </c><d ref="Weapon,MarksmanRifle,Range" precision="2"/><n/><c val="FFCC00">Reload:</c> 1.75 Seconds<n/><c val="FFCC00">Equip:</c> 1.5 Seconds<n/><c val="FFCC00">Weight:</c> 8
+Button/Tooltip/MediumMachineGun=<c val="FFCC00">Damage: </c><d ref="Effect,MediumMachineGunDamage,Amount" precision="2"/><c val="B5F3FB"> + <d ref="Effect,MediumMachineGunDamage,AttributeBonus[Massive]" precision="2"/> vs Massive</c><n/><c val="F2403C">Critical:</c> <d ref="Effect,MediumMachineGunDamageCritical,Amount" precision="2"/><n/><c val="FFCC00">Armor Reduction:</c> <d ref="Effect,MediumMachineGunDamage,ArmorReduction" precision="2"/><n/><c val="FFCC00">Attack Speed: </c><d ref="Weapon,MediumMachineGun,Period" precision="2"/><n/><c val="FFCC00">Splash Type: </c>Penetration<n/><c val="FFCC00">Range:</c> <d ref="Weapon,MediumMachineGun,Range" precision="2"/><n/><c val="FFCC00">Reload: </c>3 Seconds<n/><c val="FFCC00">Equip: </c>3 Seconds<n/><c val="FFCC00">Weight:</c> 18
+Button/Tooltip/Medkit=Heals <d ref="Effect,MedkitHeal,VitalArray[Life].Change*Effect,Medkit,PeriodCount" precision="1"/> hitpoints over <d ref="Effect,Medkit,PeriodCount*Effect,Medkit,PeriodicPeriodArray[0]" precision="1"/> seconds on use.
 Button/Tooltip/MendingPaste=Instantly cures any fractures or broken bones on use.
 Button/Tooltip/NanoHealthAugment=<c val="FFCC33">Increases health regeneration by <d ref="Behavior,NanoHealthAugment,Modification.VitalRegenArray[Life]"/>.</c>
 Button/Tooltip/NightVisionModule=Image intensification module that provides the effects of wearing Night Vision Goggles.<n/><n/><c val="FFCC33">Increases sight range by <d ref="Behavior,NightVisionModule,Modification.SightBonus"/> and detection range by <d ref="Behavior,NightVisionModule,Modification.DetectBonus"/>.</c>
 Button/Tooltip/PackUpAntiMaterialRifle=Pack up the bipod and return the weapon to normal firing stance.<n/><n/><c val="FFCC33">Removes range and attack speed bonuses, but restores mobility.</c>
 Button/Tooltip/PackUpFiringStance=Exit the braced position, returning to normal firing stance.<n/><n/><c val="FFCC33">Loses range and damage bonuses but regaining normal movespeed.</c>
 Button/Tooltip/PackUpHeavyMachineGun=Pack Heavy Machine Gun, rendering it unfirable again.<n/><n/><c val="FFCC33">Restores mobility but removes ability to attack with HMG.</c>
-Button/Tooltip/Pistol=Damage: <d ref="Effect,PistolDamage,Amount" precision="2"/><n/>Bonus: None<n/>Armor Reduction: <d ref="Effect,PistolDamage,ArmorReduction" precision="2"/><n/>Attack Speed: <d ref="Weapon,Pistol,Period" precision="2"/><n/>Splash: 0<n/>Range: <d ref="Weapon,Pistol,Range" precision="2"/><n/>Reload time: 1.1<n/>Equip time: 0.3<n/>Weight: 2<n/>Critical Damage: 175%
+Button/Tooltip/Pistol=<c val="FFCC00">Damage:</c> <d ref="Effect,PistolDamage,Amount" precision="2"/><n/><c val="F2403C">Critical:</c> <d ref="Effect,PistolDamageCritical,Amount" precision="2"/><n/><c val="FFCC00">Armor Reduction: </c><d ref="Effect,PistolDamage,ArmorReduction" precision="2"/><n/><c val="FFCC00">Attack Speed: </c><d ref="Weapon,Pistol,Period" precision="2"/><n/><c val="FFCC00">Splash:</c> Single Target<n/><c val="FFCC00">Range: </c><d ref="Weapon,Pistol,Range" precision="2"/><n/><c val="FFCC00">Reload: </c>1.1 Seconds<n/><c val="FFCC00">Equip:</c> 0.3 Seconds<n/><c val="FFCC00">Weight: </c>2
 Button/Tooltip/PlasmaCannonItem=
 Button/Tooltip/PlasmaCore=<c val="FFCC33">Reduces target armor and shield armor by <d ref="Behavior,PlasmaCoreDebuff,Modification.LifeArmorBonus*(-1)"/> on hit.</c>
-Button/Tooltip/PlasmaCutter=Damage: <d ref="Effect,PlasmaCutterDamage,Amount" precision="2"/><n/>Armor Reduction: <d ref="Effect,PlasmaCutterDamage,ArmorReduction" precision="2"/><n/>Attack Speed: <d ref="Weapon,PlasmaCutter,Period" precision="2"/><n/>Splash: <d ref="Effect,PlasmaCutterDamage,AreaArray[0].Radius" precision="2"/><n/>Range: <d ref="Weapon,PlasmaCutter,Range" precision="2"/> (Ground only)<n/>Reload time: 3.5<n/>Equip time: 2<n/>Weight: 20<n/>Critical Damage: 250%
+Button/Tooltip/PlasmaCutter=<c val="FFCC00">Damage:</c> <d ref="Effect,PlasmaCutterDamage,Amount" precision="2"/><n/><c val="F2403C">Critical:</c> <d ref="Effect,PlasmaCutterDamageCritical,Amount" precision="2"/><n/><c val="FFCC00">Armor Reduction:</c> <d ref="Effect,PlasmaCutterDamage,ArmorReduction" precision="2"/><n/><c val="FFCC00">Attack Speed: </c><d ref="Weapon,PlasmaCutter,Period" precision="2"/><n/><c val="FFCC00">Splash Type:</c> Single Target<n/><c val="FFCC00">Range:</c> <d ref="Weapon,PlasmaCutter,Range" precision="2"/> (Ground only)<n/><c val="FFCC00">Reload:</c> 3.5 Seconds<n/><c val="FFCC00">Equip:</c> 2 Seconds<n/><c val="FFCC00">Weight:</c> 20
 Button/Tooltip/PowerGeneratorAugment=<c val="FFCC33">Increases energy regeneration by <d ref="Behavior,PowerGeneratorAugment,Modification.VitalRegenArray[Energy]" precision="1"/>.</c>
-Button/Tooltip/PumpShotgun=Damage: <d ref="Effect,PumpShotgunDamageRange12,Amount" precision="2"/> x <d ref="Weapon,PumpShotgun,DisplayAttackCount" precision="2"/> pellets<n/>Bonus: +<d ref="Effect,PumpShotgunDamageRange12,AttributeBonus[Light]" precision="2"/> vs Light<n/>Armor Reduction: <d ref="Effect,PumpShotgunDamageRange12,ArmorReduction" precision="2"/><n/>Attack Speed: <d ref="Weapon,PumpShotgun,Period" precision="2"/><n/>Splash: 0.25 per pellet, pellets scattered in an area of 2 at Range 12<n/>Range: <d ref="Weapon,PumpShotgun,Range" precision="2"/><n/>Reload time: 3<n/>Equip time: 2.5<n/>Weight: 10<n/>Critical Damage: 180%
+Button/Tooltip/PumpShotgun=<c val="FFCC00">Damage:</c> <d ref="Effect,PumpShotgunDamage,Amount" precision="2"/><n/><c val="F2403C">Critical:</c> <d ref="Effect,PumpShotgunDamageCritical,Amount" precision="2"/><n/><c val="FFCC00">Armor Reduction: </c>2<n/><c val="FFCC00">Attack Speed:</c> <d ref="Weapon,PumpShotgun,Period" precision="2"/><n/><c val="FFCC00">Splash Type: </c>Scattershot<n/><c val="FFCC00">Range: </c><d ref="Weapon,PumpShotgun,Range" precision="2"/><n/><c val="FFCC00">Reload:</c> 3 Seconds<n/><c val="FFCC00">Equip: </c>2.5 Seconds<n/><c val="FFCC00">Weight: </c>10
 Button/Tooltip/ReactiveProtectiveInsert=<c val="FFCC33">Reduces damage taken by <d ref="1-Behavior,ReactiveProtectiveInsert,DamageResponse.ModifyFraction*100" precision="2"/>%.</c>
-Button/Tooltip/RiotShield=A shield composed of light carbon polymers commonly used by police forces. <n/><n/><c val="FFCC33">Reduces attacks to hitpoints by 5.</c>
+Button/Tooltip/RiotShield=<c val="FFCC33">Blocks up to 5 damage to Health when being attacked.</c>
 Button/Tooltip/RoadFlare=Reveals an <d ref="Unit,RoadFlareActive,Sight"/> radius area at the target location and reveals invisible units for <d ref="Behavior,RoadFlareVision,Duration"/> seconds.
-Button/Tooltip/ShieldAugmentationInsert=<c val="FFCC33">Increases shields by <d ref="100*Behavior,ShieldAugmentationInsert,Modification.VitalMaxArray[Shields]" precision="2"/>% and increases Shield Armor by <d ref="Behavior,ShieldAugmentationInsert,Modification.ShieldArmorBonus"/>.</c>
-Button/Tooltip/SubmachineGun=Damage: <d ref="Effect,SubmachineGunDamage,Amount" precision="2"/><n/>Bonus: +<d ref="Effect,SubmachineGunDamage,AttributeBonus[Light]" precision="2"/> vs Light<n/>Armor Reduction: <d ref="Effect,SubmachineGunDamage,ArmorReduction" precision="2"/><n/>Attack Speed: <d ref="Weapon,SubmachineGun,Period" precision="2"/><n/>Splash: <d ref="Effect,SubmachineGunDamage,AreaArray[0].Radius" precision="2"/><n/>Range: <d ref="Weapon,SubmachineGun,Range" precision="2"/><n/>Reload time: 1.5<n/>Equip time: 1.75<n/>Weight: 5<n/>Critical Damage: 150%
+Button/Tooltip/ShieldAugmentationInsert=<c val="FFCC33">Increases shields by 50% and increases Shield Armor by <d ref="Behavior,ShieldAugmentationInsert,Modification.ShieldArmorBonus"/>.</c>
+Button/Tooltip/SubmachineGun=<c val="FFCC00">Damage:</c> <d ref="Effect,SubmachineGunDamage,Amount" precision="2"/> <c val="B5F3FB">x 2</c><n/><c val="F2403C">Critical:</c> <d ref="Effect,SubmachineGunDamageCritical,Amount" precision="2"/><c val="B5F3FB"> x 2</c><n/><c val="FFCC00">Armor Reduction: </c><d ref="Effect,SubmachineGunDamage,ArmorReduction" precision="2"/><n/><c val="FFCC00">Attack Speed:</c> <d ref="Weapon,SubmachineGun,Period" precision="2"/><n/><c val="FFCC00">Splash Type: </c>Spray And Pray<n/><c val="FFCC00">Range: </c><d ref="Weapon,SubmachineGun,Range" precision="2"/><n/><c val="FFCC00">Reload: </c>1.5 Seconds<n/><c val="FFCC00">Equip:</c> 1.5 Seconds<n/><c val="FFCC00">Weight:</c> 5
 Button/Tooltip/Survelliance Array=Survelliance Array
 Button/Tooltip/TX1=<c val="FFCC33">Biological units in the splash radius take <d ref="Effect,TX1PoisonDamage,Amount"/> damage per second for <d ref="Behavior,TX1Poison,Duration"/> seconds and have their movement speed lowered by <d ref="1-Behavior,TX1Poison,Modification.MoveSpeedMultiplier*100" precision="2"/>%.</c><n/><n/><c val="FF0000">WARNING: Will also effect allies in a weapon's splash radius.</c>
 DocInfo/DescLong=Item and Weapon Data Night of the Dead 2
@@ -405,7 +408,7 @@ Unit/Name/RoadFlareActive=Road Flare Active
 Unit/Name/RoadFlareTossed=Road Flare (Tossed)
 Unit/Name/RocketLauncher=Rocket Launcher
 Unit/Name/SatchelCharge=Satchel Charge
-Unit/Name/ShieldAugmentationInsert=Shield Booster Plates
+Unit/Name/ShieldAugmentationInsert=Shield Booster
 Unit/Name/SubmachineGun=Submachine Gun
 Unit/Name/SubmachineGunItem=Submachine Gun
 Unit/Name/TX1=TX-1 Rounds
