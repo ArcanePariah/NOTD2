@@ -1625,11 +1625,7 @@ bool lib840A968C_gt_ActivateHorde_Func (bool testConds, bool runActions) {
         return true;
     }
 
-    Wait(RandomFixed(0.0, 2.0), c_timeGame);
-    while (lib840A968C_gv_hordeLock) {
-        Wait(1.0, c_timeGame);
-    }
-    lib840A968C_gv_hordeLock = true;
+    TriggerQueueEnter();
     UIDisplayMessage(PlayerGroupAll(), c_messageAreaSubtitle, StringExternal("Param/Value/lib_840A968C_8280CFC9"));
     TextExpressionSetToken("Param/Expression/lib_840A968C_5607E622", "A", IntToText(TechTreeUpgradeCount(lib1E3F036D_gv_zombiePlayer, "Chapter1Complete", c_techCountCompleteOnly)));
     TriggerDebugOutput(lib840A968C_gv_gameEvents, TextExpressionAssemble("Param/Expression/lib_840A968C_5607E622"), false);
@@ -1656,8 +1652,8 @@ bool lib840A968C_gt_ActivateHorde_Func (bool testConds, bool runActions) {
         AIAttackWaveSetTargetUnitGroup(lib1E3F036D_gv_zombiePlayer, lib840A968C_gf_GetMarineGroup());
         AIAttackWaveSend(lib1E3F036D_gv_zombiePlayer, 0, false);
     }
-    TriggerStop(TriggerGetCurrent());
-    lib840A968C_gv_hordeLock = false;
+    TriggerQueueClear(c_triggerQueueRetain);
+    TriggerQueueExit();
     return true;
 }
 
