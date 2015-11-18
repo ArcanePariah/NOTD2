@@ -2,7 +2,7 @@
 id=CommandCenter
 path=Assets\Textures\.dds
 asset=Wireframe-Terran-##id##,btn-building-terran-commandcenter,btn-upgrade-protoss-shieldslevel0,btn-upgrade-terran-buildingarmor,ui_ingame_workercount_bg,decal_terran_0002_01
-Actor=BuildingCrushQueryResponse,BuildingTerrainFlatten,BuildingTerrainFlattenEditor,BuildingTerrainFlattenInstant,CliffLocalSelection,CliffPreSelection,##id##Build,##id##MorphDeath,##id##Reactor,##id##ReactorDeath,DeadAnimationMacro,EditorSelection,FlyerHelperSplat,FlyerShadow,GroundLocalFlashingSelection,GroundLocalSelection,GroundLocalSelectionObserver,GroundPreSelection,GroundPreSelectionObserver,GroundShadow,GroundSyncFlashingSelection,GroundSyncSelection,Infestation##id##,LabGate,LabGate2,ModelPretargetGround,PlaceholderModel,PlacementModel,PlayerLogoDoodadList,PortraitActor,PrimaryGroundSyncSelectionObserver,QueueAnim,SecondaryGroundSyncSelectionObserver,Snapshot,SoundEmitter,TerrainMgr,TerrainSquibAnimations,TerrainSquibHarnessContinuous,UnitDeathModel,UnitDeathModelUnscaled,UnitDeathSound,UnitDeathVoice,UnitFootprint,UnitSound
+Actor=BuildingCrushQueryResponse,BuildingTerrainFlatten,BuildingTerrainFlattenEditor,BuildingTerrainFlattenInstant,CliffLocalSelection,CliffLocalSelectionObserver,CliffPreSelection,CliffPreSelectionObserver,##id##Build,##id##MorphDeath,##id##Reactor,##id##ReactorDeath,DeadAnimationMacro,EditorSelection,FlyerHelperSplat,FlyerShadow,GroundLocalFlashingSelection,GroundLocalSelection,GroundLocalSelectionObserver,GroundPreSelection,GroundPreSelectionObserver,GroundShadow,GroundSyncFlashingSelection,GroundSyncSelection,Infestation##id##,LabGate,LabGate2,ModelPretargetGround,PlaceholderModel,PlacementModel,PlayerLogoDoodadList,PortraitActor,PrimaryGroundSyncSelectionObserver,QueueAnim,SecondaryGroundSyncSelectionObserver,Snapshot,SoundEmitter,TerrainMgr,TerrainSquibAnimations,TerrainSquibHarnessContinuous,UnitDeathModel,UnitDeathModelUnscaled,UnitDeathSound,UnitDeathVoice,UnitFootprint,UnitSound
 Model=AdjutantPortrait,##id##,##id##Death,##id##DeathLow,##id##FlyDeath,##id##Placement,Invisible,OrbitalCommandDeath,OrbitalCommandFlyDeath,ProtossSmallUnitDeathLow,TerranLargeBuildingDeath,TerranSmallUnitDeathLow,WaterRippleMassive3,ZergSmallUnitDeathLow
 PhysicsMaterial=Water
 Sound=##id##_Ambience,##id##_Movement2,##id##_Ready,##id##_What,Terran_BuildingPlacement,Terran_ConstructionWhat
@@ -70,6 +70,15 @@ Actor=LabGate,LabGate2,SoundEmitter,TerrainMgr
 Model=UmojanLabCatwalkSection45Right
 Sound=Doodad_##id##
 
+[Game]
+id=Dflt
+Abil=stop
+Actor=LabGate,LabGate2,TerrainMgr
+Behavior=AttackReveal
+Effect=SplashDamage
+Race=Prot,Terr,Zerg
+Sound=Zerg_CreepDecay,Zerg_CreepGrow
+
 [Light]
 id=NOTD2Light
 Actor=LabGate,LabGate2,TerrainMgr
@@ -110,6 +119,8 @@ asset=Assets\Doodads\DockingBayGround\DockingBayGround.m3
 Actor=LabGate,LabGate2,TerrainMgr
 id=FuelBarrel
 asset=Assets\Doodads\##id##\##id##.m3
+Actor=LabGate,LabGate2,TerrainMgr
+id=InfestationResearchPing
 Actor=LabGate,LabGate2,TerrainMgr
 id=InfestedDominionHousing12
 asset=Assets\Buildings\Terran\InfestedDominionHousing\InfestedDominionHousing_00.m3
