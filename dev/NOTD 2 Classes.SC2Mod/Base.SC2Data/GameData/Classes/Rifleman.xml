@@ -953,7 +953,9 @@
     </CValidatorCombine>
     <CEffectModifyUnit id="FocusFireExpireCooldown">
         <EditorCategories value=""/>
-        <Cost Abil="FocusFire,On" CooldownOperation="Set" CooldownTimeUse="-4"/>
+        <Cost Abil="FocusFire,On" CooldownOperation="Set">
+            <Fraction Cooldown="1"/>
+        </Cost>
     </CEffectModifyUnit>
     <CEffectApplyBehavior id="Bloodlust">
         <EditorCategories value=""/>
@@ -1415,7 +1417,7 @@
         <DamageResponse Handled="CripplingFire" Location="Attacker"/>
         <InfoIcon value="Assets\Textures\btn-ability-protoss-blink-color.dds"/>
         <RemoveValidatorArray value="CasterHasEnergy"/>
-        <ExpireEffect value="FocusFireExpireCooldown"/>
+        <FinalEffect value="FocusFireExpireCooldown"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="FocusFireRangeNegationMelee">
         <InfoFlags index="Hidden" value="1"/>
