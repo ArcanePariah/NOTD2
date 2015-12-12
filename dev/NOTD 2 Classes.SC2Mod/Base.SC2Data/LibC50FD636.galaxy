@@ -156,7 +156,7 @@ void libC50FD636_gf_ClassCreation (point lp_deploymentPoint, int lp_player) {
     UnitCreate(1, UserDataGetUnit("Classes", libC50FD636_gv_marines[lp_player].lv_class, "Class Unit", 1), 0, lp_player, lp_deploymentPoint, libNtve_gf_RandomAngle());
     libC50FD636_gv_marines[lp_player].lv_unit = UnitLastCreated();
     libC50FD636_gv_marines[lp_player].lv_unitType = UserDataGetUnit("Classes", libC50FD636_gv_marines[lp_player].lv_class, "Class Unit", 1);
-    lib1E3F036D_gf_SetPlayerFrame(lp_player, libC50FD636_gv_marines[lp_player].lv_unit, UserDataGetImagePath("Classes", libC50FD636_gv_marines[lp_player].lv_class, "Class Image", 1), UserDataGetImagePath("Classes", libC50FD636_gv_marines[lp_player].lv_class, "Class Image", 1));
+    lib1E3F036D_gf_SetPlayerFrame(lp_player, libC50FD636_gv_marines[lp_player].lv_unit, UserDataGetImagePath("Classes", libC50FD636_gv_marines[lp_player].lv_class, "Class Image", 1), UserDataGetImagePath("Classes", libC50FD636_gv_marines[lp_player].lv_class, "Class Icon", 1));
     UnitControlGroupAddUnit(lp_player, 1, UnitLastCreated());
     UnitSelect(UnitLastCreated(), lp_player, true);
     UnitGroupAdd(libC50FD636_gv_marinesUnitGroup, UnitLastCreated());
@@ -556,6 +556,9 @@ void libC50FD636_gf_UpdateTalentSystem (int lp_talent, int lp_talentPlayer, int 
     libC50FD636_gf_UpdateTalentVisuals(lp_talentPlayer, lp_talent, lp_talentTree);
     libC50FD636_gf_UpdateAllTalentImages(lp_talentPlayer);
     libC50FD636_gf_UpdateAvailableTalents(lp_talentPlayer, libC50FD636_gv_talentTrees.lv_numberAvailableLabel, libC50FD636_gv_talentAvailable[lp_talentPlayer]);
+    if ((libC50FD636_gv_talentAvailable[lp_talentPlayer] == 0)) {
+        DialogControlSendAnimationEvent(libC50FD636_gv_talentButton, PlayerGroupSingle(lp_talentPlayer), "TalentUnavailable");
+    }
 }
 
 void libC50FD636_gf_UpdateAvailableTalents (int lp_player, int lp_dialogItem, int lp_text) {
@@ -708,6 +711,7 @@ bool auto_libC50FD636_gf_TalentTreeCreation_TriggerFunc (bool testConds, bool ru
     libC50FD636_gf_UpdateTalentImage(2, lp_player, 1);
     libC50FD636_gf_UpdateTalentImage(1, lp_player, 2);
     libC50FD636_gf_UpdateTalentImage(2, lp_player, 2);
+    DialogControlSendAnimationEvent(libC50FD636_gv_talentButton, PlayerGroupSingle(lp_player), "TalentAvailable");
     return true;
 }
 
@@ -2827,6 +2831,7 @@ bool libC50FD636_gt_LevelUp_Func (bool testConds, bool runActions) {
     TextExpressionSetToken("Param/Expression/lib_C50FD636_2C5C5CF1", "A", PlayerName(lv_levelingPlayer));
     TriggerDebugOutput(2, TextExpressionAssemble("Param/Expression/lib_C50FD636_2C5C5CF1"), false);
     libC50FD636_gv_talentAvailable[lv_levelingPlayer] += 1;
+    DialogControlSendAnimationEvent(libC50FD636_gv_talentButton, PlayerGroupSingle(lv_levelingPlayer), "TalentAvailable");
     libC50FD636_gf_UpdateAvailableTalents(lv_levelingPlayer, libC50FD636_gv_talentTrees.lv_numberAvailableLabel, libC50FD636_gv_talentAvailable[lv_levelingPlayer]);
     libC50FD636_gf_UpdateAllTalentImages(lv_levelingPlayer);
     return true;
@@ -2856,14 +2861,18 @@ bool libC50FD636_gt_TalentSelection_Func (bool testConds, bool runActions) {
     // Variable Initialization
     lv_talentTreePlayer = EventPlayer();
 
+    // Conditions
+    if (testConds) {
+        if (!((libC50FD636_gv_talentAvailable[lv_talentTreePlayer] != 0))) {
+            return false;
+        }
+    }
+
     // Actions
     if (!runActions) {
         return true;
     }
 
-    if ((libC50FD636_gv_talentAvailable[lv_talentTreePlayer] == 0)) {
-        return true;
-    }
     auto9E968BCD_ae = libC50FD636_gv_numberofTalentTrees;
     auto9E968BCD_ai = 1;
     lv_talentTreeLoopIndex = 1;

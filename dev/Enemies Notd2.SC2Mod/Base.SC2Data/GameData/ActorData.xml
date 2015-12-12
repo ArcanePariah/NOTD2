@@ -1237,7 +1237,6 @@
         <On Terms="AbilMorph.MutatetoShambler.Finish; MorphTo Shambler" Send="Destroy"/>
         <On Terms="ActorCreation" Send="SetTeamColor 228,133,27 236,19,19"/>
         <On Terms="ActorCreation" Send="TimerSet"/>
-        <On Terms="TimerExpired" Send="TextureSelectById CivilianZombieDiffuse2"/>
         <On Terms="TimerExpired" Send="TextureSelectById CivilianZombieNormal"/>
         <Baselines index="Walk" AnimProps="Wounded,Walk"/>
         <DeathArray index="Normal" ModelLink="ScientistMaleDeath" SoundLink="PrimalZergling_Death"/>
@@ -1668,7 +1667,7 @@
         <Macros value="ZergBurrowMobileAnimMacro"/>
         <Macros value="ZergSmallBurrowEffects"/>
         <Macros value="TerrainSquibAnimations"/>
-        <Remove Terms="UnitBirth.*.Normal" Send="$Birth 0 0"/>
+        <Remove Terms="UnitBirth.*.Normal" Send="$Birth 0 0.000000"/>
         <On Terms="WeaponStart.BrainBugBite.AttackStart" Send="AnimPlay Attack Spell,A"/>
         <On Terms="WeaponStop.BrainBugBite.AttackStop" Send="AnimClear Attack"/>
         <On Terms="UnitHeightUpdate.*.Land" Send="Create Locust_Land"/>
@@ -2653,6 +2652,10 @@
         <On index="58" removed="1"/>
         <On index="59" removed="1"/>
         <On index="60" removed="1"/>
+        <On index="61" removed="1"/>
+        <On index="62" removed="1"/>
+        <On index="63" removed="1"/>
+        <On index="64" removed="1"/>
         <DeathArray index="Normal" ModelLink="InfestorDeath" SoundLink=""/>
         <DeathArray index="Disintegrate" ModelLink="InfestorDeathAcid" SoundLink="Uni_DeathFXAcid"/>
         <DeathArray index="Fire" ModelLink="InfestorDeathFire" SoundLink="Uni_DeathFXFire"/>
@@ -3942,9 +3945,9 @@
         <On Terms="Abil.UltraliskBurrowChargeNoxious.SourceCastStart" Send="AnimPlay BurrowChargeDown Burrow"/>
         <On Terms="Abil.UltraliskBurrowChargeNoxious.SourceCastStart" Send="AnimPlay Burrow Walk,Burrow PlayForever"/>
         <On Terms="Abil.UltraliskBurrowChargeNoxious.SourceCastStart" Send="Create BurrowChargeDownSound"/>
-        <On Terms="Abil.UltraliskBurrowChargeNoxious.SourceCastStart" Send="TimerSet 0.5 BurrowChargingState"/>
+        <On Terms="Abil.UltraliskBurrowChargeNoxious.SourceCastStart" Send="TimerSet 0.500000 BurrowChargingState"/>
         <On Terms="TimerExpired; TimerName BurrowChargingState" Send="StatusSet BurrowCharging 1"/>
-        <On Terms="Abil.UltraliskBurrowChargeNoxious.SourceCastStart" Send="TimerSet 0.6 ChargeFailTimer"/>
+        <On Terms="Abil.UltraliskBurrowChargeNoxious.SourceCastStart" Send="TimerSet 0.600000 ChargeFailTimer"/>
         <On Terms="Abil.UltraliskBurrowChargeNoxious.SourceCastStart" Send="StatusSet ChargeFail 1"/>
         <On Terms="Behavior.BurrowCharging.On" Send="StatusSet ChargeFail 0"/>
         <On Terms="TimerExpired; TimerName ChargeFailTimer; IsStatus ChargeFail 1" Send="AnimClear Burrow"/>
@@ -4047,9 +4050,9 @@
         <On Terms="Abil.UltraliskBurrowChargeNoxious.SourceCastStart" Send="AnimPlay BurrowChargeDown Burrow"/>
         <On Terms="Abil.UltraliskBurrowChargeNoxious.SourceCastStart" Send="AnimPlay Burrow Walk,Burrow PlayForever"/>
         <On Terms="Abil.UltraliskBurrowChargeNoxious.SourceCastStart" Send="Create BurrowChargeDownSound"/>
-        <On Terms="Abil.UltraliskBurrowChargeNoxious.SourceCastStart" Send="TimerSet 0.5 BurrowChargingState"/>
+        <On Terms="Abil.UltraliskBurrowChargeNoxious.SourceCastStart" Send="TimerSet 0.500000 BurrowChargingState"/>
         <On Terms="TimerExpired; TimerName BurrowChargingState" Send="StatusSet BurrowCharging 1"/>
-        <On Terms="Abil.UltraliskBurrowChargeNoxious.SourceCastStart" Send="TimerSet 0.6 ChargeFailTimer"/>
+        <On Terms="Abil.UltraliskBurrowChargeNoxious.SourceCastStart" Send="TimerSet 0.600000 ChargeFailTimer"/>
         <On Terms="Abil.UltraliskBurrowChargeNoxious.SourceCastStart" Send="StatusSet ChargeFail 1"/>
         <On Terms="Behavior.BurrowCharging.On" Send="StatusSet ChargeFail 0"/>
         <On Terms="TimerExpired; TimerName ChargeFailTimer; IsStatus ChargeFail 1" Send="AnimClear Burrow"/>
@@ -4149,9 +4152,9 @@
         <On Terms="AbilMorph.*.Finish; MorphTo HotSTorrasque; MorphFrom HotSTorrasqueBurrowed" Send="AnimClear Burrow"/>
         <On Terms="Behavior.TorrasqueDontDie.On" Send="AnimBracketStart DontDie GLbirth GLstand IGNORE"/>
         <On Terms="Behavior.TorrasqueDontDie.Off" Send="AnimBracketStop DontDie"/>
-        <On Terms="AbilMorph.*.Finish; MorphTo HotSTorrasque; MorphFrom TorrasqueChrysalis" Send="SetScale 0.2"/>
-        <On Terms="AbilMorph.*.Finish; MorphTo HotSTorrasque; MorphFrom TorrasqueChrysalis" Send="SetScale 1 0.4"/>
-        <On Terms="AbilMorph.*.Finish; MorphTo HotSTorrasque; MorphFrom TorrasqueChrysalis" Send="$Birth 0 0 0.25"/>
+        <On Terms="AbilMorph.*.Finish; MorphTo HotSTorrasque; MorphFrom TorrasqueChrysalis" Send="SetScale 0.200000"/>
+        <On Terms="AbilMorph.*.Finish; MorphTo HotSTorrasque; MorphFrom TorrasqueChrysalis" Send="SetScale 1.000000 0.400000"/>
+        <On Terms="AbilMorph.*.Finish; MorphTo HotSTorrasque; MorphFrom TorrasqueChrysalis" Send="$Birth 0 0.000000 0.250000"/>
         <On Terms="UnitMovementUpdate.*.Walk; AnimPlaying Birth" Send="AnimClear Birth"/>
         <On Terms="ActorCreation" Send="StatusSet BurrowCharging 0"/>
         <On Terms="ActorCreation" Send="TimerSet 0.070000 BurrowChargeFX"/>
@@ -4162,9 +4165,9 @@
         <On Terms="Abil.UltraliskBurrowCharge.SourceCastStart" Send="AnimPlay BurrowChargeDown Burrow"/>
         <On Terms="Abil.UltraliskBurrowCharge.SourceCastStart" Send="AnimPlay Burrow Walk,Burrow PlayForever"/>
         <On Terms="Abil.UltraliskBurrowCharge.SourceCastStart" Send="Create BurrowChargeDownSound"/>
-        <On Terms="Abil.UltraliskBurrowCharge.SourceCastStart" Send="TimerSet 0.5 BurrowChargingState"/>
+        <On Terms="Abil.UltraliskBurrowCharge.SourceCastStart" Send="TimerSet 0.500000 BurrowChargingState"/>
         <On Terms="TimerExpired; TimerName BurrowChargingState" Send="StatusSet BurrowCharging 1"/>
-        <On Terms="Abil.UltraliskBurrowCharge.SourceCastStart" Send="TimerSet 0.6 ChargeFailTimer"/>
+        <On Terms="Abil.UltraliskBurrowCharge.SourceCastStart" Send="TimerSet 0.600000 ChargeFailTimer"/>
         <On Terms="Abil.UltraliskBurrowCharge.SourceCastStart" Send="StatusSet ChargeFail 1"/>
         <On Terms="Behavior.BurrowCharging.On" Send="StatusSet ChargeFail 0"/>
         <On Terms="TimerExpired; TimerName ChargeFailTimer; IsStatus ChargeFail 1" Send="AnimClear Burrow"/>
@@ -4359,9 +4362,9 @@
         <On Terms="Abil.UltraliskBurrowChargeNoxious.SourceCastStart" Send="AnimPlay BurrowChargeDown Burrow"/>
         <On Terms="Abil.UltraliskBurrowChargeNoxious.SourceCastStart" Send="AnimPlay Burrow Walk,Burrow PlayForever"/>
         <On Terms="Abil.UltraliskBurrowChargeNoxious.SourceCastStart" Send="Create BurrowChargeDownSound"/>
-        <On Terms="Abil.UltraliskBurrowChargeNoxious.SourceCastStart" Send="TimerSet 0.5 BurrowChargingState"/>
+        <On Terms="Abil.UltraliskBurrowChargeNoxious.SourceCastStart" Send="TimerSet 0.500000 BurrowChargingState"/>
         <On Terms="TimerExpired; TimerName BurrowChargingState" Send="StatusSet BurrowCharging 1"/>
-        <On Terms="Abil.UltraliskBurrowChargeNoxious.SourceCastStart" Send="TimerSet 0.6 ChargeFailTimer"/>
+        <On Terms="Abil.UltraliskBurrowChargeNoxious.SourceCastStart" Send="TimerSet 0.600000 ChargeFailTimer"/>
         <On Terms="Abil.UltraliskBurrowChargeNoxious.SourceCastStart" Send="StatusSet ChargeFail 1"/>
         <On Terms="Behavior.BurrowCharging.On" Send="StatusSet ChargeFail 0"/>
         <On Terms="TimerExpired; TimerName ChargeFailTimer; IsStatus ChargeFail 1" Send="AnimClear Burrow"/>

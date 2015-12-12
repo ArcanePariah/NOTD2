@@ -1625,11 +1625,7 @@ bool lib840A968C_gt_ActivateHorde_Func (bool testConds, bool runActions) {
         return true;
     }
 
-    Wait(RandomFixed(0.0, 2.0), c_timeGame);
-    while (lib840A968C_gv_hordeLock) {
-        Wait(1.0, c_timeGame);
-    }
-    lib840A968C_gv_hordeLock = true;
+    TriggerQueueEnter();
     UIDisplayMessage(PlayerGroupAll(), c_messageAreaSubtitle, StringExternal("Param/Value/lib_840A968C_8280CFC9"));
     TextExpressionSetToken("Param/Expression/lib_840A968C_5607E622", "A", IntToText(TechTreeUpgradeCount(lib1E3F036D_gv_zombiePlayer, "Chapter1Complete", c_techCountCompleteOnly)));
     TriggerDebugOutput(lib840A968C_gv_gameEvents, TextExpressionAssemble("Param/Expression/lib_840A968C_5607E622"), false);
@@ -1656,8 +1652,8 @@ bool lib840A968C_gt_ActivateHorde_Func (bool testConds, bool runActions) {
         AIAttackWaveSetTargetUnitGroup(lib1E3F036D_gv_zombiePlayer, lib840A968C_gf_GetMarineGroup());
         AIAttackWaveSend(lib1E3F036D_gv_zombiePlayer, 0, false);
     }
-    TriggerStop(TriggerGetCurrent());
-    lib840A968C_gv_hordeLock = false;
+    TriggerQueueClear(c_triggerQueueRetain);
+    TriggerQueueExit();
     return true;
 }
 
@@ -2456,13 +2452,14 @@ bool lib840A968C_gt_PeriodicUIUpdate_Func (bool testConds, bool runActions) {
         autoF2256345_p = 1;
         for ( ; autoF2256345_p <= PlayerGroupCount(autoF2256345_g) ; autoF2256345_p += BoolToInt(lv_player == PlayerGroupPlayer(autoF2256345_g, autoF2256345_p)) ) {
             lv_player = PlayerGroupPlayer(autoF2256345_g, autoF2256345_p);
+            TextExpressionSetToken("Param/Expression/lib_840A968C_28BE6BBF", "A", PlayerName(lv_player));
             TextExpressionSetToken("Param/Expression/lib_840A968C_28BE6BBF", "Experience", IntToText(lib840A968C_gv_players[lv_player].lv_totalExperience));
             TextExpressionSetToken("Param/Expression/lib_840A968C_28BE6BBF", "Rating", FixedToText(lib840A968C_gv_players[lv_player].lv_rating, c_fixedPrecisionAny));
             TextExpressionSetToken("Param/Expression/lib_840A968C_28BE6BBF", "Games", IntToText(lib840A968C_gv_players[lv_player].lv_gamesPlayed));
             lib1E3F036D_gf_UpdateRankIconTooltip(lv_player, TextExpressionAssemble("Param/Expression/lib_840A968C_28BE6BBF"));
-            TextExpressionSetToken("Param/Expression/lib_840A968C_2CC02426", "TalentTree1Name", UserDataGetText("TalentTree", UserDataGetUserInstance("TalentTrees", UserDataGetUserInstance("Classes", libC50FD636_gv_marines[lv_player].lv_class, "Talent Tree", 1), "Trees", 2), "Header", 1));
+            TextExpressionSetToken("Param/Expression/lib_840A968C_2CC02426", "TalentTree1Name", UserDataGetText("TalentTree", UserDataGetUserInstance("TalentTrees", UserDataGetUserInstance("Classes", libC50FD636_gv_marines[lv_player].lv_class, "Talent Tree", 1), "Trees", 1), "Header", 1));
             TextExpressionSetToken("Param/Expression/lib_840A968C_2CC02426", "TalentTree1Points", IntToText((libC50FD636_gv_talentLevels[lv_player][1][1] + libC50FD636_gv_talentLevels[lv_player][1][2] + libC50FD636_gv_talentLevels[lv_player][1][3] + libC50FD636_gv_talentLevels[lv_player][1][4] + libC50FD636_gv_talentLevels[lv_player][1][5] + libC50FD636_gv_talentLevels[lv_player][1][6])));
-            TextExpressionSetToken("Param/Expression/lib_840A968C_2CC02426", "TalentTree2Name", UserDataGetText("TalentTree", UserDataGetUserInstance("TalentTrees", UserDataGetUserInstance("Classes", libC50FD636_gv_marines[lv_player].lv_class, "Talent Tree", 1), "Trees", 1), "Header", 1));
+            TextExpressionSetToken("Param/Expression/lib_840A968C_2CC02426", "TalentTree2Name", UserDataGetText("TalentTree", UserDataGetUserInstance("TalentTrees", UserDataGetUserInstance("Classes", libC50FD636_gv_marines[lv_player].lv_class, "Talent Tree", 1), "Trees", 2), "Header", 1));
             TextExpressionSetToken("Param/Expression/lib_840A968C_2CC02426", "TalentTree2Points", IntToText((libC50FD636_gv_talentLevels[lv_player][2][1] + libC50FD636_gv_talentLevels[lv_player][2][2] + libC50FD636_gv_talentLevels[lv_player][2][3] + libC50FD636_gv_talentLevels[lv_player][2][4] + libC50FD636_gv_talentLevels[lv_player][2][5] + libC50FD636_gv_talentLevels[lv_player][2][6])));
             lib1E3F036D_gf_UpdateClassIconTooltip(lv_player, TextExpressionAssemble("Param/Expression/lib_840A968C_2CC02426"));
             TextExpressionSetToken("Param/Expression/lib_840A968C_BC359D66", "Hits", IntToText(lib840A968C_gv_players[lv_player].lv_currentGameStats.lv_hits));

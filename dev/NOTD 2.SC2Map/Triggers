@@ -10,6 +10,7 @@
         <Item Type="Category" Id="162E6D6D"/>
         <Item Type="Category" Id="5C56F6A5"/>
         <Item Type="Category" Id="DF7339D5"/>
+        <Item Type="Category" Id="B7F08541"/>
     </Root>
     <Element Type="Category" Id="7B9BC387">
         <Item Type="Variable" Id="42EF763A"/>
@@ -20,7 +21,6 @@
         <Item Type="Category" Id="2F952F42"/>
     </Element>
     <Element Type="Variable" Id="42EF763A">
-        <Section Value="Civilian Storyline"/>
         <VariableType>
             <Type Value="unit"/>
         </VariableType>
@@ -30,7 +30,6 @@
         <Preset Type="PresetValue" Library="Ntve" Id="D6EA4D09"/>
     </Element>
     <Element Type="Trigger" Id="71405438">
-        <Section Value="Civilian Storyline"/>
         <Event Type="FunctionCall" Id="3D27B57E"/>
         <Action Type="FunctionCall" Id="A11C3D95"/>
     </Element>
@@ -886,7 +885,26 @@
     </Element>
     <Element Type="Param" Id="C6802DCD">
         <ParameterDef Type="ParamDef" Library="09BE6BA8" Id="79B1A02F"/>
+        <FunctionCall Type="FunctionCall" Id="4BF32143"/>
+    </Element>
+    <Element Type="FunctionCall" Id="4BF32143">
+        <FunctionDef Type="FunctionDef" Library="Ntve" Id="00000129"/>
+        <Parameter Type="Param" Id="3F926E50"/>
+        <Parameter Type="Param" Id="FE63312C"/>
+        <Parameter Type="Param" Id="689F2514"/>
+    </Element>
+    <Element Type="Param" Id="3F926E50">
+        <ParameterDef Type="ParamDef" Library="Ntve" Id="00000209"/>
+        <Preset Type="PresetValue" Library="Ntve" Id="00000087"/>
+    </Element>
+    <Element Type="Param" Id="FE63312C">
+        <ParameterDef Type="ParamDef" Library="Ntve" Id="00000210"/>
         <Variable Type="Variable" Id="363F6A84"/>
+    </Element>
+    <Element Type="Param" Id="689F2514">
+        <ParameterDef Type="ParamDef" Library="Ntve" Id="00000208"/>
+        <Value>2.0</Value>
+        <ValueType Type="fixed"/>
     </Element>
     <Element Type="Param" Id="8A518B5E">
         <ParameterDef Type="ParamDef" Library="09BE6BA8" Id="366B8C9E"/>
@@ -1112,7 +1130,6 @@
         <ValueId Id="4636"/>
     </Element>
     <Element Type="Trigger" Id="DE319FE6">
-        <Section Value="Civilian Storyline"/>
         <Event Type="FunctionCall" Id="CAE1F9AE"/>
         <Action Type="FunctionCall" Id="3208293E"/>
         <Action Type="FunctionCall" Id="7F7930DB"/>
@@ -1199,7 +1216,6 @@
         <ValueId Id="137"/>
     </Element>
     <Element Type="Variable" Id="4146E6C0">
-        <Section Value="Civilian Storyline"/>
         <VariableType>
             <Type Value="bool"/>
         </VariableType>
@@ -1210,7 +1226,6 @@
         <ValueType Type="bool"/>
     </Element>
     <Element Type="Trigger" Id="23693F8F">
-        <Section Value="Civilian Storyline"/>
         <Event Type="FunctionCall" Id="2CE5A209"/>
         <Action Type="FunctionCall" Id="845038F6"/>
     </Element>
@@ -1352,7 +1367,6 @@
         <Item Type="FunctionDef" Id="79388ED7"/>
     </Element>
     <Element Type="Variable" Id="E3A79378">
-        <Section Value="Civilian Storyline"/>
         <VariableType>
             <Type Value="fixed"/>
             <Constant/>
@@ -1364,7 +1378,6 @@
         <ValueType Type="fixed"/>
     </Element>
     <Element Type="Variable" Id="153BAFF3">
-        <Section Value="Civilian Storyline"/>
         <VariableType>
             <Type Value="region"/>
             <ArraySize Dim="0" Value="27"/>
@@ -1375,7 +1388,6 @@
         <Preset Type="PresetValue" Library="Ntve" Id="F5E3F3AD"/>
     </Element>
     <Element Type="Trigger" Id="327C6805">
-        <Section Value="Civilian Storyline"/>
         <Event Type="FunctionCall" Id="F7339B95"/>
         <Action Type="FunctionCall" Id="A2DB01D3"/>
         <Action Type="FunctionCall" Id="DB784063"/>
@@ -1390,7 +1402,6 @@
         <FunctionDef Type="FunctionDef" Id="201FB80F"/>
     </Element>
     <Element Type="FunctionDef" Id="E2F026BE">
-        <Section Value="Civilian Storyline"/>
         <FlagAction/>
         <FunctionCall Type="FunctionCall" Id="B32E6183"/>
         <FunctionCall Type="FunctionCall" Id="DC405246"/>
@@ -2285,7 +2296,6 @@
         <Variable Type="Variable" Id="E3A79378"/>
     </Element>
     <Element Type="FunctionDef" Id="201FB80F">
-        <Section Value="Civilian Storyline"/>
         <FlagAction/>
         <FunctionCall Type="FunctionCall" Id="59E8658E"/>
     </Element>
@@ -2348,7 +2358,6 @@
         <ValueType Type="int"/>
     </Element>
     <Element Type="FunctionDef" Id="79388ED7">
-        <Section Value="Civilian Storyline"/>
         <FlagAction/>
         <FlagCreateThread/>
         <Parameter Type="ParamDef" Id="0BFD8BD8"/>
@@ -2862,7 +2871,6 @@
         <Item Type="FunctionDef" Id="372A99A2"/>
     </Element>
     <Element Type="Variable" Id="3B1FE878">
-        <Section Value="Civilian Storyline"/>
         <VariableType>
             <Type Value="int"/>
         </VariableType>
@@ -2873,7 +2881,6 @@
         <ValueType Type="int"/>
     </Element>
     <Element Type="Trigger" Id="F9F7A2CB">
-        <Section Value="Civilian Storyline"/>
         <Variable Type="Variable" Id="3113E26B"/>
         <Variable Type="Variable" Id="9EDEF6D0"/>
         <Action Type="FunctionCall" Id="A09246A1"/>
@@ -2897,7 +2904,7 @@
         <Action Type="FunctionCall" Id="0607A3C4"/>
     </Element>
     <Element Type="Variable" Id="3113E26B">
-        <Section Value="Civilian Storyline"/>
+        
         <VariableType>
             <Type Value="unit"/>
         </VariableType>
@@ -2907,7 +2914,7 @@
         <Preset Type="PresetValue" Library="Ntve" Id="D6EA4D09"/>
     </Element>
     <Element Type="Variable" Id="9EDEF6D0">
-        <Section Value="Civilian Storyline"/>
+        
         <VariableType>
             <Type Value="int"/>
         </VariableType>
@@ -3415,7 +3422,6 @@
         <Variable Type="Variable" Id="3113E26B"/>
     </Element>
     <Element Type="Trigger" Id="412679FA">
-        <Section Value="Civilian Storyline"/>
         <Variable Type="Variable" Id="A00D2E84"/>
         <Variable Type="Variable" Id="94819C09"/>
         <Action Type="FunctionCall" Id="1B4FA541"/>
@@ -3423,7 +3429,7 @@
     </Element>
     <Element Type="Variable" Id="A00D2E84">
         <Identifier>discoveringUnit</Identifier>
-        <Section Value="Civilian Storyline"/>
+        
         <VariableType>
             <Type Value="unit"/>
         </VariableType>
@@ -3436,7 +3442,7 @@
         <FunctionDef Type="FunctionDef" Library="Ntve" Id="00000092"/>
     </Element>
     <Element Type="Variable" Id="94819C09">
-        <Section Value="Civilian Storyline"/>
+        
         <VariableType>
             <Type Value="int"/>
         </VariableType>
@@ -3666,7 +3672,6 @@
     </Element>
     <Element Type="FunctionDef" Id="372A99A2">
         <Identifier>RecruitArrivalTransmission</Identifier>
-        <Section Value="Civilian Storyline"/>
         <FlagAction/>
         <Variable Type="Variable" Id="1FB86E61"/>
         <Variable Type="Variable" Id="88E8779D"/>
@@ -4172,7 +4177,6 @@
         <Item Type="Trigger" Id="1FEDA71E"/>
     </Element>
     <Element Type="Variable" Id="57F1CD25">
-        <Section Value="Civilian Storyline"/>
         <VariableType>
             <Type Value="ping"/>
         </VariableType>
@@ -4182,7 +4186,6 @@
         <Preset Type="PresetValue" Library="Ntve" Id="362A0F1D"/>
     </Element>
     <Element Type="Trigger" Id="E856458E">
-        <Section Value="Civilian Storyline"/>
         <Variable Type="Variable" Id="17194D24"/>
         <Action Type="FunctionCall" Id="8A8B2ED2"/>
         <Action Type="FunctionCall" Id="42B18070"/>
@@ -4190,7 +4193,7 @@
         <Action Type="FunctionCall" Id="51FC7CA6"/>
     </Element>
     <Element Type="Variable" Id="17194D24">
-        <Section Value="Civilian Storyline"/>
+        
         <VariableType>
             <Type Value="int"/>
         </VariableType>
@@ -4344,7 +4347,6 @@
         <Variable Type="Variable" Id="3B1FE878"/>
     </Element>
     <Element Type="Trigger" Id="9F8CF393">
-        <Section Value="Civilian Storyline"/>
         <Action Type="FunctionCall" Id="A6B9EF31"/>
         <Action Type="FunctionCall" Id="0F2D094F"/>
         <Action Type="FunctionCall" Id="39F2671C"/>
@@ -4437,14 +4439,13 @@
         <ValueType Type="fixed"/>
     </Element>
     <Element Type="Trigger" Id="BD601677">
-        <Section Value="Civilian Storyline"/>
         <Variable Type="Variable" Id="7C552797"/>
         <Variable Type="Variable" Id="7349593B"/>
         <Action Type="FunctionCall" Id="B4E1FBBB"/>
         <Action Type="FunctionCall" Id="AC73BB0D"/>
     </Element>
     <Element Type="Variable" Id="7C552797">
-        <Section Value="Civilian Storyline"/>
+        
         <VariableType>
             <Type Value="int"/>
         </VariableType>
@@ -4457,7 +4458,7 @@
         <FunctionDef Type="FunctionDef" Library="Ntve" Id="00000053"/>
     </Element>
     <Element Type="Variable" Id="7349593B">
-        <Section Value="Civilian Storyline"/>
+        
         <VariableType>
             <Type Value="int"/>
         </VariableType>
@@ -4543,7 +4544,6 @@
         <ValueType Type="fixed"/>
     </Element>
     <Element Type="Trigger" Id="1FEDA71E">
-        <Section Value="Civilian Storyline"/>
         <Event Type="FunctionCall" Id="5138D043"/>
         <Condition Type="FunctionCall" Id="8B3E0A72"/>
         <Action Type="FunctionCall" Id="BDDA610F"/>
@@ -4929,7 +4929,6 @@
         <Item Type="Trigger" Id="18BFB818"/>
     </Element>
     <Element Type="FunctionDef" Id="0C778498">
-        <Section Value="Civilian Storyline"/>
         <FlagAction/>
         <Parameter Type="ParamDef" Id="B3EE8B21"/>
         <Parameter Type="ParamDef" Id="CAE6555D"/>
@@ -5041,7 +5040,6 @@
         <Variable Type="Variable" Id="FBC3CABD"/>
     </Element>
     <Element Type="Variable" Id="FBC3CABD">
-        <Section Value="Civilian Storyline"/>
         <VariableType>
             <Type Value="string"/>
             <Constant/>
@@ -5053,12 +5051,11 @@
         <ValueType Type="string"/>
     </Element>
     <Element Type="Trigger" Id="25DE9C73">
-        <Section Value="Civilian Storyline"/>
         <Variable Type="Variable" Id="CF3CE245"/>
         <Action Type="FunctionCall" Id="FDB75021"/>
     </Element>
     <Element Type="Variable" Id="CF3CE245">
-        <Section Value="Civilian Storyline"/>
+        
         <VariableType>
             <Type Value="region"/>
         </VariableType>
@@ -5087,12 +5084,11 @@
         <Variable Type="Variable" Id="CF3CE245"/>
     </Element>
     <Element Type="Trigger" Id="651FC912">
-        <Section Value="Civilian Storyline"/>
         <Variable Type="Variable" Id="6253D092"/>
         <Action Type="FunctionCall" Id="8C319AE1"/>
     </Element>
     <Element Type="Variable" Id="6253D092">
-        <Section Value="Civilian Storyline"/>
+        
         <VariableType>
             <Type Value="region"/>
         </VariableType>
@@ -5121,12 +5117,11 @@
         <Variable Type="Variable" Id="6253D092"/>
     </Element>
     <Element Type="Trigger" Id="A547E9B3">
-        <Section Value="Civilian Storyline"/>
         <Variable Type="Variable" Id="52222E2F"/>
         <Action Type="FunctionCall" Id="E36AC6D4"/>
     </Element>
     <Element Type="Variable" Id="52222E2F">
-        <Section Value="Civilian Storyline"/>
+        
         <VariableType>
             <Type Value="region"/>
         </VariableType>
@@ -5155,12 +5150,11 @@
         <Variable Type="Variable" Id="52222E2F"/>
     </Element>
     <Element Type="Trigger" Id="B9A0DCB5">
-        <Section Value="Civilian Storyline"/>
         <Variable Type="Variable" Id="57544E6E"/>
         <Action Type="FunctionCall" Id="0F12DEAC"/>
     </Element>
     <Element Type="Variable" Id="57544E6E">
-        <Section Value="Civilian Storyline"/>
+        
         <VariableType>
             <Type Value="region"/>
         </VariableType>
@@ -5189,13 +5183,12 @@
         <Variable Type="Variable" Id="57544E6E"/>
     </Element>
     <Element Type="Trigger" Id="1FD57063">
-        <Section Value="Civilian Storyline"/>
         <Variable Type="Variable" Id="BD61C147"/>
         <Action Type="FunctionCall" Id="4B8AD654"/>
         <Action Type="FunctionCall" Id="02C25A84"/>
     </Element>
     <Element Type="Variable" Id="BD61C147">
-        <Section Value="Civilian Storyline"/>
+        
         <VariableType>
             <Type Value="int"/>
         </VariableType>
@@ -5329,7 +5322,6 @@
     </Element>
     <Element Type="Trigger" Id="18BFB818">
         <Identifier>SecurityGateTransmission</Identifier>
-        <Section Value="Civilian Storyline"/>
         <Variable Type="Variable" Id="E2793129"/>
         <Variable Type="Variable" Id="638A8025"/>
         <Action Type="FunctionCall" Id="B1087A5A"/>
@@ -5337,7 +5329,7 @@
         <Action Type="FunctionCall" Id="ECC5511A"/>
     </Element>
     <Element Type="Variable" Id="E2793129">
-        <Section Value="Civilian Storyline"/>
+        
         <VariableType>
             <Type Value="int"/>
         </VariableType>
@@ -5351,7 +5343,7 @@
     </Element>
     <Element Type="Variable" Id="638A8025">
         <Identifier>discoveringUnit</Identifier>
-        <Section Value="Civilian Storyline"/>
+        
         <VariableType>
             <Type Value="unit"/>
         </VariableType>
@@ -5634,7 +5626,6 @@
         <Item Type="FunctionDef" Id="97731770"/>
     </Element>
     <Element Type="Variable" Id="43C14509">
-        <Section Value="Civilian Storyline"/>
         <VariableType>
             <Type Value="int"/>
         </VariableType>
@@ -5646,7 +5637,6 @@
     </Element>
     <Element Type="Trigger" Id="66A3A702">
         <Identifier>NormalArrival</Identifier>
-        <Section Value="Civilian Storyline"/>
         <Variable Type="Variable" Id="129416BE"/>
         <Action Type="FunctionCall" Id="FAAE9343"/>
         <Action Type="FunctionCall" Id="0806AFE1"/>
@@ -5660,7 +5650,7 @@
     </Element>
     <Element Type="Variable" Id="129416BE">
         <Identifier>dropZones</Identifier>
-        <Section Value="Civilian Storyline"/>
+        
         <VariableType>
             <Type Value="region"/>
             <ArraySize Dim="0" Value="2"/>
@@ -5862,7 +5852,6 @@
         <Variable Type="Variable" Id="43C14509"/>
     </Element>
     <Element Type="FunctionDef" Id="EBBCCD37">
-        <Section Value="Civilian Storyline"/>
         <FlagAction/>
         <Parameter Type="ParamDef" Id="6C371390"/>
         <FunctionCall Type="FunctionCall" Id="227B29F4"/>
@@ -6209,7 +6198,6 @@
         <ValueType Type="text"/>
     </Element>
     <Element Type="FunctionDef" Id="8766A408">
-        <Section Value="Civilian Storyline"/>
         <FlagAction/>
         <FlagCreateThread/>
         <Parameter Type="ParamDef" Id="B6E6B79C"/>
@@ -6244,7 +6232,7 @@
     </Element>
     <Element Type="Variable" Id="048578F7">
         <Identifier>dropPodActor</Identifier>
-        <Section Value="Civilian Storyline"/>
+        
         <VariableType>
             <Type Value="actor"/>
         </VariableType>
@@ -6398,7 +6386,6 @@
         <Parameter Type="ParamDef" Id="F51BB464"/>
     </Element>
     <Element Type="FunctionDef" Id="97731770">
-        <Section Value="Civilian Storyline"/>
         <FlagAction/>
         <FunctionCall Type="FunctionCall" Id="CA6D375D"/>
         <FunctionCall Type="FunctionCall" Id="72B023A2"/>
@@ -6590,7 +6577,6 @@
         <Item Type="Variable" Id="38D0B384"/>
     </Element>
     <Element Type="Variable" Id="A2CB1E5C">
-        <Section Value="Civilian Storyline"/>
         <VariableType>
             <Type Value="gamelink"/>
             <GameType Value="Unit"/>
@@ -6604,7 +6590,6 @@
         <ValueGameType Type="Unit"/>
     </Element>
     <Element Type="Variable" Id="76F21165">
-        <Section Value="Civilian Storyline"/>
         <VariableType>
             <Type Value="string"/>
             <Constant/>
@@ -6616,7 +6601,6 @@
         <ValueType Type="string"/>
     </Element>
     <Element Type="Variable" Id="00D51D30">
-        <Section Value="Civilian Storyline"/>
         <VariableType>
             <Type Value="unitgroup"/>
         </VariableType>
@@ -6629,7 +6613,6 @@
         <FunctionDef Type="FunctionDef" Library="Ntve" Id="00000104"/>
     </Element>
     <Element Type="Variable" Id="99AC72D2">
-        <Section Value="Civilian Storyline"/>
         <VariableType>
             <Type Value="unitgroup"/>
         </VariableType>
@@ -6642,7 +6625,6 @@
         <FunctionDef Type="FunctionDef" Library="Ntve" Id="00000104"/>
     </Element>
     <Element Type="Variable" Id="D9010534">
-        <Section Value="Civilian Storyline"/>
         <VariableType>
             <Type Value="point"/>
         </VariableType>
@@ -6661,7 +6643,6 @@
         <ValueId Id="13"/>
     </Element>
     <Element Type="Variable" Id="A106B14A">
-        <Section Value="Civilian Storyline"/>
         <VariableType>
             <Type Value="unit"/>
         </VariableType>
@@ -6671,7 +6652,6 @@
         <Preset Type="PresetValue" Library="Ntve" Id="D6EA4D09"/>
     </Element>
     <Element Type="Variable" Id="06EDA577">
-        <Section Value="Civilian Storyline"/>
         <VariableType>
             <Type Value="unit"/>
         </VariableType>
@@ -6681,7 +6661,6 @@
         <Preset Type="PresetValue" Library="Ntve" Id="D6EA4D09"/>
     </Element>
     <Element Type="Variable" Id="027BAE39">
-        <Section Value="Civilian Storyline"/>
         <VariableType>
             <Type Value="unit"/>
         </VariableType>
@@ -6691,7 +6670,6 @@
         <Preset Type="PresetValue" Library="Ntve" Id="D6EA4D09"/>
     </Element>
     <Element Type="Variable" Id="F2940379">
-        <Section Value="Civilian Storyline"/>
         <VariableType>
             <Type Value="ping"/>
         </VariableType>
@@ -6701,7 +6679,6 @@
         <Preset Type="PresetValue" Library="Ntve" Id="362A0F1D"/>
     </Element>
     <Element Type="Variable" Id="B375100D">
-        <Section Value="Civilian Storyline"/>
         <VariableType>
             <Type Value="waveinfo"/>
         </VariableType>
@@ -6714,7 +6691,6 @@
         <FunctionDef Type="FunctionDef" Library="Ntve" Id="00000264"/>
     </Element>
     <Element Type="Variable" Id="38D0B384">
-        <Section Value="Civilian Storyline"/>
         <VariableType>
             <Type Value="int"/>
         </VariableType>
@@ -6738,7 +6714,6 @@
         </Comment>
     </Element>
     <Element Type="Trigger" Id="1535BB70">
-        <Section Value="Civilian Storyline"/>
         <InitOff/>
         <Event Type="FunctionCall" Id="32568BAA"/>
         <Action Type="FunctionCall" Id="0B1A4029"/>
@@ -6856,7 +6831,6 @@
         <FunctionDef Type="FunctionDef" Library="Ntve" Id="00000092"/>
     </Element>
     <Element Type="Trigger" Id="C8CCF420">
-        <Section Value="Civilian Storyline"/>
         <InitOff/>
         <Event Type="FunctionCall" Id="1061809C"/>
         <Action Type="FunctionCall" Id="30C15A16"/>
@@ -6974,7 +6948,6 @@
         <FunctionDef Type="FunctionDef" Library="Ntve" Id="00000092"/>
     </Element>
     <Element Type="Trigger" Id="E3E85EFA">
-        <Section Value="Civilian Storyline"/>
         <InitOff/>
         <Event Type="FunctionCall" Id="A17E1ECE"/>
         <Action Type="FunctionCall" Id="1FD444F5"/>
@@ -7092,7 +7065,6 @@
         <FunctionDef Type="FunctionDef" Library="Ntve" Id="00000092"/>
     </Element>
     <Element Type="Trigger" Id="0F4A8133">
-        <Section Value="Civilian Storyline"/>
         <InitOff/>
         <Event Type="FunctionCall" Id="77E62122"/>
         <Action Type="FunctionCall" Id="7D29B82E"/>
@@ -7166,7 +7138,6 @@
         <FunctionDef Type="FunctionDef" Library="Ntve" Id="00000092"/>
     </Element>
     <Element Type="Trigger" Id="15235C53">
-        <Section Value="Civilian Storyline"/>
         <Event Type="FunctionCall" Id="D82A0543"/>
         <Action Type="FunctionCall" Id="56028DC8"/>
         <Action Type="FunctionCall" Id="420DFF44"/>
@@ -7507,7 +7478,6 @@
         <Preset Type="PresetValue" Library="Ntve" Id="00000538"/>
     </Element>
     <Element Type="Trigger" Id="D6C8576F">
-        <Section Value="Civilian Storyline"/>
         <InitOff/>
         <Event Type="FunctionCall" Id="84BC2491"/>
         <Action Type="Comment" Id="F4F12FEC"/>
@@ -7751,7 +7721,6 @@
         <Variable Type="Variable" Id="B375100D"/>
     </Element>
     <Element Type="FunctionDef" Id="4B341E14">
-        <Section Value="Civilian Storyline"/>
         <FlagAction/>
         <Parameter Type="ParamDef" Id="251787CE"/>
         <Variable Type="Variable" Id="92BD70C8"/>
@@ -7807,7 +7776,7 @@
         <Preset Type="PresetValue" Library="Ntve" Id="568CBBF1"/>
     </Element>
     <Element Type="Variable" Id="92BD70C8">
-        <Section Value="Civilian Storyline"/>
+        
         <VariableType>
             <Type Value="region"/>
         </VariableType>
@@ -7831,7 +7800,7 @@
         <Parameter Type="ParamDef" Id="251787CE"/>
     </Element>
     <Element Type="Variable" Id="B911D1C8">
-        <Section Value="Civilian Storyline"/>
+        
         <VariableType>
             <Type Value="fixed"/>
         </VariableType>
@@ -7842,7 +7811,7 @@
         <ValueType Type="fixed"/>
     </Element>
     <Element Type="Variable" Id="AF75C3EB">
-        <Section Value="Civilian Storyline"/>
+        
         <VariableType>
             <Type Value="point"/>
         </VariableType>
@@ -8928,7 +8897,6 @@
         <Preset Type="PresetValue" Library="Ntve" Id="00000538"/>
     </Element>
     <Element Type="FunctionDef" Id="16B6B176">
-        <Section Value="Civilian Storyline"/>
         <FlagAction/>
         <Parameter Type="ParamDef" Id="B1E06BC0"/>
         <Parameter Type="ParamDef" Id="541603C3"/>
@@ -9226,7 +9194,6 @@
         <ValueType Type="text"/>
     </Element>
     <Element Type="Trigger" Id="39A73BA5">
-        <Section Value="Civilian Storyline"/>
         <InitOff/>
         <Variable Type="Variable" Id="0A372A23"/>
         <Action Type="FunctionCall" Id="5289950B"/>
@@ -9236,7 +9203,7 @@
         <Action Type="FunctionCall" Id="7DAE0E3E"/>
     </Element>
     <Element Type="Variable" Id="0A372A23">
-        <Section Value="Civilian Storyline"/>
+        
         <VariableType>
             <Type Value="int"/>
         </VariableType>
@@ -9362,7 +9329,6 @@
         <Item Type="Category" Id="9CC0D703"/>
     </Element>
     <Element Type="Variable" Id="83459319">
-        <Section Value="Civilian Storyline"/>
         <VariableType>
             <Type Value="string"/>
             <Constant/>
@@ -9374,7 +9340,6 @@
         <ValueType Type="string"/>
     </Element>
     <Element Type="Variable" Id="4AEA0781">
-        <Section Value="Civilian Storyline"/>
         <VariableType>
             <Type Value="string"/>
             <Constant/>
@@ -9405,7 +9370,6 @@
         <Item Type="Variable" Id="6E8ECB3B"/>
     </Element>
     <Element Type="Variable" Id="8E903E1A">
-        <Section Value="Civilian Storyline"/>
         <VariableType>
             <Type Value="int"/>
         </VariableType>
@@ -9416,7 +9380,6 @@
         <ValueType Type="int"/>
     </Element>
     <Element Type="Variable" Id="B17CFBB1">
-        <Section Value="Civilian Storyline"/>
         <VariableType>
             <Type Value="ping"/>
         </VariableType>
@@ -9426,7 +9389,6 @@
         <Preset Type="PresetValue" Library="Ntve" Id="362A0F1D"/>
     </Element>
     <Element Type="Variable" Id="D2B217F8">
-        <Section Value="Civilian Storyline"/>
         <VariableType>
             <Type Value="point"/>
         </VariableType>
@@ -9445,7 +9407,6 @@
         <ValueId Id="14"/>
     </Element>
     <Element Type="Variable" Id="0421747A">
-        <Section Value="Civilian Storyline"/>
         <VariableType>
             <Type Value="unitgroup"/>
         </VariableType>
@@ -9458,7 +9419,6 @@
         <FunctionDef Type="FunctionDef" Library="Ntve" Id="00000104"/>
     </Element>
     <Element Type="Variable" Id="7FB99DDB">
-        <Section Value="Civilian Storyline"/>
         <VariableType>
             <Type Value="unit"/>
         </VariableType>
@@ -9468,7 +9428,6 @@
         <Preset Type="PresetValue" Library="Ntve" Id="D6EA4D09"/>
     </Element>
     <Element Type="Variable" Id="6E8ECB3B">
-        <Section Value="Civilian Storyline"/>
         <VariableType>
             <Type Value="preset"/>
             <TypeElement Type="Preset" Library="Ntve" Id="00000091"/>
@@ -9479,7 +9438,6 @@
         <Preset Type="PresetValue" Library="Ntve" Id="00000559"/>
     </Element>
     <Element Type="Trigger" Id="C5F7F47C">
-        <Section Value="Civilian Storyline"/>
         <Event Type="FunctionCall" Id="9828EAA9"/>
         <Action Type="FunctionCall" Id="D212EDCA"/>
         <Action Type="FunctionCall" Id="3C70531A"/>
@@ -9595,7 +9553,6 @@
         <Preset Type="PresetValue" Library="Ntve" Id="00000538"/>
     </Element>
     <Element Type="Trigger" Id="21DD6EE8">
-        <Section Value="Civilian Storyline"/>
         <InitOff/>
         <Event Type="FunctionCall" Id="6C0E288A"/>
         <Action Type="FunctionCall" Id="240BECCF"/>
@@ -9698,13 +9655,12 @@
         <Preset Type="PresetValue" Library="Ntve" Id="00000068"/>
     </Element>
     <Element Type="FunctionDef" Id="B87A264F">
-        <Section Value="Civilian Storyline"/>
         <FlagAction/>
         <Variable Type="Variable" Id="BC541EDA"/>
         <FunctionCall Type="FunctionCall" Id="3CBA205B"/>
     </Element>
     <Element Type="Variable" Id="BC541EDA">
-        <Section Value="Civilian Storyline"/>
+        
         <VariableType>
             <Type Value="int"/>
         </VariableType>
@@ -9869,7 +9825,6 @@
         <ValueType Type="text"/>
     </Element>
     <Element Type="FunctionDef" Id="188EDA48">
-        <Section Value="Civilian Storyline"/>
         <FlagAction/>
         <Variable Type="Variable" Id="BD452C95"/>
         <Variable Type="Variable" Id="4F5FDAE8"/>
@@ -9884,7 +9839,7 @@
         <FunctionCall Type="FunctionCall" Id="D830FA51"/>
     </Element>
     <Element Type="Variable" Id="BD452C95">
-        <Section Value="Civilian Storyline"/>
+        
         <VariableType>
             <Type Value="region"/>
         </VariableType>
@@ -9908,7 +9863,7 @@
         <ValueType Type="fixed"/>
     </Element>
     <Element Type="Variable" Id="4F5FDAE8">
-        <Section Value="Civilian Storyline"/>
+        
         <VariableType>
             <Type Value="point"/>
         </VariableType>
@@ -9926,7 +9881,7 @@
         <Variable Type="Variable" Id="BD452C95"/>
     </Element>
     <Element Type="Variable" Id="F8701D9A">
-        <Section Value="Civilian Storyline"/>
+        
         <VariableType>
             <Type Value="int"/>
         </VariableType>
@@ -10412,7 +10367,6 @@
         <ValueId Id="2"/>
     </Element>
     <Element Type="Trigger" Id="D66EB1BE">
-        <Section Value="Civilian Storyline"/>
         <InitOff/>
         <Variable Type="Variable" Id="154D6801"/>
         <Variable Type="Variable" Id="7C608CDA"/>
@@ -10432,7 +10386,7 @@
         <Action Type="FunctionCall" Id="B0F76465"/>
     </Element>
     <Element Type="Variable" Id="154D6801">
-        <Section Value="Civilian Storyline"/>
+        
         <VariableType>
             <Type Value="int"/>
         </VariableType>
@@ -10453,7 +10407,7 @@
         <FunctionDef Type="FunctionDef" Library="Ntve" Id="00000092"/>
     </Element>
     <Element Type="Variable" Id="7C608CDA">
-        <Section Value="Civilian Storyline"/>
+        
         <VariableType>
             <Type Value="unit"/>
         </VariableType>
@@ -10775,7 +10729,6 @@
         <Preset Type="PresetValue" Library="Ntve" Id="00000538"/>
     </Element>
     <Element Type="Trigger" Id="F9069A8D">
-        <Section Value="Civilian Storyline"/>
         <InitOff/>
         <Variable Type="Variable" Id="ADD09614"/>
         <Variable Type="Variable" Id="81543F18"/>
@@ -10790,7 +10743,7 @@
         <Action Type="FunctionCall" Id="8605022F"/>
     </Element>
     <Element Type="Variable" Id="ADD09614">
-        <Section Value="Civilian Storyline"/>
+        
         <VariableType>
             <Type Value="int"/>
         </VariableType>
@@ -10811,7 +10764,7 @@
         <FunctionDef Type="FunctionDef" Library="Ntve" Id="00000092"/>
     </Element>
     <Element Type="Variable" Id="81543F18">
-        <Section Value="Civilian Storyline"/>
+        
         <VariableType>
             <Type Value="unit"/>
         </VariableType>
@@ -11146,7 +11099,6 @@
         <FunctionDef Type="FunctionDef" Library="840A968C" Id="878B671E"/>
     </Element>
     <Element Type="Trigger" Id="07BB8ADC">
-        <Section Value="Civilian Storyline"/>
         <InitOff/>
         <Variable Type="Variable" Id="E0283B87"/>
         <Condition Type="FunctionCall" Id="23762383"/>
@@ -11157,7 +11109,7 @@
         <Action Type="FunctionCall" Id="9F820D6C"/>
     </Element>
     <Element Type="Variable" Id="E0283B87">
-        <Section Value="Civilian Storyline"/>
+        
         <VariableType>
             <Type Value="int"/>
         </VariableType>
@@ -11638,7 +11590,6 @@
         <Item Type="Trigger" Id="3867E294"/>
     </Element>
     <Element Type="Variable" Id="5709BFEB">
-        <Section Value="Civilian Storyline"/>
         <VariableType>
             <Type Value="int"/>
         </VariableType>
@@ -11649,7 +11600,6 @@
         <ValueType Type="int"/>
     </Element>
     <Element Type="Trigger" Id="3867E294">
-        <Section Value="Civilian Storyline"/>
         <Variable Type="Variable" Id="FDBF8E8D"/>
         <Variable Type="Variable" Id="411361F6"/>
         <Variable Type="Variable" Id="AA94CDDF"/>
@@ -11673,7 +11623,7 @@
         <Action Type="FunctionCall" Id="BA586CBD"/>
     </Element>
     <Element Type="Variable" Id="FDBF8E8D">
-        <Section Value="Civilian Storyline"/>
+        
         <VariableType>
             <Type Value="playergroup"/>
         </VariableType>
@@ -11686,7 +11636,7 @@
         <FunctionDef Type="FunctionDef" Library="840A968C" Id="251299CD"/>
     </Element>
     <Element Type="Variable" Id="411361F6">
-        <Section Value="Civilian Storyline"/>
+        
         <VariableType>
             <Type Value="int"/>
         </VariableType>
@@ -11697,7 +11647,7 @@
         <ValueType Type="int"/>
     </Element>
     <Element Type="Variable" Id="AA94CDDF">
-        <Section Value="Civilian Storyline"/>
+        
         <VariableType>
             <Type Value="wave"/>
         </VariableType>
@@ -12687,7 +12637,6 @@
         <Item Type="FunctionDef" Id="014D588D"/>
     </Element>
     <Element Type="FunctionDef" Id="238253B7">
-        <Section Value="Civilian Storyline"/>
         <FlagAction/>
         <FunctionCall Type="Comment" Id="3BCAD0C7"/>
         <FunctionCall Type="FunctionCall" Id="7E13CF74"/>
@@ -13186,7 +13135,6 @@
         <Variable Type="Variable" Id="42EF763A"/>
     </Element>
     <Element Type="FunctionDef" Id="442A768B">
-        <Section Value="Civilian Storyline"/>
         <FlagAction/>
         <Variable Type="Variable" Id="857484F5"/>
         <FunctionCall Type="FunctionCall" Id="6D6CA56D"/>
@@ -13203,7 +13151,7 @@
         <FunctionCall Type="FunctionCall" Id="36C3BF49"/>
     </Element>
     <Element Type="Variable" Id="857484F5">
-        <Section Value="Civilian Storyline"/>
+        
         <VariableType>
             <Type Value="point"/>
         </VariableType>
@@ -13724,14 +13672,13 @@
         <FunctionDef Type="FunctionDef" Id="8CE17DE5"/>
     </Element>
     <Element Type="FunctionDef" Id="D8B26B2A">
-        <Section Value="Civilian Storyline"/>
         <FlagAction/>
         <Variable Type="Variable" Id="E79FCC9A"/>
         <Variable Type="Variable" Id="5FFEA7A9"/>
         <FunctionCall Type="FunctionCall" Id="B9A1D93D"/>
     </Element>
     <Element Type="Variable" Id="E79FCC9A">
-        <Section Value="Civilian Storyline"/>
+        
         <VariableType>
             <Type Value="playergroup"/>
         </VariableType>
@@ -13744,7 +13691,7 @@
         <FunctionDef Type="FunctionDef" Library="840A968C" Id="251299CD"/>
     </Element>
     <Element Type="Variable" Id="5FFEA7A9">
-        <Section Value="Civilian Storyline"/>
+        
         <VariableType>
             <Type Value="int"/>
         </VariableType>
@@ -14101,7 +14048,6 @@
         <ValueType Type="text"/>
     </Element>
     <Element Type="FunctionDef" Id="8CE17DE5">
-        <Section Value="Civilian Storyline"/>
         <FlagAction/>
         <FunctionCall Type="FunctionCall" Id="D85AC1CF"/>
     </Element>
@@ -14247,13 +14193,12 @@
         <ValueType Type="fixed"/>
     </Element>
     <Element Type="FunctionDef" Id="014D588D">
-        <Section Value="Civilian Storyline"/>
         <FlagAction/>
         <Variable Type="Variable" Id="4E22D669"/>
         <FunctionCall Type="FunctionCall" Id="2A84CECD"/>
     </Element>
     <Element Type="Variable" Id="4E22D669">
-        <Section Value="Civilian Storyline"/>
+        
         <VariableType>
             <Type Value="int"/>
         </VariableType>
@@ -14394,7 +14339,6 @@
         <Item Type="Variable" Id="E39643AA"/>
     </Element>
     <Element Type="Variable" Id="BEE1A68F">
-        <Section Value="Civilian Storyline"/>
         <VariableType>
             <Type Value="int"/>
         </VariableType>
@@ -14405,7 +14349,6 @@
         <ValueType Type="int"/>
     </Element>
     <Element Type="Variable" Id="488D3477">
-        <Section Value="Civilian Storyline"/>
         <VariableType>
             <Type Value="string"/>
             <Constant/>
@@ -14417,7 +14360,6 @@
         <ValueType Type="string"/>
     </Element>
     <Element Type="Variable" Id="343B2398">
-        <Section Value="Civilian Storyline"/>
         <VariableType>
             <Type Value="wave"/>
         </VariableType>
@@ -14427,7 +14369,6 @@
         <Preset Type="PresetValue" Library="Ntve" Id="DD3649E2"/>
     </Element>
     <Element Type="Variable" Id="149FFA57">
-        <Section Value="Civilian Storyline"/>
         <VariableType>
             <Type Value="string"/>
             <Constant/>
@@ -14439,7 +14380,6 @@
         <ValueType Type="string"/>
     </Element>
     <Element Type="Variable" Id="E4AB458C">
-        <Section Value="Civilian Storyline"/>
         <VariableType>
             <Type Value="preset"/>
             <TypeElement Type="Preset" Library="Ntve" Id="00000091"/>
@@ -14450,7 +14390,6 @@
         <Preset Type="PresetValue" Library="Ntve" Id="00000559"/>
     </Element>
     <Element Type="Variable" Id="F47D7E57">
-        <Section Value="Civilian Storyline"/>
         <VariableType>
             <Type Value="point"/>
         </VariableType>
@@ -14469,7 +14408,6 @@
         <ValueId Id="15"/>
     </Element>
     <Element Type="Variable" Id="9704F216">
-        <Section Value="Civilian Storyline"/>
         <VariableType>
             <Type Value="ping"/>
         </VariableType>
@@ -14479,7 +14417,6 @@
         <Preset Type="PresetValue" Library="Ntve" Id="362A0F1D"/>
     </Element>
     <Element Type="Variable" Id="062B1115">
-        <Section Value="Civilian Storyline"/>
         <VariableType>
             <Type Value="ping"/>
         </VariableType>
@@ -14489,7 +14426,6 @@
         <Preset Type="PresetValue" Library="Ntve" Id="362A0F1D"/>
     </Element>
     <Element Type="Variable" Id="BCC1B9B2">
-        <Section Value="Civilian Storyline"/>
         <VariableType>
             <Type Value="unitgroup"/>
         </VariableType>
@@ -14502,7 +14438,6 @@
         <FunctionDef Type="FunctionDef" Library="Ntve" Id="00000104"/>
     </Element>
     <Element Type="Variable" Id="40F826D6">
-        <Section Value="Civilian Storyline"/>
         <VariableType>
             <Type Value="unit"/>
         </VariableType>
@@ -14512,7 +14447,6 @@
         <Preset Type="PresetValue" Library="Ntve" Id="D6EA4D09"/>
     </Element>
     <Element Type="Variable" Id="BAB5FAC0">
-        <Section Value="Civilian Storyline"/>
         <VariableType>
             <Type Value="bool"/>
         </VariableType>
@@ -14523,7 +14457,6 @@
         <ValueType Type="bool"/>
     </Element>
     <Element Type="Variable" Id="D4CEFC8B">
-        <Section Value="Civilian Storyline"/>
         <VariableType>
             <Type Value="int"/>
         </VariableType>
@@ -14534,7 +14467,6 @@
         <ValueType Type="int"/>
     </Element>
     <Element Type="Variable" Id="E39643AA">
-        <Section Value="Civilian Storyline"/>
         <VariableType>
             <Type Value="waveinfo"/>
         </VariableType>
@@ -14555,7 +14487,6 @@
         </Comment>
     </Element>
     <Element Type="Trigger" Id="6D7A5C15">
-        <Section Value="Civilian Storyline"/>
         <InitOff/>
         <Action Type="FunctionCall" Id="2F3DFFC5"/>
         <Action Type="FunctionCall" Id="F11F1063"/>
@@ -14659,7 +14590,6 @@
         <ValueType Type="int"/>
     </Element>
     <Element Type="Trigger" Id="E6BB8B86">
-        <Section Value="Civilian Storyline"/>
         <InitOff/>
         <Event Type="FunctionCall" Id="8F17D28C"/>
         <Action Type="FunctionCall" Id="03452C01"/>
@@ -14778,7 +14708,6 @@
     </Element>
     <Element Type="Trigger" Id="D5F985BD">
         <Label Type="Label" Library="840A968C" Id="D6989377"/>
-        <Section Value="Civilian Storyline"/>
         <Variable Type="Variable" Id="CF600D02"/>
         <Variable Type="Variable" Id="4D53B8AA"/>
         <Event Type="FunctionCall" Id="06CD0407"/>
@@ -14796,7 +14725,7 @@
         <Action Type="FunctionCall" Id="EDF6754D"/>
     </Element>
     <Element Type="Variable" Id="CF600D02">
-        <Section Value="Civilian Storyline"/>
+        
         <VariableType>
             <Type Value="playergroup"/>
         </VariableType>
@@ -14809,7 +14738,7 @@
         <FunctionDef Type="FunctionDef" Library="840A968C" Id="251299CD"/>
     </Element>
     <Element Type="Variable" Id="4D53B8AA">
-        <Section Value="Civilian Storyline"/>
+        
         <VariableType>
             <Type Value="int"/>
         </VariableType>
@@ -15030,7 +14959,6 @@
         <Variable Type="Variable" Id="8D7B435F"/>
     </Element>
     <Element Type="Trigger" Id="6892F8EE">
-        <Section Value="Civilian Storyline"/>
         <InitOff/>
         <Event Type="FunctionCall" Id="B037FE94"/>
         <Action Type="FunctionCall" Id="1DB70BA1"/>
@@ -15276,7 +15204,6 @@
         <Variable Type="Variable" Id="E39643AA"/>
     </Element>
     <Element Type="Trigger" Id="9F6E0C46">
-        <Section Value="Civilian Storyline"/>
         <InitOff/>
         <Variable Type="Variable" Id="86D04D55"/>
         <Action Type="FunctionCall" Id="5E48F53D"/>
@@ -15309,7 +15236,7 @@
         <Action Type="FunctionCall" Id="83AC795C"/>
     </Element>
     <Element Type="Variable" Id="86D04D55">
-        <Section Value="Civilian Storyline"/>
+        
         <VariableType>
             <Type Value="unit"/>
         </VariableType>
@@ -16137,7 +16064,6 @@
         <Variable Type="Variable" Id="86D04D55"/>
     </Element>
     <Element Type="Trigger" Id="0E61DC40">
-        <Section Value="Civilian Storyline"/>
         <InitOff/>
         <Variable Type="Variable" Id="E1E85C31"/>
         <Event Type="FunctionCall" Id="3086D629"/>
@@ -16174,7 +16100,7 @@
         <Action Type="FunctionCall" Id="0618F1CF"/>
     </Element>
     <Element Type="Variable" Id="E1E85C31">
-        <Section Value="Civilian Storyline"/>
+        
         <VariableType>
             <Type Value="unit"/>
         </VariableType>
@@ -16992,7 +16918,6 @@
         <Variable Type="Variable" Id="E1E85C31"/>
     </Element>
     <Element Type="Trigger" Id="2DE10A2D">
-        <Section Value="Civilian Storyline"/>
         <Event Type="FunctionCall" Id="0E1E2D0D"/>
         <Action Type="Comment" Id="3FA37E72"/>
         <Action Type="FunctionCall" Id="70BCE689"/>
@@ -17218,7 +17143,6 @@
         <ValueType Type="int"/>
     </Element>
     <Element Type="FunctionDef" Id="5357AE74">
-        <Section Value="Civilian Storyline"/>
         <FlagAction/>
         <FlagCreateThread/>
         <FunctionCall Type="FunctionCall" Id="A01F9607"/>
@@ -17381,7 +17305,6 @@
         <Item Type="Trigger" Id="82A8089A"/>
     </Element>
     <Element Type="Variable" Id="8D7B435F">
-        <Section Value="Civilian Storyline"/>
         <VariableType>
             <Type Value="string"/>
             <Constant/>
@@ -17393,7 +17316,6 @@
         <ValueType Type="string"/>
     </Element>
     <Element Type="Variable" Id="C05D6378">
-        <Section Value="Civilian Storyline"/>
         <VariableType>
             <Type Value="unit"/>
         </VariableType>
@@ -17403,7 +17325,6 @@
         <Preset Type="PresetValue" Library="Ntve" Id="D6EA4D09"/>
     </Element>
     <Element Type="Trigger" Id="CFE33A0C">
-        <Section Value="Civilian Storyline"/>
         <Variable Type="Variable" Id="0D5E8E5B"/>
         <Event Type="FunctionCall" Id="BD455F38"/>
         <Action Type="Comment" Id="E6DAA5F0"/>
@@ -17414,7 +17335,7 @@
         <Action Type="FunctionCall" Id="9C4F73A3"/>
     </Element>
     <Element Type="Variable" Id="0D5E8E5B">
-        <Section Value="Civilian Storyline"/>
+        
         <VariableType>
             <Type Value="point"/>
         </VariableType>
@@ -17702,7 +17623,6 @@
         <Preset Type="PresetValue" Library="Ntve" Id="00000538"/>
     </Element>
     <Element Type="Trigger" Id="82A8089A">
-        <Section Value="Civilian Storyline"/>
         <InitOff/>
         <Event Type="FunctionCall" Id="F05AB6C2"/>
         <Action Type="FunctionCall" Id="DA8986F6"/>
@@ -17869,7 +17789,6 @@
         <Item Type="Variable" Id="50964AA3"/>
     </Element>
     <Element Type="Variable" Id="7673B22C">
-        <Section Value="Civilian Storyline"/>
         <VariableType>
             <Type Value="int"/>
         </VariableType>
@@ -17880,7 +17799,6 @@
         <ValueType Type="int"/>
     </Element>
     <Element Type="Variable" Id="0DDF44B6">
-        <Section Value="Civilian Storyline"/>
         <VariableType>
             <Type Value="timer"/>
         </VariableType>
@@ -17893,7 +17811,6 @@
         <FunctionDef Type="FunctionDef" Library="Ntve" Id="00000193"/>
     </Element>
     <Element Type="Variable" Id="B4DE4CAB">
-        <Section Value="Civilian Storyline"/>
         <VariableType>
             <Type Value="preset"/>
             <TypeElement Type="Preset" Library="Ntve" Id="00000100"/>
@@ -17904,7 +17821,6 @@
         <Preset Type="PresetValue" Library="Ntve" Id="4EDE1756"/>
     </Element>
     <Element Type="Variable" Id="BBD0BF65">
-        <Section Value="Civilian Storyline"/>
         <VariableType>
             <Type Value="preset"/>
             <TypeElement Type="Preset" Library="Ntve" Id="00000091"/>
@@ -17915,7 +17831,6 @@
         <Preset Type="PresetValue" Library="Ntve" Id="00000560"/>
     </Element>
     <Element Type="Variable" Id="0D0C0FF3">
-        <Section Value="Civilian Storyline"/>
         <VariableType>
             <Type Value="int"/>
         </VariableType>
@@ -17946,7 +17861,6 @@
         <ValueType Type="int"/>
     </Element>
     <Element Type="Variable" Id="0561D7DF">
-        <Section Value="Civilian Storyline"/>
         <VariableType>
             <Type Value="ping"/>
             <ArraySize Dim="0" Value="5"/>
@@ -17957,7 +17871,6 @@
         <Preset Type="PresetValue" Library="Ntve" Id="362A0F1D"/>
     </Element>
     <Element Type="Variable" Id="C7D46B33">
-        <Section Value="Civilian Storyline"/>
         <VariableType>
             <Type Value="region"/>
             <ArraySize Dim="0" Value="5"/>
@@ -17968,7 +17881,6 @@
         <Preset Type="PresetValue" Library="Ntve" Id="F5E3F3AD"/>
     </Element>
     <Element Type="Variable" Id="9F49440C">
-        <Section Value="Civilian Storyline"/>
         <VariableType>
             <Type Value="actor"/>
             <ArraySize Dim="0" Value="5"/>
@@ -17979,7 +17891,6 @@
         <Preset Type="PresetValue" Library="Ntve" Id="52D5A28A"/>
     </Element>
     <Element Type="Variable" Id="FC749C19">
-        <Section Value="Civilian Storyline"/>
         <VariableType>
             <Type Value="int"/>
         </VariableType>
@@ -17990,7 +17901,6 @@
         <ValueType Type="int"/>
     </Element>
     <Element Type="Variable" Id="74BE7D09">
-        <Section Value="Civilian Storyline"/>
         <VariableType>
             <Type Value="objective"/>
         </VariableType>
@@ -18000,7 +17910,6 @@
         <Preset Type="PresetValue" Library="Ntve" Id="91651C80"/>
     </Element>
     <Element Type="Variable" Id="1D67A9E1">
-        <Section Value="Civilian Storyline"/>
         <VariableType>
             <Type Value="string"/>
             <Constant/>
@@ -18012,7 +17921,6 @@
         <ValueType Type="string"/>
     </Element>
     <Element Type="Variable" Id="50964AA3">
-        <Section Value="Civilian Storyline"/>
         <VariableType>
             <Type Value="ping"/>
         </VariableType>
@@ -18030,7 +17938,6 @@
         <Item Type="FunctionDef" Id="6D180BAE"/>
     </Element>
     <Element Type="FunctionDef" Id="0EC4AB43">
-        <Section Value="Civilian Storyline"/>
         <FlagAction/>
         <FunctionCall Type="FunctionCall" Id="24F9C106"/>
         <FunctionCall Type="FunctionCall" Id="502ABF31"/>
@@ -18088,14 +17995,13 @@
         <FunctionDef Type="FunctionDef" Library="Ntve" Id="00000433"/>
     </Element>
     <Element Type="FunctionDef" Id="CEBF7C1E">
-        <Section Value="Civilian Storyline"/>
         <FlagAction/>
         <Variable Type="Variable" Id="58F2537B"/>
         <Variable Type="Variable" Id="8C4728FE"/>
         <FunctionCall Type="FunctionCall" Id="443557FA"/>
     </Element>
     <Element Type="Variable" Id="58F2537B">
-        <Section Value="Civilian Storyline"/>
+        
         <VariableType>
             <Type Value="playergroup"/>
         </VariableType>
@@ -18116,7 +18022,7 @@
         <FunctionDef Type="FunctionDef" Library="840A968C" Id="251299CD"/>
     </Element>
     <Element Type="Variable" Id="8C4728FE">
-        <Section Value="Civilian Storyline"/>
+        
         <VariableType>
             <Type Value="int"/>
         </VariableType>
@@ -18466,7 +18372,6 @@
         <ValueType Type="int"/>
     </Element>
     <Element Type="FunctionDef" Id="C18692FF">
-        <Section Value="Civilian Storyline"/>
         <FlagAction/>
         <FunctionCall Type="Comment" Id="9AEA67EC"/>
         <FunctionCall Type="FunctionCall" Id="E6FC85EB"/>
@@ -18672,14 +18577,13 @@
         <FunctionDef Type="FunctionDef" Library="Ntve" Id="6A7E59D3"/>
     </Element>
     <Element Type="FunctionDef" Id="9B56E4C1">
-        <Section Value="Civilian Storyline"/>
         <FlagAction/>
         <Variable Type="Variable" Id="2EB52306"/>
         <Variable Type="Variable" Id="9EAFD2C8"/>
         <FunctionCall Type="FunctionCall" Id="2103CE68"/>
     </Element>
     <Element Type="Variable" Id="2EB52306">
-        <Section Value="Civilian Storyline"/>
+        
         <VariableType>
             <Type Value="int"/>
         </VariableType>
@@ -18690,7 +18594,7 @@
         <ValueType Type="int"/>
     </Element>
     <Element Type="Variable" Id="9EAFD2C8">
-        <Section Value="Civilian Storyline"/>
+        
         <VariableType>
             <Type Value="point"/>
         </VariableType>
@@ -19453,7 +19357,6 @@
         <Variable Type="Variable" Id="0D0C0FF3"/>
     </Element>
     <Element Type="FunctionDef" Id="6D180BAE">
-        <Section Value="Civilian Storyline"/>
         <FlagAction/>
         <FunctionCall Type="FunctionCall" Id="50F14275"/>
         <FunctionCall Type="FunctionCall" Id="0918DB47"/>
@@ -19543,7 +19446,6 @@
         <Variable Type="Variable" Id="0DDF44B6"/>
     </Element>
     <Element Type="Trigger" Id="B31DC8BB">
-        <Section Value="Civilian Storyline"/>
         <Event Type="FunctionCall" Id="422F46F1"/>
         <Action Type="FunctionCall" Id="A56B59FE"/>
         <Action Type="FunctionCall" Id="B3D2EF0C"/>
@@ -19638,14 +19540,13 @@
         <ValueElement Type="Trigger" Id="0717426D"/>
     </Element>
     <Element Type="Trigger" Id="21104C72">
-        <Section Value="Civilian Storyline"/>
         <Variable Type="Variable" Id="9BA54ED1"/>
         <Variable Type="Variable" Id="9ED37727"/>
         <Event Type="FunctionCall" Id="74C32290"/>
         <Action Type="FunctionCall" Id="D607B0C0"/>
     </Element>
     <Element Type="Variable" Id="9BA54ED1">
-        <Section Value="Civilian Storyline"/>
+        
         <VariableType>
             <Type Value="unit"/>
         </VariableType>
@@ -19714,7 +19615,7 @@
         <Preset Type="PresetValue" Library="Ntve" Id="1468BD55"/>
     </Element>
     <Element Type="Variable" Id="9ED37727">
-        <Section Value="Civilian Storyline"/>
+        
         <VariableType>
             <Type Value="int"/>
         </VariableType>
@@ -20088,7 +19989,6 @@
         <Variable Type="Variable" Id="9BA54ED1"/>
     </Element>
     <Element Type="FunctionDef" Id="45B7A619">
-        <Section Value="Civilian Storyline"/>
         <FlagCondition/>
         <ReturnType>
             <Type Value="bool"/>
@@ -20108,7 +20008,7 @@
         <Preset Type="PresetValue" Library="Ntve" Id="D6EA4D09"/>
     </Element>
     <Element Type="Variable" Id="3EF442EC">
-        <Section Value="Civilian Storyline"/>
+        
         <VariableType>
             <Type Value="int"/>
         </VariableType>
@@ -20276,7 +20176,6 @@
         <ValueType Type="bool"/>
     </Element>
     <Element Type="Trigger" Id="9CE50CCF">
-        <Section Value="Civilian Storyline"/>
         <Event Type="FunctionCall" Id="4F01C36B"/>
         <Action Type="FunctionCall" Id="BF45E5D9"/>
         <Action Type="FunctionCall" Id="31EC4D72"/>
@@ -20604,7 +20503,6 @@
         <FunctionDef Type="FunctionDef" Id="2F3F9666"/>
     </Element>
     <Element Type="Trigger" Id="0717426D">
-        <Section Value="Civilian Storyline"/>
         <InitOff/>
         <Internal/>
         <Action Type="FunctionCall" Id="D8746CCB"/>
@@ -20674,7 +20572,6 @@
         <Item Type="Variable" Id="560BECEE"/>
     </Element>
     <Element Type="Variable" Id="DC7767B1">
-        <Section Value="Civilian Storyline"/>
         <VariableType>
             <Type Value="int"/>
         </VariableType>
@@ -20685,7 +20582,6 @@
         <ValueType Type="int"/>
     </Element>
     <Element Type="Variable" Id="B1B875DB">
-        <Section Value="Civilian Storyline"/>
         <VariableType>
             <Type Value="string"/>
             <Constant/>
@@ -20697,7 +20593,6 @@
         <ValueType Type="string"/>
     </Element>
     <Element Type="Variable" Id="B6FA0D97">
-        <Section Value="Civilian Storyline"/>
         <VariableType>
             <Type Value="unit"/>
         </VariableType>
@@ -20707,7 +20602,6 @@
         <Preset Type="PresetValue" Library="Ntve" Id="D6EA4D09"/>
     </Element>
     <Element Type="Variable" Id="560BECEE">
-        <Section Value="Civilian Storyline"/>
         <VariableType>
             <Type Value="ping"/>
         </VariableType>
@@ -20717,7 +20611,6 @@
         <Preset Type="PresetValue" Library="Ntve" Id="362A0F1D"/>
     </Element>
     <Element Type="Trigger" Id="97F421DC">
-        <Section Value="Civilian Storyline"/>
         <Event Type="FunctionCall" Id="BB517A92"/>
         <Action Type="FunctionCall" Id="CCF650AB"/>
         <Action Type="FunctionCall" Id="60E0249C"/>
@@ -20945,7 +20838,6 @@
         <Preset Type="PresetValue" Library="Ntve" Id="00000538"/>
     </Element>
     <Element Type="FunctionDef" Id="53C89E5D">
-        <Section Value="Civilian Storyline"/>
         <FlagAction/>
         <FunctionCall Type="FunctionCall" Id="958A2A0E"/>
         <FunctionCall Type="FunctionCall" Id="AF743061"/>
@@ -21027,7 +20919,6 @@
         <ValueType Type="text"/>
     </Element>
     <Element Type="Trigger" Id="0866C3B8">
-        <Section Value="Civilian Storyline"/>
         <InitOff/>
         <Action Type="FunctionCall" Id="E53F3C43"/>
         <Action Type="FunctionCall" Id="9541E0CC"/>
@@ -21079,7 +20970,6 @@
         <Variable Type="Variable" Id="B6FA0D97"/>
     </Element>
     <Element Type="FunctionDef" Id="B51F7F0C">
-        <Section Value="Civilian Storyline"/>
         <FlagAction/>
         <Variable Type="Variable" Id="29E76BC6"/>
         <Variable Type="Variable" Id="89D6221F"/>
@@ -21093,7 +20983,7 @@
         <FunctionCall Type="FunctionCall" Id="DFF3A9C3"/>
     </Element>
     <Element Type="Variable" Id="29E76BC6">
-        <Section Value="Civilian Storyline"/>
+        
         <VariableType>
             <Type Value="playergroup"/>
         </VariableType>
@@ -21114,7 +21004,7 @@
         <FunctionDef Type="FunctionDef" Library="840A968C" Id="251299CD"/>
     </Element>
     <Element Type="Variable" Id="89D6221F">
-        <Section Value="Civilian Storyline"/>
+        
         <VariableType>
             <Type Value="int"/>
         </VariableType>
@@ -21588,7 +21478,6 @@
         <Item Type="Trigger" Id="B947A32A"/>
     </Element>
     <Element Type="Variable" Id="5EB6868E">
-        <Section Value="Civilian Storyline"/>
         <VariableType>
             <Type Value="unit"/>
         </VariableType>
@@ -21598,7 +21487,6 @@
         <Preset Type="PresetValue" Library="Ntve" Id="D6EA4D09"/>
     </Element>
     <Element Type="Variable" Id="FDBB7713">
-        <Section Value="Civilian Storyline"/>
         <VariableType>
             <Type Value="unit"/>
         </VariableType>
@@ -21608,7 +21496,6 @@
         <Preset Type="PresetValue" Library="Ntve" Id="D6EA4D09"/>
     </Element>
     <Element Type="Variable" Id="4B6F1BD3">
-        <Section Value="Civilian Storyline"/>
         <VariableType>
             <Type Value="string"/>
             <Constant/>
@@ -21620,7 +21507,6 @@
         <ValueType Type="string"/>
     </Element>
     <Element Type="Variable" Id="C4FCFCA6">
-        <Section Value="Civilian Storyline"/>
         <VariableType>
             <Type Value="ping"/>
         </VariableType>
@@ -21630,7 +21516,6 @@
         <Preset Type="PresetValue" Library="Ntve" Id="362A0F1D"/>
     </Element>
     <Element Type="Trigger" Id="B9F42060">
-        <Section Value="Civilian Storyline"/>
         <Variable Type="Variable" Id="A764ED36"/>
         <Event Type="FunctionCall" Id="2E35A244"/>
         <Action Type="FunctionCall" Id="027EC6CC"/>
@@ -21644,7 +21529,7 @@
         <Action Type="FunctionCall" Id="C8D9FE9E"/>
     </Element>
     <Element Type="Variable" Id="A764ED36">
-        <Section Value="Civilian Storyline"/>
+        
         <VariableType>
             <Type Value="point"/>
         </VariableType>
@@ -21908,7 +21793,6 @@
         <ValueType Type="bool"/>
     </Element>
     <Element Type="Trigger" Id="063EC7B5">
-        <Section Value="Civilian Storyline"/>
         <InitOff/>
         <Event Type="FunctionCall" Id="345CF598"/>
         <Action Type="FunctionCall" Id="CB06B35B"/>
@@ -21965,7 +21849,6 @@
         <Variable Type="Variable" Id="DC7767B1"/>
     </Element>
     <Element Type="Trigger" Id="B947A32A">
-        <Section Value="Civilian Storyline"/>
         <InitOff/>
         <Event Type="FunctionCall" Id="3808D482"/>
         <Condition Type="FunctionCall" Id="8BB8DBB0"/>
@@ -22083,7 +21966,6 @@
         <Item Type="Variable" Id="A76B1540"/>
     </Element>
     <Element Type="Variable" Id="59581262">
-        <Section Value="Civilian Storyline"/>
         <VariableType>
             <Type Value="int"/>
         </VariableType>
@@ -22094,7 +21976,6 @@
         <ValueType Type="int"/>
     </Element>
     <Element Type="Variable" Id="363F6A84">
-        <Section Value="Civilian Storyline"/>
         <VariableType>
             <Type Value="fixed"/>
             <Constant/>
@@ -22106,7 +21987,6 @@
         <ValueType Type="fixed"/>
     </Element>
     <Element Type="Variable" Id="4ABCB7C2">
-        <Section Value="Civilian Storyline"/>
         <VariableType>
             <Type Value="string"/>
             <Constant/>
@@ -22118,7 +21998,6 @@
         <ValueType Type="string"/>
     </Element>
     <Element Type="Variable" Id="BF419993">
-        <Section Value="Civilian Storyline"/>
         <VariableType>
             <Type Value="int"/>
         </VariableType>
@@ -22129,7 +22008,6 @@
         <ValueType Type="int"/>
     </Element>
     <Element Type="Variable" Id="5AB6B633">
-        <Section Value="Civilian Storyline"/>
         <VariableType>
             <Type Value="timer"/>
         </VariableType>
@@ -22142,7 +22020,6 @@
         <FunctionDef Type="FunctionDef" Library="Ntve" Id="00000193"/>
     </Element>
     <Element Type="Variable" Id="24921DAA">
-        <Section Value="Civilian Storyline"/>
         <VariableType>
             <Type Value="timer"/>
         </VariableType>
@@ -22155,7 +22032,6 @@
         <FunctionDef Type="FunctionDef" Library="Ntve" Id="00000193"/>
     </Element>
     <Element Type="Variable" Id="A2FEE419">
-        <Section Value="Civilian Storyline"/>
         <VariableType>
             <Type Value="bool"/>
         </VariableType>
@@ -22166,7 +22042,6 @@
         <ValueType Type="bool"/>
     </Element>
     <Element Type="Variable" Id="CEDAEEC2">
-        <Section Value="Civilian Storyline"/>
         <VariableType>
             <Type Value="preset"/>
             <TypeElement Type="Preset" Library="Ntve" Id="00000091"/>
@@ -22177,7 +22052,6 @@
         <Preset Type="PresetValue" Library="Ntve" Id="00000560"/>
     </Element>
     <Element Type="Variable" Id="8F40E3EC">
-        <Section Value="Civilian Storyline"/>
         <VariableType>
             <Type Value="ping"/>
         </VariableType>
@@ -22187,7 +22061,6 @@
         <Preset Type="PresetValue" Library="Ntve" Id="362A0F1D"/>
     </Element>
     <Element Type="Variable" Id="AD141BA5">
-        <Section Value="Civilian Storyline"/>
         <VariableType>
             <Type Value="ping"/>
         </VariableType>
@@ -22197,7 +22070,6 @@
         <Preset Type="PresetValue" Library="Ntve" Id="362A0F1D"/>
     </Element>
     <Element Type="Variable" Id="A76B1540">
-        <Section Value="Civilian Storyline"/>
         <VariableType>
             <Type Value="ping"/>
         </VariableType>
@@ -22214,7 +22086,6 @@
         <Item Type="Trigger" Id="C19B833C"/>
     </Element>
     <Element Type="FunctionDef" Id="CAB12F7B">
-        <Section Value="Civilian Storyline"/>
         <FlagAction/>
         <FunctionCall Type="FunctionCall" Id="4463E838"/>
     </Element>
@@ -22307,7 +22178,6 @@
         <ValueType Type="text"/>
     </Element>
     <Element Type="FunctionDef" Id="152715B7">
-        <Section Value="Civilian Storyline"/>
         <FlagAction/>
         <Variable Type="Variable" Id="A94F5323"/>
         <Variable Type="Variable" Id="C129E0BF"/>
@@ -22318,7 +22188,7 @@
         <FunctionCall Type="FunctionCall" Id="BAE8E447"/>
     </Element>
     <Element Type="Variable" Id="A94F5323">
-        <Section Value="Civilian Storyline"/>
+        
         <VariableType>
             <Type Value="playergroup"/>
         </VariableType>
@@ -22339,7 +22209,7 @@
         <FunctionDef Type="FunctionDef" Library="840A968C" Id="251299CD"/>
     </Element>
     <Element Type="Variable" Id="C129E0BF">
-        <Section Value="Civilian Storyline"/>
+        
         <VariableType>
             <Type Value="int"/>
             <ArraySize Dim="0" Value="3"/>
@@ -22812,7 +22682,6 @@
         <ValueType Type="int"/>
     </Element>
     <Element Type="FunctionDef" Id="9DEE7633">
-        <Section Value="Civilian Storyline"/>
         <FlagAction/>
         <FunctionCall Type="FunctionCall" Id="D7B07419"/>
         <FunctionCall Type="FunctionCall" Id="8806D090"/>
@@ -22876,7 +22745,6 @@
         <FunctionDef Type="FunctionDef" Library="Ntve" Id="6A7E59D3"/>
     </Element>
     <Element Type="FunctionDef" Id="6BA80C9E">
-        <Section Value="Civilian Storyline"/>
         <FlagAction/>
         <FunctionCall Type="FunctionCall" Id="B34CCF52"/>
     </Element>
@@ -22969,7 +22837,6 @@
         <ValueType Type="text"/>
     </Element>
     <Element Type="Trigger" Id="C19B833C">
-        <Section Value="Civilian Storyline"/>
         <Action Type="FunctionCall" Id="0973A7D4"/>
         <Action Type="FunctionCall" Id="C3A98E90"/>
     </Element>
@@ -23032,7 +22899,6 @@
         <ValueType Type="int"/>
     </Element>
     <Element Type="Trigger" Id="AFAFB3C5">
-        <Section Value="Civilian Storyline"/>
         <Event Type="FunctionCall" Id="93F82005"/>
         <Action Type="FunctionCall" Id="1176F728"/>
         <Action Type="FunctionCall" Id="D500F31D"/>
@@ -23235,7 +23101,6 @@
         <Preset Type="PresetValue" Library="Ntve" Id="00000538"/>
     </Element>
     <Element Type="Trigger" Id="05F5C146">
-        <Section Value="Civilian Storyline"/>
         <InitOff/>
         <Variable Type="Variable" Id="44AAF10B"/>
         <Variable Type="Variable" Id="5F6B3512"/>
@@ -23247,7 +23112,7 @@
         <Action Type="FunctionCall" Id="91AC932F"/>
     </Element>
     <Element Type="Variable" Id="44AAF10B">
-        <Section Value="Civilian Storyline"/>
+        
         <VariableType>
             <Type Value="playergroup"/>
         </VariableType>
@@ -23268,7 +23133,7 @@
         <FunctionDef Type="FunctionDef" Library="840A968C" Id="251299CD"/>
     </Element>
     <Element Type="Variable" Id="5F6B3512">
-        <Section Value="Civilian Storyline"/>
+        
         <VariableType>
             <Type Value="int"/>
         </VariableType>
@@ -23530,7 +23395,6 @@
         <ValueGameType Type="Model"/>
     </Element>
     <Element Type="Trigger" Id="9E33B146">
-        <Section Value="Civilian Storyline"/>
         <InitOff/>
         <Action Type="FunctionCall" Id="6C5EA4FF"/>
         <Action Type="FunctionCall" Id="00B30D81"/>
@@ -23590,7 +23454,6 @@
         <ValueType Type="text"/>
     </Element>
     <Element Type="Trigger" Id="EC8E1DA5">
-        <Section Value="Civilian Storyline"/>
         <InitOff/>
         <Action Type="FunctionCall" Id="6411B8E1"/>
         <Action Type="FunctionCall" Id="47A7CD5A"/>
@@ -23683,7 +23546,6 @@
         <Item Type="Trigger" Id="CF621D18"/>
     </Element>
     <Element Type="Trigger" Id="A1FAA8AF">
-        <Section Value="Civilian Storyline"/>
         <InitOff/>
         <Action Type="FunctionCall" Id="FFCF47AF"/>
         <Action Type="FunctionCall" Id="638DE165"/>
@@ -23857,7 +23719,6 @@
         <Variable Type="Variable" Id="59581262"/>
     </Element>
     <Element Type="Trigger" Id="5A5AF40B">
-        <Section Value="Civilian Storyline"/>
         <InitOff/>
         <Action Type="FunctionCall" Id="FF4679F6"/>
         <Action Type="FunctionCall" Id="D993F491"/>
@@ -23967,7 +23828,6 @@
         <Variable Type="Variable" Id="59581262"/>
     </Element>
     <Element Type="Trigger" Id="621BA802">
-        <Section Value="Civilian Storyline"/>
         <InitOff/>
         <Action Type="FunctionCall" Id="E37D3A9E"/>
         <Action Type="FunctionCall" Id="2D22819D"/>
@@ -24077,7 +23937,6 @@
         <Variable Type="Variable" Id="59581262"/>
     </Element>
     <Element Type="Trigger" Id="8D56A27F">
-        <Section Value="Civilian Storyline"/>
         <InitOff/>
         <Action Type="FunctionCall" Id="71D66622"/>
         <Action Type="FunctionCall" Id="042FF7DA"/>
@@ -24187,7 +24046,6 @@
         <Variable Type="Variable" Id="59581262"/>
     </Element>
     <Element Type="Trigger" Id="B5D69B4F">
-        <Section Value="Civilian Storyline"/>
         <InitOff/>
         <Action Type="FunctionCall" Id="B5CFFF89"/>
         <Action Type="FunctionCall" Id="BE7DE28C"/>
@@ -24297,7 +24155,6 @@
         <Variable Type="Variable" Id="59581262"/>
     </Element>
     <Element Type="Trigger" Id="CF621D18">
-        <Section Value="Civilian Storyline"/>
         <InitOff/>
         <Action Type="FunctionCall" Id="D0EF60CE"/>
         <Action Type="FunctionCall" Id="D2603117"/>
@@ -24407,7 +24264,6 @@
         <Variable Type="Variable" Id="59581262"/>
     </Element>
     <Element Type="Trigger" Id="30F9CBFA">
-        <Section Value="Civilian Storyline"/>
         <Event Type="FunctionCall" Id="A3C59B7E"/>
         <Action Type="FunctionCall" Id="79AFF76A"/>
         <Action Type="FunctionCall" Id="13CCD294"/>
@@ -24457,7 +24313,6 @@
         <Variable Type="Variable" Id="24921DAA"/>
     </Element>
     <Element Type="Trigger" Id="4BE5EAF0">
-        <Section Value="Civilian Storyline"/>
         <Event Type="FunctionCall" Id="628EA92A"/>
         <Action Type="FunctionCall" Id="01326505"/>
         <Action Type="FunctionCall" Id="0CFFAE23"/>
@@ -24500,7 +24355,6 @@
         <Item Type="Trigger" Id="9BE1E486"/>
     </Element>
     <Element Type="Variable" Id="1F5D3E4A">
-        <Section Value="Civilian Storyline"/>
         <VariableType>
             <Type Value="unit"/>
         </VariableType>
@@ -24510,7 +24364,6 @@
         <Preset Type="PresetValue" Library="Ntve" Id="D6EA4D09"/>
     </Element>
     <Element Type="Variable" Id="3CC45820">
-        <Section Value="Civilian Storyline"/>
         <VariableType>
             <Type Value="string"/>
             <Constant/>
@@ -24522,7 +24375,6 @@
         <ValueType Type="string"/>
     </Element>
     <Element Type="Trigger" Id="A1993280">
-        <Section Value="Civilian Storyline"/>
         <Event Type="FunctionCall" Id="2F2389F2"/>
         <Action Type="FunctionCall" Id="85B847E3"/>
         <Action Type="FunctionCall" Id="B3E724F1"/>
@@ -24778,7 +24630,6 @@
         <ValueType Type="bool"/>
     </Element>
     <Element Type="Trigger" Id="8BFF83D5">
-        <Section Value="Civilian Storyline"/>
         <InitOff/>
         <Event Type="FunctionCall" Id="DF52958D"/>
         <Action Type="FunctionCall" Id="DBF6DE4C"/>
@@ -24846,7 +24697,6 @@
         <ValueType Type="int"/>
     </Element>
     <Element Type="Trigger" Id="9BE1E486">
-        <Section Value="Civilian Storyline"/>
         <InitOff/>
         <Event Type="FunctionCall" Id="BC40AF50"/>
         <Action Type="FunctionCall" Id="E30C9499"/>
@@ -24940,7 +24790,6 @@
         <Item Type="Variable" Id="9694043C"/>
     </Element>
     <Element Type="Variable" Id="96738443">
-        <Section Value="Civilian Storyline"/>
         <VariableType>
             <Type Value="int"/>
         </VariableType>
@@ -24951,7 +24800,6 @@
         <ValueType Type="int"/>
     </Element>
     <Element Type="Variable" Id="1337BB60">
-        <Section Value="Civilian Storyline"/>
         <VariableType>
             <Type Value="string"/>
             <Constant/>
@@ -24963,7 +24811,6 @@
         <ValueType Type="string"/>
     </Element>
     <Element Type="Variable" Id="3DBE0247">
-        <Section Value="Civilian Storyline"/>
         <VariableType>
             <Type Value="wave"/>
         </VariableType>
@@ -24973,7 +24820,6 @@
         <Preset Type="PresetValue" Library="Ntve" Id="DD3649E2"/>
     </Element>
     <Element Type="Variable" Id="67D42968">
-        <Section Value="Civilian Storyline"/>
         <VariableType>
             <Type Value="ping"/>
         </VariableType>
@@ -24983,7 +24829,6 @@
         <Preset Type="PresetValue" Library="Ntve" Id="362A0F1D"/>
     </Element>
     <Element Type="Variable" Id="1675A48D">
-        <Section Value="Civilian Storyline"/>
         <VariableType>
             <Type Value="unit"/>
         </VariableType>
@@ -24993,7 +24838,6 @@
         <Preset Type="PresetValue" Library="Ntve" Id="D6EA4D09"/>
     </Element>
     <Element Type="Variable" Id="9694043C">
-        <Section Value="Civilian Storyline"/>
         <VariableType>
             <Type Value="string"/>
             <Constant/>
@@ -25005,7 +24849,6 @@
         <ValueType Type="string"/>
     </Element>
     <Element Type="Trigger" Id="2465C0A7">
-        <Section Value="Civilian Storyline"/>
         <Event Type="FunctionCall" Id="1A5CDCA4"/>
         <Action Type="FunctionCall" Id="391FA48A"/>
         <Action Type="FunctionCall" Id="2506D912"/>
@@ -25077,14 +24920,13 @@
         <FunctionDef Type="FunctionDef" Id="85AA04CB"/>
     </Element>
     <Element Type="FunctionDef" Id="3AE9F9F7">
-        <Section Value="Civilian Storyline"/>
         <FlagAction/>
         <Variable Type="Variable" Id="F90262E0"/>
         <Variable Type="Variable" Id="0C0518EA"/>
         <FunctionCall Type="FunctionCall" Id="BD1595F5"/>
     </Element>
     <Element Type="Variable" Id="F90262E0">
-        <Section Value="Civilian Storyline"/>
+        
         <VariableType>
             <Type Value="playergroup"/>
         </VariableType>
@@ -25105,7 +24947,7 @@
         <FunctionDef Type="FunctionDef" Library="840A968C" Id="251299CD"/>
     </Element>
     <Element Type="Variable" Id="0C0518EA">
-        <Section Value="Civilian Storyline"/>
+        
         <VariableType>
             <Type Value="int"/>
         </VariableType>
@@ -25453,7 +25295,6 @@
         <ValueType Type="text"/>
     </Element>
     <Element Type="FunctionDef" Id="85AA04CB">
-        <Section Value="Civilian Storyline"/>
         <FlagAction/>
         <Variable Type="Variable" Id="7ED2C643"/>
         <Variable Type="Variable" Id="82102CCD"/>
@@ -25481,7 +25322,7 @@
         <FunctionCall Type="FunctionCall" Id="55C6AC79"/>
     </Element>
     <Element Type="Variable" Id="7ED2C643">
-        <Section Value="Civilian Storyline"/>
+        
         <VariableType>
             <Type Value="point"/>
         </VariableType>
@@ -25491,7 +25332,7 @@
         <Preset Type="PresetValue" Library="Ntve" Id="568CBBF1"/>
     </Element>
     <Element Type="Variable" Id="82102CCD">
-        <Section Value="Civilian Storyline"/>
+        
         <VariableType>
             <Type Value="unit"/>
         </VariableType>
@@ -26458,7 +26299,6 @@
         <Preset Type="PresetValue" Library="Ntve" Id="00000068"/>
     </Element>
     <Element Type="Trigger" Id="337F5226">
-        <Section Value="Civilian Storyline"/>
         <Variable Type="Variable" Id="F694845C"/>
         <Variable Type="Variable" Id="67A27E58"/>
         <Variable Type="Variable" Id="4174D27F"/>
@@ -26484,7 +26324,7 @@
         <Action Type="FunctionCall" Id="7A0A6203"/>
     </Element>
     <Element Type="Variable" Id="F694845C">
-        <Section Value="Civilian Storyline"/>
+        
         <VariableType>
             <Type Value="gamelink"/>
             <GameType Value="Unit"/>
@@ -26496,7 +26336,7 @@
         <Preset Type="PresetValue" Library="Ntve" Id="C9DCA6C0"/>
     </Element>
     <Element Type="Variable" Id="67A27E58">
-        <Section Value="Civilian Storyline"/>
+        
         <VariableType>
             <Type Value="int"/>
         </VariableType>
@@ -26583,7 +26423,7 @@
         <FunctionDef Type="FunctionDef" Library="840A968C" Id="251299CD"/>
     </Element>
     <Element Type="Variable" Id="4174D27F">
-        <Section Value="Civilian Storyline"/>
+        
         <VariableType>
             <Type Value="waveinfo"/>
         </VariableType>
@@ -27109,7 +26949,6 @@
         <ValueType Type="bool"/>
     </Element>
     <Element Type="Trigger" Id="12A29F83">
-        <Section Value="Civilian Storyline"/>
         <Disabled/>
         <Event Type="FunctionCall" Id="B8ED4232"/>
         <Action Type="FunctionCall" Id="CBAE2FC1"/>
@@ -27336,7 +27175,6 @@
         <FunctionDef Type="FunctionDef" Library="Ntve" Id="7050204D"/>
     </Element>
     <Element Type="Trigger" Id="3A5E7A2F">
-        <Section Value="Civilian Storyline"/>
         <InitOff/>
         <Variable Type="Variable" Id="D34165F0"/>
         <Variable Type="Variable" Id="32801244"/>
@@ -27351,7 +27189,7 @@
         <Action Type="FunctionCall" Id="D98C0B4C"/>
     </Element>
     <Element Type="Variable" Id="D34165F0">
-        <Section Value="Civilian Storyline"/>
+        
         <VariableType>
             <Type Value="playergroup"/>
         </VariableType>
@@ -27364,7 +27202,7 @@
         <FunctionDef Type="FunctionDef" Library="840A968C" Id="251299CD"/>
     </Element>
     <Element Type="Variable" Id="32801244">
-        <Section Value="Civilian Storyline"/>
+        
         <VariableType>
             <Type Value="int"/>
         </VariableType>
@@ -27670,7 +27508,6 @@
         <Variable Type="Variable" Id="96738443"/>
     </Element>
     <Element Type="Trigger" Id="1D120D0C">
-        <Section Value="Civilian Storyline"/>
         <InitOff/>
         <Event Type="FunctionCall" Id="51EB48EE"/>
         <Action Type="FunctionCall" Id="8EA27744"/>
@@ -27811,7 +27648,6 @@
         <Variable Type="Variable" Id="3DBE0247"/>
     </Element>
     <Element Type="Trigger" Id="2ABBDB19">
-        <Section Value="Civilian Storyline"/>
         <Disabled/>
         <InitOff/>
         <Event Type="FunctionCall" Id="6EBA6C7B"/>
@@ -27887,7 +27723,6 @@
         <Item Type="Category" Id="8E315FBF"/>
     </Element>
     <Element Type="FunctionDef" Id="13C61FD1">
-        <Section Value="Civilian Storyline"/>
         <FlagAction/>
         <FunctionCall Type="FunctionCall" Id="B14EC5BE"/>
         <FunctionCall Type="FunctionCall" Id="757D1595"/>
@@ -28310,7 +28145,6 @@
         <Item Type="Category" Id="8894ABA5"/>
     </Element>
     <Element Type="Trigger" Id="D6E6275C">
-        <Section Value="Civilian Storyline"/>
         <Template/>
         <Variable Type="Variable" Id="2E0837CC"/>
         <Event Type="FunctionCall" Id="3775CE36"/>
@@ -28319,7 +28153,7 @@
         <Action Type="FunctionCall" Id="26281192"/>
     </Element>
     <Element Type="Variable" Id="2E0837CC">
-        <Section Value="Civilian Storyline"/>
+        
         <VariableType>
             <Type Value="fixed"/>
         </VariableType>
@@ -28415,7 +28249,6 @@
         <ValueType Type="fixed"/>
     </Element>
     <Element Type="Trigger" Id="08A9CE0E">
-        <Section Value="Civilian Storyline"/>
         <Variable Type="Variable" Id="D2325962"/>
         <Event Type="FunctionCall" Id="493B0363"/>
         <Action Type="FunctionCall" Id="6AC13F09"/>
@@ -28432,7 +28265,7 @@
         <Action Type="FunctionCall" Id="E05D9A80"/>
     </Element>
     <Element Type="Variable" Id="D2325962">
-        <Section Value="Civilian Storyline"/>
+        
         <VariableType>
             <Type Value="fixed"/>
         </VariableType>
@@ -28826,7 +28659,6 @@
         <ValueType Type="fixed"/>
     </Element>
     <Element Type="Trigger" Id="2BDE1CF3">
-        <Section Value="Civilian Storyline"/>
         <Variable Type="Variable" Id="C80FA084"/>
         <Event Type="FunctionCall" Id="1CBCF794"/>
         <Action Type="FunctionCall" Id="46D06D4B"/>
@@ -28865,7 +28697,7 @@
         <Action Type="FunctionCall" Id="7BA95BFD"/>
     </Element>
     <Element Type="Variable" Id="C80FA084">
-        <Section Value="Civilian Storyline"/>
+        
         <VariableType>
             <Type Value="fixed"/>
         </VariableType>
@@ -29955,14 +29787,13 @@
         <Item Type="Trigger" Id="5DD8A9C7"/>
     </Element>
     <Element Type="Trigger" Id="5DD8A9C7">
-        <Section Value="Civilian Storyline"/>
         <Variable Type="Variable" Id="BC9B4194"/>
         <Variable Type="Variable" Id="3A328359"/>
         <Event Type="FunctionCall" Id="5ED81494"/>
         <Action Type="FunctionCall" Id="47847EB1"/>
     </Element>
     <Element Type="Variable" Id="BC9B4194">
-        <Section Value="Civilian Storyline"/>
+        
         <VariableType>
             <Type Value="fixed"/>
         </VariableType>
@@ -29987,7 +29818,7 @@
         <ValueType Type="fixed"/>
     </Element>
     <Element Type="Variable" Id="3A328359">
-        <Section Value="Civilian Storyline"/>
+        
         <VariableType>
             <Type Value="fixed"/>
         </VariableType>
@@ -30326,7 +30157,6 @@
         <Item Type="Trigger" Id="B08379C9"/>
     </Element>
     <Element Type="Trigger" Id="C33D79E8">
-        <Section Value="Civilian Storyline"/>
         <Event Type="FunctionCall" Id="BC17A564"/>
         <Action Type="FunctionCall" Id="2025D024"/>
     </Element>
@@ -30387,7 +30217,6 @@
         <Preset Type="PresetValue" Library="840A968C" Id="84AEC9C5"/>
     </Element>
     <Element Type="Trigger" Id="B172DC7C">
-        <Section Value="Civilian Storyline"/>
         <Event Type="FunctionCall" Id="24F63C07"/>
         <Action Type="FunctionCall" Id="86ECE9E9"/>
     </Element>
@@ -30448,7 +30277,6 @@
         <Preset Type="PresetValue" Library="840A968C" Id="84AEC9C5"/>
     </Element>
     <Element Type="Trigger" Id="B08379C9">
-        <Section Value="Civilian Storyline"/>
         <Event Type="FunctionCall" Id="8FD01D2F"/>
         <Action Type="FunctionCall" Id="6338E0BF"/>
     </Element>
@@ -30515,14 +30343,13 @@
         <Item Type="Trigger" Id="5DA7137C"/>
     </Element>
     <Element Type="Trigger" Id="425BB42A">
-        <Section Value="Civilian Storyline"/>
         <Variable Type="Variable" Id="4250E16D"/>
         <Event Type="FunctionCall" Id="DA7D3479"/>
         <Action Type="FunctionCall" Id="A2B6F002"/>
         <Action Type="FunctionCall" Id="CBEEE640"/>
     </Element>
     <Element Type="Variable" Id="4250E16D">
-        <Section Value="Civilian Storyline"/>
+        
         <VariableType>
             <Type Value="fixed"/>
         </VariableType>
@@ -30601,14 +30428,13 @@
         <ValueType Type="fixed"/>
     </Element>
     <Element Type="Trigger" Id="6B594C80">
-        <Section Value="Civilian Storyline"/>
         <Variable Type="Variable" Id="3C444A15"/>
         <Event Type="FunctionCall" Id="D2BFF8DD"/>
         <Action Type="FunctionCall" Id="5DFDCEB1"/>
         <Action Type="FunctionCall" Id="B321AB3E"/>
     </Element>
     <Element Type="Variable" Id="3C444A15">
-        <Section Value="Civilian Storyline"/>
+        
         <VariableType>
             <Type Value="fixed"/>
         </VariableType>
@@ -30687,14 +30513,13 @@
         <ValueType Type="fixed"/>
     </Element>
     <Element Type="Trigger" Id="7B523028">
-        <Section Value="Civilian Storyline"/>
         <Variable Type="Variable" Id="E2366DD9"/>
         <Event Type="FunctionCall" Id="96C82B74"/>
         <Action Type="FunctionCall" Id="0AA88725"/>
         <Action Type="FunctionCall" Id="E28DA6CF"/>
     </Element>
     <Element Type="Variable" Id="E2366DD9">
-        <Section Value="Civilian Storyline"/>
+        
         <VariableType>
             <Type Value="fixed"/>
         </VariableType>
@@ -30773,14 +30598,13 @@
         <ValueType Type="fixed"/>
     </Element>
     <Element Type="Trigger" Id="5DA7137C">
-        <Section Value="Civilian Storyline"/>
         <Variable Type="Variable" Id="84124AB4"/>
         <Event Type="FunctionCall" Id="C5BF2763"/>
         <Action Type="FunctionCall" Id="B3B19ACB"/>
         <Action Type="FunctionCall" Id="EDE75D1B"/>
     </Element>
     <Element Type="Variable" Id="84124AB4">
-        <Section Value="Civilian Storyline"/>
+        
         <VariableType>
             <Type Value="fixed"/>
         </VariableType>
@@ -30886,14 +30710,13 @@
         <Item Type="Trigger" Id="30AAF30D"/>
     </Element>
     <Element Type="Trigger" Id="9EA22304">
-        <Section Value="Civilian Storyline"/>
         <Variable Type="Variable" Id="A47B2059"/>
         <Event Type="FunctionCall" Id="4A7B34BD"/>
         <Action Type="FunctionCall" Id="50EBA7F1"/>
         <Action Type="FunctionCall" Id="F7589332"/>
     </Element>
     <Element Type="Variable" Id="A47B2059">
-        <Section Value="Civilian Storyline"/>
+        
         <VariableType>
             <Type Value="fixed"/>
         </VariableType>
@@ -30972,14 +30795,13 @@
         <ValueType Type="fixed"/>
     </Element>
     <Element Type="Trigger" Id="9CA0F61E">
-        <Section Value="Civilian Storyline"/>
         <Variable Type="Variable" Id="2012AE4C"/>
         <Event Type="FunctionCall" Id="FB9D6F49"/>
         <Action Type="FunctionCall" Id="0A9031E1"/>
         <Action Type="FunctionCall" Id="5F8B52A7"/>
     </Element>
     <Element Type="Variable" Id="2012AE4C">
-        <Section Value="Civilian Storyline"/>
+        
         <VariableType>
             <Type Value="fixed"/>
         </VariableType>
@@ -31058,14 +30880,13 @@
         <ValueType Type="fixed"/>
     </Element>
     <Element Type="Trigger" Id="833C9DE1">
-        <Section Value="Civilian Storyline"/>
         <Variable Type="Variable" Id="0D9064A8"/>
         <Event Type="FunctionCall" Id="03EE595D"/>
         <Action Type="FunctionCall" Id="9AD69EEC"/>
         <Action Type="FunctionCall" Id="1A6C4315"/>
     </Element>
     <Element Type="Variable" Id="0D9064A8">
-        <Section Value="Civilian Storyline"/>
+        
         <VariableType>
             <Type Value="fixed"/>
         </VariableType>
@@ -31144,14 +30965,13 @@
         <ValueType Type="fixed"/>
     </Element>
     <Element Type="Trigger" Id="91D7C0D2">
-        <Section Value="Civilian Storyline"/>
         <Variable Type="Variable" Id="CACA008B"/>
         <Event Type="FunctionCall" Id="C81BD300"/>
         <Action Type="FunctionCall" Id="39CEFCC5"/>
         <Action Type="FunctionCall" Id="8086D09F"/>
     </Element>
     <Element Type="Variable" Id="CACA008B">
-        <Section Value="Civilian Storyline"/>
+        
         <VariableType>
             <Type Value="fixed"/>
         </VariableType>
@@ -31230,14 +31050,13 @@
         <ValueType Type="fixed"/>
     </Element>
     <Element Type="Trigger" Id="11D7C730">
-        <Section Value="Civilian Storyline"/>
         <Variable Type="Variable" Id="106C43F1"/>
         <Event Type="FunctionCall" Id="C7E94C36"/>
         <Action Type="FunctionCall" Id="DE4CF492"/>
         <Action Type="FunctionCall" Id="2E8A009A"/>
     </Element>
     <Element Type="Variable" Id="106C43F1">
-        <Section Value="Civilian Storyline"/>
+        
         <VariableType>
             <Type Value="fixed"/>
         </VariableType>
@@ -31316,14 +31135,13 @@
         <ValueType Type="fixed"/>
     </Element>
     <Element Type="Trigger" Id="500222BF">
-        <Section Value="Civilian Storyline"/>
         <Variable Type="Variable" Id="B2707BD5"/>
         <Event Type="FunctionCall" Id="EFAABDC6"/>
         <Action Type="FunctionCall" Id="D8F76771"/>
         <Action Type="FunctionCall" Id="5C01A293"/>
     </Element>
     <Element Type="Variable" Id="B2707BD5">
-        <Section Value="Civilian Storyline"/>
+        
         <VariableType>
             <Type Value="fixed"/>
         </VariableType>
@@ -31402,14 +31220,13 @@
         <ValueType Type="fixed"/>
     </Element>
     <Element Type="Trigger" Id="15D74D74">
-        <Section Value="Civilian Storyline"/>
         <Variable Type="Variable" Id="4A68AD6D"/>
         <Event Type="FunctionCall" Id="BA6CA2FC"/>
         <Action Type="FunctionCall" Id="0A71FC75"/>
         <Action Type="FunctionCall" Id="8AFF3E14"/>
     </Element>
     <Element Type="Variable" Id="4A68AD6D">
-        <Section Value="Civilian Storyline"/>
+        
         <VariableType>
             <Type Value="fixed"/>
         </VariableType>
@@ -31488,14 +31305,13 @@
         <ValueType Type="fixed"/>
     </Element>
     <Element Type="Trigger" Id="5472C3FC">
-        <Section Value="Civilian Storyline"/>
         <Variable Type="Variable" Id="02CB82A9"/>
         <Event Type="FunctionCall" Id="DD119B72"/>
         <Action Type="FunctionCall" Id="BBB3559D"/>
         <Action Type="FunctionCall" Id="75A5ECE0"/>
     </Element>
     <Element Type="Variable" Id="02CB82A9">
-        <Section Value="Civilian Storyline"/>
+        
         <VariableType>
             <Type Value="fixed"/>
         </VariableType>
@@ -31574,14 +31390,13 @@
         <ValueType Type="fixed"/>
     </Element>
     <Element Type="Trigger" Id="4EFCFE00">
-        <Section Value="Civilian Storyline"/>
         <Variable Type="Variable" Id="F79D8C13"/>
         <Event Type="FunctionCall" Id="ADC91149"/>
         <Action Type="FunctionCall" Id="602C758C"/>
         <Action Type="FunctionCall" Id="DB6B6256"/>
     </Element>
     <Element Type="Variable" Id="F79D8C13">
-        <Section Value="Civilian Storyline"/>
+        
         <VariableType>
             <Type Value="fixed"/>
         </VariableType>
@@ -31660,14 +31475,13 @@
         <ValueType Type="fixed"/>
     </Element>
     <Element Type="Trigger" Id="F79A92C3">
-        <Section Value="Civilian Storyline"/>
         <Variable Type="Variable" Id="5337399C"/>
         <Event Type="FunctionCall" Id="243A21BA"/>
         <Action Type="FunctionCall" Id="65B5FA95"/>
         <Action Type="FunctionCall" Id="F9F453EC"/>
     </Element>
     <Element Type="Variable" Id="5337399C">
-        <Section Value="Civilian Storyline"/>
+        
         <VariableType>
             <Type Value="fixed"/>
         </VariableType>
@@ -31746,14 +31560,13 @@
         <ValueType Type="fixed"/>
     </Element>
     <Element Type="Trigger" Id="370BFC33">
-        <Section Value="Civilian Storyline"/>
         <Variable Type="Variable" Id="43740058"/>
         <Event Type="FunctionCall" Id="AE72430D"/>
         <Action Type="FunctionCall" Id="58ABCC92"/>
         <Action Type="FunctionCall" Id="9949D544"/>
     </Element>
     <Element Type="Variable" Id="43740058">
-        <Section Value="Civilian Storyline"/>
+        
         <VariableType>
             <Type Value="fixed"/>
         </VariableType>
@@ -31832,14 +31645,13 @@
         <ValueType Type="fixed"/>
     </Element>
     <Element Type="Trigger" Id="C1F7FE26">
-        <Section Value="Civilian Storyline"/>
         <Variable Type="Variable" Id="D6AEF2DC"/>
         <Event Type="FunctionCall" Id="59017699"/>
         <Action Type="FunctionCall" Id="3E42F9F9"/>
         <Action Type="FunctionCall" Id="82A19502"/>
     </Element>
     <Element Type="Variable" Id="D6AEF2DC">
-        <Section Value="Civilian Storyline"/>
+        
         <VariableType>
             <Type Value="fixed"/>
         </VariableType>
@@ -31918,14 +31730,13 @@
         <ValueType Type="fixed"/>
     </Element>
     <Element Type="Trigger" Id="B1240D5E">
-        <Section Value="Civilian Storyline"/>
         <Variable Type="Variable" Id="8A03BD4A"/>
         <Event Type="FunctionCall" Id="E0564274"/>
         <Action Type="FunctionCall" Id="D29CF84A"/>
         <Action Type="FunctionCall" Id="2296D2A3"/>
     </Element>
     <Element Type="Variable" Id="8A03BD4A">
-        <Section Value="Civilian Storyline"/>
+        
         <VariableType>
             <Type Value="fixed"/>
         </VariableType>
@@ -32004,14 +31815,13 @@
         <ValueType Type="fixed"/>
     </Element>
     <Element Type="Trigger" Id="99D12349">
-        <Section Value="Civilian Storyline"/>
         <Variable Type="Variable" Id="2D7DDE1E"/>
         <Event Type="FunctionCall" Id="8CB00F85"/>
         <Action Type="FunctionCall" Id="553063B1"/>
         <Action Type="FunctionCall" Id="3183872B"/>
     </Element>
     <Element Type="Variable" Id="2D7DDE1E">
-        <Section Value="Civilian Storyline"/>
+        
         <VariableType>
             <Type Value="fixed"/>
         </VariableType>
@@ -32090,14 +31900,13 @@
         <ValueType Type="fixed"/>
     </Element>
     <Element Type="Trigger" Id="E6189CE1">
-        <Section Value="Civilian Storyline"/>
         <Variable Type="Variable" Id="C79DAE44"/>
         <Event Type="FunctionCall" Id="924B810C"/>
         <Action Type="FunctionCall" Id="1C359093"/>
         <Action Type="FunctionCall" Id="604C5BCA"/>
     </Element>
     <Element Type="Variable" Id="C79DAE44">
-        <Section Value="Civilian Storyline"/>
+        
         <VariableType>
             <Type Value="fixed"/>
         </VariableType>
@@ -32176,14 +31985,13 @@
         <ValueType Type="fixed"/>
     </Element>
     <Element Type="Trigger" Id="E4CD439F">
-        <Section Value="Civilian Storyline"/>
         <Variable Type="Variable" Id="C6EEEBD7"/>
         <Event Type="FunctionCall" Id="CA3070F8"/>
         <Action Type="FunctionCall" Id="AFBBBD66"/>
         <Action Type="FunctionCall" Id="93152B8B"/>
     </Element>
     <Element Type="Variable" Id="C6EEEBD7">
-        <Section Value="Civilian Storyline"/>
+        
         <VariableType>
             <Type Value="fixed"/>
         </VariableType>
@@ -32262,14 +32070,13 @@
         <ValueType Type="fixed"/>
     </Element>
     <Element Type="Trigger" Id="E4895602">
-        <Section Value="Civilian Storyline"/>
         <Variable Type="Variable" Id="7DE439A3"/>
         <Event Type="FunctionCall" Id="767DEA51"/>
         <Action Type="FunctionCall" Id="E41821D1"/>
         <Action Type="FunctionCall" Id="243DF548"/>
     </Element>
     <Element Type="Variable" Id="7DE439A3">
-        <Section Value="Civilian Storyline"/>
+        
         <VariableType>
             <Type Value="fixed"/>
         </VariableType>
@@ -32348,14 +32155,13 @@
         <ValueType Type="fixed"/>
     </Element>
     <Element Type="Trigger" Id="A5217607">
-        <Section Value="Civilian Storyline"/>
         <Variable Type="Variable" Id="3442F100"/>
         <Event Type="FunctionCall" Id="4D0A9815"/>
         <Action Type="FunctionCall" Id="70E78A20"/>
         <Action Type="FunctionCall" Id="3464003B"/>
     </Element>
     <Element Type="Variable" Id="3442F100">
-        <Section Value="Civilian Storyline"/>
+        
         <VariableType>
             <Type Value="fixed"/>
         </VariableType>
@@ -32434,14 +32240,13 @@
         <ValueType Type="fixed"/>
     </Element>
     <Element Type="Trigger" Id="10ABFC9D">
-        <Section Value="Civilian Storyline"/>
         <Variable Type="Variable" Id="A8B711C6"/>
         <Event Type="FunctionCall" Id="6AD93E60"/>
         <Action Type="FunctionCall" Id="71B3C515"/>
         <Action Type="FunctionCall" Id="19C655DE"/>
     </Element>
     <Element Type="Variable" Id="A8B711C6">
-        <Section Value="Civilian Storyline"/>
+        
         <VariableType>
             <Type Value="fixed"/>
         </VariableType>
@@ -32520,14 +32325,13 @@
         <ValueType Type="fixed"/>
     </Element>
     <Element Type="Trigger" Id="C0878544">
-        <Section Value="Civilian Storyline"/>
         <Variable Type="Variable" Id="68B4E9A8"/>
         <Event Type="FunctionCall" Id="4911B62C"/>
         <Action Type="FunctionCall" Id="A270DA21"/>
         <Action Type="FunctionCall" Id="9F206F47"/>
     </Element>
     <Element Type="Variable" Id="68B4E9A8">
-        <Section Value="Civilian Storyline"/>
+        
         <VariableType>
             <Type Value="fixed"/>
         </VariableType>
@@ -32606,14 +32410,13 @@
         <ValueType Type="fixed"/>
     </Element>
     <Element Type="Trigger" Id="437EDE29">
-        <Section Value="Civilian Storyline"/>
         <Variable Type="Variable" Id="BDC5023C"/>
         <Event Type="FunctionCall" Id="46DAC030"/>
         <Action Type="FunctionCall" Id="9C1A6E75"/>
         <Action Type="FunctionCall" Id="747CC436"/>
     </Element>
     <Element Type="Variable" Id="BDC5023C">
-        <Section Value="Civilian Storyline"/>
+        
         <VariableType>
             <Type Value="fixed"/>
         </VariableType>
@@ -32692,14 +32495,13 @@
         <ValueType Type="fixed"/>
     </Element>
     <Element Type="Trigger" Id="45F9F677">
-        <Section Value="Civilian Storyline"/>
         <Variable Type="Variable" Id="33D9FDC4"/>
         <Event Type="FunctionCall" Id="E4ED417D"/>
         <Action Type="FunctionCall" Id="1F9B1179"/>
         <Action Type="FunctionCall" Id="965C2E9C"/>
     </Element>
     <Element Type="Variable" Id="33D9FDC4">
-        <Section Value="Civilian Storyline"/>
+        
         <VariableType>
             <Type Value="fixed"/>
         </VariableType>
@@ -32778,14 +32580,13 @@
         <ValueType Type="fixed"/>
     </Element>
     <Element Type="Trigger" Id="CA7B9E99">
-        <Section Value="Civilian Storyline"/>
         <Variable Type="Variable" Id="4185DC60"/>
         <Event Type="FunctionCall" Id="1119F632"/>
         <Action Type="FunctionCall" Id="73C7090D"/>
         <Action Type="FunctionCall" Id="A33A5274"/>
     </Element>
     <Element Type="Variable" Id="4185DC60">
-        <Section Value="Civilian Storyline"/>
+        
         <VariableType>
             <Type Value="fixed"/>
         </VariableType>
@@ -32864,14 +32665,13 @@
         <ValueType Type="fixed"/>
     </Element>
     <Element Type="Trigger" Id="BBE1136C">
-        <Section Value="Civilian Storyline"/>
         <Variable Type="Variable" Id="BB30B9F5"/>
         <Event Type="FunctionCall" Id="72E3D295"/>
         <Action Type="FunctionCall" Id="5A937BBD"/>
         <Action Type="FunctionCall" Id="5FA7F1BE"/>
     </Element>
     <Element Type="Variable" Id="BB30B9F5">
-        <Section Value="Civilian Storyline"/>
+        
         <VariableType>
             <Type Value="fixed"/>
         </VariableType>
@@ -32950,14 +32750,13 @@
         <ValueType Type="fixed"/>
     </Element>
     <Element Type="Trigger" Id="30AAF30D">
-        <Section Value="Civilian Storyline"/>
         <Variable Type="Variable" Id="163DB87F"/>
         <Event Type="FunctionCall" Id="FD36F13D"/>
         <Action Type="FunctionCall" Id="D699557F"/>
         <Action Type="FunctionCall" Id="4F91E027"/>
     </Element>
     <Element Type="Variable" Id="163DB87F">
-        <Section Value="Civilian Storyline"/>
+        
         <VariableType>
             <Type Value="fixed"/>
         </VariableType>
@@ -33052,14 +32851,13 @@
         <Item Type="Trigger" Id="826FE649"/>
     </Element>
     <Element Type="Trigger" Id="122E98D6">
-        <Section Value="Civilian Storyline"/>
         <Variable Type="Variable" Id="2956E3D0"/>
         <Event Type="FunctionCall" Id="A6EFA895"/>
         <Action Type="FunctionCall" Id="686EAE5A"/>
         <Action Type="FunctionCall" Id="94FD5733"/>
     </Element>
     <Element Type="Variable" Id="2956E3D0">
-        <Section Value="Civilian Storyline"/>
+        
         <VariableType>
             <Type Value="fixed"/>
         </VariableType>
@@ -33138,14 +32936,13 @@
         <ValueType Type="fixed"/>
     </Element>
     <Element Type="Trigger" Id="0542B440">
-        <Section Value="Civilian Storyline"/>
         <Variable Type="Variable" Id="5517D96F"/>
         <Event Type="FunctionCall" Id="A7F1FABA"/>
         <Action Type="FunctionCall" Id="FC2B28EB"/>
         <Action Type="FunctionCall" Id="EDDB19DE"/>
     </Element>
     <Element Type="Variable" Id="5517D96F">
-        <Section Value="Civilian Storyline"/>
+        
         <VariableType>
             <Type Value="fixed"/>
         </VariableType>
@@ -33224,14 +33021,13 @@
         <ValueType Type="fixed"/>
     </Element>
     <Element Type="Trigger" Id="459A4388">
-        <Section Value="Civilian Storyline"/>
         <Variable Type="Variable" Id="3DB683C5"/>
         <Event Type="FunctionCall" Id="64659D20"/>
         <Action Type="FunctionCall" Id="BEA1CF15"/>
         <Action Type="FunctionCall" Id="5C2C6F7B"/>
     </Element>
     <Element Type="Variable" Id="3DB683C5">
-        <Section Value="Civilian Storyline"/>
+        
         <VariableType>
             <Type Value="fixed"/>
         </VariableType>
@@ -33310,14 +33106,13 @@
         <ValueType Type="fixed"/>
     </Element>
     <Element Type="Trigger" Id="E8048FBB">
-        <Section Value="Civilian Storyline"/>
         <Variable Type="Variable" Id="DC9FD11A"/>
         <Event Type="FunctionCall" Id="79E684AA"/>
         <Action Type="FunctionCall" Id="1FF654CF"/>
         <Action Type="FunctionCall" Id="6870CA82"/>
     </Element>
     <Element Type="Variable" Id="DC9FD11A">
-        <Section Value="Civilian Storyline"/>
+        
         <VariableType>
             <Type Value="fixed"/>
         </VariableType>
@@ -33396,14 +33191,13 @@
         <ValueType Type="fixed"/>
     </Element>
     <Element Type="Trigger" Id="7880C43D">
-        <Section Value="Civilian Storyline"/>
         <Variable Type="Variable" Id="38BED0C8"/>
         <Event Type="FunctionCall" Id="3923BF04"/>
         <Action Type="FunctionCall" Id="B1CE4349"/>
         <Action Type="FunctionCall" Id="61F95480"/>
     </Element>
     <Element Type="Variable" Id="38BED0C8">
-        <Section Value="Civilian Storyline"/>
+        
         <VariableType>
             <Type Value="fixed"/>
         </VariableType>
@@ -33482,14 +33276,13 @@
         <ValueType Type="fixed"/>
     </Element>
     <Element Type="Trigger" Id="53F1505C">
-        <Section Value="Civilian Storyline"/>
         <Variable Type="Variable" Id="4A04010D"/>
         <Event Type="FunctionCall" Id="8ED30423"/>
         <Action Type="FunctionCall" Id="36448B01"/>
         <Action Type="FunctionCall" Id="70CEE7F4"/>
     </Element>
     <Element Type="Variable" Id="4A04010D">
-        <Section Value="Civilian Storyline"/>
+        
         <VariableType>
             <Type Value="fixed"/>
         </VariableType>
@@ -33568,14 +33361,13 @@
         <ValueType Type="fixed"/>
     </Element>
     <Element Type="Trigger" Id="335A89B8">
-        <Section Value="Civilian Storyline"/>
         <Variable Type="Variable" Id="EC4E4EF2"/>
         <Event Type="FunctionCall" Id="3BD31B33"/>
         <Action Type="FunctionCall" Id="52AD0348"/>
         <Action Type="FunctionCall" Id="6256A0BF"/>
     </Element>
     <Element Type="Variable" Id="EC4E4EF2">
-        <Section Value="Civilian Storyline"/>
+        
         <VariableType>
             <Type Value="fixed"/>
         </VariableType>
@@ -33654,14 +33446,13 @@
         <ValueType Type="fixed"/>
     </Element>
     <Element Type="Trigger" Id="0EB9EC4F">
-        <Section Value="Civilian Storyline"/>
         <Variable Type="Variable" Id="A7F0B761"/>
         <Event Type="FunctionCall" Id="62998539"/>
         <Action Type="FunctionCall" Id="11CBB9A1"/>
         <Action Type="FunctionCall" Id="1CEC06F6"/>
     </Element>
     <Element Type="Variable" Id="A7F0B761">
-        <Section Value="Civilian Storyline"/>
+        
         <VariableType>
             <Type Value="fixed"/>
         </VariableType>
@@ -33740,14 +33531,13 @@
         <ValueType Type="fixed"/>
     </Element>
     <Element Type="Trigger" Id="326729B0">
-        <Section Value="Civilian Storyline"/>
         <Variable Type="Variable" Id="366A16A1"/>
         <Event Type="FunctionCall" Id="A249D9B4"/>
         <Action Type="FunctionCall" Id="1398749F"/>
         <Action Type="FunctionCall" Id="64D7ED26"/>
     </Element>
     <Element Type="Variable" Id="366A16A1">
-        <Section Value="Civilian Storyline"/>
+        
         <VariableType>
             <Type Value="fixed"/>
         </VariableType>
@@ -33826,14 +33616,13 @@
         <ValueType Type="fixed"/>
     </Element>
     <Element Type="Trigger" Id="E30A3521">
-        <Section Value="Civilian Storyline"/>
         <Variable Type="Variable" Id="27338E86"/>
         <Event Type="FunctionCall" Id="3F1BD101"/>
         <Action Type="FunctionCall" Id="B08B2CDD"/>
         <Action Type="FunctionCall" Id="889CD389"/>
     </Element>
     <Element Type="Variable" Id="27338E86">
-        <Section Value="Civilian Storyline"/>
+        
         <VariableType>
             <Type Value="fixed"/>
         </VariableType>
@@ -33912,14 +33701,13 @@
         <ValueType Type="fixed"/>
     </Element>
     <Element Type="Trigger" Id="7B975B13">
-        <Section Value="Civilian Storyline"/>
         <Variable Type="Variable" Id="96C36CE6"/>
         <Event Type="FunctionCall" Id="4EDC2371"/>
         <Action Type="FunctionCall" Id="95A4DD05"/>
         <Action Type="FunctionCall" Id="F4ED9275"/>
     </Element>
     <Element Type="Variable" Id="96C36CE6">
-        <Section Value="Civilian Storyline"/>
+        
         <VariableType>
             <Type Value="fixed"/>
         </VariableType>
@@ -33998,14 +33786,13 @@
         <ValueType Type="fixed"/>
     </Element>
     <Element Type="Trigger" Id="6B514D7D">
-        <Section Value="Civilian Storyline"/>
         <Variable Type="Variable" Id="85D9720A"/>
         <Event Type="FunctionCall" Id="C39A00BC"/>
         <Action Type="FunctionCall" Id="97EC1C5A"/>
         <Action Type="FunctionCall" Id="CE965AEB"/>
     </Element>
     <Element Type="Variable" Id="85D9720A">
-        <Section Value="Civilian Storyline"/>
+        
         <VariableType>
             <Type Value="fixed"/>
         </VariableType>
@@ -34084,14 +33871,13 @@
         <ValueType Type="fixed"/>
     </Element>
     <Element Type="Trigger" Id="31C4070F">
-        <Section Value="Civilian Storyline"/>
         <Variable Type="Variable" Id="15A45A40"/>
         <Event Type="FunctionCall" Id="0260D4A9"/>
         <Action Type="FunctionCall" Id="70BB360C"/>
         <Action Type="FunctionCall" Id="9825CBA8"/>
     </Element>
     <Element Type="Variable" Id="15A45A40">
-        <Section Value="Civilian Storyline"/>
+        
         <VariableType>
             <Type Value="fixed"/>
         </VariableType>
@@ -34170,14 +33956,13 @@
         <ValueType Type="fixed"/>
     </Element>
     <Element Type="Trigger" Id="826FE649">
-        <Section Value="Civilian Storyline"/>
         <Variable Type="Variable" Id="C1A416B3"/>
         <Event Type="FunctionCall" Id="CACEBB36"/>
         <Action Type="FunctionCall" Id="0712BC0C"/>
         <Action Type="FunctionCall" Id="E7B7345D"/>
     </Element>
     <Element Type="Variable" Id="C1A416B3">
-        <Section Value="Civilian Storyline"/>
+        
         <VariableType>
             <Type Value="fixed"/>
         </VariableType>
@@ -34261,7 +34046,6 @@
         <Item Type="FunctionDef" Id="CD40B6DF"/>
     </Element>
     <Element Type="FunctionDef" Id="D69CCC01">
-        <Section Value="Civilian Storyline"/>
         <FlagAction/>
         <FunctionCall Type="FunctionCall" Id="9156F6B4"/>
         <FunctionCall Type="FunctionCall" Id="6EF33260"/>
@@ -35531,7 +35315,6 @@
         <Preset Type="PresetValue" Library="840A968C" Id="A4DB484B"/>
     </Element>
     <Element Type="FunctionDef" Id="2F3F9666">
-        <Section Value="Civilian Storyline"/>
         <FlagAction/>
         <FunctionCall Type="FunctionCall" Id="FFB0F265"/>
         <FunctionCall Type="FunctionCall" Id="3450E2D5"/>
@@ -36878,7 +36661,6 @@
         <Preset Type="PresetValue" Library="840A968C" Id="A4DB484B"/>
     </Element>
     <Element Type="FunctionDef" Id="CD40B6DF">
-        <Section Value="Civilian Storyline"/>
         <FlagAction/>
         <FunctionCall Type="FunctionCall" Id="7F36F602"/>
         <FunctionCall Type="FunctionCall" Id="14291858"/>
@@ -37914,7 +37696,6 @@
         <Item Type="Variable" Id="D6C48F21"/>
     </Element>
     <Element Type="Trigger" Id="4D00D1B2">
-        <Section Value="Civilian Storyline"/>
         <Event Type="FunctionCall" Id="57E92133"/>
         <Action Type="FunctionCall" Id="EEBB5495"/>
         <Action Type="FunctionCall" Id="54C07D22"/>
@@ -38030,7 +37811,6 @@
         <Preset Type="PresetValue" Library="Ntve" Id="00000068"/>
     </Element>
     <Element Type="Variable" Id="D6C48F21">
-        <Section Value="Civilian Storyline"/>
         <VariableType>
             <Type Value="bool"/>
         </VariableType>
@@ -38039,5 +37819,198 @@
     <Element Type="Param" Id="8AA06497">
         <Value>false</Value>
         <ValueType Type="bool"/>
+    </Element>
+    <Element Type="Category" Id="B7F08541">
+        <Item Type="Trigger" Id="81E6E01A"/>
+        <Item Type="Trigger" Id="A0BEF540"/>
+        <Item Type="Variable" Id="B5F7233E"/>
+    </Element>
+    <Element Type="Trigger" Id="81E6E01A">
+        <InitOff/>
+        <Event Type="FunctionCall" Id="7BE3F0AD"/>
+        <Action Type="FunctionCall" Id="529F461B"/>
+        <Action Type="FunctionCall" Id="40A20558"/>
+        <Action Type="FunctionCall" Id="D43AD6DE"/>
+    </Element>
+    <Element Type="FunctionCall" Id="7BE3F0AD">
+        <FunctionDef Type="FunctionDef" Library="Ntve" Id="00000090"/>
+        <Parameter Type="Param" Id="01600882"/>
+    </Element>
+    <Element Type="Param" Id="01600882">
+        <ParameterDef Type="ParamDef" Library="Ntve" Id="00000159"/>
+        <Variable Type="Variable" Id="B5F7233E"/>
+    </Element>
+    <Element Type="FunctionCall" Id="529F461B">
+        <FunctionDef Type="FunctionDef" Library="840A968C" Id="03E1245D"/>
+        <Parameter Type="Param" Id="124F4ADB"/>
+    </Element>
+    <Element Type="Param" Id="124F4ADB">
+        <ParameterDef Type="ParamDef" Library="840A968C" Id="95B48CA6"/>
+        <Value>10</Value>
+        <ValueType Type="int"/>
+    </Element>
+    <Element Type="FunctionCall" Id="40A20558">
+        <FunctionDef Type="FunctionDef" Library="840A968C" Id="2FCFD232"/>
+        <Parameter Type="Param" Id="C949EFBB"/>
+    </Element>
+    <Element Type="Param" Id="C949EFBB">
+        <ParameterDef Type="ParamDef" Library="840A968C" Id="8CF2CC3B"/>
+        <Value>50.0</Value>
+        <ValueType Type="fixed"/>
+    </Element>
+    <Element Type="FunctionCall" Id="D43AD6DE">
+        <FunctionDef Type="FunctionDef" Library="Ntve" Id="00000111"/>
+        <Parameter Type="Param" Id="5D0A7EE8"/>
+        <Parameter Type="Param" Id="030DF743"/>
+    </Element>
+    <Element Type="Param" Id="5D0A7EE8">
+        <ParameterDef Type="ParamDef" Library="Ntve" Id="00000176"/>
+        <FunctionCall Type="FunctionCall" Id="DC740FC0"/>
+    </Element>
+    <Element Type="FunctionCall" Id="DC740FC0">
+        <FunctionDef Type="FunctionDef" Library="Ntve" Id="00000217"/>
+    </Element>
+    <Element Type="Param" Id="030DF743">
+        <ParameterDef Type="ParamDef" Library="Ntve" Id="00000177"/>
+        <Preset Type="PresetValue" Library="Ntve" Id="00000545"/>
+    </Element>
+    <Element Type="Trigger" Id="A0BEF540">
+        <Event Type="FunctionCall" Id="B9F95E4F"/>
+        <Condition Type="FunctionCall" Id="0AE4762A"/>
+        <Action Type="FunctionCall" Id="FB083130"/>
+        <Action Type="FunctionCall" Id="D52BBB78"/>
+        <Action Type="FunctionCall" Id="0EF60BA6"/>
+        <Action Type="FunctionCall" Id="45EEFF84"/>
+    </Element>
+    <Element Type="FunctionCall" Id="B9F95E4F">
+        <FunctionDef Type="FunctionDef" Library="Ntve" Id="B1A02C2E"/>
+        <Parameter Type="Param" Id="EF4FC95B"/>
+    </Element>
+    <Element Type="Param" Id="EF4FC95B">
+        <ParameterDef Type="ParamDef" Library="Ntve" Id="177B3837"/>
+        <Variable Type="Variable" Library="840A968C" Id="F73BAE46"/>
+    </Element>
+    <Element Type="FunctionCall" Id="0AE4762A">
+        <FunctionDef Type="FunctionDef" Library="Ntve" Id="C439C375"/>
+        <Parameter Type="Param" Id="CB8A7795"/>
+        <Parameter Type="Param" Id="E2B6AA4C"/>
+        <Parameter Type="Param" Id="08971CE2"/>
+    </Element>
+    <Element Type="Param" Id="CB8A7795">
+        <ParameterDef Type="ParamDef" Library="Ntve" Id="ABB380C4"/>
+        <FunctionCall Type="FunctionCall" Id="5BA45984"/>
+    </Element>
+    <Element Type="FunctionCall" Id="5BA45984">
+        <FunctionDef Type="FunctionDef" Library="Ntve" Id="2DFE4998"/>
+        <Parameter Type="Param" Id="A514DDCF"/>
+    </Element>
+    <Element Type="Param" Id="A514DDCF">
+        <ParameterDef Type="ParamDef" Library="Ntve" Id="675B5A0C"/>
+        <Value>1</Value>
+        <ValueType Type="int"/>
+    </Element>
+    <Element Type="Param" Id="E2B6AA4C">
+        <ParameterDef Type="ParamDef" Library="Ntve" Id="51567265"/>
+        <Preset Type="PresetValue" Library="Ntve" Id="500677B2"/>
+    </Element>
+    <Element Type="Param" Id="08971CE2">
+        <ParameterDef Type="ParamDef" Library="Ntve" Id="4A15EC5F"/>
+        <ValueType Type="difficulty"/>
+    </Element>
+    <Element Type="FunctionCall" Id="FB083130">
+        <FunctionDef Type="FunctionDef" Library="Ntve" Id="F247156C"/>
+        <Parameter Type="Param" Id="2D26A7AA"/>
+        <Parameter Type="Param" Id="9ABB87A5"/>
+        <Parameter Type="Param" Id="A0D3311A"/>
+        <Parameter Type="Param" Id="AF1B0EF7"/>
+        <Parameter Type="Param" Id="A3E644BD"/>
+    </Element>
+    <Element Type="Param" Id="2D26A7AA">
+        <ParameterDef Type="ParamDef" Library="Ntve" Id="6A3CFF43"/>
+        <Value>1</Value>
+        <ValueType Type="int"/>
+    </Element>
+    <Element Type="Param" Id="9ABB87A5">
+        <ParameterDef Type="ParamDef" Library="Ntve" Id="A927C67A"/>
+        <ValueType Type="preset"/>
+        <ValueElement Type="Preset" Library="Ntve" Id="E85564CA"/>
+    </Element>
+    <Element Type="Param" Id="A0D3311A">
+        <ParameterDef Type="ParamDef" Library="Ntve" Id="FF0C620E"/>
+        <Variable Type="Variable" Library="1E3F036D" Id="2C29BD6C"/>
+    </Element>
+    <Element Type="Param" Id="AF1B0EF7">
+        <ParameterDef Type="ParamDef" Library="Ntve" Id="D43CB595"/>
+        <Value>InfestorNOTD</Value>
+        <ValueType Type="gamelink"/>
+        <ValueGameType Type="Unit"/>
+    </Element>
+    <Element Type="Param" Id="A3E644BD">
+        <ParameterDef Type="ParamDef" Library="Ntve" Id="23D48FEC"/>
+        <FunctionCall Type="FunctionCall" Id="7E75BE76"/>
+    </Element>
+    <Element Type="FunctionCall" Id="7E75BE76">
+        <FunctionDef Type="FunctionDef" Library="Ntve" Id="307ED312"/>
+        <Parameter Type="Param" Id="4B0AB0DC"/>
+    </Element>
+    <Element Type="Param" Id="4B0AB0DC">
+        <ParameterDef Type="ParamDef" Library="Ntve" Id="17F291FD"/>
+        <ValueType Type="region"/>
+        <ValueId Id="16"/>
+    </Element>
+    <Element Type="FunctionCall" Id="D52BBB78">
+        <FunctionDef Type="FunctionDef" Library="Ntve" Id="14110193"/>
+        <Parameter Type="Param" Id="A93A268C"/>
+        <Parameter Type="Param" Id="5B801586"/>
+    </Element>
+    <Element Type="Param" Id="A93A268C">
+        <ParameterDef Type="ParamDef" Library="Ntve" Id="7DB26132"/>
+        <FunctionCall Type="FunctionCall" Id="F7E2D6AD"/>
+    </Element>
+    <Element Type="FunctionCall" Id="F7E2D6AD">
+        <FunctionDef Type="FunctionDef" Library="Ntve" Id="00000076"/>
+    </Element>
+    <Element Type="Param" Id="5B801586">
+        <ParameterDef Type="ParamDef" Library="Ntve" Id="0AD52324"/>
+        <Preset Type="PresetValue" Library="Ntve" Id="4EBF115F"/>
+    </Element>
+    <Element Type="FunctionCall" Id="0EF60BA6">
+        <FunctionDef Type="FunctionDef" Library="Ntve" Id="00000136"/>
+        <Parameter Type="Param" Id="CC17053F"/>
+        <Parameter Type="Param" Id="E0566EA5"/>
+    </Element>
+    <Element Type="Param" Id="CC17053F">
+        <ParameterDef Type="ParamDef" Library="Ntve" Id="00000219"/>
+        <Variable Type="Variable" Id="B5F7233E"/>
+    </Element>
+    <Element Type="Param" Id="E0566EA5">
+        <ParameterDef Type="ParamDef" Library="Ntve" Id="00000220"/>
+        <FunctionCall Type="FunctionCall" Id="B09FBD95"/>
+    </Element>
+    <Element Type="FunctionCall" Id="B09FBD95">
+        <FunctionDef Type="FunctionDef" Library="Ntve" Id="00000076"/>
+    </Element>
+    <Element Type="FunctionCall" Id="45EEFF84">
+        <FunctionDef Type="FunctionDef" Library="Ntve" Id="00000111"/>
+        <Parameter Type="Param" Id="30178CBB"/>
+        <Parameter Type="Param" Id="C7C34912"/>
+    </Element>
+    <Element Type="Param" Id="30178CBB">
+        <ParameterDef Type="ParamDef" Library="Ntve" Id="00000176"/>
+        <ValueType Type="trigger"/>
+        <ValueElement Type="Trigger" Id="81E6E01A"/>
+    </Element>
+    <Element Type="Param" Id="C7C34912">
+        <ParameterDef Type="ParamDef" Library="Ntve" Id="00000177"/>
+        <Preset Type="PresetValue" Library="Ntve" Id="00000538"/>
+    </Element>
+    <Element Type="Variable" Id="B5F7233E">
+        <VariableType>
+            <Type Value="unit"/>
+        </VariableType>
+        <Value Type="Param" Id="6EEEF821"/>
+    </Element>
+    <Element Type="Param" Id="6EEEF821">
+        <Preset Type="PresetValue" Library="Ntve" Id="D6EA4D09"/>
     </Element>
 </TriggerData>
