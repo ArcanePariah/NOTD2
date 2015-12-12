@@ -27,13 +27,16 @@
     <CAbilBehavior id="FocusFire">
         <Alignment value="Positive"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
-        <CmdButtonArray index="On" DefaultButtonFace="FocusFire">
+        <CmdButtonArray index="On" DefaultButtonFace="FocusFireOn">
             <Flags index="ShowInGlossary" value="0"/>
         </CmdButtonArray>
-        <CmdButtonArray index="Off" DefaultButtonFace="FocusFire"/>
+        <CmdButtonArray index="Off" DefaultButtonFace="FocusFireOff"/>
         <Flags index="Toggle" value="1"/>
         <Flags index="Transient" value="1"/>
         <BehaviorArray value="FocusFire"/>
+        <Cost>
+            <Cooldown TimeUse="4"/>
+        </Cost>
     </CAbilBehavior>
     <CAbilEffectInstant id="FireUp">
         <EditorCategories value="AbilityorEffectType:Units"/>
@@ -246,6 +249,92 @@
             <Flags index="ShowInGlossary" value="0"/>
         </CmdButtonArray>
     </CAbilEffectInstant>
+    <CButton id="FocusFireOff">
+        <Icon value="Assets\Textures\btn-ability-protoss-blink-color.dds"/>
+        <EditorCategories value="Race:Terran"/>
+    </CButton>
+    <CButton id="FocusFireCripplingFire">
+        <Icon value="btn-ability-protoss-blink-zeratul-color.dds"/>
+        <EditorCategories value="Race:Terran"/>
+    </CButton>
+    <CButton id="FocusFireCripplingFiredUp">
+        <Icon value="btn-ability-protoss-blink-improved-color.dds"/>
+        <EditorCategories value="Race:Terran"/>
+    </CButton>
+    <CButton id="ImpalerGrenade">
+        <Icon value="Assets\Textures\btn-ability-terran-punishergrenade-color.dds"/>
+        <EditorCategories value="Race:Terran"/>
+    </CButton>
+    <CButton id="Adapative">
+        <Icon value="btn-flinks-terran-powerthingamabob.dds"/>
+    </CButton>
+    <CButton id="Bloodlust">
+        <Icon value="btn-achievement-hexagonredskull.dds"/>
+        <HotkeySet value="RiflemanUltimates"/>
+    </CButton>
+    <CButton id="FireUp">
+        <Icon value="btn-ability-protoss-blink-improved-color.dds"/>
+    </CButton>
+    <CButton id="FragmentationGrenade">
+        <Icon value="btn-ability-terran-raynortossgrenade-color.dds"/>
+        <EditorCategories value="Race:Terran"/>
+    </CButton>
+    <CButton id="FocusFireOn">
+        <Icon value="Assets\Textures\btn-ability-protoss-blink-color.dds"/>
+        <EditorCategories value="Race:Terran"/>
+    </CButton>
+    <CButton id="Grenadier">
+        <Icon value="Assets\Textures\btn-ability-terran-redlinereactor.dds"/>
+        <EditorCategories value="Race:Terran"/>
+    </CButton>
+    <CButton id="FocusFireFireUp">
+        <Icon value="btn-ability-protoss-blink-improved-color.dds"/>
+        <EditorCategories value="Race:Terran"/>
+    </CButton>
+    <CButton id="K9LowProfile">
+        <Icon value="btn-ability-protoss-charge-dark.dds"/>
+    </CButton>
+    <CButton id="K9TurretDeploy">
+        <Icon value="Assets\Textures\btn-building-terran-autoturret.dds"/>
+        <HotkeySet value="K9Turret"/>
+    </CButton>
+    <CButton id="K9TurretPackUp">
+        <Icon value="Assets\Textures\btn-building-terran-autoturret.dds"/>
+        <HotkeySet value="K9Turret"/>
+    </CButton>
+    <CButton id="K9Unit">
+        <Icon value="btn-custom-wolfhead-color.dds"/>
+    </CButton>
+    <CButton id="PlasmaGrenade">
+        <Icon value="btn-ability-terran-spaceminelaunch-HoTS.dds"/>
+        <EditorCategories value="Race:Terran"/>
+        <HotkeySet value="RiflemanUltimates"/>
+    </CButton>
+    <CButton id="PrecisionShot">
+        <Icon value="Assets\Textures\btn-upgrade-terran-hisecautotracking.dds"/>
+    </CButton>
+    <CButton id="Repulse">
+        <Icon value="Assets\Textures\btn-ability-protoss-gravitonbeam-color.dds"/>
+        <HotkeySet value="RiflemanUltimates"/>
+    </CButton>
+    <CButton id="RifleProficiency">
+        <Icon value="btn-upgrade-terran-gaussrifle.dds"/>
+    </CButton>
+    <CButton id="SonicTrap">
+        <Icon value="btn-ability-terran-huntermissile-gold.dds"/>
+    </CButton>
+    <CButton id="CripplingFire">
+        <Icon value="btn-zeratul-blink.dds"/>
+    </CButton>
+    <CButton id="SelfAid">
+        <Icon value="Assets\Textures\btn-techupgrade-terran-nano-botinjectors.dds"/>
+    </CButton>
+    <CButton id="WeaponsProficiencyLevel1">
+        <Icon value="btn-weapon-newweapon.dds"/>
+    </CButton>
+    <CButton id="WeaponsProficiencyLevel2">
+        <Icon value="btn-weapon-newweapon.dds"/>
+    </CButton>
     <CUnit id="FragmentationGrenade" parent="MISSILE">
         <FlagArray index="Invulnerable" value="1"/>
         <EditorCategories value=""/>
@@ -345,21 +434,14 @@
         <CardLayouts index="0">
             <LayoutButtons Face="Jump" Type="AbilCmd" AbilCmd="LightJump,Execute" Row="0" Column="4"/>
             <LayoutButtons>
-                <Face value="FocusFire"/>
-                <Type value="AbilCmd"/>
-                <AbilCmd value="FocusFire,Off"/>
-                <ShowInGlossary value="0"/>
-                <Row value="1"/>
-                <Column value="3"/>
-            </LayoutButtons>
-            <LayoutButtons>
-                <Face value="FocusFire"/>
+                <Face value="FocusFireOn"/>
                 <Type value="AbilCmd"/>
                 <AbilCmd value="FocusFire,On"/>
                 <ShowInGlossary value="0"/>
                 <Row value="1"/>
                 <Column value="3"/>
             </LayoutButtons>
+            <LayoutButtons Face="FocusFireOff" Type="AbilCmd" AbilCmd="FocusFire,Off" Row="1" Column="3"/>
             <LayoutButtons>
                 <Face value="FragmentationGrenade"/>
                 <Type value="AbilCmd"/>
@@ -454,11 +536,11 @@
         <EffectArray Operation="Set" Reference="Behavior,FocusFire,DamageResponse.Chance" Value="1"/>
         <EffectArray Operation="Subtract" Reference="Behavior,CripplingFire,Modification.AttackSpeedMultiplier" Value="0.05"/>
         <EffectArray Operation="Subtract" Reference="Behavior,CripplingFire,Modification.MoveSpeedMultiplier" Value="0.05"/>
-        <EffectArray Operation="Set" Reference="Button,FocusFire,Tooltip" Value="Button/Tooltip/FocusFireCripplingFire"/>
+        <EffectArray Operation="Set" Reference="Button,FocusFireOn,Tooltip" Value="Button/Tooltip/FocusFireCripplingFire"/>
         <MaxLevel value="3"/>
     </CUpgrade>
     <CUpgrade id="CripplingFireandFireUpButton" parent="DefaultUpgradeOverride">
-        <EffectArray Operation="Set" Reference="Button,FocusFire,Tooltip" Value="Button/Tooltip/FocusFireCripplingFiredUp"/>
+        <EffectArray Operation="Set" Reference="Button,FocusFireOn,Tooltip" Value="Button/Tooltip/FocusFireCripplingFiredUp"/>
         <MaxLevel value="6"/>
     </CUpgrade>
     <CUpgrade id="CriticalStrikeRifleman" parent="DefaultUpgradeOverride">
@@ -475,7 +557,7 @@
         <Alert value=""/>
         <EffectArray Reference="Behavior,FocusFire,Modification.AttackSpeedMultiplier" Value="0.15"/>
         <EffectArray Reference="Behavior,FocusFire,Modification.WeaponRange" Value="1"/>
-        <EffectArray Operation="Set" Reference="Button,FocusFire,Tooltip" Value="Button/Tooltip/FocusFireFireUp"/>
+        <EffectArray Operation="Set" Reference="Button,FocusFireOn,Tooltip" Value="Button/Tooltip/FocusFireFireUp"/>
         <MaxLevel value="3"/>
     </CUpgrade>
     <CUpgrade id="WeaponsProficiencyLevel1" parent="DefaultUpgradeOverride">
@@ -869,6 +951,10 @@
         <CombineArray value="TargetisSlowed"/>
         <CombineArray value="TargetisStunned"/>
     </CValidatorCombine>
+    <CEffectModifyUnit id="FocusFireExpireCooldown">
+        <EditorCategories value=""/>
+        <Cost Abil="FocusFire,On" CooldownOperation="Set" CooldownTimeUse="-4"/>
+    </CEffectModifyUnit>
     <CEffectApplyBehavior id="Bloodlust">
         <EditorCategories value=""/>
     </CEffectApplyBehavior>
@@ -1321,15 +1407,15 @@
         <Alignment value="Positive"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
         <Modification AttackSpeedMultiplier="0.8">
-            <DamageDealtFraction index="Spell" value="0.3"/>
-            <DamageDealtFraction index="Melee" value="0.3"/>
-            <DamageDealtFraction index="Ranged" value="0.3"/>
-            <DamageDealtFraction index="Splash" value="0.3"/>
+            <DamageDealtFraction index="Melee" value="0.2"/>
+            <DamageDealtFraction index="Ranged" value="0.2"/>
+            <DamageDealtFraction index="Splash" value="0.2"/>
             <VitalRegenArray index="Energy" value="-1"/>
         </Modification>
         <DamageResponse Handled="CripplingFire" Location="Attacker"/>
         <InfoIcon value="Assets\Textures\btn-ability-protoss-blink-color.dds"/>
         <RemoveValidatorArray value="CasterHasEnergy"/>
+        <ExpireEffect value="FocusFireExpireCooldown"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="FocusFireRangeNegationMelee">
         <InfoFlags index="Hidden" value="1"/>

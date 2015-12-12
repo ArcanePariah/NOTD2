@@ -442,10 +442,11 @@ Button/Name/FlareGunRecon=Flare Gun
 Button/Name/FlashFlare=Flash Flare
 Button/Name/FlashlightDisable=Flashlight Disable
 Button/Name/FlashlightEnable=Flashlight Enable
-Button/Name/FocusFire=Focus Fire
 Button/Name/FocusFireCripplingFire=Focus Fire
 Button/Name/FocusFireCripplingFiredUp=Focus Fire
 Button/Name/FocusFireFireUp=Focus Fire
+Button/Name/FocusFireOff=Focus Fire
+Button/Name/FocusFireOn=Focus Fire
 Button/Name/ForcePress=Force Press
 Button/Name/ForcePush=Force Push
 Button/Name/Fortitude=Fortitude
@@ -630,10 +631,11 @@ Button/Tooltip/ExtendedMagazine=The Assault’s armor has many integrated system
 Button/Tooltip/FlareGunRecon=Reveals an area of 5 and lowers the movement speed of biological enemies by 20% for 10 seconds. Does not slow bosses.
 Button/Tooltip/FlashlightDisable=Tactical flashlights illuminate darkened areas and increase visibility but make users more visible.
 Button/Tooltip/FlashlightEnable=Tactical flashlights illuminate darkened areas and increase visibility but make users more visible. <n/><c val="ECE846">Allow Stealth Detection within 2 Radius while active.</c>
-Button/Tooltip/FocusFire=Increases weapon damage by <d ref="Behavior,FocusFire,Modification.DamageDealtFraction[Melee] * 100"/>%, and modifies attack speed by <d ref="(1 - Behavior,FocusFire,Modification.AttackSpeedMultiplier) *100"/>%
 Button/Tooltip/FocusFireCripplingFire=Increases weapon damage by <d ref="Behavior,FocusFire,Modification.DamageDealtFraction[Melee] * 100"/>%, weapon range by <d ref="Behavior,FocusFire,Modification.WeaponRange"/>, and modifies attack speed by <d ref="(Behavior,FocusFire,Modification.AttackSpeedMultiplier - 1) *100"/>%
 Button/Tooltip/FocusFireCripplingFiredUp=Increases weapon damage by <d ref="Behavior,FocusFire,Modification.DamageDealtFraction[Melee] * 100"/>%, weapon range by <d ref="Behavior,FocusFire,Modification.WeaponRange"/>, and modifies attack speed by <d ref="(Behavior,FocusFire,Modification.AttackSpeedMultiplier - 1) *100"/>%
 Button/Tooltip/FocusFireFireUp=Increases weapon damage by <d ref="Behavior,FocusFire,Modification.DamageDealtFraction[Melee] * 100"/>%, weapon range by <d ref="Behavior,FocusFire,Modification.WeaponRange"/>, and modifies attack speed by <d ref="(Behavior,FocusFire,Modification.AttackSpeedMultiplier - 1) *100"/>%
+Button/Tooltip/FocusFireOff=Disable Focus Fire, returning to normal attack values.
+Button/Tooltip/FocusFireOn=Increases weapon damage by <d ref="Behavior,FocusFire,Modification.DamageDealtFraction[Melee] * 100"/>%, and modifies attack speed by <d ref="(Behavior,FocusFire,Modification.AttackSpeedMultiplier) -1 *100"/>%
 Button/Tooltip/FragmentationGrenade=Throw a Fragmentation Grenade at the target area, dealing <d ref="Effect,FragmentationGrenadeDamageLevel1,Amount"/> damage to all enemies in a <d ref="Effect,FragmentationGrenadeDamageLevel1,AreaArray[0].Radius"/> radius on impact.<n/><n/><c val="FF0000">Damage is reduced by <d ref="Effect,FragmentationGrenadeDamageLevel1,AttributeFactor[Armored]*100*(-1)" precision="1"/>% against Armored units and <d ref="Effect,FragmentationGrenadeDamageLevel1,ShieldFactor*100*(-1)" precision="1"/>% against shields.</c>
 Button/Tooltip/FragmentationGrenadeLevel2=
 Button/Tooltip/FragmentationGrenadeLevel3=
@@ -724,6 +726,7 @@ Button/Tooltip/WeaponsProficiencyLevel2=Increases reload speed by 30%.
 DOCSTR_0001=Insert Text
 DocInfo/DescLong=Class Data for Night of the Dead 2
 DocInfo/Name=NOTD 2 Class Data
+Effect/Name/FocusFireExpireCooldown=Focus Fire Expire Cooldown
 Equipment/Name/MD5Mine=Mine Detonation
 Error/EmptyError=
 Error/Error Test=Invalid Jump Target
@@ -798,32 +801,23 @@ Peacekeepers/Name/ChiefStrassner=Chief Strassner
 RequirementNode/Tooltip/Eq3869413126CountBehaviorLockdownNOTDCompleteOnlyAtUnit0=Can not undeploy while Lockdown is active
 RequirementNode/Tooltip/Eq4283948051SumCountBehaviorAntiMaterialRifleDeployCompleteOnlyAtUnitCountBehaviorFiringStanceCompleteOnlyAtUnitCountBehaviorHeavyMachineGunDeployCompleteOnlyAtUnit0=Can not use Lockdown while a weapon is deployed
 ScoreValue/Name/PurpleHeartDamage=Purple Heart Damage
+TestText=This is a test of the Appender, and see what it really changes.
 UI/Difficulty00=Recruit
 UI/Difficulty00InGame=Recruit
 UI/Difficulty00Tip=Recruit - Introductory Difficulty.
-UI/Difficulty01=Recruit 1500 SR
 UI/Difficulty01InGame=Recruit 1500 SR
 UI/Difficulty01Tip=Recruit - 1500 Squad Rating or Higher
-UI/Difficulty02=Recruit 2000 SR
 UI/Difficulty02InGame=Recruit 2000 SR
 UI/Difficulty02Tip=Recruit - 2000 Squad Rating
-UI/Difficulty03=Normal 1100 Squad Rating
 UI/Difficulty03InGame=Normal 1100 Squad Rating
 UI/Difficulty03Tip=Normal 1100 Squad Rating
-UI/Difficulty04=Normal
 UI/Difficulty04InGame=Normal
 UI/Difficulty04Tip=Normal difficulty, with starting Squad Rating of 1000
-UI/Difficulty05=Normal 1200 Squad Rating
 UI/Difficulty05InGame=Normal 1200 Squad Rating
-UI/Difficulty06=Normal 1300 Squad Rating
 UI/Difficulty06InGame=Normal 1300 Squad Rating
-UI/Difficulty07=Normal 1400 Squad Rating
 UI/Difficulty07InGame=Normal 1400 Squad Rating
-UI/Difficulty08=Normal 1500 Squad Rating
 UI/Difficulty08InGame=Normal 1500 Squad Rating
-UI/Difficulty09=Normal 1600 Squad Rating
 UI/Difficulty09InGame=Normal 1600 Squad Rating
-UI/Difficulty10=Normal 1700 Squad Rating
 UI/Difficulty10InGame=Normal 1700 Squad Rating
 UI/Difficulty11=Normal 1800 Squad Rating
 UI/Difficulty11InGame=Normal 1800 Squad Rating
