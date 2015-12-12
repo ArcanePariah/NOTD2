@@ -158,12 +158,6 @@
         <LevelButtonTooltip value="Ability/LevelUpTooltip/##id##Level2"/>
         <LevelButtonTooltip value="Ability/LevelUpTooltip/##id##Level3"/>
     </CAbilEffectTarget>
-    <CAbilInventory id="CommandoInventory" parent="InventoryTemplate">
-        <InfoArray index="2" removed="1"/>
-    </CAbilInventory>
-    <CAbilLearn id="CommandoLearn" parent="LearnTemplate">
-        <Name value="Abil/Name/CommandoLearn"/>
-    </CAbilLearn>
     <CAbilEffectInstant id="DeployAntiMaterialRifle" parent="AbilityInstantTemplate">
         <CastIntroTime value="3"/>
         <ShowProgressArray index="Cast" value="1"/>
@@ -179,9 +173,6 @@
     <CAbilLearn id="EngineerLearn" parent="LearnTemplate">
         <Name value="Abil/Name/EngineerLearn"/>
     </CAbilLearn>
-    <CAbilInventory id="FlamethrowerInventory" parent="InventoryTemplate">
-        <InfoArray index="2" removed="1"/>
-    </CAbilInventory>
     <CAbilEffectInstant id="LightningField">
         <EditorCategories value="AbilityorEffectType:Units"/>
         <Cost>
@@ -204,21 +195,6 @@
         <Name value="Abil/Name/PredatorPetInventory"/>
         <ValidatorArray value="PredatorLevel6"/>
     </CAbilInventory>
-    <CAbilLearn id="FlamethrowerLearn" parent="LearnTemplate">
-        <Name value="Abil/Name/FlamethrowerLearn"/>
-    </CAbilLearn>
-    <CAbilInventory id="ForwardObserverInventory" parent="InventoryTemplate">
-        <InfoArray index="2" removed="1"/>
-    </CAbilInventory>
-    <CAbilLearn id="ForwardObserverLearn" parent="LearnTemplate">
-        <Name value="Abil/Name/ForwardObserverLearn"/>
-    </CAbilLearn>
-    <CAbilInventory id="MarksmanInventory" parent="InventoryTemplate">
-        <InfoArray index="2" removed="1"/>
-    </CAbilInventory>
-    <CAbilLearn id="MarksmanLearn" parent="LearnTemplate">
-        <Name value="Abil/Name/MarksmanLearn"/>
-    </CAbilLearn>
     <CAbilEffectTarget id="MedicalAssistance" parent="AbilityWithButtonTargetTemplate">
         <TargetFilters value="Biological;Neutral,Enemy"/>
         <Range value="0.5"/>
@@ -226,62 +202,11 @@
             <Flags index="ToSelection" value="1"/>
         </CmdButtonArray>
     </CAbilEffectTarget>
-    <CAbilInventory id="PathfinderInventory" parent="InventoryTemplate">
-        <InfoArray index="2" removed="1"/>
-    </CAbilInventory>
-    <CAbilLearn id="PathfinderLearn" parent="LearnTemplate">
-        <Name value="Abil/Name/PathfinderLearn"/>
-    </CAbilLearn>
-    <CAbilInventory id="PsiOpsInventory" parent="InventoryTemplate">
-        <InfoArray index="2" removed="1"/>
-    </CAbilInventory>
-    <CAbilLearn id="PsiOpsLearn" parent="LearnTemplate">
-        <Name value="Abil/Name/PsiOpsLearn"/>
-    </CAbilLearn>
     <CAbilEffectInstant id="PackUpAntiMaterialRifle" parent="AbilityInstantTemplate">
         <CmdButtonArray index="Execute" Requirements="AntiMaterialRifleDeploy2">
             <Flags index="ToSelection" value="1"/>
         </CmdButtonArray>
     </CAbilEffectInstant>
-    <CAbilLearn id="AssaultLearn" parent="LearnTemplate">
-        <Name value="Abil/Name/AssaultLearn"/>
-        <InfoArray index="Learn1" Abil="ConcentratedFire">
-            <Button DefaultButtonFace="ConcentratedFire"/>
-        </InfoArray>
-        <InfoArray index="Learn2" Abil="AssaultCriticalStrike">
-            <Button DefaultButtonFace="CriticalStrike"/>
-        </InfoArray>
-        <InfoArray index="Learn3" Abil="AmmoFeed">
-            <Button DefaultButtonFace="AmmoFeed"/>
-        </InfoArray>
-        <InfoArray index="Learn4" Abil="AdvancedTargeting">
-            <Button DefaultButtonFace="AdvancedTargeting"/>
-        </InfoArray>
-        <InfoArray index="Learn5" Abil="LockdownNOTD">
-            <Button DefaultButtonFace="LockdownNOTD"/>
-        </InfoArray>
-        <InfoArray index="Learn6" Abil="GeminiProtocol">
-            <Button DefaultButtonFace="GeminiProtocol"/>
-        </InfoArray>
-        <InfoArray index="Learn7" Abil="TauntNOTD">
-            <Button DefaultButtonFace="TauntNOTD"/>
-        </InfoArray>
-        <InfoArray index="Learn8" Abil="DefensivePlating">
-            <Button DefaultButtonFace="DefensivePlating"/>
-        </InfoArray>
-        <InfoArray index="Learn9" Abil="ChargeNOTD">
-            <Button DefaultButtonFace="ChargeNOTD"/>
-        </InfoArray>
-        <InfoArray index="Learn10" Abil="Cohesion">
-            <Button DefaultButtonFace="Cohesion"/>
-        </InfoArray>
-        <InfoArray index="Learn11" Abil="ElbowRoom">
-            <Button DefaultButtonFace="ElbowRoom"/>
-        </InfoArray>
-        <InfoArray index="Learn12" Abil="ImmovableObject">
-            <Button DefaultButtonFace="ImmovableObject"/>
-        </InfoArray>
-    </CAbilLearn>
     <CAbilEffectInstant id="DeployHeavyMachineGun" parent="AbilityInstantTemplate">
         <CastIntroTime value="3"/>
         <ShowProgressArray index="Cast" value="1"/>
@@ -665,24 +590,6 @@
         </CmdButtonArray>
         <Flags index="Transient" value="1"/>
     </CAbilEffectInstant>
-    <CAbilInventory id="SquadLeaderInventory" parent="InventoryTemplate">
-        <InfoArray index="2" removed="1"/>
-    </CAbilInventory>
-    <CAbilLearn id="SquadLeaderLearn" parent="LearnTemplate">
-        <Name value="Abil/Name/SquadLeaderLearn"/>
-    </CAbilLearn>
-    <CAbilInventory id="TechnicianInventory" parent="InventoryTemplate">
-        <InfoArray index="2" removed="1"/>
-    </CAbilInventory>
-    <CAbilLearn id="TechnicianLearn" parent="LearnTemplate">
-        <Name value="Abil/Name/TechnicianLearn"/>
-    </CAbilLearn>
-    <CAbilInventory id="UAVInventory" parent="InventoryTemplate">
-        <InfoArray index="2" removed="1"/>
-    </CAbilInventory>
-    <CAbilLearn id="UAVLearn" parent="LearnTemplate">
-        <Name value="Abil/Name/UAVLearn"/>
-    </CAbilLearn>
     <CAbilAttack id="attack">
         <SmartFilters value="-;-"/>
         <MinAttackSpeedMultiplier value="0.125"/>

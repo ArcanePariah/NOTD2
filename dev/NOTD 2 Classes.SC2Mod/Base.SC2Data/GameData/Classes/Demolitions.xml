@@ -325,6 +325,294 @@
         <EffectArray Operation="Set" Reference="Abil,MD5Mine,Cost[0].Charge.CountMax" Value="5"/>
         <EffectArray Operation="Set" Reference="Abil,ChainExplosive,Cost[0].Charge.CountMax" Value="5"/>
     </CUpgrade>
+    <CMoverMissile id="LittleBusterWeapon">
+        <MotionPhases>
+            <Driver value="Guidance"/>
+            <Acceleration value="3200"/>
+            <Speed value="10"/>
+            <Outro value="-1,-0.5"/>
+            <YawPitchRoll value="719.2968"/>
+        </MotionPhases>
+        <MotionPhases YawPitchRoll="MAX"/>
+    </CMoverMissile>
+    <CMoverMissile id="SatchelMissileWeapon">
+        <HeightMap value="Air"/>
+        <MotionPhases>
+            <Driver value="AdaptableParabola"/>
+            <Acceleration value="3200"/>
+            <SpeedRange value="0"/>
+            <MinSpeed value="2"/>
+            <MaxSpeed value="80"/>
+            <ArrivalTestType value="2D"/>
+            <Outro value="-0.5,0"/>
+            <ThrowBandYaw value="-360,-360,-360,-360"/>
+            <ThrowBandPitch value="-360,-360,-360,-360"/>
+            <AdaptableParabolaIsUpright value="1"/>
+            <AdaptableParabolaClearance value="3,1"/>
+            <AdaptableParabolaDistances index="Launch" value="0"/>
+            <AdaptableParabolaDistances index="PreApex" value="0.5"/>
+            <AdaptableParabolaDistances index="PostApex" value="0.1"/>
+            <AdaptableParabolaDistances index="Land" value="0"/>
+            <AdaptableParabolaAccels index="Launch" value="60"/>
+            <AdaptableParabolaAccels index="Ascent" value="10"/>
+            <AdaptableParabolaAccels index="Apex" value="-20"/>
+            <AdaptableParabolaAccels index="Descent" value="15"/>
+            <AdaptableParabolaAccels index="Land" value="30"/>
+        </MotionPhases>
+    </CMoverMissile>
+    <CActorSiteOpBasic id="BulwarkShieldBearings">
+        <EditorCategories value=""/>
+        <BasicType value="CreatorPosition"/>
+    </CActorSiteOpBasic>
+    <CActorModel id="BulwarkShieldModel" parent="ModelAnimationStyleContinuous">
+        <EditorCategories value=""/>
+        <On index="0" Terms="ActorCreation" Send="AnimBracketStart BSD Stand Stand Stand ContentPlayOnce"/>
+        <On index="1" Terms="AnimBracketState.*.AfterClosing; !AnimBracketExitReason ModelSwap; AnimName BSD" Send="AnimBracketStart BSD Stand Stand Stand ContentPlayOnce"/>
+        <On index="2" Terms="ActorCreation" Send="RefSet ::global.BulwarkShield ::Self"/>
+        <HostSiteOps Ops="BulwarkShieldBearings BulwarkShieldLift BulwarkShieldRotation"/>
+        <Scale value="0.500000,0.500000,0.400000"/>
+        <ScopeBearingsTracking value="ForceOff"/>
+    </CActorModel>
+    <CActorSiteOpLocalOffset id="BulwarkShieldLift">
+        <EditorCategories value=""/>
+        <LocalOffset value="0.000000,-0.350000,0.000000"/>
+    </CActorSiteOpLocalOffset>
+    <CActorSiteOpBasic id="BulwarkShieldPosition">
+        <EditorCategories value=""/>
+        <BasicType value="ActorBearings"/>
+    </CActorSiteOpBasic>
+    <CActorSiteOpForward id="BulwarkShieldRotation">
+        <EditorCategories value=""/>
+        <Forward value="0.000000,0.000000,1.000000"/>
+    </CActorSiteOpForward>
+    <CActorModel id="ChainExplosiveDetonation" parent="ModelAnimationStyleOneShot">
+        <EditorCategories value=""/>
+        <On Terms="Effect.ChainExplosiveDamageSearchLevel1.Start" Send="Create"/>
+        <On Terms="Effect.ChainExplosiveDamageSearchLevel2.Start" Send="Create"/>
+        <Scale value="2.000000"/>
+    </CActorModel>
+    <CActorRange id="ChainExplosivePlacementBlastRadius">
+        <EditorCategories value=""/>
+        <Range value="3.500000"/>
+        <On Terms="UnitBirth.ChainExplosiveLevel1" Send="Create"/>
+        <On Terms="UnitBirth.ChainExplosiveLevel2" Send="Create"/>
+    </CActorRange>
+    <CActorUnit id="ChainExplosiveLevel1" parent="GenericUnitStandard" unitName="ChainExplosiveLevel1">
+        <EditorCategories value=""/>
+        <HighlightTooltip value="Unit/Name/Bogus"/>
+        <Model value="ChainExplosive"/>
+        <BuildModel value="ChainExplosive"/>
+        <PlacementModel value="ChainExplosive"/>
+        <PlacementActorModel value="ChainExplosivePlacementModel"/>
+        <PlaceholderActorModel value="ChainExplosivePlaceholderModel"/>
+        <StatusBarFlags index="Shields" value="0"/>
+        <StatusBarFlags index="Life" value="0"/>
+        <StatusBarFlags index="Energy" value="0"/>
+        <Baselines index="Stand" AnimProps="Burrow,Stand"/>
+    </CActorUnit>
+    <CActorUnit id="ChainExplosiveLevel2" parent="GenericUnitStandard" unitName="ChainExplosiveLevel2">
+        <EditorCategories value=""/>
+        <HighlightTooltip value="Unit/Name/Bogus"/>
+        <Model value="ChainExplosive"/>
+        <BuildModel value="ChainExplosive"/>
+        <PlacementModel value="ChainExplosive"/>
+        <PlacementActorModel value="ChainExplosivePlacementModel"/>
+        <PlaceholderActorModel value="ChainExplosivePlaceholderModel"/>
+        <StatusBarFlags index="Shields" value="0"/>
+        <StatusBarFlags index="Life" value="0"/>
+        <StatusBarFlags index="Energy" value="0"/>
+        <Baselines index="Stand" AnimProps="Burrow,Stand"/>
+    </CActorUnit>
+    <CActorModel id="ChainExplosivePlacementModel" parent="PlacementModel">
+        <EditorCategories value=""/>
+        <On Terms="ActorCreation; ModelName ChainExplosive" Send="Create ChainExplosivePlacementBlastRadius"/>
+        <On Terms="ActorDestruction" Target="ChainExplosivePlacementBlastRadius" Send="Destroy"/>
+        <On Terms="ActorCreation; ModelName ChainExplosive" Send="AnimPlay Morph Burrow,Stand PlayForever"/>
+    </CActorModel>
+    <CActorModel id="ChainExplosivePlaceholderModel" parent="ChainExplosivePlacementModel"/>
+    <CActorRange id="ChainExplosiveRange" parent="RangeAbil" abil="ChainExplosive">
+        <EditorCategories value=""/>
+    </CActorRange>
+    <CActorSplat id="DetonateAreaSplat" parent="TerranCursorSplat" abil="Detonate">
+        <EditorCategories value=""/>
+    </CActorSplat>
+    <CActorModel id="ExplosivesFizzile" parent="ModelAnimationStyleOneShot">
+        <EditorCategories value=""/>
+        <On Terms="UnitDeath.ChainExplosiveLevel1" Send="Create"/>
+        <On Terms="UnitDeath.ChainExplosiveLevel2" Send="Create"/>
+        <On Terms="UnitDeath.DemoSatchelCharge" Send="Create"/>
+        <On Terms="UnitDeath.MD5Mine" Send="Create"/>
+        <AutoScaleFactor value="1.000000"/>
+    </CActorModel>
+    <CActorAction id="LittleBuster" parent="GenericAttack" effectImpact="LittleBusterDamageSearch" effectLaunch="LittleBuster">
+        <EditorCategories value=""/>
+    </CActorAction>
+    <CActorMissile id="LittleBusterMissile" parent="GenericAttackMissile" unitName="LittleBusterWeapon">
+        <EditorCategories value=""/>
+    </CActorMissile>
+    <CActorSplat id="MD5BlastRadiusSplat">
+        <EditorCategories value=""/>
+    </CActorSplat>
+    <CActorModel id="MD5DeathExplosion" parent="ModelAnimationStyleOneShot">
+        <EditorCategories value=""/>
+        <On Terms="UnitDeath.MD5Mine" Send="Create"/>
+    </CActorModel>
+    <CActorModel id="MD5Detonation" parent="ModelAnimationStyleOneShot">
+        <EditorCategories value=""/>
+        <On Terms="Effect.MD5DamageSearch.Start" Send="Create"/>
+    </CActorModel>
+    <CActorForceSphere id="MD5DetonationForce">
+        <EditorCategories value=""/>
+        <On Terms="Effect.MD5DamageSearch.Start; At Effect" Send="Create"/>
+        <Duration value="0.150000"/>
+        <Magnitude value="20.000000"/>
+        <Radius value="4.000000"/>
+    </CActorForceSphere>
+    <CActorUnit id="MD5Mine" parent="GenericUnitStandard" unitName="MD5Mine">
+        <EditorCategories value=""/>
+        <HighlightTooltip value="Unit/Name/Bogus"/>
+        <Wireframe>
+            <Image value="Assets\Textures\wireframe-terran-spidermine.dds"/>
+        </Wireframe>
+        <PlacementActorModel value="MD5MinePlacementModel"/>
+        <PlaceholderActorModel value="MD5MinePlaceholderModel"/>
+        <StatusBarFlags index="Shields" value="0"/>
+        <StatusBarFlags index="Life" value="0"/>
+        <StatusBarFlags index="Energy" value="0"/>
+        <On Terms="ActorCreation" Send="AnimPlay Spell Burrow PlayForever"/>
+        <Baselines index="Stand" AnimProps="Burrow"/>
+    </CActorUnit>
+    <CActorModel id="MD5MinePlacementModel" parent="PlacementModel">
+        <EditorCategories value=""/>
+        <On Terms="ActorCreation; ModelName MD5Mine" Send="Create MD5PlacementBlastRadius"/>
+        <On Terms="ActorDestruction" Target="MD5PlacementBlastRadius" Send="Destroy"/>
+    </CActorModel>
+    <CActorRange id="MD5PlacementBlastRadius">
+        <EditorCategories value=""/>
+        <Range value="2.500000"/>
+    </CActorRange>
+    <CActorModel id="MD5MinePlaceholderModel" parent="MD5MinePlacementModel"/>
+    <CActorRange id="MD5Range" parent="RangeAbil" abil="MD5Mine">
+        <EditorCategories value=""/>
+    </CActorRange>
+    <CActorModel id="ProvokeInitial" parent="ModelAnimationStyleContinuous">
+        <EditorCategories value=""/>
+        <On Terms="Abil.Provoke.SourceCastStart" Send="Create"/>
+        <On Terms="Behavior.ProvokeLevel1.Off" Send="Destroy"/>
+        <On Terms="Behavior.ProvokeLevel2.Off" Send="Destroy"/>
+        <On Terms="Behavior.ProvokeLevel3.Off" Send="Destroy"/>
+        <HostSiteOps Ops="SOpMoveUpBy1"/>
+        <Scale value="3.500000"/>
+        <ModelFlags index="AllowHitTest" value="0"/>
+    </CActorModel>
+    <CActorModel id="ProvokeIntial2" parent="ModelAnimationStyleContinuous">
+        <On Terms="Abil.Provoke.SourceCastStart" Send="Create"/>
+        <On Terms="Behavior.ProvokeLevel1.Off" Send="Destroy"/>
+        <On Terms="Behavior.ProvokeLevel2.Off" Send="Destroy"/>
+        <On Terms="Behavior.ProvokeLevel3.Off" Send="Destroy"/>
+        <HostSiteOps Ops="SOpMoveUpBy1"/>
+        <EditorCategories value=""/>
+        <Scale value="3.500000"/>
+        <ModelFlags index="AllowHitTest" value="0"/>
+    </CActorModel>
+    <CActorShield id="ReactiveShieldsFacer" parent="ProtossShieldBase">
+        <EditorCategories value=""/>
+        <Ripple value="ProtossShieldFacerRipple"/>
+        <ScaleDamageMin value="5.000000"/>
+        <ScaleDamageMax value="45.000000"/>
+        <RadiusMin value="1.500000"/>
+        <RadiusMax value="3.000000"/>
+    </CActorShield>
+    <CActorShieldImpact id="ReactiveShieldImpact">
+        <EditorCategories value=""/>
+        <On Terms="Behavior.ReactiveShieldsLevel1.On" Send="Create"/>
+        <On Terms="Behavior.ReactiveShieldsLevel1.On" Target="ShieldImpact" Send="Destroy"/>
+        <VisualDirectionalFacer value="ReactiveShieldsFacer"/>
+        <VisualDirectionalHeader value="ReactiveShieldsFacer"/>
+        <VisualDirectionless value="ProtossShieldFull"/>
+    </CActorShieldImpact>
+    <CActorModel id="Sadist" parent="ModelAnimationStyleOneShot">
+        <EditorCategories value=""/>
+        <Scale value="2.000000"/>
+    </CActorModel>
+    <CActorUnit id="SatchelCharge" parent="GenericUnitStandard" unitName="DemoSatchelCharge">
+        <EditorCategories value=""/>
+        <HighlightTooltip value="Unit/Name/Bogus"/>
+        <PlacementActorModel value="SatchelPlacementModel"/>
+        <PlaceholderActorModel value="SatchelPlaceholderModel"/>
+        <StatusBarFlags index="Shields" value="0"/>
+        <StatusBarFlags index="Life" value="0"/>
+        <StatusBarFlags index="Energy" value="0"/>
+    </CActorUnit>
+    <CActorModel id="SatchelChargeDetonation" parent="ModelAnimationStyleOneShot">
+        <EditorCategories value=""/>
+        <On Terms="Effect.SatchelChargeDamageSearch.Start" Send="Create"/>
+        <On Terms="ActorCreation" Send="Create SatchelChargeShockwave"/>
+    </CActorModel>
+    <CActorModel id="SatchelChargeShockwave" parent="ModelAnimationStyleOneShot">
+        <EditorCategories value=""/>
+    </CActorModel>
+    <CActorMissile id="SatchelMissile" parent="GenericAttackMissile" unitName="SatchelMissileWeapon">
+        <EditorCategories value=""/>
+    </CActorMissile>
+    <CActorRange id="SatchelPlacementBlastRadius">
+        <EditorCategories value=""/>
+        <Range value="6.000000"/>
+        <On Terms="UnitBirth.DemoSatchelCharge" Send="Create"/>
+    </CActorRange>
+    <CActorModel id="SatchelPlacementModel" parent="PlacementModel">
+        <On Terms="ActorCreation; ModelName DemoSatchelCharge" Send="Create SatchelPlacementBlastRadius"/>
+        <On Terms="ActorDestruction" Target="SatchelPlacementBlastRadius" Send="Destroy"/>
+        <EditorCategories value=""/>
+    </CActorModel>
+    <CActorModel id="SatchelPlaceholderModel" parent="SatchelPlacementModel">
+        <On index="27" Terms="ActorCreation; ModelName MD5Mine" Send="Create MD5PlacementBlastRadius"/>
+        <On index="28" Terms="ActorDestruction" Target="MD5PlacementBlastRadius" Send="Destroy"/>
+    </CActorModel>
+    <CActorRange id="SatchelRange" parent="RangeAbil" abil="SatchelCharge">
+        <EditorCategories value=""/>
+    </CActorRange>
+    <CActorModel id="ShieldBashPush" parent="ModelAnimationStyleOneShot">
+        <Flags index="SuppressSaveLoad" value="0"/>
+        <EditorCategories value=""/>
+        <On Terms="Effect.ShieldBashLevel1.Start" Send="Create"/>
+        <On Terms="Effect.ShieldBashLevel2.Start" Send="Create"/>
+        <Scale value="3.000000,3.000000,1.000000"/>
+    </CActorModel>
+    <CActorArc id="ShieldBashRangeIndicator" parent="GuideVisualArc" abil="ShieldBash">
+        <EditorCategories value=""/>
+        <On index="1" Terms="ActorCreation" Send="Create ShieldBashArcGuideRegion"/>
+        <Model value="ZergAOECone"/>
+        <Angle value="90.000000"/>
+        <Radius value="2.500000"/>
+    </CActorArc>
+    <CActorRegionArc id="ShieldBashArcGuideRegion" parent="GuideRegionArc">
+        <EditorCategories value=""/>
+        <Angle value="90.000000"/>
+        <Radius value="3.000000"/>
+    </CActorRegionArc>
+    <CActorModel id="ThunderballFists" parent="ModelAnimationStyleContinuous">
+        <EditorCategories value=""/>
+        <On Terms="Abil.ThunderballFists.SourceCastStart" Send="Create"/>
+        <On Terms="Effect.ThunderballFists.Stop" Send="SetScale 0.100000 1.500000"/>
+        <On Terms="ActorCreation" Send="SetOpacity 0.700000"/>
+        <On Terms="Effect.ThunderballFists.Stop" Send="TimerSet 1.550000 FistsEnd"/>
+        <On Terms="TimerExpired; TimerName FistsEnd" Send="Destroy Immediate"/>
+        <HostSiteOps Ops="SOpAttachOrigin SOpMoveDownByDot75" HoldRotation="1"/>
+        <Scale value="1.800000,1.800000,0.800000"/>
+    </CActorModel>
+    <CActorUnit id="Demolitions" parent="BaseHeavyMarineActor" unitName="Demolitions">
+        <Scale value="0.900000"/>
+        <On index="65" Terms="ActorCreation" Send="AttachModel DemolitionTorso DemolitionCraftTorso {Hardpoint 0}"/>
+        <On Terms="Effect.Bulwark.Start; !ScopeContains BulwarkShieldModel" Send="Create BulwarkShieldModel"/>
+        <On Terms="ActorDestruction" Target="BulwarkShieldModel" Send="Destroy"/>
+        <SoundArray index="Ready" value="Marauder_Ready"/>
+        <SoundArray index="Help" value="Marauder_Help"/>
+        <SoundArray index="What" value="Marauder_What"/>
+        <SoundArray index="Yes" value="Marauder_Yes"/>
+        <SoundArray index="Attack" value="Marauder_Attack"/>
+        <SoundArray index="Pissed" value="Marauder_Pissed"/>
+    </CActorUnit>
     <CValidatorUnitType id="CasterisChainExplosiveLevel1">
         <WhichUnit Value="Caster"/>
         <Value value="ChainExplosiveLevel1"/>
@@ -464,6 +752,33 @@
     <CValidatorUnitType id="UnitisChainExplosive">
         <Value value="ChainExplosiveLevel1"/>
     </CValidatorUnitType>
+    <CRequirement id="CollateralDamageLevel1">
+        <NodeArray index="Use" Link="EqCountUpgradeCollateralDamageDummyCompleteOnly1"/>
+    </CRequirement>
+    <CRequirement id="CollateralDamageLevel2">
+        <NodeArray index="Use" Link="EqCountUpgradeCollateralDamageDummyCompleteOnly2"/>
+    </CRequirement>
+    <CRequirement id="CollateralDamageLevel3">
+        <NodeArray index="Use" Link="EqCountUpgradeCollateralDamageDummyCompleteOnly3"/>
+    </CRequirement>
+    <CRequirement id="Detonate">
+        <NodeArray index="Show" Link="GTECountUpgradeMD5MineLevelDummyCompleteOnly1"/>
+    </CRequirement>
+    <CRequirement id="MassreactiveTriggerAvailable">
+        <NodeArray index="Show" Link="AndEqCountBehaviorProximityTriggerCompleteOnlyAtUnit0GTECountUpgradeMD5MineLevelDummyCompleteOnly3"/>
+    </CRequirement>
+    <CRequirement id="ProximityTriggerAvailable">
+        <NodeArray index="Show" Link="AndEqCountBehaviorMassreactiveTriggerCompleteOnlyAtUnit0GTECountUpgradeMD5MineLevelDummyCompleteOnly2"/>
+    </CRequirement>
+    <CRequirement id="ReactiveShieldsLevel1">
+        <NodeArray index="Use" Link="EqCountAbilReactiveShieldsCompleteOnlyAtUnit1"/>
+    </CRequirement>
+    <CRequirement id="ReactiveShieldsLevel2">
+        <NodeArray index="Use" Link="EqCountAbilReactiveShieldsCompleteOnlyAtUnit2"/>
+    </CRequirement>
+    <CRequirement id="ReactiveShieldsLevel3">
+        <NodeArray index="Use" Link="EqCountAbilReactiveShieldsCompleteOnlyAtUnit3"/>
+    </CRequirement>
     <CEffectDamage id="BulwarkDamageAmplification">
         <EditorCategories value=""/>
     </CEffectDamage>

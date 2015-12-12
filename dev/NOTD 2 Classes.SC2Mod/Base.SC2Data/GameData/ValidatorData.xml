@@ -39,12 +39,6 @@
         <WhichUnit Value="Caster"/>
         <Compare value="NE"/>
     </CValidatorUnitCompareSpeed>
-    <CValidatorUnitCompareBehaviorCount id="PredatorLevel6">
-        <WhichUnit Value="Caster"/>
-        <Compare value="GE"/>
-        <Value value="6"/>
-        <Behavior value="PredatorPetVeterancy"/>
-    </CValidatorUnitCompareBehaviorCount>
     <CValidatorCombine id="Healing">
         <Type value="And"/>
         <CombineArray value="HealRange"/>
@@ -122,19 +116,7 @@
         <Value value="200"/>
         <Behavior value="NoiseIndex"/>
     </CValidatorUnitCompareBehaviorCount>
-    <CValidatorUnitCompareChargeUsed id="SonicTrapSuicideLevel2">
-        <Compare value="LT"/>
-        <ChargeLink value="Abil/SonicTrapLevel2"/>
-        <Ability value="SonicTrapLevel2"/>
-        <Value value="6"/>
-    </CValidatorUnitCompareChargeUsed>
     <CValidatorUnitFilters id="NormalUnitNonMassiveorHeroic"/>
-    <CValidatorUnitCompareChargeUsed id="SonicTrapSuicideLevel1">
-        <Compare value="LT"/>
-        <ChargeLink value="Abil/SonicTrapLevel1"/>
-        <Ability value="SonicTrapLevel1"/>
-        <Value value="6"/>
-    </CValidatorUnitCompareChargeUsed>
     <CValidatorUnitLastDamagePlayer id="SourceLastDamagedbyAlly">
         <WhichUnit Value="Source"/>
         <Relationship value="Ally"/>

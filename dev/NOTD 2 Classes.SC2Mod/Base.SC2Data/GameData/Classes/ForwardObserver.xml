@@ -1,3 +1,20 @@
 <?xml version="1.0" encoding="us-ascii"?>
 <Catalog>
+    <CAbilInventory id="ForwardObserverInventory" parent="InventoryTemplate">
+        <InfoArray index="2" removed="1"/>
+    </CAbilInventory>
+    <CAbilLearn id="ForwardObserverLearn" parent="LearnTemplate">
+        <Name value="Abil/Name/ForwardObserverLearn"/>
+    </CAbilLearn>
+    <CUnit id="ForwardObserver" parent="BasicHeroTemplate" InventoryAbility="" LearnAbility="">
+        <EnergyStart value="100"/>
+        <EnergyRegenRate value="1"/>
+        <LifeStart value="160"/>
+        <LifeMax value="160"/>
+        <LifeArmor value="1"/>
+        <LifeRegenRate value="0.1718"/>
+        <LateralAcceleration value="1000"/>
+        <GlossaryPriority value="10"/>
+    </CUnit>
+    <CActorUnit id="ForwardObserver" parent="BaseMarineActor" unitName="ForwardObserver"/>
 </Catalog>

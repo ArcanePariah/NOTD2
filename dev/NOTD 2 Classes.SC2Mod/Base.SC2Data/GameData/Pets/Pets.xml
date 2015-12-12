@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<Catalog>
+    <CUnit default="1" id="BasicPetTemplate">
+        <Race value="Human"/>
+        <Acceleration value="1000"/>
+        <AbilArray Link="move"/>
+        <AbilArray Link="attack"/>
+        <AbilArray Link="stop"/>
+        <AbilArray Link="MarineAbilities"/>
+        <AbilArray Link="MediumJump"/>
+        <AbilArray Link="##id##Inventory"/>
+        <BehaviorArray Link="##id##Veterancy"/>
+        <CardLayouts>
+            <LayoutButtons Face="MarineAttack" Type="AbilCmd" AbilCmd="attack,Execute" Row="0" Column="0"/>
+            <LayoutButtons Face="Move" Type="AbilCmd" AbilCmd="move,Move" Row="0" Column="0"/>
+            <LayoutButtons Face="Move" Type="AbilCmd" AbilCmd="move,HoldPos" Row="0" Column="1"/>
+            <LayoutButtons Face="Jump" Type="AbilCmd" AbilCmd="MediumJump,Execute" Row="0" Column="3"/>
+            <LayoutButtons Face="Sprint" Type="AbilCmd" AbilCmd="MarineAbilities,Specialize1" Row="0" Column="4"/>
+        </CardLayouts>
+        <GlossaryCategory value="Unit/Category/Pets"/>
+        <GlossaryAlias value="##id##"/>
+        <LifeArmorName value=""/>
+        <AttackTargetPriority value="20"/>
+    </CUnit>
+    <CUnit id="PiranhaMissileWeapon" parent="MISSILE_INVULNERABLE">
+        <Race value="Human"/>
+    </CUnit>
+    <CUnit id="PredatorPet" parent="BasicPetTemplate">
+        <Attributes index="Light" value="1"/>
+        <Attributes index="Mechanical" value="1"/>
+        <LifeStart value="300"/>
+        <LifeMax value="300"/>
+        <LifeArmor value="4"/>
+        <LifeRegenDelay value="4"/>
+        <LifeRegenRate value="5"/>
+        <EnergyMax value="50"/>
+        <EnergyRegenRate value="0.5"/>
+        <Speed value="2.5"/>
+        <Sight value="8"/>
+        <AbilArray Link="LightningField"/>
+        <AbilArray Link="PredatorCloak"/>
+        <WeaponArray Link="Thunderclaw"/>
+        <LifeArmorName value="Unit/LifeArmorName/Predator"/>
+        <CardLayouts index="0">
+            <LayoutButtons Face="Stop" Type="AbilCmd" AbilCmd="stop,Stop" Row="0" Column="2"/>
+            <LayoutButtons Face="LightningField" Type="AbilCmd" AbilCmd="LightningField,Execute" Row="1" Column="4"/>
+            <LayoutButtons Face="PredatorCloak" Type="AbilCmd" AbilCmd="PredatorCloak,Execute" Row="2" Column="4"/>
+        </CardLayouts>
+        <KillDisplay value="Never"/>
+    </CUnit>
+    <CMoverMissile id="PiranhaMissileWeapon">
+        <MotionPhases>
+            <Driver value="Guidance"/>
+            <Speed value="10"/>
+            <MaxSpeed value="10"/>
+            <ActorTracking value="Actual"/>
+            <Outro value="-4"/>
+            <ThrowBandYaw value="-360,-360,-360,-360"/>
+            <ThrowBandPitch value="-360,-360,-360,-360"/>
+            <YawPitchRoll value="5759.6484"/>
+            <Overlays Scale="1,3"/>
+        </MotionPhases>
+        <MotionPhases Acceleration="200" MaxSpeed="20"/>
+    </CMoverMissile>
+    <CActorModel id="LightningField" parent="ModelAnimationStyleOneShot">
+        <EditorCategories value=""/>
+        <On Terms="Abil.LightningField.SourceCastStart" Send="Create"/>
+    </CActorModel>
+    <CActorMissile id="PiranhaMissileAttackMissile" parent="GenericAttackMissile" unitName="PiranhaMissileWeapon">
+        <EditorCategories value=""/>
+        <Scale value="0.500000"/>
+    </CActorMissile>
+    <CActorAction id="PiranhaMissileAttack" parent="GenericAttack" effectImpact="PiranhaMissileDamage" effectLaunch="PiranhaMissile">
+        <EditorCategories value=""/>
+    </CActorAction>
+    <CActorUnit id="PredatorNOTD" parent="GenericUnitStandard" unitName="PredatorPet">
+        <EditorCategories value=""/>
+        <HighlightTooltip value="Unit/Name/Bogus"/>
+        <LifeArmorIcon value="Assets\Textures\btn-upgrade-terran-vehicleplatinglevel0.dds"/>
+        <WalkAnimMoveSpeed value="2.5"/>
+        <On Terms="Behavior.Sprint.On" Send="AnimGroupApply Fast"/>
+        <On Terms="Behavior.Sprint.Off" Send="AnimGroupRemove Fast"/>
+        <DeathArray index="Normal" ModelLink="PredatorDeath" SoundLink="PredatorDeath"/>
+    </CActorUnit>
+    <CValidatorUnitCompareBehaviorCount id="PredatorLevel6">
+        <WhichUnit Value="Caster"/>
+        <Compare value="GE"/>
+        <Value value="6"/>
+        <Behavior value="PredatorPetVeterancy"/>
+    </CValidatorUnitCompareBehaviorCount>
+    <CRequirement id="PredatorLevel5">
+        <NodeArray index="Use" Link="GTECountBehaviorPredatorPetVeterancyCompleteOnlyAtUnit5"/>
+    </CRequirement>
+    <CBehaviorVeterancy default="1" id="PetLevelsTemplate">
+        <Name value="Behavior/Name/PetLevelsTemplate"/>
+        <Tooltip value="Behavior/Tooltip/PetLevelsTemplate"/>
+        <Cost>
+            <Charge Link="Behavior/PetLevelsTemplate"/>
+            <Cooldown Link="Behavior/PetLevelsTemplate"/>
+        </Cost>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <ShareFilters index="Kills" value="-;Neutral,Enemy,Hallucination"/>
+        <SharedXPRadius index="Kills" value="500"/>
+        <SharedXPFraction index="Kills" value="1"/>
+        <VeterancyLevelArray>
+            <Modification>
+                <DeathResponse>
+                    <Cost>
+                        <Charge Link="Behavior/PetLevels"/>
+                        <Cooldown Link="Behavior/PetLevels"/>
+                    </Cost>
+                </DeathResponse>
+            </Modification>
+        </VeterancyLevelArray>
+        <VeterancyLevelArray MinVeterancyXP="100"/>
+        <VeterancyLevelArray MinVeterancyXP="125"/>
+        <VeterancyLevelArray MinVeterancyXP="150"/>
+        <VeterancyLevelArray MinVeterancyXP="175"/>
+        <VeterancyLevelArray MinVeterancyXP="200"/>
+        <VeterancyLevelArray MinVeterancyXP="250"/>
+    </CBehaviorVeterancy>
+    <CBehaviorBuff id="PredatorCloak">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <DisplayDuration index="Self" value="1"/>
+        <Duration value="10"/>
+        <Modification>
+            <StateFlags index="Cloak" value="1"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorVeterancy id="PredatorPetVeterancy" parent="PetLevelsTemplate">
+        <Name value="Behavior/Name/PredatorPetVeterancy"/>
+        <VeterancyLevelArray index="1">
+            <Modification SightBonus="2" MoveSpeedBonus="0.1992"/>
+        </VeterancyLevelArray>
+        <VeterancyLevelArray index="2">
+            <Modification LifeArmorBonus="2"/>
+        </VeterancyLevelArray>
+        <VeterancyLevelArray index="4">
+            <Modification>
+                <WeaponArray Link="PiranhaMissiles"/>
+                <WeaponDisableArray value="Thunderclaw"/>
+            </Modification>
+        </VeterancyLevelArray>
+        <VeterancyLevelArray index="5">
+            <Modification>
+                <WeaponArray Link="PiranhaMissiles"/>
+                <WeaponDisableArray value="Thunderclaw"/>
+            </Modification>
+        </VeterancyLevelArray>
+        <VeterancyLevelArray index="6">
+            <Modification>
+                <WeaponArray Link="PiranhaMissiles"/>
+                <WeaponDisableArray value="Thunderclaw"/>
+            </Modification>
+        </VeterancyLevelArray>
+    </CBehaviorVeterancy>
+    <CBehaviorBuff id="PredatorThunderclaw">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Modification>
+            <BehaviorLinkDisableArray value="PredatorPiranhaMissiles"/>
+            <WeaponArray Link="Thunderclaw"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="PredatorPiranhaMissiles">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Modification>
+            <WeaponArray Link="PiranhaMissiles"/>
+        </Modification>
+    </CBehaviorBuff>
+</Catalog>

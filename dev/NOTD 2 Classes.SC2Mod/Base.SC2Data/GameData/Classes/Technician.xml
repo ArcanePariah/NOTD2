@@ -1,3 +1,47 @@
 <?xml version="1.0" encoding="us-ascii"?>
 <Catalog>
+    <CAbilInventory id="TechnicianInventory" parent="InventoryTemplate">
+        <InfoArray index="2" removed="1"/>
+    </CAbilInventory>
+    <CAbilLearn id="TechnicianLearn" parent="LearnTemplate">
+        <Name value="Abil/Name/TechnicianLearn"/>
+    </CAbilLearn>
+    <CUnit id="Technician" parent="BasicHeroTemplate" InventoryAbility="" LearnAbility="">
+        <EnergyStart value="100"/>
+        <EnergyRegenRate value="1"/>
+        <LifeStart value="300"/>
+        <LifeMax value="300"/>
+        <LifeArmor value="5"/>
+        <LifeRegenRate value="0.2304"/>
+        <LateralAcceleration value="1000"/>
+        <GlossaryPriority value="12"/>
+        <CardLayouts index="0">
+            <LayoutButtons index="3">
+                <Face value="HoldFireNOTD"/>
+                <Type value="AbilCmd"/>
+                <AbilCmd value="MarineAbilities,Specialize6"/>
+                <ShowInGlossary value="0"/>
+                <Row value="1"/>
+                <Column value="4"/>
+            </LayoutButtons>
+            <LayoutButtons index="4">
+                <Face value="WeaponsFreeNOTD"/>
+                <Type value="AbilCmd"/>
+                <AbilCmd value="MarineAbilities,Specialize7"/>
+                <ShowInGlossary value="0"/>
+                <Row value="1"/>
+                <Column value="4"/>
+            </LayoutButtons>
+        </CardLayouts>
+    </CUnit>
+    <CActorUnit id="Technician" parent="BaseMarineActor" unitName="Technician">
+        <HighlightTooltip value="Unit/Name/Bogus"/>
+        <On index="76" Terms="ActorCreation" Send="AttachModel Flashlight MarineFlashlight {Head 0}"/>
+        <On index="77" removed="1"/>
+        <On index="78" removed="1"/>
+        <On index="79" removed="1"/>
+        <On index="80" removed="1"/>
+        <On index="81" removed="1"/>
+        <On index="82" removed="1"/>
+    </CActorUnit>
 </Catalog>

@@ -1,3 +1,18 @@
 <?xml version="1.0" encoding="us-ascii"?>
 <Catalog>
+    <CAbilInventory id="UAVInventory" parent="InventoryTemplate">
+        <InfoArray index="2" removed="1"/>
+    </CAbilInventory>
+    <CAbilLearn id="UAVLearn" parent="LearnTemplate">
+        <Name value="Abil/Name/UAVLearn"/>
+    </CAbilLearn>
+    <CUnit id="Drone2" parent="BasicHeroTemplate" InventoryAbility="" LearnAbility="">
+        <LifeStart value="100"/>
+        <LifeMax value="100"/>
+        <LateralAcceleration value="1000"/>
+        <GlossaryPriority value="13"/>
+        <EnergyStart value="100"/>
+        <EnergyRegenRate value="1"/>
+    </CUnit>
+    <CActorUnit id="Drone2" parent="BaseMarineActor" unitName="Drone2"/>
 </Catalog>

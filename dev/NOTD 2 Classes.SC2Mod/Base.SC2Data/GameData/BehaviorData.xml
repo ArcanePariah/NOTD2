@@ -9,34 +9,6 @@
         <EditorCategories value="AbilityorEffectType:Units"/>
         <Modification UnitNameOverride="Peacekeeper/Name/##id##"/>
     </CBehaviorBuff>
-    <CBehaviorVeterancy default="1" id="PetLevelsTemplate">
-        <Name value="Behavior/Name/PetLevelsTemplate"/>
-        <Tooltip value="Behavior/Tooltip/PetLevelsTemplate"/>
-        <Cost>
-            <Charge Link="Behavior/PetLevelsTemplate"/>
-            <Cooldown Link="Behavior/PetLevelsTemplate"/>
-        </Cost>
-        <EditorCategories value="AbilityorEffectType:Units"/>
-        <ShareFilters index="Kills" value="-;Neutral,Enemy,Hallucination"/>
-        <SharedXPRadius index="Kills" value="500"/>
-        <SharedXPFraction index="Kills" value="1"/>
-        <VeterancyLevelArray>
-            <Modification>
-                <DeathResponse>
-                    <Cost>
-                        <Charge Link="Behavior/PetLevels"/>
-                        <Cooldown Link="Behavior/PetLevels"/>
-                    </Cost>
-                </DeathResponse>
-            </Modification>
-        </VeterancyLevelArray>
-        <VeterancyLevelArray MinVeterancyXP="100"/>
-        <VeterancyLevelArray MinVeterancyXP="125"/>
-        <VeterancyLevelArray MinVeterancyXP="150"/>
-        <VeterancyLevelArray MinVeterancyXP="175"/>
-        <VeterancyLevelArray MinVeterancyXP="200"/>
-        <VeterancyLevelArray MinVeterancyXP="250"/>
-    </CBehaviorVeterancy>
     <CBehaviorBuff id="AuroraDropshipDummy">
         <InfoFlags index="Hidden" value="1"/>
     </CBehaviorBuff>
@@ -200,67 +172,6 @@
         <Modification>
             <VitalMaxArray index="Life" value="100"/>
             <WeaponArray Link="PeacekeeperPumpShotgun"/>
-        </Modification>
-    </CBehaviorBuff>
-    <CBehaviorBuff id="PrecursorMerc2">
-        <InfoFlags index="Hidden" value="1"/>
-        <Modification MoveSpeedMultiplier="0.05">
-            <StateFlags index="Invulnerable" value="1"/>
-            <StateFlags index="NoDraw" value="1"/>
-            <StateFlags index="Unselectable" value="1"/>
-            <StateFlags index="Untargetable" value="1"/>
-            <AbilClassDisableArray index="CAbilAttack" value="1"/>
-        </Modification>
-    </CBehaviorBuff>
-    <CBehaviorBuff id="PredatorCloak">
-        <InfoFlags index="Hidden" value="1"/>
-        <EditorCategories value="AbilityorEffectType:Units"/>
-        <DisplayDuration index="Self" value="1"/>
-        <Duration value="10"/>
-        <Modification>
-            <StateFlags index="Cloak" value="1"/>
-        </Modification>
-    </CBehaviorBuff>
-    <CBehaviorVeterancy id="PredatorPetVeterancy" parent="PetLevelsTemplate">
-        <Name value="Behavior/Name/PredatorPetVeterancy"/>
-        <VeterancyLevelArray index="1">
-            <Modification SightBonus="2" MoveSpeedBonus="0.1992"/>
-        </VeterancyLevelArray>
-        <VeterancyLevelArray index="2">
-            <Modification LifeArmorBonus="2"/>
-        </VeterancyLevelArray>
-        <VeterancyLevelArray index="4">
-            <Modification>
-                <WeaponArray Link="PiranhaMissiles"/>
-                <WeaponDisableArray value="Thunderclaw"/>
-            </Modification>
-        </VeterancyLevelArray>
-        <VeterancyLevelArray index="5">
-            <Modification>
-                <WeaponArray Link="PiranhaMissiles"/>
-                <WeaponDisableArray value="Thunderclaw"/>
-            </Modification>
-        </VeterancyLevelArray>
-        <VeterancyLevelArray index="6">
-            <Modification>
-                <WeaponArray Link="PiranhaMissiles"/>
-                <WeaponDisableArray value="Thunderclaw"/>
-            </Modification>
-        </VeterancyLevelArray>
-    </CBehaviorVeterancy>
-    <CBehaviorBuff id="PredatorThunderclaw">
-        <InfoFlags index="Hidden" value="1"/>
-        <EditorCategories value="AbilityorEffectType:Units"/>
-        <Modification>
-            <BehaviorLinkDisableArray value="PredatorPiranhaMissiles"/>
-            <WeaponArray Link="Thunderclaw"/>
-        </Modification>
-    </CBehaviorBuff>
-    <CBehaviorBuff id="PredatorPiranhaMissiles">
-        <InfoFlags index="Hidden" value="1"/>
-        <EditorCategories value="AbilityorEffectType:Units"/>
-        <Modification>
-            <WeaponArray Link="PiranhaMissiles"/>
         </Modification>
     </CBehaviorBuff>
     <CBehaviorBuff id="RatingBonus">

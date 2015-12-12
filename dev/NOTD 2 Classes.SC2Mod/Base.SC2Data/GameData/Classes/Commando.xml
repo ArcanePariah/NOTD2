@@ -1,3 +1,20 @@
 <?xml version="1.0" encoding="us-ascii"?>
 <Catalog>
+    <CAbilInventory id="CommandoInventory" parent="InventoryTemplate">
+        <InfoArray index="2" removed="1"/>
+    </CAbilInventory>
+    <CAbilLearn id="CommandoLearn" parent="LearnTemplate">
+        <Name value="Abil/Name/CommandoLearn"/>
+    </CAbilLearn>
+    <CUnit id="Commando" parent="BasicHeroTemplate" InventoryAbility="" LearnAbility="">
+        <EnergyStart value="100"/>
+        <EnergyRegenRate value="1"/>
+        <LifeStart value="150"/>
+        <LifeMax value="150"/>
+        <LifeRegenRate value="0.121"/>
+        <LateralAcceleration value="1000"/>
+        <MinimapRadius value="0.375"/>
+        <GlossaryPriority value="8"/>
+    </CUnit>
+    <CActorUnit id="Commando" parent="BaseMarineActor" unitName="Commando"/>
 </Catalog>

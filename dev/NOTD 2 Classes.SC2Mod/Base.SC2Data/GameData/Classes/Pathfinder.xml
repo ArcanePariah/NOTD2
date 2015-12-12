@@ -1,3 +1,30 @@
 <?xml version="1.0" encoding="us-ascii"?>
 <Catalog>
+    <CAbilInventory id="PathfinderInventory" parent="InventoryTemplate">
+        <InfoArray index="2" removed="1"/>
+    </CAbilInventory>
+    <CAbilLearn id="PathfinderLearn" parent="LearnTemplate">
+        <Name value="Abil/Name/PathfinderLearn"/>
+    </CAbilLearn>
+    <CUnit id="Pathfinder" parent="BasicHeroTemplate" InventoryAbility="" LearnAbility="">
+        <EnergyStart value="100"/>
+        <EnergyRegenRate value="1"/>
+        <LifeStart value="80"/>
+        <LifeMax value="80"/>
+        <LifeRegenRate value="0.1015"/>
+        <LateralAcceleration value="1000"/>
+        <Height value="0.5"/>
+        <MinimapRadius value="0.375"/>
+        <GlossaryPriority value="12"/>
+    </CUnit>
+    <CActorUnit id="Pathfinder" parent="BaseMarineActor" unitName="Pathfinder">
+        <HighlightTooltip value="Unit/Name/Bogus"/>
+        <On index="76" Terms="ActorCreation" Send="AttachModel Flashlight MarineFlashlight {Head 0}"/>
+        <On index="77" removed="1"/>
+        <On index="78" removed="1"/>
+        <On index="79" removed="1"/>
+        <On index="80" removed="1"/>
+        <On index="81" removed="1"/>
+        <On index="82" removed="1"/>
+    </CActorUnit>
 </Catalog>

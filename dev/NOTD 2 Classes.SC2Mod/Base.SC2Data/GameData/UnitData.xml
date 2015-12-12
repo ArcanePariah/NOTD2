@@ -237,38 +237,6 @@
         <BehaviorArray index="5" removed="1"/>
         <BehaviorArray index="6" removed="1"/>
     </CUnit>
-    <CUnit default="1" id="BasicPetTemplate">
-        <Race value="Human"/>
-        <Acceleration value="1000"/>
-        <AbilArray Link="move"/>
-        <AbilArray Link="attack"/>
-        <AbilArray Link="stop"/>
-        <AbilArray Link="MarineAbilities"/>
-        <AbilArray Link="MediumJump"/>
-        <AbilArray Link="##id##Inventory"/>
-        <BehaviorArray Link="##id##Veterancy"/>
-        <CardLayouts>
-            <LayoutButtons Face="MarineAttack" Type="AbilCmd" AbilCmd="attack,Execute" Row="0" Column="0"/>
-            <LayoutButtons Face="Move" Type="AbilCmd" AbilCmd="move,Move" Row="0" Column="0"/>
-            <LayoutButtons Face="Move" Type="AbilCmd" AbilCmd="move,HoldPos" Row="0" Column="1"/>
-            <LayoutButtons Face="Jump" Type="AbilCmd" AbilCmd="MediumJump,Execute" Row="0" Column="3"/>
-            <LayoutButtons Face="Sprint" Type="AbilCmd" AbilCmd="MarineAbilities,Specialize1" Row="0" Column="4"/>
-        </CardLayouts>
-        <GlossaryCategory value="Unit/Category/Pets"/>
-        <GlossaryAlias value="##id##"/>
-        <LifeArmorName value=""/>
-        <AttackTargetPriority value="20"/>
-    </CUnit>
-    <CUnit id="Commando" parent="BasicHeroTemplate" InventoryAbility="" LearnAbility="">
-        <EnergyStart value="100"/>
-        <EnergyRegenRate value="1"/>
-        <LifeStart value="150"/>
-        <LifeMax value="150"/>
-        <LifeRegenRate value="0.121"/>
-        <LateralAcceleration value="1000"/>
-        <MinimapRadius value="0.375"/>
-        <GlossaryPriority value="8"/>
-    </CUnit>
     <CUnit id="CrusaderTank">
         <DeathRevealRadius value="3"/>
         <Race value="Human"/>
@@ -324,14 +292,6 @@
         <TacticalAIThink value="libC50FD636_gf_CrusaderAIThink"/>
         <TacticalAIFilters value="-;Neutral"/>
     </CUnit>
-    <CUnit id="Drone2" parent="BasicHeroTemplate" InventoryAbility="" LearnAbility="">
-        <LifeStart value="100"/>
-        <LifeMax value="100"/>
-        <LateralAcceleration value="1000"/>
-        <GlossaryPriority value="13"/>
-        <EnergyStart value="100"/>
-        <EnergyRegenRate value="1"/>
-    </CUnit>
     <CUnit id="Engineer" parent="BasicHeroTemplate" InventoryAbility="" LearnAbility="">
         <EnergyStart value="100"/>
         <EnergyRegenRate value="1"/>
@@ -342,27 +302,6 @@
         <LateralAcceleration value="1000"/>
         <MinimapRadius value="0.5"/>
         <GlossaryPriority value="7"/>
-    </CUnit>
-    <CUnit id="Flamethrower2" parent="BasicHeroTemplate" InventoryAbility="" LearnAbility="">
-        <EnergyStart value="100"/>
-        <EnergyRegenRate value="1"/>
-        <LifeStart value="200"/>
-        <LifeMax value="200"/>
-        <LifeArmor value="3"/>
-        <LifeRegenRate value="0.6992"/>
-        <LateralAcceleration value="1000"/>
-        <MinimapRadius value="0.5"/>
-        <GlossaryPriority value="9"/>
-    </CUnit>
-    <CUnit id="ForwardObserver" parent="BasicHeroTemplate" InventoryAbility="" LearnAbility="">
-        <EnergyStart value="100"/>
-        <EnergyRegenRate value="1"/>
-        <LifeStart value="160"/>
-        <LifeMax value="160"/>
-        <LifeArmor value="1"/>
-        <LifeRegenRate value="0.1718"/>
-        <LateralAcceleration value="1000"/>
-        <GlossaryPriority value="10"/>
     </CUnit>
     <CUnit id="JavelinIFV" parent="CrusaderTank">
         <Name value="Unit/Name/JavelinIFV"/>
@@ -419,31 +358,6 @@
             </LayoutButtons>
         </CardLayouts>
     </CUnit>
-    <CUnit id="Marksman" parent="BasicHeroTemplate" InventoryAbility="" LearnAbility="">
-        <EnergyStart value="100"/>
-        <EnergyRegenRate value="1"/>
-        <LifeStart value="150"/>
-        <LifeMax value="150"/>
-        <LifeRegenRate value="0.1992"/>
-        <LateralAcceleration value="1000"/>
-        <ShieldsStart value="35"/>
-        <ShieldsMax value="35"/>
-        <ShieldRegenDelay value="0"/>
-        <ShieldRegenRate value="1.5"/>
-        <Speed value="2.3125"/>
-        <GlossaryPriority value="5"/>
-    </CUnit>
-    <CUnit id="Pathfinder" parent="BasicHeroTemplate" InventoryAbility="" LearnAbility="">
-        <EnergyStart value="100"/>
-        <EnergyRegenRate value="1"/>
-        <LifeStart value="80"/>
-        <LifeMax value="80"/>
-        <LifeRegenRate value="0.1015"/>
-        <LateralAcceleration value="1000"/>
-        <Height value="0.5"/>
-        <MinimapRadius value="0.375"/>
-        <GlossaryPriority value="12"/>
-    </CUnit>
     <CUnit id="Paratrooper">
         <Subtitle value="Paratrooper/Subtitle"/>
         <DeathTime value="5"/>
@@ -475,73 +389,6 @@
         <KillDisplay value="Never"/>
         <CargoSize value="1"/>
     </CUnit>
-    <CUnit id="PiranhaMissileWeapon" parent="MISSILE_INVULNERABLE">
-        <Race value="Human"/>
-    </CUnit>
-    <CUnit id="PsiOps" parent="BasicHeroTemplate" InventoryAbility="" LearnAbility="">
-        <EnergyStart value="100"/>
-        <EnergyRegenRate value="1"/>
-        <LifeStart value="160"/>
-        <LifeMax value="160"/>
-        <LifeArmor value="1"/>
-        <LifeRegenRate value="0.1718"/>
-        <LateralAcceleration value="1000"/>
-        <GlossaryPriority value="15"/>
-    </CUnit>
-    <CUnit id="SquadLeader" parent="BasicHeroTemplate" InventoryAbility="" LearnAbility="">
-        <LifeStart value="100"/>
-        <LifeMax value="100"/>
-        <LateralAcceleration value="1000"/>
-        <GlossaryPriority value="14"/>
-        <CardLayouts index="0">
-            <LayoutButtons index="3">
-                <Face value="HoldFireNOTD"/>
-                <Type value="AbilCmd"/>
-                <AbilCmd value="MarineAbilities,Specialize6"/>
-                <ShowInGlossary value="0"/>
-                <Row value="1"/>
-                <Column value="4"/>
-            </LayoutButtons>
-            <LayoutButtons index="4">
-                <Face value="WeaponsFreeNOTD"/>
-                <Type value="AbilCmd"/>
-                <AbilCmd value="MarineAbilities,Specialize7"/>
-                <ShowInGlossary value="0"/>
-                <Row value="1"/>
-                <Column value="4"/>
-            </LayoutButtons>
-        </CardLayouts>
-        <EnergyStart value="100"/>
-        <EnergyRegenRate value="1"/>
-    </CUnit>
-    <CUnit id="Technician" parent="BasicHeroTemplate" InventoryAbility="" LearnAbility="">
-        <EnergyStart value="100"/>
-        <EnergyRegenRate value="1"/>
-        <LifeStart value="300"/>
-        <LifeMax value="300"/>
-        <LifeArmor value="5"/>
-        <LifeRegenRate value="0.2304"/>
-        <LateralAcceleration value="1000"/>
-        <GlossaryPriority value="12"/>
-        <CardLayouts index="0">
-            <LayoutButtons index="3">
-                <Face value="HoldFireNOTD"/>
-                <Type value="AbilCmd"/>
-                <AbilCmd value="MarineAbilities,Specialize6"/>
-                <ShowInGlossary value="0"/>
-                <Row value="1"/>
-                <Column value="4"/>
-            </LayoutButtons>
-            <LayoutButtons index="4">
-                <Face value="WeaponsFreeNOTD"/>
-                <Type value="AbilCmd"/>
-                <AbilCmd value="MarineAbilities,Specialize7"/>
-                <ShowInGlossary value="0"/>
-                <Row value="1"/>
-                <Column value="4"/>
-            </LayoutButtons>
-        </CardLayouts>
-    </CUnit>
     <CUnit id="Peacekeeper">
         <LifeArmorName value="Unit/LifeArmor/UGC Marine Forces"/>
         <LifeArmorTip value="Unit/LifeArmorTooltip/UGCMarines"/>
@@ -572,28 +419,5 @@
         <AcquireMovementLimit value="5"/>
         <AcquireLeashRadius value="1"/>
         <AcquireLeashResetRadius value="0"/>
-    </CUnit>
-    <CUnit id="PredatorPet" parent="BasicPetTemplate">
-        <Attributes index="Light" value="1"/>
-        <Attributes index="Mechanical" value="1"/>
-        <LifeStart value="300"/>
-        <LifeMax value="300"/>
-        <LifeArmor value="4"/>
-        <LifeRegenDelay value="4"/>
-        <LifeRegenRate value="5"/>
-        <EnergyMax value="50"/>
-        <EnergyRegenRate value="0.5"/>
-        <Speed value="2.5"/>
-        <Sight value="8"/>
-        <AbilArray Link="LightningField"/>
-        <AbilArray Link="PredatorCloak"/>
-        <WeaponArray Link="Thunderclaw"/>
-        <LifeArmorName value="Unit/LifeArmorName/Predator"/>
-        <CardLayouts index="0">
-            <LayoutButtons Face="Stop" Type="AbilCmd" AbilCmd="stop,Stop" Row="0" Column="2"/>
-            <LayoutButtons Face="LightningField" Type="AbilCmd" AbilCmd="LightningField,Execute" Row="1" Column="4"/>
-            <LayoutButtons Face="PredatorCloak" Type="AbilCmd" AbilCmd="PredatorCloak,Execute" Row="2" Column="4"/>
-        </CardLayouts>
-        <KillDisplay value="Never"/>
     </CUnit>
 </Catalog>

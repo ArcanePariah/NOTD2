@@ -1,5 +1,44 @@
 <?xml version="1.0" encoding="us-ascii"?>
 <Catalog>
+    <CAbilLearn id="AssaultLearn" parent="LearnTemplate">
+        <Name value="Abil/Name/AssaultLearn"/>
+        <InfoArray index="Learn1" Abil="ConcentratedFire">
+            <Button DefaultButtonFace="ConcentratedFire"/>
+        </InfoArray>
+        <InfoArray index="Learn2" Abil="AssaultCriticalStrike">
+            <Button DefaultButtonFace="CriticalStrike"/>
+        </InfoArray>
+        <InfoArray index="Learn3" Abil="AmmoFeed">
+            <Button DefaultButtonFace="AmmoFeed"/>
+        </InfoArray>
+        <InfoArray index="Learn4" Abil="AdvancedTargeting">
+            <Button DefaultButtonFace="AdvancedTargeting"/>
+        </InfoArray>
+        <InfoArray index="Learn5" Abil="LockdownNOTD">
+            <Button DefaultButtonFace="LockdownNOTD"/>
+        </InfoArray>
+        <InfoArray index="Learn6" Abil="GeminiProtocol">
+            <Button DefaultButtonFace="GeminiProtocol"/>
+        </InfoArray>
+        <InfoArray index="Learn7" Abil="TauntNOTD">
+            <Button DefaultButtonFace="TauntNOTD"/>
+        </InfoArray>
+        <InfoArray index="Learn8" Abil="DefensivePlating">
+            <Button DefaultButtonFace="DefensivePlating"/>
+        </InfoArray>
+        <InfoArray index="Learn9" Abil="ChargeNOTD">
+            <Button DefaultButtonFace="ChargeNOTD"/>
+        </InfoArray>
+        <InfoArray index="Learn10" Abil="Cohesion">
+            <Button DefaultButtonFace="Cohesion"/>
+        </InfoArray>
+        <InfoArray index="Learn11" Abil="ElbowRoom">
+            <Button DefaultButtonFace="ElbowRoom"/>
+        </InfoArray>
+        <InfoArray index="Learn12" Abil="ImmovableObject">
+            <Button DefaultButtonFace="ImmovableObject"/>
+        </InfoArray>
+    </CAbilLearn>
     <CAbilEffectInstant id="AdvancedTargeting" parent="2LevelEffectInstantAbility">
         <Flags index="Transient" value="1"/>
         <Cost>
@@ -213,6 +252,134 @@
         <BehaviorArray Link="GeminiProtocolAttackSpeedSlowInternal"/>
         <BehaviorArray Link="GeminiUnitInvulnerabilty"/>
     </CUnit>
+    <CActorModel id="ElbowRoomShockwave" parent="ModelAnimationStyleOneShot">
+        <EditorCategories value=""/>
+        <On index="0" Terms="ActorCreation" Send="AnimBracketStart BSD Stand Stand,Work Death ClosingFull"/>
+        <On Terms="Abil.ElbowRoom.SourceCastStart" Send="Create"/>
+        <On Terms="Effect.ElbowRoomMainPersistent.Stop" Send="AnimBracketStop BSD"/>
+        <On Terms="ActorCreation" Send="SetScale 0.950000 1.000000"/>
+        <On Terms="Abil.ElbowRoom.SourceChannelStop" Send="AnimBracketStop BSD"/>
+        <Scale value="0.050000"/>
+    </CActorModel>
+    <CActorModel id="ChargeStun" parent="ModelAnimationStyleContinuous">
+        <EditorCategories value=""/>
+        <On Terms="Behavior.ChargeHeroicKnockbackStunLevel1.On" Send="Create"/>
+        <On Terms="Behavior.ChargeHeroicKnockbackStunLevel2.On" Send="Create"/>
+        <On Terms="Behavior.ChargeNormalKnockbackStunLevel1.On" Send="Create"/>
+        <On Terms="Behavior.ChargeNormalKnockbackStunLevel2.On" Send="Create"/>
+        <On Terms="Behavior.ChargeHeroicKnockbackStunLevel2.Off" Send="AnimBracketStop BSD"/>
+        <On Terms="Behavior.ChargeNormalKnockbackStunLevel1.Off" Send="AnimBracketStop BSD"/>
+        <On Terms="Behavior.ChargeNormalKnockbackStunLevel2.Off" Send="AnimBracketStop BSD"/>
+        <On Terms="Behavior.ChargeHeroicKnockbackStunLevel1.Off" Send="AnimBracketStop BSD"/>
+        <Host Subject="_Unit"/>
+        <HostSiteOps Ops="SOpAttachOverhead"/>
+        <AutoScaleFromSelectionFactor value="1.000000"/>
+    </CActorModel>
+    <CActorSound id="LockDownSound" parent="SoundOneShot">
+        <On Terms="Abil.LockdownNOTD.SourceCastStart" Send="Create"/>
+        <Sound value="Lockdown"/>
+    </CActorSound>
+    <CActorModel id="Charge" parent="ModelAnimationStyleContinuous">
+        <EditorCategories value=""/>
+        <On index="0" Terms="ActorCreation" Send="AnimBracketStart BSD Birth Stand Death Instant"/>
+        <On Terms="Behavior.ChargeMovement.On" Send="Create"/>
+        <On Terms="Behavior.ChargeMovement.Off" Send="Destroy"/>
+        <On Terms="Behavior.ChargeMovementLevel12.On" Send="Create"/>
+        <On Terms="Behavior.ChargeMovementLevel12.Off" Send="Destroy"/>
+        <HostSiteOps Ops="SOpAttachOverhead"/>
+        <Model value="Lockdown2"/>
+        <Host Subject="_Unit"/>
+        <Scale value="1.500000"/>
+    </CActorModel>
+    <CActorSound id="ChargeSound" parent="SoundOneShot">
+        <On Terms="Abil.ChargeNOTD.SourceCastStart" Send="Create"/>
+        <Sound value="Charge"/>
+    </CActorSound>
+    <CActorSound id="ConcentratedFireSound" parent="SoundOneShot">
+        <On Terms="Abil.ConcentratedFire.SourceCastStart" Send="Create"/>
+        <Sound value="ConcentratedFire"/>
+    </CActorSound>
+    <CActorSound id="AdvancedTargetingSound" parent="SoundOneShot">
+        <On Terms="Abil.AdvancedTargeting.SourceCastStart" Send="Create"/>
+        <Sound value="AdvancedTargeting"/>
+    </CActorSound>
+    <CActorModel id="Lockdown2" parent="ModelAnimationStyleContinuous">
+        <EditorCategories value=""/>
+        <On index="0" Terms="ActorCreation" Send="AnimBracketStart BSD Stand Stand Death"/>
+        <On Terms="Behavior.LockdownNOTD.On" Send="Create"/>
+        <On Terms="Behavior.LockdownNOTD.Off" Send="Destroy"/>
+        <HostSiteOps Ops="SOpAttachOrigin" HoldRotation="1"/>
+        <Model value="Lockdown"/>
+        <Host Subject="_Unit"/>
+        <Scale value="0.850000"/>
+    </CActorModel>
+    <CActorRange id="ChargeRange" parent="RangeAbil" abil="ChargeNOTD">
+        <EditorCategories value=""/>
+    </CActorRange>
+    <CActorModel id="AdvancedTargeting" parent="ModelAnimationStyleContinuous">
+        <EditorCategories value=""/>
+        <On Terms="Behavior.AdvancedTargetingLevel1.On" Send="Create"/>
+        <On Terms="Behavior.AdvancedTargetingLevel1.Off" Send="Destroy"/>
+        <On Terms="Behavior.AdvancedTargetingLevel2.On" Send="Create"/>
+        <On Terms="Behavior.AdvancedTargetingLevel2.Off" Send="Destroy"/>
+        <HostSiteOps Ops="SOpAttachWeapon"/>
+    </CActorModel>
+    <CActorUnit id="Assault" parent="BaseHeavyMarineActor" unitName="Assault">
+        <Scale value="0.900000"/>
+        <Macros index="1" value="AssaultWeaponEquipMacro"/>
+        <Macros value="AssaultGeminiDualWieldEquipMacro"/>
+        <Macros value="AssaultDualWieldModelSwap"/>
+        <SoundArray index="Birth" value="Viking_Ready"/>
+        <SoundArray index="Ready" value="Viking_Ready"/>
+        <SoundArray index="Help" value="Viking_Help"/>
+        <SoundArray index="What" value="Viking_What"/>
+        <SoundArray index="Yes" value="Viking_Yes"/>
+        <SoundArray index="Attack" value="Viking_Attack"/>
+        <SoundArray index="Pissed" value="Viking_Pissed"/>
+        <SoundArray index="Movement" value="WarHound_Movement"/>
+        <SoundArray index="Turning" value="WarHound_Turning"/>
+        <SoundArray index="Board" value="WarHound_Board"/>
+        <SoundArray index="Click" value="WarHound_Click"/>
+        <SoundArray index="ClickError" value="WarHound_ClickError"/>
+        <SoundArray index="Highlight" value="WarHound_Highlight"/>
+        <On index="65" Terms="ActorCreation" Send="AttachModel AssaultTorso AssaultCraftTorso {Hardpoint 0}"/>
+        <On index="78" Terms="Abil.HeavyJump.SourceCastStart" Send="AnimPlay Jump Jump"/>
+        <On Terms="Behavior.ChargeMovement.On" Send="AnimGroupApply Run"/>
+        <On Terms="Behavior.ChargeMovement.Off" Send="AnimGroupRemove Run"/>
+    </CActorUnit>
+    <CActorModel id="ConcentratedFire" parent="ModelAnimationStyleContinuous">
+        <EditorCategories value=""/>
+        <On Terms="Behavior.ConcentratedFireLevel1.On" Send="Create"/>
+        <On Terms="Behavior.ConcentratedFireLevel1.Off" Send="Destroy"/>
+        <On Terms="Behavior.ConcentratedFireLevel2.On" Send="Create"/>
+        <On Terms="Behavior.ConcentratedFireLevel2.Off" Send="Destroy"/>
+        <On Terms="Behavior.ConcentratedFireLevel3.On" Send="Create"/>
+        <On Terms="Behavior.ConcentratedFireLevel3.Off" Send="Destroy"/>
+        <HostSiteOps Ops="SOpAttachWeapon"/>
+    </CActorModel>
+    <CActorModel id="TauntCaster" parent="ModelAnimationStyleContinuous">
+        <EditorCategories value=""/>
+        <On Terms="Abil.TauntNOTD.SourceFinishStart" Send="Create"/>
+        <On Terms="ActorCreation" Send="Create TauntCasterCenter"/>
+        <On Terms="ActorDestruction" Target="TauntCasterCenter" Send="Destroy"/>
+        <On Terms="Effect.TauntNOTDLevel1.Stop" Send="Destroy"/>
+        <On Terms="Effect.TauntNOTDLevel2.Stop" Send="Destroy"/>
+        <On Terms="Effect.TauntNOTDLevel3.Stop" Send="Destroy"/>
+    </CActorModel>
+    <CActorModel id="TauntCasterCenter" parent="ModelAnimationStyleContinuousUNIT">
+        <EditorCategories value=""/>
+    </CActorModel>
+    <CActorModel id="Taunted" parent="ModelAnimationStyleContinuousUNIT">
+        <EditorCategories value=""/>
+        <On Terms="Behavior.TauntedLevel1.On" Send="Create"/>
+        <On Terms="Behavior.TauntedLevel2.Off" Send="Create"/>
+        <On Terms="Behavior.TauntedLevel3.Off" Send="Create"/>
+        <On Terms="Behavior.TauntedLevel1.Off" Send="AnimBracketStop BSD"/>
+        <On Terms="Behavior.TauntedLevel2.Off" Send="AnimBracketStop BSD"/>
+        <On Terms="Behavior.TauntedLevel3.Off" Send="AnimBracketStop BSD"/>
+        <HostSiteOps Ops="SOpAttachOverhead"/>
+        <AutoScaleFromSelectionFactor value="1.000000"/>
+    </CActorModel>
     <CValidatorUnitCompareMarkerCount id="ChargeDamageLevel1">
         <WhichUnit Effect="ChargeImpactSetLevel1"/>
     </CValidatorUnitCompareMarkerCount>
@@ -228,6 +395,67 @@
         <CombineArray value="UnstoppableForceComplete"/>
         <Type value="And"/>
     </CValidatorCombine>
+    <CRequirement id="AmmoFeedLevel1">
+        <NodeArray index="Use" Link="EqCountAbilAmmoFeedCompleteOnlyAtUnit1"/>
+        <NodeArray index="Show" Link="EqCountAbilAmmoFeedCompleteOnlyAtUnit1"/>
+    </CRequirement>
+    <CRequirement id="AmmoFeedLevel2">
+        <NodeArray index="Use" Link="EqCountAbilAmmoFeedCompleteOnlyAtUnit2"/>
+        <NodeArray index="Show" Link="EqCountAbilAmmoFeedCompleteOnlyAtUnit2"/>
+    </CRequirement>
+    <CRequirement id="AssaultCriticalStrikeLevel2">
+        <NodeArray index="Use" Link="EqCountAbilAssaultCriticalStrikeCompleteOnlyAtUnit2"/>
+        <NodeArray index="Show" Link="EqCountAbilAssaultCriticalStrikeCompleteOnlyAtUnit2"/>
+    </CRequirement>
+    <CRequirement id="AssaultCriticalStrikeLevel3">
+        <NodeArray index="Use" Link="EqCountAbilAssaultCriticalStrikeCompleteOnlyAtUnit3"/>
+        <NodeArray index="Show" Link="EqCountAbilAssaultCriticalStrikeCompleteOnlyAtUnit3"/>
+    </CRequirement>
+    <CRequirement id="CohesionLevel1">
+        <NodeArray index="Use" Link="EqCountAbilCohesionCompleteOnlyAtUnit1"/>
+        <NodeArray index="Show" Link="EqCountAbilCohesionCompleteOnlyAtUnit1"/>
+    </CRequirement>
+    <CRequirement id="CohesionLevel2">
+        <NodeArray index="Use" Link="EqCountAbilCohesionCompleteOnlyAtUnit2"/>
+        <NodeArray index="Show" Link="EqCountAbilCohesionCompleteOnlyAtUnit2"/>
+    </CRequirement>
+    <CRequirement id="AssaultCriticalStrikeLevel1">
+        <NodeArray index="Use" Link="EqCountAbilAssaultCriticalStrikeCompleteOnlyAtUnit1"/>
+        <NodeArray index="Show" Link="EqCountAbilAssaultCriticalStrikeCompleteOnlyAtUnit1"/>
+    </CRequirement>
+    <CRequirement id="DefensivePlatingLevel1">
+        <NodeArray index="Use" Link="EqCountAbilDefensivePlatingCompleteOnlyAtUnit1"/>
+        <NodeArray index="Show" Link="EqCountAbilDefensivePlatingCompleteOnlyAtUnit1"/>
+    </CRequirement>
+    <CRequirement id="DefensivePlatingLevel2">
+        <NodeArray index="Use" Link="EqCountAbilDefensivePlatingCompleteOnlyAtUnit2"/>
+        <NodeArray index="Show" Link="EqCountAbilDefensivePlatingCompleteOnlyAtUnit2"/>
+    </CRequirement>
+    <CRequirement id="DefensivePlatingLevel3">
+        <NodeArray index="Use" Link="EqCountAbilDefensivePlatingCompleteOnlyAtUnit3"/>
+        <NodeArray index="Show" Link="EqCountAbilDefensivePlatingCompleteOnlyAtUnit3"/>
+    </CRequirement>
+    <CRequirement id="GeminiProtocolAttackSlow">
+        <NodeArray index="Use" Link="EqCountBehavior_WeaponCompleteOnlyAtUnit2"/>
+    </CRequirement>
+    <CRequirement id="GeminiProtocolComplete">
+        <NodeArray index="Use" Link="EqCountUpgradeGeminiProtocolCompleteOnly1"/>
+        <NodeArray index="Show" Link="EqCountUpgradeGeminiProtocolCompleteOnly1"/>
+    </CRequirement>
+    <CRequirement id="ImmovableObject">
+        <NodeArray index="Use" Link="EqCountAbilImmovableObjectCompleteOnlyAtUnit1"/>
+    </CRequirement>
+    <CRequirement id="Lockdown">
+        <EditorCategories value="TechType:Ability"/>
+        <NodeArray index="Show" Link="EqCountBehaviorLockdownNOTDCompleteOnlyAtUnit1"/>
+    </CRequirement>
+    <CRequirement id="UnstoppableForceComplete">
+        <NodeArray index="Use" Link="EqCountAbilElbowRoomCompleteOnlyAtUnit1"/>
+        <NodeArray index="Show" Link="EqCountAbilElbowRoomCompleteOnlyAtUnit1"/>
+    </CRequirement>
+    <CRequirement id="WeaponFunctionLockdown">
+        <NodeArray index="Use" Link="Eq4283948051SumCountBehaviorAntiMaterialRifleDeployCompleteOnlyAtUnitCountBehaviorFiringStanceCompleteOnlyAtUnitCountBehaviorHeavyMachineGunDeployCompleteOnlyAtUnit0"/>
+    </CRequirement>
     <CEffectCreatePersistent id="Bulwark">
         <EditorCategories value=""/>
         <WhichLocation Value="TargetUnitOrPoint"/>
