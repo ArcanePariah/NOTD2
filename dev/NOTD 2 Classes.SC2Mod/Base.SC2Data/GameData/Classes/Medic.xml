@@ -34,6 +34,7 @@
         <TargetFilters value="Biological;Neutral,Enemy,Item"/>
         <Range value="3"/>
         <CmdButtonArray index="Execute" DefaultButtonFace="HealNOTD"/>
+        <PreEffectBehavior Behavior="Healing" Count="1"/>
     </CAbilEffectTarget>
     <CAbilEffectTarget id="NanoHaste" parent="3LevelEffectTargetAbility">
         <Cost>
@@ -122,6 +123,16 @@
         <TargetFilters value="-;Player,Ally,Neutral"/>
         <Range value="12"/>
     </CAbilEffectTarget>
+    <CButton id="CancelHealing">
+        <Icon value="btn-command-cancel.dds"/>
+        <HotkeyAlias value="HealNOTD"/>
+        <HotkeySet value="Heal"/>
+    </CButton>
+    <CButton id="HealNOTD">
+        <Icon value="btn-l2d-techupgrade-terran-stabilizermedpacks.dds"/>
+        <EditorCategories value="Race:Terran"/>
+        <HotkeySet value="Heal"/>
+    </CButton>
     <CUnit id="Medic2" parent="BasicHeroTemplate" InventoryAbility="Medic2Inventory" LearnAbility="Medic2Learn">
         <AbilArray Link="Heal"/>
         <AbilArray Link="CancelHealing"/>
@@ -189,6 +200,12 @@
         <EffectArray Operation="Set" Reference="Behavior,NanoHasteLevel3,Period" Value="20.000000"/>
         <EffectArray Operation="Set" Reference="Effect,NanoHasteFractureRepair,PeriodCount" Value="2"/>
     </CUpgrade>
+    <CValidatorCombine id="Healing">
+        <Type value="And"/>
+        <CombineArray value="HealRange"/>
+        <CombineArray value="IsHealing"/>
+        <CombineArray value="MedicOutofCombat"/>
+    </CValidatorCombine>
     <CValidatorPlayerRequirement id="AftershockLevel1">
         <Find value="1"/>
         <Value value="AftershockLevel1"/>
@@ -274,6 +291,24 @@
         <Value value="1"/>
         <Behavior value="NanoShockSlowLevel3"/>
     </CValidatorUnitCompareBehaviorCount>
+    <CEffectCreatePersistent id="HealOpenWoundRemovalLevel1">
+        <EditorCategories value=""/>
+        <WhichLocation Value="TargetUnit"/>
+        <InitialEffect value="RemoveOpenWound"/>
+    </CEffectCreatePersistent>
+    <CEffectCreatePersistent id="HealOpenWoundRemovalLevel2">
+        <EditorCategories value=""/>
+        <WhichLocation Value="TargetUnit"/>
+        <InitialEffect value="RemoveOpenWound"/>
+    </CEffectCreatePersistent>
+    <CEffectCreatePersistent id="HealOpenWoundRemovalLevel22">
+        <EditorCategories value=""/>
+        <WhichLocation Value="TargetUnit"/>
+        <InitialEffect value="RemoveOpenWound"/>
+        <PeriodCount value="1"/>
+        <PeriodicEffectArray value="RemoveOpenWound"/>
+        <PeriodicPeriodArray value="0"/>
+    </CEffectCreatePersistent>
     <CEffectApplyBehavior id="Aftershock">
         <EditorCategories value=""/>
     </CEffectApplyBehavior>
@@ -364,13 +399,13 @@
     </CEffectSet>
     <CEffectCreateHealer id="HealLevel1">
         <EditorCategories value=""/>
-        <Flags index="Channeled" value="0"/>
         <PeriodicValidator value="Healing"/>
         <DrainVital value="Energy"/>
         <DrainVitalCostFactor value="1.25"/>
         <RechargeVitalRate value="4"/>
         <PeriodicPeriod value="1"/>
-        <PeriodicEffect value="RemoveOpenWoundTarget"/>
+        <PeriodicEffect value="HealOpenWoundRemovalLevel1"/>
+        <FinalEffect value="CancelHealing"/>
     </CEffectCreateHealer>
     <CEffectCreateHealer id="HealLevel2">
         <EditorCategories value=""/>
@@ -380,7 +415,8 @@
         <DrainVitalCostFactor value="1.25"/>
         <RechargeVitalRate value="4"/>
         <PeriodicPeriod value="1"/>
-        <PeriodicEffect value="RemoveOpenWoundTarget"/>
+        <PeriodicEffect value="HealOpenWoundRemovalLevel2"/>
+        <FinalEffect value="CancelHealing"/>
     </CEffectCreateHealer>
     <CEffectCreateHealer id="HealLevel3">
         <EditorCategories value=""/>
@@ -390,11 +426,9 @@
         <DrainVitalCostFactor value="0.625"/>
         <RechargeVitalRate value="8"/>
         <PeriodicPeriod value="1"/>
+        <PeriodicEffect value="HealOpenWoundRemovalLevel22"/>
+        <FinalEffect value="CancelHealing"/>
     </CEffectCreateHealer>
-    <CEffectApplyBehavior id="Healing">
-        <EditorCategories value=""/>
-        <WhichUnit Value="Caster"/>
-    </CEffectApplyBehavior>
     <CEffectDamage id="IntolerableCrueltyDamage">
         <EditorCategories value=""/>
     </CEffectDamage>
@@ -679,6 +713,9 @@
     <CBehaviorBuff id="Healing">
         <InfoFlags index="Hidden" value="1"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
+        <Modification>
+            <StateFlags index="Passive" value="1"/>
+        </Modification>
     </CBehaviorBuff>
     <CBehaviorBuff id="NanoHasteLevel1">
         <Alignment value="Positive"/>
