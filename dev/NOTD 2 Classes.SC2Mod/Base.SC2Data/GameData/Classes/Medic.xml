@@ -362,104 +362,39 @@
         <EditorCategories value=""/>
         <EffectArray value="Bandage"/>
     </CEffectSet>
-    <CEffectDestroyPersistent id="HealRemoveOpenWoundsDestroyPersistentLevel12">
-        <EditorCategories value=""/>
-        <WhichLocation Value="TargetUnit"/>
-        <Effect value="HealRemoveOpenWoundsPersistentLevel2"/>
-        <Count value="1"/>
-    </CEffectDestroyPersistent>
-    <CEffectDestroyPersistent id="HealRemoveOpenWoundsDestroyPersistentLevel122">
-        <EditorCategories value=""/>
-        <WhichLocation Value="TargetUnit"/>
-        <Effect value="HealRemoveOpenWoundsDestroyPersistentLevel122"/>
-        <Count value="1"/>
-    </CEffectDestroyPersistent>
-    <CEffectSet id="HealRemoveOpenWoundsDestroyPersistentSet">
-        <EditorCategories value=""/>
-        <EffectArray value="HealRemoveOpenWoundsDestroyPersistentLevel1"/>
-        <EffectArray value="HealRemoveOpenWoundsDestroyPersistentLevel12"/>
-        <EffectArray value="HealRemoveOpenWoundsDestroyPersistentLevel122"/>
-        <EffectArray value="CancelHealing"/>
-    </CEffectSet>
-    <CEffectDestroyPersistent id="HealRemoveOpenWoundsDestroyPersistentLevel1">
-        <EditorCategories value=""/>
-        <WhichLocation Value="TargetUnit"/>
-        <Effect value="HealRemoveOpenWoundsPersistentLevel1"/>
-        <Count value="1"/>
-    </CEffectDestroyPersistent>
-    <CEffectCreatePersistent id="HealRemoveOpenWoundsPersistentLevel1">
-        <ValidatorArray value="HaveMedicalExpertise"/>
-        <EditorCategories value=""/>
-        <Flags index="PersistUntilDestroyed" value="1"/>
-        <PeriodicEffectArray value="RemoveOpenWoundTarget"/>
-        <PeriodicPeriodArray value="8"/>
-    </CEffectCreatePersistent>
     <CEffectCreateHealer id="HealLevel1">
         <EditorCategories value=""/>
         <Flags index="Channeled" value="0"/>
         <PeriodicValidator value="Healing"/>
         <DrainVital value="Energy"/>
-        <DrainVitalCostFactor value="0.625"/>
+        <DrainVitalCostFactor value="1.25"/>
         <RechargeVitalRate value="4"/>
-        <InitialEffect value="HealingIntialSet"/>
-        <FinalEffect value="HealRemoveOpenWoundsDestroyPersistentSet"/>
-        <PeriodicPeriod value="0.25"/>
+        <PeriodicPeriod value="1"/>
+        <PeriodicEffect value="RemoveOpenWoundTarget"/>
     </CEffectCreateHealer>
     <CEffectCreateHealer id="HealLevel2">
         <EditorCategories value=""/>
         <Flags index="Channeled" value="0"/>
         <PeriodicValidator value="Healing"/>
         <DrainVital value="Energy"/>
-        <DrainVitalCostFactor value="0.4167"/>
-        <RechargeVitalRate value="6"/>
-        <InitialEffect value="HealingIntialSetLevel2"/>
-        <FinalEffect value="HealRemoveOpenWoundsDestroyPersistentSet"/>
-        <PeriodicPeriod value="0.25"/>
+        <DrainVitalCostFactor value="1.25"/>
+        <RechargeVitalRate value="4"/>
+        <PeriodicPeriod value="1"/>
+        <PeriodicEffect value="RemoveOpenWoundTarget"/>
     </CEffectCreateHealer>
     <CEffectCreateHealer id="HealLevel3">
         <EditorCategories value=""/>
         <Flags index="Channeled" value="0"/>
         <PeriodicValidator value="Healing"/>
         <DrainVital value="Energy"/>
-        <DrainVitalCostFactor value="0.3125"/>
+        <DrainVitalCostFactor value="0.625"/>
         <RechargeVitalRate value="8"/>
-        <InitialEffect value="HealingIntialSetLevel3"/>
-        <FinalEffect value="HealRemoveOpenWoundsDestroyPersistentSet"/>
-        <PeriodicPeriod value="0.25"/>
+        <PeriodicPeriod value="1"/>
     </CEffectCreateHealer>
-    <CEffectCreatePersistent id="HealRemoveOpenWoundsPersistentLevel2">
-        <ValidatorArray value="HaveMedicalExpertise"/>
-        <EditorCategories value=""/>
-        <Flags index="PersistUntilDestroyed" value="1"/>
-        <PeriodicEffectArray value="RemoveOpenWoundTarget"/>
-        <PeriodicPeriodArray value="6"/>
-    </CEffectCreatePersistent>
-    <CEffectCreatePersistent id="HealRemoveOpenWoundsPersistentLevel3">
-        <ValidatorArray value="HaveMedicalExpertise"/>
-        <EditorCategories value=""/>
-        <Flags index="PersistUntilDestroyed" value="1"/>
-        <PeriodicEffectArray value="RemoveOpenWoundTarget"/>
-        <PeriodicPeriodArray value="4"/>
-    </CEffectCreatePersistent>
     <CEffectApplyBehavior id="Healing">
         <EditorCategories value=""/>
         <WhichUnit Value="Caster"/>
     </CEffectApplyBehavior>
-    <CEffectSet id="HealingIntialSet">
-        <EditorCategories value=""/>
-        <EffectArray value="Healing"/>
-        <EffectArray value="HealRemoveOpenWoundsPersistentLevel1"/>
-    </CEffectSet>
-    <CEffectSet id="HealingIntialSetLevel2">
-        <EditorCategories value=""/>
-        <EffectArray value="Healing"/>
-        <EffectArray value="HealRemoveOpenWoundsPersistentLevel2"/>
-    </CEffectSet>
-    <CEffectSet id="HealingIntialSetLevel3">
-        <EditorCategories value=""/>
-        <EffectArray value="Healing"/>
-        <EffectArray value="HealRemoveOpenWoundsPersistentLevel3"/>
-    </CEffectSet>
     <CEffectDamage id="IntolerableCrueltyDamage">
         <EditorCategories value=""/>
     </CEffectDamage>
