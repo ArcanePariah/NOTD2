@@ -134,4 +134,23 @@
             <VitalRegenArray index="Life" value="-0.3984"/>
         </Modification>
     </CBehaviorBuff>
+    <CBehaviorBuff id="FractureArm">
+        <Alignment value="Negative"/>
+        <EditorCategories value="Race:Injury Debuff"/>
+        <Duration value="180"/>
+        <RefreshEffect value="ArmFracturetoBrokenBone"/>
+        <Modification AttackSpeedMultiplier="0.55">
+            <DamageDealtFraction index="Spell" value="-0.15"/>
+            <DamageDealtFraction index="Melee" value="-0.15"/>
+            <DamageDealtFraction index="Ranged" value="-0.15"/>
+            <DamageDealtFraction index="Splash" value="-0.15"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="FractureLeg">
+        <Alignment value="Negative"/>
+        <EditorCategories value="Race:Injury Debuff"/>
+        <Duration value="180"/>
+        <RefreshEffect value="FracturetoBrokenBone"/>
+        <Modification MoveSpeedMultiplier="0.65"/>
+    </CBehaviorBuff>
 </Catalog>
