@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<Catalog>
+    <CActorModel id="Blind" parent="ModelAnimationStyleContinuousUNIT">
+        <Inherits index="CloakEffect" value="1"/>
+        <Inherits index="Decal" value="1"/>
+        <Inherits index="Visibility" value="1"/>
+        <On Terms="ActorCreation" Send="AnimBracketStart GL_BSD GLbirth GLstand GLdeath"/>
+        <On Terms="Behavior.Blind.On" Send="Create"/>
+        <On Terms="ActorCreation" Send="AnimBracketStart $BSD"/>
+        <On Terms="Behavior.Blind.Off" Send="AnimBracketStop BSD"/>
+        <On Terms="ActorCreation" Send="SetTintColor {102,41,38 3.000000}"/>
+        <Host Subject="_Unit"/>
+        <HostSiteOps Ops="SOpAttachHead"/>
+        <Model value="BlindImpact"/>
+        <AutoScaleFromSelectionFactor value="1.000000"/>
+    </CActorModel>
+    <CActorModel id="OpenWound" parent="BuffContinuous">
+        <On Terms="Behavior.OpenWound.On; ValidateUnitType IsBiological" Send="Create"/>
+        <On Terms="ActorCreation" Send="$Birth"/>
+        <On Terms="ActorCreation" Send="TimerSet 1.000000 loop"/>
+        <On Terms="TimerExpired" Send="Create OpenWound"/>
+        <On Terms="Behavior.OpenWound.Off" Send="Destroy"/>
+        <Host Subject="_Unit"/>
+        <HostSiteOps Ops="SOpAttachRandomDamage"/>
+        <Model value="OpenWoundImpact"/>
+        <AutoScaleFromSelectionFactor value="1.000000"/>
+    </CActorModel>
+    <CActorModel id="ShortCircuit" parent="ModelAnimationStyleContinuousUNIT">
+        <Inherits index="CloakEffect" value="1"/>
+        <Inherits index="Decal" value="1"/>
+        <Inherits index="Visibility" value="1"/>
+        <On Terms="ActorCreation" Send="AnimBracketStart GL_BSD GLbirth GLstand GLdeath"/>
+        <On Terms="Behavior.ShortCircuit.On" Send="Create"/>
+        <On Terms="ActorCreation" Send="AnimBracketStart $BSD"/>
+        <On Terms="Behavior.ShortCircuit.Off" Send="AnimBracketStop BSD"/>
+        <Host Subject="_Unit"/>
+        <HostSiteOps Ops="SOpAttachRandomDamage"/>
+        <Model value="ShortCircuitImpact"/>
+        <AutoScaleFromSelectionFactor value="1.000000"/>
+    </CActorModel>
+    <CActorModel id="Stunned" parent="ModelAnimationStyleContinuous">
+        <Inherits index="CloakEffect" value="1"/>
+        <Inherits index="Decal" value="1"/>
+        <Inherits index="Visibility" value="1"/>
+        <On Terms="ActorCreation" Send="AnimBracketStart GL_BSD GLbirth GLstand GLdeath"/>
+        <On Terms="Behavior.BonebreakerStunned.On" Send="Create"/>
+        <On Terms="ActorCreation" Send="AnimBracketStart $BSD"/>
+        <On Terms="Behavior.BonebreakerStunned.Off" Send="AnimBracketStop BSD"/>
+        <On Terms="Behavior.BansheeScreamStun.On" Send="Create"/>
+        <On Terms="Behavior.BansheeScreamStun.Off" Send="Destroy"/>
+        <Host Subject="_Selectable"/>
+        <HostSiteOps Ops="SOpAttachOverhead"/>
+        <Model value="Stun"/>
+        <AutoScaleFactor value="1.000000"/>
+    </CActorModel>
+    <CActorModel id="Venom" parent="ModelAnimationStyleContinuousUNIT">
+        <Inherits index="CloakEffect" value="1"/>
+        <Inherits index="Decal" value="1"/>
+        <Inherits index="Visibility" value="1"/>
+        <On Terms="ActorCreation" Send="AnimBracketStart GL_BSD GLbirth GLstand GLdeath"/>
+        <On Terms="Behavior.Venom.On" Send="Create"/>
+        <On Terms="ActorCreation" Send="AnimBracketStart $BSD"/>
+        <On Terms="Behavior.Venom.Off" Send="AnimBracketStop BSD"/>
+        <Host Subject="_Unit"/>
+        <HostSiteOps Ops="SOpAttachRandomDamage"/>
+        <Model value="VenomImpact"/>
+        <AutoScaleFromSelectionFactor value="1.000000"/>
+    </CActorModel>
+    <CEffectApplyBehavior id="Blind">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="OpenWound">
+        <ValidatorArray index="0" value="noShields"/>
+        <ValidatorArray value="IsBiological"/>
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectRemoveBehavior id="RemoveBlind">
+        <EditorCategories value=""/>
+        <BehaviorLink value="Blind"/>
+    </CEffectRemoveBehavior>
+    <CEffectRemoveBehavior id="RemoveOpenWound">
+        <EditorCategories value=""/>
+        <BehaviorLink value="OpenWound"/>
+    </CEffectRemoveBehavior>
+    <CEffectRemoveBehavior id="RemoveShortCircuit">
+        <EditorCategories value=""/>
+        <BehaviorLink value="ShortCircuit"/>
+    </CEffectRemoveBehavior>
+    <CEffectRemoveBehavior id="RemoveVenom">
+        <EditorCategories value=""/>
+        <BehaviorLink value="Venom"/>
+    </CEffectRemoveBehavior>
+    <CEffectApplyBehavior id="ShortCircuit">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="Venom">
+        <ValidatorArray index="0" value="noShields"/>
+        <ValidatorArray value="IsBiological"/>
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CBehaviorBuff id="Blind">
+        <Alignment value="Negative"/>
+        <InfoIcon value="Assets\Textures\btn-ability-zerg-viper-ocularparasite.dds"/>
+        <Duration value="10"/>
+        <Modification SightBonus="-7" SightMaximum="2"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="OpenWound">
+        <Alignment value="Negative"/>
+        <InfoIcon value="Assets\Textures\btn-upgrade-zerg-adrenaloverload.dds"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <MaxStackCount value="5"/>
+        <Duration value="240"/>
+        <Modification>
+            <VitalRegenArray index="Life" value="-1"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="ShortCircuit">
+        <Alignment value="Negative"/>
+        <InfoIcon value="Assets\Textures\btn-ability-kerrigan-chainreaction.dds"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="70"/>
+        <Modification>
+            <VitalRegenArray index="Shields" value="-2"/>
+            <VitalRegenArray index="Energy" value="-2"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="Venom">
+        <Alignment value="Negative"/>
+        <InfoIcon value="Assets\Textures\btn-ability-zerg-banelingspooge.dds"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <MaxStackCount value="15"/>
+        <Duration value="180"/>
+        <Modification MoveSpeedMultiplier="0.95">
+            <VitalRegenArray index="Life" value="-0.3984"/>
+        </Modification>
+    </CBehaviorBuff>
+</Catalog>
