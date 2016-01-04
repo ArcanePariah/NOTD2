@@ -66,6 +66,44 @@
         <Model value="VenomImpact"/>
         <AutoScaleFromSelectionFactor value="1.000000"/>
     </CActorModel>
+    <CValidatorUnitCompareBehaviorCount id="UnithasArmFracture">
+        <Value value="1"/>
+        <Behavior value="FractureArm"/>
+    </CValidatorUnitCompareBehaviorCount>
+    <CValidatorCombine id="UnithasArmandLegFracture">
+        <Type value="And"/>
+        <CombineArray value="UnithasArmFracture"/>
+        <CombineArray value="UnithasLegFracture"/>
+    </CValidatorCombine>
+    <CValidatorUnitCompareBehaviorCount id="UnithasBrokenArm">
+        <Value value="1"/>
+        <Behavior value="BrokenArm"/>
+    </CValidatorUnitCompareBehaviorCount>
+    <CValidatorCombine id="UnithasBrokenArmandLeg">
+        <Type value="And"/>
+        <CombineArray value="UnithasBrokenArm"/>
+        <CombineArray value="UnithasBrokenLeg"/>
+    </CValidatorCombine>
+    <CValidatorUnitCompareBehaviorCount id="UnithasBrokenLeg">
+        <Value value="1"/>
+        <Behavior value="BrokenLeg"/>
+    </CValidatorUnitCompareBehaviorCount>
+    <CValidatorUnitCompareBehaviorCount id="UnithasLegFracture">
+        <Value value="1"/>
+        <Behavior value="FractureLeg"/>
+    </CValidatorUnitCompareBehaviorCount>
+    <CValidatorUnitCompareBehaviorCount id="UnithasOpenWound">
+        <Compare value="GT"/>
+        <Behavior value="OpenWound"/>
+    </CValidatorUnitCompareBehaviorCount>
+    <CValidatorUnitCompareBehaviorCount id="UnithasVenom">
+        <Compare value="GT"/>
+        <Behavior value="Venom"/>
+    </CValidatorUnitCompareBehaviorCount>
+    <CEffectRemoveBehavior id="RemoveArmFracture">
+        <EditorCategories value=""/>
+        <BehaviorLink value="FractureArm"/>
+    </CEffectRemoveBehavior>
     <CEffectApplyBehavior id="Blind">
         <EditorCategories value=""/>
     </CEffectApplyBehavior>
@@ -98,6 +136,84 @@
         <ValidatorArray value="IsBiological"/>
         <EditorCategories value=""/>
     </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="ApplyArmFracture">
+        <EditorCategories value=""/>
+        <Behavior value="FractureArm"/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="ApplyBrokenArm">
+        <EditorCategories value=""/>
+        <Behavior value="BrokenArm"/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="ApplyBrokenLeg">
+        <EditorCategories value=""/>
+        <Behavior value="BrokenLeg"/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="ApplyLegFracture">
+        <EditorCategories value=""/>
+        <Behavior value="FractureLeg"/>
+    </CEffectApplyBehavior>
+    <CEffectRemoveBehavior id="RemoveBrokenLegTarget">
+        <EditorCategories value=""/>
+        <BehaviorLink value="BrokenLeg"/>
+    </CEffectRemoveBehavior>
+    <CEffectRemoveBehavior id="RemoveBrokenArmTarget">
+        <EditorCategories value=""/>
+        <BehaviorLink value="BrokenArm"/>
+    </CEffectRemoveBehavior>
+    <CEffectSet id="RemoveBrokenBoneRandom">
+        <EditorCategories value=""/>
+        <EffectArray value="RemoveBrokenLegTarget"/>
+        <EffectArray value="RemoveBrokenArmTarget"/>
+        <Random value="1"/>
+        <MinCount value="1"/>
+        <MaxCount value="1"/>
+    </CEffectSet>
+    <CEffectRemoveBehavior id="RemoveLegFracture">
+        <EditorCategories value=""/>
+        <BehaviorLink value="FractureLeg"/>
+    </CEffectRemoveBehavior>
+    <CEffectSet id="RemoveRandomFracture">
+        <EditorCategories value=""/>
+        <EffectArray value="RemoveArmFracture"/>
+        <EffectArray value="RemoveLegFracture"/>
+        <Random value="1"/>
+        <MinCount value="1"/>
+        <MaxCount value="1"/>
+    </CEffectSet>
+    <CEffectSet id="FracturetoBrokenBone">
+        <EditorCategories value=""/>
+        <EffectArray value="ApplyBrokenLeg"/>
+        <EffectArray value="RemoveLegFracture"/>
+    </CEffectSet>
+    <CEffectSet id="ConvertBrokenLegtoLegFracture">
+        <EditorCategories value=""/>
+        <EffectArray value="RemoveBrokenLegTarget"/>
+        <EffectArray value="ApplyLegFracture"/>
+    </CEffectSet>
+    <CEffectSet id="ConvertBrokenArmtoArmFracture">
+        <EditorCategories value=""/>
+        <EffectArray value="RemoveBrokenArmTarget"/>
+        <EffectArray value="ApplyArmFracture"/>
+    </CEffectSet>
+    <CEffectSet id="ConvertRandomBrokenBonetoFracture">
+        <EditorCategories value=""/>
+        <EffectArray value="ConvertBrokenLegtoLegFracture"/>
+        <EffectArray value="ConvertBrokenArmtoArmFracture"/>
+        <Random value="1"/>
+        <MinCount value="1"/>
+        <MaxCount value="1"/>
+    </CEffectSet>
+    <CEffectSet id="ArmFracturetoBrokenBone">
+        <EditorCategories value=""/>
+        <EffectArray value="ApplyBrokenArm"/>
+        <EffectArray value="RemoveArmFracture"/>
+    </CEffectSet>
+    <CEffectSwitch id="FractureRemoval">
+        <EditorCategories value=""/>
+        <CaseArray Validator="UnithasArmandLegFracture" Effect="RemoveRandomFracture"/>
+        <CaseArray Validator="UnithasLegFracture" Effect="RemoveLegFracture"/>
+        <CaseArray Validator="UnithasArmFracture" Effect="RemoveArmFracture"/>
+    </CEffectSwitch>
     <CBehaviorBuff id="Blind">
         <Alignment value="Negative"/>
         <InfoIcon value="Assets\Textures\btn-ability-zerg-viper-ocularparasite.dds"/>
@@ -152,5 +268,24 @@
         <Duration value="180"/>
         <RefreshEffect value="FracturetoBrokenBone"/>
         <Modification MoveSpeedMultiplier="0.65"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="BrokenArm">
+        <Alignment value="Negative"/>
+        <EditorCategories value="Race:Injury Debuff"/>
+        <TechAliasArray value="_BrokenBone"/>
+        <Duration value="360"/>
+        <Modification AttackSpeedMultiplier="0.35">
+            <DamageDealtFraction index="Spell" value="-0.4"/>
+            <DamageDealtFraction index="Melee" value="-0.4"/>
+            <DamageDealtFraction index="Ranged" value="-0.4"/>
+            <DamageDealtFraction index="Splash" value="-0.4"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="BrokenLeg">
+        <Alignment value="Negative"/>
+        <EditorCategories value="Race:Injury Debuff"/>
+        <TechAliasArray value="_BrokenBone"/>
+        <Duration value="360"/>
+        <Modification MoveSpeedMultiplier="0.45"/>
     </CBehaviorBuff>
 </Catalog>
