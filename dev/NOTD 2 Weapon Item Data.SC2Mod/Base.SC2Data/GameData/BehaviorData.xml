@@ -170,9 +170,6 @@
         </Modification>
     </CBehaviorBuff>
     <CBehaviorBuff id="HammerEquipped" parent="WeaponEquippedTemplate"/>
-    <CBehaviorBuff id="Blind">
-        <EditorCategories value="Race:Vision Debuff"/>
-    </CBehaviorBuff>
     <CBehaviorBuff id="BrokenArm">
         <Alignment value="Negative"/>
         <EditorCategories value="Race:Injury Debuff"/>
@@ -259,25 +256,6 @@
             <DamageDealtFraction index="Ranged" value="-0.4"/>
             <DamageDealtFraction index="Splash" value="-0.4"/>
         </Modification>
-    </CBehaviorBuff>
-    <CBehaviorBuff id="FractureArm">
-        <Alignment value="Negative"/>
-        <EditorCategories value="Race:Injury Debuff"/>
-        <Duration value="180"/>
-        <Modification AttackSpeedMultiplier="0.55">
-            <DamageDealtFraction index="Spell" value="-0.15"/>
-            <DamageDealtFraction index="Melee" value="-0.15"/>
-            <DamageDealtFraction index="Ranged" value="-0.15"/>
-            <DamageDealtFraction index="Splash" value="-0.15"/>
-        </Modification>
-        <RefreshEffect value="ArmFracturetoBrokenBone"/>
-    </CBehaviorBuff>
-    <CBehaviorBuff id="FractureLeg">
-        <Alignment value="Negative"/>
-        <EditorCategories value="Race:Injury Debuff"/>
-        <Duration value="180"/>
-        <Modification MoveSpeedMultiplier="0.65"/>
-        <RefreshEffect value="FracturetoBrokenBone"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="GenericBehavior">
         <EditorCategories value="Race:???"/>

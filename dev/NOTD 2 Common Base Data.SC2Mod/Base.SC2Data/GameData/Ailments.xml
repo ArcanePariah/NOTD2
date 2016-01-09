@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<Catalog>
+    <CModel id="BlindImpact" parent="PersistentSpellFX">
+        <Model value="Assets\Doodads\Hybrid01GasCloud\Hybrid01GasCloud.m3"/>
+        <EditorCategories value="Race:Neutral"/>
+        <Flags index="Wait" value="1"/>
+        <Priority value="32"/>
+        <ScaleMax value="0.100000,0.100000,0.100000"/>
+        <ScaleMin value="0.100000,0.100000,0.100000"/>
+    </CModel>
+    <CModel id="OpenWoundImpact" parent="PersistentSpellFX">
+        <Model value="Assets\Effects\Other\BloodTargetImpact\BloodTargetImpact.m3"/>
+        <EditorCategories value="Race:Neutral"/>
+        <Flags index="Ignorable" value="1"/>
+    </CModel>
+    <CModel id="ShortCircuitImpact" parent="PersistentSpellFX">
+        <Model value="Assets\Doodads\THorner05SElectricalArcs\THorner05SElectricalArcs.m3"/>
+        <EditorCategories value="Race:Neutral"/>
+        <Events>
+            <Anim value="Stand,00"/>
+            <Name value="Uni_ElectricalArcs"/>
+            <Type value="Sound"/>
+            <Time value="0.970000"/>
+            <Payload value="Uni_ElectricalArcs"/>
+        </Events>
+        <Events>
+            <Anim value="Stand,02"/>
+            <Name value="Uni_ElectricalArcs"/>
+            <Type value="Sound"/>
+            <Time value="0.480000"/>
+            <Payload value="Uni_ElectricalArcs"/>
+        </Events>
+        <Events>
+            <Anim value="Stand,03"/>
+            <Name value="Uni_ElectricalArcs"/>
+            <Type value="Sound"/>
+            <Time value="1.020000"/>
+            <Payload value="Uni_ElectricalArcs"/>
+        </Events>
+        <Flags index="Wait" value="1"/>
+        <Priority value="32"/>
+        <ScaleMax value="0.400000,0.400000,0.400000"/>
+        <ScaleMin value="0.400000,0.400000,0.400000"/>
+    </CModel>
+    <CModel id="Stun" parent="PersistentSpellFX">
+        <Model value="Assets\Effects\Zerg\UnitStunImpact\UnitStunImpact.m3"/>
+        <EditorCategories value="Race:Terran"/>
+    </CModel>
+    <CModel id="VenomImpact" parent="PersistentSpellFX">
+        <Model value="Assets\Effects\Zerg\DiseaseCloud\DiseaseCloud.m3"/>
+        <ScaleMax value="0.500000,0.500000,0.500000"/>
+        <ScaleMin value="0.500000,0.500000,0.500000"/>
+    </CModel>
+    <CActorModel id="Blind" parent="ModelAnimationStyleContinuousUNIT">
+        <Inherits index="CloakEffect" value="1"/>
+        <Inherits index="Decal" value="1"/>
+        <Inherits index="Visibility" value="1"/>
+        <On Terms="ActorCreation" Send="AnimBracketStart GL_BSD GLbirth GLstand GLdeath"/>
+        <On Terms="Behavior.Blind.On" Send="Create"/>
+        <On Terms="ActorCreation" Send="AnimBracketStart $BSD"/>
+        <On Terms="Behavior.Blind.Off" Send="AnimBracketStop BSD"/>
+        <On Terms="ActorCreation" Send="SetTintColor {102,41,38 3.000000}"/>
+        <Host Subject="_Unit"/>
+        <HostSiteOps Ops="SOpAttachHead"/>
+        <Model value="BlindImpact"/>
+        <AutoScaleFromSelectionFactor value="1.000000"/>
+    </CActorModel>
+    <CActorModel id="OpenWound" parent="BuffContinuous">
+        <On Terms="Behavior.OpenWound.On; ValidateUnitType IsBiological" Send="Create"/>
+        <On Terms="ActorCreation" Send="$Birth"/>
+        <On Terms="ActorCreation" Send="TimerSet 1.000000 loop"/>
+        <On Terms="TimerExpired" Send="Create OpenWound"/>
+        <On Terms="Behavior.OpenWound.Off" Send="Destroy"/>
+        <Host Subject="_Unit"/>
+        <HostSiteOps Ops="SOpAttachRandomDamage"/>
+        <Model value="OpenWoundImpact"/>
+        <AutoScaleFromSelectionFactor value="1.000000"/>
+    </CActorModel>
+    <CActorModel id="ShortCircuit" parent="ModelAnimationStyleContinuousUNIT">
+        <Inherits index="CloakEffect" value="1"/>
+        <Inherits index="Decal" value="1"/>
+        <Inherits index="Visibility" value="1"/>
+        <On Terms="ActorCreation" Send="AnimBracketStart GL_BSD GLbirth GLstand GLdeath"/>
+        <On Terms="Behavior.ShortCircuit.On" Send="Create"/>
+        <On Terms="ActorCreation" Send="AnimBracketStart $BSD"/>
+        <On Terms="Behavior.ShortCircuit.Off" Send="AnimBracketStop BSD"/>
+        <Host Subject="_Unit"/>
+        <HostSiteOps Ops="SOpAttachRandomDamage"/>
+        <Model value="ShortCircuitImpact"/>
+        <AutoScaleFromSelectionFactor value="1.000000"/>
+    </CActorModel>
+    <CActorModel id="Stunned" parent="ModelAnimationStyleContinuous">
+        <Inherits index="CloakEffect" value="1"/>
+        <Inherits index="Decal" value="1"/>
+        <Inherits index="Visibility" value="1"/>
+        <On Terms="ActorCreation" Send="AnimBracketStart GL_BSD GLbirth GLstand GLdeath"/>
+        <On Terms="Behavior.BonebreakerStunned.On" Send="Create"/>
+        <On Terms="ActorCreation" Send="AnimBracketStart $BSD"/>
+        <On Terms="Behavior.BonebreakerStunned.Off" Send="AnimBracketStop BSD"/>
+        <On Terms="Behavior.BansheeScreamStun.On" Send="Create"/>
+        <On Terms="Behavior.BansheeScreamStun.Off" Send="Destroy"/>
+        <Host Subject="_Selectable"/>
+        <HostSiteOps Ops="SOpAttachOverhead"/>
+        <Model value="Stun"/>
+        <AutoScaleFactor value="1.000000"/>
+    </CActorModel>
+    <CActorModel id="Venom" parent="ModelAnimationStyleContinuousUNIT">
+        <Inherits index="CloakEffect" value="1"/>
+        <Inherits index="Decal" value="1"/>
+        <Inherits index="Visibility" value="1"/>
+        <On Terms="ActorCreation" Send="AnimBracketStart GL_BSD GLbirth GLstand GLdeath"/>
+        <On Terms="Behavior.Venom.On" Send="Create"/>
+        <On Terms="ActorCreation" Send="AnimBracketStart $BSD"/>
+        <On Terms="Behavior.Venom.Off" Send="AnimBracketStop BSD"/>
+        <Host Subject="_Unit"/>
+        <HostSiteOps Ops="SOpAttachRandomDamage"/>
+        <Model value="VenomImpact"/>
+        <AutoScaleFromSelectionFactor value="1.000000"/>
+    </CActorModel>
+    <CValidatorUnitCompareBehaviorCount id="UnithasArmFracture">
+        <Value value="1"/>
+        <Behavior value="FractureArm"/>
+    </CValidatorUnitCompareBehaviorCount>
+    <CValidatorCombine id="UnithasArmandLegFracture">
+        <Type value="And"/>
+        <CombineArray value="UnithasArmFracture"/>
+        <CombineArray value="UnithasLegFracture"/>
+    </CValidatorCombine>
+    <CValidatorUnitCompareBehaviorCount id="UnithasBrokenArm">
+        <Value value="1"/>
+        <Behavior value="BrokenArm"/>
+    </CValidatorUnitCompareBehaviorCount>
+    <CValidatorCombine id="UnithasBrokenArmandLeg">
+        <Type value="And"/>
+        <CombineArray value="UnithasBrokenArm"/>
+        <CombineArray value="UnithasBrokenLeg"/>
+    </CValidatorCombine>
+    <CValidatorUnitCompareBehaviorCount id="UnithasBrokenLeg">
+        <Value value="1"/>
+        <Behavior value="BrokenLeg"/>
+    </CValidatorUnitCompareBehaviorCount>
+    <CValidatorUnitCompareBehaviorCount id="UnithasLegFracture">
+        <Value value="1"/>
+        <Behavior value="FractureLeg"/>
+    </CValidatorUnitCompareBehaviorCount>
+    <CValidatorUnitCompareBehaviorCount id="UnithasOpenWound">
+        <Compare value="GT"/>
+        <Behavior value="OpenWound"/>
+    </CValidatorUnitCompareBehaviorCount>
+    <CValidatorUnitCompareBehaviorCount id="UnithasVenom">
+        <Compare value="GT"/>
+        <Behavior value="Venom"/>
+    </CValidatorUnitCompareBehaviorCount>
+    <CEffectRemoveBehavior id="RemoveArmFracture">
+        <EditorCategories value=""/>
+        <BehaviorLink value="FractureArm"/>
+    </CEffectRemoveBehavior>
+    <CEffectApplyBehavior id="Blind">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="OpenWound">
+        <ValidatorArray index="0" value="noShields"/>
+        <ValidatorArray value="IsBiological"/>
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectRemoveBehavior id="RemoveBlind">
+        <EditorCategories value=""/>
+        <BehaviorLink value="Blind"/>
+    </CEffectRemoveBehavior>
+    <CEffectRemoveBehavior id="RemoveOpenWound">
+        <EditorCategories value=""/>
+        <BehaviorLink value="OpenWound"/>
+    </CEffectRemoveBehavior>
+    <CEffectRemoveBehavior id="RemoveShortCircuit">
+        <EditorCategories value=""/>
+        <BehaviorLink value="ShortCircuit"/>
+    </CEffectRemoveBehavior>
+    <CEffectRemoveBehavior id="RemoveVenom">
+        <EditorCategories value=""/>
+        <BehaviorLink value="Venom"/>
+    </CEffectRemoveBehavior>
+    <CEffectApplyBehavior id="ShortCircuit">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="Venom">
+        <ValidatorArray index="0" value="noShields"/>
+        <ValidatorArray value="IsBiological"/>
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="ApplyArmFracture">
+        <EditorCategories value=""/>
+        <Behavior value="FractureArm"/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="ApplyBrokenArm">
+        <EditorCategories value=""/>
+        <Behavior value="BrokenArm"/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="ApplyBrokenLeg">
+        <EditorCategories value=""/>
+        <Behavior value="BrokenLeg"/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="ApplyLegFracture">
+        <EditorCategories value=""/>
+        <Behavior value="FractureLeg"/>
+    </CEffectApplyBehavior>
+    <CEffectRemoveBehavior id="RemoveBrokenLegTarget">
+        <EditorCategories value=""/>
+        <BehaviorLink value="BrokenLeg"/>
+    </CEffectRemoveBehavior>
+    <CEffectRemoveBehavior id="RemoveBrokenArmTarget">
+        <EditorCategories value=""/>
+        <BehaviorLink value="BrokenArm"/>
+    </CEffectRemoveBehavior>
+    <CEffectSet id="RemoveBrokenBoneRandom">
+        <EditorCategories value=""/>
+        <EffectArray value="RemoveBrokenLegTarget"/>
+        <EffectArray value="RemoveBrokenArmTarget"/>
+        <Random value="1"/>
+        <MinCount value="1"/>
+        <MaxCount value="1"/>
+    </CEffectSet>
+    <CEffectRemoveBehavior id="RemoveLegFracture">
+        <EditorCategories value=""/>
+        <BehaviorLink value="FractureLeg"/>
+    </CEffectRemoveBehavior>
+    <CEffectSet id="RemoveRandomFracture">
+        <EditorCategories value=""/>
+        <EffectArray value="RemoveArmFracture"/>
+        <EffectArray value="RemoveLegFracture"/>
+        <Random value="1"/>
+        <MinCount value="1"/>
+        <MaxCount value="1"/>
+    </CEffectSet>
+    <CEffectSet id="FracturetoBrokenBone">
+        <EditorCategories value=""/>
+        <EffectArray value="ApplyBrokenLeg"/>
+        <EffectArray value="RemoveLegFracture"/>
+    </CEffectSet>
+    <CEffectSet id="ConvertBrokenLegtoLegFracture">
+        <EditorCategories value=""/>
+        <EffectArray value="RemoveBrokenLegTarget"/>
+        <EffectArray value="ApplyLegFracture"/>
+    </CEffectSet>
+    <CEffectSet id="ConvertBrokenArmtoArmFracture">
+        <EditorCategories value=""/>
+        <EffectArray value="RemoveBrokenArmTarget"/>
+        <EffectArray value="ApplyArmFracture"/>
+    </CEffectSet>
+    <CEffectSet id="ConvertRandomBrokenBonetoFracture">
+        <EditorCategories value=""/>
+        <EffectArray value="ConvertBrokenLegtoLegFracture"/>
+        <EffectArray value="ConvertBrokenArmtoArmFracture"/>
+        <Random value="1"/>
+        <MinCount value="1"/>
+        <MaxCount value="1"/>
+    </CEffectSet>
+    <CEffectSet id="ArmFracturetoBrokenBone">
+        <EditorCategories value=""/>
+        <EffectArray value="ApplyBrokenArm"/>
+        <EffectArray value="RemoveArmFracture"/>
+    </CEffectSet>
+    <CEffectSwitch id="FractureRemoval">
+        <EditorCategories value=""/>
+        <CaseArray Validator="UnithasArmandLegFracture" Effect="RemoveRandomFracture"/>
+        <CaseArray Validator="UnithasLegFracture" Effect="RemoveLegFracture"/>
+        <CaseArray Validator="UnithasArmFracture" Effect="RemoveArmFracture"/>
+    </CEffectSwitch>
+    <CBehaviorBuff id="Blind">
+        <Alignment value="Negative"/>
+        <InfoIcon value="Assets\Textures\btn-ability-zerg-viper-ocularparasite.dds"/>
+        <Duration value="10"/>
+        <Modification SightBonus="-7" SightMaximum="2"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="OpenWound">
+        <Alignment value="Negative"/>
+        <InfoIcon value="Assets\Textures\btn-upgrade-zerg-adrenaloverload.dds"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <MaxStackCount value="5"/>
+        <Duration value="240"/>
+        <Modification>
+            <VitalRegenArray index="Life" value="-1"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="ShortCircuit">
+        <Alignment value="Negative"/>
+        <InfoIcon value="Assets\Textures\btn-ability-kerrigan-chainreaction.dds"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="70"/>
+        <Modification>
+            <VitalRegenArray index="Shields" value="-2"/>
+            <VitalRegenArray index="Energy" value="-2"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="Venom">
+        <Alignment value="Negative"/>
+        <InfoIcon value="Assets\Textures\btn-ability-zerg-banelingspooge.dds"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <MaxStackCount value="15"/>
+        <Duration value="180"/>
+        <Modification MoveSpeedMultiplier="0.95">
+            <VitalRegenArray index="Life" value="-0.3984"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="FractureArm">
+        <Alignment value="Negative"/>
+        <EditorCategories value="Race:Injury Debuff"/>
+        <Duration value="180"/>
+        <RefreshEffect value="ArmFracturetoBrokenBone"/>
+        <Modification AttackSpeedMultiplier="0.55">
+            <DamageDealtFraction index="Spell" value="-0.15"/>
+            <DamageDealtFraction index="Melee" value="-0.15"/>
+            <DamageDealtFraction index="Ranged" value="-0.15"/>
+            <DamageDealtFraction index="Splash" value="-0.15"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="FractureLeg">
+        <Alignment value="Negative"/>
+        <EditorCategories value="Race:Injury Debuff"/>
+        <Duration value="180"/>
+        <RefreshEffect value="FracturetoBrokenBone"/>
+        <Modification MoveSpeedMultiplier="0.65"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="BrokenArm">
+        <Alignment value="Negative"/>
+        <EditorCategories value="Race:Injury Debuff"/>
+        <TechAliasArray value="_BrokenBone"/>
+        <Duration value="360"/>
+        <Modification AttackSpeedMultiplier="0.35">
+            <DamageDealtFraction index="Spell" value="-0.4"/>
+            <DamageDealtFraction index="Melee" value="-0.4"/>
+            <DamageDealtFraction index="Ranged" value="-0.4"/>
+            <DamageDealtFraction index="Splash" value="-0.4"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="BrokenLeg">
+        <Alignment value="Negative"/>
+        <EditorCategories value="Race:Injury Debuff"/>
+        <TechAliasArray value="_BrokenBone"/>
+        <Duration value="360"/>
+        <Modification MoveSpeedMultiplier="0.45"/>
+    </CBehaviorBuff>
+</Catalog>

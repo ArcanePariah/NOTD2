@@ -34,6 +34,7 @@
         <TargetFilters value="Biological;Neutral,Enemy,Item"/>
         <Range value="3"/>
         <CmdButtonArray index="Execute" DefaultButtonFace="HealNOTD"/>
+        <PreEffectBehavior Behavior="Healing" Count="1"/>
     </CAbilEffectTarget>
     <CAbilEffectTarget id="NanoHaste" parent="3LevelEffectTargetAbility">
         <Cost>
@@ -122,6 +123,151 @@
         <TargetFilters value="-;Player,Ally,Neutral"/>
         <Range value="12"/>
     </CAbilEffectTarget>
+    <CSound id="MedicNanoHasteCast" parent="Combat">
+        <EditorCategories value="Race:Terran"/>
+        <AssetArray File="Assets\Sounds\Protoss\Nexus\Nexus_ChronoBoostLaunch0.wav" FacialGroup=""/>
+        <AssetArray File="Assets\Sounds\Protoss\Nexus\Nexus_ChronoBoostLaunch1.wav" FacialGroup=""/>
+        <AssetArray File="Assets\Sounds\Protoss\Nexus\Nexus_ChronoBoostLaunch2.wav" FacialGroup=""/>
+        <DupeDestroyCount value="5"/>
+        <Pitch value="-3.000000,-2.000000"/>
+        <Volume value="-13.000000,-12.000000"/>
+    </CSound>
+    <CSound id="MedicNanoPlagueSound" parent="Spell">
+        <EditorCategories value="Race:Protoss"/>
+        <AssetArray File="Assets\Sounds\Protoss\HighTemplar\HighTemplar_PsionicStormLaunch0.wav"/>
+    </CSound>
+    <CSound id="MedicNanoSeerSound" parent="Spell">
+        <EditorCategories value="Race:Zerg"/>
+        <AssetArray File="Assets\Sounds\Zerg\Queen\Queen_SwarmInfestationLaunch0.wav"/>
+        <AssetArray File="Assets\Sounds\Zerg\Queen\Queen_SwarmInfestationLaunch1.wav"/>
+        <AssetArray File="Assets\Sounds\Zerg\Queen\Queen_SwarmInfestationLaunch2.wav"/>
+        <AssetArray File="Assets\Sounds\Zerg\Queen\Queen_SwarmInfestationLaunch3.wav"/>
+        <AssetArray File="Assets\Sounds\Zerg\Queen\Queen_SwarmInfestationLaunch4.wav"/>
+        <AssetArray File="Assets\Sounds\Zerg\Queen\Queen_SwarmInfestationLaunch5.wav"/>
+        <AssetArray File="Assets\Sounds\Zerg\Queen\Queen_SwarmInfestationLaunch6.wav"/>
+        <AssetArray File="Assets\Sounds\Zerg\Queen\Queen_SwarmInfestationLaunch7.wav"/>
+        <AssetArray File="Assets\Sounds\Zerg\Queen\Queen_SwarmInfestationLaunch8.wav"/>
+    </CSound>
+    <CSound id="MedicNanoShieldBirth" parent="Spell">
+        <EditorCategories value="Race:Terran"/>
+        <AssetArray File="Assets\Sounds\Terran\Battlecruiser\Battlecruiser_DefensiveMatrixBirth0.wav"/>
+        <AssetArray File="Assets\Sounds\Terran\Battlecruiser\Battlecruiser_DefensiveMatrixBirth1.wav"/>
+        <DupeDestroyCount value="8"/>
+        <DupeMuteCount value="8"/>
+    </CSound>
+    <CSound id="MedicNanoShieldDeath" parent="Spell">
+        <EditorCategories value="Race:Terran"/>
+        <AssetArray File="Assets\Sounds\Terran\Battlecruiser\Battlecruiser_DefensiveMatrixDeath0.wav"/>
+        <AssetArray File="Assets\Sounds\Terran\Battlecruiser\Battlecruiser_DefensiveMatrixDeath1.wav"/>
+        <DupeDestroyCount value="8"/>
+        <DupeMuteCount value="8"/>
+    </CSound>
+    <CSound id="MedicNanoShock" parent="Spell">
+        <EditorCategories value="Race:Terran"/>
+        <AssetArray File="Assets\Sounds\Terran\Vulture\Vulture_AttackLaunch0.wav"/>
+        <AssetArray File="Assets\Sounds\Terran\Vulture\Vulture_AttackLaunch1.wav" FacialGroup=""/>
+        <AssetArray File="Assets\Sounds\Terran\Vulture\Vulture_AttackLaunch2.wav" FacialGroup=""/>
+        <AssetArray File="Assets\Sounds\Terran\Vulture\Vulture_AttackLaunch3.wav" FacialGroup=""/>
+    </CSound>
+    <CSound id="MedicNanoShockExplosion" parent="Spell">
+        <EditorCategories value="Race:Terran"/>
+        <AssetArray File="Assets\Sounds\Terran\Tosh\Tosh_MindBlastImpact0.wav"/>
+        <AssetArray File="Assets\Sounds\Terran\Tosh\Tosh_MindBlastImpact1.wav"/>
+        <AssetArray File="Assets\Sounds\Terran\Tosh\Tosh_MindBlastImpact2.wav"/>
+        <AssetArray File="Assets\Sounds\Terran\Tosh\Tosh_MindBlastImpact3.wav"/>
+        <AssetArray File="Assets\Sounds\Terran\Tosh\Tosh_MindBlastImpact4.wav"/>
+        <DupeMuteCount value="3"/>
+        <Volume value="-3.000000,-3.000000"/>
+    </CSound>
+    <CSound id="MedicNanoStregnthBuffSound" parent="Spell">
+        <EditorCategories value="Race:Terran"/>
+        <AssetArray File="Assets\Sounds\Psi_PowerLink_Discharge_1.wav" FacialGroup=""/>
+        <AssetArray File="Assets\Sounds\Psi_PowerLink_Discharge_2.wav" FacialGroup=""/>
+        <AssetArray File="Assets\Sounds\Psi_PowerLink_Discharge_3.wav" FacialGroup=""/>
+        <AssetArray File="Assets\Sounds\Psi_PowerLink_Discharge_4.wav" FacialGroup=""/>
+        <AssetArray File="Assets\Sounds\Psi_PowerLink_Discharge_5.wav" FacialGroup=""/>
+        <AssetArray File="Assets\Sounds\Psi_PowerLink_Discharge_6.wav" FacialGroup=""/>
+        <DupeDestroyCount value="8"/>
+        <DupeMuteCount value="8"/>
+    </CSound>
+    <CSound id="MedicNanoStrengthCast" parent="Combat">
+        <EditorCategories value="Race:Terran"/>
+        <AssetArray File="Assets\Sounds\Uni\Doodads\Doodad_TerrazineProtectorProtoss_Birth0.wav" FacialGroup=""/>
+        <DupeDestroyCount value="5"/>
+        <Pitch value="-3.000000,-2.000000"/>
+        <Volume value="-13.000000,-12.000000"/>
+    </CSound>
+    <CSound id="MedicNanoWeaveBuff" parent="Combat">
+        <EditorCategories value="Race:Terran"/>
+        <AssetArray File="Assets\Sounds\Psi_Destroyer_ShieldPowerUp_1.wav" FacialGroup=""/>
+        <AssetArray File="Assets\Sounds\Psi_Destroyer_ShieldPowerUp_2.wav" FacialGroup=""/>
+        <DupeDestroyCount value="5"/>
+        <Pitch value="-3.000000,-2.000000"/>
+        <Volume value="-13.000000,-12.000000"/>
+    </CSound>
+    <CSound id="MedicNanoWeaveCast" parent="Combat">
+        <EditorCategories value="Race:Terran"/>
+        <AssetArray File="Assets\Sounds\Protoss\Nexus\Nexus_ChronoBoostImpact0.wav" FacialGroup=""/>
+        <AssetArray File="Assets\Sounds\Protoss\Nexus\Nexus_ChronoBoostImpact1.wav" FacialGroup=""/>
+        <AssetArray File="Assets\Sounds\Protoss\Nexus\Nexus_ChronoBoostImpact2.wav" FacialGroup=""/>
+        <DupeDestroyCount value="5"/>
+        <Pitch value="-3.000000,-2.000000"/>
+        <Volume value="-13.000000,-12.000000"/>
+    </CSound>
+    <CSound id="MedicVolatileInjection" parent="Spell">
+        <EditorCategories value="Race:Terran"/>
+        <AssetArray File="Assets\Sounds\Terran\Vulture\Vulture_AttackLaunch0.wav"/>
+        <AssetArray File="Assets\Sounds\Terran\Vulture\Vulture_AttackLaunch1.wav" FacialGroup=""/>
+        <AssetArray File="Assets\Sounds\Terran\Vulture\Vulture_AttackLaunch2.wav" FacialGroup=""/>
+        <AssetArray File="Assets\Sounds\Terran\Vulture\Vulture_AttackLaunch3.wav" FacialGroup=""/>
+    </CSound>
+    <CModel id="AftershockImpact" parent="ImpactFX">
+        <Model value="Assets\Effects\Protoss\DisruptionWeb\DisruptionWeb.m3"/>
+    </CModel>
+    <CModel id="AntivenomImpact" parent="ImpactFX">
+        <Model value="Assets\Effects\Protoss\DarkStalkerMissileImpact\DarkStalkerMissileImpact.m3"/>
+    </CModel>
+    <CModel id="NanoHasteBuff" parent="PersistentSpellFX">
+        <Model value="Assets\Effects\Terran\StimpackStartImpact\StimpackStartImpact.m3"/>
+    </CModel>
+    <CModel id="NanoPlagueBuff">
+        <Model value="Assets\Effects\Zerg\CorrosiveBileImpact\CorrosiveBileImpact.m3"/>
+    </CModel>
+    <CModel id="NanoSearBuff" parent="PersistentSpellFX">
+        <Model value="Assets\Effects\Zerg\TerrorcystInfection\TerrorcystInfection.m3"/>
+    </CModel>
+    <CModel id="NanoSearCloud" parent="PersistentSpellFX">
+        <Model value="Assets\Effects\Zerg\KerriganSearchImpact\KerriganSearchImpact.m3"/>
+    </CModel>
+    <CModel id="NanoShieldBuff" parent="PersistentSpellFX">
+        <Model value="Assets\Effects\Protoss\MineralShield\MineralShield.m3"/>
+    </CModel>
+    <CModel id="NanoShockImpact" parent="ImpactFX">
+        <Model value="Assets\Effects\Protoss\PowerOverwhelming\PowerOverwhelming.m3"/>
+    </CModel>
+    <CModel id="NanoWeaveImpact">
+        <Model value="Assets\Effects\Protoss\RecallImpactOut\RecallImpactOut.m3"/>
+    </CModel>
+    <CModel id="NanoStrengthBuff">
+        <Model value="Assets\Effects\Protoss\ArchonMergeStart\ArchonMergeStart.m3"/>
+    </CModel>
+    <CModel id="NanoWeaveBuff" parent="PersistentSpellFX"/>
+    <CModel id="VolatileInjectionBuff" parent="PersistentSpellFX">
+        <Model value="Assets\Effects\Zerg\ConsumptionImpact\ConsumptionImpact.m3"/>
+    </CModel>
+    <CModel id="VolatileInjectionDetonation">
+        <Model value="Assets\Effects\Zerg\ParasiteImpact\ParasiteImpact.m3"/>
+    </CModel>
+    <CButton id="CancelHealing">
+        <Icon value="btn-command-cancel.dds"/>
+        <HotkeyAlias value="HealNOTD"/>
+        <HotkeySet value="Heal"/>
+    </CButton>
+    <CButton id="HealNOTD">
+        <Icon value="btn-l2d-techupgrade-terran-stabilizermedpacks.dds"/>
+        <EditorCategories value="Race:Terran"/>
+        <HotkeySet value="Heal"/>
+    </CButton>
     <CUnit id="Medic2" parent="BasicHeroTemplate" InventoryAbility="Medic2Inventory" LearnAbility="Medic2Learn">
         <AbilArray Link="Heal"/>
         <AbilArray Link="CancelHealing"/>
@@ -189,6 +335,203 @@
         <EffectArray Operation="Set" Reference="Behavior,NanoHasteLevel3,Period" Value="20.000000"/>
         <EffectArray Operation="Set" Reference="Effect,NanoHasteFractureRepair,PeriodCount" Value="2"/>
     </CUpgrade>
+    <CActorSplat id="NanoShockAoESplat" parent="TerranCursorSplat" abil="NanoShock">
+        <EditorCategories value=""/>
+    </CActorSplat>
+    <CActorModel id="AftershockImpact" parent="ModelAnimationStyleOneShot">
+        <EditorCategories value=""/>
+        <On Terms="Effect.AftershockStunLevel1.Start" Send="Create"/>
+        <On Terms="Effect.AftershockStunLevel12.Start" Send="Create"/>
+    </CActorModel>
+    <CActorModel id="AntivenomImpact" parent="ModelAnimationStyleOneShot">
+        <EditorCategories value=""/>
+        <On Terms="Abil.Antivenom.TargetFinishStart" Send="Create"/>
+        <HostSiteOps Ops="SOpAttachHardPoint"/>
+    </CActorModel>
+    <CActorRange id="HealRange" parent="RangeAbil" abil="Heal">
+        <EditorCategories value=""/>
+    </CActorRange>
+    <CActorSound id="MedicHeal" parent="SoundContinuous">
+        <On Terms="Abil.Heal.TargetCastStart" Send="Create"/>
+        <On Terms="ActorCreation" Send="Create MedicHealSoundStart"/>
+        <On Terms="ActorDestruction" Send="Create MedicHealSoundStop"/>
+        <On Terms="Effect.HealLevel1.TargetStop" Send="Destroy"/>
+        <On Terms="Effect.HealLevel3.TargetStop" Send="Destroy"/>
+        <On Terms="Effect.HealLevel2.TargetStop" Send="Destroy"/>
+        <Host Subject="_Unit"/>
+        <HostSiteOps Ops="SOpAttachOverhead"/>
+        <Sound value="Medic_Heal"/>
+    </CActorSound>
+    <CActorSound id="MedicNanoHastecast" parent="SoundOneShot">
+        <On Terms="Effect.NanoHasteLevel1" Send="Create"/>
+        <On Terms="Effect.NanoHasteLevel2" Send="Create"/>
+        <On Terms="Effect.NanoHasteLevel3" Send="Create"/>
+        <Sound value="MedicNanoHasteCast"/>
+    </CActorSound>
+    <CActorSound id="MedicNanoPlagueSound" parent="SoundContinuous">
+        <On Terms="Effect.PsiStormPersistent.Start" Send="Create"/>
+        <On Terms="Effect.PsiStormPersistent.Stop" Send="Destroy"/>
+        <HostSiteOps Ops="SOpShadow"/>
+    </CActorSound>
+    <CActorSound id="MedicNanoSeerSound" parent="SoundContinuous">
+        <On Terms="Abil.NanoSear.SourceCastStart" Send="Create"/>
+    </CActorSound>
+    <CActorSound id="MedicNanoShieldBirth" parent="SoundOneShot">
+        <On Terms="Behavior.NanoShieldArmor.On" Send="Create"/>
+    </CActorSound>
+    <CActorSound id="MedicNanoShieldDeath" parent="SoundOneShot">
+        <On Terms="Behavior.NanoShieldArmor.Off" Send="Create"/>
+    </CActorSound>
+    <CActorSound id="MedicNanoShockCast" parent="SoundOneShot">
+        <On Terms="Abil.NanoShock.SourceCastStart" Send="Create"/>
+        <Sound value="MedicNanoShock"/>
+    </CActorSound>
+    <CActorSound id="MedicNanoShockExplosion" parent="SoundOneShot">
+        <On Terms="Effect.NanoShockDamageLevel1" Send="Create"/>
+        <On Terms="Effect.NanoShockDamageLevel2" Send="Create"/>
+        <On Terms="Effect.NanoShockDamageLevel3" Send="Create"/>
+    </CActorSound>
+    <CActorSound id="MedicNanoStregnthBuffSound" parent="SoundOneShot">
+        <On Terms="Behavior.NanoStrength.On" Send="Create"/>
+    </CActorSound>
+    <CActorSound id="MedicNanoStrength" parent="SoundOneShot">
+        <On Terms="Effect.NanoStrength.Start" Send="Create"/>
+        <Sound value="MedicNanoStrengthCast"/>
+    </CActorSound>
+    <CActorSound id="MedicNanoWeave" parent="SoundOneShot">
+        <On Terms="Abil.NanoWeave.TargetCastStart" Send="Create"/>
+        <On Terms="Abil.NanoWeave.TargetCastStart" Send="Create"/>
+        <Sound value="MedicNanoWeaveCast"/>
+    </CActorSound>
+    <CActorSound id="MedicNanoWeaveBuff" parent="SoundOneShot">
+        <On Terms="Effect.NanoWeaveHealLevel1.Start" Send="Create"/>
+        <On Terms="Effect.NanoWeaveHealLevel2" Send="Create"/>
+    </CActorSound>
+    <CActorSound id="MedicVolatileInjection" parent="SoundOneShot">
+        <On Terms="Abil.VolatileInjection.SourceCastStart" Send="Create"/>
+    </CActorSound>
+    <CActorRange id="NanoHasteRange" parent="RangeAbil" abil="NanoHaste">
+        <EditorCategories value=""/>
+    </CActorRange>
+    <CActorRange id="NanoPlagueRange" parent="RangeAbil" abil="NanoPlague">
+        <EditorCategories value=""/>
+    </CActorRange>
+    <CActorRange id="NanoSearRange" parent="RangeAbil" abil="NanoSear">
+        <EditorCategories value=""/>
+    </CActorRange>
+    <CActorRange id="NanoShieldRange" parent="RangeAbil" abil="NanoShield">
+        <EditorCategories value=""/>
+    </CActorRange>
+    <CActorRange id="NanoShockRange" parent="RangeAbil" abil="NanoShock">
+        <EditorCategories value=""/>
+    </CActorRange>
+    <CActorRange id="NanoStrengthRange" parent="RangeAbil" abil="NanoStrength">
+        <EditorCategories value=""/>
+    </CActorRange>
+    <CActorModel id="NanoWeaveImpact" parent="ModelAnimationStyleOneShot">
+        <EditorCategories value=""/>
+        <On Terms="Effect.NanoWeaveHealLevel1.Start" Send="Create"/>
+        <On Terms="Effect.NanoWeaveHealLevel2.Start" Send="Create"/>
+        <Host Subject="_Unit" Scope="Target"/>
+        <HostSiteOps Ops="SOpAttachOverhead"/>
+        <Scale value="0.300000,0.300000,0.075000"/>
+    </CActorModel>
+    <CActorRange id="NanoWeaveRange" parent="RangeAbil" abil="NanoWeave">
+        <EditorCategories value=""/>
+    </CActorRange>
+    <CActorBeamSimple id="HealBeam" parent="BeamSimpleAnimationStyleContinuous">
+        <EditorCategories value=""/>
+        <On Terms="Effect.HealLevel1.TargetStart" Send="Create"/>
+        <On Terms="Effect.HealLevel1.TargetStop" Send="Destroy"/>
+        <On Terms="Effect.HealLevel2.TargetStart" Send="Create"/>
+        <On Terms="Effect.HealLevel2.TargetStop" Send="Destroy"/>
+        <On Terms="Effect.HealLevel3.TargetStart" Send="Create"/>
+        <On Terms="Effect.HealLevel3.TargetStop" Send="Destroy"/>
+        <Model value="MedivacHealBeam"/>
+        <ModelFlags index="AllowHitTest" value="0"/>
+        <HostLaunch Subject="MedicLeftForearm" Scope="Caster" Actor="Find"/>
+        <HostImpact Subject="_Unit" Scope="Target"/>
+        <HostImpactSiteOps Ops="SOpAttachHardPoint"/>
+    </CActorBeamSimple>
+    <CActorModel id="HealImpact" parent="ModelAnimationStyleContinuous">
+        <EditorCategories value=""/>
+        <On Terms="Effect.HealLevel1.TargetStart" Send="Create"/>
+        <On Terms="Effect.HealLevel1.TargetStop" Send="Destroy"/>
+        <On Terms="Effect.HealLevel2.TargetStart" Send="Create"/>
+        <On Terms="Effect.HealLevel2.TargetStop" Send="Destroy"/>
+        <On Terms="Effect.HealLevel3.TargetStart" Send="Create"/>
+        <On Terms="Effect.HealLevel3.TargetStop" Send="Destroy"/>
+        <Model value="MedicHealModel"/>
+        <HostSiteOps Ops="SOpAttachHardPoint"/>
+    </CActorModel>
+    <CActorModel id="NanoHasteBuff" parent="ModelAnimationStyleContinuous">
+        <EditorCategories value=""/>
+        <On Terms="Behavior.NanoHasteLevel1.On" Send="Create"/>
+        <On Terms="Behavior.NanoHasteLevel2.On" Send="Create"/>
+        <On Terms="Behavior.NanoHasteLevel3.On" Send="Create"/>
+        <On Terms="Behavior.NanoHasteLevel1.Off" Send="Destroy"/>
+        <On Terms="Behavior.NanoHasteLevel2.Off" Send="Destroy"/>
+        <On Terms="Behavior.NanoHasteLevel3.Off" Send="Destroy"/>
+        <HostSiteOps Ops="SOpAttachOverhead"/>
+    </CActorModel>
+    <CActorModel id="NanoPlagueBuff" parent="ModelAnimationStyleContinuous">
+        <EditorCategories value=""/>
+        <On Terms="Behavior.NanoPlague.On" Send="Create"/>
+        <On Terms="Behavior.NanoPlagueSecondary.On" Send="Create"/>
+        <On Terms="Behavior.NanoPlague.Off" Send="Destroy"/>
+        <On Terms="Behavior.NanoPlagueSecondary.Off" Send="Destroy"/>
+    </CActorModel>
+    <CActorModel id="NanoSearBuff" parent="ModelAnimationStyleContinuous">
+        <EditorCategories value=""/>
+        <On Terms="Behavior.NanoSearDamageDoT.On" Send="Create"/>
+        <On Terms="Behavior.NanoSearDamageDoT.Off" Send="Destroy"/>
+    </CActorModel>
+    <CActorModel id="NanoSearCloud" parent="ModelAnimationStyleContinuous">
+        <EditorCategories value=""/>
+        <On Terms="Effect.NanoSear.Start" Send="Create"/>
+        <On Terms="Effect.NanoSear.Stop" Send="Destroy"/>
+    </CActorModel>
+    <CActorModel id="NanoShieldBuff" parent="ModelAddition">
+        <EditorCategories value=""/>
+        <On index="0" Terms="ActorCreation" Send="AnimBracketStart BSD Birth Stand"/>
+        <On index="2" Terms="Behavior.NanoShieldArmor.On" Send="Create"/>
+        <On Terms="Behavior.NanoShieldArmor.Off" Send="AnimBracketStop BSD"/>
+        <On Terms="Behavior.NanoShieldArmor.Off; ValidateUnit hasShields IncludeDerivedSnapshot" Send="AnimPlay Shield Death"/>
+        <On Terms="Behavior.NanoShieldArmor.Off; ValidateUnit noShields IncludeDerivedSnapshot" Send="AnimPlay Shield Death,Alternate"/>
+        <On Terms="AnimDone.*.Complete; AnimName Shield" Send="Destroy"/>
+    </CActorModel>
+    <CActorModel id="NanoShockImpact" parent="ModelAnimationStyleOneShot">
+        <EditorCategories value=""/>
+        <On Terms="Effect.NanoShockLevel1.Impact" Send="Create"/>
+        <On Terms="Effect.NanoShockLevel2.Impact" Send="Create"/>
+        <On Terms="Effect.NanoShockLevel3.Impact" Send="Create"/>
+    </CActorModel>
+    <CActorModel id="NanoStrengthBuff" parent="ModelAnimationStyleContinuous">
+        <EditorCategories value=""/>
+        <On Terms="Behavior.NanoStrength.On" Send="Create"/>
+        <On Terms="Behavior.NanoStrength.Off" Send="Destroy"/>
+    </CActorModel>
+    <CActorModel id="VolatileInjectionBuff" parent="ModelAnimationStyleContinuous">
+        <EditorCategories value=""/>
+        <On Terms="Behavior.VolatileInjectionLevel1.On" Send="Create"/>
+        <On Terms="Behavior.VolatileInjectionLevel2.On" Send="Create"/>
+        <On Terms="Behavior.VolatileInjectionLevel3.On" Send="Create"/>
+    </CActorModel>
+    <CActorModel id="VolatileInjectionDetonation" parent="ModelAnimationStyleOneShot">
+        <EditorCategories value=""/>
+        <On Terms="Effect.VolatileInjectionSearchLevel1.Start" Send="Create"/>
+        <On Terms="Effect.VolatileInjectionSearchLevel2.Start" Send="Create"/>
+        <On Terms="Effect.VolatileInjectionSearchLevel3.Start" Send="Create"/>
+    </CActorModel>
+    <CActorRange id="VolatileInjectionRange" parent="RangeAbil" abil="VolatileInjection">
+        <EditorCategories value=""/>
+    </CActorRange>
+    <CValidatorCombine id="Healing">
+        <Type value="And"/>
+        <CombineArray value="HealRange"/>
+        <CombineArray value="IsHealing"/>
+        <CombineArray value="MedicOutofCombat"/>
+    </CValidatorCombine>
     <CValidatorPlayerRequirement id="AftershockLevel1">
         <Find value="1"/>
         <Value value="AftershockLevel1"/>
@@ -274,6 +617,24 @@
         <Value value="1"/>
         <Behavior value="NanoShockSlowLevel3"/>
     </CValidatorUnitCompareBehaviorCount>
+    <CEffectCreatePersistent id="HealOpenWoundRemovalLevel1">
+        <EditorCategories value=""/>
+        <WhichLocation Value="TargetUnit"/>
+        <InitialEffect value="RemoveOpenWound"/>
+    </CEffectCreatePersistent>
+    <CEffectCreatePersistent id="HealOpenWoundRemovalLevel2">
+        <EditorCategories value=""/>
+        <WhichLocation Value="TargetUnit"/>
+        <InitialEffect value="RemoveOpenWound"/>
+    </CEffectCreatePersistent>
+    <CEffectCreatePersistent id="HealOpenWoundRemovalLevel22">
+        <EditorCategories value=""/>
+        <WhichLocation Value="TargetUnit"/>
+        <InitialEffect value="RemoveOpenWound"/>
+        <PeriodCount value="1"/>
+        <PeriodicEffectArray value="RemoveOpenWound"/>
+        <PeriodicPeriodArray value="0"/>
+    </CEffectCreatePersistent>
     <CEffectApplyBehavior id="Aftershock">
         <EditorCategories value=""/>
     </CEffectApplyBehavior>
@@ -362,104 +723,38 @@
         <EditorCategories value=""/>
         <EffectArray value="Bandage"/>
     </CEffectSet>
-    <CEffectDestroyPersistent id="HealRemoveOpenWoundsDestroyPersistentLevel12">
-        <EditorCategories value=""/>
-        <WhichLocation Value="TargetUnit"/>
-        <Effect value="HealRemoveOpenWoundsPersistentLevel2"/>
-        <Count value="1"/>
-    </CEffectDestroyPersistent>
-    <CEffectDestroyPersistent id="HealRemoveOpenWoundsDestroyPersistentLevel122">
-        <EditorCategories value=""/>
-        <WhichLocation Value="TargetUnit"/>
-        <Effect value="HealRemoveOpenWoundsDestroyPersistentLevel122"/>
-        <Count value="1"/>
-    </CEffectDestroyPersistent>
-    <CEffectSet id="HealRemoveOpenWoundsDestroyPersistentSet">
-        <EditorCategories value=""/>
-        <EffectArray value="HealRemoveOpenWoundsDestroyPersistentLevel1"/>
-        <EffectArray value="HealRemoveOpenWoundsDestroyPersistentLevel12"/>
-        <EffectArray value="HealRemoveOpenWoundsDestroyPersistentLevel122"/>
-        <EffectArray value="CancelHealing"/>
-    </CEffectSet>
-    <CEffectDestroyPersistent id="HealRemoveOpenWoundsDestroyPersistentLevel1">
-        <EditorCategories value=""/>
-        <WhichLocation Value="TargetUnit"/>
-        <Effect value="HealRemoveOpenWoundsPersistentLevel1"/>
-        <Count value="1"/>
-    </CEffectDestroyPersistent>
-    <CEffectCreatePersistent id="HealRemoveOpenWoundsPersistentLevel1">
-        <ValidatorArray value="HaveMedicalExpertise"/>
-        <EditorCategories value=""/>
-        <Flags index="PersistUntilDestroyed" value="1"/>
-        <PeriodicEffectArray value="RemoveOpenWoundTarget"/>
-        <PeriodicPeriodArray value="8"/>
-    </CEffectCreatePersistent>
     <CEffectCreateHealer id="HealLevel1">
         <EditorCategories value=""/>
-        <Flags index="Channeled" value="0"/>
         <PeriodicValidator value="Healing"/>
         <DrainVital value="Energy"/>
-        <DrainVitalCostFactor value="0.625"/>
+        <DrainVitalCostFactor value="1.25"/>
         <RechargeVitalRate value="4"/>
-        <InitialEffect value="HealingIntialSet"/>
-        <FinalEffect value="HealRemoveOpenWoundsDestroyPersistentSet"/>
-        <PeriodicPeriod value="0.25"/>
+        <PeriodicPeriod value="1"/>
+        <PeriodicEffect value="HealOpenWoundRemovalLevel1"/>
+        <FinalEffect value="CancelHealing"/>
     </CEffectCreateHealer>
     <CEffectCreateHealer id="HealLevel2">
         <EditorCategories value=""/>
         <Flags index="Channeled" value="0"/>
         <PeriodicValidator value="Healing"/>
         <DrainVital value="Energy"/>
-        <DrainVitalCostFactor value="0.4167"/>
-        <RechargeVitalRate value="6"/>
-        <InitialEffect value="HealingIntialSetLevel2"/>
-        <FinalEffect value="HealRemoveOpenWoundsDestroyPersistentSet"/>
-        <PeriodicPeriod value="0.25"/>
+        <DrainVitalCostFactor value="1.25"/>
+        <RechargeVitalRate value="4"/>
+        <PeriodicPeriod value="1"/>
+        <PeriodicEffect value="HealOpenWoundRemovalLevel2"/>
+        <FinalEffect value="CancelHealing"/>
     </CEffectCreateHealer>
     <CEffectCreateHealer id="HealLevel3">
         <EditorCategories value=""/>
         <Flags index="Channeled" value="0"/>
         <PeriodicValidator value="Healing"/>
         <DrainVital value="Energy"/>
-        <DrainVitalCostFactor value="0.3125"/>
+        <DrainVitalCostFactor value="0.625"/>
         <RechargeVitalRate value="8"/>
-        <InitialEffect value="HealingIntialSetLevel3"/>
-        <FinalEffect value="HealRemoveOpenWoundsDestroyPersistentSet"/>
-        <PeriodicPeriod value="0.25"/>
+        <PeriodicPeriod value="1"/>
+        <PeriodicEffect value="HealOpenWoundRemovalLevel22"/>
+        <FinalEffect value="CancelHealing"/>
     </CEffectCreateHealer>
-    <CEffectCreatePersistent id="HealRemoveOpenWoundsPersistentLevel2">
-        <ValidatorArray value="HaveMedicalExpertise"/>
-        <EditorCategories value=""/>
-        <Flags index="PersistUntilDestroyed" value="1"/>
-        <PeriodicEffectArray value="RemoveOpenWoundTarget"/>
-        <PeriodicPeriodArray value="6"/>
-    </CEffectCreatePersistent>
-    <CEffectCreatePersistent id="HealRemoveOpenWoundsPersistentLevel3">
-        <ValidatorArray value="HaveMedicalExpertise"/>
-        <EditorCategories value=""/>
-        <Flags index="PersistUntilDestroyed" value="1"/>
-        <PeriodicEffectArray value="RemoveOpenWoundTarget"/>
-        <PeriodicPeriodArray value="4"/>
-    </CEffectCreatePersistent>
-    <CEffectApplyBehavior id="Healing">
-        <EditorCategories value=""/>
-        <WhichUnit Value="Caster"/>
-    </CEffectApplyBehavior>
-    <CEffectSet id="HealingIntialSet">
-        <EditorCategories value=""/>
-        <EffectArray value="Healing"/>
-        <EffectArray value="HealRemoveOpenWoundsPersistentLevel1"/>
-    </CEffectSet>
-    <CEffectSet id="HealingIntialSetLevel2">
-        <EditorCategories value=""/>
-        <EffectArray value="Healing"/>
-        <EffectArray value="HealRemoveOpenWoundsPersistentLevel2"/>
-    </CEffectSet>
-    <CEffectSet id="HealingIntialSetLevel3">
-        <EditorCategories value=""/>
-        <EffectArray value="Healing"/>
-        <EffectArray value="HealRemoveOpenWoundsPersistentLevel3"/>
-    </CEffectSet>
     <CEffectDamage id="IntolerableCrueltyDamage">
         <EditorCategories value=""/>
     </CEffectDamage>
@@ -744,6 +1039,9 @@
     <CBehaviorBuff id="Healing">
         <InfoFlags index="Hidden" value="1"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
+        <Modification>
+            <StateFlags index="Passive" value="1"/>
+        </Modification>
     </CBehaviorBuff>
     <CBehaviorBuff id="NanoHasteLevel1">
         <Alignment value="Positive"/>

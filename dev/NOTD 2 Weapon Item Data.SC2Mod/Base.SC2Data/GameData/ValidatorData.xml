@@ -295,45 +295,10 @@
         <Compare value="LT"/>
         <Range value="6"/>
     </CValidatorLocationCompareRange>
-    <CValidatorUnitCompareBehaviorCount id="UnithasArmFracture">
-        <Value value="1"/>
-        <Behavior value="FractureArm"/>
-    </CValidatorUnitCompareBehaviorCount>
-    <CValidatorCombine id="UnithasArmandLegFracture">
-        <Type value="And"/>
-        <CombineArray value="UnithasArmFracture"/>
-        <CombineArray value="UnithasLegFracture"/>
-    </CValidatorCombine>
     <CValidatorUnitInventoryContainsItem id="UnithasBandage">
         <WhichUnit Value="Caster"/>
         <Item value="Bandage"/>
     </CValidatorUnitInventoryContainsItem>
-    <CValidatorUnitCompareBehaviorCount id="UnithasBrokenArm">
-        <Value value="1"/>
-        <Behavior value="BrokenArm"/>
-    </CValidatorUnitCompareBehaviorCount>
-    <CValidatorCombine id="UnithasBrokenArmandLeg">
-        <Type value="And"/>
-        <CombineArray value="UnithasBrokenArm"/>
-        <CombineArray value="UnithasBrokenLeg"/>
-    </CValidatorCombine>
-    <CValidatorUnitCompareBehaviorCount id="UnithasBrokenLeg">
-        <Value value="1"/>
-        <Behavior value="BrokenLeg"/>
-    </CValidatorUnitCompareBehaviorCount>
-    <CValidatorUnitCompareBehaviorCount id="UnithasLegFracture">
-        <Value value="1"/>
-        <Behavior value="FractureLeg"/>
-    </CValidatorUnitCompareBehaviorCount>
-    <CValidatorUnitCompareBehaviorCount id="UnithasOpenWound">
-        <Compare value="GT"/>
-        <Behavior value="OpenWound"/>
-    </CValidatorUnitCompareBehaviorCount>
-    <CValidatorUnitCompareBehaviorCount id="UnithasVenom">
-        <Compare value="GT"/>
-        <Behavior value="Venom"/>
-    </CValidatorUnitCompareBehaviorCount>
-    <CValidatorPlayerCompareRace id="UnitisfromZombies"/>
     <CValidatorUnitCompareBehaviorCount id="EquippedWeaponisRailgun" parent="EquippedWeaponTemplate" Weapon="RailgunEquipped"/>
     <CValidatorUnitCompareBehaviorCount id="EquippedWeaponisGrenadeLauncher" parent="EquippedWeaponTemplate" Weapon="GrenadeLauncherEquipped"/>
     <CValidatorUnitCompareBehaviorCount id="EquippedWeaponisPlasmaCannon" parent="EquippedWeaponTemplate" Weapon="PlasmaCannonEquipped"/>
