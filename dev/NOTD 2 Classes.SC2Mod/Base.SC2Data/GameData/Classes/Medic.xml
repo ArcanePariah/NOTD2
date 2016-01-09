@@ -617,6 +617,13 @@
         <Value value="1"/>
         <Behavior value="NanoShockSlowLevel3"/>
     </CValidatorUnitCompareBehaviorCount>
+    <CEffectSet id="NanoHasteBoneandFractureRemoval">
+        <EditorCategories value=""/>
+        <EffectArray value="RemoveArmFracture"/>
+        <EffectArray value="RemoveLegFracture"/>
+        <EffectArray value="RemoveBrokenArmTarget"/>
+        <EffectArray value="RemoveBrokenLegTarget"/>
+    </CEffectSet>
     <CEffectCreatePersistent id="HealOpenWoundRemovalLevel1">
         <EditorCategories value=""/>
         <WhichLocation Value="TargetUnit"/>
@@ -691,12 +698,6 @@
         <EditorCategories value=""/>
         <VitalArray index="Life" Change="10"/>
     </CEffectModifyUnit>
-    <CEffectSwitch id="BrokenBonetoFractureConversion">
-        <EditorCategories value=""/>
-        <CaseArray Validator="UnithasBrokenArmandLeg" Effect="ConvertRandomBrokenBonetoFracture"/>
-        <CaseArray Validator="UnithasBrokenLeg" Effect="ConvertBrokenLegtoLegFracture"/>
-        <CaseArray Validator="UnithasBrokenArm" Effect="ConvertBrokenArmtoArmFracture"/>
-    </CEffectSwitch>
     <CEffectRemoveBehavior id="CancelHealing">
         <EditorCategories value=""/>
         <BehaviorLink value="Healing"/>
@@ -758,12 +759,6 @@
     <CEffectDamage id="IntolerableCrueltyDamage">
         <EditorCategories value=""/>
     </CEffectDamage>
-    <CEffectCreatePersistent id="NanoHasteFractureRepair">
-        <EditorCategories value=""/>
-        <WhichLocation Value="TargetUnit"/>
-        <PeriodicEffectArray value="FractureRemoval"/>
-        <PeriodicPeriodArray value="10"/>
-    </CEffectCreatePersistent>
     <CEffectApplyBehavior id="NanoHasteLevel1">
         <EditorCategories value=""/>
     </CEffectApplyBehavior>
@@ -1047,28 +1042,24 @@
         <Alignment value="Positive"/>
         <InfoIcon value="btn-tomahawkpowercell.dds"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
-        <Duration value="40"/>
-        <InitialEffect value="NanoHasteFractureRepair"/>
-        <PeriodicEffect value="BrokenBonetoFractureConversion"/>
-        <Modification MoveSpeedMultiplier="1.1" AttackSpeedMultiplier="1.1"/>
+        <Duration value="60"/>
+        <Modification MoveSpeedMultiplier="1.2"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="NanoHasteLevel2">
         <Alignment value="Positive"/>
         <InfoIcon value="btn-tomahawkpowercell.dds"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
-        <Duration value="50"/>
-        <InitialEffect value="NanoHasteFractureRepair"/>
-        <PeriodicEffect value="BrokenBonetoFractureConversion"/>
-        <Modification MoveSpeedMultiplier="1.15" AttackSpeedMultiplier="1.15"/>
+        <Duration value="60"/>
+        <InitialEffect value="NanoHasteBoneandFractureRemoval"/>
+        <Modification MoveSpeedMultiplier="1.2"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="NanoHasteLevel3">
         <Alignment value="Positive"/>
         <InfoIcon value="btn-tomahawkpowercell.dds"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
         <Duration value="60"/>
-        <InitialEffect value="NanoHasteFractureRepair"/>
-        <PeriodicEffect value="BrokenBonetoFractureConversion"/>
-        <Modification MoveSpeedMultiplier="1.2" AttackSpeedMultiplier="1.2"/>
+        <InitialEffect value="NanoHasteBoneandFractureRemoval"/>
+        <Modification MoveSpeedMultiplier="1.2"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="NanoPlague">
         <BehaviorFlags index="EnabledWhileDead" value="1"/>

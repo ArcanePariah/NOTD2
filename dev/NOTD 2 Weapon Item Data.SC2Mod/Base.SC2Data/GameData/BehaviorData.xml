@@ -170,25 +170,6 @@
         </Modification>
     </CBehaviorBuff>
     <CBehaviorBuff id="HammerEquipped" parent="WeaponEquippedTemplate"/>
-    <CBehaviorBuff id="BrokenArm">
-        <Alignment value="Negative"/>
-        <EditorCategories value="Race:Injury Debuff"/>
-        <TechAliasArray value="_BrokenBone"/>
-        <Duration value="360"/>
-        <Modification AttackSpeedMultiplier="0.35">
-            <DamageDealtFraction index="Spell" value="-0.4"/>
-            <DamageDealtFraction index="Melee" value="-0.4"/>
-            <DamageDealtFraction index="Ranged" value="-0.4"/>
-            <DamageDealtFraction index="Splash" value="-0.4"/>
-        </Modification>
-    </CBehaviorBuff>
-    <CBehaviorBuff id="BrokenLeg">
-        <Alignment value="Negative"/>
-        <EditorCategories value="Race:Injury Debuff"/>
-        <TechAliasArray value="_BrokenBone"/>
-        <Duration value="360"/>
-        <Modification MoveSpeedMultiplier="0.45"/>
-    </CBehaviorBuff>
     <CBehaviorBuff id="ChainsawBodyTrauma">
         <EditorCategories value="Race:Equip Weapon"/>
         <DamageResponse Chance="0.25" Handled="ChainsawBodyTraumaStun" Location="Attacker">
