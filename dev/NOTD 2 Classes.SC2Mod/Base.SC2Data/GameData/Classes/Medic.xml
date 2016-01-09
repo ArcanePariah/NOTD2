@@ -526,6 +526,19 @@
     <CActorRange id="VolatileInjectionRange" parent="RangeAbil" abil="VolatileInjection">
         <EditorCategories value=""/>
     </CActorRange>
+    <CValidatorUnitCompareBehaviorCount id="TargetHastNanoHasteLevel2">
+        <Value value="1"/>
+        <Behavior value="NanoHasteLevel2"/>
+    </CValidatorUnitCompareBehaviorCount>
+    <CValidatorUnitCompareBehaviorCount id="TargetHastNanoHasteLevel3">
+        <Value value="1"/>
+        <Behavior value="NanoHasteLevel3"/>
+    </CValidatorUnitCompareBehaviorCount>
+    <CValidatorCombine id="TargetNotFractureBrokenImmune">
+        <CombineArray value="TargetHastNanoHasteLevel2"/>
+        <CombineArray value="TargetHastNanoHasteLevel3"/>
+        <Negate value="1"/>
+    </CValidatorCombine>
     <CValidatorCombine id="Healing">
         <Type value="And"/>
         <CombineArray value="HealRange"/>
