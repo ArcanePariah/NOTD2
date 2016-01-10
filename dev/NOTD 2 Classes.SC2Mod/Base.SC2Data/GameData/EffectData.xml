@@ -21,10 +21,18 @@
         <ExcludeArray Value="Target"/>
         <SearchFilters value="-;Player,Ally,Neutral,Item,Invulnerable"/>
     </CEffectDamage>
-    <CEffectApplyBehavior id="ApplyArmFracture"/>
-    <CEffectApplyBehavior id="ApplyBrokenArm"/>
-    <CEffectApplyBehavior id="ApplyBrokenLeg"/>
-    <CEffectApplyBehavior id="ApplyLegFracture"/>
+    <CEffectApplyBehavior id="ApplyArmFracture">
+        <ValidatorArray index="0" value="TargetNotFractureBrokenImmune"/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="ApplyBrokenArm">
+        <ValidatorArray index="0" value="TargetNotFractureBrokenImmune"/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="ApplyBrokenLeg">
+        <ValidatorArray index="0" value="TargetNotFractureBrokenImmune"/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="ApplyLegFracture">
+        <ValidatorArray index="0" value="TargetNotFractureBrokenImmune"/>
+    </CEffectApplyBehavior>
     <CEffectDamage id="IFV25mmHEAutocannonDamage">
         <EditorCategories value=""/>
         <ImpactLocation Value="TargetUnit"/>

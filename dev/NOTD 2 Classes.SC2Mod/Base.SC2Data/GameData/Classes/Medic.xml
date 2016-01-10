@@ -39,17 +39,9 @@
     <CAbilEffectTarget id="NanoHaste" parent="3LevelEffectTargetAbility">
         <Cost>
             <Vital index="Energy" value="10"/>
-            <Cooldown TimeUse="60"/>
+            <Cooldown TimeUse="12"/>
         </Cost>
-        <Cost>
-            <Vital index="Energy" value="10"/>
-            <Cooldown TimeUse="50"/>
-        </Cost>
-        <Cost>
-            <Vital index="Energy" value="10"/>
-            <Cooldown TimeUse="40"/>
-        </Cost>
-        <TargetFilters value="-;Neutral,Enemy"/>
+        <TargetFilters value="Biological;Neutral,Enemy"/>
         <Range value="6"/>
     </CAbilEffectTarget>
     <CAbilEffectTarget id="NanoPlague" parent="AbilityWithButtonTargetTemplate">
@@ -94,8 +86,8 @@
     </CAbilEffectTarget>
     <CAbilEffectTarget id="NanoWeave" parent="2LevelEffectTargetAbility">
         <Cost>
-            <Vital index="Energy" value="40"/>
-            <Cooldown TimeUse="15"/>
+            <Vital index="Energy" value="30"/>
+            <Cooldown TimeUse="20"/>
         </Cost>
         <TargetFilters value="Biological;Neutral,Enemy,Item"/>
         <Range value="6"/>
@@ -902,17 +894,15 @@
     <CEffectSet id="NanoWeaveLevel1">
         <EditorCategories value=""/>
         <EffectArray value="NanoWeavePersistentLevel1"/>
-        <EffectArray value="WeaveAilmentHealLevel1"/>
     </CEffectSet>
     <CEffectSet id="NanoWeaveLevel2">
         <EditorCategories value=""/>
         <EffectArray value="NanoWeavePersistentLevel2"/>
-        <EffectArray value="WeaveAilmentHealLevel12"/>
     </CEffectSet>
     <CEffectCreatePersistent id="NanoWeavePersistentLevel2">
         <EditorCategories value=""/>
         <WhichLocation Value="TargetUnit"/>
-        <PeriodCount value="15"/>
+        <PeriodCount value="20"/>
         <PeriodicEffectArray value="NanoWeaveHealLevel2"/>
         <PeriodicPeriodArray value="1"/>
     </CEffectCreatePersistent>
@@ -922,7 +912,7 @@
     <CEffectCreatePersistent id="NanoWeavePersistentLevel1">
         <EditorCategories value=""/>
         <WhichLocation Value="TargetUnit"/>
-        <PeriodCount value="15"/>
+        <PeriodCount value="10"/>
         <PeriodicEffectArray value="NanoWeaveHealLevel1"/>
         <PeriodicPeriodArray value="1"/>
     </CEffectCreatePersistent>
@@ -944,7 +934,7 @@
     </CEffectModifyUnit>
     <CEffectModifyUnit id="NanoWeaveHealLevel2">
         <EditorCategories value=""/>
-        <VitalArray index="Life" Change="8"/>
+        <VitalArray index="Life" Change="5"/>
     </CEffectModifyUnit>
     <CEffectDamage id="VolatileInjectionDamageLevel1">
         <EditorCategories value=""/>

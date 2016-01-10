@@ -1594,44 +1594,6 @@ void libC50FD636_gt_DropItems_Init () {
 }
 
 //--------------------------------------------------------------------------------------------------
-// Trigger: Weave Ailment Removal
-//--------------------------------------------------------------------------------------------------
-bool libC50FD636_gt_WeaveAilmentRemoval_Func (bool testConds, bool runActions) {
-    // Variable Declarations
-    string[10] lv_ailmentArray;
-    int lv_ailmentIndex;
-
-    // Variable Initialization
-
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    IntLoopBegin(1, UserDataInstanceCount("Ailments"));
-    for ( ; !IntLoopDone() ; IntLoopStep() ) {
-        if ((UnitHasBehavior(EventUnit(), UserDataGetGameLink("Ailments", UserDataInstance("Ailments", IntLoopCurrent()), "Behavior", 1)) == true)) {
-            lv_ailmentIndex += 1;
-            lv_ailmentArray[lv_ailmentIndex] = UserDataGetGameLink("Ailments", UserDataInstance("Ailments", IntLoopCurrent()), "Behavior", 1);
-        }
-        else {
-        }
-    }
-    IntLoopEnd();
-    if ((lv_ailmentIndex != 0)) {
-        UnitBehaviorRemove(EventUnit(), lv_ailmentArray[RandomInt(1, lv_ailmentIndex)], 1);
-    }
-    return true;
-}
-
-//--------------------------------------------------------------------------------------------------
-void libC50FD636_gt_WeaveAilmentRemoval_Init () {
-    libC50FD636_gt_WeaveAilmentRemoval = TriggerCreate("libC50FD636_gt_WeaveAilmentRemoval_Func");
-    TriggerAddEventUnitBehaviorChange(libC50FD636_gt_WeaveAilmentRemoval, null, "WeaveAilmentHealLevel1", c_unitBehaviorChangeDestroy);
-    TriggerAddEventUnitBehaviorChange(libC50FD636_gt_WeaveAilmentRemoval, null, "WeaveAilmentHealLevel2", c_unitBehaviorChangeDestroy);
-}
-
-//--------------------------------------------------------------------------------------------------
 // Trigger: Lockdown Enabled on Equip
 //--------------------------------------------------------------------------------------------------
 bool libC50FD636_gt_LockdownEnabledonEquip_Func (bool testConds, bool runActions) {
@@ -3165,7 +3127,6 @@ void libC50FD636_InitTriggers () {
     libC50FD636_gt_GroundIlluminationFlareFlareGunVisionShare_Init();
     libC50FD636_gt_StealthMatrixDeactivate_Init();
     libC50FD636_gt_DropItems_Init();
-    libC50FD636_gt_WeaveAilmentRemoval_Init();
     libC50FD636_gt_LockdownEnabledonEquip_Init();
     libC50FD636_gt_LockdownEnabled_Init();
     libC50FD636_gt_LockdownDisabled_Init();
