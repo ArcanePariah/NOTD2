@@ -1,5 +1,47 @@
 <?xml version="1.0" encoding="us-ascii"?>
 <Catalog>
+    <CAbilLearn id="Medic2Learn" parent="LearnTemplate">
+        <Name value="Abil/Name/Medic2Learn"/>
+        <InfoArray index="Learn1" Abil="Heal">
+            <Button DefaultButtonFace="HealNOTD"/>
+        </InfoArray>
+        <InfoArray index="Learn2" Abil="Haste">
+            <Button DefaultButtonFace="Haste"/>
+        </InfoArray>
+        <InfoArray index="Learn3" Abil="NanoWeave">
+            <Button DefaultButtonFace="NanoWeave"/>
+        </InfoArray>
+        <InfoArray index="Learn4" Abil="Vaccinate">
+            <Button DefaultButtonFace="Vaccinate"/>
+        </InfoArray>
+        <InfoArray index="Learn5" Abil="NanoShield">
+            <Button DefaultButtonFace="NanoShield"/>
+        </InfoArray>
+        <InfoArray index="Learn6" Abil="NanoStrength">
+            <Button DefaultButtonFace="NanoStrength"/>
+        </InfoArray>
+        <InfoArray index="Learn7" Abil="NanoShock">
+            <Button DefaultButtonFace="NanoShock"/>
+        </InfoArray>
+        <InfoArray index="Learn8" Abil="VolatileInjection">
+            <Button DefaultButtonFace="VolatileInjection"/>
+        </InfoArray>
+        <InfoArray index="Learn9" Abil="Aftershock">
+            <Button DefaultButtonFace="Aftershock"/>
+        </InfoArray>
+        <InfoArray index="Learn10" Abil="IntolerableCruelty">
+            <Button DefaultButtonFace="IntolerableCruelty"/>
+        </InfoArray>
+        <InfoArray index="Learn11" Abil="NanoSear">
+            <Button DefaultButtonFace="NanoSear"/>
+        </InfoArray>
+        <InfoArray index="Learn12" Abil="NanoPlague">
+            <Button DefaultButtonFace="NanoPlague"/>
+        </InfoArray>
+        <InfoArray index="Learn20" Abil="Antivenom">
+            <Button DefaultButtonFace="Antivenom"/>
+        </InfoArray>
+    </CAbilLearn>
     <CAbilEffectTarget id="Purify" parent="AbilityWithButtonTargetTemplate"/>
     <CAbilEffectTarget id="Vaccinate" parent="2LevelEffectTargetAbility"/>
     <CAbilEffectInstant id="Aftershock" parent="2LevelEffectInstantAbility">
@@ -41,8 +83,7 @@
     <CAbilEffectTarget id="Haste" parent="3LevelEffectTargetAbility">
         <Cost>
             <Vital index="Energy" value="10"/>
-            <Charge Link="Abil/NanoHaste"/>
-            <Cooldown Link="Abil/NanoHaste" TimeUse="12"/>
+            <Cooldown TimeUse="12"/>
         </Cost>
         <TargetFilters value="Biological;Neutral,Enemy"/>
         <Range value="6"/>
