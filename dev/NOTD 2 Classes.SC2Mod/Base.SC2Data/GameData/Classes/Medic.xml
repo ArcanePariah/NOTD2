@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="us-ascii"?>
 <Catalog>
+    <CAbilEffectTarget id="Purify" parent="AbilityWithButtonTargetTemplate"/>
+    <CAbilEffectTarget id="Vaccinate" parent="2LevelEffectTargetAbility"/>
     <CAbilEffectInstant id="Aftershock" parent="2LevelEffectInstantAbility">
         <Effect index="0" value="Aftershock"/>
         <Effect index="1" value="Aftershock"/>
@@ -250,6 +252,8 @@
     <CModel id="VolatileInjectionDetonation">
         <Model value="Assets\Effects\Zerg\ParasiteImpact\ParasiteImpact.m3"/>
     </CModel>
+    <CButton id="Purify" parent="MarineButton"/>
+    <CButton id="Vaccinate" parent="MarineButton"/>
     <CButton id="CancelHealing">
         <Icon value="btn-command-cancel.dds"/>
         <HotkeyAlias value="HealNOTD"/>
@@ -302,6 +306,12 @@
         <Speed value="2.586"/>
         <GlossaryPriority value="2"/>
     </CUnit>
+    <CUpgrade id="NanoHasteJumpRange" parent="DefaultUpgradeOverride">
+        <EffectArray Reference="Abil,HeavyJump,Range[0]" Value="2"/>
+        <EffectArray Reference="Abil,LightJump,Range[0]" Value="2"/>
+        <EffectArray Reference="Abil,MediumJump,Range[0]" Value="2"/>
+        <EffectArray Reference="Abil,PathfinderJump,Range[0]" Value="2"/>
+    </CUpgrade>
     <CUpgrade id="MedicalExpertiseLevel2" parent="DefaultUpgradeOverride">
         <Flags index="UpgradeCheat" value="1"/>
         <EffectArray Operation="Divide" Reference="Abil,Antivenom,Cost[0].Vital[Energy]" Value="2"/>
@@ -518,6 +528,9 @@
     <CActorRange id="VolatileInjectionRange" parent="RangeAbil" abil="VolatileInjection">
         <EditorCategories value=""/>
     </CActorRange>
+    <CValidatorUnitCompareBehaviorCount id="TargetNotVaccinated">
+        <Behavior value="VaccinateImmunity"/>
+    </CValidatorUnitCompareBehaviorCount>
     <CValidatorUnitCompareBehaviorCount id="TargetHastNanoHasteLevel2">
         <Value value="1"/>
         <Behavior value="NanoHasteLevel2"/>
@@ -622,6 +635,59 @@
         <Value value="1"/>
         <Behavior value="NanoShockSlowLevel3"/>
     </CValidatorUnitCompareBehaviorCount>
+    <CEffectCreatePersistent id="Purify">
+        <EditorCategories value=""/>
+        <InitialDelay value="2.5"/>
+        <InitialEffect value="PurifySet"/>
+    </CEffectCreatePersistent>
+    <CEffectSet id="PurifyAilmentPurge">
+        <EditorCategories value=""/>
+        <EffectArray value="RemoveOpenWound"/>
+        <EffectArray value="RemoveShortCircuit"/>
+        <EffectArray value="RemoveVenom"/>
+        <EffectArray value="RemoveBlind"/>
+        <EffectArray value="RemoveArmFracture"/>
+        <EffectArray value="RemoveLegFracture"/>
+        <EffectArray value="RemoveBrokenArmTarget"/>
+        <EffectArray value="RemoveBrokenLegTarget"/>
+    </CEffectSet>
+    <CEffectModifyUnit id="PurifyHeal">
+        <EditorCategories value=""/>
+        <VitalArray index="Life" ChangeFraction="1"/>
+    </CEffectModifyUnit>
+    <CEffectCreatePersistent id="PurifyPurgePersistent">
+        <EditorCategories value=""/>
+        <WhichLocation Value="TargetUnit"/>
+        <PeriodCount value="20"/>
+        <PeriodicEffectArray value="PurifyAilmentPurge"/>
+        <PeriodicPeriodArray value="0"/>
+    </CEffectCreatePersistent>
+    <CEffectSet id="PurifySet">
+        <EditorCategories value=""/>
+        <EffectArray value="PurifyHeal"/>
+        <EffectArray value="PurifyPurgePersistent"/>
+    </CEffectSet>
+    <CEffectApplyBehavior id="VaccinateDamageReduction">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="VaccinateImmunity">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectSet id="VaccinateLevel1">
+        <EditorCategories value=""/>
+    </CEffectSet>
+    <CEffectSet id="VaccinateLevel2">
+        <EditorCategories value=""/>
+    </CEffectSet>
+    <CEffectRemoveBehavior id="VaccinateRemoveParasite">
+        <EditorCategories value=""/>
+    </CEffectRemoveBehavior>
+    <CEffectRemoveBehavior id="VaccinateRemovePoison">
+        <EditorCategories value=""/>
+    </CEffectRemoveBehavior>
+    <CEffectRemoveBehavior id="VaccinateRemoveVenom">
+        <EditorCategories value=""/>
+    </CEffectRemoveBehavior>
     <CEffectSet id="NanoHasteBoneandFractureRemoval">
         <EditorCategories value=""/>
         <EffectArray value="RemoveArmFracture"/>
@@ -1162,6 +1228,9 @@
         <EditorCategories value="AbilityorEffectType:Units"/>
         <Duration value="3"/>
         <Modification MoveSpeedMultiplier="0.55" AttackSpeedMultiplier="0.55"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="VaccinateImmunity">
+        <EditorCategories value="AbilityorEffectType:Units"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="VolatileInjectionLevel2">
         <Alignment value="Negative"/>

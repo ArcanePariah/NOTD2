@@ -1594,6 +1594,31 @@ void libC50FD636_gt_DropItems_Init () {
 }
 
 //--------------------------------------------------------------------------------------------------
+// Trigger: Nano Haste Jump Upgrade
+//--------------------------------------------------------------------------------------------------
+bool libC50FD636_gt_NanoHasteJumpUpgrade_Func (bool testConds, bool runActions) {
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((EventUnitBehaviorChange() == c_unitBehaviorChangeCreate)) {
+        libNtve_gf_SetUpgradeLevelForPlayer(UnitGetOwner(EventUnit()), "NanoHasteJumpRange", 1);
+    }
+    if ((EventUnitBehaviorChange() == c_unitBehaviorChangeDestroy)) {
+        libNtve_gf_SetUpgradeLevelForPlayer(UnitGetOwner(EventUnit()), "NanoHasteJumpRange", 0);
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libC50FD636_gt_NanoHasteJumpUpgrade_Init () {
+    libC50FD636_gt_NanoHasteJumpUpgrade = TriggerCreate("libC50FD636_gt_NanoHasteJumpUpgrade_Func");
+    TriggerAddEventUnitBehaviorChange(libC50FD636_gt_NanoHasteJumpUpgrade, null, "NanoHasteLevel3", c_unitBehaviorChangeCreate);
+    TriggerAddEventUnitBehaviorChange(libC50FD636_gt_NanoHasteJumpUpgrade, null, "NanoHasteLevel3", c_unitBehaviorChangeDestroy);
+}
+
+//--------------------------------------------------------------------------------------------------
 // Trigger: Lockdown Enabled on Equip
 //--------------------------------------------------------------------------------------------------
 bool libC50FD636_gt_LockdownEnabledonEquip_Func (bool testConds, bool runActions) {
@@ -3127,6 +3152,7 @@ void libC50FD636_InitTriggers () {
     libC50FD636_gt_GroundIlluminationFlareFlareGunVisionShare_Init();
     libC50FD636_gt_StealthMatrixDeactivate_Init();
     libC50FD636_gt_DropItems_Init();
+    libC50FD636_gt_NanoHasteJumpUpgrade_Init();
     libC50FD636_gt_LockdownEnabledonEquip_Init();
     libC50FD636_gt_LockdownEnabled_Init();
     libC50FD636_gt_LockdownDisabled_Init();
