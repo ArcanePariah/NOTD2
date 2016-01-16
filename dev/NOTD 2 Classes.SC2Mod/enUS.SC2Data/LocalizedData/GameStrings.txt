@@ -61,6 +61,7 @@ Abil/Name/GeminiProtocol=Gemini Protocol
 Abil/Name/GeminiProtocolAttackRedirect=Gemini Protocol Attack Redirect
 Abil/Name/GeminiProtocolTranport=Gemini Protocol Tranport
 Abil/Name/Grenadier=Grenadier
+Abil/Name/Haste=Haste
 Abil/Name/Heal=Heal
 Abil/Name/HeavyJump=Heavy Jump
 Abil/Name/ImmovableObject=Immovable Object
@@ -93,7 +94,6 @@ Abil/Name/MedicalDrop=Medical Drop
 Abil/Name/MedicalExpertise=Medical Expertise
 Abil/Name/MediumJump=Medium Jump
 Abil/Name/MotionSensor=Motion Sensor
-Abil/Name/NanoHaste=Nano-Haste
 Abil/Name/NanoPlague=Nano-Plague
 Abil/Name/NanoSear=Nano-Sear
 Abil/Name/NanoShield=Nano-Shield
@@ -163,12 +163,12 @@ Ability/LevelUpTooltip/FlareGunReconLevel2=Reveals an area of 6 and lowers the m
 Ability/LevelUpTooltip/FlareGunReconLevel3=Reveals an area of 7 and lowers the movement speed of biological enemies by 50% for 10 seconds. Does not slow bosses.
 Ability/LevelUpTooltip/FragmentationGrenadeLevel2=Throw a Fragmentation Grenade at the target area, dealing <d ref="Effect,FragmentationGrenadeDamageLevel2,Amount"/> damage to all enemies in a <d ref="Effect,FragmentationGrenadeDamageLevel2,AreaArray[0].Radius"/> radius on impact.<n/><n/><c val="FF0000">Damage is reduced by <d ref="Effect,FragmentationGrenadeDamageLevel2,AttributeFactor[Armored]*100*(-1)" precision="1"/>% against Armored units and <d ref="Effect,FragmentationGrenadeDamageLevel2,ShieldFactor*100*(-1)" precision="1"/>% against shields.</c>
 Ability/LevelUpTooltip/FragmentationGrenadeLevel3=Launch a Fragmentation Grenade at the target area, dealing <d ref="Effect,FragmentationGrenadeDamageLevel3,Amount"/> damage to all enemies in a <d ref="Effect,FragmentationGrenadeDamageLevel3,AreaArray[0].Radius"/> radius on impact. <n/><n/><c val="FF0000">Damage is reduced by <d ref="Effect,FragmentationGrenadeDamageLevel3,AttributeFactor[Armored]*100*(-1)" precision="1"/>% against Armored units and <d ref="Effect,FragmentationGrenadeDamageLevel3,ShieldFactor*100*(-1)" precision="1"/>% against shields.</c>
+Ability/LevelUpTooltip/HasteLevel2=Increases the movement speed and attack speed of the target by <d ref="(Behavior,NanoHasteLevel2,Modification.AttackSpeedMultiplier -1)  * 100"/>% for <d ref="Behavior,NanoHasteLevel2,Duration"/> seconds. <n/>
+Ability/LevelUpTooltip/HasteLevel3=Increases the movement speed and attack speed of the target by <d ref="(Behavior,NanoHasteLevel3,Modification.AttackSpeedMultiplier -1)  * 100"/>% for <d ref="Behavior,NanoHasteLevel3,Duration"/> seconds. <n/>
 Ability/LevelUpTooltip/HealLevel2=Restores <d ref="Effect,HealLevel2,RechargeVitalRate"/> hitpoints per second to target unit. Costs <d ref="Effect,HealLevel2,DrainVitalCostFactor * Effect,HealLevel2,RechargeVitalRate" precision="3"/> Energy per second.
 Ability/LevelUpTooltip/HealLevel3=Restores <d ref="Effect,HealLevel3,RechargeVitalRate"/> hitpoints per second to target unit. Costs <d ref="Effect,HealLevel3,DrainVitalCostFactor * Effect,HealLevel3,RechargeVitalRate" precision="3"/> Energy per second.
 Ability/LevelUpTooltip/LaserDesignatorLevel2=Designates a unit, revealing it and inflicting a 10% damage vulnerability for 120 seconds.
 Ability/LevelUpTooltip/LaserDesignatorLevel3=Designates a unit, revealing it and inflicting a 15% damage vulnerability for 150 seconds.
-Ability/LevelUpTooltip/NanoHasteLevel2=Increases the movement speed and attack speed of the target by <d ref="(Behavior,NanoHasteLevel2,Modification.AttackSpeedMultiplier -1)  * 100"/>% for <d ref="Behavior,NanoHasteLevel2,Duration"/> seconds. <n/>
-Ability/LevelUpTooltip/NanoHasteLevel3=Increases the movement speed and attack speed of the target by <d ref="(Behavior,NanoHasteLevel3,Modification.AttackSpeedMultiplier -1)  * 100"/>% for <d ref="Behavior,NanoHasteLevel3,Duration"/> seconds. <n/>
 Ability/LevelUpTooltip/NanoShockLevel2=Deals <d ref="Effect,NanoShockDamageLevel2,Amount"/> damage and slows units by <d ref="Behavior,NanoShockSlowLevel2,Modification.MoveSpeedMultiplier-1*(-100)" precision="2"/>% for <d ref="Behavior,NanoShockSlowLevel2,Duration"/> second in a radius of <d ref="Effect,NanoShockLevel2,AreaArray[0].Radius" precision="2"/>.<n/>
 Ability/LevelUpTooltip/NanoShockLevel3=Deals <d ref="Effect,NanoShockDamageLevel3,Amount"/> damage and slows units by <d ref="Behavior,NanoShockSlowLevel3,Modification.MoveSpeedMultiplier-1*(-100)" precision="2"/>% for <d ref="Behavior,NanoShockSlowLevel3,Duration"/> second in a radius of <d ref="Effect,NanoShockLevel3,AreaArray[0].Radius" precision="2"/>.
 Ability/LevelUpTooltip/NanoWeaveLevel2=Restores <d ref="Effect,NanoWeaveHealLevel2,VitalArray[Life].Change"/> hitpoints per second for <d ref="Effect,NanoWeavePersistentLevel2,PeriodCount * Effect,NanoWeavePersistentLevel2,PeriodicPeriodArray[0]"/> seconds.<n/>
@@ -269,6 +269,9 @@ Behavior/Name/GroundIlluminationTimedLifeLevel1=Ground Illumination Timed Life L
 Behavior/Name/GroundIlluminationTimedLifeLevel2=Ground Illumination Timed Life Level 2
 Behavior/Name/GroundIlluminationTimedLifeLevel3=Ground Illumination Timed Life Level 3
 Behavior/Name/GunshipTimedLife=Gunship Timed Life
+Behavior/Name/HasteLevel1=Haste Level 1
+Behavior/Name/HasteLevel2=Haste Level 2
+Behavior/Name/HasteLevel3=Haste Level 3
 Behavior/Name/Healing=Healing
 Behavior/Name/HoldFire=Hold Fire
 Behavior/Name/HordeModeActive=Horde Mode Active
@@ -295,9 +298,6 @@ Behavior/Name/MercAirLift=Merc Air Lift
 Behavior/Name/MotionSensorDetected=Motion Sensor Detected
 Behavior/Name/MotionSensorLevel1=Motion Sensor Level 1
 Behavior/Name/MotionSensorLevel2=Motion Sensor Level 2
-Behavior/Name/NanoHasteLevel1=Nano Haste Level 1
-Behavior/Name/NanoHasteLevel2=Nano Haste Level 2
-Behavior/Name/NanoHasteLevel3=Nano Haste Level 3
 Behavior/Name/NanoPlague=Nano-Plague
 Behavior/Name/NanoPlagueSecondary=Nano-Plague Secondary
 Behavior/Name/NanoSearDamageDoT=Nano-Sear Damage DoT
@@ -458,6 +458,7 @@ Button/Name/FuelInjection=Fuel Injection
 Button/Name/GeminiProtocol=Gemini Protocol
 Button/Name/Grenadier=Grenadier
 Button/Name/Guilt=Guilt
+Button/Name/Haste=Haste
 Button/Name/HealNOTD=Heal
 Button/Name/Heartbreaker=Heartbreaker
 Button/Name/HeatShielding=Heat Shielding
@@ -514,7 +515,6 @@ Button/Name/MindsEye=Mind's Eye
 Button/Name/MissionCritical=Mission Critical
 Button/Name/MonofilamentCartridge=Monofilament Cartridge
 Button/Name/MotionSensor=Motion Sensor
-Button/Name/NanoHaste=Nano-Haste
 Button/Name/NanoPlague=Nano-Plague
 Button/Name/NanoSear=Nano-Sear
 Button/Name/NanoShield=Nano-Shield
@@ -642,6 +642,7 @@ Button/Tooltip/FocusFireFireUp=Increases weapon damage by <d ref="Behavior,Focus
 Button/Tooltip/FragmentationGrenade=Throw a Fragmentation Grenade at the target area, dealing <d ref="Effect,FragmentationGrenadeDamageLevel1,Amount"/> damage to all enemies in a <d ref="Effect,FragmentationGrenadeDamageLevel1,AreaArray[0].Radius"/> radius on impact.<n/><n/><c val="FF0000">Damage is reduced by <d ref="Effect,FragmentationGrenadeDamageLevel1,AttributeFactor[Armored]*100*(-1)" precision="1"/>% against Armored units and <d ref="Effect,FragmentationGrenadeDamageLevel1,ShieldFactor*100*(-1)" precision="1"/>% against shields.</c>
 Button/Tooltip/FragmentationGrenadeLevel2=
 Button/Tooltip/FragmentationGrenadeLevel3=
+Button/Tooltip/Haste=Increases the movement speed and attack speed of the target by <d ref="(Behavior,NanoHasteLevel1,Modification.AttackSpeedMultiplier -1)  * 100"/>% for <d ref="Behavior,NanoHasteLevel1,Duration"/> seconds. 
 Button/Tooltip/HealLevel2=
 Button/Tooltip/HealLevel3=
 Button/Tooltip/HealNOTD=Restores <d ref="Effect,HealLevel1,RechargeVitalRate"/> hitpoints per second to target unit. Costs <d ref="Effect,HealLevel1,DrainVitalCostFactor * Effect,HealLevel1,RechargeVitalRate"/> Energy per second.
@@ -675,7 +676,6 @@ Button/Tooltip/MedicalDrop=Drops a crate containing <d ref="Loot,SupplyDropMedki
 Button/Tooltip/MedicalExpertiseLevel1=Heal cures Open Wounds every 8/6/4 seconds (Heal Level)  time and Haste converts Broken Bones to Fractures every 20 seconds, and Fractures are repaired every 10 seconds.
 Button/Tooltip/MedicalExpertiseLevel2=Heal cures Open Wounds every 8/6/4 seconds (Heal Level)  time and Haste converts Broken Bones to Fractures every 20 seconds, and Fractures are repaired every 10 seconds.. The energy cost of Antivenom is reduced by 50% and Weave cures a random ailment every 10/7 seconds (Weave Level).
 Button/Tooltip/MedicalTraining=Using the Medical Assistance ability will use a Medkit if the target is injured, a Bandage if the target has an Open Wound, or an Antivenom if the target is inflicted with Venom.
-Button/Tooltip/NanoHaste=Increases the movement speed and attack speed of the target by <d ref="(Behavior,NanoHasteLevel1,Modification.AttackSpeedMultiplier -1)  * 100"/>% for <d ref="Behavior,NanoHasteLevel1,Duration"/> seconds. 
 Button/Tooltip/NanoHasteLevel2=
 Button/Tooltip/NanoHasteLevel3=
 Button/Tooltip/NanoPlague=Deals <d ref="Effect,NanoPlagueDamage,Amount"/> damage per second for <d ref="Behavior,NanoPlague,Duration"/> seconds and reduces the target’s armor by <d ref="Behavior,NanoPlague,Modification.LifeArmorBonus*(-1)"/>. If the target dies while under the effects of Volatile Injection, Nano-Plague will be applied to all units damaged by Volatile Injection’s burst.
@@ -729,15 +729,19 @@ Button/Tooltip/WeaponsProficiencyLevel2=Increases reload speed by 30%.
 DOCSTR_0001=Insert Text
 DocInfo/DescLong=Class Data for Night of the Dead 2
 DocInfo/Name=NOTD 2 Class Data
+Effect/Name/HasteBoneandFractureRemoval=Haste Bone and Fracture Removal
+Effect/Name/HasteLevel1=Haste Level 1
+Effect/Name/HasteLevel2=Haste Level 2
+Effect/Name/HasteLevel3=Haste Level 3
 Effect/Name/HealOpenWoundRemovalLevel1=Heal Open Wound Removal Level 1
 Effect/Name/HealOpenWoundRemovalLevel2=Heal Open Wound Removal Level 2
 Effect/Name/HealOpenWoundRemovalLevel22=Heal Open Wound Removal Level 3
-Effect/Name/NanoHasteBoneandFractureRemoval=Nano Haste Bone and Fracture Removal
 Effect/Name/Purify=Purify
 Effect/Name/PurifyAilmentPurge=Purify Ailment Purge
 Effect/Name/PurifyHeal=Purify Heal
 Effect/Name/PurifyPurgePersistent=Purify Purge Persistent
 Effect/Name/PurifySet=Purify Set
+Effect/Name/VaccinateAilmentRemoval=Vaccinate Ailment Removal
 Effect/Name/VaccinateDamageReduction=Vaccinate Damage Reduction
 Effect/Name/VaccinateImmunity=Vaccinate Immunity
 Effect/Name/VaccinateLevel1=Vaccinate Level 1
@@ -966,6 +970,7 @@ Upgrade/Name/EnhancedProtectiveInsert=Enhanced Protective Insert
 Upgrade/Name/FireUp=Fire Up
 Upgrade/Name/GeminiProtocol=Gemini Protocol
 Upgrade/Name/HALSoldiers=HAL Soldiers
+Upgrade/Name/HasteJumpRange=Haste Jump Range
 Upgrade/Name/HeavyProtectiveInsert=Heavy Protective Insert
 Upgrade/Name/HighCapacityAmmo=High Capacity Ammo
 Upgrade/Name/HighCapacityAmmoAssault=High Capacity Ammo Assault
@@ -977,7 +982,6 @@ Upgrade/Name/MedicalExpertiseLevel1=Medical Expertise Level 1
 Upgrade/Name/MedicalExpertiseLevel2=Medical Expertise Level 2
 Upgrade/Name/Mercernary=Mercernary
 Upgrade/Name/MovementSpeed=Movement Speed
-Upgrade/Name/NanoHasteJumpRange=Nano Haste Jump Range
 Upgrade/Name/NightVision=Night Vision
 Upgrade/Name/OccularImplants=Occular Implants
 Upgrade/Name/Peacekeeper=Peacekeeper

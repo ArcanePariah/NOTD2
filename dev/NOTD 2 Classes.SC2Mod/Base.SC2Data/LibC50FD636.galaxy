@@ -1603,10 +1603,10 @@ bool libC50FD636_gt_NanoHasteJumpUpgrade_Func (bool testConds, bool runActions) 
     }
 
     if ((EventUnitBehaviorChange() == c_unitBehaviorChangeCreate)) {
-        libNtve_gf_SetUpgradeLevelForPlayer(UnitGetOwner(EventUnit()), "NanoHasteJumpRange", 1);
+        libNtve_gf_SetUpgradeLevelForPlayer(UnitGetOwner(EventUnit()), "HasteJumpRange", 1);
     }
     if ((EventUnitBehaviorChange() == c_unitBehaviorChangeDestroy)) {
-        libNtve_gf_SetUpgradeLevelForPlayer(UnitGetOwner(EventUnit()), "NanoHasteJumpRange", 0);
+        libNtve_gf_SetUpgradeLevelForPlayer(UnitGetOwner(EventUnit()), "HasteJumpRange", 0);
     }
     return true;
 }
@@ -1614,8 +1614,8 @@ bool libC50FD636_gt_NanoHasteJumpUpgrade_Func (bool testConds, bool runActions) 
 //--------------------------------------------------------------------------------------------------
 void libC50FD636_gt_NanoHasteJumpUpgrade_Init () {
     libC50FD636_gt_NanoHasteJumpUpgrade = TriggerCreate("libC50FD636_gt_NanoHasteJumpUpgrade_Func");
-    TriggerAddEventUnitBehaviorChange(libC50FD636_gt_NanoHasteJumpUpgrade, null, "NanoHasteLevel3", c_unitBehaviorChangeCreate);
-    TriggerAddEventUnitBehaviorChange(libC50FD636_gt_NanoHasteJumpUpgrade, null, "NanoHasteLevel3", c_unitBehaviorChangeDestroy);
+    TriggerAddEventUnitBehaviorChange(libC50FD636_gt_NanoHasteJumpUpgrade, null, "HasteLevel3", c_unitBehaviorChangeCreate);
+    TriggerAddEventUnitBehaviorChange(libC50FD636_gt_NanoHasteJumpUpgrade, null, "HasteLevel3", c_unitBehaviorChangeDestroy);
 }
 
 //--------------------------------------------------------------------------------------------------

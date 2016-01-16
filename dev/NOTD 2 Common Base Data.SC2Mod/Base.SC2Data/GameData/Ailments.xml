@@ -151,6 +151,12 @@
         <Compare value="GT"/>
         <Behavior value="Venom"/>
     </CValidatorUnitCompareBehaviorCount>
+    <CEffectApplyBehavior id="Parasite">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="Poison">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
     <CEffectRemoveBehavior id="RemoveArmFracture">
         <EditorCategories value=""/>
         <BehaviorLink value="FractureArm"/>
@@ -170,6 +176,13 @@
     <CEffectRemoveBehavior id="RemoveOpenWound">
         <EditorCategories value=""/>
         <BehaviorLink value="OpenWound"/>
+    </CEffectRemoveBehavior>
+    <CEffectRemoveBehavior id="RemoveParasite">
+        <EditorCategories value=""/>
+    </CEffectRemoveBehavior>
+    <CEffectRemoveBehavior id="RemovePoison">
+        <EditorCategories value=""/>
+        <BehaviorLink value="Poison"/>
     </CEffectRemoveBehavior>
     <CEffectRemoveBehavior id="RemoveShortCircuit">
         <EditorCategories value=""/>
@@ -265,6 +278,12 @@
         <CaseArray Validator="UnithasLegFracture" Effect="RemoveLegFracture"/>
         <CaseArray Validator="UnithasArmFracture" Effect="RemoveArmFracture"/>
     </CEffectSwitch>
+    <CBehaviorBuff id="Parasite">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="Poison">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+    </CBehaviorBuff>
     <CBehaviorBuff id="Blind">
         <Alignment value="Negative"/>
         <InfoIcon value="Assets\Textures\btn-ability-zerg-viper-ocularparasite.dds"/>

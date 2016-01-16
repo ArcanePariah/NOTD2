@@ -38,10 +38,11 @@
         <CmdButtonArray index="Execute" DefaultButtonFace="HealNOTD"/>
         <PreEffectBehavior Behavior="Healing" Count="1"/>
     </CAbilEffectTarget>
-    <CAbilEffectTarget id="NanoHaste" parent="3LevelEffectTargetAbility">
+    <CAbilEffectTarget id="Haste" parent="3LevelEffectTargetAbility">
         <Cost>
             <Vital index="Energy" value="10"/>
-            <Cooldown TimeUse="12"/>
+            <Charge Link="Abil/NanoHaste"/>
+            <Cooldown Link="Abil/NanoHaste" TimeUse="12"/>
         </Cost>
         <TargetFilters value="Biological;Neutral,Enemy"/>
         <Range value="6"/>
@@ -252,6 +253,74 @@
     <CModel id="VolatileInjectionDetonation">
         <Model value="Assets\Effects\Zerg\ParasiteImpact\ParasiteImpact.m3"/>
     </CModel>
+    <CButton id="Aftershock">
+        <Icon value="btn-ability-terran-tosh-mindblast-yellow.dds"/>
+        <HotkeyAlias value="NanoShock"/>
+    </CButton>
+    <CButton id="Antivenom">
+        <Icon value="Assets\Textures\btn-upgrade-terran-reapercombatdrugs.dds"/>
+    </CButton>
+    <CButton id="IntolerableCruelty">
+        <Icon value="Assets\Textures\btn-ability-zerg-poisonnova.dds"/>
+    </CButton>
+    <CButton id="IntolerableCrueltyLevel1">
+        <Icon value="Assets\Textures\btn-ability-zerg-poisonnova.dds"/>
+    </CButton>
+    <CButton id="IntolerableCrueltyLevel2">
+        <Icon value="Assets\Textures\btn-ability-zerg-poisonnova.dds"/>
+    </CButton>
+    <CButton id="MedicalAssistance" parent="MarineButton">
+        <Icon value="btn-advancedhealingaib.dds"/>
+    </CButton>
+    <CButton id="MedicalExpertise">
+        <Icon value="Assets\Textures\btn-ability-terran-advancedhealingai.dds"/>
+    </CButton>
+    <CButton id="MedicalExpertiseLevel1">
+        <Icon value="Assets\Textures\btn-ability-terran-advancedhealingai.dds"/>
+    </CButton>
+    <CButton id="MedicalExpertiseLevel2">
+        <Icon value="Assets\Textures\btn-ability-terran-advancedhealingai.dds"/>
+    </CButton>
+    <CButton id="MedicalTraining">
+        <Icon value="Assets\Textures\btn-research-zerg-regenerativebio-steel.dds"/>
+    </CButton>
+    <CButton id="NanoShield">
+        <Icon value="Assets\Textures\btn-ability-protoss-timewarp.dds"/>
+        <Hotkey value="Button/Hotkey/NanoStrength"/>
+        <HotkeyAlias value="NanoPlague"/>
+        <HotkeySet value="MedicTier3"/>
+    </CButton>
+    <CButton id="NanoPlague">
+        <Icon value="btn-DOTA-Arthas-spell1.dds"/>
+        <Hotkey value="Button/Hotkey/NanoStrength"/>
+        <HotkeySet value="MedicTier3"/>
+    </CButton>
+    <CButton id="NanoSear">
+        <Icon value="Assets\Textures\btn-upgrade-zerg-tissueassimilation.dds"/>
+        <Hotkey value="Button/Hotkey/NanoStrength"/>
+        <HotkeyAlias value="NanoPlague"/>
+        <HotkeySet value="MedicTier3"/>
+    </CButton>
+    <CButton id="NanoStrength">
+        <Icon value="Assets\Textures\btn-ability-protoss-protoncharge-color.dds"/>
+        <HotkeyAlias value="NanoPlague"/>
+        <HotkeySet value="MedicTier3"/>
+    </CButton>
+    <CButton id="NanoShock">
+        <Icon value="Assets\Textures\btn-ability-terran-emp-color.dds"/>
+    </CButton>
+    <CButton id="NonCombatant">
+        <Icon value="btn-custom-terran-medic.dds"/>
+    </CButton>
+    <CButton id="Haste">
+        <Icon value="btn-tomahawkpowercell.dds"/>
+    </CButton>
+    <CButton id="NanoWeave">
+        <Icon value="btn-ability-custom-icespell.dds"/>
+    </CButton>
+    <CButton id="VolatileInjection">
+        <Icon value="Assets\Textures\btn-ability-zerg-corrosiveblast.dds"/>
+    </CButton>
     <CButton id="Purify" parent="MarineButton"/>
     <CButton id="Vaccinate" parent="MarineButton"/>
     <CButton id="CancelHealing">
@@ -268,7 +337,7 @@
         <AbilArray Link="Heal"/>
         <AbilArray Link="CancelHealing"/>
         <AbilArray Link="Antivenom"/>
-        <AbilArray Link="NanoHaste"/>
+        <AbilArray Link="Haste"/>
         <AbilArray Link="MedicalExpertise"/>
         <AbilArray Link="NanoWeave"/>
         <AbilArray Link="NanoShield"/>
@@ -293,7 +362,7 @@
             <LayoutButtons Face="CancelHealing" Type="AbilCmd" AbilCmd="CancelHealing,Execute" Row="2" Column="0"/>
             <LayoutButtons Face="HealNOTD" Type="AbilCmd" AbilCmd="Heal,Execute" Row="2" Column="0"/>
             <LayoutButtons Face="Antivenom" Type="AbilCmd" AbilCmd="Antivenom,Execute" Row="2" Column="1"/>
-            <LayoutButtons Face="NanoHaste" Type="AbilCmd" AbilCmd="NanoHaste,Execute" Row="2" Column="2"/>
+            <LayoutButtons Face="Haste" Type="AbilCmd" AbilCmd="Haste,255" Row="2" Column="2"/>
             <LayoutButtons Face="NanoShield" Type="AbilCmd" AbilCmd="NanoShield,Execute" Row="1" Column="0"/>
             <LayoutButtons Face="NanoStrength" Type="AbilCmd" AbilCmd="NanoStrength,Execute" Row="1" Column="0"/>
             <LayoutButtons Face="NanoSear" Type="AbilCmd" AbilCmd="NanoSear,Execute" Row="1" Column="0"/>
@@ -306,7 +375,7 @@
         <Speed value="2.586"/>
         <GlossaryPriority value="2"/>
     </CUnit>
-    <CUpgrade id="NanoHasteJumpRange" parent="DefaultUpgradeOverride">
+    <CUpgrade id="HasteJumpRange" parent="DefaultUpgradeOverride">
         <EffectArray Reference="Abil,HeavyJump,Range[0]" Value="2"/>
         <EffectArray Reference="Abil,LightJump,Range[0]" Value="2"/>
         <EffectArray Reference="Abil,MediumJump,Range[0]" Value="2"/>
@@ -332,9 +401,9 @@
     </CUpgrade>
     <CUpgrade id="MedicalExpertiseLevel1" parent="DefaultUpgradeOverride">
         <Flags index="UpgradeCheat" value="1"/>
-        <EffectArray Operation="Set" Reference="Behavior,NanoHasteLevel1,Period" Value="20.000000"/>
-        <EffectArray Operation="Set" Reference="Behavior,NanoHasteLevel2,Period" Value="20.000000"/>
-        <EffectArray Operation="Set" Reference="Behavior,NanoHasteLevel3,Period" Value="20.000000"/>
+        <EffectArray Operation="Set" Reference="Behavior,HasteLevel1,Period" Value="20.000000"/>
+        <EffectArray Operation="Set" Reference="Behavior,HasteLevel2,Period" Value="20.000000"/>
+        <EffectArray Operation="Set" Reference="Behavior,HasteLevel3,Period" Value="20.000000"/>
         <EffectArray Operation="Set" Reference="Effect,NanoHasteFractureRepair,PeriodCount" Value="2"/>
     </CUpgrade>
     <CActorSplat id="NanoShockAoESplat" parent="TerranCursorSplat" abil="NanoShock">
@@ -364,10 +433,10 @@
         <HostSiteOps Ops="SOpAttachOverhead"/>
         <Sound value="Medic_Heal"/>
     </CActorSound>
-    <CActorSound id="MedicNanoHastecast" parent="SoundOneShot">
-        <On Terms="Effect.NanoHasteLevel1" Send="Create"/>
-        <On Terms="Effect.NanoHasteLevel2" Send="Create"/>
-        <On Terms="Effect.NanoHasteLevel3" Send="Create"/>
+    <CActorSound id="HasteCast" parent="SoundOneShot">
+        <On Terms="Effect.HasteLevel1" Send="Create"/>
+        <On Terms="Effect.HasteLevel2" Send="Create"/>
+        <On Terms="Effect.HasteLevel3" Send="Create"/>
         <Sound value="MedicNanoHasteCast"/>
     </CActorSound>
     <CActorSound id="MedicNanoPlagueSound" parent="SoundContinuous">
@@ -412,7 +481,7 @@
     <CActorSound id="MedicVolatileInjection" parent="SoundOneShot">
         <On Terms="Abil.VolatileInjection.SourceCastStart" Send="Create"/>
     </CActorSound>
-    <CActorRange id="NanoHasteRange" parent="RangeAbil" abil="NanoHaste">
+    <CActorRange id="HasteRange" parent="RangeAbil" abil="Haste">
         <EditorCategories value=""/>
     </CActorRange>
     <CActorRange id="NanoPlagueRange" parent="RangeAbil" abil="NanoPlague">
@@ -466,15 +535,16 @@
         <Model value="MedicHealModel"/>
         <HostSiteOps Ops="SOpAttachHardPoint"/>
     </CActorModel>
-    <CActorModel id="NanoHasteBuff" parent="ModelAnimationStyleContinuous">
+    <CActorModel id="HasteBuff" parent="ModelAnimationStyleContinuous">
         <EditorCategories value=""/>
-        <On Terms="Behavior.NanoHasteLevel1.On" Send="Create"/>
-        <On Terms="Behavior.NanoHasteLevel2.On" Send="Create"/>
-        <On Terms="Behavior.NanoHasteLevel3.On" Send="Create"/>
-        <On Terms="Behavior.NanoHasteLevel1.Off" Send="Destroy"/>
-        <On Terms="Behavior.NanoHasteLevel2.Off" Send="Destroy"/>
-        <On Terms="Behavior.NanoHasteLevel3.Off" Send="Destroy"/>
+        <On Terms="Behavior.HasteLevel1.On" Send="Create"/>
+        <On Terms="Behavior.HasteLevel2.On" Send="Create"/>
+        <On Terms="Behavior.HasteLevel3.On" Send="Create"/>
+        <On Terms="Behavior.HasteLevel1.Off" Send="Destroy"/>
+        <On Terms="Behavior.HasteLevel2.Off" Send="Destroy"/>
+        <On Terms="Behavior.HasteLevel3.Off" Send="Destroy"/>
         <HostSiteOps Ops="SOpAttachOverhead"/>
+        <Model value="NanoHasteBuff"/>
     </CActorModel>
     <CActorModel id="NanoPlagueBuff" parent="ModelAnimationStyleContinuous">
         <EditorCategories value=""/>
@@ -531,17 +601,17 @@
     <CValidatorUnitCompareBehaviorCount id="TargetNotVaccinated">
         <Behavior value="VaccinateImmunity"/>
     </CValidatorUnitCompareBehaviorCount>
-    <CValidatorUnitCompareBehaviorCount id="TargetHastNanoHasteLevel2">
+    <CValidatorUnitCompareBehaviorCount id="TargetHasHasteLevel2">
         <Value value="1"/>
-        <Behavior value="NanoHasteLevel2"/>
+        <Behavior value="HasteLevel2"/>
     </CValidatorUnitCompareBehaviorCount>
-    <CValidatorUnitCompareBehaviorCount id="TargetHastNanoHasteLevel3">
+    <CValidatorUnitCompareBehaviorCount id="TargetHasHasteLevel3">
         <Value value="1"/>
-        <Behavior value="NanoHasteLevel3"/>
+        <Behavior value="HasteLevel3"/>
     </CValidatorUnitCompareBehaviorCount>
     <CValidatorCombine id="TargetNotFractureBrokenImmune">
-        <CombineArray value="TargetHastNanoHasteLevel2"/>
-        <CombineArray value="TargetHastNanoHasteLevel3"/>
+        <CombineArray value="TargetHasHasteLevel2"/>
+        <CombineArray value="TargetHasHasteLevel3"/>
         <Negate value="1"/>
     </CValidatorCombine>
     <CValidatorCombine id="Healing">
@@ -667,6 +737,9 @@
         <EffectArray value="PurifyHeal"/>
         <EffectArray value="PurifyPurgePersistent"/>
     </CEffectSet>
+    <CEffectSet id="VaccinateAilmentRemoval">
+        <EditorCategories value=""/>
+    </CEffectSet>
     <CEffectApplyBehavior id="VaccinateDamageReduction">
         <EditorCategories value=""/>
     </CEffectApplyBehavior>
@@ -688,7 +761,7 @@
     <CEffectRemoveBehavior id="VaccinateRemoveVenom">
         <EditorCategories value=""/>
     </CEffectRemoveBehavior>
-    <CEffectSet id="NanoHasteBoneandFractureRemoval">
+    <CEffectSet id="HasteBoneandFractureRemoval">
         <EditorCategories value=""/>
         <EffectArray value="RemoveArmFracture"/>
         <EffectArray value="RemoveLegFracture"/>
@@ -830,13 +903,13 @@
     <CEffectDamage id="IntolerableCrueltyDamage">
         <EditorCategories value=""/>
     </CEffectDamage>
-    <CEffectApplyBehavior id="NanoHasteLevel1">
+    <CEffectApplyBehavior id="HasteLevel1">
         <EditorCategories value=""/>
     </CEffectApplyBehavior>
-    <CEffectApplyBehavior id="NanoHasteLevel2">
+    <CEffectApplyBehavior id="HasteLevel2">
         <EditorCategories value=""/>
     </CEffectApplyBehavior>
-    <CEffectApplyBehavior id="NanoHasteLevel3">
+    <CEffectApplyBehavior id="HasteLevel3">
         <EditorCategories value=""/>
     </CEffectApplyBehavior>
     <CEffectApplyBehavior id="NanoPlague">
@@ -1107,27 +1180,27 @@
             <StateFlags index="Passive" value="1"/>
         </Modification>
     </CBehaviorBuff>
-    <CBehaviorBuff id="NanoHasteLevel1">
+    <CBehaviorBuff id="HasteLevel1">
         <Alignment value="Positive"/>
         <InfoIcon value="btn-tomahawkpowercell.dds"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
         <Duration value="60"/>
         <Modification MoveSpeedMultiplier="1.2"/>
     </CBehaviorBuff>
-    <CBehaviorBuff id="NanoHasteLevel2">
+    <CBehaviorBuff id="HasteLevel2">
         <Alignment value="Positive"/>
         <InfoIcon value="btn-tomahawkpowercell.dds"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
         <Duration value="60"/>
-        <InitialEffect value="NanoHasteBoneandFractureRemoval"/>
+        <InitialEffect value="HasteBoneandFractureRemoval"/>
         <Modification MoveSpeedMultiplier="1.2"/>
     </CBehaviorBuff>
-    <CBehaviorBuff id="NanoHasteLevel3">
+    <CBehaviorBuff id="HasteLevel3">
         <Alignment value="Positive"/>
         <InfoIcon value="btn-tomahawkpowercell.dds"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
         <Duration value="60"/>
-        <InitialEffect value="NanoHasteBoneandFractureRemoval"/>
+        <InitialEffect value="HasteBoneandFractureRemoval"/>
         <Modification MoveSpeedMultiplier="1.2"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="NanoPlague">
