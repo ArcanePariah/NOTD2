@@ -99,7 +99,6 @@ Abil/Name/NanoSear=Nano-Sear
 Abil/Name/NanoShield=Nano-Shield
 Abil/Name/NanoShock=Nano-Shock
 Abil/Name/NanoStrength=Nano-Strength
-Abil/Name/NanoWeave=Nano-Weave
 Abil/Name/PackUpAntiMaterialRifle=Pack Up Anti-Material Rifle
 Abil/Name/PackUpHeavyMachineGun=Pack Up Heavy Machine Gun
 Abil/Name/ParatrooperMedkit=Paratrooper Medkit
@@ -153,6 +152,7 @@ Abil/Name/UAVLearn=UAV Learn
 Abil/Name/Vaccinate=Vaccinate
 Abil/Name/VolatileInjection=Volatile Injection
 Abil/Name/WeaponProficiency=Weapon Proficiency
+Abil/Name/Weave=Weave
 Ability/LevelUpTooltip/AdvancedTargetingLevel2=Increases damage by <d ref="Behavior,AdvancedTargetingLevel2,Modification.DamageDealtFraction[Ranged] * 100"/>% and Critical Strike by <d ref="Behavior,AdvancedTargetingLevel2,Modification.CriticalAttackChanceUnscaledBonus * 100"/>% for <d ref="Behavior,AdvancedTargetingLevel2,Duration"/> seconds. During this time, Critical Strikes slow the movement and attack speeds of targeted units by 40% for 1 second.
 Ability/LevelUpTooltip/AftershockLevel2=Deals current level of Volatile Inject damage to units previously damaged by Nano-Shock. Units still slowed by Nano-Shock are stunned for <d ref="Behavior,AftershockStunLevel12,Duration"/> seconds.
 Ability/LevelUpTooltip/ConcentratedFireLevel2=Increases Attack Speed by <d ref="Behavior,ConcentratedFireLevel2,Modification.AttackSpeedMultiplier - 1 * 100"/>%  for <d ref="Behavior,ConcentratedFireLevel2,Duration"/> seconds.
@@ -171,7 +171,6 @@ Ability/LevelUpTooltip/LaserDesignatorLevel2=Designates a unit, revealing it and
 Ability/LevelUpTooltip/LaserDesignatorLevel3=Designates a unit, revealing it and inflicting a 15% damage vulnerability for 150 seconds.
 Ability/LevelUpTooltip/NanoShockLevel2=Deals <d ref="Effect,NanoShockDamageLevel2,Amount"/> damage and slows units by <d ref="Behavior,NanoShockSlowLevel2,Modification.MoveSpeedMultiplier-1*(-100)" precision="2"/>% for <d ref="Behavior,NanoShockSlowLevel2,Duration"/> second in a radius of <d ref="Effect,NanoShockLevel2,AreaArray[0].Radius" precision="2"/>.<n/>
 Ability/LevelUpTooltip/NanoShockLevel3=Deals <d ref="Effect,NanoShockDamageLevel3,Amount"/> damage and slows units by <d ref="Behavior,NanoShockSlowLevel3,Modification.MoveSpeedMultiplier-1*(-100)" precision="2"/>% for <d ref="Behavior,NanoShockSlowLevel3,Duration"/> second in a radius of <d ref="Effect,NanoShockLevel3,AreaArray[0].Radius" precision="2"/>.
-Ability/LevelUpTooltip/NanoWeaveLevel2=Restores <d ref="Effect,NanoWeaveHealLevel2,VitalArray[Life].Change"/> hitpoints per second for <d ref="Effect,NanoWeavePersistentLevel2,PeriodCount * Effect,NanoWeavePersistentLevel2,PeriodicPeriodArray[0]"/> seconds.<n/>
 Ability/LevelUpTooltip/ProvokeLevel2=Force enemies in a <d ref="Effect,ProvokeSearchLevel2,AreaArray[0].Radius"/> radius to target the Demolitions for <d ref="Behavior,ProvokeLevel2,Duration"/> seconds and deal <d ref="-Behavior,ProvokeLevel2Taunt,Modification.DamageDealtFraction[Melee] *100"/>% less damage.
 Ability/LevelUpTooltip/ProvokeLevel3=Force enemies in a <d ref="Effect,ProvokeSearchLevel3,AreaArray[0].Radius"/> radius to target the Demolitions for <d ref="Behavior,ProvokeLevel3,Duration"/> seconds and deal <d ref="-Behavior,ProvokeLevel3Taunt,Modification.DamageDealtFraction[Melee] *100"/>% less damage.
 Ability/LevelUpTooltip/SelfAidLevel2=Heals the Rifleman for <d ref="Effect,SelfAidHealLevel2,VitalArray[Life].Change"/> health and cures 1 Venom and 1 Open Wound. When under the effects of Repulse, use cures a fracture.<n/>
@@ -182,6 +181,7 @@ Ability/LevelUpTooltip/SurveillanceFlareLevel2=Throw a flare at the target locat
 Ability/LevelUpTooltip/SurveillanceFlareLevel3=Throw a flare at the target location, providing ground vision in a radius <d ref="Unit,GroundIlluminationFlareLevel3,Sight"/> of the targeted area for <d ref="Behavior,GroundIlluminationTimedLifeLevel3,Duration"/> seconds.
 Ability/LevelUpTooltip/VolatileInjectionLevel2=Deals <d ref="Effect,VolatileInjectionDamageLevel2,Amount"/> damage to all units within a <d ref="Effect,VolatileInjectionSearchLevel2,AreaArray[0].Radius"/> radius of the afflicted unit when it dies.
 Ability/LevelUpTooltip/VolatileInjectionLevel3=Deals <d ref="Effect,VolatileInjectionDamageLevel3,Amount"/> damage to all units within a <d ref="Effect,VolatileInjectionSearchLevel3,AreaArray[0].Radius"/> radius of the afflicted unit when it dies.
+Ability/LevelUpTooltip/WeaveLevel2=Restores <d ref="Effect,NanoWeaveHealLevel2,VitalArray[Life].Change"/> hitpoints per second for <d ref="Effect,NanoWeavePersistentLevel2,PeriodCount * Effect,NanoWeavePersistentLevel2,PeriodicPeriodArray[0]"/> seconds.<n/>
 Alert/Text/Reload=Can not reload, too many rounds.
 Behavior/Name/AdvancedTargetingLevel1=Advanced Targeting Level 1
 Behavior/Name/AdvancedTargetingLevel2=Advanced Targeting Level 2
@@ -368,12 +368,11 @@ Behavior/Name/TauntedLevel1=Taunted Level 1
 Behavior/Name/TauntedLevel2=Taunted Level 2
 Behavior/Name/TauntedLevel3=Taunted Level 3
 Behavior/Name/TrackingTag=Tracking Tag
+Behavior/Name/VaccinateDamageReduction=Vaccinate Damage Reduction
 Behavior/Name/VaccinateImmunity=Vaccinate Immunity
 Behavior/Name/VolatileInjectionLevel1=Volatile Injection Level 1
 Behavior/Name/VolatileInjectionLevel2=Volatile Injection Level 2
 Behavior/Name/VolatileInjectionLevel3=Volatile Injection Level 3
-Behavior/Name/WeaveAilmentHealLevel1=Weave Ailment Heal Level 1
-Behavior/Name/WeaveAilmentHealLevel2=Weave Ailment Heal Level 2
 Behavior/Tooltip/Lives=
 Behavior/Tooltip/NoiseIndex=Current amount of noise. If the noise reaches a threshold, a horde spawns.
 Button/Name/88mmMortar=88mm Mortar
@@ -520,7 +519,6 @@ Button/Name/NanoSear=Nano-Sear
 Button/Name/NanoShield=Nano-Shield
 Button/Name/NanoShock=Nano-Shock
 Button/Name/NanoStrength=Nano-Strength
-Button/Name/NanoWeave=Nano-Weave
 Button/Name/NapalmGrenade=Napalm Grenade
 Button/Name/NoQuarter=No Quarter
 Button/Name/NonCombatant=Non-Combatant
@@ -592,6 +590,7 @@ Button/Name/WeaponTemplate=Weapon Template
 Button/Name/WeaponsFreeNOTD=Weapons Free
 Button/Name/WeaponsProficiencyLevel1=Weapons Proficiency Level 1
 Button/Name/WeaponsProficiencyLevel2=Weapons Proficiency Level 2
+Button/Name/Weave=Weave
 Button/Tooltip/Adapative=Can switch and equip weapons 50% faster.
 Button/Tooltip/AdvancedTargeting=Increases damage by 20% and Critical Strike by 10% for 10 seconds. During this time, Critical Strikes slow the movement and attack speeds of targeted units by 20% for 1 second.
 Button/Tooltip/AdvancedTargetingLevel2=
@@ -685,7 +684,6 @@ Button/Tooltip/NanoShock=Deals <d ref="Effect,NanoShockDamageLevel1,Amount"/> da
 Button/Tooltip/NanoShockLevel2=
 Button/Tooltip/NanoShockLevel3=
 Button/Tooltip/NanoStrength=Increases the target’s ranged damage and turn speed by <d ref="Behavior,NanoStrength,Modification.DamageDealtFraction[Ranged]*100"/>% and their melee damage by <d ref="Behavior,NanoStrength,Modification.DamageDealtFraction[Melee]*100"/>% for <d ref="Behavior,NanoStrength,Duration"/> seconds.
-Button/Tooltip/NanoWeave=Restores <d ref="Effect,NanoWeaveHealLevel1,VitalArray[Life].Change"/> hitpoints per second for <d ref="Effect,NanoWeavePersistentLevel1,PeriodCount * Effect,NanoWeavePersistentLevel1,PeriodicPeriodArray[0]"/> seconds.
 Button/Tooltip/NanoWeaveLevel2=
 Button/Tooltip/NonCombatant=The Medic gains additional shared experience and has reduced rating loss from getting hit.
 Button/Tooltip/PlasmaGrenade=Launch a Plasma Grenade at the target area, dealing <d ref="Effect,PlasmaGrenadeDamage,Amount"/> damage to all enemies in a <d ref="Effect,PlasmaGrenadeSearch,AreaArray[0].Radius" precision="2"/> radius and reducing their armor and shield armor by <d ref="Behavior,PlasmaGrenadeArmorReduction,Modification.LifeArmorBonus*(-1)" precision="2"/> for <d ref="Behavior,PlasmaGrenadeArmorReduction,Duration" precision="2"/> seconds. Damage is increased by <d ref="Effect,PlasmaGrenadeDamage,ShieldFactor*100" precision="2"/>% against shields. <n/><n/><c val="FF0000">Usage puts the other grenade abilities on cooldown.</c>
@@ -726,6 +724,7 @@ Button/Tooltip/VolatileInjectionLevel3=
 Button/Tooltip/WeaponsFreeNOTD=Orders selected units to fire at will. They will engage enemy units within range and chase them as normal.
 Button/Tooltip/WeaponsProficiencyLevel1=Increases reload speed by 15%.
 Button/Tooltip/WeaponsProficiencyLevel2=Increases reload speed by 30%.
+Button/Tooltip/Weave=Restores <d ref="Effect,NanoWeaveHealLevel1,VitalArray[Life].Change"/> hitpoints per second for <d ref="Effect,NanoWeavePersistentLevel1,PeriodCount * Effect,NanoWeavePersistentLevel1,PeriodicPeriodArray[0]"/> seconds.
 DOCSTR_0001=Insert Text
 DocInfo/DescLong=Class Data for Night of the Dead 2
 DocInfo/Name=NOTD 2 Class Data
@@ -742,13 +741,17 @@ Effect/Name/PurifyHeal=Purify Heal
 Effect/Name/PurifyPurgePersistent=Purify Purge Persistent
 Effect/Name/PurifySet=Purify Set
 Effect/Name/VaccinateAilmentRemoval=Vaccinate Ailment Removal
+Effect/Name/VaccinateAilmentRemovalPersistent=Vaccinate Ailment Removal Persistent
 Effect/Name/VaccinateDamageReduction=Vaccinate Damage Reduction
 Effect/Name/VaccinateImmunity=Vaccinate Immunity
 Effect/Name/VaccinateLevel1=Vaccinate Level 1
 Effect/Name/VaccinateLevel2=Vaccinate Level 2
-Effect/Name/VaccinateRemoveParasite=Vaccinate Remove Parasite
-Effect/Name/VaccinateRemovePoison=Vaccinate Remove Poison
-Effect/Name/VaccinateRemoveVenom=Vaccinate Remove Venom
+Effect/Name/WeaveHealLevel1=Weave Heal Level 1
+Effect/Name/WeaveHealLevel2=Weave Heal Level 2
+Effect/Name/WeaveLevel1=Weave Level 1
+Effect/Name/WeaveLevel2=Weave Level 2
+Effect/Name/WeavePersistentLevel1=Weave Persistent Level 1
+Effect/Name/WeavePersistentLevel2=Weave Persistent Level 2
 Equipment/Name/MD5Mine=Mine Detonation
 Error/EmptyError=
 Error/Error Test=Invalid Jump Target

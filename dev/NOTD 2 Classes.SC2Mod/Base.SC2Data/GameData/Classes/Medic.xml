@@ -8,8 +8,8 @@
         <InfoArray index="Learn2" Abil="Haste">
             <Button DefaultButtonFace="Haste"/>
         </InfoArray>
-        <InfoArray index="Learn3" Abil="NanoWeave">
-            <Button DefaultButtonFace="NanoWeave"/>
+        <InfoArray index="Learn3" Abil="Weave">
+            <Button DefaultButtonFace="Weave"/>
         </InfoArray>
         <InfoArray index="Learn4" Abil="Vaccinate">
             <Button DefaultButtonFace="Vaccinate"/>
@@ -128,10 +128,11 @@
         </Cost>
         <Range value="6"/>
     </CAbilEffectTarget>
-    <CAbilEffectTarget id="NanoWeave" parent="2LevelEffectTargetAbility">
+    <CAbilEffectTarget id="Weave" parent="2LevelEffectTargetAbility">
         <Cost>
             <Vital index="Energy" value="30"/>
-            <Cooldown TimeUse="20"/>
+            <Charge Link="Abil/NanoWeave"/>
+            <Cooldown Link="Abil/NanoWeave" TimeUse="20"/>
         </Cost>
         <TargetFilters value="Biological;Neutral,Enemy,Item"/>
         <Range value="6"/>
@@ -233,7 +234,7 @@
         <Pitch value="-3.000000,-2.000000"/>
         <Volume value="-13.000000,-12.000000"/>
     </CSound>
-    <CSound id="MedicNanoWeaveBuff" parent="Combat">
+    <CSound id="WeaveBuff" parent="Combat">
         <EditorCategories value="Race:Terran"/>
         <AssetArray File="Assets\Sounds\Psi_Destroyer_ShieldPowerUp_1.wav" FacialGroup=""/>
         <AssetArray File="Assets\Sounds\Psi_Destroyer_ShieldPowerUp_2.wav" FacialGroup=""/>
@@ -241,7 +242,7 @@
         <Pitch value="-3.000000,-2.000000"/>
         <Volume value="-13.000000,-12.000000"/>
     </CSound>
-    <CSound id="MedicNanoWeaveCast" parent="Combat">
+    <CSound id="WeaveCast" parent="Combat">
         <EditorCategories value="Race:Terran"/>
         <AssetArray File="Assets\Sounds\Protoss\Nexus\Nexus_ChronoBoostImpact0.wav" FacialGroup=""/>
         <AssetArray File="Assets\Sounds\Protoss\Nexus\Nexus_ChronoBoostImpact1.wav" FacialGroup=""/>
@@ -281,13 +282,13 @@
     <CModel id="NanoShockImpact" parent="ImpactFX">
         <Model value="Assets\Effects\Protoss\PowerOverwhelming\PowerOverwhelming.m3"/>
     </CModel>
-    <CModel id="NanoWeaveImpact">
-        <Model value="Assets\Effects\Protoss\RecallImpactOut\RecallImpactOut.m3"/>
+    <CModel id="WeaveImpact">
+        <Model value="Assets\Effects\Protoss\DarkBlinkIn\DarkBlinkIn.m3"/>
     </CModel>
     <CModel id="NanoStrengthBuff">
         <Model value="Assets\Effects\Protoss\ArchonMergeStart\ArchonMergeStart.m3"/>
     </CModel>
-    <CModel id="NanoWeaveBuff" parent="PersistentSpellFX"/>
+    <CModel id="WeaveBuff" parent="PersistentSpellFX"/>
     <CModel id="VolatileInjectionBuff" parent="PersistentSpellFX">
         <Model value="Assets\Effects\Zerg\ConsumptionImpact\ConsumptionImpact.m3"/>
     </CModel>
@@ -356,7 +357,7 @@
     <CButton id="Haste">
         <Icon value="btn-tomahawkpowercell.dds"/>
     </CButton>
-    <CButton id="NanoWeave">
+    <CButton id="Weave">
         <Icon value="btn-ability-custom-icespell.dds"/>
     </CButton>
     <CButton id="VolatileInjection">
@@ -380,7 +381,7 @@
         <AbilArray Link="Antivenom"/>
         <AbilArray Link="Haste"/>
         <AbilArray Link="MedicalExpertise"/>
-        <AbilArray Link="NanoWeave"/>
+        <AbilArray Link="Weave"/>
         <AbilArray Link="NanoShield"/>
         <AbilArray Link="NanoStrength"/>
         <AbilArray Link="NanoShock"/>
@@ -411,7 +412,7 @@
             <LayoutButtons Face="VolatileInjection" Type="AbilCmd" AbilCmd="VolatileInjection,Execute" Row="1" Column="1"/>
             <LayoutButtons Face="Aftershock" Type="AbilCmd" AbilCmd="Aftershock,Execute" Row="1" Column="2"/>
             <LayoutButtons Face="NanoShock" Type="AbilCmd" AbilCmd="NanoShock,Execute" Row="1" Column="2"/>
-            <LayoutButtons Face="NanoWeave" Type="AbilCmd" AbilCmd="NanoWeave,Execute" Row="2" Column="3"/>
+            <LayoutButtons Face="Weave" Type="AbilCmd" AbilCmd="Weave,255" Row="2" Column="3"/>
         </CardLayouts>
         <Speed value="2.586"/>
         <GlossaryPriority value="2"/>
@@ -510,14 +511,14 @@
         <On Terms="Effect.NanoStrength.Start" Send="Create"/>
         <Sound value="MedicNanoStrengthCast"/>
     </CActorSound>
-    <CActorSound id="MedicNanoWeave" parent="SoundOneShot">
-        <On Terms="Abil.NanoWeave.TargetCastStart" Send="Create"/>
-        <On Terms="Abil.NanoWeave.TargetCastStart" Send="Create"/>
-        <Sound value="MedicNanoWeaveCast"/>
+    <CActorSound id="Weave" parent="SoundOneShot">
+        <On Terms="Abil.Weave.TargetCastStart" Send="Create"/>
+        <On Terms="Abil.Weave.TargetCastStart" Send="Create"/>
+        <Sound value="WeaveCast"/>
     </CActorSound>
-    <CActorSound id="MedicNanoWeaveBuff" parent="SoundOneShot">
-        <On Terms="Effect.NanoWeaveHealLevel1.Start" Send="Create"/>
-        <On Terms="Effect.NanoWeaveHealLevel2" Send="Create"/>
+    <CActorSound id="WeaveBuff" parent="SoundOneShot">
+        <On Terms="Effect.WeaveHealLevel1.Start" Send="Create"/>
+        <On Terms="Effect.WeaveHealLevel2" Send="Create"/>
     </CActorSound>
     <CActorSound id="MedicVolatileInjection" parent="SoundOneShot">
         <On Terms="Abil.VolatileInjection.SourceCastStart" Send="Create"/>
@@ -540,15 +541,15 @@
     <CActorRange id="NanoStrengthRange" parent="RangeAbil" abil="NanoStrength">
         <EditorCategories value=""/>
     </CActorRange>
-    <CActorModel id="NanoWeaveImpact" parent="ModelAnimationStyleOneShot">
+    <CActorModel id="WeaveImpact" parent="ModelAnimationStyleOneShot">
         <EditorCategories value=""/>
-        <On Terms="Effect.NanoWeaveHealLevel1.Start" Send="Create"/>
-        <On Terms="Effect.NanoWeaveHealLevel2.Start" Send="Create"/>
+        <On Terms="Effect.WeaveHealLevel1.Start" Send="Create"/>
+        <On Terms="Effect.WeaveHealLevel2.Start" Send="Create"/>
         <Host Subject="_Unit" Scope="Target"/>
         <HostSiteOps Ops="SOpAttachOverhead"/>
         <Scale value="0.300000,0.300000,0.075000"/>
     </CActorModel>
-    <CActorRange id="NanoWeaveRange" parent="RangeAbil" abil="NanoWeave">
+    <CActorRange id="WeaveRange" parent="RangeAbil" abil="Weave">
         <EditorCategories value=""/>
     </CActorRange>
     <CActorBeamSimple id="HealBeam" parent="BeamSimpleAnimationStyleContinuous">
@@ -746,6 +747,13 @@
         <Value value="1"/>
         <Behavior value="NanoShockSlowLevel3"/>
     </CValidatorUnitCompareBehaviorCount>
+    <CEffectCreatePersistent id="VaccinateAilmentRemovalPersistent">
+        <EditorCategories value=""/>
+        <WhichLocation Value="TargetUnit"/>
+        <PeriodCount value="20"/>
+        <PeriodicEffectArray value="VaccinateAilmentRemoval"/>
+        <PeriodicPeriodArray value="0"/>
+    </CEffectCreatePersistent>
     <CEffectCreatePersistent id="Purify">
         <EditorCategories value=""/>
         <InitialDelay value="2.5"/>
@@ -780,6 +788,9 @@
     </CEffectSet>
     <CEffectSet id="VaccinateAilmentRemoval">
         <EditorCategories value=""/>
+        <EffectArray value="RemoveVenom"/>
+        <EffectArray value="RemovePoison"/>
+        <EffectArray value="RemoveParasite"/>
     </CEffectSet>
     <CEffectApplyBehavior id="VaccinateDamageReduction">
         <EditorCategories value=""/>
@@ -789,19 +800,15 @@
     </CEffectApplyBehavior>
     <CEffectSet id="VaccinateLevel1">
         <EditorCategories value=""/>
+        <EffectArray value="VaccinateAilmentRemovalPersistent"/>
+        <EffectArray value="VaccinateImmunity"/>
     </CEffectSet>
     <CEffectSet id="VaccinateLevel2">
         <EditorCategories value=""/>
+        <EffectArray value="VaccinateAilmentRemovalPersistent"/>
+        <EffectArray value="VaccinateImmunity"/>
+        <EffectArray value="VaccinateDamageReduction"/>
     </CEffectSet>
-    <CEffectRemoveBehavior id="VaccinateRemoveParasite">
-        <EditorCategories value=""/>
-    </CEffectRemoveBehavior>
-    <CEffectRemoveBehavior id="VaccinateRemovePoison">
-        <EditorCategories value=""/>
-    </CEffectRemoveBehavior>
-    <CEffectRemoveBehavior id="VaccinateRemoveVenom">
-        <EditorCategories value=""/>
-    </CEffectRemoveBehavior>
     <CEffectSet id="HasteBoneandFractureRemoval">
         <EditorCategories value=""/>
         <EffectArray value="RemoveArmFracture"/>
@@ -1071,29 +1078,29 @@
     <CEffectApplyBehavior id="NanoShockSlowLevel2">
         <EditorCategories value=""/>
     </CEffectApplyBehavior>
-    <CEffectSet id="NanoWeaveLevel1">
+    <CEffectSet id="WeaveLevel1">
         <EditorCategories value=""/>
-        <EffectArray value="NanoWeavePersistentLevel1"/>
+        <EffectArray value="WeavePersistentLevel1"/>
     </CEffectSet>
-    <CEffectSet id="NanoWeaveLevel2">
+    <CEffectSet id="WeaveLevel2">
         <EditorCategories value=""/>
-        <EffectArray value="NanoWeavePersistentLevel2"/>
+        <EffectArray value="WeavePersistentLevel2"/>
     </CEffectSet>
-    <CEffectCreatePersistent id="NanoWeavePersistentLevel2">
+    <CEffectCreatePersistent id="WeavePersistentLevel2">
         <EditorCategories value=""/>
         <WhichLocation Value="TargetUnit"/>
         <PeriodCount value="20"/>
-        <PeriodicEffectArray value="NanoWeaveHealLevel2"/>
+        <PeriodicEffectArray value="WeaveHealLevel2"/>
         <PeriodicPeriodArray value="1"/>
     </CEffectCreatePersistent>
     <CEffectApplyBehavior id="NanoShockShockedLevel3">
         <EditorCategories value=""/>
     </CEffectApplyBehavior>
-    <CEffectCreatePersistent id="NanoWeavePersistentLevel1">
+    <CEffectCreatePersistent id="WeavePersistentLevel1">
         <EditorCategories value=""/>
         <WhichLocation Value="TargetUnit"/>
         <PeriodCount value="10"/>
-        <PeriodicEffectArray value="NanoWeaveHealLevel1"/>
+        <PeriodicEffectArray value="WeaveHealLevel1"/>
         <PeriodicPeriodArray value="1"/>
     </CEffectCreatePersistent>
     <CEffectApplyBehavior id="NanoShockShockedLevel1">
@@ -1108,11 +1115,11 @@
     <CEffectApplyBehavior id="NanoStrength">
         <EditorCategories value=""/>
     </CEffectApplyBehavior>
-    <CEffectModifyUnit id="NanoWeaveHealLevel1">
+    <CEffectModifyUnit id="WeaveHealLevel1">
         <EditorCategories value=""/>
         <VitalArray index="Life" Change="5"/>
     </CEffectModifyUnit>
-    <CEffectModifyUnit id="NanoWeaveHealLevel2">
+    <CEffectModifyUnit id="WeaveHealLevel2">
         <EditorCategories value=""/>
         <VitalArray index="Life" Change="5"/>
     </CEffectModifyUnit>
@@ -1174,15 +1181,6 @@
         <EffectArray value="VolatileInjectionDamageLevel3"/>
         <EffectArray value="NanoPlagueSecondary"/>
     </CEffectSet>
-    <CEffectApplyBehavior id="WeaveAilmentHealLevel1">
-        <ValidatorArray index="0" value="HaveMedicalExpertise"/>
-        <EditorCategories value=""/>
-    </CEffectApplyBehavior>
-    <CEffectApplyBehavior id="WeaveAilmentHealLevel12">
-        <ValidatorArray index="0" value="HaveMedicalExpertise"/>
-        <EditorCategories value=""/>
-        <Behavior value="WeaveAilmentHealLevel2"/>
-    </CEffectApplyBehavior>
     <CBehaviorBuff id="Aftershock">
         <EditorCategories value="AbilityorEffectType:Units"/>
         <Duration value="0.0937"/>
@@ -1343,6 +1341,16 @@
         <Duration value="3"/>
         <Modification MoveSpeedMultiplier="0.55" AttackSpeedMultiplier="0.55"/>
     </CBehaviorBuff>
+    <CBehaviorBuff id="VaccinateDamageReduction">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Modification>
+            <DamageTakenFraction index="Spell" value="-0.15"/>
+            <DamageTakenFraction index="Melee" value="-0.15"/>
+            <DamageTakenFraction index="Ranged" value="-0.15"/>
+            <DamageTakenFraction index="Splash" value="-0.15"/>
+            <DamageTakenFraction index="NoProc" value="-0.15"/>
+        </Modification>
+    </CBehaviorBuff>
     <CBehaviorBuff id="VaccinateImmunity">
         <EditorCategories value="AbilityorEffectType:Units"/>
     </CBehaviorBuff>
@@ -1375,13 +1383,5 @@
         <Modification>
             <DeathResponse Chance="1" Effect="VolatileInjectionSearchLevel1"/>
         </Modification>
-    </CBehaviorBuff>
-    <CBehaviorBuff id="WeaveAilmentHealLevel1">
-        <EditorCategories value="AbilityorEffectType:Units"/>
-        <Duration value="10"/>
-    </CBehaviorBuff>
-    <CBehaviorBuff id="WeaveAilmentHealLevel2">
-        <EditorCategories value="AbilityorEffectType:Units"/>
-        <Duration value="7"/>
     </CBehaviorBuff>
 </Catalog>
