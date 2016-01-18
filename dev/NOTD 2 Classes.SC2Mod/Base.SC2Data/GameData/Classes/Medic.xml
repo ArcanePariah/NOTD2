@@ -14,11 +14,11 @@
         <InfoArray index="Learn4" Abil="Vaccinate">
             <Button DefaultButtonFace="Vaccinate"/>
         </InfoArray>
-        <InfoArray index="Learn5" Abil="NanoShield">
-            <Button DefaultButtonFace="NanoShield"/>
+        <InfoArray index="Learn5" Abil="Protect">
+            <Button DefaultButtonFace="Protect"/>
         </InfoArray>
-        <InfoArray index="Learn6" Abil="NanoStrength">
-            <Button DefaultButtonFace="NanoStrength"/>
+        <InfoArray index="Learn6" Abil="Purify">
+            <Button DefaultButtonFace="Purify"/>
         </InfoArray>
         <InfoArray index="Learn7" Abil="NanoShock">
             <Button DefaultButtonFace="NanoShock"/>
@@ -43,7 +43,13 @@
         </InfoArray>
     </CAbilLearn>
     <CAbilEffectTarget id="Purify" parent="AbilityWithButtonTargetTemplate"/>
-    <CAbilEffectTarget id="Vaccinate" parent="2LevelEffectTargetAbility"/>
+    <CAbilEffectTarget id="Vaccinate" parent="2LevelEffectTargetAbility">
+        <Cost>
+            <Vital index="Energy" value="20"/>
+            <Cooldown TimeUse="5"/>
+        </Cost>
+        <Range value="4"/>
+    </CAbilEffectTarget>
     <CAbilEffectInstant id="Aftershock" parent="2LevelEffectInstantAbility">
         <Effect index="0" value="Aftershock"/>
         <Effect index="1" value="Aftershock"/>
@@ -103,11 +109,12 @@
         </Cost>
         <Range value="15"/>
     </CAbilEffectTarget>
-    <CAbilEffectTarget id="NanoShield" parent="AbilityWithButtonTargetTemplate">
+    <CAbilEffectTarget id="Protect" parent="AbilityWithButtonTargetTemplate">
         <Flags index="BestUnit" value="0"/>
         <Cost>
             <Vital index="Energy" value="55"/>
-            <Cooldown TimeUse="90"/>
+            <Charge Link="Abil/NanoShield"/>
+            <Cooldown Link="Abil/NanoShield" TimeUse="90"/>
         </Cost>
         <Range value="10"/>
     </CAbilEffectTarget>
@@ -288,7 +295,6 @@
     <CModel id="NanoStrengthBuff">
         <Model value="Assets\Effects\Protoss\ArchonMergeStart\ArchonMergeStart.m3"/>
     </CModel>
-    <CModel id="WeaveBuff" parent="PersistentSpellFX"/>
     <CModel id="VolatileInjectionBuff" parent="PersistentSpellFX">
         <Model value="Assets\Effects\Zerg\ConsumptionImpact\ConsumptionImpact.m3"/>
     </CModel>
@@ -326,7 +332,7 @@
     <CButton id="MedicalTraining">
         <Icon value="Assets\Textures\btn-research-zerg-regenerativebio-steel.dds"/>
     </CButton>
-    <CButton id="NanoShield">
+    <CButton id="Protect">
         <Icon value="Assets\Textures\btn-ability-protoss-timewarp.dds"/>
         <Hotkey value="Button/Hotkey/NanoStrength"/>
         <HotkeyAlias value="NanoPlague"/>
@@ -363,8 +369,12 @@
     <CButton id="VolatileInjection">
         <Icon value="Assets\Textures\btn-ability-zerg-corrosiveblast.dds"/>
     </CButton>
-    <CButton id="Purify" parent="MarineButton"/>
-    <CButton id="Vaccinate" parent="MarineButton"/>
+    <CButton id="Purify" parent="MarineButton">
+        <Icon value="Assets\Textures\btn-ability-protoss-blinkshieldrestore.dds"/>
+    </CButton>
+    <CButton id="Vaccinate" parent="MarineButton">
+        <Icon value="Assets\Textures\btn-upgrade-terran-reapercombatdrugs.dds"/>
+    </CButton>
     <CButton id="CancelHealing">
         <Icon value="btn-command-cancel.dds"/>
         <HotkeyAlias value="HealNOTD"/>
@@ -378,12 +388,11 @@
     <CUnit id="Medic2" parent="BasicHeroTemplate" InventoryAbility="Medic2Inventory" LearnAbility="Medic2Learn">
         <AbilArray Link="Heal"/>
         <AbilArray Link="CancelHealing"/>
-        <AbilArray Link="Antivenom"/>
         <AbilArray Link="Haste"/>
-        <AbilArray Link="MedicalExpertise"/>
         <AbilArray Link="Weave"/>
-        <AbilArray Link="NanoShield"/>
-        <AbilArray Link="NanoStrength"/>
+        <AbilArray Link="Vaccinate"/>
+        <AbilArray Link="Purify"/>
+        <AbilArray Link="Protect"/>
         <AbilArray Link="NanoShock"/>
         <AbilArray Link="VolatileInjection"/>
         <AbilArray Link="Aftershock"/>
@@ -403,16 +412,16 @@
             <LayoutButtons Face="Jump" Type="AbilCmd" AbilCmd="LightJump,Execute" Row="0" Column="4"/>
             <LayoutButtons Face="CancelHealing" Type="AbilCmd" AbilCmd="CancelHealing,Execute" Row="2" Column="0"/>
             <LayoutButtons Face="HealNOTD" Type="AbilCmd" AbilCmd="Heal,Execute" Row="2" Column="0"/>
-            <LayoutButtons Face="Antivenom" Type="AbilCmd" AbilCmd="Antivenom,Execute" Row="2" Column="1"/>
-            <LayoutButtons Face="Haste" Type="AbilCmd" AbilCmd="Haste,255" Row="2" Column="2"/>
-            <LayoutButtons Face="NanoShield" Type="AbilCmd" AbilCmd="NanoShield,Execute" Row="1" Column="0"/>
-            <LayoutButtons Face="NanoStrength" Type="AbilCmd" AbilCmd="NanoStrength,Execute" Row="1" Column="0"/>
+            <LayoutButtons Face="Vaccinate" Type="AbilCmd" AbilCmd="Vaccinate,Execute" Row="2" Column="1"/>
+            <LayoutButtons Face="Haste" Type="AbilCmd" AbilCmd="Haste,Execute" Row="2" Column="2"/>
+            <LayoutButtons Face="Protect" Type="AbilCmd" AbilCmd="Protect,Execute" Row="1" Column="0"/>
+            <LayoutButtons Face="Purify" Type="AbilCmd" AbilCmd="Purify,Execute" Row="1" Column="0"/>
             <LayoutButtons Face="NanoSear" Type="AbilCmd" AbilCmd="NanoSear,Execute" Row="1" Column="0"/>
             <LayoutButtons Face="NanoPlague" Type="AbilCmd" AbilCmd="NanoPlague,Execute" Row="1" Column="0"/>
             <LayoutButtons Face="VolatileInjection" Type="AbilCmd" AbilCmd="VolatileInjection,Execute" Row="1" Column="1"/>
             <LayoutButtons Face="Aftershock" Type="AbilCmd" AbilCmd="Aftershock,Execute" Row="1" Column="2"/>
             <LayoutButtons Face="NanoShock" Type="AbilCmd" AbilCmd="NanoShock,Execute" Row="1" Column="2"/>
-            <LayoutButtons Face="Weave" Type="AbilCmd" AbilCmd="Weave,255" Row="2" Column="3"/>
+            <LayoutButtons Face="Weave" Type="AbilCmd" AbilCmd="Weave,Execute" Row="2" Column="3"/>
         </CardLayouts>
         <Speed value="2.586"/>
         <GlossaryPriority value="2"/>
@@ -448,6 +457,9 @@
         <EffectArray Operation="Set" Reference="Behavior,HasteLevel3,Period" Value="20.000000"/>
         <EffectArray Operation="Set" Reference="Effect,NanoHasteFractureRepair,PeriodCount" Value="2"/>
     </CUpgrade>
+    <CActorRange id="VaccinateRange" parent="RangeAbil" abil="Vaccinate">
+        <EditorCategories value=""/>
+    </CActorRange>
     <CActorSplat id="NanoShockAoESplat" parent="TerranCursorSplat" abil="NanoShock">
         <EditorCategories value=""/>
     </CActorSplat>
@@ -490,10 +502,10 @@
         <On Terms="Abil.NanoSear.SourceCastStart" Send="Create"/>
     </CActorSound>
     <CActorSound id="MedicNanoShieldBirth" parent="SoundOneShot">
-        <On Terms="Behavior.NanoShieldArmor.On" Send="Create"/>
+        <On Terms="Behavior.ProtectArmor.On" Send="Create"/>
     </CActorSound>
     <CActorSound id="MedicNanoShieldDeath" parent="SoundOneShot">
-        <On Terms="Behavior.NanoShieldArmor.Off" Send="Create"/>
+        <On Terms="Behavior.ProtectArmor.Off" Send="Create"/>
     </CActorSound>
     <CActorSound id="MedicNanoShockCast" parent="SoundOneShot">
         <On Terms="Abil.NanoShock.SourceCastStart" Send="Create"/>
@@ -511,14 +523,12 @@
         <On Terms="Effect.NanoStrength.Start" Send="Create"/>
         <Sound value="MedicNanoStrengthCast"/>
     </CActorSound>
-    <CActorSound id="Weave" parent="SoundOneShot">
+    <CActorSound id="WeaveCast" parent="SoundOneShot">
         <On Terms="Abil.Weave.TargetCastStart" Send="Create"/>
-        <On Terms="Abil.Weave.TargetCastStart" Send="Create"/>
-        <Sound value="WeaveCast"/>
     </CActorSound>
     <CActorSound id="WeaveBuff" parent="SoundOneShot">
         <On Terms="Effect.WeaveHealLevel1.Start" Send="Create"/>
-        <On Terms="Effect.WeaveHealLevel2" Send="Create"/>
+        <On Terms="Effect.WeaveHealLevel2.Start" Send="Create"/>
     </CActorSound>
     <CActorSound id="MedicVolatileInjection" parent="SoundOneShot">
         <On Terms="Abil.VolatileInjection.SourceCastStart" Send="Create"/>
@@ -532,7 +542,7 @@
     <CActorRange id="NanoSearRange" parent="RangeAbil" abil="NanoSear">
         <EditorCategories value=""/>
     </CActorRange>
-    <CActorRange id="NanoShieldRange" parent="RangeAbil" abil="NanoShield">
+    <CActorRange id="NanoShieldRange" parent="RangeAbil" abil="Protect">
         <EditorCategories value=""/>
     </CActorRange>
     <CActorRange id="NanoShockRange" parent="RangeAbil" abil="NanoShock">
@@ -608,10 +618,10 @@
     <CActorModel id="NanoShieldBuff" parent="ModelAddition">
         <EditorCategories value=""/>
         <On index="0" Terms="ActorCreation" Send="AnimBracketStart BSD Birth Stand"/>
-        <On index="2" Terms="Behavior.NanoShieldArmor.On" Send="Create"/>
-        <On Terms="Behavior.NanoShieldArmor.Off" Send="AnimBracketStop BSD"/>
-        <On Terms="Behavior.NanoShieldArmor.Off; ValidateUnit hasShields IncludeDerivedSnapshot" Send="AnimPlay Shield Death"/>
-        <On Terms="Behavior.NanoShieldArmor.Off; ValidateUnit noShields IncludeDerivedSnapshot" Send="AnimPlay Shield Death,Alternate"/>
+        <On index="2" Terms="Behavior.ProtectArmor.On" Send="Create"/>
+        <On Terms="Behavior.ProtectArmor.Off" Send="AnimBracketStop BSD"/>
+        <On Terms="Behavior.ProtectArmor.Off; ValidateUnit hasShields IncludeDerivedSnapshot" Send="AnimPlay Shield Death"/>
+        <On Terms="Behavior.ProtectArmor.Off; ValidateUnit noShields IncludeDerivedSnapshot" Send="AnimPlay Shield Death,Alternate"/>
         <On Terms="AnimDone.*.Complete; AnimName Shield" Send="Destroy"/>
     </CActorModel>
     <CActorModel id="NanoShockImpact" parent="ModelAnimationStyleOneShot">
@@ -997,21 +1007,21 @@
         <EffectArray value="NanoSearSlow"/>
         <EffectArray value="NanoSearDamageDoT"/>
     </CEffectSet>
-    <CEffectApplyBehavior id="NanoSearSlow">
-        <EditorCategories value=""/>
-    </CEffectApplyBehavior>
-    <CEffectEnumArea id="NanoShield">
+    <CEffectEnumArea id="Protect">
         <EditorCategories value=""/>
         <SearchFilters value="-;Neutral,Enemy"/>
         <AreaArray Radius="2.5" Effect="NanoShieldSet"/>
     </CEffectEnumArea>
-    <CEffectApplyBehavior id="NanoShieldArmor">
+    <CEffectApplyBehavior id="ProtectArmor">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="NanoSearSlow">
         <EditorCategories value=""/>
     </CEffectApplyBehavior>
     <CEffectSet id="NanoShieldSet">
         <EditorCategories value=""/>
         <EffectArray value="NanoShieldShieldRestore"/>
-        <EffectArray value="NanoShieldArmor"/>
+        <EffectArray value="ProtectArmor"/>
     </CEffectSet>
     <CEffectModifyUnit id="NanoShieldShieldRestore">
         <EditorCategories value=""/>
@@ -1286,15 +1296,15 @@
         <Duration value="1.1"/>
         <Modification MoveSpeedMultiplier="0.9"/>
     </CBehaviorBuff>
-    <CBehaviorBuff id="NanoShieldArmor">
+    <CBehaviorBuff id="ProtectArmor">
         <Alignment value="Positive"/>
         <InfoIcon value="Assets\Textures\btn-ability-protoss-timewarp.dds"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
+        <RemoveValidatorArray value="hasShields"/>
         <Duration value="30"/>
         <Modification ShieldArmorBonus="4">
             <VitalMaxArray index="Shields" value="75"/>
         </Modification>
-        <RemoveValidatorArray value="hasShields"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="NanoShockShockedLevel1">
         <InfoFlags index="Hidden" value="1"/>

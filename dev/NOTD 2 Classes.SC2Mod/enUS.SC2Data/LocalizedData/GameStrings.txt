@@ -96,7 +96,6 @@ Abil/Name/MediumJump=Medium Jump
 Abil/Name/MotionSensor=Motion Sensor
 Abil/Name/NanoPlague=Nano-Plague
 Abil/Name/NanoSear=Nano-Sear
-Abil/Name/NanoShield=Nano-Shield
 Abil/Name/NanoShock=Nano-Shock
 Abil/Name/NanoStrength=Nano-Strength
 Abil/Name/PackUpAntiMaterialRifle=Pack Up Anti-Material Rifle
@@ -111,6 +110,7 @@ Abil/Name/PlasmaGrenade=Plasma Grenade
 Abil/Name/PrecisionShot=Precision Shot
 Abil/Name/PredatorCloak=Cloak
 Abil/Name/PredatorPetInventory=Predator Pet Inventory
+Abil/Name/Protect=Protect
 Abil/Name/Provoke=Provoke
 Abil/Name/ProximityTrigger=Proximity Trigger
 Abil/Name/PsiOpsInventory=Psi Ops Inventory
@@ -179,9 +179,10 @@ Ability/LevelUpTooltip/SmokeGrenadeLevel2=Create a <d ref="Effect,SmokeGrenadeEn
 Ability/LevelUpTooltip/SmokeGrenadeLevel3=Create a <d ref="Effect,SmokeGrenadeEnemySlowSearchLevel3,AreaArray[0].Radius" precision="1"/> radius cloud that lowers enemy Movement and Attack Speed by 25% and grants allied units 20% Evasion for <d ref="Effect,SmokeGrenadePersistentLevel3,PeriodCount * Effect,SmokeGrenadePersistentLevel3,PeriodicPeriodArray[0]"/> seconds.
 Ability/LevelUpTooltip/SurveillanceFlareLevel2=Throw a flare at the target location, providing ground vision in a radius <d ref="Unit,GroundIlluminationFlareLevel2,Sight"/> of the targeted area for <d ref="Behavior,GroundIlluminationTimedLifeLevel2,Duration"/> seconds.
 Ability/LevelUpTooltip/SurveillanceFlareLevel3=Throw a flare at the target location, providing ground vision in a radius <d ref="Unit,GroundIlluminationFlareLevel3,Sight"/> of the targeted area for <d ref="Behavior,GroundIlluminationTimedLifeLevel3,Duration"/> seconds.
+Ability/LevelUpTooltip/VaccinateLevel2=Removes all venom, poison, and parasite effects from the target and reduces damage taken by 15% for 30 seconds.
 Ability/LevelUpTooltip/VolatileInjectionLevel2=Deals <d ref="Effect,VolatileInjectionDamageLevel2,Amount"/> damage to all units within a <d ref="Effect,VolatileInjectionSearchLevel2,AreaArray[0].Radius"/> radius of the afflicted unit when it dies.
 Ability/LevelUpTooltip/VolatileInjectionLevel3=Deals <d ref="Effect,VolatileInjectionDamageLevel3,Amount"/> damage to all units within a <d ref="Effect,VolatileInjectionSearchLevel3,AreaArray[0].Radius"/> radius of the afflicted unit when it dies.
-Ability/LevelUpTooltip/WeaveLevel2=Restores <d ref="Effect,NanoWeaveHealLevel2,VitalArray[Life].Change"/> hitpoints per second for <d ref="Effect,NanoWeavePersistentLevel2,PeriodCount * Effect,NanoWeavePersistentLevel2,PeriodicPeriodArray[0]"/> seconds.<n/>
+Ability/LevelUpTooltip/WeaveLevel2=Restores <d ref="Effect,WeaveHealLevel2,VitalArray[Life].Change"/> hitpoints per second for <d ref="Effect,WeavePersistentLevel2,PeriodCount * Effect,WeavePersistentLevel2,PeriodicPeriodArray[0]"/> seconds.<n/>
 Alert/Text/Reload=Can not reload, too many rounds.
 Behavior/Name/AdvancedTargetingLevel1=Advanced Targeting Level 1
 Behavior/Name/AdvancedTargetingLevel2=Advanced Targeting Level 2
@@ -302,7 +303,6 @@ Behavior/Name/NanoPlague=Nano-Plague
 Behavior/Name/NanoPlagueSecondary=Nano-Plague Secondary
 Behavior/Name/NanoSearDamageDoT=Nano-Sear Damage DoT
 Behavior/Name/NanoSearSlow=Nano-Sear Slow
-Behavior/Name/NanoShieldArmor=Nano-Shield Armor
 Behavior/Name/NanoShockShockedLevel1=Nano-Shock Shocked Level 1
 Behavior/Name/NanoShockShockedLevel2=Nano-Shock Shocked Level 2
 Behavior/Name/NanoShockShockedLevel3=Nano-Shock Shocked Level 3
@@ -323,6 +323,7 @@ Behavior/Name/PredatorCloak=Predator Cloak
 Behavior/Name/PredatorPetVeterancy=Predator Pet Veterancy
 Behavior/Name/PredatorPiranhaMissiles=Predator Piranha Missiles
 Behavior/Name/PredatorThunderclaw=Predator Thunderclaw
+Behavior/Name/ProtectArmor=Protect Armor
 Behavior/Name/ProvokeLevel1=Provoke Level 1
 Behavior/Name/ProvokeLevel1Taunt=Provoke Level 1 Taunt
 Behavior/Name/ProvokeLevel2=Provoke Level 2
@@ -516,7 +517,6 @@ Button/Name/MonofilamentCartridge=Monofilament Cartridge
 Button/Name/MotionSensor=Motion Sensor
 Button/Name/NanoPlague=Nano-Plague
 Button/Name/NanoSear=Nano-Sear
-Button/Name/NanoShield=Nano-Shield
 Button/Name/NanoShock=Nano-Shock
 Button/Name/NanoStrength=Nano-Strength
 Button/Name/NapalmGrenade=Napalm Grenade
@@ -533,6 +533,7 @@ Button/Name/Pets=Pets
 Button/Name/PlasmaGrenade=Plasma Grenade
 Button/Name/PrecisionShot=Precision Shot
 Button/Name/PredatorCloak=Predator Cloak
+Button/Name/Protect=Protect
 Button/Name/Provoke=Provoke
 Button/Name/ProxmityTrigger=Proxmity Trigger
 Button/Name/PsionicTempest=Psionic Tempest
@@ -679,7 +680,6 @@ Button/Tooltip/NanoHasteLevel2=
 Button/Tooltip/NanoHasteLevel3=
 Button/Tooltip/NanoPlague=Deals <d ref="Effect,NanoPlagueDamage,Amount"/> damage per second for <d ref="Behavior,NanoPlague,Duration"/> seconds and reduces the target’s armor by <d ref="Behavior,NanoPlague,Modification.LifeArmorBonus*(-1)"/>. If the target dies while under the effects of Volatile Injection, Nano-Plague will be applied to all units damaged by Volatile Injection’s burst.
 Button/Tooltip/NanoSear=Creates a nanite-cloud that deals <d ref="Effect,NanoSearDamage,Amount"/> damage per second for <d ref="Behavior,NanoSearDamageDoT,Duration" precision="1"/> seconds to all units that pass through it. Units that remain within the cloud take double damage from the damage over time effect and have their movespeed reduced by <d ref="Behavior,NanoSearSlow,Modification.MoveSpeedMultiplier-1*(-100)" precision="1"/>% every 5 seconds up to <d ref="Behavior,NanoSearSlow,MaxStackCount*10" precision="1"/>%. Radius of the cloud is <d ref="Effect,NanoSearSearch,AreaArray[0].Radius" precision="1"/>.<n/><n/><c val="FF0000">The movespeed reduction fades as soon as the unit leaves the cloud.</c>
-Button/Tooltip/NanoShield=Boosts the shields of all units in a <d ref="Effect,NanoShield,AreaArray[0].Radius"/> radius, fully restoring them and granting <d ref="Behavior,NanoShieldArmor,Modification.VitalMaxArray[Shields]"/> bonus shields and <d ref="Behavior,NanoShieldArmor,Modification.ShieldArmorBonus"/> shield armor for <d ref="Behavior,NanoShieldArmor,Duration"/> seconds.
 Button/Tooltip/NanoShock=Deals <d ref="Effect,NanoShockDamageLevel1,Amount"/> damage and slows units by <d ref="Behavior,NanoShockSlowLevel1,Modification.MoveSpeedMultiplier-1*(-100)" precision="2"/>% for <d ref="Behavior,NanoShockSlowLevel1,Duration"/> second in a radius of <d ref="Effect,NanoShockLevel1,AreaArray[0].Radius" precision="2"/>.
 Button/Tooltip/NanoShockLevel2=
 Button/Tooltip/NanoShockLevel3=
@@ -691,6 +691,7 @@ Button/Tooltip/PrecisionShot=Takes aim at a single target, dealing <d ref="Effec
 Button/Tooltip/PrecisionShotLevel2=Takes aim at a single target, dealing <d ref="Effect,PrecisionShotNormalDamageLevel2,Amount"/> damage and slowing them by <d ref="Behavior,PrecisionShotSlowLevel2,Modification.MoveSpeedMultiplier-1*(-100)" precision="1"/>% for <d ref="Behavior,PrecisionShotSlowLevel2,Duration" precision="1"/> seconds. The target takes <d ref="Effect,PrecisionShotBonusDamageLevel2,Amount/Effect,PrecisionShotNormalDamageLevel2,Amount-1*100" precision="1"/>% additional damage if it is stunned or slowed. Precision Shot is affected by Focus Fire’s damage bonus and can Critical strike. If Focus Fire is active and has Crippling Strike’s upgrade, the bonus damage is applied automatically.
 Button/Tooltip/PrecisionShotLevel3=Takes aim at a single target, dealing <d ref="Effect,PrecisionShotNormalDamageLevel3,Amount"/> damage and slowing them by <d ref="Behavior,PrecisionShotSlowLevel3,Modification.MoveSpeedMultiplier-1*(-100)" precision="1"/>% for <d ref="Behavior,PrecisionShotSlowLevel3,Duration" precision="1"/> seconds. The target takes <d ref="Effect,PrecisionShotBonusDamageLevel3,Amount/Effect,PrecisionShotNormalDamageLevel3,Amount-1*100" precision="1"/>% additional damage if it is stunned or slowed. Precision Shot is affected by Focus Fire’s damage bonus and can Critical strike. If Focus Fire is active and has Crippling Strike’s upgrade, the bonus damage is applied automatically.
 Button/Tooltip/PredatorCloak=Become invisible for <d ref="Behavior,PredatorCloak,Duration"/> seconds.
+Button/Tooltip/Protect=Boosts the shields of all units in a <d ref="Effect,NanoShield,AreaArray[0].Radius"/> radius, fully restoring them and granting <d ref="Behavior,NanoShieldArmor,Modification.VitalMaxArray[Shields]"/> bonus shields and <d ref="Behavior,NanoShieldArmor,Modification.ShieldArmorBonus"/> shield armor for <d ref="Behavior,NanoShieldArmor,Duration"/> seconds.
 Button/Tooltip/Provoke=Force enemies in a <d ref="Effect,ProvokeSearchLevel1,AreaArray[0].Radius"/> radius to target the Demolitions for <d ref="Behavior,ProvokeLevel1,Duration"/> seconds and deal <d ref="-Behavior,ProvokeLevel1Taunt,Modification.DamageDealtFraction[Melee] *100"/>% less damage.
 Button/Tooltip/ProxmityTrigger=Enable the MD-5 Mine to automatically detonate when an enemy passes within a 1.5 radius.
 Button/Tooltip/Refresher=Resets the cooldown on all other Recon skills and restores 45 energy.
@@ -718,13 +719,14 @@ Button/Tooltip/TauntNOTD=Forces all enemies in a <d ref="Effect,TauntLevel1,Area
 Button/Tooltip/TeamLocation=Pings the locations of all teammembers on the minimap.
 Button/Tooltip/ThunderballFists=Engage the Thunderball Fists protocol, dragging enemies within a <d ref="Effect,ThunderballFistsSearch,AreaArray[0].Radius"/> radius to the Demolitions and dealing <d ref="Effect,ThunderballFistsDamage,Amount"/> damage every <d ref="Effect,ThunderballFists,PeriodicPeriodArray[0]" precision="2"/> seconds for <d ref="Effect,ThunderballFists,PeriodicPeriodArray[0] * Effect,ThunderballFists,PeriodCount" precision="2"/> seconds.
 Button/Tooltip/TrackingTag=Reveals the target unit to allied players for <d ref="Behavior,TrackingTag,Duration / 60"/> minutes.
+Button/Tooltip/Vaccinate=Removes all venom, poison, and parasite effects from the target for 30 seconds.
 Button/Tooltip/VolatileInjection=Deals <d ref="Effect,VolatileInjectionDamageLevel1,Amount"/> damage to all units within a <d ref="Effect,VolatileInjectionSearchLevel1,AreaArray[0].Radius"/> radius of the afflicted unit when it dies.
 Button/Tooltip/VolatileInjectionLevel2=
 Button/Tooltip/VolatileInjectionLevel3=
 Button/Tooltip/WeaponsFreeNOTD=Orders selected units to fire at will. They will engage enemy units within range and chase them as normal.
 Button/Tooltip/WeaponsProficiencyLevel1=Increases reload speed by 15%.
 Button/Tooltip/WeaponsProficiencyLevel2=Increases reload speed by 30%.
-Button/Tooltip/Weave=Restores <d ref="Effect,NanoWeaveHealLevel1,VitalArray[Life].Change"/> hitpoints per second for <d ref="Effect,NanoWeavePersistentLevel1,PeriodCount * Effect,NanoWeavePersistentLevel1,PeriodicPeriodArray[0]"/> seconds.
+Button/Tooltip/Weave=Restores <d ref="Effect,WeaveHealLevel1,VitalArray[Life].Change"/> hitpoints per second for <d ref="Effect,WeavePersistentLevel1,PeriodCount * Effect,WeavePersistentLevel1,PeriodicPeriodArray[0]"/> seconds.
 DOCSTR_0001=Insert Text
 DocInfo/DescLong=Class Data for Night of the Dead 2
 DocInfo/Name=NOTD 2 Class Data
@@ -735,6 +737,8 @@ Effect/Name/HasteLevel3=Haste Level 3
 Effect/Name/HealOpenWoundRemovalLevel1=Heal Open Wound Removal Level 1
 Effect/Name/HealOpenWoundRemovalLevel2=Heal Open Wound Removal Level 2
 Effect/Name/HealOpenWoundRemovalLevel22=Heal Open Wound Removal Level 3
+Effect/Name/Protect=Protect
+Effect/Name/ProtectArmor=Protect Armor
 Effect/Name/Purify=Purify
 Effect/Name/PurifyAilmentPurge=Purify Ailment Purge
 Effect/Name/PurifyHeal=Purify Heal
@@ -1082,13 +1086,13 @@ UserData/TalentTree/Demolition Fortitude Tree_Talent Tooltips_002=The reactive s
 UserData/TalentTree/Demolition Fortitude Tree_Talent Tooltips_003=After many close combat drills on clearing buildings for demolishing, it’s not uncommon for a Demolitions to find themselves invigorated by fighting.<n/><n/><s val="AISurrenderTitle"><c val="F4CE4D">Level 1:</c></s> <c val="FCF5C5">Restores 1.5 Shields and 0.25 Energy per enemy killed.</c><n/><s val="AISurrenderTitle"><c val="F4CE4D">Level 2:</c></s> <c val="FCF5C5">Restores 3 shields and 0.5 Energy per enemy killed.</c><n/><n/><s val="AchievementFrameDescription">“There’s nothing like the rush you get from surviving only because you killed them first.”</s>
 UserData/TalentTree/Demolition Fortitude Tree_Talent Tooltips_004=The Demolitions turns their reactive shield against itself, grinding together the reactive spikes to produce a violent reaction that draws in nearby enemies and damages them.<n/><n/><s val="AISurrenderTitle"><c val="F4CE4D">Level 1:</c></s> <c val="FCF5C5">Drags enemies in a 5 radius and deals 25 damage every 0.25 seconds for 10 seconds.</c><n/><n/><s val="AchievementFrameDescription">“For success it’s essential! Thunder and Lightning Aura!”</s>
 UserData/TalentTree/Demolition Fortitude Tree_Talent Tooltips_005=The Demolitions can focus their shields enormous solid barrier, vastly reducing damage taken from a given direction and reflecting it back towards attackers at the cost of leaving their flanks vulnerable. <n/><n/><s val="AISurrenderTitle"><c val="F4CE4D">Level 1:</c></s> <c val="FCF5C5">Create a directional barrier that reflects damage back at attackers and reduces damage dealt to the Demolitions by 50%. Damage taken from the unprotected side is increased by 150%.</c><n/><n/><s val="AchievementFrameDescription"></s>“HIT ME, RIGHT HERE! IT'LL BE FUNNY, I PROMISE!”</s>
-UserData/TalentTree/Medic Field Assistance Tree_Header=<s val="AiurChefCenterSize22Bold"><c val="D2FCFF">SUPPORT</c></s>
-UserData/TalentTree/Medic Field Assistance Tree_Talent Name=<s val="AchievementFrameName">First Aid</s>
-UserData/TalentTree/Medic Field Assistance Tree_Talent Name_001=<s val="AchievementFrameName">Nano-Haste</s>
-UserData/TalentTree/Medic Field Assistance Tree_Talent Name_002=<s val="AchievementFrameName">Medical Expertise</s> <s val="AchievementFrameName_Zerg">[Passive]</s>
-UserData/TalentTree/Medic Field Assistance Tree_Talent Name_003=<s val="AchievementFrameName">Nano-Weave</s>
-UserData/TalentTree/Medic Field Assistance Tree_Talent Name_004=<s val="AchievementFrameName">Nano-Shield</s>
-UserData/TalentTree/Medic Field Assistance Tree_Talent Name_005=<s val="AchievementFrameName">Nano-Strength</s>
+UserData/TalentTree/Medic Field Assistance Tree_Header=<s val="AiurChefCenterSize22Bold"><c val="D2FCFF">LIFESAVER</c></s>
+UserData/TalentTree/Medic Field Assistance Tree_Talent Name=<s val="AchievementFrameName">Heal</s>
+UserData/TalentTree/Medic Field Assistance Tree_Talent Name_001=<s val="AchievementFrameName">Haste</s>
+UserData/TalentTree/Medic Field Assistance Tree_Talent Name_002=<s val="AchievementFrameName">Weave</s>
+UserData/TalentTree/Medic Field Assistance Tree_Talent Name_003=<s val="AchievementFrameName">Vaccinate</s>
+UserData/TalentTree/Medic Field Assistance Tree_Talent Name_004=<s val="AchievementFrameName">Purify</s>
+UserData/TalentTree/Medic Field Assistance Tree_Talent Name_005=<s val="AchievementFrameName">Protect</s>
 UserData/TalentTree/Medic Field Assistance Tree_Talent Tooltips=Medical nanites can repair damaged tissues through constant application and can be used to exhume non-native toxins from a patient.<n/><n/><s val="AISurrenderTitle"><c val="F4CE4D">Level 1</c>:</s> <c val="FCF5C5">Heal restores 4 hitpoints per second, Antivenom’s cooldown is 15 seconds.</c><n/><s val="AISurrenderTitle"><c val="F4CE4D">Level 2:</c> </s><c val="FCF5C5">Heal restores 6 hitpoints per second, Antivenom’s cooldown is 10 seconds.</c><n/><s val="AISurrenderTitle"><c val="F4CE4D">Level 3:</c></s> <c val="FCF5C5">Heal restores 8 hitpoints per second, Antivenom’s cooldown is 5 seconds.</c><n/><n/><s val="AchievementFrameDescription">“First Aid is the initial care for an illness or injury and is usually performed by trained personnel to a sick or injured person until expert medical treatment can be provided.”</s>
 UserData/TalentTree/Medic Field Assistance Tree_Talent Tooltips_001=“Haste” nanites mimic a rush of adrenaline, providing a measured burst of energy to the target that allows them to operate more quickly for a short period of time.<n/><n/><s val="AISurrenderTitle"><c val="F4CE4D">Level 1:</c></s><c val="FCF5C5"> Increases movement and attack speed by 10% for 40 seconds. 60 second cooldown.</c><n/><s val="AISurrenderTitle"><c val="F4CE4D">Level 2:</c></s><c val="FCF5C5"> Increases movement and attack speed by 15% for 50 seconds. 50 second cooldown.</c><n/><s val="AISurrenderTitle"><c val="F4CE4D">Level 3:</c></s> <c val="FCF5C5">Increases movement and attack speed by 20% for 60 seconds. 40 second cooldown.</c><n/><n/><s val="AchievementFrameDescription">“Gotta go fast!”</s>
 UserData/TalentTree/Medic Field Assistance Tree_Talent Tooltips_002=Advanced training can allow a user of medical nanites to access their more complicated functions, such as mending bones or sealing open wounds.<n/><n/><s val="AISurrenderTitle"><c val="F4CE4D">Level 1:</c></s> <c val="FCF5C5">Heal cures Open Wounds over time and Haste cures bone damage over time.</c><n/><s val="AISurrenderTitle"><c val="F4CE4D">Level 2:</c> </s><c val="FCF5C5">The energy cost of Antivenom is reduced by 50% and Weave cures random ailments over time.</c><n/><n/><s val="AchievementFrameDescription">“Trust me, I’m a doctor.”</s>
