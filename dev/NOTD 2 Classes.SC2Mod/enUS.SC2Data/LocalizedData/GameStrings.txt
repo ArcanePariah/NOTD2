@@ -91,7 +91,6 @@ Abil/Name/Medic2Inventory=Medic Inventory
 Abil/Name/Medic2Learn=Medic Learn
 Abil/Name/MedicalAssistance=Medical Assistance
 Abil/Name/MedicalDrop=Medical Drop
-Abil/Name/MedicalExpertise=Medical Expertise
 Abil/Name/MediumJump=Medium Jump
 Abil/Name/MotionSensor=Motion Sensor
 Abil/Name/NanoPlague=Nano-Plague
@@ -163,10 +162,10 @@ Ability/LevelUpTooltip/FlareGunReconLevel2=Reveals an area of 6 and lowers the m
 Ability/LevelUpTooltip/FlareGunReconLevel3=Reveals an area of 7 and lowers the movement speed of biological enemies by 50% for 10 seconds. Does not slow bosses.
 Ability/LevelUpTooltip/FragmentationGrenadeLevel2=Throw a Fragmentation Grenade at the target area, dealing <d ref="Effect,FragmentationGrenadeDamageLevel2,Amount"/> damage to all enemies in a <d ref="Effect,FragmentationGrenadeDamageLevel2,AreaArray[0].Radius"/> radius on impact.<n/><n/><c val="FF0000">Damage is reduced by <d ref="Effect,FragmentationGrenadeDamageLevel2,AttributeFactor[Armored]*100*(-1)" precision="1"/>% against Armored units and <d ref="Effect,FragmentationGrenadeDamageLevel2,ShieldFactor*100*(-1)" precision="1"/>% against shields.</c>
 Ability/LevelUpTooltip/FragmentationGrenadeLevel3=Launch a Fragmentation Grenade at the target area, dealing <d ref="Effect,FragmentationGrenadeDamageLevel3,Amount"/> damage to all enemies in a <d ref="Effect,FragmentationGrenadeDamageLevel3,AreaArray[0].Radius"/> radius on impact. <n/><n/><c val="FF0000">Damage is reduced by <d ref="Effect,FragmentationGrenadeDamageLevel3,AttributeFactor[Armored]*100*(-1)" precision="1"/>% against Armored units and <d ref="Effect,FragmentationGrenadeDamageLevel3,ShieldFactor*100*(-1)" precision="1"/>% against shields.</c>
-Ability/LevelUpTooltip/HasteLevel2=Increases the movement speed and attack speed of the target by <d ref="(Behavior,NanoHasteLevel2,Modification.AttackSpeedMultiplier -1)  * 100"/>% for <d ref="Behavior,NanoHasteLevel2,Duration"/> seconds. <n/>
-Ability/LevelUpTooltip/HasteLevel3=Increases the movement speed and attack speed of the target by <d ref="(Behavior,NanoHasteLevel3,Modification.AttackSpeedMultiplier -1)  * 100"/>% for <d ref="Behavior,NanoHasteLevel3,Duration"/> seconds. <n/>
-Ability/LevelUpTooltip/HealLevel2=Restores <d ref="Effect,HealLevel2,RechargeVitalRate"/> hitpoints per second to target unit. Costs <d ref="Effect,HealLevel2,DrainVitalCostFactor * Effect,HealLevel2,RechargeVitalRate" precision="3"/> Energy per second.
-Ability/LevelUpTooltip/HealLevel3=Restores <d ref="Effect,HealLevel3,RechargeVitalRate"/> hitpoints per second to target unit. Costs <d ref="Effect,HealLevel3,DrainVitalCostFactor * Effect,HealLevel3,RechargeVitalRate" precision="3"/> Energy per second.
+Ability/LevelUpTooltip/HasteLevel2=Increases the movement speed of the target by <d ref="(Behavior,HasteLevel2,Modification.MoveSpeedMultiplier -1)  * 100"/>% for <d ref="Behavior,HasteLevel2,Duration"/> seconds. Target has all Fractures and Broken Bones cured on cast and is immune to them for the duration. <n/>
+Ability/LevelUpTooltip/HasteLevel3=Increases the movement speed of the target by <d ref="(Behavior,HasteLevel3,Modification.MoveSpeedMultiplier -1)  * 100"/>% and Jump range by 2 for <d ref="Behavior,HasteLevel3,Duration"/> seconds. Target has all Fractures and Broken Bones cured on cast and is immune to them for the duration. <n/>
+Ability/LevelUpTooltip/HealLevel2=Restores <d ref="Effect,HealLevel2,RechargeVitalRate"/> hitpoints per second to target unit. Removes <d ref="Effect,HealOpenWoundRemovalLevel2,PeriodCount"/> Open Wound per second. Costs <d ref="Effect,HealLevel2,DrainVitalCostFactor * Effect,HealLevel2,RechargeVitalRate" precision="3"/> Energy per second.
+Ability/LevelUpTooltip/HealLevel3=Restores <d ref="Effect,HealLevel3,RechargeVitalRate"/> hitpoints per second to target unit. Removes <d ref="Effect,HealOpenWoundRemovalLevel3,PeriodCount"/> Open Wounds per second. Costs <d ref="Effect,HealLevel3,DrainVitalCostFactor * Effect,HealLevel3,RechargeVitalRate" precision="3"/> Energy per second.
 Ability/LevelUpTooltip/LaserDesignatorLevel2=Designates a unit, revealing it and inflicting a 10% damage vulnerability for 120 seconds.
 Ability/LevelUpTooltip/LaserDesignatorLevel3=Designates a unit, revealing it and inflicting a 15% damage vulnerability for 150 seconds.
 Ability/LevelUpTooltip/NanoShockLevel2=Deals <d ref="Effect,NanoShockDamageLevel2,Amount"/> damage and slows units by <d ref="Behavior,NanoShockSlowLevel2,Modification.MoveSpeedMultiplier-1*(-100)" precision="2"/>% for <d ref="Behavior,NanoShockSlowLevel2,Duration"/> second in a radius of <d ref="Effect,NanoShockLevel2,AreaArray[0].Radius" precision="2"/>.<n/>
@@ -503,9 +502,6 @@ Button/Name/Marksmanship=Marksmanship
 Button/Name/MassreactiveTrigger=Mass-reactive Trigger
 Button/Name/MedicalAssistance=Medical Assistance
 Button/Name/MedicalDrop=Medical Drop
-Button/Name/MedicalExpertise=Medical Expertise
-Button/Name/MedicalExpertiseLevel1=Medical Expertise Level 1
-Button/Name/MedicalExpertiseLevel2=Medical Expertise Level 2
 Button/Name/MedicalTraining=Medical Training
 Button/Name/MentalBlades=Mental Blades
 Button/Name/Mercy=Mercy
@@ -642,10 +638,10 @@ Button/Tooltip/FocusFireFireUp=Increases weapon damage by <d ref="Behavior,Focus
 Button/Tooltip/FragmentationGrenade=Throw a Fragmentation Grenade at the target area, dealing <d ref="Effect,FragmentationGrenadeDamageLevel1,Amount"/> damage to all enemies in a <d ref="Effect,FragmentationGrenadeDamageLevel1,AreaArray[0].Radius"/> radius on impact.<n/><n/><c val="FF0000">Damage is reduced by <d ref="Effect,FragmentationGrenadeDamageLevel1,AttributeFactor[Armored]*100*(-1)" precision="1"/>% against Armored units and <d ref="Effect,FragmentationGrenadeDamageLevel1,ShieldFactor*100*(-1)" precision="1"/>% against shields.</c>
 Button/Tooltip/FragmentationGrenadeLevel2=
 Button/Tooltip/FragmentationGrenadeLevel3=
-Button/Tooltip/Haste=Increases the movement speed and attack speed of the target by <d ref="(Behavior,NanoHasteLevel1,Modification.AttackSpeedMultiplier -1)  * 100"/>% for <d ref="Behavior,NanoHasteLevel1,Duration"/> seconds. 
+Button/Tooltip/Haste=Increases the movement speed of the target by <d ref="(Behavior,HasteLevel1,Modification.MoveSpeedMultiplier -1)  * 100"/>% for <d ref="Behavior,HasteLevel1,Duration"/> seconds. 
 Button/Tooltip/HealLevel2=
 Button/Tooltip/HealLevel3=
-Button/Tooltip/HealNOTD=Restores <d ref="Effect,HealLevel1,RechargeVitalRate"/> hitpoints per second to target unit. Costs <d ref="Effect,HealLevel1,DrainVitalCostFactor * Effect,HealLevel1,RechargeVitalRate"/> Energy per second.
+Button/Tooltip/HealNOTD=Restores <d ref="Effect,HealLevel1,RechargeVitalRate"/> hitpoints per second to target unit. Removes <d ref="Effect,HealOpenWoundRemovalLevel1,PeriodCount"/> Open Wound per second.  Costs <d ref="Effect,HealLevel1,DrainVitalCostFactor * Effect,HealLevel1,RechargeVitalRate"/> Energy per second. 
 Button/Tooltip/Heavy=The UGC Bulwark Armor provides an additional level of personal protection, granting immunity to rating loss from hits.
 Button/Tooltip/HoldFireNOTD=Orders selected units to holster their weapons and avoid engaging enemies, unless given a direct command. Units holding fire will flee if attacked. Unit gains 10% movespeed bonus while holding fire.<n/>
 Button/Tooltip/HoldPosition=Orders selected units to stay where they are and attack enemies that are within range. Units will neither chase down enemies nor move to engage.
@@ -673,8 +669,6 @@ Button/Tooltip/MassreactiveTrigger=Enable the MD-5 Mine to automatically detonat
 Button/Tooltip/Medic2=Medics employ advanced nanotechnology and years of training to keep their squads ready, willing, and able. Their equipment and skills can be used to heal any wound or inflict terrible damage on enemies, making them forces to be reckoned with.
 Button/Tooltip/MedicalAssistance=Use a Medkit to heal the target unit. Advanced medical training will use other items to heal injured teammates.
 Button/Tooltip/MedicalDrop=Drops a crate containing <d ref="Loot,SupplyDropMedkitSet,MaxCount * Item,Medkit,EffectCost.Charge.CountStart"/> Medkits, <d ref="Loot,SupplyDropDefensiveBandageSet,MaxCount * Item,Bandage,EffectCost.Charge.CountStart"/> Bandages, and <d ref="Loot,SupplyDropDefensiveAntiVenomSet,MaxCount *Item,AntiVenom,EffectCost.Charge.CountStart"/> Antivenoms at the target location.
-Button/Tooltip/MedicalExpertiseLevel1=Heal cures Open Wounds every 8/6/4 seconds (Heal Level)  time and Haste converts Broken Bones to Fractures every 20 seconds, and Fractures are repaired every 10 seconds.
-Button/Tooltip/MedicalExpertiseLevel2=Heal cures Open Wounds every 8/6/4 seconds (Heal Level)  time and Haste converts Broken Bones to Fractures every 20 seconds, and Fractures are repaired every 10 seconds.. The energy cost of Antivenom is reduced by 50% and Weave cures a random ailment every 10/7 seconds (Weave Level).
 Button/Tooltip/MedicalTraining=Using the Medical Assistance ability will use a Medkit if the target is injured, a Bandage if the target has an Open Wound, or an Antivenom if the target is inflicted with Venom.
 Button/Tooltip/NanoHasteLevel2=
 Button/Tooltip/NanoHasteLevel3=
@@ -691,7 +685,7 @@ Button/Tooltip/PrecisionShot=Takes aim at a single target, dealing <d ref="Effec
 Button/Tooltip/PrecisionShotLevel2=Takes aim at a single target, dealing <d ref="Effect,PrecisionShotNormalDamageLevel2,Amount"/> damage and slowing them by <d ref="Behavior,PrecisionShotSlowLevel2,Modification.MoveSpeedMultiplier-1*(-100)" precision="1"/>% for <d ref="Behavior,PrecisionShotSlowLevel2,Duration" precision="1"/> seconds. The target takes <d ref="Effect,PrecisionShotBonusDamageLevel2,Amount/Effect,PrecisionShotNormalDamageLevel2,Amount-1*100" precision="1"/>% additional damage if it is stunned or slowed. Precision Shot is affected by Focus Fire’s damage bonus and can Critical strike. If Focus Fire is active and has Crippling Strike’s upgrade, the bonus damage is applied automatically.
 Button/Tooltip/PrecisionShotLevel3=Takes aim at a single target, dealing <d ref="Effect,PrecisionShotNormalDamageLevel3,Amount"/> damage and slowing them by <d ref="Behavior,PrecisionShotSlowLevel3,Modification.MoveSpeedMultiplier-1*(-100)" precision="1"/>% for <d ref="Behavior,PrecisionShotSlowLevel3,Duration" precision="1"/> seconds. The target takes <d ref="Effect,PrecisionShotBonusDamageLevel3,Amount/Effect,PrecisionShotNormalDamageLevel3,Amount-1*100" precision="1"/>% additional damage if it is stunned or slowed. Precision Shot is affected by Focus Fire’s damage bonus and can Critical strike. If Focus Fire is active and has Crippling Strike’s upgrade, the bonus damage is applied automatically.
 Button/Tooltip/PredatorCloak=Become invisible for <d ref="Behavior,PredatorCloak,Duration"/> seconds.
-Button/Tooltip/Protect=Boosts the shields of all units in a <d ref="Effect,NanoShield,AreaArray[0].Radius"/> radius, fully restoring them and granting <d ref="Behavior,NanoShieldArmor,Modification.VitalMaxArray[Shields]"/> bonus shields and <d ref="Behavior,NanoShieldArmor,Modification.ShieldArmorBonus"/> shield armor for <d ref="Behavior,NanoShieldArmor,Duration"/> seconds.
+Button/Tooltip/Protect=Boosts the shields of all units in a <d ref="Effect,Protect,AreaArray[0].Radius"/> radius, fully restoring them and granting <d ref="Behavior,ProtectArmor,Modification.VitalMaxArray[Shields]"/> bonus shields and <d ref="Behavior,ProtectArmor,Modification.ShieldArmorBonus"/> shield armor for <d ref="Behavior,ProtectArmor,Duration"/> seconds.
 Button/Tooltip/Provoke=Force enemies in a <d ref="Effect,ProvokeSearchLevel1,AreaArray[0].Radius"/> radius to target the Demolitions for <d ref="Behavior,ProvokeLevel1,Duration"/> seconds and deal <d ref="-Behavior,ProvokeLevel1Taunt,Modification.DamageDealtFraction[Melee] *100"/>% less damage.
 Button/Tooltip/ProxmityTrigger=Enable the MD-5 Mine to automatically detonate when an enemy passes within a 1.5 radius.
 Button/Tooltip/Refresher=Resets the cooldown on all other Recon skills and restores 45 energy.
@@ -736,9 +730,10 @@ Effect/Name/HasteLevel2=Haste Level 2
 Effect/Name/HasteLevel3=Haste Level 3
 Effect/Name/HealOpenWoundRemovalLevel1=Heal Open Wound Removal Level 1
 Effect/Name/HealOpenWoundRemovalLevel2=Heal Open Wound Removal Level 2
-Effect/Name/HealOpenWoundRemovalLevel22=Heal Open Wound Removal Level 3
+Effect/Name/HealOpenWoundRemovalLevel3=Heal Open Wound Removal Level 3
 Effect/Name/Protect=Protect
 Effect/Name/ProtectArmor=Protect Armor
+Effect/Name/ProtectSet=Protect Set
 Effect/Name/Purify=Purify
 Effect/Name/PurifyAilmentPurge=Purify Ailment Purge
 Effect/Name/PurifyHeal=Purify Heal
@@ -985,8 +980,6 @@ Upgrade/Name/HighCapacityAmmoAssaultwithModification=High Capacity Ammo Assault 
 Upgrade/Name/IntegratedSuppressor=Integrated Suppressor
 Upgrade/Name/IntolerableCruelty=Intolerable Cruelty
 Upgrade/Name/MD5MineLevelDummy=MD 5 Mine Level Dummy
-Upgrade/Name/MedicalExpertiseLevel1=Medical Expertise Level 1
-Upgrade/Name/MedicalExpertiseLevel2=Medical Expertise Level 2
 Upgrade/Name/Mercernary=Mercernary
 Upgrade/Name/MovementSpeed=Movement Speed
 Upgrade/Name/NightVision=Night Vision

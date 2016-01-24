@@ -92,7 +92,7 @@
             <Cooldown TimeUse="12"/>
         </Cost>
         <TargetFilters value="Biological;Neutral,Enemy"/>
-        <Range value="6"/>
+        <Range value="4"/>
     </CAbilEffectTarget>
     <CAbilEffectTarget id="NanoPlague" parent="AbilityWithButtonTargetTemplate">
         <Cost>
@@ -109,15 +109,13 @@
         </Cost>
         <Range value="15"/>
     </CAbilEffectTarget>
-    <CAbilEffectTarget id="Protect" parent="AbilityWithButtonTargetTemplate">
-        <Flags index="BestUnit" value="0"/>
+    <CAbilEffectInstant id="Protect" parent="AbilityInstantTemplate">
         <Cost>
-            <Vital index="Energy" value="55"/>
-            <Charge Link="Abil/NanoShield"/>
-            <Cooldown Link="Abil/NanoShield" TimeUse="90"/>
+            <Vital index="Energy" value="50"/>
+            <Cooldown TimeUse="40"/>
         </Cost>
-        <Range value="10"/>
-    </CAbilEffectTarget>
+        <Flags index="Transient" value="1"/>
+    </CAbilEffectInstant>
     <CAbilEffectTarget id="NanoShock" parent="3LevelEffectTargetAbility">
         <Cost>
             <Vital index="Energy" value="20"/>
@@ -155,10 +153,6 @@
     <CAbilInventory id="Medic2Inventory" parent="InventoryTemplate">
         <InfoArray index="2" removed="1"/>
     </CAbilInventory>
-    <CAbilEffectInstant id="MedicalExpertise" parent="AbilityInstantTemplate">
-        <Effect index="0" value="GenericDummyEffect"/>
-        <Effect value="GenericDummyEffect"/>
-    </CAbilEffectInstant>
     <CAbilEffectTarget id="VolatileInjection" parent="3LevelEffectTargetAbility">
         <Cost>
             <Vital index="Energy" value="20"/>
@@ -320,15 +314,6 @@
     <CButton id="MedicalAssistance" parent="MarineButton">
         <Icon value="btn-advancedhealingaib.dds"/>
     </CButton>
-    <CButton id="MedicalExpertise">
-        <Icon value="Assets\Textures\btn-ability-terran-advancedhealingai.dds"/>
-    </CButton>
-    <CButton id="MedicalExpertiseLevel1">
-        <Icon value="Assets\Textures\btn-ability-terran-advancedhealingai.dds"/>
-    </CButton>
-    <CButton id="MedicalExpertiseLevel2">
-        <Icon value="Assets\Textures\btn-ability-terran-advancedhealingai.dds"/>
-    </CButton>
     <CButton id="MedicalTraining">
         <Icon value="Assets\Textures\btn-research-zerg-regenerativebio-steel.dds"/>
     </CButton>
@@ -432,10 +417,6 @@
         <EffectArray Reference="Abil,MediumJump,Range[0]" Value="2"/>
         <EffectArray Reference="Abil,PathfinderJump,Range[0]" Value="2"/>
     </CUpgrade>
-    <CUpgrade id="MedicalExpertiseLevel2" parent="DefaultUpgradeOverride">
-        <Flags index="UpgradeCheat" value="1"/>
-        <EffectArray Operation="Divide" Reference="Abil,Antivenom,Cost[0].Vital[Energy]" Value="2"/>
-    </CUpgrade>
     <CUpgrade id="IntolerableCruelty" parent="DefaultUpgradeOverride">
         <Flags index="UpgradeCheat" value="1"/>
         <EffectArray Operation="Set" Reference="Behavior,VolatileInjectionLevel1,PeriodCount" Value="30"/>
@@ -449,13 +430,6 @@
         <EffectArray Reference="Effect,VolatileInjectionSearchLevel2,AreaArray[0].Radius" Value="1"/>
         <EffectArray Reference="Effect,VolatileInjectionSearchLevel3,AreaArray[0].Radius" Value="1"/>
         <MaxLevel value="2"/>
-    </CUpgrade>
-    <CUpgrade id="MedicalExpertiseLevel1" parent="DefaultUpgradeOverride">
-        <Flags index="UpgradeCheat" value="1"/>
-        <EffectArray Operation="Set" Reference="Behavior,HasteLevel1,Period" Value="20.000000"/>
-        <EffectArray Operation="Set" Reference="Behavior,HasteLevel2,Period" Value="20.000000"/>
-        <EffectArray Operation="Set" Reference="Behavior,HasteLevel3,Period" Value="20.000000"/>
-        <EffectArray Operation="Set" Reference="Effect,NanoHasteFractureRepair,PeriodCount" Value="2"/>
     </CUpgrade>
     <CActorRange id="VaccinateRange" parent="RangeAbil" abil="Vaccinate">
         <EditorCategories value=""/>
@@ -706,10 +680,6 @@
     <CValidatorUnitCompareBehaviorCount id="EnemyNotAftershocked">
         <Behavior value="AftershockedEnemy"/>
     </CValidatorUnitCompareBehaviorCount>
-    <CValidatorCombine id="HaveMedicalExpertise">
-        <CombineArray value="MedicalExpertiseLevel1"/>
-        <CombineArray value="MedicalExpertiseLevel2"/>
-    </CValidatorCombine>
     <CValidatorLocationCompareRange id="HealRange">
         <WhichLocation Value="TargetUnit"/>
         <Compare value="LE"/>
@@ -730,16 +700,6 @@
         <CombineArray value="CasterisMedic"/>
         <CombineArray value="MedicalAssistanceItems"/>
     </CValidatorCombine>
-    <CValidatorPlayerRequirement id="MedicalExpertiseLevel1">
-        <WhichPlayer Value="Caster"/>
-        <Find value="1"/>
-        <Value value="MedicalExpertiseLevel1"/>
-    </CValidatorPlayerRequirement>
-    <CValidatorPlayerRequirement id="MedicalExpertiseLevel2">
-        <WhichPlayer Value="Caster"/>
-        <Find value="1"/>
-        <Value value="MedicalExpertiseLevel2"/>
-    </CValidatorPlayerRequirement>
     <CValidatorUnitCompareBehaviorCount id="SourcehasNanoPlague">
         <WhichUnit Value="Source"/>
         <Value value="1"/>
@@ -829,18 +789,21 @@
     <CEffectCreatePersistent id="HealOpenWoundRemovalLevel1">
         <EditorCategories value=""/>
         <WhichLocation Value="TargetUnit"/>
-        <InitialEffect value="RemoveOpenWound"/>
+        <PeriodCount value="1"/>
+        <PeriodicEffectArray value="RemoveOpenWound"/>
+        <PeriodicPeriodArray value="0"/>
     </CEffectCreatePersistent>
     <CEffectCreatePersistent id="HealOpenWoundRemovalLevel2">
         <EditorCategories value=""/>
         <WhichLocation Value="TargetUnit"/>
-        <InitialEffect value="RemoveOpenWound"/>
+        <PeriodCount value="1"/>
+        <PeriodicEffectArray value="RemoveOpenWound"/>
+        <PeriodicPeriodArray value="0"/>
     </CEffectCreatePersistent>
-    <CEffectCreatePersistent id="HealOpenWoundRemovalLevel22">
+    <CEffectCreatePersistent id="HealOpenWoundRemovalLevel3">
         <EditorCategories value=""/>
         <WhichLocation Value="TargetUnit"/>
-        <InitialEffect value="RemoveOpenWound"/>
-        <PeriodCount value="1"/>
+        <PeriodCount value="2"/>
         <PeriodicEffectArray value="RemoveOpenWound"/>
         <PeriodicPeriodArray value="0"/>
     </CEffectCreatePersistent>
@@ -955,7 +918,7 @@
         <DrainVitalCostFactor value="0.625"/>
         <RechargeVitalRate value="8"/>
         <PeriodicPeriod value="1"/>
-        <PeriodicEffect value="HealOpenWoundRemovalLevel22"/>
+        <PeriodicEffect value="HealOpenWoundRemovalLevel3"/>
         <FinalEffect value="CancelHealing"/>
     </CEffectCreateHealer>
     <CEffectDamage id="IntolerableCrueltyDamage">
@@ -1009,8 +972,8 @@
     </CEffectSet>
     <CEffectEnumArea id="Protect">
         <EditorCategories value=""/>
-        <SearchFilters value="-;Neutral,Enemy"/>
-        <AreaArray Radius="2.5" Effect="NanoShieldSet"/>
+        <SearchFilters value="Biological;Neutral,Enemy"/>
+        <AreaArray Radius="6" Effect="ProtectArmor"/>
     </CEffectEnumArea>
     <CEffectApplyBehavior id="ProtectArmor">
         <EditorCategories value=""/>
@@ -1018,15 +981,6 @@
     <CEffectApplyBehavior id="NanoSearSlow">
         <EditorCategories value=""/>
     </CEffectApplyBehavior>
-    <CEffectSet id="NanoShieldSet">
-        <EditorCategories value=""/>
-        <EffectArray value="NanoShieldShieldRestore"/>
-        <EffectArray value="ProtectArmor"/>
-    </CEffectSet>
-    <CEffectModifyUnit id="NanoShieldShieldRestore">
-        <EditorCategories value=""/>
-        <VitalArray index="Shields" ChangeFraction="1"/>
-    </CEffectModifyUnit>
     <CEffectDamage id="NanoShockDamageLevel2">
         <EditorCategories value=""/>
         <ImpactLocation Value="TargetUnit"/>
@@ -1300,10 +1254,9 @@
         <Alignment value="Positive"/>
         <InfoIcon value="Assets\Textures\btn-ability-protoss-timewarp.dds"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
-        <RemoveValidatorArray value="hasShields"/>
-        <Duration value="30"/>
+        <Duration value="15"/>
         <Modification ShieldArmorBonus="4">
-            <VitalMaxArray index="Shields" value="75"/>
+            <VitalMaxArray index="Shields" value="100"/>
         </Modification>
     </CBehaviorBuff>
     <CBehaviorBuff id="NanoShockShockedLevel1">
