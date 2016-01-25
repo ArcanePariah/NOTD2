@@ -283,6 +283,14 @@
     <CModel id="NanoShockImpact" parent="ImpactFX">
         <Model value="Assets\Effects\Protoss\PowerOverwhelming\PowerOverwhelming.m3"/>
     </CModel>
+    <CModel id="VaccinateBuff" parent="BuffFX">
+        <Model value="Assets\Effects\Zerg\BanelingEggNestBuffLife\BanelingEggNestBuffLife.m3"/>
+        <ScaleMax value="0.500000,0.500000,0.500000"/>
+        <ScaleMin value="0.500000,0.500000,0.500000"/>
+    </CModel>
+    <CModel id="VaccinateImpact" parent="ImpactFX">
+        <Model value="Assets\Effects\Zerg\CorruptedMissileImpact\CorruptedMissileImpact.m3"/>
+    </CModel>
     <CModel id="WeaveImpact">
         <Model value="Assets\Effects\Protoss\DarkBlinkIn\DarkBlinkIn.m3"/>
     </CModel>
@@ -431,6 +439,17 @@
         <EffectArray Reference="Effect,VolatileInjectionSearchLevel3,AreaArray[0].Radius" Value="1"/>
         <MaxLevel value="2"/>
     </CUpgrade>
+    <CActorModel id="VaccinateBuff" parent="ModelAnimationStyleContinuousUNIT">
+        <EditorCategories value=""/>
+        <On Terms="Behavior.VaccinateImmunity.On" Send="Create"/>
+        <On Terms="Behavior.VaccinateImmunity.Off" Send="Destroy"/>
+        <HostSiteOps Ops="SOpAttachCenter"/>
+    </CActorModel>
+    <CActorModel id="VaccinateImpact" parent="ModelAnimationStyleOneShotUNIT">
+        <EditorCategories value=""/>
+        <On Terms="Abil.Vaccinate.TargetCastStart" Send="Create"/>
+        <HostSiteOps Ops="SOpAttachCenter"/>
+    </CActorModel>
     <CActorRange id="VaccinateRange" parent="RangeAbil" abil="Vaccinate">
         <EditorCategories value=""/>
     </CActorRange>
@@ -530,8 +549,7 @@
         <On Terms="Effect.WeaveHealLevel1.Start" Send="Create"/>
         <On Terms="Effect.WeaveHealLevel2.Start" Send="Create"/>
         <Host Subject="_Unit" Scope="Target"/>
-        <HostSiteOps Ops="SOpAttachOverhead"/>
-        <Scale value="0.300000,0.300000,0.075000"/>
+        <HostSiteOps Ops="SOpAttachCenter"/>
     </CActorModel>
     <CActorRange id="WeaveRange" parent="RangeAbil" abil="Weave">
         <EditorCategories value=""/>
@@ -1316,6 +1334,7 @@
     </CBehaviorBuff>
     <CBehaviorBuff id="VaccinateImmunity">
         <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="30"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="VolatileInjectionLevel2">
         <Alignment value="Negative"/>
