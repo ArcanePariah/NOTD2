@@ -42,7 +42,14 @@
             <Button DefaultButtonFace="Antivenom"/>
         </InfoArray>
     </CAbilLearn>
-    <CAbilEffectTarget id="Purify" parent="AbilityWithButtonTargetTemplate"/>
+    <CAbilEffectTarget id="Purify" parent="AbilityWithButtonTargetTemplate">
+        <Cost>
+            <Vital index="Energy" value="20"/>
+            <Cooldown TimeUse="60"/>
+        </Cost>
+        <TargetFilters value="Biological;Neutral,Enemy"/>
+        <Range value="8"/>
+    </CAbilEffectTarget>
     <CAbilEffectTarget id="Vaccinate" parent="2LevelEffectTargetAbility">
         <Cost>
             <Vital index="Energy" value="20"/>
@@ -259,6 +266,12 @@
         <AssetArray File="Assets\Sounds\Terran\Vulture\Vulture_AttackLaunch2.wav" FacialGroup=""/>
         <AssetArray File="Assets\Sounds\Terran\Vulture\Vulture_AttackLaunch3.wav" FacialGroup=""/>
     </CSound>
+    <CModel id="PurifyImpact" parent="ImpactFX">
+        <Model value="Assets\Effects\Zerg\ConsumptionImpact\ConsumptionImpact.m3"/>
+    </CModel>
+    <CModel id="PurifyRestore" parent="OneShotSpellFX">
+        <Model value="Assets\Effects\Zerg\FungalGrowthMissileImpact\FungalGrowthMissileImpact.m3"/>
+    </CModel>
     <CModel id="AftershockImpact" parent="ImpactFX">
         <Model value="Assets\Effects\Protoss\DisruptionWeb\DisruptionWeb.m3"/>
     </CModel>
@@ -439,6 +452,14 @@
         <EffectArray Reference="Effect,VolatileInjectionSearchLevel3,AreaArray[0].Radius" Value="1"/>
         <MaxLevel value="2"/>
     </CUpgrade>
+    <CActorModel id="PurifyImpact" parent="ModelAnimationStyleOneShotUNIT">
+        <EditorCategories value=""/>
+        <On Terms="Effect.Purify.Start" Send="Create"/>
+    </CActorModel>
+    <CActorModel id="PurifyRestore" parent="ModelAnimationStyleOneShotUNIT">
+        <EditorCategories value=""/>
+        <On Terms="Effect.PurifySet.Start" Send="Create"/>
+    </CActorModel>
     <CActorModel id="VaccinateBuff" parent="ModelAnimationStyleContinuousUNIT">
         <EditorCategories value=""/>
         <On Terms="Behavior.VaccinateImmunity.On" Send="Create"/>
@@ -746,6 +767,7 @@
         <EditorCategories value=""/>
         <InitialDelay value="2.5"/>
         <InitialEffect value="PurifySet"/>
+        <WhichLocation Value="TargetUnit"/>
     </CEffectCreatePersistent>
     <CEffectSet id="PurifyAilmentPurge">
         <EditorCategories value=""/>
