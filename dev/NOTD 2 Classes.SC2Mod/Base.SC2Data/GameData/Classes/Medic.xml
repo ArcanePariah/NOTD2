@@ -193,14 +193,14 @@
         <AssetArray File="Assets\Sounds\Zerg\Queen\Queen_SwarmInfestationLaunch7.wav"/>
         <AssetArray File="Assets\Sounds\Zerg\Queen\Queen_SwarmInfestationLaunch8.wav"/>
     </CSound>
-    <CSound id="MedicNanoShieldBirth" parent="Spell">
+    <CSound id="ProtectBirth" parent="Spell">
         <EditorCategories value="Race:Terran"/>
         <AssetArray File="Assets\Sounds\Terran\Battlecruiser\Battlecruiser_DefensiveMatrixBirth0.wav"/>
         <AssetArray File="Assets\Sounds\Terran\Battlecruiser\Battlecruiser_DefensiveMatrixBirth1.wav"/>
         <DupeDestroyCount value="8"/>
         <DupeMuteCount value="8"/>
     </CSound>
-    <CSound id="MedicNanoShieldDeath" parent="Spell">
+    <CSound id="ProtectDeath" parent="Spell">
         <EditorCategories value="Race:Terran"/>
         <AssetArray File="Assets\Sounds\Terran\Battlecruiser\Battlecruiser_DefensiveMatrixDeath0.wav"/>
         <AssetArray File="Assets\Sounds\Terran\Battlecruiser\Battlecruiser_DefensiveMatrixDeath1.wav"/>
@@ -290,7 +290,7 @@
     <CModel id="NanoSearCloud" parent="PersistentSpellFX">
         <Model value="Assets\Effects\Zerg\KerriganSearchImpact\KerriganSearchImpact.m3"/>
     </CModel>
-    <CModel id="NanoShieldBuff" parent="PersistentSpellFX">
+    <CModel id="ProtectBuff" parent="PersistentSpellFX">
         <Model value="Assets\Effects\Protoss\MineralShield\MineralShield.m3"/>
     </CModel>
     <CModel id="NanoShockImpact" parent="ImpactFX">
@@ -515,10 +515,10 @@
     <CActorSound id="MedicNanoSeerSound" parent="SoundContinuous">
         <On Terms="Abil.NanoSear.SourceCastStart" Send="Create"/>
     </CActorSound>
-    <CActorSound id="MedicNanoShieldBirth" parent="SoundOneShot">
+    <CActorSound id="ProtectBirth" parent="SoundOneShot">
         <On Terms="Behavior.ProtectArmor.On" Send="Create"/>
     </CActorSound>
-    <CActorSound id="MedicNanoShieldDeath" parent="SoundOneShot">
+    <CActorSound id="ProtectDeath" parent="SoundOneShot">
         <On Terms="Behavior.ProtectArmor.Off" Send="Create"/>
     </CActorSound>
     <CActorSound id="MedicNanoShockCast" parent="SoundOneShot">
@@ -556,7 +556,7 @@
     <CActorRange id="NanoSearRange" parent="RangeAbil" abil="NanoSear">
         <EditorCategories value=""/>
     </CActorRange>
-    <CActorRange id="NanoShieldRange" parent="RangeAbil" abil="Protect">
+    <CActorRange id="ProtectRange" parent="RangeAbil" abil="Protect">
         <EditorCategories value=""/>
     </CActorRange>
     <CActorRange id="NanoShockRange" parent="RangeAbil" abil="NanoShock">
@@ -628,7 +628,7 @@
         <On Terms="Effect.NanoSear.Start" Send="Create"/>
         <On Terms="Effect.NanoSear.Stop" Send="Destroy"/>
     </CActorModel>
-    <CActorModel id="NanoShieldBuff" parent="ModelAddition">
+    <CActorModel id="ProtectBuff" parent="ModelAddition">
         <EditorCategories value=""/>
         <On index="0" Terms="ActorCreation" Send="AnimBracketStart BSD Birth Stand"/>
         <On index="2" Terms="Behavior.ProtectArmor.On" Send="Create"/>
