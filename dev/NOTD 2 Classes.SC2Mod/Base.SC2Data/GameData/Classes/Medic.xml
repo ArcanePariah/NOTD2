@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="us-ascii"?>
 <Catalog>
+    <CAbilEffectTarget id="PushIt" parent="3LevelEffectTargetAbility">
+        <Flags index="RequireTargetVision" value="0"/>
+        <Cost>
+            <Vital index="Energy" value="10"/>
+            <Cooldown TimeUse="5"/>
+        </Cost>
+        <Range value="500"/>
+        <CursorRangeMode value="Clamp"/>
+    </CAbilEffectTarget>
     <CAbilLearn id="Medic2Learn" parent="LearnTemplate">
         <Name value="Abil/Name/Medic2Learn"/>
         <InfoArray index="Learn1" Abil="Heal">
@@ -23,8 +32,8 @@
         <InfoArray index="Learn7" Abil="NanoShock">
             <Button DefaultButtonFace="NanoShock"/>
         </InfoArray>
-        <InfoArray index="Learn8" Abil="VolatileInjection">
-            <Button DefaultButtonFace="VolatileInjection"/>
+        <InfoArray index="Learn8" Abil="PushIt">
+            <Button DefaultButtonFace="PushIt"/>
         </InfoArray>
         <InfoArray index="Learn9" Abil="Aftershock">
             <Button DefaultButtonFace="Aftershock"/>
@@ -266,6 +275,12 @@
         <AssetArray File="Assets\Sounds\Terran\Vulture\Vulture_AttackLaunch2.wav" FacialGroup=""/>
         <AssetArray File="Assets\Sounds\Terran\Vulture\Vulture_AttackLaunch3.wav" FacialGroup=""/>
     </CSound>
+    <CModel id="PushItBeam" parent="OneShotSpellFX">
+        <Model value="Assets\Effects\Protoss\Alarak_Attack_Beam_Strong\Alarak_Attack_Beam_Strong.m3"/>
+    </CModel>
+    <CModel id="PushItImpact" parent="ImpactFX">
+        <Model value="Assets\Effects\Protoss\TheVoid_DeathCloud_Impact\TheVoid_DeathCloud_Impact.m3"/>
+    </CModel>
     <CModel id="PurifyImpact" parent="ImpactFX">
         <Model value="Assets\Effects\Zerg\ConsumptionImpact\ConsumptionImpact.m3"/>
     </CModel>
@@ -316,6 +331,9 @@
     <CModel id="VolatileInjectionDetonation">
         <Model value="Assets\Effects\Zerg\ParasiteImpact\ParasiteImpact.m3"/>
     </CModel>
+    <CButton id="PushIt">
+        <Icon value="Assets\Textures\btn-ability-protoss-thermallance.dds"/>
+    </CButton>
     <CButton id="Aftershock">
         <Icon value="btn-ability-terran-tosh-mindblast-yellow.dds"/>
         <HotkeyAlias value="NanoShock"/>
@@ -400,12 +418,12 @@
         <AbilArray Link="Purify"/>
         <AbilArray Link="Protect"/>
         <AbilArray Link="NanoShock"/>
-        <AbilArray Link="VolatileInjection"/>
         <AbilArray Link="Aftershock"/>
         <AbilArray Link="IntolerableCruelty"/>
         <AbilArray Link="NanoSear"/>
         <AbilArray Link="NanoPlague"/>
         <AbilArray Link="LightJump"/>
+        <AbilArray Link="PushIt"/>
         <EnergyStart value="100"/>
         <EnergyMax value="200"/>
         <EnergyRegenRate value="1.1992"/>
@@ -424,10 +442,10 @@
             <LayoutButtons Face="Purify" Type="AbilCmd" AbilCmd="Purify,Execute" Row="1" Column="0"/>
             <LayoutButtons Face="NanoSear" Type="AbilCmd" AbilCmd="NanoSear,Execute" Row="1" Column="0"/>
             <LayoutButtons Face="NanoPlague" Type="AbilCmd" AbilCmd="NanoPlague,Execute" Row="1" Column="0"/>
-            <LayoutButtons Face="VolatileInjection" Type="AbilCmd" AbilCmd="VolatileInjection,Execute" Row="1" Column="1"/>
             <LayoutButtons Face="Aftershock" Type="AbilCmd" AbilCmd="Aftershock,Execute" Row="1" Column="2"/>
             <LayoutButtons Face="NanoShock" Type="AbilCmd" AbilCmd="NanoShock,Execute" Row="1" Column="2"/>
             <LayoutButtons Face="Weave" Type="AbilCmd" AbilCmd="Weave,Execute" Row="2" Column="3"/>
+            <LayoutButtons Face="PushIt" Type="AbilCmd" AbilCmd="PushIt,Execute" Row="1" Column="1"/>
         </CardLayouts>
         <Speed value="2.586"/>
         <GlossaryPriority value="2"/>
@@ -452,6 +470,67 @@
         <EffectArray Reference="Effect,VolatileInjectionSearchLevel3,AreaArray[0].Radius" Value="1"/>
         <MaxLevel value="2"/>
     </CUpgrade>
+    <CActorBeamSimple id="PushItBeam" parent="BeamSimpleAnimationStyleOneShot">
+        <EditorCategories value=""/>
+        <On index="0" Terms="ActorCreation" Send="AnimBracketStart BSD Birth Stand Death ContentPlayOnce 2.000000 AsTimeScale"/>
+        <On Terms="Abil.PushIt.SourceCastStart; AbilLevel LT 2" Send="Create"/>
+        <On Terms="ActorCreation" Send="Create PushItBeamImpactSite"/>
+        <Scale value="1.200000,1.000000,1.200000"/>
+        <HostLaunch Subject="MedicLeftForearm"/>
+        <HostImpact Subject="PushItBeamImpactSite"/>
+        <HostImpactSiteOps Ops="PushItHeight"/>
+    </CActorBeamSimple>
+    <CActorBeamSimple id="PushItBeam2" parent="BeamSimpleAnimationStyleOneShot">
+        <EditorCategories value=""/>
+        <On index="0" Terms="ActorCreation" Send="AnimBracketStart BSD Birth Stand Death ContentPlayOnce 2.000000 AsTimeScale"/>
+        <On Terms="Abil.PushIt.SourceCastStart; AbilLevel Eq 2" Send="Create"/>
+        <On Terms="ActorCreation" Send="Create PushItBeamImpactSite"/>
+        <Model value="PushItBeam"/>
+        <Scale value="1.200000,1.000000,1.200000"/>
+        <HostLaunch Subject="MedicLeftForearm"/>
+        <HostImpact Subject="PushItBeamImpactSite"/>
+        <HostImpactSiteOps Ops="PushItHeight PushItBeamOffsetLevel3"/>
+    </CActorBeamSimple>
+    <CActorSite id="PushItBeamImpactSite">
+        <EditorCategories value=""/>
+        <HostSiteOps Ops="PushItBeamSiteOffset"/>
+    </CActorSite>
+    <CActorSiteOpLocalOffset id="PushItBeamOffsetLevel3">
+        <EditorCategories value=""/>
+        <LocalOffset value="0.000000,-3.000000,0.000000"/>
+    </CActorSiteOpLocalOffset>
+    <CActorSiteOpLocalOffset id="PushItBeamSiteOffset">
+        <EditorCategories value=""/>
+        <LocalOffset value="0.000000,-6.000000,0.000000"/>
+    </CActorSiteOpLocalOffset>
+    <CActorQuad id="PushItGuide" parent="GuideVisualQuadDown" abil="PushIt">
+        <EditorCategories value=""/>
+        <On index="0" Terms="Abil.PushIt.Guide; AbilLevel LT 2" Send="Create"/>
+        <LaunchActor value="ProtossGuideVisualQuadLargeLaunch"/>
+        <CenterActor value="ProtossGuideVisualQuadLargeCenter"/>
+        <ImpactActor value="ProtossGuideVisualQuadLargeImpact"/>
+        <Height value="6.000000"/>
+        <Width value="0.750000"/>
+    </CActorQuad>
+    <CActorQuad id="PushItGuideLevel3" parent="GuideVisualQuadDown" abil="PushIt">
+        <EditorCategories value=""/>
+        <On index="0" Terms="Abil.PushIt.Guide; AbilLevel Eq 2" Send="Create"/>
+        <LaunchActor value="ProtossGuideVisualQuadLargeLaunch"/>
+        <CenterActor value="ProtossGuideVisualQuadLargeCenter"/>
+        <ImpactActor value="ProtossGuideVisualQuadLargeImpact"/>
+        <Height value="9.000000"/>
+        <Width value="1.500000"/>
+    </CActorQuad>
+    <CActorSiteOpHeight id="PushItHeight">
+        <EditorCategories value=""/>
+        <HostHeight Subject="MedicLeftForearm"/>
+    </CActorSiteOpHeight>
+    <CActorModel id="PushItImpact" parent="ModelAnimationStyleOneShotUNIT">
+        <EditorCategories value=""/>
+        <On Terms="Effect.PushItLevel1Damage.Start" Send="Create"/>
+        <On Terms="Effect.PushItLevel2Damage.Start" Send="Create"/>
+        <On Terms="Effect.PushItLevel3Damage.Start" Send="Create"/>
+    </CActorModel>
     <CActorModel id="PurifyImpact" parent="ModelAnimationStyleOneShotUNIT">
         <EditorCategories value=""/>
         <On Terms="Effect.Purify.Start" Send="Create"/>
@@ -756,6 +835,61 @@
         <Value value="1"/>
         <Behavior value="NanoShockSlowLevel3"/>
     </CValidatorUnitCompareBehaviorCount>
+    <CEffectEnumArea id="PushItLevel1">
+        <EditorCategories value=""/>
+        <DebugTrace value="1"/>
+        <SearchFilters value="-;Self,Player,Ally,Neutral"/>
+        <AreaArray RectangleWidth="0.75" RectangleHeight="6" Effect="PushItLevel1Damage"/>
+        <AreaRelativeOffset value="0,-3"/>
+        <SearchFlags index="CenterAtLaunch" value="1"/>
+    </CEffectEnumArea>
+    <CEffectSet id="PushItLevel2Set">
+        <EditorCategories value=""/>
+        <EffectArray value="PushItLevel2Damage"/>
+        <EffectArray value="PushItLevel2Slow"/>
+    </CEffectSet>
+    <CEffectEnumArea id="PushItLevel2">
+        <EditorCategories value=""/>
+        <DebugTrace value="1"/>
+        <SearchFilters value="-;Self,Player,Ally,Neutral"/>
+        <AreaArray RectangleWidth="0.75" RectangleHeight="6" Effect="PushItLevel2Set"/>
+        <AreaRelativeOffset value="0,-3"/>
+        <SearchFlags index="CenterAtLaunch" value="1"/>
+    </CEffectEnumArea>
+    <CEffectDamage id="PushItLevel1Damage">
+        <EditorCategories value=""/>
+        <Amount value="150"/>
+        <SearchFlags index="CenterAtLaunch" value="1"/>
+    </CEffectDamage>
+    <CEffectEnumArea id="PushItLevel3">
+        <EditorCategories value=""/>
+        <DebugTrace value="1"/>
+        <SearchFilters value="-;Self,Player,Ally,Neutral"/>
+        <AreaArray RectangleWidth="1.5" RectangleHeight="9" Effect="PushItLevel3Set"/>
+        <AreaRelativeOffset value="0,-4.5"/>
+        <SearchFlags index="CenterAtLaunch" value="1"/>
+    </CEffectEnumArea>
+    <CEffectSet id="PushItLevel3Set">
+        <EditorCategories value=""/>
+        <EffectArray value="PushItLevel3Damage"/>
+        <EffectArray value="PushItLevel3Slow"/>
+    </CEffectSet>
+    <CEffectDamage id="PushItLevel2Damage">
+        <EditorCategories value=""/>
+        <Amount value="150"/>
+        <SearchFlags index="CenterAtLaunch" value="1"/>
+    </CEffectDamage>
+    <CEffectApplyBehavior id="PushItLevel2Slow">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectDamage id="PushItLevel3Damage">
+        <EditorCategories value=""/>
+        <Amount value="200"/>
+        <SearchFlags index="CenterAtLaunch" value="1"/>
+    </CEffectDamage>
+    <CEffectApplyBehavior id="PushItLevel3Slow">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
     <CEffectCreatePersistent id="VaccinateAilmentRemovalPersistent">
         <EditorCategories value=""/>
         <WhichLocation Value="TargetUnit"/>
@@ -1185,6 +1319,16 @@
         <EffectArray value="VolatileInjectionDamageLevel3"/>
         <EffectArray value="NanoPlagueSecondary"/>
     </CEffectSet>
+    <CBehaviorBuff id="PushItLevel2Slow">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="4"/>
+        <Modification MoveSpeedMultiplier="0.8"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="PushItLevel3Slow">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="4"/>
+        <Modification MoveSpeedMultiplier="0.8"/>
+    </CBehaviorBuff>
     <CBehaviorBuff id="Aftershock">
         <EditorCategories value="AbilityorEffectType:Units"/>
         <Duration value="0.0937"/>
