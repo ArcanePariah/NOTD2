@@ -36,6 +36,25 @@
             <Flags index="AutoCastOn" value="1"/>
         </InfoArray>
     </CAbilTrain>
+    <CAbilEffectTarget id="Chomp">
+        <Alignment value="Negative"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Effect index="0" value="ChompBuff"/>
+        <Flags index="AbortOnAllianceChange" value="0"/>
+        <Flags index="AllowMovement" value="1"/>
+        <Flags index="AutoCast" value="1"/>
+        <Flags index="AutoCastOn" value="1"/>
+        <Flags index="NoDeceleration" value="1"/>
+        <TargetFilters value="-;Player,Ally,Missile,Item,Dead,Invulnerable"/>
+        <Range value="0.8"/>
+        <AutoCastFilters value="Visible;Player,Ally,Missile,Item,Hidden,Invulnerable"/>
+        <AutoCastRange value="0.8"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="Chomp"/>
+        <Cost>
+            <Vital index="Energy" value="25"/>
+            <Cooldown TimeUse="1"/>
+        </Cost>
+    </CAbilEffectTarget>
     <CAbilTrain id="EltradTriadMulitply">
         <EditorCategories value="Race:Zerg,AbilityorEffectType:Units"/>
         <Flags index="AutoCastOffOwnerLeave" value="0"/>
@@ -142,7 +161,12 @@
     </CAbilEffectTarget>
     <CAbilAugment id="FlybyAttack">
         <Alignment value="Negative"/>
-        <OrderArray index="0" Color="255,0,255,0" Model="Assets\UI\Cursors\WayPointConfirmSwarm\WayPointConfirmSwarm.m3" LineTexture="Assets\Textures\WayPointLine.dds"/>
+        <OrderArray index="0">
+            <DisplayType value="Confirm"/>
+            <Color value="255,0,255,0"/>
+            <Model value="Assets\UI\Cursors\WayPointConfirmSwarm\WayPointConfirmSwarm.m3"/>
+            <LineTexture value="Assets\Textures\WayPointLine.dds"/>
+        </OrderArray>
         <EditorCategories value="Race:Zerg,AbilityorEffectType:Units"/>
         <CmdButtonArray index="Execute" DefaultButtonFace="DiveBomb">
             <Flags index="AllowSelfCast" value="1"/>
@@ -159,14 +183,13 @@
     </CAbilAugment>
     <CAbilEffectTarget id="BonebreakerLeap">
         <Alignment value="Negative"/>
-        <OrderArray index="0" Model="Assets\UI\Cursors\WayPointConfirmSwarm\WayPointConfirmSwarm.m3"/>
+        <OrderArray index="0" DisplayType="Confirm" Model="Assets\UI\Cursors\WayPointConfirmSwarm\WayPointConfirmSwarm.m3"/>
         <EditorCategories value="Race:Terran,AbilityorEffectType:Units"/>
         <Effect index="0" value="BonebreakerLeapLaunchMissile"/>
         <Flags index="AbortOnAllianceChange" value="0"/>
         <Flags index="AutoCast" value="1"/>
         <Flags index="AutoCastOn" value="1"/>
         <Flags index="ClearLastAttackTarget" value="1"/>
-        <Flags index="WaitToSpend" value="0"/>
         <Flags index="UpdateChargesOnLevelChange" value="0"/>
         <Cost>
             <Charge Link="Abil/GiantYetiLeap"/>
@@ -185,7 +208,12 @@
     </CAbilEffectTarget>
     <CAbilAugment id="InfestedCharge">
         <Alignment value="Negative"/>
-        <OrderArray index="0" Color="255,0,255,0" Model="Assets\UI\Cursors\WayPointConfirmSwarm\WayPointConfirmSwarm.m3" LineTexture="Assets\Textures\WayPointLine.dds"/>
+        <OrderArray index="0">
+            <DisplayType value="Confirm"/>
+            <Color value="255,0,255,0"/>
+            <Model value="Assets\UI\Cursors\WayPointConfirmSwarm\WayPointConfirmSwarm.m3"/>
+            <LineTexture value="Assets\Textures\WayPointLine.dds"/>
+        </OrderArray>
         <EditorCategories value="Race:Zerg,AbilityorEffectType:Units"/>
         <CmdButtonArray index="Execute" DefaultButtonFace="InfestedCharge">
             <Flags index="AllowSelfCast" value="1"/>
@@ -310,7 +338,7 @@
     </CAbilMorph>
     <CAbilEffectTarget id="GorgonBlindingVomit">
         <Alignment value="Negative"/>
-        <OrderArray index="0" Model="Assets\UI\Cursors\WayPointConfirmSwarm\WayPointConfirmSwarm.m3"/>
+        <OrderArray index="0" DisplayType="Confirm" Model="Assets\UI\Cursors\WayPointConfirmSwarm\WayPointConfirmSwarm.m3"/>
         <EditorCategories value="Race:Zerg,AbilityorEffectType:Units"/>
         <Effect index="0" value="GorgonBlindingVomitSet"/>
         <Flags index="AutoCast" value="1"/>
@@ -337,7 +365,7 @@
     </CAbilMorph>
     <CAbilEffectTarget id="BansheeScream">
         <Alignment value="Negative"/>
-        <OrderArray index="0" Model="Assets\UI\Cursors\WayPointConfirmSwarm\WayPointConfirmSwarm.m3"/>
+        <OrderArray index="0" DisplayType="Confirm" Model="Assets\UI\Cursors\WayPointConfirmSwarm\WayPointConfirmSwarm.m3"/>
         <EditorCategories value="Race:Terran,AbilityorEffectType:Units"/>
         <Effect index="0" value="BansheeScreamSet"/>
         <Flags index="AutoCast" value="1"/>
@@ -357,7 +385,7 @@
         <CmdButtonArray index="Execute" DefaultButtonFace="BansheeScream"/>
     </CAbilEffectTarget>
     <CAbilEffectTarget id="BlitzerCharge">
-        <OrderArray index="0" Model="Assets\UI\Cursors\WayPointConfirmSwarm\WayPointConfirmSwarm.m3"/>
+        <OrderArray index="0" DisplayType="Confirm" Model="Assets\UI\Cursors\WayPointConfirmSwarm\WayPointConfirmSwarm.m3"/>
         <EditorCategories value="Race:Zerg,AbilityorEffectType:Units"/>
         <Effect index="0" value="SuperCharge"/>
         <Flags index="AutoCast" value="1"/>
@@ -400,7 +428,7 @@
     </CAbilMorph>
     <CAbilEffectTarget id="BonebreakerBoulder">
         <Alignment value="Negative"/>
-        <OrderArray index="0" Model="Assets\UI\Cursors\WayPointConfirmSwarm\WayPointConfirmSwarm.m3"/>
+        <OrderArray index="0" DisplayType="Confirm" Model="Assets\UI\Cursors\WayPointConfirmSwarm\WayPointConfirmSwarm.m3"/>
         <EditorCategories value="Race:Terran,AbilityorEffectType:Units"/>
         <Effect index="0" value="BonebreakerBoulderLaunchMissile"/>
         <Flags index="AbortOnAllianceChange" value="0"/>

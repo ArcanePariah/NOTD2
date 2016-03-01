@@ -161,12 +161,15 @@
         <AbilArray Link="attack"/>
         <AbilArray Link="move"/>
         <AbilArray Link="InfestedCharge"/>
+        <AbilArray Link="Chomp"/>
         <WeaponArray Link="EltradBite"/>
         <Radius value="0.375"/>
         <EditorCategories value="ObjectType:Unit,ObjectFamily:Melee,UnitType:Boss"/>
         <BehaviorArray Link="EltradCannabilism"/>
         <TacticalAIRange value="10"/>
         <TacticalAIFilters value="-;-"/>
+        <EnergyMax value="25"/>
+        <EnergyRegenRate value="2.5"/>
     </CUnit>
     <CUnit default="1" id="ZombieEnemyTemplate" parent="EnemyTemplate">
         <Race value="Zombie"/>
@@ -1320,12 +1323,19 @@
         <SelectAlias value="MarsPrisoner"/>
         <SubgroupAlias value="MarsPrisoner"/>
     </CUnit>
-    <CUnit id="Eltrad" parent="EltradTemplate"/>
+    <CUnit id="Eltrad" parent="EltradTemplate">
+        <CardLayouts>
+            <LayoutButtons Face="OracleWeaponOn" Type="AbilCmd" AbilCmd="Chomp,Execute" Row="1" Column="2"/>
+        </CardLayouts>
+    </CUnit>
     <CUnit id="EltradFastHealing" parent="EltradTemplate">
         <Subtitle value="UnitSubtitle/EltradFastHealing"/>
         <WeaponArray index="0" Link="EltradFastHealingBite"/>
         <LifeRegenDelay value="5"/>
         <LifeRegenRate value="15"/>
+        <CardLayouts>
+            <LayoutButtons Face="OracleWeaponOn" Type="AbilCmd" AbilCmd="Chomp,Execute" Row="1" Column="2"/>
+        </CardLayouts>
     </CUnit>
     <CUnit id="EltradFlying" parent="EltradTemplate">
         <Subtitle value="UnitSubtitle/EltradFlyingMutationFlying"/>

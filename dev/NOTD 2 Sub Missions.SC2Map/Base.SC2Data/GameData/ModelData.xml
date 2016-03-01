@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<Catalog>
+    <CModel id="Bunker2" parent="Building" Race="Terran">
+        <Model value="Assets\Buildings\Terran\BunkerEx1\BunkerEx1.m3"/>
+        <PlanetPanelCamera value="Star2CameraLow07"/>
+        <Radius value="1.250000"/>
+        <SelectionLayer value="2"/>
+        <SelectionRadius value="1.500000"/>
+        <ShadowRadius value="1.500000"/>
+        <SquibTypeDefault value="Metal"/>
+        <TechPurchaseCamera value="TechPurchaseBunker"/>
+        <UnitGlossaryCamera value="Star2CameraLow07"/>
+    </CModel>
+    <CModel id="Bunker3" parent="Building" Race="Terran">
+        <Model value="Assets\Buildings\Terran\BunkerEx1\BunkerEx1.m3"/>
+        <PlanetPanelCamera value="Star2CameraLow07"/>
+        <Radius value="1.250000"/>
+        <SelectionLayer value="2"/>
+        <SelectionRadius value="1.500000"/>
+        <ShadowRadius value="1.500000"/>
+        <SquibTypeDefault value="Metal"/>
+        <TechPurchaseCamera value="TechPurchaseBunker"/>
+        <UnitGlossaryCamera value="Star2CameraLow07"/>
+    </CModel>
+    <CModel id="CommandCenter">
+        <TextureDeclares Prefix="CommandCenter_Diffuse.dds">
+            <Adaptions TriggerOnSubstring="CommandCenter_Diffuse.dds" Slot="main.diffuse"/>
+        </TextureDeclares>
+        <TextureDeclares Prefix="CommandCenter_Emissive.dds">
+            <Adaptions TriggerOnSubstring="CommandCenter_Emissive.dds" Slot="main.emissive"/>
+        </TextureDeclares>
+        <TextureDeclares Prefix="Thor_Cannons_Diffuse.dds">
+            <Adaptions TriggerOnSubstring="Thor_Cannons_Diffuse.dds"/>
+        </TextureDeclares>
+        <TextureDeclares Prefix="Thor_Cannons_Emissive.dds">
+            <Adaptions TriggerOnSubstring="Thor_Cannons_Emissive.dds"/>
+        </TextureDeclares>
+    </CModel>
+    <CModel id="DockingBayGround2" parent="Doodad">
+        <Model value="Assets\Doodads\DockingBayGround\DockingBayGround.m3"/>
+    </CModel>
+    <CModel id="DockingBayGround3" parent="Doodad">
+        <Model value="Assets\Doodads\DockingBayGround\DockingBayGround.m3"/>
+    </CModel>
+    <CModel id="FuelBarrel" parent="Doodad"/>
+    <CModel id="InfestedDominionHousing12" parent="Building" Race="Terran">
+        <Model value="Assets\Buildings\Terran\InfestedDominionHousing\InfestedDominionHousing_00.m3"/>
+        <Events>
+            <Anim value="Stand,Work,Start"/>
+            <Name value="Garrison01_Infest"/>
+            <Type value="Sound"/>
+            <Time value="0.010000"/>
+            <Payload value="Garrison01_Infest"/>
+        </Events>
+        <Events>
+            <Anim value="Stand,Work,End"/>
+            <Name value="Garrison01_Revert"/>
+            <Type value="Sound"/>
+            <Time value="0.010000"/>
+            <Payload value="Garrison01_Revert"/>
+        </Events>
+        <Radius value="1.500000"/>
+        <ScaleMax value="0.900000,0.900000,0.900000"/>
+        <ScaleMin value="0.900000,0.900000,0.900000"/>
+        <SelectionLayer value="2"/>
+        <SelectionRadius value="1.562500"/>
+        <ShadowRadius value="1.562500"/>
+    </CModel>
+    <CModel id="KorhalBuilding">
+        <Occlusion value="None"/>
+    </CModel>
+    <CModel id="Starport">
+        <TextureDeclares Prefix="Starport_">
+            <Adaptions TriggerOnSubstring="_Diffuse" Slot="main"/>
+            <Adaptions TriggerOnSubstring="_Specular" Slot="main"/>
+            <Adaptions TriggerOnSubstring="_Emissive" Slot="main"/>
+            <Adaptions TriggerOnSubstring="_Normal" Slot="main"/>
+        </TextureDeclares>
+        <TextureDeclares>
+            <Adaptions/>
+        </TextureDeclares>
+        <TextureDeclares>
+            <Adaptions/>
+        </TextureDeclares>
+        <TextureDeclares>
+            <Adaptions/>
+        </TextureDeclares>
+    </CModel>
+</Catalog>

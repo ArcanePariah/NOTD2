@@ -15,6 +15,14 @@
             <DamageDealtFraction index="Spell" value="0.5"/>
         </Modification>
     </CBehaviorBuff>
+    <CBehaviorBuff id="ChompBuff">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <InitialEffect value="ChompDMG"/>
+        <DamageResponse Chance="1" Fatal="1" Handled="ChompSet">
+            <RequireEffectArray value="ChompDMG"/>
+        </DamageResponse>
+    </CBehaviorBuff>
     <CBehaviorBuff id="EltradCannabilism">
         <InfoFlags index="Hidden" value="1"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
@@ -789,7 +797,7 @@
         <RemoveValidatorArray value="ChargeMinDistance"/>
         <BuffFlags index="Channeling" value="1"/>
         <Duration value="3.5"/>
-        <Modification MoveSpeedMultiplier="2.2"/>
+        <Modification MoveSpeedMultiplier="1.5"/>
         <InfoFlags index="Hidden" value="1"/>
     </CBehaviorBuff>
     <CBehaviorCreepSource id="BlightKingCreepTrail">

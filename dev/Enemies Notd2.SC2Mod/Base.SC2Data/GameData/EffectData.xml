@@ -107,6 +107,36 @@
         <EffectArray value="Suicide"/>
         <EffectArray value="Blind"/>
     </CEffectSet>
+    <CEffectApplyBehavior id="ChompBuff">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectDamage id="ChompDMG">
+        <EditorCategories value=""/>
+        <LaunchLocation Value="CasterUnit"/>
+        <ArmorReduction value="7.5"/>
+        <Amount value="100"/>
+        <LeechFraction index="Life" value="1"/>
+    </CEffectDamage>
+    <CEffectModifyUnit id="ChompEnergyToCaster">
+        <EditorCategories value=""/>
+        <ImpactUnit Value="Caster"/>
+        <VitalArray index="Energy" Change="15"/>
+    </CEffectModifyUnit>
+    <CEffectRemoveBehavior id="ChompRemove">
+        <EditorCategories value=""/>
+        <BehaviorLink value="ChompBuff"/>
+        <Count value="1"/>
+    </CEffectRemoveBehavior>
+    <CEffectSet id="ChompSet">
+        <EditorCategories value=""/>
+        <EffectArray value="DelayRestore"/>
+    </CEffectSet>
+    <CEffectCreatePersistent id="DelayRestore">
+        <EditorCategories value=""/>
+        <WhichLocation Value="CasterUnit"/>
+        <InitialDelay value="0.0625"/>
+        <FinalEffect value="ChompEnergyToCaster"/>
+    </CEffectCreatePersistent>
     <CEffectApplyBehavior id="EltradDevour">
         <EditorCategories value=""/>
     </CEffectApplyBehavior>
