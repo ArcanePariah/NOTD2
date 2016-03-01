@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="us-ascii"?>
 <Catalog>
+    <CAbilEffectTarget id="Crackdown" parent="3LevelEffectTargetAbility">
+        <Cost>
+            <Vital index="Energy" value="25"/>
+            <Cooldown TimeUse="20"/>
+        </Cost>
+        <Range value="8"/>
+    </CAbilEffectTarget>
     <CAbilEffectTarget id="PushIt" parent="3LevelEffectTargetAbility">
         <Flags index="RequireTargetVision" value="0"/>
         <Cost>
@@ -333,6 +340,9 @@
     <CModel id="VolatileInjectionDetonation">
         <Model value="Assets\Effects\Zerg\ParasiteImpact\ParasiteImpact.m3"/>
     </CModel>
+    <CButton id="Crackdown" parent="MarineButton">
+        <Icon value="Assets\Textures\btn-ability-protoss-destructionwave.dds"/>
+    </CButton>
     <CButton id="PushIt">
         <Icon value="Assets\Textures\btn-ability-protoss-thermallance.dds"/>
     </CButton>
@@ -472,6 +482,21 @@
         <EffectArray Reference="Effect,VolatileInjectionSearchLevel3,AreaArray[0].Radius" Value="1"/>
         <MaxLevel value="2"/>
     </CUpgrade>
+    <CActorModel id="CrackdownCloud" parent="ModelAnimationStyleOneShotNoOrphan">
+        <EditorCategories value=""/>
+        <On Terms="Effect.CrackdownLevel1.Start" Send="Create"/>
+        <On Terms="Effect.CrackdownLevel2.Start" Send="Create"/>
+        <On Terms="Effect.CrackdownLevel3.Start" Send="Create"/>
+        <On Terms="Effect.CrackdownLevel1.Stop" Send="Destroy"/>
+        <On Terms="Effect.CrackdownLevel2.Stop" Send="Destroy"/>
+        <On Terms="Effect.CrackdownLevel3.Stop" Send="Destroy"/>
+    </CActorModel>
+    <CActorOverrides id="TestOverride">
+        <EditorCategories value=""/>
+        <ModelOverrides>
+            <Transition/>
+        </ModelOverrides>
+    </CActorOverrides>
     <CActorUnit id="MedicNOTD" parent="BaseMarineActor" unitName="Medic2">
         <On index="65" Terms="ActorCreation" Send="AttachModel MedicTorso MedicBasicTorso {Hardpoint 0}"/>
         <On index="74" Terms="ActorCreation" Send="AttachModel MedicLeftForearm MedicBasicForearmLeft {Hardpoint 5}"/>
@@ -856,6 +881,51 @@
         <Value value="1"/>
         <Behavior value="NanoShockSlowLevel3"/>
     </CValidatorUnitCompareBehaviorCount>
+    <CEffectDamage id="CrackdownDamageLevel1">
+        <EditorCategories value=""/>
+    </CEffectDamage>
+    <CEffectDamage id="CrackdownDamageLevel2">
+        <EditorCategories value=""/>
+    </CEffectDamage>
+    <CEffectDamage id="CrackdownDamageLevel3">
+        <EditorCategories value=""/>
+    </CEffectDamage>
+    <CEffectApplyBehavior id="CrackdownDoT">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectCreatePersistent id="CrackdownLevel1">
+        <EditorCategories value=""/>
+        <PeriodCount value="20"/>
+        <PeriodicEffectArray value="CrackdownSearchLevel1"/>
+        <PeriodicPeriodArray value="0.5"/>
+    </CEffectCreatePersistent>
+    <CEffectCreatePersistent id="CrackdownLevel2">
+        <EditorCategories value=""/>
+        <PeriodCount value="20"/>
+        <PeriodicEffectArray value="CrackdownSearchLevel2"/>
+        <PeriodicPeriodArray value="0.5"/>
+    </CEffectCreatePersistent>
+    <CEffectCreatePersistent id="CrackdownLevel3">
+        <EditorCategories value=""/>
+        <PeriodCount value="30"/>
+        <PeriodicEffectArray value="CrackdownSearchLevel3"/>
+        <PeriodicPeriodArray value="0.5"/>
+    </CEffectCreatePersistent>
+    <CEffectEnumArea id="CrackdownSearchLevel1">
+        <EditorCategories value=""/>
+        <SearchFilters value="-;Player,Ally,Neutral"/>
+        <AreaArray Radius="4" Effect="CrackdownDamageLevel1"/>
+    </CEffectEnumArea>
+    <CEffectEnumArea id="CrackdownSearchLevel2">
+        <EditorCategories value=""/>
+        <SearchFilters value="-;Player,Ally,Neutral"/>
+        <AreaArray Radius="5" Effect="CrackdownDamageLevel2"/>
+    </CEffectEnumArea>
+    <CEffectEnumArea id="CrackdownSearchLevel3">
+        <EditorCategories value=""/>
+        <SearchFilters value="-;Player,Ally,Neutral"/>
+        <AreaArray Radius="5" Effect="CrackdownDoT"/>
+    </CEffectEnumArea>
     <CEffectEnumArea id="PushItLevel1">
         <EditorCategories value=""/>
         <DebugTrace value="1"/>
@@ -1340,6 +1410,12 @@
         <EffectArray value="VolatileInjectionDamageLevel3"/>
         <EffectArray value="NanoPlagueSecondary"/>
     </CEffectSet>
+    <CBehaviorBuff id="CrackdownDoT">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="15"/>
+        <Period value="0.5"/>
+        <PeriodicEffect value="CrackdownDamageLevel3"/>
+    </CBehaviorBuff>
     <CBehaviorBuff id="PushItLevel2Slow">
         <EditorCategories value="AbilityorEffectType:Units"/>
         <Duration value="4"/>
