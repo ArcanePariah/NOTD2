@@ -21,6 +21,98 @@
         <ExcludeArray Value="Target"/>
         <SearchFilters value="-;Player,Ally,Neutral,Item,Invulnerable"/>
     </CEffectDamage>
+    <CEffectApplyBehavior id="AddBuddyInvis">
+        <EditorCategories value=""/>
+        <WhichUnit Value="Caster"/>
+        <Behavior value="BuddyInvis"/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="BuddyCaster">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectSet id="BuddyFinal">
+        <EditorCategories value=""/>
+        <EffectArray value="RemoveBuddyInvis"/>
+        <EffectArray value="BuddySystemFinalCooldown"/>
+    </CEffectSet>
+    <CEffectSet id="BuddyInvisSet">
+        <EditorCategories value=""/>
+        <EffectArray value="AddBuddyInvis"/>
+        <EffectArray value="RemoveBuddyInvis"/>
+    </CEffectSet>
+    <CEffectSet id="BuddyCastSet">
+        <EditorCategories value=""/>
+        <Marker Link="Effect/BuddyInvisSet"/>
+        <EffectArray value="BuddyCaster"/>
+        <EffectArray value="BuddyTarget"/>
+    </CEffectSet>
+    <CEffectRemoveBehavior id="BuddyRemoveCaster">
+        <EditorCategories value=""/>
+        <BehaviorLink value="BuddyCaster"/>
+        <Count value="1"/>
+    </CEffectRemoveBehavior>
+    <CEffectEnumArea id="BuddySelfAid">
+        <EditorCategories value=""/>
+        <SearchFilters value="Heroic;Self,Neutral,Enemy,Missile,Item,Dead,Hidden,Invulnerable"/>
+        <AreaArray Radius="8" Effect="BuddyFirstAidValidator"/>
+        <MaxCount value="1"/>
+    </CEffectEnumArea>
+    <CEffectSet id="BuddyFirstAidValidator">
+        <ValidatorArray value="HasBuddyFromCaster"/>
+        <EditorCategories value=""/>
+        <EffectArray value="SelfAidLevel1"/>
+    </CEffectSet>
+    <CEffectDamage id="CanisterDmg1">
+        <EditorCategories value=""/>
+        <Amount value="800"/>
+    </CEffectDamage>
+    <CEffectDamage id="CanisterDmg2">
+        <EditorCategories value=""/>
+        <Marker Link="Effect/CanisterDmg1"/>
+        <Amount value="600"/>
+    </CEffectDamage>
+    <CEffectDamage id="CanisterDmg3">
+        <EditorCategories value=""/>
+        <Marker Link="Effect/CanisterDmg1"/>
+        <Amount value="400"/>
+    </CEffectDamage>
+    <CEffectDamage id="CanisterDmg4">
+        <EditorCategories value=""/>
+        <Marker Link="Effect/CanisterDmg1"/>
+        <Amount value="200"/>
+    </CEffectDamage>
+    <CEffectSet id="CanisterVisualDummies">
+        <EditorCategories value=""/>
+        <TargetLocationType value="Point"/>
+    </CEffectSet>
+    <CEffectCreatePersistent id="CanisterSearchStartup">
+        <EditorCategories value=""/>
+        <WhichLocation Value="SourcePoint"/>
+        <Flags index="RandomOffset" value="1"/>
+        <InitialDelay value="0.0625"/>
+        <InitialEffect value="CanisterShotSearch"/>
+        <PeriodCount value="8"/>
+        <PeriodicEffectArray value="CanisterVisualDummies"/>
+        <PeriodicOffsetArray value="0,-1,0"/>
+        <PeriodicOffsetArray value="0,-2,0"/>
+        <PeriodicOffsetArray value="0,-3,0"/>
+        <PeriodicOffsetArray value="0,-4,0"/>
+        <PeriodicOffsetArray value="0,-5,0"/>
+    </CEffectCreatePersistent>
+    <CEffectEnumArea id="CanisterShotSearch">
+        <EditorCategories value=""/>
+        <LaunchLocation Effect="CanisterShotSearch" Value="TargetPoint"/>
+        <ImpactLocation Effect="CanisterShotSearch" Value="TargetPoint"/>
+        <SearchFilters value="-;Self,Player,Ally,Missile,Item,Dead,Hidden,Invulnerable"/>
+        <AreaArray Arc="69.994" Radius="2" Effect="CanisterDmg1"/>
+        <AreaArray Arc="69.994" Radius="3" Effect="CanisterDmg2"/>
+        <AreaArray Arc="69.994" Radius="4" Effect="CanisterDmg3"/>
+        <AreaArray Arc="69.994" Radius="5" Effect="CanisterDmg4"/>
+    </CEffectEnumArea>
+    <CEffectSet id="FocusedFireTriggerDummy">
+        <ValidatorArray value="CasterhasFocusFireActive"/>
+        <ValidatorArray value="WeaponProfi1"/>
+        <EditorCategories value=""/>
+    </CEffectSet>
     <CEffectDamage id="IFV25mmHEAutocannonDamage">
         <EditorCategories value=""/>
         <ImpactLocation Value="TargetUnit"/>
@@ -235,9 +327,29 @@
         <EditorCategories value=""/>
         <Amount value="35"/>
     </CEffectDamage>
+    <CEffectApplyBehavior id="PrecisionShotBuff">
+        <EditorCategories value=""/>
+        <Behavior value="PrecisionShot"/>
+    </CEffectApplyBehavior>
+    <CEffectDamage id="PrecisionShotDMG">
+        <EditorCategories value=""/>
+        <Amount value="50"/>
+    </CEffectDamage>
     <CEffectApplyBehavior id="PredatorCloak">
         <EditorCategories value=""/>
     </CEffectApplyBehavior>
+    <CEffectRemoveBehavior id="RemoveBuddyInvis">
+        <EditorCategories value=""/>
+        <WhichUnit Value="Caster"/>
+        <BehaviorLink value="BuddyInvis"/>
+        <Count value="1"/>
+    </CEffectRemoveBehavior>
+    <CEffectCreatePersistent id="SelfAidCharges">
+        <EditorCategories value=""/>
+        <InitialEffect value="SelfAidHealLevel1"/>
+        <PeriodicEffectArray value="SelfAidHealLevel1"/>
+        <PeriodicPeriodArray value="1"/>
+    </CEffectCreatePersistent>
     <CEffectSet id="SidearmMelee">
         <EditorCategories value=""/>
         <EffectArray value="CombatKnifeSearch"/>
@@ -297,6 +409,22 @@
         <ExcludeArray Value="Target"/>
         <SearchFilters value="-;Player,Ally,Neutral,Item,Invulnerable"/>
     </CEffectDamage>
+    <CEffectCreatePersistent id="SonicTrapPlacement">
+        <EditorCategories value=""/>
+    </CEffectCreatePersistent>
+    <CEffectSet id="SonicTrapStartSet1">
+        <EditorCategories value=""/>
+        <EffectArray value="SonicTrapPushbackPersistentLevel1"/>
+        <EffectArray value="SonicTrapHeroicSlowLevel1"/>
+        <EffectArray value="SonicTrapStunLevel1"/>
+    </CEffectSet>
+    <CEffectSet id="SonicTrapStartSet2">
+        <EditorCategories value=""/>
+        <Marker Link="Effect/SonicTrapStartSet1"/>
+        <EffectArray value="SonicTrapPushbackPersistentLevel2"/>
+        <EffectArray value="SonicTrapHeroicSlowLevel2"/>
+        <EffectArray value="SonicTrapStunLevel2"/>
+    </CEffectSet>
     <CEffectCreateUnit id="SpawnDefaultPet" parent="SpawnPetTemplate"/>
     <CEffectCreatePersistent id="SpawnPetDelay">
         <EditorCategories value=""/>
@@ -312,6 +440,40 @@
         <WhichUnit Value="Caster"/>
         <ValidatorArray index="0" removed="1"/>
     </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="StunGrenadeBehaviour">
+        <EditorCategories value=""/>
+        <Behavior value="Stunned"/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="StunGrenadeSlow">
+        <EditorCategories value=""/>
+        <Behavior value="Slowed"/>
+    </CEffectApplyBehavior>
+    <CEffectEnumArea id="StunGrenadeSearch">
+        <EditorCategories value=""/>
+        <AreaArray Radius="3" Effect="StunGrenadeBehaviour"/>
+    </CEffectEnumArea>
+    <CEffectApplyBehavior id="BuddyTarget">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectDamage id="SuicideSonic">
+        <ValidatorArray value="SonicPlacementBuff"/>
+        <Marker Link="Effect/Suicide"/>
+        <ImpactLocation Value="SourceUnit"/>
+        <Flags index="Kill" value="1"/>
+        <Flags index="NoKillCredit" value="1"/>
+    </CEffectDamage>
+    <CEffectSet id="TIMRBonusDurationTriggerDummy">
+        <EditorCategories value=""/>
+    </CEffectSet>
+    <CEffectModifyUnit id="TIMRFinalCooldown">
+        <EditorCategories value=""/>
+        <Cost Abil="ThisismyRifle,Execute" CooldownOperation="Set" CooldownTimeUse="10"/>
+    </CEffectModifyUnit>
+    <CEffectModifyUnit id="BuddySystemFinalCooldown">
+        <EditorCategories value=""/>
+        <Marker Link="Effect/TIMRFinalCooldown"/>
+        <Cost Abil="BuddySystem,Execute" CooldownOperation="Set" CooldownTimeUse="30"/>
+    </CEffectModifyUnit>
     <CEffectDamage id="Thunderclaw">
         <EditorCategories value=""/>
         <Amount value="20"/>

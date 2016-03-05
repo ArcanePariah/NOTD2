@@ -35,6 +35,12 @@
     <CRequirement id="BackstabLevel2">
         <NodeArray index="Use" Link="EqCountAbilExecuteCompleteOnlyAtUnit2"/>
     </CRequirement>
+    <CRequirement id="BuddyON">
+        <NodeArray index="Show" Link="LTECountBehaviorBuddyCasterCompleteOnlyAtUnit0"/>
+    </CRequirement>
+    <CRequirement id="BuddyCancel">
+        <NodeArray index="Show" Link="GTECountBehaviorBuddyCasterCompleteOnlyAtUnit1"/>
+    </CRequirement>
     <CRequirement id="CanEquipHighExplosiveAmmo"/>
     <CRequirement id="CohesionLevel1">
         <NodeArray index="Use" Link="EqCountAbilCohesionCompleteOnlyAtUnit1"/>
@@ -89,13 +95,23 @@
         <NodeArray index="Show" Link="EqCountBehaviorDisableInventoryTransferCompleteOnlyAtUnit1"/>
     </CRequirement>
     <CRequirement id="FireUpLevel1">
-        <NodeArray index="Use" Link="EqCountUpgradeFireUpCompleteOnly1"/>
+        <NodeArray index="Use" Link="EqCountUpgradeAccurateFireLevelCompleteOnly1"/>
+    </CRequirement>
+    <CRequirement id="SelfAidUpgrade2">
+        <NodeArray index="Use" Link="GTECountUpgradeFirstAidUpgradeCompleteOnly2"/>
+    </CRequirement>
+    <CRequirement id="GrenadierNot">
+        <NodeArray index="Use" Link="NotCountAbilFragmentationGrenadeCompleteOnlyAtUnit"/>
+        <NodeArray index="Show" Link="CountAbilGrenadierCompleteOnlyAtUnit"/>
+    </CRequirement>
+    <CRequirement id="HasAccurateFire">
+        <NodeArray index="Use" Link="GTECountUpgradeAccurateFireLevelCompleteOnly1"/>
     </CRequirement>
     <CRequirement id="FireUpLevel2">
-        <NodeArray index="Use" Link="EqCountUpgradeFireUpCompleteOnly2"/>
+        <NodeArray index="Use" Link="EqCountUpgradeAccurateFireLevelCompleteOnly2"/>
     </CRequirement>
     <CRequirement id="FireUpLevel3">
-        <NodeArray index="Use" Link="EqCountUpgradeFireUpCompleteOnly3"/>
+        <NodeArray index="Use" Link="EqCountUpgradeAccurateFireLevelCompleteOnly3"/>
     </CRequirement>
     <CRequirement id="FirstAidLevel2">
         <NodeArray index="Use" Link="EqCountAbilHealCompleteOnlyAtUnit2"/>
@@ -115,6 +131,9 @@
     <CRequirement id="Grenadier">
         <NodeArray index="Use" Link="CountAbilGrenadierCompleteOnlyAtUnit"/>
         <NodeArray index="Show" Link="CountAbilGrenadierCompleteOnlyAtUnit"/>
+    </CRequirement>
+    <CRequirement id="HasSupressFire">
+        <NodeArray index="Use" Link="GTECountUpgradeSuppressiveFireLevelCompleteOnly1"/>
     </CRequirement>
     <CRequirement id="Healing">
         <NodeArray index="Use" Link="EqCountBehaviorHealingCompleteOnlyAtUnit1"/>
@@ -211,6 +230,15 @@
         <NodeArray index="Use" Link="GTECountAbilHealCompleteOnlyAtUnit1"/>
         <NodeArray index="Show" Link="GTECountAbilHealCompleteOnlyAtUnit1"/>
     </CRequirement>
+    <CRequirement id="SelfAidUpgrade1">
+        <NodeArray index="Use" Link="GTECountUpgradeFirstAidUpgradeCompleteOnly1"/>
+    </CRequirement>
+    <CRequirement id="SelfAidUpgrade3">
+        <NodeArray index="Use" Link="GTECountUpgradeFirstAidUpgradeCompleteOnly3"/>
+    </CRequirement>
+    <CRequirement id="SonicTraps">
+        <NodeArray index="Use" Link="LTEAndCountUnitSonicTrapLevel1CompleteOnlyCountUnitSonicTrapLevel12CompleteOnly1"/>
+    </CRequirement>
     <CRequirement id="SprintingShadow">
         <NodeArray index="Use" Link="EqCountAbilSprintingShadowCompleteOnlyAtUnit1"/>
     </CRequirement>
@@ -225,6 +253,9 @@
     </CRequirement>
     <CRequirement id="SupplyDrop">
         <NodeArray index="Show" Link="EqCountAbilAmmunitionDropCompleteOnlyAtUnit1"/>
+    </CRequirement>
+    <CRequirement id="TIMRPreventReuse">
+        <NodeArray index="Use" Link="NotCountBehaviorThisismyRifleCompleteOnlyAtUnit"/>
     </CRequirement>
     <CRequirement id="UnstoppableForceComplete">
         <NodeArray index="Use" Link="EqCountAbilElbowRoomCompleteOnlyAtUnit1"/>

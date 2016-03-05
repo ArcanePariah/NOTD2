@@ -76,6 +76,20 @@
         <SharedXPRadius index="Kills" value="500"/>
         <SharedXPFraction index="Kills" value="1"/>
     </CBehaviorVeterancy>
+    <CBehaviorBuff id="BuddyCaster">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <RemoveValidatorArray value="BuddyCasterRange"/>
+        <FinalEffect value="BuddyCaster"/>
+        <Modification MoveSpeedMultiplier="1.2">
+            <ModifyFlags index="ShareSight" value="1"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="BuddyInvis">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Modification>
+            <StateFlags index="Cloak" value="1"/>
+        </Modification>
+    </CBehaviorBuff>
     <CBehaviorBuff id="DefaultDetection">
         <EditorCategories value="AbilityorEffectType:Units"/>
         <Modification Detect="3"/>
@@ -202,6 +216,12 @@
             <WeaponArray Link="PeacekeeperPumpShotgun"/>
         </Modification>
     </CBehaviorBuff>
+    <CBehaviorBuff id="PrecisionShot">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="2.5"/>
+        <InitialEffect value="PrecisionShotDMG"/>
+        <Modification MoveSpeedMultiplier="0.75"/>
+    </CBehaviorBuff>
     <CBehaviorBuff id="PrecursorMerc2">
         <InfoFlags index="Hidden" value="1"/>
         <Modification MoveSpeedMultiplier="0.05">
@@ -270,6 +290,18 @@
         </Modification>
         <InfoFlags index="Hidden" value="1"/>
     </CBehaviorBuff>
+    <CBehaviorBuff id="ReloadManual">
+        <InitialEffect value="FocusedFireTriggerDummy"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="ReloadNightmare">
+        <InitialEffect value="FocusedFireTriggerDummy"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="ReloadNormal">
+        <InitialEffect value="FocusedFireTriggerDummy"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="ReloadPerfect">
+        <InitialEffect value="FocusedFireTriggerDummy"/>
+    </CBehaviorBuff>
     <CBehaviorBuff id="SergeantAscalon" parent="PeacekeeperTemplate">
         <Modification>
             <VitalMaxArray index="Life" value="50"/>
@@ -282,6 +314,20 @@
             <WeaponArray Link="PeacekeeperMarksmanRifle"/>
         </Modification>
     </CBehaviorBuff>
+    <CBehaviorBuff id="BuddyTarget">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <RemoveValidatorArray value="BuddyTargetRange"/>
+        <Period value="0.5"/>
+        <PeriodicEffect value="BuddyInvisSet"/>
+        <Modification MoveSpeedMultiplier="1.2">
+            <ModifyFlags index="ShareSight" value="1"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="SonicPlacementBuff">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="6"/>
+    </CBehaviorBuff>
     <CBehaviorBuff id="Sprint">
         <EditorCategories value="AbilityorEffectType:Units"/>
         <Duration value="5"/>
@@ -292,5 +338,26 @@
         <Modification>
             <VitalMaxArray index="Life" value="100"/>
         </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="Stunned">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="2"/>
+        <ExpireEffect value="StunGrenadeSlow"/>
+        <Modification MoveSpeedMultiplier="0.01">
+            <AbilClassDisableArray index="CAbilAttack" value="1"/>
+            <AbilClassDisableArray index="CAbilBehavior" value="1"/>
+            <AbilClassDisableArray index="CAbilEffectInstant" value="1"/>
+            <AbilClassDisableArray index="CAbilEffectTarget" value="1"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="Slowed">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="4"/>
+        <Modification MoveSpeedMultiplier="0.4"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="WeaponProfi2">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <DisableValidatorArray value="WeaponProfi2"/>
     </CBehaviorBuff>
 </Catalog>

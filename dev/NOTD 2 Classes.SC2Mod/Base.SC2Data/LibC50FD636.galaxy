@@ -196,6 +196,39 @@ bool libC50FD636_gf_BulwarkAngleDamageCheck (fixed lp_damageAngle) {
     return (((lv_adjustBulwarkAngle - lv_adjustedAngle) >= -45.0) && ((lv_adjustBulwarkAngle - lv_adjustedAngle) <= 45.0));
 }
 
+fixed libC50FD636_gf_ReturnCatalogAsReal (string lp_catalog) {
+    // Implementation
+    return StringToFixed(lp_catalog);
+}
+
+void libC50FD636_gf_UpdateWeaponProfi2 (unit lp_rifleman) {
+    // Variable Declarations
+    fixed lv_dMGBonus;
+    fixed lv_aSBonus;
+
+    // Variable Initialization
+
+    // Implementation
+    if ((TechTreeUpgradeCount(UnitGetOwner(lp_rifleman), "AccurateFireLevel", c_techCountCompleteOnly) >= 1)) {
+        lv_dMGBonus = 0.2;
+    }
+    else {
+    }
+    if ((TechTreeUpgradeCount(UnitGetOwner(lp_rifleman), "AccurateFireLevel", c_techCountCompleteOnly) >= 2)) {
+        CatalogFieldValueSet(c_gameCatalogBehavior, "WeaponProfi2", "Modification.WeaponRange", UnitGetOwner(lp_rifleman), FixedToString(1.0, 2));
+    }
+    else {
+    }
+    if ((TechTreeUpgradeCount(UnitGetOwner(lp_rifleman), "AccurateFireLevel", c_techCountCompleteOnly) >= 3)) {
+        lv_aSBonus = 0.1;
+    }
+    else {
+    }
+    CatalogFieldValueSet(c_gameCatalogBehavior, "WeaponProfi2", "Modification.AttackSpeedMultiplier", UnitGetOwner(lp_rifleman), FixedToString(((libC50FD636_gf_ReturnCatalogAsReal(CatalogFieldValueGet(c_gameCatalogBehavior, "FocusFire", "Modification.AttackSpeedMultiplier", UnitGetOwner(lp_rifleman))) * 0.5) + lv_aSBonus), 2));
+    CatalogFieldValueSet(c_gameCatalogBehavior, "WeaponProfi2", "Modification.DamageDealtFraction[" + IntToString(2) + "]", UnitGetOwner(lp_rifleman), FixedToString(((libC50FD636_gf_ReturnCatalogAsReal(CatalogFieldValueGet(c_gameCatalogBehavior, "FocusFire", "Modification.DamageDealtFraction[" + IntToString(2) + "]", UnitGetOwner(lp_rifleman))) * 0.5) + lv_dMGBonus), 2));
+    CatalogFieldValueSet(c_gameCatalogBehavior, "WeaponProfi2", "Modification.DamageDealtFraction[" + IntToString(3) + "]", UnitGetOwner(lp_rifleman), FixedToString(((libC50FD636_gf_ReturnCatalogAsReal(CatalogFieldValueGet(c_gameCatalogBehavior, "FocusFire", "Modification.DamageDealtFraction[" + IntToString(3) + "]", UnitGetOwner(lp_rifleman))) * 0.5) + lv_dMGBonus), 2));
+}
+
 string libC50FD636_gf_GetWeapon (string lp_weaponEquippedBehavior) {
     string autoEABE56CC_val;
 
@@ -991,46 +1024,42 @@ void libC50FD636_gt_AssaultLevelUpGeminiProtocol_Init () {
 }
 
 //--------------------------------------------------------------------------------------------------
-// Trigger: Rifleman Level Up Critical Strike
+// Trigger: Rifleman Level Up AccurateFire
 //--------------------------------------------------------------------------------------------------
-bool libC50FD636_gt_RiflemanLevelUpCriticalStrike_Func (bool testConds, bool runActions) {
+bool libC50FD636_gt_RiflemanLevelUpAccurateFire_Func (bool testConds, bool runActions) {
+    int auto939FB6CB_val;
+
     // Actions
     if (!runActions) {
         return true;
     }
 
-    TechTreeUpgradeAddLevel(UnitGetOwner(EventUnit()), "CriticalStrikeRifleman", 1);
-    return true;
-}
-
-//--------------------------------------------------------------------------------------------------
-void libC50FD636_gt_RiflemanLevelUpCriticalStrike_Init () {
-    libC50FD636_gt_RiflemanLevelUpCriticalStrike = TriggerCreate("libC50FD636_gt_RiflemanLevelUpCriticalStrike_Func");
-    TriggerAddEventUnitAbility(libC50FD636_gt_RiflemanLevelUpCriticalStrike, null, AbilityCommand("RiflemanLearn", 0), c_unitAbilStageComplete, false);
-}
-
-//--------------------------------------------------------------------------------------------------
-// Trigger: Rifleman Level Up Fire Up
-//--------------------------------------------------------------------------------------------------
-bool libC50FD636_gt_RiflemanLevelUpFireUp_Func (bool testConds, bool runActions) {
-    // Actions
-    if (!runActions) {
-        return true;
+    TechTreeUpgradeAddLevel(UnitGetOwner(EventUnit()), "AccurateFireLevel", 1);
+    auto939FB6CB_val = TechTreeUpgradeCount(UnitGetOwner(EventUnit()), "AccurateFireLevel", c_techCountCompleteOnly);
+    if (auto939FB6CB_val == 1) {
+        TechTreeUpgradeAddLevel(UnitGetOwner(EventUnit()), "AccurateFire1", 1);
     }
-
-    TechTreeUpgradeAddLevel(UnitGetOwner(EventUnit()), "FireUp", 1);
-    if ((TechTreeUpgradeCount(UnitGetOwner(EventUnit()), "CripplingFire", c_techCountCompleteOnly) > 0)) {
-        TechTreeUpgradeAddLevel(UnitGetOwner(EventUnit()), "CripplingFireandFireUpButton", 1);
+    else if (auto939FB6CB_val == 2) {
+        TechTreeUpgradeAddLevel(UnitGetOwner(EventUnit()), "AccurateFire2", 1);
+    }
+    else if (auto939FB6CB_val == 3) {
+        TechTreeUpgradeAddLevel(UnitGetOwner(EventUnit()), "AccurateFire3", 1);
     }
     else {
     }
+    if ((TechTreeUpgradeCount(UnitGetOwner(EventUnit()), "SuppressiveFireLevel", c_techCountCompleteOnly) > 0)) {
+        TechTreeUpgradeAddLevel(UnitGetOwner(EventUnit()), "SuppressiveFireandAccurateFire", 1);
+    }
+    else {
+    }
+    libC50FD636_gf_UpdateWeaponProfi2(EventUnit());
     return true;
 }
 
 //--------------------------------------------------------------------------------------------------
-void libC50FD636_gt_RiflemanLevelUpFireUp_Init () {
-    libC50FD636_gt_RiflemanLevelUpFireUp = TriggerCreate("libC50FD636_gt_RiflemanLevelUpFireUp_Func");
-    TriggerAddEventUnitAbility(libC50FD636_gt_RiflemanLevelUpFireUp, null, AbilityCommand("RiflemanLearn", 1), c_unitAbilStageComplete, false);
+void libC50FD636_gt_RiflemanLevelUpAccurateFire_Init () {
+    libC50FD636_gt_RiflemanLevelUpAccurateFire = TriggerCreate("libC50FD636_gt_RiflemanLevelUpAccurateFire_Func");
+    TriggerAddEventUnitAbility(libC50FD636_gt_RiflemanLevelUpAccurateFire, null, AbilityCommand("RiflemanLearn", 1), c_unitAbilStageComplete, false);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -1044,6 +1073,7 @@ bool libC50FD636_gt_RiflemanLevelUpWeaponProficiency_Func (bool testConds, bool 
 
     if ((TechTreeUpgradeCount(UnitGetOwner(EventUnit()), "WeaponsProficiencyLevel1", c_techCountCompleteOnly) == 1)) {
         TechTreeUpgradeAddLevel(UnitGetOwner(EventUnit()), "WeaponsProficiencyLevel12", 1);
+        libC50FD636_gf_UpdateWeaponProfi2(EventUnit());
     }
     else {
         TechTreeUpgradeAddLevel(UnitGetOwner(EventUnit()), "WeaponsProficiencyLevel1", 1);
@@ -1071,6 +1101,25 @@ bool libC50FD636_gt_RiflemanLevelUpFragGrenadeLevel3_Func (bool testConds, bool 
     }
     else {
     }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libC50FD636_gt_RiflemanLevelUpFragGrenadeLevel3_Init () {
+    libC50FD636_gt_RiflemanLevelUpFragGrenadeLevel3 = TriggerCreate("libC50FD636_gt_RiflemanLevelUpFragGrenadeLevel3_Func");
+    TriggerAddEventUnitAbility(libC50FD636_gt_RiflemanLevelUpFragGrenadeLevel3, null, AbilityCommand("RiflemanLearn", 3), c_unitAbilStageComplete, false);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Rifleman Level Up Grenadier
+//--------------------------------------------------------------------------------------------------
+bool libC50FD636_gt_RiflemanLevelUpGrenadier_Func (bool testConds, bool runActions) {
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TechTreeUpgradeAddLevel(UnitGetOwner(EventUnit()), "Grenadier", 1);
     if ((EventUnitAbility() == AbilityCommand("RiflemanLearn", 5)) && (libC50FD636_gv_talentLevels[UnitGetOwner(EventUnit())][1][4] == 2)) {
         UnitIssueOrder(EventUnit(), Order(AbilityCommand("RiflemanLearn", 3)), c_orderQueueAddToFront);
     }
@@ -1080,24 +1129,56 @@ bool libC50FD636_gt_RiflemanLevelUpFragGrenadeLevel3_Func (bool testConds, bool 
 }
 
 //--------------------------------------------------------------------------------------------------
-void libC50FD636_gt_RiflemanLevelUpFragGrenadeLevel3_Init () {
-    libC50FD636_gt_RiflemanLevelUpFragGrenadeLevel3 = TriggerCreate("libC50FD636_gt_RiflemanLevelUpFragGrenadeLevel3_Func");
-    TriggerAddEventUnitAbility(libC50FD636_gt_RiflemanLevelUpFragGrenadeLevel3, null, AbilityCommand("RiflemanLearn", 3), c_unitAbilStageComplete, false);
-    TriggerAddEventUnitAbility(libC50FD636_gt_RiflemanLevelUpFragGrenadeLevel3, null, AbilityCommand("RiflemanLearn", 5), c_unitAbilStageComplete, false);
+void libC50FD636_gt_RiflemanLevelUpGrenadier_Init () {
+    libC50FD636_gt_RiflemanLevelUpGrenadier = TriggerCreate("libC50FD636_gt_RiflemanLevelUpGrenadier_Func");
+    TriggerAddEventUnitAbility(libC50FD636_gt_RiflemanLevelUpGrenadier, null, AbilityCommand("RiflemanLearn", 5), c_unitAbilStageComplete, false);
 }
 
 //--------------------------------------------------------------------------------------------------
-// Trigger: Rifleman Level Up Crippling Fire
+// Trigger: Rifleman Level Up SelfAid
 //--------------------------------------------------------------------------------------------------
-bool libC50FD636_gt_RiflemanLevelUpCripplingFire_Func (bool testConds, bool runActions) {
+bool libC50FD636_gt_RiflemanLevelUpSelfAid_Func (bool testConds, bool runActions) {
     // Actions
     if (!runActions) {
         return true;
     }
 
-    TechTreeUpgradeAddLevel(UnitGetOwner(EventUnit()), "CripplingFire", 1);
-    if ((TechTreeUpgradeCount(UnitGetOwner(EventUnit()), "FireUp", c_techCountCompleteOnly) > 0)) {
-        TechTreeUpgradeAddLevel(UnitGetOwner(EventUnit()), "CripplingFireandFireUpButton", 1);
+    TechTreeUpgradeAddLevel(UnitGetOwner(EventUnit()), "FirstAidUpgrade", 1);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libC50FD636_gt_RiflemanLevelUpSelfAid_Init () {
+    libC50FD636_gt_RiflemanLevelUpSelfAid = TriggerCreate("libC50FD636_gt_RiflemanLevelUpSelfAid_Func");
+    TriggerAddEventUnitAbility(libC50FD636_gt_RiflemanLevelUpSelfAid, null, AbilityCommand("RiflemanLearn", 8), c_unitAbilStageComplete, false);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Rifleman Level Up SuppressiveFire
+//--------------------------------------------------------------------------------------------------
+bool libC50FD636_gt_RiflemanLevelUpSuppressiveFire_Func (bool testConds, bool runActions) {
+    int autoDAD8340E_val;
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TechTreeUpgradeAddLevel(UnitGetOwner(EventUnit()), "SuppressiveFireLevel", 1);
+    autoDAD8340E_val = TechTreeUpgradeCount(UnitGetOwner(EventUnit()), "SuppressiveFireLevel", c_techCountCompleteOnly);
+    if (autoDAD8340E_val == 1) {
+        TechTreeUpgradeAddLevel(UnitGetOwner(EventUnit()), "SuppressiveFire1", 1);
+    }
+    else if (autoDAD8340E_val == 2) {
+        TechTreeUpgradeAddLevel(UnitGetOwner(EventUnit()), "SuppressiveFire2", 1);
+    }
+    else if (autoDAD8340E_val == 3) {
+        TechTreeUpgradeAddLevel(UnitGetOwner(EventUnit()), "SuppressiveFire3", 1);
+    }
+    else {
+    }
+    if ((TechTreeUpgradeCount(UnitGetOwner(EventUnit()), "AccurateFireLevel", c_techCountCompleteOnly) > 0)) {
+        TechTreeUpgradeAddLevel(UnitGetOwner(EventUnit()), "SuppressiveFireandAccurateFire", 1);
     }
     else {
     }
@@ -1105,9 +1186,9 @@ bool libC50FD636_gt_RiflemanLevelUpCripplingFire_Func (bool testConds, bool runA
 }
 
 //--------------------------------------------------------------------------------------------------
-void libC50FD636_gt_RiflemanLevelUpCripplingFire_Init () {
-    libC50FD636_gt_RiflemanLevelUpCripplingFire = TriggerCreate("libC50FD636_gt_RiflemanLevelUpCripplingFire_Func");
-    TriggerAddEventUnitAbility(libC50FD636_gt_RiflemanLevelUpCripplingFire, null, AbilityCommand("RiflemanLearn", 7), c_unitAbilStageComplete, false);
+void libC50FD636_gt_RiflemanLevelUpSuppressiveFire_Init () {
+    libC50FD636_gt_RiflemanLevelUpSuppressiveFire = TriggerCreate("libC50FD636_gt_RiflemanLevelUpSuppressiveFire_Func");
+    TriggerAddEventUnitAbility(libC50FD636_gt_RiflemanLevelUpSuppressiveFire, null, AbilityCommand("RiflemanLearn", 7), c_unitAbilStageComplete, false);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -1568,6 +1649,66 @@ void libC50FD636_gt_StealthMatrixDeactivate_Init () {
     TriggerAddEventUnitAbility(libC50FD636_gt_StealthMatrixDeactivate, null, AbilityCommand("EscapeSet", 0), c_unitAbilStageExecute, true);
     TriggerAddEventUnitAbility(libC50FD636_gt_StealthMatrixDeactivate, null, AbilityCommand("FlareGunRecon", 0), c_unitAbilStageExecute, true);
     TriggerAddEventUnitAbility(libC50FD636_gt_StealthMatrixDeactivate, null, AbilityCommand("Execute", 0), c_unitAbilStageExecute, true);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: RiflemanFocusFireReloadBoni
+//--------------------------------------------------------------------------------------------------
+bool libC50FD636_gt_RiflemanFocusFireReloadBoni_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    unit lv_unit;
+    fixed lv_factor;
+
+    // Variable Initialization
+    lv_unit = EventPlayerEffectUsedUnit(c_effectUnitCaster);
+    lv_factor = 0.8;
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((TechTreeUpgradeCount(UnitGetOwner(lv_unit), "WeaponsProficiencyLevel12", c_techCountCompleteOnly) >= 1)) {
+        lv_factor = 0.7;
+    }
+    else {
+    }
+    UnitBehaviorSetDuration(lv_unit, "ReloadManual", (lv_factor * UnitBehaviorDuration(lv_unit, "ReloadManual")));
+    UnitBehaviorSetDuration(lv_unit, "ReloadNightmare", (lv_factor * UnitBehaviorDuration(lv_unit, "ReloadNightmare")));
+    UnitBehaviorSetDuration(lv_unit, "ReloadNormal", (lv_factor * UnitBehaviorDuration(lv_unit, "ReloadNormal")));
+    UnitBehaviorSetDuration(lv_unit, "ReloadPerfect", (lv_factor * UnitBehaviorDuration(lv_unit, "ReloadPerfect")));
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libC50FD636_gt_RiflemanFocusFireReloadBoni_Init () {
+    libC50FD636_gt_RiflemanFocusFireReloadBoni = TriggerCreate("libC50FD636_gt_RiflemanFocusFireReloadBoni_Func");
+    TriggerAddEventPlayerEffectUsed(libC50FD636_gt_RiflemanFocusFireReloadBoni, c_playerAny, "FocusedFireTriggerDummy");
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: RiflemanTIMRDurationBonus
+//--------------------------------------------------------------------------------------------------
+bool libC50FD636_gt_RiflemanTIMRDurationBonus_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    unit lv_unit;
+
+    // Variable Initialization
+    lv_unit = EventPlayerEffectUsedUnit(c_effectUnitCaster);
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    UnitBehaviorSetDurationRemaining(EventPlayerEffectUsedUnit(c_effectUnitCaster), "ThisismyRifle", (UnitBehaviorDuration(EventPlayerEffectUsedUnit(c_effectUnitCaster), "ThisismyRifle") + 1.0));
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libC50FD636_gt_RiflemanTIMRDurationBonus_Init () {
+    libC50FD636_gt_RiflemanTIMRDurationBonus = TriggerCreate("libC50FD636_gt_RiflemanTIMRDurationBonus_Func");
+    TriggerAddEventPlayerEffectUsed(libC50FD636_gt_RiflemanTIMRDurationBonus, c_playerAny, "TIMRBonusDurationTriggerDummy");
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -3142,11 +3283,12 @@ void libC50FD636_InitTriggers () {
     libC50FD636_gt_ScamperLevelUp_Init();
     libC50FD636_gt_AssaultLevelUpUnstoppableForce_Init();
     libC50FD636_gt_AssaultLevelUpGeminiProtocol_Init();
-    libC50FD636_gt_RiflemanLevelUpCriticalStrike_Init();
-    libC50FD636_gt_RiflemanLevelUpFireUp_Init();
+    libC50FD636_gt_RiflemanLevelUpAccurateFire_Init();
     libC50FD636_gt_RiflemanLevelUpWeaponProficiency_Init();
     libC50FD636_gt_RiflemanLevelUpFragGrenadeLevel3_Init();
-    libC50FD636_gt_RiflemanLevelUpCripplingFire_Init();
+    libC50FD636_gt_RiflemanLevelUpGrenadier_Init();
+    libC50FD636_gt_RiflemanLevelUpSelfAid_Init();
+    libC50FD636_gt_RiflemanLevelUpSuppressiveFire_Init();
     libC50FD636_gt_MedicLevelUpAntivenom_Init();
     libC50FD636_gt_MedicLevelUpMedicalExpertise_Init();
     libC50FD636_gt_MedicLevelUpIntolerableCruelty_Init();
@@ -3164,6 +3306,8 @@ void libC50FD636_InitTriggers () {
     libC50FD636_gt_SatelliteSharedVision_Init();
     libC50FD636_gt_GroundIlluminationFlareFlareGunVisionShare_Init();
     libC50FD636_gt_StealthMatrixDeactivate_Init();
+    libC50FD636_gt_RiflemanFocusFireReloadBoni_Init();
+    libC50FD636_gt_RiflemanTIMRDurationBonus_Init();
     libC50FD636_gt_DropItems_Init();
     libC50FD636_gt_WeaveAilmentRemoval_Init();
     libC50FD636_gt_LockdownEnabledonEquip_Init();

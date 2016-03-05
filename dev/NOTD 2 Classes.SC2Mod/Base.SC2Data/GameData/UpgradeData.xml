@@ -95,6 +95,26 @@
         <EffectArray Operation="Set" Reference="Unit,Technician,LifeArmorTip" Value="##ArmorTip##"/>
         <EditorCategories value="UpgradeType:ArmorBonus"/>
     </CUpgrade>
+    <CUpgrade id="AccurateFire1">
+        <Flags index="UpgradeCheat" value="0"/>
+        <Alert value=""/>
+        <EffectArray Reference="Behavior,FocusFire,Modification.DamageDealtFraction[Ranged]" Value="0.2"/>
+        <EffectArray Reference="Behavior,FocusFire,Modification.DamageDealtFraction[Splash]" Value="0.2"/>
+        <EffectArray Reference="Behavior,FocusFire,Modification.DamageDealtFraction[Melee]" Value="0.2"/>
+        <LeaderAlias value="AccurateFireLevel"/>
+    </CUpgrade>
+    <CUpgrade id="AccurateFire2">
+        <Flags index="UpgradeCheat" value="0"/>
+        <Alert value=""/>
+        <EffectArray Reference="Behavior,FocusFire,Modification.WeaponRange" Value="2"/>
+        <LeaderAlias value="AccurateFireLevel"/>
+    </CUpgrade>
+    <CUpgrade id="AccurateFire3">
+        <Flags index="UpgradeCheat" value="0"/>
+        <Alert value=""/>
+        <EffectArray Reference="Behavior,FocusFire,Modification.AttackSpeedMultiplier" Value="0.4"/>
+        <LeaderAlias value="AccurateFireLevel"/>
+    </CUpgrade>
     <CUpgrade id="ArmoredProtectiveInsert" parent="ArmorVisualTemplate" ArmorIcon="Items\btn-item-armour-ArmoredProtectiveInsert.dds" ArmorName="Button/Name/ArmoredProtectiveInsert" ArmorTip="Button/Tooltip/ArmoredProtectiveInsert">
         <EditorCategories value=""/>
     </CUpgrade>
@@ -202,6 +222,30 @@
         <EditorCategories value=""/>
     </CUpgrade>
     <CUpgrade id="GeminiProtocol"/>
+    <CUpgrade id="Grenadier">
+        <EffectArray Operation="Set" Reference="Button,FragmentationGrenade,Name" Value="Button/Name/HEGrenade"/>
+        <EffectArray Operation="Set" Reference="Effect,FragmentationGrenadeDamageLevel1,Amount" Value="300"/>
+        <EffectArray Operation="Set" Reference="Effect,FragmentationGrenadeDamageLevel2,Amount" Value="300"/>
+        <EffectArray Operation="Set" Reference="Effect,FragmentationGrenadeDamageLevel3,Amount" Value="300"/>
+        <EffectArray Operation="Set" Reference="Abil,FragmentationGrenade,Cost[2].Cooldown.TimeUse" Value="0.100000"/>
+        <EffectArray Operation="Set" Reference="Effect,FragmentationGrenadeLevel1,AmmoUnit" Value="FragmentationGrenade"/>
+        <EffectArray Operation="Set" Reference="Effect,FragmentationGrenadeLevel2,AmmoUnit" Value="FragmentationGrenade"/>
+        <EffectArray Operation="Set" Reference="Effect,FragmentationGrenadeLevel3,AmmoUnit" Value="FragmentationGrenade"/>
+        <EffectArray Operation="Set" Reference="Button,StickyBomb,Name" Value="Button/Name/AT-Grenade"/>
+        <EffectArray Operation="Set" Reference="Effect,StickyBombDMG,AttributeBonus[Armored]" Value="37.5"/>
+        <EffectArray Operation="Set" Reference="Effect,StickyBombDMG,Amount" Value="62.5"/>
+        <EffectArray Operation="Set" Reference="Effect,StickyBombDMG2,Amount" Value="200"/>
+        <EffectArray Operation="Set" Reference="Abil,FragmentationGrenade,Range[0]" Value="20"/>
+        <EffectArray Operation="Set" Reference="Abil,FragmentationGrenade,Range[1]" Value="20"/>
+        <EffectArray Operation="Set" Reference="Abil,FragmentationGrenade,Range[2]" Value="20"/>
+        <EffectArray Operation="Set" Reference="Abil,StickyBomb,Range[0]" Value="20"/>
+        <EffectArray Operation="Set" Reference="Behavior,StickyBombDMGBuff,Duration" Value="0.500000"/>
+        <EffectArray Operation="Set" Reference="Behavior,StickyBombDMGBuff2,Duration" Value="0.500000"/>
+        <EffectArray Operation="Set" Reference="Behavior,StickyBombDMGBuff2,Period" Value="0.062500"/>
+        <EffectArray Operation="Set" Reference="Behavior,StickyBombDMGBuff,Period" Value="0.062500"/>
+        <EffectArray Operation="Set" Reference="Effect,StickyBombLM,AmmoUnit" Value="FragmentationGrenade"/>
+        <EffectArray Operation="Set" Reference="Effect,StickyBombLM2,AmmoUnit" Value="FragmentationGrenade"/>
+    </CUpgrade>
     <CUpgrade id="HALSoldiers" parent="DefaultUpgradeOverride">
         <LeaderAlias value="UGCMarines"/>
         <EditorCategories value="UpgradeType:Service Branch"/>
@@ -378,6 +422,22 @@
     </CUpgrade>
     <CUpgrade id="StandardArmor" parent="ArmorVisualTemplate" ArmorIcon="Assets\Textures\btn-upgrade-terran-infantryarmorlevel0.dds" ArmorName="Unit/LifeArmor/UGC Marine Forces" ArmorTip="Unit/LifeArmorTooltip/UGCMarines">
         <EditorCategories value=""/>
+    </CUpgrade>
+    <CUpgrade id="SuppressiveFire1" parent="DefaultUpgradeOverride">
+        <EffectArray Operation="Set" Reference="Behavior,FocusFire,DamageResponse.Chance" Value="1"/>
+        <LeaderAlias value="SuppressiveFireLevel"/>
+    </CUpgrade>
+    <CUpgrade id="SuppressiveFire2" parent="DefaultUpgradeOverride">
+        <EffectArray Reference="Behavior,CripplingFire,Duration" Value="1"/>
+        <LeaderAlias value="SuppressiveFireLevel"/>
+    </CUpgrade>
+    <CUpgrade id="SuppressiveFire3" parent="DefaultUpgradeOverride">
+        <EffectArray Operation="Subtract" Reference="Behavior,CripplingFire,Modification.AttackSpeedMultiplier" Value="0.2"/>
+        <LeaderAlias value="SuppressiveFireLevel"/>
+    </CUpgrade>
+    <CUpgrade id="FirstAidUpgrade" parent="DefaultUpgradeOverride">
+        <EffectArray Operation="Set" Reference="Effect,SelfAidCharges,PeriodCount" Value="3"/>
+        <MaxLevel value="3"/>
     </CUpgrade>
     <!--Currently, duration override in behaviors can not be upgrades. May need to use triggers for this with catalog writes, however, this upgrade will still be used to start that trigger.-->
     <CUpgrade id="SwapSpeed" parent="DefaultUpgradeOverride">
