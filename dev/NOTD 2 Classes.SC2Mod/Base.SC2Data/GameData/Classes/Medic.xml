@@ -38,11 +38,11 @@
         <InfoArray index="Learn6" Abil="Purify">
             <Button DefaultButtonFace="Purify"/>
         </InfoArray>
-        <InfoArray index="Learn7" Abil="NanoShock">
-            <Button DefaultButtonFace="NanoShock"/>
-        </InfoArray>
-        <InfoArray index="Learn8" Abil="PushIt">
+        <InfoArray index="Learn7" Abil="PushIt">
             <Button DefaultButtonFace="PushIt"/>
+        </InfoArray>
+        <InfoArray index="Learn8" Abil="Crackdown">
+            <Button DefaultButtonFace="Crackdown"/>
         </InfoArray>
         <InfoArray index="Learn9" Abil="Aftershock">
             <Button DefaultButtonFace="Aftershock"/>
@@ -284,6 +284,15 @@
         <AssetArray File="Assets\Sounds\Terran\Vulture\Vulture_AttackLaunch2.wav" FacialGroup=""/>
         <AssetArray File="Assets\Sounds\Terran\Vulture\Vulture_AttackLaunch3.wav" FacialGroup=""/>
     </CSound>
+    <CModel id="CrackdownDamageImpact" parent="ImpactFX">
+        <Model value="Assets\Effects\Protoss\Void_Cloud_Damage\Void_Cloud_Damage.m3"/>
+    </CModel>
+    <CModel id="CrackdownImpact" parent="ImpactFX">
+        <Model value="Assets\Effects\Protoss\MalashGuardian_Beam_Impact\MalashGuardian_Beam_Impact.m3"/>
+    </CModel>
+    <CModel id="CrackdownCloud">
+        <Model value="Assets\Effects\Protoss\Alarak_Malash_Storm\Alarak_Malash_Storm.m3"/>
+    </CModel>
     <CModel id="PushItBeam" parent="OneShotSpellFX">
         <Model value="Assets\Effects\Protoss\Alarak_Attack_Beam_Strong\Alarak_Attack_Beam_Strong.m3"/>
     </CModel>
@@ -429,7 +438,7 @@
         <AbilArray Link="Vaccinate"/>
         <AbilArray Link="Purify"/>
         <AbilArray Link="Protect"/>
-        <AbilArray Link="NanoShock"/>
+        <AbilArray Link="Crackdown"/>
         <AbilArray Link="Aftershock"/>
         <AbilArray Link="IntolerableCruelty"/>
         <AbilArray Link="NanoSear"/>
@@ -455,7 +464,7 @@
             <LayoutButtons Face="NanoSear" Type="AbilCmd" AbilCmd="NanoSear,Execute" Row="1" Column="0"/>
             <LayoutButtons Face="NanoPlague" Type="AbilCmd" AbilCmd="NanoPlague,Execute" Row="1" Column="0"/>
             <LayoutButtons Face="Aftershock" Type="AbilCmd" AbilCmd="Aftershock,Execute" Row="1" Column="2"/>
-            <LayoutButtons Face="NanoShock" Type="AbilCmd" AbilCmd="NanoShock,Execute" Row="1" Column="2"/>
+            <LayoutButtons Face="Crackdown" Type="AbilCmd" AbilCmd="Crackdown,Execute" Row="1" Column="2"/>
             <LayoutButtons Face="Weave" Type="AbilCmd" AbilCmd="Weave,Execute" Row="2" Column="3"/>
             <LayoutButtons Face="PushIt" Type="AbilCmd" AbilCmd="PushIt,Execute" Row="1" Column="1"/>
         </CardLayouts>
@@ -482,7 +491,27 @@
         <EffectArray Reference="Effect,VolatileInjectionSearchLevel3,AreaArray[0].Radius" Value="1"/>
         <MaxLevel value="2"/>
     </CUpgrade>
-    <CActorModel id="CrackdownCloud" parent="ModelAnimationStyleOneShotNoOrphan">
+    <CActorModel id="CrackdownDamageImpact" parent="ModelAnimationStyleOneShotUNIT">
+        <On Terms="Effect.CrackdownDamageLevel1.Start" Send="Create"/>
+        <On Terms="Effect.CrackdownDamageLevel2.Start" Send="Create"/>
+        <On Terms="Effect.CrackdownDamageLevel3.Start" Send="Create"/>
+        <EditorCategories value=""/>
+        <Host Subject="_Unit" Scope="Effect"/>
+        <HostSiteOps Ops="SOpAttachCenter"/>
+        <AutoScaleFactor value="1.300000"/>
+        <ModelFlags index="AllowHitTest" value="0"/>
+    </CActorModel>
+    <CActorModel id="CrackdownImpact" parent="ModelAnimationStyleOneShot">
+        <EditorCategories value=""/>
+        <On Terms="Effect.CrackdownSearchLevel1.Impact; At Effect" Send="Create"/>
+        <On Terms="Effect.CrackdownSearchLevel2.Impact; At Effect" Send="Create"/>
+        <On Terms="Effect.CrackdownSearchLevel3.Impact; At Effect" Send="Create"/>
+        <On Terms="Effect.CrackdownSearchLevel1.Stop" Send="Destroy"/>
+        <On Terms="Effect.CrackdownSearchLevel2.Stop" Send="Destroy"/>
+        <On Terms="Effect.CrackdownSearchLevel3.Stop" Send="Destroy"/>
+        <ModelFlags index="AutomateGlobalLoops" value="1"/>
+    </CActorModel>
+    <CActorModel id="CrackdownCloud" parent="ModelAnimationStyleContinuous">
         <EditorCategories value=""/>
         <On Terms="Effect.CrackdownLevel1.Start" Send="Create"/>
         <On Terms="Effect.CrackdownLevel2.Start" Send="Create"/>
@@ -490,6 +519,10 @@
         <On Terms="Effect.CrackdownLevel1.Stop" Send="Destroy"/>
         <On Terms="Effect.CrackdownLevel2.Stop" Send="Destroy"/>
         <On Terms="Effect.CrackdownLevel3.Stop" Send="Destroy"/>
+        <On Terms="Effect.CrackdownLevel3.Start" Send="SetScale 1.300000"/>
+        <On Terms="Effect.CrackdownLevel2.Start" Send="SetScale 1.300000"/>
+        <ModelFlags index="AllowHitTest" value="0"/>
+        <ModelFlags index="AutomateGlobalLoops" value="1"/>
     </CActorModel>
     <CActorOverrides id="TestOverride">
         <EditorCategories value=""/>
@@ -883,33 +916,39 @@
     </CValidatorUnitCompareBehaviorCount>
     <CEffectDamage id="CrackdownDamageLevel1">
         <EditorCategories value=""/>
+        <Amount value="15"/>
     </CEffectDamage>
     <CEffectDamage id="CrackdownDamageLevel2">
         <EditorCategories value=""/>
+        <Amount value="15"/>
     </CEffectDamage>
     <CEffectDamage id="CrackdownDamageLevel3">
         <EditorCategories value=""/>
+        <Amount value="15"/>
     </CEffectDamage>
     <CEffectApplyBehavior id="CrackdownDoT">
         <EditorCategories value=""/>
     </CEffectApplyBehavior>
     <CEffectCreatePersistent id="CrackdownLevel1">
         <EditorCategories value=""/>
-        <PeriodCount value="20"/>
+        <PeriodCount value="19"/>
         <PeriodicEffectArray value="CrackdownSearchLevel1"/>
         <PeriodicPeriodArray value="0.5"/>
+        <InitialEffect value="CrackdownSearchLevel1"/>
     </CEffectCreatePersistent>
     <CEffectCreatePersistent id="CrackdownLevel2">
         <EditorCategories value=""/>
-        <PeriodCount value="20"/>
+        <PeriodCount value="29"/>
         <PeriodicEffectArray value="CrackdownSearchLevel2"/>
         <PeriodicPeriodArray value="0.5"/>
+        <InitialEffect value="CrackdownSearchLevel2"/>
     </CEffectCreatePersistent>
     <CEffectCreatePersistent id="CrackdownLevel3">
         <EditorCategories value=""/>
-        <PeriodCount value="30"/>
+        <PeriodCount value="29"/>
         <PeriodicEffectArray value="CrackdownSearchLevel3"/>
         <PeriodicPeriodArray value="0.5"/>
+        <InitialEffect value="CrackdownSearchLevel3"/>
     </CEffectCreatePersistent>
     <CEffectEnumArea id="CrackdownSearchLevel1">
         <EditorCategories value=""/>
@@ -928,7 +967,6 @@
     </CEffectEnumArea>
     <CEffectEnumArea id="PushItLevel1">
         <EditorCategories value=""/>
-        <DebugTrace value="1"/>
         <SearchFilters value="-;Self,Player,Ally,Neutral"/>
         <AreaArray RectangleWidth="0.75" RectangleHeight="6" Effect="PushItLevel1Damage"/>
         <AreaRelativeOffset value="0,-3"/>
@@ -941,7 +979,6 @@
     </CEffectSet>
     <CEffectEnumArea id="PushItLevel2">
         <EditorCategories value=""/>
-        <DebugTrace value="1"/>
         <SearchFilters value="-;Self,Player,Ally,Neutral"/>
         <AreaArray RectangleWidth="0.75" RectangleHeight="6" Effect="PushItLevel2Set"/>
         <AreaRelativeOffset value="0,-3"/>
@@ -954,7 +991,6 @@
     </CEffectDamage>
     <CEffectEnumArea id="PushItLevel3">
         <EditorCategories value=""/>
-        <DebugTrace value="1"/>
         <SearchFilters value="-;Self,Player,Ally,Neutral"/>
         <AreaArray RectangleWidth="1.5" RectangleHeight="9" Effect="PushItLevel3Set"/>
         <AreaRelativeOffset value="0,-4.5"/>
