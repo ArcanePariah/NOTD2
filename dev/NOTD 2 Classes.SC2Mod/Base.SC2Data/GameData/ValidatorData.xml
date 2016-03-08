@@ -1,62 +1,14 @@
 <?xml version="1.0" encoding="us-ascii"?>
 <Catalog>
-    <CValidatorLocationCompareRange id="BuddyTargetRange">
-        <WhichLocation Value="TargetUnit"/>
-        <Compare value="LE"/>
-        <Range value="8"/>
-    </CValidatorLocationCompareRange>
-    <CValidatorUnitCompareBehaviorCount id="SonicPlacementBuff">
-        <Behavior value="SonicPlacementBuff"/>
-    </CValidatorUnitCompareBehaviorCount>
-    <CValidatorPlayerRequirement id="SonicTrapNumbers">
-        <Value value="SonicTraps"/>
-    </CValidatorPlayerRequirement>
-    <CValidatorCombine id="SonicTrapSlow">
-        <CombineArray value="TargetIsHeroic"/>
-        <CombineArray value="TargetIsMassiv"/>
-    </CValidatorCombine>
-    <CValidatorUnitFilters id="TargetIsNotHeroicMassiv">
-        <Filters value="-;Massive,Heroic,Dead"/>
-    </CValidatorUnitFilters>
-    <CValidatorUnitFilters id="TargetIsMassiv">
-        <WhichUnit Value="Caster"/>
-        <Filters value="Massive;-"/>
-    </CValidatorUnitFilters>
+    <CValidatorUnitBehaviorState id="BuddyInvisOff">
+        <WhichUnit Value="Source"/>
+        <BehaviorState value="Cloak"/>
+    </CValidatorUnitBehaviorState>
     <CValidatorUnitType id="CasterisNotMedic">
         <WhichUnit Value="Caster"/>
         <Value value="Medic2"/>
         <Find value="0"/>
     </CValidatorUnitType>
-    <CValidatorPlayerRequirement id="Grenadier">
-        <WhichPlayer Value="Caster"/>
-        <Find value="1"/>
-        <Value value="Grenadier"/>
-    </CValidatorPlayerRequirement>
-    <CValidatorPlayerRequirement id="SelfAidLevel1">
-        <WhichPlayer Value="Caster"/>
-        <Find value="1"/>
-        <Value value="SelfAidUpgrade1"/>
-    </CValidatorPlayerRequirement>
-    <CValidatorPlayerRequirement id="SelfAidLevel3">
-        <WhichPlayer Value="Caster"/>
-        <Find value="1"/>
-        <Value value="SelfAidUpgrade3"/>
-    </CValidatorPlayerRequirement>
-    <CValidatorCombine id="HasBoth">
-        <Type value="And"/>
-        <CombineArray value="HasAccurateFire"/>
-        <CombineArray value="HasSupressFire"/>
-    </CValidatorCombine>
-    <CValidatorPlayerRequirement id="HasNotAccurateFire">
-        <Value value="HasAccurateFire"/>
-    </CValidatorPlayerRequirement>
-    <CValidatorPlayerRequirement id="HasSupressFire">
-        <Find value="1"/>
-        <Value value="HasSupressFire"/>
-    </CValidatorPlayerRequirement>
-    <CValidatorPlayerRequirement id="HasNotSupressFire">
-        <Value value="HasSupressFire"/>
-    </CValidatorPlayerRequirement>
     <CValidatorCombine id="HordeModeNoiseThresholds">
         <CombineArray value="HordeModeRecruitNoiseThreshold"/>
         <CombineArray value="HordeModeNormalNoiseThreshold"/>
@@ -82,55 +34,15 @@
         <CombineArray value="GameisNormal"/>
         <CombineArray value="HordeModeNormalNoise"/>
     </CValidatorCombine>
-    <CValidatorCombine id="HasOnlyAccurate">
-        <Type value="And"/>
-        <CombineArray value="HasAccurateFire"/>
-        <CombineArray value="HasNotSupressFire"/>
-    </CValidatorCombine>
-    <CValidatorCombine id="HasOnlySupress">
-        <Type value="And"/>
-        <CombineArray value="HasNotAccurateFire"/>
-        <CombineArray value="HasSupressFire"/>
-    </CValidatorCombine>
     <CValidatorCombine id="HordeModeNightmareNoiseThreshold">
         <Type value="And"/>
         <CombineArray value="GameisNightmare"/>
         <CombineArray value="HordeModeNightmareNoise"/>
     </CValidatorCombine>
-    <CValidatorPlayerRequirement id="SelfAidLevel2">
-        <WhichPlayer Value="Caster"/>
-        <Find value="1"/>
-        <Value value="SelfAidUpgrade2"/>
-    </CValidatorPlayerRequirement>
-    <CValidatorLocationCompareRange id="BuddyCasterRange">
-        <WhichLocation Value="TargetUnit"/>
-        <Compare value="LE"/>
-        <Range value="8"/>
-    </CValidatorLocationCompareRange>
-    <CValidatorUnitCompareBehaviorCount id="HasBuddyFromCaster">
-        <Compare value="GE"/>
-        <Value value="1"/>
-        <Behavior value="BuddyTarget"/>
-        <RequireCasterUnit Value="Caster"/>
-    </CValidatorUnitCompareBehaviorCount>
-    <CValidatorUnitFilters id="TargetIsHeroic">
-        <WhichUnit Value="Caster"/>
-        <Filters value="Heroic;-"/>
-    </CValidatorUnitFilters>
-    <CValidatorPlayerRequirement id="WeaponProfi1">
-        <WhichPlayer Value="Caster"/>
-        <Find value="1"/>
-        <Value value="WeaponsProficiencyLevel1"/>
-    </CValidatorPlayerRequirement>
     <CValidatorUnitCompareSpeed id="Moving">
         <WhichUnit Value="Caster"/>
         <Compare value="NE"/>
     </CValidatorUnitCompareSpeed>
-    <CValidatorCombine id="HasNone">
-        <Type value="And"/>
-        <CombineArray value="HasNotAccurateFire"/>
-        <CombineArray value="HasNotSupressFire"/>
-    </CValidatorCombine>
     <CValidatorUnitCompareBehaviorCount id="PredatorLevel6">
         <WhichUnit Value="Caster"/>
         <Compare value="GE"/>
@@ -225,10 +137,6 @@
         <WhichUnit Value="Source"/>
         <Relationship value="Ally"/>
     </CValidatorUnitLastDamagePlayer>
-    <CValidatorPlayerRequirement id="HasAccurateFire">
-        <Find value="1"/>
-        <Value value="HasAccurateFire"/>
-    </CValidatorPlayerRequirement>
     <CValidatorUnitCompareField id="TargetCanMove">
         <Compare value="GT"/>
         <Field value="Speed"/>
@@ -238,6 +146,11 @@
         <CombineArray value="TargetisnonMassiveorArmored"/>
         <Negate value="1"/>
     </CValidatorCombine>
+    <CValidatorUnitBehaviorState id="BuddyInvis">
+        <WhichUnit Value="Source"/>
+        <Enabled value="1"/>
+        <BehaviorState value="Cloak"/>
+    </CValidatorUnitBehaviorState>
     <CValidatorUnitFilters id="TargetisanItem">
         <Filters value="Item;-"/>
     </CValidatorUnitFilters>
@@ -280,14 +193,4 @@
     <CValidatorUnitFilters id="UnitisnotLight">
         <Filters value="-;Light"/>
     </CValidatorUnitFilters>
-    <CValidatorPlayerRequirement id="WeaponProfi2">
-        <WhichPlayer Value="Caster"/>
-        <Find value="1"/>
-        <Value value="WeaponsProficiencyLevel2"/>
-    </CValidatorPlayerRequirement>
-    <CValidatorPlayerRequirement id="GrenadierNot">
-        <WhichPlayer Value="Caster"/>
-        <Find value="1"/>
-        <Value value="GrenadierNot"/>
-    </CValidatorPlayerRequirement>
 </Catalog>

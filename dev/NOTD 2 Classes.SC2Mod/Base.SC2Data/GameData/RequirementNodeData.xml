@@ -4,7 +4,6 @@
         <Count Link="Ability" State="CompleteOnlyAtUnit"/>
     </CRequirementCountAbil>
     <CRequirementAnd id="AndCountUnitSonicTrapLevel1CompleteOnlyCountUnitSonicTrapLevel12CompleteOnly">
-        <Tooltip value="RequirementNode/Tooltip/##id##"/>
         <OperandArray value="CountUnitSonicTrapLevel1CompleteOnly"/>
         <OperandArray value="CountUnitSonicTrapLevel12CompleteOnly"/>
     </CRequirementAnd>
@@ -91,14 +90,10 @@
         <Tooltip value=""/>
         <Count Link="Execute" State="CompleteOnlyAtUnit"/>
     </CRequirementCountAbil>
-    <CRequirementCountAbil id="CountAbilFragmentationGrenadeCompleteOnlyAtUnit">
+    <CRequirementCountAbil id="CountAbilGrenadierCompleteOnly">
         <Flags index="TechTreeCheat" value="0"/>
-        <Count Link="FragmentationGrenade" State="CompleteOnlyAtUnit"/>
-    </CRequirementCountAbil>
-    <CRequirementCountAbil id="CountAbilGrenadierCompleteOnlyAtUnit">
-        <Flags index="TechTreeCheat" value="0"/>
-        <Tooltip value=""/>
-        <Count Link="Grenadier" State="CompleteOnlyAtUnit"/>
+        <Tooltip value="RequirementNode/Tooltip/##id##"/>
+        <Count Link="Grenadier" State="CompleteOnly"/>
     </CRequirementCountAbil>
     <CRequirementCountAbil id="CountAbilHealCompleteOnlyAtUnit">
         <Flags index="TechTreeCheat" value="0"/>
@@ -233,12 +228,10 @@
     </CRequirementCountUnit>
     <CRequirementCountUnit id="CountUnitSonicTrapLevel12CompleteOnly">
         <Flags index="TechTreeCheat" value="0"/>
-        <Tooltip value="RequirementNode/Tooltip/##id##"/>
         <Count Link="SonicTrapLevel12" State="CompleteOnly"/>
     </CRequirementCountUnit>
     <CRequirementCountUnit id="CountUnitSonicTrapLevel1CompleteOnly">
         <Flags index="TechTreeCheat" value="0"/>
-        <Tooltip value="RequirementNode/Tooltip/##id##"/>
         <Count Link="SonicTrapLevel1" State="CompleteOnly"/>
     </CRequirementCountUnit>
     <CRequirementCountUpgrade id="CountUpgradeAccurateFireLevelCompleteOnly">
@@ -668,7 +661,6 @@
         <OperandArray index="1" value="1"/>
     </CRequirementGTE>
     <CRequirementLTE id="LTEAndCountUnitSonicTrapLevel1CompleteOnlyCountUnitSonicTrapLevel12CompleteOnly1">
-        <Tooltip value="RequirementNode/Tooltip/##id##"/>
         <OperandArray index="0" value="AndCountUnitSonicTrapLevel1CompleteOnlyCountUnitSonicTrapLevel12CompleteOnly"/>
         <OperandArray index="1" value="1"/>
     </CRequirementLTE>
@@ -676,9 +668,6 @@
         <OperandArray index="0" value="CountBehaviorBuddyCasterCompleteOnlyAtUnit"/>
         <OperandArray index="1" value="0"/>
     </CRequirementLTE>
-    <CRequirementNot id="NotCountAbilFragmentationGrenadeCompleteOnlyAtUnit">
-        <OperandArray index="0" value="CountAbilFragmentationGrenadeCompleteOnlyAtUnit"/>
-    </CRequirementNot>
     <CRequirementNot id="NotCountBehaviorThisismyRifleCompleteOnlyAtUnit">
         <OperandArray index="0" value="CountBehaviorThisismyRifleCompleteOnlyAtUnit"/>
     </CRequirementNot>

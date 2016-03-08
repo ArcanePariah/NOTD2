@@ -1059,7 +1059,7 @@ bool libC50FD636_gt_RiflemanLevelUpAccurateFire_Func (bool testConds, bool runAc
 //--------------------------------------------------------------------------------------------------
 void libC50FD636_gt_RiflemanLevelUpAccurateFire_Init () {
     libC50FD636_gt_RiflemanLevelUpAccurateFire = TriggerCreate("libC50FD636_gt_RiflemanLevelUpAccurateFire_Func");
-    TriggerAddEventUnitAbility(libC50FD636_gt_RiflemanLevelUpAccurateFire, null, AbilityCommand("RiflemanLearn", 1), c_unitAbilStageComplete, false);
+    TriggerAddEventUnitAbility(libC50FD636_gt_RiflemanLevelUpAccurateFire, null, AbilityCommand("RiflemanLearn", 0), c_unitAbilStageComplete, false);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -1088,29 +1088,6 @@ void libC50FD636_gt_RiflemanLevelUpWeaponProficiency_Init () {
 }
 
 //--------------------------------------------------------------------------------------------------
-// Trigger: Rifleman Level Up Frag Grenade Level 3
-//--------------------------------------------------------------------------------------------------
-bool libC50FD636_gt_RiflemanLevelUpFragGrenadeLevel3_Func (bool testConds, bool runActions) {
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    if ((EventUnitAbility() == AbilityCommand("RiflemanLearn", 3)) && (libC50FD636_gv_talentLevels[UnitGetOwner(EventUnit())][1][6] == 1)) {
-        UnitIssueOrder(EventUnit(), Order(AbilityCommand("RiflemanLearn", 3)), c_orderQueueAddToFront);
-    }
-    else {
-    }
-    return true;
-}
-
-//--------------------------------------------------------------------------------------------------
-void libC50FD636_gt_RiflemanLevelUpFragGrenadeLevel3_Init () {
-    libC50FD636_gt_RiflemanLevelUpFragGrenadeLevel3 = TriggerCreate("libC50FD636_gt_RiflemanLevelUpFragGrenadeLevel3_Func");
-    TriggerAddEventUnitAbility(libC50FD636_gt_RiflemanLevelUpFragGrenadeLevel3, null, AbilityCommand("RiflemanLearn", 3), c_unitAbilStageComplete, false);
-}
-
-//--------------------------------------------------------------------------------------------------
 // Trigger: Rifleman Level Up Grenadier
 //--------------------------------------------------------------------------------------------------
 bool libC50FD636_gt_RiflemanLevelUpGrenadier_Func (bool testConds, bool runActions) {
@@ -1120,11 +1097,6 @@ bool libC50FD636_gt_RiflemanLevelUpGrenadier_Func (bool testConds, bool runActio
     }
 
     TechTreeUpgradeAddLevel(UnitGetOwner(EventUnit()), "Grenadier", 1);
-    if ((EventUnitAbility() == AbilityCommand("RiflemanLearn", 5)) && (libC50FD636_gv_talentLevels[UnitGetOwner(EventUnit())][1][4] == 2)) {
-        UnitIssueOrder(EventUnit(), Order(AbilityCommand("RiflemanLearn", 3)), c_orderQueueAddToFront);
-    }
-    else {
-    }
     return true;
 }
 
@@ -1150,7 +1122,7 @@ bool libC50FD636_gt_RiflemanLevelUpSelfAid_Func (bool testConds, bool runActions
 //--------------------------------------------------------------------------------------------------
 void libC50FD636_gt_RiflemanLevelUpSelfAid_Init () {
     libC50FD636_gt_RiflemanLevelUpSelfAid = TriggerCreate("libC50FD636_gt_RiflemanLevelUpSelfAid_Func");
-    TriggerAddEventUnitAbility(libC50FD636_gt_RiflemanLevelUpSelfAid, null, AbilityCommand("RiflemanLearn", 8), c_unitAbilStageComplete, false);
+    TriggerAddEventUnitAbility(libC50FD636_gt_RiflemanLevelUpSelfAid, null, AbilityCommand("RiflemanLearn", 7), c_unitAbilStageComplete, false);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -1188,7 +1160,7 @@ bool libC50FD636_gt_RiflemanLevelUpSuppressiveFire_Func (bool testConds, bool ru
 //--------------------------------------------------------------------------------------------------
 void libC50FD636_gt_RiflemanLevelUpSuppressiveFire_Init () {
     libC50FD636_gt_RiflemanLevelUpSuppressiveFire = TriggerCreate("libC50FD636_gt_RiflemanLevelUpSuppressiveFire_Func");
-    TriggerAddEventUnitAbility(libC50FD636_gt_RiflemanLevelUpSuppressiveFire, null, AbilityCommand("RiflemanLearn", 7), c_unitAbilStageComplete, false);
+    TriggerAddEventUnitAbility(libC50FD636_gt_RiflemanLevelUpSuppressiveFire, null, AbilityCommand("RiflemanLearn", 6), c_unitAbilStageComplete, false);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -1652,6 +1624,41 @@ void libC50FD636_gt_StealthMatrixDeactivate_Init () {
 }
 
 //--------------------------------------------------------------------------------------------------
+// Trigger: BuddySystem
+//--------------------------------------------------------------------------------------------------
+bool libC50FD636_gt_BuddySystem_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    unit lv_caster;
+    unit lv_target;
+
+    // Variable Initialization
+    lv_caster = EventUnit();
+    lv_target = EventUnitTargetUnit();
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    PlayerSetAlliance(UnitGetOwner(lv_caster), c_allianceIdVision, UnitGetOwner(lv_target), true);
+    PlayerSetAlliance(UnitGetOwner(lv_target), c_allianceIdVision, UnitGetOwner(lv_caster), true);
+    while ((UnitHasBehavior2(lv_caster, "BuddyCaster") == true) && (DistanceBetweenPoints(UnitGetPosition(lv_target), UnitGetPosition(lv_caster)) <= 8.0)) {
+        Wait(1.0, c_timeGame);
+    }
+    UnitBehaviorRemove(lv_caster, "BuddyCaster", 1);
+    UnitBehaviorRemove(lv_target, "BuddyTarget", 1);
+    PlayerSetAlliance(UnitGetOwner(lv_caster), c_allianceIdVision, UnitGetOwner(lv_target), false);
+    PlayerSetAlliance(UnitGetOwner(lv_target), c_allianceIdVision, UnitGetOwner(lv_caster), false);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libC50FD636_gt_BuddySystem_Init () {
+    libC50FD636_gt_BuddySystem = TriggerCreate("libC50FD636_gt_BuddySystem_Func");
+    TriggerAddEventUnitAbility(libC50FD636_gt_BuddySystem, null, AbilityCommand("BuddySystem", 0), c_unitAbilStageComplete, false);
+}
+
+//--------------------------------------------------------------------------------------------------
 // Trigger: RiflemanFocusFireReloadBoni
 //--------------------------------------------------------------------------------------------------
 bool libC50FD636_gt_RiflemanFocusFireReloadBoni_Func (bool testConds, bool runActions) {
@@ -1701,7 +1708,7 @@ bool libC50FD636_gt_RiflemanTIMRDurationBonus_Func (bool testConds, bool runActi
         return true;
     }
 
-    UnitBehaviorSetDurationRemaining(EventPlayerEffectUsedUnit(c_effectUnitCaster), "ThisismyRifle", (UnitBehaviorDuration(EventPlayerEffectUsedUnit(c_effectUnitCaster), "ThisismyRifle") + 1.0));
+    UnitBehaviorSetDuration(lv_unit, "ThisismyRifle", (UnitBehaviorDuration(lv_unit, "ThisismyRifle") + 1.0));
     return true;
 }
 
@@ -3269,6 +3276,75 @@ void libC50FD636_gt_HeroTest_Init () {
     TriggerAddEventChatMessage(libC50FD636_gt_HeroTest, 1, "MakeHero", false);
 }
 
+//--------------------------------------------------------------------------------------------------
+// Trigger: GrantTalents
+//--------------------------------------------------------------------------------------------------
+bool libC50FD636_gt_GrantTalents_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    string lv_classtoCreate;
+    int lv_classIndex;
+
+    // Variable Initialization
+
+    // Conditions
+    if (testConds) {
+        if (!((!(GameIsOnline())))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    libC50FD636_gv_talentAvailable[1] += 20;
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libC50FD636_gt_GrantTalents_Init () {
+    libC50FD636_gt_GrantTalents = TriggerCreate("libC50FD636_gt_GrantTalents_Func");
+    TriggerAddEventChatMessage(libC50FD636_gt_GrantTalents, 1, "Tal", false);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: CreateAlly
+//--------------------------------------------------------------------------------------------------
+bool libC50FD636_gt_CreateAlly_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    unit lv_unit;
+
+    // Variable Initialization
+
+    // Conditions
+    if (testConds) {
+        if (!((!(GameIsOnline())))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "Medic2", 0, 2, CameraGetTarget(1));
+    lv_unit = UnitLastCreated();
+    libNtve_gf_SetAlliance(1, 2, libNtve_ge_AllianceSetting_Ally);
+    Wait(20.0, c_timeGame);
+    UnitBehaviorAdd(lv_unit, "PermanentlyCloaked", lv_unit, 1);
+    Wait(20.0, c_timeGame);
+    UnitBehaviorRemove(lv_unit, "PermanentlyCloaked", 1);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libC50FD636_gt_CreateAlly_Init () {
+    libC50FD636_gt_CreateAlly = TriggerCreate("libC50FD636_gt_CreateAlly_Func");
+    TriggerAddEventChatMessage(libC50FD636_gt_CreateAlly, 1, "CA", false);
+}
+
 void libC50FD636_InitTriggers () {
     libC50FD636_gt_TestEnableTechTreeRestrictions_Init();
     libC50FD636_gt_PredatorEventRegistration_Init();
@@ -3285,7 +3361,6 @@ void libC50FD636_InitTriggers () {
     libC50FD636_gt_AssaultLevelUpGeminiProtocol_Init();
     libC50FD636_gt_RiflemanLevelUpAccurateFire_Init();
     libC50FD636_gt_RiflemanLevelUpWeaponProficiency_Init();
-    libC50FD636_gt_RiflemanLevelUpFragGrenadeLevel3_Init();
     libC50FD636_gt_RiflemanLevelUpGrenadier_Init();
     libC50FD636_gt_RiflemanLevelUpSelfAid_Init();
     libC50FD636_gt_RiflemanLevelUpSuppressiveFire_Init();
@@ -3306,6 +3381,7 @@ void libC50FD636_InitTriggers () {
     libC50FD636_gt_SatelliteSharedVision_Init();
     libC50FD636_gt_GroundIlluminationFlareFlareGunVisionShare_Init();
     libC50FD636_gt_StealthMatrixDeactivate_Init();
+    libC50FD636_gt_BuddySystem_Init();
     libC50FD636_gt_RiflemanFocusFireReloadBoni_Init();
     libC50FD636_gt_RiflemanTIMRDurationBonus_Init();
     libC50FD636_gt_DropItems_Init();
@@ -3349,6 +3425,8 @@ void libC50FD636_InitTriggers () {
     libC50FD636_gt_JumpUpgrade_Init();
     libC50FD636_gt_MedicalAssistanceUsage_Init();
     libC50FD636_gt_HeroTest_Init();
+    libC50FD636_gt_GrantTalents_Init();
+    libC50FD636_gt_CreateAlly_Init();
 }
 
 //--------------------------------------------------------------------------------------------------

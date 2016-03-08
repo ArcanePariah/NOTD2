@@ -8,6 +8,7 @@ Abil/Name/3LevelEffectTargetAbility2=3 Level Effect Target Ability Copy
 Abil/Name/AbilityInstantTemplate=Ability With Button Instant Template
 Abil/Name/AbilityTargetTemplate=Ability Target Template
 Abil/Name/AbilityWithButtonTargetTemplate=Ability With Button Target Template
+Abil/Name/AccurateFire=Accurate Fire
 Abil/Name/AdvancedTargeting=Advanced Targeting
 Abil/Name/Aftershock=Aftershock
 Abil/Name/AmmoFeed=Ammo Feed
@@ -34,7 +35,6 @@ Abil/Name/CommandoInventory=Commando Inventory
 Abil/Name/CommandoLearn=Commando Learn
 Abil/Name/Concealment=Concealment
 Abil/Name/ConcentratedFire=Concentrated Fire
-Abil/Name/CripplingFire=Crippling Fire
 Abil/Name/CriticalStrike=Critical Strike
 Abil/Name/DefensivePlating=Defensive Plating
 Abil/Name/DemolitionsInventory=Demolitions Inventory
@@ -50,7 +50,7 @@ Abil/Name/EngineerInventory=Engineer Inventory
 Abil/Name/EngineerLearn=Engineer Learn
 Abil/Name/EscapeSet=Escape
 Abil/Name/Execute=Execute
-Abil/Name/FireUp=Fire Up
+Abil/Name/FirstAid=FirstAid
 Abil/Name/FlamethrowerInventory=Flamethrower Inventory
 Abil/Name/FlamethrowerLearn=Flamethrower Learn
 Abil/Name/FlareGunRecon=Flare Gun
@@ -147,6 +147,7 @@ Abil/Name/StealthMatrix=Stealth Matrix
 Abil/Name/StickyBomb=Sticky Bomb
 Abil/Name/Stockpile=Stockpile
 Abil/Name/StunGrenade=Stun Grenade
+Abil/Name/SuppressiveFire=Suppressive Fire
 Abil/Name/SurveillanceFlare=Surveillance Flare
 Abil/Name/TauntNOTD=Taunt
 Abil/Name/TechnicianInventory=Technician Inventory
@@ -381,6 +382,7 @@ Behavior/Name/StealthMatrixLevel2=Stealth Matrix Level 2
 Behavior/Name/StickyBombDMGBuff=StickyBombDMG Buff
 Behavior/Name/StickyBombDMGBuff2=StickyBombDMG Buff2
 Behavior/Name/Stunned=Stunned
+Behavior/Name/TIMRDeath=TIMR-Death
 Behavior/Name/TauntedLevel1=Taunted Level 1
 Behavior/Name/TauntedLevel2=Taunted Level 2
 Behavior/Name/TauntedLevel3=Taunted Level 3
@@ -766,15 +768,16 @@ Effect/Name/BuddyFinal=BuddyFinal
 Effect/Name/BuddyFirstAidValidator=BuddyFirstAidValidator
 Effect/Name/BuddyInvisSet=BuddyInvisSet
 Effect/Name/BuddyRemoveCaster=BuddyRemoveCaster
-Effect/Name/BuddySelfAid=BuddySelfAid
 Effect/Name/BuddySystemFinalCooldown=BuddySystemFinalCooldown
 Effect/Name/BuddyTarget=BuddyTarget
 Effect/Name/CanisterDmg1=CanisterDmg1
 Effect/Name/CanisterDmg2=CanisterDmg2
 Effect/Name/CanisterDmg3=CanisterDmg3
 Effect/Name/CanisterDmg4=CanisterDmg4
+Effect/Name/CanisterLaunchSet=CanisterLaunchSet
 Effect/Name/CanisterSearchStartup=CanisterSearchStartup
 Effect/Name/CanisterShotSearch=CanisterShotSearch
+Effect/Name/CanisterTargetPoint=CanisterTargetPoint
 Effect/Name/CanisterVisualDummies=CanisterVisualDummies
 Effect/Name/FocusFireAddCooldown=FocusFireAddCooldown
 Effect/Name/FocusedFireTriggerDummy=FocusedFireTriggerDummy
@@ -785,6 +788,9 @@ Effect/Name/HealOpenWoundRemovalLevel22=Heal Open Wound Removal Level 3
 Effect/Name/PrecisionShotBuff=PrecisionShotBuff
 Effect/Name/PrecisionShotDMG=PrecisionShotDMG
 Effect/Name/RemoveBuddyInvis=RemoveBuddyInvis
+Effect/Name/RemoveBuddyInvisFinal=RemoveBuddyInvisFinal
+Effect/Name/SelfAidBuddySearch=Self Aid BuddySearch
+Effect/Name/SelfAidBuddySet=Self Aid BuddySet
 Effect/Name/SelfAidCharges=Self Aid Charges
 Effect/Name/SelfAidRemoveVenom=Self Aid Remove Venom
 Effect/Name/SonicTrapPlacement=SonicTrapPlacement
@@ -803,6 +809,7 @@ Effect/Name/StunGrenadeSlow=StunGrenadeSlow
 Effect/Name/SuicideSonic=SuicideSonic
 Effect/Name/TIMRBonusDurationTriggerDummy=TIMR-BonusDurationTriggerDummy
 Effect/Name/TIMRBuff=TIMR Buff
+Effect/Name/TIMRDeathBuff=TIMR-DeathBuff
 Effect/Name/TIMRFinalCooldown=TIMR-FinalCooldown
 Equipment/Name/MD5Mine=Mine Detonation
 Error/EmptyError=
@@ -860,6 +867,7 @@ Param/Value/lib_840A968C_EE32EA41=Source Point
 Param/Value/lib_C50FD636_0DE50407=</s><n/><n/>
 Param/Value/lib_C50FD636_12D31F0B=Talents Available: 
 Param/Value/lib_C50FD636_3238FD09= / 
+Param/Value/lib_C50FD636_39663B17=Test
 Param/Value/lib_C50FD636_4CF33B07=<s val="HeaderExtendedTemplate">
 Param/Value/lib_C50FD636_543B63C9= / 
 Param/Value/lib_C50FD636_64004A16= / 
@@ -1223,11 +1231,11 @@ UserData/TalentTree/Recon Surveillance Tree_Talent Tooltips_003=Scampers are whe
 UserData/TalentTree/Recon Surveillance Tree_Talent Tooltips_004=Requisition additional supply drops for your team.<n/><n/><s val="AISurrenderTitle"><c val="F4CE4D">Level 1:</c></s><c val="FCF5C5"> Gain the Ammunition Drop and Medical Drop abilities.</c><n/><n/><s val="AchievementFrameDescription">“Wars are fought and won on full stomachs and loaded magazines.”</s>
 UserData/TalentTree/Recon Surveillance Tree_Talent Tooltips_005=Gain control of a satellite that provides battlefield surveillance and shared vision.<n/><n/><s val="AISurrenderTitle"><c val="F4CE4D">Level 1: </c></s><c val="FCF5C5">Access a satellite that can reveal any area and shared vision for the entire team.</c><n/><n/><s val="AchievementFrameDescription">“Eyes in the sky.”</s>
 UserData/TalentTree/Rifleman Combat Tree_Header=<s val="AiurChefCenterSize22Bold"><c val="B61B0A">COMBAT</c></s>
-UserData/TalentTree/Rifleman Combat Tree_Talent Name=<s val="AchievementFrameName">Critical Strike</s> <s val="AchievementFrameName_Zerg">[Passive]</s>
-UserData/TalentTree/Rifleman Combat Tree_Talent Name_001=<s val="AchievementFrameName">Fire Up</s> <s val="AchievementFrameName_Zerg">[Passive]</s>
+UserData/TalentTree/Rifleman Combat Tree_Talent Name=<s val="AchievementFrameName">Accurate Fire</s> <s val="AchievementFrameName_Zerg">[Passive]</s>
+UserData/TalentTree/Rifleman Combat Tree_Talent Name_001=<s val="AchievementFrameName">Fragmentation Grenade</s> <s val="AchievementFrameName_Zerg">[Passive]</s>
 UserData/TalentTree/Rifleman Combat Tree_Talent Name_002=<s val="AchievementFrameName">Weapon Proficiency</s> <s val="AchievementFrameName_Zerg">[Passive]</s>
-UserData/TalentTree/Rifleman Combat Tree_Talent Name_003=<s val="AchievementFrameName">Fragmentation Grenade</s>
-UserData/TalentTree/Rifleman Combat Tree_Talent Name_004=<s val="AchievementFrameName">Bloodlust</s>
+UserData/TalentTree/Rifleman Combat Tree_Talent Name_003=<s val="AchievementFrameName">Sticky Bomb</s>
+UserData/TalentTree/Rifleman Combat Tree_Talent Name_004=<s val="AchievementFrameName">This Is My Rifle</s>
 UserData/TalentTree/Rifleman Combat Tree_Talent Name_005=<s val="AchievementFrameName">Grenadier</s>
 UserData/TalentTree/Rifleman Combat Tree_Talent Tooltips=The Rifleman has remarkable accuracy with most weapons, allowing them to strike at targets of opportunity at an increased rate. Critical damage varies based on the weapon being used.<n/><n/><s val="AISurrenderTitle"><c val="F4CE4D">Level 1:</c> </s><c val="FCF5C5">10% chance to deal bonus damage.</c><n/><s val="AISurrenderTitle"><c val="F4CE4D">Level 2:</c></s><c val="FCF5C5"> 20% chance to deal bonus damage.</c><n/><s val="AISurrenderTitle"><c val="F4CE4D">Level 3:</c></s> <c val="FCF5C5">30% chance to deal bonus damage.</c><n/><n/><s val="AchievementFrameDescription">“My rifle and I know that what counts in this war is not the rounds we fire, the noise of our burst, nor the smoke we make. We know that it is the hits that count. We will hit...”</s>
 UserData/TalentTree/Rifleman Combat Tree_Talent Tooltips_001=The thrill of combat brings the Rifleman into a higher state of focus, providing additional offensive bonuses when using Focus Fire.<n/><n/><s val="AISurrenderTitle"><c val="F4CE4D">Level 1:</c></s><c val="FCF5C5"> Increases attack speed by 15% and range by 1 while using Focus Fire.</c><n/><s val="AISurrenderTitle"><c val="F4CE4D">Level 2:</c> </s><c val="FCF5C5">Increases attack speed by 30% and range by 2 while using Focus Fire.</c><n/><s val="AISurrenderTitle"><c val="F4CE4D">Level 3:</c></s> <c val="FCF5C5">Increases attack speed by 45% and range by 3 while using Focus Fire.</c><n/><n/><s val="AchievementFrameDescription">“This is my rifle. There are many like it, but this one is mine. My rifle is my best friend. It is my life. I must master it as I must master my life.”</s>
@@ -1236,11 +1244,11 @@ UserData/TalentTree/Rifleman Combat Tree_Talent Tooltips_003=Fragmentation Grena
 UserData/TalentTree/Rifleman Combat Tree_Talent Tooltips_004=Intoxicated by the rush of battle, the Rifleman can enter a state of heightened reflexes and zeal, shooting with pinpoint accuracy for a brief period of time.<n/><n/><s val="AISurrenderTitle"><c val="F4CE4D">Level 1:</c></s> <c val="FCF5C5">The Rifleman receives 50% bonus attack speed and damage for 15 seconds.</c><n/><n/><s val="AchievementFrameDescription">“I happen to be a death-dealing, blood-crazed warrior who wakes up every day just hoping for the chance to dismember my enemies and defile their civilizations.”</s>
 UserData/TalentTree/Rifleman Combat Tree_Talent Tooltips_005=The UGC Modular Grenade Launcher is an underslung grenade launcher that can also be used alone.It uses an electromagnetic catapult mechanism rather than a firing assembly, allowing it to use both hand grenades and launcher grenades as ammunition. Grenades are affected by Focus Fire’s damage bonus and can Critical Strike.<n/><n/><s val="AISurrenderTitle"><c val="F4CE4D">Level 1: </c></s><c val="FCF5C5">Fragmentation Grenade gains additional range and damage if it is Level 2 and the Rifleman gains access to the Impaler Grenade and Plasma Grenade abilities.</c><n/><n/><s val="AchievementFrameDescription">“Grenades for every occasion - it's like Christmas!”</s>
 UserData/TalentTree/Rifleman Survival Tree_Header=<s val="AiurChefCenterSize22Bold"><c val="3CFFD8">SURVIVAL</c></s>
-UserData/TalentTree/Rifleman Survival Tree_Talent Name=<s val="AchievementFrameName">Precision Shot</s>
-UserData/TalentTree/Rifleman Survival Tree_Talent Name_001=<s val="AchievementFrameName">Crippling Fire</s> <s val="AchievementFrameName_Zerg">[Passive]</s>
-UserData/TalentTree/Rifleman Survival Tree_Talent Name_002=<s val="AchievementFrameName">Self Aid</s>
-UserData/TalentTree/Rifleman Survival Tree_Talent Name_003=<s val="AchievementFrameName">Sonic Trap</s>
-UserData/TalentTree/Rifleman Survival Tree_Talent Name_004=<s val="AchievementFrameName">Repulse</s>
+UserData/TalentTree/Rifleman Survival Tree_Talent Name=<s val="AchievementFrameName">Suppressive Fire</s>
+UserData/TalentTree/Rifleman Survival Tree_Talent Name_001=<s val="AchievementFrameName">First Aid</s> <s val="AchievementFrameName_Zerg">[Passive]</s>
+UserData/TalentTree/Rifleman Survival Tree_Talent Name_002=<s val="AchievementFrameName">Stun Grenade </s>
+UserData/TalentTree/Rifleman Survival Tree_Talent Name_003=<s val="AchievementFrameName">Buddy System</s>
+UserData/TalentTree/Rifleman Survival Tree_Talent Name_004=<s val="AchievementFrameName">Sonic Trap</s>
 UserData/TalentTree/Rifleman Survival Tree_Talent Name_005=<s val="AchievementFrameName">K-9 Companion</s>
 UserData/TalentTree/Rifleman Survival Tree_Talent Tooltips=The Rifleman takes aim and fires a single well placed shot at the enemy, dealing high damage and slowing them. Precision Shot is affected by Focus Fire’s damage bonus and can Critical strike. If Focus Fire is active and has Crippling Strike’s upgrade, the bonus damage is applied automatically.<n/><n/><s val="AISurrenderTitle"><c val="F4CE4D">Level 1:</c> </s><c val="FCF5C5">Deals 100 damage and slows target movespeed by 10% for 5 seconds.</c><n/><s val="AISurrenderTitle"><c val="F4CE4D">Level 2:</c> </s><c val="FCF5C5">Deals 200 damage and slows target movespeed by 20% for 5 seconds.</c><n/><s val="AISurrenderTitle"><c val="F4CE4D">Level 3:</c></s> <c val="FCF5C5">Deals 300 damage and slows target movespeed by 40% for 5 seconds.</c><n/><n/><s val="AchievementFrameDescription">“My rifle, without me, is useless. Without my rifle, I am useless. I must fire my rifle true. I must shoot straighter than my enemy who is trying to kill me. I must shoot him before he shoots me. I will...”</s>
 UserData/TalentTree/Rifleman Survival Tree_Talent Tooltips_001=Defensive combat training allows the Rifleman to effectively utilize suppressing action, providing additional defensive bonuses while Focus Fire is active.<n/><n/><s val="AISurrenderTitle"><c val="F4CE4D">Level 1:</c></s> <c val="FCF5C5">Lowers the attacked target’s movespeed by 15% and attack speed by 5% for 1 second.</c><n/><s val="AISurrenderTitle"><c val="F4CE4D">Level 2:</c></s> <c val="FCF5C5">Lowers the attacked target’s movespeed by 20% and attack speed by 10% for 1 second.</c><n/><s val="AISurrenderTitle"><c val="F4CE4D">Level 3:</c></s> <c val="FCF5C5">Lowers the attacked target’s movespeed by 25% and attack speed by 15% for 1 second.</c><n/><n/><s val="AchievementFrameDescription">“Sometimes, looking to incapacitate the enemy rather than kill them is the better option.”</s>
