@@ -304,6 +304,17 @@
         <ExcludeArray Value="Target"/>
         <SearchFilters value="-;Player,Ally,Neutral,Item,Invulnerable"/>
     </CEffectDamage>
+    <CEffectCreatePersistent id="SonicTrapLaunch1">
+        <EditorCategories value=""/>
+        <PeriodCount value="1"/>
+        <PeriodicEffectArray value="SonicTrapLevel1"/>
+    </CEffectCreatePersistent>
+    <CEffectCreatePersistent id="SonicTrapLaunch2">
+        <EditorCategories value=""/>
+        <Marker Link="Effect/SonicTrapLaunch1"/>
+        <PeriodCount value="1"/>
+        <PeriodicEffectArray value="SonicTrapLevel2"/>
+    </CEffectCreatePersistent>
     <CEffectCreateUnit id="SpawnDefaultPet" parent="SpawnPetTemplate"/>
     <CEffectCreatePersistent id="SpawnPetDelay">
         <EditorCategories value=""/>

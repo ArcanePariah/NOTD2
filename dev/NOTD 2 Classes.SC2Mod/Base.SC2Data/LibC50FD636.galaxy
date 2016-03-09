@@ -1024,6 +1024,25 @@ void libC50FD636_gt_AssaultLevelUpGeminiProtocol_Init () {
 }
 
 //--------------------------------------------------------------------------------------------------
+// Trigger: Rifleman Level Up Grenadier
+//--------------------------------------------------------------------------------------------------
+bool libC50FD636_gt_RiflemanLevelUpGrenadier_Func (bool testConds, bool runActions) {
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TechTreeUpgradeAddLevel(UnitGetOwner(EventUnit()), "Grenadier", 1);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libC50FD636_gt_RiflemanLevelUpGrenadier_Init () {
+    libC50FD636_gt_RiflemanLevelUpGrenadier = TriggerCreate("libC50FD636_gt_RiflemanLevelUpGrenadier_Func");
+    TriggerAddEventUnitAbility(libC50FD636_gt_RiflemanLevelUpGrenadier, null, AbilityCommand("RiflemanLearn", 5), c_unitAbilStageComplete, false);
+}
+
+//--------------------------------------------------------------------------------------------------
 // Trigger: Rifleman Level Up AccurateFire
 //--------------------------------------------------------------------------------------------------
 bool libC50FD636_gt_RiflemanLevelUpAccurateFire_Func (bool testConds, bool runActions) {
@@ -1085,25 +1104,6 @@ bool libC50FD636_gt_RiflemanLevelUpWeaponProficiency_Func (bool testConds, bool 
 void libC50FD636_gt_RiflemanLevelUpWeaponProficiency_Init () {
     libC50FD636_gt_RiflemanLevelUpWeaponProficiency = TriggerCreate("libC50FD636_gt_RiflemanLevelUpWeaponProficiency_Func");
     TriggerAddEventUnitAbility(libC50FD636_gt_RiflemanLevelUpWeaponProficiency, null, AbilityCommand("RiflemanLearn", 2), c_unitAbilStageComplete, false);
-}
-
-//--------------------------------------------------------------------------------------------------
-// Trigger: Rifleman Level Up Grenadier
-//--------------------------------------------------------------------------------------------------
-bool libC50FD636_gt_RiflemanLevelUpGrenadier_Func (bool testConds, bool runActions) {
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    TechTreeUpgradeAddLevel(UnitGetOwner(EventUnit()), "Grenadier", 1);
-    return true;
-}
-
-//--------------------------------------------------------------------------------------------------
-void libC50FD636_gt_RiflemanLevelUpGrenadier_Init () {
-    libC50FD636_gt_RiflemanLevelUpGrenadier = TriggerCreate("libC50FD636_gt_RiflemanLevelUpGrenadier_Func");
-    TriggerAddEventUnitAbility(libC50FD636_gt_RiflemanLevelUpGrenadier, null, AbilityCommand("RiflemanLearn", 5), c_unitAbilStageComplete, false);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -3359,9 +3359,9 @@ void libC50FD636_InitTriggers () {
     libC50FD636_gt_ScamperLevelUp_Init();
     libC50FD636_gt_AssaultLevelUpUnstoppableForce_Init();
     libC50FD636_gt_AssaultLevelUpGeminiProtocol_Init();
+    libC50FD636_gt_RiflemanLevelUpGrenadier_Init();
     libC50FD636_gt_RiflemanLevelUpAccurateFire_Init();
     libC50FD636_gt_RiflemanLevelUpWeaponProficiency_Init();
-    libC50FD636_gt_RiflemanLevelUpGrenadier_Init();
     libC50FD636_gt_RiflemanLevelUpSelfAid_Init();
     libC50FD636_gt_RiflemanLevelUpSuppressiveFire_Init();
     libC50FD636_gt_MedicLevelUpAntivenom_Init();
