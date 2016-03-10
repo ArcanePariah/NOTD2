@@ -321,13 +321,34 @@
         <Rate value="40.000000"/>
         <Type value="AddRotationChange"/>
     </CActorSiteOpRotator>
+    <CActorModel id="PrecisionShotLaunchK9" parent="ModelAnimationStyleOneShot">
+        <EditorCategories value=""/>
+        <On Terms="Abil.PrecisionShot2.SourceCastStart" Target="_Turret" Send="Create"/>
+        <HostSiteOps Ops="SOpAttachWeapon"/>
+        <Model value="PrecisionShotBeam"/>
+        <Scale value="1.500000"/>
+        <Host Subject="_Turret"/>
+    </CActorModel>
+    <CActorRegionArc id="CanisterArcGuideRegion" parent="GuideRegionArc">
+        <EditorCategories value=""/>
+        <Angle value="70.000000"/>
+        <Radius value="5.000000"/>
+    </CActorRegionArc>
+    <CActorSiteOpLocalOffset id="SOpMoveUpBy05">
+        <LocalOffset value="0.000000,0.000000,0.100000"/>
+    </CActorSiteOpLocalOffset>
+    <CActorMissile id="StickyBombMissileGL" parent="GenericAttackMissile" unitName="StickyBombMissileGL">
+        <Aliases value="_Grenade"/>
+        <EditorCategories value=""/>
+        <Model value="StickyBombThrownGL"/>
+    </CActorMissile>
     <CActorModel id="StickyBuff" parent="ModelAnimationStyleContinuous">
         <EditorCategories value=""/>
         <On Terms="Behavior.StickyBombDMGBuff.On; ValidateUnit GrenadierNot" Send="Create"/>
         <On Terms="Behavior.StickyBombDMGBuff.Off" Send="Destroy"/>
         <On Terms="Behavior.StickyBombDMGBuff2.On; ValidateUnit GrenadierNot" Send="Create"/>
         <On Terms="Behavior.StickyBombDMGBuff2.Off" Send="Destroy"/>
-        <HostSiteOps Ops="SOpMoveUpBy2"/>
+        <HostSiteOps Ops="SOpAttachCenter"/>
         <Model value="StickyBombImpact"/>
     </CActorModel>
     <CActorModel id="StickyBuffGL" parent="ModelAnimationStyleContinuous">
@@ -336,7 +357,7 @@
         <On Terms="Behavior.StickyBombDMGBuff.Off" Send="Destroy"/>
         <On Terms="Behavior.StickyBombDMGBuff2.On; ValidateUnit Grenadier" Send="Create"/>
         <On Terms="Behavior.StickyBombDMGBuff2.Off" Send="Destroy"/>
-        <HostSiteOps Ops="SOpMoveUpBy2"/>
+        <HostSiteOps Ops="SOpAttachCenter"/>
         <Model value="StickyBombImpactGL"/>
     </CActorModel>
     <CActorRange id="StunGrenadeRange" parent="RangeAbil" abil="PrecisionShot">
@@ -355,15 +376,11 @@
         <On index="4" removed="1"/>
         <Abil Link="StickyBomb"/>
     </CActorRange>
-    <CActorSound id="StunGrenadeLaunchSound" parent="SoundOneShot">
-        <On Terms="Effect.StunGrenadeLM.Start" Send="Create"/>
-        <Sound value="RiflemanTossGrenadeHand"/>
-    </CActorSound>
     <CActorAction id="StunGrenadeActionThrown" parent="GenericAttack" effectImpact="FragmentationGrenadeDamageLevel1" effectLaunch="StunGrenadeLM">
         <EditorCategories value=""/>
         <On index="1" Terms="Effect.StunGrenadeSearch.Start; FromEffectTreeDescendant" Send="ActionImpact"/>
         <On index="2" Terms="Effect.StunGrenadeSearch.Stop; FromEffectTreeDescendant" Send="ActionImpactPhysics"/>
-        <LaunchAttachQuery Methods="Weapon 2"/>
+        <LaunchAttachQuery Methods="AMFilterWeapon02"/>
         <Missile value="_Grenade"/>
     </CActorAction>
     <CActorSplat id="StunGrenadeAoESplat" parent="TerranCursorSplat" abil="StunGrenade">
@@ -386,30 +403,27 @@
         <On Terms="Effect.StickyBombLM2.Start; At Caster; ValidatePlayer GrenadierNot" Send="Create"/>
         <On Terms="Effect.StickyBombDMGBuff.Start; FromEffectTreeDescendant" Send="ActionImpact"/>
         <On Terms="Effect.StickyBombDMGBuff2.Stop; FromEffectTreeDescendant" Send="ActionImpactPhysics"/>
-        <LaunchAttachQuery Methods="Weapon 2"/>
-        <LaunchAssets Sound="Tychus_TossGrenadeVO"/>
+        <LaunchAttachQuery Methods="AMFilterWeapon02"/>
         <Missile value="_Grenade"/>
     </CActorAction>
-    <CActorMissile id="StickyBombMissileThrown" parent="GenericAttackMissile" unitName="StickyBombMissile">
+    <CActorMissile id="StickyBombMissileThrown" parent="GenericAttackMissile" unitName="StickyBombMissileThrown">
         <Aliases value="_Grenade"/>
         <EditorCategories value=""/>
         <Model value="StickyBombThrown"/>
-        <HostSiteOps Ops="GrenadeRotator"/>
     </CActorMissile>
     <CActorAction id="StickyBombActionGL" parent="GenericAttack" effectImpact="FragmentationGrenadeDamageLevel1" effectLaunch="StickyBombLM">
         <EditorCategories value=""/>
         <On index="1" Terms="Effect.SplashDamage.Start; FromEffectTreeDescendant" Send="ActionDamage"/>
         <On index="2" Terms="Effect.SplashDamage.Stop; FromEffectTreeDescendant" Send="ActionDamagePhysics"/>
-        <On index="3" Terms="Effect.Bogus.Start; At Caster; ValidatePlayer Grenadier" Send="Create"/>
-        <On index="4" Terms="Effect.StickyBombLM.Start; At Caster" Send="Create"/>
+        <On index="3" Terms="Effect.Bogus.Start; At Caster" Send="Create"/>
+        <On index="4" Terms="Effect.StickyBombLM.Start; At Caster; ValidateUnit Grenadier" Send="Create"/>
         <On index="5" Terms="Effect.StickyBombDMG.Start; FromEffectTreeDescendant" Send="ActionImpact"/>
         <On index="6" Terms="Effect.StickyBombDMG.Stop; FromEffectTreeDescendant" Send="ActionImpactPhysics"/>
-        <On Terms="Effect.StickyBombLM2.Start; At Caster; ValidatePlayer Grenadier" Send="Create"/>
+        <On Terms="Effect.StickyBombLM2.Start; At Caster; ValidateUnit Grenadier" Send="Create"/>
         <On Terms="Effect.StickyBombDMG2.Start; FromEffectTreeDescendant" Send="ActionImpact"/>
         <On Terms="Effect.StickyBombDMG2.Stop; FromEffectTreeDescendant" Send="ActionImpactPhysics"/>
-        <LaunchAttachQuery Methods="Weapon 2"/>
-        <LaunchAssets Model="FragmentationGrenadeLaunchGL" Sound="Tychus_TossGrenadeVO"/>
-        <Beam value="StickyBombThrownBeam"/>
+        <LaunchAttachQuery Methods="AMFilterWeapon"/>
+        <LaunchAssets Model="FragmentationGrenadeLaunchGL"/>
         <Missile value="_Grenade"/>
     </CActorAction>
     <CActorAction id="FragmentationGrenadeActionGL" parent="GenericAttack" effectImpact="FragmentationGrenadeDamageLevel1" effectLaunch="FragmentationGrenadeLevel1">
@@ -421,7 +435,7 @@
         <On Terms="Effect.FragmentationGrenadeDamageLevel3.Start; FromEffectTreeDescendant" Send="ActionImpact"/>
         <On Terms="Effect.FragmentationGrenadeLevel3.Start; At Caster; ValidatePlayer Grenadier" Send="Create"/>
         <On Terms="Effect.FragmentationGrenadeDamageLevel3.Stop; FromEffectTreeDescendant" Send="ActionImpactPhysics"/>
-        <LaunchAttachQuery Methods="Weapon 2"/>
+        <LaunchAttachQuery Methods="AMFilterWeapon"/>
         <LaunchAssets Model="FragmentationGrenadeLaunchGL"/>
         <Missile value="_Grenade"/>
         <ImpactMap index="None" Model="FragmentationGrenadeImpactGL" Sound="TossGrenadeImpact" ModelReaction="FragmentationGrenadeThrownActionImpactReaction"/>
@@ -735,11 +749,6 @@
         <OnResponse Target="_Unit" Send="Create SensorDetected"/>
         <OnResponse Target="SensorDetected" Send="SetTintColor 0,0,128"/>
     </CActorQueryResponse>
-    <CActorSound id="StickyBombLaunchSound" parent="SoundOneShot">
-        <On Terms="Effect.StickyBombLM.Start" Send="Create"/>
-        <On Terms="Effect.StickyBombLM2.Start" Send="Create"/>
-        <Sound value="TossStickyBomb"/>
-    </CActorSound>
     <CActorSiteOpRotationExplicit id="SOpPointNorthWorld">
         <Forward value="0.000000,1.000000,0.000000"/>
         <Up value="0.000000,0.000000,1.000000"/>
@@ -1115,6 +1124,13 @@
         <Model value="Invisible"/>
         <HighlightTooltip value="Unit/Name/Bogus"/>
     </CActorUnit>
+    <CActorModel id="RotatingGrenadeVisual" parent="ModelAddition">
+        <EditorCategories value=""/>
+        <Host Subject="_Missile"/>
+        <HostSiteOps Ops="SOpAttachCenter GrenadeRotator"/>
+        <Model value="FragmentationGrenadeThrown"/>
+        <Scale value="0.900000"/>
+    </CActorModel>
     <CActorModel id="ThunderballFists" parent="ModelAnimationStyleContinuous">
         <EditorCategories value=""/>
         <On Terms="Abil.ThunderballFists.SourceCastStart" Send="Create"/>
@@ -1224,7 +1240,7 @@
         <Aliases value="_Turret"/>
         <EditorCategories value=""/>
         <On Terms="ActorCreation" Send="AnimGroupApply Work"/>
-        <HostSiteOps Ops="SOpAttachTurret"/>
+        <HostSiteOps Ops="SOpAttachTurret SOpMoveUpBy05 SOp_K9Weapon"/>
         <Model value="K9Turret"/>
     </CActorModel>
     <CActorSound id="AdvancedTargetingSound" parent="SoundOneShot">
@@ -1373,7 +1389,7 @@
         <EditorCategories value=""/>
         <On Terms="Behavior.ThisismyRifle.On" Send="Create"/>
         <On Terms="Behavior.ThisismyRifle.Off" Send="Destroy"/>
-        <HostSiteOps Ops="SOpAttachHardPoint"/>
+        <HostSiteOps Ops="SOpAttachCenter"/>
         <Model value="TIMR"/>
         <Scale value="0.900000"/>
     </CActorModel>
@@ -1405,14 +1421,15 @@
         <On Terms="Effect.FragmentationGrenadeDamageLevel3.Start; FromEffectTreeDescendant" Send="ActionImpact"/>
         <On Terms="Effect.FragmentationGrenadeLevel3.Start; At Caster; ValidatePlayer GrenadierNot" Send="Create"/>
         <On Terms="Effect.FragmentationGrenadeDamageLevel3.Stop; FromEffectTreeDescendant" Send="ActionImpactPhysics"/>
-        <LaunchAttachQuery Methods="Weapon 2"/>
+        <LaunchAttachQuery Methods="AMFilterWeapon02"/>
         <Missile value="_Grenade"/>
         <ImpactMap index="None" Model="FragmentationGrenadeThrownImpact" Sound="TossGrenadeImpact"/>
     </CActorAction>
     <CActorMissile id="FragmentationGrenadeMissileThrown" parent="GenericAttackMissile" unitName="FragmentationGrenadeThrown">
         <Aliases value="_Grenade"/>
         <EditorCategories value=""/>
-        <HostSiteOps Ops="GrenadeRotator"/>
+        <On Terms="ActorCreation" Send="Create RotatingGrenadeVisual"/>
+        <Model value="Invisible"/>
     </CActorMissile>
     <CActorSound id="ReloadEndSound" parent="SoundOneShot">
         <EditorCategories value=""/>
@@ -1550,17 +1567,6 @@
         <On index="0" Terms="ActorCreation" Send="AnimBracketStart BSD Birth Stand Death ContentPlayOnce 0.500000 AsDuration"/>
         <Scale value="10.000000"/>
     </CActorBeamSimple>
-    <CActorModel id="PrecisionShotSlow" parent="ModelAddition">
-        <EditorCategories value=""/>
-        <On index="0" Terms="ActorCreation" Send="AnimBracketStart BSD Birth Stand Death Instant 5.000000 AsTimeScale"/>
-        <On Terms="Behavior.PrecisionShotSlowLevel1.On" Send="Create"/>
-        <On Terms="Behavior.PrecisionShotSlowLevel2.On" Send="Create"/>
-        <On Terms="Behavior.PrecisionShotSlowLevel3.On" Send="Create"/>
-        <On Terms="Behavior.PrecisionShotSlowLevel1.Off" Send="Destroy"/>
-        <On Terms="Behavior.PrecisionShotSlowLevel2.Off" Send="Destroy"/>
-        <On Terms="Behavior.PrecisionShotSlowLevel3.Off" Send="Destroy"/>
-        <HostSiteOps Ops="SOpAttachOverhead"/>
-    </CActorModel>
     <CActorUnit id="PsiOps" parent="BaseMarineActor" unitName="PsiOps"/>
     <CActorUnit id="Recon" parent="BaseMarineActor" unitName="Recon">
         <On index="65" Terms="ActorCreation" Send="AttachModel ReconTorso ReconBasicTorso {Hardpoint 0}"/>
@@ -1599,6 +1605,8 @@
         <On Terms="Abil.StickyBomb.SourceCastStart; ValidateUnit GrenadierNot" Send="AnimPlay Grenade Spell,Blast 0 -1.000000 -1.000000 1.300000 AsTimeScale"/>
         <On Terms="Abil.StickyBomb.SourceCastStart; ValidateUnit Grenadier" Send="AnimPlay Grenade Attack 0 -1.000000 -1.000000 2.000000 AsTimeScale"/>
         <On Terms="Abil.StunGrenade.SourceCastStart" Send="AnimPlay Grenade Spell,Blast 0 -1.000000 -1.000000 1.300000 AsTimeScale"/>
+        <On Terms="UpgradeFinalized.AccurateFireLevel" Target="_Laser" Send="TimerSet 0.062500 Colour"/>
+        <On Terms="UpgradeFinalized.SuppressiveFireLevel" Target="_Laser" Send="TimerSet 0.062500 Colour"/>
         <DeathActorModel value="RiflemanDeathModel"/>
         <SoundArray index="Birth" value="Marine_Birth"/>
         <SoundArray index="Ready" value="Marine_Ready"/>
@@ -1616,6 +1624,15 @@
         <DeathCustomData index="2" SyncPassChance="100"/>
         <HeroIcon value="ClassButtons\btn-class-Rifleman.dds"/>
     </CActorUnit>
+    <CActorSound id="TossGrenadeLaunchSound" parent="SoundOneShot">
+        <On Terms="Effect.FragmentationGrenadeLevel1.Start; ValidateUnit GrenadierNot" Send="Create"/>
+        <On Terms="Effect.FragmentationGrenadeLevel2.Start; ValidateUnit GrenadierNot" Send="Create"/>
+        <On Terms="Effect.FragmentationGrenadeLevel3.Start; ValidateUnit GrenadierNot" Send="Create"/>
+        <On Terms="Effect.StunGrenadeLM.Start; ValidateUnit GrenadierNot" Send="Create"/>
+        <On Terms="Effect.StickyBombLM.Start; ValidateUnit GrenadierNot" Send="Create"/>
+        <On Terms="Effect.StickyBombLM2.Start; ValidateUnit GrenadierNot" Send="Create"/>
+        <Sound value="RiflemanTossGrenadeHand"/>
+    </CActorSound>
     <CActorModel id="RiflemanDeathModel" parent="UnitDeathModelWithDeathMotionGround">
         <EditorCategories value=""/>
         <On Terms="ActorCreation" Send="AttachModel Torso BasicTorso {Hardpoint 0}"/>
@@ -1637,15 +1654,6 @@
         <On Terms="Effect.ImpalerGrenadeLaunchMissile" Send="Create"/>
         <On Terms="Effect.PlasmaGrenadeLaunchMissile" Send="Create"/>
         <Sound value="RiflemanLaunchGrenadeLauncher"/>
-    </CActorSound>
-    <CActorSound id="FragGrenadeLaunchSound" parent="SoundOneShot">
-        <On Terms="Effect.FragmentationGrenadeLevel1.Start; ValidateUnit GrenadierNot" Send="Create"/>
-        <On Terms="Effect.FragmentationGrenadeLevel2.Start; ValidateUnit GrenadierNot" Send="Create"/>
-        <On Terms="Effect.FragmentationGrenadeLevel3.Start; ValidateUnit GrenadierNot" Send="Create"/>
-        <On Terms="Effect.StunGrenadeLM.Start; ValidateUnit GrenadierNot" Send="Create"/>
-        <On Terms="Effect.StickyBombLM.Start; ValidateUnit GrenadierNot" Send="Create"/>
-        <On Terms="Effect.StickyBombLM2.Start; ValidateUnit GrenadierNot" Send="Create"/>
-        <Sound value="RiflemanTossGrenadeHand"/>
     </CActorSound>
     <CActorSound id="RiflemanRepulseCast" parent="SoundOneShot">
         <On Terms="Effect.SonicTrapLevel1Switch.Start" Send="Create"/>

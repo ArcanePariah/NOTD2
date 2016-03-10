@@ -38,7 +38,7 @@
                 <CountUse value="1"/>
                 <TimeUse value="1.5"/>
             </Charge>
-            <Cooldown TimeUse="0.25"/>
+            <Cooldown TimeUse="0.1"/>
         </Cost>
         <Range value="15"/>
         <CmdButtonArray index="Execute" DefaultButtonFace="PrecisionShot"/>
@@ -187,34 +187,7 @@
     </CAbilEffectInstant>
     <CAbilInventory id="K9Inventory">
         <EditorCategories value="AbilityorEffectType:Units"/>
-        <InfoArray>
-            <Classes value="Accessory"/>
-            <Classes value="Ammo"/>
-            <Classes value="AmmoModification"/>
-            <Classes value="AmmunitionCase"/>
-            <Classes value="Armor"/>
-            <Classes value="Bag"/>
-            <Classes value="Feet"/>
-            <Classes value="Medical"/>
-            <Classes value="Shoulders"/>
-            <Classes value="Sidearm"/>
-            <Classes value="SpecialWeaponAmmo"/>
-            <Classes value="Utility"/>
-        </InfoArray>
-        <InfoArray>
-            <Classes value="Accessory"/>
-            <Classes value="Ammo"/>
-            <Classes value="AmmoModification"/>
-            <Classes value="AmmunitionCase"/>
-            <Classes value="Armor"/>
-            <Classes value="Bag"/>
-            <Classes value="Feet"/>
-            <Classes value="Medical"/>
-            <Classes value="Shoulders"/>
-            <Classes value="Sidearm"/>
-            <Classes value="SpecialWeaponAmmo"/>
-            <Classes value="Utility"/>
-        </InfoArray>
+        <InfoArray Alignment="Left" Container="PetDefaultInventory"/>
     </CAbilInventory>
     <CAbilEffectInstant id="K9Sprint">
         <EditorCategories value="AbilityorEffectType:Units"/>
@@ -400,6 +373,9 @@
             <Flags index="ShowInGlossary" value="0"/>
         </CmdButtonArray>
     </CAbilEffectInstant>
+    <CModel id="StickyBombImpactGL2">
+        <Model value="Assets\Effects\Terran\TerranLargeUnitDeath\TerranLargeUnitDeath.m3"/>
+    </CModel>
     <CModel id="CanisterRandomImpact">
         <Model value="Assets\Effects\Terran\SnipeImpact\SnipeImpact.m3"/>
     </CModel>
@@ -509,10 +485,14 @@
     <CButton id="WeaponsProficiencyLevel2">
         <Icon value="btn-weapon-newweapon.dds"/>
     </CButton>
+    <CUnit id="StickyBombMissileGL" parent="MISSILE">
+        <Mover value="Grenadier"/>
+        <EditorCategories value=""/>
+    </CUnit>
     <CUnit id="StunGrenadeThrown" parent="MISSILE">
         <EditorCategories value=""/>
     </CUnit>
-    <CUnit id="StickyBombMissile" parent="MISSILE">
+    <CUnit id="StickyBombMissileThrown" parent="MISSILE">
         <Mover value="StickyBombThrown"/>
         <EditorCategories value=""/>
     </CUnit>
@@ -707,19 +687,16 @@
         <EffectArray Reference="Behavior,FocusFire,Modification.DamageDealtFraction[Ranged]" Value="0.2"/>
         <EffectArray Reference="Behavior,FocusFire,Modification.DamageDealtFraction[Splash]" Value="0.2"/>
         <EffectArray Reference="Behavior,FocusFire,Modification.DamageDealtFraction[Melee]" Value="0.2"/>
-        <LeaderAlias value="AccurateFireLevel"/>
     </CUpgrade>
     <CUpgrade id="AccurateFire2">
         <Flags index="UpgradeCheat" value="0"/>
         <Alert value=""/>
         <EffectArray Reference="Behavior,FocusFire,Modification.WeaponRange" Value="2"/>
-        <LeaderAlias value="AccurateFireLevel"/>
     </CUpgrade>
     <CUpgrade id="AccurateFire3">
         <Flags index="UpgradeCheat" value="0"/>
         <Alert value=""/>
-        <EffectArray Operation="Subtract" Reference="Behavior,FocusFire,Modification.AttackSpeedMultiplier" Value="0.2"/>
-        <LeaderAlias value="AccurateFireLevel"/>
+        <EffectArray Reference="Behavior,FocusFire,Modification.AttackSpeedMultiplier" Value="0.4"/>
     </CUpgrade>
     <CUpgrade id="Grenadier">
         <EffectArray Operation="Set" Reference="Button,FragmentationGrenade,Name" Value="Button/Name/HEGrenade"/>
@@ -742,8 +719,8 @@
         <EffectArray Operation="Set" Reference="Behavior,StickyBombDMGBuff2,Duration" Value="0.500000"/>
         <EffectArray Operation="Set" Reference="Behavior,StickyBombDMGBuff2,Period" Value="0.062500"/>
         <EffectArray Operation="Set" Reference="Behavior,StickyBombDMGBuff,Period" Value="0.062500"/>
-        <EffectArray Operation="Set" Reference="Effect,StickyBombLM,AmmoUnit" Value="FragmentationGrenade"/>
-        <EffectArray Operation="Set" Reference="Effect,StickyBombLM2,AmmoUnit" Value="FragmentationGrenade"/>
+        <EffectArray Operation="Set" Reference="Effect,StickyBombLM,AmmoUnit" Value="StickyBombMissileGL"/>
+        <EffectArray Operation="Set" Reference="Effect,StickyBombLM2,AmmoUnit" Value="StickyBombMissileGL"/>
         <EffectArray Operation="Set" Reference="Abil,StickyBomb,Range[1]" Value="20"/>
     </CUpgrade>
     <CUpgrade id="SuppressiveFire1" parent="DefaultUpgradeOverride">
@@ -764,6 +741,7 @@
     </CUpgrade>
     <CUpgrade id="SuppressiveFireLevel" parent="DefaultUpgradeOverride">
         <MaxLevel value="3"/>
+        <AffectedUnitArray value="Rifleman"/>
     </CUpgrade>
     <CUpgrade id="SuppressiveFireandAccurateFire" parent="DefaultUpgradeOverride">
         <EffectArray Operation="Set" Reference="Button,FocusFire,Tooltip" Value="Button/Tooltip/FocusFireCripplingFiredUp"/>
@@ -782,6 +760,7 @@
         <Flags index="UpgradeCheat" value="0"/>
         <Alert value=""/>
         <MaxLevel value="3"/>
+        <AffectedUnitArray value="Rifleman"/>
     </CUpgrade>
     <CUpgrade id="WeaponsProficiencyLevel1" parent="DefaultUpgradeOverride">
         <EffectArray Operation="Multiply" Reference="Behavior,ReloadManual,Duration" Value="0.850000"/>
@@ -887,6 +866,47 @@
             <Overlays/>
         </MotionPhases>
     </CMoverMissile>
+    <CActorModel id="StickyBombImpactGL" parent="ModelAnimationStyleOneShot">
+        <EditorCategories value=""/>
+        <On Terms="Effect.StickyBombDMGBuff.Start; At Effect; ValidateUnit Grenadier" Send="Create"/>
+        <On Terms="Effect.StickyBombDMGBuff2.Start; At Effect; ValidateUnit Grenadier" Send="Create"/>
+        <Scale value="1.500000"/>
+    </CActorModel>
+    <CActorSiteOpRotationExplicit id="SOp_K9Weapon">
+        <Up value="0.000000,-1.000000,0.000000"/>
+        <IsLocal value="1"/>
+    </CActorSiteOpRotationExplicit>
+    <CActorArc id="CanisterAOESplat" parent="GuideVisualArc" abil="ShieldBash">
+        <EditorCategories value=""/>
+        <On index="0" Terms="Abil.CanisterShot.Guide" Send="Create"/>
+        <On index="1" Terms="ActorCreation" Send="Create CanisterArcGuideRegion"/>
+        <Model value="ZergAOECone"/>
+        <Angle value="70.000000"/>
+        <Radius value="5.000000"/>
+    </CActorArc>
+    <CActorModel id="PrecisionShotSlow" parent="ModelAnimationStyleOneShot">
+        <Aliases value="_Snapshot"/>
+        <Flags index="SuppressSaveLoad" value="0"/>
+        <Inherits index="BaseModelScale" value="1"/>
+        <Inherits index="CastShadows" value="1"/>
+        <Inherits index="CloakEffect" value="1"/>
+        <Inherits index="CreepEngulfment" value="1"/>
+        <Inherits index="Decal" value="1"/>
+        <Inherits index="ModelMaterials" value="1"/>
+        <Inherits index="Opacity" value="1"/>
+        <Inherits index="Scale" value="1"/>
+        <Inherits index="TeamColor" value="1"/>
+        <Inherits index="TimeScale" value="1"/>
+        <Inherits index="TintColor" value="1"/>
+        <Inherits index="Visibility" value="1"/>
+        <Inherits index="WarpGroup" value="1"/>
+        <EditorCategories value=""/>
+        <On Terms="Behavior.PrecisionShot.On" Send="Create"/>
+        <On Terms="Behavior.PrecisionShot.Off" Send="Destroy"/>
+        <Host Subject="_Selectable"/>
+        <HostSiteOps Ops="SOpAttachOverhead"/>
+        <ModelFlags index="UseSyncSeed" value="1"/>
+    </CActorModel>
     <CActorModel id="CanisterRandomImpact" parent="ModelAnimationStyleOneShot">
         <EditorCategories value=""/>
         <On Terms="Effect.CanisterVisualDummies.Start; At Effect" Send="Create"/>
@@ -910,11 +930,12 @@
         <On Terms="TimerExpired; ValidatePlayer HasBoth; TimerName Colour" Send="SetTeamColor 128,0,255 128,0,255"/>
         <On Terms="UpgradeFinalized.SuppressiveFireLevel" Send="TimerSet 0.062500 Colour"/>
         <On Terms="UpgradeFinalized.AccurateFireLevel" Send="TimerSet 0.062500 Colour"/>
-        <On Terms="ActorCreation" Send="TimerSet 0.062500 Colour"/>
         <On Terms="Upgrade.SuppressiveFireLevel.Add" Send="TimerSet 0.062500 Colour"/>
         <On Terms="Upgrade.AccurateFireLevel.Add" Send="TimerSet 0.062500 Colour"/>
+        <On Terms="ActorCreation" Send="TimerSet 0.062500 Colour"/>
         <Host Subject="_Unit"/>
         <HostSiteOps Ops="SOpAttachWeapon"/>
+        <Aliases value="_Laser"/>
     </CActorModel>
     <CActorModel id="SelfAid" parent="ModelAnimationStyleOneShot">
         <EditorCategories value=""/>
@@ -952,7 +973,7 @@
     <CActorModel id="TIMRBonus" parent="ModelAnimationStyleOneShot">
         <EditorCategories value=""/>
         <On Terms="Effect.TIMRBonusDurationTriggerDummy.Start; At Effect" Send="Create"/>
-        <HostSiteOps Ops="SOpAttachHardPoint"/>
+        <HostSiteOps Ops="SOpAttachCenter"/>
         <Model value="TIMRBonusTime"/>
         <Scale value="0.750000"/>
     </CActorModel>
@@ -1480,12 +1501,12 @@
     <CEffectLaunchMissile id="StickyBombLM">
         <EditorCategories value=""/>
         <ImpactEffect value="StickyBombDMGBuff"/>
-        <AmmoUnit value="StickyBombMissile"/>
+        <AmmoUnit value="StickyBombMissileThrown"/>
     </CEffectLaunchMissile>
     <CEffectLaunchMissile id="StickyBombLM2">
         <EditorCategories value=""/>
         <ImpactEffect value="StickyBombDMGBuff2"/>
-        <AmmoUnit value="StickyBombMissile"/>
+        <AmmoUnit value="StickyBombMissileThrown"/>
     </CEffectLaunchMissile>
     <CEffectApplyBehavior id="TIMRBuff">
         <EditorCategories value=""/>
@@ -1538,6 +1559,7 @@
         <ImpactLocation Value="TargetPoint"/>
         <ImpactEffect value="FragmentationGrenadeDamageLevel1"/>
         <AmmoUnit value="FragmentationGrenadeThrown"/>
+        <LaunchEffect value="MissileRotator"/>
     </CEffectLaunchMissile>
     <CEffectLaunchMissile id="FragmentationGrenadeLevel2">
         <EditorCategories value=""/>

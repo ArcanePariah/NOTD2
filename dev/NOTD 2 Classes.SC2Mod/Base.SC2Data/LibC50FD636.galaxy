@@ -224,9 +224,9 @@ void libC50FD636_gf_UpdateWeaponProfi2 (unit lp_rifleman) {
     }
     else {
     }
-    CatalogFieldValueSet(c_gameCatalogBehavior, "WeaponProfi2", "Modification.AttackSpeedMultiplier", UnitGetOwner(lp_rifleman), FixedToString(((libC50FD636_gf_ReturnCatalogAsReal(CatalogFieldValueGet(c_gameCatalogBehavior, "FocusFire", "Modification.AttackSpeedMultiplier", UnitGetOwner(lp_rifleman))) * 0.5) + lv_aSBonus), 2));
     CatalogFieldValueSet(c_gameCatalogBehavior, "WeaponProfi2", "Modification.DamageDealtFraction[" + IntToString(2) + "]", UnitGetOwner(lp_rifleman), FixedToString(((libC50FD636_gf_ReturnCatalogAsReal(CatalogFieldValueGet(c_gameCatalogBehavior, "FocusFire", "Modification.DamageDealtFraction[" + IntToString(2) + "]", UnitGetOwner(lp_rifleman))) * 0.5) + lv_dMGBonus), 2));
     CatalogFieldValueSet(c_gameCatalogBehavior, "WeaponProfi2", "Modification.DamageDealtFraction[" + IntToString(3) + "]", UnitGetOwner(lp_rifleman), FixedToString(((libC50FD636_gf_ReturnCatalogAsReal(CatalogFieldValueGet(c_gameCatalogBehavior, "FocusFire", "Modification.DamageDealtFraction[" + IntToString(3) + "]", UnitGetOwner(lp_rifleman))) * 0.5) + lv_dMGBonus), 2));
+    CatalogFieldValueSet(c_gameCatalogBehavior, "WeaponProfi2", "Modification.AttackSpeedMultiplier", UnitGetOwner(lp_rifleman), FixedToString((1.0 + lv_aSBonus), 2));
 }
 
 string libC50FD636_gf_GetWeapon (string lp_weaponEquippedBehavior) {
@@ -3231,52 +3231,6 @@ void libC50FD636_gt_MedicalAssistanceUsage_Init () {
 }
 
 //--------------------------------------------------------------------------------------------------
-// Trigger: Hero Test
-//--------------------------------------------------------------------------------------------------
-bool libC50FD636_gt_HeroTest_Func (bool testConds, bool runActions) {
-    int autoBE025105_ae;
-    int autoBE025105_ai;
-
-    // Variable Declarations
-    string lv_classtoCreate;
-    int lv_classIndex;
-
-    // Variable Initialization
-
-    // Conditions
-    if (testConds) {
-        if (!((!(GameIsOnline())))) {
-            return false;
-        }
-    }
-
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    libC50FD636_gf_IntializeTalentMax();
-    autoBE025105_ae = UserDataInstanceCount("Classes");
-    autoBE025105_ai = 1;
-    lv_classIndex = 1;
-    for ( ; ( (autoBE025105_ai >= 0 && lv_classIndex <= autoBE025105_ae) || (autoBE025105_ai <= 0 && lv_classIndex >= autoBE025105_ae) ) ; lv_classIndex += autoBE025105_ai ) {
-        if (StringEqual(StringWord(EventChatMessage(false), 2), (UserDataInstance("Classes", lv_classIndex)), c_stringCase)) {
-            lv_classtoCreate = UserDataInstance("Classes", lv_classIndex);
-        }
-    }
-    libC50FD636_gv_marines[1].lv_class = lv_classtoCreate;
-    libC50FD636_gf_ClassCreation(CameraGetTarget(1), 1);
-    TriggerAddEventUnitGainLevel(libC50FD636_gt_LevelUp, UnitRefFromUnit(lib09BE6BA8_gf_ReturnUnit(libC50FD636_gv_marines[1].lv_unit)));
-    return true;
-}
-
-//--------------------------------------------------------------------------------------------------
-void libC50FD636_gt_HeroTest_Init () {
-    libC50FD636_gt_HeroTest = TriggerCreate("libC50FD636_gt_HeroTest_Func");
-    TriggerAddEventChatMessage(libC50FD636_gt_HeroTest, 1, "MakeHero", false);
-}
-
-//--------------------------------------------------------------------------------------------------
 // Trigger: GrantTalents
 //--------------------------------------------------------------------------------------------------
 bool libC50FD636_gt_GrantTalents_Func (bool testConds, bool runActions) {
@@ -3343,6 +3297,78 @@ bool libC50FD636_gt_CreateAlly_Func (bool testConds, bool runActions) {
 void libC50FD636_gt_CreateAlly_Init () {
     libC50FD636_gt_CreateAlly = TriggerCreate("libC50FD636_gt_CreateAlly_Func");
     TriggerAddEventChatMessage(libC50FD636_gt_CreateAlly, 1, "CA", false);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: CheckAS
+//--------------------------------------------------------------------------------------------------
+bool libC50FD636_gt_CheckAS_Func (bool testConds, bool runActions) {
+    // Conditions
+    if (testConds) {
+        if (!((!(GameIsOnline())))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    UIDisplayMessage(PlayerGroupAll(), c_messageAreaSubtitle, (StringExternal("Param/Value/lib_C50FD636_8329511E") + StringToText(CatalogFieldValueGet(c_gameCatalogBehavior, "FocusFire", "Modification.AttackSpeedMultiplier", 1)) + StringExternal("Param/Value/lib_C50FD636_C47E0015") + StringToText(CatalogFieldValueGet(c_gameCatalogBehavior, "WeaponProfi2", "Modification.AttackSpeedMultiplier", 1))));
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libC50FD636_gt_CheckAS_Init () {
+    libC50FD636_gt_CheckAS = TriggerCreate("libC50FD636_gt_CheckAS_Func");
+    TriggerAddEventChatMessage(libC50FD636_gt_CheckAS, 1, "AS", false);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Hero Test
+//--------------------------------------------------------------------------------------------------
+bool libC50FD636_gt_HeroTest_Func (bool testConds, bool runActions) {
+    int autoBE025105_ae;
+    int autoBE025105_ai;
+
+    // Variable Declarations
+    string lv_classtoCreate;
+    int lv_classIndex;
+
+    // Variable Initialization
+
+    // Conditions
+    if (testConds) {
+        if (!((!(GameIsOnline())))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    libC50FD636_gf_IntializeTalentMax();
+    autoBE025105_ae = UserDataInstanceCount("Classes");
+    autoBE025105_ai = 1;
+    lv_classIndex = 1;
+    for ( ; ( (autoBE025105_ai >= 0 && lv_classIndex <= autoBE025105_ae) || (autoBE025105_ai <= 0 && lv_classIndex >= autoBE025105_ae) ) ; lv_classIndex += autoBE025105_ai ) {
+        if (StringEqual(StringWord(EventChatMessage(false), 2), (UserDataInstance("Classes", lv_classIndex)), c_stringCase)) {
+            lv_classtoCreate = UserDataInstance("Classes", lv_classIndex);
+        }
+    }
+    libC50FD636_gv_marines[1].lv_class = lv_classtoCreate;
+    libC50FD636_gf_ClassCreation(CameraGetTarget(1), 1);
+    TriggerAddEventUnitGainLevel(libC50FD636_gt_LevelUp, UnitRefFromUnit(lib09BE6BA8_gf_ReturnUnit(libC50FD636_gv_marines[1].lv_unit)));
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libC50FD636_gt_HeroTest_Init () {
+    libC50FD636_gt_HeroTest = TriggerCreate("libC50FD636_gt_HeroTest_Func");
+    TriggerAddEventChatMessage(libC50FD636_gt_HeroTest, 1, "MakeHero", false);
 }
 
 void libC50FD636_InitTriggers () {
@@ -3424,9 +3450,10 @@ void libC50FD636_InitTriggers () {
     libC50FD636_gt_TalentTreeHookup_Init();
     libC50FD636_gt_JumpUpgrade_Init();
     libC50FD636_gt_MedicalAssistanceUsage_Init();
-    libC50FD636_gt_HeroTest_Init();
     libC50FD636_gt_GrantTalents_Init();
     libC50FD636_gt_CreateAlly_Init();
+    libC50FD636_gt_CheckAS_Init();
+    libC50FD636_gt_HeroTest_Init();
 }
 
 //--------------------------------------------------------------------------------------------------
