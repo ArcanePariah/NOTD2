@@ -235,6 +235,11 @@
         <EditorCategories value=""/>
         <Amount value="35"/>
     </CEffectDamage>
+    <CEffectSet id="PrecisionShotSet">
+        <EditorCategories value=""/>
+        <EffectArray value="TurretFacing"/>
+        <EffectArray value="PrecisionShotBuff"/>
+    </CEffectSet>
     <CEffectApplyBehavior id="PredatorCloak">
         <EditorCategories value=""/>
     </CEffectApplyBehavior>
@@ -372,6 +377,14 @@
     <CEffectApplyKinetic id="MissileRotator">
         <EditorCategories value=""/>
     </CEffectApplyKinetic>
+    <CEffectModifyUnit id="TurretFacing">
+        <EditorCategories value=""/>
+        <ImpactUnit Value="Caster"/>
+        <ModifyTurret Turret="K9">
+            <Target Value="TargetUnit"/>
+            <Flags index="Tracking" value="1"/>
+        </ModifyTurret>
+    </CEffectModifyUnit>
     <CEffectRemoveBehavior id="WeaponsFree">
         <EditorCategories value=""/>
         <BehaviorLink value="HoldFire"/>
