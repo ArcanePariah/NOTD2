@@ -42,6 +42,10 @@
         </Cost>
         <Range value="15"/>
         <CmdButtonArray index="Execute" DefaultButtonFace="PrecisionShot"/>
+        <Flags index="AllowMovement" value="1"/>
+        <Flags index="NoDeceleration" value="1"/>
+        <Flags index="Transient" value="1"/>
+        <Arc value="360"/>
     </CAbilEffectTarget>
     <CAbilEffectInstant id="FirstAid">
         <EditorCategories value="AbilityorEffectType:Units"/>
@@ -948,7 +952,7 @@
         <Inherits index="Visibility" value="1"/>
         <Inherits index="WarpGroup" value="1"/>
         <EditorCategories value=""/>
-        <On index="0" Terms="ActorCreation" Send="AnimBracketStart BSD Birth Stand Death ContentPlayOnce 3.000000 AsTimeScale"/>
+        <On index="0" Terms="ActorCreation" Send="AnimBracketStart BSD Birth Stand Death ContentPlayOnce 5.000000 AsTimeScale"/>
         <On Terms="Behavior.PrecisionShot.On" Send="Create"/>
         <On Terms="Behavior.PrecisionShot.Off" Send="Destroy"/>
         <Host Subject="_Selectable"/>
@@ -1280,6 +1284,13 @@
         <OperandArray value="CountUnitSonicTrapLevel1CompleteOnly"/>
         <OperandArray value="CountUnitSonicTrapLevel12CompleteOnly"/>
     </CRequirementSum>
+    <CEffectCreatePersistent id="PrecisionShotDelay">
+        <EditorCategories value=""/>
+        <WhichLocation Value="TargetUnit"/>
+        <InitialDelay value="0.1"/>
+        <PeriodCount value="1"/>
+        <PeriodicEffectArray value="PrecisionShotBuff"/>
+    </CEffectCreatePersistent>
     <CEffectApplyBehavior id="K9AddSuicide">
         <EditorCategories value=""/>
         <Behavior value="K9Suicide"/>

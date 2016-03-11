@@ -323,7 +323,7 @@
     </CActorSiteOpRotator>
     <CActorModel id="PrecisionShotLaunchK9" parent="ModelAnimationStyleOneShot">
         <EditorCategories value=""/>
-        <On Terms="Abil.PrecisionShot2.SourceCastStart" Target="_Turret" Send="Create"/>
+        <On Terms="Effect.PrecisionShotDMG.Start; At Caster" Target="_Turret" Send="Create"/>
         <HostSiteOps Ops="SOpAttachWeapon"/>
         <Model value="PrecisionShotBeam"/>
         <Scale value="1.500000"/>
@@ -1466,9 +1466,10 @@
         <SoundArray index="Highlight" value="Raven_Highlight"/>
         <On index="57" Terms="WeaponStart.TitaniumClaw" Send="AnimBracketStart Attack Attack"/>
         <On Terms="ActorCreation" Send="Create K9TurretModel"/>
-        <On Terms="Abil.PrecisionShot2.SourceCastStart" Send="AnimBracketStart Spell {} Walk"/>
         <On Terms="TimerExpired" Send="AnimGroupApply Ready"/>
-        <On Terms="Abil.PrecisionShot2.SourceCastStart" Send="TimerSet 0.200000"/>
+        <On Terms="TimerExpired" Send="AnimSetPausedAll 0"/>
+        <On Terms="Effect.PrecisionShotBuff.Start" Send="TimerSet 0.200000"/>
+        <On Terms="Effect.PrecisionShotBuff.Start" Send="AnimSetPausedAll"/>
         <GroupIcon>
             <Image value="Wireframes\Wireframe-K9.dds"/>
         </GroupIcon>
