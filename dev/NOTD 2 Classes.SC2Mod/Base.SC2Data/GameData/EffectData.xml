@@ -235,21 +235,9 @@
         <EditorCategories value=""/>
         <Amount value="35"/>
     </CEffectDamage>
-    <CEffectSet id="PrecisionShotSet">
-        <EditorCategories value=""/>
-        <EffectArray value="TurretFacing"/>
-        <EffectArray value="PrecisionShotDelay"/>
-    </CEffectSet>
     <CEffectApplyBehavior id="PredatorCloak">
         <EditorCategories value=""/>
     </CEffectApplyBehavior>
-    <CEffectRemoveBehavior id="RemoveBuddyInvisFinal">
-        <ValidatorArray index="0" removed="1"/>
-        <EditorCategories value=""/>
-        <WhichUnit Value="Caster"/>
-        <BehaviorLink value="BuddyInvis"/>
-        <Count value="1"/>
-    </CEffectRemoveBehavior>
     <CEffectSet id="SidearmMelee">
         <EditorCategories value=""/>
         <EffectArray value="CombatKnifeSearch"/>
@@ -309,17 +297,6 @@
         <ExcludeArray Value="Target"/>
         <SearchFilters value="-;Player,Ally,Neutral,Item,Invulnerable"/>
     </CEffectDamage>
-    <CEffectCreatePersistent id="SonicTrapLaunch1">
-        <EditorCategories value=""/>
-        <PeriodCount value="1"/>
-        <PeriodicEffectArray value="SonicTrapLevel1"/>
-    </CEffectCreatePersistent>
-    <CEffectCreatePersistent id="SonicTrapLaunch2">
-        <EditorCategories value=""/>
-        <Marker Link="Effect/SonicTrapLaunch1"/>
-        <PeriodCount value="1"/>
-        <PeriodicEffectArray value="SonicTrapLevel2"/>
-    </CEffectCreatePersistent>
     <CEffectCreateUnit id="SpawnDefaultPet" parent="SpawnPetTemplate"/>
     <CEffectCreatePersistent id="SpawnPetDelay">
         <EditorCategories value=""/>
@@ -374,17 +351,6 @@
         <ExcludeArray Value="Target"/>
         <SearchFilters value="-;Player,Ally,Neutral,Item,Invulnerable"/>
     </CEffectDamage>
-    <CEffectApplyKinetic id="MissileRotator">
-        <EditorCategories value=""/>
-    </CEffectApplyKinetic>
-    <CEffectModifyUnit id="TurretFacing">
-        <EditorCategories value=""/>
-        <ImpactUnit Value="Caster"/>
-        <ModifyTurret Turret="K9">
-            <Target Value="TargetUnit"/>
-            <Flags index="Tracking" value="1"/>
-        </ModifyTurret>
-    </CEffectModifyUnit>
     <CEffectRemoveBehavior id="WeaponsFree">
         <EditorCategories value=""/>
         <BehaviorLink value="HoldFire"/>
