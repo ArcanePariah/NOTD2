@@ -1137,6 +1137,19 @@
     <CModel id="SarbusOvergrownTarget">
         <Model value="Assets\Effects\Zerg\InfestationArmory\InfestationArmory.m3"/>
     </CModel>
+    <CModel id="ScientistMaleDeath">
+        <TextureDeclares Prefix="ScientistCloak.">
+            <Adaptions TriggerOnSubstring=".dds" Slot="main.diffuse"/>
+        </TextureDeclares>
+        <TextureDeclares Prefix="ScientistCloak_">
+            <Adaptions TriggerOnSubstring="_A.dds" Slot="main.diffuse"/>
+            <Adaptions TriggerOnSubstring="_B.dds" Slot="main.diffuse"/>
+            <Adaptions TriggerOnSubstring="_C.dds" Slot="main.diffuse"/>
+        </TextureDeclares>
+        <TextureDeclares Prefix="ScientistCloak_norm.dds">
+            <Adaptions TriggerOnSubstring="ScientistCloak_norm.dds" Slot="main.normal"/>
+        </TextureDeclares>
+    </CModel>
     <CModel id="ShockAttackBeam" parent="MissileFX">
         <Model value="Assets\Effects\Protoss\TempestGroundBeam\TempestGroundBeam.m3"/>
         <LowQualityModel value="MothershipAttackBeamLow"/>

@@ -86,10 +86,9 @@
         <Tooltip value=""/>
         <Count Link="Execute" State="CompleteOnlyAtUnit"/>
     </CRequirementCountAbil>
-    <CRequirementCountAbil id="CountAbilGrenadierCompleteOnlyAtUnit">
+    <CRequirementCountAbil id="CountAbilGrenadierCompleteOnly">
         <Flags index="TechTreeCheat" value="0"/>
-        <Tooltip value=""/>
-        <Count Link="Grenadier" State="CompleteOnlyAtUnit"/>
+        <Count Link="Grenadier" State="CompleteOnly"/>
     </CRequirementCountAbil>
     <CRequirementCountAbil id="CountAbilHealCompleteOnlyAtUnit">
         <Flags index="TechTreeCheat" value="0"/>
@@ -131,6 +130,10 @@
         <Tooltip value=""/>
         <Count Link="StealthMatrix" State="CompleteOnlyAtUnit"/>
     </CRequirementCountAbil>
+    <CRequirementCountBehavior id="CountBehaviorBuddyCasterCompleteOnlyAtUnit">
+        <Flags index="TechTreeCheat" value="0"/>
+        <Count Link="BuddyCaster" State="CompleteOnlyAtUnit"/>
+    </CRequirementCountBehavior>
     <CRequirementCountBehavior id="CountBehaviorDeployAntiMaterialRifleCompleteOnlyAtUnit">
         <Flags index="TechTreeCheat" value="0"/>
         <Tooltip value=""/>
@@ -194,6 +197,10 @@
         <Tooltip value=""/>
         <Count Link="StartingWeapon" State="CompleteOnlyAtUnit"/>
     </CRequirementCountBehavior>
+    <CRequirementCountBehavior id="CountBehaviorThisismyRifleCompleteOnlyAtUnit">
+        <Flags index="TechTreeCheat" value="0"/>
+        <Count Link="ThisismyRifle" State="CompleteOnlyAtUnit"/>
+    </CRequirementCountBehavior>
     <CRequirementCountBehavior id="CountBehavior_BrokenBoneCompleteOnlyAtUnit">
         <Flags index="TechTreeCheat" value="0"/>
         <Tooltip value=""/>
@@ -214,15 +221,26 @@
         <Tooltip value=""/>
         <Count Link="ArtilleryBeacon" State="CompleteOnly"/>
     </CRequirementCountUnit>
+    <CRequirementCountUnit id="CountUnitSonicTrapLevel12CompleteOnly">
+        <Flags index="TechTreeCheat" value="0"/>
+        <Count Link="SonicTrapLevel12" State="CompleteOnly"/>
+    </CRequirementCountUnit>
+    <CRequirementCountUnit id="CountUnitSonicTrapLevel1CompleteOnly">
+        <Flags index="TechTreeCheat" value="0"/>
+        <Count Link="SonicTrapLevel1" State="CompleteOnly"/>
+    </CRequirementCountUnit>
+    <CRequirementCountUpgrade id="CountUpgradeAccurateFireLevelCompleteOnly">
+        <Flags index="TechTreeCheat" value="0"/>
+        <Count Link="AccurateFireLevel" State="CompleteOnly"/>
+    </CRequirementCountUpgrade>
     <CRequirementCountUpgrade id="CountUpgradeCollateralDamageDummyCompleteOnly">
         <Flags index="TechTreeCheat" value="0"/>
         <Tooltip value=""/>
         <Count Link="CollateralDamageDummy" State="CompleteOnly"/>
     </CRequirementCountUpgrade>
-    <CRequirementCountUpgrade id="CountUpgradeFireUpCompleteOnly">
+    <CRequirementCountUpgrade id="CountUpgradeFirstAidUpgradeCompleteOnly">
         <Flags index="TechTreeCheat" value="0"/>
-        <Tooltip value=""/>
-        <Count Link="FireUp" State="CompleteOnly"/>
+        <Count Link="FirstAidUpgrade" State="CompleteOnly"/>
     </CRequirementCountUpgrade>
     <CRequirementCountUpgrade id="CountUpgradeGeminiProtocolCompleteOnly">
         <Flags index="TechTreeCheat" value="0"/>
@@ -248,6 +266,10 @@
         <Flags index="TechTreeCheat" value="0"/>
         <Tooltip value=""/>
         <Count Link="MedicalExpertiseLevel2" State="CompleteOnly"/>
+    </CRequirementCountUpgrade>
+    <CRequirementCountUpgrade id="CountUpgradeSuppressiveFireLevelCompleteOnly">
+        <Flags index="TechTreeCheat" value="0"/>
+        <Count Link="SuppressiveFireLevel" State="CompleteOnly"/>
     </CRequirementCountUpgrade>
     <CRequirementCountUpgrade id="CountUpgradeUseRangeAssistanceCompleteOnly">
         <Flags index="TechTreeCheat" value="0"/>
@@ -502,6 +524,18 @@
         <OperandArray index="0" value="CountUnitArtilleryBeaconCompleteOnly"/>
         <OperandArray index="1" value="1"/>
     </CRequirementEq>
+    <CRequirementEq id="EqCountUpgradeAccurateFireLevelCompleteOnly1">
+        <OperandArray index="0" value="CountUpgradeAccurateFireLevelCompleteOnly"/>
+        <OperandArray index="1" value="1"/>
+    </CRequirementEq>
+    <CRequirementEq id="EqCountUpgradeAccurateFireLevelCompleteOnly2">
+        <OperandArray index="0" value="CountUpgradeAccurateFireLevelCompleteOnly"/>
+        <OperandArray index="1" value="2"/>
+    </CRequirementEq>
+    <CRequirementEq id="EqCountUpgradeAccurateFireLevelCompleteOnly3">
+        <OperandArray index="0" value="CountUpgradeAccurateFireLevelCompleteOnly"/>
+        <OperandArray index="1" value="3"/>
+    </CRequirementEq>
     <CRequirementEq id="EqCountUpgradeCollateralDamageDummyCompleteOnly1">
         <Tooltip value=""/>
         <OperandArray index="0" value="CountUpgradeCollateralDamageDummyCompleteOnly"/>
@@ -517,25 +551,10 @@
         <OperandArray index="0" value="CountUpgradeCollateralDamageDummyCompleteOnly"/>
         <OperandArray index="1" value="3"/>
     </CRequirementEq>
-    <CRequirementEq id="EqCountUpgradeFireUpCompleteOnly1">
-        <Tooltip value=""/>
-        <OperandArray index="0" value="CountUpgradeFireUpCompleteOnly"/>
-        <OperandArray index="1" value="1"/>
-    </CRequirementEq>
     <CRequirementEq id="EqCountBehaviorHealingCompleteOnlyAtUnit1">
         <Tooltip value=""/>
         <OperandArray index="0" value="CountBehaviorHealingCompleteOnlyAtUnit"/>
         <OperandArray index="1" value="1"/>
-    </CRequirementEq>
-    <CRequirementEq id="EqCountUpgradeFireUpCompleteOnly2">
-        <Tooltip value=""/>
-        <OperandArray index="0" value="CountUpgradeFireUpCompleteOnly"/>
-        <OperandArray index="1" value="2"/>
-    </CRequirementEq>
-    <CRequirementEq id="EqCountUpgradeFireUpCompleteOnly3">
-        <Tooltip value=""/>
-        <OperandArray index="0" value="CountUpgradeFireUpCompleteOnly"/>
-        <OperandArray index="1" value="3"/>
     </CRequirementEq>
     <CRequirementEq id="EqCountUpgradeGeminiProtocolCompleteOnly1">
         <Tooltip value=""/>
@@ -582,10 +601,30 @@
         <OperandArray index="0" value="CountAbilHealCompleteOnlyAtUnit"/>
         <OperandArray index="1" value="1"/>
     </CRequirementGTE>
+    <CRequirementGTE id="GTECountBehaviorBuddyCasterCompleteOnlyAtUnit1">
+        <OperandArray index="0" value="CountBehaviorBuddyCasterCompleteOnlyAtUnit"/>
+        <OperandArray index="1" value="1"/>
+    </CRequirementGTE>
     <CRequirementGTE id="GTECountBehaviorPredatorPetVeterancyCompleteOnlyAtUnit5">
         <Tooltip value=""/>
         <OperandArray index="0" value="CountBehaviorPredatorPetVeterancyCompleteOnlyAtUnit"/>
         <OperandArray index="1" value="5"/>
+    </CRequirementGTE>
+    <CRequirementGTE id="GTECountUpgradeAccurateFireLevelCompleteOnly1">
+        <OperandArray index="0" value="CountUpgradeAccurateFireLevelCompleteOnly"/>
+        <OperandArray index="1" value="1"/>
+    </CRequirementGTE>
+    <CRequirementGTE id="GTECountUpgradeFirstAidUpgradeCompleteOnly1">
+        <OperandArray index="0" value="CountUpgradeFirstAidUpgradeCompleteOnly"/>
+        <OperandArray index="1" value="1"/>
+    </CRequirementGTE>
+    <CRequirementGTE id="GTECountUpgradeFirstAidUpgradeCompleteOnly2">
+        <OperandArray index="0" value="CountUpgradeFirstAidUpgradeCompleteOnly"/>
+        <OperandArray index="1" value="2"/>
+    </CRequirementGTE>
+    <CRequirementGTE id="GTECountUpgradeFirstAidUpgradeCompleteOnly3">
+        <OperandArray index="0" value="CountUpgradeFirstAidUpgradeCompleteOnly"/>
+        <OperandArray index="1" value="3"/>
     </CRequirementGTE>
     <CRequirementGTE id="GTECountUpgradeMD5MineLevelDummyCompleteOnly1">
         <Tooltip value=""/>
@@ -612,6 +651,17 @@
         <OperandArray index="0" value="CountUpgradeMedicalExpertiseLevel2CompleteOnly"/>
         <OperandArray index="1" value="1"/>
     </CRequirementGTE>
+    <CRequirementGTE id="GTECountUpgradeSuppressiveFireLevelCompleteOnly1">
+        <OperandArray index="0" value="CountUpgradeSuppressiveFireLevelCompleteOnly"/>
+        <OperandArray index="1" value="1"/>
+    </CRequirementGTE>
+    <CRequirementLTE id="LTECountBehaviorBuddyCasterCompleteOnlyAtUnit0">
+        <OperandArray index="0" value="CountBehaviorBuddyCasterCompleteOnlyAtUnit"/>
+        <OperandArray index="1" value="0"/>
+    </CRequirementLTE>
+    <CRequirementNot id="NotCountBehaviorThisismyRifleCompleteOnlyAtUnit">
+        <OperandArray index="0" value="CountBehaviorThisismyRifleCompleteOnlyAtUnit"/>
+    </CRequirementNot>
     <CRequirementSum id="SumCountBehaviorAntiMaterialRifleDeployCompleteOnlyAtUnitCountBehaviorFiringStanceCompleteOnlyAtUnitCountBehaviorHeavyMachineGunDeployCompleteOnlyAtUnit">
         <Tooltip value=""/>
         <OperandArray value="CountBehaviorAntiMaterialRifleDeployCompleteOnlyAtUnit"/>

@@ -13,6 +13,11 @@
         <EditorCategories value="AbilityorEffectType:Units"/>
         <CmdButtonArray index="Execute" DefaultButtonFace="##id##"/>
     </CAbilEffectTarget>
+    <CAbilEffectTarget default="1" id="2LevelEffectTargetAbility" parent="AbilityWithButtonTargetTemplate">
+        <Effect index="0" value="##id##Level1"/>
+        <Effect value="##id##Level2"/>
+        <LevelButtonTooltip value="Ability/LevelUpTooltip/##id##Level2"/>
+    </CAbilEffectTarget>
     <CAbilEffectInstant default="1" id="3LevelEffectInstantAbility" parent="AbilityInstantTemplate">
         <Effect index="0" value="##id##Level1"/>
         <Effect value="##id##Level2"/>
@@ -20,11 +25,6 @@
         <LevelButtonTooltip value="Ability/LevelUpTooltip/##id##Level2"/>
         <LevelButtonTooltip value="Ability/LevelUpTooltip/##id##Level3"/>
     </CAbilEffectInstant>
-    <CAbilEffectTarget default="1" id="2LevelEffectTargetAbility" parent="AbilityWithButtonTargetTemplate">
-        <Effect index="0" value="##id##Level1"/>
-        <Effect value="##id##Level2"/>
-        <LevelButtonTooltip value="Ability/LevelUpTooltip/##id##Level2"/>
-    </CAbilEffectTarget>
     <CAbilInventory default="1" id="InventoryTemplate">
         <AbilSetId value="MarineInventory"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
@@ -613,26 +613,6 @@
             <Flags index="ToSelection" value="1"/>
         </CmdButtonArray>
     </CAbilEffectTarget>
-    <CAbilEffectInstant id="Reload">
-        <EditorCategories value="AbilityorEffectType:Units"/>
-        <Effect index="0" value=""/>
-        <Cost>
-            <Charge>
-                <CountMax value="30"/>
-                <CountStart value="30"/>
-                <CountUse value="-30"/>
-                <Link value="CurrentMagazine"/>
-                <Location value="Player"/>
-            </Charge>
-        </Cost>
-        <CmdButtonArray index="Execute" DefaultButtonFace="Reload">
-            <Flags index="ShowInGlossary" value="0"/>
-        </CmdButtonArray>
-        <Flags index="ReExecutable" value="1"/>
-        <Flags index="Transient" value="1"/>
-        <Flags index="TransientPreferred" value="1"/>
-        <PreemptableArray index="Cast" value="0"/>
-    </CAbilEffectInstant>
     <CAbilEffectTarget id="PathfinderJump">
         <EditorCategories value="AbilityorEffectType:Units"/>
         <Effect index="0" value="HeavyJump"/>
@@ -654,6 +634,26 @@
             <Flags index="ToSelection" value="1"/>
         </CmdButtonArray>
     </CAbilEffectTarget>
+    <CAbilEffectInstant id="Reload">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Effect index="0" value=""/>
+        <Flags index="ReExecutable" value="1"/>
+        <Flags index="Transient" value="1"/>
+        <Flags index="TransientPreferred" value="1"/>
+        <Cost>
+            <Charge>
+                <CountMax value="30"/>
+                <CountStart value="30"/>
+                <CountUse value="-30"/>
+                <Link value="CurrentMagazine"/>
+                <Location value="Player"/>
+            </Charge>
+        </Cost>
+        <PreemptableArray index="Cast" value="0"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="Reload">
+            <Flags index="ShowInGlossary" value="0"/>
+        </CmdButtonArray>
+    </CAbilEffectInstant>
     <CAbilEffectInstant id="SidearmMelee">
         <EditorCategories value="AbilityorEffectType:Units"/>
         <Cost>

@@ -8,6 +8,7 @@ Abil/Name/3LevelEffectTargetAbility2=3 Level Effect Target Ability Copy
 Abil/Name/AbilityInstantTemplate=Ability With Button Instant Template
 Abil/Name/AbilityTargetTemplate=Ability Target Template
 Abil/Name/AbilityWithButtonTargetTemplate=Ability With Button Target Template
+Abil/Name/AccurateFire=Accurate Fire
 Abil/Name/AdvancedTargeting=Advanced Targeting
 Abil/Name/Aftershock=Aftershock
 Abil/Name/AmmoFeed=Ammo Feed
@@ -20,10 +21,12 @@ Abil/Name/AssaultRifleModes=Assault Rifle Modes
 Abil/Name/AutomaticReload=Automatic Reload
 Abil/Name/AutomaticReloadAssault=Automatic Reload Assault
 Abil/Name/BlackDiamond=Black Diamond
-Abil/Name/Bloodlust=Bloodlust
+Abil/Name/BuddySystem=Buddy System
+Abil/Name/BuddySystem2=Buddy System
 Abil/Name/Bulwark=Bulwark
 Abil/Name/BulwarkHidden=Bulwark (Hidden)
 Abil/Name/CancelHealing=Cancel Healing
+Abil/Name/CanisterShot=Canister Shot
 Abil/Name/ChainExplosive=Chain Explosive
 Abil/Name/ChargeNOTD=Charge
 Abil/Name/Cohesion=Cohesion
@@ -32,7 +35,6 @@ Abil/Name/CommandoInventory=Commando Inventory
 Abil/Name/CommandoLearn=Commando Learn
 Abil/Name/Concealment=Concealment
 Abil/Name/ConcentratedFire=Concentrated Fire
-Abil/Name/CripplingFire=Crippling Fire
 Abil/Name/CriticalStrike=Critical Strike
 Abil/Name/DefensivePlating=Defensive Plating
 Abil/Name/DemolitionsInventory=Demolitions Inventory
@@ -48,7 +50,7 @@ Abil/Name/EngineerInventory=Engineer Inventory
 Abil/Name/EngineerLearn=Engineer Learn
 Abil/Name/EscapeSet=Escape
 Abil/Name/Execute=Execute
-Abil/Name/FireUp=Fire Up
+Abil/Name/FirstAid=FirstAid
 Abil/Name/FlamethrowerInventory=Flamethrower Inventory
 Abil/Name/FlamethrowerLearn=Flamethrower Learn
 Abil/Name/FlareGunRecon=Flare Gun
@@ -110,6 +112,7 @@ Abil/Name/PeacekeeperReload=Peacekeeper Reload
 Abil/Name/PetInventoryTemplate=Pet Inventory Template
 Abil/Name/PlasmaGrenade=Plasma Grenade
 Abil/Name/PrecisionShot=Precision Shot
+Abil/Name/PrecisionShot2=Precision Shot
 Abil/Name/PredatorCloak=Cloak
 Abil/Name/PredatorPetInventory=Predator Pet Inventory
 Abil/Name/Provoke=Provoke
@@ -141,11 +144,15 @@ Abil/Name/SprintingShadow=Sprinting Shadow
 Abil/Name/SquadLeaderInventory=Squad Leader Inventory
 Abil/Name/SquadLeaderLearn=Squad Leader Learn
 Abil/Name/StealthMatrix=Stealth Matrix
+Abil/Name/StickyBomb=Sticky Bomb
 Abil/Name/Stockpile=Stockpile
+Abil/Name/StunGrenade=Stun Grenade
+Abil/Name/SuppressiveFire=Suppressive Fire
 Abil/Name/SurveillanceFlare=Surveillance Flare
 Abil/Name/TauntNOTD=Taunt
 Abil/Name/TechnicianInventory=Technician Inventory
 Abil/Name/TechnicianLearn=Technician Learn
+Abil/Name/ThisismyRifle=This is my Rifle
 Abil/Name/ThunderballFists=Thunderball Fists
 Abil/Name/TrackingTag=Tracking Tag
 Abil/Name/UAVInventory=UAV Inventory
@@ -160,8 +167,8 @@ Ability/LevelUpTooltip/EscapeSetLevel2=Provides a 20% movement speed bonus and c
 Ability/LevelUpTooltip/EscapeSetLevel3=Provides a 20% movement speed bonus and collision immunity to the Recon and all allies in a 10 radius and cloaks the Recon for 15 seconds.
 Ability/LevelUpTooltip/FlareGunReconLevel2=Reveals an area of 6 and lowers the movement speed of biological enemies by 35% for 10 seconds. Does not slow bosses.
 Ability/LevelUpTooltip/FlareGunReconLevel3=Reveals an area of 7 and lowers the movement speed of biological enemies by 50% for 10 seconds. Does not slow bosses.
-Ability/LevelUpTooltip/FragmentationGrenadeLevel2=Throw a Fragmentation Grenade at the target area, dealing <d ref="Effect,FragmentationGrenadeDamageLevel2,Amount"/> damage to all enemies in a <d ref="Effect,FragmentationGrenadeDamageLevel2,AreaArray[0].Radius"/> radius on impact.<n/><n/><c val="FF0000">Damage is reduced by <d ref="Effect,FragmentationGrenadeDamageLevel2,AttributeFactor[Armored]*100*(-1)" precision="1"/>% against Armored units and <d ref="Effect,FragmentationGrenadeDamageLevel2,ShieldFactor*100*(-1)" precision="1"/>% against shields.</c>
-Ability/LevelUpTooltip/FragmentationGrenadeLevel3=Launch a Fragmentation Grenade at the target area, dealing <d ref="Effect,FragmentationGrenadeDamageLevel3,Amount"/> damage to all enemies in a <d ref="Effect,FragmentationGrenadeDamageLevel3,AreaArray[0].Radius"/> radius on impact. <n/><n/><c val="FF0000">Damage is reduced by <d ref="Effect,FragmentationGrenadeDamageLevel3,AttributeFactor[Armored]*100*(-1)" precision="1"/>% against Armored units and <d ref="Effect,FragmentationGrenadeDamageLevel3,ShieldFactor*100*(-1)" precision="1"/>% against shields.</c>
+Ability/LevelUpTooltip/FragmentationGrenadeLevel2=Throw a grenade that deals up to <d ref="Effect,FragmentationGrenadeDamageLevel2,Amount"/> damage to enemies in a <d ref="Effect,FragmentationGrenadeDamageLevel2,AreaArray[1].Radius"/> radius.
+Ability/LevelUpTooltip/FragmentationGrenadeLevel3=Launch a grenade that deals up to <d ref="Effect,FragmentationGrenadeDamageLevel2,Amount"/> damage to enemies in a <d ref="Effect,FragmentationGrenadeDamageLevel2,AreaArray[1].Radius"/> radius.
 Ability/LevelUpTooltip/HealLevel2=Restores <d ref="Effect,HealLevel2,RechargeVitalRate"/> hitpoints per second to target unit. Costs <d ref="Effect,HealLevel2,DrainVitalCostFactor * Effect,HealLevel2,RechargeVitalRate" precision="3"/> Energy per second.
 Ability/LevelUpTooltip/HealLevel3=Restores <d ref="Effect,HealLevel3,RechargeVitalRate"/> hitpoints per second to target unit. Costs <d ref="Effect,HealLevel3,DrainVitalCostFactor * Effect,HealLevel3,RechargeVitalRate" precision="3"/> Energy per second.
 Ability/LevelUpTooltip/LaserDesignatorLevel2=Designates a unit, revealing it and inflicting a 10% damage vulnerability for 120 seconds.
@@ -173,10 +180,16 @@ Ability/LevelUpTooltip/NanoShockLevel3=Deals <d ref="Effect,NanoShockDamageLevel
 Ability/LevelUpTooltip/NanoWeaveLevel2=Restores <d ref="Effect,NanoWeaveHealLevel2,VitalArray[Life].Change"/> hitpoints per second for <d ref="Effect,NanoWeavePersistentLevel2,PeriodCount * Effect,NanoWeavePersistentLevel2,PeriodicPeriodArray[0]"/> seconds.<n/>
 Ability/LevelUpTooltip/ProvokeLevel2=Force enemies in a <d ref="Effect,ProvokeSearchLevel2,AreaArray[0].Radius"/> radius to target the Demolitions for <d ref="Behavior,ProvokeLevel2,Duration"/> seconds and deal <d ref="-Behavior,ProvokeLevel2Taunt,Modification.DamageDealtFraction[Melee] *100"/>% less damage.
 Ability/LevelUpTooltip/ProvokeLevel3=Force enemies in a <d ref="Effect,ProvokeSearchLevel3,AreaArray[0].Radius"/> radius to target the Demolitions for <d ref="Behavior,ProvokeLevel3,Duration"/> seconds and deal <d ref="-Behavior,ProvokeLevel3Taunt,Modification.DamageDealtFraction[Melee] *100"/>% less damage.
-Ability/LevelUpTooltip/SelfAidLevel2=Heals the Rifleman for <d ref="Effect,SelfAidHealLevel2,VitalArray[Life].Change"/> health and cures 1 Venom and 1 Open Wound. When under the effects of Repulse, use cures a fracture.<n/>
+Ability/LevelUpTooltip/SelfAidLevel2=Restores 25 hitpoints instantly and 75 hitpoints over 3 seconds.
+Ability/LevelUpTooltip/SelfAidLevel3=Restores 25 hitpoints instantly and 75 hitpoints over 3 seconds
+Ability/LevelUpTooltip/SelfAidLevel4=
 Ability/LevelUpTooltip/ShieldBashLevel2=Deals <d ref="Effect,ShieldBashLevel2ReactiveShieldsLevel1,Amount - 5"/> damage and knocks back enemies a distance of 2 in a <d ref="Effect,ShieldBashLevel1,AreaArray[0].Arc"/> degree cone. Reactive Spikes adds its damage to this attack.
 Ability/LevelUpTooltip/SmokeGrenadeLevel2=Create a <d ref="Effect,SmokeGrenadeEnemySlowSearchLevel2,AreaArray[0].Radius" precision="1"/> radius cloud that lowers enemy Movement Speed by 25% and grants allied units 20% Evasion for <d ref="Effect,SmokeGrenadePersistentLevel2,PeriodCount * Effect,SmokeGrenadePersistentLevel2,PeriodicPeriodArray[0]"/> seconds.
 Ability/LevelUpTooltip/SmokeGrenadeLevel3=Create a <d ref="Effect,SmokeGrenadeEnemySlowSearchLevel3,AreaArray[0].Radius" precision="1"/> radius cloud that lowers enemy Movement and Attack Speed by 25% and grants allied units 20% Evasion for <d ref="Effect,SmokeGrenadePersistentLevel3,PeriodCount * Effect,SmokeGrenadePersistentLevel3,PeriodicPeriodArray[0]"/> seconds.
+Ability/LevelUpTooltip/StickyBombLevel2=Throw a grenade that deals 600 damage to a single target over 4 seconds.
+Ability/LevelUpTooltip/StickyBombLevel3=Launch a grenade that deals 800 damage to a single target.
+Ability/LevelUpTooltip/StunGrenadeLevel2=Throw a grenade that stuns enemies in a 3.0 radius for 2 seconds. Stunned enemies have their Movement and Attack Speed lowered by 40% for 4 seconds after the stun ends.
+Ability/LevelUpTooltip/StunGrenadeLevel3=Launch a Fragmentation Grenade at the target area, dealing <d ref="Effect,FragmentationGrenadeDamageLevel3,Amount"/> damage to all enemies in a <d ref="Effect,FragmentationGrenadeDamageLevel3,AreaArray[0].Radius"/> radius on impact. <n/><n/><c val="FF0000">Damage is reduced by <d ref="Effect,FragmentationGrenadeDamageLevel3,AttributeFactor[Armored]*100*(-1)" precision="1"/>% against Armored units and <d ref="Effect,FragmentationGrenadeDamageLevel3,ShieldFactor*100*(-1)" precision="1"/>% against shields.</c>
 Ability/LevelUpTooltip/SurveillanceFlareLevel2=Throw a flare at the target location, providing ground vision in a radius <d ref="Unit,GroundIlluminationFlareLevel2,Sight"/> of the targeted area for <d ref="Behavior,GroundIlluminationTimedLifeLevel2,Duration"/> seconds.
 Ability/LevelUpTooltip/SurveillanceFlareLevel3=Throw a flare at the target location, providing ground vision in a radius <d ref="Unit,GroundIlluminationFlareLevel3,Sight"/> of the targeted area for <d ref="Behavior,GroundIlluminationTimedLifeLevel3,Duration"/> seconds.
 Ability/LevelUpTooltip/VolatileInjectionLevel2=Deals <d ref="Effect,VolatileInjectionDamageLevel2,Amount"/> damage to all units within a <d ref="Effect,VolatileInjectionSearchLevel2,AreaArray[0].Radius"/> radius of the afflicted unit when it dies.
@@ -206,7 +219,9 @@ Behavior/Name/BackstabLevel2=Backstab Level 2
 Behavior/Name/BasicVeterency=Basic Veterency
 Behavior/Name/BlackDiamondStun=Black Diamond Stun
 Behavior/Name/BlastSuit=Blast Suit
-Behavior/Name/Bloodlust=Bloodlust
+Behavior/Name/BuddyCaster=BuddyCaster
+Behavior/Name/BuddyInvis=BuddyInvis
+Behavior/Name/BuddyTarget=BuddyTarget
 Behavior/Name/BulwarkDamageBlock=Bulwark Damage Block
 Behavior/Name/ChainExplosiveDetonateLevel1=Chain Explosive Detonate Level 1
 Behavior/Name/ChainExplosiveDetonateLevel2=Chain Explosive Detonate Level 2
@@ -277,6 +292,8 @@ Behavior/Name/ImmovableObjectArmor=Immovable Object Armor
 Behavior/Name/ItemSensorLevel1=Item Sensor Level 1
 Behavior/Name/ItemSensorLevel2=Item Sensor Level 2
 Behavior/Name/K9Evasion=K-9 Evasion
+Behavior/Name/K9PlacementBuff=K9PlacementBuff
+Behavior/Name/K9Suicide=K9Suicide
 Behavior/Name/K9Turret=K-9 Turret
 Behavior/Name/K9TurretDeployment=K-9 Turret Deployment
 Behavior/Name/KineticPayloadLaunch=Kinetic Payload Launch
@@ -314,6 +331,7 @@ Behavior/Name/OfficerSpracklin=Officer Spracklin
 Behavior/Name/PeacekeeperTemplate=Peacekeeper Template
 Behavior/Name/PetLevelsTemplate=Pet Levels Template
 Behavior/Name/PlasmaGrenadeArmorReduction=Plasma Grenade Armor Reduction
+Behavior/Name/PrecisionShot=PrecisionShot
 Behavior/Name/PrecisionShotSlowLevel1=Precision Shot Slow Level 1
 Behavior/Name/PrecisionShotSlowLevel2=Precision Shot Slow Level 2
 Behavior/Name/PrecisionShotSlowLevel3=Precision Shot Slow Level 3
@@ -342,11 +360,13 @@ Behavior/Name/SatchelChargeDetonation=Satchel Charge Detonation
 Behavior/Name/SergeantAscalon=Sergeant Ascalon
 Behavior/Name/SergeantLefty=Sergeant Lefty
 Behavior/Name/ShieldBashLift=Shield Bash Lift
+Behavior/Name/Slowed=Slowed
 Behavior/Name/SmokeGrenadeAlliedEvasionLevel2=Smoke Grenade Allied Evasion Level 2
 Behavior/Name/SmokeGrenadeAlliedEvasionLevel3=Smoke Grenade Allied Evasion Level 3
 Behavior/Name/SmokeGrenadeEnemySlowLevel1=Smoke Grenade Enemy Slow Level 1
 Behavior/Name/SmokeGrenadeEnemySlowLevel2=Smoke Grenade Enemy Slow Level 2
 Behavior/Name/SmokeGrenadeEnemySlowLevel3=Smoke Grenade Enemy Slow Level 3
+Behavior/Name/SonicPlacementBuff=SonicPlacementBuff
 Behavior/Name/SonicTrapHeroicSlowLevel1=Sonic Trap Heroic Slow Level 1
 Behavior/Name/SonicTrapHeroicSlowLevel2=Sonic Trap Heroic Slow Level 2
 Behavior/Name/SonicTrapMassiveSlowLevel1=Sonic Trap Massive Slow Level 1
@@ -363,18 +383,25 @@ Behavior/Name/StealthMatrixEscapeCloakLevel2=Stealth Matrix Escape Cloak Level 2
 Behavior/Name/StealthMatrixEscapeCloakLevel3=Stealth Matrix Escape Cloak Level 3
 Behavior/Name/StealthMatrixLevel1=Stealth Matrix Level 1
 Behavior/Name/StealthMatrixLevel2=Stealth Matrix Level 2
+Behavior/Name/StickyBombDMGBuff=StickyBombDMG Buff
+Behavior/Name/StickyBombDMGBuff2=StickyBombDMG Buff2
+Behavior/Name/Stunned=Stunned
+Behavior/Name/TIMRDeath=TIMR-Death
 Behavior/Name/TauntedLevel1=Taunted Level 1
 Behavior/Name/TauntedLevel2=Taunted Level 2
 Behavior/Name/TauntedLevel3=Taunted Level 3
+Behavior/Name/ThisismyRifle=This is my Rifle
 Behavior/Name/TrackingTag=Tracking Tag
 Behavior/Name/VolatileInjectionLevel1=Volatile Injection Level 1
 Behavior/Name/VolatileInjectionLevel2=Volatile Injection Level 2
 Behavior/Name/VolatileInjectionLevel3=Volatile Injection Level 3
+Behavior/Name/WeaponProfi2=WeaponProfi2
 Behavior/Name/WeaveAilmentHealLevel1=Weave Ailment Heal Level 1
 Behavior/Name/WeaveAilmentHealLevel2=Weave Ailment Heal Level 2
 Behavior/Tooltip/Lives=
 Behavior/Tooltip/NoiseIndex=Current amount of noise. If the noise reaches a threshold, a horde spawns.
 Button/Name/88mmMortar=88mm Mortar
+Button/Name/AT-Grenade=AT Grenade
 Button/Name/ATRocket=AT Rocket
 Button/Name/Accuracy=Accuracy
 Button/Name/Adapative=Adapative
@@ -398,10 +425,12 @@ Button/Name/BlackDiamond=Black Diamond
 Button/Name/BlastSuit=Blast Suit
 Button/Name/Blitz=Blitz
 Button/Name/Blockade=Blockade
-Button/Name/Bloodlust=Bloodlust
+Button/Name/BuddySystem=Buddy System
+Button/Name/BuddySystem2=Buddy System
 Button/Name/Bulwark=Bulwark
 Button/Name/BurstFire=Burst Fire
 Button/Name/CancelHealing=Cancel Healing
+Button/Name/CanisterShot=Canister Shot
 Button/Name/ChainExplosive=Chain Explosive
 Button/Name/ChargeNOTD=Charge
 Button/Name/CloakofFear=Cloak of Fear
@@ -444,6 +473,7 @@ Button/Name/FlashFlare=Flash Flare
 Button/Name/FlashlightDisable=Flashlight Disable
 Button/Name/FlashlightEnable=Flashlight Enable
 Button/Name/FocusFire=Focus Fire
+Button/Name/FocusFire2=Focus Fire
 Button/Name/FocusFireCripplingFire=Focus Fire
 Button/Name/FocusFireCripplingFiredUp=Focus Fire
 Button/Name/FocusFireFireUp=Focus Fire
@@ -456,6 +486,7 @@ Button/Name/FuelInjection=Fuel Injection
 Button/Name/GeminiProtocol=Gemini Protocol
 Button/Name/Grenadier=Grenadier
 Button/Name/Guilt=Guilt
+Button/Name/HEGrenade=HE Grenade
 Button/Name/HealNOTD=Heal
 Button/Name/Heartbreaker=Heartbreaker
 Button/Name/HeatShielding=Heat Shielding
@@ -568,7 +599,9 @@ Button/Name/StandTogether=Stand Together
 Button/Name/Stealth=Stealth
 Button/Name/StealthMatrixActivate=Stealth Matrix Activate
 Button/Name/StealthMatrixDeactivate=Stealth Matrix Deactivate
+Button/Name/StickyBomb=Sticky Bomb
 Button/Name/Stockpile=Stockpile
+Button/Name/StunGrenade=Stun Grenade
 Button/Name/SuppressiveFire=Suppressive Fire
 Button/Name/SurveillanceFlare=Surveillance Flare
 Button/Name/TacticalTomahawk=Tactical Tomahawk
@@ -576,6 +609,7 @@ Button/Name/Talents=Talents
 Button/Name/TauntNOTD=Taunt
 Button/Name/TeamLocation=Team Location
 Button/Name/ThermobaricGrenade=Thermobaric Grenade
+Button/Name/ThisismyRifle=This Is My Rifle
 Button/Name/ThoughtProcess=Thought Process
 Button/Name/ThousandAnts=Thousand Ants
 Button/Name/ThunderballFists=Thunderball Fists
@@ -601,7 +635,9 @@ Button/Tooltip/AssaultCriticalStrikeLevel1=15% chance to deal bonus damage. Crit
 Button/Tooltip/AssaultCriticalStrikeLevel2=30% chance to deal bonus damage. Critical damage varies based on the weapon being used.
 Button/Tooltip/AssaultCriticalStrikeLevel3=45% chance to deal bonus damage. Critical damage varies based on the weapon being used.
 Button/Tooltip/BlackDiamond=Enemies within a 6 radius take 200 damage and are stunned for 6 seconds. While stunned, enemies take 100% additional damage from the Recon.
-Button/Tooltip/Bloodlust=Gain <d ref="Behavior,Bloodlust,Modification.AttackSpeedMultiplier-1*100" precision="1"/>% bonus attack speed and weapon damage for <d ref="Behavior,Bloodlust,Duration" precision="1"/> seconds.
+Button/Tooltip/BuddySystem=Link up with the target unit, increasing Movement Speed of the Rifleman and the target by 20%.<n/><n/><c val="FF0000">Buddy System has a leash range of 8.</c>
+Button/Tooltip/BuddySystem2=Break the link between the Rifleman and the target.<n/><n/><c val="FF0000">Buddy System has a leash range of 8.</c>
+Button/Tooltip/CanisterShot=Fire a canister shot that deals up to 800 damage in a cone.
 Button/Tooltip/ChainExplosive=Chain Explosives deal 400 damage in a radius of 3.5 when triggered by explosive damage.
 Button/Tooltip/ChargeNOTD=Deals 50 (+50 vs Light) damage to all enemies in the Assault’s path, knocking them back and stunning them for 2 seconds. Heroic units are stunned for 1 second and Massive units cannot be knocked back.
 Button/Tooltip/ChargeNOTDLevel2=Deals 100 (+100 vs Light) damage to all enemies in the Assault’s path, knocking them back and stunning them for 4 seconds. Heroic units are stunned for 2 second and Massive units cannot be knocked back.<n/>
@@ -631,11 +667,12 @@ Button/Tooltip/ExtendedMagazine=The Assault’s armor has many integrated system
 Button/Tooltip/FlareGunRecon=Reveals an area of 5 and lowers the movement speed of biological enemies by 20% for 10 seconds. Does not slow bosses.
 Button/Tooltip/FlashlightDisable=Tactical flashlights illuminate darkened areas and increase visibility but make users more visible.
 Button/Tooltip/FlashlightEnable=Tactical flashlights illuminate darkened areas and increase visibility but make users more visible. <n/><c val="ECE846">Allow Stealth Detection within 2 Radius while active.</c>
-Button/Tooltip/FocusFire=Increases weapon damage by <d ref="Behavior,FocusFire,Modification.DamageDealtFraction[Melee] * 100"/>%, and modifies attack speed by <d ref="(1 - Behavior,FocusFire,Modification.AttackSpeedMultiplier) *100"/>%
-Button/Tooltip/FocusFireCripplingFire=Increases weapon damage by <d ref="Behavior,FocusFire,Modification.DamageDealtFraction[Melee] * 100"/>%, weapon range by <d ref="Behavior,FocusFire,Modification.WeaponRange"/>, and modifies attack speed by <d ref="(Behavior,FocusFire,Modification.AttackSpeedMultiplier - 1) *100"/>%
-Button/Tooltip/FocusFireCripplingFiredUp=Increases weapon damage by <d ref="Behavior,FocusFire,Modification.DamageDealtFraction[Melee] * 100"/>%, weapon range by <d ref="Behavior,FocusFire,Modification.WeaponRange"/>, and modifies attack speed by <d ref="(Behavior,FocusFire,Modification.AttackSpeedMultiplier - 1) *100"/>%
-Button/Tooltip/FocusFireFireUp=Increases weapon damage by <d ref="Behavior,FocusFire,Modification.DamageDealtFraction[Melee] * 100"/>%, weapon range by <d ref="Behavior,FocusFire,Modification.WeaponRange"/>, and modifies attack speed by <d ref="(Behavior,FocusFire,Modification.AttackSpeedMultiplier - 1) *100"/>%
-Button/Tooltip/FragmentationGrenade=Throw a Fragmentation Grenade at the target area, dealing <d ref="Effect,FragmentationGrenadeDamageLevel1,Amount"/> damage to all enemies in a <d ref="Effect,FragmentationGrenadeDamageLevel1,AreaArray[0].Radius"/> radius on impact.<n/><n/><c val="FF0000">Damage is reduced by <d ref="Effect,FragmentationGrenadeDamageLevel1,AttributeFactor[Armored]*100*(-1)" precision="1"/>% against Armored units and <d ref="Effect,FragmentationGrenadeDamageLevel1,ShieldFactor*100*(-1)" precision="1"/>% against shields.</c>
+Button/Tooltip/FocusFire=Increases Weapon Damage by 20% and reduces Attack Speed by 20% while active.
+Button/Tooltip/FocusFire2=Return to normal damage and attack speed.
+Button/Tooltip/FocusFireCripplingFire=Increases Weapon Damage by 20%, reduces Attack Speed by 20%, and slows enemies by 20% while active.
+Button/Tooltip/FocusFireCripplingFiredUp=Increases Weapon Damage by 40%, reduces Attack Speed by 20%, and slows enemies by 20% while active.
+Button/Tooltip/FocusFireFireUp=Increases Weapon Damage by 40% and reduces Attack Speed by 20% while active.
+Button/Tooltip/FragmentationGrenade=Throw a grenade that deals up to <d ref="Effect,FragmentationGrenadeDamageLevel1,Amount"/> damage to all enemies in a <d ref="Effect,FragmentationGrenadeDamageLevel1,AreaArray[1].Radius"/> radius on impact.
 Button/Tooltip/FragmentationGrenadeLevel2=
 Button/Tooltip/FragmentationGrenadeLevel3=
 Button/Tooltip/HealLevel2=
@@ -700,20 +737,23 @@ Button/Tooltip/Rifleman=Riflemen are the backbone of any infantry squad, providi
 Button/Tooltip/SatchelCharge=Throw a Satchel Charge at the target location. After a 5 second countdown, the Satchel Charge will explode, dealing 2500 damage to all enemies caught in the blast. Deals double damage to structures.
 Button/Tooltip/SatelliteUplink=Move the surveillance satellite's focus to the target area.
 Button/Tooltip/Scamper=Deploy a Scamper scouting robot for unmanned reconnaissance. Only one Scamper may be active at a time.
-Button/Tooltip/SelfAid=Heals the Rifleman for <d ref="Effect,SelfAidHealLevel1,VitalArray[Life].Change"/> health and cures 1 Venom. When under the effects of Repulse, use cures a fracture.
+Button/Tooltip/SelfAid=Restores 25 hitpoints instantly.
 Button/Tooltip/SelfAidLevel2=
 Button/Tooltip/ShieldBash=Deals <d ref="Effect,ShieldBashLevel1ReactiveShieldsLevel1,Amount - 5"/> damage and knocks back enemies a distance of 1 in a <d ref="Effect,ShieldBashLevel1,AreaArray[0].Arc"/> degree cone. Reactive Spikes adds its damage to this attack.
 Button/Tooltip/SmokeGrenade=Create a 3.5 radius cloud that lowers enemy Movement Speed by 25% for 30 seconds.
-Button/Tooltip/SonicTrap=Sets a Sonic Trap at the target location. When an enemy passes within 3 radius of the trap, all non-heroic and non-massive units in a <d ref="Effect,SonicTrapLevel1,AreaArray[0].Radius"/> radius are pushed back a distance of <d ref="Effect,SonicTrapPushbackLevel1,PlacementRange"/> and stunned for <d ref="Behavior,SonicTrapStunLevel1,Duration" precision="1"/> seconds. Massive units are slowed by <d ref="Behavior,SonicTrapMassiveSlowLevel1,Modification.MoveSpeedMultiplier-1*(-100)" precision="1"/>% and Heroic units are slowed by <d ref="Behavior,SonicTrapHeroicSlowLevel1,Modification.MoveSpeedMultiplier-1*(-100)" precision="1"/>% for <d ref="Behavior,SonicTrapHeroicSlowLevel1,Duration"/> seconds.
+Button/Tooltip/SonicTrap=Place a Sonic Trap at the target location. Sonic Traps activate when an enemy passes within a 3 radius, knocking back all enemies within a 6 radius and stunning them for 2 seconds. Massive enemies are slowed by 50% instead of stunned. Sonic Traps have 8 charges and only 1 may be active at a time.
 Button/Tooltip/SonicTrapLevel2=Sets a Sonic Trap at the target location. When an enemy passes within 3 radius of the trap, all non-heroic and non-massive units in a <d ref="Effect,SonicTrapLevel2,AreaArray[0].Radius"/> radius are pushed back a distance of <d ref="Effect,SonicTrapPushbackLevel2,PlacementRange"/> and stunned for <d ref="Behavior,SonicTrapStunLevel2,Duration" precision="1"/> seconds. Massive units are slowed by <d ref="Behavior,SonicTrapMassiveSlowLevel2,Modification.MoveSpeedMultiplier-1*(-100)" precision="1"/>% and Heroic units are slowed by <d ref="Behavior,SonicTrapHeroicSlowLevel2,Modification.MoveSpeedMultiplier-1*(-100)" precision="1"/>% for <d ref="Behavior,SonicTrapHeroicSlowLevel2,Duration"/> seconds.
 Button/Tooltip/Sprint=Sprinting increases movement speed by <d ref="Behavior,Sprint,Modification.MoveSpeedMultiplier-1*100"/>% for <d ref="Behavior,Sprint,Duration"/> seconds. Sprinting with a fractured leg can possibly worsen the fracture.
 Button/Tooltip/StealthMatrixActivate=Engage a personal cloak that also grants a 20% increase to movement speed. Drains 0.7 energy per second.
 Button/Tooltip/StealthMatrixDeactivate=Disable the personal cloak and ready Escape for use again.
+Button/Tooltip/StickyBomb=Throw a grenade that deals 400 damage, +200 vs Armored to a single target over 8 seconds.
+Button/Tooltip/StunGrenade=Throw a grenade that stuns enemies in a 3.0 radius for 2 seconds.
 Button/Tooltip/SurveillanceFlare=Throw a flare at the target location, providing ground vision in a radius <d ref="Unit,GroundIlluminationFlareLevel1,Sight"/> of the targeted area for <d ref="Behavior,GroundIlluminationTimedLifeLevel1,Duration"/> seconds.
 Button/Tooltip/TacticalTomahawk=Deals <d ref="Effect,TomahawkDamage,Amount"/> damage in front of the user. Has a <d ref="Effect,TomahawkDoubleDamage,Chance * 100" precision="2"/>% chance to deal double damage.
 Button/Tooltip/Talents=Access character talent trees and spend skillpoints.
 Button/Tooltip/TauntNOTD=Forces all enemies in a <d ref="Effect,TauntLevel1,AreaArray[0].Radius" precision="1"/> radius to attack at a <d ref="Behavior,TauntedLevel1,Modification.DamageDealtFraction[Melee]*(-100)" precision="1"/>% damage penalty for <d ref="Behavior,TauntedLevel1,Duration"/> seconds.
 Button/Tooltip/TeamLocation=Pings the locations of all teammembers on the minimap.
+Button/Tooltip/ThisismyRifle=Increase Weapon Damage and Attack Speed by 50% for 10 seconds. Killing an enemy adds 1 second to the ability's duration.
 Button/Tooltip/ThunderballFists=Engage the Thunderball Fists protocol, dragging enemies within a <d ref="Effect,ThunderballFistsSearch,AreaArray[0].Radius"/> radius to the Demolitions and dealing <d ref="Effect,ThunderballFistsDamage,Amount"/> damage every <d ref="Effect,ThunderballFists,PeriodicPeriodArray[0]" precision="2"/> seconds for <d ref="Effect,ThunderballFists,PeriodicPeriodArray[0] * Effect,ThunderballFists,PeriodCount" precision="2"/> seconds.
 Button/Tooltip/TrackingTag=Reveals the target unit to allied players for <d ref="Behavior,TrackingTag,Duration / 60"/> minutes.
 Button/Tooltip/VolatileInjection=Deals <d ref="Effect,VolatileInjectionDamageLevel1,Amount"/> damage to all units within a <d ref="Effect,VolatileInjectionSearchLevel1,AreaArray[0].Radius"/> radius of the afflicted unit when it dies.
@@ -725,9 +765,67 @@ Button/Tooltip/WeaponsProficiencyLevel2=Increases reload speed by 30%.
 DOCSTR_0001=Insert Text
 DocInfo/DescLong=Class Data for Night of the Dead 2
 DocInfo/Name=NOTD 2 Class Data
+Effect/Name/AddBuddyInvis=AddBuddyInvis
+Effect/Name/BuddyCastSet=BuddyCastSet
+Effect/Name/BuddyCaster=BuddyCaster
+Effect/Name/BuddyFinal=BuddyFinal
+Effect/Name/BuddyFirstAidValidator=BuddyFirstAidValidator
+Effect/Name/BuddyInvisSet=BuddyInvisSet
+Effect/Name/BuddyRemoveCaster=BuddyRemoveCaster
+Effect/Name/BuddySystemFinalCooldown=BuddySystemFinalCooldown
+Effect/Name/BuddyTarget=BuddyTarget
+Effect/Name/CanisterDmg1=CanisterDmg1
+Effect/Name/CanisterDmg2=CanisterDmg2
+Effect/Name/CanisterDmg3=CanisterDmg3
+Effect/Name/CanisterDmg4=CanisterDmg4
+Effect/Name/CanisterLaunchSet=CanisterLaunchSet
+Effect/Name/CanisterSearchStartup=CanisterSearchStartup
+Effect/Name/CanisterShotSearch=CanisterShotSearch
+Effect/Name/CanisterTargetPoint=CanisterTargetPoint
+Effect/Name/CanisterVisualDummies=CanisterVisualDummies
+Effect/Name/FocusFireAddCooldown=FocusFireAddCooldown
+Effect/Name/FocusedFireTriggerDummy=FocusedFireTriggerDummy
+Effect/Name/FragmentationGrenadeDamageLevel12=Fragmentation Grenade Damage Level 4
 Effect/Name/HealOpenWoundRemovalLevel1=Heal Open Wound Removal Level 1
 Effect/Name/HealOpenWoundRemovalLevel2=Heal Open Wound Removal Level 2
 Effect/Name/HealOpenWoundRemovalLevel22=Heal Open Wound Removal Level 3
+Effect/Name/K9AddSuicide=K9AddSuicide
+Effect/Name/MissileRotator=MissileRotator
+Effect/Name/PrecisionShotBuff=PrecisionShotBuff
+Effect/Name/PrecisionShotDMG=PrecisionShotDMG
+Effect/Name/PrecisionShotDelay=PrecisionShotDelay
+Effect/Name/PrecisionShotSet=PrecisionShotSet
+Effect/Name/RemoveBuddyInvis=RemoveBuddyInvis
+Effect/Name/RemoveBuddyInvisFinal=RemoveBuddyInvisFinal
+Effect/Name/SelfAidBuddySearch=Self Aid BuddySearch
+Effect/Name/SelfAidBuddySet=Self Aid BuddySet
+Effect/Name/SelfAidCharges=Self Aid Charges
+Effect/Name/SelfAidRemoveVenom=Self Aid Remove Venom
+Effect/Name/SonicAddSuicide1=SonicAddSuicide1
+Effect/Name/SonicAddSuicide2=SonicAddSuicide2
+Effect/Name/SonicSuicideSwitch=SonicSuicideSwitch
+Effect/Name/SonicSuicideSwitch2=SonicSuicideSwitch Copy
+Effect/Name/SonicTrapLaunch1=SonicTrapLaunch1
+Effect/Name/SonicTrapLaunch2=SonicTrapLaunch2
+Effect/Name/SonicTrapStartSet1=Sonic Trap StartSet1
+Effect/Name/SonicTrapStartSet2=Sonic Trap StartSet2
+Effect/Name/StickyBombDMG=StickyBombDMG
+Effect/Name/StickyBombDMG2=StickyBombDMG2
+Effect/Name/StickyBombDMGBuff=StickyBombDMG Buff
+Effect/Name/StickyBombDMGBuff2=StickyBombDMG Buff2
+Effect/Name/StickyBombLM=StickyBombLM
+Effect/Name/StickyBombLM2=StickyBombLM2
+Effect/Name/StunGrenadeBehaviour=StunGrenadeBehaviour
+Effect/Name/StunGrenadeLM=StunGrenadeLM
+Effect/Name/StunGrenadeSearch=StunGrenadeSearch
+Effect/Name/StunGrenadeSlow=StunGrenadeSlow
+Effect/Name/SuicideK9=SuicideK9
+Effect/Name/SuicideSonic=SuicideSonic
+Effect/Name/TIMRBonusDurationTriggerDummy=TIMR-BonusDurationTriggerDummy
+Effect/Name/TIMRBuff=TIMR Buff
+Effect/Name/TIMRDeathBuff=TIMR-DeathBuff
+Effect/Name/TIMRFinalCooldown=TIMR-FinalCooldown
+Effect/Name/TurretFacing=TurretFacing
 Equipment/Name/MD5Mine=Mine Detonation
 Error/EmptyError=
 Error/Error Test=Invalid Jump Target
@@ -751,6 +849,7 @@ ItemClass/Name/Sidearm=Sidearm
 ItemClass/Name/SpecialWeapon=Special Weapon
 ItemClass/Name/SpecialWeaponAmmo=Special Weapon Ammo
 ItemClass/Name/Utility=Utility
+Kinetic/Name/MissileRotator=MissileRotator
 LaserDesignatorLevel2=
 LaserDesignatorLevel3=
 LaserDesignatorSetLevel2LaserDesignatorLevel2=Designates a unit, revealing it and inflicting a 10% damage vulnerability for 120 seconds.
@@ -784,10 +883,13 @@ Param/Value/lib_840A968C_EE32EA41=Source Point
 Param/Value/lib_C50FD636_0DE50407=</s><n/><n/>
 Param/Value/lib_C50FD636_12D31F0B=Talents Available: 
 Param/Value/lib_C50FD636_3238FD09= / 
+Param/Value/lib_C50FD636_39663B17=Test
 Param/Value/lib_C50FD636_4CF33B07=<s val="HeaderExtendedTemplate">
 Param/Value/lib_C50FD636_543B63C9= / 
 Param/Value/lib_C50FD636_64004A16= / 
+Param/Value/lib_C50FD636_8329511E=ACC: 
 Param/Value/lib_C50FD636_B6EE0A7C= / 
+Param/Value/lib_C50FD636_C47E0015=<n/>WP: 
 Param/Value/lib_C50FD636_CDBC36CF= / 
 Paratrooper/Subtitle=UGC Paratrooper
 Peacekeeper/=
@@ -923,10 +1025,17 @@ Unit/Name/SmokeGrenadeLevel3Weapon=Smoke Grenade Level 3 Weapon
 Unit/Name/SonicTrapLevel1=Sonic Trap Level 1
 Unit/Name/SonicTrapLevel12=Sonic Trap Level 2
 Unit/Name/SquadLeader=Squad Leader
+Unit/Name/StickyBombMissileGL=StickyBombMissileGL
+Unit/Name/StickyBombMissileThrown=StickyBombMissileThrown
+Unit/Name/StunGrenadeThrown=Stun Grenade Thrown
 Unit/Name/SupplyDropDefensive=Supply Drop Defensive
 Unit/Name/SupplyDropOffensive=Supply Drop Offensive
 Unit/Name/Technician=Technician
 Unit/Name/TestTemplate=TestTemplate
+Upgrade/Name/AccurateFire1=AccurateFire1
+Upgrade/Name/AccurateFire2=AccurateFire2
+Upgrade/Name/AccurateFire3=AccurateFire3
+Upgrade/Name/AccurateFireLevel=AccurateFireLevel
 Upgrade/Name/AmmoUpgradeMagazineTemplate=Ammo Upgrade Magazine Template
 Upgrade/Name/AmmoUpgradeTemplate=Ammo Upgrade Template
 Upgrade/Name/ArmorVisualTemplate=Armor Visual Template
@@ -939,15 +1048,14 @@ Upgrade/Name/CollateralDamageDummy=Collateral Damage Dummy
 Upgrade/Name/CombatKnifeRankUpgrade=Combat Knife Rank Upgrade
 Upgrade/Name/CombatKnifeSidearm=Combat Knife Sidearm
 Upgrade/Name/CombatMobilityAugmentJump=Combat Mobility Augment Jump
-Upgrade/Name/CripplingFire=Crippling Fire
-Upgrade/Name/CripplingFireandFireUpButton=Crippling Fire and Fire Up Button
 Upgrade/Name/CriticalStrikeRifleman=Critical Strike Rifleman
 Upgrade/Name/DefaultUpgrade=Default Upgrade
 Upgrade/Name/DefaultUpgradeOverride=Default Upgrade Override
 Upgrade/Name/EnergyRegeneration=Energy Regeneration
 Upgrade/Name/EnhancedProtectiveInsert=Enhanced Protective Insert
-Upgrade/Name/FireUp=Fire Up
+Upgrade/Name/FirstAidUpgrade=FirstAidUpgrade
 Upgrade/Name/GeminiProtocol=Gemini Protocol
+Upgrade/Name/Grenadier=Grenadier
 Upgrade/Name/HALSoldiers=HAL Soldiers
 Upgrade/Name/HeavyProtectiveInsert=Heavy Protective Insert
 Upgrade/Name/HighCapacityAmmo=High Capacity Ammo
@@ -972,6 +1080,11 @@ Upgrade/Name/SplashRadius=Splash Radius
 Upgrade/Name/StandardArmor=Standard Armor
 Upgrade/Name/StockpileLevel1=Stockpile Level 1
 Upgrade/Name/StockpileLevel2=Stockpile Level 2
+Upgrade/Name/SuppressiveFire1=SuppressiveFire1
+Upgrade/Name/SuppressiveFire2=SuppressiveFire2
+Upgrade/Name/SuppressiveFire3=SuppressiveFire3
+Upgrade/Name/SuppressiveFireLevel=SuppressiveFireLevel
+Upgrade/Name/SuppressiveFireandAccurateFire=SuppressiveFire and AccurateFire
 Upgrade/Name/SwapSpeed=Swap Speed
 Upgrade/Name/TomahawkRankUpgrade=Tomahawk Rank Upgrade
 Upgrade/Name/TomahawkSidearm=Tomahawk Sidearm
@@ -1136,32 +1249,32 @@ UserData/TalentTree/Recon Surveillance Tree_Talent Tooltips_002=Reveals the loca
 UserData/TalentTree/Recon Surveillance Tree_Talent Tooltips_003=Scampers are wheeled robots that can scout and retrieve items. <n/><n/><s val="AISurrenderTitle"><c val="F4CE4D">Level 1:</c></s> <c val="FCF5C5">Scampers can carry up to two items and track targets.</c><n/><s val="AISurrenderTitle"><c val="F4CE4D">Level 2:</c></s><c val="FCF5C5"> Scampers gain an item radar and the ability to conceal itself.</c><n/><n/><s val="AchievementFrameDescription">“How hard is it to dump the gear in one place? Sheesh.”</s>
 UserData/TalentTree/Recon Surveillance Tree_Talent Tooltips_004=Requisition additional supply drops for your team.<n/><n/><s val="AISurrenderTitle"><c val="F4CE4D">Level 1:</c></s><c val="FCF5C5"> Gain the Ammunition Drop and Medical Drop abilities.</c><n/><n/><s val="AchievementFrameDescription">“Wars are fought and won on full stomachs and loaded magazines.”</s>
 UserData/TalentTree/Recon Surveillance Tree_Talent Tooltips_005=Gain control of a satellite that provides battlefield surveillance and shared vision.<n/><n/><s val="AISurrenderTitle"><c val="F4CE4D">Level 1: </c></s><c val="FCF5C5">Access a satellite that can reveal any area and shared vision for the entire team.</c><n/><n/><s val="AchievementFrameDescription">“Eyes in the sky.”</s>
-UserData/TalentTree/Rifleman Combat Tree_Header=<s val="AiurChefCenterSize22Bold"><c val="B61B0A">COMBAT</c></s>
-UserData/TalentTree/Rifleman Combat Tree_Talent Name=<s val="AchievementFrameName">Critical Strike</s> <s val="AchievementFrameName_Zerg">[Passive]</s>
-UserData/TalentTree/Rifleman Combat Tree_Talent Name_001=<s val="AchievementFrameName">Fire Up</s> <s val="AchievementFrameName_Zerg">[Passive]</s>
+UserData/TalentTree/Rifleman Combat Tree_Header=<s val="AiurChefCenterSize22Bold"><c val="F3380A">COMBAT</c></s>
+UserData/TalentTree/Rifleman Combat Tree_Talent Name=<s val="AchievementFrameName">Accurate Fire</s> <s val="AchievementFrameName_Zerg">[Passive]</s>
+UserData/TalentTree/Rifleman Combat Tree_Talent Name_001=<s val="AchievementFrameName">Frag Grenade</s>
 UserData/TalentTree/Rifleman Combat Tree_Talent Name_002=<s val="AchievementFrameName">Weapon Proficiency</s> <s val="AchievementFrameName_Zerg">[Passive]</s>
-UserData/TalentTree/Rifleman Combat Tree_Talent Name_003=<s val="AchievementFrameName">Fragmentation Grenade</s>
-UserData/TalentTree/Rifleman Combat Tree_Talent Name_004=<s val="AchievementFrameName">Bloodlust</s>
+UserData/TalentTree/Rifleman Combat Tree_Talent Name_003=<s val="AchievementFrameName">Sticky Bomb</s>
+UserData/TalentTree/Rifleman Combat Tree_Talent Name_004=<s val="AchievementFrameName">This Is My Rifle</s>
 UserData/TalentTree/Rifleman Combat Tree_Talent Name_005=<s val="AchievementFrameName">Grenadier</s>
-UserData/TalentTree/Rifleman Combat Tree_Talent Tooltips=The Rifleman has remarkable accuracy with most weapons, allowing them to strike at targets of opportunity at an increased rate. Critical damage varies based on the weapon being used.<n/><n/><s val="AISurrenderTitle"><c val="F4CE4D">Level 1:</c> </s><c val="FCF5C5">10% chance to deal bonus damage.</c><n/><s val="AISurrenderTitle"><c val="F4CE4D">Level 2:</c></s><c val="FCF5C5"> 20% chance to deal bonus damage.</c><n/><s val="AISurrenderTitle"><c val="F4CE4D">Level 3:</c></s> <c val="FCF5C5">30% chance to deal bonus damage.</c><n/><n/><s val="AchievementFrameDescription">“My rifle and I know that what counts in this war is not the rounds we fire, the noise of our burst, nor the smoke we make. We know that it is the hits that count. We will hit...”</s>
-UserData/TalentTree/Rifleman Combat Tree_Talent Tooltips_001=The thrill of combat brings the Rifleman into a higher state of focus, providing additional offensive bonuses when using Focus Fire.<n/><n/><s val="AISurrenderTitle"><c val="F4CE4D">Level 1:</c></s><c val="FCF5C5"> Increases attack speed by 15% and range by 1 while using Focus Fire.</c><n/><s val="AISurrenderTitle"><c val="F4CE4D">Level 2:</c> </s><c val="FCF5C5">Increases attack speed by 30% and range by 2 while using Focus Fire.</c><n/><s val="AISurrenderTitle"><c val="F4CE4D">Level 3:</c></s> <c val="FCF5C5">Increases attack speed by 45% and range by 3 while using Focus Fire.</c><n/><n/><s val="AchievementFrameDescription">“This is my rifle. There are many like it, but this one is mine. My rifle is my best friend. It is my life. I must master it as I must master my life.”</s>
-UserData/TalentTree/Rifleman Combat Tree_Talent Tooltips_002=Constant weapons drills have turned reloading weapons and absorbing their recoil into an act of muscle memory, making the Rifleman much more proficient at handling weapons.<n/><n/><s val="AISurrenderTitle"><c val="F4CE4D">Level 1:</c></s><c val="FCF5C5"> Increases reload speed by 15% and increases Focus Fire damage by 5%.</c><n/><s val="AISurrenderTitle"><c val="F4CE4D">Level 2:</c></s><c val="FCF5C5"> Increases reload speed by 30% and increases Focus Fire damage by 10%.</c><n/><n/><s val="AchievementFrameDescription">“My rifle is human, even as I, because it is my life. Thus, I will learn it as a brother. I will learn its weaknesses, its strength, its parts, its accessories, its sights and its barrel. I will keep my rifle clean and ready, even as I am clean and ready. We will become part of each other. We will...”</s>
-UserData/TalentTree/Rifleman Combat Tree_Talent Tooltips_003=Fragmentation Grenades are anti-personnel weapons that are designed to scatter shrapnel at high velocities upon detonation, wounding and potentially killing targets in a fairly large area. Grenades are affected by Critical Strike and Focus Fire’s damage bonus.<n/><n/><s val="AISurrenderTitle"><c val="F4CE4D">Level 1:</c></s> <c val="FCF5C5">Deals 100 damage to enemies in a radius of 2. Damage is reduced by 50% against Armored units and 95% against shields.</c><n/><s val="AISurrenderTitle"><c val="F4CE4D">Level 2:</c></s> <c val="FCF5C5">Deals 200 damage to enemies in a radius of 3. Damage is reduced by 50% against Armored units and 95% against shields.</c><n/><n/><s val="AchievementFrameDescription">“‘Almost’ counts in horseshoes and hand grenades.”</s>
-UserData/TalentTree/Rifleman Combat Tree_Talent Tooltips_004=Intoxicated by the rush of battle, the Rifleman can enter a state of heightened reflexes and zeal, shooting with pinpoint accuracy for a brief period of time.<n/><n/><s val="AISurrenderTitle"><c val="F4CE4D">Level 1:</c></s> <c val="FCF5C5">The Rifleman receives 50% bonus attack speed and damage for 15 seconds.</c><n/><n/><s val="AchievementFrameDescription">“I happen to be a death-dealing, blood-crazed warrior who wakes up every day just hoping for the chance to dismember my enemies and defile their civilizations.”</s>
-UserData/TalentTree/Rifleman Combat Tree_Talent Tooltips_005=The UGC Modular Grenade Launcher is an underslung grenade launcher that can also be used alone.It uses an electromagnetic catapult mechanism rather than a firing assembly, allowing it to use both hand grenades and launcher grenades as ammunition. Grenades are affected by Focus Fire’s damage bonus and can Critical Strike.<n/><n/><s val="AISurrenderTitle"><c val="F4CE4D">Level 1: </c></s><c val="FCF5C5">Fragmentation Grenade gains additional range and damage if it is Level 2 and the Rifleman gains access to the Impaler Grenade and Plasma Grenade abilities.</c><n/><n/><s val="AchievementFrameDescription">“Grenades for every occasion - it's like Christmas!”</s>
-UserData/TalentTree/Rifleman Survival Tree_Header=<s val="AiurChefCenterSize22Bold"><c val="3CFFD8">SURVIVAL</c></s>
-UserData/TalentTree/Rifleman Survival Tree_Talent Name=<s val="AchievementFrameName">Precision Shot</s>
-UserData/TalentTree/Rifleman Survival Tree_Talent Name_001=<s val="AchievementFrameName">Crippling Fire</s> <s val="AchievementFrameName_Zerg">[Passive]</s>
-UserData/TalentTree/Rifleman Survival Tree_Talent Name_002=<s val="AchievementFrameName">Self Aid</s>
-UserData/TalentTree/Rifleman Survival Tree_Talent Name_003=<s val="AchievementFrameName">Sonic Trap</s>
-UserData/TalentTree/Rifleman Survival Tree_Talent Name_004=<s val="AchievementFrameName">Repulse</s>
+UserData/TalentTree/Rifleman Combat Tree_Talent Tooltips=Improves Focus Fire's offensive abilities.<n/><n/><s val="AISurrenderTitle"><c val="F4CE4D">Level 1:</c> </s><c val="FCF5C5">Increases Focus Fire's damage bonus by 20%.</c><n/><s val="AISurrenderTitle"><c val="F4CE4D">Level 2:</c></s><c val="FCF5C5"> Focus Fire also grants +2 Range.</c><n/><s val="AISurrenderTitle"><c val="F4CE4D">Level 3:</c></s> <c val="FCF5C5">Focus Fire increases Attack Speed by 20% instead of lowering it.</c><n/><n/><s val="AchievementFrameDescription">“My rifle and I know that what counts in this war is not the rounds we fire, the noise of our burst, nor the smoke we make. We know that it is the hits that count. We will hit...”</s>
+UserData/TalentTree/Rifleman Combat Tree_Talent Tooltips_001=Deals damage in an area, dealing more damage the closer to the center.<n/><n/><s val="AISurrenderTitle"><c val="F4CE4D">Level 1:</c></s><c val="FCF5C5"> Deals up to 200 damage in a 3.0 radius.</c><n/><s val="AISurrenderTitle"><c val="F4CE4D">Level 2:</c> </s><c val="FCF5C5">Increased explosion radius.</c><n/><s val="AISurrenderTitle"><c val="F4CE4D">Level 3:</c></s> <c val="FCF5C5">Ability holds up to three charges.</c><n/><n/><s val="AchievementFrameDescription">“Bullets are messages sent to an individual. Grenades are for “whom it may concern“.”</s>
+UserData/TalentTree/Rifleman Combat Tree_Talent Tooltips_002=Provides additional bonuses to Focus Fire.<n/><n/><s val="AISurrenderTitle"><c val="F4CE4D">Level 1:</c></s><c val="FCF5C5"> Focus Fire increases Reload Speed by 20% while active.</c><n/><s val="AISurrenderTitle"><c val="F4CE4D">Level 2:</c></s><c val="FCF5C5"> Focus Fire's bonuses are increased by 50%, including the Reload Speed bonus.</c><n/><n/><s val="AchievementFrameDescription">“My rifle is human, even as I, because it is my life. Thus, I will learn it as a brother. I will learn its weaknesses, its strength, its parts, its accessories, its sights and its barrel. I will keep my rifle clean and ready, even as I am clean and ready. We will become part of each other. We will...”</s>
+UserData/TalentTree/Rifleman Combat Tree_Talent Tooltips_003=Anti-armor grenades that deal a large amount of damage over time.<n/><n/><s val="AISurrenderTitle"><c val="F4CE4D">Level 1:</c></s> <c val="FCF5C5">Deals 400 damage (+200 vs Armored) over 8 seconds.</c><n/><s val="AISurrenderTitle"><c val="F4CE4D">Level 2:</c></s> <c val="FCF5C5">Deals 600 damage over 4 seconds.</c><n/><n/><s val="AchievementFrameDescription">"Thermite burns at over 4,000 degrees, sufficient to turn any armor into slag in seconds."</s>
+UserData/TalentTree/Rifleman Combat Tree_Talent Tooltips_004=Increases attack speed and damage for a duration that can be extended by killing enemies.<n/><n/><s val="AISurrenderTitle"><c val="F4CE4D">Level 1:</c></s> <c val="FCF5C5">Increases Weapon Damage and Attack Speed by 50% for 10 seconds. Killing an enemy adds 1 second to the ability's duration.</c><n/><n/><s val="AchievementFrameDescription">“My rifle, without me, is useless. Without my rifle, I am useless. I must fire my rifle true. I must shoot straighter than my enemy who is trying to kill me. I must shoot him before he shoots me. I will...”</s>
+UserData/TalentTree/Rifleman Combat Tree_Talent Tooltips_005=Equip a modular grenade launcher, increasing the range and damage of grenade abilities.<n/><n/><s val="AISurrenderTitle"><c val="F4CE4D">Level 1: </c></s><c val="FCF5C5">Frag Grenade and Sticky Bomb abilities are upgraded and Canister Shot becomes available.</c><n/><n/><s val="AchievementFrameDescription">“You mustn't be afraid to dream a little bigger, darling.”</s>
+UserData/TalentTree/Rifleman Survival Tree_Header=<s val="AiurChefCenterSize22Bold"><c val="0566F8">SECURITY</c></s>
+UserData/TalentTree/Rifleman Survival Tree_Talent Name=<s val="AchievementFrameName">Suppressive Fire</s> <s val="AchievementFrameName_Zerg">[Passive]</s>
+UserData/TalentTree/Rifleman Survival Tree_Talent Name_001=<s val="AchievementFrameName">First Aid</s> <s val="AchievementFrameName_Zerg">[Passive]</s>
+UserData/TalentTree/Rifleman Survival Tree_Talent Name_002=<s val="AchievementFrameName">Stun Grenade </s>
+UserData/TalentTree/Rifleman Survival Tree_Talent Name_003=<s val="AchievementFrameName">Buddy System</s>
+UserData/TalentTree/Rifleman Survival Tree_Talent Name_004=<s val="AchievementFrameName">Sonic Trap</s>
 UserData/TalentTree/Rifleman Survival Tree_Talent Name_005=<s val="AchievementFrameName">K-9 Companion</s>
-UserData/TalentTree/Rifleman Survival Tree_Talent Tooltips=The Rifleman takes aim and fires a single well placed shot at the enemy, dealing high damage and slowing them. Precision Shot is affected by Focus Fire’s damage bonus and can Critical strike. If Focus Fire is active and has Crippling Strike’s upgrade, the bonus damage is applied automatically.<n/><n/><s val="AISurrenderTitle"><c val="F4CE4D">Level 1:</c> </s><c val="FCF5C5">Deals 100 damage and slows target movespeed by 10% for 5 seconds.</c><n/><s val="AISurrenderTitle"><c val="F4CE4D">Level 2:</c> </s><c val="FCF5C5">Deals 200 damage and slows target movespeed by 20% for 5 seconds.</c><n/><s val="AISurrenderTitle"><c val="F4CE4D">Level 3:</c></s> <c val="FCF5C5">Deals 300 damage and slows target movespeed by 40% for 5 seconds.</c><n/><n/><s val="AchievementFrameDescription">“My rifle, without me, is useless. Without my rifle, I am useless. I must fire my rifle true. I must shoot straighter than my enemy who is trying to kill me. I must shoot him before he shoots me. I will...”</s>
-UserData/TalentTree/Rifleman Survival Tree_Talent Tooltips_001=Defensive combat training allows the Rifleman to effectively utilize suppressing action, providing additional defensive bonuses while Focus Fire is active.<n/><n/><s val="AISurrenderTitle"><c val="F4CE4D">Level 1:</c></s> <c val="FCF5C5">Lowers the attacked target’s movespeed by 15% and attack speed by 5% for 1 second.</c><n/><s val="AISurrenderTitle"><c val="F4CE4D">Level 2:</c></s> <c val="FCF5C5">Lowers the attacked target’s movespeed by 20% and attack speed by 10% for 1 second.</c><n/><s val="AISurrenderTitle"><c val="F4CE4D">Level 3:</c></s> <c val="FCF5C5">Lowers the attacked target’s movespeed by 25% and attack speed by 15% for 1 second.</c><n/><n/><s val="AchievementFrameDescription">“Sometimes, looking to incapacitate the enemy rather than kill them is the better option.”</s>
-UserData/TalentTree/Rifleman Survival Tree_Talent Tooltips_002=The Rifleman’s powered exoskeleton has a multitude of integrated injection modules which contain various antivenoms, coagulants, and saline, which they can use to cure minor injuries. If the suit is in overdrive, it is possible to set bones and mend fractures nearly instantly.<n/><n/><s val="AISurrenderTitle"><c val="F4CE4D">Level 1:</c></s> <c val="FCF5C5">Restores 30 hitpoints and cures 1 Venom.</c><n/><s val="AISurrenderTitle"><c val="F4CE4D">Level 2:</c></s> <c val="FCF5C5">Restores 60 hitpoints and cures 1 Venom and 1 Open Wound.</c><n/><n/><s val="AchievementFrameDescription">“The easiest way to stay alive is to stay healthy. It’s never “just a scratch” – treat every wound with the respect it deserves.”</s>
-UserData/TalentTree/Rifleman Survival Tree_Talent Tooltips_003=Sonic Traps use explosive charges suspended within shields to create non-lethal shockwaves that knock back or slow nearby units when an enemy passes within 3 radius.<n/><n/><s val="AISurrenderTitle"><c val="F4CE4D">Level 1:</c> </s><c val="FCF5C5">All non-heroic and non-massive units in a 5 radius are pushed back a distance of 5 and stunned for 0.5 seconds. Massive units are slowed by 20% and Heroic units are slowed by 10%.</c><n/><s val="AISurrenderTitle"><c val="F4CE4D">Level 2:</c></s> <c val="FCF5C5">All non-heroic and non-massive units in a 8 radius are pushed back a distance of 5 and stunned for 1 second. Massive units are slowed by 40% and Heroic units are slowed by 20%.</c><n/><n/><s val="AchievementFrameDescription">“These things got their name ‘cause they sounded like a sonic boom. Nowadays they’re all quiet when they throw you fifty friggin' feet.”</s>
-UserData/TalentTree/Rifleman Survival Tree_Talent Tooltips_004=The Rifleman forces an enormous surge of energy into their suit’s capacitors, pushing their suit’s systems into overdrive and blasting the excess energy from its shield nodes.<n/><n/><s val="AISurrenderTitle"><c val="F4CE4D">Level 1:</c></s> <c val="FCF5C5">Non-Heroic units in a radius of 6 take 200 damage and are stunned for 5 seconds. Heroic units have their movement speed lowered by 50% for 5 seconds. The Rifleman gains 2 armor, 50% bonus movement speed, and an improved Self Aid for 10 seconds.</c><n/><n/><s val="AchievementFrameDescription">“Your armor, not unlike a shield, is not just something that protects you. Used properly, it is also an effective weapon.”</s>
-UserData/TalentTree/Rifleman Survival Tree_Talent Tooltips_005=Dogs have been used as companions in wartime situations for thousands of years and for a wide variety of uses. Most commonly, they are employed as sentries, scouts, and combat companions. Recent events have phased out live combat companions, but robotics advancements have provided a replacement.<n/><n/><s val="AISurrenderTitle"><c val="F4CE4D">Level 1:</c></s><c val="FCF5C5"> The K-9 Unit is a versatile companion that can be used to aid in combat, scout, retrieve items, and defend areas.</c><n/><n/><s val="AchievementFrameDescription">“Man’s best friend isn’t a dog anymore. It’s a dog shaped robot buddy.”</s>
+UserData/TalentTree/Rifleman Survival Tree_Talent Tooltips=Focus Fire slows damaged enemies while active.<n/><n/><s val="AISurrenderTitle"><c val="F4CE4D">Level 1:</c> </s><c val="FCF5C5">Reduces enemy Movement Speed by 20% for 0.25 seconds.</c><n/><s val="AISurrenderTitle"><c val="F4CE4D">Level 2:</c> </s><c val="FCF5C5">Slow duration increased to 1 second.</c><n/><s val="AISurrenderTitle"><c val="F4CE4D">Level 3:</c></s> <c val="FCF5C5">Also reduces enemy Attack Speed by 20%.</c><n/><n/><s val="AchievementFrameDescription">“Suppression of enemy forces allows your allies a greater opportunity to attack from a position of strength.”</s>
+UserData/TalentTree/Rifleman Survival Tree_Talent Tooltips_001=Improves the Rifleman's Self Aid ability.<n/><n/><s val="AISurrenderTitle"><c val="F4CE4D">Level 1:</c></s> <c val="FCF5C5">Self Aid restores an additional 75 hitpoints over 3 seconds.</c><n/><s val="AISurrenderTitle"><c val="F4CE4D">Level 2:</c></s> <c val="FCF5C5">Self Aid also removes 1 Venom effect.</c><n/><s val="AISurrenderTitle"><c val="F4CE4D">Level 3:</c></s> <c val="FCF5C5">Self Aid also removes 1 Open Wound effect.</c><n/><n/><s val="AchievementFrameDescription">“First to aid, last to die.”</s>
+UserData/TalentTree/Rifleman Survival Tree_Talent Tooltips_002=Disables enemies in the target area.<n/><n/><s val="AISurrenderTitle"><c val="F4CE4D">Level 1:</c></s> <c val="FCF5C5">Stuns enemies in a 3.0 radius for 2 seconds.</c><n/><s val="AISurrenderTitle"><c val="F4CE4D">Level 2:</c></s> <c val="FCF5C5">Enemies are slowed by 40% for 4 seconds after the stun ends.</c><n/><n/><s val="AchievementFrameDescription">“Flashbangs are real crowd pleasers, let me tell you.”</s>
+UserData/TalentTree/Rifleman Survival Tree_Talent Tooltips_003=Link up with another player, providing both the Rifleman and the target with bonuses while linked.<n/><n/><s val="AISurrenderTitle"><c val="F4CE4D">Level 1:</c> </s><c val="FCF5C5">Increases Movement Speed by 20% and shares vision.</c><n/><s val="AISurrenderTitle"><c val="F4CE4D">Level 2:</c></s> <c val="FCF5C5">Self Aid heals the linked unit and invisibility effects are transfered to the Rifleman.</c><n/><n/><s val="AchievementFrameDescription">“Always look out for your battle buddy. Keep them alive and they'll keep you alive.”</s>
+UserData/TalentTree/Rifleman Survival Tree_Talent Tooltips_004=A proximity-activated device that knocks back enemy units.<n/><n/><s val="AISurrenderTitle"><c val="F4CE4D">Level 1:</c></s> <c val="FCF5C5">Enemies passing within a 3 radius cause all enemies within a 6 radius to be knocked back and stunned for 2 seconds. Massive enemies are slowed by 50% instead of stunned.</c><n/><n/><s val="AchievementFrameDescription">“A sonic boom trapped within a shield can produce a harmless, if a bit disorienting, form of crowd control.”</s>
+UserData/TalentTree/Rifleman Survival Tree_Talent Tooltips_005=The K-9 Unit can be deployed by the Rifleman to aid in scouting and support.<n/><n/><s val="AISurrenderTitle"><c val="F4CE4D">Level 1:</c></s><c val="FCF5C5"> The K-9 Unit has a 2-slot inventory, a melee attack, and a 50% chance to evade gunfire.</c><n/><n/><s val="AchievementFrameDescription">“Man’s best friend isn’t a dog anymore, it’s a dog-shaped robot buddy.”</s>
 UserData/TalentTree/Template_Header=<s val="AiurChefCenterSize24Bold">Ability Tree Name</s>
 UserData/TalentTrees/Rifleman_Headers=Combat
 UserData/TalentTrees/Rifleman_Headers_001=Survival
