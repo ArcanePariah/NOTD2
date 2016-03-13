@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<Catalog>
+    <CBankConditionCompareValueInteger default="1" id="ItemPurchasedTemplate">
+        <Bank value="NOTD2Unlocks"/>
+        <Value value="1"/>
+    </CBankConditionCompareValueInteger>
+    <CBankConditionCompareValueInteger default="1" id="ArmorPurchasedTemplate" parent="ItemPurchasedTemplate">
+        <?token id="ArmorSlot"?>
+        <?token id="ArmorSet"?>
+        <Section value="##ArmorSet##"/>
+        <Key value="##ArmorSlot##"/>
+    </CBankConditionCompareValueInteger>
+    <CBankConditionCompareValueInteger default="1" id="RatingAboveTemplate">
+        <Bank value="NightoftheDead2"/>
+        <Section value="PlayerData"/>
+        <Key value="Rating"/>
+        <Compare value="GE"/>
+    </CBankConditionCompareValueInteger>
+    <CBankConditionCombine id="ItemUnavailable">
+        <Type value="Or"/>
+        <CombineArray value="ItemAvailable"/>
+        <CombineArray value="ItemPurchasedTemplate"/>
+        <Negate value="1"/>
+    </CBankConditionCombine>
+    <CBankConditionCompareValueInteger id="RatingAbove0" parent="RatingAboveTemplate"/>
+    <CBankConditionCompareValueInteger id="RatingAbove100" parent="RatingAboveTemplate">
+        <Value value="100"/>
+    </CBankConditionCompareValueInteger>
+    <CBankConditionCompareValueInteger id="RatingAbove1300" parent="RatingAboveTemplate">
+        <Value value="1300"/>
+    </CBankConditionCompareValueInteger>
+    <CBankConditionCompareValueInteger id="RatingAbove1400" parent="RatingAboveTemplate">
+        <Value value="1400"/>
+    </CBankConditionCompareValueInteger>
+    <CBankConditionCompareValueInteger id="RatingAbove1500" parent="RatingAboveTemplate">
+        <Value value="1500"/>
+    </CBankConditionCompareValueInteger>
+    <CBankConditionCompareValueInteger id="RatingAbove1600" parent="RatingAboveTemplate">
+        <Value value="1600"/>
+    </CBankConditionCompareValueInteger>
+    <CBankConditionCompareValueInteger id="RatingAbove1700" parent="RatingAboveTemplate">
+        <Value value="1700"/>
+    </CBankConditionCompareValueInteger>
+    <CBankConditionCompareValueInteger id="RatingAbove1800" parent="RatingAboveTemplate">
+        <Value value="1800"/>
+    </CBankConditionCompareValueInteger>
+    <CBankConditionCompareValueInteger id="RatingAbove1900" parent="RatingAboveTemplate">
+        <Value value="1900"/>
+    </CBankConditionCompareValueInteger>
+    <CBankConditionCompareValueInteger id="RatingAbove300" parent="RatingAboveTemplate">
+        <Value value="300"/>
+    </CBankConditionCompareValueInteger>
+    <CBankConditionCompareValueInteger id="RatingAbove400" parent="RatingAboveTemplate">
+        <Value value="400"/>
+    </CBankConditionCompareValueInteger>
+    <CBankConditionCompareValueInteger id="RatingAbove200" parent="RatingAboveTemplate">
+        <Value value="200"/>
+    </CBankConditionCompareValueInteger>
+    <CBankConditionCompareValueInteger id="RatingAbove1200" parent="RatingAboveTemplate">
+        <Value value="1200"/>
+    </CBankConditionCompareValueInteger>
+    <CBankConditionCompareValueInteger id="RatingAbove1100" parent="RatingAboveTemplate">
+        <Value value="1100"/>
+    </CBankConditionCompareValueInteger>
+    <CBankConditionCompareValueInteger id="RatingAbove1000" parent="RatingAboveTemplate">
+        <Value value="1000"/>
+    </CBankConditionCompareValueInteger>
+    <CBankConditionCompareValueInteger id="RatingAbove900" parent="RatingAboveTemplate">
+        <Value value="900"/>
+    </CBankConditionCompareValueInteger>
+    <CBankConditionCompareValueInteger id="RatingAbove600" parent="RatingAboveTemplate">
+        <Value value="600"/>
+    </CBankConditionCompareValueInteger>
+    <CBankConditionCompareValueInteger id="RatingAbove800" parent="RatingAboveTemplate">
+        <Value value="800"/>
+    </CBankConditionCompareValueInteger>
+    <CBankConditionCompareValueInteger id="RatingAbove700" parent="RatingAboveTemplate">
+        <Value value="700"/>
+    </CBankConditionCompareValueInteger>
+    <CBankConditionCompareValueInteger id="RatingAbove500" parent="RatingAboveTemplate">
+        <Value value="500"/>
+    </CBankConditionCompareValueInteger>
+    <CBankConditionCompareValueInteger id="Ratingis2000" parent="RatingAboveTemplate">
+        <Compare value="Eq"/>
+        <Value value="2000"/>
+    </CBankConditionCompareValueInteger>
+    <CBankConditionCompareValueInteger id="Recruit">
+        <Bank value="NightoftheDead2"/>
+        <Section value="PlayerData"/>
+        <Key value="TotalExperience"/>
+        <Compare value="LE"/>
+        <Value value="500"/>
+    </CBankConditionCompareValueInteger>
+    <CBankConditionCompareValueInteger id="AvalancheHelmetPurchased" parent="ArmorPurchasedTemplate" ArmorSlot="Helmet" ArmorSet="Avalanche"/>
+    <CBankConditionCompareValueInteger id="AvalancheTorsoPurchased" parent="ArmorPurchasedTemplate" ArmorSlot="Torso" ArmorSet="Avalanche"/>
+    <CBankConditionCompareValueInteger id="AvalancheShouldersPurchased" parent="ArmorPurchasedTemplate" ArmorSlot="Shoulders" ArmorSet="Avalanche"/>
+    <CBankConditionCompareValueInteger id="AvalancheLegsPurchased" parent="ArmorPurchasedTemplate" ArmorSlot="Legs" ArmorSet="Avalanche"/>
+    <CBankConditionCompareValueInteger id="AvalancheArmsPurchased" parent="ArmorPurchasedTemplate" ArmorSlot="Arms" ArmorSet="Avalanche"/>
+    <CBankConditionCompareValueInteger id="BasicHelmetPurchased" parent="ArmorPurchasedTemplate" ArmorSlot="Helmet" ArmorSet="Basic"/>
+    <CBankConditionCompareValueInteger id="BasicTorsoPurchased" parent="ArmorPurchasedTemplate" ArmorSlot="Torso" ArmorSet="Basic"/>
+    <CBankConditionCompareValueInteger id="BasicShouldersPurchased" parent="ArmorPurchasedTemplate" ArmorSlot="Shoulders" ArmorSet="Basic"/>
+    <CBankConditionCompareValueInteger id="BasicLegsPurchased" parent="ArmorPurchasedTemplate" ArmorSlot="Legs" ArmorSet="Basic"/>
+    <CBankConditionCompareValueInteger id="BasicArmsPurchased" parent="ArmorPurchasedTemplate" ArmorSlot="Arms" ArmorSet="Basic"/>
+    <CBankConditionCompareValueInteger id="BreachHelmetPurchased" parent="ArmorPurchasedTemplate" ArmorSlot="Helmet" ArmorSet="Breach"/>
+    <CBankConditionCompareValueInteger id="BreachTorsoPurchased" parent="ArmorPurchasedTemplate" ArmorSlot="Torso" ArmorSet="Breach"/>
+    <CBankConditionCompareValueInteger id="BreachShouldersPurchased" parent="ArmorPurchasedTemplate" ArmorSlot="Shoulders" ArmorSet="Breach"/>
+    <CBankConditionCompareValueInteger id="BreachLegsPurchased" parent="ArmorPurchasedTemplate" ArmorSlot="Legs" ArmorSet="Breach"/>
+    <CBankConditionCompareValueInteger id="BreachArmsPurchased" parent="ArmorPurchasedTemplate" ArmorSlot="Arms" ArmorSet="Breach"/>
+    <CBankConditionCompareValueInteger id="EvacHelmetPurchased" parent="ArmorPurchasedTemplate" ArmorSlot="Helmet" ArmorSet="Evac"/>
+    <CBankConditionCompareValueInteger id="EvacTorsoPurchased" parent="ArmorPurchasedTemplate" ArmorSlot="Torso" ArmorSet="Evac"/>
+    <CBankConditionCompareValueInteger id="EvacShouldersPurchased" parent="ArmorPurchasedTemplate" ArmorSlot="Shoulders" ArmorSet="Evac"/>
+    <CBankConditionCompareValueInteger id="EvacLegsPurchased" parent="ArmorPurchasedTemplate" ArmorSlot="Legs" ArmorSet="Evac"/>
+    <CBankConditionCompareValueInteger id="EvacArmsPurchased" parent="ArmorPurchasedTemplate" ArmorSlot="Arms" ArmorSet="Evac"/>
+    <CBankConditionCompareValueInteger id="CraftHelmetPurchased" parent="ArmorPurchasedTemplate" ArmorSlot="Helmet" ArmorSet="Craft"/>
+    <CBankConditionCompareValueInteger id="CraftTorsoPurchased" parent="ArmorPurchasedTemplate" ArmorSlot="Torso" ArmorSet="Craft"/>
+    <CBankConditionCompareValueInteger id="CraftShouldersPurchased" parent="ArmorPurchasedTemplate" ArmorSlot="Shoulders" ArmorSet="Craft"/>
+    <CBankConditionCompareValueInteger id="CraftLegsPurchased" parent="ArmorPurchasedTemplate" ArmorSlot="Legs" ArmorSet="Craft"/>
+    <CBankConditionCompareValueInteger id="CraftArmsPurchased" parent="ArmorPurchasedTemplate" ArmorSlot="Arms" ArmorSet="Craft"/>
+    <CBankConditionCompareValueInteger id="CrossfireHelmetPurchased" parent="ArmorPurchasedTemplate" ArmorSlot="Helmet" ArmorSet="Crossfire"/>
+    <CBankConditionCompareValueInteger id="CrossfireTorsoPurchased" parent="ArmorPurchasedTemplate" ArmorSlot="Torso" ArmorSet="Crossfire"/>
+    <CBankConditionCompareValueInteger id="CrossfireShouldersPurchased" parent="ArmorPurchasedTemplate" ArmorSlot="Shoulders" ArmorSet="Crossfire"/>
+    <CBankConditionCompareValueInteger id="CrossfireLegsPurchased" parent="ArmorPurchasedTemplate" ArmorSlot="Legs" ArmorSet="Crossfire"/>
+    <CBankConditionCompareValueInteger id="CrossfireArmsPurchased" parent="ArmorPurchasedTemplate" ArmorSlot="Arms" ArmorSet="Crossfire"/>
+    <CBankConditionCompareValueInteger id="GoldCenturionHelmetPurchased" parent="ArmorPurchasedTemplate" ArmorSlot="Helmet" ArmorSet="GoldCenturion"/>
+    <CBankConditionCompareValueInteger id="GoldCenturionTorsoPurchased" parent="ArmorPurchasedTemplate" ArmorSlot="Torso" ArmorSet="GoldCenturion"/>
+    <CBankConditionCompareValueInteger id="GoldCenturionShouldersPurchased" parent="ArmorPurchasedTemplate" ArmorSlot="Shoulders" ArmorSet="GoldCenturion"/>
+    <CBankConditionCompareValueInteger id="GoldCenturionLegsPurchased" parent="ArmorPurchasedTemplate" ArmorSlot="Legs" ArmorSet="GoldCenturion"/>
+    <CBankConditionCompareValueInteger id="GoldCenturionArmsPurchased" parent="ArmorPurchasedTemplate" ArmorSlot="Arms" ArmorSet="GoldCenturion"/>
+    <CBankConditionCompareValueInteger id="KaitenHelmetPurchased" parent="ArmorPurchasedTemplate" ArmorSlot="Helmet" ArmorSet="Kaiten"/>
+    <CBankConditionCompareValueInteger id="KaitenTorsoPurchased" parent="ArmorPurchasedTemplate" ArmorSlot="Torso" ArmorSet="Kaiten"/>
+    <CBankConditionCompareValueInteger id="KaitenShouldersPurchased" parent="ArmorPurchasedTemplate" ArmorSlot="Shoulders" ArmorSet="Kaiten"/>
+    <CBankConditionCompareValueInteger id="KaitenLegsPurchased" parent="ArmorPurchasedTemplate" ArmorSlot="Legs" ArmorSet="Kaiten"/>
+    <CBankConditionCompareValueInteger id="KaitenArmsPurchased" parent="ArmorPurchasedTemplate" ArmorSlot="Arms" ArmorSet="Kaiten"/>
+    <CBankConditionCompareValueInteger id="LanceHelmetPurchased" parent="ArmorPurchasedTemplate" ArmorSlot="Helmet" ArmorSet="Lance"/>
+    <CBankConditionCompareValueInteger id="LanceTorsoPurchased" parent="ArmorPurchasedTemplate" ArmorSlot="Torso" ArmorSet="Lance"/>
+    <CBankConditionCompareValueInteger id="LanceShouldersPurchased" parent="ArmorPurchasedTemplate" ArmorSlot="Shoulders" ArmorSet="Lance"/>
+    <CBankConditionCompareValueInteger id="LanceLegsPurchased" parent="ArmorPurchasedTemplate" ArmorSlot="Legs" ArmorSet="Lance"/>
+    <CBankConditionCompareValueInteger id="LanceArmsPurchased" parent="ArmorPurchasedTemplate" ArmorSlot="Arms" ArmorSet="Lance"/>
+    <CBankConditionCompareValueInteger id="NeutrinoHelmetPurchased" parent="ArmorPurchasedTemplate" ArmorSlot="Helmet" ArmorSet="Neutrino"/>
+    <CBankConditionCompareValueInteger id="NeutrinoTorsoPurchased" parent="ArmorPurchasedTemplate" ArmorSlot="Torso" ArmorSet="Neutrino"/>
+    <CBankConditionCompareValueInteger id="NeutrinoShouldersPurchased" parent="ArmorPurchasedTemplate" ArmorSlot="Shoulders" ArmorSet="Neutrino"/>
+    <CBankConditionCompareValueInteger id="NeutrinoLegsPurchased" parent="ArmorPurchasedTemplate" ArmorSlot="Legs" ArmorSet="Neutrino"/>
+    <CBankConditionCompareValueInteger id="NeutrinoArmsPurchased" parent="ArmorPurchasedTemplate" ArmorSlot="Arms" ArmorSet="Neutrino"/>
+    <CBankConditionCompareValueInteger id="PeacekeeperHelmetPurchased" parent="ArmorPurchasedTemplate" ArmorSlot="Helmet" ArmorSet="Peacekeeper"/>
+    <CBankConditionCompareValueInteger id="PeacekeeperTorsoPurchased" parent="ArmorPurchasedTemplate" ArmorSlot="Torso" ArmorSet="Peacekeeper"/>
+    <CBankConditionCompareValueInteger id="PeacekeeperShouldersPurchased" parent="ArmorPurchasedTemplate" ArmorSlot="Shoulders" ArmorSet="Peacekeeper"/>
+    <CBankConditionCompareValueInteger id="PeacekeeperLegsPurchased" parent="ArmorPurchasedTemplate" ArmorSlot="Legs" ArmorSet="Peacekeeper"/>
+    <CBankConditionCompareValueInteger id="PeacekeeperArmsPurchased" parent="ArmorPurchasedTemplate" ArmorSlot="Arms" ArmorSet="Peacekeeper"/>
+    <CBankConditionCompareValueInteger id="PyroHelmetPurchased" parent="ArmorPurchasedTemplate" ArmorSlot="Helmet" ArmorSet="Pyro"/>
+    <CBankConditionCompareValueInteger id="PyroTorsoPurchased" parent="ArmorPurchasedTemplate" ArmorSlot="Torso" ArmorSet="Pyro"/>
+    <CBankConditionCompareValueInteger id="PyroShouldersPurchased" parent="ArmorPurchasedTemplate" ArmorSlot="Shoulders" ArmorSet="Pyro"/>
+    <CBankConditionCompareValueInteger id="PyroLegsPurchased" parent="ArmorPurchasedTemplate" ArmorSlot="Legs" ArmorSet="Pyro"/>
+    <CBankConditionCompareValueInteger id="PyroArmsPurchased" parent="ArmorPurchasedTemplate" ArmorSlot="Arms" ArmorSet="Pyro"/>
+    <CBankConditionCompareValueInteger id="QesunHelmetPurchased" parent="ArmorPurchasedTemplate" ArmorSlot="Helmet" ArmorSet="Qesun"/>
+    <CBankConditionCompareValueInteger id="QesunTorsoPurchased" parent="ArmorPurchasedTemplate" ArmorSlot="Torso" ArmorSet="Qesun"/>
+    <CBankConditionCompareValueInteger id="QesunShouldersPurchased" parent="ArmorPurchasedTemplate" ArmorSlot="Shoulders" ArmorSet="Qesun"/>
+    <CBankConditionCompareValueInteger id="QesunLegsPurchased" parent="ArmorPurchasedTemplate" ArmorSlot="Legs" ArmorSet="Qesun"/>
+    <CBankConditionCompareValueInteger id="QesunArmsPurchased" parent="ArmorPurchasedTemplate" ArmorSlot="Arms" ArmorSet="Qesun"/>
+    <CBankConditionCompareValueInteger id="RebelHelmetPurchased" parent="ArmorPurchasedTemplate" ArmorSlot="Helmet" ArmorSet="Rebel"/>
+    <CBankConditionCompareValueInteger id="RebelTorsoPurchased" parent="ArmorPurchasedTemplate" ArmorSlot="Torso" ArmorSet="Rebel"/>
+    <CBankConditionCompareValueInteger id="RebelShouldersPurchased" parent="ArmorPurchasedTemplate" ArmorSlot="Shoulders" ArmorSet="Rebel"/>
+    <CBankConditionCompareValueInteger id="RebelLegsPurchased" parent="ArmorPurchasedTemplate" ArmorSlot="Legs" ArmorSet="Rebel"/>
+    <CBankConditionCompareValueInteger id="RebelArmsPurchased" parent="ArmorPurchasedTemplate" ArmorSlot="Arms" ArmorSet="Rebel"/>
+    <CBankConditionCompareValueInteger id="RhinoHelmetPurchased" parent="ArmorPurchasedTemplate" ArmorSlot="Helmet" ArmorSet="Rhino"/>
+    <CBankConditionCompareValueInteger id="RhinoTorsoPurchased" parent="ArmorPurchasedTemplate" ArmorSlot="Torso" ArmorSet="Rhino"/>
+    <CBankConditionCompareValueInteger id="RhinoShouldersPurchased" parent="ArmorPurchasedTemplate" ArmorSlot="Shoulders" ArmorSet="Rhino"/>
+    <CBankConditionCompareValueInteger id="RhinoLegsPurchased" parent="ArmorPurchasedTemplate" ArmorSlot="Legs" ArmorSet="Rhino"/>
+    <CBankConditionCompareValueInteger id="RhinoArmsPurchased" parent="ArmorPurchasedTemplate" ArmorSlot="Arms" ArmorSet="Rhino"/>
+    <CBankConditionCompareValueInteger id="ScavengerHelmetPurchased" parent="ArmorPurchasedTemplate" ArmorSlot="Helmet" ArmorSet="Scavenger"/>
+    <CBankConditionCompareValueInteger id="ScavengerTorsoPurchased" parent="ArmorPurchasedTemplate" ArmorSlot="Torso" ArmorSet="Scavenger"/>
+    <CBankConditionCompareValueInteger id="ScavengerShouldersPurchased" parent="ArmorPurchasedTemplate" ArmorSlot="Shoulders" ArmorSet="Scavenger"/>
+    <CBankConditionCompareValueInteger id="ScavengerLegsPurchased" parent="ArmorPurchasedTemplate" ArmorSlot="Legs" ArmorSet="Scavenger"/>
+    <CBankConditionCompareValueInteger id="ScavengerArmsPurchased" parent="ArmorPurchasedTemplate" ArmorSlot="Arms" ArmorSet="Scavenger"/>
+    <CBankConditionCompareValueInteger id="ShadowHelmetPurchased" parent="ArmorPurchasedTemplate" ArmorSlot="Helmet" ArmorSet="Shadow"/>
+    <CBankConditionCompareValueInteger id="ShadowTorsoPurchased" parent="ArmorPurchasedTemplate" ArmorSlot="Torso" ArmorSet="Shadow"/>
+    <CBankConditionCompareValueInteger id="ShadowShouldersPurchased" parent="ArmorPurchasedTemplate" ArmorSlot="Shoulders" ArmorSet="Shadow"/>
+    <CBankConditionCompareValueInteger id="ShadowLegsPurchased" parent="ArmorPurchasedTemplate" ArmorSlot="Legs" ArmorSet="Shadow"/>
+    <CBankConditionCompareValueInteger id="ShadowArmsPurchased" parent="ArmorPurchasedTemplate" ArmorSlot="Arms" ArmorSet="Shadow"/>
+    <CBankConditionCompareValueInteger id="VortexHelmetPurchased" parent="ArmorPurchasedTemplate" ArmorSlot="Helmet" ArmorSet="Vortex"/>
+    <CBankConditionCompareValueInteger id="VortexTorsoPurchased" parent="ArmorPurchasedTemplate" ArmorSlot="Torso" ArmorSet="Vortex"/>
+    <CBankConditionCompareValueInteger id="VortexShouldersPurchased" parent="ArmorPurchasedTemplate" ArmorSlot="Shoulders" ArmorSet="Vortex"/>
+    <CBankConditionCompareValueInteger id="VortexLegsPurchased" parent="ArmorPurchasedTemplate" ArmorSlot="Legs" ArmorSet="Vortex"/>
+    <CBankConditionCompareValueInteger id="VortexArmsPurchased" parent="ArmorPurchasedTemplate" ArmorSlot="Arms" ArmorSet="Vortex"/>
+    <CBankConditionCompareValueInteger id="WarHelmetPurchased" parent="ArmorPurchasedTemplate" ArmorSlot="Helmet" ArmorSet="War"/>
+    <CBankConditionCompareValueInteger id="WarTorsoPurchased" parent="ArmorPurchasedTemplate" ArmorSlot="Torso" ArmorSet="War"/>
+    <CBankConditionCompareValueInteger id="WarShouldersPurchased" parent="ArmorPurchasedTemplate" ArmorSlot="Shoulders" ArmorSet="War"/>
+    <CBankConditionCompareValueInteger id="WarLegsPurchased" parent="ArmorPurchasedTemplate" ArmorSlot="Legs" ArmorSet="War"/>
+    <CBankConditionCompareValueInteger id="WarArmsPurchased" parent="ArmorPurchasedTemplate" ArmorSlot="Arms" ArmorSet="War"/>
+    <CBankConditionCompareValueInteger id="Warcraft3HelmetPurchased" parent="ArmorPurchasedTemplate" ArmorSlot="Helmet" ArmorSet="Warcraft3"/>
+    <CBankConditionCompareValueInteger id="Warcraft3TorsoPurchased" parent="ArmorPurchasedTemplate" ArmorSlot="Torso" ArmorSet="Warcraft3"/>
+    <CBankConditionCompareValueInteger id="Warcraft3ShouldersPurchased" parent="ArmorPurchasedTemplate" ArmorSlot="Shoulders" ArmorSet="Warcraft3"/>
+    <CBankConditionCompareValueInteger id="Warcraft3LegsPurchased" parent="ArmorPurchasedTemplate" ArmorSlot="Legs" ArmorSet="Warcraft3"/>
+    <CBankConditionCompareValueInteger id="Warcraft3ArmsPurchased" parent="ArmorPurchasedTemplate" ArmorSlot="Arms" ArmorSet="Warcraft3"/>
+    <CBankConditionCompareValueInteger id="ZyncHelmetPurchased" parent="ArmorPurchasedTemplate" ArmorSlot="Helmet" ArmorSet="Zync"/>
+    <CBankConditionCompareValueInteger id="ZyncTorsoPurchased" parent="ArmorPurchasedTemplate" ArmorSlot="Torso" ArmorSet="Zync"/>
+    <CBankConditionCompareValueInteger id="ZyncShouldersPurchased" parent="ArmorPurchasedTemplate" ArmorSlot="Shoulders" ArmorSet="Zync"/>
+    <CBankConditionCompareValueInteger id="ZyncLegsPurchased" parent="ArmorPurchasedTemplate" ArmorSlot="Legs" ArmorSet="Zync"/>
+    <CBankConditionCompareValueInteger id="ZyncArmsPurchased" parent="ArmorPurchasedTemplate" ArmorSlot="Arms" ArmorSet="Zync"/>
+</Catalog>
