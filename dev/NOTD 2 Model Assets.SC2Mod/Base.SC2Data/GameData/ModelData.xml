@@ -1,99 +1,105 @@
 <?xml version="1.0" encoding="us-ascii"?>
 <Catalog>
-    <CModel default="1" id="ArmorTermplate">
+    <CModel default="1" id="ArmorTemplate">
         <?token id="ArmorTexturePrefix"?>
         <?token id="ArmorSetName"?>
         <?token id="ArmorSlot"?>
         <?token id="Class"?>
-        <Model value="##Class####ArmorSetName## ##ArmorSlot##.m3"/>
-        <LowQualityModel value="##id##"/>
+        <Model value="##Class####ArmorSetName## ##ArmorSlot## High.m3"/>
+        <LowQualityModel value="##id##Low"/>
         <TextureDeclares Prefix="##ArmorTexturePrefix##_Armour_">
-            <Adaptions TriggerOnSubstring="_Diffuse" Slot="main.diffuse"/>
+            <Adaptions TriggerOnSubstring="_High_Diffuse" Slot="main.diffuse"/>
         </TextureDeclares>
     </CModel>
-    <CModel default="1" id="AvalancheSetTemplate" parent="ArmorTermplate">
+    <CModel default="1" id="ArmorLowTemplate" parent="ArmorTemplate">
+        <Model value="##Class####ArmorSetName## ##ArmorSlot## Low.m3"/>
+        <TextureDeclares Prefix="##ArmorTexturePrefix##_Armour_">
+            <Adaptions TriggerOnSubstring="_Low_Diffuse" Slot="main.diffuse"/>
+        </TextureDeclares>
+    </CModel>
+    <CModel default="1" id="AvalancheSetTemplate" parent="ArmorTemplate">
         <?token id="ArmorTexturePrefix" value="Avalanche"?>
         <?token id="ArmorSetName" value="Avalanche"?>
     </CModel>
-    <CModel default="1" id="CrossfireSetTemplate" parent="ArmorTermplate">
-        <?token id="ArmorTexturePrefix" value="Heavy_Crossfire"?>
-        <?token id="ArmorSetName" value="Crossfire ISX-67"?>
-    </CModel>
-    <CModel default="1" id="NeutrinoSetTemplate" parent="ArmorTermplate">
-        <?token id="ArmorTexturePrefix" value="Neutrino"?>
-        <?token id="ArmorSetName" value="Neutrino"?>
-    </CModel>
-    <CModel default="1" id="QesunSetTemplate" parent="ArmorTermplate">
-        <?token id="ArmorTexturePrefix" value="Qesun"?>
-        <?token id="ArmorSetName" value="Qesun"?>
-    </CModel>
-    <CModel default="1" id="ScavengerSetTemplate" parent="ArmorTermplate">
-        <?token id="ArmorTexturePrefix" value="Heavy_Scavenger"?>
-        <?token id="ArmorSetName" value="Scavenger SR-12"?>
-    </CModel>
-    <CModel default="1" id="RhinoSetTemplate" parent="ArmorTermplate">
-        <?token id="ArmorTexturePrefix" value="Rhino"?>
-        <?token id="ArmorSetName" value="Rhino P5 - C9I"?>
-    </CModel>
-    <CModel default="1" id="WarSetTemplate" parent="ArmorTermplate">
-        <?token id="ArmorTexturePrefix" value="War"?>
-        <?token id="ArmorSetName" value="War"?>
-    </CModel>
-    <CModel default="1" id="ShadowSetTemplate" parent="ArmorTermplate">
-        <?token id="ArmorTexturePrefix" value="Shadow"?>
-        <?token id="ArmorSetName" value="Shadow"?>
-    </CModel>
-    <CModel default="1" id="BasicSetTemplate" parent="ArmorTermplate">
+    <CModel default="1" id="BasicSetTemplate" parent="ArmorTemplate">
         <?token id="ArmorTexturePrefix" value="Basic"?>
         <?token id="ArmorSetName" value="Basic"?>
     </CModel>
-    <CModel default="1" id="BreachSetTemplate" parent="ArmorTermplate">
+    <CModel default="1" id="BreachSetTemplate" parent="ArmorTemplate">
         <?token id="ArmorTexturePrefix" value="Breach"?>
         <?token id="ArmorSetName" value="Breach"?>
     </CModel>
-    <CModel default="1" id="PyroSetTemplate" parent="ArmorTermplate">
-        <?token id="ArmorTexturePrefix" value="Pyro"?>
-        <?token id="ArmorSetName" value="Pyro"?>
+    <CModel default="1" id="CraftSetTemplate" parent="ArmorTemplate">
+        <?token id="ArmorTexturePrefix" value="Heavy_Craft"?>
+        <?token id="ArmorSetName" value="Craft ZI-9"?>
     </CModel>
-    <CModel default="1" id="GoldCenturionSetTemplate" parent="ArmorTermplate">
-        <?token id="ArmorSetName" value="Gold Centurion"?>
+    <CModel default="1" id="CrossfireSetTemplate" parent="ArmorTemplate">
+        <?token id="ArmorTexturePrefix" value="Heavy_Crossfire"?>
+        <?token id="ArmorSetName" value="Crossfire ISX-67"?>
     </CModel>
-    <CModel default="1" id="EvacSetTemplate" parent="ArmorTermplate">
+    <CModel default="1" id="EvacSetTemplate" parent="ArmorTemplate">
         <?token id="ArmorTexturePrefix" value="Evac"?>
         <?token id="ArmorSetName" value="Evac"?>
     </CModel>
-    <CModel default="1" id="Warcraft3SetTemplate" parent="ArmorTermplate">
-        <?token id="ArmorSetName" value="WC3"?>
-        <Lighting value="Warcraft3SetTemplate"/>
+    <CModel default="1" id="GoldCenturionSetTemplate" parent="ArmorTemplate">
+        <?token id="ArmorSetName" value="Gold Centurion"?>
     </CModel>
-    <CModel default="1" id="PeaceKeeperSetTemplate" parent="ArmorTermplate">
+    <CModel default="1" id="KaitenSetTemplate" parent="ArmorTemplate">
+        <?token id="ArmorTexturePrefix" value="Heavy_Kaiten"?>
+        <?token id="ArmorSetName" value="Kaiten ST-6"?>
+    </CModel>
+    <CModel default="1" id="LanceSetTemplate" parent="ArmorTemplate">
+        <?token id="ArmorTexturePrefix" value="Heavy_Lance"?>
+        <?token id="ArmorSetName" value="Lance UD-3"?>
+    </CModel>
+    <CModel default="1" id="NeutrinoSetTemplate" parent="ArmorTemplate">
+        <?token id="ArmorTexturePrefix" value="Neutrino"?>
+        <?token id="ArmorSetName" value="Neutrino"?>
+    </CModel>
+    <CModel default="1" id="PeaceKeeperSetTemplate" parent="ArmorTemplate">
         <?token id="ArmorTexturePrefix" value="Police"?>
         <?token id="ArmorSetName" value="Peace Keeper"?>
         <Lighting value="PeaceKeeperSetTemplate"/>
     </CModel>
-    <CModel default="1" id="ZyncSetTemplate" parent="ArmorTermplate">
-        <?token id="ArmorTexturePrefix" value="Heavy_HB_24"?>
-        <?token id="ArmorSetName" value="Zync HB-24"?>
+    <CModel default="1" id="PyroSetTemplate" parent="ArmorTemplate">
+        <?token id="ArmorTexturePrefix" value="Pyro"?>
+        <?token id="ArmorSetName" value="Pyro"?>
     </CModel>
-    <CModel default="1" id="CraftSetTemplate" parent="ArmorTermplate">
-        <?token id="ArmorTexturePrefix" value="Heavy_Craft"?>
-        <?token id="ArmorSetName" value="Craft ZI-9"?>
+    <CModel default="1" id="QesunSetTemplate" parent="ArmorTemplate">
+        <?token id="ArmorTexturePrefix" value="Qesun"?>
+        <?token id="ArmorSetName" value="Qesun"?>
     </CModel>
-    <CModel default="1" id="KaitenSetTemplate" parent="ArmorTermplate">
-        <?token id="ArmorTexturePrefix" value="Heavy_Kaiten"?>
-        <?token id="ArmorSetName" value="Kaiten ST-6"?>
-    </CModel>
-    <CModel default="1" id="RebelSetTemplate" parent="ArmorTermplate">
+    <CModel default="1" id="RebelSetTemplate" parent="ArmorTemplate">
         <?token id="ArmorTexturePrefix" value="Rebel"?>
         <?token id="ArmorSetName" value="Rebel"?>
     </CModel>
-    <CModel default="1" id="LanceSetTemplate" parent="ArmorTermplate">
-        <?token id="ArmorTexturePrefix" value="Heavy_Lance"?>
-        <?token id="ArmorSetName" value="Lance UD-3"?>
+    <CModel default="1" id="RhinoSetTemplate" parent="ArmorTemplate">
+        <?token id="ArmorTexturePrefix" value="Rhino"?>
+        <?token id="ArmorSetName" value="Rhino P5 - C9I"?>
     </CModel>
-    <CModel default="1" id="VortexSetTemplate" parent="ArmorTermplate">
+    <CModel default="1" id="ScavengerSetTemplate" parent="ArmorTemplate">
+        <?token id="ArmorTexturePrefix" value="Heavy_Scavenger"?>
+        <?token id="ArmorSetName" value="Scavenger SR-12"?>
+    </CModel>
+    <CModel default="1" id="ShadowSetTemplate" parent="ArmorTemplate">
+        <?token id="ArmorTexturePrefix" value="Shadow"?>
+        <?token id="ArmorSetName" value="Shadow"?>
+    </CModel>
+    <CModel default="1" id="VortexSetTemplate" parent="ArmorTemplate">
         <?token id="ArmorTexturePrefix" value="Vortex"?>
         <?token id="ArmorSetName" value="Vortex RG-97N"?>
+    </CModel>
+    <CModel default="1" id="WarSetTemplate" parent="ArmorTemplate">
+        <?token id="ArmorTexturePrefix" value="War"?>
+        <?token id="ArmorSetName" value="War"?>
+    </CModel>
+    <CModel default="1" id="Warcraft3SetTemplate" parent="ArmorTemplate">
+        <?token id="ArmorSetName" value="WC3"?>
+        <Lighting value="Warcraft3SetTemplate"/>
+    </CModel>
+    <CModel default="1" id="ZyncSetTemplate" parent="ArmorTemplate">
+        <?token id="ArmorTexturePrefix" value="Heavy_HB_24"?>
+        <?token id="ArmorSetName" value="Zync HB-24"?>
     </CModel>
     <CModel id="AntiMaterialRifle">
         <Model value="Weapons\AM Rifle.m3"/>
