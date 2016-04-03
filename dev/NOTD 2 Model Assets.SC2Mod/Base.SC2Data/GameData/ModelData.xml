@@ -16,12 +16,17 @@
         <TextureDeclares Prefix="##ArmorTexturePrefix##_Armour_">
             <Adaptions TriggerOnSubstring="_Low_Diffuse" Slot="main.diffuse"/>
         </TextureDeclares>
+        <LowQualityModel value=""/>
     </CModel>
     <CModel default="1" id="AvalancheSetTemplate" parent="ArmorTemplate">
         <?token id="ArmorTexturePrefix" value="Avalanche"?>
         <?token id="ArmorSetName" value="Avalanche"?>
     </CModel>
     <CModel default="1" id="BasicSetTemplate" parent="ArmorTemplate">
+        <?token id="ArmorTexturePrefix" value="Basic"?>
+        <?token id="ArmorSetName" value="Basic"?>
+    </CModel>
+    <CModel default="1" id="BasicSetTemplateLow" parent="ArmorLowTemplate">
         <?token id="ArmorTexturePrefix" value="Basic"?>
         <?token id="ArmorSetName" value="Basic"?>
     </CModel>
@@ -154,8 +159,8 @@
     <CModel id="AvalancheFootRight" parent="AvalancheSetTemplate" ArmorSlot="Foot Right"/>
     <CModel id="AvalancheHelmet" parent="AvalancheSetTemplate" ArmorSlot="Helmet"/>
     <CModel id="AvalancheShoulderRight" parent="AvalancheSetTemplate" ArmorSlot="Shoulder Right"/>
-    <CModel id="AvalancheForearmLeft" parent="AvalancheSetTemplate" ArmorSlot="Forearm Left"/>
-    <CModel id="AvalancheForearmRight" parent="AvalancheSetTemplate" ArmorSlot="Forearm Right"/>
+    <CModel id="AvalancheArmLeft" parent="AvalancheSetTemplate" ArmorSlot="Arm Left"/>
+    <CModel id="AvalancheArmRight" parent="AvalancheSetTemplate" ArmorSlot="Arm Right"/>
     <CModel id="Axe">
         <Model value="Weapons\Axe.m3"/>
     </CModel>
@@ -260,25 +265,25 @@
         <Flags index="AutoUnload" value="1"/>
         <SquibTypeDefault value="Flesh"/>
     </CModel>
-    <CModel id="MedicAvalancheForearmLeft" parent="AvalancheSetTemplate" ArmorSlot="Forearm Left" Class="Medic "/>
+    <CModel id="MedicAvalancheArmLeft" parent="AvalancheSetTemplate" ArmorSlot="Arm Left" Class="Medic "/>
     <CModel id="MedicAvalancheTorso" parent="AvalancheSetTemplate" ArmorSlot="Torso" Class="Medic "/>
     <CModel id="MedicAvalancheHelmet" parent="AvalancheSetTemplate" ArmorSlot="Helmet" Class="Medic "/>
-    <CModel id="MedicGoldCenturionForearmLeft" parent="GoldCenturionSetTemplate" ArmorSlot="Forearm Left" Class="Medic "/>
+    <CModel id="MedicGoldCenturionArmLeft" parent="GoldCenturionSetTemplate" ArmorSlot="Arm Left" Class="Medic "/>
     <CModel id="MedicGoldCenturionTorso" parent="GoldCenturionSetTemplate" ArmorSlot="Torso" Class="Medic "/>
     <CModel id="MedicGoldCenturionHelmet" parent="GoldCenturionSetTemplate" ArmorSlot="Helmet" Class="Medic "/>
-    <CModel id="MedicShadowForearmLeft" parent="ShadowSetTemplate" ArmorSlot="Forearm Left" Class="Medic "/>
+    <CModel id="MedicShadowArmLeft" parent="ShadowSetTemplate" ArmorSlot="Arm Left" Class="Medic "/>
     <CModel id="MedicShadowTorso" parent="ShadowSetTemplate" ArmorSlot="Torso" Class="Medic "/>
     <CModel id="MedicShadowHelmet" parent="ShadowSetTemplate" ArmorSlot="Helmet" Class="Medic "/>
-    <CModel id="MedicBasicForearmLeft" parent="BasicSetTemplate" ArmorSlot="Forearm Left" Class="Medic "/>
+    <CModel id="MedicBasicArmLeft" parent="BasicSetTemplate" ArmorSlot="Arm Left" Class="Medic "/>
     <CModel id="MedicBasicTorso" parent="BasicSetTemplate" ArmorSlot="Torso" Class="Medic "/>
     <CModel id="MedicBasicHelmet" parent="BasicSetTemplate" ArmorSlot="Helmet" Class="Medic "/>
-    <CModel id="MedicBreachForearmLeft" parent="BreachSetTemplate" ArmorSlot="Forearm Left" Class="Medic "/>
+    <CModel id="MedicBreachArmLeft" parent="BreachSetTemplate" ArmorSlot="Arm Left" Class="Medic "/>
     <CModel id="MedicBreachTorso" parent="BreachSetTemplate" ArmorSlot="Torso" Class="Medic "/>
     <CModel id="MedicBreachHelmet" parent="BreachSetTemplate" ArmorSlot="Helmet" Class="Medic "/>
-    <CModel id="MedicEvacForearmLeft" parent="EvacSetTemplate" ArmorSlot="Forearm Left" Class="Medic "/>
+    <CModel id="MedicEvacArmLeft" parent="EvacSetTemplate" ArmorSlot="Arm Left" Class="Medic "/>
     <CModel id="MedicEvacTorso" parent="EvacSetTemplate" ArmorSlot="Torso" Class="Medic "/>
     <CModel id="MedicEvacHelmet" parent="EvacSetTemplate" ArmorSlot="Helmet" Class="Medic "/>
-    <CModel id="MedicPyroForearmLeft" parent="PyroSetTemplate" ArmorSlot="Forearm Left" Class="Medic "/>
+    <CModel id="MedicPyroArmLeft" parent="PyroSetTemplate" ArmorSlot="Arm Left" Class="Medic "/>
     <CModel id="MedicPyroTorso" parent="PyroSetTemplate" ArmorSlot="Torso" Class="Medic "/>
     <CModel id="MedicPyroHelmet" parent="PyroSetTemplate" ArmorSlot="Helmet" Class="Medic "/>
     <CModel id="Incinerator">
@@ -293,7 +298,7 @@
     <CModel id="NPCPeaceKeeperTorso" parent="PeaceKeeperSetTemplate" ArmorSlot="Torso" Class="NPC">
         <Model value="NPC\NPC Peace Keeper Torso.m3"/>
     </CModel>
-    <CModel id="MedicWarForearmLeft" parent="WarSetTemplate" ArmorSlot="Forearm Left" Class="Medic "/>
+    <CModel id="MedicWarArmLeft" parent="WarSetTemplate" ArmorSlot="Arm Left" Class="Medic "/>
     <CModel id="MedicWarTorso" parent="WarSetTemplate" ArmorSlot="Torso" Class="Medic "/>
     <CModel id="MedicWarHelmet" parent="WarSetTemplate" ArmorSlot="Helmet" Class="Medic "/>
     <CModel id="MedicNeutrinoHelmet" parent="NeutrinoSetTemplate" ArmorSlot="Helmet" Class="Medic "/>
@@ -302,9 +307,9 @@
     <CModel id="MedicNeutrinoTorso" parent="NeutrinoSetTemplate" ArmorSlot="Torso" Class="Medic "/>
     <CModel id="MedicQesunTorso" parent="QesunSetTemplate" ArmorSlot="Torso" Class="Medic "/>
     <CModel id="MedicRebelTorso" parent="RebelSetTemplate" ArmorSlot="Torso" Class="Medic "/>
-    <CModel id="MedicNeutrinoForearmLeft" parent="NeutrinoSetTemplate" ArmorSlot="Forearm Left" Class="Medic "/>
-    <CModel id="MedicQesunForearmLeft" parent="QesunSetTemplate" ArmorSlot="Forearm Left" Class="Medic "/>
-    <CModel id="MedicRebelForearmLeft" parent="RebelSetTemplate" ArmorSlot="Forearm Left" Class="Medic "/>
+    <CModel id="MedicNeutrinoArmLeft" parent="NeutrinoSetTemplate" ArmorSlot="Arm Left" Class="Medic "/>
+    <CModel id="MedicQesunArmLeft" parent="QesunSetTemplate" ArmorSlot="Arm Left" Class="Medic "/>
+    <CModel id="MedicRebelArmLeft" parent="RebelSetTemplate" ArmorSlot="Arm Left" Class="Medic "/>
     <CModel id="PistolPocketRocket">
         <Model value="Weapons\Pistol Rocket.m3"/>
     </CModel>
@@ -355,8 +360,8 @@
     <CModel id="QesunFootRight" parent="QesunSetTemplate" ArmorSlot="Foot Right"/>
     <CModel id="QesunHelmet" parent="QesunSetTemplate" ArmorSlot="Helmet"/>
     <CModel id="QesunShoulderRight" parent="QesunSetTemplate" ArmorSlot="Shoulder Right"/>
-    <CModel id="QesunForearmLeft" parent="QesunSetTemplate" ArmorSlot="Forearm Left"/>
-    <CModel id="QesunForearmRight" parent="QesunSetTemplate" ArmorSlot="Forearm Right"/>
+    <CModel id="QesunArmLeft" parent="QesunSetTemplate" ArmorSlot="Arm Left"/>
+    <CModel id="QesunArmRight" parent="QesunSetTemplate" ArmorSlot="Arm Right"/>
     <CModel id="RebelLegRight" parent="RebelSetTemplate" ArmorSlot="Leg Right"/>
     <CModel id="RebelFootLeft" parent="RebelSetTemplate" ArmorSlot="Foot Left"/>
     <CModel id="RebelLegLeft" parent="RebelSetTemplate" ArmorSlot="Leg Left"/>
@@ -368,8 +373,8 @@
     <CModel id="RebelFootRight" parent="RebelSetTemplate" ArmorSlot="Foot Right"/>
     <CModel id="RebelHelmet" parent="RebelSetTemplate" ArmorSlot="Helmet"/>
     <CModel id="RebelShoulderRight" parent="RebelSetTemplate" ArmorSlot="Shoulder Right"/>
-    <CModel id="RebelForearmLeft" parent="RebelSetTemplate" ArmorSlot="Forearm Left"/>
-    <CModel id="RebelForearmRight" parent="RebelSetTemplate" ArmorSlot="Forearm Right"/>
+    <CModel id="RebelArmLeft" parent="RebelSetTemplate" ArmorSlot="Arm Left"/>
+    <CModel id="RebelArmRight" parent="RebelSetTemplate" ArmorSlot="Arm Right"/>
     <CModel id="ReconAvalancheHelmet" parent="AvalancheSetTemplate" ArmorSlot="Helmet" Class="Recon "/>
     <CModel id="ReconAvalancheTorso" parent="AvalancheSetTemplate" ArmorSlot="Torso" Class="Recon "/>
     <CModel id="ReconWarHelmet" parent="WarSetTemplate" ArmorSlot="Helmet" Class="Recon "/>
@@ -483,8 +488,8 @@
     <CModel id="WarFootRight" parent="WarSetTemplate" ArmorSlot="Foot Right"/>
     <CModel id="WarHelmet" parent="WarSetTemplate" ArmorSlot="Helmet"/>
     <CModel id="WarShoulderRight" parent="WarSetTemplate" ArmorSlot="Shoulder Right"/>
-    <CModel id="WarForearmLeft" parent="WarSetTemplate" ArmorSlot="Forearm Left"/>
-    <CModel id="WarForearmRight" parent="WarSetTemplate" ArmorSlot="Forearm Right"/>
+    <CModel id="WarArmLeft" parent="WarSetTemplate" ArmorSlot="Arm Left"/>
+    <CModel id="WarArmRight" parent="WarSetTemplate" ArmorSlot="Arm Right"/>
     <CModel id="BreachLegRight" parent="BreachSetTemplate" ArmorSlot="Leg Right"/>
     <CModel id="BreachFootLeft" parent="BreachSetTemplate" ArmorSlot="Foot Left"/>
     <CModel id="BreachLegLeft" parent="BreachSetTemplate" ArmorSlot="Leg Left"/>
@@ -496,8 +501,8 @@
     <CModel id="BreachFootRight" parent="BreachSetTemplate" ArmorSlot="Foot Right"/>
     <CModel id="BreachHelmet" parent="BreachSetTemplate" ArmorSlot="Helmet"/>
     <CModel id="BreachShoulderRight" parent="BreachSetTemplate" ArmorSlot="Shoulder Right"/>
-    <CModel id="BreachForearmLeft" parent="BreachSetTemplate" ArmorSlot="Forearm Left"/>
-    <CModel id="BreachForearmRight" parent="BreachSetTemplate" ArmorSlot="Forearm Right"/>
+    <CModel id="BreachArmLeft" parent="BreachSetTemplate" ArmorSlot="Arm Left"/>
+    <CModel id="BreachArmRight" parent="BreachSetTemplate" ArmorSlot="Arm Right"/>
     <CModel id="EvacLegRight" parent="EvacSetTemplate" ArmorSlot="Leg Right"/>
     <CModel id="EvacFootLeft" parent="EvacSetTemplate" ArmorSlot="Foot Left"/>
     <CModel id="EvacLegLeft" parent="EvacSetTemplate" ArmorSlot="Leg Left"/>
@@ -509,8 +514,8 @@
     <CModel id="EvacFootRight" parent="EvacSetTemplate" ArmorSlot="Foot Right"/>
     <CModel id="EvacHelmet" parent="EvacSetTemplate" ArmorSlot="Helmet"/>
     <CModel id="EvacShoulderRight" parent="EvacSetTemplate" ArmorSlot="Shoulder Right"/>
-    <CModel id="EvacForearmLeft" parent="EvacSetTemplate" ArmorSlot="Forearm Left"/>
-    <CModel id="EvacForearmRight" parent="EvacSetTemplate" ArmorSlot="Forearm Right"/>
+    <CModel id="EvacArmLeft" parent="EvacSetTemplate" ArmorSlot="Arm Left"/>
+    <CModel id="EvacArmRight" parent="EvacSetTemplate" ArmorSlot="Arm Right"/>
     <CModel id="GoldCenturionLegRight" parent="GoldCenturionSetTemplate" ArmorSlot="Leg Right"/>
     <CModel id="GoldCenturionFootLeft" parent="GoldCenturionSetTemplate" ArmorSlot="Foot Left"/>
     <CModel id="GoldCenturionLegLeft" parent="GoldCenturionSetTemplate" ArmorSlot="Leg Left"/>
@@ -522,8 +527,8 @@
     <CModel id="GoldCenturionFootRight" parent="GoldCenturionSetTemplate" ArmorSlot="Foot Right"/>
     <CModel id="GoldCenturionHelmet" parent="GoldCenturionSetTemplate" ArmorSlot="Helmet"/>
     <CModel id="GoldCenturionShoulderRight" parent="GoldCenturionSetTemplate" ArmorSlot="Shoulder Right"/>
-    <CModel id="GoldCenturionForearmLeft" parent="GoldCenturionSetTemplate" ArmorSlot="Forearm Left"/>
-    <CModel id="GoldCenturionForearmRight" parent="GoldCenturionSetTemplate" ArmorSlot="Forearm Right"/>
+    <CModel id="GoldCenturionArmLeft" parent="GoldCenturionSetTemplate" ArmorSlot="Arm Left"/>
+    <CModel id="GoldCenturionArmRight" parent="GoldCenturionSetTemplate" ArmorSlot="Arm Right"/>
     <CModel id="PyroLegRight" parent="PyroSetTemplate" ArmorSlot="Leg Right"/>
     <CModel id="PyroFootLeft" parent="PyroSetTemplate" ArmorSlot="Foot Left"/>
     <CModel id="PyroLegLeft" parent="PyroSetTemplate" ArmorSlot="Leg Left"/>
@@ -535,8 +540,8 @@
     <CModel id="PyroFootRight" parent="PyroSetTemplate" ArmorSlot="Foot Right"/>
     <CModel id="PyroHelmet" parent="PyroSetTemplate" ArmorSlot="Helmet"/>
     <CModel id="PyroShoulderRight" parent="PyroSetTemplate" ArmorSlot="Shoulder Right"/>
-    <CModel id="PyroForearmLeft" parent="PyroSetTemplate" ArmorSlot="Forearm Left"/>
-    <CModel id="PyroForearmRight" parent="PyroSetTemplate" ArmorSlot="Forearm Right"/>
+    <CModel id="PyroArmLeft" parent="PyroSetTemplate" ArmorSlot="Arm Left"/>
+    <CModel id="PyroArmRight" parent="PyroSetTemplate" ArmorSlot="Arm Right"/>
     <CModel id="ShadowLegRight" parent="ShadowSetTemplate" ArmorSlot="Leg Right"/>
     <CModel id="ShadowFootLeft" parent="ShadowSetTemplate" ArmorSlot="Foot Left"/>
     <CModel id="ShadowLegLeft" parent="ShadowSetTemplate" ArmorSlot="Leg Left"/>
@@ -548,8 +553,8 @@
     <CModel id="ShadowFootRight" parent="ShadowSetTemplate" ArmorSlot="Foot Right"/>
     <CModel id="ShadowHelmet" parent="ShadowSetTemplate" ArmorSlot="Helmet"/>
     <CModel id="ShadowShoulderRight" parent="ShadowSetTemplate" ArmorSlot="Shoulder Right"/>
-    <CModel id="ShadowForearmLeft" parent="ShadowSetTemplate" ArmorSlot="Forearm Left"/>
-    <CModel id="ShadowForearmRight" parent="ShadowSetTemplate" ArmorSlot="Forearm Right"/>
+    <CModel id="ShadowArmLeft" parent="ShadowSetTemplate" ArmorSlot="Arm Left"/>
+    <CModel id="ShadowArmRight" parent="ShadowSetTemplate" ArmorSlot="Arm Right"/>
     <CModel id="BasicLegRight" parent="BasicSetTemplate" ArmorSlot="Leg Right"/>
     <CModel id="BasicFootLeft" parent="BasicSetTemplate" ArmorSlot="Foot Left"/>
     <CModel id="BasicLegLeft" parent="BasicSetTemplate" ArmorSlot="Leg Left"/>
@@ -561,8 +566,21 @@
     <CModel id="BasicFootRight" parent="BasicSetTemplate" ArmorSlot="Foot Right"/>
     <CModel id="BasicHelmet" parent="BasicSetTemplate" ArmorSlot="Helmet"/>
     <CModel id="BasicShoulderRight" parent="BasicSetTemplate" ArmorSlot="Shoulder Right"/>
-    <CModel id="BasicForearmLeft" parent="BasicSetTemplate" ArmorSlot="Forearm Left"/>
-    <CModel id="BasicForearmRight" parent="BasicSetTemplate" ArmorSlot="Forearm Right"/>
+    <CModel id="BasicArmLeft" parent="BasicSetTemplate" ArmorSlot="Arm Left"/>
+    <CModel id="BasicArmRight" parent="BasicSetTemplate" ArmorSlot="Arm Right"/>
+    <CModel id="BasicLegRightLow" parent="BasicSetTemplateLow" ArmorSlot="Leg Right"/>
+    <CModel id="BasicFootLeftLow" parent="BasicSetTemplateLow" ArmorSlot="Foot Left"/>
+    <CModel id="BasicLegLeftLow" parent="BasicSetTemplateLow" ArmorSlot="Leg Left"/>
+    <CModel id="BasicShinLeftLow" parent="BasicSetTemplateLow" ArmorSlot="Shin Left"/>
+    <CModel id="BasicShinRightLow" parent="BasicSetTemplateLow" ArmorSlot="Shin Right"/>
+    <CModel id="BasicShoulderLeftLow" parent="BasicSetTemplateLow" ArmorSlot="Shoulder Left"/>
+    <CModel id="BasicTorsoLow" parent="BasicSetTemplateLow" ArmorSlot="Torso"/>
+    <CModel id="BasicWaistLow" parent="BasicSetTemplateLow" ArmorSlot="Waist"/>
+    <CModel id="BasicFootRightLow" parent="BasicSetTemplateLow" ArmorSlot="Foot Right"/>
+    <CModel id="BasicHelmetLow" parent="BasicSetTemplateLow" ArmorSlot="Helmet"/>
+    <CModel id="BasicShoulderRightLow" parent="BasicSetTemplateLow" ArmorSlot="Shoulder Right"/>
+    <CModel id="BasicArmLeftLow" parent="BasicSetTemplateLow" ArmorSlot="Arm Left"/>
+    <CModel id="BasicArmRightLow" parent="BasicSetTemplateLow" ArmorSlot="Arm Right"/>
     <CModel id="Warcraft3LegRight" parent="Warcraft3SetTemplate" ArmorSlot="Leg Right"/>
     <CModel id="Warcraft3FootLeft" parent="Warcraft3SetTemplate" ArmorSlot="Foot Left"/>
     <CModel id="Warcraft3LegLeft" parent="Warcraft3SetTemplate" ArmorSlot="Leg Left"/>
@@ -574,8 +592,8 @@
     <CModel id="Warcraft3FootRight" parent="Warcraft3SetTemplate" ArmorSlot="Foot Right"/>
     <CModel id="Warcraft3Helmet" parent="Warcraft3SetTemplate" ArmorSlot="Helmet"/>
     <CModel id="Warcraft3ShoulderRight" parent="Warcraft3SetTemplate" ArmorSlot="Shoulder Right"/>
-    <CModel id="Warcraft3ForearmLeft" parent="Warcraft3SetTemplate" ArmorSlot="Forearm Left"/>
-    <CModel id="Warcraft3ForearmRight" parent="Warcraft3SetTemplate" ArmorSlot="Forearm Right"/>
+    <CModel id="Warcraft3ArmLeft" parent="Warcraft3SetTemplate" ArmorSlot="Arm Left"/>
+    <CModel id="Warcraft3ArmRight" parent="Warcraft3SetTemplate" ArmorSlot="Arm Right"/>
     <CModel id="ReconWarcraft3Helmet" parent="Warcraft3SetTemplate" ArmorSlot="Helmet" Class="Recon "/>
     <CModel id="ReconWarcraft3Torso" parent="Warcraft3SetTemplate" ArmorSlot="Torso" Class="Recon "/>
     <CModel id="MedicWarcraft3Torso" parent="Warcraft3SetTemplate" ArmorSlot="Torso" Class="Medic "/>
@@ -591,8 +609,8 @@
     <CModel id="NeutrinoFootRight" parent="NeutrinoSetTemplate" ArmorSlot="Foot Right"/>
     <CModel id="NeutrinoHelmet" parent="NeutrinoSetTemplate" ArmorSlot="Helmet"/>
     <CModel id="NeutrinoShoulderRight" parent="NeutrinoSetTemplate" ArmorSlot="Shoulder Right"/>
-    <CModel id="NeutrinoForearmLeft" parent="NeutrinoSetTemplate" ArmorSlot="Forearm Left"/>
-    <CModel id="NeutrinoForearmRight" parent="NeutrinoSetTemplate" ArmorSlot="Forearm Right"/>
+    <CModel id="NeutrinoArmLeft" parent="NeutrinoSetTemplate" ArmorSlot="Arm Left"/>
+    <CModel id="NeutrinoArmRight" parent="NeutrinoSetTemplate" ArmorSlot="Arm Right"/>
     <CModel id="PeaceKeeperLegRight" parent="PeaceKeeperSetTemplate" ArmorSlot="Leg Right"/>
     <CModel id="PeaceKeeperFootLeft" parent="PeaceKeeperSetTemplate" ArmorSlot="Foot Left"/>
     <CModel id="PeaceKeeperLegLeft" parent="PeaceKeeperSetTemplate" ArmorSlot="Leg Left"/>
@@ -604,8 +622,8 @@
     <CModel id="PeaceKeeperFootRight" parent="PeaceKeeperSetTemplate" ArmorSlot="Foot Right"/>
     <CModel id="PeaceKeeperHelmet" parent="PeaceKeeperSetTemplate" ArmorSlot="Helmet"/>
     <CModel id="PeaceKeeperShoulderRight" parent="PeaceKeeperSetTemplate" ArmorSlot="Shoulder Right"/>
-    <CModel id="PeaceKeeperForearmLeft" parent="PeaceKeeperSetTemplate" ArmorSlot="Forearm Left"/>
-    <CModel id="PeaceKeeperForearmRight" parent="PeaceKeeperSetTemplate" ArmorSlot="Forearm Right"/>
+    <CModel id="PeaceKeeperArmLeft" parent="PeaceKeeperSetTemplate" ArmorSlot="Arm Left"/>
+    <CModel id="PeaceKeeperArmRight" parent="PeaceKeeperSetTemplate" ArmorSlot="Arm Right"/>
     <CModel id="ReconPeaceKeeperHelmet" parent="PeaceKeeperSetTemplate" ArmorSlot="Helmet" Class="Recon "/>
     <CModel id="ReconPeaceKeeperTorso" parent="PeaceKeeperSetTemplate" ArmorSlot="Torso" Class="Recon "/>
     <CModel id="MedicPeaceKeeperTorso" parent="PeaceKeeperSetTemplate" ArmorSlot="Torso" Class="Medic "/>
@@ -835,19 +853,19 @@
     <CModel id="MarksmanRebelHelmet" parent="RebelSetTemplate" ArmorSlot="Helmet" Class="Marksman "/>
     <CModel id="MarksmanBasicHelmet" parent="BasicSetTemplate" ArmorSlot="Helmet" Class="Marksman "/>
     <CModel id="MarksmanWarcraft3Helmet" parent="Warcraft3SetTemplate" ArmorSlot="Helmet" Class="Marksman "/>
-    <CModel id="PathFinderAvalancheTorso" parent="AvalancheSetTemplate" ArmorSlot="Torso" Class="Path Finder "/>
-    <CModel id="PathFinderPyroTorso" parent="PyroSetTemplate" ArmorSlot="Torso" Class="Path Finder "/>
-    <CModel id="PathFinderShadowTorso" parent="ShadowSetTemplate" ArmorSlot="Torso" Class="Path Finder "/>
-    <CModel id="PathFinderWarTorso" parent="WarSetTemplate" ArmorSlot="Torso" Class="Path Finder "/>
-    <CModel id="PathFinderEvacTorso" parent="EvacSetTemplate" ArmorSlot="Torso" Class="Path Finder "/>
-    <CModel id="PathFinderBreachTorso" parent="BreachSetTemplate" ArmorSlot="Torso" Class="Path Finder "/>
-    <CModel id="PathFinderPeaceKeeperTorso" parent="PeaceKeeperSetTemplate" ArmorSlot="Torso" Class="Path Finder "/>
-    <CModel id="PathFinderGoldCenturionTorso" parent="GoldCenturionSetTemplate" ArmorSlot="Torso" Class="Path Finder "/>
-    <CModel id="PathFinderNeutrinoTorso" parent="NeutrinoSetTemplate" ArmorSlot="Torso" Class="Path Finder "/>
-    <CModel id="PathFinderQesunTorso" parent="QesunSetTemplate" ArmorSlot="Torso" Class="Path Finder "/>
-    <CModel id="PathFinderRebelTorso" parent="RebelSetTemplate" ArmorSlot="Torso" Class="Path Finder "/>
-    <CModel id="PathFinderBasicTorso" parent="BasicSetTemplate" ArmorSlot="Torso" Class="Path Finder "/>
-    <CModel id="PathFinderWarcraft3Torso" parent="Warcraft3SetTemplate" ArmorSlot="Torso" Class="Path Finder "/>
+    <CModel id="PathFinderAvalancheTorso" parent="AvalancheSetTemplate" ArmorSlot="Torso" Class="Pathfinder "/>
+    <CModel id="PathFinderPyroTorso" parent="PyroSetTemplate" ArmorSlot="Torso" Class="Pathfinder "/>
+    <CModel id="PathFinderShadowTorso" parent="ShadowSetTemplate" ArmorSlot="Torso" Class="Pathfinder "/>
+    <CModel id="PathFinderWarTorso" parent="WarSetTemplate" ArmorSlot="Torso" Class="Pathfinder "/>
+    <CModel id="PathFinderEvacTorso" parent="EvacSetTemplate" ArmorSlot="Torso" Class="Pathfinder "/>
+    <CModel id="PathFinderBreachTorso" parent="BreachSetTemplate" ArmorSlot="Torso" Class="Pathfinder "/>
+    <CModel id="PathFinderPeaceKeeperTorso" parent="PeaceKeeperSetTemplate" ArmorSlot="Torso" Class="Pathfinder "/>
+    <CModel id="PathFinderGoldCenturionTorso" parent="GoldCenturionSetTemplate" ArmorSlot="Torso" Class="Pathfinder "/>
+    <CModel id="PathFinderNeutrinoTorso" parent="NeutrinoSetTemplate" ArmorSlot="Torso" Class="Pathfinder "/>
+    <CModel id="PathFinderQesunTorso" parent="QesunSetTemplate" ArmorSlot="Torso" Class="Pathfinder "/>
+    <CModel id="PathFinderRebelTorso" parent="RebelSetTemplate" ArmorSlot="Torso" Class="Pathfinder "/>
+    <CModel id="PathFinderBasicTorso" parent="BasicSetTemplate" ArmorSlot="Torso" Class="Pathfinder "/>
+    <CModel id="PathFinderWarcraft3Torso" parent="Warcraft3SetTemplate" ArmorSlot="Torso" Class="Pathfinder "/>
     <CModel id="PsiOpsPyroTorso" parent="PyroSetTemplate" ArmorSlot="Torso" Class="Psi Ops "/>
     <CModel id="PsiOpsShadowTorso" parent="ShadowSetTemplate" ArmorSlot="Torso" Class="Psi Ops "/>
     <CModel id="PsiOpsWarTorso" parent="WarSetTemplate" ArmorSlot="Torso" Class="Psi Ops "/>

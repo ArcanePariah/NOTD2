@@ -11,11 +11,11 @@
         <On Terms="ActorCreation" Send="AttachModel RightShoulder BasicShoulderRight {Hardpoint 8}"/>
         <On Terms="ActorCreation" Send="AttachModel RightShin BasicShinRight {Hardpoint 11}"/>
         <On Terms="ActorCreation" Send="AttachModel RightLeg BasicLegRight {Hardpoint 10}"/>
-        <On Terms="ActorCreation" Send="AttachModel RightForearm BasicForearmRight {Hardpoint 9}"/>
+        <On Terms="ActorCreation" Send="AttachModel RightArm BasicArmRight {Hardpoint 9}"/>
         <On Terms="ActorCreation" Send="AttachModel LeftShoulder BasicShoulderLeft {Hardpoint 4}"/>
         <On Terms="ActorCreation" Send="AttachModel LeftShin BasicShinLeft {Hardpoint 7}"/>
         <On Terms="ActorCreation" Send="AttachModel LeftLeg BasicLegLeft {Hardpoint 6}"/>
-        <On Terms="ActorCreation" Send="AttachModel LeftForearm BasicForearmLeft {Hardpoint 5}"/>
+        <On Terms="ActorCreation" Send="AttachModel LeftArm BasicArmLeft {Hardpoint 5}"/>
         <On Terms="ActorCreation" Send="AttachModel LeftFoot BasicFootLeft {Hardpoint 13}"/>
         <On Terms="ActorCreation" Send="AttachModel RightFoot BasicFootRight {Hardpoint 12}"/>
         <On Terms="ActorCreation" Send="AttachModel Helmet BasicHelmet {Head 0}"/>
@@ -895,8 +895,8 @@
         <EditorCategories value=""/>
     </CActorModel>
     <CActorModel id="SatchelPlaceholderModel" parent="SatchelPlacementModel">
-        <On index="27" Terms="ActorCreation; ModelName MD5Mine" Send="Create MD5PlacementBlastRadius"/>
-        <On index="28" Terms="ActorDestruction" Target="MD5PlacementBlastRadius" Send="Destroy"/>
+        <On Terms="ActorCreation; ModelName MD5Mine" Send="Create MD5PlacementBlastRadius"/>
+        <On Terms="ActorDestruction" Target="MD5PlacementBlastRadius" Send="Destroy"/>
     </CActorModel>
     <CActorRange id="SatchelRange" parent="RangeAbil" abil="SatchelCharge">
         <EditorCategories value=""/>
