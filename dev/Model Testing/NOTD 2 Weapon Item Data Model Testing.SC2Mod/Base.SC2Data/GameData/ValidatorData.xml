@@ -1,0 +1,968 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<Catalog>
+    <CValidatorUnitCompareChargeUsed default="1" id="AutomaticReloadChargesTemplate">
+        <OtherUnit Value="Unknown"/>
+        <ChargeLink value="CurrentMagazine"/>
+        <Location value="Player"/>
+        <Compare value="GE"/>
+    </CValidatorUnitCompareChargeUsed>
+    <CValidatorCombine default="1" id="ManualReloadBoundsTemplate">
+        <?token id="AmmoCount"?>
+        <CombineArray value="PerfectReload##AmmoCount##"/>
+        <CombineArray value="ManualReload##AmmoCount##"/>
+        <ResultFailed value="Error,Validator/Failure/ReloadBounds"/>
+    </CValidatorCombine>
+    <CValidatorCombine default="1" id="ManualReloadTemplate">
+        <?token id="AmmoValue"?>
+        <CombineArray value="ManualReloadLower##AmmoValue##"/>
+        <CombineArray value="ManualReloadUpper##AmmoValue##"/>
+        <Type value="And"/>
+        <ResultFailed value="Error,Validator/Failure/ReloadBounds"/>
+    </CValidatorCombine>
+    <CValidatorUnitWeaponFiring default="1" id="UsedWeaponTemplate">
+        <?token id="WeaponUsed"?>
+        <WhichUnit Value="Caster"/>
+        <Weapon value="##WeaponUsed##"/>
+    </CValidatorUnitWeaponFiring>
+    <CValidatorUnitCompareChargeUsed default="1" id="ReloadLowerTemplate">
+        <OtherUnit Value="Unknown"/>
+        <Compare value="LT"/>
+        <ChargeLink value="CurrentMagazine"/>
+        <Location value="Player"/>
+        <ResultFailed value="Error,Validator/Failure/ReloadBounds"/>
+    </CValidatorUnitCompareChargeUsed>
+    <CValidatorUnitCompareBehaviorCount default="1" id="EquippedWeaponTemplate">
+        <?token id="Weapon"?>
+        <WhichUnit Value="Caster"/>
+        <Value value="1"/>
+        <Behavior value="##Weapon##"/>
+    </CValidatorUnitCompareBehaviorCount>
+    <CValidatorUnitCompareChargeUsed default="1" id="ReloadUpperTemplate">
+        <OtherUnit Value="Unknown"/>
+        <Compare value="GE"/>
+        <ChargeLink value="CurrentMagazine"/>
+        <Location value="Player"/>
+        <ResultFailed value="Error,Validator/Failure/ReloadBounds"/>
+    </CValidatorUnitCompareChargeUsed>
+    <CValidatorCombine default="1" id="PerfectReloadTemplate">
+        <?token id="AmmoCount"?>
+        <CombineArray value="PerfectReloadLower##AmmoCount##"/>
+        <CombineArray value="PerfectReloadUpper##AmmoCount##"/>
+        <Type value="And"/>
+        <ResultFailed value="Error,Validator/Failure/ReloadBounds"/>
+    </CValidatorCombine>
+    <CValidatorCondition id="AssaultAmmoUpgrades">
+        <IfArray Test="CasterHasAmmoFeedLevel2" Return="AutomaticReloadAmmoFeedLevel2"/>
+        <IfArray Test="CasterHasAmmoFeedLevel1" Return="AutomaticReloadAmmoFeedLevel1"/>
+        <Else value="AutomaticReloadNoAmmoFeed"/>
+    </CValidatorCondition>
+    <CValidatorCondition id="AssaultAmmoUpgrades2">
+        <IfArray Test="CasterHasAmmoFeedLevel2" Return="AutomaticReloadAmmoFeedLevel22"/>
+        <IfArray Test="CasterHasAmmoFeedLevel1" Return="AutomaticReloadAmmoFeedLevel12"/>
+        <Else value="AutomaticReloadNoAmmoFeed2"/>
+    </CValidatorCondition>
+    <CValidatorCondition id="AssaultAmmoUpgrades222">
+        <IfArray Test="CasterHasAmmoFeedLevel2" Return="PerfectReloadExtendedAmmoFeedLevel2"/>
+        <IfArray Test="CasterHasAmmoFeedLevel1" Return="PerfectReloadExtendedAmmoFeedLevel1"/>
+        <Else value="AutomaticReloadNoAmmoFeed222"/>
+    </CValidatorCondition>
+    <CValidatorCondition id="AssaultAmmoUpgrades2222">
+        <IfArray Test="CasterHasAmmoFeedLevel2" Return="PerfectReloadExtendedAmmoFeedLevel22"/>
+        <IfArray Test="CasterHasAmmoFeedLevel1" Return="PerfectReloadExtendedAmmoFeedLevel12"/>
+        <Else value="AutomaticReloadNoAmmoFeed2222"/>
+    </CValidatorCondition>
+    <CValidatorCondition id="AssaultAmmoUpgrades32">
+        <IfArray Test="CasterHasAmmoFeedLevel2" Return="PerfectReloadAmmoFeedLevel2"/>
+        <IfArray Test="CasterHasAmmoFeedLevel1" Return="AutomaticReloadAmmoFeedLevel132"/>
+        <Else value="AutomaticReloadNoAmmoFeed32"/>
+    </CValidatorCondition>
+    <CValidatorCondition id="AssaultAmmoUpgrades322">
+        <IfArray Test="CasterHasAmmoFeedLevel2" Return="PerfectReloadAmmoFeedLevel22"/>
+        <IfArray Test="CasterHasAmmoFeedLevel1" Return="AutomaticReloadAmmoFeedLevel1322"/>
+        <Else value="AutomaticReloadNoAmmoFeed322"/>
+    </CValidatorCondition>
+    <CValidatorCondition id="AutomaticReloadAmmoFeedLevel12">
+        <IfArray Test="CasterhasHighCapacityMagazine" Return="AutomaticReloadCharges150"/>
+        <Else value="AutomaticReloadCharges100"/>
+    </CValidatorCondition>
+    <CValidatorCondition id="AssaultAmmoUpgrades22">
+        <IfArray Test="CasterHasAmmoFeedLevel2" Return="AutomaticReloadAmmoFeedLevel222"/>
+        <IfArray Test="CasterHasAmmoFeedLevel1" Return="AutomaticReloadAmmoFeedLevel122"/>
+        <Else value="AutomaticReloadNoAmmoFeed22"/>
+    </CValidatorCondition>
+    <CValidatorCondition id="AssaultAmmoUpgrades3">
+        <IfArray Test="CasterHasAmmoFeedLevel2" Return="AutomaticReloadAmmoFeedLevel23"/>
+        <IfArray Test="CasterHasAmmoFeedLevel1" Return="AutomaticReloadAmmoFeedLevel13"/>
+        <Else value="AutomaticReloadNoAmmoFeed3"/>
+    </CValidatorCondition>
+    <CValidatorCondition id="AutomaticReloadAmmoFeedLevel122">
+        <IfArray Test="CasterhasHighCapacityMagazine" Return="ManualReload150"/>
+        <Else value="ManualReload100"/>
+    </CValidatorCondition>
+    <CValidatorCondition id="AutomaticReloadAmmoFeedLevel132">
+        <IfArray Test="CasterhasHighCapacityMagazine" Return="PerfectReload120"/>
+        <Else value="PerfectReload80"/>
+    </CValidatorCondition>
+    <CValidatorCondition id="AutomaticReloadAmmoFeedLevel1322">
+        <IfArray Test="CasterhasHighCapacityMagazine" Return="ManualReloadBounds120"/>
+        <Else value="ManualReloadBounds80"/>
+    </CValidatorCondition>
+    <CValidatorCondition id="AutomaticReloadAssault22">
+        <IfArray Test="CasterhasAmmoWeaponModificationAssault" Return="AssaultAmmoUpgrades222"/>
+        <Else value="AssaultAmmoUpgrades32"/>
+    </CValidatorCondition>
+    <CValidatorCondition id="AutomaticReloadAssault222">
+        <IfArray Test="CasterhasAmmoWeaponModificationAssault" Return="AssaultAmmoUpgrades2222"/>
+        <Else value="AssaultAmmoUpgrades322"/>
+    </CValidatorCondition>
+    <CValidatorCondition id="AutomaticReloadNoAmmoFeed2222">
+        <IfArray Test="CasterhasHighCapacityMagazine" Return="PerfectReload100"/>
+        <Else value="PerfectReload50"/>
+    </CValidatorCondition>
+    <CValidatorCondition id="AutomaticReloadNoAmmoFeed2223">
+        <IfArray Test="CasterhasHighCapacityMagazine" Return="ManualReloadBounds100"/>
+        <Else value="ManualReloadBounds50"/>
+    </CValidatorCondition>
+    <CValidatorCondition id="AutomaticReloadNoAmmoFeed322">
+        <IfArray Test="CasterhasHighCapacityMagazine" Return="ManualReloadBounds80"/>
+        <Else value="ManualReloadBounds40"/>
+    </CValidatorCondition>
+    <CValidatorPlayerRequirement id="CasterHasAmmoFeedLevel1">
+        <WhichPlayer Value="Caster"/>
+        <Find value="1"/>
+        <Value value="AmmoFeedLevel1"/>
+    </CValidatorPlayerRequirement>
+    <CValidatorPlayerRequirement id="CasterHasAmmoFeedLevel2">
+        <WhichPlayer Value="Caster"/>
+        <Find value="1"/>
+        <Value value="AmmoFeedLevel2"/>
+    </CValidatorPlayerRequirement>
+    <CValidatorUnitCompareBehaviorCount id="CasterhasAmmoWeaponModificationAssault">
+        <WhichUnit Value="Caster"/>
+        <Value value="2"/>
+        <Behavior value="ExtendedMagazine"/>
+    </CValidatorUnitCompareBehaviorCount>
+    <CValidatorCombine id="DeployingHeavyMachineGun">
+        <Type value="And"/>
+        <CombineArray value="EquippedWeaponisHeavyMachineGun"/>
+        <CombineArray value="HeavyMachineGunNotDeployed"/>
+    </CValidatorCombine>
+    <CValidatorUnitCompareBehaviorCount id="EquippedWeaponisCrowbar" parent="EquippedWeaponTemplate" Weapon="CrowbarEquipped"/>
+    <CValidatorUnitCompareBehaviorCount id="EquippedWeaponisAxe" parent="EquippedWeaponTemplate" Weapon="AxeEquipped"/>
+    <CValidatorUnitCompareBehaviorCount id="EquippedWeaponisBaton" parent="EquippedWeaponTemplate" Weapon="BatonEquipped"/>
+    <CValidatorUnitCompareBehaviorCount id="EquippedWeaponisHammer" parent="EquippedWeaponTemplate" Weapon="HammerEquipped"/>
+    <CValidatorCombine id="ForcedReload">
+        <Type value="And"/>
+        <CombineArray value="ForcedReloadAttackOrder"/>
+        <CombineArray value="ForcedReloadSet"/>
+    </CValidatorCombine>
+    <CValidatorCombine id="ForcedReload2">
+        <Type value="And"/>
+        <CombineArray value="ForcedReloadAttackOrder"/>
+        <CombineArray value="PeacekeeperReload"/>
+    </CValidatorCombine>
+    <CValidatorUnitOrder id="ForcedReloadAttackOrder">
+        <AbilLink value="attack"/>
+    </CValidatorUnitOrder>
+    <CValidatorCombine id="ForcedReloadSet">
+        <CombineArray value="AutomaticReloadAssault"/>
+        <CombineArray value="AutomaticReloadNormal"/>
+    </CValidatorCombine>
+    <CValidatorUnitCompareBehaviorCount id="HeavyMachineGunDeployed">
+        <WhichUnit Value="Caster"/>
+        <Value value="1"/>
+        <Behavior value="DeployHeavyMachineGun"/>
+    </CValidatorUnitCompareBehaviorCount>
+    <CValidatorUnitCompareBehaviorCount id="HeavyMachineGunNotDeployed">
+        <WhichUnit Value="Caster"/>
+        <Behavior value="DeployHeavyMachineGun"/>
+    </CValidatorUnitCompareBehaviorCount>
+    <CValidatorUnitCompareBehaviorCount id="HordeModeNotActive">
+        <Behavior value="HordeModeActive"/>
+    </CValidatorUnitCompareBehaviorCount>
+    <CValidatorUnitInventoryContainsItem id="MarinehasAntiVenom">
+        <WhichUnit Value="Caster"/>
+        <Item value="AntiVenom"/>
+    </CValidatorUnitInventoryContainsItem>
+    <CValidatorUnitInventoryContainsItem id="MarinehasMedkit">
+        <WhichUnit Value="Caster"/>
+        <Item value="Medkit"/>
+    </CValidatorUnitInventoryContainsItem>
+    <CValidatorUnitInventoryContainsItem id="MarinehasMendingPaste">
+        <WhichUnit Value="Caster"/>
+        <Item value="MendingPaste"/>
+    </CValidatorUnitInventoryContainsItem>
+    <CValidatorCombine id="MedicalAssistance">
+        <CombineArray value="MedicalAssistanceNormal"/>
+        <CombineArray value="MedicalAssistanceMedic"/>
+        <ResultFailed value="Error,Validator/Error/Medical Expertise"/>
+    </CValidatorCombine>
+    <CValidatorCombine id="MedicalAssistanceNormal">
+        <Type value="And"/>
+        <CombineArray value="CasterisNotMedic"/>
+        <CombineArray value="MarinehasMedkit"/>
+        <ResultFailed value="Error,Validator/Error/Medical Expertise"/>
+    </CValidatorCombine>
+    <CValidatorUnitFilters id="NormalUnitNonMassiveorHeroic">
+        <Filters value="-;Massive,Heroic"/>
+    </CValidatorUnitFilters>
+    <CValidatorUnitCompareChargeUsed id="PeacekeeperReload" parent="AutomaticReloadChargesTemplate">
+        <Location value="Unit"/>
+        <Value value="30"/>
+    </CValidatorUnitCompareChargeUsed>
+    <CValidatorLocationCompareRange id="SubmachineGunCritRangeGT4dot5">
+        <WhichLocation Effect="SubmachineGunDamageCritical" Value="TargetUnit"/>
+        <Compare value="GT"/>
+        <Range value="4.5"/>
+    </CValidatorLocationCompareRange>
+    <CValidatorLocationCompareRange id="SubmachineGunCritRangeLE4dot5">
+        <WhichLocation Effect="SubmachineGunDamageCritical" Value="TargetUnit"/>
+        <Compare value="LE"/>
+        <Range value="4.5"/>
+    </CValidatorLocationCompareRange>
+    <CValidatorLocationCompareRange id="SubmachineGunRangeGT4dot5">
+        <WhichLocation Effect="SubmachineGunDamage" Value="TargetUnit"/>
+        <Compare value="GT"/>
+        <Range value="4.5"/>
+    </CValidatorLocationCompareRange>
+    <CValidatorLocationCompareRange id="SubmachineGunRangeLE4dot5">
+        <WhichLocation Effect="SubmachineGunDamage" Value="TargetUnit"/>
+        <Compare value="LE"/>
+        <Range value="4.5"/>
+    </CValidatorLocationCompareRange>
+    <CValidatorLocationCompareRange id="Target1RangeOrLessAway">
+        <WhichLocation Value="TargetUnit"/>
+        <Compare value="LT"/>
+        <Range value="1"/>
+    </CValidatorLocationCompareRange>
+    <CValidatorLocationCompareRange id="Target2RangeOrLessAway">
+        <WhichLocation Value="TargetUnit"/>
+        <Compare value="LT"/>
+        <Range value="2"/>
+    </CValidatorLocationCompareRange>
+    <CValidatorLocationCompareRange id="Target3RangeOrLessAway">
+        <WhichLocation Value="TargetUnit"/>
+        <Compare value="LT"/>
+        <Range value="3"/>
+    </CValidatorLocationCompareRange>
+    <CValidatorLocationCompareRange id="Target4RangeOrLessAway">
+        <WhichLocation Value="TargetUnit"/>
+        <Compare value="LT"/>
+        <Range value="4"/>
+    </CValidatorLocationCompareRange>
+    <CValidatorLocationCompareRange id="Target12RangeOrGreaterAway">
+        <WhichLocation Value="TargetUnit"/>
+        <Compare value="GT"/>
+        <Range value="12"/>
+    </CValidatorLocationCompareRange>
+    <CValidatorLocationCompareRange id="Target5RangeOrLessAway">
+        <WhichLocation Value="TargetUnit"/>
+        <Compare value="LT"/>
+        <Range value="5"/>
+    </CValidatorLocationCompareRange>
+    <CValidatorLocationCompareRange id="Target12RangeOrLessAway">
+        <WhichLocation Value="TargetUnit"/>
+        <Compare value="LT"/>
+        <Range value="12"/>
+    </CValidatorLocationCompareRange>
+    <CValidatorLocationCompareRange id="Target11RangeOrLessAway">
+        <WhichLocation Value="TargetUnit"/>
+        <Compare value="LT"/>
+        <Range value="11"/>
+    </CValidatorLocationCompareRange>
+    <CValidatorLocationCompareRange id="Target8RangeOrLessAway">
+        <WhichLocation Value="TargetUnit"/>
+        <Compare value="LT"/>
+        <Range value="8"/>
+    </CValidatorLocationCompareRange>
+    <CValidatorLocationCompareRange id="Target10RangeOrLessAway">
+        <WhichLocation Value="TargetUnit"/>
+        <Compare value="LT"/>
+        <Range value="10"/>
+    </CValidatorLocationCompareRange>
+    <CValidatorLocationCompareRange id="Target9RangeOrLessAway">
+        <WhichLocation Value="TargetUnit"/>
+        <Compare value="LT"/>
+        <Range value="9"/>
+    </CValidatorLocationCompareRange>
+    <CValidatorLocationCompareRange id="Target7RangeOrLessAway">
+        <WhichLocation Value="TargetUnit"/>
+        <Compare value="LT"/>
+        <Range value="7"/>
+    </CValidatorLocationCompareRange>
+    <CValidatorLocationCompareRange id="Target6RangeOrLessAway">
+        <WhichLocation Value="TargetUnit"/>
+        <Compare value="LT"/>
+        <Range value="6"/>
+    </CValidatorLocationCompareRange>
+    <CValidatorUnitInventoryContainsItem id="UnithasBandage">
+        <WhichUnit Value="Caster"/>
+        <Item value="Bandage"/>
+    </CValidatorUnitInventoryContainsItem>
+    <CValidatorUnitCompareBehaviorCount id="EquippedWeaponisRailgun" parent="EquippedWeaponTemplate" Weapon="RailgunEquipped"/>
+    <CValidatorUnitCompareBehaviorCount id="EquippedWeaponisGrenadeLauncher" parent="EquippedWeaponTemplate" Weapon="GrenadeLauncherEquipped"/>
+    <CValidatorUnitCompareBehaviorCount id="EquippedWeaponisPlasmaCannon" parent="EquippedWeaponTemplate" Weapon="PlasmaCannonEquipped"/>
+    <CValidatorUnitCompareBehaviorCount id="EquippedWeaponisRocketLauncher" parent="EquippedWeaponTemplate" Weapon="RocketLauncherEquipped"/>
+    <CValidatorUnitInventoryContainsItem id="MarinehasTungsterRods">
+        <WhichUnit Value="Caster"/>
+        <Item value="TungstenRod"/>
+    </CValidatorUnitInventoryContainsItem>
+    <CValidatorUnitInventoryContainsItem id="MarinehasPlasmaCoils">
+        <WhichUnit Value="Caster"/>
+        <Item value="PlasmaCoil"/>
+    </CValidatorUnitInventoryContainsItem>
+    <CValidatorUnitInventoryContainsItem id="MarinehasUGCModularRockets">
+        <WhichUnit Value="Caster"/>
+        <Item value="UGCModularRocket"/>
+    </CValidatorUnitInventoryContainsItem>
+    <CValidatorUnitInventoryContainsItem id="Marinehas40mmGrenades">
+        <WhichUnit Value="Caster"/>
+        <Item value="40mmGrenade"/>
+    </CValidatorUnitInventoryContainsItem>
+    <CValidatorCondition id="PerfectReloadAmmoFeedLevel2">
+        <IfArray Test="CasterhasHighCapacityMagazine" Return="PerfectReload160"/>
+        <Else value="PerfectReload120"/>
+    </CValidatorCondition>
+    <CValidatorCondition id="AutomaticReloadNoAmmoFeed32">
+        <IfArray Test="CasterhasHighCapacityMagazine" Return="PerfectReload80"/>
+        <Else value="PerfectReload40"/>
+    </CValidatorCondition>
+    <CValidatorCondition id="PerfectReloadAmmoFeedLevel22">
+        <IfArray Test="CasterhasHighCapacityMagazine" Return="ManualReloadBounds160"/>
+        <Else value="ManualReloadBounds120"/>
+    </CValidatorCondition>
+    <CValidatorCondition id="PerfectReloadExtendedAmmoFeedLevel1">
+        <IfArray Test="CasterhasHighCapacityMagazine" Return="PerfectReload150"/>
+        <Else value="PerfectReload100"/>
+    </CValidatorCondition>
+    <CValidatorCondition id="AutomaticReloadAmmoFeedLevel13">
+        <IfArray Test="CasterhasHighCapacityMagazine" Return="ManualReload120"/>
+        <Else value="ManualReload80"/>
+    </CValidatorCondition>
+    <CValidatorCondition id="AutomaticReloadAmmoFeedLevel222">
+        <IfArray Test="CasterhasHighCapacityMagazine" Return="ManualReload200"/>
+        <Else value="ManualReload150"/>
+    </CValidatorCondition>
+    <CValidatorCondition id="PerfectReloadExtendedAmmoFeedLevel12">
+        <IfArray Test="CasterhasHighCapacityMagazine" Return="ManualReloadBounds150"/>
+        <Else value="ManualReloadBounds100"/>
+    </CValidatorCondition>
+    <CValidatorCondition id="PerfectReloadExtendedAmmoFeedLevel2">
+        <IfArray Test="CasterhasHighCapacityMagazine" Return="PerfectReload200"/>
+        <Else value="PerfectReload150"/>
+    </CValidatorCondition>
+    <CValidatorCondition id="AutomaticReloadAmmoFeedLevel23">
+        <IfArray Test="CasterhasHighCapacityMagazine" Return="ManualReload160"/>
+        <Else value="ManualReload120"/>
+    </CValidatorCondition>
+    <CValidatorCondition id="AutomaticReloadAssault2">
+        <IfArray Test="CasterhasAmmoWeaponModificationAssault" Return="AssaultAmmoUpgrades22"/>
+        <Else value="AssaultAmmoUpgrades3"/>
+    </CValidatorCondition>
+    <CValidatorUnitCompareChargeUsed id="AutomaticReloadCharges80" parent="AutomaticReloadChargesTemplate">
+        <Value value="80"/>
+    </CValidatorUnitCompareChargeUsed>
+    <CValidatorCondition id="AutomaticReloadAmmoFeedLevel22">
+        <IfArray Test="CasterhasHighCapacityMagazine" Return="AutomaticReloadCharges200"/>
+        <Else value="AutomaticReloadCharges150"/>
+    </CValidatorCondition>
+    <CValidatorCondition id="AutomaticReloadNoAmmoFeed">
+        <IfArray Test="CasterhasHighCapacityMagazine" Return="AutomaticReloadCharges80"/>
+        <Else value="AutomaticReloadCharges40"/>
+    </CValidatorCondition>
+    <CValidatorCondition id="AutomaticReloadAmmoFeedLevel2">
+        <IfArray Test="CasterhasHighCapacityMagazine" Return="AutomaticReloadCharges160"/>
+        <Else value="AutomaticReloadCharges120"/>
+    </CValidatorCondition>
+    <CValidatorCondition id="AutomaticReloadAmmoFeedLevel1">
+        <IfArray Test="CasterhasHighCapacityMagazine" Return="AutomaticReloadCharges120"/>
+        <Else value="AutomaticReloadCharges80"/>
+    </CValidatorCondition>
+    <CValidatorCondition id="AutomaticReloadAssault">
+        <IfArray Test="CasterhasAmmoWeaponModificationAssault" Return="AssaultAmmoUpgrades2"/>
+        <Else value="AssaultAmmoUpgrades"/>
+    </CValidatorCondition>
+    <CValidatorCondition id="AutomaticReloadNoAmmoFeed2">
+        <IfArray Test="CasterhasHighCapacityMagazine" Return="AutomaticReloadCharges100"/>
+        <Else value="AutomaticReloadCharges50"/>
+    </CValidatorCondition>
+    <!--Ammo Check for Assault with Weapon Modification. High Capacity Magazine and Ammo Feed Level 1 or Ammo Feed Level 2-->
+    <CValidatorUnitCompareChargeUsed id="AutomaticReloadCharges150" parent="AutomaticReloadChargesTemplate">
+        <Value value="150"/>
+    </CValidatorUnitCompareChargeUsed>
+    <CValidatorCondition id="AutomaticReloadNoAmmoFeed22">
+        <IfArray Test="CasterhasHighCapacityMagazine" Return="ManualReload100"/>
+        <Else value="ManualReload50"/>
+    </CValidatorCondition>
+    <CValidatorCondition id="AutomaticReloadNoAmmoFeed222">
+        <IfArray Test="CasterhasHighCapacityMagazine" Return="ManualReloadBounds100"/>
+        <Else value="ManualReloadBounds50"/>
+    </CValidatorCondition>
+    <CValidatorCondition id="AutomaticReloadNoAmmoFeed3">
+        <IfArray Test="CasterhasHighCapacityMagazine" Return="ManualReload80"/>
+        <Else value="ManualReload40"/>
+    </CValidatorCondition>
+    <CValidatorUnitCompareChargeUsed id="ManualReloadLower100" parent="ReloadLowerTemplate">
+        <Value value="97"/>
+        <ResultFailed value="Error"/>
+    </CValidatorUnitCompareChargeUsed>
+    <CValidatorUnitCompareChargeUsed id="ManualReloadLower120" parent="ReloadLowerTemplate">
+        <Value value="117"/>
+        <ResultFailed value="Error"/>
+    </CValidatorUnitCompareChargeUsed>
+    <CValidatorUnitCompareChargeUsed id="ManualReloadLower150" parent="ReloadLowerTemplate">
+        <Value value="147"/>
+        <ResultFailed value="Error"/>
+    </CValidatorUnitCompareChargeUsed>
+    <CValidatorUnitCompareChargeUsed id="ManualReloadLower160" parent="ReloadLowerTemplate">
+        <Value value="157"/>
+        <ResultFailed value="Error"/>
+    </CValidatorUnitCompareChargeUsed>
+    <CValidatorUnitCompareChargeUsed id="ManualReloadLower200" parent="ReloadLowerTemplate">
+        <Value value="197"/>
+        <ResultFailed value="Error"/>
+    </CValidatorUnitCompareChargeUsed>
+    <CValidatorUnitCompareChargeUsed id="ManualReloadLower30" parent="ReloadLowerTemplate">
+        <Value value="27"/>
+        <ResultFailed value="Error"/>
+    </CValidatorUnitCompareChargeUsed>
+    <CValidatorCondition id="PerfectReloadExtendedAmmoFeedLevel22">
+        <IfArray Test="CasterhasHighCapacityMagazine" Return="ManualReloadBounds200"/>
+        <Else value="ManualReloadBounds150"/>
+    </CValidatorCondition>
+    <CValidatorUnitCompareChargeUsed id="PerfectReloadLower30" parent="ReloadLowerTemplate">
+        <Value value="30"/>
+        <ResultFailed value="Error"/>
+    </CValidatorUnitCompareChargeUsed>
+    <CValidatorUnitCompareChargeUsed id="PerfectReloadLower40" parent="ReloadLowerTemplate">
+        <Value value="40"/>
+        <ResultFailed value="Error"/>
+    </CValidatorUnitCompareChargeUsed>
+    <CValidatorUnitCompareChargeUsed id="PerfectReloadLower50" parent="ReloadLowerTemplate">
+        <Value value="50"/>
+        <ResultFailed value="Error"/>
+    </CValidatorUnitCompareChargeUsed>
+    <CValidatorUnitCompareChargeUsed id="PerfectReloadLower60" parent="ReloadLowerTemplate">
+        <Value value="60"/>
+        <ResultFailed value="Error"/>
+    </CValidatorUnitCompareChargeUsed>
+    <CValidatorUnitCompareChargeUsed id="PerfectReloadLower80" parent="ReloadLowerTemplate">
+        <Value value="80"/>
+        <ResultFailed value="Error"/>
+    </CValidatorUnitCompareChargeUsed>
+    <CValidatorUnitCompareChargeUsed id="PerfectReloadLower200" parent="ReloadLowerTemplate">
+        <Value value="200"/>
+        <ResultFailed value="Error"/>
+    </CValidatorUnitCompareChargeUsed>
+    <CValidatorUnitCompareChargeUsed id="PerfectReloadLower100" parent="ReloadLowerTemplate">
+        <Value value="100"/>
+        <ResultFailed value="Error"/>
+    </CValidatorUnitCompareChargeUsed>
+    <CValidatorUnitCompareChargeUsed id="PerfectReloadLower120" parent="ReloadLowerTemplate">
+        <Value value="120"/>
+        <ResultFailed value="Error"/>
+    </CValidatorUnitCompareChargeUsed>
+    <CValidatorUnitCompareChargeUsed id="PerfectReloadLower150" parent="ReloadLowerTemplate">
+        <Value value="150"/>
+        <ResultFailed value="Error"/>
+    </CValidatorUnitCompareChargeUsed>
+    <CValidatorUnitCompareChargeUsed id="PerfectReloadLower160" parent="ReloadLowerTemplate">
+        <Value value="160"/>
+        <ResultFailed value="Error"/>
+    </CValidatorUnitCompareChargeUsed>
+    <CValidatorUnitCompareChargeUsed id="PerfectReloadUpper30" parent="ReloadUpperTemplate">
+        <Value value="27"/>
+        <ResultFailed value="Error"/>
+    </CValidatorUnitCompareChargeUsed>
+    <CValidatorUnitCompareChargeUsed id="PerfectReloadUpper40" parent="ReloadUpperTemplate">
+        <Value value="37"/>
+        <ResultFailed value="Error"/>
+    </CValidatorUnitCompareChargeUsed>
+    <CValidatorUnitCompareChargeUsed id="PerfectReloadUpper50" parent="ReloadUpperTemplate">
+        <Value value="47"/>
+        <ResultFailed value="Error"/>
+    </CValidatorUnitCompareChargeUsed>
+    <CValidatorUnitCompareChargeUsed id="PerfectReloadUpper60" parent="ReloadUpperTemplate">
+        <Value value="57"/>
+        <ResultFailed value="Error"/>
+    </CValidatorUnitCompareChargeUsed>
+    <CValidatorUnitCompareChargeUsed id="PerfectReloadUpper80" parent="ReloadUpperTemplate">
+        <Value value="77"/>
+        <ResultFailed value="Error"/>
+    </CValidatorUnitCompareChargeUsed>
+    <CValidatorUnitCompareChargeUsed id="ManualReloadLower40" parent="ReloadLowerTemplate">
+        <Value value="37"/>
+        <ResultFailed value="Error"/>
+    </CValidatorUnitCompareChargeUsed>
+    <CValidatorUnitCompareChargeUsed id="ManualReloadLower50" parent="ReloadLowerTemplate">
+        <Value value="47"/>
+        <ResultFailed value="Error"/>
+    </CValidatorUnitCompareChargeUsed>
+    <CValidatorUnitCompareChargeUsed id="ManualReloadLower60" parent="ReloadLowerTemplate">
+        <Value value="57"/>
+        <ResultFailed value="Error"/>
+    </CValidatorUnitCompareChargeUsed>
+    <CValidatorUnitCompareChargeUsed id="ManualReloadLower80" parent="ReloadLowerTemplate">
+        <Value value="77"/>
+        <ResultFailed value="Error"/>
+    </CValidatorUnitCompareChargeUsed>
+    <CValidatorCondition id="ManualReloadBoundsNormal">
+        <IfArray Test="CasterhasAmmoWeaponModification" Return="ManualReloadBoundsNormalExtendedMagazine"/>
+        <Else value="ManualReloadBoundsNormalNoExtendedMagazine"/>
+        <ResultFailed value="Error,Validator/Failure/ReloadBounds"/>
+    </CValidatorCondition>
+    <CValidatorUnitCompareChargeUsed id="PerfectReloadUpper100" parent="ReloadUpperTemplate">
+        <Value value="97"/>
+        <ResultFailed value="Error"/>
+    </CValidatorUnitCompareChargeUsed>
+    <CValidatorUnitCompareChargeUsed id="PerfectReloadUpper120" parent="ReloadUpperTemplate">
+        <Value value="117"/>
+        <ResultFailed value="Error"/>
+    </CValidatorUnitCompareChargeUsed>
+    <CValidatorUnitCompareChargeUsed id="PerfectReloadUpper150" parent="ReloadUpperTemplate">
+        <Value value="147"/>
+        <ResultFailed value="Error"/>
+    </CValidatorUnitCompareChargeUsed>
+    <CValidatorUnitCompareChargeUsed id="PerfectReloadUpper160" parent="ReloadUpperTemplate">
+        <Value value="157"/>
+        <ResultFailed value="Error"/>
+    </CValidatorUnitCompareChargeUsed>
+    <CValidatorUnitCompareChargeUsed id="PerfectReloadUpper200" parent="ReloadUpperTemplate">
+        <Value value="197"/>
+        <ResultFailed value="Error"/>
+    </CValidatorUnitCompareChargeUsed>
+    <CValidatorCondition id="ManualReloadNormal">
+        <IfArray Test="CasterhasAmmoWeaponModification" Return="ManualReloadNormalExtendedMagazine"/>
+        <Else value="ManualReloadNormalNoExtendedMagazine"/>
+    </CValidatorCondition>
+    <!--Ammo Check for normal units-->
+    <CValidatorUnitCompareChargeUsed id="AutomaticReloadCharges30" parent="AutomaticReloadChargesTemplate">
+        <Value value="30"/>
+    </CValidatorUnitCompareChargeUsed>
+    <!--Ammo Check for Assault with Weapon Modification and High Capacity Magazine and Ammo Feed Level 2-->
+    <CValidatorUnitCompareChargeUsed id="AutomaticReloadCharges200" parent="AutomaticReloadChargesTemplate">
+        <Value value="200"/>
+    </CValidatorUnitCompareChargeUsed>
+    <CValidatorUnitCompareChargeUsed id="ManualReloadUpper100" parent="ReloadUpperTemplate">
+        <Value value="50"/>
+        <ResultFailed value="Error"/>
+    </CValidatorUnitCompareChargeUsed>
+    <CValidatorUnitCompareChargeUsed id="ManualReloadUpper120" parent="ReloadUpperTemplate">
+        <Value value="60"/>
+        <ResultFailed value="Error"/>
+    </CValidatorUnitCompareChargeUsed>
+    <CValidatorCondition id="ManualReloadBoundsNormalExtendedMagazine">
+        <IfArray Test="CasterhasHighCapacityMagazine" Return="ManualReloadBounds80"/>
+        <Else value="ManualReloadBounds40"/>
+    </CValidatorCondition>
+    <CValidatorUnitCompareChargeUsed id="ManualReloadUpper150" parent="ReloadUpperTemplate">
+        <Value value="75"/>
+        <ResultFailed value="Error"/>
+    </CValidatorUnitCompareChargeUsed>
+    <CValidatorUnitCompareChargeUsed id="ManualReloadUpper160" parent="ReloadUpperTemplate">
+        <Value value="80"/>
+        <ResultFailed value="Error"/>
+    </CValidatorUnitCompareChargeUsed>
+    <CValidatorCondition id="ManualReloadBoundsNormalNoExtendedMagazine">
+        <IfArray Test="CasterhasHighCapacityMagazine" Return="ManualReloadBounds60"/>
+        <Else value="ManualReloadBounds30"/>
+    </CValidatorCondition>
+    <CValidatorUnitCompareChargeUsed id="ManualReloadUpper200" parent="ReloadUpperTemplate">
+        <Value value="100"/>
+        <ResultFailed value="Error"/>
+    </CValidatorUnitCompareChargeUsed>
+    <CValidatorUnitCompareChargeUsed id="ManualReloadUpper30" parent="ReloadUpperTemplate">
+        <Value value="15"/>
+        <ResultFailed value="Error"/>
+    </CValidatorUnitCompareChargeUsed>
+    <CValidatorUnitCompareChargeUsed id="ManualReloadUpper40" parent="ReloadUpperTemplate">
+        <Value value="20"/>
+        <ResultFailed value="Error"/>
+    </CValidatorUnitCompareChargeUsed>
+    <CValidatorUnitCompareChargeUsed id="ManualReloadUpper50" parent="ReloadUpperTemplate">
+        <Value value="25"/>
+        <ResultFailed value="Error"/>
+    </CValidatorUnitCompareChargeUsed>
+    <CValidatorUnitCompareChargeUsed id="ManualReloadUpper60" parent="ReloadUpperTemplate">
+        <Value value="30"/>
+        <ResultFailed value="Error"/>
+    </CValidatorUnitCompareChargeUsed>
+    <CValidatorUnitCompareChargeUsed id="ManualReloadUpper80" parent="ReloadUpperTemplate">
+        <Value value="40"/>
+        <ResultFailed value="Error"/>
+    </CValidatorUnitCompareChargeUsed>
+    <CValidatorCondition id="PerfectReloadNormal">
+        <IfArray Test="CasterhasAmmoWeaponModification" Return="PerfectReloadNormalExtendedMagazine"/>
+        <Else value="PerfectReloadNormalNoExtendedMagazine"/>
+    </CValidatorCondition>
+    <CValidatorCondition id="AutomaticReloadNormalExtendedMagazine">
+        <IfArray Test="CasterhasHighCapacityMagazine" Return="AutomaticReloadCharges80"/>
+        <Else value="AutomaticReloadCharges40"/>
+    </CValidatorCondition>
+    <!--Ammo Check for Assault with Weapon Modification and High Capacity Magazine or Ammo Feed Level 1-->
+    <!--Ammo Check for normal units with High Capacity Magazine and Weapon Modfication or Assault with High Capacity Magazine or Assault with Ammo Feed Level 1-->
+    <CValidatorUnitCompareChargeUsed id="AutomaticReloadCharges100" parent="AutomaticReloadChargesTemplate">
+        <Value value="100"/>
+    </CValidatorUnitCompareChargeUsed>
+    <!--Ammo Check for Assault or normal units with Weapon Modification-->
+    <CValidatorUnitCompareChargeUsed id="AutomaticReloadCharges40" parent="AutomaticReloadChargesTemplate">
+        <Value value="40"/>
+    </CValidatorUnitCompareChargeUsed>
+    <!--Ammo Check for Assault with High Capacity Magazine and Ammo Feed Level 1 or Ammo Feed Level 2-->
+    <CValidatorUnitCompareChargeUsed id="AutomaticReloadCharges120" parent="AutomaticReloadChargesTemplate">
+        <Value value="120"/>
+    </CValidatorUnitCompareChargeUsed>
+    <!--Ammo Check for Assault with Weapon Modification-->
+    <CValidatorUnitCompareChargeUsed id="AutomaticReloadCharges50" parent="AutomaticReloadChargesTemplate">
+        <Value value="50"/>
+    </CValidatorUnitCompareChargeUsed>
+    <!--Ammo Check for Assault with High Capacity Magazine and Ammo Feed Level 2-->
+    <CValidatorUnitCompareChargeUsed id="AutomaticReloadCharges160" parent="AutomaticReloadChargesTemplate">
+        <Value value="160"/>
+    </CValidatorUnitCompareChargeUsed>
+    <CValidatorCondition id="ManualReloadNormalExtendedMagazine">
+        <IfArray Test="CasterhasHighCapacityMagazine" Return="ManualReload80"/>
+        <Else value="ManualReload40"/>
+    </CValidatorCondition>
+    <!--Ammo Check for normal units with High Capacity Magazine-->
+    <CValidatorUnitCompareChargeUsed id="AutomaticReloadCharges60" parent="AutomaticReloadChargesTemplate">
+        <Value value="60"/>
+    </CValidatorUnitCompareChargeUsed>
+    <CValidatorCondition id="ManualReloadNormalNoExtendedMagazine">
+        <IfArray Test="CasterhasHighCapacityMagazine" Return="ManualReload60"/>
+        <Else value="ManualReload30"/>
+    </CValidatorCondition>
+    <CValidatorCondition id="PerfectReloadNormalExtendedMagazine">
+        <IfArray Test="CasterhasHighCapacityMagazine" Return="PerfectReload80"/>
+        <Else value="PerfectReload40"/>
+    </CValidatorCondition>
+    <CValidatorCondition id="AutomaticReloadNormal">
+        <IfArray Test="CasterhasAmmoWeaponModification" Return="AutomaticReloadNormalExtendedMagazine"/>
+        <Else value="AutomaticReloadNormalNoExtendedMagazine"/>
+    </CValidatorCondition>
+    <CValidatorCondition id="PerfectReloadNormalNoExtendedMagazine">
+        <IfArray Test="CasterhasHighCapacityMagazine" Return="PerfectReload60"/>
+        <Else value="PerfectReload30"/>
+    </CValidatorCondition>
+    <CValidatorCondition id="AutomaticReloadNormalNoExtendedMagazine">
+        <IfArray Test="CasterhasHighCapacityMagazine" Return="AutomaticReloadCharges60"/>
+        <Else value="AutomaticReloadCharges30"/>
+    </CValidatorCondition>
+    <CValidatorUnitCompareBehaviorCount id="CasterhasAmmoWeaponModification">
+        <WhichUnit Value="Caster"/>
+        <Value value="1"/>
+        <Behavior value="ExtendedMagazine"/>
+    </CValidatorUnitCompareBehaviorCount>
+    <CValidatorUnitCompareBehaviorCount id="CasterdoesnothaveAmmoWeaponModification">
+        <WhichUnit Value="Caster"/>
+        <Behavior value="ExtendedMagazine"/>
+    </CValidatorUnitCompareBehaviorCount>
+    <CValidatorUnitCompareBehaviorCount id="CasterhasHighCapacityMagazine">
+        <WhichUnit Value="Caster"/>
+        <Value value="1"/>
+        <Behavior value="HighCapacityMagazine"/>
+    </CValidatorUnitCompareBehaviorCount>
+    <CValidatorUnitCompareBehaviorCount id="CasterdoesnothaveHighCapacityMagazine">
+        <WhichUnit Value="Caster"/>
+        <Behavior value="HighCapacityMagazine"/>
+    </CValidatorUnitCompareBehaviorCount>
+    <CValidatorUnitCompareBehaviorCount id="EquippedWeaponisAntiMaterialRifle" parent="EquippedWeaponTemplate" Weapon="AntiMaterialRifleEquipped"/>
+    <CValidatorUnitCompareBehaviorCount id="EquippedWeaponisAssaultRifle" parent="EquippedWeaponTemplate" Weapon="AssaultRifleEquipped"/>
+    <CValidatorUnitCompareBehaviorCount id="EquippedWeaponisChainsaw" parent="EquippedWeaponTemplate" Weapon="ChainsawEquipped"/>
+    <CValidatorUnitCompareBehaviorCount id="EquippedWeaponisFlamethrower" parent="EquippedWeaponTemplate" Weapon="FlamethrowerEquipped"/>
+    <CValidatorUnitCompareBehaviorCount id="EquippedWeaponisHeavyMachineGun" parent="EquippedWeaponTemplate" Weapon="HeavyMachineGunEquipped"/>
+    <CValidatorUnitCompareBehaviorCount id="EquippedWeaponisLaserRifle" parent="EquippedWeaponTemplate" Weapon="LaserRifleEquipped"/>
+    <CValidatorUnitCompareBehaviorCount id="EquippedWeaponisMarksmanRifle" parent="EquippedWeaponTemplate" Weapon="MarksmanRifleEquipped"/>
+    <CValidatorUnitCompareBehaviorCount id="EquippedWeaponisMediumMachineGun" parent="EquippedWeaponTemplate" Weapon="MediumMachineGunEquipped"/>
+    <CValidatorUnitCompareBehaviorCount id="EquippedWeaponisPistol" parent="EquippedWeaponTemplate" Weapon="PistolEquipped"/>
+    <CValidatorUnitCompareBehaviorCount id="EquippedWeaponisPlasmaCutter" parent="EquippedWeaponTemplate" Weapon="PlasmaCutterEquipped"/>
+    <CValidatorUnitCompareBehaviorCount id="EquippedWeaponisPumpShotgun" parent="EquippedWeaponTemplate" Weapon="PumpShotgunEquipped"/>
+    <CValidatorUnitCompareBehaviorCount id="EquippedWeaponisSubmachineGun" parent="EquippedWeaponTemplate" Weapon="SubmachineGunEquipped"/>
+    <CValidatorCombine id="ManualReload60" parent="ManualReloadTemplate" AmmoValue="60">
+        <ResultFailed value="Error"/>
+    </CValidatorCombine>
+    <CValidatorCombine id="ManualReload30" parent="ManualReloadTemplate" AmmoValue="30">
+        <ResultFailed value="Error"/>
+    </CValidatorCombine>
+    <CValidatorCombine id="ManualReload200" parent="ManualReloadTemplate" AmmoValue="200">
+        <ResultFailed value="Error"/>
+    </CValidatorCombine>
+    <CValidatorCombine id="ManualReload40" parent="ManualReloadTemplate" AmmoValue="40">
+        <ResultFailed value="Error"/>
+    </CValidatorCombine>
+    <CValidatorCombine id="ManualReload50" parent="ManualReloadTemplate" AmmoValue="50">
+        <ResultFailed value="Error"/>
+    </CValidatorCombine>
+    <CValidatorCombine id="ManualReload100" parent="ManualReloadTemplate" AmmoValue="100">
+        <ResultFailed value="Error"/>
+    </CValidatorCombine>
+    <CValidatorCombine id="ManualReload120" parent="ManualReloadTemplate" AmmoValue="120">
+        <ResultFailed value="Error"/>
+    </CValidatorCombine>
+    <CValidatorCombine id="ManualReload80" parent="ManualReloadTemplate" AmmoValue="80">
+        <ResultFailed value="Error"/>
+    </CValidatorCombine>
+    <CValidatorCombine id="ManualReload150" parent="ManualReloadTemplate" AmmoValue="150">
+        <ResultFailed value="Error"/>
+    </CValidatorCombine>
+    <CValidatorCombine id="ManualReload160" parent="ManualReloadTemplate" AmmoValue="160">
+        <ResultFailed value="Error"/>
+    </CValidatorCombine>
+    <CValidatorCombine id="ManualReloadBounds30" parent="ManualReloadBoundsTemplate" AmmoCount="30"/>
+    <CValidatorCombine id="ManualReloadBounds40" parent="ManualReloadBoundsTemplate" AmmoCount="40">
+        <ResultFailed value="Error"/>
+    </CValidatorCombine>
+    <CValidatorCombine id="ManualReloadBounds50" parent="ManualReloadBoundsTemplate" AmmoCount="50">
+        <ResultFailed value="Error"/>
+    </CValidatorCombine>
+    <CValidatorCombine id="ManualReloadBounds60" parent="ManualReloadBoundsTemplate" AmmoCount="60">
+        <ResultFailed value="Error"/>
+    </CValidatorCombine>
+    <CValidatorCombine id="ManualReloadBounds80" parent="ManualReloadBoundsTemplate" AmmoCount="80">
+        <ResultFailed value="Error"/>
+    </CValidatorCombine>
+    <CValidatorCombine id="ManualReloadBounds200" parent="ManualReloadBoundsTemplate" AmmoCount="200">
+        <ResultFailed value="Error"/>
+    </CValidatorCombine>
+    <CValidatorCombine id="ManualReloadBounds100" parent="ManualReloadBoundsTemplate" AmmoCount="100">
+        <ResultFailed value="Error"/>
+    </CValidatorCombine>
+    <CValidatorCombine id="ManualReloadBounds120" parent="ManualReloadBoundsTemplate" AmmoCount="120">
+        <ResultFailed value="Error"/>
+    </CValidatorCombine>
+    <CValidatorCombine id="ManualReloadBounds150" parent="ManualReloadBoundsTemplate" AmmoCount="150">
+        <ResultFailed value="Error"/>
+    </CValidatorCombine>
+    <CValidatorCombine id="ManualReloadBounds160" parent="ManualReloadBoundsTemplate" AmmoCount="160">
+        <ResultFailed value="Error"/>
+    </CValidatorCombine>
+    <CValidatorCombine id="PerfectReload30" parent="PerfectReloadTemplate" AmmoCount="30">
+        <ResultFailed value="Error"/>
+    </CValidatorCombine>
+    <CValidatorCombine id="PerfectReload40" parent="PerfectReloadTemplate" AmmoCount="40">
+        <ResultFailed value="Error"/>
+    </CValidatorCombine>
+    <CValidatorCombine id="PerfectReload50" parent="PerfectReloadTemplate" AmmoCount="50">
+        <ResultFailed value="Error"/>
+    </CValidatorCombine>
+    <CValidatorCombine id="PerfectReload60" parent="PerfectReloadTemplate" AmmoCount="60">
+        <ResultFailed value="Error"/>
+    </CValidatorCombine>
+    <CValidatorCombine id="PerfectReload80" parent="PerfectReloadTemplate" AmmoCount="80">
+        <ResultFailed value="Error"/>
+    </CValidatorCombine>
+    <CValidatorCombine id="PerfectReload100" parent="PerfectReloadTemplate" AmmoCount="100">
+        <ResultFailed value="Error"/>
+    </CValidatorCombine>
+    <CValidatorCombine id="PerfectReload120" parent="PerfectReloadTemplate" AmmoCount="120">
+        <ResultFailed value="Error"/>
+    </CValidatorCombine>
+    <CValidatorCombine id="PerfectReload150" parent="PerfectReloadTemplate" AmmoCount="150">
+        <ResultFailed value="Error"/>
+    </CValidatorCombine>
+    <CValidatorCombine id="PerfectReload160" parent="PerfectReloadTemplate" AmmoCount="160">
+        <ResultFailed value="Error"/>
+    </CValidatorCombine>
+    <CValidatorCombine id="PerfectReload200" parent="PerfectReloadTemplate" AmmoCount="200">
+        <ResultFailed value="Error"/>
+    </CValidatorCombine>
+    <!--Validator for turning range actors for abilites on or off. Player selection at start of game.-->
+    <CValidatorPlayerRequirement id="RangeAssistance">
+        <Find value="1"/>
+        <Value value="RangeAssistance"/>
+    </CValidatorPlayerRequirement>
+    <CValidatorUnitFilters id="TargetisMassive">
+        <Filters value="Massive;-"/>
+    </CValidatorUnitFilters>
+    <CValidatorUnitBehaviorState id="TargetisStunned">
+        <Enabled value="1"/>
+        <BehaviorState value="Stun"/>
+    </CValidatorUnitBehaviorState>
+    <CValidatorUnitWeaponFiring id="UsedWeaponisAntiMaterialRifle" parent="UsedWeaponTemplate" WeaponUsed="AntiMaterialRifle"/>
+    <CValidatorUnitWeaponFiring id="UsedWeaponisAssaultRifle" parent="UsedWeaponTemplate" WeaponUsed="AssaultRifle"/>
+    <CValidatorUnitWeaponFiring id="UsedWeaponisAssaultRifleBurst" parent="UsedWeaponTemplate" WeaponUsed="AssaultRifleBurstFire"/>
+    <CValidatorUnitWeaponFiring id="UsedWeaponisAutomaticShotgun" parent="UsedWeaponTemplate" WeaponUsed="AutomaticShotgun"/>
+    <CValidatorUnitWeaponFiring id="UsedWeaponisAutomaticShotgunSlug" parent="UsedWeaponTemplate" WeaponUsed="AutomaticShotgunSlugShot"/>
+    <CValidatorUnitWeaponFiring id="UsedWeaponisChainsaw" parent="UsedWeaponTemplate" WeaponUsed="Chainsaw"/>
+    <CValidatorUnitWeaponFiring id="UsedWeaponisFlamethrower" parent="UsedWeaponTemplate" WeaponUsed="Flamethrower"/>
+    <CValidatorUnitWeaponFiring id="UsedWeaponisHeavyMachineGun" parent="UsedWeaponTemplate" WeaponUsed="HeavyMachineGun"/>
+    <CValidatorUnitWeaponFiring id="UsedWeaponisLaserRifle" parent="UsedWeaponTemplate" WeaponUsed="LaserRifle"/>
+    <CValidatorUnitWeaponFiring id="UsedWeaponisMarksmanRifle" parent="UsedWeaponTemplate" WeaponUsed="MarksmanRifle"/>
+    <CValidatorUnitWeaponFiring id="UsedWeaponisMediumMachineGun" parent="UsedWeaponTemplate" WeaponUsed="MediumMachineGun"/>
+    <CValidatorUnitWeaponFiring id="UsedWeaponisPistol" parent="UsedWeaponTemplate" WeaponUsed="Pistol"/>
+    <CValidatorUnitWeaponFiring id="UsedWeaponisPlasmaCutter" parent="UsedWeaponTemplate" WeaponUsed="PlasmaCutter"/>
+    <CValidatorUnitWeaponFiring id="UsedWeaponisPumpShotgun" parent="UsedWeaponTemplate" WeaponUsed="PumpShotgun"/>
+    <CValidatorUnitWeaponFiring id="UsedWeaponisPumpShotgunSliug" parent="UsedWeaponTemplate" WeaponUsed="PumpShotgunSlugShot"/>
+    <CValidatorUnitWeaponFiring id="UsedWeaponisSubMachineGun" parent="UsedWeaponTemplate" WeaponUsed="SubmachineGun"/>
+    <CValidatorUnitCompareBehaviorCount id="EquippedWeaponisAutomaticShotgun" parent="EquippedWeaponTemplate" Weapon="AutomaticShotgunEquipped"/>
+    <CValidatorLocationCompareRange id="CasterToTargetRangeLE1">
+        <WhichLocation Value="TargetUnitOrPoint"/>
+        <Compare value="LE"/>
+        <Range value="1"/>
+    </CValidatorLocationCompareRange>
+    <CValidatorLocationCompareRange id="CasterToTargetRangeGT1">
+        <WhichLocation Value="TargetUnitOrPoint"/>
+        <Compare value="GT"/>
+        <Range value="1"/>
+    </CValidatorLocationCompareRange>
+    <CValidatorLocationCompareRange id="CasterToTargetRangeLE2">
+        <WhichLocation Value="TargetUnitOrPoint"/>
+        <Compare value="LE"/>
+        <Range value="2"/>
+    </CValidatorLocationCompareRange>
+    <CValidatorCombine id="CasterToTargetRangeWithin2">
+        <CombineArray value="CasterToTargetRangeGT1"/>
+        <CombineArray value="CasterToTargetRangeLE2"/>
+        <Type value="And"/>
+    </CValidatorCombine>
+    <CValidatorLocationCompareRange id="CasterToTargetRangeGT2">
+        <WhichLocation Value="TargetUnitOrPoint"/>
+        <Compare value="GT"/>
+        <Range value="2"/>
+    </CValidatorLocationCompareRange>
+    <CValidatorLocationCompareRange id="CasterToTargetRangeLE3">
+        <WhichLocation Value="TargetUnitOrPoint"/>
+        <Compare value="LE"/>
+        <Range value="3"/>
+    </CValidatorLocationCompareRange>
+    <CValidatorCombine id="CasterToTargetRangeWithin3">
+        <CombineArray value="CasterToTargetRangeGT2"/>
+        <CombineArray value="CasterToTargetRangeLE3"/>
+        <Type value="And"/>
+    </CValidatorCombine>
+    <CValidatorLocationCompareRange id="CasterToTargetRangeGT3">
+        <WhichLocation Value="TargetUnitOrPoint"/>
+        <Compare value="GT"/>
+        <Range value="3"/>
+    </CValidatorLocationCompareRange>
+    <CValidatorLocationCompareRange id="CasterToTargetRangeLE4">
+        <WhichLocation Value="TargetUnitOrPoint"/>
+        <Compare value="LE"/>
+        <Range value="4"/>
+    </CValidatorLocationCompareRange>
+    <CValidatorCombine id="CasterToTargetRangeWithin4">
+        <CombineArray value="CasterToTargetRangeGT3"/>
+        <CombineArray value="CasterToTargetRangeLE4"/>
+        <Type value="And"/>
+    </CValidatorCombine>
+    <CValidatorLocationCompareRange id="CasterToTargetRangeGT4">
+        <WhichLocation Value="TargetUnitOrPoint"/>
+        <Compare value="GT"/>
+        <Range value="4"/>
+    </CValidatorLocationCompareRange>
+    <CValidatorLocationCompareRange id="CasterToTargetRangeLE5">
+        <WhichLocation Value="TargetUnitOrPoint"/>
+        <Compare value="LE"/>
+        <Range value="5"/>
+    </CValidatorLocationCompareRange>
+    <CValidatorCombine id="CasterToTargetRangeWithin5">
+        <CombineArray value="CasterToTargetRangeGT4"/>
+        <CombineArray value="CasterToTargetRangeLE5"/>
+        <Type value="And"/>
+    </CValidatorCombine>
+    <CValidatorLocationCompareRange id="CasterToTargetRangeGT5">
+        <WhichLocation Value="TargetUnitOrPoint"/>
+        <Compare value="GT"/>
+        <Range value="5"/>
+    </CValidatorLocationCompareRange>
+    <CValidatorLocationCompareRange id="CasterToTargetRangeLE6">
+        <WhichLocation Value="TargetUnitOrPoint"/>
+        <Compare value="LE"/>
+        <Range value="6"/>
+    </CValidatorLocationCompareRange>
+    <CValidatorCombine id="CasterToTargetRangeWithin6">
+        <CombineArray value="CasterToTargetRangeGT5"/>
+        <CombineArray value="CasterToTargetRangeLE6"/>
+        <Type value="And"/>
+    </CValidatorCombine>
+    <CValidatorLocationCompareRange id="CasterToTargetRangeGT6">
+        <WhichLocation Value="TargetUnitOrPoint"/>
+        <Compare value="GT"/>
+        <Range value="6"/>
+    </CValidatorLocationCompareRange>
+    <CValidatorLocationCompareRange id="CasterToTargetRangeLE7">
+        <WhichLocation Value="TargetUnitOrPoint"/>
+        <Compare value="LE"/>
+        <Range value="7"/>
+    </CValidatorLocationCompareRange>
+    <CValidatorCombine id="CasterToTargetRangeWithin7">
+        <CombineArray value="CasterToTargetRangeGT6"/>
+        <CombineArray value="CasterToTargetRangeLE7"/>
+        <Type value="And"/>
+    </CValidatorCombine>
+    <CValidatorLocationCompareRange id="CasterToTargetRangeGT7">
+        <WhichLocation Value="TargetUnitOrPoint"/>
+        <Compare value="GT"/>
+        <Range value="7"/>
+    </CValidatorLocationCompareRange>
+    <CValidatorLocationCompareRange id="CasterToTargetRangeLE8">
+        <WhichLocation Value="TargetUnitOrPoint"/>
+        <Compare value="LE"/>
+        <Range value="8"/>
+    </CValidatorLocationCompareRange>
+    <CValidatorCombine id="CasterToTargetRangeWithin8">
+        <CombineArray value="CasterToTargetRangeGT7"/>
+        <CombineArray value="CasterToTargetRangeLE8"/>
+        <Type value="And"/>
+    </CValidatorCombine>
+    <CValidatorLocationCompareRange id="CasterToTargetRangeGT8">
+        <WhichLocation Value="TargetUnitOrPoint"/>
+        <Compare value="GT"/>
+        <Range value="8"/>
+    </CValidatorLocationCompareRange>
+    <CValidatorLocationCompareRange id="CasterToTargetRangeLE9">
+        <WhichLocation Value="TargetUnitOrPoint"/>
+        <Compare value="LE"/>
+        <Range value="9"/>
+    </CValidatorLocationCompareRange>
+    <CValidatorCombine id="CasterToTargetRangeWithin9">
+        <CombineArray value="CasterToTargetRangeGT8"/>
+        <CombineArray value="CasterToTargetRangeLE9"/>
+        <Type value="And"/>
+    </CValidatorCombine>
+    <CValidatorLocationCompareRange id="CasterToTargetRangeGT9">
+        <WhichLocation Value="TargetUnitOrPoint"/>
+        <Compare value="GT"/>
+        <Range value="9"/>
+    </CValidatorLocationCompareRange>
+    <CValidatorLocationCompareRange id="CasterToTargetRangeLE10">
+        <WhichLocation Value="TargetUnitOrPoint"/>
+        <Compare value="LE"/>
+        <Range value="10"/>
+    </CValidatorLocationCompareRange>
+    <CValidatorCombine id="CasterToTargetRangeWithin10">
+        <CombineArray value="CasterToTargetRangeGT9"/>
+        <CombineArray value="CasterToTargetRangeLE10"/>
+        <Type value="And"/>
+    </CValidatorCombine>
+    <CValidatorLocationCompareRange id="CasterToTargetRangeGT10">
+        <WhichLocation Value="TargetUnitOrPoint"/>
+        <Compare value="GT"/>
+        <Range value="10"/>
+    </CValidatorLocationCompareRange>
+    <CValidatorLocationCompareRange id="CasterToTargetRangeLE11">
+        <WhichLocation Value="TargetUnitOrPoint"/>
+        <Compare value="LE"/>
+        <Range value="11"/>
+    </CValidatorLocationCompareRange>
+    <CValidatorCombine id="CasterToTargetRangeWithin11">
+        <CombineArray value="CasterToTargetRangeGT10"/>
+        <CombineArray value="CasterToTargetRangeLE11"/>
+        <Type value="And"/>
+    </CValidatorCombine>
+    <CValidatorLocationCompareRange id="CasterToTargetRangeGT11">
+        <WhichLocation Value="TargetUnitOrPoint"/>
+        <Compare value="GT"/>
+        <Range value="11"/>
+    </CValidatorLocationCompareRange>
+    <CValidatorLocationCompareRange id="CasterToTargetRangeLE12">
+        <WhichLocation Value="TargetUnitOrPoint"/>
+        <Compare value="LE"/>
+        <Range value="12"/>
+    </CValidatorLocationCompareRange>
+    <CValidatorCombine id="CasterToTargetRangeWithin12">
+        <CombineArray value="CasterToTargetRangeGT11"/>
+        <CombineArray value="CasterToTargetRangeLE12"/>
+        <Type value="And"/>
+    </CValidatorCombine>
+</Catalog>

@@ -1,0 +1,2972 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<Catalog>
+    <CAbilEffectTarget id="BuddySystem">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Cost>
+            <Vital index="Energy" value="40"/>
+            <Cooldown TimeUse="30"/>
+        </Cost>
+        <Range value="2.5"/>
+        <ArcSlop value="360"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="BuddySystem"/>
+        <Effect index="0" value="BuddyCastSet"/>
+        <TargetFilters value="Heroic;Self,Player,Neutral,Enemy,Air,Missile,Item,Hidden,Invulnerable"/>
+    </CAbilEffectTarget>
+    <CAbilEffectInstant id="BuddySystem2">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Effect index="0" value="BuddyRemoveCaster"/>
+        <Flags index="Transient" value="1"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="BuddySystem2" Requirements="BuddyCancel"/>
+    </CAbilEffectInstant>
+    <CAbilEffectTarget id="CanisterShot">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Effect index="0" value="CanisterLaunchSet"/>
+        <Cost>
+            <Vital index="Energy" value="15"/>
+            <Cooldown TimeUse="8"/>
+        </Cost>
+        <Range value="500"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="CanisterShot" Requirements="GrenadierShow"/>
+    </CAbilEffectTarget>
+    <CAbilEffectTarget id="PrecisionShot2">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Effect index="0" value="PrecisionShotSet"/>
+        <Cost>
+            <Charge>
+                <CountMax value="15"/>
+                <CountStart value="15"/>
+                <CountUse value="1"/>
+                <TimeUse value="1.5"/>
+            </Charge>
+            <Cooldown TimeUse="0.1"/>
+        </Cost>
+        <Range value="15"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="PrecisionShot"/>
+        <Flags index="AllowMovement" value="1"/>
+        <Flags index="NoDeceleration" value="1"/>
+        <Flags index="Transient" value="1"/>
+        <Arc value="360"/>
+    </CAbilEffectTarget>
+    <CAbilEffectInstant id="FirstAid">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Effect index="0" value="GenericDummyEffect"/>
+        <Effect value="GenericDummyEffect"/>
+        <Effect value="GenericDummyEffect"/>
+        <CmdButtonArray index="Execute">
+            <Flags index="ShowInGlossary" value="0"/>
+        </CmdButtonArray>
+    </CAbilEffectInstant>
+    <CAbilEffectTarget id="StunGrenade" parent="3LevelEffectTargetAbility">
+        <Effect index="0" value="StunGrenadeLM"/>
+        <Effect index="1" value="StunGrenadeLM"/>
+        <Effect index="2" removed="1"/>
+        <Cost>
+            <Vital index="Energy" value="20"/>
+            <Cooldown TimeUse="12"/>
+        </Cost>
+        <TargetFilters value="-;Self,Player,Ally,Neutral,Item,Invulnerable"/>
+        <Range value="10"/>
+        <Range value="10"/>
+        <CursorEffect value="StunGrenadeSearch"/>
+        <CmdButtonArray index="Execute">
+            <Flags index="ShowInGlossary" value="0"/>
+        </CmdButtonArray>
+        <AINotifyEffect value="StunGrenadeLM"/>
+        <LevelButtonTooltip index="1" removed="1"/>
+    </CAbilEffectTarget>
+    <CAbilEffectTarget id="StickyBomb" parent="3LevelEffectTargetAbility">
+        <Effect index="0" value="StickyBombLM"/>
+        <Effect index="1" value="StickyBombLM2"/>
+        <Effect index="2" removed="1"/>
+        <Cost>
+            <Vital index="Energy" value="25"/>
+            <Cooldown TimeUse="16"/>
+        </Cost>
+        <TargetFilters value="-;Self,Player,Ally,Neutral,Item,Invulnerable"/>
+        <Range value="10"/>
+        <Range value="10"/>
+        <CursorEffect value="FragmentationGrenadeDamageLevel1"/>
+        <CursorEffect value="FragmentationGrenadeDamageLevel2"/>
+        <CursorEffect value="FragmentationGrenadeDamageLevel3"/>
+        <CmdButtonArray index="Execute">
+            <Flags index="ShowInGlossary" value="0"/>
+        </CmdButtonArray>
+        <Flags index="ChannelingMinimum" value="0"/>
+        <Flags index="UpdateTarget" value="1"/>
+        <RangeSlop value="2"/>
+    </CAbilEffectTarget>
+    <CAbilEffectInstant id="ThisismyRifle">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Effect index="0" value="TIMRBuff"/>
+        <Flags index="Transient" value="1"/>
+        <Cost>
+            <Vital index="Energy" value="40"/>
+            <Charge Link="Abil/Bloodlust"/>
+            <Cooldown Link="Abil/Bloodlust" TimeUse="10"/>
+        </Cost>
+        <AINotifyEffect value="TIMRBuff"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="ThisismyRifle" Requirements="TIMRPreventReuse"/>
+    </CAbilEffectInstant>
+    <CAbilEffectInstant id="SuppressiveFire">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Effect index="0" value="GenericDummyEffect"/>
+        <Effect value="GenericDummyEffect"/>
+        <Effect value="GenericDummyEffect"/>
+        <AINotifyEffect value="CripplingFire"/>
+    </CAbilEffectInstant>
+    <CAbilBehavior id="CriticalStrike">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <CmdButtonArray index="On" DefaultButtonFace="CriticalStrike"/>
+        <BehaviorArray value="CriticalStrikeLevel1"/>
+        <BehaviorArray value="CriticalStrikeLevel2"/>
+        <BehaviorArray value="CriticalStrikeLevel3"/>
+        <LevelButtonOnTooltip value="LevelUp/Tooltip/CriticalStrikeLevel2"/>
+        <LevelButtonOnTooltip value="LevelUp/Tooltip/CriticalStrikeLevel3"/>
+    </CAbilBehavior>
+    <CAbilBehavior id="FocusFire">
+        <Alignment value="Positive"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <CmdButtonArray index="On" DefaultButtonFace="FocusFire">
+            <Flags index="ShowInGlossary" value="0"/>
+        </CmdButtonArray>
+        <CmdButtonArray index="Off" DefaultButtonFace="FocusFire2"/>
+        <Flags index="Toggle" value="1"/>
+        <Flags index="Transient" value="1"/>
+        <BehaviorArray value="FocusFire"/>
+        <Cost>
+            <Cooldown TimeUse="4"/>
+        </Cost>
+    </CAbilBehavior>
+    <CAbilEffectInstant id="AccurateFire">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Effect index="0" value="GenericDummyEffect"/>
+        <Effect value="GenericDummyEffect"/>
+        <Effect value="GenericDummyEffect"/>
+        <CmdButtonArray index="Execute">
+            <Flags index="ShowInGlossary" value="0"/>
+        </CmdButtonArray>
+    </CAbilEffectInstant>
+    <CAbilEffectTarget id="FragmentationGrenade" parent="3LevelEffectTargetAbility">
+        <Cost>
+            <Vital index="Energy" value="20"/>
+            <Charge Link="Grenade"/>
+            <Cooldown Location="Unit" TimeUse="10"/>
+        </Cost>
+        <Cost>
+            <Vital index="Energy" value="20"/>
+            <Charge Link="Grenade"/>
+            <Cooldown Location="Unit" TimeUse="10"/>
+        </Cost>
+        <Cost>
+            <Vital index="Energy" value="20"/>
+            <Charge>
+                <CountMax value="3"/>
+                <CountStart value="1"/>
+                <CountUse value="1"/>
+                <Link value="Grenade"/>
+                <TimeUse value="10"/>
+            </Charge>
+            <Cooldown Location="Unit" TimeUse="1"/>
+        </Cost>
+        <TargetFilters value="-;Self,Player,Ally,Neutral,Item,Invulnerable"/>
+        <Range value="10"/>
+        <Range value="10"/>
+        <Range value="10"/>
+        <CursorEffect value="FragmentationGrenadeDamageLevel1"/>
+        <CursorEffect value="FragmentationGrenadeDamageLevel2"/>
+        <CursorEffect value="FragmentationGrenadeDamageLevel3"/>
+        <CmdButtonArray index="Execute">
+            <Flags index="ShowInGlossary" value="0"/>
+        </CmdButtonArray>
+    </CAbilEffectTarget>
+    <CAbilBehavior id="Grenadier">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <CmdButtonArray index="On" DefaultButtonFace="Grenadier"/>
+        <BehaviorArray value="Grenadier"/>
+    </CAbilBehavior>
+    <CAbilEffectInstant id="K9">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Cost>
+            <Vital index="Energy" value="50"/>
+            <Cooldown TimeUse="120"/>
+        </Cost>
+        <ProducedUnitArray value="K9"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="K9Unit"/>
+    </CAbilEffectInstant>
+    <CAbilInventory id="K9Inventory">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <InfoArray Alignment="Left" Container="PetDefaultInventory"/>
+    </CAbilInventory>
+    <CAbilEffectInstant id="K9Sprint">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Effect index="0" value="Sprint"/>
+        <Cost>
+            <Cooldown TimeUse="20"/>
+        </Cost>
+        <CmdButtonArray index="Execute" DefaultButtonFace="Sprint"/>
+    </CAbilEffectInstant>
+    <CAbilBehavior id="K9Turret">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <CmdButtonArray index="On" DefaultButtonFace="K9TurretDeploy"/>
+        <CmdButtonArray index="Off" DefaultButtonFace="K9TurretPackUp"/>
+        <Flags index="Toggle" value="1"/>
+        <BehaviorArray value="K9Turret"/>
+    </CAbilBehavior>
+    <CAbilEffectTarget id="ImpalerGrenade">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Effect index="0" value="ImpalerGrenadeLaunchMissile"/>
+        <Cost>
+            <Vital index="Energy" value="25"/>
+            <Charge Link="Abil/ImaplerGrenade"/>
+            <Cooldown Location="Unit" TimeUse="6"/>
+        </Cost>
+        <TargetFilters value="-;Self,Player,Ally,Neutral,Item,Invulnerable"/>
+        <Range value="15"/>
+        <CursorEffect value="ImpalerGrenadeDamage"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="ImpalerGrenade" Requirements="Grenadier">
+            <Flags index="ShowInGlossary" value="0"/>
+        </CmdButtonArray>
+        <EffectRange index="0" value="2,500"/>
+    </CAbilEffectTarget>
+    <CAbilEffectTarget id="PlasmaGrenade">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Effect index="0" value="PlasmaGrenadeLaunchMissile"/>
+        <Cost>
+            <Vital index="Energy" value="25"/>
+            <Cooldown Location="Unit" TimeUse="6"/>
+        </Cost>
+        <Range value="15"/>
+        <CursorEffect value="PlasmaGrenadeSearch"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="PlasmaGrenade" Requirements="Grenadier">
+            <Flags index="ShowInGlossary" value="0"/>
+        </CmdButtonArray>
+        <TargetFilters value="-;Self,Player,Ally,Neutral,Item,Invulnerable"/>
+        <EffectRange index="0" value="2,500"/>
+    </CAbilEffectTarget>
+    <CAbilEffectTarget id="PrecisionShot" parent="3LevelEffectTargetAbility">
+        <Cost>
+            <Vital index="Energy" value="10"/>
+            <Cooldown TimeUse="5"/>
+        </Cost>
+        <TargetFilters value="-;Player,Ally,Neutral"/>
+        <Range value="15"/>
+        <CastIntroTime value="0.0625"/>
+        <LevelButtonTooltip index="0" value="Button/Tooltip/PrecisionShotLevel2"/>
+        <LevelButtonTooltip index="1" value="Button/Tooltip/PrecisionShotLevel3"/>
+        <CmdButtonArray index="Execute">
+            <Flags index="ShowInGlossary" value="0"/>
+        </CmdButtonArray>
+    </CAbilEffectTarget>
+    <CAbilEffectInstant id="Repulse">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Cost>
+            <Vital index="Energy" value="25"/>
+            <Cooldown TimeUse="20"/>
+        </Cost>
+        <CmdButtonArray index="Execute" DefaultButtonFace="Repulse"/>
+    </CAbilEffectInstant>
+    <CAbilLearn id="RiflemanLearn" parent="LearnTemplate">
+        <Name value="Abil/Name/RiflemanLearn"/>
+        <InfoArray index="Learn1" Abil="AccurateFire">
+            <Button DefaultButtonFace="FireUp"/>
+        </InfoArray>
+        <InfoArray index="Learn2" Abil="FragmentationGrenade">
+            <Button DefaultButtonFace="FragmentationGrenade"/>
+        </InfoArray>
+        <InfoArray index="Learn3" Abil="WeaponProficiency">
+            <Button DefaultButtonFace="WeaponsProficiencyLevel1"/>
+        </InfoArray>
+        <InfoArray index="Learn4" Abil="StickyBomb">
+            <Button DefaultButtonFace="StickyBomb"/>
+        </InfoArray>
+        <InfoArray index="Learn5" Abil="ThisismyRifle">
+            <Button DefaultButtonFace="ThisismyRifle"/>
+        </InfoArray>
+        <InfoArray index="Learn6" Abil="Grenadier">
+            <Button DefaultButtonFace="Grenadier"/>
+        </InfoArray>
+        <InfoArray index="Learn7" Abil="SuppressiveFire">
+            <Button DefaultButtonFace="CripplingFire"/>
+        </InfoArray>
+        <InfoArray index="Learn8" Abil="FirstAid">
+            <Button DefaultButtonFace="SelfAid"/>
+        </InfoArray>
+        <InfoArray index="Learn9" Abil="StunGrenade">
+            <Button DefaultButtonFace="StunGrenade"/>
+        </InfoArray>
+        <InfoArray index="Learn10" Abil="BuddySystem">
+            <Button DefaultButtonFace="BuddySystem"/>
+        </InfoArray>
+        <InfoArray index="Learn11" Abil="SonicTrap">
+            <Button DefaultButtonFace="SonicTrap"/>
+        </InfoArray>
+        <InfoArray index="Learn12" Abil="K9">
+            <Button DefaultButtonFace="K9Unit"/>
+        </InfoArray>
+        <InfoArray index="Learn14" Abil="Repulse">
+            <Button DefaultButtonFace="Repulse"/>
+        </InfoArray>
+        <InfoArray index="Learn15" Abil="CriticalStrike">
+            <Button DefaultButtonFace="CriticalStrike"/>
+        </InfoArray>
+    </CAbilLearn>
+    <CAbilInventory id="RiflemanInventory" parent="InventoryTemplate"/>
+    <CAbilEffectInstant id="SelfAid" parent="2LevelEffectInstantAbility">
+        <Flags index="Transient" value="1"/>
+        <Cost>
+            <Vital index="Energy" value="10"/>
+            <Cooldown TimeUse="10"/>
+        </Cost>
+        <Effect index="1" removed="1"/>
+    </CAbilEffectInstant>
+    <CAbilEffectTarget id="SonicTrap">
+        <Cost>
+            <Vital index="Energy" value="45"/>
+            <Cooldown TimeUse="45"/>
+        </Cost>
+        <Range value="3"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="SonicTrap"/>
+        <OrderArray>
+            <DisplayType value="Confirm"/>
+            <Color value="255,0,255,0"/>
+            <Model value="Assets\UI\Feedback\WayPointConfirm\WayPointConfirm.m3"/>
+            <LineTexture value="Assets\Textures\WayPointLine.dds"/>
+        </OrderArray>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Effect index="0" value="SonicTrapLaunch1"/>
+        <Effect value="SonicTrapLaunch2"/>
+    </CAbilEffectTarget>
+    <CAbilEffectInstant id="SonicTrapLevel1">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Flags index="AutoCast" value="1"/>
+        <Flags index="AutoCastOn" value="1"/>
+        <Cost>
+            <Charge CountMax="8" CountStart="8" CountUse="1"/>
+            <Cooldown TimeUse="3"/>
+        </Cost>
+        <AutoCastFilters value="Visible;-"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="SonicTrapActivation">
+            <Flags index="ShowInGlossary" value="0"/>
+        </CmdButtonArray>
+        <AutoCastValidatorArray value="SonicTrapActivation"/>
+        <Effect index="0" value="SonicTrapSearchLevel1"/>
+        <AINotifyEffect value="SonicTrapSearchLevel1"/>
+        <Range value="3"/>
+        <AutoCastRange value="3"/>
+    </CAbilEffectInstant>
+    <CAbilEffectInstant id="SonicTrapLevel2">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Flags index="AutoCast" value="1"/>
+        <Flags index="AutoCastOn" value="1"/>
+        <Cost>
+            <Charge CountMax="8" CountStart="8" CountUse="1"/>
+            <Cooldown TimeUse="3"/>
+        </Cost>
+        <AutoCastFilters value="Visible;-"/>
+        <AutoCastValidatorArray value="SonicTrapActivation"/>
+        <LevelButtonTooltip value="Button/Tooltip/SonicTrapLevel2"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="SonicTrapActivation">
+            <Flags index="ShowInGlossary" value="0"/>
+        </CmdButtonArray>
+        <Effect index="0" value="SonicTrapSearchLevel2"/>
+        <AINotifyEffect value="SonicTrapSearchLevel2"/>
+        <Range value="3"/>
+        <AutoCastRange value="3"/>
+    </CAbilEffectInstant>
+    <CAbilEffectInstant id="WeaponProficiency">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Effect index="0" value="GenericDummyEffect"/>
+        <Effect value="GenericDummyEffect"/>
+        <CmdButtonArray index="Execute">
+            <Flags index="ShowInGlossary" value="0"/>
+        </CmdButtonArray>
+    </CAbilEffectInstant>
+    <CTurret id="K9">
+        <Idle value="ResetIfMoving"/>
+        <YawArc value="360"/>
+        <YawRate value="720"/>
+        <Fidget>
+            <ChanceArray index="Anim" value="0"/>
+            <ChanceArray index="Idle" value="0"/>
+            <ChanceArray index="Turn" value="0"/>
+        </Fidget>
+    </CTurret>
+    <CSound id="TIMRCast" parent="Combat">
+        <EditorCategories value="Race:Terran"/>
+        <AssetArray File="Assets\Sounds\Spell_Fireball_Impact_00.wav"/>
+        <AssetArray File="Assets\Sounds\Spell_Fireball_Impact_01.wav" FacialGroup=""/>
+        <AssetArray File="Assets\Sounds\Spell_Fireball_Impact_02.wav" FacialGroup=""/>
+        <AssetArray File="Assets\Sounds\Spell_Fireball_Impact_03.wav" FacialGroup=""/>
+        <AssetArray File="Assets\Sounds\Spell_Fireball_Impact_04.wav" FacialGroup=""/>
+        <AssetArray File="Assets\Sounds\Spell_Fireball_Impact_05.wav" FacialGroup=""/>
+        <DupeDestroyCount value="5"/>
+        <Pitch value="-3.000000,-2.000000"/>
+        <Volume value="-13.000000,-12.000000"/>
+    </CSound>
+    <CSound id="RiflemanLaunchGrenadeLauncher" parent="Combat">
+        <EditorCategories value="Race:Terran"/>
+        <AssetArray File="Assets\Sounds\Zerg\SharedEffects\Attacks\Zerg_AttackLaunchSmallSwing0.wav"/>
+        <AssetArray File="Assets\Sounds\Zerg\SharedEffects\Attacks\Zerg_AttackLaunchSmallSwing1.wav"/>
+        <AssetArray File="Assets\Sounds\Zerg\SharedEffects\Attacks\Zerg_AttackLaunchSmallSwing2.wav"/>
+        <AssetArray File="Assets\Sounds\Zerg\SharedEffects\Attacks\Zerg_AttackLaunchSmallSwing3.wav"/>
+        <DupeDestroyCount value="5"/>
+        <Pitch value="-3.000000,-2.000000"/>
+        <Volume value="-13.000000,-12.000000"/>
+    </CSound>
+    <CSound id="RiflemanRepulseCast" parent="Combat">
+        <EditorCategories value="Race:Terran"/>
+        <AssetArray File="Assets\Sounds\Terran\Ghost\Ghost_EMPAttackImpact0.wav" FacialGroup=""/>
+        <AssetArray File="Assets\Sounds\Terran\Ghost\Ghost_EMPAttackImpact1.wav" FacialGroup=""/>
+        <AssetArray File="Assets\Sounds\Terran\Ghost\Ghost_EMPAttackImpact2.wav" FacialGroup=""/>
+        <DupeDestroyCount value="5"/>
+        <Pitch value="-3.000000,-2.000000"/>
+        <Volume value="-13.000000,-12.000000"/>
+    </CSound>
+    <CSound id="RiflemanSinicTrapCast" parent="Combat">
+        <EditorCategories value="Race:Terran"/>
+        <AssetArray File="Assets\Sounds\Uni\Units\ColonyTransport\ColonyTransport_Load0.wav" Pitch="2.000000,2.000000" FacialGroup=""/>
+        <AssetArray File="Assets\Sounds\Uni\Units\ColonyTransport\ColonyTransport_Load1.wav" Pitch="2.000000,2.000000" FacialGroup=""/>
+        <AssetArray File="Assets\Sounds\Uni\Units\ColonyTransport\ColonyTransport_Load2.wav" Pitch="2.000000,2.000000" FacialGroup=""/>
+        <AssetArray File="Assets\Sounds\Uni\Units\ColonyTransport\ColonyTransport_Load3.wav" Pitch="2.000000,2.000000" FacialGroup=""/>
+        <DupeDestroyCount value="5"/>
+        <Pitch value="-3.000000,-2.000000"/>
+        <Volume value="-13.000000,-12.000000"/>
+    </CSound>
+    <CSound id="RiflemanTossGrenadeHand" parent="Combat">
+        <EditorCategories value="Race:Terran"/>
+        <AssetArray File="Assets\Sounds\Zerg\SharedEffects\Attacks\Zerg_AttackLaunchSmallSwing0.wav"/>
+        <AssetArray File="Assets\Sounds\Zerg\SharedEffects\Attacks\Zerg_AttackLaunchSmallSwing1.wav"/>
+        <AssetArray File="Assets\Sounds\Zerg\SharedEffects\Attacks\Zerg_AttackLaunchSmallSwing2.wav"/>
+        <AssetArray File="Assets\Sounds\Zerg\SharedEffects\Attacks\Zerg_AttackLaunchSmallSwing3.wav"/>
+        <DupeDestroyCount value="5"/>
+        <Pitch value="-3.000000,-2.000000"/>
+        <Volume value="-13.000000,-12.000000"/>
+    </CSound>
+    <CSound id="TossStickyBomb" parent="Combat">
+        <EditorCategories value="Race:Terran"/>
+        <AssetArray File="Assets\Sounds\Zerg\SharedEffects\Attacks\Zerg_AttackLaunchSmallSwing0.wav"/>
+        <AssetArray File="Assets\Sounds\Zerg\SharedEffects\Attacks\Zerg_AttackLaunchSmallSwing1.wav"/>
+        <AssetArray File="Assets\Sounds\Zerg\SharedEffects\Attacks\Zerg_AttackLaunchSmallSwing2.wav"/>
+        <AssetArray File="Assets\Sounds\Zerg\SharedEffects\Attacks\Zerg_AttackLaunchSmallSwing3.wav"/>
+        <DupeDestroyCount value="5"/>
+        <Pitch value="-3.000000,-2.000000"/>
+        <Volume value="-13.000000,-12.000000"/>
+    </CSound>
+    <CModel id="FragmentationGrenadeLaunchGL" parent="LaunchFX">
+        <Model value="Assets\Effects\Terran\WarHoundHaywireMissileLaunch\WarHoundHaywireMissileLaunch.m3"/>
+        <Lighting value="AntiMaterialRifleAttackLaunch"/>
+    </CModel>
+    <CModel id="FocusFireLaserSight">
+        <Model value="LaserSight_teamcolor.m3"/>
+        <EditorCategories value="Race:Neutral"/>
+    </CModel>
+    <CModel id="BuddySystemBeam" parent="PersistentSpellFX">
+        <Model value="Assets\Effects\Terran\DominationBeam\DominationBeam.m3"/>
+        <EditorCategories value="Race:Terran"/>
+    </CModel>
+    <CModel id="StickyBombImpactGL" parent="ImpactFX">
+        <Model value="Assets\Effects\Terran\TerranSmallUnitDeath\TerranSmallUnitDeath.m3"/>
+    </CModel>
+    <CModel id="StickyBombThrownGL" parent="MissileFX">
+        <Model value="Assets\Effects\Terran\WarHoundHaywireMissile\WarHoundHaywireMissile.m3"/>
+    </CModel>
+    <CModel id="StunGrenadeImpact2" parent="ImpactFX">
+        <Model value="Assets\Effects\Terran\WarHoundRailGunMissileImpact\WarHoundRailGunMissileImpact.m3"/>
+    </CModel>
+    <CModel id="StunGrenadeMissileThrown" parent="MissileFX">
+        <Model value="Assets\Effects\Terran\EMPMissile\EMPMissile.m3"/>
+    </CModel>
+    <CModel id="StunGrenadeImpact" parent="ImpactFX">
+        <Model value="Assets\Effects\Terran\DisplacementFieldImpact\DisplacementFieldImpact.m3"/>
+    </CModel>
+    <CModel id="StickyBombGL" parent="MissileFX">
+        <Model value="Assets\Effects\Terran\MagneticMineMissile\MagneticMineMissile.m3"/>
+    </CModel>
+    <CModel id="StickyBombThrown" parent="MissileFX">
+        <Model value="Assets\Effects\Terran\MagneticMineMissile\MagneticMineMissile.m3"/>
+    </CModel>
+    <CModel id="StickyBombImpact" parent="ImpactFX">
+        <Model value="Assets\Effects\Protoss\ColossusBeamImpact\ColossusBeamImpact.m3"/>
+    </CModel>
+    <CModel id="TIMR" parent="PersistentSpellFX">
+        <Model value="Assets\Effects\Zerg\WildMutationBuff\WildMutationBuff.m3"/>
+    </CModel>
+    <CModel id="FragmentationGrenade" parent="MissileFX">
+        <Model value="Assets\Effects\Terran\ArcadeVikingMissile\ArcadeVikingMissile.m3"/>
+        <ScaleMax value="1.300000,1.300000,1.300000"/>
+        <ScaleMin value="1.300000,1.300000,1.300000"/>
+    </CModel>
+    <CModel id="FragmentationGrenadeThrown" parent="MissileFX">
+        <Model value="Assets\Effects\Terran\UltraSonicMissile\UltraSonicMissile.m3"/>
+    </CModel>
+    <CModel id="FragmentationGrenadeThrownImpact" parent="ImpactFX">
+        <Model value="Assets\Effects\Zerg\BurrowChargeImpact\BurrowChargeImpact.m3"/>
+    </CModel>
+    <CModel id="ImpalerGrenade" parent="MissileFX">
+        <Model value="Assets\Effects\Terran\ArcadeVikingMissileHoming\ArcadeVikingMissileHoming.m3"/>
+        <ScaleMax value="1.300000,1.300000,1.300000"/>
+        <ScaleMin value="1.300000,1.300000,1.300000"/>
+    </CModel>
+    <CModel id="K9Turret">
+        <Flags index="TeenSafe" value="1"/>
+        <Flags index="VariationPreload" value="0"/>
+        <TipabilityBlendRate value="360.000000"/>
+    </CModel>
+    <CModel id="ImpalerGrenadeImpact" parent="ImpactFX">
+        <Model value="Assets\Effects\Terran\MissileTurretMissileImpact\MissileTurretMissileImpact.m3"/>
+    </CModel>
+    <CModel id="PlasmaGrenade" parent="MissileFX">
+        <Model value="Assets\Effects\Terran\GriffonFighterMissile\GriffonFighterMissile.m3"/>
+        <ScaleMax value="1.300000,1.300000,1.300000"/>
+        <ScaleMin value="1.300000,1.300000,1.300000"/>
+    </CModel>
+    <CModel id="PlasmaGrenadeImpact" parent="ImpactFX">
+        <Model value="Assets\Effects\Zerg\HybridPlasmaMissileImpact\HybridPlasmaMissileImpact.m3"/>
+    </CModel>
+    <CModel id="PrecisionShotBeam" parent="PersistentSpellFX">
+        <Model value="Assets\Effects\Terran\GhostSnipeBeam\GhostSnipeBeam.m3"/>
+    </CModel>
+    <CModel id="StickyBombImpactGL2">
+        <Model value="Assets\Effects\Terran\TerranLargeUnitDeath\TerranLargeUnitDeath.m3"/>
+    </CModel>
+    <CModel id="CanisterRandomImpact">
+        <Model value="Assets\Effects\Terran\SnipeImpact\SnipeImpact.m3"/>
+    </CModel>
+    <CModel id="FragGrenadeImpact">
+        <Model value="Assets\Effects\Terran\WidowMineImpact\WidowMineImpact.m3"/>
+    </CModel>
+    <CModel id="FragGrenadeImpactGL">
+        <Model value="Assets\Effects\Terran\TerranLargeUnitDeath\TerranLargeUnitDeath.m3"/>
+    </CModel>
+    <CModel id="FragmentationGrenadeImpactGL">
+        <Model value="Assets\Effects\Terran\TerranSmallUnitDeath\TerranSmallUnitDeath.m3"/>
+        <ScaleMax value="1.300000,1.300000,1.300000"/>
+        <ScaleMin value="1.300000,1.300000,1.300000"/>
+    </CModel>
+    <CModel id="TIMRBonusTime">
+        <Model value="Assets\Effects\Zerg\FrenzyMissileImpact\FrenzyMissileImpact.m3"/>
+    </CModel>
+    <CModel id="CanisterEffectOnUnit">
+        <Model value="Assets\Effects\Terran\WraithLaserMissileImpact\WraithLaserMissileImpact.m3"/>
+    </CModel>
+    <CModel id="FragmentationGrenadeImpact">
+        <Model value="Assets\Effects\Terran\WidowMineImpact\WidowMineImpact.m3"/>
+        <ScaleMax value="1.300000,1.300000,1.300000"/>
+        <ScaleMin value="1.300000,1.300000,1.300000"/>
+    </CModel>
+    <CModel id="PrecisionShotSlow">
+        <Model value="Assets\Effects\Protoss\TemporalFieldImpact\TemporalFieldImpact.m3"/>
+    </CModel>
+    <CModel id="RepulseHeroicSlow">
+        <Model value="Assets\Effects\Terran\HyperionEMPImpact\HyperionEMPImpact.m3"/>
+    </CModel>
+    <CModel id="RepulseSelfBuff">
+        <Model value="Assets\Effects\Zerg\BanelingEggNestBuffEnergy\BanelingEggNestBuffEnergy.m3"/>
+    </CModel>
+    <CModel id="RepulseShockwave">
+        <Model value="Assets\Effects\Terran\HyperionEMP\HyperionEMP.m3"/>
+    </CModel>
+    <CModel id="RepulseStun">
+        <Model value="Assets\Effects\Zerg\UnitStunImpact\UnitStunImpact.m3"/>
+    </CModel>
+    <CModel id="SelfAid">
+        <Model value="Assets\Effects\Terran\MedicHeal\MedicHeal.m3"/>
+    </CModel>
+    <CModel id="SonicTrap">
+        <Model value="Assets\Effects\Terran\ArcadeHunterKillerMissile\ArcadeHunterKillerMissile.m3"/>
+    </CModel>
+    <CModel id="SonicTrapActivation">
+        <Model value="Assets\Effects\Zerg\HybridPsionicShockwave\HybridPsionicShockwave.m3"/>
+    </CModel>
+    <CButton id="FocusFire2">
+        <Icon value="Assets\Textures\btn-ability-protoss-blink-color.dds"/>
+        <EditorCategories value="Race:Terran"/>
+        <HotkeyAlias value="FocusFire"/>
+    </CButton>
+    <CButton id="StunGrenade">
+        <Icon value="btn-ability-terran-spaceminelaunch-HoTS.dds"/>
+        <EditorCategories value="Race:Terran"/>
+    </CButton>
+    <CButton id="StickyBomb">
+        <Icon value="Assets\Textures\btn-upgrade-karax-solarefficiencylevel3.dds"/>
+        <EditorCategories value="Race:Terran"/>
+    </CButton>
+    <CButton id="FocusFireCripplingFire">
+        <Icon value="btn-ability-protoss-blink-zeratul-color.dds"/>
+        <EditorCategories value="Race:Terran"/>
+    </CButton>
+    <CButton id="FocusFireCripplingFiredUp">
+        <Icon value="btn-ability-protoss-blink-improved-color.dds"/>
+        <EditorCategories value="Race:Terran"/>
+    </CButton>
+    <CButton id="ImpalerGrenade">
+        <Icon value="Assets\Textures\btn-ability-terran-punishergrenade-color.dds"/>
+        <EditorCategories value="Race:Terran"/>
+    </CButton>
+    <CButton id="FragmentationGrenade">
+        <Icon value="btn-ability-terran-raynortossgrenade-color.dds"/>
+        <EditorCategories value="Race:Terran"/>
+    </CButton>
+    <CButton id="FocusFire">
+        <Icon value="Assets\Textures\btn-ability-protoss-blink-color.dds"/>
+        <EditorCategories value="Race:Terran"/>
+    </CButton>
+    <CButton id="Grenadier">
+        <Icon value="Assets\Textures\btn-ability-terran-redlinereactor.dds"/>
+        <EditorCategories value="Race:Terran"/>
+    </CButton>
+    <CButton id="FocusFireFireUp">
+        <Icon value="btn-ability-protoss-blink-improved-color.dds"/>
+        <EditorCategories value="Race:Terran"/>
+    </CButton>
+    <CButton id="PlasmaGrenade">
+        <Icon value="btn-ability-terran-spaceminelaunch-HoTS.dds"/>
+        <EditorCategories value="Race:Terran"/>
+        <HotkeySet value="RiflemanUltimates"/>
+    </CButton>
+    <CButton id="BuddySystem2">
+        <Icon value="Assets\Textures\btn-techupgrade-terran-neosteelbunker.dds"/>
+        <HotkeyAlias value="SelfAid"/>
+    </CButton>
+    <CButton id="CanisterShot">
+        <Icon value="Assets\Textures\btn-ability-terran-surfacetoairtargeting.dds"/>
+    </CButton>
+    <CButton id="BuddySystem">
+        <Icon value="btn-techupgrade-terran-neosteelbunker_mod.dds"/>
+        <HotkeyAlias value="SelfAid"/>
+    </CButton>
+    <CButton id="Adapative">
+        <Icon value="btn-flinks-terran-powerthingamabob.dds"/>
+    </CButton>
+    <CButton id="ThisismyRifle">
+        <Icon value="btn-achievement-hexagonredskull.dds"/>
+        <HotkeySet value="RiflemanUltimates"/>
+    </CButton>
+    <CButton id="FireUp">
+        <Icon value="btn-ability-protoss-blink-improved-color.dds"/>
+    </CButton>
+    <CButton id="K9LowProfile">
+        <Icon value="btn-ability-protoss-charge-dark.dds"/>
+    </CButton>
+    <CButton id="K9TurretDeploy">
+        <Icon value="Assets\Textures\btn-building-terran-autoturret.dds"/>
+        <HotkeySet value="K9Turret"/>
+    </CButton>
+    <CButton id="K9TurretPackUp">
+        <Icon value="Assets\Textures\btn-building-terran-autoturret.dds"/>
+        <HotkeySet value="K9Turret"/>
+    </CButton>
+    <CButton id="K9Unit">
+        <Icon value="Assets\Textures\btn-research-zerg-predator.dds"/>
+    </CButton>
+    <CButton id="PrecisionShot">
+        <Icon value="Assets\Textures\btn-upgrade-terran-hisecautotracking.dds"/>
+    </CButton>
+    <CButton id="Repulse">
+        <Icon value="Assets\Textures\btn-ability-protoss-gravitonbeam-color.dds"/>
+        <HotkeySet value="RiflemanUltimates"/>
+    </CButton>
+    <CButton id="RifleProficiency">
+        <Icon value="btn-upgrade-terran-gaussrifle.dds"/>
+    </CButton>
+    <CButton id="SonicTrap">
+        <Icon value="Assets\Textures\btn-upgrade-artanis-scarabsplashradius.dds"/>
+    </CButton>
+    <CButton id="CripplingFire">
+        <Icon value="btn-zeratul-blink.dds"/>
+    </CButton>
+    <CButton id="SelfAid">
+        <Icon value="Assets\Textures\btn-techupgrade-terran-nano-botinjectors.dds"/>
+    </CButton>
+    <CButton id="WeaponsProficiencyLevel1">
+        <Icon value="btn-weapon-newweapon.dds"/>
+    </CButton>
+    <CButton id="WeaponsProficiencyLevel2">
+        <Icon value="btn-weapon-newweapon.dds"/>
+    </CButton>
+    <CUnit id="StickyBombMissileGL" parent="MISSILE">
+        <Mover value="Grenadier"/>
+        <EditorCategories value=""/>
+    </CUnit>
+    <CUnit id="StunGrenadeThrown" parent="MISSILE">
+        <EditorCategories value=""/>
+    </CUnit>
+    <CUnit id="StickyBombMissileThrown" parent="MISSILE">
+        <Mover value="StickyBombThrown"/>
+        <EditorCategories value=""/>
+    </CUnit>
+    <CUnit id="FragmentationGrenade" parent="MISSILE">
+        <FlagArray index="Invulnerable" value="1"/>
+        <EditorCategories value=""/>
+        <Mover value="Grenadier"/>
+    </CUnit>
+    <CUnit id="FragmentationGrenadeThrown" parent="MISSILE">
+        <EditorCategories value=""/>
+    </CUnit>
+    <CUnit id="ImpalerGrenade" parent="MISSILE">
+        <FlagArray index="Invulnerable" value="1"/>
+        <EditorCategories value=""/>
+    </CUnit>
+    <CUnit id="K9">
+        <RandomNameArray value="Unit/Name/K9AltName1"/>
+        <RandomNameArray value="Unit/Name/K9AltName2"/>
+        <RandomNameArray value="Unit/Name/K9AltName3"/>
+        <RandomNameArray value="Unit/Name/K9AltName4"/>
+        <RandomNameArray value="Unit/Name/K9AltName5"/>
+        <RandomNameArray value="Unit/Name/K9AltName6"/>
+        <RandomNameArray value="Unit/Name/K9AltName7"/>
+        <RandomNameArray value="Unit/Name/K9AltName8"/>
+        <Race value="Human"/>
+        <Collide index="Ground" value="1"/>
+        <Attributes index="Light" value="1"/>
+        <Attributes index="Mechanical" value="1"/>
+        <LifeStart value="150"/>
+        <LifeMax value="150"/>
+        <LifeArmor value="2"/>
+        <LifeRegenRate value="0.4492"/>
+        <EnergyMax value="10"/>
+        <EnergyRegenRate value="1"/>
+        <Speed value="2.5"/>
+        <Sight value="10"/>
+        <AttackTargetPriority value="10"/>
+        <AbilArray Link="attack"/>
+        <AbilArray Link="move"/>
+        <AbilArray Link="K9Inventory"/>
+        <AbilArray Link="HeavyJump"/>
+        <AbilArray Link="MarineAbilities"/>
+        <AbilArray Link="K9Sprint"/>
+        <AbilArray Link="PrecisionShot2"/>
+        <BehaviorArray Link="K9Evasion"/>
+        <BehaviorArray Link="K9PlacementBuff"/>
+        <CardLayouts>
+            <LayoutButtons Face="MarineAttack" Type="AbilCmd" AbilCmd="attack,Execute" Row="0" Column="0"/>
+            <LayoutButtons Face="Move" Type="AbilCmd" AbilCmd="move,Move" Row="0" Column="0"/>
+            <LayoutButtons Face="HoldPosition" Type="AbilCmd" AbilCmd="move,HoldPos" Row="0" Column="1"/>
+            <LayoutButtons Face="Sprint" Type="AbilCmd" AbilCmd="K9Sprint,Execute" Row="0" Column="4"/>
+            <LayoutButtons Face="K9LowProfile" Type="Passive" Behavior="K9Evasion" Row="2" Column="0"/>
+            <LayoutButtons Face="HoldFireNOTD" Type="AbilCmd" AbilCmd="MarineAbilities,Specialize6" Row="0" Column="2"/>
+            <LayoutButtons Face="WeaponsFreeNOTD" Type="AbilCmd" AbilCmd="MarineAbilities,Specialize7" Row="0" Column="2"/>
+            <LayoutButtons Face="Jump" Type="AbilCmd" AbilCmd="HeavyJump,Execute" Row="0" Column="3"/>
+            <LayoutButtons Face="PrecisionShot" Type="AbilCmd" AbilCmd="PrecisionShot2,Execute" Row="1" Column="0"/>
+        </CardLayouts>
+        <PlaneArray index="Ground" value="1"/>
+        <Acceleration value="1000"/>
+        <LateralAcceleration value="1000"/>
+        <WeaponArray Link="TitaniumClaw"/>
+        <TurretArray value="K9"/>
+    </CUnit>
+    <CUnit id="PlasmaGrenade" parent="MISSILE">
+        <FlagArray index="Invulnerable" value="1"/>
+        <EditorCategories value=""/>
+    </CUnit>
+    <CUnit id="Rifleman" parent="BasicHeroTemplate" InventoryAbility="RiflemanInventory" LearnAbility="RiflemanLearn">
+        <AbilArray Link="LightJump"/>
+        <AbilArray Link="FocusFire"/>
+        <AbilArray Link="Grenadier"/>
+        <AbilArray Link="ThisismyRifle"/>
+        <AbilArray Link="FragmentationGrenade"/>
+        <AbilArray Link="SelfAid"/>
+        <AbilArray Link="SonicTrap"/>
+        <AbilArray Link="K9"/>
+        <AbilArray Link="WeaponProficiency"/>
+        <AbilArray Link="SuppressiveFire"/>
+        <AbilArray Link="AccurateFire"/>
+        <AbilArray Link="StickyBomb"/>
+        <AbilArray Link="CanisterShot"/>
+        <AbilArray Link="StunGrenade"/>
+        <AbilArray Link="BuddySystem"/>
+        <AbilArray Link="BuddySystem2"/>
+        <AbilArray Link="FirstAid"/>
+        <EnergyStart value="100"/>
+        <EnergyRegenRate value="1.3593"/>
+        <LifeStart value="200"/>
+        <LifeMax value="200"/>
+        <LifeArmor value="1"/>
+        <LifeRegenRate value="0.1718"/>
+        <LateralAcceleration value="1000"/>
+        <BehaviorArray Link="CriticalStrikeLevel1"/>
+        <BehaviorArray Link="CriticalStrikeLevel2"/>
+        <BehaviorArray Link="CriticalStrikeLevel3"/>
+        <BehaviorArray Link="Grenadier"/>
+        <BehaviorArray Link="FocusFireRangeNegationMelee"/>
+        <BehaviorArray Link="FocusFireRangeNegationMeleeLevel2"/>
+        <BehaviorArray Link="FocusFireRangeNegationMeleeLevel3"/>
+        <BehaviorArray Link="WeaponProfi2"/>
+        <CardLayouts index="0">
+            <LayoutButtons Face="Jump" Type="AbilCmd" AbilCmd="LightJump,Execute" Row="0" Column="4"/>
+            <LayoutButtons>
+                <Face value="FragmentationGrenade"/>
+                <Type value="AbilCmd"/>
+                <AbilCmd value="FragmentationGrenade,Execute"/>
+                <ShowInGlossary value="0"/>
+                <Row value="2"/>
+                <Column value="0"/>
+            </LayoutButtons>
+            <LayoutButtons Face="StickyBomb" Type="AbilCmd" AbilCmd="StickyBomb,Execute" Row="2" Column="1"/>
+            <LayoutButtons>
+                <Face value="FocusFire"/>
+                <Type value="AbilCmd"/>
+                <AbilCmd value="FocusFire,On"/>
+                <ShowInGlossary value="0"/>
+                <Row value="2"/>
+                <Column value="3"/>
+            </LayoutButtons>
+            <LayoutButtons>
+                <Face value="FocusFire2"/>
+                <Type value="AbilCmd"/>
+                <AbilCmd value="FocusFire,Off"/>
+                <ShowInGlossary value="0"/>
+                <Row value="2"/>
+                <Column value="3"/>
+            </LayoutButtons>
+            <LayoutButtons>
+                <Face value="SelfAid"/>
+                <Type value="AbilCmd"/>
+                <AbilCmd value="SelfAid,Execute"/>
+                <ShowInGlossary value="0"/>
+                <Row value="1"/>
+                <Column value="0"/>
+            </LayoutButtons>
+            <LayoutButtons Face="BuddySystem" Type="AbilCmd" AbilCmd="BuddySystem,Execute" Row="1" Column="1"/>
+            <LayoutButtons Face="BuddySystem2" Type="AbilCmd" AbilCmd="BuddySystem2,Execute" Row="1" Column="1"/>
+            <LayoutButtons Face="StunGrenade" Type="AbilCmd" AbilCmd="StunGrenade,Execute" Row="1" Column="2"/>
+            <LayoutButtons Face="ThisismyRifle" Type="AbilCmd" AbilCmd="ThisismyRifle,Execute" Row="2" Column="2"/>
+            <LayoutButtons>
+                <Face value="SonicTrap"/>
+                <Type value="AbilCmd"/>
+                <AbilCmd value="SonicTrap,Execute"/>
+                <ShowInGlossary value="0"/>
+                <Row value="2"/>
+                <Column value="2"/>
+            </LayoutButtons>
+            <LayoutButtons Face="K9Unit" Type="AbilCmd" AbilCmd="K9,Execute" Row="2" Column="2"/>
+            <LayoutButtons Face="CanisterShot" Type="AbilCmd" AbilCmd="CanisterShot,Execute" Row="2" Column="2"/>
+        </CardLayouts>
+        <ShieldsStart value="35"/>
+        <ShieldsMax value="35"/>
+        <Speed value="2.4765"/>
+        <TurningRate value="574.9804"/>
+    </CUnit>
+    <CUnit id="SonicTrapLevel1">
+        <Race value="Terr"/>
+        <FlagArray index="Turnable" value="0"/>
+        <FlagArray index="Movable" value="0"/>
+        <FlagArray index="Uncommandable" value="1"/>
+        <FlagArray index="Unselectable" value="1"/>
+        <FlagArray index="Untargetable" value="1"/>
+        <FlagArray index="Uncloakable" value="1"/>
+        <FlagArray index="Unradarable" value="1"/>
+        <FlagArray index="UseLineOfSight" value="1"/>
+        <FlagArray index="Invulnerable" value="1"/>
+        <VisionHeight value="0.5"/>
+        <AbilArray Link="SonicTrapLevel1"/>
+        <BehaviorArray Link="SonicPlacementBuff"/>
+        <ShieldsStart value="35"/>
+        <ShieldsMax value="35"/>
+        <ShieldArmor value="1"/>
+    </CUnit>
+    <CUnit id="SonicTrapLevel12">
+        <Race value="Terr"/>
+        <FlagArray index="Turnable" value="0"/>
+        <FlagArray index="Movable" value="0"/>
+        <FlagArray index="Uncommandable" value="1"/>
+        <FlagArray index="Unselectable" value="1"/>
+        <FlagArray index="Untargetable" value="1"/>
+        <FlagArray index="Uncloakable" value="1"/>
+        <FlagArray index="Unradarable" value="1"/>
+        <FlagArray index="UseLineOfSight" value="1"/>
+        <FlagArray index="Invulnerable" value="1"/>
+        <VisionHeight value="0.5"/>
+        <AbilArray Link="SonicTrapLevel2"/>
+        <BehaviorArray Link="SonicTrapSuicideLevel2"/>
+        <BehaviorArray Link="SonicPlacementBuff"/>
+    </CUnit>
+    <CUpgrade id="AccurateFire1">
+        <Flags index="UpgradeCheat" value="0"/>
+        <Alert value=""/>
+        <EffectArray Reference="Behavior,FocusFire,Modification.DamageDealtFraction[Ranged]" Value="0.2"/>
+        <EffectArray Reference="Behavior,FocusFire,Modification.DamageDealtFraction[Splash]" Value="0.2"/>
+        <EffectArray Reference="Behavior,FocusFire,Modification.DamageDealtFraction[Melee]" Value="0.2"/>
+    </CUpgrade>
+    <CUpgrade id="AccurateFire2">
+        <Flags index="UpgradeCheat" value="0"/>
+        <Alert value=""/>
+        <EffectArray Reference="Behavior,FocusFire,Modification.WeaponRange" Value="2"/>
+    </CUpgrade>
+    <CUpgrade id="AccurateFire3">
+        <Flags index="UpgradeCheat" value="0"/>
+        <Alert value=""/>
+        <EffectArray Reference="Behavior,FocusFire,Modification.AttackSpeedMultiplier" Value="0.4"/>
+    </CUpgrade>
+    <CUpgrade id="Grenadier">
+        <EffectArray Operation="Set" Reference="Button,FragmentationGrenade,Name" Value="Button/Name/HEGrenade"/>
+        <EffectArray Operation="Set" Reference="Effect,FragmentationGrenadeDamageLevel1,Amount" Value="300"/>
+        <EffectArray Operation="Set" Reference="Effect,FragmentationGrenadeDamageLevel2,Amount" Value="300"/>
+        <EffectArray Operation="Set" Reference="Effect,FragmentationGrenadeDamageLevel3,Amount" Value="300"/>
+        <EffectArray Operation="Set" Reference="Abil,FragmentationGrenade,Cost[2].Cooldown.TimeUse" Value="0.100000"/>
+        <EffectArray Operation="Set" Reference="Effect,FragmentationGrenadeLevel1,AmmoUnit" Value="FragmentationGrenade"/>
+        <EffectArray Operation="Set" Reference="Effect,FragmentationGrenadeLevel2,AmmoUnit" Value="FragmentationGrenade"/>
+        <EffectArray Operation="Set" Reference="Effect,FragmentationGrenadeLevel3,AmmoUnit" Value="FragmentationGrenade"/>
+        <EffectArray Operation="Set" Reference="Button,StickyBomb,Name" Value="Button/Name/AT-Grenade"/>
+        <EffectArray Operation="Set" Reference="Effect,StickyBombDMG,AttributeBonus[Armored]" Value="37.5"/>
+        <EffectArray Operation="Set" Reference="Effect,StickyBombDMG,Amount" Value="62.5"/>
+        <EffectArray Operation="Set" Reference="Effect,StickyBombDMG2,Amount" Value="200"/>
+        <EffectArray Operation="Set" Reference="Abil,FragmentationGrenade,Range[0]" Value="20"/>
+        <EffectArray Operation="Set" Reference="Abil,FragmentationGrenade,Range[1]" Value="20"/>
+        <EffectArray Operation="Set" Reference="Abil,FragmentationGrenade,Range[2]" Value="20"/>
+        <EffectArray Operation="Set" Reference="Abil,StickyBomb,Range[0]" Value="20"/>
+        <EffectArray Operation="Set" Reference="Behavior,StickyBombDMGBuff,Duration" Value="0.500000"/>
+        <EffectArray Operation="Set" Reference="Behavior,StickyBombDMGBuff2,Duration" Value="0.500000"/>
+        <EffectArray Operation="Set" Reference="Behavior,StickyBombDMGBuff2,Period" Value="0.062500"/>
+        <EffectArray Operation="Set" Reference="Behavior,StickyBombDMGBuff,Period" Value="0.062500"/>
+        <EffectArray Operation="Set" Reference="Effect,StickyBombLM,AmmoUnit" Value="StickyBombMissileGL"/>
+        <EffectArray Operation="Set" Reference="Effect,StickyBombLM2,AmmoUnit" Value="StickyBombMissileGL"/>
+        <EffectArray Operation="Set" Reference="Abil,StickyBomb,Range[1]" Value="20"/>
+    </CUpgrade>
+    <CUpgrade id="SuppressiveFire1" parent="DefaultUpgradeOverride">
+        <EffectArray Operation="Set" Reference="Behavior,FocusFire,DamageResponse.Chance" Value="1"/>
+        <LeaderAlias value="SuppressiveFireLevel"/>
+    </CUpgrade>
+    <CUpgrade id="SuppressiveFire2" parent="DefaultUpgradeOverride">
+        <EffectArray Reference="Behavior,CripplingFire,Duration" Value="1"/>
+        <LeaderAlias value="SuppressiveFireLevel"/>
+    </CUpgrade>
+    <CUpgrade id="SuppressiveFire3" parent="DefaultUpgradeOverride">
+        <EffectArray Operation="Subtract" Reference="Behavior,CripplingFire,Modification.AttackSpeedMultiplier" Value="0.2"/>
+        <LeaderAlias value="SuppressiveFireLevel"/>
+    </CUpgrade>
+    <CUpgrade id="FirstAidUpgrade" parent="DefaultUpgradeOverride">
+        <EffectArray Operation="Set" Reference="Effect,SelfAidCharges,PeriodCount" Value="3"/>
+        <MaxLevel value="3"/>
+    </CUpgrade>
+    <CUpgrade id="SuppressiveFireLevel" parent="DefaultUpgradeOverride">
+        <MaxLevel value="3"/>
+        <AffectedUnitArray value="Rifleman"/>
+    </CUpgrade>
+    <CUpgrade id="SuppressiveFireandAccurateFire" parent="DefaultUpgradeOverride">
+        <EffectArray Operation="Set" Reference="Button,FocusFire,Tooltip" Value="Button/Tooltip/FocusFireCripplingFiredUp"/>
+        <MaxLevel value="6"/>
+    </CUpgrade>
+    <CUpgrade id="CriticalStrikeRifleman" parent="DefaultUpgradeOverride">
+        <EffectArray Reference="Effect,PrecisionShotBonusCriticalDamageLevel1,Chance" Value="0.1"/>
+        <EffectArray Reference="Effect,PrecisionShotBonusCriticalDamageLevel2,Chance" Value="0.1"/>
+        <EffectArray Reference="Effect,PrecisionShotBonusCriticalDamageLevel3,Chance" Value="0.1"/>
+        <EffectArray Reference="Effect,PrecisionShotNormalCriticalDamageLevel1,Chance" Value="0.1"/>
+        <EffectArray Reference="Effect,PrecisionShotNormalCriticalDamageLevel2,Chance" Value="0.1"/>
+        <EffectArray Reference="Effect,PrecisionShotNormalCriticalDamageLevel3,Chance" Value="0.1"/>
+        <MaxLevel value="3"/>
+    </CUpgrade>
+    <CUpgrade id="AccurateFireLevel">
+        <Flags index="UpgradeCheat" value="0"/>
+        <Alert value=""/>
+        <MaxLevel value="3"/>
+        <AffectedUnitArray value="Rifleman"/>
+    </CUpgrade>
+    <CUpgrade id="WeaponsProficiencyLevel1" parent="DefaultUpgradeOverride">
+        <EffectArray Operation="Multiply" Reference="Behavior,ReloadManual,Duration" Value="0.850000"/>
+        <EffectArray Operation="Multiply" Reference="Behavior,ReloadNightmare,Duration" Value="0.850000"/>
+        <EffectArray Operation="Multiply" Reference="Behavior,ReloadNormal,Duration" Value="0.850000"/>
+        <EffectArray Operation="Multiply" Reference="Behavior,ReloadPerfect,Duration" Value="0.850000"/>
+        <EffectArray Reference="Behavior,FocusFire,Modification.DamageDealtFraction[Ranged]" Value="0.05"/>
+        <EffectArray Reference="Behavior,FocusFire,Modification.DamageDealtFraction[Splash]" Value="0.05"/>
+    </CUpgrade>
+    <CUpgrade id="WeaponsProficiencyLevel12" parent="DefaultUpgradeOverride">
+        <EffectArray Operation="Multiply" Reference="Behavior,ReloadManual,Duration" Value="0.700000"/>
+        <EffectArray Operation="Multiply" Reference="Behavior,ReloadNormal,Duration" Value="0.700000"/>
+        <EffectArray Operation="Multiply" Reference="Behavior,ReloadPerfect,Duration" Value="0.700000"/>
+        <EffectArray Operation="Multiply" Reference="Behavior,ReloadNightmare,Duration" Value="0.700000"/>
+        <EffectArray Reference="Behavior,FocusFire,Modification.DamageDealtFraction[Melee]" Value="0.1"/>
+        <EffectArray Reference="Behavior,FocusFire,Modification.DamageDealtFraction[Ranged]" Value="0.1"/>
+        <EffectArray Reference="Behavior,FocusFire,Modification.DamageDealtFraction[Splash]" Value="0.1"/>
+        <EffectArray Reference="Behavior,FocusFire,Modification.DamageDealtFraction[Spell]" Value="0.1"/>
+    </CUpgrade>
+    <CMoverMissile id="FragmentationGrenadeThrown">
+        <MotionPhases>
+            <Driver value="AdaptableParabola"/>
+            <Acceleration value="3200"/>
+            <Speed value="7"/>
+            <SpeedRange value="0"/>
+            <MinSpeed value="7"/>
+            <MaxSpeed value="7"/>
+            <ThrowBandYaw value="-360,-360,-360,-360"/>
+            <ThrowBandPitch value="-360,-360,-360,-360"/>
+            <AdaptableParabolaIsUpright value="1"/>
+            <AdaptableParabolaClearance value="2,0.5"/>
+            <YawPitchRoll value="49.9218"/>
+            <YawPitchRollRange value="49.9218"/>
+            <YawPitchRollAccel value="49.9218"/>
+            <YawPitchRollAccelRange value="49.9218"/>
+            <PowerslideAngle value="34.9914"/>
+            <FlightTime value="1.5"/>
+            <AdaptableParabolaDistances index="PreApex" value="0.3"/>
+            <AdaptableParabolaDistances index="PostApex" value="0.3"/>
+            <Overlays/>
+            <Overlays/>
+        </MotionPhases>
+    </CMoverMissile>
+    <CMoverMissile id="StunGrenadeThrown">
+        <MotionPhases>
+            <Driver value="AdaptableParabola"/>
+            <Acceleration value="3200"/>
+            <Speed value="7"/>
+            <SpeedRange value="0"/>
+            <MinSpeed value="7"/>
+            <MaxSpeed value="7"/>
+            <BlendType value="Exponential"/>
+            <RotationActorType value="Upright"/>
+            <ThrowBandYaw value="-360,-360,-360,-360"/>
+            <ThrowBandPitch value="-360,-360,-360,-360"/>
+            <AdaptableParabolaIsUpright value="1"/>
+            <AdaptableParabolaClearance value="2,0.5"/>
+            <YawPitchRoll value="49.9218"/>
+            <YawPitchRollRange value="49.9218"/>
+            <YawPitchRollAccel value="49.9218"/>
+            <YawPitchRollAccelRange value="49.9218"/>
+            <FlightTime value="1.5"/>
+            <AdaptableParabolaDistances index="PreApex" value="0.3"/>
+            <AdaptableParabolaDistances index="PostApex" value="0.3"/>
+            <Overlays/>
+            <Overlays/>
+        </MotionPhases>
+    </CMoverMissile>
+    <CMoverMissile id="StickyBombThrown">
+        <MotionPhases>
+            <Driver value="Ballistic"/>
+            <MaxSpeed value="7"/>
+            <Gravity value="12"/>
+            <FlightTime value="1.5"/>
+            <OutroAltitude value="-0.25"/>
+        </MotionPhases>
+        <MotionPhases>
+            <Driver value="Guidance"/>
+            <Acceleration value="3200"/>
+            <MaxSpeed value="7"/>
+            <ThrowBandYaw value="-360,-360,-360,-360"/>
+            <ThrowBandPitch value="-360,-360,-360,-360"/>
+            <Overlays/>
+            <Overlays/>
+        </MotionPhases>
+    </CMoverMissile>
+    <CMoverMissile id="Grenadier">
+        <MotionPhases>
+            <Driver value="Guidance"/>
+            <Acceleration value="3200"/>
+            <Speed value="0"/>
+            <MinSpeed value="0"/>
+            <MaxSpeed value="30"/>
+            <ActorTracking value="Actual"/>
+            <ThrowBandYaw value="-360,-360,-360,-360"/>
+            <ThrowBandPitch value="-360,-360,-360,-360"/>
+            <Overlays/>
+            <Overlays/>
+        </MotionPhases>
+    </CMoverMissile>
+    <CActorBeamSimple id="BuddySystemBeam" parent="BeamSimpleAnimationStyleContinuous">
+        <On Terms="Effect.BuddyCastSet.Start; At Effect" Send="Create"/>
+        <On Terms="Effect.BuddyFinal.Start; At Caster" Send="AnimBracketStop BSD"/>
+        <On Terms="Effect.BuddyFinal.Start" Send="AnimBracketStop BSD"/>
+        <HostLaunch Subject="_Unit" Scope="Caster" Actor="Find"/>
+        <HostImpact Subject="_Unit" Scope="Target" Actor="Find"/>
+        <HostImpactSiteOps Ops="SOpAttachCenter"/>
+        <HostLaunchSiteOps Ops="SOpAttachCenter"/>
+    </CActorBeamSimple>
+    <CActorRange id="FragGrenadeRange1" parent="RangeAbil" abil="PrecisionShot">
+        <EditorCategories value=""/>
+        <On index="1" Terms="Abil.FragmentationGrenade.TargetOn" Send="Create"/>
+        <On index="2" Terms="Abil.FragmentationGrenade.TargetOff" Send="Destroy"/>
+        <On index="3" removed="1"/>
+        <On index="4" removed="1"/>
+        <Abil Link="FragmentationGrenade"/>
+    </CActorRange>
+    <CActorSiteOpRotator id="GrenadeRotator">
+        <LocalAxis value="-1.000000,1.000000,-1.000000"/>
+        <Rate value="40.000000"/>
+        <Type value="AddRotationChange"/>
+    </CActorSiteOpRotator>
+    <CActorModel id="PrecisionShotLaunchK9" parent="ModelAnimationStyleOneShot">
+        <EditorCategories value=""/>
+        <On Terms="Effect.PrecisionShotDMG.Start; At Caster" Target="_Turret" Send="Create"/>
+        <HostSiteOps Ops="SOpAttachWeapon"/>
+        <Model value="PrecisionShotBeam"/>
+        <Scale value="1.500000"/>
+        <Host Subject="_Turret"/>
+    </CActorModel>
+    <CActorRegionArc id="CanisterArcGuideRegion" parent="GuideRegionArc">
+        <EditorCategories value=""/>
+        <Angle value="70.000000"/>
+        <Radius value="5.000000"/>
+    </CActorRegionArc>
+    <CActorSiteOpLocalOffset id="SOpMoveUpBy05">
+        <LocalOffset value="0.000000,0.000000,0.100000"/>
+    </CActorSiteOpLocalOffset>
+    <CActorMissile id="StickyBombMissileGL" parent="GenericAttackMissile" unitName="StickyBombMissileGL">
+        <Aliases value="_Grenade"/>
+        <EditorCategories value=""/>
+        <Model value="StickyBombThrownGL"/>
+    </CActorMissile>
+    <CActorModel id="StickyBuff" parent="ModelAnimationStyleContinuous">
+        <EditorCategories value=""/>
+        <On Terms="Behavior.StickyBombDMGBuff.On; ValidateUnit GrenadierNot" Send="Create"/>
+        <On Terms="Behavior.StickyBombDMGBuff.Off" Send="Destroy"/>
+        <On Terms="Behavior.StickyBombDMGBuff2.On; ValidateUnit GrenadierNot" Send="Create"/>
+        <On Terms="Behavior.StickyBombDMGBuff2.Off" Send="Destroy"/>
+        <HostSiteOps Ops="SOpAttachCenter"/>
+        <Model value="StickyBombImpact"/>
+    </CActorModel>
+    <CActorModel id="StickyBuffGL" parent="ModelAnimationStyleContinuous">
+        <EditorCategories value=""/>
+        <On Terms="Behavior.StickyBombDMGBuff.On; ValidateUnit Grenadier" Send="Create"/>
+        <On Terms="Behavior.StickyBombDMGBuff.Off" Send="Destroy"/>
+        <On Terms="Behavior.StickyBombDMGBuff2.On; ValidateUnit Grenadier" Send="Create"/>
+        <On Terms="Behavior.StickyBombDMGBuff2.Off" Send="Destroy"/>
+        <HostSiteOps Ops="SOpAttachCenter"/>
+        <Model value="StickyBombImpactGL"/>
+    </CActorModel>
+    <CActorRange id="StunGrenadeRange" parent="RangeAbil" abil="PrecisionShot">
+        <EditorCategories value=""/>
+        <On index="1" Terms="Abil.StunGrenade.TargetOn" Send="Create"/>
+        <On index="2" Terms="Abil.StunGrenade.TargetOff" Send="Destroy"/>
+        <On index="3" removed="1"/>
+        <On index="4" removed="1"/>
+        <Abil Link="StunGrenade"/>
+    </CActorRange>
+    <CActorRange id="StickyBombRange" parent="RangeAbil" abil="PrecisionShot">
+        <EditorCategories value=""/>
+        <On index="1" Terms="Abil.StickyBomb.TargetOn" Send="Create"/>
+        <On index="2" Terms="Abil.StickyBomb.TargetOff" Send="Destroy"/>
+        <On index="3" removed="1"/>
+        <On index="4" removed="1"/>
+        <Abil Link="StickyBomb"/>
+    </CActorRange>
+    <CActorAction id="StunGrenadeActionThrown" parent="GenericAttack" effectImpact="FragmentationGrenadeDamageLevel1" effectLaunch="StunGrenadeLM">
+        <EditorCategories value=""/>
+        <On index="1" Terms="Effect.StunGrenadeSearch.Start; FromEffectTreeDescendant" Send="ActionImpact"/>
+        <On index="2" Terms="Effect.StunGrenadeSearch.Stop; FromEffectTreeDescendant" Send="ActionImpactPhysics"/>
+        <LaunchAttachQuery Methods="AMFilterWeapon02"/>
+        <Missile value="_Grenade"/>
+    </CActorAction>
+    <CActorSplat id="StunGrenadeAoESplat" parent="TerranCursorSplat" abil="StunGrenade">
+        <EditorCategories value=""/>
+    </CActorSplat>
+    <CActorMissile id="StunGrenadeMissileThrown" parent="GenericAttackMissile" unitName="StunGrenadeThrown">
+        <Aliases value="_Grenade"/>
+        <EditorCategories value=""/>
+        <Model value="StunGrenadeMissileThrown"/>
+        <HostSiteOps Ops="GrenadeRotator"/>
+    </CActorMissile>
+    <CActorAction id="StickyBombActionThrown" parent="GenericAttack" effectImpact="FragmentationGrenadeDamageLevel1" effectLaunch="StickyBombLM">
+        <EditorCategories value=""/>
+        <On index="1" Terms="Effect.SplashDamage.Start; FromEffectTreeDescendant" Send="ActionDamage"/>
+        <On index="2" Terms="Effect.SplashDamage.Stop; FromEffectTreeDescendant" Send="ActionDamagePhysics"/>
+        <On index="3" Terms="Effect.Bogus.Start; At Caster" Send="Create"/>
+        <On index="4" Terms="Effect.StickyBombLM.Start; At Caster; ValidatePlayer GrenadierNot" Send="Create"/>
+        <On index="5" Terms="Effect.StickyBombDMGBuff.Start; FromEffectTreeDescendant" Send="ActionImpact"/>
+        <On index="6" Terms="Effect.StickyBombDMGBuff.Stop; FromEffectTreeDescendant" Send="ActionImpactPhysics"/>
+        <On Terms="Effect.StickyBombLM2.Start; At Caster; ValidatePlayer GrenadierNot" Send="Create"/>
+        <On Terms="Effect.StickyBombDMGBuff.Start; FromEffectTreeDescendant" Send="ActionImpact"/>
+        <On Terms="Effect.StickyBombDMGBuff2.Stop; FromEffectTreeDescendant" Send="ActionImpactPhysics"/>
+        <LaunchAttachQuery Methods="AMFilterWeapon02"/>
+        <Missile value="_Grenade"/>
+    </CActorAction>
+    <CActorMissile id="StickyBombMissileThrown" parent="GenericAttackMissile" unitName="StickyBombMissileThrown">
+        <Aliases value="_Grenade"/>
+        <EditorCategories value=""/>
+        <Model value="StickyBombThrown"/>
+    </CActorMissile>
+    <CActorAction id="StickyBombActionGL" parent="GenericAttack" effectImpact="FragmentationGrenadeDamageLevel1" effectLaunch="StickyBombLM">
+        <EditorCategories value=""/>
+        <On index="1" Terms="Effect.SplashDamage.Start; FromEffectTreeDescendant" Send="ActionDamage"/>
+        <On index="2" Terms="Effect.SplashDamage.Stop; FromEffectTreeDescendant" Send="ActionDamagePhysics"/>
+        <On index="3" Terms="Effect.Bogus.Start; At Caster" Send="Create"/>
+        <On index="4" Terms="Effect.StickyBombLM.Start; At Caster; ValidateUnit Grenadier" Send="Create"/>
+        <On index="5" Terms="Effect.StickyBombDMG.Start; FromEffectTreeDescendant" Send="ActionImpact"/>
+        <On index="6" Terms="Effect.StickyBombDMG.Stop; FromEffectTreeDescendant" Send="ActionImpactPhysics"/>
+        <On Terms="Effect.StickyBombLM2.Start; At Caster; ValidateUnit Grenadier" Send="Create"/>
+        <On Terms="Effect.StickyBombDMG2.Start; FromEffectTreeDescendant" Send="ActionImpact"/>
+        <On Terms="Effect.StickyBombDMG2.Stop; FromEffectTreeDescendant" Send="ActionImpactPhysics"/>
+        <LaunchAttachQuery Methods="AMFilterWeapon"/>
+        <LaunchAssets Model="FragmentationGrenadeLaunchGL"/>
+        <Missile value="_Grenade"/>
+        <ImpactMap index="None" Sound="TossGrenadeImpact"/>
+    </CActorAction>
+    <CActorAction id="FragmentationGrenadeActionGL" parent="GenericAttack" effectImpact="FragmentationGrenadeDamageLevel1" effectLaunch="FragmentationGrenadeLevel1">
+        <EditorCategories value=""/>
+        <On index="6" Terms="Effect.FragmentationGrenadeLevel1.Start; At Caster; ValidatePlayer Grenadier" Send="Create"/>
+        <On Terms="Effect.FragmentationGrenadeDamageLevel2.Start; FromEffectTreeDescendant" Send="ActionImpact"/>
+        <On Terms="Effect.FragmentationGrenadeLevel2.Start; At Caster; ValidatePlayer Grenadier" Send="Create"/>
+        <On Terms="Effect.FragmentationGrenadeDamageLevel2.Stop; FromEffectTreeDescendant" Send="ActionImpactPhysics"/>
+        <On Terms="Effect.FragmentationGrenadeDamageLevel3.Start; FromEffectTreeDescendant" Send="ActionImpact"/>
+        <On Terms="Effect.FragmentationGrenadeLevel3.Start; At Caster; ValidatePlayer Grenadier" Send="Create"/>
+        <On Terms="Effect.FragmentationGrenadeDamageLevel3.Stop; FromEffectTreeDescendant" Send="ActionImpactPhysics"/>
+        <LaunchAttachQuery Methods="AMFilterWeapon"/>
+        <LaunchAssets Model="FragmentationGrenadeLaunchGL"/>
+        <Missile value="_Grenade"/>
+    </CActorAction>
+    <CActorSplat id="FragmentationGrenadeAoESplat" parent="TerranCursorSplat" abil="FragmentationGrenade">
+        <EditorCategories value=""/>
+    </CActorSplat>
+    <CActorSplat id="ImpalerGrenadeAoESplat" parent="TerranCursorSplat" abil="ImpalerGrenade">
+        <EditorCategories value=""/>
+    </CActorSplat>
+    <CActorAction id="K9SupportTurretAttack">
+        <Missile value="K9SupportTurretAttackMissile"/>
+        <LaunchSiteOps Ops="SOpAttachWeapon"/>
+    </CActorAction>
+    <CActorSplat id="PlasmaGrenadeAoESplat" parent="TerranCursorSplat" abil="PlasmaGrenade">
+        <EditorCategories value=""/>
+    </CActorSplat>
+    <CActorModel id="SonicTrapDeath" parent="ModelAnimationStyleOneShotNoOrphan">
+        <EditorCategories value=""/>
+        <Model value="GoliathAirAttackImpact"/>
+    </CActorModel>
+    <CActorTurret id="K9TurretTurret">
+        <EditorCategories value=""/>
+        <On Terms="TurretEnable.K9" Send="Create"/>
+    </CActorTurret>
+    <CActorRange id="PrecisionShotRange" parent="RangeAbil" abil="PrecisionShot">
+        <EditorCategories value=""/>
+    </CActorRange>
+    <CActorAction id="FragmentationGrenadeActionThrown" parent="GenericAttack" effectImpact="FragmentationGrenadeDamageLevel1" effectLaunch="FragmentationGrenadeLevel1">
+        <EditorCategories value=""/>
+        <On index="1" Terms="Effect.FragmentationGrenadeDamageLevel1.Start; FromEffectTreeDescendant; At Effect" Send="ActionImpact"/>
+        <On index="6" Terms="Effect.FragmentationGrenadeLevel1.Start; At Caster; ValidatePlayer GrenadierNot" Send="Create"/>
+        <On Terms="Effect.FragmentationGrenadeDamageLevel2.Start; FromEffectTreeDescendant" Send="ActionImpact"/>
+        <On Terms="Effect.FragmentationGrenadeLevel2.Start; At Caster; ValidatePlayer GrenadierNot" Send="Create"/>
+        <On Terms="Effect.FragmentationGrenadeDamageLevel2.Stop; FromEffectTreeDescendant" Send="ActionImpactPhysics"/>
+        <On Terms="Effect.FragmentationGrenadeDamageLevel3.Start; FromEffectTreeDescendant" Send="ActionImpact"/>
+        <On Terms="Effect.FragmentationGrenadeLevel3.Start; At Caster; ValidatePlayer GrenadierNot" Send="Create"/>
+        <On Terms="Effect.FragmentationGrenadeDamageLevel3.Stop; FromEffectTreeDescendant" Send="ActionImpactPhysics"/>
+        <LaunchAttachQuery Methods="AMFilterWeapon02"/>
+        <Missile value="_Grenade"/>
+    </CActorAction>
+    <CActorMissile id="FragmentationGrenadeMissileThrown" parent="GenericAttackMissile" unitName="FragmentationGrenadeThrown">
+        <Aliases value="_Grenade"/>
+        <EditorCategories value=""/>
+        <On Terms="ActorCreation" Send="Create RotatingGrenadeVisual"/>
+        <Model value="Invisible"/>
+    </CActorMissile>
+    <CActorMissile id="FragmentationGrenadeMissile" parent="GenericAttackMissile" unitName="FragmentationGrenade">
+        <EditorCategories value=""/>
+        <On index="1" Terms="UnitBirth" Send="AnimBracketStart Lifetime Birth Stand {} Instant"/>
+        <Scale value="0.500000"/>
+        <Aliases value="_Grenade"/>
+    </CActorMissile>
+    <CActorAction id="ImpalerGrenade" parent="WeaponAttackTemplate" effectImpact="ImpalerGrenadeDamage" effectLaunch="ImpalerGrenadeLaunchMissile">
+        <ImpactMap index="None" Scale="3.000000" Sound="TossGrenadeImpact"/>
+        <ShieldFlashType value="Full"/>
+        <On index="7" removed="1"/>
+        <LaunchSiteOps Ops="SOpAttachWeapon"/>
+        <LaunchAssets Sound="Tychus_TossGrenadeVO"/>
+        <Lifetime value="0.200000"/>
+    </CActorAction>
+    <CActorMissile id="ImpalerGrenadeMissile" parent="GenericAttackMissile" unitName="ImpalerGrenade">
+        <EditorCategories value=""/>
+        <On index="1" Terms="UnitBirth" Send="AnimBracketStart Lifetime Birth Stand {} Instant"/>
+        <Scale value="0.500000"/>
+    </CActorMissile>
+    <CActorSound id="TIMRCastSound" parent="SoundOneShot">
+        <On Terms="Effect.TIMRBuff.Start" Send="Create"/>
+        <Sound value="TIMRCast"/>
+    </CActorSound>
+    <CActorUnit id="K9" parent="GenericUnitStandard" unitName="K9">
+        <EditorCategories value=""/>
+        <HighlightTooltip value="Unit/Name/K-9"/>
+        <SoundArray index="Birth" value="Raven_Birth"/>
+        <SoundArray index="Ready" value="Raven_Ready"/>
+        <SoundArray index="Help" value="Raven_Help"/>
+        <SoundArray index="What" value="Raven_What"/>
+        <SoundArray index="Yes" value="Raven_Yes"/>
+        <SoundArray index="Attack" value="Raven_Attack"/>
+        <SoundArray index="Pissed" value="Raven_Pissed"/>
+        <SoundArray index="Movement" value="Raven_Movement"/>
+        <SoundArray index="Turning" value="Raven_Turning"/>
+        <SoundArray index="Board" value="Raven_Board"/>
+        <SoundArray index="Click" value="Raven_Click"/>
+        <SoundArray index="ClickError" value="Raven_ClickError"/>
+        <SoundArray index="Highlight" value="Raven_Highlight"/>
+        <On index="57" Terms="WeaponStart.TitaniumClaw" Send="AnimBracketStart Attack Attack"/>
+        <On Terms="ActorCreation" Send="Create K9TurretModel"/>
+        <On Terms="TimerExpired" Send="AnimGroupApply Ready"/>
+        <On Terms="TimerExpired" Send="AnimSetPausedAll 0"/>
+        <On Terms="Effect.PrecisionShotBuff.Start" Send="TimerSet 0.200000"/>
+        <On Terms="Effect.PrecisionShotBuff.Start" Send="AnimSetPausedAll"/>
+        <GroupIcon>
+            <Image value="Wireframes\Wireframe-K9.dds"/>
+        </GroupIcon>
+        <Wireframe>
+            <Image value="Wireframes\Wireframe-K9.dds"/>
+        </Wireframe>
+        <WireframeShield>
+            <Image value="Wireframes\Wireframe-K9-shield01.dds"/>
+            <Image value="Wireframes\Wireframe-K9-shield02.dds"/>
+            <Image value="Wireframes\Wireframe-K9-shield03.dds"/>
+        </WireframeShield>
+        <Baselines index="Walk" AnimProps="Walk,Fast"/>
+        <WalkAnimMoveSpeed value="5.25"/>
+    </CActorUnit>
+    <CActorMissile id="PlasmaGrenadeMissile" parent="GenericAttackMissile" unitName="PlasmaGrenade">
+        <EditorCategories value=""/>
+        <On index="1" Terms="UnitBirth" Send="AnimBracketStart Lifetime Birth Stand {} Instant"/>
+        <Scale value="0.500000"/>
+    </CActorMissile>
+    <CActorAction id="PlasmaGrenade" parent="WeaponAttackTemplate" effectImpact="PlasmaGrenadeSearch" effectLaunch="PlasmaGrenadeLaunchMissile">
+        <ShieldFlashType value="Full"/>
+        <On index="7" removed="1"/>
+        <LaunchSiteOps Ops="SOpAttachWeapon"/>
+        <LaunchAssets Sound="Tychus_TossGrenadeVO"/>
+        <ImpactMap index="None" Sound="TossGrenadeImpact"/>
+        <Lifetime value="0.200000"/>
+    </CActorAction>
+    <CActorSound id="SelfAidSound" parent="SoundOneShot">
+        <On Terms="Effect.SelfAidHealLevel1" Send="Create"/>
+        <On Terms="Effect.SelfAidHealLevel2" Send="Create"/>
+        <Sound value="Marine_Stimpack"/>
+    </CActorSound>
+    <CActorAction id="PrecisionShot" parent="GenericAttack">
+        <EditorCategories value=""/>
+        <On Terms="Abil.PrecisionShot.SourceCastStart" Send="Create"/>
+    </CActorAction>
+    <CActorBeamSimple id="PrecisionShotBeam" parent="BeamSimpleAnimationStyleOneShot">
+        <EditorCategories value=""/>
+        <HostLaunchSiteOps Ops="SOpAttachWeapon"/>
+        <HostLaunch Subject="_Weapon" Scope="Caster" Actor="Find"/>
+        <ModelFlags index="AllowHitTest" value="0"/>
+        <InheritType value="None"/>
+        <On index="0" Terms="ActorCreation" Send="AnimBracketStart BSD Birth Stand Death ContentPlayOnce 0.500000 AsDuration"/>
+        <Scale value="10.000000"/>
+    </CActorBeamSimple>
+    <CActorUnit id="Rifleman" parent="BaseMarineActor" unitName="Rifleman">
+        <On Terms="UnitMovementUpdate.*.Walk" Send="AnimClear Grenade"/>
+        <On Terms="Abil.FragmentationGrenade.SourceCastStart; ValidateUnit GrenadierNot" Send="AnimPlay Grenade Spell,Blast 0 -1.000000 -1.000000 1.300000 AsTimeScale"/>
+        <On Terms="Abil.FragmentationGrenade.SourceCastStart; ValidateUnit Grenadier" Send="AnimPlay Grenade Attack 0 -1.000000 -1.000000 2.000000 AsTimeScale"/>
+        <On Terms="Abil.CanisterShot.SourceCastStart" Send="AnimPlay Grenade Attack 0 -1.000000 -1.000000 2.000000 AsTimeScale"/>
+        <On Terms="Abil.StickyBomb.SourceCastStart; ValidateUnit GrenadierNot" Send="AnimPlay Grenade Spell,Blast 0 -1.000000 -1.000000 1.300000 AsTimeScale"/>
+        <On Terms="Abil.StickyBomb.SourceCastStart; ValidateUnit Grenadier" Send="AnimPlay Grenade Attack 0 -1.000000 -1.000000 2.000000 AsTimeScale"/>
+        <On Terms="Abil.StunGrenade.SourceCastStart" Send="AnimPlay Grenade Spell,Blast 0 -1.000000 -1.000000 1.300000 AsTimeScale"/>
+        <On Terms="UpgradeFinalized.AccurateFireLevel" Target="_Laser" Send="TimerSet 0.062500 Colour"/>
+        <On Terms="UpgradeFinalized.SuppressiveFireLevel" Target="_Laser" Send="TimerSet 0.062500 Colour"/>
+        <DeathActorModel value="RiflemanDeathModel"/>
+        <SoundArray index="Birth" value="Marine_Birth"/>
+        <SoundArray index="Ready" value="Marine_Ready"/>
+        <SoundArray index="Help" value="Marine_Help"/>
+        <SoundArray index="What" value="Marine_What"/>
+        <SoundArray index="Yes" value="Marine_Yes"/>
+        <SoundArray index="Attack" value="Marine_Attack"/>
+        <SoundArray index="Pissed" value="Marine_Pissed"/>
+        <SoundArray index="Movement" value="Marine_Movement"/>
+        <SoundArray index="Turning" value="Marine_Turning"/>
+        <SoundArray index="Board" value="Marine_Board"/>
+        <SoundArray index="Click" value="Marine_Click"/>
+        <SoundArray index="ClickError" value="Marine_ClickError"/>
+        <SoundArray index="Highlight" value="Marine_Highlight"/>
+        <DeathCustomData index="2" SyncPassChance="100"/>
+        <HeroIcon value="ClassButtons\btn-class-Rifleman.dds"/>
+    </CActorUnit>
+    <CActorSound id="TossGrenadeLaunchSound" parent="SoundOneShot">
+        <On Terms="Effect.FragmentationGrenadeLevel1.Start; ValidateUnit GrenadierNot; At Caster" Send="Create"/>
+        <On Terms="Effect.FragmentationGrenadeLevel2.Start; ValidateUnit GrenadierNot; At Caster" Send="Create"/>
+        <On Terms="Effect.FragmentationGrenadeLevel3.Start; ValidateUnit GrenadierNot; At Caster" Send="Create"/>
+        <On Terms="Effect.StunGrenadeLM.Start; ValidateUnit GrenadierNot; At Caster" Send="Create"/>
+        <On Terms="Effect.StickyBombLM.Start; ValidateUnit GrenadierNot; At Caster" Send="Create"/>
+        <On Terms="Effect.StickyBombLM2.Start; ValidateUnit GrenadierNot; At Caster" Send="Create"/>
+        <Sound value="RiflemanTossGrenadeHand"/>
+    </CActorSound>
+    <CActorModel id="RiflemanDeathModel" parent="UnitDeathModelWithDeathMotionGround">
+        <EditorCategories value=""/>
+        <On Terms="ActorCreation" Send="AttachModel Torso BasicTorso {Hardpoint 0}"/>
+        <On Terms="ActorCreation" Send="AttachModel Waist BasicWaist {Hardpoint 3}"/>
+        <On Terms="ActorCreation" Send="AttachModel RightShoulder BasicShoulderRight {Hardpoint 8}"/>
+        <On Terms="ActorCreation" Send="AttachModel RightShin BasicShinRight {Hardpoint 11}"/>
+        <On Terms="ActorCreation" Send="AttachModel RightLeg BasicLegRight {Hardpoint 10}"/>
+        <On Terms="ActorCreation" Send="AttachModel RightForearm BasicForearmRight {Hardpoint 9}"/>
+        <On Terms="ActorCreation" Send="AttachModel LeftShoulder BasicShoulderLeft {Hardpoint 4}"/>
+        <On Terms="ActorCreation" Send="AttachModel LeftShin BasicShinLeft {Hardpoint 7}"/>
+        <On Terms="ActorCreation" Send="AttachModel LeftLeg BasicLegLeft {Hardpoint 6}"/>
+        <On Terms="ActorCreation" Send="AttachModel LeftForearm BasicForearmLeft {Hardpoint 5}"/>
+        <On Terms="ActorCreation" Send="AttachModel LeftFoot BasicFootLeft {Hardpoint 13}"/>
+        <On Terms="ActorCreation" Send="AttachModel RightFoot BasicFootRight {Hardpoint 12}"/>
+        <On Terms="ActorCreation" Send="AttachModel Helmet BasicHelmet {Head 0}"/>
+        <On Terms="Signal.*.ClearDeathModel" Target="_ArmorCustom" Send="Destroy"/>
+    </CActorModel>
+    <CActorSound id="RiflemanLaunchGrenadeLaunch" parent="SoundOneShot">
+        <On Terms="Effect.ImpalerGrenadeLaunchMissile" Send="Create"/>
+        <On Terms="Effect.PlasmaGrenadeLaunchMissile" Send="Create"/>
+        <Sound value="RiflemanLaunchGrenadeLauncher"/>
+    </CActorSound>
+    <CActorSound id="RiflemanRepulseCast" parent="SoundOneShot">
+        <On Terms="Effect.SonicTrapLevel1Switch.Start" Send="Create"/>
+        <On Terms="Effect.SonicTrapLevel2Switch.Start" Send="Create"/>
+    </CActorSound>
+    <CActorSound id="RiflemanSonicTrapCast" parent="SoundOneShot">
+        <On Terms="Effect.SonicTrapSearchLevel1" Send="Create"/>
+        <On Terms="Effect.SonicTrapSearchLevel2" Send="Create"/>
+        <Sound value="RiflemanSinicTrapCast"/>
+    </CActorSound>
+    <CActorUnit id="SonicTrap" parent="GenericUnitMinimal" unitName="SonicTrapLevel1">
+        <EditorCategories value=""/>
+        <Model value="SonicTrap"/>
+        <BuildModel value="SonicTrap"/>
+        <EditorModel value="SonicTrap"/>
+        <PlacementModel value="SonicTrap"/>
+        <On Terms="UnitBirth.SonicTrapLevel12" Send="Create"/>
+        <DeathArray index="Normal" ActorModel="SonicTrapDeath" AnimProps="Death" ModelLink="GoliathAirAttackImpact"/>
+        <DeathArray index="Remove" ActorModel="SonicTrapDeath" AnimProps="Death" ModelLink="GoliathAirAttackImpact"/>
+    </CActorUnit>
+    <CActorModel id="SonicTrapActivation" parent="ModelAnimationStyleOneShotNoOrphan">
+        <EditorCategories value=""/>
+        <On Terms="Abil.SonicTrapLevel1.SourceCastStart" Send="Create"/>
+        <On Terms="Abil.SonicTrapLevel2.SourceCastStart" Send="Create"/>
+    </CActorModel>
+    <CActorRange id="SonicTrapLevel1Range">
+        <EditorCategories value=""/>
+        <On Terms="Abil.SonicTrapLevel1.TargetOn" Send="Create"/>
+        <On Terms="Abil.SonicTrapLevel1.TargetOff" Send="Destroy"/>
+        <Range value="5.000000"/>
+    </CActorRange>
+    <CActorRange id="SonicTrapLevel2Range">
+        <EditorCategories value=""/>
+        <On Terms="Abil.SonicTrapLevel2.TargetOn" Send="Create"/>
+        <On Terms="Abil.SonicTrapLevel2.TargetOff" Send="Destroy"/>
+        <Range value="8.000000"/>
+    </CActorRange>
+    <CActorModel id="RotatingGrenadeVisual" parent="ModelAddition">
+        <EditorCategories value=""/>
+        <Host Subject="_Missile"/>
+        <HostSiteOps Ops="SOpAttachCenter GrenadeRotator"/>
+        <Model value="FragmentationGrenadeThrown"/>
+        <Scale value="0.900000"/>
+    </CActorModel>
+    <CActorModel id="K9TurretModel" parent="ModelAddition">
+        <Aliases value="_Weapon"/>
+        <Aliases value="_Turret"/>
+        <EditorCategories value=""/>
+        <On Terms="ActorCreation" Send="AnimGroupApply Work"/>
+        <HostSiteOps Ops="SOpAttachTurret SOpMoveUpBy05 SOp_K9Weapon"/>
+        <Model value="K9Turret"/>
+    </CActorModel>
+    <CActorModel id="ThisismyRifle" parent="ModelAddition">
+        <Inherits index="BaseModelScale" value="0"/>
+        <Inherits index="Scale" value="0"/>
+        <EditorCategories value=""/>
+        <On Terms="Behavior.ThisismyRifle.On" Send="Create"/>
+        <On Terms="Behavior.ThisismyRifle.Off" Send="Destroy"/>
+        <HostSiteOps Ops="SOpAttachCenter"/>
+        <Model value="TIMR"/>
+        <Scale value="0.900000"/>
+    </CActorModel>
+    <CActorModel id="RepulseHeroicSlow" parent="ModelAddition">
+        <EditorCategories value=""/>
+        <On Terms="Behavior.RepulseHeroicSlow.On" Send="Create"/>
+        <On Terms="Behavior.RepulseHeroicSlow.Off" Send="Destroy"/>
+        <HostSiteOps Ops="SOpAttachHardPoint"/>
+    </CActorModel>
+    <CActorModel id="RepulseSelfBuff" parent="ModelAddition">
+        <EditorCategories value=""/>
+        <On Terms="Behavior.RepulseSelfBuff.On" Send="Create"/>
+        <On Terms="Behavior.RepulseSelfBuff.Off" Send="Destroy"/>
+        <Inherits index="BaseModelScale" value="0"/>
+        <Inherits index="Scale" value="0"/>
+        <HostSiteOps Ops="SOpAttachHardPoint"/>
+        <Scale value="0.900000"/>
+    </CActorModel>
+    <CActorSound id="GrenadeImpact" parent="SoundOneShot">
+        <EditorCategories value=""/>
+        <On Terms="Effect.FragmentationGrenadeDamageLevel1.Start; At Effect" Send="Create"/>
+        <On Terms="Effect.FragmentationGrenadeDamageLevel2.Start; At Effect" Send="Create"/>
+        <On Terms="Effect.FragmentationGrenadeDamageLevel3.Start; At Effect" Send="Create"/>
+        <On Terms="Effect.StunGrenadeSearch.Start; At Effect" Send="Create"/>
+        <Sound value="TossGrenadeImpact"/>
+    </CActorSound>
+    <CActorModel id="StickyBombImpactGL" parent="ModelAnimationStyleOneShot">
+        <EditorCategories value=""/>
+        <On Terms="Effect.StickyBombDMGBuff.Start; At Effect; ValidateUnit Grenadier" Send="Create"/>
+        <On Terms="Effect.StickyBombDMGBuff2.Start; At Effect; ValidateUnit Grenadier" Send="Create"/>
+        <Scale value="1.500000"/>
+    </CActorModel>
+    <CActorSiteOpRotationExplicit id="SOp_K9Weapon">
+        <Up value="0.000000,-1.000000,0.000000"/>
+        <IsLocal value="1"/>
+    </CActorSiteOpRotationExplicit>
+    <CActorArc id="CanisterAOESplat" parent="GuideVisualArc" abil="ShieldBash">
+        <EditorCategories value=""/>
+        <On index="0" Terms="Abil.CanisterShot.Guide" Send="Create"/>
+        <On index="1" Terms="ActorCreation" Send="Create CanisterArcGuideRegion"/>
+        <Model value="ZergAOECone"/>
+        <Angle value="70.000000"/>
+        <Radius value="5.000000"/>
+    </CActorArc>
+    <CActorModel id="PrecisionShotSlow" parent="ModelAnimationStyleOneShot">
+        <Aliases value="_Snapshot"/>
+        <Flags index="SuppressSaveLoad" value="0"/>
+        <Inherits index="BaseModelScale" value="1"/>
+        <Inherits index="CastShadows" value="1"/>
+        <Inherits index="CloakEffect" value="1"/>
+        <Inherits index="CreepEngulfment" value="1"/>
+        <Inherits index="Decal" value="1"/>
+        <Inherits index="ModelMaterials" value="1"/>
+        <Inherits index="Opacity" value="1"/>
+        <Inherits index="Scale" value="1"/>
+        <Inherits index="TeamColor" value="1"/>
+        <Inherits index="TimeScale" value="1"/>
+        <Inherits index="TintColor" value="1"/>
+        <Inherits index="Visibility" value="1"/>
+        <Inherits index="WarpGroup" value="1"/>
+        <EditorCategories value=""/>
+        <On index="0" Terms="ActorCreation" Send="AnimBracketStart BSD Birth Stand Death ContentPlayOnce 5.000000 AsTimeScale"/>
+        <On Terms="Behavior.PrecisionShot.On" Send="Create"/>
+        <On Terms="Behavior.PrecisionShot.Off" Send="Destroy"/>
+        <Host Subject="_Selectable"/>
+        <HostSiteOps Ops="SOpAttachOverhead"/>
+        <ModelFlags index="UseSyncSeed" value="1"/>
+    </CActorModel>
+    <CActorModel id="CanisterRandomImpact" parent="ModelAnimationStyleOneShot">
+        <EditorCategories value=""/>
+        <On Terms="Effect.CanisterVisualDummies.Start; At Effect" Send="Create"/>
+        <Scale value="1.500000"/>
+    </CActorModel>
+    <CActorModel id="FragGrenadeImpact" parent="ModelAnimationStyleOneShot">
+        <EditorCategories value=""/>
+        <On Terms="Effect.FragmentationGrenadeDamageLevel1.Start; At Effect" Send="Create"/>
+        <On Terms="Effect.FragmentationGrenadeDamageLevel2.Start; At Effect" Send="Create"/>
+        <On Terms="Effect.FragmentationGrenadeDamageLevel3.Start; At Effect" Send="Create"/>
+        <On Terms="Effect.FragmentationGrenadeDamageLevel12.Start; At Effect" Send="Create"/>
+        <Scale value="1.500000"/>
+    </CActorModel>
+    <CActorModel id="FocusFireLaserSight" parent="ModelAnimationStyleContinuous">
+        <EditorCategories value=""/>
+        <On Terms="Behavior.FocusFire.On" Send="Create"/>
+        <On Terms="Behavior.FocusFire.Off" Send="AnimBracketStop BSD"/>
+        <On Terms="TimerExpired; ValidatePlayer HasNone; TimerName Colour" Send="SetTeamColor 0,255,0 0,255,0"/>
+        <On Terms="TimerExpired; ValidatePlayer HasOnlyAccurate; TimerName Colour" Send="SetTeamColor 255,0,0 255,0,0"/>
+        <On Terms="TimerExpired; ValidatePlayer HasOnlySupress; TimerName Colour" Send="SetTeamColor 0,0,255 0,0,255"/>
+        <On Terms="TimerExpired; ValidatePlayer HasBoth; TimerName Colour" Send="SetTeamColor 128,0,255 128,0,255"/>
+        <On Terms="UpgradeFinalized.SuppressiveFireLevel" Send="TimerSet 0.062500 Colour"/>
+        <On Terms="UpgradeFinalized.AccurateFireLevel" Send="TimerSet 0.062500 Colour"/>
+        <On Terms="Upgrade.SuppressiveFireLevel.Add" Send="TimerSet 0.062500 Colour"/>
+        <On Terms="Upgrade.AccurateFireLevel.Add" Send="TimerSet 0.062500 Colour"/>
+        <On Terms="ActorCreation" Send="TimerSet 0.062500 Colour"/>
+        <Host Subject="_Unit"/>
+        <HostSiteOps Ops="SOpAttachWeapon"/>
+        <Aliases value="_Laser"/>
+    </CActorModel>
+    <CActorModel id="SelfAid" parent="ModelAnimationStyleOneShot">
+        <EditorCategories value=""/>
+        <On Terms="Abil.SelfAid.SourceCastStart" Send="Create"/>
+        <On Terms="ActorCreation; ValidatePlayer SelfAidLevel1" Send="SetTintColor 0,255,255"/>
+        <HostSiteOps Ops="SOpAttachCenter"/>
+        <Scale value="1.500000"/>
+    </CActorModel>
+    <CActorModel id="StunGrenadeImpact" parent="ModelAnimationStyleOneShot">
+        <EditorCategories value=""/>
+        <On Terms="Effect.StunGrenadeSearch.Start; At Effect" Send="Create"/>
+        <Scale value="1.500000"/>
+    </CActorModel>
+    <CActorModel id="FragGrenadeImpactGL" parent="ModelAnimationStyleOneShot">
+        <EditorCategories value=""/>
+        <On Terms="Effect.FragmentationGrenadeDamageLevel1.Start; At Effect" Send="Create"/>
+        <On Terms="Effect.FragmentationGrenadeDamageLevel2.Start; At Effect" Send="Create"/>
+        <On Terms="Effect.FragmentationGrenadeDamageLevel3.Start; At Effect" Send="Create"/>
+        <On Terms="Effect.FragmentationGrenadeDamageLevel12.Start; At Effect" Send="Create"/>
+        <Scale value="1.500000"/>
+    </CActorModel>
+    <CActorModel id="StunGrenadeImpact2" parent="ModelAnimationStyleOneShot">
+        <EditorCategories value=""/>
+        <On Terms="Effect.StunGrenadeSearch.Start; At Effect" Send="Create"/>
+        <Scale value="1.500000"/>
+    </CActorModel>
+    <CActorModel id="StunGrenadeSlow" parent="ModelAnimationStyleContinuous">
+        <EditorCategories value=""/>
+        <On Terms="Behavior.Slowed.On" Send="Create"/>
+        <On Terms="Behavior.Slowed.Off" Send="Destroy"/>
+        <On Terms="ActorCreation" Send="SetTintColor 255,128,0"/>
+        <Model value="RepulseStun"/>
+        <HostSiteOps Ops="SOpMoveUpBy2"/>
+    </CActorModel>
+    <CActorModel id="TIMRBonus" parent="ModelAnimationStyleOneShot">
+        <EditorCategories value=""/>
+        <On Terms="Effect.TIMRBonusDurationTriggerDummy.Start; At Effect" Send="Create"/>
+        <HostSiteOps Ops="SOpAttachCenter"/>
+        <Model value="TIMRBonusTime"/>
+        <Scale value="0.750000"/>
+    </CActorModel>
+    <CActorModel id="CanisterEffectOnUnit" parent="ModelAnimationStyleOneShot">
+        <EditorCategories value=""/>
+        <On Terms="Effect.CanisterDmg1.Start" Send="Create"/>
+        <On Terms="Effect.CanisterDmg2.Start" Send="Create"/>
+        <On Terms="Effect.CanisterDmg3.Start" Send="Create"/>
+        <On Terms="Effect.CanisterDmg4.Start" Send="Create"/>
+        <HostSiteOps Ops="SOpAttachHardPoint"/>
+        <Scale value="1.500000"/>
+    </CActorModel>
+    <CActorModel id="RepulseShockwave" parent="ModelAnimationStyleOneShot">
+        <EditorCategories value=""/>
+        <On Terms="Abil.Repulse.SourceCastStart" Send="Create"/>
+    </CActorModel>
+    <CActorModel id="StunGrenadeBuff" parent="ModelAnimationStyleContinuous">
+        <EditorCategories value=""/>
+        <On Terms="Behavior.Stunned.On" Send="Create"/>
+        <On Terms="Behavior.Stunned.Off" Send="Destroy"/>
+        <HostSiteOps Ops="SOpMoveUpBy2"/>
+        <Model value="RepulseStun"/>
+    </CActorModel>
+    <CValidatorUnitBehaviorState id="BuddyInvisOff">
+        <WhichUnit Value="Source"/>
+        <BehaviorState value="Cloak"/>
+    </CValidatorUnitBehaviorState>
+    <CValidatorUnitBehaviorState id="BuddyInvis">
+        <WhichUnit Value="Source"/>
+        <Enabled value="1"/>
+        <BehaviorState value="Cloak"/>
+    </CValidatorUnitBehaviorState>
+    <CValidatorUnitType id="CasterisRifleman">
+        <WhichUnit Value="Caster"/>
+        <Value value="Rifleman"/>
+    </CValidatorUnitType>
+    <CValidatorUnitCompareBehaviorCount id="K9PlacementBuff">
+        <Behavior value="K9PlacementBuff"/>
+    </CValidatorUnitCompareBehaviorCount>
+    <CValidatorPlayerRequirement id="K9Numbers">
+        <Find value="1"/>
+        <Value value="K9s"/>
+    </CValidatorPlayerRequirement>
+    <CValidatorCombine id="SonicSuicide">
+        <CombineArray value="SonicTrapNumbers"/>
+        <CombineArray value="SonicPlacementBuff"/>
+    </CValidatorCombine>
+    <CValidatorUnitCompareChargeUsed id="SonicTrapSuicideLevel2">
+        <Compare value="LT"/>
+        <ChargeLink value="Abil/SonicTrapLevel2"/>
+        <Ability value="SonicTrapLevel2"/>
+        <Value value="8"/>
+        <WhichUnit Value="Source"/>
+    </CValidatorUnitCompareChargeUsed>
+    <CValidatorUnitCompareChargeUsed id="SonicTrapSuicideLevel1">
+        <Compare value="LT"/>
+        <ChargeLink value="Abil/SonicTrapLevel1"/>
+        <Ability value="SonicTrapLevel1"/>
+        <Value value="8"/>
+        <WhichUnit Value="Source"/>
+    </CValidatorUnitCompareChargeUsed>
+    <CValidatorUnitCompareAbilLevel id="StunGrenadeSlow">
+        <WhichUnit Value="Caster"/>
+        <Compare value="GE"/>
+        <AbilLink value="StunGrenade"/>
+        <Value value="1"/>
+    </CValidatorUnitCompareAbilLevel>
+    <CValidatorLocationCompareRange id="BuddyTargetRange">
+        <WhichLocation Value="TargetUnit"/>
+        <Compare value="LE"/>
+        <Range value="8"/>
+    </CValidatorLocationCompareRange>
+    <CValidatorUnitCompareBehaviorCount id="SonicPlacementBuff">
+        <Behavior value="SonicPlacementBuff"/>
+    </CValidatorUnitCompareBehaviorCount>
+    <CValidatorPlayerRequirement id="SonicTrapNumbers">
+        <Value value="SonicTraps"/>
+        <Find value="1"/>
+    </CValidatorPlayerRequirement>
+    <CValidatorCombine id="SonicTrapSlow">
+        <CombineArray value="TargetIsHeroic"/>
+        <CombineArray value="TargetIsMassiv"/>
+    </CValidatorCombine>
+    <CValidatorUnitFilters id="TargetIsNotHeroicMassiv">
+        <Filters value="-;Massive,Heroic,Dead"/>
+    </CValidatorUnitFilters>
+    <CValidatorUnitFilters id="TargetIsMassiv">
+        <WhichUnit Value="Caster"/>
+        <Filters value="Massive;-"/>
+    </CValidatorUnitFilters>
+    <CValidatorPlayerRequirement id="Grenadier">
+        <Find value="1"/>
+        <Value value="Grenadier"/>
+    </CValidatorPlayerRequirement>
+    <CValidatorPlayerRequirement id="SelfAidLevel1">
+        <Find value="1"/>
+        <Value value="SelfAidUpgrade1"/>
+    </CValidatorPlayerRequirement>
+    <CValidatorPlayerRequirement id="SelfAidLevel3">
+        <Find value="1"/>
+        <Value value="SelfAidUpgrade3"/>
+    </CValidatorPlayerRequirement>
+    <CValidatorCombine id="HasBoth">
+        <Type value="And"/>
+        <CombineArray value="HasAccurateFire"/>
+        <CombineArray value="HasSupressFire"/>
+    </CValidatorCombine>
+    <CValidatorPlayerRequirement id="HasNotAccurateFire">
+        <Value value="HasAccurateFire"/>
+    </CValidatorPlayerRequirement>
+    <CValidatorPlayerRequirement id="HasSupressFire">
+        <Find value="1"/>
+        <Value value="HasSupressFire"/>
+    </CValidatorPlayerRequirement>
+    <CValidatorPlayerRequirement id="HasNotSupressFire">
+        <Value value="HasSupressFire"/>
+    </CValidatorPlayerRequirement>
+    <CValidatorCombine id="HasOnlyAccurate">
+        <Type value="And"/>
+        <CombineArray value="HasAccurateFire"/>
+        <CombineArray value="HasNotSupressFire"/>
+    </CValidatorCombine>
+    <CValidatorCombine id="HasOnlySupress">
+        <Type value="And"/>
+        <CombineArray value="HasNotAccurateFire"/>
+        <CombineArray value="HasSupressFire"/>
+    </CValidatorCombine>
+    <CValidatorPlayerRequirement id="SelfAidLevel2">
+        <Find value="1"/>
+        <Value value="SelfAidUpgrade2"/>
+    </CValidatorPlayerRequirement>
+    <CValidatorLocationCompareRange id="BuddyCasterRange">
+        <WhichLocation Value="TargetUnit"/>
+        <Compare value="LE"/>
+        <Range value="8"/>
+    </CValidatorLocationCompareRange>
+    <CValidatorUnitCompareBehaviorCount id="HasBuddyFromCaster">
+        <Compare value="GE"/>
+        <Value value="1"/>
+        <Behavior value="BuddyTarget"/>
+        <RequireCasterUnit Value="Caster"/>
+        <OtherUnit Value="Caster"/>
+        <RequireOriginPlayer Value="Caster"/>
+    </CValidatorUnitCompareBehaviorCount>
+    <CValidatorUnitFilters id="TargetIsHeroic">
+        <WhichUnit Value="Caster"/>
+        <Filters value="Heroic;-"/>
+    </CValidatorUnitFilters>
+    <CValidatorPlayerRequirement id="WeaponProfi1">
+        <Find value="1"/>
+        <Value value="WeaponsProficiencyLevel1"/>
+    </CValidatorPlayerRequirement>
+    <CValidatorCombine id="HasNone">
+        <Type value="And"/>
+        <CombineArray value="HasNotAccurateFire"/>
+        <CombineArray value="HasNotSupressFire"/>
+    </CValidatorCombine>
+    <CValidatorPlayerRequirement id="HasAccurateFire">
+        <Find value="1"/>
+        <Value value="HasAccurateFire"/>
+    </CValidatorPlayerRequirement>
+    <CValidatorPlayerRequirement id="WeaponProfi2">
+        <Find value="1"/>
+        <Value value="WeaponsProficiencyLevel2"/>
+    </CValidatorPlayerRequirement>
+    <CValidatorPlayerRequirement id="GrenadierNot">
+        <Value value="Grenadier"/>
+    </CValidatorPlayerRequirement>
+    <CValidatorUnitCompareBehaviorCount id="CasterhasFocusFireActive">
+        <WhichUnit Value="Caster"/>
+        <Compare value="GT"/>
+        <Behavior value="FocusFire"/>
+    </CValidatorUnitCompareBehaviorCount>
+    <CValidatorUnitCompareBehaviorCount id="CasterhasRepulse">
+        <WhichUnit Value="Caster"/>
+        <Value value="1"/>
+        <Behavior value="RepulseSelfBuff"/>
+    </CValidatorUnitCompareBehaviorCount>
+    <CValidatorPlayerRequirement id="FireUpLevel1">
+        <Find value="1"/>
+        <Value value="FireUpLevel1"/>
+    </CValidatorPlayerRequirement>
+    <CValidatorPlayerRequirement id="FireUpLevel2">
+        <Find value="1"/>
+        <Value value="FireUpLevel2"/>
+    </CValidatorPlayerRequirement>
+    <CValidatorPlayerRequirement id="FireUpLevel3">
+        <Find value="1"/>
+        <Value value="FireUpLevel3"/>
+    </CValidatorPlayerRequirement>
+    <CValidatorLocationEnumArea id="SonicTrapActivation">
+        <WhichLocation Value="CasterUnit"/>
+        <AreaArray Radius="3"/>
+        <SearchFilters value="Visible;Player,Ally,Neutral"/>
+    </CValidatorLocationEnumArea>
+    <CValidatorCombine id="TargetisSlowedorStunned">
+        <CombineArray value="TargetisSlowed"/>
+        <CombineArray value="TargetisStunned"/>
+    </CValidatorCombine>
+    <CRequirement id="GrenadierShow">
+        <CanBeSuppressed index="Show" value="1"/>
+        <NodeArray index="Use" Link="CountAbilGrenadierCompleteOnly"/>
+        <NodeArray index="Show" Link="CountUpgradeGrenadierCompleteOnly"/>
+    </CRequirement>
+    <CRequirement id="K9s">
+        <NodeArray index="Use" Link="LTECountUnitK9CompleteOnly1"/>
+    </CRequirement>
+    <CRequirement id="BuddyON">
+        <NodeArray index="Show" Link="LTECountBehaviorBuddyCasterCompleteOnlyAtUnit0"/>
+    </CRequirement>
+    <CRequirement id="BuddyCancel">
+        <NodeArray index="Show" Link="GTECountBehaviorBuddyCasterCompleteOnlyAtUnit1"/>
+    </CRequirement>
+    <CRequirement id="FireUpLevel1">
+        <NodeArray index="Use" Link="EqCountUpgradeAccurateFireLevelCompleteOnly1"/>
+    </CRequirement>
+    <CRequirement id="SelfAidUpgrade2">
+        <NodeArray index="Use" Link="GTECountUpgradeFirstAidUpgradeCompleteOnly2"/>
+    </CRequirement>
+    <CRequirement id="HasAccurateFire">
+        <NodeArray index="Use" Link="GTECountUpgradeAccurateFireLevelCompleteOnly1"/>
+    </CRequirement>
+    <CRequirement id="FireUpLevel2">
+        <NodeArray index="Use" Link="EqCountUpgradeAccurateFireLevelCompleteOnly2"/>
+    </CRequirement>
+    <CRequirement id="FireUpLevel3">
+        <NodeArray index="Use" Link="EqCountUpgradeAccurateFireLevelCompleteOnly3"/>
+    </CRequirement>
+    <CRequirement id="Grenadier">
+        <NodeArray index="Use" Link="CountAbilGrenadierCompleteOnly"/>
+        <CanBeSuppressed index="Show" value="1"/>
+    </CRequirement>
+    <CRequirement id="HasSupressFire">
+        <NodeArray index="Use" Link="GTECountUpgradeSuppressiveFireLevelCompleteOnly1"/>
+    </CRequirement>
+    <CRequirement id="RifleProficiency">
+        <NodeArray index="Use" Link="CountBehaviorStartingWeaponCompleteOnlyAtUnit"/>
+    </CRequirement>
+    <CRequirement id="SelfAidUpgrade1">
+        <NodeArray index="Use" Link="GTECountUpgradeFirstAidUpgradeCompleteOnly1"/>
+    </CRequirement>
+    <CRequirement id="SelfAidUpgrade3">
+        <NodeArray index="Use" Link="GTECountUpgradeFirstAidUpgradeCompleteOnly3"/>
+    </CRequirement>
+    <CRequirement id="SonicTraps">
+        <NodeArray index="Use" Link="LTESumCountUnitSonicTrapLevel1CompleteOnlyCountUnitSonicTrapLevel12CompleteOnly1"/>
+    </CRequirement>
+    <CRequirement id="TIMRPreventReuse">
+        <NodeArray index="Use" Link="NotCountBehaviorThisismyRifleCompleteOnlyAtUnit"/>
+    </CRequirement>
+    <CRequirement id="WeaponsProficiencyLevel1">
+        <NodeArray index="Show" Link="EqCountUpgradeWeaponsProficiencyLevel1CompleteOnly1"/>
+    </CRequirement>
+    <CRequirement id="WeaponsProficiencyLevel2">
+        <NodeArray index="Show" Link="EqCountUpgradeWeaponsProficiencyLevel12CompleteOnly1"/>
+    </CRequirement>
+    <CRequirementCountUnit id="CountUnitK9CompleteOnly">
+        <Flags index="TechTreeCheat" value="0"/>
+        <Count Link="K9" State="CompleteOnly"/>
+    </CRequirementCountUnit>
+    <CRequirementLTE id="LTECountUnitK9CompleteOnly1">
+        <OperandArray index="0" value="CountUnitK9CompleteOnly"/>
+        <OperandArray index="1" value="1"/>
+    </CRequirementLTE>
+    <CRequirementCountUpgrade id="CountUpgradeGrenadierCompleteOnly">
+        <Flags index="TechTreeCheat" value="0"/>
+        <Count Link="Grenadier" State="CompleteOnly"/>
+    </CRequirementCountUpgrade>
+    <CRequirementLTE id="LTESumCountUnitSonicTrapLevel1CompleteOnlyCountUnitSonicTrapLevel12CompleteOnly1">
+        <OperandArray index="0" value="SumCountUnitSonicTrapLevel1CompleteOnlyCountUnitSonicTrapLevel12CompleteOnly"/>
+        <OperandArray index="1" value="1"/>
+    </CRequirementLTE>
+    <CRequirementSum id="SumCountUnitSonicTrapLevel1CompleteOnlyCountUnitSonicTrapLevel12CompleteOnly">
+        <OperandArray value="CountUnitSonicTrapLevel1CompleteOnly"/>
+        <OperandArray value="CountUnitSonicTrapLevel12CompleteOnly"/>
+    </CRequirementSum>
+    <CEffectSet id="PrecisionShotSet">
+        <EditorCategories value=""/>
+        <EffectArray value="TurretFacing"/>
+        <EffectArray value="PrecisionShotDelay"/>
+    </CEffectSet>
+    <CEffectRemoveBehavior id="RemoveBuddyInvisFinal">
+        <ValidatorArray index="0" removed="1"/>
+        <EditorCategories value=""/>
+        <WhichUnit Value="Caster"/>
+        <BehaviorLink value="BuddyInvis"/>
+        <Count value="1"/>
+    </CEffectRemoveBehavior>
+    <CEffectCreatePersistent id="SonicTrapLaunch1">
+        <EditorCategories value=""/>
+        <PeriodCount value="1"/>
+        <PeriodicEffectArray value="SonicTrapLevel1"/>
+    </CEffectCreatePersistent>
+    <CEffectCreatePersistent id="SonicTrapLaunch2">
+        <EditorCategories value=""/>
+        <Marker Link="Effect/SonicTrapLaunch1"/>
+        <PeriodCount value="1"/>
+        <PeriodicEffectArray value="SonicTrapLevel2"/>
+    </CEffectCreatePersistent>
+    <CEffectApplyKinetic id="MissileRotator">
+        <EditorCategories value=""/>
+    </CEffectApplyKinetic>
+    <CEffectModifyUnit id="TurretFacing">
+        <EditorCategories value=""/>
+        <ImpactUnit Value="Caster"/>
+        <ModifyTurret Turret="K9">
+            <Target Value="TargetUnit"/>
+            <Flags index="Tracking" value="1"/>
+        </ModifyTurret>
+    </CEffectModifyUnit>
+    <CEffectCreatePersistent id="PrecisionShotDelay">
+        <EditorCategories value=""/>
+        <WhichLocation Value="TargetUnit"/>
+        <InitialDelay value="0.1"/>
+        <PeriodCount value="1"/>
+        <PeriodicEffectArray value="PrecisionShotBuff"/>
+    </CEffectCreatePersistent>
+    <CEffectApplyBehavior id="K9AddSuicide">
+        <EditorCategories value=""/>
+        <Behavior value="K9Suicide"/>
+    </CEffectApplyBehavior>
+    <CEffectDamage id="SuicideK9">
+        <ImpactLocation Value="SourceUnit"/>
+        <Flags index="Kill" value="1"/>
+        <Flags index="NoKillCredit" value="1"/>
+    </CEffectDamage>
+    <CEffectApplyBehavior id="SonicAddSuicide1">
+        <EditorCategories value=""/>
+        <Behavior value="SonicTrapSuicideLevel1"/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="SonicAddSuicide2">
+        <EditorCategories value=""/>
+        <Behavior value="SonicTrapSuicideLevel1"/>
+    </CEffectApplyBehavior>
+    <CEffectSwitch id="SonicSuicideSwitch">
+        <EditorCategories value=""/>
+        <CaseArray Validator="SonicPlacementBuff" Effect="SuicideSonic"/>
+        <CaseArray Effect="SonicAddSuicide1"/>
+    </CEffectSwitch>
+    <CEffectSwitch id="SonicSuicideSwitch2">
+        <EditorCategories value=""/>
+        <CaseArray Validator="SonicPlacementBuff" Effect="SuicideSonic"/>
+        <CaseArray Effect="SonicAddSuicide2"/>
+    </CEffectSwitch>
+    <CEffectSet id="SelfAidBuddySet">
+        <ValidatorArray value="HasBuddyFromCaster"/>
+        <EditorCategories value=""/>
+        <EffectArray value="SelfAidCharges"/>
+        <EffectArray value="SelfAidRemoveVenom"/>
+        <EffectArray value="SelfAidRemoveFracture"/>
+    </CEffectSet>
+    <CEffectApplyBehavior id="TIMRDeathBuff">
+        <EditorCategories value=""/>
+        <Behavior value="TIMRDeath"/>
+    </CEffectApplyBehavior>
+    <CEffectSet id="CanisterLaunchSet">
+        <EditorCategories value=""/>
+        <EffectArray value="CanisterShotSearch"/>
+        <EffectArray value="CanisterSearchStartup"/>
+        <TargetLocationType value="Point"/>
+    </CEffectSet>
+    <CEffectApplyBehavior id="AddBuddyInvis">
+        <EditorCategories value=""/>
+        <WhichUnit Value="Caster"/>
+        <Behavior value="BuddyInvis"/>
+        <ValidatorArray index="0" value="BuddyInvis"/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="BuddyCaster">
+        <EditorCategories value=""/>
+        <WhichUnit Value="Caster"/>
+    </CEffectApplyBehavior>
+    <CEffectSet id="BuddyFinal">
+        <EditorCategories value=""/>
+        <EffectArray value="RemoveBuddyInvisFinal"/>
+        <EffectArray value="BuddySystemFinalCooldown"/>
+    </CEffectSet>
+    <CEffectSet id="BuddyInvisSet">
+        <EditorCategories value=""/>
+        <EffectArray value="AddBuddyInvis"/>
+        <EffectArray value="RemoveBuddyInvis"/>
+    </CEffectSet>
+    <CEffectEnumArea id="SelfAidBuddySearch">
+        <EditorCategories value=""/>
+        <SearchFilters value="Heroic;Self,Neutral,Enemy,Missile,Item,Dead,Hidden,Invulnerable"/>
+        <AreaArray MaxCount="1" Radius="9" Effect="SelfAidBuddySet"/>
+    </CEffectEnumArea>
+    <CEffectSet id="BuddyCastSet">
+        <EditorCategories value=""/>
+        <EffectArray value="BuddyCaster"/>
+        <EffectArray value="BuddyTarget"/>
+    </CEffectSet>
+    <CEffectRemoveBehavior id="BuddyRemoveCaster">
+        <EditorCategories value=""/>
+        <BehaviorLink value="BuddyCaster"/>
+        <Count value="1"/>
+    </CEffectRemoveBehavior>
+    <CEffectSet id="BuddyFirstAidValidator">
+        <ValidatorArray value="HasBuddyFromCaster"/>
+        <EditorCategories value=""/>
+        <EffectArray value="SelfAidLevel1"/>
+    </CEffectSet>
+    <CEffectDamage id="CanisterDmg1">
+        <EditorCategories value=""/>
+        <Amount value="800"/>
+        <ImpactLocation Value="TargetUnit"/>
+    </CEffectDamage>
+    <CEffectDamage id="CanisterDmg2">
+        <EditorCategories value=""/>
+        <Marker Link="Effect/CanisterDmg1"/>
+        <Amount value="600"/>
+        <ImpactLocation Value="TargetUnit"/>
+    </CEffectDamage>
+    <CEffectDamage id="CanisterDmg3">
+        <EditorCategories value=""/>
+        <Marker Link="Effect/CanisterDmg1"/>
+        <Amount value="400"/>
+        <ImpactLocation Value="TargetUnit"/>
+    </CEffectDamage>
+    <CEffectDamage id="CanisterDmg4">
+        <EditorCategories value=""/>
+        <Marker Link="Effect/CanisterDmg1"/>
+        <Amount value="200"/>
+        <ImpactLocation Value="TargetUnit"/>
+    </CEffectDamage>
+    <CEffectCreatePersistent id="CanisterTargetPoint">
+        <EditorCategories value=""/>
+        <WhichLocation Value="SourceUnitOrPoint"/>
+        <PeriodCount value="1"/>
+        <PeriodicEffectArray value="CanisterShotSearch"/>
+        <OffsetVectorStartLocation Value="SourceUnitOrPoint"/>
+        <OffsetFacingFallback Value="SourceUnitOrPoint"/>
+    </CEffectCreatePersistent>
+    <CEffectSet id="CanisterVisualDummies">
+        <EditorCategories value=""/>
+        <TargetLocationType value="Point"/>
+    </CEffectSet>
+    <CEffectCreatePersistent id="CanisterSearchStartup">
+        <EditorCategories value=""/>
+        <WhichLocation Value="SourcePoint"/>
+        <Flags index="RandomOffset" value="1"/>
+        <InitialDelay value="0.0625"/>
+        <PeriodCount value="8"/>
+        <PeriodicEffectArray value="CanisterVisualDummies"/>
+        <PeriodicOffsetArray value="0,-5,0"/>
+        <PeriodicOffsetArray value="0,-4,0"/>
+        <PeriodicOffsetArray value="0,-3,0"/>
+        <PeriodicOffsetArray value="0,-2,0"/>
+        <PeriodicOffsetArray value="0,-1,0"/>
+        <PeriodicOffsetArray value="-1,-1,0"/>
+        <PeriodicOffsetArray value="-1,-2,0"/>
+        <PeriodicOffsetArray value="-1,-3,0"/>
+        <PeriodicOffsetArray value="-1,-4,0"/>
+        <PeriodicOffsetArray value="1,-1,0"/>
+        <PeriodicOffsetArray value="1,-2,0"/>
+        <PeriodicOffsetArray value="1,-3,0"/>
+        <PeriodicOffsetArray value="1,-4,0"/>
+        <PeriodicOffsetArray value="-2,-2,0"/>
+        <PeriodicOffsetArray value="2,-2,0"/>
+        <PeriodicOffsetArray value="2,-3,0"/>
+        <PeriodicOffsetArray value="-2,-3,0"/>
+        <PeriodicOffsetArray value="2,-4,0"/>
+        <PeriodicOffsetArray value="-2,-4,0"/>
+        <PeriodicOffsetArray value="3,-3,0"/>
+        <PeriodicOffsetArray value="-3,-3,0"/>
+    </CEffectCreatePersistent>
+    <CEffectEnumArea id="CanisterShotSearch">
+        <EditorCategories value=""/>
+        <LaunchLocation Value="TargetPoint"/>
+        <ImpactLocation Value="SourceUnitOrPoint"/>
+        <SearchFilters value="-;Self,Player,Ally,Missile,Item,Dead,Hidden,Invulnerable"/>
+        <AreaArray>
+            <Arc value="69.95"/>
+            <Radius value="2"/>
+            <FacingAdjustment value="180"/>
+            <Effect value="CanisterDmg1"/>
+        </AreaArray>
+        <AreaArray>
+            <Arc value="69.95"/>
+            <Radius value="3"/>
+            <FacingAdjustment value="180"/>
+            <Effect value="CanisterDmg2"/>
+        </AreaArray>
+        <AreaArray>
+            <Arc value="69.961"/>
+            <Radius value="4"/>
+            <FacingAdjustment value="180"/>
+            <Effect value="CanisterDmg3"/>
+        </AreaArray>
+        <AreaArray>
+            <Arc value="69.961"/>
+            <Radius value="5"/>
+            <FacingAdjustment value="180"/>
+            <Effect value="CanisterDmg4"/>
+        </AreaArray>
+    </CEffectEnumArea>
+    <CEffectSet id="FocusedFireTriggerDummy">
+        <ValidatorArray value="CasterhasFocusFireActive"/>
+        <ValidatorArray value="WeaponProfi1"/>
+        <EditorCategories value=""/>
+    </CEffectSet>
+    <CEffectApplyBehavior id="PrecisionShotBuff">
+        <EditorCategories value=""/>
+        <Behavior value="PrecisionShot"/>
+    </CEffectApplyBehavior>
+    <CEffectDamage id="PrecisionShotDMG">
+        <EditorCategories value=""/>
+        <Amount value="50"/>
+    </CEffectDamage>
+    <CEffectRemoveBehavior id="RemoveBuddyInvis">
+        <EditorCategories value=""/>
+        <WhichUnit Value="Caster"/>
+        <BehaviorLink value="BuddyInvis"/>
+        <Count value="1"/>
+        <ValidatorArray index="0" value="BuddyInvisOff"/>
+    </CEffectRemoveBehavior>
+    <CEffectCreatePersistent id="SelfAidCharges">
+        <EditorCategories value=""/>
+        <InitialEffect value="SelfAidHealLevel1"/>
+        <PeriodicEffectArray value="SelfAidHealLevel1"/>
+        <PeriodicPeriodArray value="1"/>
+        <WhichLocation Value="TargetUnit"/>
+    </CEffectCreatePersistent>
+    <CEffectSet id="SonicTrapStartSet1">
+        <EditorCategories value=""/>
+        <EffectArray value="SonicTrapPushbackPersistentLevel1"/>
+        <EffectArray value="SonicTrapHeroicSlowLevel1"/>
+        <EffectArray value="SonicTrapStunLevel1"/>
+    </CEffectSet>
+    <CEffectSet id="SonicTrapStartSet2">
+        <EditorCategories value=""/>
+        <Marker Link="Effect/SonicTrapStartSet1"/>
+        <EffectArray value="SonicTrapPushbackPersistentLevel2"/>
+        <EffectArray value="SonicTrapHeroicSlowLevel2"/>
+        <EffectArray value="SonicTrapStunLevel2"/>
+    </CEffectSet>
+    <CEffectApplyBehavior id="StunGrenadeBehaviour">
+        <EditorCategories value=""/>
+        <Behavior value="Stunned"/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="StunGrenadeSlow">
+        <EditorCategories value=""/>
+        <Behavior value="Slowed"/>
+        <ValidatorArray index="0" value="StunGrenadeSlow"/>
+    </CEffectApplyBehavior>
+    <CEffectEnumArea id="StunGrenadeSearch">
+        <EditorCategories value=""/>
+        <AreaArray Radius="3" Effect="StunGrenadeBehaviour"/>
+    </CEffectEnumArea>
+    <CEffectApplyBehavior id="BuddyTarget">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectDamage id="SuicideSonic">
+        <Marker Link="Effect/Suicide"/>
+        <ImpactLocation Value="SourceUnit"/>
+        <Flags index="Kill" value="1"/>
+        <Flags index="NoKillCredit" value="1"/>
+    </CEffectDamage>
+    <CEffectSet id="TIMRBonusDurationTriggerDummy">
+        <EditorCategories value=""/>
+    </CEffectSet>
+    <CEffectModifyUnit id="TIMRFinalCooldown">
+        <EditorCategories value=""/>
+        <Cost Abil="ThisismyRifle,Execute" CooldownOperation="Set" CooldownTimeUse="10"/>
+    </CEffectModifyUnit>
+    <CEffectModifyUnit id="BuddySystemFinalCooldown">
+        <EditorCategories value=""/>
+        <Marker Link="Effect/TIMRFinalCooldown"/>
+        <Cost Abil="BuddySystem,Execute" CooldownOperation="Set" CooldownTimeUse="30"/>
+    </CEffectModifyUnit>
+    <CEffectLaunchMissile id="StunGrenadeLM">
+        <EditorCategories value=""/>
+        <ImpactLocation Value="TargetPoint"/>
+        <ImpactEffect value="StunGrenadeSearch"/>
+        <AmmoUnit value="StunGrenadeThrown"/>
+        <Movers Link="FragmentationGrenadeThrown"/>
+        <LaunchOffset value="0,0,0.05"/>
+    </CEffectLaunchMissile>
+    <CEffectDamage id="FragmentationGrenadeDamageLevel12">
+        <EditorCategories value=""/>
+        <ImpactLocation Value="TargetPoint"/>
+        <AttributeFactor index="Armored" value="-0.5"/>
+        <ShieldFactor value="-0.95"/>
+        <Amount value="200"/>
+        <AreaArray Radius="1.5" Fraction="1"/>
+        <AreaArray Radius="3" Fraction="0.5"/>
+        <SearchFilters value="-;Player,Ally,Item,Invulnerable"/>
+    </CEffectDamage>
+    <CEffectSwitch id="SelfAidRemoveVenom">
+        <ValidatorArray value="SelfAidLevel2"/>
+        <EditorCategories value=""/>
+        <CaseArray Validator="UnithasVenom" Effect="RemoveVenom"/>
+    </CEffectSwitch>
+    <CEffectDamage id="StickyBombDMG2">
+        <EditorCategories value=""/>
+        <ImpactLocation Value="TargetUnit"/>
+        <ShieldFactor value="-0.95"/>
+        <Amount value="150"/>
+    </CEffectDamage>
+    <CEffectApplyBehavior id="StickyBombDMGBuff">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectDamage id="StickyBombDMG">
+        <EditorCategories value=""/>
+        <ImpactLocation Value="TargetUnit"/>
+        <AttributeBonus index="Armored" value="25"/>
+        <ShieldFactor value="-0.95"/>
+        <Amount value="50"/>
+    </CEffectDamage>
+    <CEffectApplyBehavior id="StickyBombDMGBuff2">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectLaunchMissile id="StickyBombLM">
+        <EditorCategories value=""/>
+        <ImpactEffect value="StickyBombDMGBuff"/>
+        <AmmoUnit value="StickyBombMissileThrown"/>
+        <LaunchOffset value="0,0,0.05"/>
+    </CEffectLaunchMissile>
+    <CEffectLaunchMissile id="StickyBombLM2">
+        <EditorCategories value=""/>
+        <ImpactEffect value="StickyBombDMGBuff2"/>
+        <AmmoUnit value="StickyBombMissileThrown"/>
+        <LaunchOffset value="0,0,0.05"/>
+    </CEffectLaunchMissile>
+    <CEffectApplyBehavior id="TIMRBuff">
+        <EditorCategories value=""/>
+        <Behavior value="ThisismyRifle"/>
+    </CEffectApplyBehavior>
+    <CEffectModifyUnit id="FocusFireAddCooldown">
+        <EditorCategories value=""/>
+        <Cost Abil="FocusFire,On" CooldownOperation="Set" CooldownTimeUse="4"/>
+    </CEffectModifyUnit>
+    <CEffectApplyBehavior id="CripplingFire">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="FocusFire">
+        <EditorCategories value=""/>
+        <ValidatorArray index="0" value="AbilityTest"/>
+        <ValidatorArray value="AbilityTest2"/>
+    </CEffectApplyBehavior>
+    <CEffectDamage id="FragmentationGrenadeDamageLevel1">
+        <EditorCategories value=""/>
+        <ImpactLocation Value="TargetPoint"/>
+        <AttributeFactor index="Armored" value="-0.5"/>
+        <ShieldFactor value="-0.95"/>
+        <Amount value="200"/>
+        <AreaArray Radius="1.5" Fraction="1"/>
+        <AreaArray Radius="3" Fraction="0.5"/>
+        <SearchFilters value="-;Player,Ally,Item,Invulnerable"/>
+    </CEffectDamage>
+    <CEffectDamage id="FragmentationGrenadeDamageLevel2">
+        <EditorCategories value=""/>
+        <ImpactLocation Value="TargetPoint"/>
+        <AttributeFactor index="Armored" value="-0.5"/>
+        <ShieldFactor value="-0.95"/>
+        <Amount value="200"/>
+        <AreaArray Radius="2" Fraction="1"/>
+        <AreaArray Radius="4" Fraction="0.5"/>
+        <SearchFilters value="-;Player,Ally,Item,Invulnerable"/>
+    </CEffectDamage>
+    <CEffectDamage id="FragmentationGrenadeDamageLevel3">
+        <EditorCategories value=""/>
+        <ImpactLocation Value="TargetPoint"/>
+        <AttributeFactor index="Armored" value="-0.5"/>
+        <ShieldFactor value="-0.95"/>
+        <Amount value="200"/>
+        <AreaArray Radius="2" Fraction="1"/>
+        <AreaArray Radius="4" Fraction="0.5"/>
+        <SearchFilters value="-;Player,Ally,Item,Invulnerable"/>
+    </CEffectDamage>
+    <CEffectLaunchMissile id="FragmentationGrenadeLevel1">
+        <EditorCategories value=""/>
+        <ImpactLocation Value="TargetPoint"/>
+        <ImpactEffect value="FragmentationGrenadeDamageLevel1"/>
+        <AmmoUnit value="FragmentationGrenadeThrown"/>
+        <LaunchEffect value="MissileRotator"/>
+        <LaunchOffset value="0,0,0.05"/>
+    </CEffectLaunchMissile>
+    <CEffectLaunchMissile id="FragmentationGrenadeLevel2">
+        <EditorCategories value=""/>
+        <ImpactLocation Value="TargetPoint"/>
+        <ImpactEffect value="FragmentationGrenadeDamageLevel2"/>
+        <AmmoUnit value="FragmentationGrenadeThrown"/>
+        <LaunchOffset value="0,0,0.05"/>
+    </CEffectLaunchMissile>
+    <CEffectLaunchMissile id="FragmentationGrenadeLevel3">
+        <EditorCategories value=""/>
+        <ImpactLocation Value="TargetPoint"/>
+        <ImpactEffect value="FragmentationGrenadeDamageLevel3"/>
+        <AmmoUnit value="FragmentationGrenadeThrown"/>
+        <LaunchOffset value="0,0,0.05"/>
+    </CEffectLaunchMissile>
+    <CEffectCreateUnit id="K9">
+        <EditorCategories value=""/>
+        <SpawnUnit value="K9"/>
+        <WhichLocation Value="CasterPoint"/>
+        <SpawnOwner Value="Caster"/>
+        <SpawnRange value="5"/>
+        <SelectUnit Value="Caster"/>
+    </CEffectCreateUnit>
+    <CEffectDamage id="K9TurretDamage">
+        <EditorCategories value=""/>
+        <ImpactLocation Value="TargetUnit"/>
+        <AttributeBonus index="Armored" value="5"/>
+        <ArmorReduction value="0.5"/>
+        <Kind value="Ranged"/>
+        <KindSplash value="Splash"/>
+        <Amount value="15"/>
+        <AreaArray Radius="1.5" Fraction="1"/>
+        <ExcludeArray Value="Target"/>
+        <SearchFilters value="-;Item,Invulnerable"/>
+    </CEffectDamage>
+    <CEffectApplyBehavior id="K9TurretDeployment">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectCreateUnit id="SonicTrapLevel1">
+        <EditorCategories value=""/>
+        <WhichLocation Value="TargetPoint"/>
+        <SpawnUnit value="SonicTrapLevel1"/>
+    </CEffectCreateUnit>
+    <CEffectCreateUnit id="SonicTrapLevel2">
+        <EditorCategories value=""/>
+        <WhichLocation Value="TargetPoint"/>
+        <SpawnUnit value="SonicTrapLevel12"/>
+    </CEffectCreateUnit>
+    <CEffectDamage id="PlasmaGrenadeDamage">
+        <EditorCategories value=""/>
+        <ImpactLocation Value="TargetUnit"/>
+        <ShieldFactor value="2"/>
+        <Amount value="80"/>
+        <SearchFilters value="-;Player,Ally,Item,Invulnerable"/>
+    </CEffectDamage>
+    <CEffectLaunchMissile id="ImpalerGrenadeLaunchMissile">
+        <EditorCategories value=""/>
+        <ImpactEffect value="ImpalerGrenadeDamage"/>
+        <AmmoUnit value="ImpalerGrenade"/>
+        <Movers Link="Grenadier"/>
+        <LaunchOffset value="0,0,0.05"/>
+    </CEffectLaunchMissile>
+    <CEffectDamage id="ImpalerGrenadeDamage">
+        <EditorCategories value=""/>
+        <ImpactLocation Value="TargetPoint"/>
+        <Amount value="900"/>
+        <AreaArray Radius="1" Fraction="1"/>
+        <SearchFilters value="-;Player,Ally,Item,Invulnerable"/>
+    </CEffectDamage>
+    <CEffectApplyBehavior id="PlasmaGrenadeArmorReduction">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectLaunchMissile id="PlasmaGrenadeLaunchMissile">
+        <EditorCategories value=""/>
+        <ImpactLocation Value="TargetPoint"/>
+        <ImpactEffect value="PlasmaGrenadeSearch"/>
+        <AmmoUnit value="PlasmaGrenade"/>
+        <Movers Link="Grenadier"/>
+        <LaunchOffset value="0,0,0.05"/>
+    </CEffectLaunchMissile>
+    <CEffectEnumArea id="PlasmaGrenadeSearch">
+        <EditorCategories value=""/>
+        <ImpactLocation Value="TargetPoint"/>
+        <SearchFilters value="-;Player,Ally,Item,Invulnerable"/>
+        <AreaArray Radius="3" Effect="PlasmaGrenadeSet"/>
+    </CEffectEnumArea>
+    <CEffectSet id="PlasmaGrenadeSet">
+        <EditorCategories value=""/>
+        <EffectArray value="PlasmaGrenadeArmorReduction"/>
+        <EffectArray value="PlasmaGrenadeDamage"/>
+    </CEffectSet>
+    <CEffectDamage id="PrecisionShotBonusDamageLevel1">
+        <EditorCategories value=""/>
+        <Amount value="150"/>
+    </CEffectDamage>
+    <CEffectDamage id="PrecisionShotBonusCriticalDamageLevel1">
+        <EditorCategories value=""/>
+        <Chance value="0"/>
+        <Amount value="150"/>
+    </CEffectDamage>
+    <CEffectDamage id="PrecisionShotBonusCriticalDamageLevel2">
+        <EditorCategories value=""/>
+        <Chance value="0"/>
+        <Amount value="300"/>
+    </CEffectDamage>
+    <CEffectDamage id="PrecisionShotBonusCriticalDamageLevel3">
+        <EditorCategories value=""/>
+        <Chance value="0"/>
+        <Amount value="450"/>
+    </CEffectDamage>
+    <CEffectDamage id="PrecisionShotBonusDamageLevel2">
+        <EditorCategories value=""/>
+        <Amount value="300"/>
+    </CEffectDamage>
+    <CEffectSet id="PrecisionShotDamageBonusSetLevel2">
+        <EditorCategories value=""/>
+        <EffectArray value="PrecisionShotBonusDamageLevel2"/>
+        <EffectArray value="PrecisionShotBonusCriticalDamageLevel2"/>
+    </CEffectSet>
+    <CEffectSet id="PrecisionShotDamageNormalSetLevel2">
+        <EditorCategories value=""/>
+        <EffectArray value="PrecisionShotNormalDamageLevel2"/>
+        <EffectArray value="PrecisionShotNormalCriticalDamageLevel2"/>
+    </CEffectSet>
+    <CEffectDamage id="PrecisionShotBonusDamageLevel3">
+        <EditorCategories value=""/>
+        <Amount value="450"/>
+    </CEffectDamage>
+    <CEffectSet id="PrecisionShotDamageBonusSetLevel3">
+        <EditorCategories value=""/>
+        <EffectArray value="PrecisionShotBonusDamageLevel3"/>
+        <EffectArray value="PrecisionShotBonusCriticalDamageLevel3"/>
+    </CEffectSet>
+    <CEffectDamage id="PrecisionShotNormalCriticalDamageLevel2">
+        <EditorCategories value=""/>
+        <Chance value="0"/>
+        <Amount value="200"/>
+    </CEffectDamage>
+    <CEffectDamage id="PrecisionShotNormalDamageLevel2">
+        <EditorCategories value=""/>
+        <Amount value="200"/>
+    </CEffectDamage>
+    <CEffectSet id="PrecisionShotDamageNormalSetLevel3">
+        <EditorCategories value=""/>
+        <EffectArray value="PrecisionShotNormalDamageLevel3"/>
+        <EffectArray value="PrecisionShotNormalCriticalDamageLevel3"/>
+    </CEffectSet>
+    <CEffectApplyBehavior id="PrecisionShotSlowLevel2">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectSet id="PrecisionShotDamageBonusSetLevel1">
+        <EditorCategories value=""/>
+        <EffectArray value="PrecisionShotBonusDamageLevel1"/>
+        <EffectArray value="PrecisionShotBonusCriticalDamageLevel1"/>
+    </CEffectSet>
+    <CEffectSet id="PrecisionShotLevel1">
+        <EditorCategories value=""/>
+        <EffectArray value="PrecisionShotSlowLevel1"/>
+        <EffectArray value="PrecisionShotSwitchLevel1"/>
+    </CEffectSet>
+    <CEffectSet id="PrecisionShotLevel2">
+        <EditorCategories value=""/>
+        <EffectArray value="PrecisionShotSlowLevel2"/>
+        <EffectArray value="PrecisionShotSwitchLevel2"/>
+    </CEffectSet>
+    <CEffectSet id="PrecisionShotLevel3">
+        <EditorCategories value=""/>
+        <EffectArray value="PrecisionShotSlowLevel3"/>
+        <EffectArray value="PrecisionShotSwitchLevel3"/>
+    </CEffectSet>
+    <CEffectSwitch id="PrecisionShotSwitchLevel2">
+        <EditorCategories value=""/>
+        <CaseArray Validator="CasterhasFocusFireActive" Effect="PrecisionShotDamageBonusSetLevel2"/>
+        <CaseDefault value="PrecisionShotDamageNormalSetLevel2"/>
+    </CEffectSwitch>
+    <CEffectDamage id="PrecisionShotNormalCriticalDamageLevel3">
+        <EditorCategories value=""/>
+        <Chance value="0"/>
+        <Amount value="300"/>
+    </CEffectDamage>
+    <CEffectDamage id="PrecisionShotNormalDamageLevel3">
+        <EditorCategories value=""/>
+        <Amount value="300"/>
+    </CEffectDamage>
+    <CEffectDamage id="PrecisionShotNormalCriticalDamageLevel1">
+        <EditorCategories value=""/>
+        <Chance value="0"/>
+        <Amount value="100"/>
+    </CEffectDamage>
+    <CEffectApplyBehavior id="PrecisionShotSlowLevel3">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectSet id="PrecisionShotDamageNormalSetLevel1">
+        <EditorCategories value=""/>
+        <EffectArray value="PrecisionShotNormalDamageLevel1"/>
+        <EffectArray value="PrecisionShotNormalCriticalDamageLevel1"/>
+    </CEffectSet>
+    <CEffectSwitch id="PrecisionShotSwitchLevel3">
+        <EditorCategories value=""/>
+        <CaseArray Validator="CasterhasFocusFireActive" Effect="PrecisionShotDamageBonusSetLevel3"/>
+        <CaseDefault value="PrecisionShotDamageNormalSetLevel3"/>
+    </CEffectSwitch>
+    <CEffectApplyBehavior id="PrecisionShotSlowLevel1">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectSwitch id="PrecisionShotSwitchLevel1">
+        <EditorCategories value=""/>
+        <CaseArray Validator="CasterhasFocusFireActive" Effect="PrecisionShotDamageBonusSetLevel1"/>
+        <CaseDefault value="PrecisionShotDamageNormalSetLevel1"/>
+    </CEffectSwitch>
+    <CEffectDamage id="PrecisionShotNormalDamageLevel1">
+        <EditorCategories value=""/>
+        <Amount value="100"/>
+    </CEffectDamage>
+    <CEffectSet id="SelfAidLevel1">
+        <EditorCategories value=""/>
+        <EffectArray value="SelfAidCharges"/>
+        <EffectArray value="SelfAidRemoveVenom"/>
+        <EffectArray value="SelfAidRemoveFracture"/>
+        <EffectArray value="SelfAidBuddySearch"/>
+    </CEffectSet>
+    <CEffectSet id="Repulse">
+        <EditorCategories value=""/>
+        <EffectArray value="RepulseEnemySearch"/>
+        <EffectArray value="RepulseSelfBuff"/>
+    </CEffectSet>
+    <CEffectSet id="SelfAidLevel2">
+        <EditorCategories value=""/>
+        <EffectArray value="SelfAidHealLevel2"/>
+        <EffectArray value="RemoveVenomTarget"/>
+        <EffectArray value="SelfAidRemoveFracture"/>
+        <EffectArray value="RemoveOpenWoundTarget"/>
+    </CEffectSet>
+    <CEffectEnumArea id="RepulseEnemySearch">
+        <EditorCategories value=""/>
+        <SearchFilters value="-;Player,Ally,Neutral"/>
+        <AreaArray Radius="6" Effect="RepulseEnemySwitch"/>
+        <SearchFlags index="OffsetByUnitRadius" value="1"/>
+    </CEffectEnumArea>
+    <CEffectDamage id="RepulseDamage">
+        <EditorCategories value=""/>
+        <Amount value="200"/>
+    </CEffectDamage>
+    <CEffectSwitch id="RepulseEnemySwitch">
+        <EditorCategories value=""/>
+        <CaseArray Validator="IsHeroic" Effect="RepulseHeroicSlow"/>
+        <CaseDefault value="RepulseNonHeroicSet"/>
+    </CEffectSwitch>
+    <CEffectApplyBehavior id="RepulseHeroicSlow">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectSet id="RepulseNonHeroicSet">
+        <EditorCategories value=""/>
+        <EffectArray value="RepulseStun"/>
+        <EffectArray value="RepulseDamage"/>
+    </CEffectSet>
+    <CEffectApplyBehavior id="RepulseSelfBuff">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectSet id="RiflemanDeathEffects" parent="MarineDeathEffects"/>
+    <CEffectApplyBehavior id="RepulseStun">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectModifyUnit id="SelfAidHealLevel1">
+        <EditorCategories value=""/>
+        <VitalArray index="Life" Change="25"/>
+    </CEffectModifyUnit>
+    <CEffectModifyUnit id="SelfAidHealLevel2">
+        <EditorCategories value=""/>
+        <VitalArray index="Life" Change="60"/>
+    </CEffectModifyUnit>
+    <CEffectSwitch id="SelfAidRemoveFracture">
+        <ValidatorArray value="SelfAidLevel3"/>
+        <EditorCategories value=""/>
+        <CaseArray Validator="UnithasArmandLegFracture" Effect="RemoveRandomFracture"/>
+        <CaseArray Validator="UnithasLegFracture" Effect="RemoveLegFracture"/>
+        <CaseArray Validator="UnithasArmFracture" Effect="RemoveArmFracture"/>
+    </CEffectSwitch>
+    <CEffectEnumArea id="SonicTrapSearchLevel2">
+        <EditorCategories value=""/>
+        <SearchFilters value="-;Player,Ally,Neutral"/>
+        <AreaArray Radius="8" Effect="SonicTrapStartSet2"/>
+    </CEffectEnumArea>
+    <CEffectEnumArea id="SonicTrapSearchLevel1">
+        <EditorCategories value=""/>
+        <SearchFilters value="-;Self,Player,Ally,Neutral,Missile,Item,Hidden"/>
+        <AreaArray Radius="6" Effect="SonicTrapStartSet1"/>
+    </CEffectEnumArea>
+    <CEffectApplyBehavior id="SonicTrapHeroicSlowLevel1">
+        <EditorCategories value=""/>
+        <ValidatorArray index="0" value="SonicTrapSlow"/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="SonicTrapHeroicSlowLevel2">
+        <EditorCategories value=""/>
+        <ValidatorArray index="0" value="SonicTrapSlow"/>
+    </CEffectApplyBehavior>
+    <CEffectSwitch id="SonicTrapLevel2Switch">
+        <EditorCategories value=""/>
+        <CaseArray Validator="IsHeroic" Effect="SonicTrapHeroicSlowLevel2"/>
+        <CaseArray Validator="TargetisMassive" Effect="SonicTrapMassiveSlowLevel2"/>
+        <CaseDefault value="SonicTrapPushbackPersistentLevel2"/>
+    </CEffectSwitch>
+    <CEffectApplyBehavior id="SonicTrapMassiveSlowLevel2">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectSwitch id="SonicTrapLevel1Switch">
+        <EditorCategories value=""/>
+        <CaseArray Validator="IsHeroic" Effect="SonicTrapHeroicSlowLevel1"/>
+        <CaseArray Validator="TargetisMassive" Effect="SonicTrapMassiveSlowLevel1"/>
+        <CaseDefault value="SonicTrapPushbackPersistentLevel1"/>
+    </CEffectSwitch>
+    <CEffectLaunchMissile id="SonicTrapPushbackLevel2">
+        <EditorCategories value=""/>
+        <LaunchLocation Value="TargetUnit"/>
+        <ImpactLocation Value="SourcePoint"/>
+        <ImpactOffset value="0,5,0"/>
+        <ImpactEffect value="SonicTrapStunLevel2"/>
+        <Flags index="Placement" value="1"/>
+        <AmmoUnit value=""/>
+        <PlacementRange value="5"/>
+        <Movers Link="HunterJumpUp"/>
+        <DeathType value="Unknown"/>
+        <LaunchOffset value="0,0,0.05"/>
+    </CEffectLaunchMissile>
+    <CEffectCreatePersistent id="SonicTrapPushbackPersistentLevel2">
+        <EditorCategories value=""/>
+        <WhichLocation Value="TargetUnit"/>
+        <OffsetVectorStartLocation Value="CasterUnit"/>
+        <OffsetVectorEndLocation Value="TargetUnit"/>
+        <PeriodCount value="1"/>
+        <PeriodicEffectArray value="SonicTrapPushbackLevel2"/>
+        <PeriodicPeriodArray value="0"/>
+    </CEffectCreatePersistent>
+    <CEffectLaunchMissile id="SonicTrapPushbackLevel1">
+        <EditorCategories value=""/>
+        <LaunchLocation Value="TargetUnit"/>
+        <ImpactOffset value="0,5,0"/>
+        <Flags index="Placement" value="1"/>
+        <AmmoUnit value=""/>
+        <PlacementRange value="5"/>
+        <Movers Link="HunterJumpUp"/>
+        <DeathType value="Unknown"/>
+        <ImpactLocation Value="SourcePoint"/>
+        <LaunchOffset value="0,0,0.05"/>
+    </CEffectLaunchMissile>
+    <CEffectApplyBehavior id="SonicTrapStunLevel2">
+        <EditorCategories value=""/>
+        <ValidatorArray index="0" value="TargetIsNotHeroicMassiv"/>
+    </CEffectApplyBehavior>
+    <CEffectCreatePersistent id="SonicTrapPushbackPersistentLevel1">
+        <EditorCategories value=""/>
+        <WhichLocation Value="TargetUnit"/>
+        <OffsetVectorStartLocation Value="CasterUnit"/>
+        <OffsetVectorEndLocation Value="TargetUnit"/>
+        <PeriodCount value="1"/>
+        <PeriodicEffectArray value="SonicTrapPushbackLevel1"/>
+        <PeriodicPeriodArray value="0"/>
+    </CEffectCreatePersistent>
+    <CEffectApplyBehavior id="SonicTrapStunLevel1">
+        <EditorCategories value=""/>
+        <ValidatorArray index="0" value="TargetIsNotHeroicMassiv"/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="SonicTrapMassiveSlowLevel1">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectDamage id="K9TitaniumClawDamage">
+        <EditorCategories value=""/>
+        <AttributeBonus index="Light" value="25"/>
+        <ArmorReduction value="3"/>
+        <Flags index="Notification" value="1"/>
+        <Kind value="Melee"/>
+        <KindSplash value="Melee"/>
+        <Amount value="25"/>
+        <Death value="Eviscerate"/>
+    </CEffectDamage>
+    <CBehaviorBuff id="K9PlacementBuff">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="1"/>
+        <FinalEffect value="K9AddSuicide"/>
+        <Modification>
+            <BehaviorLinkDisableArray value="K9Suicide"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="K9Suicide">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <RemoveValidatorArray value="K9Numbers"/>
+        <FinalEffect value="SuicideK9"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="TIMRDeath">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Modification>
+            <DeathResponse Chance="1" Effect="TIMRBonusDurationTriggerDummy">
+                <Relationship index="Self" value="0"/>
+                <Relationship index="Ally" value="0"/>
+            </DeathResponse>
+        </Modification>
+        <Duration value="0.0625"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="BuddyCaster">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <FinalEffect value="BuddyFinal"/>
+        <Modification MoveSpeedMultiplier="1.2"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="BuddyInvis">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Modification>
+            <StateFlags index="Cloak" value="1"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="PrecisionShot">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="2.5"/>
+        <InitialEffect value="PrecisionShotDMG"/>
+        <Modification MoveSpeedMultiplier="0.75"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="BuddyTarget">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Period value="0.5"/>
+        <PeriodicEffect value="BuddyInvisSet"/>
+        <Modification MoveSpeedMultiplier="1.2"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="SonicPlacementBuff">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="6"/>
+        <FinalEffect value="SonicAddSuicide1"/>
+        <Modification>
+            <BehaviorLinkDisableArray value="SonicTrapSuicideLevel1"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="Stunned">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="2"/>
+        <ExpireEffect value="StunGrenadeSlow"/>
+        <Modification MoveSpeedMultiplier="0.01">
+            <AbilClassDisableArray index="CAbilAttack" value="1"/>
+            <AbilClassDisableArray index="CAbilBehavior" value="1"/>
+            <AbilClassDisableArray index="CAbilEffectInstant" value="1"/>
+            <AbilClassDisableArray index="CAbilEffectTarget" value="1"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="Slowed">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="4"/>
+        <Modification MoveSpeedMultiplier="0.4"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="WeaponProfi2">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <DisableValidatorArray value="WeaponProfi2"/>
+        <DisableValidatorArray value="CasterhasFocusFireActive"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="StickyBombDMGBuff">
+        <InfoIcon value="btn-achievement-hexagonredskull.dds"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="8"/>
+        <PeriodicEffect value="StickyBombDMG"/>
+        <Period value="1"/>
+        <PeriodCount value="8"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="ThisismyRifle">
+        <Alignment value="Positive"/>
+        <InfoIcon value="btn-achievement-hexagonredskull.dds"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="10"/>
+        <Modification AttackSpeedMultiplier="1.5"/>
+        <DamageResponse Chance="1" Handled="TIMRDeathBuff" Location="Attacker">
+            <Kind index="Spell" value="0"/>
+        </DamageResponse>
+        <FinalEffect value="TIMRFinalCooldown"/>
+        <DisplayDuration index="Self" value="1"/>
+        <BuffFlags index="RemoveDamageResponseExhausted" value="0"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="StickyBombDMGBuff2">
+        <InfoIcon value="btn-achievement-hexagonredskull.dds"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="4"/>
+        <PeriodicEffect value="StickyBombDMG2"/>
+        <Period value="1"/>
+        <PeriodCount value="4"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="CriticalStrikeLevel1" parent="LeveledPassiveTemplate">
+        <InfoFlags index="Hidden" value="1"/>
+        <Requirements value="CriticalStrikeLevel1"/>
+        <Modification CriticalAttackChanceUnscaledBonus="0.1"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="CriticalStrikeLevel2" parent="LeveledPassiveTemplate">
+        <InfoFlags index="Hidden" value="1"/>
+        <Requirements value="CriticalStrikeLevel2"/>
+        <Modification CriticalAttackChanceUnscaledBonus="0.2"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="CriticalStrikeLevel3" parent="LeveledPassiveTemplate">
+        <InfoFlags index="Hidden" value="1"/>
+        <Requirements value="CriticalStrikeLevel3"/>
+        <Modification CriticalAttackChanceUnscaledBonus="0.3"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="CripplingFire">
+        <Alignment value="Negative"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="1"/>
+        <Modification MoveSpeedMultiplier="0.9"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="FocusFire">
+        <Alignment value="Positive"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Modification AttackSpeedMultiplier="0.8">
+            <DamageDealtFraction index="Ranged" value="0.2"/>
+            <DamageDealtFraction index="Splash" value="0.2"/>
+        </Modification>
+        <DamageResponse Handled="CripplingFire" Location="Attacker"/>
+        <InfoIcon value="Assets\Textures\btn-ability-protoss-blink-color.dds"/>
+        <FinalEffect value="FocusFireAddCooldown"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="FocusFireRangeNegationMelee">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <DisableValidatorArray value="CasterhasFocusFireActive"/>
+        <DisableValidatorArray value="FireUpLevel1"/>
+        <DisableValidatorArray value="MeleeWeaponEquipped"/>
+        <Modification WeaponRange="-1"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="FocusFireRangeNegationMeleeLevel2">
+        <Cost>
+            <Charge Link="Behavior/FocusFireRangeNegationMelee"/>
+            <Cooldown Link="Behavior/FocusFireRangeNegationMelee"/>
+        </Cost>
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <DisableValidatorArray value="CasterhasFocusFireActive"/>
+        <DisableValidatorArray value="FireUpLevel2"/>
+        <DisableValidatorArray value="MeleeWeaponEquipped"/>
+        <Modification WeaponRange="-2">
+            <DeathResponse>
+                <Cost>
+                    <Charge Link="Behavior/FocusFireRangeNegationMelee"/>
+                    <Cooldown Link="Behavior/FocusFireRangeNegationMelee"/>
+                </Cost>
+            </DeathResponse>
+        </Modification>
+        <DamageResponse>
+            <Cost>
+                <Charge Link="Behavior/FocusFireRangeNegationMelee"/>
+                <Cooldown Link="Behavior/FocusFireRangeNegationMelee"/>
+            </Cost>
+        </DamageResponse>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="FocusFireRangeNegationMeleeLevel3">
+        <Cost>
+            <Charge Link="Behavior/FocusFireRangeNegationMelee"/>
+            <Cooldown Link="Behavior/FocusFireRangeNegationMelee"/>
+        </Cost>
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <DisableValidatorArray value="CasterhasFocusFireActive"/>
+        <DisableValidatorArray value="FireUpLevel3"/>
+        <DisableValidatorArray value="MeleeWeaponEquipped"/>
+        <Modification WeaponRange="-3">
+            <DeathResponse>
+                <Cost>
+                    <Charge Link="Behavior/FocusFireRangeNegationMelee"/>
+                    <Cooldown Link="Behavior/FocusFireRangeNegationMelee"/>
+                </Cost>
+            </DeathResponse>
+        </Modification>
+        <DamageResponse>
+            <Cost>
+                <Charge Link="Behavior/FocusFireRangeNegationMelee"/>
+                <Cooldown Link="Behavior/FocusFireRangeNegationMelee"/>
+            </Cost>
+        </DamageResponse>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="Grenadier">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Requirements value="Grenadier"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="K9Evasion">
+        <Alignment value="Positive"/>
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <DamageResponse Chance="0.5" ModifyFraction="0">
+            <Kind index="Spell" value="0"/>
+            <Kind index="Melee" value="0"/>
+            <Kind index="Splash" value="0"/>
+        </DamageResponse>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="K9Turret">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <InitialEffect value="K9TurretDeployment"/>
+        <FinalEffect value="K9TurretDeployment"/>
+        <Modification>
+            <AbilClassDisableArray index="CAbilInventory" value="1"/>
+            <WeaponArray Link="K9SupportTurret" Turret="K9"/>
+        </Modification>
+        <InfoFlags index="Hidden" value="1"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="K9TurretDeployment">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="2"/>
+        <Modification>
+            <ModifyFlags index="SuppressMoving" value="1"/>
+            <WeaponDisableArray value="K9SupportTurret"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="PlasmaGrenadeArmorReduction">
+        <Alignment value="Negative"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="10"/>
+        <Modification LifeArmorBonus="-5"/>
+        <InfoIcon value="btn-ability-terran-spaceminelaunch-HoTS.dds"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="PrecisionShotSlowLevel1">
+        <Alignment value="Negative"/>
+        <InfoIcon value="Assets\Textures\btn-upgrade-terran-hisecautotracking.dds"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="5"/>
+        <Modification MoveSpeedMultiplier="0.9"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="PrecisionShotSlowLevel2">
+        <Alignment value="Negative"/>
+        <InfoIcon value="Assets\Textures\btn-upgrade-terran-hisecautotracking.dds"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="5"/>
+        <Modification MoveSpeedMultiplier="0.8"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="PrecisionShotSlowLevel3">
+        <Alignment value="Negative"/>
+        <InfoIcon value="Assets\Textures\btn-upgrade-terran-hisecautotracking.dds"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="5"/>
+        <Modification MoveSpeedMultiplier="0.6"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="RepulseHeroicSlow">
+        <Alignment value="Negative"/>
+        <InfoIcon value="Assets\Textures\btn-ability-protoss-gravitonbeam-color.dds"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="5"/>
+        <Modification MoveSpeedMultiplier="0.5"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="RepulseSelfBuff">
+        <Alignment value="Positive"/>
+        <InfoIcon value="Assets\Textures\btn-ability-protoss-gravitonbeam-color.dds"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="10"/>
+        <Modification MoveSpeedMultiplier="1.5" LifeArmorBonus="2"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="RepulseStun">
+        <Alignment value="Negative"/>
+        <InfoIcon value="Assets\Textures\btn-ability-protoss-gravitonbeam-color.dds"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="5"/>
+        <Modification>
+            <StateFlags index="Stun" value="1"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="SonicTrapHeroicSlowLevel1">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="2"/>
+        <Modification MoveSpeedMultiplier="0.5"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="SonicTrapHeroicSlowLevel2">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="2"/>
+        <Modification MoveSpeedMultiplier="0.5"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="SonicTrapMassiveSlowLevel1">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="2"/>
+        <Modification MoveSpeedMultiplier="0.8"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="SonicTrapMassiveSlowLevel2">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="2"/>
+        <Modification MoveSpeedMultiplier="0.6"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="SonicTrapStunLevel1">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="0.5"/>
+        <Modification>
+            <StateFlags index="Stun" value="1"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="SonicTrapStunLevel2">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="1"/>
+        <Modification>
+            <StateFlags index="Stun" value="1"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="SonicTrapSuicideLevel1">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <RemoveValidatorArray value="SonicTrapSuicideLevel1"/>
+        <RemoveValidatorArray value="SonicTrapNumbers"/>
+        <FinalEffect value="SuicideSonic"/>
+        <InfoFlags index="Hidden" value="1"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="SonicTrapSuicideLevel2">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <RemoveValidatorArray value="SonicTrapSuicideLevel2"/>
+        <RemoveValidatorArray value="SonicTrapNumbers"/>
+        <FinalEffect value="SuicideSonic"/>
+        <InfoFlags index="Hidden" value="1"/>
+    </CBehaviorBuff>
+</Catalog>

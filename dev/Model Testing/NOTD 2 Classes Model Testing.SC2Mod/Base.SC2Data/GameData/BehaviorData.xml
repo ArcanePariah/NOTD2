@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<Catalog>
+    <CBehaviorBuff default="1" id="LeveledPassiveTemplate">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Requirements value="##id##"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff default="1" id="PeacekeeperTemplate">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Modification UnitNameOverride="Peacekeeper/Name/##id##"/>
+    </CBehaviorBuff>
+    <CBehaviorVeterancy default="1" id="PetLevelsTemplate">
+        <Name value="Behavior/Name/PetLevelsTemplate"/>
+        <Tooltip value="Behavior/Tooltip/PetLevelsTemplate"/>
+        <Cost>
+            <Charge Link="Behavior/PetLevelsTemplate"/>
+            <Cooldown Link="Behavior/PetLevelsTemplate"/>
+        </Cost>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <ShareFilters index="Kills" value="-;Neutral,Enemy,Hallucination"/>
+        <SharedXPRadius index="Kills" value="500"/>
+        <SharedXPFraction index="Kills" value="1"/>
+        <VeterancyLevelArray>
+            <Modification>
+                <DeathResponse>
+                    <Cost>
+                        <Charge Link="Behavior/PetLevels"/>
+                        <Cooldown Link="Behavior/PetLevels"/>
+                    </Cost>
+                </DeathResponse>
+            </Modification>
+        </VeterancyLevelArray>
+        <VeterancyLevelArray MinVeterancyXP="100"/>
+        <VeterancyLevelArray MinVeterancyXP="125"/>
+        <VeterancyLevelArray MinVeterancyXP="150"/>
+        <VeterancyLevelArray MinVeterancyXP="175"/>
+        <VeterancyLevelArray MinVeterancyXP="200"/>
+        <VeterancyLevelArray MinVeterancyXP="250"/>
+    </CBehaviorVeterancy>
+    <CBehaviorBuff id="AuroraDropshipDummy">
+        <InfoFlags index="Hidden" value="1"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AutomaticReloadwhenAttacking">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <DisableValidatorArray value="ForcedReload"/>
+        <Period value="2"/>
+        <PeriodicEffect value="ForcedReload"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AutomaticReloadwhenAttacking2">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <DisableValidatorArray value="ForcedReload2"/>
+        <Period value="1"/>
+        <PeriodicEffect value="ForcedReload"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AutomaticShotgunDamage">
+        <Duration value="0.1"/>
+    </CBehaviorBuff>
+    <CBehaviorVeterancy id="BasicVeterency">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <VeterancyLevelArray MinVeterancyXP="50"/>
+        <VeterancyLevelArray MinVeterancyXP="75"/>
+        <VeterancyLevelArray MinVeterancyXP="100"/>
+        <VeterancyLevelArray MinVeterancyXP="125"/>
+        <VeterancyLevelArray MinVeterancyXP="150"/>
+        <VeterancyLevelArray MinVeterancyXP="175"/>
+        <VeterancyLevelArray MinVeterancyXP="200"/>
+        <VeterancyLevelArray MinVeterancyXP="300"/>
+        <VeterancyLevelArray MinVeterancyXP="400"/>
+        <VeterancyLevelArray MinVeterancyXP="500"/>
+        <VeterancyLevelArray MinVeterancyXP="600"/>
+        <VeterancyLevelArray MinVeterancyXP="700"/>
+        <VeterancyLevelArray MinVeterancyXP="800"/>
+        <ShareFilters index="Kills" value="-;Neutral,Enemy,Hallucination"/>
+        <SharedXPRadius index="Kills" value="500"/>
+        <SharedXPFraction index="Kills" value="1"/>
+    </CBehaviorVeterancy>
+    <CBehaviorBuff id="DefaultDetection">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Modification Detect="3"/>
+        <InfoFlags index="Hidden" value="1"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="Detector4" parent="Detector">
+        <Alignment value="Positive"/>
+        <InfoFlags index="Hidden" value="1"/>
+        <InfoIcon value="Assets\Textures\btn-status-detector.dds"/>
+        <Modification Detect="4"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="IFV25mmHEAutocannonStun">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="4"/>
+        <Modification>
+            <ModifyFlags index="DisableAbils" value="1"/>
+            <StateFlags index="Stun" value="1"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="CombatKnifeSlowHeavy">
+        <Alignment value="Negative"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="3"/>
+        <Modification MoveSpeedMultiplier="0.65"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="CombatKnifeSlowLight">
+        <Alignment value="Negative"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="3"/>
+        <Modification MoveSpeedMultiplier="0.3"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="DisableInventoryTransfer">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="ExtraLifeHeal">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="5"/>
+        <Period value="0.5"/>
+        <PeriodCount value="10"/>
+        <PeriodicEffect value="ExtraLifeHealing"/>
+        <Modification>
+            <StateFlags index="Invulnerable" value="1"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="FlashlightNOTD">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Modification DetectBonus="4"/>
+        <Requirements value="NoNightVision"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="HoldFire">
+        <InfoIcon value="btn-ability-terran-holdfire-color.dds"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <RemoveValidatorArray value="NotAttacking"/>
+        <Modification MoveSpeedMultiplier="1.1">
+            <StateFlags index="Passive" value="1"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="LifeLoss">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Modification>
+            <AttributeChangeArray Attribute="Lives" Points="2"/>
+        </Modification>
+        <DamageResponse>
+            <Chance value="1"/>
+            <Fatal value="1"/>
+            <Handled value="LifeLossSwitch"/>
+            <ModifyFraction value="0"/>
+        </DamageResponse>
+        <InfoFlags index="Hidden" value="1"/>
+        <RemoveValidatorArray value="MarineHasNoLives"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="LifeRemoval">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <MaxStackCount value="5"/>
+        <Modification>
+            <AttributeChangeArray Attribute="Lives" Points="-1"/>
+        </Modification>
+        <InfoFlags index="Hidden" value="1"/>
+    </CBehaviorBuff>
+    <CBehaviorAttribute id="Lives">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+    </CBehaviorAttribute>
+    <CBehaviorBuff id="HordeModeActive">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="300"/>
+        <InfoFlags index="Hidden" value="1"/>
+        <DurationOverride Duration="240">
+            <ValidatorArray value="GameisNormal"/>
+        </DurationOverride>
+        <DurationOverride Duration="180">
+            <ValidatorArray value="GameisNightmare"/>
+        </DurationOverride>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="MercAirLift">
+        <InfoFlags index="Hidden" value="1"/>
+        <Duration value="2.5"/>
+        <ExpireEffect value="SuicideRemove"/>
+        <Modification Height="10" MoveSpeedMultiplier="0.1">
+            <StateFlags index="Invulnerable" value="1"/>
+            <StateFlags index="Unselectable" value="1"/>
+            <StateFlags index="Untargetable" value="1"/>
+            <HeightTime index="Start" value="2.5"/>
+            <AbilClassDisableArray index="CAbilAttack" value="1"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorAttribute id="NoiseIndex">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <MaxPoints value="2000"/>
+        <PointGainEffect value="NoiseThresholds"/>
+        <InfoFlags index="Hidden" value="1"/>
+    </CBehaviorAttribute>
+    <CBehaviorBuff id="OfficerSpracklin" parent="PeacekeeperTemplate">
+        <Modification>
+            <VitalMaxArray index="Life" value="50"/>
+            <WeaponArray Link="PeacekeeperSubmachineGun"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="ChiefStrassner" parent="PeacekeeperTemplate">
+        <Modification>
+            <VitalMaxArray index="Life" value="100"/>
+            <WeaponArray Link="PeacekeeperPumpShotgun"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="PrecursorMerc2">
+        <InfoFlags index="Hidden" value="1"/>
+        <Modification MoveSpeedMultiplier="0.05">
+            <StateFlags index="Invulnerable" value="1"/>
+            <StateFlags index="NoDraw" value="1"/>
+            <StateFlags index="Unselectable" value="1"/>
+            <StateFlags index="Untargetable" value="1"/>
+            <AbilClassDisableArray index="CAbilAttack" value="1"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="PredatorCloak">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <DisplayDuration index="Self" value="1"/>
+        <Duration value="10"/>
+        <Modification>
+            <StateFlags index="Cloak" value="1"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorVeterancy id="PredatorPetVeterancy" parent="PetLevelsTemplate">
+        <Name value="Behavior/Name/PredatorPetVeterancy"/>
+        <VeterancyLevelArray index="1">
+            <Modification SightBonus="2" MoveSpeedBonus="0.1992"/>
+        </VeterancyLevelArray>
+        <VeterancyLevelArray index="2">
+            <Modification LifeArmorBonus="2"/>
+        </VeterancyLevelArray>
+        <VeterancyLevelArray index="4">
+            <Modification>
+                <WeaponArray Link="PiranhaMissiles"/>
+                <WeaponDisableArray value="Thunderclaw"/>
+            </Modification>
+        </VeterancyLevelArray>
+        <VeterancyLevelArray index="5">
+            <Modification>
+                <WeaponArray Link="PiranhaMissiles"/>
+                <WeaponDisableArray value="Thunderclaw"/>
+            </Modification>
+        </VeterancyLevelArray>
+        <VeterancyLevelArray index="6">
+            <Modification>
+                <WeaponArray Link="PiranhaMissiles"/>
+                <WeaponDisableArray value="Thunderclaw"/>
+            </Modification>
+        </VeterancyLevelArray>
+    </CBehaviorVeterancy>
+    <CBehaviorBuff id="PredatorThunderclaw">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Modification>
+            <BehaviorLinkDisableArray value="PredatorPiranhaMissiles"/>
+            <WeaponArray Link="Thunderclaw"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="PredatorPiranhaMissiles">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Modification>
+            <WeaponArray Link="PiranhaMissiles"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="RatingBonus">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Modification>
+            <AttributeChangeArray Attribute="Lives"/>
+        </Modification>
+        <InfoFlags index="Hidden" value="1"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="ReloadManual">
+        <InitialEffect value="FocusedFireTriggerDummy"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="ReloadNightmare">
+        <InitialEffect value="FocusedFireTriggerDummy"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="ReloadNormal">
+        <InitialEffect value="FocusedFireTriggerDummy"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="ReloadPerfect">
+        <InitialEffect value="FocusedFireTriggerDummy"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="SergeantAscalon" parent="PeacekeeperTemplate">
+        <Modification>
+            <VitalMaxArray index="Life" value="50"/>
+            <WeaponArray Link="PeacekeeperSubmachineGun"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="SergeantLefty" parent="PeacekeeperTemplate">
+        <Modification>
+            <VitalMaxArray index="Life" value="50"/>
+            <WeaponArray Link="PeacekeeperMarksmanRifle"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="Sprint">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="5"/>
+        <Modification MoveSpeedMultiplier="1.35"/>
+        <InfoIcon value="btn-custom-rocetboot-off.dds"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="StaffSergeantFenwick" parent="PeacekeeperTemplate">
+        <Modification>
+            <VitalMaxArray index="Life" value="100"/>
+        </Modification>
+    </CBehaviorBuff>
+</Catalog>

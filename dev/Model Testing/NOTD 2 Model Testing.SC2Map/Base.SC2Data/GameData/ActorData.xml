@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<Catalog>
+    <CActorDoodad id="AbandonedBunker">
+        <EditorCategories value="DoodadType:Debris"/>
+        <On index="0" Terms="ActorCreation" Send="$Stand PlayForever,RandomStartOffset"/>
+        <On index="1" removed="1"/>
+        <Model value="Bunker"/>
+        <RandomScaleRange value="1.000000,1.000000"/>
+    </CActorDoodad>
+    <CActorDoodad id="AbandonedBunker2">
+        <EditorCategories value="DoodadType:Debris"/>
+        <On index="0" Terms="ActorCreation" Send="$Stand PlayForever,RandomStartOffset"/>
+        <On index="1" removed="1"/>
+        <Model value="ExplodingBarrelLarge"/>
+        <RandomScaleRange value="1.000000,1.000000"/>
+    </CActorDoodad>
+    <CActorDoodad id="AbandonedBunker3">
+        <EditorCategories value="DoodadType:Debris"/>
+        <On index="0" Terms="ActorCreation" Send="$Stand PlayForever,RandomStartOffset"/>
+        <On index="1" removed="1"/>
+        <Model value="BarbedWire"/>
+        <RandomScaleRange value="1.000000,1.000000"/>
+    </CActorDoodad>
+    <CActorDoodad id="Housing1">
+        <EditorCategories value="DoodadType:Debris"/>
+        <On index="0" Terms="ActorCreation" Send="Create SoundEmitter Doodad_BunkerWrecked"/>
+        <Model value="InfestedDominionHousing1"/>
+        <RandomScaleRange value="1.000000,1.000000"/>
+    </CActorDoodad>
+    <CActorDoodad id="Helipad">
+        <EditorCategories value="DoodadType:Structures"/>
+        <Model value="DockingBayGround"/>
+        <Scale value="1.650000,1.550000,1.150000"/>
+        <Facing value="315"/>
+        <Footprint value="Helipad"/>
+        <RandomScaleRange value="1.000000,1.000000"/>
+    </CActorDoodad>
+    <CActorDoodad id="Housing12">
+        <EditorCategories value="DoodadType:Debris"/>
+        <On index="0" Terms="ActorCreation" Send="Create SoundEmitter Doodad_BunkerWrecked"/>
+        <Model value="InfestedDominionHousing2"/>
+        <RandomScaleRange value="1.000000,1.000000"/>
+    </CActorDoodad>
+    <CActorDoodad id="Housing122">
+        <EditorCategories value="DoodadType:Debris"/>
+        <On index="0" Terms="ActorCreation" Send="Create SoundEmitter Doodad_BunkerWrecked"/>
+        <Model value="InfestedDominionHousing3"/>
+        <RandomScaleRange value="1.000000,1.000000"/>
+    </CActorDoodad>
+    <CActorDoodad id="Housing1222">
+        <EditorCategories value="DoodadType:Debris"/>
+        <On index="0" Terms="ActorCreation" Send="Create SoundEmitter Doodad_BunkerWrecked"/>
+        <Model value="WarfieldBasePlatform"/>
+        <RandomScaleRange value="1.000000,1.000000"/>
+    </CActorDoodad>
+    <CActorDoodad id="HybridLabCurtain">
+        <AcceptedHostedPropTransfers index="Opacity" value="0"/>
+        <EditorFlags index="AmbientOcclusion" value="0"/>
+        <Footprint value=""/>
+    </CActorDoodad>
+    <CActorDoodad id="LabGate">
+        <EditorCategories value="DoodadType:Debris"/>
+        <On index="0" Terms="ActorCreation" Send="Create"/>
+        <On index="1" Terms="ActorCreation" Send="$Stand,Unpowered PlayForever,RandomStartOffset"/>
+        <Model value="UmojanLabDoorsThin"/>
+        <RandomScaleRange value="1.000000,1.000000"/>
+    </CActorDoodad>
+    <!--CActorSound id="WidowMineSeek" parent="SoundOneShot">-->
+    <!--        <Sound value="WidowMine_Attack"/>-->
+    <!--    </CActorSound-->
+    <!--CActorModel id="MineDroneDOTModel" parent="ModelAnimationStyleContinuous">-->
+    <!--        <On Terms="Behavior.MineDroneDOT.On" Send="Create"/>-->
+    <!--        <On Terms="Behavior.MineDroneDOT.Off" Send="Destroy"/>-->
+    <!--        <Host Subject="_Selectable"/>-->
+    <!--        <HostSiteOps Ops="SOpAttachCenter"/>-->
+    <!--    </CActorModel>-->
+    <!--    <CActorModel id="MineDroneExplodeModel" parent="ModelAnimationStyleOneShot">-->
+    <!--        <On Terms="Effect.MineDroneExplode.Start; At Target" Send="Create"/>-->
+    <!--        <Host Subject="_Selectable"/>-->
+    <!--        <HostSiteOps Ops="SOpAttachCenter"/>-->
+    <!--    </CActorModel-->
+    <!--CActorSound id="WidowMine_Death" parent="SoundOneShot">-->
+    <!--        <On Terms="Effect.MineDroneExplode.Start; At Target" Send="Create"/>-->
+    <!--        <Host Subject="_Selectable"/>-->
+    <!--        <HostSiteOps Ops="SOpAttachCenter"/>-->
+    <!--    </CActorSound-->
+    <!--CActorModel id="WidowMineAttackImpact" parent="ModelAnimationStyleOneShot">-->
+    <!--        <On Terms="Behavior.MineDroneCountdown.On" Send="Create"/>-->
+    <!--        <Host Subject="_Selectable"/>-->
+    <!--        <HostSiteOps Ops="SOpAttachCenter"/>-->
+    <!--    </CActorModel>-->
+    <!--    <CActorModel id="WidowMineTimerUI" parent="ModelAnimationStyleContinuous">-->
+    <!--        <Inherits index="TimeScale" value="1"/>-->
+    <!--        <Inherits index="Visibility" value="1"/>-->
+    <!--        <Host Subject="_Selectable"/>-->
+    <!--        <HostSiteOps Ops="SOpAttachOverhead SOpForwardNorth SOp180"/>-->
+    <!--        <On Terms="Behavior.MineDroneCountdown.On" Send="Create"/>-->
+    <!--        <On Terms="Behavior.MineDroneCountdown.Off" Send="Destroy"/>-->
+    <!--        <On Terms="ActorCreation" Send="$Stand 0 0 0 10.1 AsDuration"/>-->
+    <!--        <On Terms="ActorCreation" Send="TimerSet 1.8 PulseSound"/>-->
+    <!--        <On Terms="TimerExpired; TimerName PulseSound; ValidateUnit CasterIsVisible" Send="Create WidowMine_Pulse"/>-->
+    <!--        <On Terms="TimerExpired; TimerName PulseSound" Send="TimerSet 1.7 PulseSound"/>-->
+    <!--    </CActorModel>-->
+    <!--    <CActorSound id="WidowMine_Pulse" parent="SoundOneShot">-->
+    <!--        <Host Subject="_Selectable"/>-->
+    <!--        <HostSiteOps Ops="SOpAttachCenter"/>-->
+    <!--    </CActorSound-->
+    <!--                                                                                         -->
+    <!-- Command Center ........................................................................ -->
+    <!--                                                                                         -->
+    <CActorUnit id="CommandCenter">
+        <On Terms="ActorCreation" Send="TimerSet 0.000000 cow"/>
+        <On Terms="TimerExpired; TimerName cow" Send="TextureSelectById Decal_Terran_0002_01"/>
+        <On Terms="TimerExpired; TimerName cow" Send="TextureSelectById TankEmissive"/>
+        <On Terms="TimerExpired; TimerName cow" Send="TextureSelectById XellObeliskNormal"/>
+        <On Terms="TimerExpired; TimerName cow" Send="TextureSelectById XellObeliskSpec"/>
+    </CActorUnit>
+    <CActorSound id="CasinoMusicSound" parent="SoundOneShot">
+        <Sound value="CasinoMusic"/>
+    </CActorSound>
+    <CActorDoodad id="LabGate2">
+        <EditorCategories value="DoodadType:Debris"/>
+        <On index="0" Terms="ActorCreation" Send="Create"/>
+        <On index="1" Terms="ActorCreation" Send="$Stand,Unpowered PlayForever,RandomStartOffset"/>
+        <Model value="UmojanLabDoorsWide"/>
+        <RandomScaleRange value="1.000000,1.000000"/>
+    </CActorDoodad>
+    <CActorDoodad id="CasinoMusic">
+        <Aliases value="_EditorHelper"/>
+        <On index="0" Terms="ActorCreation" Send="Create SoundEmitter Doodad_LightOmniBlue"/>
+        <On Terms="ActorCreation" Send="Create CasinoMusicSound"/>
+        <Model value="Invisible"/>
+    </CActorDoodad>
+    <CActorDoodad id="KorhalBuilding">
+        <EditorFlags index="AmbientOcclusion" value="0"/>
+    </CActorDoodad>
+    <CActorDoodad id="LabBridgeCard">
+        <EditorCategories value="DoodadType:Structures"/>
+        <Model value="KorhalBridge"/>
+        <EditorFlags index="NoAutoRotate" value="1"/>
+        <EditorModel value="KorhalBridge"/>
+        <TexSets value="MarSara"/>
+        <Footprint value="ShortBridgeVertical"/>
+        <RandomScaleRange value="1.000000,1.000000"/>
+    </CActorDoodad>
+    <CActorDoodad id="SpaceElevatorRamp">
+        <BoostedCliffLevel value="1"/>
+    </CActorDoodad>
+    <CActorDoodad id="UmajonLabCatwalkCard">
+        <EditorCategories value="DoodadType:Structures"/>
+        <Model value="UmojanLabCatwalkSection45Right"/>
+        <EditorFlags index="NoAutoRotate" value="1"/>
+        <EditorModel value="UmojanLabCatwalkSection45Right"/>
+        <TexSets value="MarSara"/>
+        <Footprint value="UmajonLabCard"/>
+        <RandomScaleRange value="1.000000,1.000000"/>
+    </CActorDoodad>
+</Catalog>

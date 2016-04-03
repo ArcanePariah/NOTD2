@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<Catalog>
+    <CUpgrade default="1" id="AmmoUpgradeTemplate">
+        <?token id="AmmoChange"?>
+        <Alert value=""/>
+        <EffectArray Reference="Weapon,AssaultRifle,Cost.Charge.CountMax" Value="##AmmoChange##"/>
+        <EffectArray Reference="Weapon,AssaultRifle,Cost.Charge.CountStart" Value="##AmmoChange##"/>
+        <EffectArray Reference="Weapon,AssaultRifleBurstFire,Cost.Charge.CountMax" Value="##AmmoChange##"/>
+        <EffectArray Reference="Weapon,AssaultRifleBurstFire,Cost.Charge.CountStart" Value="##AmmoChange##"/>
+        <EffectArray Reference="Weapon,AutomaticShotgun,Cost.Charge.CountMax" Value="##AmmoChange##"/>
+        <EffectArray Reference="Weapon,AutomaticShotgun,Cost.Charge.CountStart" Value="##AmmoChange##"/>
+        <EffectArray Reference="Weapon,AutomaticShotgunSlugShot,Cost.Charge.CountMax" Value="##AmmoChange##"/>
+        <EffectArray Reference="Weapon,AutomaticShotgunSlugShot,Cost.Charge.CountStart" Value="##AmmoChange##"/>
+        <EffectArray Reference="Weapon,Chainsaw,Cost.Charge.CountMax" Value="##AmmoChange##"/>
+        <EffectArray Reference="Weapon,Chainsaw,Cost.Charge.CountStart" Value="##AmmoChange##"/>
+        <EffectArray Reference="Weapon,Flamethrower,Cost.Charge.CountMax" Value="##AmmoChange##"/>
+        <EffectArray Reference="Weapon,Flamethrower,Cost.Charge.CountStart" Value="##AmmoChange##"/>
+        <EffectArray Reference="Weapon,HeavyMachineGun,Cost.Charge.CountMax" Value="##AmmoChange##"/>
+        <EffectArray Reference="Weapon,HeavyMachineGun,Cost.Charge.CountStart" Value="##AmmoChange##"/>
+        <EffectArray Reference="Weapon,LaserRifle,Cost.Charge.CountMax" Value="##AmmoChange##"/>
+        <EffectArray Reference="Weapon,LaserRifle,Cost.Charge.CountStart" Value="##AmmoChange##"/>
+        <EffectArray Reference="Weapon,MarksmanRifle,Cost.Charge.CountMax" Value="##AmmoChange##"/>
+        <EffectArray Reference="Weapon,MarksmanRifle,Cost.Charge.CountStart" Value="##AmmoChange##"/>
+        <EffectArray Reference="Weapon,MediumMachineGun,Cost.Charge.CountMax" Value="##AmmoChange##"/>
+        <EffectArray Reference="Weapon,MediumMachineGun,Cost.Charge.CountStart" Value="##AmmoChange##"/>
+        <EffectArray Reference="Weapon,Pistol,Cost.Charge.CountMax" Value="##AmmoChange##"/>
+        <EffectArray Reference="Weapon,Pistol,Cost.Charge.CountStart" Value="##AmmoChange##"/>
+        <EffectArray Reference="Weapon,PlasmaCutter,Cost.Charge.CountMax" Value="##AmmoChange##"/>
+        <EffectArray Reference="Weapon,PlasmaCutter,Cost.Charge.CountStart" Value="##AmmoChange##"/>
+        <EffectArray Reference="Weapon,PumpShotgun,Cost.Charge.CountMax" Value="##AmmoChange##"/>
+        <EffectArray Reference="Weapon,PumpShotgun,Cost.Charge.CountStart" Value="##AmmoChange##"/>
+        <EffectArray Reference="Weapon,PumpShotgunSlugShot,Cost.Charge.CountMax" Value="##AmmoChange##"/>
+        <EffectArray Reference="Weapon,PumpShotgunSlugShot,Cost.Charge.CountStart" Value="##AmmoChange##"/>
+        <EffectArray Reference="Weapon,SubmachineGun,Cost.Charge.CountMax" Value="##AmmoChange##"/>
+        <EffectArray Reference="Weapon,SubmachineGun,Cost.Charge.CountStart" Value="##AmmoChange##"/>
+        <EffectArray Reference="Weapon,AntiMaterialRifle,Cost.Charge.CountMax" Value="##AmmoChange##"/>
+        <EffectArray Reference="Weapon,AntiMaterialRifle,Cost.Charge.CountStart" Value="##AmmoChange##"/>
+        <EffectArray Reference="Abil,Reload,Cost[0].Charge.CountMax" Value="##AmmoChange##"/>
+        <EffectArray Reference="Abil,Reload,Cost[0].Charge.CountStart" Value="##AmmoChange##"/>
+        <EffectArray Operation="Subtract" Reference="Abil,Reload,Cost[0].Charge.CountUse" Value="##AmmoChange##"/>
+    </CUpgrade>
+    <CUpgrade default="1" id="AmmoUpgradeMagazineTemplate" parent="AmmoUpgradeTemplate">
+        <EffectArray Reference="Abil,AutomaticReload,Cost[0].Charge.CountUse" Value="1"/>
+        <EffectArray Reference="Abil,ManualReload,Cost[0].Charge.CountUse" Value="1"/>
+        <EffectArray Reference="Abil,AutomaticReloadAssault,Cost[0].Charge.CountUse" Value="1"/>
+        <EffectArray Reference="Abil,ManualReloadAssault,Cost[0].Charge.CountUse" Value="1"/>
+    </CUpgrade>
+    <CUpgrade default="1" id="DefaultUpgradeOverride">
+        <Flags index="UpgradeCheat" value="0"/>
+        <Alert value=""/>
+    </CUpgrade>
+    <CUpgrade default="1" id="ArmorVisualTemplate" parent="DefaultUpgradeOverride">
+        <?token id="ArmorIcon"?>
+        <?token id="ArmorName"?>
+        <?token id="ArmorTip"?>
+        <EffectArray Operation="Set" Reference="Actor,Rifleman,LifeArmorIcon" Value="##ArmorIcon##"/>
+        <EffectArray Operation="Set" Reference="Actor,Recon,LifeArmorIcon" Value="##ArmorIcon##"/>
+        <EffectArray Operation="Set" Reference="Actor,MedicNOTD,LifeArmorIcon" Value="##ArmorIcon##"/>
+        <EffectArray Operation="Set" Reference="Actor,Assault,LifeArmorIcon" Value="##ArmorIcon##"/>
+        <EffectArray Operation="Set" Reference="Actor,Demolitions,LifeArmorIcon" Value="##ArmorIcon##"/>
+        <EffectArray Operation="Set" Reference="Actor,Engineer,LifeArmorIcon" Value="##ArmorIcon##"/>
+        <EffectArray Operation="Set" Reference="Actor,Commando,LifeArmorIcon" Value="##ArmorIcon##"/>
+        <EffectArray Operation="Set" Reference="Actor,Flamethrower2,LifeArmorIcon" Value="##ArmorIcon##"/>
+        <EffectArray Operation="Set" Reference="Actor,ForwardObserver,LifeArmorIcon" Value="##ArmorIcon##"/>
+        <EffectArray Operation="Set" Reference="Actor,Technician,LifeArmorIcon" Value="##ArmorIcon##"/>
+        <EffectArray Operation="Set" Reference="Actor,Pathfinder,LifeArmorIcon" Value="##ArmorIcon##"/>
+        <EffectArray Operation="Set" Reference="Actor,PsiOps,LifeArmorIcon" Value="##ArmorIcon##"/>
+        <EffectArray Operation="Set" Reference="Actor,SquadLeader2,LifeArmorIcon" Value="##ArmorIcon##"/>
+        <EffectArray Operation="Set" Reference="Actor,Drone2,LifeArmorIcon" Value="##ArmorIcon##"/>
+        <EffectArray Operation="Set" Reference="Actor,Marksman,LifeArmorIcon" Value="##ArmorIcon##"/>
+        <EffectArray Operation="Set" Reference="Unit,Rifleman,LifeArmorName" Value="##ArmorName##"/>
+        <EffectArray Operation="Set" Reference="Unit,Medic2,LifeArmorName" Value="##ArmorName##"/>
+        <EffectArray Operation="Set" Reference="Unit,Assault,LifeArmorName" Value="##ArmorName##"/>
+        <EffectArray Operation="Set" Reference="Unit,Commando,LifeArmorName" Value="##ArmorName##"/>
+        <EffectArray Operation="Set" Reference="Unit,Demolitions,LifeArmorName" Value="##ArmorName##"/>
+        <EffectArray Operation="Set" Reference="Unit,Drone2,LifeArmorName" Value="##ArmorName##"/>
+        <EffectArray Operation="Set" Reference="Unit,Engineer,LifeArmorName" Value="##ArmorName##"/>
+        <EffectArray Operation="Set" Reference="Unit,Flamethrower2,LifeArmorName" Value="##ArmorName##"/>
+        <EffectArray Operation="Set" Reference="Unit,ForwardObserver,LifeArmorName" Value="##ArmorName##"/>
+        <EffectArray Operation="Set" Reference="Unit,Marksman,LifeArmorName" Value="##ArmorName##"/>
+        <EffectArray Operation="Set" Reference="Unit,Pathfinder,LifeArmorName" Value="##ArmorName##"/>
+        <EffectArray Operation="Set" Reference="Unit,PsiOps,LifeArmorName" Value="##ArmorName##"/>
+        <EffectArray Operation="Set" Reference="Unit,Recon,LifeArmorName" Value="##ArmorName##"/>
+        <EffectArray Operation="Set" Reference="Unit,SquadLeader,LifeArmorName" Value="##ArmorName##"/>
+        <EffectArray Operation="Set" Reference="Unit,Technician,LifeArmorName" Value="##ArmorName##"/>
+        <EffectArray Operation="Set" Reference="Unit,Rifleman,LifeArmorTip" Value="##ArmorTip##"/>
+        <EffectArray Operation="Set" Reference="Unit,Medic2,LifeArmorTip" Value="##ArmorTip##"/>
+        <EffectArray Operation="Set" Reference="Unit,Assault,LifeArmorTip" Value="##ArmorTip##"/>
+        <EffectArray Operation="Set" Reference="Unit,Commando,LifeArmorTip" Value="##ArmorTip##"/>
+        <EffectArray Operation="Set" Reference="Unit,Demolitions,LifeArmorTip" Value="##ArmorTip##"/>
+        <EffectArray Operation="Set" Reference="Unit,Drone2,LifeArmorTip" Value="##ArmorTip##"/>
+        <EffectArray Operation="Set" Reference="Unit,Engineer,LifeArmorTip" Value="##ArmorTip##"/>
+        <EffectArray Operation="Set" Reference="Unit,Flamethrower2,LifeArmorTip" Value="##ArmorTip##"/>
+        <EffectArray Operation="Set" Reference="Unit,ForwardObserver,LifeArmorTip" Value="##ArmorTip##"/>
+        <EffectArray Operation="Set" Reference="Unit,Marksman,LifeArmorTip" Value="##ArmorTip##"/>
+        <EffectArray Operation="Set" Reference="Unit,Pathfinder,LifeArmorTip" Value="##ArmorTip##"/>
+        <EffectArray Operation="Set" Reference="Unit,PsiOps,LifeArmorTip" Value="##ArmorTip##"/>
+        <EffectArray Operation="Set" Reference="Unit,Recon,LifeArmorTip" Value="##ArmorTip##"/>
+        <EffectArray Operation="Set" Reference="Unit,SquadLeader,LifeArmorTip" Value="##ArmorTip##"/>
+        <EffectArray Operation="Set" Reference="Unit,Technician,LifeArmorTip" Value="##ArmorTip##"/>
+        <EditorCategories value="UpgradeType:ArmorBonus"/>
+    </CUpgrade>
+    <CUpgrade id="ArmoredProtectiveInsert" parent="ArmorVisualTemplate" ArmorIcon="Items\btn-item-armour-ArmoredProtectiveInsert.dds" ArmorName="Button/Name/ArmoredProtectiveInsert" ArmorTip="Button/Tooltip/ArmoredProtectiveInsert">
+        <EditorCategories value=""/>
+    </CUpgrade>
+    <CUpgrade id="AssaultAmmoCapacityModification" parent="AmmoUpgradeTemplate" AmmoChange="10">
+        <MaxLevel value="2"/>
+    </CUpgrade>
+    <CUpgrade id="EnhancedProtectiveInsert" parent="ArmorVisualTemplate" ArmorIcon="Items\btn-item-armour-EnhancedProtectiveInsert.dds" ArmorName="Button/Name/EnhancedProtectiveInsert" ArmorTip="Button/Tooltip/EnhancedProtectiveInsert">
+        <EditorCategories value=""/>
+    </CUpgrade>
+    <CUpgrade id="HeavyProtectiveInsert" parent="ArmorVisualTemplate" ArmorIcon="Items\btn-item-armour-HeavyProtectiveInsert.dds" ArmorName="Button/Name/HeavyProtectiveInsert" ArmorTip="Button/Tooltip/EnhancedProtectiveInsert">
+        <EditorCategories value=""/>
+    </CUpgrade>
+    <CUpgrade id="HighCapacityAmmo" parent="AmmoUpgradeMagazineTemplate" AmmoChange="30"/>
+    <CUpgrade id="HighCapacityAmmoAssault" parent="AmmoUpgradeMagazineTemplate" AmmoChange="40">
+        <MaxLevel value="3"/>
+    </CUpgrade>
+    <CUpgrade id="HighCapacityAmmoAssaultwithModification" parent="AmmoUpgradeMagazineTemplate" AmmoChange="50">
+        <MaxLevel value="3"/>
+    </CUpgrade>
+    <CUpgrade id="ReactiveProtectiveInsert" parent="ArmorVisualTemplate" ArmorIcon="Items\btn-item-armour-ReactiveProtectiveInsert.dds" ArmorName="Button/Name/ReactiveProtectiveInsert" ArmorTip="Button/Tooltip/ReactiveProtectiveInsert">
+        <EditorCategories value=""/>
+    </CUpgrade>
+    <CUpgrade id="ShieldAugmentationInsert" parent="ArmorVisualTemplate" ArmorIcon="Items\btn-item-armour-ShieldAugmentationInsert.dds" ArmorName="Button/Name/ShieldAugmentationInsert" ArmorTip="Button/Tooltip/ShieldAugmentationInsert">
+        <EditorCategories value=""/>
+    </CUpgrade>
+    <CUpgrade id="StandardArmor" parent="ArmorVisualTemplate" ArmorIcon="Assets\Textures\btn-upgrade-terran-infantryarmorlevel0.dds" ArmorName="Unit/LifeArmor/UGC Marine Forces" ArmorTip="Unit/LifeArmorTooltip/UGCMarines">
+        <EditorCategories value=""/>
+    </CUpgrade>
+</Catalog>

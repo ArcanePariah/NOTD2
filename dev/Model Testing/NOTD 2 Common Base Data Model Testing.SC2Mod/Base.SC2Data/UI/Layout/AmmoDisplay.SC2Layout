@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Desc>
+    <Frame type="Frame" name="AmmoDisplayTemplate">
+		<Visible val = "true" />
+        <Width val="272"/>
+        <Height val="76"/>
+		<Visible val = "false" />
+		<Frame type = "Image" name = "BackgroundImage">
+			<Texture val = "UI/ui_ammobar.dds"/>
+			<Anchor relative = "$parent"/>
+			<RenderPriority val = "430"/>
+		</Frame>
+        <Frame type="ProgressBar" name="AmmoBar">
+			<Texture val="UI\ui_ingame_unitstatus_bar.dds"/>
+            <Width val="222"/>
+            <Anchor side="Left" relative="$parent" pos="Min" offset="15"/>
+            <Anchor side="Top" relative="$parent" pos="Min" offset="24"/>
+			<Anchor side="Bottom" relative="$parent" pos="Min" offset="42"/>
+            <ColorStep val="48,231,218"/>
+            <MinValue val="0.000000"/>
+			<Value val = "0.00000" />
+			<RenderPriority val = "400"/>
+			<Color val = "#000000"/>
+        </Frame>
+
+        <Frame type="Label" name="AmmoCount">
+            <Anchor side="Left" relative="$parent/AmmoBar" pos="Min" offset="0"/>
+            <Anchor side="Top" relative="$parent/AmmoBar" pos="Max" offset="0"/>
+            <Height val="20"/>
+            <Width val="72"/>
+			<Style val = "AmmoCount"/>
+        </Frame>
+
+        <Frame type="Button" name="HitTestFrame">
+			<RenderPriority val = "400"/>
+            <Height val="24"/>
+            <Anchor side="Left" relative="$parent/AmmoCount" pos="Max" offset="0"/>
+			<Anchor side="Right" relative="$parent/AmmoBar" pos="Max" offset="0"/>
+            <Anchor side="Top" relative="$parent/AmmoCount" pos="Min" offset="0"/>
+			<NormalImage val = "NormalImage"/>
+			<HoverImage val = "NormalImage"/>
+			<Frame type = "Image" name = "NormalImage">
+				<Anchor relative = "$parent"/>
+				<Texture val = "UI/ui_ammobar_btn_hoveroverandpressedover.dds"/>
+				<StateCount val = "3"/>
+			</Frame>
+            <Shortcut val="M"/>
+			<Label val = "DropMagLabel"/>
+			<Frame type = "Label" name = "DropMagLabel">
+				<Anchor side = "Left" relative = "$parent" pos = "Min" offset = "0"/>
+				<Anchor side = "Right" relative = "$parent" pos = "Mid" offset = "0"/>
+				<Anchor side = "Top" relative = "$parent" pos = "Min" offset = "0"/>
+				<Anchor side = "Bottom" relative = "$parent" pos = "Max" offset = "0"/>
+			</Frame>
+        </Frame>
+    </Frame>
+</Desc>

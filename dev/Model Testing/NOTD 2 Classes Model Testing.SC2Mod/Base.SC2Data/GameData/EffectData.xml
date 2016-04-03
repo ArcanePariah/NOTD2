@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<Catalog>
+    <CEffectCreateUnit default="1" id="SpawnPetTemplate">
+        <?token id="CreatedPet"?>
+        <SpawnUnit value="##CreatedPet##"/>
+        <EditorCategories value=""/>
+        <WhichLocation Value="OriginPoint"/>
+    </CEffectCreateUnit>
+    <CEffectSet default="1" id="MarineDeathEffects">
+        <EditorCategories value=""/>
+        <Marker Link="Effect/MarineDeathEffects"/>
+        <EffectArray value="SpawnPetDelay"/>
+    </CEffectSet>
+    <CEffectDamage id="120mmSmoothboreCannon">
+        <EditorCategories value=""/>
+        <ImpactLocation Value="TargetUnit"/>
+        <Kind value="Ranged"/>
+        <KindSplash value="Splash"/>
+        <Amount value="800"/>
+        <AreaArray Radius="2.5" Fraction="1"/>
+        <ExcludeArray Value="Target"/>
+        <SearchFilters value="-;Player,Ally,Neutral,Item,Invulnerable"/>
+    </CEffectDamage>
+    <CEffectDamage id="IFV25mmHEAutocannonDamage">
+        <EditorCategories value=""/>
+        <ImpactLocation Value="TargetUnit"/>
+        <AttributeBonus index="Light" value="150"/>
+        <ArmorReduction value="5"/>
+        <Kind value="Ranged"/>
+        <KindSplash value="Splash"/>
+        <Amount value="150"/>
+        <AreaArray Radius="2.5" Fraction="1"/>
+        <ExcludeArray Value="Target"/>
+        <SearchFilters value="-;Player,Ally,Neutral,Item,Invulnerable"/>
+    </CEffectDamage>
+    <CEffectDamage id="CombatKnifeDamage">
+        <EditorCategories value=""/>
+        <Kind value="Melee"/>
+        <Amount value="15"/>
+    </CEffectDamage>
+    <CEffectDamage id="CombatKnifeDoubleDamage">
+        <EditorCategories value=""/>
+        <Marker Link="Effect/CombatKnifeDamage"/>
+        <Chance value="0"/>
+        <Kind value="Melee"/>
+        <Amount value="15"/>
+    </CEffectDamage>
+    <CEffectEnumArea id="CombatKnifeSearch">
+        <EditorCategories value=""/>
+        <ImpactLocation Value="CasterUnit"/>
+        <ExcludeArray/>
+        <SearchFilters value="-;Player,Ally,Item,Invulnerable"/>
+        <AreaArray Arc="180" Radius="1" Effect="CombatKnifeSet"/>
+        <LaunchLocation Value="CasterUnit"/>
+    </CEffectEnumArea>
+    <CEffectSet id="CombatKnifeSet">
+        <EditorCategories value=""/>
+        <EffectArray value="CombatKnifeDamage"/>
+        <EffectArray value="CombatKnifeDoubleDamage"/>
+        <EffectArray value="CombatKnifeSlowSwitch"/>
+    </CEffectSet>
+    <CEffectApplyBehavior id="CombatKnifeSlowHeavy">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="CombatKnifeSlowLight">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectSwitch id="CombatKnifeSlowSwitch">
+        <ValidatorArray value="NotHeroic"/>
+        <EditorCategories value=""/>
+        <CaseArray Validator="UnitisLight" Effect="CombatKnifeSlowLight"/>
+        <CaseArray Validator="UnitisnotLight" Effect="CombatKnifeSlowHeavy"/>
+    </CEffectSwitch>
+    <CEffectApplyBehavior id="DisableInventoryTransfer">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectRemoveBehavior id="EnableInventoryTransfer">
+        <EditorCategories value=""/>
+        <BehaviorLink value="DisableInventoryTransfer"/>
+    </CEffectRemoveBehavior>
+    <CEffectApplyBehavior id="ExtraLifeHeal">
+        <EditorCategories value=""/>
+        <WhichUnit Value="Caster"/>
+    </CEffectApplyBehavior>
+    <CEffectModifyUnit id="ExtraLifeHealing">
+        <EditorCategories value=""/>
+        <VitalArray index="Life" ChangeFraction="0.05"/>
+    </CEffectModifyUnit>
+    <CEffectApplyBehavior id="IFV25mmHEAutocannonApplyStun">
+        <ValidatorArray index="0" value="NormalUnitNonMassiveorHeroic"/>
+        <EditorCategories value=""/>
+        <Behavior value="IFV25mmHEAutocannonStun"/>
+    </CEffectApplyBehavior>
+    <CEffectEnumArea id="IFV25mmHEAutocannonSearch">
+        <ValidatorArray value="NormalUnitNonMassiveorHeroic"/>
+        <EditorCategories value=""/>
+        <ExcludeArray Value="Target"/>
+        <SearchFilters value="Ground;Player,Ally,Missile,Stasis,Dead,Hidden,Invulnerable"/>
+        <AreaArray Radius="1" Effect="IFV25mmHEAutocannonApplyStun"/>
+    </CEffectEnumArea>
+    <CEffectSet id="IFV25mmHEAutocannonSet">
+        <EditorCategories value=""/>
+        <EffectArray value="IFV25mmHEAutocannonApplyStun"/>
+        <EffectArray value="IFV25mmHEAutocannonDamage"/>
+        <EffectArray value="IFV25mmHEAutocannonSearch"/>
+    </CEffectSet>
+    <CEffectDamage id="KillCasterFromTarget">
+        <EditorCategories value=""/>
+        <Marker Link="Effect/KillCaster"/>
+        <LaunchLocation Value="TargetUnit"/>
+        <ImpactLocation Value="CasterUnit"/>
+        <Flags index="Kill" value="1"/>
+    </CEffectDamage>
+    <CEffectSet id="LifeLossSet">
+        <EditorCategories value=""/>
+        <EffectArray value="ExtraLifeHeal"/>
+        <EffectArray value="LifeRemoval"/>
+    </CEffectSet>
+    <CEffectSwitch id="LifeLossSwitch">
+        <EditorCategories value=""/>
+        <CaseArray Validator="MarineDeathSwitch" Effect="LifeLossSet"/>
+        <CaseDefault value="KillCasterFromTarget"/>
+    </CEffectSwitch>
+    <CEffectApplyBehavior id="LifeRemoval">
+        <EditorCategories value=""/>
+        <WhichUnit Value="Caster"/>
+    </CEffectApplyBehavior>
+    <CEffectDamage id="LightningField">
+        <EditorCategories value=""/>
+        <ImpactLocation Value="CasterPoint"/>
+        <Amount value="30"/>
+        <Death value="Electrocute"/>
+        <AreaArray Radius="1.5" Fraction="1"/>
+        <SearchFilters value="-;Player,Ally,Neutral"/>
+    </CEffectDamage>
+    <CEffectSet id="HeavyJumpImpactSet">
+        <ValidatorArray value="JumpDamageEndingCliffHeavy"/>
+        <ValidatorArray value="JumpDamageStartingCliff"/>
+        <EditorCategories value=""/>
+        <EffectArray value="HighJumpDamage"/>
+    </CEffectSet>
+    <CEffectApplyBehavior id="HordeModeActive">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectSet id="LightJumpFractureChance">
+        <EditorCategories value=""/>
+        <Chance value="0.8"/>
+        <EffectArray value="ApplyLegFracture"/>
+    </CEffectSet>
+    <CEffectSet id="LightJumpImpactSet">
+        <ValidatorArray value="JumpDamageEndingCliff"/>
+        <ValidatorArray value="JumpDamageStartingCliff"/>
+        <EditorCategories value=""/>
+        <EffectArray value="HighJumpDamage"/>
+        <EffectArray value="LightJumpFractureChance"/>
+    </CEffectSet>
+    <CEffectSet id="MarineBirthEffects">
+        <EditorCategories value=""/>
+        <EffectArray value="Reload"/>
+    </CEffectSet>
+    <CEffectSwitch id="MedicalAssistance">
+        <ValidatorArray value="MedicalAssistance"/>
+        <EditorCategories value=""/>
+        <CaseArray Validator="MedicalAssistanceMedic" Effect="MedicalAssistanceMedic"/>
+        <CaseArray Validator="MedicalAssistanceNormal" Effect="MedicalAssistanceNormal"/>
+    </CEffectSwitch>
+    <CEffectSet id="MedicalAssistanceNormal">
+        <EditorCategories value=""/>
+        <EffectArray value="Medkit"/>
+    </CEffectSet>
+    <CEffectSet id="MediumJumpFractureChance">
+        <EditorCategories value=""/>
+        <Chance value="0.4"/>
+        <EffectArray value="ApplyLegFracture"/>
+    </CEffectSet>
+    <CEffectSet id="MediumJumpImpactSet">
+        <ValidatorArray value="JumpDamageEndingCliffMedium"/>
+        <ValidatorArray value="JumpDamageStartingCliff"/>
+        <EditorCategories value=""/>
+        <EffectArray value="MediumJumpFractureChance"/>
+        <EffectArray value="HighJumpDamage"/>
+    </CEffectSet>
+    <CEffectApplyBehavior id="MercAirLiftApplyBehavior">
+        <ValidatorArray index="0" value=""/>
+        <EditorCategories value="Race:Terran"/>
+        <Behavior value="MercAirLift"/>
+    </CEffectApplyBehavior>
+    <CEffectSwitch id="NoiseThresholds">
+        <EditorCategories value=""/>
+        <CaseArray Validator="HordeModeNoiseThresholds" Effect="HordeModeActive"/>
+    </CEffectSwitch>
+    <CEffectDamage id="DummDamage">
+        <EditorCategories value=""/>
+        <ImpactLocation Value="TargetUnit"/>
+        <ExcludeArray Value="Target"/>
+        <VitalBonus index="Energy" value="50"/>
+    </CEffectDamage>
+    <CEffectDamage id="HighJumpDamage">
+        <EditorCategories value=""/>
+        <ImpactLocation Value="TargetUnit"/>
+        <ArmorReduction value="2"/>
+        <Flags index="NoBehaviorResponse" value="1"/>
+        <Flags index="NoVitalAbsorbShields" value="1"/>
+        <Amount value="50"/>
+    </CEffectDamage>
+    <CEffectApplyBehavior id="HoldFire">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectDamage id="IFVSideMachineGun">
+        <EditorCategories value=""/>
+        <ImpactLocation Value="TargetUnit"/>
+        <AttributeBonus index="Massive" value="5"/>
+        <ArmorReduction value="1"/>
+        <Kind value="Ranged"/>
+        <KindSplash value="Splash"/>
+        <Amount value="18"/>
+        <AreaArray Radius="1.25" Fraction="1"/>
+        <ExcludeArray Value="Target"/>
+        <SearchFilters value="-;Player,Ally,Neutral,Item,Invulnerable"/>
+    </CEffectDamage>
+    <CEffectCreatePersistent id="PiranhaMissiles">
+        <EditorCategories value=""/>
+        <WhichLocation Value="TargetUnit"/>
+        <PeriodCount value="2"/>
+        <PeriodicEffectArray value="PiranhaMissile"/>
+        <PeriodicEffectArray value="PiranhaMissile"/>
+        <PeriodicPeriodArray value="0"/>
+        <PeriodicPeriodArray value="0.5"/>
+    </CEffectCreatePersistent>
+    <CEffectLaunchMissile id="PiranhaMissile">
+        <EditorCategories value=""/>
+        <ImpactEffect value="PiranhaMissileDamage"/>
+    </CEffectLaunchMissile>
+    <CEffectDamage id="PiranhaMissileDamage">
+        <EditorCategories value=""/>
+        <Amount value="35"/>
+    </CEffectDamage>
+    <CEffectApplyBehavior id="PredatorCloak">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectSet id="SidearmMelee">
+        <EditorCategories value=""/>
+        <EffectArray value="CombatKnifeSearch"/>
+    </CEffectSet>
+    <CEffectDamage id="SnipeDamage">
+        <ValidatorArray value="NotAttacking2"/>
+    </CEffectDamage>
+    <CEffectModifyPlayer id="GenericDummyEffect"/>
+    <CEffectLaunchMissile id="LightJump">
+        <ValidatorArray index="0" value="JumpLocation2"/>
+        <ValidatorArray value="JumpLocationPathing"/>
+        <EditorCategories value=""/>
+        <ImpactLocation Value="TargetPoint"/>
+        <Flags index="Placement" value="1"/>
+        <Flags index="PointFallback" value="0"/>
+        <PlacementRange value="3"/>
+        <DeathType value="Unknown"/>
+        <AmmoUnit value=""/>
+        <Movers Link="RaptorJumpUp"/>
+        <ImpactEffect value="LightJumpImpactSet"/>
+    </CEffectLaunchMissile>
+    <CEffectLaunchMissile id="MediumJump">
+        <ValidatorArray index="0" value="JumpLocation2"/>
+        <ValidatorArray value="JumpLocationPathing"/>
+        <EditorCategories value=""/>
+        <ImpactLocation Value="TargetPoint"/>
+        <ImpactEffect value="MediumJumpImpactSet"/>
+        <Flags index="Placement" value="1"/>
+        <Flags index="PointFallback" value="0"/>
+        <AmmoUnit value=""/>
+        <PlacementRange value="3"/>
+        <Movers Link="RaptorJumpUp"/>
+        <DeathType value="Unknown"/>
+    </CEffectLaunchMissile>
+    <CEffectLaunchMissile id="HeavyJump">
+        <ValidatorArray index="0" value="JumpLocation2"/>
+        <ValidatorArray value="JumpLocationPathing"/>
+        <EditorCategories value=""/>
+        <ImpactLocation Value="TargetPoint"/>
+        <Flags index="Placement" value="1"/>
+        <Flags index="PointFallback" value="0"/>
+        <PlacementRange value="3"/>
+        <DeathType value="Unknown"/>
+        <AmmoUnit value=""/>
+        <Movers Link="RaptorJumpUp"/>
+        <ImpactEffect value="HighJumpDamage"/>
+    </CEffectLaunchMissile>
+    <CEffectDamage id="SideMachineGun">
+        <EditorCategories value=""/>
+        <ImpactLocation Value="TargetUnit"/>
+        <AttributeBonus index="Massive" value="5"/>
+        <ArmorReduction value="1"/>
+        <Kind value="Ranged"/>
+        <KindSplash value="Splash"/>
+        <Amount value="18"/>
+        <AreaArray Radius="1.25" Fraction="1"/>
+        <ExcludeArray Value="Target"/>
+        <SearchFilters value="-;Player,Ally,Neutral,Item,Invulnerable"/>
+    </CEffectDamage>
+    <CEffectCreateUnit id="SpawnDefaultPet" parent="SpawnPetTemplate"/>
+    <CEffectCreatePersistent id="SpawnPetDelay">
+        <EditorCategories value=""/>
+        <InitialDelay value="5"/>
+        <InitialEffect value="SpawnPetSwitch"/>
+    </CEffectCreatePersistent>
+    <CEffectSwitch id="SpawnPetSwitch">
+        <EditorCategories value=""/>
+    </CEffectSwitch>
+    <CEffectCreateUnit id="SpawnPredatorPet" parent="SpawnPetTemplate" CreatedPet=""/>
+    <CEffectApplyBehavior id="Sprint">
+        <EditorCategories value=""/>
+        <WhichUnit Value="Caster"/>
+        <ValidatorArray index="0" removed="1"/>
+    </CEffectApplyBehavior>
+    <CEffectDamage id="Thunderclaw">
+        <EditorCategories value=""/>
+        <Amount value="20"/>
+    </CEffectDamage>
+    <CEffectDamage id="TomahawkDamage">
+        <EditorCategories value=""/>
+        <ImpactLocation Value="CasterUnit"/>
+        <ImpactUnitValidator value="TargetIsEnemy"/>
+        <Amount value="30"/>
+        <AreaArray Arc="180" Radius="1" Fraction="1"/>
+        <ExcludeArray/>
+    </CEffectDamage>
+    <CEffectDamage id="TomahawkDoubleDamage">
+        <EditorCategories value=""/>
+        <Marker Link="Effect/TomahawkDamage"/>
+        <Chance value="0"/>
+        <ImpactLocation Value="CasterUnit"/>
+        <ImpactUnitValidator value="TargetIsEnemy"/>
+        <Amount value="30"/>
+        <AreaArray Arc="180" Radius="1" Fraction="1"/>
+        <ExcludeArray/>
+    </CEffectDamage>
+    <CEffectSet id="TomahawkSet">
+        <EditorCategories value=""/>
+        <EffectArray value="TomahawkDamage"/>
+        <EffectArray value="TomahawkDoubleDamage"/>
+    </CEffectSet>
+    <CEffectDamage id="TopMachineGunTurret">
+        <EditorCategories value=""/>
+        <ImpactLocation Value="TargetUnit"/>
+        <AttributeBonus index="Massive" value="5"/>
+        <ArmorReduction value="1"/>
+        <Kind value="Ranged"/>
+        <KindSplash value="Splash"/>
+        <Amount value="18"/>
+        <AreaArray Radius="1.25" Fraction="1"/>
+        <ExcludeArray Value="Target"/>
+        <SearchFilters value="-;Player,Ally,Neutral,Item,Invulnerable"/>
+    </CEffectDamage>
+    <CEffectRemoveBehavior id="WeaponsFree">
+        <EditorCategories value=""/>
+        <BehaviorLink value="HoldFire"/>
+    </CEffectRemoveBehavior>
+</Catalog>

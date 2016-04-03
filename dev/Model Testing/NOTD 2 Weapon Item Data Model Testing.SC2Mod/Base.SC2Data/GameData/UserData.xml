@@ -1,0 +1,663 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<Catalog>
+    <CUser id="Ailments">
+        <Fields Id="Behavior" Type="GameLink" GameLinkType="Behavior"/>
+        <Instances Id="[Default]"/>
+        <Instances Id="Blind">
+            <GameLink GameLink="Blind">
+                <Field Id="Behavior"/>
+            </GameLink>
+        </Instances>
+        <Instances Id="Short Circuit">
+            <GameLink GameLink="ShortCircuit">
+                <Field Id="Behavior"/>
+            </GameLink>
+        </Instances>
+        <Instances Id="Venom">
+            <GameLink GameLink="Venom">
+                <Field Id="Behavior"/>
+            </GameLink>
+        </Instances>
+        <Instances Id="Open Wounds">
+            <GameLink GameLink="OpenWounds">
+                <Field Id="Behavior"/>
+            </GameLink>
+        </Instances>
+        <Instances Id="Fracture">
+            <GameLink GameLink="Fracture">
+                <Field Id="Behavior"/>
+            </GameLink>
+        </Instances>
+    </CUser>
+    <CUser id="ItemWeights">
+        <Fields Id="Item" Type="GameLink" GameLinkType="Item"/>
+        <Fields Id="Weight" Type="Fixed"/>
+        <Fields Id="Weapon Link" Type="User" UserType="WeaponData"/>
+        <Fields Id="Visual Upgrade" Type="Upgrade"/>
+        <Instances Id="[Default]"/>
+        <Instances Id="Armor Piercing">
+            <Fixed Fixed="5">
+                <Field Id="Weight"/>
+            </Fixed>
+            <GameLink GameLink="ArmorPiercing">
+                <Field Id="Item"/>
+            </GameLink>
+            <User Type="WeaponData" Instance="[Default]">
+                <Field Id="Weapon Link"/>
+            </User>
+        </Instances>
+        <Instances Id="Expanding">
+            <Fixed Fixed="5">
+                <Field Id="Weight"/>
+            </Fixed>
+            <GameLink GameLink="Expanding">
+                <Field Id="Item"/>
+            </GameLink>
+        </Instances>
+        <Instances Id="Fletchette">
+            <Fixed Fixed="5">
+                <Field Id="Weight"/>
+            </Fixed>
+            <GameLink GameLink="Flechette">
+                <Field Id="Item"/>
+            </GameLink>
+        </Instances>
+        <Instances Id="Hecate Module">
+            <Fixed Fixed="5">
+                <Field Id="Weight"/>
+            </Fixed>
+            <GameLink GameLink="HecateModule">
+                <Field Id="Item"/>
+            </GameLink>
+        </Instances>
+        <Instances Id="High Explosive">
+            <Fixed Fixed="5">
+                <Field Id="Weight"/>
+            </Fixed>
+            <GameLink GameLink="HighExplosive">
+                <Field Id="Item"/>
+            </GameLink>
+        </Instances>
+        <Instances Id="Plasma Core">
+            <Fixed Fixed="5">
+                <Field Id="Weight"/>
+            </Fixed>
+            <GameLink GameLink="PlasmaCore">
+                <Field Id="Item"/>
+            </GameLink>
+        </Instances>
+        <Instances Id="TX-1">
+            <Fixed Fixed="5">
+                <Field Id="Weight"/>
+            </Fixed>
+            <GameLink GameLink="TX1">
+                <Field Id="Item"/>
+            </GameLink>
+        </Instances>
+        <Instances Id="Improved Accuracy Module">
+            <Fixed Fixed="10">
+                <Field Id="Weight"/>
+            </Fixed>
+            <GameLink GameLink="ImprovedAccuracyModule">
+                <Field Id="Item"/>
+            </GameLink>
+        </Instances>
+        <Instances Id="Combat Mobility Augment">
+            <GameLink GameLink="CombatMobilityAugment">
+                <Field Id="Item"/>
+            </GameLink>
+        </Instances>
+        <Instances Id="Field Lights">
+            <Fixed Fixed="15">
+                <Field Id="Weight"/>
+            </Fixed>
+            <GameLink GameLink="FieldLights">
+                <Field Id="Item"/>
+            </GameLink>
+        </Instances>
+        <Instances Id="High Capacity Magazine">
+            <Fixed Fixed="15">
+                <Field Id="Weight"/>
+            </Fixed>
+            <GameLink GameLink="HighCapacityMagazine">
+                <Field Id="Item"/>
+            </GameLink>
+        </Instances>
+        <Instances Id="Nano Health Augment">
+            <Fixed Fixed="10">
+                <Field Id="Weight"/>
+            </Fixed>
+            <GameLink GameLink="NanoHealthAugment">
+                <Field Id="Item"/>
+            </GameLink>
+        </Instances>
+        <Instances Id="Night Vision Module">
+            <Fixed Fixed="2.5">
+                <Field Id="Weight"/>
+            </Fixed>
+            <GameLink GameLink="NightVisionModule">
+                <Field Id="Item"/>
+            </GameLink>
+        </Instances>
+        <Instances Id="Power Generator Augment">
+            <Fixed Fixed="15">
+                <Field Id="Weight"/>
+            </Fixed>
+            <GameLink GameLink="PowerGeneratorAugment">
+                <Field Id="Item"/>
+            </GameLink>
+        </Instances>
+        <Instances Id="Riot Shield">
+            <Fixed Fixed="15">
+                <Field Id="Weight"/>
+            </Fixed>
+            <GameLink GameLink="RiotShield">
+                <Field Id="Item"/>
+            </GameLink>
+        </Instances>
+        <Instances Id="Armored Protective Insert">
+            <Fixed Fixed="15">
+                <Field Id="Weight"/>
+            </Fixed>
+            <GameLink GameLink="ArmoredProtectiveInsert">
+                <Field Id="Item"/>
+            </GameLink>
+        </Instances>
+        <Instances Id="Enhanced Protective Insert">
+            <Fixed Fixed="25">
+                <Field Id="Weight"/>
+            </Fixed>
+            <GameLink GameLink="EnhancedProtectiveInsert">
+                <Field Id="Item"/>
+            </GameLink>
+        </Instances>
+        <Instances Id="Heavy Protective Insert">
+            <Fixed Fixed="35">
+                <Field Id="Weight"/>
+            </Fixed>
+            <GameLink GameLink="HeavyProtectiveInsert">
+                <Field Id="Item"/>
+            </GameLink>
+        </Instances>
+        <Instances Id="Reactive Protective Insert">
+            <Fixed Fixed="35">
+                <Field Id="Weight"/>
+            </Fixed>
+            <GameLink GameLink="ReactiveProtectiveInsert">
+                <Field Id="Item"/>
+            </GameLink>
+        </Instances>
+        <Instances Id="Shield Augmentation Insert">
+            <Fixed Fixed="25">
+                <Field Id="Weight"/>
+            </Fixed>
+            <GameLink GameLink="ShieldAugmentationInsert">
+                <Field Id="Item"/>
+            </GameLink>
+        </Instances>
+        <Instances Id="Anti-Venom">
+            <Fixed Fixed="2">
+                <Field Id="Weight"/>
+            </Fixed>
+            <GameLink GameLink="AntiVenom">
+                <Field Id="Item"/>
+            </GameLink>
+        </Instances>
+        <Instances Id="Bandage">
+            <Fixed Fixed="2">
+                <Field Id="Weight"/>
+            </Fixed>
+            <GameLink GameLink="Bandage">
+                <Field Id="Item"/>
+            </GameLink>
+        </Instances>
+        <Instances Id="Medkit">
+            <Fixed Fixed="2">
+                <Field Id="Weight"/>
+            </Fixed>
+            <GameLink GameLink="Medkit">
+                <Field Id="Item"/>
+            </GameLink>
+        </Instances>
+        <Instances Id="Mending Paste">
+            <Fixed Fixed="2">
+                <Field Id="Weight"/>
+            </Fixed>
+            <GameLink GameLink="MendingPaste">
+                <Field Id="Item"/>
+            </GameLink>
+        </Instances>
+        <Instances Id="Flare Gun">
+            <Fixed Fixed="4">
+                <Field Id="Weight"/>
+            </Fixed>
+            <GameLink GameLink="FlareGun">
+                <Field Id="Item"/>
+            </GameLink>
+        </Instances>
+        <Instances Id="Road Flare">
+            <Fixed Fixed="4">
+                <Field Id="Weight"/>
+            </Fixed>
+            <GameLink GameLink="RoadFlare">
+                <Field Id="Item"/>
+            </GameLink>
+        </Instances>
+        <Instances Id="Ammunition Case">
+            <Fixed Fixed="4">
+                <Field Id="Weight"/>
+            </Fixed>
+            <GameLink GameLink="AmmunitionCase">
+                <Field Id="Item"/>
+            </GameLink>
+        </Instances>
+        <Instances Id="Magazine">
+            <Fixed Fixed="4">
+                <Field Id="Weight"/>
+            </Fixed>
+            <GameLink GameLink="Magazine">
+                <Field Id="Item"/>
+            </GameLink>
+        </Instances>
+        <Instances Id="40mm Grenade">
+            <Fixed Fixed="5">
+                <Field Id="Weight"/>
+            </Fixed>
+            <GameLink GameLink="40mmGrenade">
+                <Field Id="Item"/>
+            </GameLink>
+        </Instances>
+        <Instances Id="Plasma Coil">
+            <Fixed Fixed="10">
+                <Field Id="Weight"/>
+            </Fixed>
+            <GameLink GameLink="PlasmaCoil">
+                <Field Id="Item"/>
+            </GameLink>
+        </Instances>
+        <Instances Id="Tungsten Rod">
+            <Fixed Fixed="10">
+                <Field Id="Weight"/>
+            </Fixed>
+            <GameLink GameLink="TungstenRod">
+                <Field Id="Item"/>
+            </GameLink>
+        </Instances>
+        <Instances Id="Modular Rocket">
+            <Fixed Fixed="10">
+                <Field Id="Weight"/>
+            </Fixed>
+            <GameLink GameLink="UGCModularRocket">
+                <Field Id="Item"/>
+            </GameLink>
+        </Instances>
+        <Instances Id="Grenade Launcher">
+            <Fixed Fixed="25">
+                <Field Id="Weight"/>
+            </Fixed>
+            <GameLink GameLink="GrenadeLauncher">
+                <Field Id="Item"/>
+            </GameLink>
+        </Instances>
+        <Instances Id="Plasma Cannon">
+            <Fixed Fixed="45">
+                <Field Id="Weight"/>
+            </Fixed>
+            <GameLink GameLink="PlasmaCannon">
+                <Field Id="Item"/>
+            </GameLink>
+        </Instances>
+        <Instances Id="Railgun">
+            <Fixed Fixed="45">
+                <Field Id="Weight"/>
+            </Fixed>
+            <GameLink GameLink="Railgun">
+                <Field Id="Item"/>
+            </GameLink>
+        </Instances>
+        <Instances Id="Rocket Launcher">
+            <Fixed Fixed="45">
+                <Field Id="Weight"/>
+            </Fixed>
+            <GameLink GameLink="RocketLauncher">
+                <Field Id="Item"/>
+            </GameLink>
+        </Instances>
+        <Instances Id="Anti-Material Rifle">
+            <Fixed Fixed="35">
+                <Field Id="Weight"/>
+            </Fixed>
+            <GameLink GameLink="AntiMaterialRifle">
+                <Field Id="Item"/>
+            </GameLink>
+            <User Type="WeaponData" Instance="Anti-Material Rifle">
+                <Field Id="Weapon Link"/>
+            </User>
+        </Instances>
+        <Instances Id="Assault Rifle">
+            <Fixed Fixed="8">
+                <Field Id="Weight"/>
+            </Fixed>
+            <GameLink GameLink="AssaultRifle">
+                <Field Id="Item"/>
+            </GameLink>
+            <User Type="WeaponData" Instance="Assault Rifle">
+                <Field Id="Weapon Link"/>
+            </User>
+        </Instances>
+        <Instances Id="Automatic Shotgun">
+            <Fixed Fixed="15">
+                <Field Id="Weight"/>
+            </Fixed>
+            <GameLink GameLink="AutomaticShotgun">
+                <Field Id="Item"/>
+            </GameLink>
+            <User Type="WeaponData" Instance="Automatic Shotgun">
+                <Field Id="Weapon Link"/>
+            </User>
+        </Instances>
+        <Instances Id="Axe">
+            <GameLink GameLink="Axe">
+                <Field Id="Item"/>
+            </GameLink>
+        </Instances>
+        <Instances Id="Baton">
+            <GameLink GameLink="Baton">
+                <Field Id="Item"/>
+            </GameLink>
+        </Instances>
+        <Instances Id="Chainsaw">
+            <Fixed Fixed="15">
+                <Field Id="Weight"/>
+            </Fixed>
+            <GameLink GameLink="Chainsaw">
+                <Field Id="Item"/>
+            </GameLink>
+            <User Type="WeaponData" Instance="Chainsaw">
+                <Field Id="Weapon Link"/>
+            </User>
+        </Instances>
+        <Instances Id="Crowbar">
+            <Fixed Fixed="4">
+                <Field Id="Weight"/>
+            </Fixed>
+            <GameLink GameLink="Crowbar">
+                <Field Id="Item"/>
+            </GameLink>
+            <User Type="WeaponData" Instance="Crowbar">
+                <Field Id="Weapon Link"/>
+            </User>
+        </Instances>
+        <Instances Id="Flamethrower">
+            <Fixed Fixed="16">
+                <Field Id="Weight"/>
+            </Fixed>
+            <GameLink GameLink="Flamethrower">
+                <Field Id="Item"/>
+            </GameLink>
+            <User Type="WeaponData" Instance="Flamethrower">
+                <Field Id="Weapon Link"/>
+            </User>
+        </Instances>
+        <Instances Id="Hammer">
+            <GameLink GameLink="Hammer">
+                <Field Id="Item"/>
+            </GameLink>
+        </Instances>
+        <Instances Id="Heavy Machine Gun">
+            <Fixed Fixed="40">
+                <Field Id="Weight"/>
+            </Fixed>
+            <GameLink GameLink="HeavyMachineGun">
+                <Field Id="Item"/>
+            </GameLink>
+            <User Type="WeaponData" Instance="Heavy Machine Gun">
+                <Field Id="Weapon Link"/>
+            </User>
+        </Instances>
+        <Instances Id="Laser Rifle">
+            <Fixed Fixed="10">
+                <Field Id="Weight"/>
+            </Fixed>
+            <GameLink GameLink="LaserRifle">
+                <Field Id="Item"/>
+            </GameLink>
+            <User Type="WeaponData" Instance="Laser Rifle">
+                <Field Id="Weapon Link"/>
+            </User>
+        </Instances>
+        <Instances Id="Marksman Rifle">
+            <Fixed Fixed="8">
+                <Field Id="Weight"/>
+            </Fixed>
+            <GameLink GameLink="MarksmanRifle">
+                <Field Id="Item"/>
+            </GameLink>
+            <User Type="WeaponData" Instance="Marksman Rifle">
+                <Field Id="Weapon Link"/>
+            </User>
+        </Instances>
+        <Instances Id="Medium Machine Gun">
+            <Fixed Fixed="18">
+                <Field Id="Weight"/>
+            </Fixed>
+            <GameLink GameLink="MediumMachineGun">
+                <Field Id="Item"/>
+            </GameLink>
+            <User Type="WeaponData" Instance="Medium Machine Gun">
+                <Field Id="Weapon Link"/>
+            </User>
+        </Instances>
+        <Instances Id="Pistol">
+            <Fixed Fixed="2">
+                <Field Id="Weight"/>
+            </Fixed>
+            <GameLink GameLink="Pistol">
+                <Field Id="Item"/>
+            </GameLink>
+            <User Type="WeaponData" Instance="Pistol">
+                <Field Id="Weapon Link"/>
+            </User>
+        </Instances>
+        <Instances Id="Plasma Cutter">
+            <Fixed Fixed="20">
+                <Field Id="Weight"/>
+            </Fixed>
+            <GameLink GameLink="PlasmaCutter">
+                <Field Id="Item"/>
+            </GameLink>
+            <User Type="WeaponData" Instance="Plasma Cutter">
+                <Field Id="Weapon Link"/>
+            </User>
+        </Instances>
+        <Instances Id="Pump Shotgun">
+            <Fixed Fixed="10">
+                <Field Id="Weight"/>
+            </Fixed>
+            <GameLink GameLink="PumpShotgun">
+                <Field Id="Item"/>
+            </GameLink>
+            <User Type="WeaponData" Instance="Pump Shotgun">
+                <Field Id="Weapon Link"/>
+            </User>
+        </Instances>
+        <Instances Id="Submachine Gun">
+            <Fixed Fixed="5">
+                <Field Id="Weight"/>
+            </Fixed>
+            <GameLink GameLink="SubmachineGun">
+                <Field Id="Item"/>
+            </GameLink>
+            <User Type="WeaponData" Instance="Submachine Gun">
+                <Field Id="Weapon Link"/>
+            </User>
+        </Instances>
+    </CUser>
+    <CUser id="WeaponData">
+        <Fields Id="Weapon" Type="GameLink" GameLinkType="Weapon"/>
+        <Fields Id="Base Reload" Type="Fixed"/>
+        <Fields Id="Equip Time" Type="Fixed"/>
+        <Fields Id="Alternate Weapon Mode" Type="GameLink" GameLinkType="Weapon"/>
+        <Instances Id="[Default]"/>
+        <Instances Id="Assault Rifle">
+            <Fixed Fixed="1.75">
+                <Field Id="Base Reload"/>
+            </Fixed>
+            <Fixed Fixed="1.5">
+                <Field Id="Equip Time"/>
+            </Fixed>
+            <GameLink GameLink="AssaultRifle">
+                <Field Id="Weapon"/>
+            </GameLink>
+            <GameLink GameLink="AssaultRifleBurstFire">
+                <Field Id="Alternate Weapon Mode"/>
+            </GameLink>
+        </Instances>
+        <Instances Id="Pistol">
+            <Fixed Fixed="1">
+                <Field Id="Base Reload"/>
+            </Fixed>
+            <Fixed Fixed="0.5">
+                <Field Id="Equip Time"/>
+            </Fixed>
+            <GameLink GameLink="Pistol">
+                <Field Id="Weapon"/>
+            </GameLink>
+        </Instances>
+        <Instances Id="Submachine Gun">
+            <Fixed Fixed="1.5">
+                <Field Id="Base Reload"/>
+            </Fixed>
+            <Fixed Fixed="1.5">
+                <Field Id="Equip Time"/>
+            </Fixed>
+            <GameLink GameLink="SubmachineGun">
+                <Field Id="Weapon"/>
+            </GameLink>
+        </Instances>
+        <Instances Id="Medium Machine Gun">
+            <Fixed Fixed="3">
+                <Field Id="Base Reload"/>
+            </Fixed>
+            <Fixed Fixed="3">
+                <Field Id="Equip Time"/>
+            </Fixed>
+            <GameLink GameLink="MediumMachineGun">
+                <Field Id="Weapon"/>
+            </GameLink>
+        </Instances>
+        <Instances Id="Pump Shotgun">
+            <Fixed Fixed="3">
+                <Field Id="Base Reload"/>
+            </Fixed>
+            <Fixed Fixed="2.5">
+                <Field Id="Equip Time"/>
+            </Fixed>
+            <GameLink GameLink="PumpShotgun">
+                <Field Id="Weapon"/>
+            </GameLink>
+            <GameLink GameLink="PumpShotgunSlugShot">
+                <Field Id="Alternate Weapon Mode"/>
+            </GameLink>
+        </Instances>
+        <Instances Id="Automatic Shotgun">
+            <Fixed Fixed="3">
+                <Field Id="Base Reload"/>
+            </Fixed>
+            <Fixed Fixed="2.5">
+                <Field Id="Equip Time"/>
+            </Fixed>
+            <GameLink GameLink="AutomaticShotgunSlugShot">
+                <Field Id="Alternate Weapon Mode"/>
+            </GameLink>
+            <GameLink GameLink="AutomaticShotgun">
+                <Field Id="Weapon"/>
+            </GameLink>
+        </Instances>
+        <Instances Id="Marksman Rifle">
+            <Fixed Fixed="1.75">
+                <Field Id="Base Reload"/>
+            </Fixed>
+            <Fixed Fixed="1.5">
+                <Field Id="Equip Time"/>
+            </Fixed>
+            <GameLink GameLink="MarksmanRifle">
+                <Field Id="Weapon"/>
+            </GameLink>
+        </Instances>
+        <Instances Id="Flamethrower">
+            <Fixed Fixed="3">
+                <Field Id="Base Reload"/>
+            </Fixed>
+            <Fixed Fixed="2.5">
+                <Field Id="Equip Time"/>
+            </Fixed>
+            <GameLink GameLink="Flamethrower">
+                <Field Id="Weapon"/>
+            </GameLink>
+        </Instances>
+        <Instances Id="Laser Rifle">
+            <Fixed Fixed="3">
+                <Field Id="Base Reload"/>
+            </Fixed>
+            <Fixed Fixed="2">
+                <Field Id="Equip Time"/>
+            </Fixed>
+            <GameLink GameLink="LaserRifle">
+                <Field Id="Weapon"/>
+            </GameLink>
+        </Instances>
+        <Instances Id="Crowbar">
+            <Fixed Fixed="0.1">
+                <Field Id="Equip Time"/>
+            </Fixed>
+            <GameLink GameLink="Crowbar">
+                <Field Id="Weapon"/>
+            </GameLink>
+        </Instances>
+        <Instances Id="Chainsaw">
+            <Fixed Fixed="2.5">
+                <Field Id="Base Reload"/>
+            </Fixed>
+            <Fixed Fixed="1.5">
+                <Field Id="Equip Time"/>
+            </Fixed>
+            <GameLink GameLink="Chainsaw">
+                <Field Id="Weapon"/>
+            </GameLink>
+        </Instances>
+        <Instances Id="Plasma Cutter">
+            <Fixed Fixed="2.5">
+                <Field Id="Base Reload"/>
+            </Fixed>
+            <Fixed Fixed="1.5">
+                <Field Id="Equip Time"/>
+            </Fixed>
+            <GameLink GameLink="PlasmaCutter">
+                <Field Id="Weapon"/>
+            </GameLink>
+        </Instances>
+        <Instances Id="Heavy Machine Gun">
+            <Fixed Fixed="3">
+                <Field Id="Base Reload"/>
+            </Fixed>
+            <Fixed Fixed="4">
+                <Field Id="Equip Time"/>
+            </Fixed>
+            <GameLink GameLink="HeavyMachineGun">
+                <Field Id="Weapon"/>
+            </GameLink>
+        </Instances>
+        <Instances Id="Anti-Material Rifle">
+            <Fixed Fixed="4">
+                <Field Id="Base Reload"/>
+            </Fixed>
+            <Fixed Fixed="4">
+                <Field Id="Equip Time"/>
+            </Fixed>
+            <GameLink GameLink="AntiMaterialRifle">
+                <Field Id="Weapon"/>
+            </GameLink>
+        </Instances>
+    </CUser>
+</Catalog>

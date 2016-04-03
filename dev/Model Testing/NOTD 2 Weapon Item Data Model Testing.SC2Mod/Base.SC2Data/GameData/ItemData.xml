@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<Catalog>
+    <CItemEffectInstant default="1" id="AmmoModificationTemplate">
+        <Class value="AmmoModification"/>
+        <EquipBehaviorArray value="##id##"/>
+        <Flags index="DropOnDeath" value="1"/>
+    </CItemEffectInstant>
+    <CItemEffectInstant default="1" id="AccessoryTemplate">
+        <Flags index="DropOnDeath" value="1"/>
+        <Class value="Accessory"/>
+        <EquipBehaviorArray value="##id##"/>
+    </CItemEffectInstant>
+    <CItemEffectInstant default="1" id="ArmorTemplate">
+        <Flags index="DropOnDeath" value="1"/>
+        <Class value="Armor"/>
+        <EquipBehaviorArray value="##id##"/>
+        <Effect value="GenericDummyEffect"/>
+        <EffectFlags index="Transient" value="1"/>
+    </CItemEffectInstant>
+    <CItemEffectInstant default="1" id="SpecialWeaponTemplate">
+        <EquipWeaponArray Link="##id##"/>
+        <EquipBehaviorArray value="##id##Equipped"/>
+        <EquipBehaviorArray value="SpecialWeaponEquipped"/>
+        <Flags index="DropOnDeath" value="1"/>
+        <Class value="SpecialWeapon"/>
+    </CItemEffectInstant>
+    <CItemEffectInstant default="1" id="WeaponTemplate">
+        <Flags index="DropOnDeath" value="1"/>
+        <Class value="NormalWeapon"/>
+        <EquipBehaviorArray value="##id##Equipped"/>
+        <EquipBehaviorArray value="WeaponEquipped"/>
+        <EquipWeaponArray Link="##id##"/>
+        <EffectFlags index="Transient" value="1"/>
+    </CItemEffectInstant>
+    <CItemEffectInstant id="CommunicationsArrayPackedUp">
+        <Face value="CommunicationsArray"/>
+        <Flags index="DropOnDeath" value="1"/>
+        <Flags index="KillWhenDepleted" value="1"/>
+        <Class value="Utility"/>
+        <EffectCost>
+            <Charge>
+                <CountMax value="1"/>
+                <CountStart value="1"/>
+                <CountUse value="1"/>
+                <Link value="Item/CommunicationsArray"/>
+            </Charge>
+            <Cooldown Link="Item/CommunicationsArray"/>
+        </EffectCost>
+        <EffectFlags index="Transient" value="1"/>
+        <Range value="2"/>
+    </CItemEffectInstant>
+    <CItemEffectInstant id="ImprovedAccuracyModule" parent="AccessoryTemplate"/>
+    <CItemEffectInstant id="ArmorPiercing" parent="AmmoModificationTemplate"/>
+    <CItemEffectInstant id="Expanding" parent="AmmoModificationTemplate"/>
+    <CItemEffectInstant id="NanoHealthAugment" parent="AccessoryTemplate"/>
+    <CItemEffectInstant id="NightVisionModule" parent="AccessoryTemplate"/>
+    <CItemEffectInstant id="PlasmaCore" parent="AmmoModificationTemplate"/>
+    <CItemEffectInstant id="PowerGeneratorAugment" parent="AccessoryTemplate"/>
+    <CItemEffectInstant id="RiotShield" parent="AccessoryTemplate"/>
+    <CItemEffectInstant id="40mmGrenade">
+        <Class value="SpecialWeaponAmmo"/>
+        <EffectCost>
+            <Charge CountMax="48" CountStart="6" Location="Unit"/>
+        </EffectCost>
+        <Flags index="DropOnDeath" value="1"/>
+        <Flags index="KillWhenDepleted" value="1"/>
+    </CItemEffectInstant>
+    <CItemEffectInstant id="AmmunitionCase">
+        <Class value="AmmunitionCase"/>
+        <EffectCost>
+            <Charge CountMax="15" CountStart="3" CountUse="1"/>
+        </EffectCost>
+        <Flags index="DropOnDeath" value="1"/>
+        <Effect value="EquipAmmo"/>
+    </CItemEffectInstant>
+    <CItemEffectInstant id="AntiMaterialRifle" parent="WeaponTemplate">
+        <EquipBehaviorArray value="UnderhandWeaponEquipped"/>
+    </CItemEffectInstant>
+    <CItemEffectInstant id="ArmoredProtectiveInsert" parent="ArmorTemplate"/>
+    <CItemEffectInstant id="AntiVenom">
+        <Flags index="DropOnDeath" value="1"/>
+        <Flags index="KillWhenDepleted" value="1"/>
+        <Class value="Medical"/>
+        <Effect value="Antivenom"/>
+        <EffectCost>
+            <Charge CountMax="9" CountStart="3" CountUse="1"/>
+        </EffectCost>
+        <EffectFlags index="Transient" value="1"/>
+    </CItemEffectInstant>
+    <CItemEffectInstant id="AssaultRifle" parent="WeaponTemplate">
+        <EquipBehaviorArray value="RangedWeaponEquipped"/>
+    </CItemEffectInstant>
+    <CItemEffectInstant id="AutomaticShotgun" parent="WeaponTemplate">
+        <EquipBehaviorArray value="RangedWeaponEquipped"/>
+        <EquipBehaviorArray value="AutomaticShotgun"/>
+        <EquipBehaviorArray value="RangedWeaponEquipped"/>
+        <EquipWeaponArray index="0" removed="1"/>
+    </CItemEffectInstant>
+    <CItemEffectInstant id="Axe" parent="WeaponTemplate">
+        <EquipBehaviorArray value="MeleeWeaponEquipped"/>
+    </CItemEffectInstant>
+    <CItemEffectInstant id="Hammer" parent="WeaponTemplate">
+        <EquipBehaviorArray value="MeleeWeaponEquipped"/>
+    </CItemEffectInstant>
+    <CItemEffectInstant id="Baton" parent="WeaponTemplate">
+        <EquipBehaviorArray value="MeleeWeaponEquipped"/>
+    </CItemEffectInstant>
+    <CItemEffectInstant id="Bandage">
+        <Flags index="DropOnDeath" value="1"/>
+        <Flags index="KillWhenDepleted" value="1"/>
+        <Class value="Medical"/>
+        <EffectCost>
+            <Charge CountMax="6" CountStart="2" CountUse="1"/>
+        </EffectCost>
+        <EffectFlags index="Transient" value="1"/>
+    </CItemEffectInstant>
+    <CItemEffectInstant id="EnhancedProtectiveInsert" parent="ArmorTemplate"/>
+    <CItemEffectInstant id="Chainsaw" parent="WeaponTemplate">
+        <EquipBehaviorArray value="ChainsawBodyTrauma"/>
+        <EquipBehaviorArray value="UnderhandWeaponEquipped"/>
+    </CItemEffectInstant>
+    <CItemEffectInstant id="Crowbar" parent="WeaponTemplate">
+        <EquipBehaviorArray value="MeleeWeaponEquipped"/>
+    </CItemEffectInstant>
+    <CItemEffectInstant id="Flamethrower" parent="WeaponTemplate">
+        <EquipBehaviorArray value="UnderhandWeaponEquipped"/>
+    </CItemEffectInstant>
+    <CItemEffectTarget id="FlareGun">
+        <Flags index="DropOnDeath" value="1"/>
+        <Flags index="KillWhenDepleted" value="1"/>
+        <Class value="Utility"/>
+        <EffectCost>
+            <Charge CountMax="15" CountStart="5" CountUse="1"/>
+        </EffectCost>
+        <Range value="10"/>
+    </CItemEffectTarget>
+    <CItemEffectInstant id="HighCapacityMagazine" parent="AccessoryTemplate"/>
+    <CItemEffectInstant id="Flechette" parent="AmmoModificationTemplate"/>
+    <CItemEffectInstant id="HeavyProtectiveInsert" parent="ArmorTemplate"/>
+    <CItemEffectInstant id="GrenadeLauncher" parent="SpecialWeaponTemplate"/>
+    <CItemEffectInstant id="HeavyMachineGun" parent="WeaponTemplate">
+        <EquipBehaviorArray value="UnderhandWeaponEquipped"/>
+    </CItemEffectInstant>
+    <CItemEffectInstant id="HecateModule" parent="AmmoModificationTemplate"/>
+    <CItemEffectInstant id="HighExplosive" parent="AmmoModificationTemplate">
+        <Effect value=""/>
+    </CItemEffectInstant>
+    <CItemEffectInstant id="LaserRifle" parent="WeaponTemplate">
+        <EquipBehaviorArray value="RangedWeaponEquipped"/>
+    </CItemEffectInstant>
+    <CItemEffectInstant id="Magazine">
+        <Class value="Ammo"/>
+        <Effect value="EquipAmmo"/>
+        <EffectCost>
+            <Charge CountMax="3" CountStart="3" CountUse="1"/>
+        </EffectCost>
+        <Flags index="DropOnDeath" value="1"/>
+        <Flags index="KillWhenDepleted" value="1"/>
+    </CItemEffectInstant>
+    <CItemEffectInstant id="MarksmanRifle" parent="WeaponTemplate">
+        <EquipBehaviorArray value="RangedWeaponEquipped"/>
+    </CItemEffectInstant>
+    <CItemEffectInstant id="MediumMachineGun" parent="WeaponTemplate">
+        <EquipBehaviorArray value="RangedWeaponEquipped"/>
+    </CItemEffectInstant>
+    <CItemEffectInstant id="Medkit">
+        <Flags index="DropOnDeath" value="1"/>
+        <Flags index="KillWhenDepleted" value="1"/>
+        <Class value="Medical"/>
+        <EffectCost>
+            <Charge CountMax="6" CountStart="3" CountUse="1"/>
+        </EffectCost>
+        <EffectFlags index="Transient" value="1"/>
+    </CItemEffectInstant>
+    <CItemEffectInstant id="MendingPaste">
+        <Flags index="DropOnDeath" value="1"/>
+        <Flags index="KillWhenDepleted" value="1"/>
+        <Class value="Medical"/>
+        <EffectCost>
+            <Charge CountMax="9" CountStart="3" CountUse="1"/>
+        </EffectCost>
+        <EffectFlags index="Transient" value="1"/>
+    </CItemEffectInstant>
+    <CItemEffectInstant id="Pistol" parent="WeaponTemplate">
+        <EquipBehaviorArray value="RangedWeaponEquipped"/>
+    </CItemEffectInstant>
+    <CItemEffectInstant id="PlasmaCannon" parent="SpecialWeaponTemplate"/>
+    <CItemEffectInstant id="ReactiveProtectiveInsert" parent="ArmorTemplate"/>
+    <CItemEffectInstant id="PlasmaCoil">
+        <Class value="SpecialWeaponAmmo"/>
+        <EffectCost>
+            <Charge CountMax="24" CountStart="4" Location="Unit"/>
+        </EffectCost>
+        <Flags index="DropOnDeath" value="1"/>
+        <Flags index="KillWhenDepleted" value="1"/>
+    </CItemEffectInstant>
+    <CItemEffectInstant id="PlasmaCutter" parent="WeaponTemplate">
+        <EquipBehaviorArray value="UnderhandWeaponEquipped"/>
+    </CItemEffectInstant>
+    <CItemAbil id="RoadFlare">
+        <Flags index="DropOnDeath" value="1"/>
+        <Flags index="KillWhenDepleted" value="1"/>
+        <Class value="Utility"/>
+    </CItemAbil>
+    <CItemEffectInstant id="ShieldAugmentationInsert" parent="ArmorTemplate"/>
+    <CItemEffectInstant id="PumpShotgun" parent="WeaponTemplate">
+        <EquipBehaviorArray value="PumpShotgun"/>
+        <EquipBehaviorArray value="RangedWeaponEquipped"/>
+        <EquipWeaponArray index="0" removed="1"/>
+    </CItemEffectInstant>
+    <CItemEffectInstant id="Railgun" parent="SpecialWeaponTemplate"/>
+    <CItemEffectInstant id="CombatMobilityAugment" parent="AccessoryTemplate"/>
+    <CItemEffectInstant id="RocketLauncher" parent="SpecialWeaponTemplate">
+        <EquipWeaponArray index="0" Link=""/>
+    </CItemEffectInstant>
+    <CItemEffectInstant id="FieldLights" parent="AccessoryTemplate"/>
+    <CItemEffectInstant id="SubmachineGun" parent="WeaponTemplate">
+        <EquipBehaviorArray value="RangedWeaponEquipped"/>
+    </CItemEffectInstant>
+    <CItemEffectInstant id="TX1" parent="AmmoModificationTemplate"/>
+    <CItemEffectInstant id="TungstenRod">
+        <Class value="SpecialWeaponAmmo"/>
+        <EffectCost>
+            <Charge CountMax="12" CountStart="2" Location="Unit"/>
+        </EffectCost>
+        <Flags index="DropOnDeath" value="1"/>
+        <Flags index="KillWhenDepleted" value="1"/>
+    </CItemEffectInstant>
+    <CItemEffectInstant id="UGCModularRocket">
+        <Class value="SpecialWeaponAmmo"/>
+        <Flags index="DropOnDeath" value="1"/>
+        <Flags index="KillWhenDepleted" value="1"/>
+        <EffectCost>
+            <Charge CountMax="16" CountStart="4" Location="Unit"/>
+        </EffectCost>
+    </CItemEffectInstant>
+</Catalog>

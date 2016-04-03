@@ -1,0 +1,910 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<Catalog>
+    <CAbilEffectInstant id="AdvancedTargeting" parent="2LevelEffectInstantAbility">
+        <Flags index="Transient" value="1"/>
+        <Cost>
+            <Vital index="Energy" value="15"/>
+            <Cooldown TimeUse="20"/>
+        </Cost>
+    </CAbilEffectInstant>
+    <CAbilBehavior id="AmmoFeed">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <CmdButtonArray index="On" DefaultButtonFace="AmmoFeed"/>
+        <BehaviorArray value="AmmoFeedLevel1"/>
+        <BehaviorArray value="AmmoFeedLevel2"/>
+    </CAbilBehavior>
+    <CAbilEffectTarget id="ChargeNOTD" parent="AbilityWithButtonTargetTemplate">
+        <Effect index="0" value="ChargeSelfSetLevel1"/>
+        <Effect value="ChargeSelfSetLevel2"/>
+        <Range value="10"/>
+        <Cost>
+            <Vital index="Energy" value="15"/>
+            <Cooldown TimeUse="5"/>
+        </Cost>
+        <LevelButtonTooltip value="Button/Tooltip/ChargeNOTDLevel2"/>
+    </CAbilEffectTarget>
+    <CAbilRedirectTarget id="GeminiProtocolAttackRedirect">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Abil value="attack"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="AttackRedirect"/>
+    </CAbilRedirectTarget>
+    <CAbilTransport id="GeminiProtocolTranport">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Flags index="AllowPassengerSmartCmd" value="0"/>
+        <Flags index="AllowSmartCmd" value="0"/>
+        <Flags index="CargoDeath" value="1"/>
+        <Flags index="ShowCargoSize" value="0"/>
+        <Flags index="ShowStatus" value="0"/>
+        <MaxCargoCount value="1"/>
+        <MaxCargoSize value="1"/>
+        <TotalCargoSpace value="1"/>
+    </CAbilTransport>
+    <CAbilInventory id="AssaultInventory" parent="InventoryTemplate">
+        <InfoArray index="0" Alignment="Left" Container="AssaultLoadout" EmptyFace="EmptyInventorySlot"/>
+    </CAbilInventory>
+    <CAbilBehavior id="Cohesion">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <BehaviorArray value="CohesionLevel1"/>
+        <BehaviorArray value="CohesionLevel2"/>
+    </CAbilBehavior>
+    <CAbilEffectInstant id="ConcentratedFire" parent="3LevelEffectInstantAbility">
+        <Flags index="AllowMovement" value="1"/>
+        <Flags index="Transient" value="1"/>
+        <Flags index="TransientPreferred" value="1"/>
+        <Cost>
+            <Vital index="Energy" value="10"/>
+            <Cooldown TimeUse="5"/>
+        </Cost>
+    </CAbilEffectInstant>
+    <CAbilBehavior id="AssaultCriticalStrike">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <CmdButtonArray index="On" DefaultButtonFace="CriticalStrike"/>
+        <BehaviorArray value="AssaultCriticalStrikeLevel1"/>
+        <BehaviorArray value="AssaultCriticalStrikeLevel2"/>
+        <BehaviorArray value="AssaultCriticalStrikeLevel3"/>
+        <LevelButtonOnTooltip value="LevelUp/Tooltip/AssaultCriticalStrikeLevel2"/>
+        <LevelButtonOnTooltip value="LevelUp/Tooltip/AssaultCriticalStrikeLevel3"/>
+    </CAbilBehavior>
+    <CAbilBehavior id="DefensivePlating">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <BehaviorArray value="DefensivePlatingLevel1"/>
+        <BehaviorArray value="DefensivePlatingLevel2"/>
+        <BehaviorArray value="DefensivePlatingLevel3"/>
+    </CAbilBehavior>
+    <CAbilEffectInstant id="GeminiProtocol" parent="AbilityInstantTemplate">
+        <Effect index="0" value="GenericDummyEffect"/>
+    </CAbilEffectInstant>
+    <CAbilBehavior id="ImmovableObject">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <CmdButtonArray index="On" DefaultButtonFace="ImmovableObject"/>
+        <BehaviorArray value="ImmovableObject"/>
+    </CAbilBehavior>
+    <CAbilEffectInstant id="LockdownNOTD" parent="AbilityInstantTemplate">
+        <Cost>
+            <Vital index="Energy" value="10"/>
+            <Charge Link="Abil/Lockdown"/>
+            <Cooldown Link="Abil/Lockdown" TimeUse="5"/>
+        </Cost>
+        <CastIntroTime value="1"/>
+        <ShowProgressArray index="Cast" value="1"/>
+        <ProgressButtonArray index="Cast" value="LockdownNOTD"/>
+        <CmdButtonArray index="Execute" Requirements="WeaponFunctionLockdown"/>
+        <UninterruptibleArray index="Cast" value="1"/>
+    </CAbilEffectInstant>
+    <CAbilEffectInstant id="LockdownDisable" parent="AbilityInstantTemplate">
+        <CastIntroTime value="1"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="LockdownNOTD2" Requirements="Lockdown"/>
+        <ShowProgressArray index="Cast" value="1"/>
+        <ProgressButtonArray index="Cast" value="LockdownNOTD"/>
+        <UninterruptibleArray index="Cast" value="1"/>
+    </CAbilEffectInstant>
+    <CAbilEffectInstant id="TauntNOTD" parent="3LevelEffectInstantAbility">
+        <Cost>
+            <Vital index="Energy" value="10"/>
+            <Cooldown TimeUse="10"/>
+        </Cost>
+    </CAbilEffectInstant>
+    <CAbilEffectInstant id="ElbowRoom" parent="AbilityInstantTemplate">
+        <Cost>
+            <Vital index="Energy" value="30"/>
+            <Cooldown TimeUse="40"/>
+        </Cost>
+    </CAbilEffectInstant>
+    <CUnit id="Assault" parent="BasicHeroTemplate" InventoryAbility="AssaultInventory" LearnAbility="AssaultLearn">
+        <AbilArray index="5" Link="AutomaticReloadAssault"/>
+        <AbilArray index="6" Link="ManualReloadAssault"/>
+        <AbilArray Link="AssaultCriticalStrike"/>
+        <AbilArray Link="ConcentratedFire"/>
+        <AbilArray Link="AmmoFeed"/>
+        <AbilArray Link="AdvancedTargeting"/>
+        <AbilArray Link="LockdownNOTD"/>
+        <AbilArray Link="GeminiProtocol"/>
+        <AbilArray Link="TauntNOTD"/>
+        <AbilArray Link="DefensivePlating"/>
+        <AbilArray Link="ChargeNOTD"/>
+        <AbilArray Link="Cohesion"/>
+        <AbilArray Link="ElbowRoom"/>
+        <AbilArray Link="ImmovableObject"/>
+        <AbilArray Link="HeavyJump"/>
+        <AbilArray Link="LockdownDisable"/>
+        <AbilArray Link="GeminiProtocolAttackRedirect"/>
+        <AbilArray Link="GeminiProtocolTranport"/>
+        <CardLayouts index="0">
+            <LayoutButtons index="5">
+                <Face value="Reload"/>
+                <Type value="AbilCmd"/>
+                <AbilCmd value="ManualReloadAssault,Execute"/>
+                <ShowInGlossary value="0"/>
+                <Row value="0"/>
+                <Column value="2"/>
+            </LayoutButtons>
+            <LayoutButtons Face="Jump" Type="AbilCmd" AbilCmd="HeavyJump,Execute" Row="0" Column="4"/>
+            <LayoutButtons Face="LockdownNOTD2" Type="AbilCmd" AbilCmd="LockdownDisable,Execute" Row="1" Column="0"/>
+            <LayoutButtons Face="LockdownNOTD" Type="AbilCmd" AbilCmd="LockdownNOTD,Execute" Row="1" Column="0"/>
+            <LayoutButtons Face="ElbowRoom" Type="AbilCmd" AbilCmd="ElbowRoom,Execute" Row="1" Column="0"/>
+            <LayoutButtons>
+                <Face value="ConcentratedFire"/>
+                <Type value="AbilCmd"/>
+                <AbilCmd value="ConcentratedFire,Execute"/>
+                <ShowInGlossary value="0"/>
+                <Row value="2"/>
+                <Column value="0"/>
+            </LayoutButtons>
+            <LayoutButtons>
+                <Face value="AdvancedTargeting"/>
+                <Type value="AbilCmd"/>
+                <AbilCmd value="AdvancedTargeting,Execute"/>
+                <ShowInGlossary value="0"/>
+                <Row value="2"/>
+                <Column value="1"/>
+            </LayoutButtons>
+            <LayoutButtons>
+                <Face value="TauntNOTD"/>
+                <Type value="AbilCmd"/>
+                <AbilCmd value="TauntNOTD,Execute"/>
+                <ShowInGlossary value="0"/>
+                <Row value="2"/>
+                <Column value="2"/>
+            </LayoutButtons>
+            <LayoutButtons Face="ChargeNOTD" Type="AbilCmd" AbilCmd="ChargeNOTD,Execute" Row="2" Column="3"/>
+        </CardLayouts>
+        <EnergyStart value="100"/>
+        <EnergyRegenRate value="1"/>
+        <LifeStart value="265"/>
+        <LifeMax value="265"/>
+        <LifeArmor value="4"/>
+        <LifeRegenRate value="0.3515"/>
+        <LateralAcceleration value="1000"/>
+        <ShieldsStart value="50"/>
+        <ShieldsMax value="50"/>
+        <ShieldRegenRate value="1.5"/>
+        <Speed value="2.1992"/>
+        <BehaviorArray Link="CohesionLevel1"/>
+        <BehaviorArray Link="CohesionLevel2"/>
+        <BehaviorArray Link="AssaultCriticalStrikeLevel1"/>
+        <BehaviorArray Link="AssaultCriticalStrikeLevel2"/>
+        <BehaviorArray Link="AssaultCriticalStrikeLevel3"/>
+        <BehaviorArray Link="DefensivePlatingLevel1"/>
+        <BehaviorArray Link="DefensivePlatingLevel2"/>
+        <BehaviorArray Link="DefensivePlatingLevel3"/>
+        <BehaviorArray Link="AmmoFeedLevel1"/>
+        <BehaviorArray Link="AmmoFeedLevel2"/>
+        <BehaviorArray Link="ExtendedMagazine"/>
+        <BehaviorArray Link="GeminiProtocolAttackSpeedSlow"/>
+        <BehaviorArray Link="ImmovableObject"/>
+        <GlossaryPriority value="3"/>
+        <FlagArray index="HiddenCargoUI" value="1"/>
+    </CUnit>
+    <CUnit id="GeminiProtocolDummyUnit">
+        <Race value="Zombie"/>
+        <FlagArray index="Unselectable" value="1"/>
+        <FlagArray index="Untargetable" value="1"/>
+        <FlagArray index="Invulnerable" value="1"/>
+        <Speed value="10"/>
+        <Acceleration value="1000"/>
+        <AbilArray Link="attack"/>
+        <AbilArray Link="move"/>
+        <CargoSize value="1"/>
+        <EditorCategories value=""/>
+        <LifeStart value="100000"/>
+        <LifeMax value="100000"/>
+        <LifeArmor value="50000"/>
+        <LifeRegenRate value="100000"/>
+        <BehaviorArray Link="GeminiProtocolAttackSpeedSlowInternal"/>
+        <BehaviorArray Link="GeminiUnitInvulnerabilty"/>
+    </CUnit>
+    <CValidatorUnitCompareMarkerCount id="ChargeDamageLevel1">
+        <WhichUnit Effect="ChargeImpactSetLevel1"/>
+    </CValidatorUnitCompareMarkerCount>
+    <CValidatorUnitCompareMarkerCount id="ChargeDamageLevel12">
+        <WhichUnit Effect="ChargeImpactSetLevel2"/>
+    </CValidatorUnitCompareMarkerCount>
+    <CValidatorPlayerRequirement id="UnstoppableForceComplete">
+        <Find value="1"/>
+        <Value value="UnstoppableForceComplete"/>
+    </CValidatorPlayerRequirement>
+    <CValidatorCombine id="UnstoppableForceKnockbackMassive">
+        <CombineArray value="TargetisMassive"/>
+        <CombineArray value="UnstoppableForceComplete"/>
+        <Type value="And"/>
+    </CValidatorCombine>
+    <CEffectCreatePersistent id="Bulwark">
+        <EditorCategories value=""/>
+        <WhichLocation Value="TargetUnitOrPoint"/>
+        <InitialDelay value="1"/>
+    </CEffectCreatePersistent>
+    <CEffectCreatePersistent id="ElbowRoom">
+        <EditorCategories value=""/>
+        <Flags index="Channeled" value="1"/>
+        <ExpireEffect value="ElbowRoomMainPersistent"/>
+        <PeriodCount value="10"/>
+        <PeriodicEffectArray value="ElbowRoomIntialSearch"/>
+        <PeriodicPeriodArray value="0.1"/>
+    </CEffectCreatePersistent>
+    <CEffectApplyForce id="ElbowRoomForce">
+        <EditorCategories value=""/>
+        <WhichLocation Value="CasterUnit"/>
+        <Amount value="1"/>
+    </CEffectApplyForce>
+    <CEffectCreatePersistent id="ElbowRoomForcePersistent">
+        <EditorCategories value=""/>
+        <WhichLocation Value="TargetUnit"/>
+        <InitialEffect value="ElbowRoomLift"/>
+        <ExpireEffect value="ElbowRoomRemoveLift"/>
+        <PeriodCount value="15"/>
+        <PeriodicEffectArray value="ElbowRoomForce"/>
+        <PeriodicPeriodArray value="0.0625"/>
+    </CEffectCreatePersistent>
+    <CEffectEnumArea id="ElbowRoomIntialSearch">
+        <EditorCategories value=""/>
+        <SearchFilters value="-;Player,Ally,Neutral"/>
+        <AreaArray Radius="1" RadiusBonus="0.5" Effect="ElbowRoomForcePersistent"/>
+    </CEffectEnumArea>
+    <CEffectApplyBehavior id="ElbowRoomLift">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectCreatePersistent id="ElbowRoomMainPersistent">
+        <EditorCategories value=""/>
+        <WhichLocation Value="CasterUnit"/>
+        <Flags index="Channeled" value="1"/>
+        <PeriodCount value="40"/>
+        <PeriodicEffectArray value="ElbowRoomSearch"/>
+        <PeriodicPeriodArray value="0.1"/>
+    </CEffectCreatePersistent>
+    <CEffectRemoveBehavior id="ElbowRoomRemoveLift">
+        <EditorCategories value=""/>
+        <BehaviorLink value="ElbowRoomLift"/>
+    </CEffectRemoveBehavior>
+    <CEffectEnumArea id="ElbowRoomSearch">
+        <EditorCategories value=""/>
+        <SearchFilters value="-;Player,Ally,Neutral"/>
+        <AreaArray Radius="5" Effect="ElbowRoomForcePersistent"/>
+    </CEffectEnumArea>
+    <CEffectApplyBehavior id="AdvancedTargetingLevel1">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="AdvancedTargetingLevel2">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="AdvancedTargetingSlowLevel2">
+        <EditorCategories value="Race:Terran"/>
+    </CEffectApplyBehavior>
+    <CEffectDamage id="ChargeBonusDamage">
+        <EditorCategories value=""/>
+        <ImpactLocation Value="TargetUnit"/>
+    </CEffectDamage>
+    <CEffectDamage id="ChargeDamageLevel1">
+        <EditorCategories value=""/>
+        <AttributeBonus index="Light" value="50"/>
+        <Amount value="50"/>
+    </CEffectDamage>
+    <CEffectDamage id="ChargeDamageLevel12">
+        <EditorCategories value=""/>
+        <AttributeBonus index="Light" value="100"/>
+        <Amount value="100"/>
+    </CEffectDamage>
+    <CEffectSet id="ChargeHeroicKnockbackFinalSetLevel12">
+        <EditorCategories value=""/>
+        <EffectArray value="ChargeRemoveKnockbackHeight"/>
+        <EffectArray value="ChargeHeroicKnockbackStunLevel12"/>
+    </CEffectSet>
+    <CEffectCreatePersistent id="ChargeHeroicKnockbackPersistentLevel1">
+        <EditorCategories value=""/>
+        <WhichLocation Value="TargetUnit"/>
+        <InitialEffect value="ChargeKnockbackHeight"/>
+        <PeriodCount value="20"/>
+        <PeriodicEffectArray value="ChargeKnockbackForce"/>
+        <PeriodicPeriodArray value="0.0625"/>
+        <ExpireEffect value="ChargeHeroicKnockbackFinalSetLevel1"/>
+    </CEffectCreatePersistent>
+    <CEffectCreatePersistent id="ChargeHeroicKnockbackPersistentLevel12">
+        <EditorCategories value=""/>
+        <WhichLocation Value="TargetUnit"/>
+        <InitialEffect value="ChargeKnockbackHeight"/>
+        <PeriodCount value="20"/>
+        <PeriodicEffectArray value="ChargeKnockbackForce"/>
+        <PeriodicPeriodArray value="0.0625"/>
+        <ExpireEffect value="ChargeHeroicKnockbackFinalSetLevel12"/>
+    </CEffectCreatePersistent>
+    <CEffectApplyBehavior id="ChargeHeroicKnockbackStunLevel12">
+        <EditorCategories value=""/>
+        <Behavior value="ChargeHeroicKnockbackStunLevel2"/>
+    </CEffectApplyBehavior>
+    <CEffectSet id="ChargeImpactSetLevel2">
+        <ValidatorArray value="ChargeDamageLevel12"/>
+        <EditorCategories value=""/>
+        <EffectArray value="ChargeDamageLevel12"/>
+        <EffectArray value="ChargeKnockbackSwitchLevel2"/>
+    </CEffectSet>
+    <CEffectApplyForce id="ChargeKnockbackForce">
+        <EditorCategories value=""/>
+        <WhichLocation Value="SourceUnit"/>
+        <Amount value="10"/>
+    </CEffectApplyForce>
+    <CEffectSwitch id="ChargeKnockbackSwitchLevel2">
+        <EditorCategories value=""/>
+        <CaseArray Validator="NormalUnitNonMassiveorHeroic" Effect="ChargeNormalKnockbackPersistentLevel12"/>
+        <CaseArray Validator="IsHeroic" Effect="ChargeHeroicKnockbackPersistentLevel12"/>
+        <CaseArray Validator="UnstoppableForceKnockbackMassive" Effect="ChargeMassiveKnockbackPersistentLevel2"/>
+    </CEffectSwitch>
+    <CEffectCreatePersistent id="ChargeLevel2">
+        <EditorCategories value=""/>
+        <Marker>
+            <MatchFlags index="Id" value="1"/>
+        </Marker>
+        <WhichLocation Value="SourceUnit"/>
+        <FinalEffect value="ChargeRemoveMovement"/>
+        <PeriodCount value="80"/>
+        <PeriodicEffectArray value="ChargeSearchLevel2"/>
+        <PeriodicPeriodArray value="0.0625"/>
+        <PeriodicValidator value="Moving"/>
+    </CEffectCreatePersistent>
+    <CEffectSet id="ChargeMassiveKnockbackFinalSetLevel12">
+        <EditorCategories value=""/>
+        <EffectArray value="ChargeRemoveKnockbackHeight"/>
+    </CEffectSet>
+    <CEffectCreatePersistent id="ChargeMassiveKnockbackPersistentLevel2">
+        <EditorCategories value=""/>
+        <WhichLocation Value="TargetUnit"/>
+        <InitialEffect value="ChargeKnockbackHeight"/>
+        <PeriodCount value="20"/>
+        <PeriodicEffectArray value="ChargeKnockbackForce"/>
+        <PeriodicPeriodArray value="0.0625"/>
+        <ExpireEffect value="ChargeMassiveKnockbackFinalSetLevel12"/>
+    </CEffectCreatePersistent>
+    <CEffectSet id="ChargeHeroicKnockbackFinalSetLevel1">
+        <EditorCategories value=""/>
+        <EffectArray value="ChargeRemoveKnockbackHeight"/>
+        <EffectArray value="ChargeHeroicKnockbackStunLevel1"/>
+    </CEffectSet>
+    <CEffectSet id="ChargeMassiveKnockbackFinalSetLevel1">
+        <EditorCategories value=""/>
+        <EffectArray value="ChargeRemoveKnockbackHeight"/>
+    </CEffectSet>
+    <CEffectSet id="ChargeNormalKnockbackFinalSetLevel1">
+        <EditorCategories value=""/>
+        <EffectArray value="ChargeRemoveKnockbackHeight"/>
+        <EffectArray value="ChargeNormalKnockbackStunLevel1"/>
+    </CEffectSet>
+    <CEffectSet id="ChargeNormalKnockbackFinalSetLevel12">
+        <EditorCategories value=""/>
+        <EffectArray value="ChargeRemoveKnockbackHeight"/>
+        <EffectArray value="ChargeNormalKnockbackStunLevel2"/>
+    </CEffectSet>
+    <CEffectCreatePersistent id="ChargeNormalKnockbackPersistentLevel1">
+        <EditorCategories value=""/>
+        <WhichLocation Value="TargetUnit"/>
+        <InitialEffect value="ChargeKnockbackHeight"/>
+        <FinalEffect value="ChargeNormalKnockbackFinalSetLevel1"/>
+        <PeriodCount value="15"/>
+        <PeriodicEffectArray value="ChargeKnockbackForce"/>
+        <PeriodicPeriodArray value="0.0625"/>
+    </CEffectCreatePersistent>
+    <CEffectCreatePersistent id="ChargeLevel1">
+        <EditorCategories value=""/>
+        <Marker>
+            <MatchFlags index="Id" value="1"/>
+        </Marker>
+        <WhichLocation Value="SourceUnit"/>
+        <FinalEffect value="ChargeRemoveMovement"/>
+        <PeriodCount value="80"/>
+        <PeriodicEffectArray value="ChargeSearchLevel1"/>
+        <PeriodicPeriodArray value="0.0625"/>
+        <PeriodicValidator value="Moving"/>
+    </CEffectCreatePersistent>
+    <CEffectSwitch id="ChargeKnockbackSwitchLevel1">
+        <EditorCategories value=""/>
+        <CaseArray Validator="NormalUnitNonMassiveorHeroic" Effect="ChargeNormalKnockbackPersistentLevel1"/>
+        <CaseArray Validator="IsHeroic" Effect="ChargeHeroicKnockbackPersistentLevel1"/>
+        <CaseArray Validator="UnstoppableForceKnockbackMassive" Effect="ChargeMassiveKnockbackPersistentLevel1"/>
+    </CEffectSwitch>
+    <CEffectCreatePersistent id="ChargeNormalKnockbackPersistentLevel12">
+        <EditorCategories value=""/>
+        <WhichLocation Value="TargetUnit"/>
+        <InitialEffect value="ChargeKnockbackHeight"/>
+        <FinalEffect value="ChargeNormalKnockbackFinalSetLevel12"/>
+        <PeriodCount value="15"/>
+        <PeriodicEffectArray value="ChargeKnockbackForce"/>
+        <PeriodicPeriodArray value="0.0625"/>
+    </CEffectCreatePersistent>
+    <CEffectApplyBehavior id="ChargeNormalKnockbackStunLevel1">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="ChargeHeroicKnockbackStunLevel1">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="ChargeNormalKnockbackStunLevel2">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectRemoveBehavior id="ChargeRemoveKnockbackHeight">
+        <EditorCategories value=""/>
+        <BehaviorLink value="ChargeKnockbackHeight"/>
+    </CEffectRemoveBehavior>
+    <CEffectSet id="ChargeSelfSetLevel2">
+        <EditorCategories value=""/>
+        <EffectArray value="ChargeMovement"/>
+        <EffectArray value="ChargeMovementOrder"/>
+        <EffectArray value="ChargeLevel2"/>
+        <TargetLocationType value="UnitOrPoint"/>
+    </CEffectSet>
+    <CEffectRemoveBehavior id="ChargeRemoveMovement">
+        <EditorCategories value=""/>
+        <BehaviorLink value="ChargeMovement"/>
+    </CEffectRemoveBehavior>
+    <CEffectEnumArea id="ChargeSearchLevel2">
+        <EditorCategories value=""/>
+        <ImpactLocation Value="CasterUnit"/>
+        <SearchFilters value="-;Player,Ally,Neutral"/>
+        <AreaArray Radius="2" Effect="ChargeImpactSetLevel2"/>
+        <SearchFlags index="ExtendByUnitRadius" value="1"/>
+    </CEffectEnumArea>
+    <CEffectApplyBehavior id="CohesionArmorLevel2">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectSet id="ChargeSelfSetLevel1">
+        <EditorCategories value=""/>
+        <EffectArray value="ChargeMovement"/>
+        <EffectArray value="ChargeMovementOrder"/>
+        <EffectArray value="ChargeLevel1"/>
+        <TargetLocationType value="UnitOrPoint"/>
+    </CEffectSet>
+    <CEffectSet id="ChargeImpactSetLevel1">
+        <ValidatorArray value="ChargeDamageLevel1"/>
+        <EditorCategories value=""/>
+        <EffectArray value="ChargeDamageLevel1"/>
+        <EffectArray value="ChargeKnockbackSwitchLevel1"/>
+    </CEffectSet>
+    <CEffectEnumArea id="CohesionAuraSearchLevel2">
+        <EditorCategories value=""/>
+        <SearchFilters value="-;Enemy"/>
+        <AreaArray Radius="8" Effect="CohesionArmorLevel2"/>
+    </CEffectEnumArea>
+    <CEffectSet id="ChargeKnockbackImpactSetLevel1">
+        <EditorCategories value=""/>
+    </CEffectSet>
+    <CEffectEnumArea id="ChargeSearchLevel1">
+        <EditorCategories value=""/>
+        <ImpactLocation Value="CasterUnit"/>
+        <SearchFilters value="-;Player,Ally,Neutral"/>
+        <AreaArray Radius="2" Effect="ChargeImpactSetLevel1"/>
+        <SearchFlags index="ExtendByUnitRadius" value="1"/>
+    </CEffectEnumArea>
+    <CEffectApplyBehavior id="ChargeMovement">
+        <EditorCategories value=""/>
+        <WhichUnit Value="Caster"/>
+    </CEffectApplyBehavior>
+    <CEffectIssueOrder id="ChargeMovementOrder">
+        <EditorCategories value=""/>
+        <WhichUnit Value="Caster"/>
+        <Abil value="move"/>
+        <Player Value="Caster"/>
+        <Target Value="TargetPoint"/>
+    </CEffectIssueOrder>
+    <CEffectApplyBehavior id="CohesionArmorLevel1">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectEnumArea id="CohesionAuraSearchLevel1">
+        <EditorCategories value=""/>
+        <SearchFilters value="-;Enemy"/>
+        <AreaArray Radius="6" Effect="CohesionArmorLevel1"/>
+    </CEffectEnumArea>
+    <CEffectApplyBehavior id="ConcentratedFireLevel1">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="ConcentratedFireLevel2">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="ConcentratedFireLevel3">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="LockdownNOTD">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="ChargeKnockbackHeight">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="ImmovableObjectArmor">
+        <EditorCategories value=""/>
+        <WhichUnit Value="Caster"/>
+    </CEffectApplyBehavior>
+    <CEffectCreatePersistent id="ChargeMassiveKnockbackPersistentLevel1">
+        <EditorCategories value=""/>
+        <WhichLocation Value="TargetUnit"/>
+        <InitialEffect value="ChargeKnockbackHeight"/>
+        <PeriodCount value="20"/>
+        <PeriodicEffectArray value="ChargeKnockbackForce"/>
+        <PeriodicPeriodArray value="0.0625"/>
+        <ExpireEffect value="ChargeMassiveKnockbackFinalSetLevel1"/>
+    </CEffectCreatePersistent>
+    <CEffectRemoveBehavior id="LockdownDisable">
+        <EditorCategories value=""/>
+        <BehaviorLink value="LockdownNOTD"/>
+    </CEffectRemoveBehavior>
+    <CEffectApplyBehavior id="AdvancedTargetingSlowLevel1">
+        <EditorCategories value="Race:Terran"/>
+    </CEffectApplyBehavior>
+    <CEffectCreatePersistent id="TauntNOTDLevel1">
+        <EditorCategories value=""/>
+        <WhichLocation Value="CasterUnit"/>
+        <PeriodCount value="10"/>
+        <PeriodicEffectArray value="TauntLevel1Search"/>
+        <PeriodicPeriodArray value="0.5"/>
+    </CEffectCreatePersistent>
+    <CEffectCreatePersistent id="TauntNOTDLevel2">
+        <EditorCategories value=""/>
+        <WhichLocation Value="CasterUnit"/>
+        <PeriodCount value="12"/>
+        <PeriodicEffectArray value="TauntLevel2Search"/>
+        <PeriodicPeriodArray value="0.5"/>
+    </CEffectCreatePersistent>
+    <CEffectCreatePersistent id="TauntNOTDLevel3">
+        <EditorCategories value=""/>
+        <WhichLocation Value="CasterUnit"/>
+        <PeriodCount value="14"/>
+        <PeriodicEffectArray value="TauntLevel3Search"/>
+        <PeriodicPeriodArray value="0.5"/>
+    </CEffectCreatePersistent>
+    <CEffectIssueOrder id="TauntAttackOrder">
+        <EditorCategories value=""/>
+        <Abil value="attack"/>
+        <Target Value="CasterUnit"/>
+    </CEffectIssueOrder>
+    <CEffectEnumArea id="TauntLevel1Search">
+        <EditorCategories value=""/>
+        <ImpactLocation Value="CasterUnit"/>
+        <SearchFilters value="-;Player,Ally,Neutral"/>
+        <AreaArray Radius="6" Effect="TauntSetLevel1"/>
+    </CEffectEnumArea>
+    <CEffectEnumArea id="TauntLevel2Search">
+        <EditorCategories value=""/>
+        <ImpactLocation Value="CasterUnit"/>
+        <SearchFilters value="-;Player,Ally,Neutral"/>
+        <AreaArray Radius="12" Effect="TauntSetLevel2"/>
+    </CEffectEnumArea>
+    <CEffectEnumArea id="TauntLevel3Search">
+        <EditorCategories value=""/>
+        <ImpactLocation Value="CasterUnit"/>
+        <SearchFilters value="-;Player,Ally,Neutral"/>
+        <AreaArray Radius="18" Effect="TauntSetLevel3"/>
+    </CEffectEnumArea>
+    <CEffectSet id="TauntSetLevel2">
+        <EditorCategories value=""/>
+        <EffectArray value="TauntedLevel2"/>
+        <EffectArray value="TauntAttackOrder"/>
+    </CEffectSet>
+    <CEffectSet id="TauntSetLevel1">
+        <EditorCategories value=""/>
+        <EffectArray value="TauntedLevel1"/>
+        <EffectArray value="TauntAttackOrder"/>
+    </CEffectSet>
+    <CEffectSet id="TauntSetLevel3">
+        <EditorCategories value=""/>
+        <EffectArray value="TauntedLevel3"/>
+        <EffectArray value="TauntAttackOrder"/>
+    </CEffectSet>
+    <CEffectApplyBehavior id="TauntedLevel2">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="TauntedLevel1">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="TauntedLevel3">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CBehaviorBuff id="AdvancedTargetingLevel2">
+        <InfoIcon value="btn-achievement-scannersweep.dds"/>
+        <EditorCategories value="AbilityorEffectType:Units,Race:Terran"/>
+        <Duration value="10"/>
+        <Modification CriticalAttackChanceUnscaledBonus="0.2">
+            <DamageDealtFraction index="Ranged" value="0.4"/>
+            <DamageDealtFraction index="Splash" value="0.4"/>
+        </Modification>
+        <DamageResponse Chance="1" Handled="AdvancedTargetingSlowLevel1" Location="Attacker">
+            <RequireEffectArray value="AntiMaterialRifleDamageCritical"/>
+            <RequireEffectArray value="AssaultRifleBurstFireDamageCritical"/>
+            <RequireEffectArray value="AssaultRifleDamageCritical"/>
+            <RequireEffectArray value="FlamethrowerDamageCritical"/>
+            <RequireEffectArray value="HeavyMachineGunDamageCritical"/>
+            <RequireEffectArray value="LaserRifleDamageCritical"/>
+            <RequireEffectArray value="MarksmanRifleDamageCritical"/>
+            <RequireEffectArray value="MediumMachineGunDamageCritical"/>
+            <RequireEffectArray value="PistolDamageCritical"/>
+            <RequireEffectArray value="AxeDamageCritical"/>
+            <RequireEffectArray value="ChainsawDamageCritical"/>
+            <RequireEffectArray value="CrowbarDamageCritical"/>
+            <RequireEffectArray value="HammerDamageCritical"/>
+            <RequireEffectArray value="PlasmaCutterDamageCritical"/>
+        </DamageResponse>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AdvancedTargetingSlowLevel2">
+        <Alignment value="Negative"/>
+        <InfoIcon value="btn-achievement-scannersweep.dds"/>
+        <EditorCategories value="AbilityorEffectType:Units,Race:Terran"/>
+        <Duration value="1"/>
+        <Modification MoveSpeedMultiplier="0.6" AttackSpeedMultiplier="0.6"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AmmoFeedLevel1">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Requirements value="AmmoFeedLevel1"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AmmoFeedLevel2">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Requirements value="AmmoFeedLevel2"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="ChargeHeroicKnockbackStunLevel1">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="1"/>
+        <Modification>
+            <ModifyFlags index="DisableAbils" value="1"/>
+            <StateFlags index="Stun" value="1"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="ChargeHeroicKnockbackStunLevel2">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="2"/>
+        <Modification>
+            <ModifyFlags index="DisableAbils" value="1"/>
+            <StateFlags index="Stun" value="1"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="ChargeKnockbackHeight">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Modification Height="0.2">
+            <StateFlags index="Stun" value="1"/>
+            <HeightTime index="Start" value="0.01"/>
+            <HeightTime index="Stop" value="0.2"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="ChargeNormalKnockbackStunLevel1">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="2"/>
+        <Modification>
+            <ModifyFlags index="DisableAbils" value="1"/>
+            <StateFlags index="Stun" value="1"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="ChargeMovement">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="0.5"/>
+        <Period value="0.025"/>
+        <Modification MoveSpeedMultiplier="15"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="ChargeNormalKnockbackStunLevel2">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="4"/>
+        <Modification>
+            <ModifyFlags index="DisableAbils" value="1"/>
+            <StateFlags index="Stun" value="1"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="ElbowRoomLift">
+        <Alignment value="Negative"/>
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Modification Height="0.25">
+            <HeightTime index="Start" value="0.25"/>
+            <HeightTime index="Stop" value="0.25"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="GeminiProtocolAttackSpeedSlowInternal">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Modification AttackSpeedMultiplier="0.75"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="GeminiUnitInvulnerabilty">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <DamageResponse Chance="1" ModifyFraction="0" ModifyMinimumDamage="1"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="CohesionArmorLevel1">
+        <Alignment value="Positive"/>
+        <InfoIcon value="btn-ability-terran-selfixarmor-level3.dds"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="0.51"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="CohesionArmorLevel2">
+        <Alignment value="Positive"/>
+        <InfoIcon value="btn-ability-terran-selfixarmor-level3.dds"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="0.51"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="CohesionLevel2" parent="LeveledPassiveTemplate">
+        <InfoFlags index="Hidden" value="1"/>
+        <Requirements value="CohesionLevel2"/>
+        <Period value="0.5"/>
+        <PeriodicEffect value="CohesionAuraSearchLevel2"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="CohesionLevel1" parent="LeveledPassiveTemplate">
+        <InfoFlags index="Hidden" value="1"/>
+        <Requirements value="CohesionLevel1"/>
+        <Period value="0.5"/>
+        <PeriodicEffect value="CohesionAuraSearchLevel1"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="ConcentratedFireLevel1">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="5"/>
+        <Modification AttackSpeedMultiplier="1.5"/>
+        <InfoIcon value="btn-upgrade-terran-gaussrifle.dds"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AdvancedTargetingLevel1">
+        <InfoIcon value="btn-achievement-scannersweep.dds"/>
+        <EditorCategories value="AbilityorEffectType:Units,Race:Terran"/>
+        <Duration value="10"/>
+        <Modification CriticalAttackChanceUnscaledBonus="0.1">
+            <DamageDealtFraction index="Ranged" value="0.2"/>
+            <DamageDealtFraction index="Splash" value="0.2"/>
+        </Modification>
+        <DamageResponse Chance="1" Handled="AdvancedTargetingSlowLevel2" Location="Attacker">
+            <RequireEffectArray value="AntiMaterialRifleDamageCritical"/>
+            <RequireEffectArray value="AssaultRifleBurstFireDamageCritical"/>
+            <RequireEffectArray value="AssaultRifleDamageCritical"/>
+            <RequireEffectArray value="FlamethrowerDamageCritical"/>
+            <RequireEffectArray value="HeavyMachineGunDamageCritical"/>
+            <RequireEffectArray value="LaserRifleDamageCritical"/>
+            <RequireEffectArray value="MarksmanRifleDamageCritical"/>
+            <RequireEffectArray value="MediumMachineGunDamageCritical"/>
+            <RequireEffectArray value="PistolDamageCritical"/>
+            <RequireEffectArray value="AxeDamageCritical"/>
+            <RequireEffectArray value="ChainsawDamageCritical"/>
+            <RequireEffectArray value="CrowbarDamageCritical"/>
+            <RequireEffectArray value="HammerDamageCritical"/>
+            <RequireEffectArray value="PlasmaCutterDamageCritical"/>
+        </DamageResponse>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="ConcentratedFireLevel2">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="6"/>
+        <Modification AttackSpeedMultiplier="2"/>
+        <InfoIcon value="btn-upgrade-terran-gaussrifle.dds"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="ConcentratedFireLevel3">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="7"/>
+        <Modification AttackSpeedMultiplier="2.5"/>
+        <InfoIcon value="btn-upgrade-terran-gaussrifle.dds"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AssaultCriticalStrikeLevel1" parent="LeveledPassiveTemplate">
+        <InfoFlags index="Hidden" value="1"/>
+        <Modification CriticalAttackChanceUnscaledBonus="0.15"/>
+        <Requirements value="AssaultCriticalStrikeLevel1"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AssaultCriticalStrikeLevel2" parent="LeveledPassiveTemplate">
+        <InfoFlags index="Hidden" value="1"/>
+        <Requirements value="AssaultCriticalStrikeLevel2"/>
+        <Modification CriticalAttackChanceUnscaledBonus="0.3"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AssaultCriticalStrikeLevel3" parent="LeveledPassiveTemplate">
+        <InfoFlags index="Hidden" value="1"/>
+        <Requirements value="AssaultCriticalStrikeLevel3"/>
+        <Modification CriticalAttackChanceUnscaledBonus="0.45"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="DefensivePlatingLevel1" parent="LeveledPassiveTemplate">
+        <InfoIcon value="Assets\Textures\btn-upgrade-terran-infantryarmorlevel2.dds"/>
+        <Requirements value="DefensivePlatingLevel1"/>
+        <Modification LifeArmorBonus="2"/>
+        <DamageResponse Chance="1" ModifyFraction="0.85">
+            <Kind index="Spell" value="0"/>
+            <Kind index="Melee" value="0"/>
+            <Kind index="Splash" value="0"/>
+        </DamageResponse>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="DefensivePlatingLevel2" parent="LeveledPassiveTemplate">
+        <InfoIcon value="Assets\Textures\btn-upgrade-terran-infantryarmorlevel2.dds"/>
+        <Requirements value="DefensivePlatingLevel2"/>
+        <Modification LifeArmorBonus="3"/>
+        <DamageResponse Chance="1" ModifyFraction="0.7">
+            <Kind index="Spell" value="0"/>
+            <Kind index="Melee" value="0"/>
+            <Kind index="Splash" value="0"/>
+        </DamageResponse>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="DefensivePlatingLevel3" parent="LeveledPassiveTemplate">
+        <InfoIcon value="Assets\Textures\btn-upgrade-terran-infantryarmorlevel2.dds"/>
+        <Requirements value="DefensivePlatingLevel3"/>
+        <Modification LifeArmorBonus="4"/>
+        <DamageResponse Chance="1" ModifyFraction="0.55">
+            <Kind index="Spell" value="0"/>
+            <Kind index="Melee" value="0"/>
+            <Kind index="Splash" value="0"/>
+        </DamageResponse>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="GeminiProtocolAttackSpeedSlow">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Requirements value="GeminiProtocolAttackSlow"/>
+        <Modification AttackSpeedMultiplier="0.75"/>
+        <InfoFlags index="Hidden" value="1"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="LockdownNOTD">
+        <InfoIcon value="btn-ability-terran-build.dds"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <RemoveValidatorArray value="CasterHasEnergy"/>
+        <Modification WeaponRange="2" CriticalAttackChanceUnscaledBonus="0.25">
+            <ModifyFlags index="SuppressMoving" value="1"/>
+            <StateFlags index="SuppressFidgeting" value="1"/>
+            <DamageDealtFraction index="Ranged" value="0.2"/>
+            <DamageDealtFraction index="Splash" value="0.2"/>
+            <VitalRegenArray index="Energy" value="-1.5"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="ImmovableObject">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <DamageResponse Chance="0.5" Handled="ImmovableObjectArmor"/>
+        <Requirements value="ImmovableObject"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="ImmovableObjectArmor">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <MaxStackCount value="8"/>
+        <Duration value="10"/>
+        <Modification LifeArmorBonus="1"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AdvancedTargetingSlowLevel1">
+        <Alignment value="Negative"/>
+        <InfoIcon value="btn-achievement-scannersweep.dds"/>
+        <EditorCategories value="AbilityorEffectType:Units,Race:Terran"/>
+        <Duration value="1"/>
+        <Modification MoveSpeedMultiplier="0.8" AttackSpeedMultiplier="0.8"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="TauntedLevel2">
+        <Alignment value="Negative"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="6"/>
+        <Modification>
+            <DamageDealtFraction index="Spell" value="-0.2"/>
+            <DamageDealtFraction index="Melee" value="-0.2"/>
+            <DamageDealtFraction index="Ranged" value="-0.2"/>
+            <DamageDealtFraction index="Splash" value="-0.2"/>
+        </Modification>
+        <InfoIcon value="btn-custom-lightningshield.dds"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="TauntedLevel3">
+        <Alignment value="Negative"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="7"/>
+        <Modification>
+            <DamageDealtFraction index="Spell" value="-0.3"/>
+            <DamageDealtFraction index="Melee" value="-0.3"/>
+            <DamageDealtFraction index="Ranged" value="-0.3"/>
+            <DamageDealtFraction index="Splash" value="-0.3"/>
+        </Modification>
+        <InfoIcon value="btn-custom-lightningshield.dds"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="TauntedLevel1">
+        <Alignment value="Negative"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="5"/>
+        <Modification>
+            <DamageDealtFraction index="Spell" value="-0.1"/>
+            <DamageDealtFraction index="Melee" value="-0.1"/>
+            <DamageDealtFraction index="Ranged" value="-0.1"/>
+            <DamageDealtFraction index="Splash" value="-0.1"/>
+        </Modification>
+        <InfoIcon value="btn-custom-lightningshield.dds"/>
+    </CBehaviorBuff>
+</Catalog>

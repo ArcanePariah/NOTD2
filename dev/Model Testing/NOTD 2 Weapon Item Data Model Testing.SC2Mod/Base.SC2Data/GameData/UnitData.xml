@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<Catalog>
+    <CUnit default="1" id="NOTDItem" parent="ITEM">
+        <Collide index="CreepTumor" value="1"/>
+        <EditorCategories value=""/>
+        <FlagArray index="Untooltipable" value="0"/>
+        <Radius value="0.25"/>
+    </CUnit>
+    <CUnit id="40mmGrenade" parent="NOTDItem"/>
+    <CUnit id="AmmunitionCase" parent="NOTDItem"/>
+    <CUnit id="AutomaticShotgunProjectileWeapon" parent="MISSILE">
+        <BehaviorArray Link="AutomaticShotgunDamage"/>
+    </CUnit>
+    <CUnit id="CommunicationsArrayPackedUp" parent="NOTDItem">
+        <Race value="Human"/>
+    </CUnit>
+    <CUnit id="ImprovedAccuracyModule" parent="NOTDItem">
+        <Race value="Human"/>
+    </CUnit>
+    <CUnit id="AntiMaterialRifle" parent="NOTDItem"/>
+    <CUnit id="AntiVenom" parent="NOTDItem"/>
+    <CUnit id="ArmorPiercing" parent="NOTDItem"/>
+    <CUnit id="ArmoredProtectiveInsert" parent="NOTDItem"/>
+    <CUnit id="Axe" parent="NOTDItem"/>
+    <CUnit id="Hammer" parent="NOTDItem"/>
+    <CUnit id="Baton" parent="NOTDItem"/>
+    <CUnit id="AutomaticShotgun" parent="NOTDItem"/>
+    <CUnit id="AssaultRifle" parent="NOTDItem"/>
+    <CUnit id="Bandage" parent="NOTDItem"/>
+    <CUnit id="ChainExplosive" parent="NOTDItem"/>
+    <CUnit id="Chainsaw" parent="NOTDItem"/>
+    <CUnit id="ClaymoreMine" parent="NOTDItem"/>
+    <CUnit id="CombatMobilityAugment" parent="NOTDItem"/>
+    <CUnit id="Crowbar" parent="NOTDItem"/>
+    <CUnit id="DisposableRocketLauncher" parent="NOTDItem"/>
+    <CUnit id="EnhancedProtectiveInsert" parent="NOTDItem"/>
+    <CUnit id="Expanding" parent="NOTDItem"/>
+    <CUnit id="FieldLights" parent="NOTDItem"/>
+    <CUnit id="Flamethrower" parent="NOTDItem"/>
+    <CUnit id="FlareGun" parent="NOTDItem"/>
+    <CUnit id="HighCapacityMagazine" parent="NOTDItem"/>
+    <CUnit id="GrenadeLauncher" parent="NOTDItem"/>
+    <CUnit id="HeavyMachineGun" parent="NOTDItem"/>
+    <CUnit id="HeavyProtectiveInsert" parent="NOTDItem"/>
+    <CUnit id="HighExplosive" parent="NOTDItem"/>
+    <CUnit id="Flechette" parent="NOTDItem"/>
+    <CUnit id="HecateModule" parent="NOTDItem"/>
+    <CUnit id="LaserRifle" parent="NOTDItem"/>
+    <CUnit id="Magazine" parent="NOTDItem"/>
+    <CUnit id="MarksmanRifle" parent="NOTDItem"/>
+    <CUnit id="MediumMachineGun" parent="NOTDItem"/>
+    <CUnit id="Medkit" parent="NOTDItem"/>
+    <CUnit id="MendingPaste" parent="NOTDItem"/>
+    <CUnit id="NightVisionModule" parent="NOTDItem"/>
+    <CUnit id="NanoHealthAugment" parent="NOTDItem"/>
+    <CUnit id="PlasmaCannonProjectile" parent="MISSILE">
+        <Race value="Prot"/>
+        <Mover value="PhotonCannonWeapon"/>
+        <EditorCategories value="ObjectType:Projectile,ObjectFamily:Melee"/>
+    </CUnit>
+    <CUnit id="Pistol" parent="NOTDItem"/>
+    <CUnit id="PlasmaCannon" parent="NOTDItem"/>
+    <CUnit id="PlasmaCannonBall" parent="MISSILE">
+        <FlagArray index="Invulnerable" value="1"/>
+    </CUnit>
+    <CUnit id="PlasmaCoil" parent="NOTDItem"/>
+    <CUnit id="PlasmaCore" parent="NOTDItem"/>
+    <CUnit id="PlasmaCutter" parent="NOTDItem"/>
+    <CUnit id="PowerGeneratorAugment" parent="NOTDItem"/>
+    <CUnit id="PumpShotgun" parent="NOTDItem"/>
+    <CUnit id="ReactiveProtectiveInsert" parent="NOTDItem"/>
+    <CUnit id="RiotShield" parent="NOTDItem"/>
+    <CUnit id="RoadFlare" parent="NOTDItem"/>
+    <CUnit id="RoadFlareTossed" parent="MISSILE">
+        <Race value="Zombie"/>
+        <EditorCategories value=""/>
+    </CUnit>
+    <CUnit id="RocketLauncher" parent="NOTDItem"/>
+    <CUnit id="Railgun" parent="NOTDItem"/>
+    <CUnit id="SatchelCharge" parent="NOTDItem"/>
+    <CUnit id="SubmachineGun" parent="NOTDItem"/>
+    <CUnit id="CommunicationsArray">
+        <Race value="Human"/>
+        <FlagArray index="Movable" value="0"/>
+        <FlagArray index="Invulnerable" value="1"/>
+        <FlagArray index="PlayerRevivable" value="0"/>
+        <EditorFlags index="BlockStructures" value="0"/>
+        <VisionHeight value="2"/>
+        <BehaviorArray Link="CommunicationArrayRadar"/>
+    </CUnit>
+    <CUnit id="TX1" parent="NOTDItem"/>
+    <CUnit id="TestTarget">
+        <EditorCategories value="ObjectType:Test Suite,ObjectFamily:NOTD2"/>
+        <FlagArray index="Turnable" value="0"/>
+        <FlagArray index="Movable" value="0"/>
+        <FlagArray index="Uncommandable" value="1"/>
+        <FlagArray index="Unselectable" value="1"/>
+        <FlagArray index="Untargetable" value="1"/>
+        <FlagArray index="Uncursorable" value="1"/>
+        <FlagArray index="Uncloakable" value="1"/>
+        <FlagArray index="Undetectable" value="1"/>
+        <FlagArray index="Unradarable" value="1"/>
+        <FlagArray index="KillCredit" value="0"/>
+        <FlagArray index="NoDeathEvent" value="1"/>
+        <FlagArray index="ShowResources" value="0"/>
+        <FlagArray index="ClearRallyOnTargetLost" value="0"/>
+        <PlaneArray index="Ground" value="1"/>
+        <PlaneArray index="Air" value="1"/>
+        <PushPriority value="0"/>
+        <BehaviorArray Link="DamageTakenNone"/>
+        <BehaviorArray Link="Benign"/>
+        <Radius value="0.125"/>
+        <SeparationRadius value="0"/>
+        <MinimapRadius value="0"/>
+    </CUnit>
+    <CUnit id="UGCModularRocket" parent="NOTDItem"/>
+    <CUnit id="TungstenRod" parent="NOTDItem"/>
+    <CUnit id="ShieldAugmentationInsert" parent="NOTDItem"/>
+    <CUnit id="RoadFlareActive">
+        <FlagArray index="Turnable" value="0"/>
+        <FlagArray index="Movable" value="0"/>
+        <FlagArray index="Unselectable" value="1"/>
+        <FlagArray index="Untargetable" value="1"/>
+        <FlagArray index="Uncloakable" value="1"/>
+        <FlagArray index="Unradarable" value="1"/>
+        <FlagArray index="UseLineOfSight" value="1"/>
+        <FlagArray index="Invulnerable" value="1"/>
+        <Sight value="8"/>
+        <BehaviorArray Link="RoadFlareVision"/>
+    </CUnit>
+</Catalog>

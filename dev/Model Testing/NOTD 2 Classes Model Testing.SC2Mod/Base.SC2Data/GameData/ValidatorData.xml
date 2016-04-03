@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<Catalog>
+    <CValidatorUnitType id="CasterisNotMedic">
+        <WhichUnit Value="Caster"/>
+        <Value value="Medic2"/>
+        <Find value="0"/>
+    </CValidatorUnitType>
+    <CValidatorCombine id="HordeModeNoiseThresholds">
+        <CombineArray value="HordeModeRecruitNoiseThreshold"/>
+        <CombineArray value="HordeModeNormalNoiseThreshold"/>
+        <CombineArray value="HordeModeNightmareNoiseThreshold"/>
+    </CValidatorCombine>
+    <CValidatorUnitCompareBehaviorCount id="HordeModeNormalNoise">
+        <Compare value="GE"/>
+        <Value value="150"/>
+        <Behavior value="NoiseIndex"/>
+    </CValidatorUnitCompareBehaviorCount>
+    <CValidatorUnitCompareBehaviorCount id="HordeModeNightmareNoise">
+        <Compare value="GE"/>
+        <Value value="100"/>
+        <Behavior value="NoiseIndex"/>
+    </CValidatorUnitCompareBehaviorCount>
+    <CValidatorCombine id="HordeModeRecruitNoiseThreshold">
+        <Type value="And"/>
+        <CombineArray value="GameisRecruit"/>
+        <CombineArray value="HordeModeRecruitNoise"/>
+    </CValidatorCombine>
+    <CValidatorCombine id="HordeModeNormalNoiseThreshold">
+        <Type value="And"/>
+        <CombineArray value="GameisNormal"/>
+        <CombineArray value="HordeModeNormalNoise"/>
+    </CValidatorCombine>
+    <CValidatorCombine id="HordeModeNightmareNoiseThreshold">
+        <Type value="And"/>
+        <CombineArray value="GameisNightmare"/>
+        <CombineArray value="HordeModeNightmareNoise"/>
+    </CValidatorCombine>
+    <CValidatorUnitCompareSpeed id="Moving">
+        <WhichUnit Value="Caster"/>
+        <Compare value="NE"/>
+    </CValidatorUnitCompareSpeed>
+    <CValidatorUnitCompareBehaviorCount id="PredatorLevel6">
+        <WhichUnit Value="Caster"/>
+        <Compare value="GE"/>
+        <Value value="6"/>
+        <Behavior value="PredatorPetVeterancy"/>
+    </CValidatorUnitCompareBehaviorCount>
+    <CValidatorUnitCompareVital id="IsLE80Life">
+        <Compare value="LE"/>
+        <Type value="Fraction"/>
+        <Value value="0.8"/>
+    </CValidatorUnitCompareVital>
+    <CValidatorLocationCompareCliffLevel id="JumpDamageEndingCliff">
+        <WhichLocation Effect="LightJump"/>
+        <Value value="1"/>
+    </CValidatorLocationCompareCliffLevel>
+    <CValidatorLocationCompareCliffLevel id="JumpDamageEndingCliffHeavy">
+        <WhichLocation Effect="HeavyJump"/>
+        <Value value="1"/>
+    </CValidatorLocationCompareCliffLevel>
+    <CValidatorLocationCompareCliffLevel id="JumpDamageEndingCliffMedium">
+        <WhichLocation Effect="MediumJump"/>
+        <Value value="1"/>
+    </CValidatorLocationCompareCliffLevel>
+    <CValidatorLocationCompareCliffLevel id="JumpDamageStartingCliff">
+        <WhichLocation Value="CasterPoint"/>
+        <Value value="3"/>
+    </CValidatorLocationCompareCliffLevel>
+    <CValidatorLocationCompareCliffLevel id="JumpLocation2">
+        <ResultFailed value="Error,Error/Error Test"/>
+        <OtherLocation Value="CasterPoint"/>
+        <Compare value="LE"/>
+    </CValidatorLocationCompareCliffLevel>
+    <CValidatorLocationPathable id="JumpLocationPathing">
+        <Find value="0"/>
+        <Types index="Ground" value="0"/>
+    </CValidatorLocationPathable>
+    <CValidatorPlayerCompareType id="KillerisEnemy">
+        <WhichPlayer Value="Target"/>
+        <Value value="Computer"/>
+    </CValidatorPlayerCompareType>
+    <CValidatorCombine id="MarineDeathSwitch">
+        <CombineArray value="SourceLastDamagedbyAlly"/>
+        <CombineArray value="SourceLastDamagedbyEnemy"/>
+    </CValidatorCombine>
+    <CValidatorUnitCompareBehaviorCount id="MarineHasNoLives">
+        <Compare value="NE"/>
+        <Value value="5"/>
+        <Behavior value="LifeRemoval"/>
+    </CValidatorUnitCompareBehaviorCount>
+    <CValidatorUnitCompareVital id="MedicalAssistanceHealingabove80">
+        <Compare value="GE"/>
+        <Value value="0.8"/>
+    </CValidatorUnitCompareVital>
+    <CValidatorCombine id="MedicalAssistanceItems">
+        <CombineArray value="UnithasBandage"/>
+        <CombineArray value="MarinehasMedkit"/>
+        <CombineArray value="MarinehasAntiVenom"/>
+        <CombineArray value="UnithasBandage"/>
+        <CombineArray value="MarinehasMedkit"/>
+        <CombineArray value="MarinehasAntiVenom"/>
+    </CValidatorCombine>
+    <CValidatorCombine id="MeleeWeaponEquipped">
+        <CombineArray value="EquippedWeaponisChainsaw"/>
+        <CombineArray value="EquippedWeaponisAxe"/>
+        <CombineArray value="EquippedWeaponisBaton"/>
+        <CombineArray value="EquippedWeaponisCrowbar"/>
+        <CombineArray value="EquippedWeaponisHammer"/>
+        <CombineArray value="EquippedWeaponisPlasmaCutter"/>
+        <CombineArray value="EquippedWeaponisFlamethrower"/>
+        <CombineArray value="EquippedWeaponisPumpShotgun"/>
+        <CombineArray value="EquippedWeaponisAutomaticShotgun"/>
+    </CValidatorCombine>
+    <CValidatorUnitCompareBehaviorCount id="HordeModeRecruitNoise">
+        <Compare value="GE"/>
+        <Value value="200"/>
+        <Behavior value="NoiseIndex"/>
+    </CValidatorUnitCompareBehaviorCount>
+    <CValidatorUnitFilters id="NormalUnitNonMassiveorHeroic"/>
+    <CValidatorUnitLastDamagePlayer id="SourceLastDamagedbyAlly">
+        <WhichUnit Value="Source"/>
+        <Relationship value="Ally"/>
+    </CValidatorUnitLastDamagePlayer>
+    <CValidatorUnitCompareField id="TargetCanMove">
+        <Compare value="GT"/>
+        <Field value="Speed"/>
+        <Value value="0"/>
+    </CValidatorUnitCompareField>
+    <CValidatorCombine id="TargetisMassiveorArmored">
+        <CombineArray value="TargetisnonMassiveorArmored"/>
+        <Negate value="1"/>
+    </CValidatorCombine>
+    <CValidatorUnitFilters id="TargetisanItem">
+        <Filters value="Item;-"/>
+    </CValidatorUnitFilters>
+    <CValidatorUnitFilters id="TargetisnonMassiveorArmored">
+        <Filters value="-;Armored,Massive"/>
+    </CValidatorUnitFilters>
+    <CValidatorUnitFilters id="TargetisnotanItem">
+        <Filters value="-;Item"/>
+    </CValidatorUnitFilters>
+    <CValidatorUnitFilters id="UnitisLight">
+        <Filters value="Light;-"/>
+    </CValidatorUnitFilters>
+    <CValidatorUnitType id="CasterisAssault">
+        <WhichUnit Value="Caster"/>
+        <Value value="Assault"/>
+    </CValidatorUnitType>
+    <CValidatorCombine id="CasterisNotAssault">
+        <CombineArray value="CasterisAssault"/>
+    </CValidatorCombine>
+    <CValidatorUnitType id="CasterisMedic">
+        <WhichUnit Value="Caster"/>
+        <Value value="Medic2"/>
+    </CValidatorUnitType>
+    <CValidatorUnitType id="CasterisaMarine">
+        <WhichUnit Value="Caster"/>
+        <Value value="Marine2"/>
+        <Type value="SelectAlias"/>
+    </CValidatorUnitType>
+    <CValidatorUnitFilters id="TargetisMassive"/>
+    <!--Add additional behaviors as needed. This is a rather brute force way of doing it, however it is still performance positive compared to using a trigger. However a trigger may not be a bad idea because of how little it will be firing.-->
+    <CValidatorCombine id="TargetisSlowed"/>
+    <CValidatorUnitLastDamagePlayer id="SourceLastDamagedbyEnemy">
+        <WhichUnit Value="Source"/>
+        <Relationship value="Enemy"/>
+    </CValidatorUnitLastDamagePlayer>
+    <CValidatorUnitFilters id="UnitisnotLight">
+        <Filters value="-;Light"/>
+    </CValidatorUnitFilters>
+</Catalog>

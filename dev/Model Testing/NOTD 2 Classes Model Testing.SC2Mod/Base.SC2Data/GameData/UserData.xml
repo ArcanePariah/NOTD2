@@ -1,0 +1,1394 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<Catalog>
+    <CUser id="Classes">
+        <Fields Id="Class Name" Type="Text" EditorColumn="1"/>
+        <Fields Id="Class Color" Type="Color"/>
+        <Fields Id="Class Unit" Type="Unit" EditorColumn="3"/>
+        <Fields Id="Class Image" Type="Image"/>
+        <Fields Id="Default Weapon" Type="Unit"/>
+        <Fields>
+            <Id value="Talent Tree"/>
+            <Type value="User"/>
+            <UserType value="TalentTrees"/>
+            <EditorColumn value="4"/>
+        </Fields>
+        <Fields Id="Class Role" Type="Text"/>
+        <Fields Id="Slot" Type="Int"/>
+        <Fields Id="Weight Class" Type="Fixed"/>
+        <Fields Id="Hit Tolerance" Type="Fixed"/>
+        <Fields Id="Locked Text" Type="Text"/>
+        <Fields Id="Enhancement Slots" Type="Int"/>
+        <Fields Id="Default Portrait" Type="Image"/>
+        <Fields Id="Learn Ability" Type="Text"/>
+        <Fields Id="Class Lore" Type="Text"/>
+        <Fields Id="Class Icon" Type="Image"/>
+        <Instances Id="[Default]"/>
+        <Instances Id="Rifleman">
+            <Color Color="255,192,192,192">
+                <Field Id="Class Color"/>
+            </Color>
+            <Fixed Fixed="0.5">
+                <Field Id="Weight Class"/>
+            </Fixed>
+            <Fixed Fixed="1">
+                <Field Id="Hit Tolerance"/>
+            </Fixed>
+            <Image Image="ClassButtons\btn-class-Rifleman.dds">
+                <Field Id="Class Image"/>
+            </Image>
+            <Image Image="UI\ui_teamstatus_riflemanicon.dds">
+                <Field Id="Class Icon"/>
+            </Image>
+            <Int Int="1">
+                <Field Id="Slot"/>
+            </Int>
+            <Int Int="3">
+                <Field Id="Enhancement Slots"/>
+            </Int>
+            <Text Text="UserData/Classes/Rifleman_Class Role">
+                <Field Id="Class Role"/>
+            </Text>
+            <Text Text="UserData/Classes/Rifleman_Class Name">
+                <Field Id="Class Name"/>
+            </Text>
+            <Text Text="UserData/Classes/Rifleman_Learn Ability">
+                <Field Id="Learn Ability"/>
+            </Text>
+            <Text Text="UserData/Classes/Rifleman_Class Lore">
+                <Field Id="Class Lore"/>
+            </Text>
+            <Unit Unit="Rifleman">
+                <Field Id="Class Unit"/>
+            </Unit>
+            <Unit Unit="AssaultRifle">
+                <Field Id="Default Weapon"/>
+            </Unit>
+            <User Type="TalentTrees" Instance="Rifleman">
+                <Field Id="Talent Tree"/>
+            </User>
+        </Instances>
+        <Instances Id="Medic">
+            <Color Color="255,0,255,128">
+                <Field Id="Class Color"/>
+            </Color>
+            <Fixed Fixed="0.5998">
+                <Field Id="Weight Class"/>
+            </Fixed>
+            <Fixed Fixed="1.25">
+                <Field Id="Hit Tolerance"/>
+            </Fixed>
+            <Image Image="ClassButtons\btn-class-MedicNOTD.dds">
+                <Field Id="Class Image"/>
+            </Image>
+            <Image Image="UI\ui_teamstatus_medicicon.dds">
+                <Field Id="Class Icon"/>
+            </Image>
+            <Image>
+                <Field Id="Default Portrait"/>
+            </Image>
+            <Int Int="2">
+                <Field Id="Slot"/>
+            </Int>
+            <Int Int="3">
+                <Field Id="Enhancement Slots"/>
+            </Int>
+            <Text Text="UserData/Classes/Medic_Class Name">
+                <Field Id="Class Name"/>
+            </Text>
+            <Text Text="UserData/Classes/Medic_Class Lore">
+                <Field Id="Class Lore"/>
+            </Text>
+            <Unit Unit="Medic2">
+                <Field Id="Class Unit"/>
+            </Unit>
+            <Unit Unit="AssaultRifle">
+                <Field Id="Default Weapon"/>
+            </Unit>
+            <User Type="TalentTrees" Instance="Medic">
+                <Field Id="Talent Tree"/>
+            </User>
+        </Instances>
+        <Instances Id="Assault">
+            <Color Color="255,0,0,255">
+                <Field Id="Class Color"/>
+            </Color>
+            <Fixed Fixed="0.4">
+                <Field Id="Weight Class"/>
+            </Fixed>
+            <Fixed Fixed="16">
+                <Field Id="Hit Tolerance"/>
+            </Fixed>
+            <Image Image="ClassButtons\btn-class-Assault.dds">
+                <Field Id="Class Image"/>
+            </Image>
+            <Image Image="UI\ui_teamstatus_assaulticon.dds">
+                <Field Id="Class Icon"/>
+            </Image>
+            <Int Int="3">
+                <Field Id="Slot"/>
+            </Int>
+            <Int Int="3">
+                <Field Id="Enhancement Slots"/>
+            </Int>
+            <Text Text="UserData/Classes/Assault_Class Role">
+                <Field Id="Class Role"/>
+            </Text>
+            <Text Text="UserData/Classes/Assault_Class Name">
+                <Field Id="Class Name"/>
+            </Text>
+            <Text Text="UserData/Classes/Assault_Class Lore">
+                <Field Id="Class Lore"/>
+            </Text>
+            <Unit Unit="Assault">
+                <Field Id="Class Unit"/>
+            </Unit>
+            <Unit Unit="MediumMachineGun">
+                <Field Id="Default Weapon"/>
+            </Unit>
+            <User Type="TalentTrees" Instance="Assault">
+                <Field Id="Talent Tree"/>
+            </User>
+        </Instances>
+        <Instances Id="Recon">
+            <Color Color="255,64,0,128">
+                <Field Id="Class Color"/>
+            </Color>
+            <Fixed Fixed="0.7998">
+                <Field Id="Hit Tolerance"/>
+            </Fixed>
+            <Fixed Fixed="0.4">
+                <Field Id="Weight Class"/>
+            </Fixed>
+            <Image Image="ClassButtons\btn-class-Recon.dds">
+                <Field Id="Class Image"/>
+            </Image>
+            <Image Image="UI\ui_teamstatus_reconicon.dds">
+                <Field Id="Class Icon"/>
+            </Image>
+            <Int Int="4">
+                <Field Id="Slot"/>
+            </Int>
+            <Int Int="2">
+                <Field Id="Enhancement Slots"/>
+            </Int>
+            <Text Text="UserData/Classes/Recon_Class Role">
+                <Field Id="Class Role"/>
+            </Text>
+            <Text Text="UserData/Classes/Recon_Locked Text">
+                <Field Id="Locked Text"/>
+            </Text>
+            <Text Text="UserData/Classes/Recon_Class Name">
+                <Field Id="Class Name"/>
+            </Text>
+            <Unit Unit="Recon">
+                <Field Id="Class Unit"/>
+            </Unit>
+            <Unit Unit="AssaultRifle">
+                <Field Id="Default Weapon"/>
+            </Unit>
+            <User Type="TalentTrees" Instance="Recon">
+                <Field Id="Talent Tree"/>
+            </User>
+        </Instances>
+        <Instances Id="Demolitions">
+            <Color Color="255,128,64,0">
+                <Field Id="Class Color"/>
+            </Color>
+            <Fixed Fixed="0.4">
+                <Field Id="Weight Class"/>
+            </Fixed>
+            <Fixed Fixed="15">
+                <Field Id="Hit Tolerance"/>
+            </Fixed>
+            <Image Image="ClassButtons\btn-class-Demolitions.dds">
+                <Field Id="Class Image"/>
+            </Image>
+            <Image Image="UI\ui_teamstatus_demolitionsicon.dds">
+                <Field Id="Class Icon"/>
+            </Image>
+            <Int Int="5">
+                <Field Id="Slot"/>
+            </Int>
+            <Int Int="3">
+                <Field Id="Enhancement Slots"/>
+            </Int>
+            <Text Text="UserData/Classes/Demolitions_Class Name">
+                <Field Id="Class Name"/>
+            </Text>
+            <Text Text="UserData/Classes/Demolitions_Class Role">
+                <Field Id="Class Role"/>
+            </Text>
+            <Text Text="UserData/Classes/Demolitions_Locked Text">
+                <Field Id="Locked Text"/>
+            </Text>
+            <Unit Unit="Demolitions">
+                <Field Id="Class Unit"/>
+            </Unit>
+            <Unit Unit="AssaultRifle">
+                <Field Id="Default Weapon"/>
+            </Unit>
+            <User Type="TalentTrees" Instance="Demolitions">
+                <Field Id="Talent Tree"/>
+            </User>
+        </Instances>
+        <Instances Id="Marksman">
+            <Color Color="255,255,255,0">
+                <Field Id="Class Color"/>
+            </Color>
+            <Fixed Fixed="0.5998">
+                <Field Id="Weight Class"/>
+            </Fixed>
+            <Fixed Fixed="0.7">
+                <Field Id="Hit Tolerance"/>
+            </Fixed>
+            <Image Image="ClassButtons\btn-class-Marksman.dds">
+                <Field Id="Class Image"/>
+            </Image>
+            <Image Image="UI\ui_teamstatus_marksmanicon.dds">
+                <Field Id="Class Icon"/>
+            </Image>
+            <Int Int="6">
+                <Field Id="Slot"/>
+            </Int>
+            <Int Int="3">
+                <Field Id="Enhancement Slots"/>
+            </Int>
+            <Text Text="UserData/Classes/Marksman_Class Role">
+                <Field Id="Class Role"/>
+            </Text>
+            <Text Text="UserData/Classes/Marksman_Locked Text">
+                <Field Id="Locked Text"/>
+            </Text>
+            <Text Text="UserData/Classes/Marksman_Class Name">
+                <Field Id="Class Name"/>
+            </Text>
+            <Unit Unit="Marksman">
+                <Field Id="Class Unit"/>
+            </Unit>
+            <Unit Unit="MarksmanRifle">
+                <Field Id="Default Weapon"/>
+            </Unit>
+            <User Type="TalentTrees" Instance="Marksman">
+                <Field Id="Talent Tree"/>
+            </User>
+        </Instances>
+        <Instances Id="Engineer">
+            <Color Color="255,0,64,0">
+                <Field Id="Class Color"/>
+            </Color>
+            <Fixed Fixed="0.5">
+                <Field Id="Weight Class"/>
+            </Fixed>
+            <Fixed Fixed="1">
+                <Field Id="Hit Tolerance"/>
+            </Fixed>
+            <Image Image="ClassButtons\btn-class-Engineer.dds">
+                <Field Id="Class Image"/>
+            </Image>
+            <Image Image="UI\ui_teamstatus_engneericon.dds">
+                <Field Id="Class Icon"/>
+            </Image>
+            <Int Int="7">
+                <Field Id="Slot"/>
+            </Int>
+            <Int Int="3">
+                <Field Id="Enhancement Slots"/>
+            </Int>
+            <Text Text="UserData/Classes/Engineer_Class Role">
+                <Field Id="Class Role"/>
+            </Text>
+            <Text Text="UserData/Classes/Engineer_Locked Text">
+                <Field Id="Locked Text"/>
+            </Text>
+            <Text Text="UserData/Classes/Engineer_Class Name">
+                <Field Id="Class Name"/>
+            </Text>
+            <Unit Unit="Engineer">
+                <Field Id="Class Unit"/>
+            </Unit>
+            <Unit Unit="GaussRifle">
+                <Field Id="Default Weapon"/>
+            </Unit>
+            <User Type="TalentTrees" Instance="Engineer">
+                <Field Id="Talent Tree"/>
+            </User>
+        </Instances>
+        <Instances Id="Commando">
+            <Color Color="255,255,0,0">
+                <Field Id="Class Color"/>
+            </Color>
+            <Fixed Fixed="0.5">
+                <Field Id="Weight Class"/>
+            </Fixed>
+            <Fixed Fixed="1">
+                <Field Id="Hit Tolerance"/>
+            </Fixed>
+            <Image Image="ClassButtons\btn-class-Commando.dds">
+                <Field Id="Class Image"/>
+            </Image>
+            <Image Image="UI\ui_teamstatus_commandoicon.dds">
+                <Field Id="Class Icon"/>
+            </Image>
+            <Int Int="8">
+                <Field Id="Slot"/>
+            </Int>
+            <Int Int="2">
+                <Field Id="Enhancement Slots"/>
+            </Int>
+            <Text Text="UserData/Classes/Commando_Class Role">
+                <Field Id="Class Role"/>
+            </Text>
+            <Text Text="UserData/Classes/Commando_Locked Text">
+                <Field Id="Locked Text"/>
+            </Text>
+            <Text Text="UserData/Classes/Commando_Class Name">
+                <Field Id="Class Name"/>
+            </Text>
+            <Unit Unit="Commando">
+                <Field Id="Class Unit"/>
+            </Unit>
+            <Unit Unit="GaussRifle">
+                <Field Id="Default Weapon"/>
+            </Unit>
+            <User Type="TalentTrees" Instance="Commando">
+                <Field Id="Talent Tree"/>
+            </User>
+        </Instances>
+        <Instances Id="Flamethrower">
+            <Color Color="255,255,128,0">
+                <Field Id="Class Color"/>
+            </Color>
+            <Fixed Fixed="0.4">
+                <Field Id="Weight Class"/>
+            </Fixed>
+            <Fixed Fixed="11">
+                <Field Id="Hit Tolerance"/>
+            </Fixed>
+            <Image Image="Assets\Textures\btn-unit-terran-firebatmercenary.dds">
+                <Field Id="Class Image"/>
+            </Image>
+            <Int Int="9">
+                <Field Id="Slot"/>
+            </Int>
+            <Int Int="3">
+                <Field Id="Enhancement Slots"/>
+            </Int>
+            <Text Text="UserData/Classes/Flamethrower_Class Role">
+                <Field Id="Class Role"/>
+            </Text>
+            <Text Text="UserData/Classes/Flamethrower_Class Name">
+                <Field Id="Class Name"/>
+            </Text>
+            <Unit Unit="Flamethrower2">
+                <Field Id="Class Unit"/>
+            </Unit>
+            <Unit Unit="Flamethrower">
+                <Field Id="Default Weapon"/>
+            </Unit>
+            <User Type="TalentTrees" Instance="Flamethrower">
+                <Field Id="Talent Tree"/>
+            </User>
+        </Instances>
+        <Instances Id="Forward Observer">
+            <Color Color="255,0,128,0">
+                <Field Id="Class Color"/>
+            </Color>
+            <Fixed Fixed="0.5">
+                <Field Id="Weight Class"/>
+            </Fixed>
+            <Fixed Fixed="1">
+                <Field Id="Hit Tolerance"/>
+            </Fixed>
+            <Image Image="ClassButtons\btn-class-ForwardObserver.dds">
+                <Field Id="Class Image"/>
+            </Image>
+            <Image Image="UI\ui_teamstatus_forwardobsicon.dds">
+                <Field Id="Class Icon"/>
+            </Image>
+            <Int Int="10">
+                <Field Id="Slot"/>
+            </Int>
+            <Int Int="2">
+                <Field Id="Enhancement Slots"/>
+            </Int>
+            <Text Text="UserData/Classes/Forward Observer_Class Role">
+                <Field Id="Class Role"/>
+            </Text>
+            <Text Text="UserData/Classes/Forward Observer_Class Name">
+                <Field Id="Class Name"/>
+            </Text>
+            <Unit Unit="ForwardObserver">
+                <Field Id="Class Unit"/>
+            </Unit>
+            <Unit Unit="GaussRifle">
+                <Field Id="Default Weapon"/>
+            </Unit>
+            <User Type="TalentTrees" Instance="Forward Observer">
+                <Field Id="Talent Tree"/>
+            </User>
+        </Instances>
+        <Instances Id="Technician">
+            <Color Color="255,128,0,128">
+                <Field Id="Class Color"/>
+            </Color>
+            <Fixed Fixed="0.4">
+                <Field Id="Weight Class"/>
+            </Fixed>
+            <Fixed Fixed="11">
+                <Field Id="Hit Tolerance"/>
+            </Fixed>
+            <Image Image="ClassButtons\btn-class-Technician.dds">
+                <Field Id="Class Image"/>
+            </Image>
+            <Image Image="UI\ui_teamstatus_technicanicon.dds">
+                <Field Id="Class Icon"/>
+            </Image>
+            <Int Int="11">
+                <Field Id="Slot"/>
+            </Int>
+            <Int Int="3">
+                <Field Id="Enhancement Slots"/>
+            </Int>
+            <Text Text="UserData/Classes/Technician_Class Role">
+                <Field Id="Class Role"/>
+            </Text>
+            <Text Text="UserData/Classes/Technician_Class Name">
+                <Field Id="Class Name"/>
+            </Text>
+            <Unit Unit="Technician">
+                <Field Id="Class Unit"/>
+            </Unit>
+            <Unit Unit="GaussRifle">
+                <Field Id="Default Weapon"/>
+            </Unit>
+            <User Type="TalentTrees" Instance="Technician">
+                <Field Id="Talent Tree"/>
+            </User>
+        </Instances>
+        <Instances Id="Pathfinder">
+            <Color Color="255,128,128,128">
+                <Field Id="Class Color"/>
+            </Color>
+            <Fixed Fixed="0.5998">
+                <Field Id="Weight Class"/>
+            </Fixed>
+            <Fixed Fixed="0.7">
+                <Field Id="Hit Tolerance"/>
+            </Fixed>
+            <Image Image="Assets\Textures\btn-unit-terran-reaper.dds">
+                <Field Id="Class Image"/>
+            </Image>
+            <Int Int="13">
+                <Field Id="Slot"/>
+            </Int>
+            <Int Int="2">
+                <Field Id="Enhancement Slots"/>
+            </Int>
+            <Text Text="UserData/Classes/Pathfinder_Class Name">
+                <Field Id="Class Name"/>
+            </Text>
+            <Text Text="UserData/Classes/Pathfinder_Locked Text">
+                <Field Id="Locked Text"/>
+            </Text>
+            <Unit Unit="Pathfinder">
+                <Field Id="Class Unit"/>
+            </Unit>
+            <Unit Unit="Pistol">
+                <Field Id="Default Weapon"/>
+            </Unit>
+            <User Type="TalentTrees" Instance="Pathfinder">
+                <Field Id="Talent Tree"/>
+            </User>
+        </Instances>
+        <Instances Id="Drone">
+            <Text Text="UserData/Classes/Drone_Class Name">
+                <Field Id="Class Name"/>
+            </Text>
+            <Unit Unit="Drone2">
+                <Field Id="Class Unit"/>
+            </Unit>
+        </Instances>
+        <Instances Id="Squad Leader">
+            <Image>
+                <Field Id="Class Image"/>
+            </Image>
+            <Image>
+                <Field Id="Default Portrait"/>
+            </Image>
+            <Text Text="UserData/Classes/Squad Leader_Class Name">
+                <Field Id="Class Name"/>
+            </Text>
+            <Unit Unit="AssaultRifle">
+                <Field Id="Default Weapon"/>
+            </Unit>
+            <Unit Unit="SquadLeader">
+                <Field Id="Class Unit"/>
+            </Unit>
+            <User Type="TalentTrees" Instance="[Default]">
+                <Field Id="Talent Tree"/>
+            </User>
+        </Instances>
+        <Instances Id="Psi Ops">
+            <Color Color="255,255,128,255">
+                <Field Id="Class Color"/>
+            </Color>
+            <Fixed Fixed="0.5998">
+                <Field Id="Weight Class"/>
+            </Fixed>
+            <Fixed Fixed="1">
+                <Field Id="Hit Tolerance"/>
+            </Fixed>
+            <Image Image="ClassButtons\btn-class-PsiOps.dds">
+                <Field Id="Class Image"/>
+            </Image>
+            <Image Image="UI\ui_teamstatus_psiopsicon.dds">
+                <Field Id="Class Icon"/>
+            </Image>
+            <Image>
+                <Field Id="Default Portrait"/>
+            </Image>
+            <Int Int="14">
+                <Field Id="Slot"/>
+            </Int>
+            <Int Int="2">
+                <Field Id="Enhancement Slots"/>
+            </Int>
+            <Text Text="UserData/Classes/Psi Ops_Class Role">
+                <Field Id="Class Role"/>
+            </Text>
+            <Text Text="UserData/Classes/Psi Ops_Locked Text">
+                <Field Id="Locked Text"/>
+            </Text>
+            <Text Text="UserData/Classes/Psi Ops_Class Name">
+                <Field Id="Class Name"/>
+            </Text>
+            <Unit Unit="PsiOps">
+                <Field Id="Class Unit"/>
+            </Unit>
+            <Unit Unit="AssaultRifle">
+                <Field Id="Default Weapon"/>
+            </Unit>
+            <User Type="TalentTrees" Instance="Psi Ops">
+                <Field Id="Talent Tree"/>
+            </User>
+        </Instances>
+        <Instances Id="Random">
+            <Image Image="Assets\Textures\ui_ingame_help_techtree_questionmark.dds">
+                <Field Id="Class Image"/>
+            </Image>
+            <Text Text="UserData/Classes/Random_Class Name">
+                <Field Id="Class Name"/>
+            </Text>
+            <Text Text="UserData/Classes/Random_Class Role">
+                <Field Id="Class Role"/>
+            </Text>
+        </Instances>
+    </CUser>
+    <CUser id="TalentTrees">
+        <Fields>
+            <Id value="Trees"/>
+            <Type value="User"/>
+            <UserType value="TalentTree"/>
+            <Count value="2"/>
+        </Fields>
+        <Instances Id="[Default]"/>
+        <Instances Id="Rifleman">
+            <User Type="TalentTree" Instance="Rifleman Combat Tree">
+                <Field Id="Trees"/>
+            </User>
+            <User Type="TalentTree" Instance="Rifleman Survival Tree">
+                <Field Id="Trees" Index="1"/>
+            </User>
+        </Instances>
+        <Instances Id="Medic">
+            <User Type="TalentTree" Instance="Medic Field Assistance Tree">
+                <Field Id="Trees"/>
+            </User>
+            <User Type="TalentTree" Instance="Medic Nano Tree">
+                <Field Id="Trees" Index="1"/>
+            </User>
+        </Instances>
+        <Instances Id="Assault">
+            <User Type="TalentTree" Instance="Assault Arms Tree">
+                <Field Id="Trees"/>
+            </User>
+            <User Type="TalentTree" Instance="Assault Protection Tree">
+                <Field Id="Trees" Index="1"/>
+            </User>
+        </Instances>
+        <Instances Id="Recon">
+            <User Type="TalentTree" Instance="Recon Surveillance Tree">
+                <Field Id="Trees"/>
+            </User>
+            <User Type="TalentTree" Instance="Recon Mobility Tree">
+                <Field Id="Trees" Index="1"/>
+            </User>
+        </Instances>
+        <Instances Id="Marksman"/>
+        <Instances Id="Demolitions">
+            <User Type="TalentTree" Instance="Demolition Explosives Tree">
+                <Field Id="Trees"/>
+            </User>
+            <User Type="TalentTree" Instance="Demolition Fortitude Tree">
+                <Field Id="Trees" Index="1"/>
+            </User>
+        </Instances>
+        <Instances Id="Engineer"/>
+        <Instances Id="Commando"/>
+        <Instances Id="Flamethrower"/>
+        <Instances Id="Forward Observer"/>
+        <Instances Id="Technician"/>
+        <Instances Id="Chemical Expert"/>
+        <Instances Id="Pathfinder"/>
+        <Instances Id="Psi Ops"/>
+    </CUser>
+    <CUser id="TalentTree">
+        <Fields Id="Header" Type="Text"/>
+        <Fields Id="Talent Icon" Type="Image" Count="6"/>
+        <Fields Id="Talent Tooltips" Type="Text" Count="6"/>
+        <Fields Id="Tier 3 Portrait Image" Type="Image" Count="2"/>
+        <Fields Id="Talent Name" Type="Text" Count="6"/>
+        <Instances Id="[Default]"/>
+        <Instances Id="Rifleman Combat Tree">
+            <Image Image="btn-ability-protoss-blink-improved-color.dds">
+                <Field Id="Talent Icon"/>
+            </Image>
+            <Image Image="btn-ability-terran-raynortossgrenade-color.dds">
+                <Field Id="Talent Icon" Index="1"/>
+            </Image>
+            <Image Image="Assets\Textures\btn-upgrade-swann-vehiclerangeincrease.dds">
+                <Field Id="Talent Icon" Index="2"/>
+            </Image>
+            <Image Image="Assets\Textures\btn-upgrade-karax-solarefficiencylevel3.dds">
+                <Field Id="Talent Icon" Index="3"/>
+            </Image>
+            <Image Image="btn-achievement-hexagonredskull.dds">
+                <Field Id="Talent Icon" Index="4"/>
+            </Image>
+            <Image Image="Assets\Textures\btn-upgrade-raynor-phobosclassweaponssystem.dds">
+                <Field Id="Talent Icon" Index="5"/>
+            </Image>
+            <Image>
+                <Field Id="Tier 3 Portrait Image"/>
+            </Image>
+            <Image>
+                <Field Id="Tier 3 Portrait Image" Index="1"/>
+            </Image>
+            <Text Text="UserData/TalentTree/Rifleman Combat Tree_Header">
+                <Field Id="Header"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Rifleman Combat Tree_Talent Tooltips">
+                <Field Id="Talent Tooltips"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Rifleman Combat Tree_Talent Tooltips_001">
+                <Field Id="Talent Tooltips" Index="1"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Rifleman Combat Tree_Talent Tooltips_002">
+                <Field Id="Talent Tooltips" Index="2"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Rifleman Combat Tree_Talent Tooltips_003">
+                <Field Id="Talent Tooltips" Index="3"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Rifleman Combat Tree_Talent Tooltips_004">
+                <Field Id="Talent Tooltips" Index="4"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Rifleman Combat Tree_Talent Tooltips_005">
+                <Field Id="Talent Tooltips" Index="5"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Rifleman Combat Tree_Talent Name">
+                <Field Id="Talent Name"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Rifleman Combat Tree_Talent Name_001">
+                <Field Id="Talent Name" Index="1"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Rifleman Combat Tree_Talent Name_002">
+                <Field Id="Talent Name" Index="2"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Rifleman Combat Tree_Talent Name_003">
+                <Field Id="Talent Name" Index="3"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Rifleman Combat Tree_Talent Name_004">
+                <Field Id="Talent Name" Index="4"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Rifleman Combat Tree_Talent Name_005">
+                <Field Id="Talent Name" Index="5"/>
+            </Text>
+        </Instances>
+        <Instances Id="Rifleman Survival Tree">
+            <Image Image="Assets\Textures\btn-upgrade-swann-improvednanorepair.dds">
+                <Field Id="Talent Icon" Index="1"/>
+            </Image>
+            <Image Image="Assets\Textures\btn-ability-protoss-stealth-blink.dds">
+                <Field Id="Talent Icon"/>
+            </Image>
+            <Image Image="btn-ability-terran-spaceminelaunch-HoTS.dds">
+                <Field Id="Talent Icon" Index="2"/>
+            </Image>
+            <Image Image="btn-techupgrade-terran-neosteelbunker_mod.dds">
+                <Field Id="Talent Icon" Index="3"/>
+            </Image>
+            <Image Image="Assets\Textures\btn-upgrade-artanis-scarabsplashradius.dds">
+                <Field Id="Talent Icon" Index="4"/>
+            </Image>
+            <Image Image="Assets\Textures\btn-research-zerg-predator.dds">
+                <Field Id="Talent Icon" Index="5"/>
+            </Image>
+            <Image>
+                <Field Id="Tier 3 Portrait Image"/>
+            </Image>
+            <Text Text="UserData/TalentTree/Rifleman Survival Tree_Header">
+                <Field Id="Header"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Rifleman Survival Tree_Talent Tooltips_001">
+                <Field Id="Talent Tooltips" Index="1"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Rifleman Survival Tree_Talent Tooltips_002">
+                <Field Id="Talent Tooltips" Index="2"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Rifleman Survival Tree_Talent Tooltips_003">
+                <Field Id="Talent Tooltips" Index="3"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Rifleman Survival Tree_Talent Tooltips_004">
+                <Field Id="Talent Tooltips" Index="4"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Rifleman Survival Tree_Talent Tooltips_005">
+                <Field Id="Talent Tooltips" Index="5"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Rifleman Survival Tree_Talent Tooltips">
+                <Field Id="Talent Tooltips"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Rifleman Survival Tree_Talent Name">
+                <Field Id="Talent Name"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Rifleman Survival Tree_Talent Name_001">
+                <Field Id="Talent Name" Index="1"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Rifleman Survival Tree_Talent Name_002">
+                <Field Id="Talent Name" Index="2"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Rifleman Survival Tree_Talent Name_003">
+                <Field Id="Talent Name" Index="3"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Rifleman Survival Tree_Talent Name_004">
+                <Field Id="Talent Name" Index="4"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Rifleman Survival Tree_Talent Name_005">
+                <Field Id="Talent Name" Index="5"/>
+            </Text>
+        </Instances>
+        <Instances Id="Medic Field Assistance Tree">
+            <Image Image="Assets\Textures\btn-ability-protoss-protoncharge-color.dds">
+                <Field Id="Talent Icon" Index="5"/>
+            </Image>
+            <Image Image="Assets\Textures\btn-ability-terran-heal-color.dds">
+                <Field Id="Talent Icon"/>
+            </Image>
+            <Image Image="btn-tomahawkpowercell.dds">
+                <Field Id="Talent Icon" Index="1"/>
+            </Image>
+            <Image Image="Assets\Textures\btn-upgrade-terran-reapercombatdrugs.dds">
+                <Field Id="Talent Icon" Index="3"/>
+            </Image>
+            <Image Image="Assets\Textures\btn-ability-terran-advancedhealingai.dds">
+                <Field Id="Talent Icon" Index="2"/>
+            </Image>
+            <Image Image="Assets\Textures\btn-ability-protoss-timewarp.dds">
+                <Field Id="Talent Icon" Index="4"/>
+            </Image>
+            <Text Text="UserData/TalentTree/Medic Field Assistance Tree_Talent Tooltips">
+                <Field Id="Talent Tooltips"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Medic Field Assistance Tree_Talent Tooltips_001">
+                <Field Id="Talent Tooltips" Index="1"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Medic Field Assistance Tree_Talent Tooltips_002">
+                <Field Id="Talent Tooltips" Index="2"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Medic Field Assistance Tree_Talent Tooltips_003">
+                <Field Id="Talent Tooltips" Index="3"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Medic Field Assistance Tree_Talent Tooltips_004">
+                <Field Id="Talent Tooltips" Index="4"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Medic Field Assistance Tree_Talent Tooltips_005">
+                <Field Id="Talent Tooltips" Index="5"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Medic Field Assistance Tree_Header">
+                <Field Id="Header"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Medic Field Assistance Tree_Talent Name">
+                <Field Id="Talent Name"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Medic Field Assistance Tree_Talent Name_001">
+                <Field Id="Talent Name" Index="1"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Medic Field Assistance Tree_Talent Name_002">
+                <Field Id="Talent Name" Index="2"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Medic Field Assistance Tree_Talent Name_003">
+                <Field Id="Talent Name" Index="3"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Medic Field Assistance Tree_Talent Name_004">
+                <Field Id="Talent Name" Index="4"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Medic Field Assistance Tree_Talent Name_005">
+                <Field Id="Talent Name" Index="5"/>
+            </Text>
+        </Instances>
+        <Instances Id="Medic Nano Tree">
+            <Image Image="Assets\Textures\btn-ability-terran-emp-color.dds">
+                <Field Id="Talent Icon"/>
+            </Image>
+            <Image Image="Assets\Textures\btn-ability-zerg-corrosiveblast.dds">
+                <Field Id="Talent Icon" Index="1"/>
+            </Image>
+            <Image Image="btn-ability-terran-tosh-mindblast-yellow.dds">
+                <Field Id="Talent Icon" Index="2"/>
+            </Image>
+            <Image Image="Assets\Textures\btn-ability-zerg-poisonnova.dds">
+                <Field Id="Talent Icon" Index="3"/>
+            </Image>
+            <Image Image="btn-ability-zerg-corruption-orange.dds">
+                <Field Id="Talent Icon" Index="4"/>
+            </Image>
+            <Image Image="btn-DOTA-Arthas-spell1.dds">
+                <Field Id="Talent Icon" Index="5"/>
+            </Image>
+            <Text Text="UserData/TalentTree/Medic Nano Tree_Header">
+                <Field Id="Header"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Medic Nano Tree_Talent Tooltips">
+                <Field Id="Talent Tooltips"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Medic Nano Tree_Talent Tooltips_001">
+                <Field Id="Talent Tooltips" Index="1"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Medic Nano Tree_Talent Tooltips_002">
+                <Field Id="Talent Tooltips" Index="2"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Medic Nano Tree_Talent Tooltips_003">
+                <Field Id="Talent Tooltips" Index="3"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Medic Nano Tree_Talent Tooltips_004">
+                <Field Id="Talent Tooltips" Index="4"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Medic Nano Tree_Talent Tooltips_005">
+                <Field Id="Talent Tooltips" Index="5"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Medic Nano Tree_Talent Name">
+                <Field Id="Talent Name"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Medic Nano Tree_Talent Name_001">
+                <Field Id="Talent Name" Index="1"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Medic Nano Tree_Talent Name_002">
+                <Field Id="Talent Name" Index="2"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Medic Nano Tree_Talent Name_003">
+                <Field Id="Talent Name" Index="3"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Medic Nano Tree_Talent Name_004">
+                <Field Id="Talent Name" Index="4"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Medic Nano Tree_Talent Name_005">
+                <Field Id="Talent Name" Index="5"/>
+            </Text>
+        </Instances>
+        <Instances Id="Assault Arms Tree">
+            <Image Image="btn-upgrade-terran-gaussrifle.dds">
+                <Field Id="Talent Icon"/>
+            </Image>
+            <Image Image="btn-custom-bloodskull.dds">
+                <Field Id="Talent Icon" Index="1"/>
+            </Image>
+            <Image Image="btn-techupgrade-terran-fullborecanisterammo-color.dds">
+                <Field Id="Talent Icon" Index="2"/>
+            </Image>
+            <Image Image="btn-achievement-scannersweep.dds">
+                <Field Id="Talent Icon" Index="3"/>
+            </Image>
+            <Image Image="btn-ability-terran-build.dds">
+                <Field Id="Talent Icon" Index="4"/>
+            </Image>
+            <Image Image="btn-achievement-counterproof.dds">
+                <Field Id="Talent Icon" Index="5"/>
+            </Image>
+            <Text Text="UserData/TalentTree/Assault Arms Tree_Talent Tooltips">
+                <Field Id="Talent Tooltips"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Assault Arms Tree_Talent Tooltips_003">
+                <Field Id="Talent Tooltips" Index="3"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Assault Arms Tree_Talent Tooltips_002">
+                <Field Id="Talent Tooltips" Index="2"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Assault Arms Tree_Talent Tooltips_001">
+                <Field Id="Talent Tooltips" Index="1"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Assault Arms Tree_Talent Tooltips_004">
+                <Field Id="Talent Tooltips" Index="4"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Assault Arms Tree_Talent Tooltips_005">
+                <Field Id="Talent Tooltips" Index="5"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Assault Arms Tree_Header">
+                <Field Id="Header"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Assault Arms Tree_Talent Name">
+                <Field Id="Talent Name"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Assault Arms Tree_Talent Name_001">
+                <Field Id="Talent Name" Index="1"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Assault Arms Tree_Talent Name_002">
+                <Field Id="Talent Name" Index="2"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Assault Arms Tree_Talent Name_003">
+                <Field Id="Talent Name" Index="3"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Assault Arms Tree_Talent Name_004">
+                <Field Id="Talent Name" Index="4"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Assault Arms Tree_Talent Name_005">
+                <Field Id="Talent Name" Index="5"/>
+            </Text>
+        </Instances>
+        <Instances Id="Assault Protection Tree">
+            <Image Image="btn-custom-lightningshield.dds">
+                <Field Id="Talent Icon"/>
+            </Image>
+            <Image Image="Assets\Textures\btn-upgrade-terran-infantryarmorlevel2.dds">
+                <Field Id="Talent Icon" Index="1"/>
+            </Image>
+            <Image Image="btn-upgrade-terran-ionthrusters.dds">
+                <Field Id="Talent Icon" Index="2"/>
+            </Image>
+            <Image Image="btn-ability-terran-selfixarmor-level3.dds">
+                <Field Id="Talent Icon" Index="3"/>
+            </Image>
+            <Image Image="btn-custom-wowfireball.dds">
+                <Field Id="Talent Icon" Index="4"/>
+            </Image>
+            <Image Image="Assets\Textures\btn-research-terran-vanadiumplating.dds">
+                <Field Id="Talent Icon" Index="5"/>
+            </Image>
+            <Text Text="UserData/TalentTree/Assault Protection Tree_Header">
+                <Field Id="Header"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Assault Protection Tree_Talent Tooltips">
+                <Field Id="Talent Tooltips"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Assault Protection Tree_Talent Tooltips_001">
+                <Field Id="Talent Tooltips" Index="1"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Assault Protection Tree_Talent Tooltips_002">
+                <Field Id="Talent Tooltips" Index="2"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Assault Protection Tree_Talent Tooltips_003">
+                <Field Id="Talent Tooltips" Index="3"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Assault Protection Tree_Talent Tooltips_004">
+                <Field Id="Talent Tooltips" Index="4"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Assault Protection Tree_Talent Tooltips_005">
+                <Field Id="Talent Tooltips" Index="5"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Assault Protection Tree_Talent Name">
+                <Field Id="Talent Name"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Assault Protection Tree_Talent Name_001">
+                <Field Id="Talent Name" Index="1"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Assault Protection Tree_Talent Name_002">
+                <Field Id="Talent Name" Index="2"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Assault Protection Tree_Talent Name_003">
+                <Field Id="Talent Name" Index="3"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Assault Protection Tree_Talent Name_004">
+                <Field Id="Talent Name" Index="4"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Assault Protection Tree_Talent Name_005">
+                <Field Id="Talent Name" Index="5"/>
+            </Text>
+        </Instances>
+        <Instances Id="Recon Surveillance Tree">
+            <Image Image="btn-upgrade-terran-shockwavebatteries.dds">
+                <Field Id="Talent Icon"/>
+            </Image>
+            <Image Image="btn-ability-zerg-darkswarm-color.dds">
+                <Field Id="Talent Icon" Index="1"/>
+            </Image>
+            <Image>
+                <Field Id="Tier 3 Portrait Image" Index="1"/>
+            </Image>
+            <Image Image="btn-custom-terran-loki.dds">
+                <Field Id="Talent Icon" Index="5"/>
+            </Image>
+            <Image Image="Assets\Textures\btn-ability-terran-scannersweep-color.dds">
+                <Field Id="Talent Icon" Index="2"/>
+            </Image>
+            <Image Image="Assets\Textures\btn-unit-terran-viking.dds">
+                <Field Id="Talent Icon" Index="3"/>
+            </Image>
+            <Image Image="Assets\Textures\btn-building-terran-surveillancestation.dds">
+                <Field Id="Talent Icon" Index="4"/>
+            </Image>
+            <Text Text="UserData/TalentTree/Recon Surveillance Tree_Header">
+                <Field Id="Header"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Recon Surveillance Tree_Talent Name">
+                <Field Id="Talent Name"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Recon Surveillance Tree_Talent Name_001">
+                <Field Id="Talent Name" Index="1"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Recon Surveillance Tree_Talent Name_002">
+                <Field Id="Talent Name" Index="2"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Recon Surveillance Tree_Talent Name_003">
+                <Field Id="Talent Name" Index="3"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Recon Surveillance Tree_Talent Name_004">
+                <Field Id="Talent Name" Index="4"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Recon Surveillance Tree_Talent Name_005">
+                <Field Id="Talent Name" Index="5"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Recon Surveillance Tree_Talent Tooltips">
+                <Field Id="Talent Tooltips"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Recon Surveillance Tree_Talent Tooltips_002">
+                <Field Id="Talent Tooltips" Index="2"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Recon Surveillance Tree_Talent Tooltips_004">
+                <Field Id="Talent Tooltips" Index="4"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Recon Surveillance Tree_Talent Tooltips_005">
+                <Field Id="Talent Tooltips" Index="5"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Recon Surveillance Tree_Talent Tooltips_001">
+                <Field Id="Talent Tooltips" Index="1"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Recon Surveillance Tree_Talent Tooltips_003">
+                <Field Id="Talent Tooltips" Index="3"/>
+            </Text>
+        </Instances>
+        <Instances Id="Recon Mobility Tree">
+            <Image Image="btn-flare.dds">
+                <Field Id="Talent Icon"/>
+            </Image>
+            <Image Image="Assets\Textures\btn-research-terran-orbitalstrikerally.dds">
+                <Field Id="Talent Icon" Index="1"/>
+            </Image>
+            <Image Image="btn-extra-chef_ability_enrage.dds">
+                <Field Id="Talent Icon" Index="2"/>
+            </Image>
+            <Image Image="btn-ability-terran-domination-blue.dds">
+                <Field Id="Talent Icon" Index="3"/>
+            </Image>
+            <Image Image="btn-upgrade-terran-corvidreactor-blue.dds">
+                <Field Id="Talent Icon" Index="4"/>
+            </Image>
+            <Image Image="btn-l2d-techupgrade-terran-d-8charges.dds">
+                <Field Id="Talent Icon" Index="5"/>
+            </Image>
+            <Image>
+                <Field Id="Tier 3 Portrait Image"/>
+            </Image>
+            <Text Text="UserData/TalentTree/Recon Mobility Tree_Header">
+                <Field Id="Header"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Recon Mobility Tree_Talent Name">
+                <Field Id="Talent Name"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Recon Mobility Tree_Talent Name_001">
+                <Field Id="Talent Name" Index="1"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Recon Mobility Tree_Talent Name_002">
+                <Field Id="Talent Name" Index="2"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Recon Mobility Tree_Talent Name_003">
+                <Field Id="Talent Name" Index="3"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Recon Mobility Tree_Talent Name_004">
+                <Field Id="Talent Name" Index="4"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Recon Mobility Tree_Talent Name_005">
+                <Field Id="Talent Name" Index="5"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Recon Mobility Tree_Talent Tooltips">
+                <Field Id="Talent Tooltips"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Recon Mobility Tree_Talent Tooltips_001">
+                <Field Id="Talent Tooltips" Index="1"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Recon Mobility Tree_Talent Tooltips_002">
+                <Field Id="Talent Tooltips" Index="2"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Recon Mobility Tree_Talent Tooltips_004">
+                <Field Id="Talent Tooltips" Index="4"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Recon Mobility Tree_Talent Tooltips_005">
+                <Field Id="Talent Tooltips" Index="5"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Recon Mobility Tree_Talent Tooltips_003">
+                <Field Id="Talent Tooltips" Index="3"/>
+            </Text>
+        </Instances>
+        <Instances Id="Demolition Explosives Tree">
+            <Image Image="Assets\Textures\btn-ability-terran-armnuke.dds">
+                <Field Id="Talent Icon" Index="5"/>
+            </Image>
+            <Image Image="btn-l2d-techupgrade-terran-cerberusmine.dds">
+                <Field Id="Talent Icon"/>
+            </Image>
+            <Image Image="Assets\Textures\btn-upgrade-zerg-burrowcharge.dds">
+                <Field Id="Talent Icon" Index="1"/>
+            </Image>
+            <Image Image="Assets\Textures\btn-unit-terran-shredderirradiate.dds">
+                <Field Id="Talent Icon" Index="2"/>
+            </Image>
+            <Image Image="btn-custom-bagofgifts.dds">
+                <Field Id="Talent Icon" Index="3"/>
+            </Image>
+            <Image Image="Assets\Textures\btn-doodad-magmine.dds">
+                <Field Id="Talent Icon" Index="4"/>
+            </Image>
+            <Image>
+                <Field Id="Tier 3 Portrait Image"/>
+            </Image>
+            <Image>
+                <Field Id="Tier 3 Portrait Image" Index="1"/>
+            </Image>
+            <Text Text="UserData/TalentTree/Demolition Explosives Tree_Header">
+                <Field Id="Header"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Demolition Explosives Tree_Talent Name">
+                <Field Id="Talent Name"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Demolition Explosives Tree_Talent Name_001">
+                <Field Id="Talent Name" Index="1"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Demolition Explosives Tree_Talent Name_002">
+                <Field Id="Talent Name" Index="2"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Demolition Explosives Tree_Talent Name_003">
+                <Field Id="Talent Name" Index="3"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Demolition Explosives Tree_Talent Name_004">
+                <Field Id="Talent Name" Index="4"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Demolition Explosives Tree_Talent Name_005">
+                <Field Id="Talent Name" Index="5"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Demolition Explosives Tree_Talent Tooltips_002">
+                <Field Id="Talent Tooltips" Index="2"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Demolition Explosives Tree_Talent Tooltips_003">
+                <Field Id="Talent Tooltips" Index="3"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Demolition Explosives Tree_Talent Tooltips_004">
+                <Field Id="Talent Tooltips" Index="4"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Demolition Explosives Tree_Talent Tooltips_005">
+                <Field Id="Talent Tooltips" Index="5"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Demolition Explosives Tree_Talent Tooltips">
+                <Field Id="Talent Tooltips"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Demolition Explosives Tree_Talent Tooltips_001">
+                <Field Id="Talent Tooltips" Index="1"/>
+            </Text>
+        </Instances>
+        <Instances Id="Demolition Fortitude Tree">
+            <Image Image="btn-custom-skullsoul.dds">
+                <Field Id="Talent Icon" Index="3"/>
+            </Image>
+            <Image Image="btn-techupgrade-terran-kineticfoam-color.dds">
+                <Field Id="Talent Icon" Index="5"/>
+            </Image>
+            <Image Image="btn-custom-protoss-immortalshield2.dds">
+                <Field Id="Talent Icon"/>
+            </Image>
+            <Image Image="Assets\Textures\btn-ability-protoss-shieldbattery-color.dds">
+                <Field Id="Talent Icon" Index="2"/>
+            </Image>
+            <Image Image="btn-custom-terran-killmarauder.dds">
+                <Field Id="Talent Icon" Index="1"/>
+            </Image>
+            <Image Image="Assets\Textures\btn-upgrade-protoss-researchbosoniccore.dds">
+                <Field Id="Talent Icon" Index="4"/>
+            </Image>
+            <Text Text="UserData/TalentTree/Demolition Fortitude Tree_Talent Tooltips">
+                <Field Id="Talent Tooltips"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Demolition Fortitude Tree_Talent Tooltips_001">
+                <Field Id="Talent Tooltips" Index="1"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Demolition Fortitude Tree_Talent Tooltips_002">
+                <Field Id="Talent Tooltips" Index="2"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Demolition Fortitude Tree_Talent Tooltips_003">
+                <Field Id="Talent Tooltips" Index="3"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Demolition Fortitude Tree_Header">
+                <Field Id="Header"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Demolition Fortitude Tree_Talent Name">
+                <Field Id="Talent Name"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Demolition Fortitude Tree_Talent Name_001">
+                <Field Id="Talent Name" Index="1"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Demolition Fortitude Tree_Talent Name_002">
+                <Field Id="Talent Name" Index="2"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Demolition Fortitude Tree_Talent Name_003">
+                <Field Id="Talent Name" Index="3"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Demolition Fortitude Tree_Talent Name_004">
+                <Field Id="Talent Name" Index="4"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Demolition Fortitude Tree_Talent Name_005">
+                <Field Id="Talent Name" Index="5"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Demolition Fortitude Tree_Talent Tooltips_004">
+                <Field Id="Talent Tooltips" Index="4"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Demolition Fortitude Tree_Talent Tooltips_005">
+                <Field Id="Talent Tooltips" Index="5"/>
+            </Text>
+        </Instances>
+        <Instances Id="Pathfinder Gunslinger Tree">
+            <Image Image="btn-weapon-thorshammer.dds">
+                <Field Id="Talent Icon"/>
+            </Image>
+            <Image Image="btn-upgrade-terran-gaussrifle.dds">
+                <Field Id="Talent Icon" Index="1"/>
+            </Image>
+            <Image Image="Assets\Textures\btn-upgrade-zerg-enduringcorruption.dds">
+                <Field Id="Talent Icon" Index="3"/>
+            </Image>
+            <Image Image="btn-achievement-40-beta.dds">
+                <Field Id="Talent Icon" Index="5"/>
+            </Image>
+            <Image Image="Assets\Textures\btn-upgrade-terran-transformationservos.dds">
+                <Field Id="Talent Icon" Index="2"/>
+            </Image>
+            <Image Image="Assets\Textures\btn-techupgrade-terran-tenstenspikes.dds">
+                <Field Id="Talent Icon" Index="4"/>
+            </Image>
+            <Text Text="UserData/TalentTree/Pathfinder Gunslinger Tree_Header">
+                <Field Id="Header"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Pathfinder Gunslinger Tree_Talent Name">
+                <Field Id="Talent Name"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Pathfinder Gunslinger Tree_Talent Name_001">
+                <Field Id="Talent Name" Index="1"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Pathfinder Gunslinger Tree_Talent Name_002">
+                <Field Id="Talent Name" Index="2"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Pathfinder Gunslinger Tree_Talent Name_003">
+                <Field Id="Talent Name" Index="3"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Pathfinder Gunslinger Tree_Talent Name_004">
+                <Field Id="Talent Name" Index="4"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Pathfinder Gunslinger Tree_Talent Name_005">
+                <Field Id="Talent Name" Index="5"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Pathfinder Gunslinger Tree_Talent Tooltips">
+                <Field Id="Talent Tooltips"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Pathfinder Gunslinger Tree_Talent Tooltips_001">
+                <Field Id="Talent Tooltips" Index="1"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Pathfinder Gunslinger Tree_Talent Tooltips_002">
+                <Field Id="Talent Tooltips" Index="2"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Pathfinder Gunslinger Tree_Talent Tooltips_003">
+                <Field Id="Talent Tooltips" Index="3"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Pathfinder Gunslinger Tree_Talent Tooltips_004">
+                <Field Id="Talent Tooltips" Index="4"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Pathfinder Gunslinger Tree_Talent Tooltips_005">
+                <Field Id="Talent Tooltips" Index="5"/>
+            </Text>
+        </Instances>
+        <Instances Id="Pathfinder Rocketeer Tree">
+            <Image Image="Assets\Textures\btn-ability-neutral-ursadonleap.dds">
+                <Field Id="Talent Icon"/>
+            </Image>
+            <Image Image="Assets\Textures\btn-ability-zerg-siphon.dds">
+                <Field Id="Talent Icon" Index="1"/>
+            </Image>
+            <Image Image="Assets\Textures\btn-ability-terran-emergencythrusters.dds">
+                <Field Id="Talent Icon" Index="2"/>
+            </Image>
+            <Image Image="Assets\Textures\btn-ability-protoss-arcshield.dds">
+                <Field Id="Talent Icon" Index="3"/>
+            </Image>
+            <Image Image="Assets\Textures\btn-research-terran-orbitalstrikerally.dds">
+                <Field Id="Talent Icon" Index="4"/>
+            </Image>
+            <Image Image="Assets\Textures\btn-ability-terran-battlefieldawareness.dds">
+                <Field Id="Talent Icon" Index="5"/>
+            </Image>
+            <Text Text="UserData/TalentTree/Pathfinder Rocketeer Tree_Talent Name">
+                <Field Id="Talent Name"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Pathfinder Rocketeer Tree_Talent Name_001">
+                <Field Id="Talent Name" Index="1"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Pathfinder Rocketeer Tree_Talent Name_002">
+                <Field Id="Talent Name" Index="2"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Pathfinder Rocketeer Tree_Talent Name_003">
+                <Field Id="Talent Name" Index="3"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Pathfinder Rocketeer Tree_Talent Name_004">
+                <Field Id="Talent Name" Index="4"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Pathfinder Rocketeer Tree_Talent Name_005">
+                <Field Id="Talent Name" Index="5"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Pathfinder Rocketeer Tree_Talent Tooltips">
+                <Field Id="Talent Tooltips"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Pathfinder Rocketeer Tree_Talent Tooltips_001">
+                <Field Id="Talent Tooltips" Index="1"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Pathfinder Rocketeer Tree_Talent Tooltips_002">
+                <Field Id="Talent Tooltips" Index="2"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Pathfinder Rocketeer Tree_Talent Tooltips_003">
+                <Field Id="Talent Tooltips" Index="3"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Pathfinder Rocketeer Tree_Talent Tooltips_004">
+                <Field Id="Talent Tooltips" Index="4"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Pathfinder Rocketeer Tree_Talent Tooltips_005">
+                <Field Id="Talent Tooltips" Index="5"/>
+            </Text>
+            <Text Text="UserData/TalentTree/Pathfinder Rocketeer Tree_Header">
+                <Field Id="Header"/>
+            </Text>
+        </Instances>
+        <Instances Id="Squad Leader Valor Tree"/>
+        <Instances Id="Squad Leader Duty Tree"/>
+        <Instances Id="Flamethrower Pyro Tree"/>
+        <Instances Id="Flamethrower Order Tree"/>
+        <Instances Id="Marksman Assassination Tree"/>
+        <Instances Id="Marksman Skirmish Tree"/>
+        <Instances Id="Psi Ops Telekinesis Tree"/>
+        <Instances Id="Psi Ops Telepathy Tree">
+            <Text Text="UserData/TalentTree/Psi Ops Telepathy Tree_Header">
+                <Field Id="Header"/>
+            </Text>
+        </Instances>
+    </CUser>
+</Catalog>

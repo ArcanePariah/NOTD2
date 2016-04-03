@@ -1,0 +1,209 @@
+include "Lib1E3F036D"
+
+//--------------------------------------------------------------------------------------------------
+// Library: Class Specific Triggers
+//--------------------------------------------------------------------------------------------------
+// Constants
+const int libC50FD636_gv_numberofEnhancementSlots = 3;
+const int libC50FD636_gv_inventoryBagSize = 9;
+const int libC50FD636_gv_baseAmmoModSlot = 6;
+const int libC50FD636_gv_columnOffset = 1;
+const int libC50FD636_gv_loadoutContainer = 1;
+const int libC50FD636_gv_bagContainer = 2;
+const int libC50FD636_gv_armorInventorySlot = 4;
+const int libC50FD636_gv_weaponInventorySlot = 2;
+const int libC50FD636_gv_ammoModificationSlot = 6;
+const int libC50FD636_gv_numberofPlayers = lib1E3F036D_gv_numberofPlayers;
+const int libC50FD636_gv_numberofTalents = 6;
+const int libC50FD636_gv_numberofTalentTrees = 2;
+
+// Structures
+struct libC50FD636_gs_AmmoUIElements {
+    int lv_ammoBar;
+    int lv_ammoLabel;
+    int lv_ammoHitTestFrame;
+    int lv_ammoFrame;
+};
+
+struct libC50FD636_gs_Talent {
+    int lv_talentTooltipText;
+    int lv_borderIntital;
+    int lv_borderFinal;
+    int lv_button;
+    int lv_talentImage;
+    text lv_abilityLevelText;
+    int lv_talentFrame;
+    int lv_abilityLevel;
+};
+
+struct libC50FD636_gs_TalentTree {
+    int lv_talentTreeDialog;
+    int lv_talentTreeTitle;
+    libC50FD636_gs_Talent[libC50FD636_gv_numberofTalents + 1] lv_talentButtons;
+};
+
+struct libC50FD636_gs_Talents {
+    int lv_treeDialog;
+    libC50FD636_gs_TalentTree[libC50FD636_gv_numberofTalentTrees + 1] lv_tree;
+    int lv_className;
+    int lv_numberAvailableLabel;
+};
+
+struct libC50FD636_gs_Marine {
+    int lv_currentMaxMagazineSize;
+    int lv_currentNumberofMagazines;
+    int lv_numberofMagzinesPerReload;
+    string lv_unitType;
+    unit lv_unit;
+    string lv_class;
+};
+
+// Variable Declarations
+int libC50FD636_gv_geminiProtocolSecondWeaponButton;
+int libC50FD636_gv_geminiProtocolFirstWeaponButton;
+unit[libC50FD636_gv_numberofPlayers + 1] libC50FD636_gv_geminiProtocolUnit;
+fixed libC50FD636_gv_bulwarkAngle;
+unit libC50FD636_gv_bulwarkTargetUnit;
+unit libC50FD636_gv_bulwarkCaster;
+unit libC50FD636_gv_scamperUnit;
+unit libC50FD636_gv_blackDiamondCaster;
+unit libC50FD636_gv_satelliteUplinkSpyUnit;
+unitgroup libC50FD636_gv_uplinkSharedVisionGroup;
+string[libC50FD636_gv_numberofPlayers + 1] libC50FD636_gv_geminiUnitWeapon;
+string[libC50FD636_gv_numberofPlayers + 1] libC50FD636_gv_geminiAssaultUnitWeapon;
+bool libC50FD636_gv_inventoryMoveLock;
+bool[libC50FD636_gv_inventoryBagSize + 1][libC50FD636_gv_numberofPlayers + 1] libC50FD636_gv_openBagSlots;
+libC50FD636_gs_AmmoUIElements libC50FD636_gv_ammoUI;
+libC50FD636_gs_AmmoUIElements[libC50FD636_gv_numberofPlayers + 1] libC50FD636_gv_ammoDisplay;
+int[libC50FD636_gv_numberofPlayers + 1][libC50FD636_gv_numberofTalentTrees + 1][libC50FD636_gv_numberofTalents + 1] libC50FD636_gv_talentLevels;
+int[libC50FD636_gv_numberofPlayers + 1] libC50FD636_gv_talentAvailable;
+int libC50FD636_gv_talentTreeFrame;
+libC50FD636_gs_Talents libC50FD636_gv_talentTrees;
+int libC50FD636_gv_talentButton;
+int[libC50FD636_gv_numberofTalentTrees + 1][libC50FD636_gv_numberofTalents + 1] libC50FD636_gv_talentMax;
+unitgroup libC50FD636_gv_marinesUnitGroup;
+libC50FD636_gs_Marine[libC50FD636_gv_numberofPlayers + 1] libC50FD636_gv_marines;
+
+// Function Declarations
+void libC50FD636_gf_AssaultUIChange (int lp_assaultPlayer);
+void libC50FD636_gf_GeminiProtocolUIChange (int lp_player);
+void libC50FD636_gf_CrusaderAIThink (int lp_player, unit lp_unit, unitgroup lp_scanGroup);
+void libC50FD636_gf_ClassCreation (point lp_deploymentPoint, int lp_player);
+void libC50FD636_gf_ClassSpecificChanges (int lp_player, string lp_playerClass);
+bool libC50FD636_gf_BulwarkAngleDamageCheck (fixed lp_damageAngle);
+fixed libC50FD636_gf_ReturnCatalogAsReal (string lp_catalog);
+void libC50FD636_gf_UpdateWeaponProfi2 (unit lp_rifleman);
+string libC50FD636_gf_GetWeapon (string lp_weaponEquippedBehavior);
+int libC50FD636_gf_GetOpenBagSlot (unit lp_inventoryUnit);
+void libC50FD636_gf_EquipmentUpdateMarineWeight (int lp_ownerOfEquipment);
+int libC50FD636_gf_EquipmentGetItemWeight (int lp_ownerofEquipment, unit lp_item);
+void libC50FD636_gf_UpdateNumberofMagazines (int lp_player, int lp_change);
+void libC50FD636_gf_UpdateAmmoMax (int lp_player);
+void libC50FD636_gf_CreateAmmoDisplay (int lp_player);
+void libC50FD636_gf_DestroyAmmoDisplay (int lp_player);
+void libC50FD636_gf_IntializeTalentMax ();
+bool libC50FD636_gf_TalentSelectionOption (int lp_tree, int lp_talent, int lp_talentPlayer);
+bool libC50FD636_gf_TalentTreeAccess (int lp_talentTreePlayer, int lp_selectingPlayer);
+void libC50FD636_gf_UpdateTalentAbility (int lp_itemNo, int lp_triggPlayer, int lp_talentTree);
+void libC50FD636_gf_UpdateTalentSystem (int lp_talent, int lp_talentPlayer, int lp_talentTree);
+void libC50FD636_gf_UpdateAvailableTalents (int lp_player, int lp_dialogItem, int lp_text);
+void libC50FD636_gf_DisableTalentButton (int lp_player);
+void libC50FD636_gf_UpdateTalentText (int lp_talent, int lp_triggPlayer, int lp_tree);
+void libC50FD636_gf_UpdateTalentImage (int lp_talent, int lp_triggPlayer, int lp_tree);
+void libC50FD636_gf_UpdateAllTalentImages (int lp_triggPlayer);
+void libC50FD636_gf_UpdateTalentVisuals (int lp_player, int lp_talent, int lp_tree);
+void libC50FD636_gf_TalentTree (int lp_player, int lp_tree, string lp_class);
+void libC50FD636_gf_TalentButton (int lp_player, int lp_talentNumber, int lp_tree, string lp_class);
+void libC50FD636_gf_TalentTreeCreation (int lp_player, string lp_class);
+
+// Trigger Declarations
+trigger libC50FD636_gt_TestEnableTechTreeRestrictions;
+trigger libC50FD636_gt_PredatorEventRegistration;
+trigger libC50FD636_gt_PredatorLevelUp;
+trigger libC50FD636_gt_TestIntializeAI;
+trigger libC50FD636_gt_TestDemoMerge;
+trigger libC50FD636_gt_MD5LevelUp;
+trigger libC50FD636_gt_CollateralDamageLevelUp;
+trigger libC50FD636_gt_StockpileLevelUp;
+trigger libC50FD636_gt_BulwarkLevelUp;
+trigger libC50FD636_gt_SatelliteUplinkLevelUp;
+trigger libC50FD636_gt_ScamperLevelUp;
+trigger libC50FD636_gt_AssaultLevelUpUnstoppableForce;
+trigger libC50FD636_gt_AssaultLevelUpGeminiProtocol;
+trigger libC50FD636_gt_RiflemanLevelUpGrenadier;
+trigger libC50FD636_gt_RiflemanLevelUpAccurateFire;
+trigger libC50FD636_gt_RiflemanLevelUpWeaponProficiency;
+trigger libC50FD636_gt_RiflemanLevelUpSelfAid;
+trigger libC50FD636_gt_RiflemanLevelUpSuppressiveFire;
+trigger libC50FD636_gt_MedicLevelUpAntivenom;
+trigger libC50FD636_gt_MedicLevelUpMedicalExpertise;
+trigger libC50FD636_gt_MedicLevelUpIntolerableCruelty;
+trigger libC50FD636_gt_Sadist;
+trigger libC50FD636_gt_Bulwark;
+trigger libC50FD636_gt_BulwarkPositioning;
+trigger libC50FD636_gt_BulwarkPositioningUpdate;
+trigger libC50FD636_gt_ScamperTracking;
+trigger libC50FD636_gt_TrackingTagReveal;
+trigger libC50FD636_gt_BlackDiamondUsed;
+trigger libC50FD636_gt_BlackDiamondStun;
+trigger libC50FD636_gt_BlackDiamondBonusDamage;
+trigger libC50FD636_gt_SatelliteMovementOrder;
+trigger libC50FD636_gt_SatelliteKill;
+trigger libC50FD636_gt_SatelliteSharedVision;
+trigger libC50FD636_gt_GroundIlluminationFlareFlareGunVisionShare;
+trigger libC50FD636_gt_StealthMatrixDeactivate;
+trigger libC50FD636_gt_BuddySystem;
+trigger libC50FD636_gt_RiflemanFocusFireReloadBoni;
+trigger libC50FD636_gt_RiflemanTIMRDurationBonus;
+trigger libC50FD636_gt_DropItems;
+trigger libC50FD636_gt_WeaveAilmentRemoval;
+trigger libC50FD636_gt_LockdownEnabledonEquip;
+trigger libC50FD636_gt_LockdownEnabled;
+trigger libC50FD636_gt_LockdownDisabled;
+trigger libC50FD636_gt_WeaponSwapLockdownRemoval;
+trigger libC50FD636_gt_GeminiProtocolReload;
+trigger libC50FD636_gt_GeminiProtocolBehaviors;
+trigger libC50FD636_gt_GeminiProtocolCriticalStrike;
+trigger libC50FD636_gt_GeminiProtocolWeaponAdd;
+trigger libC50FD636_gt_GeminiProtocolWeaponRemove;
+trigger libC50FD636_gt_CohesionAilmentResistence;
+trigger libC50FD636_gt_CriticalHitText;
+trigger libC50FD636_gt_UnstoppableForceDamage;
+trigger libC50FD636_gt_StackMagazinesIntoAmmoBoxes;
+trigger libC50FD636_gt_DisplayInventoryOnSelection;
+trigger libC50FD636_gt_UpdateBagSlotsonMove;
+trigger libC50FD636_gt_IntializeOpenSlots;
+trigger libC50FD636_gt_UpdateAvailableBagSlots;
+trigger libC50FD636_gt_EquipItem;
+trigger libC50FD636_gt_UnequipItem;
+trigger libC50FD636_gt_ItemDropChangetoNeutral;
+trigger libC50FD636_gt_DisabledInventoryTransfer;
+trigger libC50FD636_gt_AmmoUpdateWeight;
+trigger libC50FD636_gt_ItemWeightUpdate;
+trigger libC50FD636_gt_UpdateAmmoDisplay;
+trigger libC50FD636_gt_DropMagazineUIClick;
+trigger libC50FD636_gt_DisplayAmmoBarOnSelection;
+trigger libC50FD636_gt_DropMagazine;
+trigger libC50FD636_gt_HighCapacityEquipped;
+trigger libC50FD636_gt_ManualReload;
+trigger libC50FD636_gt_Reload;
+trigger libC50FD636_gt_ExtendedMagazineUpgrade;
+trigger libC50FD636_gt_AmmoFeedUpgrade;
+trigger libC50FD636_gt_LevelUp;
+trigger libC50FD636_gt_TalentSelection;
+trigger libC50FD636_gt_HookupTalentButton;
+trigger libC50FD636_gt_TalentTreeHookup;
+trigger libC50FD636_gt_JumpUpgrade;
+trigger libC50FD636_gt_MedicalAssistanceUsage;
+trigger libC50FD636_gt_CamoSwitch;
+trigger libC50FD636_gt_ModelLightMarine;
+trigger libC50FD636_gt_ModelHeavyMarine;
+trigger libC50FD636_gt_ColorSwitching;
+trigger libC50FD636_gt_GrantTalents;
+trigger libC50FD636_gt_CreateAlly;
+trigger libC50FD636_gt_CheckAS;
+trigger libC50FD636_gt_HeroTest;
+
+// Library Initialization
+void libC50FD636_InitVariables ();
+
