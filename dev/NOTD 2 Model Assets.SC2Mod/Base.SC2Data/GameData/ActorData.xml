@@ -30,6 +30,7 @@
     <CActorModel default="1" id="ArmorTemplate" parent="ModelAddition">
         <?token id="SwapMacro"?>
         <?token id="Class"?>
+        <Aliases value="_ArmorCustom"/>
         <Macros value="##Class####SwapMacro##"/>
         <Macros value="ArmorSwapStatusMacro"/>
         <Macros value="AvalancheTextureSelectMacro"/>
@@ -52,9 +53,8 @@
         <Macros value="VortexTextureSelectMacro"/>
         <Macros value="RhinoTextureSelectMacro"/>
         <EditorCategories value=""/>
-        <Aliases value="_ArmorCustom"/>
-        <Host Subject="_Unit"/>
         <On Terms="ActorCreation" Send="StatusSet ArmorSet 1"/>
+        <Host Subject="_Unit"/>
     </CActorModel>
     <CActorModel default="1" id="EngineerArmorTemplate" parent="ArmorTemplate">
         <?token id="Class" value="Engineer"?>
@@ -124,7 +124,7 @@
         <On Terms="Signal.*.Qesun" Send="StatusSet ArmorSet 9"/>
         <On Terms="Signal.*.Rebel" Send="StatusSet ArmorSet 10"/>
         <On Terms="Signal.*.Neutrino" Send="StatusSet ArmorSet 11"/>
-        <On Terms="Signal.*.Crossfire" Send="StatusSet ArmorSet17"/>
+        <On Terms="Signal.*.Crossfire" Send="StatusSet ArmorSet17 0"/>
         <On Terms="Signal.*.Scavenger" Send="StatusSet ArmorSet 15"/>
         <On Terms="Signal.*.Lance" Send="StatusSet ArmorSet 16"/>
         <On Terms="Signal.*.Vortex" Send="StatusSet ArmorSet 17"/>
