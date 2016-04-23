@@ -52,6 +52,7 @@
         <Macros value="ZyncTextureSelectMacro"/>
         <Macros value="VortexTextureSelectMacro"/>
         <Macros value="RhinoTextureSelectMacro"/>
+        <Macros value="FireflyTextureSelectMacro"/>
         <EditorCategories value=""/>
         <On Terms="ActorCreation" Send="StatusSet ArmorSet 1"/>
         <Host Subject="_Unit"/>
@@ -130,6 +131,7 @@
         <On Terms="Signal.*.Lance" Send="StatusSet ArmorSet 16"/>
         <On Terms="Signal.*.Vortex" Send="StatusSet ArmorSet 19"/>
         <On Terms="Signal.*.Rhino" Send="StatusSet ArmorSet 18"/>
+        <On Terms="Signal.*.Firefly" Send="StatusSet ArmorSet 20"/>
     </CActorEventMacro>
     <CActorEventMacro id="ArmorTextureSelectMacro">
         <Macros value="AvalancheTextureSelectMacro"/>
@@ -210,6 +212,17 @@
         <On index="6" Terms="Signal.*.Tech; IsStatus ArmorSet 3" Send="TextureSelectById EvacTech"/>
         <On index="7" Terms="Signal.*.Urban; IsStatus ArmorSet 3" Send="TextureSelectById EvacUrban"/>
         <On index="8" Terms="Signal.*.Woodland; IsStatus ArmorSet 3" Send="TextureSelectById EvacWoodland"/>
+    </CActorEventMacro>
+    <CActorEventMacro id="FireflyTextureSelectMacro" parent="TextureSelectMacroTemplate" ArmorSet="Firefly">
+        <On index="0" Terms="Signal.*.Desert; IsStatus ArmorSet 20" Send="TextureSelectById FireflyDesert"/>
+        <On index="1" Terms="Signal.*.Infested; IsStatus ArmorSet 20" Send="TextureSelectById FireflyInfested"/>
+        <On index="2" Terms="Signal.*.Navy; IsStatus ArmorSet 20" Send="TextureSelectById FireflyNavy"/>
+        <On index="3" Terms="Signal.*.Night; IsStatus ArmorSet 20" Send="TextureSelectById FireflyNight"/>
+        <On index="4" Terms="Signal.*.RTiger; IsStatus ArmorSet 20" Send="TextureSelectById FireflyRTiger"/>
+        <On index="5" Terms="Signal.*.Night; IsStatus ArmorSet 20" Send="TextureSelectById FireflyNight"/>
+        <On index="6" Terms="Signal.*.Snow; IsStatus ArmorSet 20" Send="TextureSelectById FireflySnow"/>
+        <On index="7" Terms="Signal.*.Tech; IsStatus ArmorSet 20" Send="TextureSelectById FireflyTech"/>
+        <On index="8" Terms="Signal.*.Urban; IsStatus ArmorSet 20" Send="TextureSelectById FireflyUrban"/>
     </CActorEventMacro>
     <CActorEventMacro id="KaitenTextureSelectMacro" parent="TextureSelectMacroTemplate" ArmorSet="Kaiten">
         <On index="0" Terms="Signal.*.Desert; IsStatus ArmorSet 13" Send="TextureSelectById KaitenDesert"/>
