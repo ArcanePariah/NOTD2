@@ -61,6 +61,10 @@
         <?token id="ArmorTexturePrefix" value="Neutrino"?>
         <?token id="ArmorSetName" value="Neutrino"?>
     </CModel>
+    <CModel default="1" id="FireflySetTemplate" parent="ArmorTemplate">
+        <?token id="ArmorTexturePrefix" value="Firefly"?>
+        <?token id="ArmorSetName" value="Firefly"?>
+    </CModel>
     <CModel default="1" id="PeaceKeeperSetTemplate" parent="ArmorTemplate">
         <?token id="ArmorTexturePrefix" value="Police"?>
         <?token id="ArmorSetName" value="Peace Keeper"?>
@@ -149,7 +153,7 @@
         <Model value="Weapons\Auto Shotgun.m3"/>
     </CModel>
     <CModel id="AvalancheLegRight" parent="AvalancheSetTemplate" ArmorSlot="Leg_Right"/>
-    <CModel id="AvalancheFootLeft" parent="AvalancheSetTemplate" ArmorSlot="Foot Left"/>
+    <CModel id="AvalancheFootLeft" parent="AvalancheSetTemplate" ArmorSlot="Foot_Left"/>
     <CModel id="AvalancheLegLeft" parent="AvalancheSetTemplate" ArmorSlot="Leg_Left"/>
     <CModel id="AvalancheShinLeft" parent="AvalancheSetTemplate" ArmorSlot="Shin_Left"/>
     <CModel id="AvalancheShinRight" parent="AvalancheSetTemplate" ArmorSlot="Shin_Right"/>
@@ -301,6 +305,9 @@
     <CModel id="MedicWarArmLeft" parent="WarSetTemplate" ArmorSlot="Arm_Left" Class="Medic "/>
     <CModel id="MedicWarTorso" parent="WarSetTemplate" ArmorSlot="Torso" Class="Medic "/>
     <CModel id="MedicWarHelmet" parent="WarSetTemplate" ArmorSlot="Helmet" Class="Medic "/>
+    <CModel id="MedicFireflyArmLeft" parent="FireflySetTemplate" ArmorSlot="Arm_Left" Class="Medic "/>
+    <CModel id="MedicFireflyTorso" parent="FireflySetTemplate" ArmorSlot="Torso" Class="Medic "/>
+    <CModel id="MedicFireflyHelmet" parent="FireflySetTemplate" ArmorSlot="Helmet" Class="Medic "/>
     <CModel id="MedicNeutrinoHelmet" parent="NeutrinoSetTemplate" ArmorSlot="Helmet" Class="Medic "/>
     <CModel id="MedicQesunHelmet" parent="QesunSetTemplate" ArmorSlot="Helmet" Class="Medic "/>
     <CModel id="MedicRebelHelmet" parent="RebelSetTemplate" ArmorSlot="Helmet" Class="Medic "/>
@@ -350,7 +357,7 @@
         <Model value="Weapons\Pump Shotgun.m3"/>
     </CModel>
     <CModel id="QesunLegRight" parent="QesunSetTemplate" ArmorSlot="Leg_Right"/>
-    <CModel id="QesunFootLeft" parent="QesunSetTemplate" ArmorSlot="Foot Left"/>
+    <CModel id="QesunFootLeft" parent="QesunSetTemplate" ArmorSlot="Foot_Left"/>
     <CModel id="QesunLegLeft" parent="QesunSetTemplate" ArmorSlot="Leg_Left"/>
     <CModel id="QesunShinLeft" parent="QesunSetTemplate" ArmorSlot="Shin_Left"/>
     <CModel id="QesunShinRight" parent="QesunSetTemplate" ArmorSlot="Shin_Right"/>
@@ -362,8 +369,21 @@
     <CModel id="QesunShoulderRight" parent="QesunSetTemplate" ArmorSlot="Shoulder_Right"/>
     <CModel id="QesunArmLeft" parent="QesunSetTemplate" ArmorSlot="Arm_Left"/>
     <CModel id="QesunArmRight" parent="QesunSetTemplate" ArmorSlot="Arm_Right"/>
+    <CModel id="FireflyLegRight" parent="FireflySetTemplate" ArmorSlot="Leg_Right"/>
+    <CModel id="FireflyFootLeft" parent="FireflySetTemplate" ArmorSlot="Foot_Left"/>
+    <CModel id="FireflyLegLeft" parent="FireflySetTemplate" ArmorSlot="Leg_Left"/>
+    <CModel id="FireflyShinLeft" parent="FireflySetTemplate" ArmorSlot="Shin_Left"/>
+    <CModel id="FireflyShinRight" parent="FireflySetTemplate" ArmorSlot="Shin_Right"/>
+    <CModel id="FireflyShoulderLeft" parent="FireflySetTemplate" ArmorSlot="Shoulder_Left"/>
+    <CModel id="FireflyTorso" parent="FireflySetTemplate" ArmorSlot="Torso"/>
+    <CModel id="FireflyWaist" parent="FireflySetTemplate" ArmorSlot="Waist"/>
+    <CModel id="FireflyFootRight" parent="FireflySetTemplate" ArmorSlot="Foot_Right"/>
+    <CModel id="FireflyHelmet" parent="FireflySetTemplate" ArmorSlot="Helmet"/>
+    <CModel id="FireflyShoulderRight" parent="FireflySetTemplate" ArmorSlot="Shoulder_Right"/>
+    <CModel id="FireflyArmLeft" parent="FireflySetTemplate" ArmorSlot="Arm_Left"/>
+    <CModel id="FireflyArmRight" parent="FireflySetTemplate" ArmorSlot="Arm_Right"/>
     <CModel id="RebelLegRight" parent="RebelSetTemplate" ArmorSlot="Leg_Right"/>
-    <CModel id="RebelFootLeft" parent="RebelSetTemplate" ArmorSlot="Foot Left"/>
+    <CModel id="RebelFootLeft" parent="RebelSetTemplate" ArmorSlot="Foot_Left"/>
     <CModel id="RebelLegLeft" parent="RebelSetTemplate" ArmorSlot="Leg_Left"/>
     <CModel id="RebelShinLeft" parent="RebelSetTemplate" ArmorSlot="Shin_Left"/>
     <CModel id="RebelShinRight" parent="RebelSetTemplate" ArmorSlot="Shin_Right"/>
@@ -478,7 +498,7 @@
         <SquibTypeDefault value="Metal"/>
     </CModel>
     <CModel id="WarLegRight" parent="WarSetTemplate" ArmorSlot="Leg_Right"/>
-    <CModel id="WarFootLeft" parent="WarSetTemplate" ArmorSlot="Foot Left"/>
+    <CModel id="WarFootLeft" parent="WarSetTemplate" ArmorSlot="Foot_Left"/>
     <CModel id="WarLegLeft" parent="WarSetTemplate" ArmorSlot="Leg_Left"/>
     <CModel id="WarShinLeft" parent="WarSetTemplate" ArmorSlot="Shin_Left"/>
     <CModel id="WarShinRight" parent="WarSetTemplate" ArmorSlot="Shin_Right"/>
@@ -491,7 +511,7 @@
     <CModel id="WarArmLeft" parent="WarSetTemplate" ArmorSlot="Arm_Left"/>
     <CModel id="WarArmRight" parent="WarSetTemplate" ArmorSlot="Arm_Right"/>
     <CModel id="BreachLegRight" parent="BreachSetTemplate" ArmorSlot="Leg_Right"/>
-    <CModel id="BreachFootLeft" parent="BreachSetTemplate" ArmorSlot="Foot Left"/>
+    <CModel id="BreachFootLeft" parent="BreachSetTemplate" ArmorSlot="Foot_Left"/>
     <CModel id="BreachLegLeft" parent="BreachSetTemplate" ArmorSlot="Leg_Left"/>
     <CModel id="BreachShinLeft" parent="BreachSetTemplate" ArmorSlot="Shin_Left"/>
     <CModel id="BreachShinRight" parent="BreachSetTemplate" ArmorSlot="Shin_Right"/>
@@ -504,7 +524,7 @@
     <CModel id="BreachArmLeft" parent="BreachSetTemplate" ArmorSlot="Arm_Left"/>
     <CModel id="BreachArmRight" parent="BreachSetTemplate" ArmorSlot="Arm_Right"/>
     <CModel id="EvacLegRight" parent="EvacSetTemplate" ArmorSlot="Leg_Right"/>
-    <CModel id="EvacFootLeft" parent="EvacSetTemplate" ArmorSlot="Foot Left"/>
+    <CModel id="EvacFootLeft" parent="EvacSetTemplate" ArmorSlot="Foot-Left"/>
     <CModel id="EvacLegLeft" parent="EvacSetTemplate" ArmorSlot="Leg_Left"/>
     <CModel id="EvacShinLeft" parent="EvacSetTemplate" ArmorSlot="Shin_Left"/>
     <CModel id="EvacShinRight" parent="EvacSetTemplate" ArmorSlot="Shin_Right"/>
@@ -517,7 +537,7 @@
     <CModel id="EvacArmLeft" parent="EvacSetTemplate" ArmorSlot="Arm_Left"/>
     <CModel id="EvacArmRight" parent="EvacSetTemplate" ArmorSlot="Arm_Right"/>
     <CModel id="GoldCenturionLegRight" parent="GoldCenturionSetTemplate" ArmorSlot="Leg_Right"/>
-    <CModel id="GoldCenturionFootLeft" parent="GoldCenturionSetTemplate" ArmorSlot="Foot Left"/>
+    <CModel id="GoldCenturionFootLeft" parent="GoldCenturionSetTemplate" ArmorSlot="Foot_Left"/>
     <CModel id="GoldCenturionLegLeft" parent="GoldCenturionSetTemplate" ArmorSlot="Leg_Left"/>
     <CModel id="GoldCenturionShinLeft" parent="GoldCenturionSetTemplate" ArmorSlot="Shin_Left"/>
     <CModel id="GoldCenturionShinRight" parent="GoldCenturionSetTemplate" ArmorSlot="Shin_Right"/>
@@ -530,7 +550,7 @@
     <CModel id="GoldCenturionArmLeft" parent="GoldCenturionSetTemplate" ArmorSlot="Arm_Left"/>
     <CModel id="GoldCenturionArmRight" parent="GoldCenturionSetTemplate" ArmorSlot="Arm_Right"/>
     <CModel id="PyroLegRight" parent="PyroSetTemplate" ArmorSlot="Leg_Right"/>
-    <CModel id="PyroFootLeft" parent="PyroSetTemplate" ArmorSlot="Foot Left"/>
+    <CModel id="PyroFootLeft" parent="PyroSetTemplate" ArmorSlot="Foot_Left"/>
     <CModel id="PyroLegLeft" parent="PyroSetTemplate" ArmorSlot="Leg_Left"/>
     <CModel id="PyroShinLeft" parent="PyroSetTemplate" ArmorSlot="Shin_Left"/>
     <CModel id="PyroShinRight" parent="PyroSetTemplate" ArmorSlot="Shin_Right"/>
@@ -543,7 +563,7 @@
     <CModel id="PyroArmLeft" parent="PyroSetTemplate" ArmorSlot="Arm_Left"/>
     <CModel id="PyroArmRight" parent="PyroSetTemplate" ArmorSlot="Arm_Right"/>
     <CModel id="ShadowLegRight" parent="ShadowSetTemplate" ArmorSlot="Leg_Right"/>
-    <CModel id="ShadowFootLeft" parent="ShadowSetTemplate" ArmorSlot="Foot Left"/>
+    <CModel id="ShadowFootLeft" parent="ShadowSetTemplate" ArmorSlot="Foot_Left"/>
     <CModel id="ShadowLegLeft" parent="ShadowSetTemplate" ArmorSlot="Leg_Left"/>
     <CModel id="ShadowShinLeft" parent="ShadowSetTemplate" ArmorSlot="Shin_Left"/>
     <CModel id="ShadowShinRight" parent="ShadowSetTemplate" ArmorSlot="Shin_Right"/>
@@ -556,7 +576,7 @@
     <CModel id="ShadowArmLeft" parent="ShadowSetTemplate" ArmorSlot="Arm_Left"/>
     <CModel id="ShadowArmRight" parent="ShadowSetTemplate" ArmorSlot="Arm_Right"/>
     <CModel id="BasicLegRight" parent="BasicSetTemplate" ArmorSlot="Leg_Right"/>
-    <CModel id="BasicFootLeft" parent="BasicSetTemplate" ArmorSlot="Foot Left"/>
+    <CModel id="BasicFootLeft" parent="BasicSetTemplate" ArmorSlot="Foot_Left"/>
     <CModel id="BasicLegLeft" parent="BasicSetTemplate" ArmorSlot="Leg_Left"/>
     <CModel id="BasicShinLeft" parent="BasicSetTemplate" ArmorSlot="Shin_Left"/>
     <CModel id="BasicShinRight" parent="BasicSetTemplate" ArmorSlot="Shin_Right"/>
@@ -569,7 +589,7 @@
     <CModel id="BasicArmLeft" parent="BasicSetTemplate" ArmorSlot="Arm_Left"/>
     <CModel id="BasicArmRight" parent="BasicSetTemplate" ArmorSlot="Arm_Right"/>
     <CModel id="BasicLegRightLow" parent="BasicSetTemplateLow" ArmorSlot="Leg_Right"/>
-    <CModel id="BasicFootLeftLow" parent="BasicSetTemplateLow" ArmorSlot="Foot Left"/>
+    <CModel id="BasicFootLeftLow" parent="BasicSetTemplateLow" ArmorSlot="Foot_Left"/>
     <CModel id="BasicLegLeftLow" parent="BasicSetTemplateLow" ArmorSlot="Leg_Left"/>
     <CModel id="BasicShinLeftLow" parent="BasicSetTemplateLow" ArmorSlot="Shin_Left"/>
     <CModel id="BasicShinRightLow" parent="BasicSetTemplateLow" ArmorSlot="Shin_Right"/>
@@ -582,7 +602,7 @@
     <CModel id="BasicArmLeftLow" parent="BasicSetTemplateLow" ArmorSlot="Arm_Left"/>
     <CModel id="BasicArmRightLow" parent="BasicSetTemplateLow" ArmorSlot="Arm_Right"/>
     <CModel id="Warcraft3LegRight" parent="Warcraft3SetTemplate" ArmorSlot="Leg_Right"/>
-    <CModel id="Warcraft3FootLeft" parent="Warcraft3SetTemplate" ArmorSlot="Foot Left"/>
+    <CModel id="Warcraft3FootLeft" parent="Warcraft3SetTemplate" ArmorSlot="Foot_Left"/>
     <CModel id="Warcraft3LegLeft" parent="Warcraft3SetTemplate" ArmorSlot="Leg_Left"/>
     <CModel id="Warcraft3ShinLeft" parent="Warcraft3SetTemplate" ArmorSlot="Shin_Left"/>
     <CModel id="Warcraft3ShinRight" parent="Warcraft3SetTemplate" ArmorSlot="Shin_Right"/>
@@ -599,7 +619,7 @@
     <CModel id="MedicWarcraft3Torso" parent="Warcraft3SetTemplate" ArmorSlot="Torso" Class="Medic "/>
     <CModel id="MedicWarcraft3Helmet" parent="Warcraft3SetTemplate" ArmorSlot="Helmet" Class="Medic "/>
     <CModel id="NeutrinoLegRight" parent="NeutrinoSetTemplate" ArmorSlot="Leg_Right"/>
-    <CModel id="NeutrinoFootLeft" parent="NeutrinoSetTemplate" ArmorSlot="Foot Left"/>
+    <CModel id="NeutrinoFootLeft" parent="NeutrinoSetTemplate" ArmorSlot="Foot_Left"/>
     <CModel id="NeutrinoLegLeft" parent="NeutrinoSetTemplate" ArmorSlot="Leg_Left"/>
     <CModel id="NeutrinoShinLeft" parent="NeutrinoSetTemplate" ArmorSlot="Shin_Left"/>
     <CModel id="NeutrinoShinRight" parent="NeutrinoSetTemplate" ArmorSlot="Shin_Right"/>
@@ -612,7 +632,7 @@
     <CModel id="NeutrinoArmLeft" parent="NeutrinoSetTemplate" ArmorSlot="Arm_Left"/>
     <CModel id="NeutrinoArmRight" parent="NeutrinoSetTemplate" ArmorSlot="Arm_Right"/>
     <CModel id="PeaceKeeperLegRight" parent="PeaceKeeperSetTemplate" ArmorSlot="Leg_Right"/>
-    <CModel id="PeaceKeeperFootLeft" parent="PeaceKeeperSetTemplate" ArmorSlot="Foot Left"/>
+    <CModel id="PeaceKeeperFootLeft" parent="PeaceKeeperSetTemplate" ArmorSlot="Foot_Left"/>
     <CModel id="PeaceKeeperLegLeft" parent="PeaceKeeperSetTemplate" ArmorSlot="Leg_Left"/>
     <CModel id="PeaceKeeperShinLeft" parent="PeaceKeeperSetTemplate" ArmorSlot="Shin_Left"/>
     <CModel id="PeaceKeeperShinRight" parent="PeaceKeeperSetTemplate" ArmorSlot="Shin_Right"/>
@@ -629,7 +649,7 @@
     <CModel id="MedicPeaceKeeperTorso" parent="PeaceKeeperSetTemplate" ArmorSlot="Torso" Class="Medic_"/>
     <CModel id="MedicPeaceKeeperHelmet" parent="PeaceKeeperSetTemplate" ArmorSlot="Helmet" Class="Medic_"/>
     <CModel id="CraftLegRight" parent="CraftSetTemplate" ArmorSlot="Leg_Right"/>
-    <CModel id="CraftFootLeft" parent="CraftSetTemplate" ArmorSlot="Foot Left"/>
+    <CModel id="CraftFootLeft" parent="CraftSetTemplate" ArmorSlot="Foot_Left"/>
     <CModel id="CraftLegLeft" parent="CraftSetTemplate" ArmorSlot="Leg_Left"/>
     <CModel id="CraftShinLeft" parent="CraftSetTemplate" ArmorSlot="Shin_Left"/>
     <CModel id="CraftShinRight" parent="CraftSetTemplate" ArmorSlot="Shin_Right"/>
@@ -644,7 +664,7 @@
     <CModel id="CraftArmLeft" parent="CraftSetTemplate" ArmorSlot="Arm_Left"/>
     <CModel id="CraftArmRight" parent="CraftSetTemplate" ArmorSlot="Arm_Right"/>
     <CModel id="CrossfireLegRight" parent="CrossfireSetTemplate" ArmorSlot="Leg_Right"/>
-    <CModel id="CrossfireFootLeft" parent="CrossfireSetTemplate" ArmorSlot="Foot Left"/>
+    <CModel id="CrossfireFootLeft" parent="CrossfireSetTemplate" ArmorSlot="Foot_Left"/>
     <CModel id="CrossfireLegLeft" parent="CrossfireSetTemplate" ArmorSlot="Leg_Left"/>
     <CModel id="CrossfireShinLeft" parent="CrossfireSetTemplate" ArmorSlot="Shin_Left"/>
     <CModel id="CrossfireShinRight" parent="CrossfireSetTemplate" ArmorSlot="Shin_Right"/>
@@ -659,7 +679,7 @@
     <CModel id="CrossfireArmLeft" parent="CrossfireSetTemplate" ArmorSlot="Arm_Left"/>
     <CModel id="CrossfireArmRight" parent="CrossfireSetTemplate" ArmorSlot="Arm_Right"/>
     <CModel id="VortexLegRight" parent="VortexSetTemplate" ArmorSlot="Leg_Right"/>
-    <CModel id="VortexFootLeft" parent="VortexSetTemplate" ArmorSlot="Foot Left"/>
+    <CModel id="VortexFootLeft" parent="VortexSetTemplate" ArmorSlot="Foot_Left"/>
     <CModel id="VortexLegLeft" parent="VortexSetTemplate" ArmorSlot="Leg_Left"/>
     <CModel id="VortexShinLeft" parent="VortexSetTemplate" ArmorSlot="Shin_Left"/>
     <CModel id="VortexShinRight" parent="VortexSetTemplate" ArmorSlot="Shin_Right"/>
@@ -688,7 +708,7 @@
     <CModel id="TechnicianCrossfireTorso" parent="CrossfireSetTemplate" ArmorSlot="Torso" Class="Technician_"/>
     <CModel id="TechnicianCraftTorso" parent="CraftSetTemplate" ArmorSlot="Torso" Class="Technician_"/>
     <CModel id="LanceLegRight" parent="LanceSetTemplate" ArmorSlot="Leg_Right"/>
-    <CModel id="LanceFootLeft" parent="LanceSetTemplate" ArmorSlot="Foot Left"/>
+    <CModel id="LanceFootLeft" parent="LanceSetTemplate" ArmorSlot="Foot_Left"/>
     <CModel id="LanceLegLeft" parent="LanceSetTemplate" ArmorSlot="Leg_Left"/>
     <CModel id="LanceShinLeft" parent="LanceSetTemplate" ArmorSlot="Shin_Left"/>
     <CModel id="LanceShinRight" parent="LanceSetTemplate" ArmorSlot="Shin_Right"/>
@@ -703,7 +723,7 @@
     <CModel id="LanceArmLeft" parent="LanceSetTemplate" ArmorSlot="Arm_Left"/>
     <CModel id="LanceArmRight" parent="LanceSetTemplate" ArmorSlot="Arm_Right"/>
     <CModel id="ScavengerLegRight" parent="ScavengerSetTemplate" ArmorSlot="Leg_Right"/>
-    <CModel id="ScavengerFootLeft" parent="ScavengerSetTemplate" ArmorSlot="Foot Left"/>
+    <CModel id="ScavengerFootLeft" parent="ScavengerSetTemplate" ArmorSlot="Foot_Left"/>
     <CModel id="ScavengerLegLeft" parent="ScavengerSetTemplate" ArmorSlot="Leg_Left"/>
     <CModel id="ScavengerShinLeft" parent="ScavengerSetTemplate" ArmorSlot="Shin_Left"/>
     <CModel id="ScavengerShinRight" parent="ScavengerSetTemplate" ArmorSlot="Shin_Right"/>
@@ -736,7 +756,7 @@
         <ShadowRadius value="0.250000"/>
     </CModel>
     <CModel id="ZyncLegRight" parent="ZyncSetTemplate" ArmorSlot="Leg_Right"/>
-    <CModel id="ZyncFootLeft" parent="ZyncSetTemplate" ArmorSlot="Foot Left"/>
+    <CModel id="ZyncFootLeft" parent="ZyncSetTemplate" ArmorSlot="Foot_Left"/>
     <CModel id="ZyncLegLeft" parent="ZyncSetTemplate" ArmorSlot="Leg_Left"/>
     <CModel id="ZyncShinLeft" parent="ZyncSetTemplate" ArmorSlot="Shin_Left"/>
     <CModel id="ZyncShinRight" parent="ZyncSetTemplate" ArmorSlot="Shin_Right"/>
@@ -751,7 +771,7 @@
     <CModel id="ZyncArmLeft" parent="ZyncSetTemplate" ArmorSlot="Arm_Left"/>
     <CModel id="ZyncArmRight" parent="ZyncSetTemplate" ArmorSlot="Arm_Right"/>
     <CModel id="RhinoLegRight" parent="RhinoSetTemplate" ArmorSlot="Leg_Right"/>
-    <CModel id="RhinoFootLeft" parent="RhinoSetTemplate" ArmorSlot="Foot Left"/>
+    <CModel id="RhinoFootLeft" parent="RhinoSetTemplate" ArmorSlot="Foot_Left"/>
     <CModel id="RhinoLegLeft" parent="RhinoSetTemplate" ArmorSlot="Leg_Left"/>
     <CModel id="RhinoShinLeft" parent="RhinoSetTemplate" ArmorSlot="Shin_Left"/>
     <CModel id="RhinoShinRight" parent="RhinoSetTemplate" ArmorSlot="Shin_Right"/>
@@ -766,7 +786,7 @@
     <CModel id="RhinoArmLeft" parent="RhinoSetTemplate" ArmorSlot="Arm_Left"/>
     <CModel id="RhinoArmRight" parent="RhinoSetTemplate" ArmorSlot="Arm_Right"/>
     <CModel id="KaitenLegRight" parent="KaitenSetTemplate" ArmorSlot="Leg_Right"/>
-    <CModel id="KaitenFootLeft" parent="KaitenSetTemplate" ArmorSlot="Foot Left"/>
+    <CModel id="KaitenFootLeft" parent="KaitenSetTemplate" ArmorSlot="Foot_Left"/>
     <CModel id="KaitenLegLeft" parent="KaitenSetTemplate" ArmorSlot="Leg_Left"/>
     <CModel id="KaitenShinLeft" parent="KaitenSetTemplate" ArmorSlot="Shin_Left"/>
     <CModel id="KaitenShinRight" parent="KaitenSetTemplate" ArmorSlot="Shin_Right"/>
@@ -891,6 +911,8 @@
     <CModel id="PsiOpsRebelHelmet" parent="RebelSetTemplate" ArmorSlot="Helmet" Class="Psi Ops_"/>
     <CModel id="PsiOpsBasicHelmet" parent="BasicSetTemplate" ArmorSlot="Helmet" Class="Psi Ops_"/>
     <CModel id="PsiOpsWarcraft3Helmet" parent="Warcraft3SetTemplate" ArmorSlot="Helmet" Class="Psi Ops_"/>
+    <CModel id="PsiOpsFireflyHelmet" parent="FireflySetTemplate" ArmorSlot="Helmet" Class="Psi Ops_"/>
+    <CModel id="PsiOpsFireflyTorso" parent="FireflySetTemplate" ArmorSlot="Torso" Class="Psi Ops_"/>
     <CModel id="WeaponCrate">
         <Model value="WeaponCrate.m3"/>
         <SquibTypeDefault value="Metal"/>

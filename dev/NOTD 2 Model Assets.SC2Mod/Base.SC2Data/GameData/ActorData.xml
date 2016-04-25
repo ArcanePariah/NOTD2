@@ -25,6 +25,7 @@
         <On Terms="Signal.*.Lance" Send="ModelSwap ##Class##Lance##ArmorSlot##"/>
         <On Terms="Signal.*.Vortex" Send="ModelSwap ##Class##Vortex##ArmorSlot##"/>
         <On Terms="Signal.*.Rhino" Send="ModelSwap ##Class##Rhino##ArmorSlot##"/>
+        <On Terms="Signal.*.Firefly" Send="ModelSwap ##Class##Firefly##ArmorSlot##"/>
         <On Terms="ModelSwap" Send="TextureResetToDefault"/>
     </CActorEventMacro>
     <CActorModel default="1" id="ArmorTemplate" parent="ModelAddition">
@@ -154,9 +155,7 @@
         <Macros value="VortexTextureSelectMacro"/>
         <EditorCategories value=""/>
     </CActorEventMacro>
-    <CActorModel id="AssaultTorso" parent="AssaultArmorTemplate" SwapMacro="TorsoSwap">
-        <On index="3" Terms="ActorCreation" Send="StatusSet ArmorSet 1"/>
-    </CActorModel>
+    <CActorModel id="AssaultTorso" parent="AssaultArmorTemplate" SwapMacro="TorsoSwap"/>
     <CActorEventMacro id="AvalancheTextureSelectMacro" parent="TextureSelectMacroTemplate" ArmorSet="Avalanche">
         <On index="0" Terms="Signal.*.Desert; IsStatus ArmorSet 4" Send="TextureSelectById AvalancheDesert"/>
         <On index="1" Terms="Signal.*.Infested; IsStatus ArmorSet 4" Send="TextureSelectById AvalancheInfested"/>
@@ -369,9 +368,7 @@
     </CActorEventMacro>
     <CActorModel id="CommandoTorso" parent="CommandoArmorTemplate" SwapMacro="TorsoSwap"/>
     <CActorEventMacro id="CommandoTorsoSwap" parent="ArmorSwapTemplate" ArmorSlot="Torso" Class="Commando"/>
-    <CActorModel id="DemolitionTorso" parent="DemolitionArmorTemplate" SwapMacro="TorsoSwap">
-        <On index="3" Terms="ActorCreation" Send="StatusSet ArmorSet 1"/>
-    </CActorModel>
+    <CActorModel id="DemolitionTorso" parent="DemolitionArmorTemplate" SwapMacro="TorsoSwap"/>
     <CActorEventMacro id="DemolitionTorsoSwap" parent="ArmorSwapTemplate" ArmorSlot="Torso" Class="Demolition"/>
     <CActorModel id="EngineerTorso" parent="EngineerArmorTemplate" SwapMacro="TorsoSwap"/>
     <CActorEventMacro id="EngineerTorsoSwap" parent="ArmorSwapTemplate" ArmorSlot="Torso" Class="Engineer"/>
@@ -429,9 +426,7 @@
     <CActorEventMacro id="LeftFootSwap" parent="ArmorSwapTemplate" ArmorSlot="FootLeft"/>
     <CActorEventMacro id="RightFootSwap" parent="ArmorSwapTemplate" ArmorSlot="FootRight"/>
     <CActorModel id="ReconTorso" parent="ReconArmorTemplate" SwapMacro="TorsoSwap"/>
-    <CActorModel id="FlamethrowerTorso" parent="FlamethrowerArmorTemplate" SwapMacro="TorsoSwap">
-        <On index="3" Terms="ActorCreation" Send="StatusSet ArmorSet 1"/>
-    </CActorModel>
+    <CActorModel id="FlamethrowerTorso" parent="FlamethrowerArmorTemplate" SwapMacro="TorsoSwap"/>
     <CActorModel id="Waist" parent="ArmorTemplate" SwapMacro="WaistSwap">
         <Model value="BasicWaist"/>
     </CActorModel>
@@ -470,7 +465,5 @@
     <CActorEventMacro id="LeftLegSwap" parent="ArmorSwapTemplate" ArmorSlot="LegLeft"/>
     <CActorEventMacro id="RightShinSwap" parent="ArmorSwapTemplate" ArmorSlot="ShinRight"/>
     <CActorEventMacro id="LeftShinSwap" parent="ArmorSwapTemplate" ArmorSlot="ShinLeft"/>
-    <CActorModel id="TechnicianTorso" parent="TechnicianArmorTemplate" SwapMacro="TorsoSwap">
-        <On index="3" Terms="ActorCreation" Send="StatusSet ArmorSet 1"/>
-    </CActorModel>
+    <CActorModel id="TechnicianTorso" parent="TechnicianArmorTemplate" SwapMacro="TorsoSwap"/>
 </Catalog>
