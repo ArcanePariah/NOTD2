@@ -335,6 +335,24 @@
         <EffectArray Operation="Set" Reference="Behavior,NanoHasteLevel3,Period" Value="20.000000"/>
         <EffectArray Operation="Set" Reference="Effect,NanoHasteFractureRepair,PeriodCount" Value="2"/>
     </CUpgrade>
+    <CActorUnit id="MedicNOTD" parent="BaseMarineActor" unitName="Medic2">
+        <On index="65" Terms="ActorCreation" Send="AttachModel MedicTorso MedicBasicTorso {Hardpoint 0}"/>
+        <On index="74" Terms="ActorCreation" Send="AttachModel MedicLeftArm MedicBasicArmLeft {Hardpoint 5}"/>
+        <On index="77" Terms="ActorCreation" Send="AttachModel MedicHelmet MedicBasicHelmet {Head 0}"/>
+        <SoundArray index="Birth" value="Medic_Birth"/>
+        <SoundArray index="Ready" value="Medic_Ready"/>
+        <SoundArray index="Help" value="Medic_Help"/>
+        <SoundArray index="What" value="Medic_What"/>
+        <SoundArray index="Yes" value="Medic_Yes"/>
+        <SoundArray index="Attack" value="Medic_Attack"/>
+        <SoundArray index="Pissed" value="Medic_Pissed"/>
+        <SoundArray index="Movement" value="Medic_Movement"/>
+        <SoundArray index="Turning" value="Medic_Turning"/>
+        <SoundArray index="Board" value="Medic_Board"/>
+        <SoundArray index="Click" value="Medic_Click"/>
+        <SoundArray index="ClickError" value="Medic_ClickError"/>
+        <SoundArray index="Highlight" value="Medic_Highlight"/>
+    </CActorUnit>
     <CActorSplat id="NanoShockAoESplat" parent="TerranCursorSplat" abil="NanoShock">
         <EditorCategories value=""/>
     </CActorSplat>
