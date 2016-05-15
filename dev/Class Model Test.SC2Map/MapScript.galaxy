@@ -1,0 +1,73 @@
+//==================================================================================================
+// 
+// Generated Map Script
+// 
+// Name:   Just Another StarCraft II Map
+// 
+//==================================================================================================
+include "TriggerLibs/NativeLib"
+include "Lib09BE6BA8"
+
+//--------------------------------------------------------------------------------------------------
+// Library Initialization
+//--------------------------------------------------------------------------------------------------
+void InitLibs () {
+    libNtve_InitLib();
+    lib09BE6BA8_InitLib();
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger Variables
+//--------------------------------------------------------------------------------------------------
+trigger gt_TestInitialize;
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Test Initialize
+//--------------------------------------------------------------------------------------------------
+bool gt_TestInitialize_Func (bool testConds, bool runActions) {
+    int auto266E2FF3_u;
+
+    // Variable Declarations
+    point lv_startPoint;
+    string lv_currentClass;
+    int lv_currentCamo;
+
+    // Variable Initialization
+    lv_startPoint = Point(15.0, 15.0);
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    auto266E2FF3_u = 1;
+    for ( ; auto266E2FF3_u <= UserDataInstanceCount("Classes"); auto266E2FF3_u += 1)
+    {
+        lv_currentClass = UserDataInstance("Classes", auto266E2FF3_u);
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, UserDataGetUnit("Classes", lv_currentClass, "Class Unit", 1), 0, 1, lv_startPoint);
+        lv_startPoint = PointWithOffset(lv_startPoint, 3.0, 0.0);
+        ;
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void gt_TestInitialize_Init () {
+    gt_TestInitialize = TriggerCreate("gt_TestInitialize_Func");
+    TriggerAddEventMapInit(gt_TestInitialize);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger Initialization
+//--------------------------------------------------------------------------------------------------
+void InitTriggers () {
+    gt_TestInitialize_Init();
+}
+
+//--------------------------------------------------------------------------------------------------
+// Map Initialization
+//--------------------------------------------------------------------------------------------------
+void InitMap () {
+    InitLibs();
+    InitTriggers();
+}
