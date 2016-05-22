@@ -26,11 +26,14 @@ trigger gt_TestInitialize;
 //--------------------------------------------------------------------------------------------------
 bool gt_TestInitialize_Func (bool testConds, bool runActions) {
     int auto266E2FF3_u;
+    int auto342C1C95_ae;
+    int auto342C1C95_ai;
 
     // Variable Declarations
     point lv_startPoint;
     string lv_currentClass;
     int lv_currentCamo;
+    int lv_currentRow;
 
     // Variable Initialization
     lv_startPoint = Point(15.0, 15.0);
@@ -44,8 +47,16 @@ bool gt_TestInitialize_Func (bool testConds, bool runActions) {
     for ( ; auto266E2FF3_u <= UserDataInstanceCount("Classes"); auto266E2FF3_u += 1)
     {
         lv_currentClass = UserDataInstance("Classes", auto266E2FF3_u);
-        libNtve_gf_CreateUnitsWithDefaultFacing(1, UserDataGetUnit("Classes", lv_currentClass, "Class Unit", 1), 0, 1, lv_startPoint);
-        lv_startPoint = PointWithOffset(lv_startPoint, 3.0, 0.0);
+        auto342C1C95_ae = UserDataInstanceCount("CamoSets");
+        auto342C1C95_ai = 1;
+        lv_currentCamo = 1;
+        for ( ; ( (auto342C1C95_ai >= 0 && lv_currentCamo <= auto342C1C95_ae) || (auto342C1C95_ai <= 0 && lv_currentCamo >= auto342C1C95_ae) ) ; lv_currentCamo += auto342C1C95_ai ) {
+            libNtve_gf_CreateUnitsWithDefaultFacing(1, UserDataGetUnit("Classes", lv_currentClass, "Class Unit", 1), 0, 1, lv_startPoint);
+            ActorScopeSend(ActorScopeFromUnit(UnitLastCreated()), libNtve_gf_Signal(UserDataGetString("CamoSets", UserDataInstance("CamoSets", lv_currentCamo), "CamoName", 1)));
+            lv_startPoint = PointWithOffset(lv_startPoint, 5.0, 0.0);
+        }
+        lv_currentRow += 1;
+        lv_startPoint = Point(15.0, (15 + (5 * lv_currentRow)));
         ;
     }
     return true;
