@@ -11,6 +11,11 @@
             <Adaptions TriggerOnSubstring="_High_Diffuse" Slot="main.diffuse"/>
         </TextureDeclares>
     </CModel>
+    <CModel default="1" id="HeavyArmorTemplate" parent="ArmorTemplate">
+        <TextureDeclares index="0" Prefix="##ArmorTexturePrefix##_Armour_">
+            <Adaptions index="0" TriggerOnSubstring="_Diffuse" Slot="main.diffuse"/>
+        </TextureDeclares>
+    </CModel>
     <CModel default="1" id="ArmorLowTemplate" parent="ArmorTemplate">
         <Model value="##ArmorSetName##_Armour_##ArmorSlot##_##Class##Low.m3"/>
         <TextureDeclares Prefix="##ArmorTexturePrefix##_Armour_">
@@ -34,11 +39,11 @@
         <?token id="ArmorTexturePrefix" value="Breach"?>
         <?token id="ArmorSetName" value="Breach"?>
     </CModel>
-    <CModel default="1" id="CraftSetTemplate" parent="ArmorTemplate">
+    <CModel default="1" id="CraftSetTemplate" parent="HeavyArmorTemplate">
         <?token id="ArmorTexturePrefix" value="Heavy_Craft"?>
         <?token id="ArmorSetName" value="Craft_ZI-9"?>
     </CModel>
-    <CModel default="1" id="CrossfireSetTemplate" parent="ArmorTemplate">
+    <CModel default="1" id="CrossfireSetTemplate" parent="HeavyArmorTemplate">
         <?token id="ArmorTexturePrefix" value="Heavy_Crossfire"?>
         <?token id="ArmorSetName" value="Crossfire_ISX-67"?>
     </CModel>
@@ -49,11 +54,11 @@
     <CModel default="1" id="GoldCenturionSetTemplate" parent="ArmorTemplate">
         <?token id="ArmorSetName" value="Centurion"?>
     </CModel>
-    <CModel default="1" id="KaitenSetTemplate" parent="ArmorTemplate">
+    <CModel default="1" id="KaitenSetTemplate" parent="HeavyArmorTemplate">
         <?token id="ArmorTexturePrefix" value="Heavy_Kaiten"?>
         <?token id="ArmorSetName" value="Kaiten_ST-6"?>
     </CModel>
-    <CModel default="1" id="LanceSetTemplate" parent="ArmorTemplate">
+    <CModel default="1" id="LanceSetTemplate" parent="HeavyArmorTemplate">
         <?token id="ArmorTexturePrefix" value="Heavy_Lance"?>
         <?token id="ArmorSetName" value="Lance_UD-3"?>
     </CModel>
@@ -81,11 +86,11 @@
         <?token id="ArmorTexturePrefix" value="Rebel"?>
         <?token id="ArmorSetName" value="Rebel"?>
     </CModel>
-    <CModel default="1" id="RhinoSetTemplate" parent="ArmorTemplate">
+    <CModel default="1" id="RhinoSetTemplate" parent="HeavyArmorTemplate">
         <?token id="ArmorTexturePrefix" value="Rhino"?>
         <?token id="ArmorSetName" value="Rhino P5 - C9I"?>
     </CModel>
-    <CModel default="1" id="ScavengerSetTemplate" parent="ArmorTemplate">
+    <CModel default="1" id="ScavengerSetTemplate" parent="HeavyArmorTemplate">
         <?token id="ArmorTexturePrefix" value="Heavy_Scavenger"?>
         <?token id="ArmorSetName" value="Scavenger_SR-12"?>
     </CModel>
@@ -93,7 +98,7 @@
         <?token id="ArmorTexturePrefix" value="Shadow"?>
         <?token id="ArmorSetName" value="Shadow"?>
     </CModel>
-    <CModel default="1" id="VortexSetTemplate" parent="ArmorTemplate">
+    <CModel default="1" id="VortexSetTemplate" parent="HeavyArmorTemplate">
         <?token id="ArmorTexturePrefix" value="Vortex"?>
         <?token id="ArmorSetName" value="Vortex_RG-97N"?>
     </CModel>
@@ -105,7 +110,7 @@
         <?token id="ArmorSetName" value="WC3"?>
         <Lighting value="Warcraft3SetTemplate"/>
     </CModel>
-    <CModel default="1" id="ZyncSetTemplate" parent="ArmorTemplate">
+    <CModel default="1" id="ZyncSetTemplate" parent="HeavyArmorTemplate">
         <?token id="ArmorTexturePrefix" value="Heavy_HB_24"?>
         <?token id="ArmorSetName" value="Zync HB-24"?>
     </CModel>
