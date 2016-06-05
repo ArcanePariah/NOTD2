@@ -17,22 +17,44 @@ void InitLibs () {
 }
 
 //--------------------------------------------------------------------------------------------------
+// Global Variables
+//--------------------------------------------------------------------------------------------------
+unit[16] gv_classUnits;
+
+void InitGlobals () {
+}
+
+//--------------------------------------------------------------------------------------------------
+// Global Function Declarations
+//--------------------------------------------------------------------------------------------------
+void gf_CreateClass (string lp_classToCreate, point lp_location);
+
+//--------------------------------------------------------------------------------------------------
 // Trigger Variables
 //--------------------------------------------------------------------------------------------------
 trigger gt_TestInitialize;
 
 //--------------------------------------------------------------------------------------------------
+// Global Functions
+//--------------------------------------------------------------------------------------------------
+void gf_CreateClass (string lp_classToCreate, point lp_location) {
+    // Implementation
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, UserDataGetUnit("Classes", lp_classToCreate, "Class Unit", 1), 0, 1, lp_location);
+}
+
+//--------------------------------------------------------------------------------------------------
 // Trigger: Test Initialize
 //--------------------------------------------------------------------------------------------------
 bool gt_TestInitialize_Func (bool testConds, bool runActions) {
-    int auto266E2FF3_u;
-    int auto342C1C95_ae;
-    int auto342C1C95_ai;
+    int auto52F21C9F_u;
+    int auto88BACFEE_ae;
+    int auto88BACFEE_ai;
 
     // Variable Declarations
     point lv_startPoint;
     string lv_currentClass;
     int lv_currentCamo;
+    int lv_currentArmor;
     int lv_currentRow;
 
     // Variable Initialization
@@ -43,16 +65,16 @@ bool gt_TestInitialize_Func (bool testConds, bool runActions) {
         return true;
     }
 
-    auto266E2FF3_u = 1;
-    for ( ; auto266E2FF3_u <= UserDataInstanceCount("Classes"); auto266E2FF3_u += 1)
+    auto52F21C9F_u = 1;
+    for ( ; auto52F21C9F_u <= UserDataInstanceCount("Classes"); auto52F21C9F_u += 1)
     {
-        lv_currentClass = UserDataInstance("Classes", auto266E2FF3_u);
-        auto342C1C95_ae = UserDataInstanceCount("CamoSets");
-        auto342C1C95_ai = 1;
-        lv_currentCamo = 1;
-        for ( ; ( (auto342C1C95_ai >= 0 && lv_currentCamo <= auto342C1C95_ae) || (auto342C1C95_ai <= 0 && lv_currentCamo >= auto342C1C95_ae) ) ; lv_currentCamo += auto342C1C95_ai ) {
+        lv_currentClass = UserDataInstance("Classes", auto52F21C9F_u);
+        auto88BACFEE_ae = UserDataInstanceCount("ArmorSets");
+        auto88BACFEE_ai = 1;
+        lv_currentArmor = 1;
+        for ( ; ( (auto88BACFEE_ai >= 0 && lv_currentArmor <= auto88BACFEE_ae) || (auto88BACFEE_ai <= 0 && lv_currentArmor >= auto88BACFEE_ae) ) ; lv_currentArmor += auto88BACFEE_ai ) {
             libNtve_gf_CreateUnitsWithDefaultFacing(1, UserDataGetUnit("Classes", lv_currentClass, "Class Unit", 1), 0, 1, lv_startPoint);
-            ActorScopeSend(ActorScopeFromUnit(UnitLastCreated()), libNtve_gf_Signal(UserDataGetString("CamoSets", UserDataInstance("CamoSets", lv_currentCamo), "CamoName", 1)));
+            ActorScopeSend(ActorScopeFromUnit(UnitLastCreated()), libNtve_gf_Signal(UserDataGetString("ArmorSets", UserDataInstance("ArmorSets", lv_currentArmor), "Armor Set Name", 1)));
             lv_startPoint = PointWithOffset(lv_startPoint, 5.0, 0.0);
         }
         lv_currentRow += 1;
@@ -80,5 +102,6 @@ void InitTriggers () {
 //--------------------------------------------------------------------------------------------------
 void InitMap () {
     InitLibs();
+    InitGlobals();
     InitTriggers();
 }
