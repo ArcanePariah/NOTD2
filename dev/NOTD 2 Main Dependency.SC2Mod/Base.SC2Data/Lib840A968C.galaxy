@@ -679,7 +679,7 @@ void lib840A968C_gf_ClassUnlocked (int lp_classSlot) {
     lv_buttonImage = c_invalidDialogControlId;
 
     // Implementation
-    DialogControlHookup(lib840A968C_gv_classSelectionItems[lp_classSlot], c_triggerControlTypeImage, "ClassImage");
+    DialogControlHookup(lib840A968C_gv_classSelectionButtons[lp_classSlot], c_triggerControlTypeImage, "ClassImage");
     lv_buttonImage = DialogControlLastCreated();
     PlayerGroupLoopBegin(lib840A968C_gv_marineSquad);
     for ( ; !PlayerGroupLoopDone() ; PlayerGroupLoopStep() ) {
@@ -688,7 +688,7 @@ void lib840A968C_gf_ClassUnlocked (int lp_classSlot) {
         }
         else {
             libNtve_gf_SetDialogItemImage(lv_buttonImage, "btn-ability-terran-lockdown-classic.dds", PlayerGroupSingle(PlayerGroupLoopCurrent()));
-            DialogControlSetEnabled(lib840A968C_gv_classSelectionItems[lp_classSlot], PlayerGroupSingle(PlayerGroupLoopCurrent()), false);
+            DialogControlSetEnabled(lib840A968C_gv_classSelectionButtons[lp_classSlot], PlayerGroupSingle(PlayerGroupLoopCurrent()), false);
         }
     }
     PlayerGroupLoopEnd();
@@ -1874,14 +1874,16 @@ bool lib840A968C_gt_DisplayClassSelection_Func (bool testConds, bool runActions)
     int auto2FAB51E5_p;
 
     // Variable Declarations
-    int lv_classButton;
+    int lv_classFrame;
     int lv_player;
     int lv_playerRankIcon;
     int lv_playerNameLabel;
+    int lv_currentClassFrame;
 
     // Variable Initialization
     lv_playerRankIcon = c_invalidDialogControlId;
     lv_playerNameLabel = c_invalidDialogControlId;
+    lv_currentClassFrame = c_invalidDialogControlId;
 
     // Actions
     if (!runActions) {
@@ -1910,11 +1912,16 @@ bool lib840A968C_gt_DisplayClassSelection_Func (bool testConds, bool runActions)
     DialogControlSetFullDialog(lib840A968C_gv_classSelectionPanel, PlayerGroupAll(), true);
     autoE7B793F7_ae = lib840A968C_gv_numberofClasses;
     autoE7B793F7_ai = 1;
-    lv_classButton = 1;
-    for ( ; ( (autoE7B793F7_ai >= 0 && lv_classButton <= autoE7B793F7_ae) || (autoE7B793F7_ai <= 0 && lv_classButton >= autoE7B793F7_ae) ) ; lv_classButton += autoE7B793F7_ai ) {
-        DialogControlHookup(lib840A968C_gv_classSelectionPanel, c_triggerControlTypeButton, "ClassButton" + IntToString(lv_classButton));
-        lib840A968C_gv_classSelectionItems[lv_classButton] = DialogControlLastCreated();
-        lib840A968C_gf_ClassUnlocked(lv_classButton);
+    lv_classFrame = 1;
+    for ( ; ( (autoE7B793F7_ai >= 0 && lv_classFrame <= autoE7B793F7_ae) || (autoE7B793F7_ai <= 0 && lv_classFrame >= autoE7B793F7_ae) ) ; lv_classFrame += autoE7B793F7_ai ) {
+        DialogControlHookup(lib840A968C_gv_classSelectionPanel, c_triggerControlTypePanel, "ClassFrame" + IntToString(lv_classFrame));
+        lib840A968C_gv_classSelectionFrames[lv_classFrame] = DialogControlLastCreated();
+        DialogControlHookup(lib840A968C_gv_classSelectionFrames[lv_classFrame], c_triggerControlTypeButton, "ClassButton");
+        lib840A968C_gv_classSelectionButtons[lv_classFrame] = DialogControlLastCreated();
+        DialogControlHookup(lib840A968C_gv_classSelectionFrames[lv_classFrame], c_triggerControlTypeLabel, "ClassLabel");
+        lib840A968C_gv_classSelectionLabels[lv_classFrame] = DialogControlLastCreated();
+        libNtve_gf_SetDialogItemText(lib840A968C_gv_classSelectionLabels[lv_classFrame], UserDataGetText("Classes", UserDataInstance("Classes", lv_classFrame), "Class Name", 1), PlayerGroupAll());
+        lib840A968C_gf_ClassUnlocked(lv_classFrame);
     }
     DialogControlHookup(lib840A968C_gv_classSelectionPanel, c_triggerControlTypeLabel, "PlayerName");
     lv_playerNameLabel = DialogControlLastCreated();
@@ -1961,7 +1968,7 @@ bool lib840A968C_gt_ClassSelection_Func (bool testConds, bool runActions) {
         return true;
     }
 
-    while ((EventDialogControl() != lib840A968C_gv_classSelectionItems[lv_classIndex])) {
+    while ((EventDialogControl() != lib840A968C_gv_classSelectionButtons[lv_classIndex])) {
         lv_classIndex += 1;
     }
     libC50FD636_gv_marines[lv_selectingPlayer].lv_class = UserDataInstance("Classes", lv_classIndex);
@@ -1972,8 +1979,8 @@ bool lib840A968C_gt_ClassSelection_Func (bool testConds, bool runActions) {
     lib1E3F036D_gf_SetPlayerPortrait(lv_selectingPlayer, UserDataGetImagePath("Classes", libC50FD636_gv_marines[lv_selectingPlayer].lv_class, "Class Image", 1));
     IntLoopBegin(lib1E3F036D_gv_indexBaseValue, lib840A968C_gv_numberofClasses);
     for ( ; !IntLoopDone() ; IntLoopStep() ) {
-        if ((lib840A968C_gv_classSelectionItems[IntLoopCurrent()] != EventDialogControl())) {
-            libNtve_gf_SetDialogItemToggled(lib840A968C_gv_classSelectionItems[IntLoopCurrent()], false, PlayerGroupSingle(lv_selectingPlayer));
+        if ((lib840A968C_gv_classSelectionButtons[IntLoopCurrent()] != EventDialogControl())) {
+            libNtve_gf_SetDialogItemToggled(lib840A968C_gv_classSelectionButtons[IntLoopCurrent()], false, PlayerGroupSingle(lv_selectingPlayer));
         }
     }
     IntLoopEnd();
