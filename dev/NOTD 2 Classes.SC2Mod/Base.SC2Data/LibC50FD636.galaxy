@@ -212,18 +212,15 @@ void libC50FD636_gf_UpdateWeaponProfi2 (unit lp_rifleman) {
     if ((TechTreeUpgradeCount(UnitGetOwner(lp_rifleman), "AccurateFireLevel", c_techCountCompleteOnly) >= 1)) {
         lv_dMGBonus = 0.2;
     }
-    else {
-    }
+
     if ((TechTreeUpgradeCount(UnitGetOwner(lp_rifleman), "AccurateFireLevel", c_techCountCompleteOnly) >= 2)) {
         CatalogFieldValueSet(c_gameCatalogBehavior, "WeaponProfi2", "Modification.WeaponRange", UnitGetOwner(lp_rifleman), FixedToString(1.0, 2));
     }
-    else {
-    }
+
     if ((TechTreeUpgradeCount(UnitGetOwner(lp_rifleman), "AccurateFireLevel", c_techCountCompleteOnly) >= 3)) {
         lv_aSBonus = 0.1;
     }
-    else {
-    }
+
     CatalogFieldValueSet(c_gameCatalogBehavior, "WeaponProfi2", "Modification.DamageDealtFraction[" + IntToString(2) + "]", UnitGetOwner(lp_rifleman), FixedToString(((libC50FD636_gf_ReturnCatalogAsReal(CatalogFieldValueGet(c_gameCatalogBehavior, "FocusFire", "Modification.DamageDealtFraction[" + IntToString(2) + "]", UnitGetOwner(lp_rifleman))) * 0.5) + lv_dMGBonus), 2));
     CatalogFieldValueSet(c_gameCatalogBehavior, "WeaponProfi2", "Modification.DamageDealtFraction[" + IntToString(3) + "]", UnitGetOwner(lp_rifleman), FixedToString(((libC50FD636_gf_ReturnCatalogAsReal(CatalogFieldValueGet(c_gameCatalogBehavior, "FocusFire", "Modification.DamageDealtFraction[" + IntToString(3) + "]", UnitGetOwner(lp_rifleman))) * 0.5) + lv_dMGBonus), 2));
     CatalogFieldValueSet(c_gameCatalogBehavior, "WeaponProfi2", "Modification.AttackSpeedMultiplier", UnitGetOwner(lp_rifleman), FixedToString((1.0 + lv_aSBonus), 2));
@@ -306,8 +303,7 @@ int libC50FD636_gf_GetOpenBagSlot (unit lp_inventoryUnit) {
             lv_openSlot = IntLoopCurrent();
             return lv_openSlot;
         }
-        else {
-        }
+
     }
     IntLoopEnd();
     return lv_openSlot;
@@ -344,57 +340,49 @@ void libC50FD636_gf_EquipmentUpdateMarineWeight (int lp_ownerOfEquipment) {
     if ((lv_i > 0)) {
         UnitBehaviorAddPlayer(lv_marine, "ItemWeight500", lp_ownerOfEquipment, lv_i);
     }
-    else {
-    }
+
     lv_i = (lv_runningWeight / 200);
     lv_runningWeight = ModI(lv_runningWeight, 200);
     if ((lv_i > 0)) {
         UnitBehaviorAddPlayer(lv_marine, "ItemWeight200", lp_ownerOfEquipment, lv_i);
     }
-    else {
-    }
+
     lv_i = (lv_runningWeight / 100);
     lv_runningWeight = ModI(lv_runningWeight, 100);
     if ((lv_i > 0)) {
         UnitBehaviorAddPlayer(lv_marine, "ItemWeight100", lp_ownerOfEquipment, lv_i);
     }
-    else {
-    }
+
     lv_i = (lv_runningWeight / 50);
     lv_runningWeight = ModI(lv_runningWeight, 50);
     if ((lv_i > 0)) {
         UnitBehaviorAddPlayer(lv_marine, "ItemWeight50", lp_ownerOfEquipment, lv_i);
     }
-    else {
-    }
+
     lv_i = (lv_runningWeight / 20);
     lv_runningWeight = ModI(lv_runningWeight, 20);
     if ((lv_i > 0)) {
         UnitBehaviorAddPlayer(lv_marine, "ItemWeight20", lp_ownerOfEquipment, lv_i);
     }
-    else {
-    }
+
     lv_i = (lv_runningWeight / 10);
     lv_runningWeight = ModI(lv_runningWeight, 10);
     if ((lv_i > 0)) {
         UnitBehaviorAddPlayer(lv_marine, "ItemWeight10", lp_ownerOfEquipment, lv_i);
     }
-    else {
-    }
+
     lv_i = (lv_runningWeight / 5);
     lv_runningWeight = ModI(lv_runningWeight, 5);
     if ((lv_i > 0)) {
         UnitBehaviorAddPlayer(lv_marine, "ItemWeight5", lp_ownerOfEquipment, lv_i);
     }
-    else {
-    }
+
     lv_i = (lv_runningWeight / 2);
     lv_runningWeight = ModI(lv_runningWeight, 2);
     if ((lv_i > 0)) {
         UnitBehaviorAddPlayer(lv_marine, "ItemWeight2", lp_ownerOfEquipment, lv_i);
     }
-    else {
-    }
+
     UnitBehaviorAddPlayer(lv_marine, "ItemWeight1", lp_ownerOfEquipment, lv_runningWeight);
 }
 
@@ -417,8 +405,7 @@ int libC50FD636_gf_EquipmentGetItemWeight (int lp_ownerofEquipment, unit lp_item
         if ((UnitGetType(lp_item) == UserDataGetUnit("ItemWeights", UserDataInstance("ItemWeights", lv_index), "Item", 1))) {
             break;
         }
-        else {
-        }
+
     }
     return FixedToInt(UserDataGetFixed("ItemWeights", UserDataInstance("ItemWeights", lv_index), "Weight", 1));
 }
@@ -843,19 +830,6 @@ void libC50FD636_gt_TestIntializeAI_Init () {
 }
 
 //--------------------------------------------------------------------------------------------------
-// Trigger: Test Demo Merge
-//--------------------------------------------------------------------------------------------------
-bool libC50FD636_gt_TestDemoMerge_Func (bool testConds, bool runActions) {
-    return true;
-}
-
-//--------------------------------------------------------------------------------------------------
-void libC50FD636_gt_TestDemoMerge_Init () {
-    libC50FD636_gt_TestDemoMerge = TriggerCreate("libC50FD636_gt_TestDemoMerge_Func");
-    TriggerAddEventGeneric(libC50FD636_gt_TestDemoMerge, ("Test 1" + "Test 2"));
-}
-
-//--------------------------------------------------------------------------------------------------
 // Trigger: MD 5 Level Up
 //--------------------------------------------------------------------------------------------------
 bool libC50FD636_gt_MD5LevelUp_Func (bool testConds, bool runActions) {
@@ -1069,8 +1043,7 @@ bool libC50FD636_gt_RiflemanLevelUpAccurateFire_Func (bool testConds, bool runAc
     if ((TechTreeUpgradeCount(UnitGetOwner(EventUnit()), "SuppressiveFireLevel", c_techCountCompleteOnly) > 0)) {
         TechTreeUpgradeAddLevel(UnitGetOwner(EventUnit()), "SuppressiveFireandAccurateFire", 1);
     }
-    else {
-    }
+
     libC50FD636_gf_UpdateWeaponProfi2(EventUnit());
     return true;
 }
@@ -1152,8 +1125,7 @@ bool libC50FD636_gt_RiflemanLevelUpSuppressiveFire_Func (bool testConds, bool ru
     if ((TechTreeUpgradeCount(UnitGetOwner(EventUnit()), "AccurateFireLevel", c_techCountCompleteOnly) > 0)) {
         TechTreeUpgradeAddLevel(UnitGetOwner(EventUnit()), "SuppressiveFireandAccurateFire", 1);
     }
-    else {
-    }
+
     return true;
 }
 
@@ -1198,8 +1170,7 @@ bool libC50FD636_gt_MedicLevelUpMedicalExpertise_Func (bool testConds, bool runA
         if ((TechTreeUpgradeCount(UnitGetOwner(EventUnit()), "MedicalExpertiseLevel2", c_techCountCompleteOnly) == 0)) {
             TechTreeUpgradeAddLevel(UnitGetOwner(EventUnit()), "MedicalExpertiseLevel2", 1);
         }
-        else {
-        }
+
     }
     return true;
 }
@@ -1341,8 +1312,7 @@ bool libC50FD636_gt_BulwarkPositioning_Func (bool testConds, bool runActions) {
         TriggerEnable(libC50FD636_gt_Bulwark, false);
         return true;
     }
-    else {
-    }
+
     libC50FD636_gv_bulwarkCaster = lv_caster;
     if ((EventPlayerEffectUsedUnit(c_effectUnitTarget) != null)) {
         libC50FD636_gv_bulwarkTargetUnit = EventPlayerEffectUsedUnit(c_effectUnitTarget);
@@ -1678,8 +1648,7 @@ bool libC50FD636_gt_RiflemanFocusFireReloadBoni_Func (bool testConds, bool runAc
     if ((TechTreeUpgradeCount(UnitGetOwner(lv_unit), "WeaponsProficiencyLevel12", c_techCountCompleteOnly) >= 1)) {
         lv_factor = 0.7;
     }
-    else {
-    }
+
     UnitBehaviorSetDuration(lv_unit, "ReloadManual", (lv_factor * UnitBehaviorDuration(lv_unit, "ReloadManual")));
     UnitBehaviorSetDuration(lv_unit, "ReloadNightmare", (lv_factor * UnitBehaviorDuration(lv_unit, "ReloadNightmare")));
     UnitBehaviorSetDuration(lv_unit, "ReloadNormal", (lv_factor * UnitBehaviorDuration(lv_unit, "ReloadNormal")));
@@ -1762,8 +1731,7 @@ bool libC50FD636_gt_WeaveAilmentRemoval_Func (bool testConds, bool runActions) {
             lv_ailmentIndex += 1;
             lv_ailmentArray[lv_ailmentIndex] = UserDataGetGameLink("Ailments", UserDataInstance("Ailments", IntLoopCurrent()), "Behavior", 1);
         }
-        else {
-        }
+
     }
     IntLoopEnd();
     if ((lv_ailmentIndex != 0)) {
@@ -2231,8 +2199,7 @@ bool libC50FD636_gt_StackMagazinesIntoAmmoBoxes_Func (bool testConds, bool runAc
             }
         }
     }
-    else {
-    }
+
     return true;
 }
 
@@ -2256,8 +2223,7 @@ bool libC50FD636_gt_DisplayInventoryOnSelection_Func (bool testConds, bool runAc
     if ((UnitGetType(EventUnit()) == "Assault") && (TechTreeUpgradeCount(UnitGetOwner(EventUnit()), "GeminiProtocol", c_techCountCompleteOnly) == 1)) {
         UnitInventoryContainerOpen(PlayerGroupSingle(EventPlayer()), EventUnit(), 3, true);
     }
-    else {
-    }
+
     return true;
 }
 
@@ -2453,13 +2419,11 @@ bool libC50FD636_gt_EquipItem_Func (bool testConds, bool runActions) {
     if (((CatalogFieldValueGet(c_gameCatalogItem, UnitGetType(lv_usedItem), "Class", c_playerAny) == ("NormalWeapon")) || (CatalogFieldValueGet(c_gameCatalogItem, UnitGetType(lv_usedItem), "Class", c_playerAny) == ("SpecialWeapon")))) {
         UnitInventoryMove(lv_usedItem, libC50FD636_gv_loadoutContainer, libC50FD636_gv_weaponInventorySlot);
     }
-    else {
-    }
+
     if ((CatalogFieldValueGet(c_gameCatalogItem, UnitGetType(lv_usedItem), "Class", c_playerAny) == ("Armor"))) {
         UnitInventoryMove(lv_usedItem, libC50FD636_gv_loadoutContainer, libC50FD636_gv_armorInventorySlot);
     }
-    else {
-    }
+
     if ((CatalogFieldValueGet(c_gameCatalogItem, UnitGetType(lv_usedItem), "Class", c_playerAny) == ("Accessory"))) {
         UnitGroupLoopBegin(UnitInventoryGroup(EventUnit()));
         for ( ; !UnitGroupLoopDone() ; UnitGroupLoopStep() ) {
@@ -2467,8 +2431,7 @@ bool libC50FD636_gt_EquipItem_Func (bool testConds, bool runActions) {
                 lv_openEnhancementSlot[((UnitInventorySlot(UnitGroupLoopCurrent()) / 2) - 2)] = false;
                 lv_numberofOpenSlots -= 1;
             }
-            else {
-            }
+
         }
         UnitGroupLoopEnd();
         if ((lv_numberofOpenSlots != 0)) {
@@ -2477,8 +2440,7 @@ bool libC50FD636_gt_EquipItem_Func (bool testConds, bool runActions) {
                 if (lv_openEnhancementSlot[IntLoopCurrent()]) {
                     UnitInventoryMove(EventUnitInventoryItem(), libC50FD636_gv_loadoutContainer, ((IntLoopCurrent() + 2) * 2));
                 }
-                else {
-                }
+
             }
             IntLoopEnd();
         }
@@ -2490,13 +2452,11 @@ bool libC50FD636_gt_EquipItem_Func (bool testConds, bool runActions) {
             IntLoopEnd();
         }
     }
-    else {
-    }
+
     if ((CatalogFieldValueGet(c_gameCatalogItem, UnitGetType(lv_usedItem), "Class", c_playerAny) == ("AmmoModification"))) {
         UnitInventoryMove(lv_usedItem, libC50FD636_gv_loadoutContainer, libC50FD636_gv_ammoModificationSlot);
     }
-    else {
-    }
+
     return true;
 }
 
@@ -2533,8 +2493,7 @@ bool libC50FD636_gt_UnequipItem_Func (bool testConds, bool runActions) {
     if ((EventUnitInventoryItemSlot() == libC50FD636_gv_weaponInventorySlot)) {
         UnitAbilityEnable(EventUnit(), "Reload", false);
     }
-    else {
-    }
+
     if ((lv_destinationSlot == -1)) {
         UnitSetPosition(EventUnitInventoryItem(), UnitGetPosition(UnitInventoryUnit(EventUnitInventoryItem())), false);
     }
@@ -3034,15 +2993,13 @@ bool libC50FD636_gt_TalentSelection_Func (bool testConds, bool runActions) {
                 lv_talentTreeUsed = lv_talentTreeLoopIndex;
                 break;
             }
-            else {
-            }
+
         }
     }
     if (libC50FD636_gf_TalentTreeAccess(lv_talentTreePlayer, EventPlayer()) && libC50FD636_gf_TalentSelectionOption(lv_talentTreeUsed, lv_talentUsed, lv_talentTreePlayer)) {
         libC50FD636_gf_UpdateTalentSystem(lv_talentUsed, lv_talentTreePlayer, lv_talentTreeUsed);
     }
-    else {
-    }
+
     return true;
 }
 
@@ -3132,37 +3089,6 @@ void libC50FD636_gt_TalentTreeHookup_Init () {
 }
 
 //--------------------------------------------------------------------------------------------------
-// Trigger: Jump Upgrade
-//--------------------------------------------------------------------------------------------------
-bool libC50FD636_gt_JumpUpgrade_Func (bool testConds, bool runActions) {
-    // Variable Declarations
-    int lv_player;
-
-    // Variable Initialization
-    lv_player = UnitGetOwner(EventUnit());
-
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    if ((EventUnitBehaviorChange() == c_unitBehaviorChangeCreate)) {
-        libNtve_gf_SetUpgradeLevelForPlayer(lv_player, "CombatMobilityAugmentJump", 1);
-    }
-    else {
-        libNtve_gf_SetUpgradeLevelForPlayer(lv_player, "CombatMobilityAugmentJump", 0);
-    }
-    return true;
-}
-
-//--------------------------------------------------------------------------------------------------
-void libC50FD636_gt_JumpUpgrade_Init () {
-    libC50FD636_gt_JumpUpgrade = TriggerCreate("libC50FD636_gt_JumpUpgrade_Func");
-    TriggerAddEventUnitBehaviorChange(libC50FD636_gt_JumpUpgrade, null, "CombatMobilityAugment", c_unitBehaviorChangeCreate);
-    TriggerAddEventUnitBehaviorChange(libC50FD636_gt_JumpUpgrade, null, "CombatMobilityAugment", c_unitBehaviorChangeDestroy);
-}
-
-//--------------------------------------------------------------------------------------------------
 // Trigger: Medical Assistance Usage
 //--------------------------------------------------------------------------------------------------
 bool libC50FD636_gt_MedicalAssistanceUsage_Func (bool testConds, bool runActions) {
@@ -3215,8 +3141,7 @@ bool libC50FD636_gt_MedicalAssistanceUsage_Func (bool testConds, bool runActions
             UnitAddChargeUsed(lv_inventoryItem, lv_chargeLink, 1.0);
             return true;
         }
-        else {
-        }
+
     }
     return true;
 }
@@ -3631,7 +3556,6 @@ void libC50FD636_InitTriggers () {
     libC50FD636_gt_PredatorEventRegistration_Init();
     libC50FD636_gt_PredatorLevelUp_Init();
     libC50FD636_gt_TestIntializeAI_Init();
-    libC50FD636_gt_TestDemoMerge_Init();
     libC50FD636_gt_MD5LevelUp_Init();
     libC50FD636_gt_CollateralDamageLevelUp_Init();
     libC50FD636_gt_StockpileLevelUp_Init();
@@ -3703,7 +3627,6 @@ void libC50FD636_InitTriggers () {
     libC50FD636_gt_TalentSelection_Init();
     libC50FD636_gt_HookupTalentButton_Init();
     libC50FD636_gt_TalentTreeHookup_Init();
-    libC50FD636_gt_JumpUpgrade_Init();
     libC50FD636_gt_MedicalAssistanceUsage_Init();
     libC50FD636_gt_CamoSwitch_Init();
     libC50FD636_gt_ModelLightMarine_Init();

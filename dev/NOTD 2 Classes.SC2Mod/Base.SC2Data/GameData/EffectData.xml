@@ -21,6 +21,10 @@
         <ExcludeArray Value="Target"/>
         <SearchFilters value="-;Player,Ally,Neutral,Item,Invulnerable"/>
     </CEffectDamage>
+    <CEffectModifyPlayer id="AddJumpUpgrade">
+        <EditorCategories value=""/>
+        <Upgrades Upgrade="CombatMobilityAugmentJump" Count="1"/>
+    </CEffectModifyPlayer>
     <CEffectDamage id="IFV25mmHEAutocannonDamage">
         <EditorCategories value=""/>
         <ImpactLocation Value="TargetUnit"/>
@@ -238,6 +242,10 @@
     <CEffectApplyBehavior id="PredatorCloak">
         <EditorCategories value=""/>
     </CEffectApplyBehavior>
+    <CEffectModifyPlayer id="RemoveJumpUpgrade">
+        <EditorCategories value=""/>
+        <Upgrades Upgrade="CombatMobilityAugmentJump" Count="-1"/>
+    </CEffectModifyPlayer>
     <CEffectSet id="SidearmMelee">
         <EditorCategories value=""/>
         <EffectArray value="CombatKnifeSearch"/>

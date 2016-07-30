@@ -5,7 +5,7 @@
 
 	<Frame type = "Label" name = "ClassNameTemplate">
 		<Text val = ""/>
-		<Width val = "160"/>
+		<Width val = "140"/>
 		<Style val = "AchievementToastName" />
 
 	</Frame>
@@ -13,8 +13,8 @@
     <Frame type="Button" name="ClassButtonTemplate">
         <ClickSound val="Assets\Sounds\Uni\UI\UI_Horner05sTerminalButton.wav"/>
         <Toggleable val="true"/>
-        <Height val="160.000000"/>
-        <Width val="160.000000"/>
+        <Height val="140.000000"/>
+        <Width val="140.000000"/>
         <HoverImage val="HoverImage"/>
         <NormalImage val="NormalImage"/>
 
@@ -31,14 +31,14 @@
         </Frame>
 
         <Frame type="Image" name="ClassImage">
-            <Anchor relative="$parent" offset="-16"/>
+            <Anchor relative="$parent"/>
             <RenderPriority val="513"/>
             <BlendMode val="Add"/>
         </Frame>
     </Frame>
 	<Frame type="Frame" name="ClassDisplay">
 		<Height val="190.000000"/>
-        <Width val="160.000000"/>
+        <Width val="140.000000"/>
 		<Frame type="Button" name = "ClassButton" template="ClassSelection/ClassButtonTemplate">
 			<Anchor side="Top" pos="Min" offset="0" relative = "$parent"/>
 			<Anchor side="Left" pos="Min" offset="0" relative = "$parent"/>
@@ -55,7 +55,7 @@
 
         <Frame type="Label" name="PlayerName">
             <Anchor side="Top" relative="$parent" pos="Min" offset="30"/>
-            <Anchor side="Left" relative="$parent" pos="Mid" offset="-300"/>
+            <Anchor side="Left" relative="$parent" pos="Mid" offset="0"/>
             <Height val="64.000000"/>
             <Width val="600.000000"/>
             <Style val="HelpMenuDialogTitle"/>
