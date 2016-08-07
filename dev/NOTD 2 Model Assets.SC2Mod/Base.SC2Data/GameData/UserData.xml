@@ -157,9 +157,39 @@
             </String>
         </Instances>
     </CUser>
+    <CUser id="ArmorPiece">
+        <Fields Id="Category" Type="String"/>
+        <Fields Id="Armor Actor" Type="Actor"/>
+        <Fields Id="Display Name" Type="Text"/>
+        <Instances Id="[Default]"/>
+        <Instances Id="Helmet">
+            <Actor Actor="Helmet">
+                <Field Id="Armor Actor"/>
+            </Actor>
+            <String String="Helmet">
+                <Field Id="Category"/>
+            </String>
+            <Text Text="UserData/ArmorPiece/Helmet_Display Name">
+                <Field Id="Display Name"/>
+            </Text>
+        </Instances>
+        <Instances Id="Torso"/>
+        <Instances Id="Waist"/>
+        <Instances Id="Left Leg"/>
+        <Instances Id="Right Leg"/>
+        <Instances Id="Left Shin"/>
+        <Instances Id="Right Shin"/>
+        <Instances Id="Left Foot"/>
+        <Instances Id="Right Foot"/>
+        <Instances Id="Left Shoulder"/>
+        <Instances Id="Right Shoulder"/>
+        <Instances Id="Left Forearm"/>
+        <Instances Id="Right Forearm"/>
+    </CUser>
     <CUser id="ArmorPieces">
         <Fields Id="ArmorId" Type="String" Count="13"/>
         <Fields Id="Armor Path" Type="String" Count="13"/>
+        <Fields Id="Class Selection Drop Down Text" Type="Text" Count="13"/>
         <Instances Id="[Default]"/>
         <Instances Id="Light Armor">
             <String String="Helmet">
@@ -240,6 +270,45 @@
             <String String="LegLeft">
                 <Field Id="ArmorId" Index="5"/>
             </String>
+            <Text Text="UserData/ArmorPieces/Light Armor_Class Selection Drop Down Text_012">
+                <Field Id="Class Selection Drop Down Text" Index="12"/>
+            </Text>
+            <Text Text="UserData/ArmorPieces/Light Armor_Class Selection Drop Down Text_011">
+                <Field Id="Class Selection Drop Down Text" Index="11"/>
+            </Text>
+            <Text Text="UserData/ArmorPieces/Light Armor_Class Selection Drop Down Text_010">
+                <Field Id="Class Selection Drop Down Text" Index="10"/>
+            </Text>
+            <Text Text="UserData/ArmorPieces/Light Armor_Class Selection Drop Down Text_009">
+                <Field Id="Class Selection Drop Down Text" Index="9"/>
+            </Text>
+            <Text Text="UserData/ArmorPieces/Light Armor_Class Selection Drop Down Text_008">
+                <Field Id="Class Selection Drop Down Text" Index="8"/>
+            </Text>
+            <Text Text="UserData/ArmorPieces/Light Armor_Class Selection Drop Down Text_007">
+                <Field Id="Class Selection Drop Down Text" Index="7"/>
+            </Text>
+            <Text Text="UserData/ArmorPieces/Light Armor_Class Selection Drop Down Text_006">
+                <Field Id="Class Selection Drop Down Text" Index="6"/>
+            </Text>
+            <Text Text="UserData/ArmorPieces/Light Armor_Class Selection Drop Down Text_005">
+                <Field Id="Class Selection Drop Down Text" Index="5"/>
+            </Text>
+            <Text Text="UserData/ArmorPieces/Light Armor_Class Selection Drop Down Text_004">
+                <Field Id="Class Selection Drop Down Text" Index="4"/>
+            </Text>
+            <Text Text="UserData/ArmorPieces/Light Armor_Class Selection Drop Down Text_003">
+                <Field Id="Class Selection Drop Down Text" Index="3"/>
+            </Text>
+            <Text Text="UserData/ArmorPieces/Light Armor_Class Selection Drop Down Text_002">
+                <Field Id="Class Selection Drop Down Text" Index="2"/>
+            </Text>
+            <Text Text="UserData/ArmorPieces/Light Armor_Class Selection Drop Down Text_001">
+                <Field Id="Class Selection Drop Down Text" Index="1"/>
+            </Text>
+            <Text Text="UserData/ArmorPieces/Light Armor_Class Selection Drop Down Text">
+                <Field Id="Class Selection Drop Down Text"/>
+            </Text>
         </Instances>
     </CUser>
     <CUser id="CamoSets">
@@ -289,19 +358,6 @@
             <String String="Woodland">
                 <Field Id="CamoName"/>
             </String>
-        </Instances>
-    </CUser>
-    <CUser id="CurrentArmorData">
-        <Fields Id="Current Armor Count" Type="Int"/>
-        <Fields Id="Current Camo Count" Type="Int"/>
-        <Instances Id="[Default]"/>
-        <Instances Id="Current Data">
-            <Int Int="20">
-                <Field Id="Current Armor Count"/>
-            </Int>
-            <Int Int="10">
-                <Field Id="Current Camo Count"/>
-            </Int>
         </Instances>
     </CUser>
 </Catalog>

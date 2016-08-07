@@ -123,6 +123,16 @@
         <TargetFilters value="-;Player,Ally,Neutral"/>
         <Range value="12"/>
     </CAbilEffectTarget>
+    <CButton id="CancelHealing">
+        <Icon value="btn-command-cancel.dds"/>
+        <HotkeyAlias value="HealNOTD"/>
+        <HotkeySet value="Heal"/>
+    </CButton>
+    <CButton id="HealNOTD">
+        <Icon value="btn-l2d-techupgrade-terran-stabilizermedpacks.dds"/>
+        <EditorCategories value="Race:Terran"/>
+        <HotkeySet value="Heal"/>
+    </CButton>
     <CSound id="MedicNanoHasteCast" parent="Combat">
         <EditorCategories value="Race:Terran"/>
         <AssetArray File="Assets\Sounds\Protoss\Nexus\Nexus_ChronoBoostLaunch0.wav" FacialGroup=""/>
@@ -258,83 +268,6 @@
     <CModel id="VolatileInjectionDetonation">
         <Model value="Assets\Effects\Zerg\ParasiteImpact\ParasiteImpact.m3"/>
     </CModel>
-    <CButton id="CancelHealing">
-        <Icon value="btn-command-cancel.dds"/>
-        <HotkeyAlias value="HealNOTD"/>
-        <HotkeySet value="Heal"/>
-    </CButton>
-    <CButton id="HealNOTD">
-        <Icon value="btn-l2d-techupgrade-terran-stabilizermedpacks.dds"/>
-        <EditorCategories value="Race:Terran"/>
-        <HotkeySet value="Heal"/>
-    </CButton>
-    <CUnit id="Medic2" parent="BasicHeroTemplate" InventoryAbility="Medic2Inventory" LearnAbility="Medic2Learn">
-        <AbilArray Link="Heal"/>
-        <AbilArray Link="CancelHealing"/>
-        <AbilArray Link="Antivenom"/>
-        <AbilArray Link="NanoHaste"/>
-        <AbilArray Link="MedicalExpertise"/>
-        <AbilArray Link="NanoWeave"/>
-        <AbilArray Link="NanoShield"/>
-        <AbilArray Link="NanoStrength"/>
-        <AbilArray Link="NanoShock"/>
-        <AbilArray Link="VolatileInjection"/>
-        <AbilArray Link="Aftershock"/>
-        <AbilArray Link="IntolerableCruelty"/>
-        <AbilArray Link="NanoSear"/>
-        <AbilArray Link="NanoPlague"/>
-        <AbilArray Link="LightJump"/>
-        <EnergyStart value="100"/>
-        <EnergyMax value="200"/>
-        <EnergyRegenRate value="1.25"/>
-        <LifeStart value="185"/>
-        <LifeMax value="185"/>
-        <LifeArmor value="1"/>
-        <LifeRegenRate value="0.1718"/>
-        <LateralAcceleration value="1000"/>
-        <CardLayouts index="0">
-            <LayoutButtons Face="Jump" Type="AbilCmd" AbilCmd="LightJump,Execute" Row="0" Column="4"/>
-            <LayoutButtons Face="CancelHealing" Type="AbilCmd" AbilCmd="CancelHealing,Execute" Row="2" Column="0"/>
-            <LayoutButtons Face="HealNOTD" Type="AbilCmd" AbilCmd="Heal,Execute" Row="2" Column="0"/>
-            <LayoutButtons Face="Antivenom" Type="AbilCmd" AbilCmd="Antivenom,Execute" Row="2" Column="1"/>
-            <LayoutButtons Face="NanoHaste" Type="AbilCmd" AbilCmd="NanoHaste,Execute" Row="2" Column="2"/>
-            <LayoutButtons Face="NanoShield" Type="AbilCmd" AbilCmd="NanoShield,Execute" Row="1" Column="0"/>
-            <LayoutButtons Face="NanoStrength" Type="AbilCmd" AbilCmd="NanoStrength,Execute" Row="1" Column="0"/>
-            <LayoutButtons Face="NanoSear" Type="AbilCmd" AbilCmd="NanoSear,Execute" Row="1" Column="0"/>
-            <LayoutButtons Face="NanoPlague" Type="AbilCmd" AbilCmd="NanoPlague,Execute" Row="1" Column="0"/>
-            <LayoutButtons Face="VolatileInjection" Type="AbilCmd" AbilCmd="VolatileInjection,Execute" Row="1" Column="1"/>
-            <LayoutButtons Face="Aftershock" Type="AbilCmd" AbilCmd="Aftershock,Execute" Row="1" Column="2"/>
-            <LayoutButtons Face="NanoShock" Type="AbilCmd" AbilCmd="NanoShock,Execute" Row="1" Column="2"/>
-            <LayoutButtons Face="NanoWeave" Type="AbilCmd" AbilCmd="NanoWeave,Execute" Row="2" Column="3"/>
-        </CardLayouts>
-        <Speed value="2.586"/>
-        <GlossaryPriority value="2"/>
-    </CUnit>
-    <CUpgrade id="MedicalExpertiseLevel2" parent="DefaultUpgradeOverride">
-        <Flags index="UpgradeCheat" value="1"/>
-        <EffectArray Operation="Divide" Reference="Abil,Antivenom,Cost[0].Vital[Energy]" Value="2"/>
-    </CUpgrade>
-    <CUpgrade id="IntolerableCruelty" parent="DefaultUpgradeOverride">
-        <Flags index="UpgradeCheat" value="1"/>
-        <EffectArray Operation="Set" Reference="Behavior,VolatileInjectionLevel1,PeriodCount" Value="30"/>
-        <EffectArray Operation="Set" Reference="Behavior,VolatileInjectionLevel1,Period" Value="1.000000"/>
-        <EffectArray Reference="Effect,IntolerableCrueltyDamage,Amount" Value="3"/>
-        <EffectArray Operation="Set" Reference="Behavior,VolatileInjectionLevel2,Period" Value="1.000000"/>
-        <EffectArray Operation="Set" Reference="Behavior,VolatileInjectionLevel3,Period" Value="1.000000"/>
-        <EffectArray Operation="Set" Reference="Behavior,VolatileInjectionLevel2,PeriodCount" Value="30"/>
-        <EffectArray Operation="Set" Reference="Behavior,VolatileInjectionLevel3,PeriodCount" Value="30"/>
-        <EffectArray Reference="Effect,VolatileInjectionSearchLevel1,AreaArray[0].Radius" Value="1"/>
-        <EffectArray Reference="Effect,VolatileInjectionSearchLevel2,AreaArray[0].Radius" Value="1"/>
-        <EffectArray Reference="Effect,VolatileInjectionSearchLevel3,AreaArray[0].Radius" Value="1"/>
-        <MaxLevel value="2"/>
-    </CUpgrade>
-    <CUpgrade id="MedicalExpertiseLevel1" parent="DefaultUpgradeOverride">
-        <Flags index="UpgradeCheat" value="1"/>
-        <EffectArray Operation="Set" Reference="Behavior,NanoHasteLevel1,Period" Value="20.000000"/>
-        <EffectArray Operation="Set" Reference="Behavior,NanoHasteLevel2,Period" Value="20.000000"/>
-        <EffectArray Operation="Set" Reference="Behavior,NanoHasteLevel3,Period" Value="20.000000"/>
-        <EffectArray Operation="Set" Reference="Effect,NanoHasteFractureRepair,PeriodCount" Value="2"/>
-    </CUpgrade>
     <CActorUnit id="MedicNOTD" parent="BaseMarineActor" unitName="Medic2">
         <On index="65" Terms="ActorCreation" Send="AttachModel MedicTorso MedicBasicTorso {Hardpoint 0}"/>
         <On index="74" Terms="ActorCreation" Send="AttachModel MedicLeftArm MedicBasicArmLeft {Hardpoint 5}"/>
@@ -352,6 +285,7 @@
         <SoundArray index="Click" value="Medic_Click"/>
         <SoundArray index="ClickError" value="Medic_ClickError"/>
         <SoundArray index="Highlight" value="Medic_Highlight"/>
+        <UnitModelFrameActor value="MedicUnitModelFrameActor"/>
     </CActorUnit>
     <CActorSplat id="NanoShockAoESplat" parent="TerranCursorSplat" abil="NanoShock">
         <EditorCategories value=""/>
@@ -544,6 +478,73 @@
     <CActorRange id="VolatileInjectionRange" parent="RangeAbil" abil="VolatileInjection">
         <EditorCategories value=""/>
     </CActorRange>
+    <CUnit id="Medic2" parent="BasicHeroTemplate" InventoryAbility="Medic2Inventory" LearnAbility="Medic2Learn">
+        <AbilArray Link="Heal"/>
+        <AbilArray Link="CancelHealing"/>
+        <AbilArray Link="Antivenom"/>
+        <AbilArray Link="NanoHaste"/>
+        <AbilArray Link="MedicalExpertise"/>
+        <AbilArray Link="NanoWeave"/>
+        <AbilArray Link="NanoShield"/>
+        <AbilArray Link="NanoStrength"/>
+        <AbilArray Link="NanoShock"/>
+        <AbilArray Link="VolatileInjection"/>
+        <AbilArray Link="Aftershock"/>
+        <AbilArray Link="IntolerableCruelty"/>
+        <AbilArray Link="NanoSear"/>
+        <AbilArray Link="NanoPlague"/>
+        <AbilArray Link="LightJump"/>
+        <EnergyStart value="100"/>
+        <EnergyMax value="200"/>
+        <EnergyRegenRate value="1.25"/>
+        <LifeStart value="185"/>
+        <LifeMax value="185"/>
+        <LifeArmor value="1"/>
+        <LifeRegenRate value="0.1718"/>
+        <LateralAcceleration value="1000"/>
+        <CardLayouts index="0">
+            <LayoutButtons Face="Jump" Type="AbilCmd" AbilCmd="LightJump,Execute" Row="0" Column="4"/>
+            <LayoutButtons Face="CancelHealing" Type="AbilCmd" AbilCmd="CancelHealing,Execute" Row="2" Column="0"/>
+            <LayoutButtons Face="HealNOTD" Type="AbilCmd" AbilCmd="Heal,Execute" Row="2" Column="0"/>
+            <LayoutButtons Face="Antivenom" Type="AbilCmd" AbilCmd="Antivenom,Execute" Row="2" Column="1"/>
+            <LayoutButtons Face="NanoHaste" Type="AbilCmd" AbilCmd="NanoHaste,Execute" Row="2" Column="2"/>
+            <LayoutButtons Face="NanoShield" Type="AbilCmd" AbilCmd="NanoShield,Execute" Row="1" Column="0"/>
+            <LayoutButtons Face="NanoStrength" Type="AbilCmd" AbilCmd="NanoStrength,Execute" Row="1" Column="0"/>
+            <LayoutButtons Face="NanoSear" Type="AbilCmd" AbilCmd="NanoSear,Execute" Row="1" Column="0"/>
+            <LayoutButtons Face="NanoPlague" Type="AbilCmd" AbilCmd="NanoPlague,Execute" Row="1" Column="0"/>
+            <LayoutButtons Face="VolatileInjection" Type="AbilCmd" AbilCmd="VolatileInjection,Execute" Row="1" Column="1"/>
+            <LayoutButtons Face="Aftershock" Type="AbilCmd" AbilCmd="Aftershock,Execute" Row="1" Column="2"/>
+            <LayoutButtons Face="NanoShock" Type="AbilCmd" AbilCmd="NanoShock,Execute" Row="1" Column="2"/>
+            <LayoutButtons Face="NanoWeave" Type="AbilCmd" AbilCmd="NanoWeave,Execute" Row="2" Column="3"/>
+        </CardLayouts>
+        <Speed value="2.586"/>
+        <GlossaryPriority value="2"/>
+    </CUnit>
+    <CUpgrade id="MedicalExpertiseLevel2" parent="DefaultUpgradeOverride">
+        <Flags index="UpgradeCheat" value="1"/>
+        <EffectArray Operation="Divide" Reference="Abil,Antivenom,Cost[0].Vital[Energy]" Value="2"/>
+    </CUpgrade>
+    <CUpgrade id="IntolerableCruelty" parent="DefaultUpgradeOverride">
+        <Flags index="UpgradeCheat" value="1"/>
+        <EffectArray Operation="Set" Reference="Behavior,VolatileInjectionLevel1,PeriodCount" Value="30"/>
+        <EffectArray Operation="Set" Reference="Behavior,VolatileInjectionLevel1,Period" Value="1.000000"/>
+        <EffectArray Reference="Effect,IntolerableCrueltyDamage,Amount" Value="3"/>
+        <EffectArray Operation="Set" Reference="Behavior,VolatileInjectionLevel2,Period" Value="1.000000"/>
+        <EffectArray Operation="Set" Reference="Behavior,VolatileInjectionLevel3,Period" Value="1.000000"/>
+        <EffectArray Operation="Set" Reference="Behavior,VolatileInjectionLevel2,PeriodCount" Value="30"/>
+        <EffectArray Operation="Set" Reference="Behavior,VolatileInjectionLevel3,PeriodCount" Value="30"/>
+        <EffectArray Reference="Effect,VolatileInjectionSearchLevel1,AreaArray[0].Radius" Value="1"/>
+        <EffectArray Reference="Effect,VolatileInjectionSearchLevel2,AreaArray[0].Radius" Value="1"/>
+        <EffectArray Reference="Effect,VolatileInjectionSearchLevel3,AreaArray[0].Radius" Value="1"/>
+        <MaxLevel value="2"/>
+    </CUpgrade>
+    <CUpgrade id="MedicalExpertiseLevel1" parent="DefaultUpgradeOverride">
+        <Flags index="UpgradeCheat" value="1"/>
+        <EffectArray Operation="Set" Reference="Behavior,NanoHasteLevel1,Period" Value="20.000000"/>
+        <EffectArray Operation="Set" Reference="Behavior,NanoHasteLevel2,Period" Value="20.000000"/>
+        <EffectArray Operation="Set" Reference="Behavior,NanoHasteLevel3,Period" Value="20.000000"/>
+        <EffectArray Operation="Set" Reference="Effect,NanoHasteFractureRepair,PeriodCount" Value="2"/>
+    </CUpgrade>
     <CValidatorCombine id="Healing">
         <Type value="And"/>
         <CombineArray value="HealRange"/>

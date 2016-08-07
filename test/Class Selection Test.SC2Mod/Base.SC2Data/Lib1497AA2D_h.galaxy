@@ -1,0 +1,39 @@
+include "TriggerLibs/natives"
+
+//--------------------------------------------------------------------------------------------------
+// Library: Class Selection Testing
+//--------------------------------------------------------------------------------------------------
+// Constants
+const int lib1497AA2D_gv_numberofClasses = 15;
+const string lib1497AA2D_gv_classSelectionEvent = "Class Selection";
+
+// Variable Declarations
+int lib1497AA2D_gv_armorSlotDropDown;
+int[lib1497AA2D_gv_numberofClasses + 1] lib1497AA2D_gv_classSelectionButtons;
+actor lib1497AA2D_gv_unitModelFrameActor;
+int lib1497AA2D_gv_unitModelFrameModel;
+int[lib1497AA2D_gv_numberofClasses + 1] lib1497AA2D_gv_classSelectionLabels;
+int[lib1497AA2D_gv_numberofClasses + 1] lib1497AA2D_gv_classSelectionFrames;
+timer lib1497AA2D_gv_classSelectionTimer;
+int lib1497AA2D_gv_classSelectionDialog;
+int lib1497AA2D_gv_classSelectionPanel;
+int lib1497AA2D_gv_classLoreFrame;
+int lib1497AA2D_gv_classModelFrame;
+
+// Function Declarations
+void lib1497AA2D_gf_CreateArmorSlotDropDown (int lp_dropDown);
+void lib1497AA2D_gf_CreateArmorSetDropDown ();
+bool lib1497AA2D_gf_PlayerHasClassUnlocked (int lp_player, int lp_classSlot);
+void lib1497AA2D_gf_ClassUnlocked (int lp_classSlot);
+
+// Trigger Declarations
+trigger lib1497AA2D_gt_CreateDropDowns;
+trigger lib1497AA2D_gt_DropdownSelection;
+trigger lib1497AA2D_gt_StartTest;
+trigger lib1497AA2D_gt_DisplayClassSelection;
+trigger lib1497AA2D_gt_ClassSelection;
+trigger lib1497AA2D_gt_EndClassSelection;
+
+// Library Initialization
+void lib1497AA2D_InitVariables ();
+

@@ -43,6 +43,7 @@
         </GroupIcon>
         <UnitIcon value="ClassButtons\btn-class-##id##.dds"/>
         <ErrorArray Error="Cooldown" Text="Error/EmptyError" Sound="EmptySound"/>
+        <UnitModelFrameActor value="BaseMarineUnitModelFrameActor"/>
     </CActorUnit>
     <CActorUnit default="1" id="BaseHeavyMarineActor" parent="BaseMarineActor">
         <Macros index="1" value="WeaponEquipHeavyMacro"/>
@@ -67,6 +68,7 @@
         <Model value="HeavyMarineMelee"/>
         <Scale value="1.000000"/>
         <WalkAnimMoveSpeed value="3.25"/>
+        <UnitModelFrameActor value="BaseHeavyMarineUnitModelFrameActor"/>
     </CActorUnit>
     <CActorModel default="1" id="ModelAnimationContinous3Level" parent="ModelAnimationStyleContinuous">
         <?token id="Effect"?>
@@ -85,6 +87,22 @@
         <HostEndSiteOps Ops="SOpIncomingDirect1Dot5 SOpMoveDownByDot25 SOpMoveBy3 SOpMoveUpByDot5"/>
         <Angle value="40.000000"/>
     </CActorForceConeRoundedEnd>
+    <CActorUnit id="BaseMarineUnitModelFrameActor" parent="UnitModelFrameActor">
+        <EditorCategories value=""/>
+        <On Terms="ActorCreation" Send="AttachModel Torso BasicTorso {Hardpoint 0}"/>
+        <On Terms="ActorCreation" Send="AttachModel Waist BasicWaist {Hardpoint 3}"/>
+        <On Terms="ActorCreation" Send="AttachModel RightShoulder BasicShoulderRight {Hardpoint 8}"/>
+        <On Terms="ActorCreation" Send="AttachModel RightShin BasicShinRight {Hardpoint 11}"/>
+        <On Terms="ActorCreation" Send="AttachModel RightLeg BasicLegRight {Hardpoint 10}"/>
+        <On Terms="ActorCreation" Send="AttachModel RightArm BasicArmRight {Hardpoint 9}"/>
+        <On Terms="ActorCreation" Send="AttachModel LeftShoulder BasicShoulderLeft {Hardpoint 4}"/>
+        <On Terms="ActorCreation" Send="AttachModel LeftShin BasicShinLeft {Hardpoint 7}"/>
+        <On Terms="ActorCreation" Send="AttachModel LeftLeg BasicLegLeft {Hardpoint 6}"/>
+        <On Terms="ActorCreation" Send="AttachModel LeftArm BasicArmLeft {Hardpoint 5}"/>
+        <On Terms="ActorCreation" Send="AttachModel LeftFoot BasicFootLeft {Hardpoint 13}"/>
+        <On Terms="ActorCreation" Send="AttachModel RightFoot BasicFootRight {Hardpoint 12}"/>
+        <On Terms="ActorCreation" Send="AttachModel Helmet BasicHelmet {Head 0}"/>
+    </CActorUnit>
     <CActorModel id="BlackDiamondImpact" parent="ModelAnimationStyleOneShot">
         <EditorCategories value=""/>
         <On Terms="Effect.BlackDiamondDamage.Start; At Target" Send="Create"/>
@@ -309,6 +327,24 @@
         <Host Subject="MarksmanRifle"/>
         <HostSiteOps Ops="SOpAttachWeapon"/>
     </CActorSite>
+    <CActorUnit id="BaseHeavyMarineUnitModelFrameActor" parent="UnitModelFrameActor">
+        <EditorCategories value=""/>
+        <On Terms="ActorCreation" Send="AttachModel Torso CraftTorso {Hardpoint 0}"/>
+        <On Terms="ActorCreation" Send="AttachModel Waist CraftWaist {Hardpoint 3}"/>
+        <On Terms="ActorCreation" Send="AttachModel RightShoulder CraftShoulderRight {Hardpoint 8}"/>
+        <On Terms="ActorCreation" Send="AttachModel RightShin CraftShinRight {Hardpoint 11}"/>
+        <On Terms="ActorCreation" Send="AttachModel RightLeg CraftLegRight {Hardpoint 10}"/>
+        <On Terms="ActorCreation" Send="AttachModel RightForearm CraftForearmRight {Hardpoint 2}"/>
+        <On Terms="ActorCreation" Send="AttachModel LeftShoulder CraftShoulderLeft {Hardpoint 4}"/>
+        <On Terms="ActorCreation" Send="AttachModel LeftShin CraftShinLeft {Hardpoint 7}"/>
+        <On Terms="ActorCreation" Send="AttachModel LeftLeg CraftLegLeft {Hardpoint 6}"/>
+        <On Terms="ActorCreation" Send="AttachModel LeftForearm CraftForearmLeft {Hardpoint 1}"/>
+        <On Terms="ActorCreation" Send="AttachModel LeftFoot CraftFootLeft {Hardpoint 13}"/>
+        <On Terms="ActorCreation" Send="AttachModel RightFoot CraftFootRight {Hardpoint 12}"/>
+        <On Terms="ActorCreation" Send="AttachModel Helmet CraftHelmet {Head 0}"/>
+        <On Terms="ActorCreation" Send="AttachModel LeftArm CraftArmLeft {Hardpoint 5}"/>
+        <On Terms="ActorCreation" Send="AttachModel RightArm CraftArmRight {Hardpoint 9}"/>
+    </CActorUnit>
     <CActorAction id="IFV25mmHEAutocannonAttack" parent="GenericAttack" effectImpact="IFV25mmHEAutocannonDamage" effectLaunch="IFV25mmHEAutocannonSet">
         <EditorCategories value=""/>
         <LaunchRequest Subject="IFV25mmHEAutocannonModel"/>
@@ -607,6 +643,11 @@
         <OnResponse Target="_Unit" Send="Create SensorDetected"/>
         <OnResponse Target="SensorDetected" Send="SetTintColor 0,0,128"/>
     </CActorQueryResponse>
+    <CActorUnit id="MedicUnitModelFrameActor" parent="BaseMarineUnitModelFrameActor">
+        <On index="0" Terms="ActorCreation" Send="AttachModel MedicTorso MedicBasicTorso {Hardpoint 0}"/>
+        <On index="9" Terms="ActorCreation" Send="AttachModel MedicLeftArm MedicBasicArmLeft {Hardpoint 5}"/>
+        <On index="12" Terms="ActorCreation" Send="AttachModel MedicHelmet MedicBasicHelmet {Head 0}"/>
+    </CActorUnit>
     <CActorSiteOpRotationExplicit id="SOpPointNorthWorld">
         <Forward value="0.000000,1.000000,0.000000"/>
         <Up value="0.000000,0.000000,1.000000"/>
@@ -1146,7 +1187,7 @@
         <On index="78" Terms="Abil.HeavyJump.SourceCastStart" Send="AnimPlay Jump Jump"/>
         <On Terms="Behavior.ChargeMovement.On" Send="AnimGroupApply Run"/>
         <On Terms="Behavior.ChargeMovement.Off" Send="AnimGroupRemove Run"/>
-	</CActorUnit>
+    </CActorUnit>
     <CActorUnit id="Commando" parent="BaseMarineActor" unitName="Commando">
         <On index="65" Terms="ActorCreation" Send="AttachModel CommandoTorso BasicTorso {Hardpoint 0}"/>
     </CActorUnit>
