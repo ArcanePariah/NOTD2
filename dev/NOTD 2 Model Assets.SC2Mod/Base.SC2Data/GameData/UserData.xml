@@ -161,6 +161,7 @@
         <Fields Id="Category" Type="String"/>
         <Fields Id="Armor Actor" Type="Actor"/>
         <Fields Id="Display Name" Type="Text"/>
+        <Fields Id="Armor Actor Alias" Type="String"/>
         <Instances Id="[Default]"/>
         <Instances Id="Helmet">
             <Actor Actor="Helmet">
@@ -173,18 +174,174 @@
                 <Field Id="Display Name"/>
             </Text>
         </Instances>
-        <Instances Id="Torso"/>
-        <Instances Id="Waist"/>
-        <Instances Id="Left Leg"/>
-        <Instances Id="Right Leg"/>
-        <Instances Id="Left Shin"/>
-        <Instances Id="Right Shin"/>
-        <Instances Id="Left Foot"/>
-        <Instances Id="Right Foot"/>
-        <Instances Id="Left Shoulder"/>
-        <Instances Id="Right Shoulder"/>
-        <Instances Id="Left Forearm"/>
-        <Instances Id="Right Forearm"/>
+        <Instances Id="Torso">
+            <Actor Actor="Torso">
+                <Field Id="Armor Actor"/>
+            </Actor>
+            <String String="Torso">
+                <Field Id="Category"/>
+            </String>
+            <String String="_Torso">
+                <Field Id="Armor Actor Alias"/>
+            </String>
+            <Text Text="UserData/ArmorPiece/Torso_Display Name">
+                <Field Id="Display Name"/>
+            </Text>
+        </Instances>
+        <Instances Id="Waist">
+            <Actor Actor="Waist">
+                <Field Id="Armor Actor"/>
+            </Actor>
+            <String String="Torso">
+                <Field Id="Category"/>
+            </String>
+            <String String="_Waist">
+                <Field Id="Armor Actor Alias"/>
+            </String>
+            <Text Text="UserData/ArmorPiece/Waist_Display Name">
+                <Field Id="Display Name"/>
+            </Text>
+        </Instances>
+        <Instances Id="Left Leg">
+            <Actor Actor="LeftLeg">
+                <Field Id="Armor Actor"/>
+            </Actor>
+            <String String="Legs">
+                <Field Id="Category"/>
+            </String>
+            <String String="_Left_Leg">
+                <Field Id="Armor Actor Alias"/>
+            </String>
+            <Text Text="UserData/ArmorPiece/Left Leg_Display Name">
+                <Field Id="Display Name"/>
+            </Text>
+        </Instances>
+        <Instances Id="Right Leg">
+            <Actor Actor="RightLeg">
+                <Field Id="Armor Actor"/>
+            </Actor>
+            <String String="Legs">
+                <Field Id="Category"/>
+            </String>
+            <String String="_Right_Leg">
+                <Field Id="Armor Actor Alias"/>
+            </String>
+            <Text Text="UserData/ArmorPiece/Right Leg_Display Name">
+                <Field Id="Display Name"/>
+            </Text>
+        </Instances>
+        <Instances Id="Left Shin">
+            <Actor Actor="LeftShin">
+                <Field Id="Armor Actor"/>
+            </Actor>
+            <String String="Legs">
+                <Field Id="Category"/>
+            </String>
+            <String String="_Left_Shin">
+                <Field Id="Armor Actor Alias"/>
+            </String>
+            <Text Text="UserData/ArmorPiece/Left Shin_Display Name">
+                <Field Id="Display Name"/>
+            </Text>
+        </Instances>
+        <Instances Id="Right Shin">
+            <Actor Actor="RightShin">
+                <Field Id="Armor Actor"/>
+            </Actor>
+            <String String="Legs">
+                <Field Id="Category"/>
+            </String>
+            <String String="_Right_Shin">
+                <Field Id="Armor Actor Alias"/>
+            </String>
+            <Text Text="UserData/ArmorPiece/Right Shin_Display Name">
+                <Field Id="Display Name"/>
+            </Text>
+        </Instances>
+        <Instances Id="Left Foot">
+            <Actor Actor="LeftFoot">
+                <Field Id="Armor Actor"/>
+            </Actor>
+            <String String="_Left_Foot">
+                <Field Id="Armor Actor Alias"/>
+            </String>
+            <String String="Legs">
+                <Field Id="Category"/>
+            </String>
+            <Text Text="UserData/ArmorPiece/Left Foot_Display Name">
+                <Field Id="Display Name"/>
+            </Text>
+        </Instances>
+        <Instances Id="Right Foot">
+            <Actor Actor="RightFoot">
+                <Field Id="Armor Actor"/>
+            </Actor>
+            <String String="_Right_Foot">
+                <Field Id="Armor Actor Alias"/>
+            </String>
+            <String String="Legs">
+                <Field Id="Category"/>
+            </String>
+            <Text Text="UserData/ArmorPiece/Right Foot_Display Name">
+                <Field Id="Display Name"/>
+            </Text>
+        </Instances>
+        <Instances Id="Left Shoulder">
+            <Actor Actor="LeftShoulder">
+                <Field Id="Armor Actor"/>
+            </Actor>
+            <String String="Arms">
+                <Field Id="Category"/>
+            </String>
+            <String String="_Left_Shoulder">
+                <Field Id="Armor Actor Alias"/>
+            </String>
+            <Text Text="UserData/ArmorPiece/Left Shoulder_Display Name">
+                <Field Id="Display Name"/>
+            </Text>
+        </Instances>
+        <Instances Id="Right Shoulder">
+            <Actor Actor="RightShoulder">
+                <Field Id="Armor Actor"/>
+            </Actor>
+            <String String="Arms">
+                <Field Id="Category"/>
+            </String>
+            <String String="_Right_Shoulder">
+                <Field Id="Armor Actor Alias"/>
+            </String>
+            <Text Text="UserData/ArmorPiece/Right Shoulder_Display Name">
+                <Field Id="Display Name"/>
+            </Text>
+        </Instances>
+        <Instances Id="Left Forearm">
+            <Actor Actor="LeftForearm">
+                <Field Id="Armor Actor"/>
+            </Actor>
+            <String String="Arms">
+                <Field Id="Category"/>
+            </String>
+            <String String="_Left_Forearm">
+                <Field Id="Armor Actor Alias"/>
+            </String>
+            <Text Text="UserData/ArmorPiece/Left Forearm_Display Name">
+                <Field Id="Display Name"/>
+            </Text>
+        </Instances>
+        <Instances Id="Right Forearm">
+            <Actor Actor="RightForearm">
+                <Field Id="Armor Actor"/>
+            </Actor>
+            <String String="_Right_Forearm">
+                <Field Id="Armor Actor Alias"/>
+            </String>
+            <String String="Arms">
+                <Field Id="Category"/>
+            </String>
+            <Text Text="UserData/ArmorPiece/Right Forearm_Display Name">
+                <Field Id="Display Name"/>
+            </Text>
+        </Instances>
     </CUser>
     <CUser id="ArmorPieces">
         <Fields Id="ArmorId" Type="String" Count="13"/>

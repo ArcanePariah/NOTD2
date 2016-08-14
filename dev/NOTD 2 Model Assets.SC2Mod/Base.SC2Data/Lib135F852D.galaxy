@@ -1,0 +1,33 @@
+include "TriggerLibs/NativeLib"
+
+include "Lib135F852D_h"
+
+//--------------------------------------------------------------------------------------------------
+// Library: Model Manipulation
+//--------------------------------------------------------------------------------------------------
+// External Library Initialization
+void lib135F852D_InitLibraries () {
+    libNtve_InitVariables();
+}
+
+// Functions
+void lib135F852D_gf_ChangeArmorPieceSet (actor lp_armorPiece, string lp_armorSet) {
+    // Implementation
+    ActorSend(lp_armorPiece, libNtve_gf_Signal(UserDataGetString("ArmorSets", lp_armorSet, "Armor Set Name", 1)));
+}
+
+//--------------------------------------------------------------------------------------------------
+// Library Initialization
+//--------------------------------------------------------------------------------------------------
+bool lib135F852D_InitLib_completed = false;
+
+void lib135F852D_InitLib () {
+    if (lib135F852D_InitLib_completed) {
+        return;
+    }
+
+    lib135F852D_InitLib_completed = true;
+
+    lib135F852D_InitLibraries();
+}
+

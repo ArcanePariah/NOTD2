@@ -1,5 +1,6 @@
 include "TriggerLibs/NativeLib"
 include "Lib09BE6BA8"
+include "Lib135F852D"
 include "Lib1E3F036D"
 include "LibFEC22885"
 include "LibC50FD636"
@@ -671,11 +672,11 @@ void lib840A968C_gf_CreateArmorSlotDropDown (int lp_dropDown) {
     // Variable Initialization
 
     // Implementation
-    auto4F4F003F_ae = UserDataFieldValueCount("ArmorPieces", "Armor Path");
+    auto4F4F003F_ae = UserDataInstanceCount("ArmorPiece");
     auto4F4F003F_ai = 1;
     lv_currentArmorSlot = 1;
     for ( ; ( (auto4F4F003F_ai >= 0 && lv_currentArmorSlot <= auto4F4F003F_ae) || (auto4F4F003F_ai <= 0 && lv_currentArmorSlot >= auto4F4F003F_ae) ) ; lv_currentArmorSlot += auto4F4F003F_ai ) {
-        DialogControlAddItem(lp_dropDown, PlayerGroupAll(), UserDataGetText("ArmorPieces", "Light Armor", "Class Selection Drop Down Text", lv_currentArmorSlot));
+        DialogControlAddItem(lp_dropDown, PlayerGroupAll(), UserDataGetText("ArmorPiece", UserDataInstance("ArmorPiece", lv_currentArmorSlot), "Display Name", 1));
     }
 }
 
@@ -1892,13 +1893,20 @@ void lib840A968C_gt_CreateDropDowns_Init () {
 // Trigger: Dropdown Selection
 //--------------------------------------------------------------------------------------------------
 bool lib840A968C_gt_DropdownSelection_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    actor lv_selectedArmorActor;
+
+    // Variable Initialization
+    lv_selectedArmorActor = ActorFromScope(ActorScopeFromActor(lib840A968C_gv_unitModelFrameActor), (UserDataGetActor("ArmorPiece", UserDataInstance("ArmorPiece", DialogControlGetSelectedItem(EventDialogControl(), EventPlayer())), "Armor Actor", 1)));
+
     // Actions
     if (!runActions) {
         return true;
     }
 
-    TriggerDebugOutput(1, IntToText(DialogControlGetSelectedItem(EventDialogControl(), 1)), true);
-    ActorSend(ActorFromScope(ActorScopeFromActor(lib840A968C_gv_unitModelFrameActor), UserDataGetString("ArmorPieces", "Light Armor", "ArmorId", DialogControlGetSelectedItem(EventDialogControl(), 1))), "Signal War");
+    ActorScopeSend(ActorScopeFromActor(lib840A968C_gv_unitModelFrameActor), "HaloStop");
+    ActorSend(lv_selectedArmorActor, "HaloSetColor 255,255,255");
+    ActorSend(lv_selectedArmorActor, "HaloStart");
     return true;
 }
 
