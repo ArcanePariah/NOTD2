@@ -1,0 +1,142 @@
+include "TriggerLibs/NativeLib"
+include "Lib09BE6BA8"
+include "Lib1E3F036D"
+include "Lib840A968C_h"
+
+include "Lib1483055B_h"
+
+//--------------------------------------------------------------------------------------------------
+// Library: Class Selection
+//--------------------------------------------------------------------------------------------------
+// External Library Initialization
+void lib1483055B_InitLibraries () {
+    libNtve_InitVariables();
+    lib1E3F036D_InitVariables();
+    lib840A968C_InitVariables();
+}
+
+// Variable Initialization
+bool lib1483055B_InitVariables_completed = false;
+
+void lib1483055B_InitVariables () {
+    if (lib1483055B_InitVariables_completed) {
+        return;
+    }
+
+    lib1483055B_InitVariables_completed = true;
+
+}
+
+// Functions
+void lib1483055B_gf_ClassSelected (trigger t) {
+    // Implementation
+    TriggerAddEventGeneric(t, lib1483055B_gv_classSelectEvent);
+}
+
+void lib1483055B_gf_AnnounceClassSelection (string lp_class, int lp_selectingPlayer) {
+    // Implementation
+    DataTableSetString(false, TriggerEventParamName(lib1483055B_gv_classSelectEvent, lib1483055B_gv_classSelected), (lp_class));
+    DataTableSetInt(false, TriggerEventParamName(lib1483055B_gv_classSelectEvent, lib1483055B_gv_choosingPlayer), lp_selectingPlayer);
+    TriggerSendEvent(lib1483055B_gv_classSelectEvent);
+}
+
+string lib1483055B_gf_GetClassSelected () {
+    int auto2FE3898D_u;
+
+    // Variable Declarations
+    string lv_testInstance;
+
+    // Variable Initialization
+
+    // Implementation
+    auto2FE3898D_u = 1;
+    for ( ; auto2FE3898D_u <= UserDataInstanceCount("Classes"); auto2FE3898D_u += 1)
+    {
+        lv_testInstance = UserDataInstance("Classes", auto2FE3898D_u);
+        if ((DataTableGetString(false, TriggerEventParamName(lib1483055B_gv_classSelectEvent, lib1483055B_gv_classSelected)) == (lv_testInstance))) {
+            return lv_testInstance;
+        }
+
+        ;
+    }
+    return "Rifleman";
+}
+
+int lib1483055B_gf_GetSelectingPlayer () {
+    // Implementation
+    return DataTableGetInt(false, TriggerEventParamName(lib1483055B_gv_classSelectEvent, lib1483055B_gv_choosingPlayer));
+}
+
+// Triggers
+//--------------------------------------------------------------------------------------------------
+// Trigger: Class Selected
+//--------------------------------------------------------------------------------------------------
+bool lib1483055B_gt_ClassSelected_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    int lv_classIndex;
+
+    // Variable Initialization
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    while ((EventDialogControl() != lib840A968C_gv_classSelectionButtons[lv_classIndex])) {
+        lv_classIndex += 1;
+    }
+    lib1483055B_gf_AnnounceClassSelection(UserDataInstance("Classes", lv_classIndex), EventPlayer());
+    IntLoopBegin(lib1E3F036D_gv_indexBaseValue, lib840A968C_gv_numberofClasses);
+    for ( ; !IntLoopDone() ; IntLoopStep() ) {
+        if ((lib840A968C_gv_classSelectionButtons[IntLoopCurrent()] != EventDialogControl())) {
+            libNtve_gf_SetDialogItemToggled(lib840A968C_gv_classSelectionButtons[IntLoopCurrent()], false, PlayerGroupSingle(EventPlayer()));
+        }
+    }
+    IntLoopEnd();
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib1483055B_gt_ClassSelected_Init () {
+    lib1483055B_gt_ClassSelected = TriggerCreate("lib1483055B_gt_ClassSelected_Func");
+    TriggerEnable(lib1483055B_gt_ClassSelected, false);
+    TriggerAddEventDialogControl(lib1483055B_gt_ClassSelected, c_playerAny, c_invalidDialogControlId, c_triggerControlEventTypeClick);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Class Selected Test
+//--------------------------------------------------------------------------------------------------
+bool lib1483055B_gt_ClassSelectedTest_Func (bool testConds, bool runActions) {
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib1483055B_gt_ClassSelectedTest_Init () {
+    lib1483055B_gt_ClassSelectedTest = TriggerCreate("lib1483055B_gt_ClassSelectedTest_Func");
+    TriggerAddEventGeneric(lib1483055B_gt_ClassSelectedTest, lib1483055B_gv_classSelectEvent);
+}
+
+void lib1483055B_InitTriggers () {
+    lib1483055B_gt_ClassSelected_Init();
+    lib1483055B_gt_ClassSelectedTest_Init();
+}
+
+//--------------------------------------------------------------------------------------------------
+// Library Initialization
+//--------------------------------------------------------------------------------------------------
+bool lib1483055B_InitLib_completed = false;
+
+void lib1483055B_InitLib () {
+    if (lib1483055B_InitLib_completed) {
+        return;
+    }
+
+    lib1483055B_InitLib_completed = true;
+
+    lib1483055B_InitLibraries();
+    lib1483055B_InitVariables();
+    lib1483055B_InitTriggers();
+}
+
+include "Lib840A968C"
+
