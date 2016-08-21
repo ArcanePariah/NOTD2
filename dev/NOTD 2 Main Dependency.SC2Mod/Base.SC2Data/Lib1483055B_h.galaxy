@@ -4,19 +4,41 @@ include "TriggerLibs/natives"
 // Library: Class Selection
 //--------------------------------------------------------------------------------------------------
 // Constants
+const int lib1483055B_gv_classes = 15;
+const string lib1483055B_gv_classSelectionEvent = "Class Selection";
 const string lib1483055B_gv_classSelectEvent = "ClassSelected";
 const string lib1483055B_gv_classSelected = "Class Chosen";
 const string lib1483055B_gv_choosingPlayer = "Class Selecting Player";
 
+// Variable Declarations
+int lib1483055B_gv_armorSlotDropDown;
+int[lib1483055B_gv_classes + 1] lib1483055B_gv_classSelectionButtons;
+actor lib1483055B_gv_unitModelFrameActor;
+int lib1483055B_gv_unitModelFrameModel;
+int[lib1483055B_gv_classes + 1] lib1483055B_gv_classSelectionLabels;
+int[lib1483055B_gv_classes + 1] lib1483055B_gv_classSelectionFrames;
+timer lib1483055B_gv_classSelectionTimer;
+int lib1483055B_gv_classSelectionDialog;
+int lib1483055B_gv_classSelectionPanel;
+int lib1483055B_gv_classLoreFrame;
+int lib1483055B_gv_classModelFrame;
+
 // Function Declarations
+void lib1483055B_gf_CreateArmorSlotDropDown (int lp_dropDown);
+void lib1483055B_gf_CreateArmorSetDropDown ();
+bool lib1483055B_gf_PlayerHasClassUnlocked (int lp_player, int lp_classSlot);
+void lib1483055B_gf_ClassUnlocked (int lp_classSlot);
 void lib1483055B_gf_ClassSelected (trigger t);
 void lib1483055B_gf_AnnounceClassSelection (string lp_class, int lp_selectingPlayer);
 string lib1483055B_gf_GetClassSelected ();
 int lib1483055B_gf_GetSelectingPlayer ();
 
 // Trigger Declarations
+trigger lib1483055B_gt_DropdownSelection;
+trigger lib1483055B_gt_DisplayClassSelection;
+trigger lib1483055B_gt_ClassSelection;
+trigger lib1483055B_gt_EndClassSelection;
 trigger lib1483055B_gt_ClassSelected;
-trigger lib1483055B_gt_ClassSelectedTest;
 
 // Library Initialization
 void lib1483055B_InitVariables ();
