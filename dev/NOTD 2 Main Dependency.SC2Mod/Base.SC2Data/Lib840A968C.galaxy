@@ -1,10 +1,10 @@
 include "TriggerLibs/NativeLib"
 include "Lib09BE6BA8"
+include "Lib135F852D"
 include "Lib1E3F036D"
 include "LibFEC22885"
 include "LibC50FD636"
 include "Lib1765BC64"
-include "Lib1483055B_h"
 
 include "Lib840A968C_h"
 
@@ -18,7 +18,6 @@ void lib840A968C_InitLibraries () {
     libFEC22885_InitVariables();
     libC50FD636_InitVariables();
     lib1765BC64_InitVariables();
-    lib1483055B_InitVariables();
 }
 
 // Variable Initialization
@@ -34,6 +33,22 @@ void lib840A968C_InitVariables () {
 
     lib840A968C_InitVariables_completed = true;
 
+    lib840A968C_gv_armorSlotDropDown = c_invalidDialogControlId;
+    for (init_i = 0; init_i <= lib840A968C_gv_classes; init_i += 1) {
+        lib840A968C_gv_classSelectionButtons[init_i] = c_invalidDialogControlId;
+    }
+    lib840A968C_gv_unitModelFrameModel = c_invalidDialogControlId;
+    for (init_i = 0; init_i <= lib840A968C_gv_classes; init_i += 1) {
+        lib840A968C_gv_classSelectionLabels[init_i] = c_invalidDialogControlId;
+    }
+    for (init_i = 0; init_i <= lib840A968C_gv_classes; init_i += 1) {
+        lib840A968C_gv_classSelectionFrames[init_i] = c_invalidDialogControlId;
+    }
+    lib840A968C_gv_classSelectionTimer = TimerCreate();
+    lib840A968C_gv_classSelectionDialog = c_invalidDialogId;
+    lib840A968C_gv_classSelectionPanel = c_invalidDialogControlId;
+    lib840A968C_gv_classLoreFrame = c_invalidDialogControlId;
+    lib840A968C_gv_classModelFrame = c_invalidDialogControlId;
     lib840A968C_gv_numberofArmorSets = UserDataInstanceCount("ArmorSet");
     lib840A968C_gv_currentChapterData = "Chapter 0";
     lib840A968C_gv_difficulty = 1;
@@ -68,6 +83,129 @@ void lib840A968C_InitVariables () {
 
 // Presets
 // Functions
+void lib840A968C_gf_CreateArmorSlotDropDown (int lp_dropDown) {
+    int auto723ED669_ae;
+    int auto723ED669_ai;
+
+    // Variable Declarations
+    int lv_currentArmorSlot;
+
+    // Variable Initialization
+
+    // Implementation
+    auto723ED669_ae = UserDataInstanceCount("ArmorPiece");
+    auto723ED669_ai = 1;
+    lv_currentArmorSlot = 1;
+    for ( ; ( (auto723ED669_ai >= 0 && lv_currentArmorSlot <= auto723ED669_ae) || (auto723ED669_ai <= 0 && lv_currentArmorSlot >= auto723ED669_ae) ) ; lv_currentArmorSlot += auto723ED669_ai ) {
+        DialogControlAddItem(lp_dropDown, PlayerGroupAll(), UserDataGetText("ArmorPiece", UserDataInstance("ArmorPiece", lv_currentArmorSlot), "Display Name", 1));
+    }
+}
+
+void lib840A968C_gf_CreateArmorSetDropDown () {
+}
+
+bool lib840A968C_gf_PlayerHasClassUnlocked (int lp_player, int lp_classSlot) {
+    // Implementation
+    if (((lp_classSlot < 6) || (GameAttributeGameValue("1") == "0003"))) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
+void lib840A968C_gf_ClassUnlocked (int lp_classSlot) {
+    // Variable Declarations
+    int lv_buttonImage;
+
+    // Variable Initialization
+    lv_buttonImage = c_invalidDialogControlId;
+
+    // Implementation
+    DialogControlHookup(lib840A968C_gv_classSelectionButtons[lp_classSlot], c_triggerControlTypeImage, "ClassImage");
+    lv_buttonImage = DialogControlLastCreated();
+    PlayerGroupLoopBegin(lib840A968C_gf_GetMarineSquadPlayers());
+    for ( ; !PlayerGroupLoopDone() ; PlayerGroupLoopStep() ) {
+        if (lib840A968C_gf_PlayerHasClassUnlocked(PlayerGroupLoopCurrent(), lp_classSlot)) {
+            libNtve_gf_SetDialogItemImage(lv_buttonImage, UserDataGetImagePath("Classes", UserDataInstance("Classes", lp_classSlot), "Class Image", 1), PlayerGroupSingle(PlayerGroupLoopCurrent()));
+        }
+        else {
+            libNtve_gf_SetDialogItemImage(lv_buttonImage, "btn-ability-terran-lockdown-classic.dds", PlayerGroupSingle(PlayerGroupLoopCurrent()));
+            DialogControlSetEnabled(lib840A968C_gv_classSelectionButtons[lp_classSlot], PlayerGroupSingle(PlayerGroupLoopCurrent()), false);
+        }
+    }
+    PlayerGroupLoopEnd();
+}
+
+void lib840A968C_gf_ClassSelectionPlayerInfo (int lp_classSelectionScreen) {
+    playergroup autoAE3E1801_g;
+    int autoAE3E1801_p;
+
+    // Variable Declarations
+    int lv_playerRankIcon;
+    int lv_playerNameLabel;
+    int lv_player;
+
+    // Variable Initialization
+    lv_playerRankIcon = c_invalidDialogControlId;
+    lv_playerNameLabel = c_invalidDialogControlId;
+
+    // Implementation
+    DialogControlHookup(lp_classSelectionScreen, c_triggerControlTypeLabel, "PlayerName");
+    lv_playerNameLabel = DialogControlLastCreated();
+    DialogControlHookup(lp_classSelectionScreen, c_triggerControlTypeImage, "PlayerRankIcon");
+    lv_playerRankIcon = DialogControlLastCreated();
+    autoAE3E1801_g = lib840A968C_gf_GetMarineSquadPlayers(); 
+    autoAE3E1801_p = 1;
+    for ( ; autoAE3E1801_p <= PlayerGroupCount(autoAE3E1801_g) ; autoAE3E1801_p += BoolToInt(lv_player == PlayerGroupPlayer(autoAE3E1801_g, autoAE3E1801_p)) ) {
+        lv_player = PlayerGroupPlayer(autoAE3E1801_g, autoAE3E1801_p);
+        libNtve_gf_SetDialogItemImage(lv_playerRankIcon, UserDataGetImagePath("Ranks", lib840A968C_gf_GetPlayerRank(lv_player), "Icon", 1), PlayerGroupSingle(lv_player));
+        TextExpressionSetToken("Param/Expression/lib_840A968C_D4BE982C", "B", UserDataGetText("Ranks", lib840A968C_gf_GetPlayerRank(lv_player), "Title Full", 1));
+        TextExpressionSetToken("Param/Expression/lib_840A968C_D4BE982C", "A", PlayerName(lv_player));
+        libNtve_gf_SetDialogItemText(lv_playerNameLabel, TextExpressionAssemble("Param/Expression/lib_840A968C_D4BE982C"), PlayerGroupSingle(lv_player));
+        lib1E3F036D_gf_SetPlayerRank(lv_player, UserDataGetImagePath("Ranks", lib840A968C_gf_GetPlayerRank(lv_player), "Icon", 1));
+    }
+}
+
+void lib840A968C_gf_ClassSelected (trigger t) {
+    // Implementation
+    TriggerAddEventGeneric(t, lib840A968C_gv_classSelectEvent);
+}
+
+void lib840A968C_gf_AnnounceClassSelection (string lp_class, int lp_selectingPlayer) {
+    // Implementation
+    DataTableSetString(false, TriggerEventParamName(lib840A968C_gv_classSelectEvent, lib840A968C_gv_classSelected), (lp_class));
+    DataTableSetInt(false, TriggerEventParamName(lib840A968C_gv_classSelectEvent, lib840A968C_gv_choosingPlayer), lp_selectingPlayer);
+    TriggerSendEvent(lib840A968C_gv_classSelectEvent);
+}
+
+string lib840A968C_gf_GetClassSelected () {
+    int auto04170716_u;
+
+    // Variable Declarations
+    string lv_testInstance;
+
+    // Variable Initialization
+
+    // Implementation
+    auto04170716_u = 1;
+    for ( ; auto04170716_u <= UserDataInstanceCount("Classes"); auto04170716_u += 1)
+    {
+        lv_testInstance = UserDataInstance("Classes", auto04170716_u);
+        if ((DataTableGetString(false, TriggerEventParamName(lib840A968C_gv_classSelectEvent, lib840A968C_gv_classSelected)) == (lv_testInstance))) {
+            return lv_testInstance;
+        }
+
+        ;
+    }
+    return "Rifleman";
+}
+
+int lib840A968C_gf_GetSelectingPlayer () {
+    // Implementation
+    return DataTableGetInt(false, TriggerEventParamName(lib840A968C_gv_classSelectEvent, lib840A968C_gv_choosingPlayer));
+}
+
 bool lib840A968C_gf_ItemhasbeenPurchased (string lp_bankConditionID) {
     // Implementation
     return BankConditionEvaluate(1, (lp_bankConditionID));
@@ -1127,6 +1265,11 @@ void lib840A968C_gf_RatingBonusAdjustment (int lp_player) {
     CatalogFieldValueSet(c_gameCatalogBehavior, "RatingBonus", "Modification.DamageDealtFraction[" + IntToString(3) + "]", lp_player, FixedToString((UserDataGetInt("RatingBonuses", lv_currentRatingBonus, "Damage Adjustment", 1) / 100.0), c_fixedPrecisionAny));
 }
 
+string lib840A968C_gf_GetPlayerRank (int lp_player) {
+    // Implementation
+    return lib840A968C_gv_players[lp_player].lv_currentRank;
+}
+
 void lib840A968C_gf_AwardPlayerXP (int lp_player, int lp_xP) {
     // Implementation
     if (PlayerGroupHasPlayer(lib840A968C_gv_livingMarines, lp_player)) {
@@ -1352,6 +1495,211 @@ bool lib840A968C_gf_IsaDeveloper (string lp_handle) {
 }
 
 // Triggers
+//--------------------------------------------------------------------------------------------------
+// Trigger: Dropdown Selection
+//--------------------------------------------------------------------------------------------------
+bool lib840A968C_gt_DropdownSelection_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    actor lv_selectedArmorActor;
+
+    // Variable Initialization
+    lv_selectedArmorActor = ActorFromScope(ActorScopeFromActor(lib840A968C_gv_unitModelFrameActor), (UserDataGetActor("ArmorPiece", UserDataInstance("ArmorPiece", DialogControlGetSelectedItem(EventDialogControl(), EventPlayer())), "Armor Actor", 1)));
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    ActorScopeSend(ActorScopeFromActor(lib840A968C_gv_unitModelFrameActor), "HaloStop");
+    Wait(0.0625, c_timeGame);
+    ActorSend(lv_selectedArmorActor, "HaloSetColor 255,255,255");
+    ActorSend(lv_selectedArmorActor, "HaloStart");
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib840A968C_gt_DropdownSelection_Init () {
+    lib840A968C_gt_DropdownSelection = TriggerCreate("lib840A968C_gt_DropdownSelection_Func");
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Display Class Selection
+//--------------------------------------------------------------------------------------------------
+bool lib840A968C_gt_DisplayClassSelection_Func (bool testConds, bool runActions) {
+    int auto95917C57_ae;
+    int auto95917C57_ai;
+
+    // Variable Declarations
+    int lv_classFrame;
+    int lv_currentClassFrame;
+
+    // Variable Initialization
+    lv_currentClassFrame = c_invalidDialogControlId;
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TriggerDebugOutput(lib840A968C_gv_gameEvents, StringExternal("Param/Value/lib_840A968C_57D317FB"), false);
+    SoundChannelMute(PlayerGroupAll(), c_soundCategoryAmbient, true);
+    SoundChannelMute(PlayerGroupAll(), c_soundCategorySAmbient, true);
+    SoundChannelMute(PlayerGroupAll(), c_soundCategorySEmitters, true);
+    SoundChannelMute(PlayerGroupAll(), c_soundCategoryMusic, true);
+    PlayerGroupLoopBegin(PlayerGroupAll());
+    for ( ; !PlayerGroupLoopDone() ; PlayerGroupLoopStep() ) {
+        CameraPan(PlayerGroupLoopCurrent(), Point(0.0, 0.0), 0.0, -1, 10.0, false);
+        CameraLockInput(PlayerGroupLoopCurrent(), true);
+    }
+    PlayerGroupLoopEnd();
+    TimerStart(lib840A968C_gv_classSelectionTimer, 120.0, false, c_timeReal);
+    TriggerEnable(lib840A968C_gt_ClassSelection, true);
+    TriggerEnable(lib840A968C_gt_EndClassSelection, true);
+    TriggerEnable(lib840A968C_gt_ClassSelected2, true);
+    DialogCreate(500, 400, c_anchorCenter, 0, 0, true);
+    lib840A968C_gv_classSelectionDialog = DialogLastCreated();
+    DialogSetFullscreen(DialogLastCreated(), true);
+    DialogControlCreateFromTemplate(DialogLastCreated(), c_triggerControlTypePanel, "ClassSelection/ClassSelection");
+    lib840A968C_gv_classSelectionPanel = DialogControlLastCreated();
+    DialogControlSetFullDialog(lib840A968C_gv_classSelectionPanel, PlayerGroupAll(), true);
+    auto95917C57_ae = lib840A968C_gv_classes;
+    auto95917C57_ai = 1;
+    lv_classFrame = 1;
+    for ( ; ( (auto95917C57_ai >= 0 && lv_classFrame <= auto95917C57_ae) || (auto95917C57_ai <= 0 && lv_classFrame >= auto95917C57_ae) ) ; lv_classFrame += auto95917C57_ai ) {
+        DialogControlHookup(lib840A968C_gv_classSelectionPanel, c_triggerControlTypePanel, "ClassFrame" + IntToString(lv_classFrame));
+        lib840A968C_gv_classSelectionFrames[lv_classFrame] = DialogControlLastCreated();
+        DialogControlHookup(lib840A968C_gv_classSelectionFrames[lv_classFrame], c_triggerControlTypeButton, "ClassButton");
+        lib840A968C_gv_classSelectionButtons[lv_classFrame] = DialogControlLastCreated();
+        DialogControlHookup(lib840A968C_gv_classSelectionFrames[lv_classFrame], c_triggerControlTypeLabel, "ClassLabel");
+        lib840A968C_gv_classSelectionLabels[lv_classFrame] = DialogControlLastCreated();
+        libNtve_gf_SetDialogItemText(lib840A968C_gv_classSelectionLabels[lv_classFrame], UserDataGetText("Classes", UserDataInstance("Classes", lv_classFrame), "Class Name", 1), PlayerGroupAll());
+        lib840A968C_gf_ClassUnlocked(lv_classFrame);
+    }
+    DialogControlHookup(lib840A968C_gv_classSelectionPanel, c_triggerControlTypeLabel, "ClassLoreFrame");
+    lib840A968C_gv_classLoreFrame = DialogControlLastCreated();
+    DialogControlHookup(lib840A968C_gv_classSelectionPanel, c_triggerControlTypeUnitModel, "ClassModelPreview");
+    lib840A968C_gv_classModelFrame = DialogControlLastCreated();
+    DialogControlHookup(lib840A968C_gv_classSelectionPanel, c_triggerControlTypePulldown, "ArmorSlotPulldown");
+    lib840A968C_gv_armorSlotDropDown = DialogControlLastCreated();
+    lib840A968C_gf_ClassSelectionPlayerInfo(lib840A968C_gv_classSelectionPanel);
+    lib840A968C_gf_CreateArmorSlotDropDown(lib840A968C_gv_armorSlotDropDown);
+    TriggerAddEventDialogControl(lib840A968C_gt_DropdownSelection, c_playerAny, lib840A968C_gv_armorSlotDropDown, c_triggerControlEventTypeSelectionChanged);
+    DialogSetVisible(lib840A968C_gv_classSelectionDialog, PlayerGroupAll(), true);
+    lib1E3F036D_gf_ShowHideTeamUI(true);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib840A968C_gt_DisplayClassSelection_Init () {
+    lib840A968C_gt_DisplayClassSelection = TriggerCreate("lib840A968C_gt_DisplayClassSelection_Func");
+    TriggerAddEventGeneric(lib840A968C_gt_DisplayClassSelection, lib840A968C_gv_classSelectionEvent);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Class Selection
+//--------------------------------------------------------------------------------------------------
+bool lib840A968C_gt_ClassSelection_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    int lv_selectingPlayer;
+
+    // Variable Initialization
+    lv_selectingPlayer = lib840A968C_gf_GetSelectingPlayer();
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TextExpressionSetToken("Param/Expression/lib_840A968C_8F8C78EB", "A", PlayerName(lv_selectingPlayer));
+    TextExpressionSetToken("Param/Expression/lib_840A968C_8F8C78EB", "Class", UnitTypeGetName(UserDataGetUnit("Classes", lib840A968C_gf_GetClassSelected(), "Class Unit", 1)));
+    TriggerDebugOutput(lib840A968C_gv_playerEvents, TextExpressionAssemble("Param/Expression/lib_840A968C_8F8C78EB"), false);
+    libNtve_gf_SetDialogItemText(lib840A968C_gv_classLoreFrame, UserDataGetText("Classes", lib840A968C_gf_GetClassSelected(), "Class Lore", 1), PlayerGroupSingle(lv_selectingPlayer));
+    lib1E3F036D_gf_SetPlayerPortrait(lv_selectingPlayer, UserDataGetImagePath("Classes", lib840A968C_gf_GetClassSelected(), "Class Image", 1));
+    libNtve_gf_SetDialogItemUnitLink(lib840A968C_gv_classModelFrame, UserDataGetUnit("Classes", lib840A968C_gf_GetClassSelected(), "Class Unit", 1), PlayerGroupSingle(lv_selectingPlayer));
+    Wait(0.0625, c_timeGame);
+    lib840A968C_gv_unitModelFrameActor = ActorFromDialogControl(lib840A968C_gv_classModelFrame);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib840A968C_gt_ClassSelection_Init () {
+    lib840A968C_gt_ClassSelection = TriggerCreate("lib840A968C_gt_ClassSelection_Func");
+    TriggerEnable(lib840A968C_gt_ClassSelection, false);
+    lib840A968C_gf_ClassSelected(lib840A968C_gt_ClassSelection);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: End Class Selection
+//--------------------------------------------------------------------------------------------------
+bool lib840A968C_gt_EndClassSelection_Func (bool testConds, bool runActions) {
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TriggerDebugOutput(lib840A968C_gv_gameEvents, StringExternal("Param/Value/lib_840A968C_06DC84CE"), false);
+    SoundChannelMute(PlayerGroupAll(), c_soundCategoryAmbient, false);
+    SoundChannelMute(PlayerGroupAll(), c_soundCategoryMusic, false);
+    SoundChannelMute(PlayerGroupAll(), c_soundCategorySAmbient, false);
+    SoundChannelMute(PlayerGroupAll(), c_soundCategorySEmitters, false);
+    TriggerEnable(lib840A968C_gt_ClassSelection, false);
+    TriggerEnable(lib840A968C_gt_EndClassSelection, false);
+    PlayerGroupLoopBegin(PlayerGroupAll());
+    for ( ; !PlayerGroupLoopDone() ; PlayerGroupLoopStep() ) {
+        CameraLockInput(PlayerGroupLoopCurrent(), false);
+    }
+    PlayerGroupLoopEnd();
+    DialogDestroy(lib840A968C_gv_classSelectionDialog);
+    libNtve_gf_HideGameUI(true, PlayerGroupAll());
+    UISetWorldVisible(PlayerGroupAll(), true);
+    EnvironmentShow(c_environmentAll, true);
+    GameSetMissionTimePaused(false);
+    TriggerSendEvent(lib840A968C_gv_intializeEvent);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib840A968C_gt_EndClassSelection_Init () {
+    lib840A968C_gt_EndClassSelection = TriggerCreate("lib840A968C_gt_EndClassSelection_Func");
+    TriggerEnable(lib840A968C_gt_EndClassSelection, false);
+    TriggerAddEventTimer(lib840A968C_gt_EndClassSelection, lib840A968C_gv_classSelectionTimer);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Class Selected
+//--------------------------------------------------------------------------------------------------
+bool lib840A968C_gt_ClassSelected2_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    int lv_classIndex;
+
+    // Variable Initialization
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    while ((EventDialogControl() != lib840A968C_gv_classSelectionButtons[lv_classIndex])) {
+        lv_classIndex += 1;
+    }
+    lib840A968C_gf_AnnounceClassSelection(UserDataInstance("Classes", lv_classIndex), EventPlayer());
+    IntLoopBegin(lib1E3F036D_gv_indexBaseValue, lib840A968C_gv_classes);
+    for ( ; !IntLoopDone() ; IntLoopStep() ) {
+        if ((lib840A968C_gv_classSelectionButtons[lv_classIndex] != EventDialogControl())) {
+            libNtve_gf_SetDialogItemToggled(lib840A968C_gv_classSelectionButtons[lv_classIndex], false, PlayerGroupSingle(EventPlayer()));
+        }
+    }
+    IntLoopEnd();
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib840A968C_gt_ClassSelected2_Init () {
+    lib840A968C_gt_ClassSelected2 = TriggerCreate("lib840A968C_gt_ClassSelected2_Func");
+    TriggerEnable(lib840A968C_gt_ClassSelected2, false);
+    TriggerAddEventDialogControl(lib840A968C_gt_ClassSelected2, c_playerAny, c_invalidDialogControlId, c_triggerControlEventTypeClick);
+}
+
 //--------------------------------------------------------------------------------------------------
 // Trigger: Shop Intialize
 //--------------------------------------------------------------------------------------------------
@@ -1846,7 +2194,7 @@ bool lib840A968C_gt_DifficultySelection_Func (bool testConds, bool runActions) {
         }
     }
     lib840A968C_gf_SetGameDifficulty();
-    TriggerSendEvent(lib1483055B_gv_classSelectionEvent);
+    TriggerSendEvent(lib840A968C_gv_classSelectionEvent);
     return true;
 }
 
@@ -1906,6 +2254,25 @@ bool lib840A968C_gt_DifficultyVote_Func (bool testConds, bool runActions) {
 //--------------------------------------------------------------------------------------------------
 void lib840A968C_gt_DifficultyVote_Init () {
     lib840A968C_gt_DifficultyVote = TriggerCreate("lib840A968C_gt_DifficultyVote_Func");
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Set Class From Selection
+//--------------------------------------------------------------------------------------------------
+bool lib840A968C_gt_SetClassFromSelection_Func (bool testConds, bool runActions) {
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    libC50FD636_gv_marines[lib840A968C_gf_GetSelectingPlayer()].lv_class = lib840A968C_gf_GetClassSelected();
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib840A968C_gt_SetClassFromSelection_Init () {
+    lib840A968C_gt_SetClassFromSelection = TriggerCreate("lib840A968C_gt_SetClassFromSelection_Func");
+    lib840A968C_gf_ClassSelected(lib840A968C_gt_SetClassFromSelection);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -3109,6 +3476,11 @@ void lib840A968C_gt_HPScaling_Init () {
 }
 
 void lib840A968C_InitTriggers () {
+    lib840A968C_gt_DropdownSelection_Init();
+    lib840A968C_gt_DisplayClassSelection_Init();
+    lib840A968C_gt_ClassSelection_Init();
+    lib840A968C_gt_EndClassSelection_Init();
+    lib840A968C_gt_ClassSelected2_Init();
     lib840A968C_gt_ShopIntialize_Init();
     lib840A968C_gt_BankLoad_Init();
     lib840A968C_gt_ApplyServiceBranches_Init();
@@ -3128,6 +3500,7 @@ void lib840A968C_InitTriggers () {
     lib840A968C_gt_Defeat_Init();
     lib840A968C_gt_DifficultySelection_Init();
     lib840A968C_gt_DifficultyVote_Init();
+    lib840A968C_gt_SetClassFromSelection_Init();
     lib840A968C_gt_EventRegistrationForMarineUnits_Init();
     lib840A968C_gt_NightVisionModuleLightingChange_Init();
     lib840A968C_gt_NightVisionUIHookup_Init();
@@ -3178,6 +3551,4 @@ void lib840A968C_InitLib () {
     lib840A968C_InitVariables();
     lib840A968C_InitTriggers();
 }
-
-include "Lib1483055B"
 

@@ -26,12 +26,18 @@ const int lib840A968C_ge_DialogDuration_Short = 0;
 const int lib840A968C_ge_DialogDuration_Long = 1;
 
 // Constants
+const int lib840A968C_gv_classes = 15;
+const string lib840A968C_gv_classSelectionEvent2 = "Class Selection";
+const string lib840A968C_gv_classSelectEvent = "ClassSelected";
+const string lib840A968C_gv_classSelected = "Class Chosen";
+const string lib840A968C_gv_choosingPlayer = "Class Selecting Player";
 const string lib840A968C_gv_classCustomizationEvent = "CustomizeUnits";
 const string lib840A968C_gv_intializeEvent = "Initialize";
 const string lib840A968C_gv_shopIntialization = "Shop Intialize";
 const string lib840A968C_gv_victory = "Victory";
 const string lib840A968C_gv_defeat = "Defeat";
 const string lib840A968C_gv_difficultySelectionEvent = "DifficultySelection";
+const string lib840A968C_gv_classSelectionEvent = "Class Selection";
 const int lib840A968C_gv_mISSION_MAX_COUNT = 32;
 const int lib840A968C_gv_numberofDifficulties = 3;
 const int lib840A968C_gv_numberofPlayers = lib1E3F036D_gv_numberofPlayers;
@@ -114,6 +120,17 @@ struct lib840A968C_gs_PlayerBanks {
 };
 
 // Variable Declarations
+int lib840A968C_gv_armorSlotDropDown;
+int[lib840A968C_gv_classes + 1] lib840A968C_gv_classSelectionButtons;
+actor lib840A968C_gv_unitModelFrameActor;
+int lib840A968C_gv_unitModelFrameModel;
+int[lib840A968C_gv_classes + 1] lib840A968C_gv_classSelectionLabels;
+int[lib840A968C_gv_classes + 1] lib840A968C_gv_classSelectionFrames;
+timer lib840A968C_gv_classSelectionTimer;
+int lib840A968C_gv_classSelectionDialog;
+int lib840A968C_gv_classSelectionPanel;
+int lib840A968C_gv_classLoreFrame;
+int lib840A968C_gv_classModelFrame;
 int lib840A968C_gv_numberofArmorSets;
 int lib840A968C_gv_testVaraible;
 bool lib840A968C_gv_riotMode;
@@ -147,6 +164,15 @@ revealer[lib840A968C_gv_numberofPlayers + 1] lib840A968C_gv_mapHackRevealerDevel
 bool[lib840A968C_gv_numberofPlayers + 1] lib840A968C_gv_revealerActive;
 
 // Function Declarations
+void lib840A968C_gf_CreateArmorSlotDropDown (int lp_dropDown);
+void lib840A968C_gf_CreateArmorSetDropDown ();
+bool lib840A968C_gf_PlayerHasClassUnlocked (int lp_player, int lp_classSlot);
+void lib840A968C_gf_ClassUnlocked (int lp_classSlot);
+void lib840A968C_gf_ClassSelectionPlayerInfo (int lp_classSelectionScreen);
+void lib840A968C_gf_ClassSelected (trigger t);
+void lib840A968C_gf_AnnounceClassSelection (string lp_class, int lp_selectingPlayer);
+string lib840A968C_gf_GetClassSelected ();
+int lib840A968C_gf_GetSelectingPlayer ();
 bool lib840A968C_gf_ItemhasbeenPurchased (string lp_bankConditionID);
 void lib840A968C_gf_CreateUnlockBankKeys (bank lp_bank);
 void lib840A968C_gf_ApplyPlayerCustomization ();
@@ -207,6 +233,7 @@ void lib840A968C_gf_CreateProfileBank (int lp_player, int lp_profile);
 void lib840A968C_gf_LoadActiveProfile (int lp_player);
 void lib840A968C_gf_AwardRating (int lp_experienceGained, int lp_player);
 void lib840A968C_gf_RatingBonusAdjustment (int lp_player);
+string lib840A968C_gf_GetPlayerRank (int lp_player);
 void lib840A968C_gf_AwardPlayerXP (int lp_player, int lp_xP);
 void lib840A968C_gf_AwardTeamXP (int lp_xP);
 void lib840A968C_gf_AwardUnitXP (fixed lp_xP, unit lp_unit);
@@ -228,6 +255,11 @@ void lib840A968C_gf_AssertClassCreation ();
 bool lib840A968C_gf_IsaDeveloper (string lp_handle);
 
 // Trigger Declarations
+trigger lib840A968C_gt_DropdownSelection;
+trigger lib840A968C_gt_DisplayClassSelection;
+trigger lib840A968C_gt_ClassSelection;
+trigger lib840A968C_gt_EndClassSelection;
+trigger lib840A968C_gt_ClassSelected2;
 trigger lib840A968C_gt_ShopIntialize;
 trigger lib840A968C_gt_BankLoad;
 trigger lib840A968C_gt_ApplyServiceBranches;
@@ -247,6 +279,7 @@ trigger lib840A968C_gt_Victory;
 trigger lib840A968C_gt_Defeat;
 trigger lib840A968C_gt_DifficultySelection;
 trigger lib840A968C_gt_DifficultyVote;
+trigger lib840A968C_gt_SetClassFromSelection;
 trigger lib840A968C_gt_EventRegistrationForMarineUnits;
 trigger lib840A968C_gt_NightVisionModuleLightingChange;
 trigger lib840A968C_gt_NightVisionUIHookup;
