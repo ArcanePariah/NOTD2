@@ -28,9 +28,9 @@ const int lib840A968C_ge_DialogDuration_Long = 1;
 // Constants
 const int lib840A968C_gv_classes = 15;
 const string lib840A968C_gv_classSelectionEvent2 = "Class Selection";
-const string lib840A968C_gv_classSelectEvent = "ClassSelected";
 const string lib840A968C_gv_classSelected = "Class Chosen";
 const string lib840A968C_gv_choosingPlayer = "Class Selecting Player";
+const string lib840A968C_gv_classSelectEvent = "ClassSelected";
 const string lib840A968C_gv_classCustomizationEvent = "CustomizeUnits";
 const string lib840A968C_gv_intializeEvent = "Initialize";
 const string lib840A968C_gv_shopIntialization = "Shop Intialize";
@@ -120,7 +120,9 @@ struct lib840A968C_gs_PlayerBanks {
 };
 
 // Variable Declarations
+actor[lib1E3F036D_gv_numberofPlayers + 1] lib840A968C_gv_currentArmorActor;
 int lib840A968C_gv_armorSlotDropDown;
+int lib840A968C_gv_armorSetDropDown;
 int[lib840A968C_gv_classes + 1] lib840A968C_gv_classSelectionButtons;
 actor lib840A968C_gv_unitModelFrameActor;
 int lib840A968C_gv_unitModelFrameModel;
@@ -165,10 +167,11 @@ bool[lib840A968C_gv_numberofPlayers + 1] lib840A968C_gv_revealerActive;
 
 // Function Declarations
 void lib840A968C_gf_CreateArmorSlotDropDown (int lp_dropDown);
-void lib840A968C_gf_CreateArmorSetDropDown ();
+void lib840A968C_gf_CreateArmorSetDropDown (int lp_dropDown);
 bool lib840A968C_gf_PlayerHasClassUnlocked (int lp_player, int lp_classSlot);
 void lib840A968C_gf_ClassUnlocked (int lp_classSlot);
 void lib840A968C_gf_ClassSelectionPlayerInfo (int lp_classSelectionScreen);
+void lib840A968C_gf_ArmorSelectionSetup (int lp_selectionPanel);
 void lib840A968C_gf_ClassSelected (trigger t);
 void lib840A968C_gf_AnnounceClassSelection (string lp_class, int lp_selectingPlayer);
 string lib840A968C_gf_GetClassSelected ();
@@ -255,9 +258,10 @@ void lib840A968C_gf_AssertClassCreation ();
 bool lib840A968C_gf_IsaDeveloper (string lp_handle);
 
 // Trigger Declarations
-trigger lib840A968C_gt_DropdownSelection;
+trigger lib840A968C_gt_ArmorSlotDropdownSelection;
+trigger lib840A968C_gt_ArmorSetDropdownSelection;
 trigger lib840A968C_gt_DisplayClassSelection;
-trigger lib840A968C_gt_ClassSelection;
+trigger lib840A968C_gt_ClassSelectionUpdate;
 trigger lib840A968C_gt_EndClassSelection;
 trigger lib840A968C_gt_ClassSelected2;
 trigger lib840A968C_gt_ShopIntialize;

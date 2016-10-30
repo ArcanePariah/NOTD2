@@ -34,6 +34,7 @@ void lib840A968C_InitVariables () {
     lib840A968C_InitVariables_completed = true;
 
     lib840A968C_gv_armorSlotDropDown = c_invalidDialogControlId;
+    lib840A968C_gv_armorSetDropDown = c_invalidDialogControlId;
     for (init_i = 0; init_i <= lib840A968C_gv_classes; init_i += 1) {
         lib840A968C_gv_classSelectionButtons[init_i] = c_invalidDialogControlId;
     }
@@ -101,7 +102,22 @@ void lib840A968C_gf_CreateArmorSlotDropDown (int lp_dropDown) {
     }
 }
 
-void lib840A968C_gf_CreateArmorSetDropDown () {
+void lib840A968C_gf_CreateArmorSetDropDown (int lp_dropDown) {
+    int autoCD81DE3B_ae;
+    int autoCD81DE3B_ai;
+
+    // Variable Declarations
+    int lv_currentArmorType;
+
+    // Variable Initialization
+
+    // Implementation
+    autoCD81DE3B_ae = UserDataInstanceCount("ArmorSets");
+    autoCD81DE3B_ai = 1;
+    lv_currentArmorType = 1;
+    for ( ; ( (autoCD81DE3B_ai >= 0 && lv_currentArmorType <= autoCD81DE3B_ae) || (autoCD81DE3B_ai <= 0 && lv_currentArmorType >= autoCD81DE3B_ae) ) ; lv_currentArmorType += autoCD81DE3B_ai ) {
+        DialogControlAddItem(lp_dropDown, PlayerGroupAll(), StringToText(UserDataGetString("ArmorSets", UserDataInstance("ArmorSets", lv_currentArmorType), "Armor Set Name", 1)));
+    }
 }
 
 bool lib840A968C_gf_PlayerHasClassUnlocked (int lp_player, int lp_classSlot) {
@@ -165,6 +181,20 @@ void lib840A968C_gf_ClassSelectionPlayerInfo (int lp_classSelectionScreen) {
         libNtve_gf_SetDialogItemText(lv_playerNameLabel, TextExpressionAssemble("Param/Expression/lib_840A968C_D4BE982C"), PlayerGroupSingle(lv_player));
         lib1E3F036D_gf_SetPlayerRank(lv_player, UserDataGetImagePath("Ranks", lib840A968C_gf_GetPlayerRank(lv_player), "Icon", 1));
     }
+}
+
+void lib840A968C_gf_ArmorSelectionSetup (int lp_selectionPanel) {
+    // Implementation
+    DialogControlHookup(lp_selectionPanel, c_triggerControlTypeUnitModel, "ClassModelPreview");
+    lib840A968C_gv_classModelFrame = DialogControlLastCreated();
+    DialogControlHookup(lp_selectionPanel, c_triggerControlTypePulldown, "ArmorSlotPulldown");
+    lib840A968C_gv_armorSlotDropDown = DialogControlLastCreated();
+    lib840A968C_gf_CreateArmorSlotDropDown(lib840A968C_gv_armorSlotDropDown);
+    TriggerAddEventDialogControl(lib840A968C_gt_ArmorSlotDropdownSelection, c_playerAny, lib840A968C_gv_armorSlotDropDown, c_triggerControlEventTypeSelectionChanged);
+    DialogControlHookup(lp_selectionPanel, c_triggerControlTypePulldown, "ArmorSetPulldown");
+    lib840A968C_gv_armorSetDropDown = DialogControlLastCreated();
+    lib840A968C_gf_CreateArmorSetDropDown(lib840A968C_gv_armorSetDropDown);
+    TriggerAddEventDialogControl(lib840A968C_gt_ArmorSetDropdownSelection, c_playerAny, lib840A968C_gv_armorSetDropDown, c_triggerControlEventTypeSelectionChanged);
 }
 
 void lib840A968C_gf_ClassSelected (trigger t) {
@@ -1496,20 +1526,21 @@ bool lib840A968C_gf_IsaDeveloper (string lp_handle) {
 
 // Triggers
 //--------------------------------------------------------------------------------------------------
-// Trigger: Dropdown Selection
+// Trigger: Armor Slot Dropdown Selection
 //--------------------------------------------------------------------------------------------------
-bool lib840A968C_gt_DropdownSelection_Func (bool testConds, bool runActions) {
+bool lib840A968C_gt_ArmorSlotDropdownSelection_Func (bool testConds, bool runActions) {
     // Variable Declarations
     actor lv_selectedArmorActor;
 
     // Variable Initialization
-    lv_selectedArmorActor = ActorFromScope(ActorScopeFromActor(lib840A968C_gv_unitModelFrameActor), (UserDataGetActor("ArmorPiece", UserDataInstance("ArmorPiece", DialogControlGetSelectedItem(EventDialogControl(), EventPlayer())), "Armor Actor", 1)));
+    lv_selectedArmorActor = ActorFromScope(ActorScopeFromActor(lib840A968C_gv_unitModelFrameActor), UserDataGetString("ArmorPiece", UserDataInstance("ArmorPiece", DialogControlGetSelectedItem(EventDialogControl(), EventPlayer())), "Armor Actor Alias", 1));
 
     // Actions
     if (!runActions) {
         return true;
     }
 
+    lib840A968C_gv_currentArmorActor[EventPlayer()] = lv_selectedArmorActor;
     ActorScopeSend(ActorScopeFromActor(lib840A968C_gv_unitModelFrameActor), "HaloStop");
     Wait(0.0625, c_timeGame);
     ActorSend(lv_selectedArmorActor, "HaloSetColor 255,255,255");
@@ -1518,8 +1549,28 @@ bool lib840A968C_gt_DropdownSelection_Func (bool testConds, bool runActions) {
 }
 
 //--------------------------------------------------------------------------------------------------
-void lib840A968C_gt_DropdownSelection_Init () {
-    lib840A968C_gt_DropdownSelection = TriggerCreate("lib840A968C_gt_DropdownSelection_Func");
+void lib840A968C_gt_ArmorSlotDropdownSelection_Init () {
+    lib840A968C_gt_ArmorSlotDropdownSelection = TriggerCreate("lib840A968C_gt_ArmorSlotDropdownSelection_Func");
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Armor Set Dropdown Selection
+//--------------------------------------------------------------------------------------------------
+bool lib840A968C_gt_ArmorSetDropdownSelection_Func (bool testConds, bool runActions) {
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    lib135F852D_gf_ChangeArmorPieceSet(lib840A968C_gv_currentArmorActor[EventPlayer()], UserDataInstance("ArmorSets", DialogControlGetSelectedItem(EventDialogControl(), EventPlayer())));
+    ActorSend(lib840A968C_gv_currentArmorActor[EventPlayer()], "HaloSetColor 255,255,255");
+    ActorSend(lib840A968C_gv_currentArmorActor[EventPlayer()], "HaloStart");
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib840A968C_gt_ArmorSetDropdownSelection_Init () {
+    lib840A968C_gt_ArmorSetDropdownSelection = TriggerCreate("lib840A968C_gt_ArmorSetDropdownSelection_Func");
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -1553,7 +1604,7 @@ bool lib840A968C_gt_DisplayClassSelection_Func (bool testConds, bool runActions)
     }
     PlayerGroupLoopEnd();
     TimerStart(lib840A968C_gv_classSelectionTimer, 120.0, false, c_timeReal);
-    TriggerEnable(lib840A968C_gt_ClassSelection, true);
+    TriggerEnable(lib840A968C_gt_ClassSelectionUpdate, true);
     TriggerEnable(lib840A968C_gt_EndClassSelection, true);
     TriggerEnable(lib840A968C_gt_ClassSelected2, true);
     DialogCreate(500, 400, c_anchorCenter, 0, 0, true);
@@ -1577,13 +1628,8 @@ bool lib840A968C_gt_DisplayClassSelection_Func (bool testConds, bool runActions)
     }
     DialogControlHookup(lib840A968C_gv_classSelectionPanel, c_triggerControlTypeLabel, "ClassLoreFrame");
     lib840A968C_gv_classLoreFrame = DialogControlLastCreated();
-    DialogControlHookup(lib840A968C_gv_classSelectionPanel, c_triggerControlTypeUnitModel, "ClassModelPreview");
-    lib840A968C_gv_classModelFrame = DialogControlLastCreated();
-    DialogControlHookup(lib840A968C_gv_classSelectionPanel, c_triggerControlTypePulldown, "ArmorSlotPulldown");
-    lib840A968C_gv_armorSlotDropDown = DialogControlLastCreated();
     lib840A968C_gf_ClassSelectionPlayerInfo(lib840A968C_gv_classSelectionPanel);
-    lib840A968C_gf_CreateArmorSlotDropDown(lib840A968C_gv_armorSlotDropDown);
-    TriggerAddEventDialogControl(lib840A968C_gt_DropdownSelection, c_playerAny, lib840A968C_gv_armorSlotDropDown, c_triggerControlEventTypeSelectionChanged);
+    lib840A968C_gf_ArmorSelectionSetup(lib840A968C_gv_classSelectionPanel);
     DialogSetVisible(lib840A968C_gv_classSelectionDialog, PlayerGroupAll(), true);
     lib1E3F036D_gf_ShowHideTeamUI(true);
     return true;
@@ -1596,9 +1642,9 @@ void lib840A968C_gt_DisplayClassSelection_Init () {
 }
 
 //--------------------------------------------------------------------------------------------------
-// Trigger: Class Selection
+// Trigger: Class Selection Update
 //--------------------------------------------------------------------------------------------------
-bool lib840A968C_gt_ClassSelection_Func (bool testConds, bool runActions) {
+bool lib840A968C_gt_ClassSelectionUpdate_Func (bool testConds, bool runActions) {
     // Variable Declarations
     int lv_selectingPlayer;
 
@@ -1622,10 +1668,10 @@ bool lib840A968C_gt_ClassSelection_Func (bool testConds, bool runActions) {
 }
 
 //--------------------------------------------------------------------------------------------------
-void lib840A968C_gt_ClassSelection_Init () {
-    lib840A968C_gt_ClassSelection = TriggerCreate("lib840A968C_gt_ClassSelection_Func");
-    TriggerEnable(lib840A968C_gt_ClassSelection, false);
-    lib840A968C_gf_ClassSelected(lib840A968C_gt_ClassSelection);
+void lib840A968C_gt_ClassSelectionUpdate_Init () {
+    lib840A968C_gt_ClassSelectionUpdate = TriggerCreate("lib840A968C_gt_ClassSelectionUpdate_Func");
+    TriggerEnable(lib840A968C_gt_ClassSelectionUpdate, false);
+    lib840A968C_gf_ClassSelected(lib840A968C_gt_ClassSelectionUpdate);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -1642,7 +1688,7 @@ bool lib840A968C_gt_EndClassSelection_Func (bool testConds, bool runActions) {
     SoundChannelMute(PlayerGroupAll(), c_soundCategoryMusic, false);
     SoundChannelMute(PlayerGroupAll(), c_soundCategorySAmbient, false);
     SoundChannelMute(PlayerGroupAll(), c_soundCategorySEmitters, false);
-    TriggerEnable(lib840A968C_gt_ClassSelection, false);
+    TriggerEnable(lib840A968C_gt_ClassSelectionUpdate, false);
     TriggerEnable(lib840A968C_gt_EndClassSelection, false);
     PlayerGroupLoopBegin(PlayerGroupAll());
     for ( ; !PlayerGroupLoopDone() ; PlayerGroupLoopStep() ) {
@@ -3476,9 +3522,10 @@ void lib840A968C_gt_HPScaling_Init () {
 }
 
 void lib840A968C_InitTriggers () {
-    lib840A968C_gt_DropdownSelection_Init();
+    lib840A968C_gt_ArmorSlotDropdownSelection_Init();
+    lib840A968C_gt_ArmorSetDropdownSelection_Init();
     lib840A968C_gt_DisplayClassSelection_Init();
-    lib840A968C_gt_ClassSelection_Init();
+    lib840A968C_gt_ClassSelectionUpdate_Init();
     lib840A968C_gt_EndClassSelection_Init();
     lib840A968C_gt_ClassSelected2_Init();
     lib840A968C_gt_ShopIntialize_Init();

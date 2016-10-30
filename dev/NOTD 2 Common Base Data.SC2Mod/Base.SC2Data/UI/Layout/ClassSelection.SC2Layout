@@ -169,8 +169,11 @@
 		<Frame type="Pulldown" name="ArmorSlotPulldown" template="StandardTemplates/StandardPulldownTemplate">
 			<Anchor side = "Right" pos = "Max" relative = "$parent" offset = "-120" />
 			<Anchor side = "Bottom" pos = "Max" relative = "$parent" offset = "-70" />
+		</Frame>
 		
-		
+		<Frame type="Pulldown" name="ArmorSetPulldown" template="StandardTemplates/StandardPulldownTemplate">
+			<Anchor side = "Right" pos = "Min" relative = "$parent/ArmorSlotPulldown" offset = "-20" />
+			<Anchor side = "Bottom" pos = "Max" relative = "$parent/ArmorSlotPulldown" offset = "0" />
 		</Frame>
 	</Frame>
 

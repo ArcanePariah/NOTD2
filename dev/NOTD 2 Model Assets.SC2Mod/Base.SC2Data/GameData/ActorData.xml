@@ -154,7 +154,9 @@
         <Macros value="VortexTextureSelectMacro"/>
         <EditorCategories value=""/>
     </CActorEventMacro>
-    <CActorModel id="AssaultTorso" parent="AssaultArmorTemplate" SwapMacro="TorsoSwap"/>
+    <CActorModel id="AssaultTorso" parent="AssaultArmorTemplate" SwapMacro="TorsoSwap">
+        <Aliases value="_Torso"/>
+    </CActorModel>
     <CActorEventMacro id="AvalancheTextureSelectMacro" parent="TextureSelectMacroTemplate" ArmorSet="Avalanche">
         <On index="0" Terms="Signal.*.Desert; IsStatus ArmorSet 4" Send="TextureSelectById AvalancheDesert"/>
         <On index="1" Terms="Signal.*.Infested; IsStatus ArmorSet 4" Send="TextureSelectById AvalancheInfested"/>
@@ -346,11 +348,17 @@
         <On index="7" Terms="Signal.*.Urban; IsStatus ArmorSet 18" Send="TextureSelectById RhinoUrban"/>
         <On Terms="Signal.*.Woodland; IsStatus ArmorSet 18" Send="TextureSelectById RhinoWoodland"/>
     </CActorEventMacro>
-    <CActorModel id="CommandoTorso" parent="CommandoArmorTemplate" SwapMacro="TorsoSwap"/>
+    <CActorModel id="CommandoTorso" parent="CommandoArmorTemplate" SwapMacro="TorsoSwap">
+        <Aliases value="_Torso"/>
+    </CActorModel>
     <CActorEventMacro id="CommandoTorsoSwap" parent="ArmorSwapTemplate" ArmorSlot="Torso" Class="Commando"/>
-    <CActorModel id="DemolitionTorso" parent="DemolitionArmorTemplate" SwapMacro="TorsoSwap"/>
+    <CActorModel id="DemolitionTorso" parent="DemolitionArmorTemplate" SwapMacro="TorsoSwap">
+        <Aliases value="_Torso"/>
+    </CActorModel>
     <CActorEventMacro id="DemolitionTorsoSwap" parent="ArmorSwapTemplate" ArmorSlot="Torso" Class="Demolition"/>
-    <CActorModel id="EngineerTorso" parent="EngineerArmorTemplate" SwapMacro="TorsoSwap"/>
+    <CActorModel id="EngineerTorso" parent="EngineerArmorTemplate" SwapMacro="TorsoSwap">
+        <Aliases value="_Torso"/>
+    </CActorModel>
     <CActorEventMacro id="EngineerTorsoSwap" parent="ArmorSwapTemplate" ArmorSlot="Torso" Class="Engineer"/>
     <CActorModel id="EquippedWeapon" parent="ModelAddition">
         <Aliases value="_Weapon"/>
@@ -367,78 +375,115 @@
     <CActorEventMacro id="ForwardObserverTorsoSwap" parent="ArmorSwapTemplate" ArmorSlot="Torso" Class="ForwardObs"/>
     <CActorModel id="Helmet" parent="ArmorTemplate" SwapMacro="HelmetSwap">
         <Model value="BasicHelmet"/>
+        <Aliases value="_Helmet"/>
     </CActorModel>
     <CActorModel id="LeftArm" parent="ArmorTemplate" SwapMacro="LeftArmSwap">
         <Model value="BasicArmLeft"/>
+        <Aliases value="_LeftArm"/>
     </CActorModel>
     <CActorEventMacro id="LeftArmSwap" parent="ArmorSwapTemplate" ArmorSlot="ArmLeft"/>
     <CActorEventMacro id="AssaultTorsoSwap" parent="ArmorSwapTemplate" ArmorSlot="Torso" Class="Assault"/>
     <CActorEventMacro id="MarksmanHelmetSwap" parent="ArmorSwapTemplate" ArmorSlot="Helmet" Class="Marksman"/>
     <CActorEventMacro id="MarksmanTorsoSwap" parent="ArmorSwapTemplate" ArmorSlot="Torso" Class="Marksman"/>
-    <CActorModel id="NPCRightShoulder" parent="ArmorTemplate" SwapMacro="NPCRightShoulderSwap"/>
+    <CActorModel id="NPCRightShoulder" parent="ArmorTemplate" SwapMacro="NPCRightShoulderSwap">
+        <Aliases value="_RightShoulder"/>
+    </CActorModel>
     <CActorEventMacro id="NPCRightShoulderSwap" parent="ArmorSwapTemplate" ArmorSlot="ShoulderRight" Class="NPC"/>
-    <CActorModel id="NPCTorso" parent="ArmorTemplate" SwapMacro="NPCTorsoSwap"/>
+    <CActorModel id="NPCTorso" parent="ArmorTemplate" SwapMacro="NPCTorsoSwap">
+        <Aliases value="_Torso"/>
+    </CActorModel>
     <CActorEventMacro id="NPCTorsoSwap" parent="ArmorSwapTemplate" ArmorSlot="Torso" Class="NPC"/>
-    <CActorModel id="PathfinderTorso" parent="PathfinderArmorTemplate" SwapMacro="TorsoSwap"/>
+    <CActorModel id="PathfinderTorso" parent="PathfinderArmorTemplate" SwapMacro="TorsoSwap">
+        <Aliases value="_Torso"/>
+    </CActorModel>
     <CActorEventMacro id="PathfinderTorsoSwap" parent="ArmorSwapTemplate" ArmorSlot="Torso" Class="PathFinder"/>
     <CActorModel id="PeacekeeperRightShoulderLights" parent="ArmorTemplate"/>
-    <CActorModel id="PsiOpsHelmet" parent="PsiOpsArmorTemplate" SwapMacro="HelmetSwap"/>
+    <CActorModel id="PsiOpsHelmet" parent="PsiOpsArmorTemplate" SwapMacro="HelmetSwap">
+        <Aliases value="_Helmet"/>
+    </CActorModel>
     <CActorEventMacro id="PsiOpsHelmetSwap" parent="ArmorSwapTemplate" ArmorSlot="Helmet" Class="PsiOps"/>
-    <CActorModel id="PsiOpsTorso" parent="PsiOpsArmorTemplate" SwapMacro="TorsoSwap"/>
+    <CActorModel id="PsiOpsTorso" parent="PsiOpsArmorTemplate" SwapMacro="TorsoSwap">
+        <Aliases value="_Torso"/>
+    </CActorModel>
     <CActorEventMacro id="PsiOpsTorsoSwap" parent="ArmorSwapTemplate" ArmorSlot="Torso" Class="PsiOps"/>
     <CActorEventMacro id="RightArmSwap" parent="ArmorSwapTemplate" ArmorSlot="ArmRight"/>
     <CActorModel id="RightArm" parent="ArmorTemplate" SwapMacro="RightArmSwap">
         <Model value="BasicRightArm"/>
+        <Aliases value="_RightArm"/>
     </CActorModel>
     <CActorModel id="RightForearm" parent="ArmorTemplate" SwapMacro="RightForearmSwap">
         <Model value="CraftRightForearm"/>
+        <Aliases value="_RightForearm"/>
     </CActorModel>
     <CActorModel id="LeftForearm" parent="ArmorTemplate" SwapMacro="LeftForearmSwap">
         <Model value="CraftLeftForearm"/>
+        <Aliases value="_LeftForearm"/>
     </CActorModel>
-    <CActorModel id="MedicHelmet" parent="MedicArmorTemplate" SwapMacro="HelmetSwap"/>
+    <CActorModel id="MedicHelmet" parent="MedicArmorTemplate" SwapMacro="HelmetSwap">
+        <Aliases value="_Helmet"/>
+    </CActorModel>
     <CActorEventMacro id="MedicHelmetSwap" parent="ArmorSwapTemplate" ArmorSlot="Helmet" Class="Medic"/>
     <CActorEventMacro id="MedicTorsoSwap" parent="ArmorSwapTemplate" ArmorSlot="Torso" Class="Medic"/>
     <CActorEventMacro id="MedicLeftArmSwap" parent="ArmorSwapTemplate" ArmorSlot="ArmLeft" Class="Medic"/>
-    <CActorModel id="MedicLeftArm" parent="MedicArmorTemplate" SwapMacro="LeftArmSwap"/>
-    <CActorModel id="MedicTorso" parent="MedicArmorTemplate" SwapMacro="TorsoSwap"/>
+    <CActorModel id="MedicLeftArm" parent="MedicArmorTemplate" SwapMacro="LeftArmSwap">
+        <Aliases value="_LeftArm"/>
+    </CActorModel>
+    <CActorModel id="MedicTorso" parent="MedicArmorTemplate" SwapMacro="TorsoSwap">
+        <Aliases value="_Torso"/>
+    </CActorModel>
     <CActorEventMacro id="ReconHelmetSwap" parent="ArmorSwapTemplate" ArmorSlot="Helmet" Class="Recon"/>
-    <CActorModel id="ReconHelmet" parent="ReconArmorTemplate" SwapMacro="HelmetSwap"/>
+    <CActorModel id="ReconHelmet" parent="ReconArmorTemplate" SwapMacro="HelmetSwap">
+        <Aliases value="_Helmet"/>
+    </CActorModel>
     <CActorEventMacro id="ReconTorsoSwap" parent="ArmorSwapTemplate" ArmorSlot="Torso" Class="Recon"/>
     <CActorEventMacro id="TechnicianTorsoSwap" parent="ArmorSwapTemplate" ArmorSlot="Torso" Class="Technician"/>
     <CActorModel id="Torso" parent="ArmorTemplate" SwapMacro="TorsoSwap">
         <Model value="BasicTorso"/>
+        <Aliases value="_Torso"/>
     </CActorModel>
     <CActorEventMacro id="LeftFootSwap" parent="ArmorSwapTemplate" ArmorSlot="FootLeft"/>
     <CActorEventMacro id="RightFootSwap" parent="ArmorSwapTemplate" ArmorSlot="FootRight"/>
-    <CActorModel id="ReconTorso" parent="ReconArmorTemplate" SwapMacro="TorsoSwap"/>
-    <CActorModel id="FlamethrowerTorso" parent="FlamethrowerArmorTemplate" SwapMacro="TorsoSwap"/>
+    <CActorModel id="ReconTorso" parent="ReconArmorTemplate" SwapMacro="TorsoSwap">
+        <Aliases value="_Torso"/>
+    </CActorModel>
+    <CActorModel id="FlamethrowerTorso" parent="FlamethrowerArmorTemplate" SwapMacro="TorsoSwap">
+        <Aliases value="_Torso"/>
+    </CActorModel>
     <CActorModel id="Waist" parent="ArmorTemplate" SwapMacro="WaistSwap">
         <Model value="BasicWaist"/>
+        <Aliases value="_Waist"/>
     </CActorModel>
     <CActorModel id="LeftLeg" parent="ArmorTemplate" SwapMacro="LeftLegSwap">
         <Model value="BasicLegLeft"/>
+        <Aliases value="_LeftLeg"/>
     </CActorModel>
     <CActorModel id="RightLeg" parent="ArmorTemplate" SwapMacro="RightLegSwap">
         <Model value="BasicLegRight"/>
+        <Aliases value="_RightLeg"/>
     </CActorModel>
     <CActorModel id="LeftShin" parent="ArmorTemplate" SwapMacro="LeftShinSwap">
         <Model value="BasicShinLeft"/>
+        <Aliases value="_LeftShin"/>
     </CActorModel>
     <CActorModel id="RightShin" parent="ArmorTemplate" SwapMacro="RightShinSwap">
         <Model value="BasicShinRight"/>
+        <Aliases value="_RightShin"/>
     </CActorModel>
     <CActorModel id="LeftShoulder" parent="ArmorTemplate" SwapMacro="LeftShoulderSwap">
         <Model value="BasicShoulderLeft"/>
+        <Aliases value="_LeftShoulder"/>
     </CActorModel>
     <CActorModel id="RightShoulder" parent="ArmorTemplate" SwapMacro="RightShoulderSwap">
         <Model value="BasicShoulderRight"/>
+        <Aliases value="_RightShoulder"/>
     </CActorModel>
     <CActorModel id="LeftFoot" parent="ArmorTemplate" SwapMacro="LeftFootSwap">
         <Model value="BasicFootLeft"/>
+        <Aliases value="_LeftFoot"/>
     </CActorModel>
     <CActorModel id="RightFoot" parent="ArmorTemplate" SwapMacro="RightFootSwap">
         <Model value="BasicFootRight"/>
+        <Aliases value="_RightFoot"/>
     </CActorModel>
     <CActorEventMacro id="TorsoSwap" parent="ArmorSwapTemplate" ArmorSlot="Torso"/>
     <CActorEventMacro id="RightShoulderSwap" parent="ArmorSwapTemplate" ArmorSlot="ShoulderRight"/>
@@ -451,5 +496,7 @@
     <CActorEventMacro id="LeftLegSwap" parent="ArmorSwapTemplate" ArmorSlot="LegLeft"/>
     <CActorEventMacro id="RightShinSwap" parent="ArmorSwapTemplate" ArmorSlot="ShinRight"/>
     <CActorEventMacro id="LeftShinSwap" parent="ArmorSwapTemplate" ArmorSlot="ShinLeft"/>
-    <CActorModel id="TechnicianTorso" parent="TechnicianArmorTemplate" SwapMacro="TorsoSwap"/>
+    <CActorModel id="TechnicianTorso" parent="TechnicianArmorTemplate" SwapMacro="TorsoSwap">
+        <Aliases value="_Torso"/>
+    </CActorModel>
 </Catalog>
