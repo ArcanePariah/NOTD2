@@ -4,28 +4,13 @@
         <EditorCategories value=""/>
         <Marker Link="Effect/PumpShotgunDamageTemplate"/>
         <ImpactLocation Value="TargetUnit"/>
-        <ArmorReduction value="1.5"/>
         <Kind value="Ranged"/>
         <KindSplash value="Ranged"/>
-        <Amount value="25"/>
+        <Amount value="20"/>
         <Death value="Blast"/>
         <AreaArray Radius="0.1" Fraction="1.4284"/>
         <SearchFilters value="-;Player,Ally,Neutral,Item,Invulnerable"/>
         <SearchFlags index="OffsetAreaByAngle" value="1"/>
-    </CEffectDamage>
-    <CEffectDamage default="1" id="ShotgunSlugShotDamageTemplate">
-        <EditorCategories value=""/>
-        <Marker Link="Effect/ShotgunSlugShotDamageTemplate"/>
-        <LaunchLocation Value="CasterUnit"/>
-        <ImpactLocation Value="CasterPoint"/>
-        <ArmorReduction value="0.5"/>
-        <Amount value="90"/>
-        <AreaArray Arc="0" Fraction="1"/>
-        <SearchFilters value="-;Player,Ally,Item,Stasis,Invulnerable"/>
-        <SearchFlags index="OffsetAreaByAngle" value="1"/>
-        <Kind value="Ranged"/>
-        <KindSplash value="Splash"/>
-        <DisplayFlags index="CollapseBuffed" value="1"/>
     </CEffectDamage>
     <CEffectDamage default="1" id="PumpShotgunDamageTemplate">
         <EditorCategories value=""/>
@@ -42,24 +27,38 @@
     </CEffectDamage>
     <CEffectDamage id="AutomaticShotgunCriticalDamageRange1" parent="AutomaticShotgunDamageTemplate">
         <AreaArray index="0" Radius="0.1" Fraction="2"/>
+        <ArmorReduction value="1.5"/>
+        <Amount value="25"/>
     </CEffectDamage>
     <CEffectDamage id="AutomaticShotgunCriticalDamageRange2" parent="AutomaticShotgunDamageTemplate">
         <AreaArray index="0" Radius="0.35" Fraction="1.6"/>
+        <ArmorReduction value="1.5"/>
+        <Amount value="25"/>
     </CEffectDamage>
     <CEffectDamage id="AutomaticShotgunCriticalDamageRange3" parent="AutomaticShotgunDamageTemplate">
         <AreaArray index="0" Radius="0.65" Fraction="1.2"/>
+        <ArmorReduction value="1.5"/>
+        <Amount value="25"/>
     </CEffectDamage>
     <CEffectDamage id="AutomaticShotgunCriticalDamageRange4" parent="AutomaticShotgunDamageTemplate">
         <AreaArray index="0" Radius="1" Fraction="1"/>
+        <ArmorReduction value="1.5"/>
+        <Amount value="25"/>
     </CEffectDamage>
     <CEffectDamage id="AutomaticCriticalShotgunDamageRange5" parent="AutomaticShotgunDamageTemplate">
         <AreaArray index="0" Radius="1.25" Fraction="1"/>
+        <ArmorReduction value="1.5"/>
+        <Amount value="25"/>
     </CEffectDamage>
     <CEffectDamage id="AutomaticCriticalShotgunDamageRange7" parent="AutomaticShotgunDamageTemplate">
         <AreaArray index="0" Radius="1.5" Fraction="0.8"/>
+        <ArmorReduction value="1.5"/>
+        <Amount value="25"/>
     </CEffectDamage>
     <CEffectDamage id="AutomaticShotgunCriticalDamageRange6" parent="AutomaticShotgunDamageTemplate">
         <AreaArray index="0" Radius="1.75" Fraction="0.8"/>
+        <ArmorReduction value="1.5"/>
+        <Amount value="25"/>
     </CEffectDamage>
     <CEffectApplyBehavior id="ExpandingHeroicSlow">
         <EditorCategories value=""/>
@@ -77,105 +76,143 @@
     </CEffectApplyBehavior>
     <CEffectDamage id="PumpShotgunCriticalDamageRange10" parent="PumpShotgunDamageTemplate">
         <AreaArray index="0" Radius="2.5" Fraction="0.2856"/>
-        <Amount value="87.5"/>
+        <Amount value="22.5"/>
+        <ArmorReduction value="0"/>
     </CEffectDamage>
     <CEffectDamage id="PumpShotgunCriticalDamageRange11" parent="PumpShotgunDamageTemplate">
         <AreaArray index="0" Radius="2.75" Fraction="0.2856"/>
-        <Amount value="87.5"/>
+        <Amount value="15"/>
+        <ArmorReduction value="0"/>
     </CEffectDamage>
     <CEffectDamage id="PumpShotgunCriticalDamageRange1" parent="PumpShotgunDamageTemplate">
-        <Amount value="87.5"/>
+        <Amount value="90"/>
+        <ArmorReduction value="0"/>
     </CEffectDamage>
     <CEffectDamage id="PumpShotgunCriticalDamageRange12Up" parent="PumpShotgunDamageTemplate">
-        <Amount value="87.5"/>
+        <Amount value="7.5"/>
         <AreaArray index="0" Radius="3" Fraction="0.1428"/>
+        <ArmorReduction value="0"/>
     </CEffectDamage>
     <CEffectDamage id="PumpShotgunCriticalDamageRange2" parent="PumpShotgunDamageTemplate">
         <AreaArray index="0" Radius="0.35" Fraction="1.1428"/>
-        <Amount value="87.5"/>
+        <Amount value="82.5"/>
+        <ArmorReduction value="0"/>
     </CEffectDamage>
     <CEffectDamage id="PumpShotgunCriticalDamageRange3" parent="PumpShotgunDamageTemplate">
         <AreaArray index="0" Radius="0.65" Fraction="0.8571"/>
-        <Amount value="87.5"/>
+        <Amount value="75"/>
+        <ArmorReduction value="0"/>
     </CEffectDamage>
     <CEffectDamage id="AutomaticShotgunDamageRange1" parent="AutomaticShotgunDamageTemplate">
         <AreaArray index="0" Radius="0.1" Fraction="2"/>
+        <Amount value="60"/>
     </CEffectDamage>
     <CEffectDamage id="AutomaticShotgunDamageRange2" parent="AutomaticShotgunDamageTemplate">
         <AreaArray index="0" Radius="0.35" Fraction="1.6"/>
+        <Amount value="55"/>
     </CEffectDamage>
     <CEffectDamage id="PumpShotgunDamageRange2" parent="PumpShotgunDamageTemplate">
         <AreaArray index="0" Radius="0.35" Fraction="1.1428"/>
+        <ArmorReduction value="0"/>
+        <Amount value="55"/>
     </CEffectDamage>
     <CEffectDamage id="PumpShotgunCriticalDamageRange4" parent="PumpShotgunDamageTemplate">
         <AreaArray index="0" Radius="1" Fraction="0.7143"/>
-        <Amount value="87.5"/>
+        <Amount value="67.5"/>
+        <ArmorReduction value="0"/>
     </CEffectDamage>
     <CEffectDamage id="AutomaticShotgunDamageRange3" parent="AutomaticShotgunDamageTemplate">
         <AreaArray index="0" Radius="0.65" Fraction="1.2"/>
+        <Amount value="50"/>
     </CEffectDamage>
     <CEffectDamage id="PumpShotgunDamageRange3" parent="PumpShotgunDamageTemplate">
         <AreaArray index="0" Radius="0.65" Fraction="0.8571"/>
+        <ArmorReduction value="0"/>
+        <Amount value="50"/>
     </CEffectDamage>
     <CEffectDamage id="PumpShotgunDamageRange12Up" parent="PumpShotgunDamageTemplate">
         <AreaArray index="0" Radius="3" Fraction="0.1428"/>
+        <ArmorReduction value="0"/>
+        <Amount value="5"/>
     </CEffectDamage>
     <CEffectDamage id="AutomaticShotgunDamageRange4" parent="AutomaticShotgunDamageTemplate">
         <AreaArray index="0" Radius="1" Fraction="1"/>
+        <Amount value="45"/>
     </CEffectDamage>
     <CEffectDamage id="PumpShotgunCriticalDamageRange5" parent="PumpShotgunDamageTemplate">
         <AreaArray index="0" Radius="1.25" Fraction="0.7143"/>
-        <Amount value="87.5"/>
+        <Amount value="60"/>
+        <ArmorReduction value="0"/>
     </CEffectDamage>
     <CEffectDamage id="AutomaticShotgunDamageRange5" parent="AutomaticShotgunDamageTemplate">
         <AreaArray index="0" Radius="1.25" Fraction="1"/>
+        <Amount value="40"/>
     </CEffectDamage>
     <CEffectDamage id="PumpShotgunDamageRange4" parent="PumpShotgunDamageTemplate">
         <AreaArray index="0" Radius="1" Fraction="0.7143"/>
+        <ArmorReduction value="0"/>
+        <Amount value="45"/>
     </CEffectDamage>
     <CEffectDamage id="PumpShotgunCriticalDamageRange6" parent="PumpShotgunDamageTemplate">
         <AreaArray index="0" Radius="1.5" Fraction="0.5715"/>
-        <Amount value="87.5"/>
+        <Amount value="52.5"/>
+        <ArmorReduction value="0"/>
     </CEffectDamage>
     <CEffectDamage id="AutomaticShotgunDamageRange6" parent="AutomaticShotgunDamageTemplate">
         <AreaArray index="0" Radius="1.5" Fraction="0.8"/>
+        <Amount value="35"/>
     </CEffectDamage>
     <CEffectDamage id="PumpShotgunDamageRange5" parent="PumpShotgunDamageTemplate">
         <AreaArray index="0" Radius="1.25" Fraction="0.7143"/>
+        <ArmorReduction value="0"/>
+        <Amount value="40"/>
     </CEffectDamage>
     <CEffectDamage id="AutomaticShotgunDamageRange7" parent="AutomaticShotgunDamageTemplate">
         <AreaArray index="0" Radius="1.75" Fraction="0.8"/>
+        <Amount value="30"/>
     </CEffectDamage>
     <CEffectDamage id="PumpShotgunCriticalDamageRange7" parent="PumpShotgunDamageTemplate">
         <AreaArray index="0" Radius="1.75" Fraction="0.5715"/>
-        <Amount value="87.5"/>
+        <Amount value="45"/>
+        <ArmorReduction value="0"/>
     </CEffectDamage>
     <CEffectDamage id="PumpShotgunDamageRange6" parent="PumpShotgunDamageTemplate">
         <AreaArray index="0" Radius="1.5" Fraction="0.5715"/>
+        <ArmorReduction value="0"/>
     </CEffectDamage>
     <CEffectDamage id="PumpShotgunCriticalDamageRange8" parent="PumpShotgunDamageTemplate">
         <AreaArray index="0" Radius="2" Fraction="0.4284"/>
-        <Amount value="87.5"/>
+        <Amount value="37.5"/>
+        <ArmorReduction value="0"/>
     </CEffectDamage>
     <CEffectDamage id="PumpShotgunDamageRange7" parent="PumpShotgunDamageTemplate">
         <AreaArray index="0" Radius="1.75" Fraction="0.5715"/>
+        <ArmorReduction value="0"/>
+        <Amount value="30"/>
     </CEffectDamage>
     <CEffectDamage id="PumpShotgunDamageRange8" parent="PumpShotgunDamageTemplate">
         <AreaArray index="0" Radius="2" Fraction="0.4284"/>
+        <ArmorReduction value="0"/>
+        <Amount value="25"/>
     </CEffectDamage>
     <CEffectDamage id="PumpShotgunDamageRange9" parent="PumpShotgunDamageTemplate">
         <AreaArray index="0" Radius="2.25" Fraction="0.4284"/>
+        <ArmorReduction value="0"/>
+        <Amount value="20"/>
     </CEffectDamage>
     <CEffectDamage id="PumpShotgunDamageRange10" parent="PumpShotgunDamageTemplate">
         <AreaArray index="0" Radius="2.5" Fraction="0.2856"/>
+        <ArmorReduction value="0"/>
+        <Amount value="15"/>
     </CEffectDamage>
     <CEffectDamage id="PumpShotgunDamageRange11" parent="PumpShotgunDamageTemplate">
         <AreaArray index="0" Radius="2.75" Fraction="0.2856"/>
+        <ArmorReduction value="0"/>
+        <Amount value="10"/>
     </CEffectDamage>
     <CEffectDamage id="AxeDamage">
         <EditorCategories value=""/>
         <ImpactLocation Value="TargetUnit"/>
-        <ArmorReduction value="1"/>
         <Kind value="Melee"/>
         <KindSplash value="Splash"/>
         <Amount value="40"/>
@@ -200,7 +237,6 @@
     <CEffectDamage id="HammerDamage">
         <EditorCategories value=""/>
         <ImpactLocation Value="TargetUnit"/>
-        <ArmorReduction value="1"/>
         <Kind value="Melee"/>
         <KindSplash value="Melee"/>
         <Amount value="40"/>
@@ -212,7 +248,6 @@
     <CEffectDamage id="BatonDamage">
         <EditorCategories value=""/>
         <ImpactLocation Value="TargetUnit"/>
-        <ArmorReduction value="1"/>
         <Kind value="Melee"/>
         <KindSplash value="Melee"/>
         <Amount value="40"/>
@@ -223,7 +258,7 @@
     </CEffectDamage>
     <CEffectDamage id="AntiMaterialRifleDamage">
         <EditorCategories value=""/>
-        <Amount value="150"/>
+        <Amount value="200"/>
         <Kind value="Ranged"/>
         <KindSplash value="Splash"/>
         <Death value="Silentkill"/>
@@ -233,26 +268,19 @@
         <SearchFilters value="-;Player,Ally,Neutral,Item,Invulnerable"/>
         <SearchFlags index="OffsetByUnitRadius" value="1"/>
         <SearchFlags index="OffsetAreaByAngle" value="1"/>
+        <AttributeFactor index="Psionic" value="0.5"/>
     </CEffectDamage>
     <CEffectDamage id="AntiMaterialRifleDamageCritical" parent="AntiMaterialRifleDamage">
-        <Amount value="375"/>
+        <AttributeFactor index="Psionic" value="0"/>
+        <Amount value="300"/>
         <Death value="Blast"/>
     </CEffectDamage>
-    <CEffectApplyBehavior id="DeployAntiMaterialRifle">
-        <EditorCategories value=""/>
-    </CEffectApplyBehavior>
     <CEffectApplyBehavior id="AntiMaterialRifleNoise">
         <EditorCategories value=""/>
     </CEffectApplyBehavior>
-    <CEffectRemoveBehavior id="PackUpAntiMaterialRifle">
-        <EditorCategories value=""/>
-        <BehaviorLink value="DeployAntiMaterialRifle"/>
-    </CEffectRemoveBehavior>
     <CEffectDamage id="AssaultRifleDamage">
         <EditorCategories value=""/>
         <ImpactLocation Value="TargetUnit"/>
-        <AttributeBonus index="Massive" value="5"/>
-        <ArmorReduction value="1"/>
         <Amount value="15"/>
         <AreaArray Arc="5.7238" Radius="2.5" Fraction="0.5"/>
         <ExcludeArray Value="Target"/>
@@ -263,32 +291,15 @@
         <DisplayFlags index="CollapseBuffed" value="1"/>
         <SearchFlags index="OffsetByUnitRadius" value="1"/>
         <SearchFlags index="OffsetAreaByAngle" value="1"/>
-    </CEffectDamage>
-    <CEffectDamage id="AssaultRifleBurstFireDamage">
-        <EditorCategories value=""/>
-        <ImpactLocation Value="TargetUnit"/>
-        <AttributeBonus index="Massive" value="15"/>
-        <ArmorReduction value="4.5"/>
-        <Amount value="45"/>
-        <AreaArray Arc="5.7238" Radius="2.5" Fraction="0.5"/>
-        <ExcludeArray Value="Target"/>
-        <SearchFilters value="-;Player,Ally,Neutral,Item,Invulnerable"/>
-        <Kind value="Ranged"/>
-        <KindSplash value="Splash"/>
-        <Death value="Eviscerate"/>
-        <DisplayFlags index="CollapseBuffed" value="1"/>
-        <SearchFlags index="OffsetByUnitRadius" value="1"/>
-        <SearchFlags index="OffsetAreaByAngle" value="1"/>
-    </CEffectDamage>
-    <CEffectDamage id="AssaultRifleBurstFireDamageCritical" parent="AssaultRifleBurstFireDamage">
-        <Amount value="90"/>
-        <Marker Link="Effect/AssaultRifleDamage"/>
-        <Death value="Blast"/>
+        <AttributeFactor index="Armored" value="-0.133"/>
+        <AttributeFactor index="Psionic" value="0.5"/>
     </CEffectDamage>
     <CEffectDamage id="AssaultRifleDamageCritical" parent="AssaultRifleDamage">
-        <Amount value="30"/>
-        <Death value="Blast"/>
         <AttributeBonus index="Massive" value="10"/>
+        <AttributeFactor index="Armored" value="0"/>
+        <AttributeFactor index="Psionic" value="0"/>
+        <Amount value="22.5"/>
+        <Death value="Blast"/>
     </CEffectDamage>
     <CEffectApplyBehavior id="AssaultRifleNoise">
         <EditorCategories value=""/>
@@ -311,7 +322,6 @@
     <CEffectDamage id="ChainsawDamage">
         <EditorCategories value=""/>
         <AttributeBonus index="Light" value="25"/>
-        <ArmorReduction value="2"/>
         <Amount value="40"/>
         <Death value="Eviscerate"/>
         <AreaArray MaxCount="4" Radius="1" Fraction="1"/>
@@ -361,7 +371,7 @@
         <ImpactLocation Value="TargetPoint"/>
         <Kind value="Ranged"/>
         <KindSplash value="Splash"/>
-        <Amount value="7.2"/>
+        <Amount value="9"/>
         <AreaArray Radius="0.1875" Fraction="1"/>
         <SearchFilters value="Ground;Player,Ally,Neutral,Item,Invulnerable"/>
         <SearchFlags index="ExtendByUnitRadius" value="1"/>
@@ -588,10 +598,10 @@
     <CEffectApplyBehavior id="GravityGunNoise">
         <EditorCategories value=""/>
     </CEffectApplyBehavior>
-    <CEffectApplyBehavior id="GrenadeLauncherNoise">
-        <EditorCategories value=""/>
-    </CEffectApplyBehavior>
-    <CEffectDamage id="PumpShotgunDamageRange1" parent="PumpShotgunDamageTemplate"/>
+    <CEffectDamage id="PumpShotgunDamageRange1" parent="PumpShotgunDamageTemplate">
+        <ArmorReduction value="0"/>
+        <Amount value="60"/>
+    </CEffectDamage>
     <CEffectDamage id="HammerDamageCritical" parent="HammerDamage">
         <Marker Link="Effect/CrowbarDamage"/>
         <Amount value="100"/>
@@ -652,42 +662,15 @@
         <SearchFilters value="Heroic;Neutral,Enemy"/>
         <AreaArray Radius="500" Effect="NoiseApplication"/>
     </CEffectEnumArea>
-    <CEffectDamage id="PlasmaCannonDamage2" parent="DU_WEAP">
-        <EditorCategories value="Race:Protoss"/>
-        <Marker Link="Effect/PlasmaCannonDamage"/>
-        <ResponseFlags index="Acquire" value="0"/>
-        <ResponseFlags index="Flee" value="0"/>
-        <AttributeBonus index="Armored" value="300"/>
-        <ArmorReduction value="0"/>
-        <Kind value="Ranged"/>
-        <Amount value="300"/>
-        <Death value="Electrocute"/>
-        <AreaArray Radius="3.5" Fraction="1"/>
-        <SearchFlags index="CallForHelp" value="0"/>
-        <SearchFlags index="OffsetByUnitRadius" value="0"/>
-        <SearchFlags index="OffsetAreaByAngle" value="0"/>
-        <DisplayFlags index="CollapseBuffed" value="1"/>
-    </CEffectDamage>
-    <CEffectLaunchMissile id="PlasmaCannonLaunchMissile">
-        <ValidatorArray index="0" value="PhotonCannonTargetFilters"/>
-        <EditorCategories value="Race:Protoss"/>
-        <ImpactEffect value="PlasmaCannonSearch"/>
-        <AmmoUnit value="PlasmaCannonProjectile"/>
-    </CEffectLaunchMissile>
     <CEffectDamage id="PumpShotgunCriticalDamageRange9" parent="PumpShotgunDamageTemplate">
         <AreaArray index="0" Radius="2.25" Fraction="0.4284"/>
-        <Amount value="87.5"/>
+        <Amount value="30"/>
+        <ArmorReduction value="0"/>
     </CEffectDamage>
     <CEffectApplyBehavior id="PistolNoise">
         <EditorCategories value=""/>
     </CEffectApplyBehavior>
-    <CEffectApplyBehavior id="PlasmaCannonNoise">
-        <EditorCategories value=""/>
-    </CEffectApplyBehavior>
     <CEffectApplyBehavior id="PlasmaCutterNoise">
-        <EditorCategories value=""/>
-    </CEffectApplyBehavior>
-    <CEffectApplyBehavior id="RailgunNoise">
         <EditorCategories value=""/>
     </CEffectApplyBehavior>
     <CEffectApplyBehavior id="PumpShotgunNoise">
@@ -757,6 +740,7 @@
         <SearchFlags index="OffsetByUnitRadius" value="1"/>
         <Death value="Fire"/>
         <DisplayFlags index="CollapseBuffed" value="1"/>
+        <AttributeFactor index="Psionic" value="0.5"/>
     </CEffectDamage>
     <CEffectEnumArea id="FlareGunSearch">
         <EditorCategories value=""/>
@@ -817,16 +801,17 @@
         <KindSplash value="Splash"/>
         <SearchFlags index="OffsetByUnitRadius" value="1"/>
         <SearchFlags index="OffsetAreaByAngle" value="1"/>
+        <AttributeFactor index="Hover" value="1"/>
     </CEffectDamage>
     <CEffectDamage id="HeavyMachineGunDamageCritical" parent="HeavyMachineGunDamage">
         <Marker Link="Effect/HeavyMachineGunDamageCritical"/>
-        <Amount value="75"/>
+        <AttributeFactor index="Hover" value="0"/>
+        <Amount value="60"/>
         <Death value="Blast"/>
     </CEffectDamage>
     <CEffectDamage id="LaserRifleDamage">
         <EditorCategories value=""/>
         <ImpactLocation Value="TargetUnit"/>
-        <ArmorReduction value="-2.5"/>
         <Amount value="20"/>
         <AreaArray Radius="0.1" Fraction="1"/>
         <ExcludeArray Value="Target"/>
@@ -835,10 +820,14 @@
         <KindSplash value="Splash"/>
         <Death value="Fire"/>
         <DisplayFlags index="CollapseBuffed" value="1"/>
+        <AttributeFactor index="Armored" value="0.5"/>
+        <AttributeFactor index="Psionic" value="0.5"/>
     </CEffectDamage>
     <CEffectDamage id="LaserRifleDamageCritical" parent="LaserRifleDamage">
         <Marker Link="Effect/LaserRifleDamageCritical"/>
-        <Amount value="40"/>
+        <AttributeFactor index="Armored" value="0"/>
+        <AttributeFactor index="Psionic" value="0"/>
+        <Amount value="30"/>
     </CEffectDamage>
     <CEffectSwitch id="ManualReloadChoice">
         <ValidatorArray value="ManualReloadBoundsNormal"/>
@@ -854,7 +843,6 @@
     </CEffectSwitch>
     <CEffectDamage id="MediumMachineGunDamage">
         <EditorCategories value=""/>
-        <ArmorReduction value="0.75"/>
         <Amount value="15"/>
         <AreaArray Arc="9.9975" Radius="2.5" Fraction="0.6665"/>
         <ExcludeArray Value="Target"/>
@@ -866,39 +854,29 @@
         <DisplayFlags index="CollapseBuffed" value="1"/>
         <SearchFlags index="OffsetByUnitRadius" value="1"/>
         <SearchFlags index="OffsetAreaByAngle" value="1"/>
-        <AttributeBonus index="Massive" value="5"/>
+        <AttributeFactor index="Armored" value="-0.133"/>
+        <AttributeFactor index="Hover" value="1"/>
     </CEffectDamage>
     <CEffectDamage id="MediumMachineGunDamageCritical" parent="MediumMachineGunDamage">
-        <Amount value="37.5"/>
-        <Death value="Blast"/>
         <AttributeBonus index="Massive" value="12.5"/>
+        <AttributeFactor index="Armored" value="0"/>
+        <AttributeFactor index="Hover" value="0"/>
+        <Amount value="30"/>
+        <Death value="Blast"/>
     </CEffectDamage>
     <CEffectDamage id="PistolDamage">
         <EditorCategories value=""/>
-        <ArmorReduction value="2"/>
-        <Amount value="40"/>
+        <Amount value="20"/>
         <SearchFilters value="-;Player,Ally,Neutral,Item,Invulnerable"/>
         <Kind value="Ranged"/>
         <KindSplash value="Splash"/>
         <DisplayFlags index="CollapseBuffed" value="1"/>
+        <AttributeFactor index="Armored" value="-0.1"/>
     </CEffectDamage>
     <CEffectDamage id="PistolDamageCritical" parent="PistolDamage">
-        <Amount value="60"/>
         <Death value="Blast"/>
+        <AttributeFactor index="Armored" value="0"/>
     </CEffectDamage>
-    <CEffectApplyBehavior id="PlasmaCannonArmorReduction">
-        <EditorCategories value=""/>
-    </CEffectApplyBehavior>
-    <CEffectEnumArea id="PlasmaCannonSearch">
-        <EditorCategories value=""/>
-        <ImpactLocation Value="TargetUnit"/>
-        <AreaArray Radius="3.5" Effect="PlasmaCannonSet"/>
-    </CEffectEnumArea>
-    <CEffectSet id="PlasmaCannonSet">
-        <EditorCategories value=""/>
-        <EffectArray value="PlasmaCannonArmorReduction"/>
-        <EffectArray value="PlasmaCannonDamage2"/>
-    </CEffectSet>
     <CEffectDamage id="PlasmaCutterDamage">
         <EditorCategories value=""/>
         <SearchFilters value="-;Player,Ally,Neutral,Item,Invulnerable"/>
@@ -914,7 +892,6 @@
     <CEffectDamage id="MarksmanRifleDamage">
         <EditorCategories value=""/>
         <ImpactLocation Value="TargetUnit"/>
-        <ArmorReduction value="3"/>
         <Amount value="60"/>
         <AreaArray Arc="5.7238" Radius="2" Fraction="0.3332"/>
         <ExcludeArray Value="Target"/>
@@ -925,21 +902,18 @@
         <KindSplash value="Splash"/>
         <Death value="Impact"/>
         <DisplayFlags index="CollapseBuffed" value="1"/>
+        <AttributeFactor index="Armored" value="-0.3"/>
+        <AttributeFactor index="Psionic" value="0.5"/>
     </CEffectDamage>
     <CEffectDamage id="MarksmanRifleDamageCritical" parent="MarksmanRifleDamage">
-        <Amount value="150"/>
+        <AttributeFactor index="Armored" value="0"/>
+        <AttributeFactor index="Psionic" value="0"/>
+        <Amount value="90"/>
         <Death value="Blast"/>
     </CEffectDamage>
     <CEffectDamage id="PlasmaCutterDamageCritical" parent="PlasmaCutterDamage">
         <Amount value="375"/>
         <Death value="Blast"/>
-    </CEffectDamage>
-    <CEffectDamage id="RailgunDamage">
-        <EditorCategories value=""/>
-        <Amount value="600"/>
-        <Death value="Eviscerate"/>
-        <AreaArray Arc="0" Radius="15" Fraction="1"/>
-        <DisplayFlags index="CollapseBuffed" value="1"/>
     </CEffectDamage>
     <CEffectIssueOrder id="Reload">
         <EditorCategories value=""/>
@@ -975,40 +949,20 @@
         <EditorCategories value=""/>
         <BehaviorLink value="Blind"/>
     </CEffectRemoveBehavior>
-    <CEffectApplyBehavior id="RocketLauncherNoise">
-        <EditorCategories value=""/>
-    </CEffectApplyBehavior>
-    <CEffectDamage id="ShotgunSlugShotDamage">
-        <EditorCategories value=""/>
-        <ImpactLocation Value="TargetUnit"/>
-        <ArmorReduction value="0.5"/>
-        <Amount value="90"/>
-        <AreaArray Radius="0.1" Fraction="1"/>
-        <ExcludeArray Value="Target"/>
-        <SearchFilters value="-;Player,Ally,Neutral,Item,Invulnerable"/>
-        <Kind value="Ranged"/>
-        <KindSplash value="Splash"/>
-        <Death value="Impact"/>
-        <DisplayFlags index="CollapseBuffed" value="1"/>
-    </CEffectDamage>
-    <CEffectDamage id="AutomaticShotgunSlugShotDamage" parent="ShotgunSlugShotDamageTemplate">
-        <AreaArray index="0" Arc="0.5712" Radius="10" Fraction="1"/>
-        <KindSplash value="Spell"/>
-        <Death value="Blast"/>
-    </CEffectDamage>
-    <CEffectDamage id="PumpShotgunSlugShotDamage" parent="ShotgunSlugShotDamageTemplate">
-        <AreaArray index="0" Arc="0.4064" Radius="14" Fraction="1"/>
-        <Death value="Impact"/>
-    </CEffectDamage>
     <CEffectApplyBehavior id="SubmachineGunNoise">
         <EditorCategories value=""/>
     </CEffectApplyBehavior>
     <CEffectDamage id="SubmachineGunDamage">
         <EditorCategories value=""/>
         <ImpactLocation Value="TargetUnit"/>
+        <ImpactUnitValidator value="SubmachineGunRangeLE4dot5"/>
         <AttributeBonus index="Light" value="10"/>
-        <ArmorReduction value="2.5"/>
+        <AttributeFactor index="Armored" value="-0.3"/>
+        <AttributeFactor index="Psionic" value="0.5"/>
+        <Kind value="Ranged"/>
+        <KindSplash value="Splash"/>
         <Amount value="15"/>
+        <Death value="Eviscerate"/>
         <AreaArray MaxCount="1" Fraction="1" Validator="SubmachineGunRangeLE4dot5"/>
         <AreaArray>
             <MaxCount value="2"/>
@@ -1017,19 +971,17 @@
             <Validator value="SubmachineGunRangeGT4dot5"/>
         </AreaArray>
         <SearchFilters value="-;Player,Ally,Neutral,Item,Invulnerable"/>
-        <Kind value="Ranged"/>
-        <KindSplash value="Splash"/>
-        <Death value="Eviscerate"/>
-        <DisplayFlags index="CollapseBuffed" value="1"/>
-        <ImpactUnitValidator value="SubmachineGunRangeLE4dot5"/>
         <TargetSorts>
             <SortArray value="TSDistanceToTarget"/>
         </TargetSorts>
+        <DisplayFlags index="CollapseBuffed" value="1"/>
     </CEffectDamage>
     <CEffectDamage id="SubmachineGunDamageCritical" parent="SubmachineGunDamage">
+        <ImpactUnitValidator value="SubmachineGunCritRangeLE4dot5"/>
+        <AttributeFactor index="Armored" value="0"/>
+        <AttributeFactor index="Psionic" value="0"/>
         <Amount value="22.5"/>
         <Death value="Blast"/>
-        <ImpactUnitValidator value="SubmachineGunCritRangeLE4dot5"/>
         <AreaArray index="0" MaxCount="1" Fraction="1" Validator="SubmachineGunCritRangeLE4dot5"/>
         <AreaArray index="1">
             <MaxCount value="2"/>
@@ -1038,9 +990,6 @@
             <Validator value="SubmachineGunCritRangeGT4dot5"/>
         </AreaArray>
     </CEffectDamage>
-    <CEffectApplyBehavior id="SuperGravityGunNoise">
-        <EditorCategories value=""/>
-    </CEffectApplyBehavior>
     <CEffectApplyBehavior id="TX1Poison">
         <EditorCategories value="Race:Terran"/>
     </CEffectApplyBehavior>
@@ -1111,7 +1060,6 @@
     </CEffectApplyBehavior>
     <CEffectDamage id="AutomaticShotgunDamage">
         <ImpactLocation Value="TargetUnit"/>
-        <ArmorReduction value="2"/>
         <Kind value="Ranged"/>
         <KindSplash value="Splash"/>
         <Amount value="20"/>
@@ -1130,16 +1078,20 @@
         <AreaArray Radius="1.25" Fraction="0.75" Validator="CasterToTargetRangeWithin10"/>
         <AreaArray Radius="1.375" Fraction="0.5" Validator="CasterToTargetRangeWithin11"/>
         <AreaArray Radius="1.5" Fraction="0.25" Validator="CasterToTargetRangeGT11"/>
+        <AttributeFactor index="Armored" value="-0.3"/>
+        <AttributeFactor index="Psionic" value="0.5"/>
+        <DisplayFlags index="CollapseBuffed" value="1"/>
     </CEffectDamage>
     <CEffectDamage id="AutomaticShotgunDamageCritical" parent="AutomaticShotgunDamage">
-        <Amount value="50"/>
+        <AttributeFactor index="Armored" value="0"/>
+        <AttributeFactor index="Psionic" value="0"/>
+        <Amount value="30"/>
     </CEffectDamage>
     <CEffectDamage id="PumpShotgunDamage">
         <ImpactLocation Value="TargetUnit"/>
-        <ArmorReduction value="2"/>
         <Kind value="Ranged"/>
         <KindSplash value="Splash"/>
-        <Amount value="30"/>
+        <Amount value="40"/>
         <Death value="Blast"/>
         <SearchFilters value="-;Player,Ally,Neutral,Item,Invulnerable"/>
         <SearchFlags index="OffsetAreaByAngle" value="1"/>
@@ -1155,8 +1107,13 @@
         <AreaArray Radius="1.25" Fraction="0.5" Validator="CasterToTargetRangeWithin10"/>
         <AreaArray Radius="1.375" Fraction="0.3332" Validator="CasterToTargetRangeWithin11"/>
         <AreaArray Radius="1.5" Fraction="0.1665" Validator="CasterToTargetRangeGT11"/>
+        <AttributeFactor index="Armored" value="-0.3"/>
+        <AttributeFactor index="Psionic" value="0.5"/>
+        <DisplayFlags index="CollapseBuffed" value="1"/>
     </CEffectDamage>
     <CEffectDamage id="PumpShotgunDamageCritical" parent="PumpShotgunDamage">
-        <Amount value="75"/>
+        <AttributeFactor index="Armored" value="0"/>
+        <AttributeFactor index="Psionic" value="0"/>
+        <Amount value="60"/>
     </CEffectDamage>
 </Catalog>

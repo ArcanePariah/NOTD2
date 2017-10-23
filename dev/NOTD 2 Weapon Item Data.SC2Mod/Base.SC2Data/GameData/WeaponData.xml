@@ -43,22 +43,23 @@
     </CWeaponLegacy>
     <CWeaponLegacy id="SubmachineGun" parent="WeaponTemplate">
         <Range value="9"/>
-        <Period value="0.2"/>
+        <Period value="0.3"/>
         <UninterruptibleDuration value="32767.9997"/>
+        <DisplayAttackCount value="2"/>
     </CWeaponLegacy>
     <CWeaponLegacy id="MediumMachineGun" parent="WeaponTemplate">
         <Range value="15"/>
-        <Period value="0.35"/>
+        <Period value="0.3"/>
         <UninterruptibleDuration value="32767.9997"/>
     </CWeaponLegacy>
     <CWeaponLegacy id="HeavyMachineGun" parent="WeaponTemplate">
         <Range value="20"/>
-        <Period value="0.2"/>
+        <Period value="0.3"/>
         <UninterruptibleDuration value="32767.9997"/>
     </CWeaponLegacy>
     <CWeaponLegacy id="MarksmanRifle" parent="WeaponTemplate">
         <Range value="20"/>
-        <Period value="1.75"/>
+        <Period value="1.25"/>
         <Icon value="Weapons\btn-MarksmenRifle.dds"/>
         <UninterruptibleDuration value="32767.9997"/>
     </CWeaponLegacy>
@@ -91,7 +92,6 @@
         <Cost>
             <Charge CountUse="2"/>
         </Cost>
-        <DisplayEffect value="PumpShotgunDamageRange1"/>
         <UninterruptibleDuration value="32767.9997"/>
     </CWeaponLegacy>
     <!--    <CWeaponLegacy id="PumpShotgunSlugShot" parent="WeaponTemplate">-->
@@ -105,26 +105,25 @@
     <!--    -->
     <CWeaponLegacy id="AutomaticShotgun" parent="WeaponTemplate">
         <Range value="12"/>
-        <Period value="0.5"/>
+        <Period value="0.75"/>
         <DisplayAttackCount value="1"/>
         <Cost>
             <Charge CountUse="2"/>
         </Cost>
         <UninterruptibleDuration value="32767.9997"/>
     </CWeaponLegacy>
-    <!--
-    <CWeaponLegacy id="AutomaticShotgunSlugShot" parent="WeaponTemplate">
-        <Range value="12"/>
-        <Cost>
-            <Charge CountUse="2"/>
-        </Cost>
-        <Period value="0.5"/>
-        <Icon value="Weapons\btn-AutomaticShotgun.dds"/>
-    </CWeaponLegacy>
-    -->
+    <!--    <CWeaponLegacy id="AutomaticShotgunSlugShot" parent="WeaponTemplate">-->
+    <!--        <Range value="12"/>-->
+    <!--        <Cost>-->
+    <!--            <Charge CountUse="2"/>-->
+    <!--        </Cost>-->
+    <!--        <Period value="0.5"/>-->
+    <!--        <Icon value="Weapons\btn-AutomaticShotgun.dds"/>-->
+    <!--    </CWeaponLegacy>-->
+    <!--    -->
     <CWeaponLegacy id="Crowbar">
         <EditorCategories value=""/>
-        <TargetFilters value="Ground,Visible;Item,Dead"/>
+        <TargetFilters value="Ground,Visible;Ally,Item,Dead"/>
         <AcquireFilters value="Ground;-"/>
         <Range value="1"/>
         <Period value="0.4"/>
@@ -152,7 +151,7 @@
         <EditorCategories value=""/>
         <Icon value="Weapons\btn-Hammer.dds"/>
         <DisplayEffect value="HammerDamage"/>
-        <TargetFilters value="Ground,Visible;Item,Dead"/>
+        <TargetFilters value="Ground,Visible;Ally,Item,Dead"/>
         <AcquireFilters value="Ground;-"/>
         <Range value="0.75"/>
         <Period value="0.4"/>
@@ -165,7 +164,7 @@
         <EditorCategories value=""/>
         <Icon value="Weapons\btn-Axe.dds"/>
         <DisplayEffect value="AxeDamage"/>
-        <TargetFilters value="Ground,Visible;Item,Dead"/>
+        <TargetFilters value="Ground,Visible;Ally,Item,Dead"/>
         <AcquireFilters value="Ground;-"/>
         <Range value="0.75"/>
         <Period value="0.4"/>
@@ -174,17 +173,11 @@
         <RandomDelayMin value="0"/>
         <RandomDelayMax value="0"/>
     </CWeaponLegacy>
-    <CWeaponLegacy id="GrenadeLauncher">
-        <EditorCategories value=""/>
-        <Range value="18"/>
-        <Period value="2"/>
-        <DamagePoint value="0"/>
-    </CWeaponLegacy>
     <CWeaponLegacy id="Baton">
         <EditorCategories value=""/>
         <Icon value="Weapons\btn-Baton.dds"/>
         <DisplayEffect value="BatonDamage"/>
-        <TargetFilters value="Ground,Visible;Item,Dead"/>
+        <TargetFilters value="Ground,Visible;Ally,Item,Dead"/>
         <AcquireFilters value="Ground;-"/>
         <Range value="0.75"/>
         <Period value="0.4"/>
@@ -192,34 +185,6 @@
         <CriticalEffect value="BatonDamageCritical"/>
         <RandomDelayMin value="0"/>
         <RandomDelayMax value="0"/>
-    </CWeaponLegacy>
-    <CWeaponLegacy id="PlasmaCannon">
-        <EditorCategories value=""/>
-        <Range value="18"/>
-        <Period value="3"/>
-        <DamagePoint value="0"/>
-        <DisplayEffect value="PlasmaCannonDamage2"/>
-        <Effect value="PlasmaCannonLaunchMissile"/>
-    </CWeaponLegacy>
-    <CWeaponLegacy id="Railgun">
-        <EditorCategories value=""/>
-        <Range value="15"/>
-        <Period value="2"/>
-        <Icon value="Railgun.dds"/>
-        <DamagePoint value="0"/>
-    </CWeaponLegacy>
-    <CWeaponLegacy id="RocketLauncherHighExplosive">
-        <EditorCategories value=""/>
-        <Range value="18"/>
-        <Period value="3"/>
-        <DamagePoint value="0"/>
-    </CWeaponLegacy>
-    <CWeaponLegacy id="RocketLauncherAntiTank">
-        <EditorCategories value=""/>
-        <DisplayEffect value="RocketLauncherHighExplosive"/>
-        <Range value="18"/>
-        <Period value="3"/>
-        <DamagePoint value="0"/>
     </CWeaponLegacy>
     <CWeaponLegacy id="K9SupportTurret">
         <EditorCategories value=""/>
@@ -233,6 +198,7 @@
         <DamagePoint value="0"/>
         <Effect value="K9TurretDamage"/>
         <AllowedMovement value="Moving"/>
+        <TargetFilters value="Visible;Ally"/>
     </CWeaponLegacy>
     <CWeaponLegacy id="TitaniumClaw">
         <EditorCategories value=""/>
@@ -240,7 +206,7 @@
         <Options index="LinkedCooldown" value="0"/>
         <Icon value="Assets\Textures\btn-upgrade-terran-researchdrillingclaws.dds"/>
         <DisplayEffect value="TitaniumClawDamage"/>
-        <TargetFilters value="Ground,Visible;-"/>
+        <TargetFilters value="Ground,Visible;Ally"/>
         <Range value="1"/>
         <Period value="0.4"/>
         <DamagePoint value="0"/>
@@ -275,6 +241,7 @@
         <TargetFilters value="Visible;-"/>
         <RangeDisplayFlags index="CollapseBuffed" value="0"/>
         <PeriodDisplayFlags index="CollapseBuffed" value="0"/>
+        <Period value="1.75"/>
     </CWeaponLegacy>
     <CWeaponLegacy id="PeacekeeperPumpShotgun" parent="PumpShotgun">
         <Name value="Weapon/Name/PeacekeeperPumpShotgun"/>
@@ -287,6 +254,7 @@
         <PeriodDisplayFlags index="CollapseBuffed" value="0"/>
         <Period value="1.35"/>
         <DisplayAttackCount value="12"/>
+        <DisplayEffect value="PumpShotgunDamageRange1"/>
     </CWeaponLegacy>
     <CWeaponLegacy id="PeacekeeperSubmachineGun" parent="SubmachineGun">
         <Name value="Weapon/Name/PeacekeeperSubmachineGun"/>
@@ -297,5 +265,7 @@
         <TargetFilters value="Visible;-"/>
         <RangeDisplayFlags index="CollapseBuffed" value="0"/>
         <PeriodDisplayFlags index="CollapseBuffed" value="0"/>
+        <DisplayAttackCount value="0"/>
+        <Period value="0.2"/>
     </CWeaponLegacy>
 </Catalog>
