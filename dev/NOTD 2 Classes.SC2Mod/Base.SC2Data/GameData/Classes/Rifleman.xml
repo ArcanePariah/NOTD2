@@ -824,6 +824,17 @@
         <Amount value="25"/>
         <Death value="Eviscerate"/>
     </CEffectDamage>
+    <CAbilEffectTarget id="StickyBomb">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Effect index="0" value="StickyBombLM"/>
+        <Cost>
+            <Display index="Energy" value="1"/>
+            <Vital index="Energy" value="30"/>
+            <Cooldown TimeUse="16"/>
+        </Cost>
+        <Range value="9"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="StickyBomb"/>
+    </CAbilEffectTarget>
     <CAbilEffectTarget id="UnderslungShotgun">
         <EditorCategories value="AbilityorEffectType:Units"/>
         <Effect index="0" value="UnderslungShotgunBlastSet"/>
@@ -832,7 +843,7 @@
             <Vital index="Energy" value="15"/>
             <Cooldown TimeUse="8"/>
         </Cost>
-        <Range value="9"/>
+        <Range value="250"/>
         <CastIntroTime value="0.125"/>
         <CursorEffect value="NovaWeaponHellfireShotgunBlastSearch"/>
         <CmdButtonArray index="Execute" DefaultButtonFace="UnderslungShotgun"/>
@@ -911,26 +922,28 @@
         <AINotifyEffect value="StunGrenadeLM"/>
         <LevelButtonTooltip index="1" removed="1"/>
     </CAbilEffectTarget>
-    <CAbilEffectTarget id="StickyBomb" parent="3LevelEffectTargetAbility">
+    <CAbilEffectTarget id="StickyBombNotICR" parent="3LevelEffectTargetAbility">
         <Effect index="0" value="StickyBombLM"/>
-        <Effect index="1" value="StickyBombLM2"/>
+        <Effect index="1" removed="1"/>
         <Effect index="2" removed="1"/>
+        <Flags index="ChannelingMinimum" value="0"/>
+        <Flags index="UpdateTarget" value="1"/>
         <Cost>
             <Vital index="Energy" value="25"/>
-            <Cooldown TimeUse="16"/>
+            <Charge Link="Abil/StickyBomb"/>
+            <Cooldown Link="Abil/StickyBomb" TimeUse="16"/>
         </Cost>
         <TargetFilters value="-;Self,Player,Ally,Neutral,Item,Invulnerable"/>
         <Range value="10"/>
-        <Range value="10"/>
+        <RangeSlop value="2"/>
         <CursorEffect value="FragmentationGrenadeDamageLevel1"/>
         <CursorEffect value="FragmentationGrenadeDamageLevel2"/>
         <CursorEffect value="FragmentationGrenadeDamageLevel3"/>
-        <CmdButtonArray index="Execute">
+        <LevelButtonTooltip index="0" removed="1"/>
+        <LevelButtonTooltip index="1" removed="1"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="StickyBomb">
             <Flags index="ShowInGlossary" value="0"/>
         </CmdButtonArray>
-        <Flags index="ChannelingMinimum" value="0"/>
-        <Flags index="UpdateTarget" value="1"/>
-        <RangeSlop value="2"/>
     </CAbilEffectTarget>
     <CAbilEffectInstant id="ThisismyRifle">
         <EditorCategories value="AbilityorEffectType:Units"/>
@@ -1113,7 +1126,7 @@
         <InfoArray index="Learn3" Abil="WeaponProficiency">
             <Button DefaultButtonFace="WeaponsProficiencyLevel1"/>
         </InfoArray>
-        <InfoArray index="Learn4" Abil="StickyBomb">
+        <InfoArray index="Learn4" Abil="StickyBombNotICR">
             <Button DefaultButtonFace="StickyBomb"/>
         </InfoArray>
         <InfoArray index="Learn5" Abil="ThisismyRifle">
@@ -1349,6 +1362,7 @@
         <HostSiteOps Ops="SOpAttachCenter SOpShadow SOpLookAtCursor SOp2DRotation"/>
         <Model value="Nova_ShotGunCone"/>
         <ModelFlags index="UseSyncSeed" value="0"/>
+        <Scale value="0.900000"/>
     </CActorModel>
     <CActorModel id="UnderslungShotgunImpact" parent="ModelAnimationStyleOneShotUNIT">
         <EditorCategories value=""/>
@@ -1488,11 +1502,11 @@
     </CActorRange>
     <CActorRange id="StickyBombRange" parent="RangeAbil" abil="PrecisionShot">
         <EditorCategories value=""/>
-        <On index="1" Terms="Abil.StickyBomb.TargetOn" Send="Create"/>
-        <On index="2" Terms="Abil.StickyBomb.TargetOff" Send="Destroy"/>
+        <On index="1" Terms="Abil.StickyBombNotICR.TargetOn" Send="Create"/>
+        <On index="2" Terms="Abil.StickyBombNotICR.TargetOff" Send="Destroy"/>
         <On index="3" removed="1"/>
         <On index="4" removed="1"/>
-        <Abil Link="StickyBomb"/>
+        <Abil Link="StickyBombNotICR"/>
     </CActorRange>
     <CActorAction id="StunGrenadeActionThrown" parent="GenericAttack" effectImpact="FragmentationGrenadeDamageLevel1" effectLaunch="StunGrenadeLM">
         <EditorCategories value=""/>
@@ -1696,8 +1710,8 @@
         <On Terms="Abil.FragmentationGrenade.SourceCastStart; ValidateUnit GrenadierNot" Send="AnimPlay Grenade Spell,Blast 0 -1.000000 -1.000000 1.300000 AsTimeScale"/>
         <On Terms="Abil.FragmentationGrenade.SourceCastStart; ValidateUnit Grenadier" Send="AnimPlay Grenade Attack 0 -1.000000 -1.000000 2.000000 AsTimeScale"/>
         <On Terms="Abil.CanisterShot.SourceCastStart" Send="AnimPlay Grenade Attack 0 -1.000000 -1.000000 2.000000 AsTimeScale"/>
-        <On Terms="Abil.StickyBomb.SourceCastStart; ValidateUnit GrenadierNot" Send="AnimPlay Grenade Spell,Blast 0 -1.000000 -1.000000 1.300000 AsTimeScale"/>
-        <On Terms="Abil.StickyBomb.SourceCastStart; ValidateUnit Grenadier" Send="AnimPlay Grenade Attack 0 -1.000000 -1.000000 2.000000 AsTimeScale"/>
+        <On Terms="Abil.StickyBombNotICR.SourceCastStart; ValidateUnit GrenadierNot" Send="AnimPlay Grenade Spell,Blast 0 -1.000000 -1.000000 1.300000 AsTimeScale"/>
+        <On Terms="Abil.StickyBombNotICR.SourceCastStart; ValidateUnit Grenadier" Send="AnimPlay Grenade Attack 0 -1.000000 -1.000000 2.000000 AsTimeScale"/>
         <On Terms="Abil.StunGrenade.SourceCastStart" Send="AnimPlay Grenade Spell,Blast 0 -1.000000 -1.000000 1.300000 AsTimeScale"/>
         <On Terms="UpgradeFinalized.AccurateFireLevel" Target="_Laser" Send="TimerSet 0.062500 Colour"/>
         <On Terms="UpgradeFinalized.SuppressiveFireLevel" Target="_Laser" Send="TimerSet 0.062500 Colour"/>
@@ -2327,9 +2341,11 @@
         <Speed value="2.3984"/>
         <AbilArray Link="UnderslungShotgun"/>
         <AbilArray Link="MediumJump"/>
+        <AbilArray Link="StickyBomb"/>
         <CardLayouts index="0">
             <LayoutButtons Face="UnderslungShotgun" Type="AbilCmd" AbilCmd="UnderslungShotgun,Execute" Row="2" Column="0"/>
             <LayoutButtons Face="Jump" Type="AbilCmd" AbilCmd="MediumJump,Execute" Row="0" Column="4"/>
+            <LayoutButtons Face="StickyBomb" Type="AbilCmd" AbilCmd="StickyBomb,Execute" Row="2" Column="1"/>
         </CardLayouts>
     </CUnit>
     <CUnit id="SonicTrapLevel1">
@@ -2366,6 +2382,15 @@
         <BehaviorArray Link="SonicTrapSuicideLevel2"/>
         <BehaviorArray Link="SonicPlacementBuff"/>
     </CUnit>
+    <CUpgrade id="CoolHeat">
+        <EffectArray Operation="Set" Reference="Abil,StickyBomb,Cost[0].Cooldown.TimeUse" Value="10.000000"/>
+    </CUpgrade>
+    <CUpgrade id="ExtraSpice">
+        <EffectArray Operation="Set" Reference="Effect,StickyBombDMG,AttributeBonus[Armored]" Value="50"/>
+    </CUpgrade>
+    <CUpgrade id="ReadySmelter">
+        <EffectArray Operation="Set" Reference="Abil,StickyBomb,Cost[0].Vital[Energy]" Value="20"/>
+    </CUpgrade>
     <CUpgrade id="BigGameHunting">
         <EffectArray Reference="Effect,UnderslungShotgunBlastDamage,Amount" Value="50"/>
     </CUpgrade>
@@ -2412,14 +2437,14 @@
         <EffectArray Operation="Set" Reference="Abil,FragmentationGrenade,Range[0]" Value="20"/>
         <EffectArray Operation="Set" Reference="Abil,FragmentationGrenade,Range[1]" Value="20"/>
         <EffectArray Operation="Set" Reference="Abil,FragmentationGrenade,Range[2]" Value="20"/>
-        <EffectArray Operation="Set" Reference="Abil,StickyBomb,Range[0]" Value="20"/>
+        <EffectArray Operation="Set" Reference="Abil,StickyBombNotICR,Range[0]" Value="20"/>
         <EffectArray Operation="Set" Reference="Behavior,StickyBombDMGBuff,Duration" Value="0.500000"/>
         <EffectArray Operation="Set" Reference="Behavior,StickyBombDMGBuff2,Duration" Value="0.500000"/>
         <EffectArray Operation="Set" Reference="Behavior,StickyBombDMGBuff2,Period" Value="0.062500"/>
         <EffectArray Operation="Set" Reference="Behavior,StickyBombDMGBuff,Period" Value="0.062500"/>
         <EffectArray Operation="Set" Reference="Effect,StickyBombLM,AmmoUnit" Value="StickyBombMissileGL"/>
         <EffectArray Operation="Set" Reference="Effect,StickyBombLM2,AmmoUnit" Value="StickyBombMissileGL"/>
-        <EffectArray Operation="Set" Reference="Abil,StickyBomb,Range[1]" Value="20"/>
+        <EffectArray Operation="Set" Reference="Abil,StickyBombNotICR,Range[1]" Value="20"/>
     </CUpgrade>
     <CUpgrade id="SuppressiveFire1" parent="DefaultUpgradeOverride">
         <EffectArray Operation="Set" Reference="Behavior,FocusFire,DamageResponse.Chance" Value="1"/>
@@ -2737,9 +2762,9 @@
     <CBehaviorBuff id="StickyBombDMGBuff">
         <InfoIcon value="btn-achievement-hexagonredskull.dds"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
-        <Duration value="8"/>
+        <Duration value="4"/>
         <PeriodicEffect value="StickyBombDMG"/>
-        <Period value="1"/>
+        <Period value="0.5"/>
         <PeriodCount value="8"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="ThisismyRifle">
