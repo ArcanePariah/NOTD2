@@ -20,6 +20,10 @@
         <OperandArray value="CountUnitSonicTrapLevel1CompleteOnly"/>
         <OperandArray value="CountUnitSonicTrapLevel12CompleteOnly"/>
     </CRequirementSum>
+    <CEffectApplyBehavior id="AdrenalineApplyBehavior">
+        <EditorCategories value=""/>
+        <Behavior value="Adrenaline"/>
+    </CEffectApplyBehavior>
     <CEffectDamage id="UnderslungShotgunBlastDamage">
         <EditorCategories value=""/>
         <ResponseFlags index="Acquire" value="1"/>
@@ -824,6 +828,30 @@
         <Amount value="25"/>
         <Death value="Eviscerate"/>
     </CEffectDamage>
+    <CAbilEffectInstant id="Adrenaline">
+        <AbilSetId value="Stimpack"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <InfoTooltipPriority value="1"/>
+        <Effect index="0" value="AdrenalineApplyBehavior"/>
+        <Flags index="Transient" value="1"/>
+        <Cost>
+            <Vital index="Energy" value="10"/>
+            <Charge Link="Abil/Stimpack"/>
+            <Cooldown Link="Abil/Stimpack" TimeUse="8"/>
+        </Cost>
+        <InterruptCost>
+            <Charge Link="Abil/Stimpack"/>
+            <Cooldown Link="Abil/Stimpack"/>
+        </InterruptCost>
+        <Marker Link="Abil/Stimpack"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="Adrenaline">
+            <Flags index="AllowMinimap" value="0"/>
+            <Flags index="ShowInGlossary" value="0"/>
+        </CmdButtonArray>
+        <CmdButtonArray index="Cancel">
+            <Flags index="AllowMinimap" value="0"/>
+        </CmdButtonArray>
+    </CAbilEffectInstant>
     <CAbilEffectTarget id="StickyBomb">
         <EditorCategories value="AbilityorEffectType:Units"/>
         <Effect index="0" value="StickyBombLM"/>
@@ -1231,6 +1259,8 @@
             <Flags index="ShowInGlossary" value="0"/>
         </CmdButtonArray>
     </CAbilEffectInstant>
+    <CButton id="Adrenaline"/>
+    <CButton id="WeaponProficiency"/>
     <CButton id="UnderslungShotgun"/>
     <CButton id="FocusFire2">
         <Icon value="Assets\Textures\btn-ability-protoss-blink-color.dds"/>
@@ -1338,6 +1368,42 @@
     <CButton id="WeaponsProficiencyLevel2">
         <Icon value="btn-weapon-newweapon.dds"/>
     </CButton>
+    <CActorModel id="AdrenalineEnd" parent="ModelAddition">
+        <Aliases index="0" removed="1"/>
+        <Flags index="SuppressSaveLoad" value="1"/>
+        <Inherits index="BaseModelScale" value="0"/>
+        <Inherits index="CastShadows" value="0"/>
+        <Inherits index="CreepEngulfment" value="0"/>
+        <Inherits index="Decal" value="0"/>
+        <Inherits index="ModelMaterials" value="0"/>
+        <Inherits index="Opacity" value="0"/>
+        <Inherits index="Scale" value="0"/>
+        <Inherits index="TeamColor" value="0"/>
+        <Inherits index="TimeScale" value="0"/>
+        <Inherits index="TintColor" value="0"/>
+        <Inherits index="Visibility" value="0"/>
+        <Inherits index="WarpGroup" value="0"/>
+        <EditorCategories value=""/>
+        <On index="0" Terms="ActorCreation" Send="AnimBracketStart BSD Birth Stand Death ContentPlayOnce"/>
+        <On index="1" Terms="AnimBracketState.*.AfterClosing; AnimName BSD" Send="Destroy"/>
+        <On index="2" Terms="ActorOrphan" Send="AnimBracketStop BSD"/>
+        <On Terms="Behavior.Adrenaline.Off; ValidateUnit NotDead" Send="Create"/>
+        <HostSiteOps Ops="SOpAttachOverhead"/>
+        <Model value="StimpackEndImpact"/>
+        <ModelFlags index="UseSyncSeed" value="0"/>
+    </CActorModel>
+    <CActorSound id="AdrenalineSound" parent="SoundOneShot">
+        <EditorCategories value=""/>
+        <On Terms="Abil.Adrenaline.SourceCastStart" Send="Create"/>
+        <Sound value="Marine_Stimpack"/>
+    </CActorSound>
+    <CActorModel id="AdrenalineStart" parent="ModelAnimationStyleOneShotUNIT">
+        <Inherits index="CloakEffect" value="1"/>
+        <EditorCategories value=""/>
+        <On Terms="Abil.Adrenaline.SourceCastStart" Send="Create"/>
+        <HostSiteOps Ops="SOpAttachOverhead"/>
+        <Model value="StimpackStartImpact"/>
+    </CActorModel>
     <CActorModel id="UnderslungShotgunGuide" parent="ModelAddition">
         <Aliases index="0" removed="1"/>
         <Inherits index="BaseModelScale" value="0"/>
@@ -1979,6 +2045,15 @@
         <HostSiteOps Ops="SOpMoveUpBy2"/>
         <Model value="RepulseStun"/>
     </CActorModel>
+    <CActorModel id="WeaponProficiencyLaserAttachment" parent="ModelAnimationStyleContinuousUNIT">
+        <Aliases value="_Laser"/>
+        <EditorCategories value=""/>
+        <On Terms="Behavior.WeaponProficiency.On" Send="Create"/>
+        <On Terms="Behavior.WeaponProficiency.Off" Send="AnimBracketStop BSD"/>
+        <Host Subject="_Unit"/>
+        <HostSiteOps Ops="SOpAttachWeapon"/>
+        <Model value="FocusFireLaserSight"/>
+    </CActorModel>
     <CModel id="FragmentationGrenadeLaunchGL" parent="LaunchFX">
         <Model value="Assets\Effects\Terran\WarHoundHaywireMissileLaunch\WarHoundHaywireMissileLaunch.m3"/>
         <Lighting value="AntiMaterialRifleAttackLaunch"/>
@@ -2346,7 +2421,9 @@
             <LayoutButtons Face="UnderslungShotgun" Type="AbilCmd" AbilCmd="UnderslungShotgun,Execute" Row="2" Column="0"/>
             <LayoutButtons Face="Jump" Type="AbilCmd" AbilCmd="MediumJump,Execute" Row="0" Column="4"/>
             <LayoutButtons Face="StickyBomb" Type="AbilCmd" AbilCmd="StickyBomb,Execute" Row="2" Column="1"/>
+            <LayoutButtons Face="WeaponProficiency" Type="Passive" Behavior="WeaponProficiency" Row="2" Column="2"/>
         </CardLayouts>
+        <BehaviorArray Link="WeaponProficiency"/>
     </CUnit>
     <CUnit id="SonicTrapLevel1">
         <Race value="Terr"/>
@@ -2382,6 +2459,9 @@
         <BehaviorArray Link="SonicTrapSuicideLevel2"/>
         <BehaviorArray Link="SonicPlacementBuff"/>
     </CUnit>
+    <CUpgrade id="Boosters">
+        <EffectArray Operation="Set" Reference="Behavior,Adrenaline,Duration" Value="9.000000"/>
+    </CUpgrade>
     <CUpgrade id="CoolHeat">
         <EffectArray Operation="Set" Reference="Abil,StickyBomb,Cost[0].Cooldown.TimeUse" Value="10.000000"/>
     </CUpgrade>
@@ -2390,6 +2470,21 @@
     </CUpgrade>
     <CUpgrade id="ReadySmelter">
         <EffectArray Operation="Set" Reference="Abil,StickyBomb,Cost[0].Vital[Energy]" Value="20"/>
+    </CUpgrade>
+    <CUpgrade id="RunnersHigh">
+        <EffectArray Operation="Set" Reference="Behavior,Adrenaline,Modification.MoveSpeedMultiplier" Value="1.2"/>
+        <LeaderAlias value="Boosters"/>
+    </CUpgrade>
+    <CUpgrade id="SalineIV">
+        <EffectArray Operation="Set" Reference="Behavior,Adrenaline,Modification.VitalRegenArray[Life]" Value="2.000000"/>
+        <LeaderAlias value="Boosters"/>
+    </CUpgrade>
+    <CUpgrade id="UnknownUpgrade">
+        <EffectArray Operation="Set" Reference="Behavior,WeaponProficiency,Modification.AttackSpeedMultiplier" Value="1.15"/>
+    </CUpgrade>
+    <CUpgrade id="WeaponExpertise">
+        <EffectArray Operation="Set" Reference="Behavior,WeaponProficiency,Modification.DamageDealtFraction[Ranged]" Value="1.4"/>
+        <LeaderAlias value="UnknownUpgrade"/>
     </CUpgrade>
     <CUpgrade id="BigGameHunting">
         <EffectArray Reference="Effect,UnderslungShotgunBlastDamage,Amount" Value="50"/>
@@ -2679,6 +2774,11 @@
         <CombineArray value="TargetisSlowed"/>
         <CombineArray value="TargetisStunned"/>
     </CValidatorCombine>
+    <CBehaviorBuff id="Adrenaline">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="6"/>
+        <Modification AttackSpeedMultiplier="1.4"/>
+    </CBehaviorBuff>
     <CBehaviorBuff id="K9PlacementBuff">
         <InfoFlags index="Hidden" value="1"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
@@ -3010,6 +3110,13 @@
         <RemoveValidatorArray value="SonicTrapNumbers"/>
         <FinalEffect value="SuicideSonic"/>
         <InfoFlags index="Hidden" value="1"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="WeaponProficiency">
+        <BehaviorFlags index="Permanent" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Modification>
+            <DamageDealtFraction index="Ranged" value="1.25"/>
+        </Modification>
     </CBehaviorBuff>
     <CRequirement id="GrenadierShow">
         <CanBeSuppressed index="Show" value="1"/>
