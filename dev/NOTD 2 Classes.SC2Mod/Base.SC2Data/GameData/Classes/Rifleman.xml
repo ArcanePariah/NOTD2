@@ -20,6 +20,17 @@
         <OperandArray value="CountUnitSonicTrapLevel1CompleteOnly"/>
         <OperandArray value="CountUnitSonicTrapLevel12CompleteOnly"/>
     </CRequirementSum>
+    <CEffectDamage id="HEGrenadeDamage">
+        <EditorCategories value=""/>
+        <Amount value="200"/>
+        <AreaArray Radius="2"/>
+    </CEffectDamage>
+    <CEffectLaunchMissile id="HEGrenadeLaunchMissile">
+        <EditorCategories value=""/>
+        <ImpactEffect value="HEGrenadeDamage"/>
+        <AmmoUnit value="HEGrenade"/>
+        <Movers Link="Grenadier"/>
+    </CEffectLaunchMissile>
     <CEffectApplyBehavior id="AdrenalineApplyBehavior">
         <EditorCategories value=""/>
         <Behavior value="Adrenaline"/>
@@ -828,6 +839,16 @@
         <Amount value="25"/>
         <Death value="Eviscerate"/>
     </CEffectDamage>
+    <CAbilEffectTarget id="HEGrenade">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Effect index="0" value="HEGrenadeLaunchMissile"/>
+        <Cost>
+            <Vital index="Energy" value="15"/>
+            <Cooldown TimeUse="10"/>
+        </Cost>
+        <Range value="20"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="HEGrenade"/>
+    </CAbilEffectTarget>
     <CAbilEffectInstant id="Adrenaline">
         <AbilSetId value="Stimpack"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
@@ -1259,6 +1280,7 @@
             <Flags index="ShowInGlossary" value="0"/>
         </CmdButtonArray>
     </CAbilEffectInstant>
+    <CButton id="HEGrenade"/>
     <CButton id="Adrenaline"/>
     <CButton id="WeaponProficiency"/>
     <CButton id="UnderslungShotgun"/>
@@ -1368,6 +1390,15 @@
     <CButton id="WeaponsProficiencyLevel2">
         <Icon value="btn-weapon-newweapon.dds"/>
     </CButton>
+    <CActorAction id="HEGrenade" parent="GenericAttack" effectImpact="HEGrenadeDamage" effectLaunch="HEGrenadeLaunchMissile">
+        <EditorCategories value=""/>
+        <LaunchAssets Model="WarHoundWeapon"/>
+        <ImpactModel value="DefaultExplosionTerranLarge"/>
+    </CActorAction>
+    <CActorMissile id="HEGrenadeLaunchMissile" parent="GenericAttackMissile" unitName="HEGrenade">
+        <EditorCategories value=""/>
+        <Model value="VikingArcadeEnergyMissile"/>
+    </CActorMissile>
     <CActorModel id="AdrenalineEnd" parent="ModelAddition">
         <Aliases index="0" removed="1"/>
         <Flags index="SuppressSaveLoad" value="1"/>
@@ -2332,6 +2363,12 @@
             <ChanceArray index="Turn" value="0"/>
         </Fidget>
     </CTurret>
+    <CUnit id="HEGrenade" parent="MISSILE">
+        <FlagArray index="Invulnerable" value="1"/>
+        <Mover value="Grenadier"/>
+        <EditorCategories value=""/>
+        <AIEvaluateAlias value="FragmentationGrenade"/>
+    </CUnit>
     <CUnit id="StickyBombMissileGL" parent="MISSILE">
         <Mover value="Grenadier"/>
         <EditorCategories value=""/>
@@ -2418,12 +2455,14 @@
         <AbilArray Link="MediumJump"/>
         <AbilArray Link="StickyBomb"/>
         <AbilArray Link="Adrenaline"/>
+        <AbilArray Link="HEGrenade"/>
         <CardLayouts index="0">
             <LayoutButtons Face="UnderslungShotgun" Type="AbilCmd" AbilCmd="UnderslungShotgun,Execute" Row="2" Column="0"/>
             <LayoutButtons Face="Jump" Type="AbilCmd" AbilCmd="MediumJump,Execute" Row="0" Column="4"/>
             <LayoutButtons Face="StickyBomb" Type="AbilCmd" AbilCmd="StickyBomb,Execute" Row="2" Column="1"/>
             <LayoutButtons Face="Adrenaline" Type="AbilCmd" AbilCmd="Adrenaline,Execute" Row="2" Column="2"/>
             <LayoutButtons Face="WeaponProficiency" Type="Passive" Behavior="WeaponProficiency" Row="2" Column="3"/>
+            <LayoutButtons Face="HEGrenade" Type="AbilCmd" AbilCmd="HEGrenade,Execute" Row="1" Column="1"/>
         </CardLayouts>
         <BehaviorArray Link="WeaponProficiency"/>
     </CUnit>
