@@ -85,42 +85,43 @@ void lib840A968C_InitVariables () {
 // Presets
 // Functions
 void lib840A968C_gf_CreateArmorSlotDropDown (int lp_dropDown) {
-    int auto723ED669_ae;
-    int auto723ED669_ai;
-
     // Variable Declarations
     int lv_currentArmorSlot;
+
+    // Automatic Variable Declarations
+    int auto723ED669_ae;
+    const int auto723ED669_ai = 1;
 
     // Variable Initialization
 
     // Implementation
     auto723ED669_ae = UserDataInstanceCount("ArmorPiece");
-    auto723ED669_ai = 1;
     lv_currentArmorSlot = 1;
-    for ( ; ( (auto723ED669_ai >= 0 && lv_currentArmorSlot <= auto723ED669_ae) || (auto723ED669_ai <= 0 && lv_currentArmorSlot >= auto723ED669_ae) ) ; lv_currentArmorSlot += auto723ED669_ai ) {
+    for ( ; ( (auto723ED669_ai >= 0 && lv_currentArmorSlot <= auto723ED669_ae) || (auto723ED669_ai < 0 && lv_currentArmorSlot >= auto723ED669_ae) ) ; lv_currentArmorSlot += auto723ED669_ai ) {
         DialogControlAddItem(lp_dropDown, PlayerGroupAll(), UserDataGetText("ArmorPiece", UserDataInstance("ArmorPiece", lv_currentArmorSlot), "Display Name", 1));
     }
 }
 
 void lib840A968C_gf_CreateArmorSetDropDown (int lp_dropDown) {
-    int autoCD81DE3B_ae;
-    int autoCD81DE3B_ai;
-
     // Variable Declarations
     int lv_currentArmorType;
+
+    // Automatic Variable Declarations
+    int autoCD81DE3B_ae;
+    const int autoCD81DE3B_ai = 1;
 
     // Variable Initialization
 
     // Implementation
     autoCD81DE3B_ae = UserDataInstanceCount("ArmorSets");
-    autoCD81DE3B_ai = 1;
     lv_currentArmorType = 1;
-    for ( ; ( (autoCD81DE3B_ai >= 0 && lv_currentArmorType <= autoCD81DE3B_ae) || (autoCD81DE3B_ai <= 0 && lv_currentArmorType >= autoCD81DE3B_ae) ) ; lv_currentArmorType += autoCD81DE3B_ai ) {
+    for ( ; ( (autoCD81DE3B_ai >= 0 && lv_currentArmorType <= autoCD81DE3B_ae) || (autoCD81DE3B_ai < 0 && lv_currentArmorType >= autoCD81DE3B_ae) ) ; lv_currentArmorType += autoCD81DE3B_ai ) {
         DialogControlAddItem(lp_dropDown, PlayerGroupAll(), StringToText(UserDataGetString("ArmorSets", UserDataInstance("ArmorSets", lv_currentArmorType), "Armor Set Name", 1)));
     }
 }
 
 bool lib840A968C_gf_PlayerHasClassUnlocked (int lp_player, int lp_classSlot) {
+    // Automatic Variable Declarations
     // Implementation
     if (((lp_classSlot < 6) || (GameAttributeGameValue("1") == "0003"))) {
         return true;
@@ -134,33 +135,39 @@ void lib840A968C_gf_ClassUnlocked (int lp_classSlot) {
     // Variable Declarations
     int lv_buttonImage;
 
+    // Automatic Variable Declarations
+    playergroup autoE28C3132_g;
+    int autoE28C3132_var;
+
     // Variable Initialization
     lv_buttonImage = c_invalidDialogControlId;
 
     // Implementation
     DialogControlHookup(lib840A968C_gv_classSelectionButtons[lp_classSlot], c_triggerControlTypeImage, "ClassImage");
     lv_buttonImage = DialogControlLastCreated();
-    PlayerGroupLoopBegin(lib840A968C_gf_GetMarineSquadPlayers());
-    for ( ; !PlayerGroupLoopDone() ; PlayerGroupLoopStep() ) {
-        if (lib840A968C_gf_PlayerHasClassUnlocked(PlayerGroupLoopCurrent(), lp_classSlot)) {
-            libNtve_gf_SetDialogItemImage(lv_buttonImage, UserDataGetImagePath("Classes", UserDataInstance("Classes", lp_classSlot), "Class Image", 1), PlayerGroupSingle(PlayerGroupLoopCurrent()));
+    autoE28C3132_g = lib840A968C_gf_GetMarineSquadPlayers();
+    autoE28C3132_var = -1;
+    while (true) {
+        autoE28C3132_var = PlayerGroupNextPlayer(autoE28C3132_g, autoE28C3132_var);
+        if (autoE28C3132_var < 0) { break; }
+        if (lib840A968C_gf_PlayerHasClassUnlocked(autoE28C3132_var, lp_classSlot)) {
+            libNtve_gf_SetDialogItemImage(lv_buttonImage, UserDataGetImagePath("Classes", UserDataInstance("Classes", lp_classSlot), "Class Image", 1), PlayerGroupSingle(autoE28C3132_var));
         }
         else {
-            libNtve_gf_SetDialogItemImage(lv_buttonImage, "btn-ability-terran-lockdown-classic.dds", PlayerGroupSingle(PlayerGroupLoopCurrent()));
-            DialogControlSetEnabled(lib840A968C_gv_classSelectionButtons[lp_classSlot], PlayerGroupSingle(PlayerGroupLoopCurrent()), false);
+            libNtve_gf_SetDialogItemImage(lv_buttonImage, "btn-ability-terran-lockdown-classic.dds", PlayerGroupSingle(autoE28C3132_var));
+            DialogControlSetEnabled(lib840A968C_gv_classSelectionButtons[lp_classSlot], PlayerGroupSingle(autoE28C3132_var), false);
         }
     }
-    PlayerGroupLoopEnd();
 }
 
 void lib840A968C_gf_ClassSelectionPlayerInfo (int lp_classSelectionScreen) {
-    playergroup autoAE3E1801_g;
-    int autoAE3E1801_p;
-
     // Variable Declarations
     int lv_playerRankIcon;
     int lv_playerNameLabel;
     int lv_player;
+
+    // Automatic Variable Declarations
+    playergroup autoAE3E1801_g;
 
     // Variable Initialization
     lv_playerRankIcon = c_invalidDialogControlId;
@@ -171,10 +178,11 @@ void lib840A968C_gf_ClassSelectionPlayerInfo (int lp_classSelectionScreen) {
     lv_playerNameLabel = DialogControlLastCreated();
     DialogControlHookup(lp_classSelectionScreen, c_triggerControlTypeImage, "PlayerRankIcon");
     lv_playerRankIcon = DialogControlLastCreated();
-    autoAE3E1801_g = lib840A968C_gf_GetMarineSquadPlayers(); 
-    autoAE3E1801_p = 1;
-    for ( ; autoAE3E1801_p <= PlayerGroupCount(autoAE3E1801_g) ; autoAE3E1801_p += BoolToInt(lv_player == PlayerGroupPlayer(autoAE3E1801_g, autoAE3E1801_p)) ) {
-        lv_player = PlayerGroupPlayer(autoAE3E1801_g, autoAE3E1801_p);
+    autoAE3E1801_g = lib840A968C_gf_GetMarineSquadPlayers();
+    lv_player = -1;
+    while (true) {
+        lv_player = PlayerGroupNextPlayer(autoAE3E1801_g, lv_player);
+        if (lv_player < 0) { break; }
         libNtve_gf_SetDialogItemImage(lv_playerRankIcon, UserDataGetImagePath("Ranks", lib840A968C_gf_GetPlayerRank(lv_player), "Icon", 1), PlayerGroupSingle(lv_player));
         TextExpressionSetToken("Param/Expression/lib_840A968C_D4BE982C", "B", UserDataGetText("Ranks", lib840A968C_gf_GetPlayerRank(lv_player), "Title Full", 1));
         TextExpressionSetToken("Param/Expression/lib_840A968C_D4BE982C", "A", PlayerName(lv_player));
@@ -184,6 +192,7 @@ void lib840A968C_gf_ClassSelectionPlayerInfo (int lp_classSelectionScreen) {
 }
 
 void lib840A968C_gf_ArmorSelectionSetup (int lp_selectionPanel) {
+    // Automatic Variable Declarations
     // Implementation
     DialogControlHookup(lp_selectionPanel, c_triggerControlTypeUnitModel, "ClassModelPreview");
     lib840A968C_gv_classModelFrame = DialogControlLastCreated();
@@ -198,11 +207,13 @@ void lib840A968C_gf_ArmorSelectionSetup (int lp_selectionPanel) {
 }
 
 void lib840A968C_gf_ClassSelected (trigger t) {
+    // Automatic Variable Declarations
     // Implementation
     TriggerAddEventGeneric(t, lib840A968C_gv_classSelectEvent);
 }
 
 void lib840A968C_gf_AnnounceClassSelection (string lp_class, int lp_selectingPlayer) {
+    // Automatic Variable Declarations
     // Implementation
     DataTableSetString(false, TriggerEventParamName(lib840A968C_gv_classSelectEvent, lib840A968C_gv_classSelected), (lp_class));
     DataTableSetInt(false, TriggerEventParamName(lib840A968C_gv_classSelectEvent, lib840A968C_gv_choosingPlayer), lp_selectingPlayer);
@@ -210,10 +221,11 @@ void lib840A968C_gf_AnnounceClassSelection (string lp_class, int lp_selectingPla
 }
 
 string lib840A968C_gf_GetClassSelected () {
-    int auto04170716_u;
-
     // Variable Declarations
     string lv_testInstance;
+
+    // Automatic Variable Declarations
+    int auto04170716_u;
 
     // Variable Initialization
 
@@ -232,11 +244,13 @@ string lib840A968C_gf_GetClassSelected () {
 }
 
 int lib840A968C_gf_GetSelectingPlayer () {
+    // Automatic Variable Declarations
     // Implementation
     return DataTableGetInt(false, TriggerEventParamName(lib840A968C_gv_classSelectEvent, lib840A968C_gv_choosingPlayer));
 }
 
 bool lib840A968C_gf_ItemhasbeenPurchased (string lp_bankConditionID) {
+    // Automatic Variable Declarations
     // Implementation
     return BankConditionEvaluate(1, (lp_bankConditionID));
 }
@@ -244,15 +258,18 @@ bool lib840A968C_gf_ItemhasbeenPurchased (string lp_bankConditionID) {
 void lib840A968C_gf_CreateUnlockBankKeys (bank lp_bank) {
     int init_i;
 
-    int auto36CF4845_ae;
-    int auto36CF4845_ai;
-    int auto8FFB7043_ae;
-    int auto8FFB7043_ai;
-
     // Variable Declarations
     string[6] lv_armorSlots;
     int lv_slotIndex;
     int lv_armorSetIndex;
+
+    // Automatic Variable Declarations
+    int auto844E2D5C_ae;
+    int auto844E2D5C_var;
+    int auto36CF4845_ae;
+    const int auto36CF4845_ai = 1;
+    const int auto8FFB7043_ae = 5;
+    const int auto8FFB7043_ai = 1;
 
     // Variable Initialization
     for (init_i = 0; init_i <= 5; init_i += 1) {
@@ -262,23 +279,20 @@ void lib840A968C_gf_CreateUnlockBankKeys (bank lp_bank) {
 
     // Implementation
     lv_armorSlots[lv_slotIndex] = UserDataGetString("ArmorSlots", UserDataInstance("ArmorSlots", 1), "Slot", 1);
-    IntLoopBegin(lib1E3F036D_gv_indexBaseValue, UserDataInstanceCount("ArmorSlots"));
-    for ( ; !IntLoopDone() ; IntLoopStep() ) {
-        if ((lv_armorSlots[lv_slotIndex] != UserDataGetString("ArmorSlots", UserDataInstance("ArmorSlots", IntLoopCurrent()), "Slot", 1))) {
+    auto844E2D5C_ae = UserDataInstanceCount("ArmorSlots");
+    auto844E2D5C_var = lib1E3F036D_gv_indexBaseValue;
+    for ( ; auto844E2D5C_var <= auto844E2D5C_ae; auto844E2D5C_var += 1 ) {
+        if ((lv_armorSlots[lv_slotIndex] != UserDataGetString("ArmorSlots", UserDataInstance("ArmorSlots", auto844E2D5C_var), "Slot", 1))) {
             lv_slotIndex += 1;
-            lv_armorSlots[lv_slotIndex] = UserDataGetString("ArmorSlots", UserDataInstance("ArmorSlots", IntLoopCurrent()), "Slot", 1);
+            lv_armorSlots[lv_slotIndex] = UserDataGetString("ArmorSlots", UserDataInstance("ArmorSlots", auto844E2D5C_var), "Slot", 1);
         }
 
     }
-    IntLoopEnd();
     auto36CF4845_ae = lib840A968C_gv_numberofArmorSets;
-    auto36CF4845_ai = 1;
     lv_armorSetIndex = lib1E3F036D_gv_indexBaseValue;
-    for ( ; ( (auto36CF4845_ai >= 0 && lv_armorSetIndex <= auto36CF4845_ae) || (auto36CF4845_ai <= 0 && lv_armorSetIndex >= auto36CF4845_ae) ) ; lv_armorSetIndex += auto36CF4845_ai ) {
-        auto8FFB7043_ae = 5;
-        auto8FFB7043_ai = 1;
+    for ( ; ( (auto36CF4845_ai >= 0 && lv_armorSetIndex <= auto36CF4845_ae) || (auto36CF4845_ai < 0 && lv_armorSetIndex >= auto36CF4845_ae) ) ; lv_armorSetIndex += auto36CF4845_ai ) {
         lv_slotIndex = lib1E3F036D_gv_indexBaseValue;
-        for ( ; ( (auto8FFB7043_ai >= 0 && lv_slotIndex <= auto8FFB7043_ae) || (auto8FFB7043_ai <= 0 && lv_slotIndex >= auto8FFB7043_ae) ) ; lv_slotIndex += auto8FFB7043_ai ) {
+        for ( ; ( (auto8FFB7043_ai >= 0 && lv_slotIndex <= auto8FFB7043_ae) || (auto8FFB7043_ai < 0 && lv_slotIndex >= auto8FFB7043_ae) ) ; lv_slotIndex += auto8FFB7043_ai ) {
             if ((!(BankKeyExists(lp_bank, UserDataGetString("ArmorSet", UserDataInstance("ArmorSet", lv_armorSetIndex), "Name", 1), lv_armorSlots[lv_slotIndex])))) {
                 BankValueSetFromInt(lp_bank, UserDataGetString("ArmorSet", UserDataInstance("ArmorSet", lv_armorSetIndex), "Name", 1), lv_armorSlots[lv_slotIndex], 0);
             }
@@ -288,6 +302,7 @@ void lib840A968C_gf_CreateUnlockBankKeys (bank lp_bank) {
 }
 
 void lib840A968C_gf_ApplyPlayerCustomization () {
+    // Automatic Variable Declarations
     // Implementation
     TriggerSendEvent(lib840A968C_gv_classCustomizationEvent);
 }
@@ -296,26 +311,33 @@ void lib840A968C_gf_ApplyCustomModel (int lp_player) {
     // Variable Declarations
     string lv_modelSet;
 
+    // Automatic Variable Declarations
+    int autoB9164F71_ae;
+    int autoB9164F71_var;
+
     // Variable Initialization
     lv_modelSet = "";
 
     // Implementation
-    IntLoopBegin(1, UserDataInstanceCount("ArmorSlots"));
-    for ( ; !IntLoopDone() ; IntLoopStep() ) {
+    autoB9164F71_ae = UserDataInstanceCount("ArmorSlots");
+    autoB9164F71_var = 1;
+    for ( ; autoB9164F71_var <= autoB9164F71_ae; autoB9164F71_var += 1 ) {
         lv_modelSet = lib840A968C_gf_GetSlotModelSet("");
     }
-    IntLoopEnd();
 }
 
 void lib840A968C_gf_ApplyCustomColor (int lp_player) {
+    // Automatic Variable Declarations
     // Implementation
     libNtve_gf_SendActorMessageToUnit(null, libNtve_gf_SetTintColor(Color(100.00, 100.00, 100.00), 1.0, 0.0));
 }
 
 void lib840A968C_gf_ApplyCustomName () {
+    // Automatic Variable Declarations
 }
 
 int lib840A968C_gf_GetSlotActor (string lp_class) {
+    // Automatic Variable Declarations
     string auto5D3B261E_val;
 
     // Implementation
@@ -335,6 +357,7 @@ int lib840A968C_gf_GetSlotActor (string lp_class) {
 }
 
 string lib840A968C_gf_GetSlotModelSet (string lp_slotName) {
+    // Automatic Variable Declarations
     // Implementation
     return "";
 }
@@ -355,6 +378,7 @@ void lib840A968C_gf_ApplyServiceBranchUpgrade (int lp_player) {
 bool auto_lib840A968C_gf_ApplyServiceBranchUpgrade_TriggerFunc (bool testConds, bool runActions) {
     int lp_player = auto_lib840A968C_gf_ApplyServiceBranchUpgrade_lp_player;
 
+    // Automatic Variable Declarations
     // Implementation
     if ((lib840A968C_gv_players[lp_player].lv_classCustomization.lv_serviceBranch != null)) {
         TechTreeUpgradeAddLevel(lp_player, UserDataGetGameLink("ServiceBranch", lib840A968C_gv_players[lp_player].lv_classCustomization.lv_serviceBranch, "Branch Upgrade", 1), 1);
@@ -363,6 +387,7 @@ bool auto_lib840A968C_gf_ApplyServiceBranchUpgrade_TriggerFunc (bool testConds, 
 }
 
 void lib840A968C_gf_ApplyCustomSidearm (int lp_player) {
+    // Automatic Variable Declarations
     // Implementation
     TechTreeUpgradeAddLevel(lp_player, lib840A968C_gv_players[lp_player].lv_classCustomization.lv_sidearm, 1);
     if ((lib840A968C_gv_players[lp_player].lv_classCustomization.lv_sidearm == "CombatKnifeSidearm")) {
@@ -391,18 +416,22 @@ void lib840A968C_gf_ApplyCharacterMods (int lp_player) {
 bool auto_lib840A968C_gf_ApplyCharacterMods_TriggerFunc (bool testConds, bool runActions) {
     int lp_player = auto_lib840A968C_gf_ApplyCharacterMods_lp_player;
 
+    // Automatic Variable Declarations
+    const int auto85438DB7_ae = 3;
+    int auto85438DB7_var;
+
     // Implementation
-    IntLoopBegin(1, 3);
-    for ( ; !IntLoopDone() ; IntLoopStep() ) {
-        TechTreeUpgradeAddLevel(lp_player, lib840A968C_gv_players[lp_player].lv_classCustomization.lv_characterModifications[IntLoopCurrent()], 1);
-        if ((lib840A968C_gv_players[lp_player].lv_classCustomization.lv_characterModifications[IntLoopCurrent()] != "")) {
+    auto85438DB7_var = 1;
+    for ( ; auto85438DB7_var <= auto85438DB7_ae; auto85438DB7_var += 1 ) {
+        TechTreeUpgradeAddLevel(lp_player, lib840A968C_gv_players[lp_player].lv_classCustomization.lv_characterModifications[auto85438DB7_var], 1);
+        if ((lib840A968C_gv_players[lp_player].lv_classCustomization.lv_characterModifications[auto85438DB7_var] != "")) {
         }
     }
-    IntLoopEnd();
     return true;
 }
 
 void lib840A968C_gf_SendTransmission (text lp_speakerName, text lp_message, int lp_overrideCurrentMessage, int lp_type, int lp_messageDisplayLocation, int lp_speakerFaction, unit lp_speakingUnit) {
+    // Automatic Variable Declarations
     // Implementation
     while (lib840A968C_gv_messageControl) {
         Wait(1.0, c_timeGame);
@@ -421,6 +450,7 @@ void lib840A968C_gf_SendTransmission (text lp_speakerName, text lp_message, int 
 }
 
 int lib840A968C_gf_GetMessagesfromMessageArea (int lp_messageLocation) {
+    // Automatic Variable Declarations
     int auto43486D03_val;
 
     // Implementation
@@ -458,6 +488,7 @@ int lib840A968C_gf_GetMessagesfromMessageArea (int lp_messageLocation) {
 }
 
 soundlink lib840A968C_gf_GetFactionRadioSound (int lp_senderFaction) {
+    // Automatic Variable Declarations
     int autoE09415A6_val;
 
     // Implementation
@@ -486,6 +517,7 @@ soundlink lib840A968C_gf_GetFactionRadioSound (int lp_senderFaction) {
 }
 
 color lib840A968C_gf_GetMessageColor (int lp_event) {
+    // Automatic Variable Declarations
     int autoB8B1FF29_val;
 
     // Implementation
@@ -514,14 +546,20 @@ color lib840A968C_gf_GetMessageColor (int lp_event) {
 }
 
 void lib840A968C_gf_ChapterStart (int lp_chapterPreset) {
+    // Automatic Variable Declarations
+    playergroup autoD0C29A8C_g;
+    int autoD0C29A8C_var;
+
     // Implementation
     lib840A968C_gv_currentChapter = lp_chapterPreset;
     lib840A968C_gv_currentChapterData = UserDataInstance("Chapters", ((lp_chapterPreset) + 1));
-    PlayerGroupLoopBegin(PlayerGroupAll());
-    for ( ; !PlayerGroupLoopDone() ; PlayerGroupLoopStep() ) {
-        libNtve_gf_SetUpgradeLevelForPlayer(PlayerGroupLoopCurrent(), "Chapter1Complete", (lp_chapterPreset));
+    autoD0C29A8C_g = PlayerGroupAll();
+    autoD0C29A8C_var = -1;
+    while (true) {
+        autoD0C29A8C_var = PlayerGroupNextPlayer(autoD0C29A8C_g, autoD0C29A8C_var);
+        if (autoD0C29A8C_var < 0) { break; }
+        libNtve_gf_SetUpgradeLevelForPlayer(autoD0C29A8C_var, "Chapter1Complete", (lp_chapterPreset));
     }
-    PlayerGroupLoopEnd();
     SoundtrackStopCurrent(PlayerGroupAll(), c_soundtrackCategoryAmbience, true);
     SoundtrackPlay(PlayerGroupAll(), c_soundtrackCategoryAmbience, UserDataGetGameLink("Chapters", lib840A968C_gv_currentChapterData, "Chapter Ambient Soundtrack", 1), c_soundtrackCueAny, c_soundtrackIndexAny, true);
     UIShowTextCrawl(PlayerGroupAll(), UserDataGetText("Chapters", lib840A968C_gv_currentChapterData, "Chapter Name", 1), UserDataGetText("Chapters", lib840A968C_gv_currentChapterData, "Chapter Subtitle", 1), 20.0, SoundLink("TextCrawlType", -1), SoundLink("TextCrawlType", -1));
@@ -547,6 +585,7 @@ void lib840A968C_gf_MedicalDropPoolItemSpawn (point lp_location) {
 bool auto_lib840A968C_gf_MedicalDropPoolItemSpawn_TriggerFunc (bool testConds, bool runActions) {
     point lp_location = auto_lib840A968C_gf_MedicalDropPoolItemSpawn_lp_location;
 
+    // Automatic Variable Declarations
     fixed auto3ABD229D_chance;
     fixed auto3ABD229D_roll;
 
@@ -593,6 +632,7 @@ void lib840A968C_gf_FlareDropPoolItemSpawn (point lp_location) {
 bool auto_lib840A968C_gf_FlareDropPoolItemSpawn_TriggerFunc (bool testConds, bool runActions) {
     point lp_location = auto_lib840A968C_gf_FlareDropPoolItemSpawn_lp_location;
 
+    // Automatic Variable Declarations
     fixed auto4DA3A24B_chance;
     fixed auto4DA3A24B_roll;
 
@@ -629,6 +669,7 @@ void lib840A968C_gf_FieldLightDropPoolItemSpawn (point lp_location) {
 bool auto_lib840A968C_gf_FieldLightDropPoolItemSpawn_TriggerFunc (bool testConds, bool runActions) {
     point lp_location = auto_lib840A968C_gf_FieldLightDropPoolItemSpawn_lp_location;
 
+    // Automatic Variable Declarations
     // Implementation
     lib840A968C_gf_SpawnItem(lp_location, "FieldLights", lib840A968C_ge_DropMethod_Locker);
     return true;
@@ -650,6 +691,7 @@ void lib840A968C_gf_AmmoModificationDropPoolItemSpawn (point lp_location) {
 bool auto_lib840A968C_gf_AmmoModificationDropPoolItemSpawn_TriggerFunc (bool testConds, bool runActions) {
     point lp_location = auto_lib840A968C_gf_AmmoModificationDropPoolItemSpawn_lp_location;
 
+    // Automatic Variable Declarations
     fixed auto29BAACFA_chance;
     fixed auto29BAACFA_roll;
 
@@ -696,13 +738,14 @@ void lib840A968C_gf_MagazineDropPoolItemSpawn (point lp_location) {
 bool auto_lib840A968C_gf_MagazineDropPoolItemSpawn_TriggerFunc (bool testConds, bool runActions) {
     point lp_location = auto_lib840A968C_gf_MagazineDropPoolItemSpawn_lp_location;
 
+    // Automatic Variable Declarations
     fixed auto23AA3173_chance;
     fixed auto23AA3173_roll;
-    int auto349FC4BA_n;
+    const int auto349FC4BA_n = 2;
     int auto349FC4BA_i;
-    int auto880855DB_n;
+    const int auto880855DB_n = 3;
     int auto880855DB_i;
-    int auto8A13D3CB_n;
+    const int auto8A13D3CB_n = 4;
     int auto8A13D3CB_i;
 
     // Implementation
@@ -710,7 +753,6 @@ bool auto_lib840A968C_gf_MagazineDropPoolItemSpawn_TriggerFunc (bool testConds, 
     auto23AA3173_roll = RandomFixed(0.0, 100.0);
     if (auto23AA3173_roll >= auto23AA3173_chance && auto23AA3173_roll <= (auto23AA3173_chance + 50.0))
     {
-        auto349FC4BA_n = 2;
         for (auto349FC4BA_i = 1; auto349FC4BA_i <= auto349FC4BA_n; auto349FC4BA_i += 1) {
             lib840A968C_gf_SpawnItem(lp_location, "Magazine", lib840A968C_ge_DropMethod_Locker);
         }
@@ -718,7 +760,6 @@ bool auto_lib840A968C_gf_MagazineDropPoolItemSpawn_TriggerFunc (bool testConds, 
     auto23AA3173_chance += 50.0;
     if (auto23AA3173_roll >= auto23AA3173_chance && auto23AA3173_roll <= (auto23AA3173_chance + 35.0))
     {
-        auto880855DB_n = 3;
         for (auto880855DB_i = 1; auto880855DB_i <= auto880855DB_n; auto880855DB_i += 1) {
             lib840A968C_gf_SpawnItem(lp_location, "Magazine", lib840A968C_ge_DropMethod_Locker);
         }
@@ -726,7 +767,6 @@ bool auto_lib840A968C_gf_MagazineDropPoolItemSpawn_TriggerFunc (bool testConds, 
     auto23AA3173_chance += 35.0;
     if (auto23AA3173_roll >= auto23AA3173_chance && auto23AA3173_roll <= (auto23AA3173_chance + 15.0))
     {
-        auto8A13D3CB_n = 4;
         for (auto8A13D3CB_i = 1; auto8A13D3CB_i <= auto8A13D3CB_n; auto8A13D3CB_i += 1) {
             lib840A968C_gf_SpawnItem(lp_location, "Magazine", lib840A968C_ge_DropMethod_Locker);
         }
@@ -758,6 +798,7 @@ bool auto_lib840A968C_gf_SpawnItem_TriggerFunc (bool testConds, bool runActions)
     string lp_item = auto_lib840A968C_gf_SpawnItem_lp_item;
     int lp_spawnType = auto_lib840A968C_gf_SpawnItem_lp_spawnType;
 
+    // Automatic Variable Declarations
     // Implementation
     if (lib09BE6BA8_gf_PointisVisibletoPlayerGroup(lib840A968C_gf_GetMarineSquadPlayers(), lp_point) && (lp_spawnType != lib840A968C_ge_DropMethod_Locker)) {
         libNtve_gf_CreateActorAtPoint("BarracksDropPod", lp_point);
@@ -769,49 +810,56 @@ bool auto_lib840A968C_gf_SpawnItem_TriggerFunc (bool testConds, bool runActions)
 }
 
 void lib840A968C_gf_PlayerSetup () {
-    playergroup auto8264CA4E_g;
-    int auto8264CA4E_p;
-    playergroup auto47A70290_g;
-    int auto47A70290_p;
-
     // Variable Declarations
     int lv_player;
+
+    // Automatic Variable Declarations
+    playergroup auto8264CA4E_g;
+    playergroup auto47A70290_g;
 
     // Variable Initialization
 
     // Implementation
-    auto8264CA4E_g = GameAttributePlayersForTeam(1); 
-    auto8264CA4E_p = 1;
-    for ( ; auto8264CA4E_p <= PlayerGroupCount(auto8264CA4E_g) ; auto8264CA4E_p += BoolToInt(lv_player == PlayerGroupPlayer(auto8264CA4E_g, auto8264CA4E_p)) ) {
-        lv_player = PlayerGroupPlayer(auto8264CA4E_g, auto8264CA4E_p);
+    auto8264CA4E_g = GameAttributePlayersForTeam(1);
+    lv_player = -1;
+    while (true) {
+        lv_player = PlayerGroupNextPlayer(auto8264CA4E_g, lv_player);
+        if (lv_player < 0) { break; }
         PlayerGroupAdd(lib840A968C_gv_marineSquad, lv_player);
         TextExpressionSetToken("Param/Expression/lib_840A968C_46716C7E", "A", PlayerName(lv_player));
         TriggerDebugOutput(lib840A968C_gv_playerEvents, TextExpressionAssemble("Param/Expression/lib_840A968C_46716C7E"), false);
     }
     lib840A968C_gf_LoadBanks();
     libNtve_gf_AddPlayerGroupToPlayerGroup(lib840A968C_gv_marineSquad, lib840A968C_gv_livingMarines);
-    auto47A70290_g = lib840A968C_gv_livingMarines; 
-    auto47A70290_p = 1;
-    for ( ; auto47A70290_p <= PlayerGroupCount(auto47A70290_g) ; auto47A70290_p += BoolToInt(lv_player == PlayerGroupPlayer(auto47A70290_g, auto47A70290_p)) ) {
-        lv_player = PlayerGroupPlayer(auto47A70290_g, auto47A70290_p);
+    auto47A70290_g = lib840A968C_gv_livingMarines;
+    lv_player = -1;
+    while (true) {
+        lv_player = PlayerGroupNextPlayer(auto47A70290_g, lv_player);
+        if (lv_player < 0) { break; }
         lib840A968C_gv_players[lv_player].lv_gamesPlayed += 1;
     }
     lib840A968C_gf_ApplyPlayerCustomization();
 }
 
 void lib840A968C_gf_DefaultAllianceStates () {
+    // Automatic Variable Declarations
+    playergroup auto5E83259B_g;
+    int auto5E83259B_var;
+
     // Implementation
     libNtve_gf_SetPlayerGroupAlliance(lib840A968C_gv_marineSquad, libNtve_ge_AllianceSetting_Ally);
-    PlayerGroupLoopBegin(lib840A968C_gv_marineSquad);
-    for ( ; !PlayerGroupLoopDone() ; PlayerGroupLoopStep() ) {
-        libNtve_gf_SetAlliance(PlayerGroupLoopCurrent(), lib1E3F036D_gv_peacekeeperPlayer, libNtve_ge_AllianceSetting_AllyWithSharedVision);
-        PlayerSetAlliance(lib1E3F036D_gv_peacekeeperPlayer, c_allianceIdPushable, PlayerGroupLoopCurrent(), true);
-        libNtve_gf_SetAlliance(PlayerGroupLoopCurrent(), lib1E3F036D_gv_zombiePlayer, libNtve_ge_AllianceSetting_Enemy);
-        libNtve_gf_SetAlliance(PlayerGroupLoopCurrent(), lib1E3F036D_gv_hALPlayer, libNtve_ge_AllianceSetting_Enemy);
-        libNtve_gf_SetAlliance(PlayerGroupLoopCurrent(), lib1E3F036D_gv_testSubjects, libNtve_ge_AllianceSetting_Enemy);
-        libNtve_gf_SetAlliance(PlayerGroupLoopCurrent(), lib1E3F036D_gv_mercenaryPlayer, libNtve_ge_AllianceSetting_Neutral);
+    auto5E83259B_g = lib840A968C_gv_marineSquad;
+    auto5E83259B_var = -1;
+    while (true) {
+        auto5E83259B_var = PlayerGroupNextPlayer(auto5E83259B_g, auto5E83259B_var);
+        if (auto5E83259B_var < 0) { break; }
+        libNtve_gf_SetAlliance(auto5E83259B_var, lib1E3F036D_gv_peacekeeperPlayer, libNtve_ge_AllianceSetting_AllyWithSharedVision);
+        PlayerSetAlliance(lib1E3F036D_gv_peacekeeperPlayer, c_allianceIdPushable, auto5E83259B_var, true);
+        libNtve_gf_SetAlliance(auto5E83259B_var, lib1E3F036D_gv_zombiePlayer, libNtve_ge_AllianceSetting_Enemy);
+        libNtve_gf_SetAlliance(auto5E83259B_var, lib1E3F036D_gv_hALPlayer, libNtve_ge_AllianceSetting_Enemy);
+        libNtve_gf_SetAlliance(auto5E83259B_var, lib1E3F036D_gv_testSubjects, libNtve_ge_AllianceSetting_Enemy);
+        libNtve_gf_SetAlliance(auto5E83259B_var, lib1E3F036D_gv_mercenaryPlayer, libNtve_ge_AllianceSetting_Neutral);
     }
-    PlayerGroupLoopEnd();
     libNtve_gf_SetAlliance(lib1E3F036D_gv_peacekeeperPlayer, lib1E3F036D_gv_zombiePlayer, libNtve_ge_AllianceSetting_Enemy);
     libNtve_gf_SetAlliance(lib1E3F036D_gv_hALPlayer, lib1E3F036D_gv_zombiePlayer, libNtve_ge_AllianceSetting_Enemy);
     libNtve_gf_SetAlliance(lib1E3F036D_gv_mercenaryPlayer, lib1E3F036D_gv_zombiePlayer, libNtve_ge_AllianceSetting_Enemy);
@@ -828,21 +876,31 @@ void lib840A968C_gf_SetGameDifficulty () {
     // Variable Declarations
     fixed lv_totalRating;
 
+    // Automatic Variable Declarations
+    playergroup autoE6B68773_g;
+    int autoE6B68773_var;
+    playergroup auto25311DED_g;
+    int auto25311DED_var;
+
     // Variable Initialization
 
     // Implementation
-    PlayerGroupLoopBegin(lib840A968C_gv_marineSquad);
-    for ( ; !PlayerGroupLoopDone() ; PlayerGroupLoopStep() ) {
-        lib840A968C_gv_players[PlayerGroupLoopCurrent()].lv_currentRank = UserDataInstance("Ranks", lib840A968C_gv_players[PlayerGroupLoopCurrent()].lv_currentRankIndex);
-        lib840A968C_gf_RatingBonusAdjustment(PlayerGroupLoopCurrent());
+    autoE6B68773_g = lib840A968C_gv_marineSquad;
+    autoE6B68773_var = -1;
+    while (true) {
+        autoE6B68773_var = PlayerGroupNextPlayer(autoE6B68773_g, autoE6B68773_var);
+        if (autoE6B68773_var < 0) { break; }
+        lib840A968C_gv_players[autoE6B68773_var].lv_currentRank = UserDataInstance("Ranks", lib840A968C_gv_players[autoE6B68773_var].lv_currentRankIndex);
+        lib840A968C_gf_RatingBonusAdjustment(autoE6B68773_var);
     }
-    PlayerGroupLoopEnd();
     TriggerDebugOutput(lib840A968C_gv_gameEvents, StringExternal("Param/Value/lib_840A968C_3C6819BA"), false);
-    PlayerGroupLoopBegin(lib840A968C_gv_marineSquad);
-    for ( ; !PlayerGroupLoopDone() ; PlayerGroupLoopStep() ) {
-        lv_totalRating += lib840A968C_gv_players[PlayerGroupLoopCurrent()].lv_rating;
+    auto25311DED_g = lib840A968C_gv_marineSquad;
+    auto25311DED_var = -1;
+    while (true) {
+        auto25311DED_var = PlayerGroupNextPlayer(auto25311DED_g, auto25311DED_var);
+        if (auto25311DED_var < 0) { break; }
+        lv_totalRating += lib840A968C_gv_players[auto25311DED_var].lv_rating;
     }
-    PlayerGroupLoopEnd();
     lib1E3F036D_gf_SetGameDifficultyforPlayerGroup(PlayerGroupAll(), lib840A968C_gv_difficulty);
     lib840A968C_gv_squadRating = RoundI((lv_totalRating / PlayerGroupCount(lib840A968C_gv_marineSquad)));
 }
@@ -851,6 +909,7 @@ void lib840A968C_gf_CreateDifficultySelection () {
     // Variable Declarations
     int lv_templateFrame;
 
+    // Automatic Variable Declarations
     // Variable Initialization
     lv_templateFrame = c_invalidDialogControlId;
 
@@ -880,6 +939,7 @@ void lib840A968C_gf_CreateDifficultySelection () {
 }
 
 bool lib840A968C_gf_GetMissionType (string lp_mission) {
+    // Automatic Variable Declarations
     // Implementation
     if ((UserDataGetString("MissionData", lp_mission, "Mission Type", 1) == "Primary")) {
         return true;
@@ -890,11 +950,13 @@ bool lib840A968C_gf_GetMissionType (string lp_mission) {
 }
 
 trigger lib840A968C_gf_GetMissionProgression (int lp_missionToken) {
+    // Automatic Variable Declarations
     // Implementation
     return lib840A968C_gv_missionData[lp_missionToken].lv_missionProgression;
 }
 
 string lib840A968C_gf_GetMissionSignal (int lp_missionToken) {
+    // Automatic Variable Declarations
     // Implementation
     return lib840A968C_gv_missionData[lp_missionToken].lv_nextMissionSignal;
 }
@@ -903,6 +965,7 @@ int lib840A968C_gf_MissionStart (string lp_mission, trigger lp_progressionTrigge
     // Variable Declarations
     int lv_missionToken;
 
+    // Automatic Variable Declarations
     // Variable Initialization
     lv_missionToken = lib840A968C_gv_missionIndex;
 
@@ -926,6 +989,7 @@ int lib840A968C_gf_MissionStart (string lp_mission, trigger lp_progressionTrigge
 }
 
 void lib840A968C_gf_MissionEnd (int lp_missionOutcome, int lp_missionToken) {
+    // Automatic Variable Declarations
     // Implementation
     if ((lp_missionOutcome == c_objectiveStateCompleted)) {
         lib840A968C_gf_MissonRewards(lib840A968C_gv_missionData[lp_missionToken].lv_missionData);
@@ -943,6 +1007,7 @@ void lib840A968C_gf_MissionEnd (int lp_missionOutcome, int lp_missionToken) {
 }
 
 void lib840A968C_gf_MissonRewards (string lp_mission) {
+    // Automatic Variable Declarations
     // Implementation
     lib840A968C_gf_AwardTeamXP(UserDataGetInt("MissionData", lp_mission, "Player XP Reward", 1));
     lib840A968C_gf_AwardTeamMarineXP(UserDataGetFixed("MissionData", lp_mission, "Marine XP Reward", 1));
@@ -950,63 +1015,80 @@ void lib840A968C_gf_MissonRewards (string lp_mission) {
 }
 
 bool lib840A968C_gf_PointNotNearUnitGroupUnits (point lp_targetPoint, unitgroup lp_unitGroup, fixed lp_distance) {
+    // Automatic Variable Declarations
     // Implementation
     return (DistanceBetweenPoints(lp_targetPoint, UnitGetPosition(UnitGroupClosestToPoint(lp_unitGroup, lp_targetPoint))) >= lp_distance);
 }
 
 playergroup lib840A968C_gf_GetMarineSquadPlayers () {
+    // Automatic Variable Declarations
     // Implementation
     return PlayerGroupCopy(lib840A968C_gv_marineSquad);
 }
 
 playergroup lib840A968C_gf_GetLivingMarineSquadPlayers () {
+    // Automatic Variable Declarations
     // Implementation
     return PlayerGroupCopy(lib840A968C_gv_livingMarines);
 }
 
 playergroup lib840A968C_gf_GetDeadMarineSquadPlayers () {
+    // Automatic Variable Declarations
     // Implementation
     return PlayerGroupCopy(lib840A968C_gv_deadMarines);
 }
 
 playergroup lib840A968C_gf_GetPets () {
+    // Automatic Variable Declarations
     // Implementation
     return PlayerGroupCopy(lib840A968C_gv_pets);
 }
 
 unit lib840A968C_gf_GetMarine (int lp_player) {
+    // Automatic Variable Declarations
     // Implementation
     return libC50FD636_gv_marines[lp_player].lv_unit;
 }
 
 unitgroup lib840A968C_gf_GetMarineGroup () {
+    // Automatic Variable Declarations
     // Implementation
     return libC50FD636_gv_marinesUnitGroup;
 }
 
 bool lib840A968C_gf_IsAMarine (unit lp_unit) {
+    // Automatic Variable Declarations
     // Implementation
     return UnitGroupHasUnit(lib840A968C_gf_GetMarineGroup(), lp_unit);
 }
 
 void lib840A968C_gf_RatingFromDeath (int lp_player) {
+    // Automatic Variable Declarations
 }
 
 void lib840A968C_gf_DeathShareVision (int lp_deadPlayer) {
+    // Automatic Variable Declarations
+    playergroup autoB771FD38_g;
+    int autoB771FD38_var;
+
     // Implementation
-    PlayerGroupLoopBegin(lib840A968C_gv_livingMarines);
-    for ( ; !PlayerGroupLoopDone() ; PlayerGroupLoopStep() ) {
-        PlayerSetAlliance(PlayerGroupLoopCurrent(), c_allianceIdVision, lp_deadPlayer, true);
+    autoB771FD38_g = lib840A968C_gv_livingMarines;
+    autoB771FD38_var = -1;
+    while (true) {
+        autoB771FD38_var = PlayerGroupNextPlayer(autoB771FD38_g, autoB771FD38_var);
+        if (autoB771FD38_var < 0) { break; }
+        PlayerSetAlliance(autoB771FD38_var, c_allianceIdVision, lp_deadPlayer, true);
     }
-    PlayerGroupLoopEnd();
 }
 
 bool lib840A968C_gf_PlayerHasPet (int lp_player) {
+    // Automatic Variable Declarations
     // Implementation
     return true;
 }
 
 void lib840A968C_gf_SpawnPet (int lp_player, fixed lp_deadMarineExperience, point lp_spawnPosition) {
+    // Automatic Variable Declarations
     // Implementation
     libNtve_gf_CreateUnitsWithDefaultFacing(1, lib840A968C_gv_players[lp_player].lv_classCustomization.lv_pet, 0, lp_player, lp_spawnPosition);
     libC50FD636_gv_marines[lp_player].lv_unit = UnitLastCreated();
@@ -1016,6 +1098,7 @@ void lib840A968C_gf_SpawnPet (int lp_player, fixed lp_deadMarineExperience, poin
 }
 
 void lib840A968C_gf_DropEquippedMagazines (point lp_dropPoint, int lp_numberofMagazines) {
+    // Automatic Variable Declarations
     // Implementation
     libNtve_gf_CreateUnitsWithDefaultFacing((FixedToInt(lp_numberofMagazines) / 9), "Magazine", 0, 0, lp_dropPoint);
     if (((ModI(FixedToInt(lp_numberofMagazines), 9) / 3) > 0)) {
@@ -1026,14 +1109,16 @@ void lib840A968C_gf_DropEquippedMagazines (point lp_dropPoint, int lp_numberofMa
 }
 
 void lib840A968C_gf_SetRankData (int lp_player) {
+    // Automatic Variable Declarations
 }
 
 void lib840A968C_gf_CreateBankDefaultKeyValues (bank lp_bank) {
-    int autoDF24C959_u;
-    string auto54221216_val;
-
     // Variable Declarations
     string lv_currentInstance;
+
+    // Automatic Variable Declarations
+    int autoDF24C959_u;
+    string auto54221216_val;
 
     // Variable Initialization
 
@@ -1069,24 +1154,26 @@ void lib840A968C_gf_CreateBankDefaultKeyValues (bank lp_bank) {
 }
 
 void lib840A968C_gf_PreloadBanks () {
+    // Automatic Variable Declarations
     // Implementation
 }
 
 void lib840A968C_gf_LoadBanks () {
-    playergroup autoC10AA4AF_g;
-    int autoC10AA4AF_p;
-
     // Variable Declarations
     int lv_player;
+
+    // Automatic Variable Declarations
+    playergroup autoC10AA4AF_g;
 
     // Variable Initialization
 
     // Implementation
     lib840A968C_gf_PreloadBanks();
-    autoC10AA4AF_g = lib840A968C_gv_marineSquad; 
-    autoC10AA4AF_p = 1;
-    for ( ; autoC10AA4AF_p <= PlayerGroupCount(autoC10AA4AF_g) ; autoC10AA4AF_p += BoolToInt(lv_player == PlayerGroupPlayer(autoC10AA4AF_g, autoC10AA4AF_p)) ) {
-        lv_player = PlayerGroupPlayer(autoC10AA4AF_g, autoC10AA4AF_p);
+    autoC10AA4AF_g = lib840A968C_gv_marineSquad;
+    lv_player = -1;
+    while (true) {
+        lv_player = PlayerGroupNextPlayer(autoC10AA4AF_g, lv_player);
+        if (lv_player < 0) { break; }
         BankLoad(lib840A968C_gv_playerDataBankName, lv_player);
         lib840A968C_gv_playerBanks[lv_player].lv_playerData = BankLastCreated();
         lib840A968C_gf_CreateBankDefaultKeyValues(lib840A968C_gv_playerBanks[lv_player].lv_playerData);
@@ -1119,6 +1206,7 @@ bool auto_lib840A968C_gf_LoadDataBankData_TriggerFunc (bool testConds, bool runA
     int lp_player = auto_lib840A968C_gf_LoadDataBankData_lp_player;
     bank lp_bank = auto_lib840A968C_gf_LoadDataBankData_lp_bank;
 
+    // Automatic Variable Declarations
     // Implementation
     TextExpressionSetToken("Param/Expression/lib_840A968C_E9186E10", "Player", PlayerName(lp_player));
     TriggerDebugOutput(lib840A968C_gv_banks, TextExpressionAssemble("Param/Expression/lib_840A968C_E9186E10"), false);
@@ -1141,6 +1229,7 @@ bool auto_lib840A968C_gf_LoadDataBankData_TriggerFunc (bool testConds, bool runA
 }
 
 void lib840A968C_gf_LoadCustomizationBankData (int lp_player, bank lp_bank) {
+    // Automatic Variable Declarations
     // Implementation
     TextExpressionSetToken("Param/Expression/lib_840A968C_81DD2B7D", "Player", PlayerName(lp_player));
     TriggerDebugOutput(lib840A968C_gv_banks, TextExpressionAssemble("Param/Expression/lib_840A968C_81DD2B7D"), false);
@@ -1155,6 +1244,7 @@ void lib840A968C_gf_LoadCustomizationBankData (int lp_player, bank lp_bank) {
 }
 
 void lib840A968C_gf_DataBoundsCheck (int lp_player) {
+    // Automatic Variable Declarations
     // Implementation
     lib840A968C_gv_players[lp_player].lv_rating = libNtve_gf_ArithmeticRealClamp(lib840A968C_gv_players[lp_player].lv_rating, 0.0, 3000.0);
 }
@@ -1178,6 +1268,7 @@ bool auto_lib840A968C_gf_SaveDataBank_TriggerFunc (bool testConds, bool runActio
     int lp_player = auto_lib840A968C_gf_SaveDataBank_lp_player;
     bank lp_bank = auto_lib840A968C_gf_SaveDataBank_lp_bank;
 
+    // Automatic Variable Declarations
     // Implementation
     lib840A968C_gf_DataBoundsCheck(lp_player);
     TextExpressionSetToken("Param/Expression/lib_840A968C_9EC95DE9", "A", PlayerName(lp_player));
@@ -1220,6 +1311,7 @@ bool auto_lib840A968C_gf_SaveCustomizationBank_TriggerFunc (bool testConds, bool
     int lp_player = auto_lib840A968C_gf_SaveCustomizationBank_lp_player;
     bank lp_bank = auto_lib840A968C_gf_SaveCustomizationBank_lp_bank;
 
+    // Automatic Variable Declarations
     // Implementation
     TextExpressionSetToken("Param/Expression/lib_840A968C_59D9B370", "A", PlayerName(lp_player));
     TriggerDebugOutput(lib840A968C_gv_banks, TextExpressionAssemble("Param/Expression/lib_840A968C_59D9B370"), false);
@@ -1236,11 +1328,13 @@ bool auto_lib840A968C_gf_SaveCustomizationBank_TriggerFunc (bool testConds, bool
 }
 
 string lib840A968C_gf_GetSectionName (string lp_section) {
+    // Automatic Variable Declarations
     // Implementation
     return (lp_section);
 }
 
 string lib840A968C_gf_GetKeyName (string lp_key) {
+    // Automatic Variable Declarations
     // Implementation
     return (lp_key);
 }
@@ -1249,6 +1343,7 @@ void lib840A968C_gf_CreateProfileBank (int lp_player, int lp_profile) {
     // Variable Declarations
     int lv_index;
 
+    // Automatic Variable Declarations
     // Variable Initialization
 
     // Implementation
@@ -1259,11 +1354,13 @@ void lib840A968C_gf_CreateProfileBank (int lp_player, int lp_profile) {
 }
 
 void lib840A968C_gf_LoadActiveProfile (int lp_player) {
+    // Automatic Variable Declarations
     // Implementation
     BankLoad(BankValueGetAsString(lib840A968C_gv_playerBanks[lp_player].lv_playerData, UserDataGetString("BankStructure", "Active Profile", "Section", 1), UserDataGetString("BankStructure", "Active Profile", "Key", 1)), lp_player);
 }
 
 void lib840A968C_gf_AwardRating (int lp_experienceGained, int lp_player) {
+    // Automatic Variable Declarations
     // Implementation
     if ((((PlayerDifficulty(lp_player) == 0) && (lib840A968C_gv_players[lp_player].lv_rating >= 1500)) || ((PlayerDifficulty(lp_player) == 1) && (lib840A968C_gv_players[lp_player].lv_rating >= 1800)))) {
         return ;
@@ -1276,6 +1373,7 @@ void lib840A968C_gf_RatingBonusAdjustment (int lp_player) {
     string lv_currentRatingBonus;
     int lv_index;
 
+    // Automatic Variable Declarations
     // Variable Initialization
     lv_currentRatingBonus = "2000 Rating";
     lv_index = 1;
@@ -1296,11 +1394,13 @@ void lib840A968C_gf_RatingBonusAdjustment (int lp_player) {
 }
 
 string lib840A968C_gf_GetPlayerRank (int lp_player) {
+    // Automatic Variable Declarations
     // Implementation
     return lib840A968C_gv_players[lp_player].lv_currentRank;
 }
 
 void lib840A968C_gf_AwardPlayerXP (int lp_player, int lp_xP) {
+    // Automatic Variable Declarations
     // Implementation
     if (PlayerGroupHasPlayer(lib840A968C_gv_livingMarines, lp_player)) {
         lib840A968C_gv_players[lp_player].lv_totalExperience += lp_xP;
@@ -1323,46 +1423,56 @@ void lib840A968C_gf_AwardPlayerXP (int lp_player, int lp_xP) {
 }
 
 void lib840A968C_gf_AwardTeamXP (int lp_xP) {
-    playergroup auto22B00990_g;
-    int auto22B00990_p;
-    playergroup auto60DB124E_g;
-    int auto60DB124E_p;
-
     // Variable Declarations
     int lv_alivePlayer;
+
+    // Automatic Variable Declarations
+    playergroup auto22B00990_g;
+    playergroup auto60DB124E_g;
 
     // Variable Initialization
 
     // Implementation
-    auto22B00990_g = lib840A968C_gv_livingMarines; 
-    auto22B00990_p = 1;
-    for ( ; auto22B00990_p <= PlayerGroupCount(auto22B00990_g) ; auto22B00990_p += BoolToInt(lv_alivePlayer == PlayerGroupPlayer(auto22B00990_g, auto22B00990_p)) ) {
-        lv_alivePlayer = PlayerGroupPlayer(auto22B00990_g, auto22B00990_p);
+    auto22B00990_g = lib840A968C_gv_livingMarines;
+    lv_alivePlayer = -1;
+    while (true) {
+        lv_alivePlayer = PlayerGroupNextPlayer(auto22B00990_g, lv_alivePlayer);
+        if (lv_alivePlayer < 0) { break; }
         lib840A968C_gf_AwardPlayerXP(lv_alivePlayer, lp_xP);
     }
-    auto60DB124E_g = lib840A968C_gv_pets; 
-    auto60DB124E_p = 1;
-    for ( ; auto60DB124E_p <= PlayerGroupCount(auto60DB124E_g) ; auto60DB124E_p += BoolToInt(lv_alivePlayer == PlayerGroupPlayer(auto60DB124E_g, auto60DB124E_p)) ) {
-        lv_alivePlayer = PlayerGroupPlayer(auto60DB124E_g, auto60DB124E_p);
+    auto60DB124E_g = lib840A968C_gv_pets;
+    lv_alivePlayer = -1;
+    while (true) {
+        lv_alivePlayer = PlayerGroupNextPlayer(auto60DB124E_g, lv_alivePlayer);
+        if (lv_alivePlayer < 0) { break; }
         lib840A968C_gf_AwardPlayerXP(lv_alivePlayer, lp_xP);
     }
 }
 
 void lib840A968C_gf_AwardUnitXP (fixed lp_xP, unit lp_unit) {
+    // Automatic Variable Declarations
     // Implementation
     UnitSetPropertyFixed(lp_unit, c_unitPropXP, (UnitGetPropertyFixed(lp_unit, c_unitPropXP, c_unitPropCurrent) + lp_xP));
 }
 
 void lib840A968C_gf_AwardTeamMarineXP (fixed lp_xP) {
+    // Automatic Variable Declarations
+    unitgroup auto41E082FB_g;
+    int auto41E082FB_u;
+    unit auto41E082FB_var;
+
     // Implementation
-    UnitGroupLoopBegin(lib840A968C_gf_GetMarineGroup());
-    for ( ; !UnitGroupLoopDone() ; UnitGroupLoopStep() ) {
-        lib840A968C_gf_AwardUnitXP(lp_xP, UnitGroupLoopCurrent());
+    auto41E082FB_g = lib840A968C_gf_GetMarineGroup();
+    auto41E082FB_u = UnitGroupCount(auto41E082FB_g, c_unitCountAll);
+    for (;; auto41E082FB_u -= 1) {
+        auto41E082FB_var = UnitGroupUnitFromEnd(auto41E082FB_g, auto41E082FB_u);
+        if (auto41E082FB_var == null) { break; }
+        lib840A968C_gf_AwardUnitXP(lp_xP, auto41E082FB_var);
     }
-    UnitGroupLoopEnd();
 }
 
 void lib840A968C_gf_AwardCredits (int lp_player, int lp_credits) {
+    // Automatic Variable Declarations
     // Implementation
     if (PlayerGroupHasPlayer(lib840A968C_gv_livingMarines, lp_player)) {
         lib840A968C_gv_players[lp_player].lv_credits += lp_credits;
@@ -1375,32 +1485,34 @@ void lib840A968C_gf_AwardCredits (int lp_player, int lp_credits) {
 }
 
 void lib840A968C_gf_AwardTeamCredits (int lp_credits) {
-    playergroup auto0EBA3343_g;
-    int auto0EBA3343_p;
-    playergroup auto75A805B4_g;
-    int auto75A805B4_p;
-
     // Variable Declarations
     int lv_alivePlayer;
+
+    // Automatic Variable Declarations
+    playergroup auto0EBA3343_g;
+    playergroup auto75A805B4_g;
 
     // Variable Initialization
 
     // Implementation
-    auto0EBA3343_g = lib840A968C_gv_livingMarines; 
-    auto0EBA3343_p = 1;
-    for ( ; auto0EBA3343_p <= PlayerGroupCount(auto0EBA3343_g) ; auto0EBA3343_p += BoolToInt(lv_alivePlayer == PlayerGroupPlayer(auto0EBA3343_g, auto0EBA3343_p)) ) {
-        lv_alivePlayer = PlayerGroupPlayer(auto0EBA3343_g, auto0EBA3343_p);
+    auto0EBA3343_g = lib840A968C_gv_livingMarines;
+    lv_alivePlayer = -1;
+    while (true) {
+        lv_alivePlayer = PlayerGroupNextPlayer(auto0EBA3343_g, lv_alivePlayer);
+        if (lv_alivePlayer < 0) { break; }
         lib840A968C_gf_AwardCredits(lv_alivePlayer, lp_credits);
     }
-    auto75A805B4_g = lib840A968C_gv_pets; 
-    auto75A805B4_p = 1;
-    for ( ; auto75A805B4_p <= PlayerGroupCount(auto75A805B4_g) ; auto75A805B4_p += BoolToInt(lv_alivePlayer == PlayerGroupPlayer(auto75A805B4_g, auto75A805B4_p)) ) {
-        lv_alivePlayer = PlayerGroupPlayer(auto75A805B4_g, auto75A805B4_p);
+    auto75A805B4_g = lib840A968C_gv_pets;
+    lv_alivePlayer = -1;
+    while (true) {
+        lv_alivePlayer = PlayerGroupNextPlayer(auto75A805B4_g, lv_alivePlayer);
+        if (lv_alivePlayer < 0) { break; }
         lib840A968C_gf_AwardCredits(lv_alivePlayer, lp_credits);
     }
 }
 
 void lib840A968C_gf_RankUp (int lp_player) {
+    // Automatic Variable Declarations
     // Implementation
     lib840A968C_gv_players[lp_player].lv_currentRankIndex += 1;
     lib840A968C_gv_players[lp_player].lv_currentRank = UserDataInstance("Ranks", lib840A968C_gv_players[lp_player].lv_currentRankIndex);
@@ -1408,11 +1520,13 @@ void lib840A968C_gf_RankUp (int lp_player) {
 }
 
 bool lib840A968C_gf_RankUpCheck (int lp_player) {
+    // Automatic Variable Declarations
     // Implementation
     return (lib840A968C_gv_players[lp_player].lv_totalExperience >= UserDataGetInt("Ranks", UserDataInstance("Ranks", (lib840A968C_gv_players[lp_player].lv_currentRankIndex + 1)), "XP Required", 1));
 }
 
 fixed lib840A968C_gf_RatingLoss (int lp_player) {
+    // Automatic Variable Declarations
     // Implementation
     if ((lib840A968C_gv_players[lp_player].lv_rating < 1500.0)) {
         return 0.25;
@@ -1424,6 +1538,7 @@ fixed lib840A968C_gf_RatingLoss (int lp_player) {
 }
 
 text lib840A968C_gf_GetPlayerNamewithrank (int lp_player) {
+    // Automatic Variable Declarations
     // Implementation
     TextExpressionSetToken("Param/Expression/lib_840A968C_7B7BB48C", "B", UserDataGetText("Ranks", lib840A968C_gv_players[lp_player].lv_currentRank, "Title Brief", 1));
     TextExpressionSetToken("Param/Expression/lib_840A968C_7B7BB48C", "A", PlayerName(lp_player));
@@ -1431,6 +1546,7 @@ text lib840A968C_gf_GetPlayerNamewithrank (int lp_player) {
 }
 
 void lib840A968C_gf_BackgroundDialog (unit lp_unit, text lp_speaker, text lp_speechText, int lp_speechType, fixed lp_dialogDuration) {
+    // Automatic Variable Declarations
     // Implementation
     if ((!(UnitIsAlive(lp_unit)))) {
         return ;
@@ -1447,6 +1563,7 @@ void lib840A968C_gf_BackgroundDialog (unit lp_unit, text lp_speaker, text lp_spe
 }
 
 void lib840A968C_gf_Assert (string lp_test, string lp_expectedValue, string lp_testMessage) {
+    // Automatic Variable Declarations
     // Implementation
     if (StringEqual(lp_test, lp_expectedValue, c_stringCase)) {
         TriggerDebugOutput(lib840A968C_gv_asserts, StringToText((lp_testMessage + "Passed")), true);
@@ -1457,6 +1574,7 @@ void lib840A968C_gf_Assert (string lp_test, string lp_expectedValue, string lp_t
 }
 
 void lib840A968C_gf_AssertBankLoad () {
+    // Automatic Variable Declarations
     // Implementation
     PlayerGroupAdd(lib840A968C_gv_marineSquad, 1);
     lib840A968C_gf_LoadBanks();
@@ -1469,6 +1587,7 @@ void lib840A968C_gf_AssertBankLoad () {
 }
 
 void lib840A968C_gf_AssertBankCreation () {
+    // Automatic Variable Declarations
     // Implementation
     TriggerDebugOutput(lib840A968C_gv_asserts, StringExternal("Param/Value/lib_840A968C_977CD454"), true);
     lib840A968C_gf_Assert(IntToString(BankValueGetAsInt(lib840A968C_gv_playerBanks[1].lv_playerData, lib840A968C_gf_GetSectionName("PlayerData"), lib840A968C_gf_GetKeyName("TotalExperience"))), "0", "Total Experience: ");
@@ -1479,6 +1598,7 @@ void lib840A968C_gf_AssertBankCreation () {
 }
 
 void lib840A968C_gf_AssertBankSave () {
+    // Automatic Variable Declarations
     // Implementation
     lib840A968C_gv_players[1].lv_totalExperience = 500;
     lib840A968C_gv_players[1].lv_rating = 2000;
@@ -1495,6 +1615,7 @@ void lib840A968C_gf_AssertBankSave () {
 }
 
 void lib840A968C_gf_AssertXPAward () {
+    // Automatic Variable Declarations
     // Implementation
     lib840A968C_gv_players[1].lv_totalExperience = 0;
     lib840A968C_gv_players[1].lv_availableExperience = 0;
@@ -1505,6 +1626,7 @@ void lib840A968C_gf_AssertXPAward () {
 }
 
 void lib840A968C_gf_AssertMarineExperienceAward () {
+    // Automatic Variable Declarations
     // Implementation
     lib840A968C_gf_AwardUnitXP(30.0, libC50FD636_gv_marines[1].lv_unit);
     TriggerDebugOutput(lib840A968C_gv_asserts, StringExternal("Param/Value/lib_840A968C_58C6EEA9"), true);
@@ -1512,6 +1634,7 @@ void lib840A968C_gf_AssertMarineExperienceAward () {
 }
 
 void lib840A968C_gf_AssertClassCreation () {
+    // Automatic Variable Declarations
     // Implementation
     libC50FD636_gv_marines[1].lv_class = "Rifleman";
     TriggerDebugOutput(lib840A968C_gv_asserts, StringExternal("Param/Value/lib_840A968C_06C84448"), true);
@@ -1520,6 +1643,7 @@ void lib840A968C_gf_AssertClassCreation () {
 }
 
 bool lib840A968C_gf_IsaDeveloper (string lp_handle) {
+    // Automatic Variable Declarations
     // Implementation
     return (StringEqual("6-S2-1-750760", lp_handle, c_stringCase) || StringEqual("1-S2-1-3765578", lp_handle, c_stringCase) || StringEqual("1-S2-1-431521", lp_handle, c_stringCase) || StringEqual("1-S2-1-1143628", lp_handle, c_stringCase) || StringEqual("1-S2-1-1213024", lp_handle, c_stringCase));
 }
@@ -1532,6 +1656,7 @@ bool lib840A968C_gt_ArmorSlotDropdownSelection_Func (bool testConds, bool runAct
     // Variable Declarations
     actor lv_selectedArmorActor;
 
+    // Automatic Variable Declarations
     // Variable Initialization
     lv_selectedArmorActor = ActorFromScope(ActorScopeFromActor(lib840A968C_gv_unitModelFrameActor), UserDataGetString("ArmorPiece", UserDataInstance("ArmorPiece", DialogControlGetSelectedItem(EventDialogControl(), EventPlayer())), "Armor Actor Alias", 1));
 
@@ -1557,6 +1682,7 @@ void lib840A968C_gt_ArmorSlotDropdownSelection_Init () {
 // Trigger: Armor Set Dropdown Selection
 //--------------------------------------------------------------------------------------------------
 bool lib840A968C_gt_ArmorSetDropdownSelection_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
     // Actions
     if (!runActions) {
         return true;
@@ -1577,12 +1703,15 @@ void lib840A968C_gt_ArmorSetDropdownSelection_Init () {
 // Trigger: Display Class Selection
 //--------------------------------------------------------------------------------------------------
 bool lib840A968C_gt_DisplayClassSelection_Func (bool testConds, bool runActions) {
-    int auto95917C57_ae;
-    int auto95917C57_ai;
-
     // Variable Declarations
     int lv_classFrame;
     int lv_currentClassFrame;
+
+    // Automatic Variable Declarations
+    playergroup autoFD79CC32_g;
+    int autoFD79CC32_var;
+    const int auto95917C57_ae = lib840A968C_gv_classes;
+    const int auto95917C57_ai = 1;
 
     // Variable Initialization
     lv_currentClassFrame = c_invalidDialogControlId;
@@ -1597,12 +1726,14 @@ bool lib840A968C_gt_DisplayClassSelection_Func (bool testConds, bool runActions)
     SoundChannelMute(PlayerGroupAll(), c_soundCategorySAmbient, true);
     SoundChannelMute(PlayerGroupAll(), c_soundCategorySEmitters, true);
     SoundChannelMute(PlayerGroupAll(), c_soundCategoryMusic, true);
-    PlayerGroupLoopBegin(PlayerGroupAll());
-    for ( ; !PlayerGroupLoopDone() ; PlayerGroupLoopStep() ) {
-        CameraPan(PlayerGroupLoopCurrent(), Point(0.0, 0.0), 0.0, -1, 10.0, false);
-        CameraLockInput(PlayerGroupLoopCurrent(), true);
+    autoFD79CC32_g = PlayerGroupAll();
+    autoFD79CC32_var = -1;
+    while (true) {
+        autoFD79CC32_var = PlayerGroupNextPlayer(autoFD79CC32_g, autoFD79CC32_var);
+        if (autoFD79CC32_var < 0) { break; }
+        CameraPan(autoFD79CC32_var, Point(0.0, 0.0), 0.0, -1, 10.0, false);
+        CameraLockInput(autoFD79CC32_var, true);
     }
-    PlayerGroupLoopEnd();
     TimerStart(lib840A968C_gv_classSelectionTimer, 10.0, false, c_timeReal);
     TriggerEnable(lib840A968C_gt_ClassSelectionUpdate, true);
     TriggerEnable(lib840A968C_gt_EndClassSelection, true);
@@ -1613,10 +1744,8 @@ bool lib840A968C_gt_DisplayClassSelection_Func (bool testConds, bool runActions)
     DialogControlCreateFromTemplate(DialogLastCreated(), c_triggerControlTypePanel, "ClassSelection/ClassSelection");
     lib840A968C_gv_classSelectionPanel = DialogControlLastCreated();
     DialogControlSetFullDialog(lib840A968C_gv_classSelectionPanel, PlayerGroupAll(), true);
-    auto95917C57_ae = lib840A968C_gv_classes;
-    auto95917C57_ai = 1;
     lv_classFrame = 1;
-    for ( ; ( (auto95917C57_ai >= 0 && lv_classFrame <= auto95917C57_ae) || (auto95917C57_ai <= 0 && lv_classFrame >= auto95917C57_ae) ) ; lv_classFrame += auto95917C57_ai ) {
+    for ( ; ( (auto95917C57_ai >= 0 && lv_classFrame <= auto95917C57_ae) || (auto95917C57_ai < 0 && lv_classFrame >= auto95917C57_ae) ) ; lv_classFrame += auto95917C57_ai ) {
         DialogControlHookup(lib840A968C_gv_classSelectionPanel, c_triggerControlTypePanel, "ClassFrame" + IntToString(lv_classFrame));
         lib840A968C_gv_classSelectionFrames[lv_classFrame] = DialogControlLastCreated();
         DialogControlHookup(lib840A968C_gv_classSelectionFrames[lv_classFrame], c_triggerControlTypeButton, "ClassButton");
@@ -1648,6 +1777,7 @@ bool lib840A968C_gt_ClassSelectionUpdate_Func (bool testConds, bool runActions) 
     // Variable Declarations
     int lv_selectingPlayer;
 
+    // Automatic Variable Declarations
     // Variable Initialization
     lv_selectingPlayer = lib840A968C_gf_GetSelectingPlayer();
 
@@ -1678,6 +1808,10 @@ void lib840A968C_gt_ClassSelectionUpdate_Init () {
 // Trigger: End Class Selection
 //--------------------------------------------------------------------------------------------------
 bool lib840A968C_gt_EndClassSelection_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    playergroup autoB2CFAB52_g;
+    int autoB2CFAB52_var;
+
     // Actions
     if (!runActions) {
         return true;
@@ -1690,11 +1824,13 @@ bool lib840A968C_gt_EndClassSelection_Func (bool testConds, bool runActions) {
     SoundChannelMute(PlayerGroupAll(), c_soundCategorySEmitters, false);
     TriggerEnable(lib840A968C_gt_ClassSelectionUpdate, false);
     TriggerEnable(lib840A968C_gt_EndClassSelection, false);
-    PlayerGroupLoopBegin(PlayerGroupAll());
-    for ( ; !PlayerGroupLoopDone() ; PlayerGroupLoopStep() ) {
-        CameraLockInput(PlayerGroupLoopCurrent(), false);
+    autoB2CFAB52_g = PlayerGroupAll();
+    autoB2CFAB52_var = -1;
+    while (true) {
+        autoB2CFAB52_var = PlayerGroupNextPlayer(autoB2CFAB52_g, autoB2CFAB52_var);
+        if (autoB2CFAB52_var < 0) { break; }
+        CameraLockInput(autoB2CFAB52_var, false);
     }
-    PlayerGroupLoopEnd();
     DialogDestroy(lib840A968C_gv_classSelectionDialog);
     libNtve_gf_HideGameUI(true, PlayerGroupAll());
     UISetWorldVisible(PlayerGroupAll(), true);
@@ -1718,6 +1854,10 @@ bool lib840A968C_gt_ClassSelected2_Func (bool testConds, bool runActions) {
     // Variable Declarations
     int lv_classIndex;
 
+    // Automatic Variable Declarations
+    const int auto4F3704AB_ae = lib840A968C_gv_classes;
+    int auto4F3704AB_var;
+
     // Variable Initialization
 
     // Actions
@@ -1729,13 +1869,12 @@ bool lib840A968C_gt_ClassSelected2_Func (bool testConds, bool runActions) {
         lv_classIndex += 1;
     }
     lib840A968C_gf_AnnounceClassSelection(UserDataInstance("Classes", lv_classIndex), EventPlayer());
-    IntLoopBegin(lib1E3F036D_gv_indexBaseValue, lib840A968C_gv_classes);
-    for ( ; !IntLoopDone() ; IntLoopStep() ) {
+    auto4F3704AB_var = lib1E3F036D_gv_indexBaseValue;
+    for ( ; auto4F3704AB_var <= auto4F3704AB_ae; auto4F3704AB_var += 1 ) {
         if ((lib840A968C_gv_classSelectionButtons[lv_classIndex] != EventDialogControl())) {
             libNtve_gf_SetDialogItemToggled(lib840A968C_gv_classSelectionButtons[lv_classIndex], false, PlayerGroupSingle(EventPlayer()));
         }
     }
-    IntLoopEnd();
     return true;
 }
 
@@ -1750,6 +1889,7 @@ void lib840A968C_gt_ClassSelected2_Init () {
 // Trigger: Shop Intialize
 //--------------------------------------------------------------------------------------------------
 bool lib840A968C_gt_ShopIntialize_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
     // Actions
     if (!runActions) {
         return true;
@@ -1769,6 +1909,7 @@ void lib840A968C_gt_ShopIntialize_Init () {
 // Trigger: Bank Load
 //--------------------------------------------------------------------------------------------------
 bool lib840A968C_gt_BankLoad_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
     // Actions
     if (!runActions) {
         return true;
@@ -1789,16 +1930,22 @@ void lib840A968C_gt_BankLoad_Init () {
 // Trigger: Apply Service Branches
 //--------------------------------------------------------------------------------------------------
 bool lib840A968C_gt_ApplyServiceBranches_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    playergroup autoEBBA5FAD_g;
+    int autoEBBA5FAD_var;
+
     // Actions
     if (!runActions) {
         return true;
     }
 
-    PlayerGroupLoopBegin(lib840A968C_gv_marineSquad);
-    for ( ; !PlayerGroupLoopDone() ; PlayerGroupLoopStep() ) {
-        lib840A968C_gf_ApplyServiceBranchUpgrade(PlayerGroupLoopCurrent());
+    autoEBBA5FAD_g = lib840A968C_gv_marineSquad;
+    autoEBBA5FAD_var = -1;
+    while (true) {
+        autoEBBA5FAD_var = PlayerGroupNextPlayer(autoEBBA5FAD_g, autoEBBA5FAD_var);
+        if (autoEBBA5FAD_var < 0) { break; }
+        lib840A968C_gf_ApplyServiceBranchUpgrade(autoEBBA5FAD_var);
     }
-    PlayerGroupLoopEnd();
     return true;
 }
 
@@ -1812,16 +1959,22 @@ void lib840A968C_gt_ApplyServiceBranches_Init () {
 // Trigger: Apply Sidearms
 //--------------------------------------------------------------------------------------------------
 bool lib840A968C_gt_ApplySidearms_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    playergroup autoB886CF5B_g;
+    int autoB886CF5B_var;
+
     // Actions
     if (!runActions) {
         return true;
     }
 
-    PlayerGroupLoopBegin(lib840A968C_gv_marineSquad);
-    for ( ; !PlayerGroupLoopDone() ; PlayerGroupLoopStep() ) {
-        lib840A968C_gf_ApplyCustomSidearm(PlayerGroupLoopCurrent());
+    autoB886CF5B_g = lib840A968C_gv_marineSquad;
+    autoB886CF5B_var = -1;
+    while (true) {
+        autoB886CF5B_var = PlayerGroupNextPlayer(autoB886CF5B_g, autoB886CF5B_var);
+        if (autoB886CF5B_var < 0) { break; }
+        lib840A968C_gf_ApplyCustomSidearm(autoB886CF5B_var);
     }
-    PlayerGroupLoopEnd();
     return true;
 }
 
@@ -1835,16 +1988,22 @@ void lib840A968C_gt_ApplySidearms_Init () {
 // Trigger: Apply Character Modifications
 //--------------------------------------------------------------------------------------------------
 bool lib840A968C_gt_ApplyCharacterModifications_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    playergroup auto4F567F8A_g;
+    int auto4F567F8A_var;
+
     // Actions
     if (!runActions) {
         return true;
     }
 
-    PlayerGroupLoopBegin(lib840A968C_gv_marineSquad);
-    for ( ; !PlayerGroupLoopDone() ; PlayerGroupLoopStep() ) {
-        lib840A968C_gf_ApplyCharacterMods(PlayerGroupLoopCurrent());
+    auto4F567F8A_g = lib840A968C_gv_marineSquad;
+    auto4F567F8A_var = -1;
+    while (true) {
+        auto4F567F8A_var = PlayerGroupNextPlayer(auto4F567F8A_g, auto4F567F8A_var);
+        if (auto4F567F8A_var < 0) { break; }
+        lib840A968C_gf_ApplyCharacterMods(auto4F567F8A_var);
     }
-    PlayerGroupLoopEnd();
     return true;
 }
 
@@ -1861,6 +2020,7 @@ bool lib840A968C_gt_ParasiteAttacks_Func (bool testConds, bool runActions) {
     // Variable Declarations
     unit lv_parasiteUnit;
 
+    // Automatic Variable Declarations
     // Variable Initialization
     lv_parasiteUnit = EventPlayerEffectUsedUnit(c_effectUnitTarget);
 
@@ -1884,6 +2044,7 @@ void lib840A968C_gt_ParasiteAttacks_Init () {
 // Trigger: Riot Mode Attacks
 //--------------------------------------------------------------------------------------------------
 bool lib840A968C_gt_RiotModeAttacks_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
     // Conditions
     if (testConds) {
         if (!((lib840A968C_gv_riotMode || (lib840A968C_gv_currentChapter == 5)))) {
@@ -1916,6 +2077,7 @@ bool lib840A968C_gt_RiotModeCheck_Func (bool testConds, bool runActions) {
     unit lv_attackTargetUnit;
     int lv_unitCount;
 
+    // Automatic Variable Declarations
     // Variable Initialization
 
     // Conditions
@@ -1950,13 +2112,11 @@ void lib840A968C_gt_RiotModeCheck_Init () {
 // Trigger: Activate Horde
 //--------------------------------------------------------------------------------------------------
 bool lib840A968C_gt_ActivateHorde_Func (bool testConds, bool runActions) {
-    unitgroup auto5A20CEE4_g;
-    int auto5A20CEE4_u;
-
     // Variable Declarations
     point lv_spawnPoint;
     unit lv_normalUnit;
 
+    // Automatic Variable Declarations
     // Variable Initialization
     lv_spawnPoint = lib09BE6BA8_gf_PointAtGroundLevelinRegion(RegionPlayableMap());
 
@@ -1979,26 +2139,7 @@ bool lib840A968C_gt_ActivateHorde_Func (bool testConds, bool runActions) {
     while (lib840A968C_gf_PointNotNearUnitGroupUnits(lv_spawnPoint, lib840A968C_gf_GetMarineGroup(), 50.0)) {
         lv_spawnPoint = lib09BE6BA8_gf_PointAtGroundLevelinRegion(RegionPlayableMap());
     }
-    lib1765BC64_gf_HordeMode(AIWaveTargetUnitGroup(lib840A968C_gf_GetMarineGroup()), lv_spawnPoint, UnitGroupCount(lib840A968C_gf_GetMarineGroup(), c_unitCountAlive), lib840A968C_gv_currentChapter);
     Wait(1.5, c_timeGame);
-    if ((lib1E3F036D_gf_GameType() == 1)) {
-        lv_spawnPoint = lib09BE6BA8_gf_PointAtGroundLevelinRegion(RegionPlayableMap());
-        while (lib840A968C_gf_PointNotNearUnitGroupUnits(lv_spawnPoint, lib840A968C_gf_GetMarineGroup(), 50.0)) {
-            lv_spawnPoint = lib09BE6BA8_gf_PointAtGroundLevelinRegion(RegionPlayableMap());
-        }
-        auto5A20CEE4_g = AIWaveGetUnits(lib1765BC64_gv_currentHordeWave);
-        auto5A20CEE4_u = 1;
-        for ( ; auto5A20CEE4_u <= UnitGroupCount(auto5A20CEE4_g, c_unitCountAll) ; auto5A20CEE4_u += BoolToInt(lv_normalUnit == UnitGroupUnit(auto5A20CEE4_g, auto5A20CEE4_u)) ) {
-            lv_normalUnit = UnitGroupUnit(auto5A20CEE4_g, auto5A20CEE4_u);
-            if ((RandomInt(0, 1) == 1)) {
-                AIRemoveUnitFromAnyWaves(lv_normalUnit);
-                UnitSetPosition(lv_normalUnit, lv_spawnPoint, false);
-                AIAttackWaveUseUnit(lib1E3F036D_gv_zombiePlayer, lv_normalUnit);
-            }
-        }
-        AIAttackWaveSetTargetUnitGroup(lib1E3F036D_gv_zombiePlayer, lib840A968C_gf_GetMarineGroup());
-        AIAttackWaveSend(lib1E3F036D_gv_zombiePlayer, 0, false);
-    }
     TriggerQueueClear(c_triggerQueueRetain);
     TriggerQueueExit();
     return true;
@@ -2014,6 +2155,7 @@ void lib840A968C_gt_ActivateHorde_Init () {
 // Trigger: Intialization
 //--------------------------------------------------------------------------------------------------
 bool lib840A968C_gt_Intialization_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
     // Actions
     if (!runActions) {
         return true;
@@ -2037,21 +2179,27 @@ void lib840A968C_gt_Intialization_Init () {
 // Trigger: Player Options Override
 //--------------------------------------------------------------------------------------------------
 bool lib840A968C_gt_PlayerOptionsOverride_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    playergroup auto51640C3E_g;
+    int auto51640C3E_var;
+
     // Actions
     if (!runActions) {
         return true;
     }
 
     HelpPanelEnableTechTreeButton(PlayerGroupAll(), false);
-    PlayerGroupLoopBegin(PlayerGroupAll());
-    for ( ; !PlayerGroupLoopDone() ; PlayerGroupLoopStep() ) {
-        TechTreeRestrictionsEnable(PlayerGroupLoopCurrent(), true);
-        PlayerOptionOverride(PlayerGroupLoopCurrent(), "gametooltips", "1");
-        PlayerOptionOverride(PlayerGroupLoopCurrent(), "selectuncontrolable", "1");
-        PlayerOptionOverride(PlayerGroupLoopCurrent(), "simplecommandcard", "0");
-        PlayerOptionOverride(PlayerGroupLoopCurrent(), "showalerts", "1");
+    auto51640C3E_g = PlayerGroupAll();
+    auto51640C3E_var = -1;
+    while (true) {
+        auto51640C3E_var = PlayerGroupNextPlayer(auto51640C3E_g, auto51640C3E_var);
+        if (auto51640C3E_var < 0) { break; }
+        TechTreeRestrictionsEnable(auto51640C3E_var, true);
+        PlayerOptionOverride(auto51640C3E_var, "gametooltips", "1");
+        PlayerOptionOverride(auto51640C3E_var, "selectuncontrolable", "1");
+        PlayerOptionOverride(auto51640C3E_var, "simplecommandcard", "0");
+        PlayerOptionOverride(auto51640C3E_var, "showalerts", "1");
     }
-    PlayerGroupLoopEnd();
     return true;
 }
 
@@ -2065,6 +2213,7 @@ void lib840A968C_gt_PlayerOptionsOverride_Init () {
 // Trigger: AI Intialize
 //--------------------------------------------------------------------------------------------------
 bool lib840A968C_gt_AIIntialize_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
     // Actions
     if (!runActions) {
         return true;
@@ -2091,6 +2240,7 @@ void lib840A968C_gt_AIIntialize_Init () {
 // Trigger: Set Logging
 //--------------------------------------------------------------------------------------------------
 bool lib840A968C_gt_SetLogging_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
     // Actions
     if (!runActions) {
         return true;
@@ -2115,6 +2265,7 @@ void lib840A968C_gt_SetLogging_Init () {
 // Trigger: Game Start
 //--------------------------------------------------------------------------------------------------
 bool lib840A968C_gt_GameStart_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
     // Actions
     if (!runActions) {
         return true;
@@ -2144,6 +2295,7 @@ void lib840A968C_gt_GameStart_Init () {
 // Trigger: Player Leaves the Game
 //--------------------------------------------------------------------------------------------------
 bool lib840A968C_gt_PlayerLeavestheGame_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
     // Actions
     if (!runActions) {
         return true;
@@ -2163,6 +2315,10 @@ void lib840A968C_gt_PlayerLeavestheGame_Init () {
 // Trigger: Victory
 //--------------------------------------------------------------------------------------------------
 bool lib840A968C_gt_Victory_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    playergroup auto666B720E_g;
+    int auto666B720E_var;
+
     // Actions
     if (!runActions) {
         return true;
@@ -2171,11 +2327,13 @@ bool lib840A968C_gt_Victory_Func (bool testConds, bool runActions) {
     TriggerSendEvent(lib840A968C_gv_save);
     UIDisplayMessage(PlayerGroupAll(), c_messageAreaDirective, StringExternal("Param/Value/lib_840A968C_3C61C002"));
     Wait(10.0, c_timeGame);
-    PlayerGroupLoopBegin(lib840A968C_gv_marineSquad);
-    for ( ; !PlayerGroupLoopDone() ; PlayerGroupLoopStep() ) {
-        GameOver(PlayerGroupLoopCurrent(), c_gameOverVictory, true, true);
+    auto666B720E_g = lib840A968C_gv_marineSquad;
+    auto666B720E_var = -1;
+    while (true) {
+        auto666B720E_var = PlayerGroupNextPlayer(auto666B720E_g, auto666B720E_var);
+        if (auto666B720E_var < 0) { break; }
+        GameOver(auto666B720E_var, c_gameOverVictory, true, true);
     }
-    PlayerGroupLoopEnd();
     return true;
 }
 
@@ -2189,6 +2347,10 @@ void lib840A968C_gt_Victory_Init () {
 // Trigger: Defeat
 //--------------------------------------------------------------------------------------------------
 bool lib840A968C_gt_Defeat_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    playergroup auto52A7D904_g;
+    int auto52A7D904_var;
+
     // Actions
     if (!runActions) {
         return true;
@@ -2197,11 +2359,13 @@ bool lib840A968C_gt_Defeat_Func (bool testConds, bool runActions) {
     TriggerSendEvent(lib840A968C_gv_save);
     UIDisplayMessage(PlayerGroupAll(), c_messageAreaDirective, StringExternal("Param/Value/lib_840A968C_352B45F2"));
     Wait(10.0, c_timeGame);
-    PlayerGroupLoopBegin(lib840A968C_gv_marineSquad);
-    for ( ; !PlayerGroupLoopDone() ; PlayerGroupLoopStep() ) {
-        GameOver(PlayerGroupLoopCurrent(), c_gameOverDefeat, true, true);
+    auto52A7D904_g = lib840A968C_gv_marineSquad;
+    auto52A7D904_var = -1;
+    while (true) {
+        auto52A7D904_var = PlayerGroupNextPlayer(auto52A7D904_g, auto52A7D904_var);
+        if (auto52A7D904_var < 0) { break; }
+        GameOver(auto52A7D904_var, c_gameOverDefeat, true, true);
     }
-    PlayerGroupLoopEnd();
     return true;
 }
 
@@ -2215,6 +2379,7 @@ void lib840A968C_gt_Defeat_Init () {
 // Trigger: Difficulty Selection
 //--------------------------------------------------------------------------------------------------
 bool lib840A968C_gt_DifficultySelection_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
     // Actions
     if (!runActions) {
         return true;
@@ -2254,14 +2419,15 @@ void lib840A968C_gt_DifficultySelection_Init () {
 // Trigger: Difficulty Vote
 //--------------------------------------------------------------------------------------------------
 bool lib840A968C_gt_DifficultyVote_Func (bool testConds, bool runActions) {
-    int auto1A8F2750_ae;
-    int auto1A8F2750_ai;
-    int autoDD98B4F6_val;
-    int auto92DA7F75_ae;
-    int auto92DA7F75_ai;
-
     // Variable Declarations
     int lv_loop;
+
+    // Automatic Variable Declarations
+    const int auto1A8F2750_ae = lib840A968C_gv_numberofDifficulties;
+    const int auto1A8F2750_ai = 1;
+    int autoDD98B4F6_val;
+    const int auto92DA7F75_ae = lib840A968C_gv_numberofDifficulties;
+    const int auto92DA7F75_ai = 1;
 
     // Variable Initialization
 
@@ -2270,10 +2436,8 @@ bool lib840A968C_gt_DifficultyVote_Func (bool testConds, bool runActions) {
         return true;
     }
 
-    auto1A8F2750_ae = lib840A968C_gv_numberofDifficulties;
-    auto1A8F2750_ai = 1;
     lv_loop = lib1E3F036D_gv_indexBaseValue;
-    for ( ; ( (auto1A8F2750_ai >= 0 && lv_loop <= auto1A8F2750_ae) || (auto1A8F2750_ai <= 0 && lv_loop >= auto1A8F2750_ae) ) ; lv_loop += auto1A8F2750_ai ) {
+    for ( ; ( (auto1A8F2750_ai >= 0 && lv_loop <= auto1A8F2750_ae) || (auto1A8F2750_ai < 0 && lv_loop >= auto1A8F2750_ae) ) ; lv_loop += auto1A8F2750_ai ) {
         PlayerGroupRemove(lib840A968C_gv_difficultySelectionOptions[lv_loop].lv_votes, EventPlayer());
     }
     autoDD98B4F6_val = EventDialogControl();
@@ -2288,10 +2452,8 @@ bool lib840A968C_gt_DifficultyVote_Func (bool testConds, bool runActions) {
     }
     else {
     }
-    auto92DA7F75_ae = lib840A968C_gv_numberofDifficulties;
-    auto92DA7F75_ai = 1;
     lv_loop = lib1E3F036D_gv_indexBaseValue;
-    for ( ; ( (auto92DA7F75_ai >= 0 && lv_loop <= auto92DA7F75_ae) || (auto92DA7F75_ai <= 0 && lv_loop >= auto92DA7F75_ae) ) ; lv_loop += auto92DA7F75_ai ) {
+    for ( ; ( (auto92DA7F75_ai >= 0 && lv_loop <= auto92DA7F75_ae) || (auto92DA7F75_ai < 0 && lv_loop >= auto92DA7F75_ae) ) ; lv_loop += auto92DA7F75_ai ) {
         libNtve_gf_SetDialogItemText(lib840A968C_gv_difficultySelectionOptions[lv_loop].lv_optionLabel, IntToText(PlayerGroupCount(lib840A968C_gv_difficultySelectionOptions[lv_loop].lv_votes)), PlayerGroupAll());
     }
     return true;
@@ -2306,6 +2468,7 @@ void lib840A968C_gt_DifficultyVote_Init () {
 // Trigger: Set Class From Selection
 //--------------------------------------------------------------------------------------------------
 bool lib840A968C_gt_SetClassFromSelection_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
     // Actions
     if (!runActions) {
         return true;
@@ -2325,22 +2488,29 @@ void lib840A968C_gt_SetClassFromSelection_Init () {
 // Trigger: Event Registration For Marine Units
 //--------------------------------------------------------------------------------------------------
 bool lib840A968C_gt_EventRegistrationForMarineUnits_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    unitgroup auto1805A332_g;
+    int auto1805A332_u;
+    unit auto1805A332_var;
+
     // Actions
     if (!runActions) {
         return true;
     }
 
-    UnitGroupLoopBegin(lib840A968C_gf_GetMarineGroup());
-    for ( ; !UnitGroupLoopDone() ; UnitGroupLoopStep() ) {
-        TriggerAddEventUnitDied(lib840A968C_gt_PlayerMarineDies, UnitRefFromUnit(UnitGroupLoopCurrent()));
-        TriggerAddEventUnitSelected(libC50FD636_gt_DisplayAmmoBarOnSelection, UnitRefFromUnit(UnitGroupLoopCurrent()), UnitGetOwner(UnitGroupLoopCurrent()), true);
-        TriggerAddEventUnitSelected(libC50FD636_gt_DisplayInventoryOnSelection, UnitRefFromUnit(UnitGroupLoopCurrent()), c_playerAny, true);
-        TriggerAddEventUnitDamaged(lib840A968C_gt_RatingLossfromFriendlyFire, UnitRefFromUnit(UnitGroupLoopCurrent()), c_unitDamageTypeAny, c_unitDamageEither, null);
-        TriggerAddEventUnitDamaged(lib840A968C_gt_HitsUpdate, UnitRefFromUnit(UnitGroupLoopCurrent()), c_unitDamageTypeAny, c_unitDamageEither, null);
-        TriggerAddEventUnitGainLevel(libC50FD636_gt_LevelUp, UnitRefFromUnit(UnitGroupLoopCurrent()));
-        TriggerAddEventUnitCreated(libFEC22885_gt_RoadFlareVisionShare, UnitRefFromUnit(UnitGroupLoopCurrent()), null, null);
+    auto1805A332_g = lib840A968C_gf_GetMarineGroup();
+    auto1805A332_u = UnitGroupCount(auto1805A332_g, c_unitCountAll);
+    for (;; auto1805A332_u -= 1) {
+        auto1805A332_var = UnitGroupUnitFromEnd(auto1805A332_g, auto1805A332_u);
+        if (auto1805A332_var == null) { break; }
+        TriggerAddEventUnitDied(lib840A968C_gt_PlayerMarineDies, UnitRefFromUnit(auto1805A332_var));
+        TriggerAddEventUnitSelected(libC50FD636_gt_DisplayAmmoBarOnSelection, UnitRefFromUnit(auto1805A332_var), UnitGetOwner(auto1805A332_var), true);
+        TriggerAddEventUnitSelected(libC50FD636_gt_DisplayInventoryOnSelection, UnitRefFromUnit(auto1805A332_var), c_playerAny, true);
+        TriggerAddEventUnitDamaged(lib840A968C_gt_RatingLossfromFriendlyFire, UnitRefFromUnit(auto1805A332_var), c_unitDamageTypeAny, c_unitDamageEither, null);
+        TriggerAddEventUnitDamaged(lib840A968C_gt_HitsUpdate, UnitRefFromUnit(auto1805A332_var), c_unitDamageTypeAny, c_unitDamageEither, null);
+        TriggerAddEventUnitGainLevel(libC50FD636_gt_LevelUp, UnitRefFromUnit(auto1805A332_var));
+        TriggerAddEventUnitCreated(libFEC22885_gt_RoadFlareVisionShare, UnitRefFromUnit(auto1805A332_var), null, null);
     }
-    UnitGroupLoopEnd();
     return true;
 }
 
@@ -2354,6 +2524,7 @@ void lib840A968C_gt_EventRegistrationForMarineUnits_Init () {
 // Trigger: Night Vision Module Lighting Change
 //--------------------------------------------------------------------------------------------------
 bool lib840A968C_gt_NightVisionModuleLightingChange_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
     // Actions
     if (!runActions) {
         return true;
@@ -2381,6 +2552,7 @@ void lib840A968C_gt_NightVisionModuleLightingChange_Init () {
 // Trigger: Night Vision UI Hookup
 //--------------------------------------------------------------------------------------------------
 bool lib840A968C_gt_NightVisionUIHookup_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
     // Actions
     if (!runActions) {
         return true;
@@ -2402,6 +2574,7 @@ void lib840A968C_gt_NightVisionUIHookup_Init () {
 // Trigger: Night Vision Toggle
 //--------------------------------------------------------------------------------------------------
 bool lib840A968C_gt_NightVisionToggle_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
     // Actions
     if (!runActions) {
         return true;
@@ -2430,6 +2603,10 @@ bool lib840A968C_gt_TeamLocation_Func (bool testConds, bool runActions) {
     // Variable Declarations
     int[lib840A968C_gv_numberofPlayers + 1] lv_pings;
 
+    // Automatic Variable Declarations
+    playergroup auto5C647E6F_g;
+    int auto5C647E6F_var;
+
     // Variable Initialization
     for (init_i = 0; init_i <= lib840A968C_gv_numberofPlayers; init_i += 1) {
         lv_pings[init_i] = c_invalidPingId;
@@ -2441,20 +2618,22 @@ bool lib840A968C_gt_TeamLocation_Func (bool testConds, bool runActions) {
     }
 
     TriggerEnable(TriggerGetCurrent(), false);
-    PlayerGroupLoopBegin(lib840A968C_gv_livingMarines);
-    for ( ; !PlayerGroupLoopDone() ; PlayerGroupLoopStep() ) {
+    auto5C647E6F_g = lib840A968C_gv_livingMarines;
+    auto5C647E6F_var = -1;
+    while (true) {
+        auto5C647E6F_var = PlayerGroupNextPlayer(auto5C647E6F_g, auto5C647E6F_var);
+        if (auto5C647E6F_var < 0) { break; }
         libNtve_gf_CreatePingFacingAngle(lib840A968C_gv_marineSquad, "PingNumeric" +  IntToString(PlayerGroupLoopCurrent()), Point(0.0, 0.0), ColorWithAlpha(0.00, 100.00, 0.00, 0.00), 10.0, 270.0);
-        lv_pings[PlayerGroupLoopCurrent()] = PingLastCreated();
+        lv_pings[auto5C647E6F_var] = PingLastCreated();
         PingSetScale(PingLastCreated(), 0.6);
-        PingSetTooltip(PingLastCreated(), lib840A968C_gf_GetPlayerNamewithrank(PlayerGroupLoopCurrent()));
-        PingSetUnit(PingLastCreated(), lib840A968C_gf_GetMarine(PlayerGroupLoopCurrent()));
-        TextTagCreate(lib840A968C_gf_GetPlayerNamewithrank(PlayerGroupLoopCurrent()), 24, UnitGetPosition(lib840A968C_gf_GetMarine(PlayerGroupLoopCurrent())), 1.0, true, false, PlayerGroupAll());
-        TextTagAttachToUnit(TextTagLastCreated(), lib840A968C_gf_GetMarine(PlayerGroupLoopCurrent()), 1.0);
+        PingSetTooltip(PingLastCreated(), lib840A968C_gf_GetPlayerNamewithrank(auto5C647E6F_var));
+        PingSetUnit(PingLastCreated(), lib840A968C_gf_GetMarine(auto5C647E6F_var));
+        TextTagCreate(lib840A968C_gf_GetPlayerNamewithrank(auto5C647E6F_var), 24, UnitGetPosition(lib840A968C_gf_GetMarine(auto5C647E6F_var)), 1.0, true, false, PlayerGroupAll());
+        TextTagAttachToUnit(TextTagLastCreated(), lib840A968C_gf_GetMarine(auto5C647E6F_var), 1.0);
         TextTagSetTime(TextTagLastCreated(), c_textTagTimeDuration, 10.0);
         TextTagSetTime(TextTagLastCreated(), c_textTagTimeFadeDuration, 0.0);
         TextTagSetTime(TextTagLastCreated(), c_textTagTimeFadeOut, 0.0);
     }
-    PlayerGroupLoopEnd();
     Wait(10.0, c_timeGame);
     TriggerEnable(TriggerGetCurrent(), true);
     return true;
@@ -2469,6 +2648,7 @@ void lib840A968C_gt_TeamLocation_Init () {
 // Trigger: Hookup Team Location Button
 //--------------------------------------------------------------------------------------------------
 bool lib840A968C_gt_HookupTeamLocationButton_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
     // Actions
     if (!runActions) {
         return true;
@@ -2495,6 +2675,10 @@ bool lib840A968C_gt_PlayerMarineDies_Func (bool testConds, bool runActions) {
     int lv_deadPlayer;
     point lv_deathLocation;
 
+    // Automatic Variable Declarations
+    const int autoF49D15B7_ae = lib840A968C_gv_numberofPlayers;
+    int autoF49D15B7_var;
+
     // Variable Initialization
     lv_deadPlayer = EventPlayer();
     lv_deathLocation = UnitGetPosition(EventUnit());
@@ -2514,13 +2698,12 @@ bool lib840A968C_gt_PlayerMarineDies_Func (bool testConds, bool runActions) {
     PlayerGroupRemove(lib840A968C_gv_livingMarines, lv_deadPlayer);
     libC50FD636_gf_DestroyAmmoDisplay(lv_deadPlayer);
     libC50FD636_gf_DisableTalentButton(lv_deadPlayer);
-    IntLoopBegin(1, lib840A968C_gv_numberofPlayers);
-    for ( ; !IntLoopDone() ; IntLoopStep() ) {
-        if ((TimerGetDuration(lib840A968C_gv_damageNearDeathPenaltyTimer[IntLoopCurrent()][lv_deadPlayer]) > 0.0)) {
-            lib840A968C_gv_players[IntLoopCurrent()].lv_rating -= 10.0;
+    autoF49D15B7_var = 1;
+    for ( ; autoF49D15B7_var <= autoF49D15B7_ae; autoF49D15B7_var += 1 ) {
+        if ((TimerGetDuration(lib840A968C_gv_damageNearDeathPenaltyTimer[autoF49D15B7_var][lv_deadPlayer]) > 0.0)) {
+            lib840A968C_gv_players[autoF49D15B7_var].lv_rating -= 10.0;
         }
     }
-    IntLoopEnd();
     if ((!(PlayerGroupHasPlayer(lib840A968C_gv_livingMarines, libNtve_gf_KillingPlayer())))) {
         if ((lib840A968C_gv_players[lv_deadPlayer].lv_rating < 1500.0)) {
             lib840A968C_gv_players[lv_deadPlayer].lv_rating -= 5.0;
@@ -2561,11 +2744,12 @@ void lib840A968C_gt_PlayerMarineDies_Init () {
 // Trigger: Portrait Camera Center
 //--------------------------------------------------------------------------------------------------
 bool lib840A968C_gt_PortraitCameraCenter_Func (bool testConds, bool runActions) {
-    int auto319B2F30_ae;
-    int auto319B2F30_ai;
-
     // Variable Declarations
     int lv_player;
+
+    // Automatic Variable Declarations
+    const int auto319B2F30_ae = lib1E3F036D_gv_numberofPlayers;
+    const int auto319B2F30_ai = 1;
 
     // Variable Initialization
 
@@ -2578,10 +2762,8 @@ bool lib840A968C_gt_PortraitCameraCenter_Func (bool testConds, bool runActions) 
         CameraPan(EventPlayer(), UnitGetPosition(lib840A968C_gf_GetMarine(EventPlayer())), 0.25, -1, 10.0, false);
     }
     else {
-        auto319B2F30_ae = lib1E3F036D_gv_numberofPlayers;
-        auto319B2F30_ai = 1;
         lv_player = lib1E3F036D_gv_indexBaseValue;
-        for ( ; ( (auto319B2F30_ai >= 0 && lv_player <= auto319B2F30_ae) || (auto319B2F30_ai <= 0 && lv_player >= auto319B2F30_ae) ) ; lv_player += auto319B2F30_ai ) {
+        for ( ; ( (auto319B2F30_ai >= 0 && lv_player <= auto319B2F30_ae) || (auto319B2F30_ai < 0 && lv_player >= auto319B2F30_ae) ) ; lv_player += auto319B2F30_ai ) {
             if ((EventDialogControl() == lib1E3F036D_gv_playerStatus[lv_player].lv_playerPortrait.lv_portraitImage)) {
                 libNtve_gf_SendActorMessageToUnit(lib840A968C_gf_GetMarine(lv_player), "HaloSetColor 0,255,0");
                 libNtve_gf_SendActorMessageToUnit(lib840A968C_gf_GetMarine(lv_player), "HaloStart");
@@ -2603,11 +2785,12 @@ void lib840A968C_gt_PortraitCameraCenter_Init () {
 // Trigger: Hookup Portrait Image for Camera Focus
 //--------------------------------------------------------------------------------------------------
 bool lib840A968C_gt_HookupPortraitImageforCameraFocus_Func (bool testConds, bool runActions) {
-    int auto84015EFE_ae;
-    int auto84015EFE_ai;
-
     // Variable Declarations
     int lv_player;
+
+    // Automatic Variable Declarations
+    const int auto84015EFE_ae = lib1E3F036D_gv_numberofPlayers;
+    const int auto84015EFE_ai = 1;
 
     // Variable Initialization
 
@@ -2617,10 +2800,8 @@ bool lib840A968C_gt_HookupPortraitImageforCameraFocus_Func (bool testConds, bool
     }
 
     TriggerAddEventDialogControl(lib840A968C_gt_PortraitCameraCenter, c_playerAny, lib1E3F036D_gv_topPlayerStatus.lv_playerPortrait.lv_portraitImage, c_triggerControlEventTypeClick);
-    auto84015EFE_ae = lib1E3F036D_gv_numberofPlayers;
-    auto84015EFE_ai = 1;
     lv_player = lib1E3F036D_gv_indexBaseValue;
-    for ( ; ( (auto84015EFE_ai >= 0 && lv_player <= auto84015EFE_ae) || (auto84015EFE_ai <= 0 && lv_player >= auto84015EFE_ae) ) ; lv_player += auto84015EFE_ai ) {
+    for ( ; ( (auto84015EFE_ai >= 0 && lv_player <= auto84015EFE_ae) || (auto84015EFE_ai < 0 && lv_player >= auto84015EFE_ae) ) ; lv_player += auto84015EFE_ai ) {
         TriggerAddEventDialogControl(lib840A968C_gt_PortraitCameraCenter, c_playerAny, lib1E3F036D_gv_playerStatus[lv_player].lv_playerPortrait.lv_portraitImage, c_triggerControlEventTypeClick);
     }
     return true;
@@ -2636,11 +2817,11 @@ void lib840A968C_gt_HookupPortraitImageforCameraFocus_Init () {
 // Trigger: Periodic UI Update
 //--------------------------------------------------------------------------------------------------
 bool lib840A968C_gt_PeriodicUIUpdate_Func (bool testConds, bool runActions) {
-    playergroup autoF2256345_g;
-    int autoF2256345_p;
-
     // Variable Declarations
     int lv_player;
+
+    // Automatic Variable Declarations
+    playergroup autoF2256345_g;
 
     // Variable Initialization
 
@@ -2651,10 +2832,11 @@ bool lib840A968C_gt_PeriodicUIUpdate_Func (bool testConds, bool runActions) {
 
     while (true) {
         Wait(1.0, c_timeGame);
-        autoF2256345_g = lib840A968C_gf_GetMarineSquadPlayers(); 
-        autoF2256345_p = 1;
-        for ( ; autoF2256345_p <= PlayerGroupCount(autoF2256345_g) ; autoF2256345_p += BoolToInt(lv_player == PlayerGroupPlayer(autoF2256345_g, autoF2256345_p)) ) {
-            lv_player = PlayerGroupPlayer(autoF2256345_g, autoF2256345_p);
+        autoF2256345_g = lib840A968C_gf_GetMarineSquadPlayers();
+        lv_player = -1;
+        while (true) {
+            lv_player = PlayerGroupNextPlayer(autoF2256345_g, lv_player);
+            if (lv_player < 0) { break; }
             TextExpressionSetToken("Param/Expression/lib_840A968C_28BE6BBF", "A", PlayerName(lv_player));
             TextExpressionSetToken("Param/Expression/lib_840A968C_28BE6BBF", "Experience", IntToText(lib840A968C_gv_players[lv_player].lv_totalExperience));
             TextExpressionSetToken("Param/Expression/lib_840A968C_28BE6BBF", "Rating", FixedToText(lib840A968C_gv_players[lv_player].lv_rating, c_fixedPrecisionAny));
@@ -2685,11 +2867,11 @@ void lib840A968C_gt_PeriodicUIUpdate_Init () {
 // Trigger: Bank Save
 //--------------------------------------------------------------------------------------------------
 bool lib840A968C_gt_BankSave_Func (bool testConds, bool runActions) {
-    playergroup autoBB050601_g;
-    int autoBB050601_p;
-
     // Variable Declarations
     int lv_player;
+
+    // Automatic Variable Declarations
+    playergroup autoBB050601_g;
 
     // Variable Initialization
 
@@ -2705,10 +2887,11 @@ bool lib840A968C_gt_BankSave_Func (bool testConds, bool runActions) {
         return true;
     }
 
-    autoBB050601_g = lib840A968C_gv_marineSquad; 
-    autoBB050601_p = 1;
-    for ( ; autoBB050601_p <= PlayerGroupCount(autoBB050601_g) ; autoBB050601_p += BoolToInt(lv_player == PlayerGroupPlayer(autoBB050601_g, autoBB050601_p)) ) {
-        lv_player = PlayerGroupPlayer(autoBB050601_g, autoBB050601_p);
+    autoBB050601_g = lib840A968C_gv_marineSquad;
+    lv_player = -1;
+    while (true) {
+        lv_player = PlayerGroupNextPlayer(autoBB050601_g, lv_player);
+        if (lv_player < 0) { break; }
         lib840A968C_gf_SaveDataBank(lv_player, lib840A968C_gv_playerBanks[lv_player].lv_playerData);
         lib840A968C_gf_SaveCustomizationBank(lv_player, lib840A968C_gv_playerBanks[lv_player].lv_playerData);
     }
@@ -2728,6 +2911,7 @@ bool lib840A968C_gt_RatingLossfromLives_Func (bool testConds, bool runActions) {
     // Variable Declarations
     int lv_player;
 
+    // Automatic Variable Declarations
     // Variable Initialization
     lv_player = UnitGetOwner(EventUnit());
 
@@ -2755,6 +2939,7 @@ void lib840A968C_gt_RatingLossfromLives_Init () {
 // Trigger: Rating Loss from Friendly Fire
 //--------------------------------------------------------------------------------------------------
 bool lib840A968C_gt_RatingLossfromFriendlyFire_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
     // Conditions
     if (testConds) {
         if (!(PlayerGroupHasPlayer(lib840A968C_gv_livingMarines, EventUnitDamageSourcePlayer()))) {
@@ -2785,6 +2970,7 @@ bool lib840A968C_gt_HitsUpdate_Func (bool testConds, bool runActions) {
     fixed lv_ratingLoss;
     int lv_damagedPlayer;
 
+    // Automatic Variable Declarations
     // Variable Initialization
     lv_damagedPlayer = EventPlayer();
 
@@ -2822,6 +3008,7 @@ void lib840A968C_gt_HitsUpdate_Init () {
 // Trigger: Camo Switch
 //--------------------------------------------------------------------------------------------------
 bool lib840A968C_gt_CamoSwitch_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
     // Actions
     if (!runActions) {
         return true;
@@ -2849,6 +3036,7 @@ void lib840A968C_gt_CamoSwitch_Init () {
 // Trigger: Model Light Marine
 //--------------------------------------------------------------------------------------------------
 bool lib840A968C_gt_ModelLightMarine_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
     string autoA32E8E0C_val;
 
     // Conditions
@@ -2917,6 +3105,7 @@ void lib840A968C_gt_ModelLightMarine_Init () {
 // Trigger: Model Heavy Marine
 //--------------------------------------------------------------------------------------------------
 bool lib840A968C_gt_ModelHeavyMarine_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
     string auto375E0C54_val;
 
     // Conditions
@@ -2984,10 +3173,11 @@ void lib840A968C_gt_ModelHeavyMarine_Init () {
 // Trigger: Color Switching
 //--------------------------------------------------------------------------------------------------
 bool lib840A968C_gt_ColorSwitching_Func (bool testConds, bool runActions) {
-    int auto98384C02_val;
-
     // Variable Declarations
     unit lv_marine;
+
+    // Automatic Variable Declarations
+    int auto98384C02_val;
 
     // Variable Initialization
     lv_marine = lib840A968C_gf_GetMarine(EventPlayer());
@@ -3084,6 +3274,7 @@ void lib840A968C_gt_ColorSwitching_Init () {
 // Trigger: Run Unit Tests
 //--------------------------------------------------------------------------------------------------
 bool lib840A968C_gt_RunUnitTests_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
     // Conditions
     if (testConds) {
         if (!(GameIsTestMap(false))) {
@@ -3113,6 +3304,7 @@ void lib840A968C_gt_RunUnitTests_Init () {
 // Trigger: Force Horde Mode
 //--------------------------------------------------------------------------------------------------
 bool lib840A968C_gt_ForceHordeMode_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
     // Conditions
     if (testConds) {
         if (!(((GameIsTestMap(false) == true) || lib840A968C_gf_IsaDeveloper(PlayerHandle(EventPlayer()))))) {
@@ -3125,7 +3317,6 @@ bool lib840A968C_gt_ForceHordeMode_Func (bool testConds, bool runActions) {
         return true;
     }
 
-    lib1765BC64_gf_HordeMode(AIWaveTargetUnitGroup(lib840A968C_gf_GetMarineGroup()), RegionGetCenter(RegionEntireMap()), StringToInt(StringWord(EventChatMessage(false), 2)), lib840A968C_gv_currentChapter);
     return true;
 }
 
@@ -3139,6 +3330,7 @@ void lib840A968C_gt_ForceHordeMode_Init () {
 // Trigger: Set Chapter
 //--------------------------------------------------------------------------------------------------
 bool lib840A968C_gt_SetChapter_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
     string autoC2E88CCB_val;
 
     // Conditions
@@ -3184,6 +3376,10 @@ void lib840A968C_gt_SetChapter_Init () {
 // Trigger: Developer God Mode
 //--------------------------------------------------------------------------------------------------
 bool lib840A968C_gt_DeveloperGodMode_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    playergroup auto5B0A2C2B_g;
+    int auto5B0A2C2B_var;
+
     // Conditions
     if (testConds) {
         if (!(lib840A968C_gf_IsaDeveloper(PlayerHandle(EventPlayer())))) {
@@ -3196,12 +3392,14 @@ bool lib840A968C_gt_DeveloperGodMode_Func (bool testConds, bool runActions) {
         return true;
     }
 
-    PlayerGroupLoopBegin(lib840A968C_gf_GetMarineSquadPlayers());
-    for ( ; !PlayerGroupLoopDone() ; PlayerGroupLoopStep() ) {
-        PlayerModifyPropertyInt(PlayerGroupLoopCurrent(), c_playerPropDamageTakenPercent, c_playerPropOperSetTo, 0);
-        PlayerModifyPropertyInt(PlayerGroupLoopCurrent(), c_playerPropDamageDealtPercent, c_playerPropOperSetTo, 5000);
+    auto5B0A2C2B_g = lib840A968C_gf_GetMarineSquadPlayers();
+    auto5B0A2C2B_var = -1;
+    while (true) {
+        auto5B0A2C2B_var = PlayerGroupNextPlayer(auto5B0A2C2B_g, auto5B0A2C2B_var);
+        if (auto5B0A2C2B_var < 0) { break; }
+        PlayerModifyPropertyInt(auto5B0A2C2B_var, c_playerPropDamageTakenPercent, c_playerPropOperSetTo, 0);
+        PlayerModifyPropertyInt(auto5B0A2C2B_var, c_playerPropDamageDealtPercent, c_playerPropOperSetTo, 5000);
     }
-    PlayerGroupLoopEnd();
     return true;
 }
 
@@ -3215,6 +3413,7 @@ void lib840A968C_gt_DeveloperGodMode_Init () {
 // Trigger: Mission Rewards
 //--------------------------------------------------------------------------------------------------
 bool lib840A968C_gt_MissionRewards_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
     // Conditions
     if (testConds) {
         if (!((lib840A968C_gf_IsaDeveloper(PlayerHandle(EventPlayer())) || GameIsTestMap(false)))) {
@@ -3244,6 +3443,7 @@ void lib840A968C_gt_MissionRewards_Init () {
 // Trigger: Display Player Stats
 //--------------------------------------------------------------------------------------------------
 bool lib840A968C_gt_DisplayPlayerStats_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
     // Conditions
     if (testConds) {
         if (!((lib840A968C_gf_IsaDeveloper(PlayerHandle(EventPlayer())) || GameIsTestMap(false)))) {
@@ -3273,6 +3473,7 @@ void lib840A968C_gt_DisplayPlayerStats_Init () {
 // Trigger: Skip Class Selection
 //--------------------------------------------------------------------------------------------------
 bool lib840A968C_gt_SkipClassSelection_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
     // Conditions
     if (testConds) {
         if (!((lib840A968C_gf_IsaDeveloper(PlayerHandle(EventPlayer())) || GameIsTestMap(false)))) {
@@ -3299,6 +3500,7 @@ void lib840A968C_gt_SkipClassSelection_Init () {
 // Trigger: Weapons
 //--------------------------------------------------------------------------------------------------
 bool lib840A968C_gt_Weapons_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
     // Conditions
     if (testConds) {
         if (!(lib840A968C_gf_IsaDeveloper(PlayerHandle(EventPlayer())))) {
@@ -3337,13 +3539,14 @@ void lib840A968C_gt_Weapons_Init () {
 // Trigger: Random Armor
 //--------------------------------------------------------------------------------------------------
 bool lib840A968C_gt_RandomArmor_Func (bool testConds, bool runActions) {
-    int auto0330847E_ae;
-    int auto0330847E_ai;
-
     // Variable Declarations
     actorscope lv_localScope;
     string lv_signal;
     int lv_loop;
+
+    // Automatic Variable Declarations
+    const int auto0330847E_ae = 13;
+    const int auto0330847E_ai = 1;
 
     // Variable Initialization
     lv_signal = "";
@@ -3360,10 +3563,8 @@ bool lib840A968C_gt_RandomArmor_Func (bool testConds, bool runActions) {
         return true;
     }
 
-    auto0330847E_ae = 13;
-    auto0330847E_ai = 1;
     lv_loop = 1;
-    for ( ; ( (auto0330847E_ai >= 0 && lv_loop <= auto0330847E_ae) || (auto0330847E_ai <= 0 && lv_loop >= auto0330847E_ae) ) ; lv_loop += auto0330847E_ai ) {
+    for ( ; ( (auto0330847E_ai >= 0 && lv_loop <= auto0330847E_ae) || (auto0330847E_ai < 0 && lv_loop >= auto0330847E_ae) ) ; lv_loop += auto0330847E_ai ) {
         lv_signal = UserDataGetString("ArmorSet", UserDataInstance("ArmorSet", RandomInt(1, UserDataInstanceCount("ArmorSet"))), "Signal", 1);
         ActorSend(ActorFromScope(lv_localScope, (UserDataGetActor("ArmorSlots", UserDataInstance("ArmorSlots", lv_loop), "Slot Actor", 1))), libNtve_gf_Signal(lv_signal));
     }
@@ -3380,6 +3581,7 @@ void lib840A968C_gt_RandomArmor_Init () {
 // Trigger: Alliance States
 //--------------------------------------------------------------------------------------------------
 bool lib840A968C_gt_AllianceStates_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
     // Conditions
     if (testConds) {
         if (!((GameIsTestMap(false)))) {
@@ -3406,6 +3608,7 @@ void lib840A968C_gt_AllianceStates_Init () {
 // Trigger: Spawn Item
 //--------------------------------------------------------------------------------------------------
 bool lib840A968C_gt_SpawnItem_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
     // Conditions
     if (testConds) {
         if (!(lib840A968C_gf_IsaDeveloper(PlayerHandle(EventPlayer())))) {
@@ -3432,6 +3635,10 @@ void lib840A968C_gt_SpawnItem_Init () {
 // Trigger: Map Reveal
 //--------------------------------------------------------------------------------------------------
 bool lib840A968C_gt_MapReveal_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    playergroup auto4986C679_g;
+    int auto4986C679_var;
+
     // Conditions
     if (testConds) {
         if (!(lib840A968C_gf_IsaDeveloper(PlayerHandle(EventPlayer())))) {
@@ -3444,22 +3651,24 @@ bool lib840A968C_gt_MapReveal_Func (bool testConds, bool runActions) {
         return true;
     }
 
-    PlayerGroupLoopBegin(lib840A968C_gf_GetMarineSquadPlayers());
-    for ( ; !PlayerGroupLoopDone() ; PlayerGroupLoopStep() ) {
-        if ((lib840A968C_gv_mapHackRevealerDeveloper[PlayerGroupLoopCurrent()] == null)) {
-            VisRevealerCreate(PlayerGroupLoopCurrent(), RegionEntireMap());
-            lib840A968C_gv_mapHackRevealerDeveloper[PlayerGroupLoopCurrent()] = VisRevealerLastCreated();
+    auto4986C679_g = lib840A968C_gf_GetMarineSquadPlayers();
+    auto4986C679_var = -1;
+    while (true) {
+        auto4986C679_var = PlayerGroupNextPlayer(auto4986C679_g, auto4986C679_var);
+        if (auto4986C679_var < 0) { break; }
+        if ((lib840A968C_gv_mapHackRevealerDeveloper[auto4986C679_var] == null)) {
+            VisRevealerCreate(auto4986C679_var, RegionEntireMap());
+            lib840A968C_gv_mapHackRevealerDeveloper[auto4986C679_var] = VisRevealerLastCreated();
         }
-        if (lib840A968C_gv_revealerActive[PlayerGroupLoopCurrent()]) {
-            lib840A968C_gv_revealerActive[PlayerGroupLoopCurrent()] = false;
-            VisRevealerEnable(lib840A968C_gv_mapHackRevealerDeveloper[PlayerGroupLoopCurrent()], false);
+        if (lib840A968C_gv_revealerActive[auto4986C679_var]) {
+            lib840A968C_gv_revealerActive[auto4986C679_var] = false;
+            VisRevealerEnable(lib840A968C_gv_mapHackRevealerDeveloper[auto4986C679_var], false);
         }
         else {
-            lib840A968C_gv_revealerActive[PlayerGroupLoopCurrent()] = true;
-            VisRevealerEnable(lib840A968C_gv_mapHackRevealerDeveloper[PlayerGroupLoopCurrent()], true);
+            lib840A968C_gv_revealerActive[auto4986C679_var] = true;
+            VisRevealerEnable(lib840A968C_gv_mapHackRevealerDeveloper[auto4986C679_var], true);
         }
     }
-    PlayerGroupLoopEnd();
     return true;
 }
 
@@ -3473,6 +3682,7 @@ void lib840A968C_gt_MapReveal_Init () {
 // Trigger: Max Level Hero
 //--------------------------------------------------------------------------------------------------
 bool lib840A968C_gt_MaxLevelHero_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
     // Conditions
     if (testConds) {
         if (!(lib840A968C_gf_IsaDeveloper(PlayerHandle(EventPlayer())))) {
@@ -3499,6 +3709,7 @@ void lib840A968C_gt_MaxLevelHero_Init () {
 // Trigger: HP Scaling
 //--------------------------------------------------------------------------------------------------
 bool lib840A968C_gt_HPScaling_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
     // Conditions
     if (testConds) {
         if (!(lib840A968C_gf_IsaDeveloper(PlayerHandle(EventPlayer())))) {

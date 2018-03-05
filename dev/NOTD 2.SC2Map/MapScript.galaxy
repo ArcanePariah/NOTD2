@@ -326,6 +326,7 @@ trigger gt_InfestorStartMission;
 // Global Functions
 //--------------------------------------------------------------------------------------------------
 void gf_SetBullyLocations () {
+    // Automatic Variable Declarations
     // Implementation
     gv_bullyRegions[1] = RegionCircle(PointFromId(2318), gv_bullyRegionSize);
     gv_bullyRegions[2] = RegionCircle(PointFromId(3277), gv_bullyRegionSize);
@@ -357,6 +358,7 @@ void gf_SetBullyLocations () {
 }
 
 void gf_SetActiveBullyRegions () {
+    // Automatic Variable Declarations
     int auto59E8658E_n;
     int auto59E8658E_i;
 
@@ -383,6 +385,7 @@ void gf_SetBullyUnits (region lp_bullyRegion) {
 bool auto_gf_SetBullyUnits_TriggerFunc (bool testConds, bool runActions) {
     region lp_bullyRegion = auto_gf_SetBullyUnits_lp_bullyRegion;
 
+    // Automatic Variable Declarations
     int auto4232B6CE_n;
     int auto4232B6CE_i;
     int auto5B3E9AE5_n;
@@ -428,6 +431,7 @@ void gf_RecruitArrivalTransmission () {
     playergroup lv_speakers;
     int lv_speaker;
 
+    // Automatic Variable Declarations
     // Variable Initialization
     lv_speakers = lib840A968C_gf_GetLivingMarineSquadPlayers();
 
@@ -458,17 +462,22 @@ void gf_RecruitArrivalTransmission () {
 }
 
 void gf_AmmoDrop (trigger lp_sourceTrigger, region lp_sourceRegion) {
+    // Automatic Variable Declarations
+    int auto38DE59C3_ae;
+    int auto38DE59C3_var;
+
     // Implementation
     TriggerEnable(lp_sourceTrigger, false);
-    IntLoopBegin(1, RandomInt(3, 4));
-    for ( ; !IntLoopDone() ; IntLoopStep() ) {
+    auto38DE59C3_ae = RandomInt(3, 4);
+    auto38DE59C3_var = 1;
+    for ( ; auto38DE59C3_var <= auto38DE59C3_ae; auto38DE59C3_var += 1 ) {
         libNtve_gf_CreateUnitsWithDefaultFacing(1, "Magazine", 0, 0, RegionRandomPoint(lp_sourceRegion));
     }
-    IntLoopEnd();
     TriggerSendEvent(gv_ammoCollectionEvent);
 }
 
 void gf_NormalArrivalTransmission (int lp_player) {
+    // Automatic Variable Declarations
     // Implementation
     while (gv_transmissionLock) {
         Wait(1.0, c_timeGame);
@@ -506,6 +515,7 @@ bool auto_gf_NormalArrivalDropPod_TriggerFunc (bool testConds, bool runActions) 
     // Variable Declarations
     actor lv_dropPodActor;
 
+    // Automatic Variable Declarations
     // Variable Initialization
 
     // Implementation
@@ -520,6 +530,7 @@ bool auto_gf_NormalArrivalDropPod_TriggerFunc (bool testConds, bool runActions) 
 }
 
 void gf_DisableRecruitStart () {
+    // Automatic Variable Declarations
     // Implementation
     TriggerEnable(gt_RecruitArrival, false);
     TriggerEnable(gt_WarzoneAmmoMarine1, false);
@@ -535,25 +546,30 @@ void gf_DisableRecruitStart () {
 }
 
 void gf_PeacekeeperForceCreation (point lp_holdoutPoint) {
-    int auto3AF8D4E3_n;
-    int auto3AF8D4E3_i;
-
     // Variable Declarations
     region lv_peackeeperHoldoutArea;
     fixed lv_outwardAngle;
     point lv_spawnPoint;
+
+    // Automatic Variable Declarations
+    unitgroup auto3E7332AA_g;
+    int auto3E7332AA_u;
+    unit auto3E7332AA_var;
+    const int auto3AF8D4E3_n = 10;
+    int auto3AF8D4E3_i;
 
     // Variable Initialization
     lv_peackeeperHoldoutArea = RegionCircle(lp_holdoutPoint, 3.0);
     lv_spawnPoint = RegionRandomPoint(lv_peackeeperHoldoutArea);
 
     // Implementation
-    UnitGroupLoopBegin(UnitGroup(null, c_playerAny, lv_peackeeperHoldoutArea, UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0));
-    for ( ; !UnitGroupLoopDone() ; UnitGroupLoopStep() ) {
-        UnitRemove(UnitGroupLoopCurrent());
+    auto3E7332AA_g = UnitGroup(null, c_playerAny, lv_peackeeperHoldoutArea, UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+    auto3E7332AA_u = UnitGroupCount(auto3E7332AA_g, c_unitCountAll);
+    for (;; auto3E7332AA_u -= 1) {
+        auto3E7332AA_var = UnitGroupUnitFromEnd(auto3E7332AA_g, auto3E7332AA_u);
+        if (auto3E7332AA_var == null) { break; }
+        UnitRemove(auto3E7332AA_var);
     }
-    UnitGroupLoopEnd();
-    auto3AF8D4E3_n = 10;
     for (auto3AF8D4E3_i = 1; auto3AF8D4E3_i <= auto3AF8D4E3_n; auto3AF8D4E3_i += 1) {
         while ((RegionContainsPoint(RegionFromId(13), lv_spawnPoint) == false)) {
             lv_spawnPoint = RegionRandomPoint(lv_peackeeperHoldoutArea);
@@ -604,6 +620,7 @@ void gf_PeacekeeperForceCreation (point lp_holdoutPoint) {
 }
 
 void gf_PeacekeeperTransmission (int lp_foregroundPlayer, int lp_backgroundPlayer) {
+    // Automatic Variable Declarations
     // Implementation
     while (gv_transmissionLock) {
         Wait(1.0, c_timeGame);
@@ -622,6 +639,7 @@ void gf_CivilianRescueBriefing () {
     // Variable Declarations
     int lv_speaker;
 
+    // Automatic Variable Declarations
     // Variable Initialization
     lv_speaker = lib09BE6BA8_gf_GetRandomPlayerfromPlayerGroup(lib840A968C_gf_GetLivingMarineSquadPlayers());
 
@@ -642,6 +660,7 @@ void gf_CivilianSpawn () {
     point lv_spawnPoint;
     int lv_numberofCivilians;
 
+    // Automatic Variable Declarations
     // Variable Initialization
     lv_civilianRescueLocation = RegionCircle(gv_civilianRescuePoint, 5.0);
     lv_spawnPoint = RegionRandomPoint(lv_civilianRescueLocation);
@@ -673,6 +692,13 @@ void gf_CivilianSpawn () {
 }
 
 void gf_ExtractionConvoyCreation () {
+    // Automatic Variable Declarations
+    unitgroup auto172D2E54_g;
+    int auto172D2E54_u;
+    unit auto172D2E54_var;
+    unitgroup autoA8B37FEF_g;
+    int autoA8B37FEF_u;
+    unit autoA8B37FEF_var;
     unitgroup auto9D6C615A_g;
     int auto9D6C615A_u;
     unitgroup autoDB5042DD_g;
@@ -691,49 +717,56 @@ void gf_ExtractionConvoyCreation () {
     AIAttackWaveUseUnit(lib1E3F036D_gv_peacekeeperPlayer, gv_staffSergeantFenwick);
     AIAttackWaveSend(lib1E3F036D_gv_peacekeeperPlayer, 0, true);
     gv_peacekeeperEscortWave = WaveLastCreated();
-    UnitGroupLoopBegin(gv_civiliansPeacekeepers);
-    for ( ; !UnitGroupLoopDone() ; UnitGroupLoopStep() ) {
-        UnitSetPropertyFixed(UnitGroupLoopCurrent(), c_unitPropMovementSpeed, 1.4);
+    auto172D2E54_g = gv_civiliansPeacekeepers;
+    auto172D2E54_u = UnitGroupCount(auto172D2E54_g, c_unitCountAll);
+    for (;; auto172D2E54_u -= 1) {
+        auto172D2E54_var = UnitGroupUnitFromEnd(auto172D2E54_g, auto172D2E54_u);
+        if (auto172D2E54_var == null) { break; }
+        UnitSetPropertyFixed(auto172D2E54_var, c_unitPropMovementSpeed, 1.4);
     }
-    UnitGroupLoopEnd();
     UnitGroupIssueOrder(gv_civiliansPeacekeepers, OrderTargetingPoint(AbilityCommand("move", 0), gv_extractionLocation), c_orderQueueReplace);
-    UnitGroupLoopBegin(gv_peacekeepers);
-    for ( ; !UnitGroupLoopDone() ; UnitGroupLoopStep() ) {
-        UnitSetState(UnitGroupLoopCurrent(), c_unitStateInvulnerable, false);
+    autoA8B37FEF_g = gv_peacekeepers;
+    autoA8B37FEF_u = UnitGroupCount(autoA8B37FEF_g, c_unitCountAll);
+    for (;; autoA8B37FEF_u -= 1) {
+        autoA8B37FEF_var = UnitGroupUnitFromEnd(autoA8B37FEF_g, autoA8B37FEF_u);
+        if (autoA8B37FEF_var == null) { break; }
+        UnitSetState(autoA8B37FEF_var, c_unitStateInvulnerable, false);
     }
-    UnitGroupLoopEnd();
     auto9D6C615A_g = gv_peacekeepers;
-    auto9D6C615A_u = 1;
-    for ( ; auto9D6C615A_u <= UnitGroupCount(auto9D6C615A_g, c_unitCountAll) ; auto9D6C615A_u += BoolToInt(gv_registrationUnit == UnitGroupUnit(auto9D6C615A_g, auto9D6C615A_u)) ) {
-        gv_registrationUnit = UnitGroupUnit(auto9D6C615A_g, auto9D6C615A_u);
+    auto9D6C615A_u = UnitGroupCount(auto9D6C615A_g, c_unitCountAll);
+    for (;; auto9D6C615A_u -= 1) {
+        gv_registrationUnit = UnitGroupUnitFromEnd(auto9D6C615A_g, auto9D6C615A_u);
+        if (gv_registrationUnit == null) { break; }
         TriggerAddEventUnitRegion(gt_ExtractionEndSuccess, UnitRefFromVariable("gv_registrationUnit"), RegionCircle(gv_extractionLocation, 5.0), true);
     }
     autoDB5042DD_g = gv_paratroopers;
-    autoDB5042DD_u = 1;
-    for ( ; autoDB5042DD_u <= UnitGroupCount(autoDB5042DD_g, c_unitCountAll) ; autoDB5042DD_u += BoolToInt(gv_registrationUnit == UnitGroupUnit(autoDB5042DD_g, autoDB5042DD_u)) ) {
-        gv_registrationUnit = UnitGroupUnit(autoDB5042DD_g, autoDB5042DD_u);
+    autoDB5042DD_u = UnitGroupCount(autoDB5042DD_g, c_unitCountAll);
+    for (;; autoDB5042DD_u -= 1) {
+        gv_registrationUnit = UnitGroupUnitFromEnd(autoDB5042DD_g, autoDB5042DD_u);
+        if (gv_registrationUnit == null) { break; }
         TriggerAddEventUnitRegion(gt_ExtractionEndSuccess, UnitRefFromVariable("gv_registrationUnit"), RegionCircle(gv_extractionLocation, 5.0), true);
         TriggerAddEventUnitDied(gt_ParatrooperLoot, UnitRefFromVariable("gv_registrationUnit"));
     }
     autoA261E908_g = gv_civiliansPeacekeepers;
-    autoA261E908_u = 1;
-    for ( ; autoA261E908_u <= UnitGroupCount(autoA261E908_g, c_unitCountAll) ; autoA261E908_u += BoolToInt(gv_registrationUnit == UnitGroupUnit(autoA261E908_g, autoA261E908_u)) ) {
-        gv_registrationUnit = UnitGroupUnit(autoA261E908_g, autoA261E908_u);
+    autoA261E908_u = UnitGroupCount(autoA261E908_g, c_unitCountAll);
+    for (;; autoA261E908_u -= 1) {
+        gv_registrationUnit = UnitGroupUnitFromEnd(autoA261E908_g, autoA261E908_u);
+        if (gv_registrationUnit == null) { break; }
         TriggerAddEventUnitRegion(gt_ExtractionEndSuccess, UnitRefFromVariable("gv_registrationUnit"), RegionCircle(gv_extractionLocation, 5.0), true);
     }
 }
 
 void gf_ExtractionParatroopers () {
-    int auto6D6CA56D_n;
-    int auto6D6CA56D_i;
-
     // Variable Declarations
     point lv_dropPoint;
+
+    // Automatic Variable Declarations
+    const int auto6D6CA56D_n = 3;
+    int auto6D6CA56D_i;
 
     // Variable Initialization
 
     // Implementation
-    auto6D6CA56D_n = 3;
     for (auto6D6CA56D_i = 1; auto6D6CA56D_i <= auto6D6CA56D_n; auto6D6CA56D_i += 1) {
         lv_dropPoint = RegionRandomPoint(RegionCircle(gv_peacekeeperHoldout, 4.0));
         while ((CliffLevel(lv_dropPoint) != CliffLevel(gv_peacekeeperHoldout))) {
@@ -765,6 +798,7 @@ void gf_ExtractionBeginningDialog () {
     playergroup lv_speakers;
     int lv_currentSpeaker;
 
+    // Automatic Variable Declarations
     // Variable Initialization
     lv_speakers = lib840A968C_gf_GetLivingMarineSquadPlayers();
 
@@ -790,6 +824,7 @@ void gf_ExtractionBeginningDialog () {
 }
 
 void gf_ExtractionParatrooperDialog () {
+    // Automatic Variable Declarations
     // Implementation
     while (gv_transmissionLock) {
         Wait(1.0, c_timeGame);
@@ -806,6 +841,7 @@ void gf_ExtractionEndDialog () {
     // Variable Declarations
     int lv_speaker;
 
+    // Automatic Variable Declarations
     // Variable Initialization
     lv_speaker = lib09BE6BA8_gf_GetRandomPlayerfromPlayerGroup(lib840A968C_gf_GetLivingMarineSquadPlayers());
 
@@ -830,6 +866,7 @@ void gf_ExtractionStateCheck () {
 }
 
 bool auto_gf_ExtractionStateCheck_TriggerFunc (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
     // Implementation
     while (!((libNtve_gf_UnitGroupIsDead(gv_civiliansPeacekeepers) || (TriggerActiveCount(gt_ExtractionEndSuccess) == 1)))) {
         Wait(0.5, c_timeGame);
@@ -846,6 +883,7 @@ bool auto_gf_ExtractionStateCheck_TriggerFunc (bool testConds, bool runActions) 
 }
 
 void gf_CommunicationArrayPlacementObjective () {
+    // Automatic Variable Declarations
     // Implementation
     TextExpressionSetToken("Param/Expression/8069A969", "A", IntToText(gv_communicationArraysToBeDeployed));
     ObjectiveCreate(TextExpressionAssemble("Param/Expression/8069A969"), StringExternal("Param/Value/779EBF23"), c_objectiveStateActive, true);
@@ -857,6 +895,7 @@ void gf_CommunicationArrayTransmission () {
     playergroup lv_speakers;
     int lv_currentSpeaker;
 
+    // Automatic Variable Declarations
     // Variable Initialization
     lv_speakers = PlayerGroupCopy(lib840A968C_gf_GetLivingMarineSquadPlayers());
     lv_currentSpeaker = lib09BE6BA8_gf_GetRandomPlayerfromPlayerGroup(lv_speakers);
@@ -884,8 +923,11 @@ void gf_CommunicationArrayTransmission () {
 }
 
 void gf_CommunicationArrayArmorySpawns () {
+    // Automatic Variable Declarations
     int autoE6FC85EB_n;
     int autoE6FC85EB_i;
+    playergroup auto00676182_g;
+    int auto00676182_var;
 
     // Implementation
     autoE6FC85EB_n = gv_communicationArraysToBeDeployed;
@@ -893,11 +935,13 @@ void gf_CommunicationArrayArmorySpawns () {
         libNtve_gf_CreateUnitsWithDefaultFacing(1, "CommunicationsArrayPackedUp", 0, 0, RegionRandomPoint(RegionFromId(24)));
     }
     gf_ArmoryItemDrops();
-    PlayerGroupLoopBegin(lib840A968C_gf_GetMarineSquadPlayers());
-    for ( ; !PlayerGroupLoopDone() ; PlayerGroupLoopStep() ) {
-        VisRevealArea(PlayerGroupLoopCurrent(), RegionFromId(9), 30.0, false);
+    auto00676182_g = lib840A968C_gf_GetMarineSquadPlayers();
+    auto00676182_var = -1;
+    while (true) {
+        auto00676182_var = PlayerGroupNextPlayer(auto00676182_g, auto00676182_var);
+        if (auto00676182_var < 0) { break; }
+        VisRevealArea(auto00676182_var, RegionFromId(9), 30.0, false);
     }
-    PlayerGroupLoopEnd();
     PingCreate(PlayerGroupAll(), "PingAlert", RegionGetCenter(RegionFromId(9)), ColorWithAlpha(100.00, 100.00, 50.20, 0.00), 120.0);
     PingSetScale(PingLastCreated(), 0.4);
     PingSetTooltip(PingLastCreated(), StringExternal("Param/Value/EB653B7D"));
@@ -909,6 +953,7 @@ void gf_CommunicationArrayLocations () {
     int lv_arrayLocationsSelected;
     point lv_location;
 
+    // Automatic Variable Declarations
     // Variable Initialization
     lv_arrayLocationsSelected = 1;
     lv_location = RegionRandomPoint(RegionFromId(12));
@@ -931,6 +976,7 @@ void gf_CommunicationArrayLocations () {
 }
 
 void gf_CommunicationArrayTimer () {
+    // Automatic Variable Declarations
     // Implementation
     TimerWindowCreate(gv_communicationArrayTimer, StringExternal("Param/Value/C3056A6D"), true, false);
     gv_communicationArrayTimerWindow = TimerWindowLastCreated();
@@ -938,19 +984,19 @@ void gf_CommunicationArrayTimer () {
 }
 
 bool gf_ArrayPlacedCorrectly (unit lp_arrayPlaced) {
-    int auto10279937_ae;
-    int auto10279937_ai;
-
     // Variable Declarations
     int lv_array;
+
+    // Automatic Variable Declarations
+    int auto10279937_ae;
+    const int auto10279937_ai = 1;
 
     // Variable Initialization
 
     // Implementation
     auto10279937_ae = gv_communicationArraysToBeDeployed;
-    auto10279937_ai = 1;
     lv_array = 1;
-    for ( ; ( (auto10279937_ai >= 0 && lv_array <= auto10279937_ae) || (auto10279937_ai <= 0 && lv_array >= auto10279937_ae) ) ; lv_array += auto10279937_ai ) {
+    for ( ; ( (auto10279937_ai >= 0 && lv_array <= auto10279937_ae) || (auto10279937_ai < 0 && lv_array >= auto10279937_ae) ) ; lv_array += auto10279937_ai ) {
         if ((libNtve_gf_UnitInRegion(lp_arrayPlaced, gv_communicationArrayLocations[lv_array]) == true) && (UnitGroupCount(UnitGroup("CommunicationsArray", c_playerAny, gv_communicationArrayLocations[lv_array], UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0), c_unitCountAlive) <= 1)) {
             return true;
         }
@@ -960,6 +1006,7 @@ bool gf_ArrayPlacedCorrectly (unit lp_arrayPlaced) {
 }
 
 void gf_RestorePowerBriefing () {
+    // Automatic Variable Declarations
     // Implementation
     lib840A968C_gf_SendTransmission(StringExternal("Param/Value/C5CEAF44"), StringExternal("Param/Value/F9333D6F"), lib840A968C_ge_PreemptMessage_DontPreempt, lib840A968C_ge_MessageEventType_AlliedCommunication, c_messageAreaError, lib840A968C_ge_Faction_UGC, null);
     lib840A968C_gf_SendTransmission(StringExternal("Param/Value/58980713"), StringExternal("Param/Value/DC746DF6"), lib840A968C_ge_PreemptMessage_DontPreempt, lib840A968C_ge_MessageEventType_AlliedCommunication, c_messageAreaError, lib840A968C_ge_Faction_UGC, null);
@@ -970,6 +1017,7 @@ void gf_ReactorBriefing () {
     playergroup lv_speakers;
     int lv_currentSpeaker;
 
+    // Automatic Variable Declarations
     // Variable Initialization
     lv_speakers = PlayerGroupCopy(lib840A968C_gf_GetLivingMarineSquadPlayers());
 
@@ -995,6 +1043,7 @@ void gf_ReactorBriefing () {
 }
 
 void gf_InvestigationBriefing () {
+    // Automatic Variable Declarations
     // Implementation
     while (gv_transmissionLock) {
         Wait(1.0, c_timeGame);
@@ -1010,19 +1059,22 @@ void gf_InvestigationChatter () {
     playergroup lv_speakers;
     int[4] lv_currentSpeaker;
 
+    // Automatic Variable Declarations
+    const int auto85C83BF1_ae = 3;
+    int auto85C83BF1_var;
+
     // Variable Initialization
     lv_speakers = PlayerGroupCopy(lib840A968C_gf_GetLivingMarineSquadPlayers());
 
     // Implementation
-    lv_currentSpeaker[IntLoopCurrent()] = lib09BE6BA8_gf_GetRandomPlayerfromPlayerGroup(lv_speakers);
-    PlayerGroupRemove(lv_speakers, lv_currentSpeaker[IntLoopCurrent()]);
+    lv_currentSpeaker[1] = lib09BE6BA8_gf_GetRandomPlayerfromPlayerGroup(lv_speakers);
+    PlayerGroupRemove(lv_speakers, lv_currentSpeaker[1]);
     if ((PlayerGroupCount(lv_speakers) > 1)) {
-        IntLoopBegin(2, 3);
-        for ( ; !IntLoopDone() ; IntLoopStep() ) {
-            lv_currentSpeaker[IntLoopCurrent()] = lib09BE6BA8_gf_GetRandomPlayerfromPlayerGroup(lv_speakers);
-            PlayerGroupRemove(lv_speakers, lv_currentSpeaker[IntLoopCurrent()]);
+        auto85C83BF1_var = 2;
+        for ( ; auto85C83BF1_var <= auto85C83BF1_ae; auto85C83BF1_var += 1 ) {
+            lv_currentSpeaker[auto85C83BF1_var] = lib09BE6BA8_gf_GetRandomPlayerfromPlayerGroup(lv_speakers);
+            PlayerGroupRemove(lv_speakers, lv_currentSpeaker[auto85C83BF1_var]);
         }
-        IntLoopEnd();
     }
 
     lib840A968C_gf_BackgroundDialog(lib840A968C_gf_GetMarine(lv_currentSpeaker[1]), lib840A968C_gf_GetPlayerNamewithrank(lv_currentSpeaker[1]), StringExternal("Param/Value/6E013AD3"), lib840A968C_ge_DialogDuration_Long, 5.0);
@@ -1036,12 +1088,14 @@ void gf_InvestigationChatter () {
 }
 
 void gf_InvestigationLabPing () {
+    // Automatic Variable Declarations
     // Implementation
     libNtve_gf_CreatePingFacingAngle(PlayerGroupAll(), "PingObjective", PointFromId(4635), ColorWithAlpha(0.00, 100.00, 0.00, 0.00), 180.0, 270.0);
     gv_labEntrancePing = PingLastCreated();
 }
 
 void gf_InvestigationTarionTransmission () {
+    // Automatic Variable Declarations
     // Implementation
     while (gv_transmissionLock) {
         Wait(1.0, c_timeGame);
@@ -1057,6 +1111,7 @@ void gf_MonolithBriefing () {
     playergroup lv_speakers;
     int lv_currentSpeaker;
 
+    // Automatic Variable Declarations
     // Variable Initialization
     lv_speakers = PlayerGroupCopy(lib840A968C_gf_GetLivingMarineSquadPlayers());
 
@@ -1079,12 +1134,13 @@ void gf_MonolithBriefing () {
 }
 
 void gf_MonolithReinforcements () {
-    int auto6A242A3C_n;
-    int auto6A242A3C_i;
-
     // Variable Declarations
     point lv_dropPoint;
     unit lv_dropShip;
+
+    // Automatic Variable Declarations
+    int auto6A242A3C_n;
+    int auto6A242A3C_i;
 
     // Variable Initialization
 
@@ -1156,42 +1212,37 @@ void gf_MonolithReinforcements () {
 }
 
 void gf_ArmoryItemDrops () {
-    int autoB14EC5BE_n;
+    // Automatic Variable Declarations
+    const int autoB14EC5BE_n = 10;
     int autoB14EC5BE_i;
-    int auto757D1595_n;
+    const int auto757D1595_n = 2;
     int auto757D1595_i;
-    int autoCC79FED7_n;
+    const int autoCC79FED7_n = 2;
     int autoCC79FED7_i;
-    int auto054F80EB_n;
+    const int auto054F80EB_n = 2;
     int auto054F80EB_i;
-    int autoC032B21B_n;
+    const int autoC032B21B_n = 2;
     int autoC032B21B_i;
-    int autoCAF55FE3_n;
+    const int autoCAF55FE3_n = 2;
     int autoCAF55FE3_i;
 
     // Implementation
-    autoB14EC5BE_n = 10;
     for (autoB14EC5BE_i = 1; autoB14EC5BE_i <= autoB14EC5BE_n; autoB14EC5BE_i += 1) {
         lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(11)), "Magazine", lib840A968C_ge_DropMethod_Locker);
     }
-    auto757D1595_n = 2;
     for (auto757D1595_i = 1; auto757D1595_i <= auto757D1595_n; auto757D1595_i += 1) {
         lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(11)), "RoadFlare", lib840A968C_ge_DropMethod_Locker);
     }
-    autoCC79FED7_n = 2;
     for (autoCC79FED7_i = 1; autoCC79FED7_i <= autoCC79FED7_n; autoCC79FED7_i += 1) {
         lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(23)), "ArmoredProtectiveInsert", lib840A968C_ge_DropMethod_Locker);
     }
     lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(23)), "EnhancedProtectiveInsert", lib840A968C_ge_DropMethod_Locker);
-    auto054F80EB_n = 2;
     for (auto054F80EB_i = 1; auto054F80EB_i <= auto054F80EB_n; auto054F80EB_i += 1) {
         lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(23)), "ImprovedAccuracyModule", lib840A968C_ge_DropMethod_Locker);
     }
-    autoC032B21B_n = 2;
     for (autoC032B21B_i = 1; autoC032B21B_i <= autoC032B21B_n; autoC032B21B_i += 1) {
         lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(8)), "Flamethrower", lib840A968C_ge_DropMethod_Locker);
     }
-    autoCAF55FE3_n = 2;
     for (autoCAF55FE3_i = 1; autoCAF55FE3_i <= autoCAF55FE3_n; autoCAF55FE3_i += 1) {
         lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(8)), "MarksmanRifle", lib840A968C_ge_DropMethod_Locker);
     }
@@ -1201,85 +1252,75 @@ void gf_ArmoryItemDrops () {
 }
 
 void gf_Chapter1AirItemDrops () {
-    int auto3D7CF007_n;
+    // Automatic Variable Declarations
+    const int auto3D7CF007_n = 30;
     int auto3D7CF007_i;
-    int autoC2B3695E_n;
+    const int autoC2B3695E_n = 2;
     int autoC2B3695E_i;
-    int auto648672B2_n;
+    const int auto648672B2_n = 6;
     int auto648672B2_i;
-    int autoFD994822_n;
+    const int autoFD994822_n = 4;
     int autoFD994822_i;
-    int autoCED4AA4B_n;
+    const int autoCED4AA4B_n = 4;
     int autoCED4AA4B_i;
-    int autoB3F62833_n;
+    const int autoB3F62833_n = 2;
     int autoB3F62833_i;
-    int auto75F66EA4_n;
+    const int auto75F66EA4_n = 4;
     int auto75F66EA4_i;
-    int auto30A5FCF4_n;
+    const int auto30A5FCF4_n = 4;
     int auto30A5FCF4_i;
-    int auto67A12241_n;
+    const int auto67A12241_n = 4;
     int auto67A12241_i;
-    int autoEBDBC88D_n;
+    const int autoEBDBC88D_n = 2;
     int autoEBDBC88D_i;
-    int auto6D5BBB26_n;
+    const int auto6D5BBB26_n = 2;
     int auto6D5BBB26_i;
-    int auto151D018F_n;
+    const int auto151D018F_n = 2;
     int auto151D018F_i;
-    int autoE972A8CC_n;
+    const int autoE972A8CC_n = 2;
     int autoE972A8CC_i;
-    int autoB5452822_n;
+    const int autoB5452822_n = 3;
     int autoB5452822_i;
-    int auto84CD1C57_n;
+    const int auto84CD1C57_n = 3;
     int auto84CD1C57_i;
-    int auto10B4A214_n;
+    const int auto10B4A214_n = 2;
     int auto10B4A214_i;
-    int autoDA4A5507_n;
+    const int autoDA4A5507_n = 2;
     int autoDA4A5507_i;
 
     // Implementation
-    auto3D7CF007_n = 30;
     for (auto3D7CF007_i = 1; auto3D7CF007_i <= auto3D7CF007_n; auto3D7CF007_i += 1) {
         lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "Magazine", lib840A968C_ge_DropMethod_Orbital);
     }
-    autoC2B3695E_n = 2;
     for (autoC2B3695E_i = 1; autoC2B3695E_i <= autoC2B3695E_n; autoC2B3695E_i += 1) {
         lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "AmmunitionCase", lib840A968C_ge_DropMethod_Orbital);
     }
-    auto648672B2_n = 6;
     for (auto648672B2_i = 1; auto648672B2_i <= auto648672B2_n; auto648672B2_i += 1) {
         lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "Medkit", lib840A968C_ge_DropMethod_Orbital);
     }
-    autoFD994822_n = 4;
     for (autoFD994822_i = 1; autoFD994822_i <= autoFD994822_n; autoFD994822_i += 1) {
         lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "Bandage", lib840A968C_ge_DropMethod_Orbital);
     }
-    autoCED4AA4B_n = 4;
     for (autoCED4AA4B_i = 1; autoCED4AA4B_i <= autoCED4AA4B_n; autoCED4AA4B_i += 1) {
         lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "AntiVenom", lib840A968C_ge_DropMethod_Orbital);
     }
-    autoB3F62833_n = 2;
     for (autoB3F62833_i = 1; autoB3F62833_i <= autoB3F62833_n; autoB3F62833_i += 1) {
         lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "MendingPaste", lib840A968C_ge_DropMethod_Orbital);
     }
-    auto75F66EA4_n = 4;
     for (auto75F66EA4_i = 1; auto75F66EA4_i <= auto75F66EA4_n; auto75F66EA4_i += 1) {
         lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "RoadFlare", lib840A968C_ge_DropMethod_Orbital);
     }
-    auto30A5FCF4_n = 4;
     for (auto30A5FCF4_i = 1; auto30A5FCF4_i <= auto30A5FCF4_n; auto30A5FCF4_i += 1) {
         lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "FlareGun", lib840A968C_ge_DropMethod_Orbital);
     }
 
-    auto67A12241_n = 4;
     for (auto67A12241_i = 1; auto67A12241_i <= auto67A12241_n; auto67A12241_i += 1) {
         lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "ArmoredProtectiveInsert", lib840A968C_ge_DropMethod_Orbital);
     }
-    autoEBDBC88D_n = 2;
     for (autoEBDBC88D_i = 1; autoEBDBC88D_i <= autoEBDBC88D_n; autoEBDBC88D_i += 1) {
         lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "EnhancedProtectiveInsert", lib840A968C_ge_DropMethod_Orbital);
     }
 
-    auto6D5BBB26_n = 2;
     for (auto6D5BBB26_i = 1; auto6D5BBB26_i <= auto6D5BBB26_n; auto6D5BBB26_i += 1) {
         lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "FieldLights", lib840A968C_ge_DropMethod_Orbital);
     }
@@ -1287,11 +1328,9 @@ void gf_Chapter1AirItemDrops () {
     lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "HighCapacityMagazine", lib840A968C_ge_DropMethod_Orbital);
     lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "ImprovedAccuracyModule", lib840A968C_ge_DropMethod_Orbital);
 
-    auto151D018F_n = 2;
     for (auto151D018F_i = 1; auto151D018F_i <= auto151D018F_n; auto151D018F_i += 1) {
         lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "ArmorPiercing", lib840A968C_ge_DropMethod_Orbital);
     }
-    autoE972A8CC_n = 2;
     for (autoE972A8CC_i = 1; autoE972A8CC_i <= autoE972A8CC_n; autoE972A8CC_i += 1) {
         lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "HighExplosive", lib840A968C_ge_DropMethod_Orbital);
     }
@@ -1300,19 +1339,15 @@ void gf_Chapter1AirItemDrops () {
     lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "Expanding", lib840A968C_ge_DropMethod_Orbital);
     lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "PlasmaCore", lib840A968C_ge_DropMethod_Orbital);
 
-    autoB5452822_n = 3;
     for (autoB5452822_i = 1; autoB5452822_i <= autoB5452822_n; autoB5452822_i += 1) {
         lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "Flamethrower", lib840A968C_ge_DropMethod_Orbital);
     }
-    auto84CD1C57_n = 3;
     for (auto84CD1C57_i = 1; auto84CD1C57_i <= auto84CD1C57_n; auto84CD1C57_i += 1) {
         lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "MarksmanRifle", lib840A968C_ge_DropMethod_Orbital);
     }
-    auto10B4A214_n = 2;
     for (auto10B4A214_i = 1; auto10B4A214_i <= auto10B4A214_n; auto10B4A214_i += 1) {
         lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "PumpShotgun", lib840A968C_ge_DropMethod_Orbital);
     }
-    autoDA4A5507_n = 2;
     for (autoDA4A5507_i = 1; autoDA4A5507_i <= autoDA4A5507_n; autoDA4A5507_i += 1) {
         lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "SubmachineGun", lib840A968C_ge_DropMethod_Orbital);
     }
@@ -1322,78 +1357,69 @@ void gf_Chapter1AirItemDrops () {
 }
 
 void gf_Chapter3AirItemDrops () {
-    int autoC1155CB6_n;
+    // Automatic Variable Declarations
+    const int autoC1155CB6_n = 20;
     int autoC1155CB6_i;
-    int auto02623865_n;
+    const int auto02623865_n = 2;
     int auto02623865_i;
-    int auto4DF36D52_n;
+    const int auto4DF36D52_n = 2;
     int auto4DF36D52_i;
-    int autoA547DE1F_n;
+    const int autoA547DE1F_n = 2;
     int autoA547DE1F_i;
-    int auto8260DB4E_n;
+    const int auto8260DB4E_n = 2;
     int auto8260DB4E_i;
-    int auto022D714E_n;
+    const int auto022D714E_n = 2;
     int auto022D714E_i;
-    int autoE1B10C21_n;
+    const int autoE1B10C21_n = 2;
     int autoE1B10C21_i;
-    int auto234FF5CF_n;
+    const int auto234FF5CF_n = 2;
     int auto234FF5CF_i;
-    int autoAF2F1D85_n;
+    const int autoAF2F1D85_n = 2;
     int autoAF2F1D85_i;
-    int autoFBE6586C_n;
+    const int autoFBE6586C_n = 2;
     int autoFBE6586C_i;
-    int auto4EDE4524_n;
+    const int auto4EDE4524_n = 2;
     int auto4EDE4524_i;
-    int autoFC6998F3_n;
+    const int autoFC6998F3_n = 2;
     int autoFC6998F3_i;
-    int auto7291F8D3_n;
+    const int auto7291F8D3_n = 2;
     int auto7291F8D3_i;
-    int autoE49CBBDD_n;
+    const int autoE49CBBDD_n = 2;
     int autoE49CBBDD_i;
-    int autoC2BB22E2_n;
+    const int autoC2BB22E2_n = 2;
     int autoC2BB22E2_i;
-    int auto3AFDFBCF_n;
+    const int auto3AFDFBCF_n = 2;
     int auto3AFDFBCF_i;
 
     // Implementation
-    autoC1155CB6_n = 20;
     for (autoC1155CB6_i = 1; autoC1155CB6_i <= autoC1155CB6_n; autoC1155CB6_i += 1) {
         lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "Magazine", lib840A968C_ge_DropMethod_Orbital);
     }
-    auto02623865_n = 2;
     for (auto02623865_i = 1; auto02623865_i <= auto02623865_n; auto02623865_i += 1) {
         lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "AmmunitionCase", lib840A968C_ge_DropMethod_Orbital);
     }
-    auto4DF36D52_n = 2;
     for (auto4DF36D52_i = 1; auto4DF36D52_i <= auto4DF36D52_n; auto4DF36D52_i += 1) {
         lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "Medkit", lib840A968C_ge_DropMethod_Orbital);
     }
-    autoA547DE1F_n = 2;
     for (autoA547DE1F_i = 1; autoA547DE1F_i <= autoA547DE1F_n; autoA547DE1F_i += 1) {
         lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "Bandage", lib840A968C_ge_DropMethod_Orbital);
     }
-    auto8260DB4E_n = 2;
     for (auto8260DB4E_i = 1; auto8260DB4E_i <= auto8260DB4E_n; auto8260DB4E_i += 1) {
         lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "AntiVenom", lib840A968C_ge_DropMethod_Orbital);
     }
-    auto022D714E_n = 2;
     for (auto022D714E_i = 1; auto022D714E_i <= auto022D714E_n; auto022D714E_i += 1) {
         lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "MendingPaste", lib840A968C_ge_DropMethod_Orbital);
     }
-    autoE1B10C21_n = 2;
     for (autoE1B10C21_i = 1; autoE1B10C21_i <= autoE1B10C21_n; autoE1B10C21_i += 1) {
         lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "RoadFlare", lib840A968C_ge_DropMethod_Orbital);
     }
-    auto234FF5CF_n = 2;
     for (auto234FF5CF_i = 1; auto234FF5CF_i <= auto234FF5CF_n; auto234FF5CF_i += 1) {
         lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "FlareGun", lib840A968C_ge_DropMethod_Orbital);
     }
 
-    autoAF2F1D85_n = 2;
     for (autoAF2F1D85_i = 1; autoAF2F1D85_i <= autoAF2F1D85_n; autoAF2F1D85_i += 1) {
         lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "EnhancedProtectiveInsert", lib840A968C_ge_DropMethod_Orbital);
     }
-    autoFBE6586C_n = 2;
     for (autoFBE6586C_i = 1; autoFBE6586C_i <= autoFBE6586C_n; autoFBE6586C_i += 1) {
         lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "HeavyProtectiveInsert", lib840A968C_ge_DropMethod_Orbital);
     }
@@ -1407,29 +1433,23 @@ void gf_Chapter3AirItemDrops () {
     lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "CombatMobilityAugment", lib840A968C_ge_DropMethod_Orbital);
     lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "PowerGeneratorAugment", lib840A968C_ge_DropMethod_Orbital);
 
-    auto4EDE4524_n = 2;
     for (auto4EDE4524_i = 1; auto4EDE4524_i <= auto4EDE4524_n; auto4EDE4524_i += 1) {
         lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "HecateModule", lib840A968C_ge_DropMethod_Orbital);
     }
-    autoFC6998F3_n = 2;
     for (autoFC6998F3_i = 1; autoFC6998F3_i <= autoFC6998F3_n; autoFC6998F3_i += 1) {
         lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "Expanding", lib840A968C_ge_DropMethod_Orbital);
     }
-    auto7291F8D3_n = 2;
     for (auto7291F8D3_i = 1; auto7291F8D3_i <= auto7291F8D3_n; auto7291F8D3_i += 1) {
         lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "PlasmaCore", lib840A968C_ge_DropMethod_Orbital);
     }
     lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "ArmorPiercing", lib840A968C_ge_DropMethod_Orbital);
 
-    autoE49CBBDD_n = 2;
     for (autoE49CBBDD_i = 1; autoE49CBBDD_i <= autoE49CBBDD_n; autoE49CBBDD_i += 1) {
         lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "Flamethrower", lib840A968C_ge_DropMethod_Orbital);
     }
-    autoC2BB22E2_n = 2;
     for (autoC2BB22E2_i = 1; autoC2BB22E2_i <= autoC2BB22E2_n; autoC2BB22E2_i += 1) {
         lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "LaserRifle", lib840A968C_ge_DropMethod_Orbital);
     }
-    auto3AFDFBCF_n = 2;
     for (auto3AFDFBCF_i = 1; auto3AFDFBCF_i <= auto3AFDFBCF_n; auto3AFDFBCF_i += 1) {
         lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "MediumMachineGun", lib840A968C_ge_DropMethod_Orbital);
     }
@@ -1440,66 +1460,59 @@ void gf_Chapter3AirItemDrops () {
 }
 
 void gf_Chapter5AirItemDrops () {
-    int auto53E57557_n;
+    // Automatic Variable Declarations
+    const int auto53E57557_n = 20;
     int auto53E57557_i;
-    int auto4B049E5C_n;
+    const int auto4B049E5C_n = 2;
     int auto4B049E5C_i;
-    int auto9E213753_n;
+    const int auto9E213753_n = 2;
     int auto9E213753_i;
-    int autoC2146671_n;
+    const int autoC2146671_n = 2;
     int autoC2146671_i;
-    int autoB9BA0BF8_n;
+    const int autoB9BA0BF8_n = 2;
     int autoB9BA0BF8_i;
-    int auto07B8B3EE_n;
+    const int auto07B8B3EE_n = 2;
     int auto07B8B3EE_i;
-    int auto763CE08C_n;
+    const int auto763CE08C_n = 2;
     int auto763CE08C_i;
-    int auto4650B3EB_n;
+    const int auto4650B3EB_n = 2;
     int auto4650B3EB_i;
-    int autoFBC81AE2_n;
+    const int autoFBC81AE2_n = 2;
     int autoFBC81AE2_i;
-    int autoDD8E14FC_n;
+    const int autoDD8E14FC_n = 2;
     int autoDD8E14FC_i;
-    int autoF2ECBFB5_n;
+    const int autoF2ECBFB5_n = 4;
     int autoF2ECBFB5_i;
-    int autoCC644450_n;
+    const int autoCC644450_n = 2;
     int autoCC644450_i;
-    int autoD6D9EF2A_n;
+    const int autoD6D9EF2A_n = 2;
     int autoD6D9EF2A_i;
-    int autoCC5A3339_n;
+    const int autoCC5A3339_n = 2;
     int autoCC5A3339_i;
 
     // Implementation
-    auto53E57557_n = 20;
     for (auto53E57557_i = 1; auto53E57557_i <= auto53E57557_n; auto53E57557_i += 1) {
         lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "Magazine", lib840A968C_ge_DropMethod_Orbital);
     }
-    auto4B049E5C_n = 2;
     for (auto4B049E5C_i = 1; auto4B049E5C_i <= auto4B049E5C_n; auto4B049E5C_i += 1) {
         lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "Medkit", lib840A968C_ge_DropMethod_Orbital);
     }
-    auto9E213753_n = 2;
     for (auto9E213753_i = 1; auto9E213753_i <= auto9E213753_n; auto9E213753_i += 1) {
         lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "Bandage", lib840A968C_ge_DropMethod_Orbital);
     }
-    autoC2146671_n = 2;
     for (autoC2146671_i = 1; autoC2146671_i <= autoC2146671_n; autoC2146671_i += 1) {
         lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "AntiVenom", lib840A968C_ge_DropMethod_Orbital);
     }
-    autoB9BA0BF8_n = 2;
     for (autoB9BA0BF8_i = 1; autoB9BA0BF8_i <= autoB9BA0BF8_n; autoB9BA0BF8_i += 1) {
         lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "MendingPaste", lib840A968C_ge_DropMethod_Orbital);
     }
-    auto07B8B3EE_n = 2;
     for (auto07B8B3EE_i = 1; auto07B8B3EE_i <= auto07B8B3EE_n; auto07B8B3EE_i += 1) {
         lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "RoadFlare", lib840A968C_ge_DropMethod_Orbital);
     }
-    auto763CE08C_n = 2;
     for (auto763CE08C_i = 1; auto763CE08C_i <= auto763CE08C_n; auto763CE08C_i += 1) {
         lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "FlareGun", lib840A968C_ge_DropMethod_Orbital);
     }
 
-    auto4650B3EB_n = 2;
     for (auto4650B3EB_i = 1; auto4650B3EB_i <= auto4650B3EB_n; auto4650B3EB_i += 1) {
         lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "HeavyProtectiveInsert", lib840A968C_ge_DropMethod_Orbital);
     }
@@ -1512,30 +1525,24 @@ void gf_Chapter5AirItemDrops () {
     lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "CombatMobilityAugment", lib840A968C_ge_DropMethod_Orbital);
     lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "PowerGeneratorAugment", lib840A968C_ge_DropMethod_Orbital);
 
-    autoFBC81AE2_n = 2;
     for (autoFBC81AE2_i = 1; autoFBC81AE2_i <= autoFBC81AE2_n; autoFBC81AE2_i += 1) {
         lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "HecateModule", lib840A968C_ge_DropMethod_Orbital);
     }
-    autoDD8E14FC_n = 2;
     for (autoDD8E14FC_i = 1; autoDD8E14FC_i <= autoDD8E14FC_n; autoDD8E14FC_i += 1) {
         lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "PlasmaCore", lib840A968C_ge_DropMethod_Orbital);
     }
     if ((gv_tX1Discovered == true)) {
-        autoF2ECBFB5_n = 4;
         for (autoF2ECBFB5_i = 1; autoF2ECBFB5_i <= autoF2ECBFB5_n; autoF2ECBFB5_i += 1) {
             lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "TX1", lib840A968C_ge_DropMethod_Orbital);
         }
     }
 
-    autoCC644450_n = 2;
     for (autoCC644450_i = 1; autoCC644450_i <= autoCC644450_n; autoCC644450_i += 1) {
         lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "AntiMaterialRifle", lib840A968C_ge_DropMethod_Orbital);
     }
-    autoD6D9EF2A_n = 2;
     for (autoD6D9EF2A_i = 1; autoD6D9EF2A_i <= autoD6D9EF2A_n; autoD6D9EF2A_i += 1) {
         lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "LaserRifle", lib840A968C_ge_DropMethod_Orbital);
     }
-    autoCC5A3339_n = 2;
     for (autoCC5A3339_i = 1; autoCC5A3339_i <= autoCC5A3339_n; autoCC5A3339_i += 1) {
         lib840A968C_gf_SpawnItem(RegionRandomPoint(RegionFromId(4)), "HeavyMachineGun", lib840A968C_ge_DropMethod_Orbital);
     }
@@ -1546,6 +1553,7 @@ void gf_Chapter5AirItemDrops () {
 // Trigger: Register Marines with Triggers
 //--------------------------------------------------------------------------------------------------
 bool gt_RegisterMarineswithTriggers_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
     unitgroup autoA11C3D95_g;
     int autoA11C3D95_u;
 
@@ -1555,9 +1563,10 @@ bool gt_RegisterMarineswithTriggers_Func (bool testConds, bool runActions) {
     }
 
     autoA11C3D95_g = lib840A968C_gf_GetMarineGroup();
-    autoA11C3D95_u = 1;
-    for ( ; autoA11C3D95_u <= UnitGroupCount(autoA11C3D95_g, c_unitCountAll) ; autoA11C3D95_u += BoolToInt(gv_registrationUnit == UnitGroupUnit(autoA11C3D95_g, autoA11C3D95_u)) ) {
-        gv_registrationUnit = UnitGroupUnit(autoA11C3D95_g, autoA11C3D95_u);
+    autoA11C3D95_u = UnitGroupCount(autoA11C3D95_g, c_unitCountAll);
+    for (;; autoA11C3D95_u -= 1) {
+        gv_registrationUnit = UnitGroupUnitFromEnd(autoA11C3D95_g, autoA11C3D95_u);
+        if (gv_registrationUnit == null) { break; }
         TriggerAddEventUnitRegion(gt_DeadBodiesDiscovered, UnitRefFromUnit(lib09BE6BA8_gf_ReturnUnit(gv_registrationUnit)), RegionFromId(5), true);
         TriggerAddEventUnitRegion(gt_MilitaryHQSpotted, UnitRefFromUnit(lib09BE6BA8_gf_ReturnUnit(gv_registrationUnit)), RegionCircle(PointFromId(1930), 10.0), true);
         TriggerAddEventUnitRegion(gt_EnteringMilitaryBase, UnitRefFromUnit(lib09BE6BA8_gf_ReturnUnit(gv_registrationUnit)), RegionCircle(PointFromId(2070), 10.0), true);
@@ -1596,6 +1605,7 @@ void gt_RegisterMarineswithTriggers_Init () {
 // Trigger: Intialize Armory Gate
 //--------------------------------------------------------------------------------------------------
 bool gt_IntializeArmoryGate_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
     // Actions
     if (!runActions) {
         return true;
@@ -1618,6 +1628,7 @@ void gt_IntializeArmoryGate_Init () {
 // Trigger: Game Path
 //--------------------------------------------------------------------------------------------------
 bool gt_GamePath_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
     int auto845038F6_val;
 
     // Actions
@@ -1653,6 +1664,7 @@ void gt_GamePath_Init () {
 // Trigger: Set Bullies
 //--------------------------------------------------------------------------------------------------
 bool gt_SetBullies_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
     // Actions
     if (!runActions) {
         return true;
@@ -1673,14 +1685,13 @@ void gt_SetBullies_Init () {
 // Trigger: Recruit Arrival
 //--------------------------------------------------------------------------------------------------
 bool gt_RecruitArrival_Func (bool testConds, bool runActions) {
-    playergroup autoC4330A45_g;
-    int autoC4330A45_p;
-    playergroup auto3416D25A_g;
-    int auto3416D25A_p;
-
     // Variable Declarations
     unit lv_dropship;
     int lv_player;
+
+    // Automatic Variable Declarations
+    playergroup autoC4330A45_g;
+    playergroup auto3416D25A_g;
 
     // Variable Initialization
 
@@ -1695,10 +1706,11 @@ bool gt_RecruitArrival_Func (bool testConds, bool runActions) {
     PingSetTooltip(PingLastCreated(), StringExternal("Param/Value/ACC6F38E"));
     PingSetScale(PingLastCreated(), 0.6);
     gv_headquartersBeacon = PingLastCreated();
-    autoC4330A45_g = lib840A968C_gf_GetMarineSquadPlayers(); 
-    autoC4330A45_p = 1;
-    for ( ; autoC4330A45_p <= PlayerGroupCount(autoC4330A45_g) ; autoC4330A45_p += BoolToInt(lv_player == PlayerGroupPlayer(autoC4330A45_g, autoC4330A45_p)) ) {
-        lv_player = PlayerGroupPlayer(autoC4330A45_g, autoC4330A45_p);
+    autoC4330A45_g = lib840A968C_gf_GetMarineSquadPlayers();
+    lv_player = -1;
+    while (true) {
+        lv_player = PlayerGroupNextPlayer(autoC4330A45_g, lv_player);
+        if (lv_player < 0) { break; }
         CameraPan(lv_player, PointFromId(725), 0.0, -1, 10.0, false);
     }
     libNtve_gf_UnitCreateFacingPoint(1, "AuroraDropshipFlying", 0, lib1E3F036D_gv_peacekeeperPlayer, PointWithOffset(PointFromId(725), -21.0, 0.0), PointFromId(725));
@@ -1708,10 +1720,11 @@ bool gt_RecruitArrival_Func (bool testConds, bool runActions) {
     UnitSetState(lv_dropship, c_unitStateInvulnerable, true);
     UnitIssueOrder(lv_dropship, OrderTargetingPoint(AbilityCommand("move", 0), PointFromId(725)), c_orderQueueReplace);
     UnitWaitUntilIdle(lv_dropship, true);
-    auto3416D25A_g = lib840A968C_gf_GetMarineSquadPlayers(); 
-    auto3416D25A_p = 1;
-    for ( ; auto3416D25A_p <= PlayerGroupCount(auto3416D25A_g) ; auto3416D25A_p += BoolToInt(lv_player == PlayerGroupPlayer(auto3416D25A_g, auto3416D25A_p)) ) {
-        lv_player = PlayerGroupPlayer(auto3416D25A_g, auto3416D25A_p);
+    auto3416D25A_g = lib840A968C_gf_GetMarineSquadPlayers();
+    lv_player = -1;
+    while (true) {
+        lv_player = PlayerGroupNextPlayer(auto3416D25A_g, lv_player);
+        if (lv_player < 0) { break; }
         libC50FD636_gf_ClassCreation(PointFromId(725), lv_player);
         Wait(0.3, c_timeGame);
         CameraLockInput(lv_player, false);
@@ -1736,6 +1749,7 @@ bool gt_DeadBodiesDiscovered_Func (bool testConds, bool runActions) {
     unit lv_discoveringUnit;
     int lv_discoveringPlayer;
 
+    // Automatic Variable Declarations
     // Variable Initialization
     lv_discoveringUnit = EventUnit();
     lv_discoveringPlayer = EventPlayer();
@@ -1770,6 +1784,7 @@ bool gt_MilitaryHQSpotted_Func (bool testConds, bool runActions) {
     // Variable Declarations
     int lv_discoveringPlayer;
 
+    // Automatic Variable Declarations
     // Variable Initialization
     lv_discoveringPlayer = EventPlayer();
 
@@ -1800,6 +1815,7 @@ void gt_MilitaryHQSpotted_Init () {
 // Trigger: Entering Military Base
 //--------------------------------------------------------------------------------------------------
 bool gt_EnteringMilitaryBase_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
     // Actions
     if (!runActions) {
         return true;
@@ -1824,6 +1840,7 @@ bool gt_CustomsLockup_Func (bool testConds, bool runActions) {
     int lv_discoveringPlayer;
     int lv_itemDropChance;
 
+    // Automatic Variable Declarations
     // Variable Initialization
     lv_discoveringPlayer = EventPlayer();
     lv_itemDropChance = RandomInt(1, 10);
@@ -1847,6 +1864,12 @@ void gt_CustomsLockup_Init () {
 // Trigger: Head to Customs Lockup
 //--------------------------------------------------------------------------------------------------
 bool gt_HeadtoCustomsLockup_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    playergroup auto9810DF3B_g;
+    int auto9810DF3B_var;
+    playergroup auto9D2F2338_g;
+    int auto9D2F2338_var;
+
     // Conditions
     if (testConds) {
         if (!(((TriggerGetExecCount(gt_WarzoneAmmoMarine1) + TriggerGetExecCount(gt_WarzoneAmmoMarine2) + TriggerGetExecCount(gt_WarzoneAmmoMarine3) + TriggerGetExecCount(gt_WarzoneAmmoMarine4)) > 2))) {
@@ -1860,26 +1883,30 @@ bool gt_HeadtoCustomsLockup_Func (bool testConds, bool runActions) {
     }
 
     TriggerEnable(TriggerGetCurrent(), false);
-    PlayerGroupLoopBegin(lib840A968C_gf_GetLivingMarineSquadPlayers());
-    for ( ; !PlayerGroupLoopDone() ; PlayerGroupLoopStep() ) {
-        VisRevealArea(PlayerGroupLoopCurrent(), RegionFromId(22), 10.0, false);
-        CameraLockInput(PlayerGroupLoopCurrent(), true);
-        CameraPan(PlayerGroupLoopCurrent(), RegionGetCenter(RegionFromId(22)), 5.0, -1, 10.0, false);
+    auto9810DF3B_g = lib840A968C_gf_GetLivingMarineSquadPlayers();
+    auto9810DF3B_var = -1;
+    while (true) {
+        auto9810DF3B_var = PlayerGroupNextPlayer(auto9810DF3B_g, auto9810DF3B_var);
+        if (auto9810DF3B_var < 0) { break; }
+        VisRevealArea(auto9810DF3B_var, RegionFromId(22), 10.0, false);
+        CameraLockInput(auto9810DF3B_var, true);
+        CameraPan(auto9810DF3B_var, RegionGetCenter(RegionFromId(22)), 5.0, -1, 10.0, false);
     }
-    PlayerGroupLoopEnd();
     while (gv_transmissionLock) {
         Wait(1.0, c_timeGame);
     }
     gv_transmissionLock = true;
     lib840A968C_gf_SendTransmission(StringExternal("Param/Value/F487A5A5"), StringExternal("Param/Value/D8AF1F57"), lib840A968C_ge_PreemptMessage_DontPreempt, lib840A968C_ge_MessageEventType_AlliedCommunication, c_messageAreaError, lib840A968C_ge_Faction_UGC, null);
     gv_transmissionLock = false;
-    PlayerGroupLoopBegin(lib840A968C_gf_GetLivingMarineSquadPlayers());
-    for ( ; !PlayerGroupLoopDone() ; PlayerGroupLoopStep() ) {
-        CameraPan(PlayerGroupLoopCurrent(), UnitGetPosition(lib840A968C_gf_GetMarine(PlayerGroupLoopCurrent())), 5.0, -1, 10.0, false);
+    auto9D2F2338_g = lib840A968C_gf_GetLivingMarineSquadPlayers();
+    auto9D2F2338_var = -1;
+    while (true) {
+        auto9D2F2338_var = PlayerGroupNextPlayer(auto9D2F2338_g, auto9D2F2338_var);
+        if (auto9D2F2338_var < 0) { break; }
+        CameraPan(auto9D2F2338_var, UnitGetPosition(lib840A968C_gf_GetMarine(auto9D2F2338_var)), 5.0, -1, 10.0, false);
         Wait(2.0, c_timeGame);
-        CameraLockInput(PlayerGroupLoopCurrent(), false);
+        CameraLockInput(auto9D2F2338_var, false);
     }
-    PlayerGroupLoopEnd();
     return true;
 }
 
@@ -1896,6 +1923,7 @@ bool gt_WarzoneAmmoMarine4_Func (bool testConds, bool runActions) {
     // Variable Declarations
     region lv_enteredRegion;
 
+    // Automatic Variable Declarations
     // Variable Initialization
     lv_enteredRegion = EventUnitRegion();
 
@@ -1920,6 +1948,7 @@ bool gt_WarzoneAmmoMarine3_Func (bool testConds, bool runActions) {
     // Variable Declarations
     region lv_enteredRegion;
 
+    // Automatic Variable Declarations
     // Variable Initialization
     lv_enteredRegion = EventUnitRegion();
 
@@ -1944,6 +1973,7 @@ bool gt_WarzoneAmmoMarine2_Func (bool testConds, bool runActions) {
     // Variable Declarations
     region lv_enteredRegion;
 
+    // Automatic Variable Declarations
     // Variable Initialization
     lv_enteredRegion = EventUnitRegion();
 
@@ -1968,6 +1998,7 @@ bool gt_WarzoneAmmoMarine1_Func (bool testConds, bool runActions) {
     // Variable Declarations
     region lv_enteredRegion;
 
+    // Automatic Variable Declarations
     // Variable Initialization
     lv_enteredRegion = EventUnitRegion();
 
@@ -1992,6 +2023,7 @@ bool gt_WarzoneTransmission_Func (bool testConds, bool runActions) {
     // Variable Declarations
     int lv_discoveringPlayer;
 
+    // Automatic Variable Declarations
     // Variable Initialization
     lv_discoveringPlayer = EventPlayer();
 
@@ -2024,6 +2056,10 @@ bool gt_SecurityGateTransmission_Func (bool testConds, bool runActions) {
     int lv_discoveringPlayer;
     unit lv_discoveringUnit;
 
+    // Automatic Variable Declarations
+    playergroup auto8EA0D11A_g;
+    int auto8EA0D11A_var;
+
     // Variable Initialization
     lv_discoveringPlayer = EventPlayer();
     lv_discoveringUnit = EventUnit();
@@ -2034,11 +2070,13 @@ bool gt_SecurityGateTransmission_Func (bool testConds, bool runActions) {
     }
 
     TriggerEnable(TriggerGetCurrent(), false);
-    PlayerGroupLoopBegin(lib840A968C_gf_GetLivingMarineSquadPlayers());
-    for ( ; !PlayerGroupLoopDone() ; PlayerGroupLoopStep() ) {
-        VisRevealArea(PlayerGroupLoopCurrent(), RegionFromId(17), 10.0, false);
+    auto8EA0D11A_g = lib840A968C_gf_GetLivingMarineSquadPlayers();
+    auto8EA0D11A_var = -1;
+    while (true) {
+        auto8EA0D11A_var = PlayerGroupNextPlayer(auto8EA0D11A_g, auto8EA0D11A_var);
+        if (auto8EA0D11A_var < 0) { break; }
+        VisRevealArea(auto8EA0D11A_var, RegionFromId(17), 10.0, false);
     }
-    PlayerGroupLoopEnd();
     while (gv_transmissionLock) {
         Wait(1.0, c_timeGame);
     }
@@ -2065,6 +2103,10 @@ bool gt_NormalArrival_Func (bool testConds, bool runActions) {
     // Variable Declarations
     region[3] lv_dropZones;
 
+    // Automatic Variable Declarations
+    playergroup auto5FE265D3_g;
+    int auto5FE265D3_var;
+
     // Variable Initialization
     for (init_i = 0; init_i <= 2; init_i += 1) {
         lv_dropZones[init_i] = RegionCircle(RegionRandomPoint(RegionFromId(4)), 5.0);
@@ -2078,11 +2120,13 @@ bool gt_NormalArrival_Func (bool testConds, bool runActions) {
     lib840A968C_gf_ChapterStart(0);
     gv_normalArrivalMissionToken = lib840A968C_gf_MissionStart("Normal Arrival", null, gv_peacekeeperEvent);
     gf_DisableRecruitStart();
-    PlayerGroupLoopBegin(lib840A968C_gf_GetMarineSquadPlayers());
-    for ( ; !PlayerGroupLoopDone() ; PlayerGroupLoopStep() ) {
-        gf_NormalArrivalDropPod(RegionRandomPoint(lv_dropZones[RandomInt(1, 2)]), PlayerGroupLoopCurrent());
+    auto5FE265D3_g = lib840A968C_gf_GetMarineSquadPlayers();
+    auto5FE265D3_var = -1;
+    while (true) {
+        auto5FE265D3_var = PlayerGroupNextPlayer(auto5FE265D3_g, auto5FE265D3_var);
+        if (auto5FE265D3_var < 0) { break; }
+        gf_NormalArrivalDropPod(RegionRandomPoint(lv_dropZones[RandomInt(1, 2)]), auto5FE265D3_var);
     }
-    PlayerGroupLoopEnd();
     Wait(4.0, c_timeGame);
     TriggerSendEvent(lib840A968C_gv_eventRegistrationSignal);
     gf_NormalArrivalTransmission(lib09BE6BA8_gf_GetRandomPlayerfromPlayerGroup(lib840A968C_gf_GetMarineSquadPlayers()));
@@ -2100,6 +2144,7 @@ void gt_NormalArrival_Init () {
 // Trigger: Chief Strassner Loot
 //--------------------------------------------------------------------------------------------------
 bool gt_ChiefStrassnerLoot_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
     // Actions
     if (!runActions) {
         return true;
@@ -2122,6 +2167,7 @@ void gt_ChiefStrassnerLoot_Init () {
 // Trigger: Sergeant Lefty Loot
 //--------------------------------------------------------------------------------------------------
 bool gt_SergeantLeftyLoot_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
     // Actions
     if (!runActions) {
         return true;
@@ -2144,6 +2190,7 @@ void gt_SergeantLeftyLoot_Init () {
 // Trigger: Officer Sprecklin Loot
 //--------------------------------------------------------------------------------------------------
 bool gt_OfficerSprecklinLoot_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
     // Actions
     if (!runActions) {
         return true;
@@ -2166,6 +2213,7 @@ void gt_OfficerSprecklinLoot_Init () {
 // Trigger: Sergeant Ascalon Loot
 //--------------------------------------------------------------------------------------------------
 bool gt_SergeantAscalonLoot_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
     // Actions
     if (!runActions) {
         return true;
@@ -2187,6 +2235,7 @@ void gt_SergeantAscalonLoot_Init () {
 // Trigger: Peacekeepers
 //--------------------------------------------------------------------------------------------------
 bool gt_Peacekeepers_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
     // Actions
     if (!runActions) {
         return true;
@@ -2223,6 +2272,7 @@ void gt_Peacekeepers_Init () {
 // Trigger: Periodic Zombie Attacks Peacekeepers
 //--------------------------------------------------------------------------------------------------
 bool gt_PeriodicZombieAttacksPeacekeepers_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
     // Actions
     if (!runActions) {
         return true;
@@ -2252,6 +2302,7 @@ bool gt_PlayerReachesPeacekeepers_Func (bool testConds, bool runActions) {
     // Variable Declarations
     int lv_arrivingPlayer;
 
+    // Automatic Variable Declarations
     // Variable Initialization
     lv_arrivingPlayer = UnitGetOwner(EventUnit());
 
@@ -2283,6 +2334,7 @@ void gt_PlayerReachesPeacekeepers_Init () {
 // Trigger: Civilian Rescue Begins
 //--------------------------------------------------------------------------------------------------
 bool gt_CivilianRescueBegins_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
     // Actions
     if (!runActions) {
         return true;
@@ -2308,6 +2360,7 @@ void gt_CivilianRescueBegins_Init () {
 // Trigger: Periodic Zombie Attacks Civilian Rescue
 //--------------------------------------------------------------------------------------------------
 bool gt_PeriodicZombieAttacksCivilianRescue_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
     // Actions
     if (!runActions) {
         return true;
@@ -2334,6 +2387,7 @@ bool gt_PlayerRescuesCivilians_Func (bool testConds, bool runActions) {
     int lv_arrivingPlayer;
     unit lv_arrivingUnit;
 
+    // Automatic Variable Declarations
     // Variable Initialization
     lv_arrivingPlayer = UnitGetOwner(EventUnit());
     lv_arrivingUnit = EventUnit();
@@ -2387,6 +2441,7 @@ bool gt_PlayersFailtoRescue_Func (bool testConds, bool runActions) {
     int lv_arrivingPlayer;
     unit lv_arrivingUnit;
 
+    // Automatic Variable Declarations
     // Variable Initialization
     lv_arrivingPlayer = UnitGetOwner(EventUnit());
     lv_arrivingUnit = EventUnit();
@@ -2446,6 +2501,7 @@ bool gt_PlayerReturntoPeacekeeperHoldout_Func (bool testConds, bool runActions) 
     // Variable Declarations
     int lv_arrivingPlayer;
 
+    // Automatic Variable Declarations
     // Variable Initialization
     lv_arrivingPlayer = UnitGetOwner(EventUnit());
 
@@ -2488,13 +2544,14 @@ void gt_PlayerReturntoPeacekeeperHoldout_Init () {
 // Trigger: Holdout
 //--------------------------------------------------------------------------------------------------
 bool gt_Holdout_Func (bool testConds, bool runActions) {
-    int autoDD3C8C61_n;
-    int autoDD3C8C61_i;
-
     // Variable Declarations
     playergroup lv_speakers;
     int lv_currentSpeaker;
     wave lv_hordeWave;
+
+    // Automatic Variable Declarations
+    int autoDD3C8C61_n;
+    int autoDD3C8C61_i;
 
     // Variable Initialization
     lv_speakers = lib840A968C_gf_GetLivingMarineSquadPlayers();
@@ -2513,7 +2570,6 @@ bool gt_Holdout_Func (bool testConds, bool runActions) {
     gv_transmissionLock = false;
     autoDD3C8C61_n = lib1E3F036D_gf_GameDifficultyInteger(2, 3, 4);
     for (autoDD3C8C61_i = 1; autoDD3C8C61_i <= autoDD3C8C61_n; autoDD3C8C61_i += 1) {
-        lib1765BC64_gf_HordeMode(AIWaveTargetRegion(RegionCircle(gv_peacekeeperHoldout, 10.0), 0), PointWithOffsetPolar(gv_peacekeeperHoldout, 40.0, libNtve_gf_RandomAngle()), UnitGroupCount(lib840A968C_gf_GetMarineGroup(), c_unitCountAlive), lib840A968C_gv_currentChapter);
         Wait(3.0, c_timeGame);
     }
     lv_currentSpeaker = lib09BE6BA8_gf_GetRandomPlayerfromPlayerGroup(lv_speakers);
@@ -2573,6 +2629,7 @@ void gt_Holdout_Init () {
 // Trigger: Paratrooper Loot
 //--------------------------------------------------------------------------------------------------
 bool gt_ParatrooperLoot_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
     // Actions
     if (!runActions) {
         return true;
@@ -2596,6 +2653,7 @@ void gt_ParatrooperLoot_Init () {
 // Trigger: Staff Sergeant Fenwick Loot
 //--------------------------------------------------------------------------------------------------
 bool gt_StaffSergeantFenwickLoot_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
     // Actions
     if (!runActions) {
         return true;
@@ -2622,6 +2680,7 @@ bool gt_ExtractionBegin_Func (bool testConds, bool runActions) {
     playergroup lv_speakers;
     int lv_currentSpeaker;
 
+    // Automatic Variable Declarations
     // Variable Initialization
     lv_speakers = lib840A968C_gf_GetLivingMarineSquadPlayers();
 
@@ -2661,6 +2720,7 @@ void gt_ExtractionBegin_Init () {
 // Trigger: Periodic Zombie Attacks Civilian Extraction
 //--------------------------------------------------------------------------------------------------
 bool gt_PeriodicZombieAttacksCivilianExtraction_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
     // Actions
     if (!runActions) {
         return true;
@@ -2689,6 +2749,17 @@ void gt_PeriodicZombieAttacksCivilianExtraction_Init () {
 bool gt_ExtractionEndSuccess_Func (bool testConds, bool runActions) {
     // Variable Declarations
     unit lv_dropship;
+
+    // Automatic Variable Declarations
+    unitgroup autoEA4E641E_g;
+    int autoEA4E641E_u;
+    unit autoEA4E641E_var;
+    unitgroup auto3E71C213_g;
+    int auto3E71C213_u;
+    unit auto3E71C213_var;
+    unitgroup auto4A6B2477_g;
+    int auto4A6B2477_u;
+    unit auto4A6B2477_var;
 
     // Variable Initialization
 
@@ -2721,21 +2792,27 @@ bool gt_ExtractionEndSuccess_Func (bool testConds, bool runActions) {
     }
 
     gv_numberofSurvivingParatroopers = UnitGroupCount(gv_paratroopers, c_unitCountAlive);
-    UnitGroupLoopBegin(gv_civiliansPeacekeepers);
-    for ( ; !UnitGroupLoopDone() ; UnitGroupLoopStep() ) {
-        UnitRemove(UnitGroupLoopCurrent());
+    autoEA4E641E_g = gv_civiliansPeacekeepers;
+    autoEA4E641E_u = UnitGroupCount(autoEA4E641E_g, c_unitCountAll);
+    for (;; autoEA4E641E_u -= 1) {
+        autoEA4E641E_var = UnitGroupUnitFromEnd(autoEA4E641E_g, autoEA4E641E_u);
+        if (autoEA4E641E_var == null) { break; }
+        UnitRemove(autoEA4E641E_var);
     }
-    UnitGroupLoopEnd();
-    UnitGroupLoopBegin(gv_paratroopers);
-    for ( ; !UnitGroupLoopDone() ; UnitGroupLoopStep() ) {
-        UnitRemove(UnitGroupLoopCurrent());
+    auto3E71C213_g = gv_paratroopers;
+    auto3E71C213_u = UnitGroupCount(auto3E71C213_g, c_unitCountAll);
+    for (;; auto3E71C213_u -= 1) {
+        auto3E71C213_var = UnitGroupUnitFromEnd(auto3E71C213_g, auto3E71C213_u);
+        if (auto3E71C213_var == null) { break; }
+        UnitRemove(auto3E71C213_var);
     }
-    UnitGroupLoopEnd();
-    UnitGroupLoopBegin(gv_peacekeepers);
-    for ( ; !UnitGroupLoopDone() ; UnitGroupLoopStep() ) {
-        UnitRemove(UnitGroupLoopCurrent());
+    auto4A6B2477_g = gv_peacekeepers;
+    auto4A6B2477_u = UnitGroupCount(auto4A6B2477_g, c_unitCountAll);
+    for (;; auto4A6B2477_u -= 1) {
+        auto4A6B2477_var = UnitGroupUnitFromEnd(auto4A6B2477_g, auto4A6B2477_u);
+        if (auto4A6B2477_var == null) { break; }
+        UnitRemove(auto4A6B2477_var);
     }
-    UnitGroupLoopEnd();
     if ((UnitIsAlive(gv_staffSergeantFenwick) == true)) {
         gf_ExtractionEndDialog();
         UnitRemove(gv_staffSergeantFenwick);
@@ -2762,6 +2839,14 @@ void gt_ExtractionEndSuccess_Init () {
 bool gt_ExtractionEndFailure_Func (bool testConds, bool runActions) {
     // Variable Declarations
     unit lv_dropship;
+
+    // Automatic Variable Declarations
+    unitgroup auto42EF40B9_g;
+    int auto42EF40B9_u;
+    unit auto42EF40B9_var;
+    unitgroup auto2820F3A0_g;
+    int auto2820F3A0_u;
+    unit auto2820F3A0_var;
 
     // Variable Initialization
 
@@ -2798,16 +2883,20 @@ bool gt_ExtractionEndFailure_Func (bool testConds, bool runActions) {
     }
 
     gv_numberofSurvivingParatroopers = UnitGroupCount(gv_paratroopers, c_unitCountAlive);
-    UnitGroupLoopBegin(gv_paratroopers);
-    for ( ; !UnitGroupLoopDone() ; UnitGroupLoopStep() ) {
-        UnitRemove(UnitGroupLoopCurrent());
+    auto42EF40B9_g = gv_paratroopers;
+    auto42EF40B9_u = UnitGroupCount(auto42EF40B9_g, c_unitCountAll);
+    for (;; auto42EF40B9_u -= 1) {
+        auto42EF40B9_var = UnitGroupUnitFromEnd(auto42EF40B9_g, auto42EF40B9_u);
+        if (auto42EF40B9_var == null) { break; }
+        UnitRemove(auto42EF40B9_var);
     }
-    UnitGroupLoopEnd();
-    UnitGroupLoopBegin(gv_peacekeepers);
-    for ( ; !UnitGroupLoopDone() ; UnitGroupLoopStep() ) {
-        UnitRemove(UnitGroupLoopCurrent());
+    auto2820F3A0_g = gv_peacekeepers;
+    auto2820F3A0_u = UnitGroupCount(auto2820F3A0_g, c_unitCountAll);
+    for (;; auto2820F3A0_u -= 1) {
+        auto2820F3A0_var = UnitGroupUnitFromEnd(auto2820F3A0_g, auto2820F3A0_u);
+        if (auto2820F3A0_var == null) { break; }
+        UnitRemove(auto2820F3A0_var);
     }
-    UnitGroupLoopEnd();
     if ((UnitIsAlive(gv_staffSergeantFenwick) == true)) {
         UnitRemove(gv_staffSergeantFenwick);
     }
@@ -2832,6 +2921,7 @@ void gt_ExtractionEndFailure_Init () {
 // Trigger: Convoy Ping
 //--------------------------------------------------------------------------------------------------
 bool gt_ConvoyPing_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
     // Actions
     if (!runActions) {
         return true;
@@ -2860,6 +2950,7 @@ bool gt_EltradSpawn_Func (bool testConds, bool runActions) {
     // Variable Declarations
     point lv_spawnPoint;
 
+    // Automatic Variable Declarations
     // Variable Initialization
     lv_spawnPoint = AIRandomSpawnPoint(lib1E3F036D_gv_zombiePlayer, RegionCircle(UnitGroupCenterOfGroup(lib840A968C_gf_GetMarineGroup()), 80.0), 30.0, 60.0, 500.0);
 
@@ -2888,6 +2979,7 @@ void gt_EltradSpawn_Init () {
 // Trigger: Eltrad Death
 //--------------------------------------------------------------------------------------------------
 bool gt_EltradDeath_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
     // Actions
     if (!runActions) {
         return true;
@@ -2917,6 +3009,7 @@ void gt_EltradDeath_Init () {
 // Trigger: Communication Mission
 //--------------------------------------------------------------------------------------------------
 bool gt_CommunicationMission_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
     // Actions
     if (!runActions) {
         return true;
@@ -2947,6 +3040,10 @@ bool gt_CommunicationArrayPlaced_Func (bool testConds, bool runActions) {
     unit lv_placedArray;
     int lv_placementRegion;
 
+    // Automatic Variable Declarations
+    int autoFADDA37E_ae;
+    int autoFADDA37E_var;
+
     // Variable Initialization
     lv_placedArray = UnitGroupUnit(UnitGroupSearch("CommunicationsArray", c_playerAny, EventPlayerEffectUsedPoint(c_effectLocationTargetPoint), 0.1, UnitFilter(0, 0, 0, 0), 0), 1);
 
@@ -2961,14 +3058,14 @@ bool gt_CommunicationArrayPlaced_Func (bool testConds, bool runActions) {
         TextExpressionSetToken("Param/Expression/89E80023", "A", IntToText(gv_communicationArraysDeployed));
         TextExpressionSetToken("Param/Expression/89E80023", "B", IntToText(gv_communicationArraysToBeDeployed));
         ObjectiveSetName(gv_communicationArrays, TextExpressionAssemble("Param/Expression/89E80023"));
-        IntLoopBegin(1, gv_communicationArraysToBeDeployed);
-        for ( ; !IntLoopDone() ; IntLoopStep() ) {
-            if ((RegionContainsPoint(gv_communicationArrayLocations[IntLoopCurrent()], EventPlayerEffectUsedPoint(c_effectLocationTargetPoint)) == true)) {
-                lv_placementRegion = IntLoopCurrent();
+        autoFADDA37E_ae = gv_communicationArraysToBeDeployed;
+        autoFADDA37E_var = 1;
+        for ( ; autoFADDA37E_var <= autoFADDA37E_ae; autoFADDA37E_var += 1 ) {
+            if ((RegionContainsPoint(gv_communicationArrayLocations[autoFADDA37E_var], EventPlayerEffectUsedPoint(c_effectLocationTargetPoint)) == true)) {
+                lv_placementRegion = autoFADDA37E_var;
             }
 
         }
-        IntLoopEnd();
         PingDestroy(gv_communicationArrayLocationPings[lv_placementRegion]);
         gv_communicationArrayLocationPings[lv_placementRegion] = c_invalidPingId;
         ActorSend(gv_communicationArrayAreaIndicator[lv_placementRegion], "Destroy");
@@ -2997,6 +3094,13 @@ void gt_CommunicationArrayPlaced_Init () {
 // Trigger: Communication Mission End
 //--------------------------------------------------------------------------------------------------
 bool gt_CommunicationMissionEnd_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    int auto43A419ED_ae;
+    int auto43A419ED_var;
+    unitgroup auto569A9F4E_g;
+    int auto569A9F4E_u;
+    unit auto569A9F4E_var;
+
     // Actions
     if (!runActions) {
         return true;
@@ -3004,19 +3108,21 @@ bool gt_CommunicationMissionEnd_Func (bool testConds, bool runActions) {
 
     TimerWindowDestroy(gv_communicationArrayTimerWindow);
     if ((gv_communicationArraysCompleted == c_objectiveStateFailed)) {
-        IntLoopBegin(1, gv_communicationArraysToBeDeployed);
-        for ( ; !IntLoopDone() ; IntLoopStep() ) {
-            if ((gv_communicationArrayLocationPings[IntLoopCurrent()] != c_invalidPingId)) {
-                PingDestroy(gv_communicationArrayLocationPings[IntLoopCurrent()]);
-                ActorSend(gv_communicationArrayAreaIndicator[IntLoopCurrent()], "Destroy");
+        auto43A419ED_ae = gv_communicationArraysToBeDeployed;
+        auto43A419ED_var = 1;
+        for ( ; auto43A419ED_var <= auto43A419ED_ae; auto43A419ED_var += 1 ) {
+            if ((gv_communicationArrayLocationPings[auto43A419ED_var] != c_invalidPingId)) {
+                PingDestroy(gv_communicationArrayLocationPings[auto43A419ED_var]);
+                ActorSend(gv_communicationArrayAreaIndicator[auto43A419ED_var], "Destroy");
             }
         }
-        IntLoopEnd();
-        UnitGroupLoopBegin(UnitGroup("CommunicationsArrayPackedUp", c_playerAny, RegionEntireMap(), UnitFilter((1 << c_targetFilterItem), 0, 0, 0), 0));
-        for ( ; !UnitGroupLoopDone() ; UnitGroupLoopStep() ) {
-            UnitRemove(UnitGroupLoopCurrent());
+        auto569A9F4E_g = UnitGroup("CommunicationsArrayPackedUp", c_playerAny, RegionEntireMap(), UnitFilter((1 << c_targetFilterItem), 0, 0, 0), 0);
+        auto569A9F4E_u = UnitGroupCount(auto569A9F4E_g, c_unitCountAll);
+        for (;; auto569A9F4E_u -= 1) {
+            auto569A9F4E_var = UnitGroupUnitFromEnd(auto569A9F4E_g, auto569A9F4E_u);
+            if (auto569A9F4E_var == null) { break; }
+            UnitRemove(auto569A9F4E_var);
         }
-        UnitGroupLoopEnd();
         lib840A968C_gf_SendTransmission(StringExternal("Param/Value/256F026F"), StringExternal("Param/Value/28348C82"), lib840A968C_ge_PreemptMessage_DontPreempt, lib840A968C_ge_MessageEventType_AlliedCommunication, c_messageAreaError, lib840A968C_ge_Faction_UGC, null);
         ObjectiveSetState(gv_communicationArrays, gv_communicationArraysCompleted);
     }
@@ -3040,6 +3146,7 @@ void gt_CommunicationMissionEnd_Init () {
 // Trigger: Armory Door
 //--------------------------------------------------------------------------------------------------
 bool gt_ArmoryDoor_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
     // Actions
     if (!runActions) {
         return true;
@@ -3060,6 +3167,7 @@ void gt_ArmoryDoor_Init () {
 // Trigger: Restore Power Mission
 //--------------------------------------------------------------------------------------------------
 bool gt_RestorePowerMission_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
     // Actions
     if (!runActions) {
         return true;
@@ -3088,6 +3196,7 @@ void gt_RestorePowerMission_Init () {
 // Trigger: Team Reaches Reactor
 //--------------------------------------------------------------------------------------------------
 bool gt_TeamReachesReactor_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
     // Actions
     if (!runActions) {
         return true;
@@ -3114,6 +3223,7 @@ bool gt_SarbusSpawn_Func (bool testConds, bool runActions) {
     // Variable Declarations
     point lv_sarbusSpawnPoint;
 
+    // Automatic Variable Declarations
     // Variable Initialization
     lv_sarbusSpawnPoint = RegionRandomPoint(RegionFromId(16));
 
@@ -3149,6 +3259,7 @@ void gt_SarbusSpawn_Init () {
 // Trigger: Sarbus Death
 //--------------------------------------------------------------------------------------------------
 bool gt_SarbusDeath_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
     // Actions
     if (!runActions) {
         return true;
@@ -3172,6 +3283,7 @@ void gt_SarbusDeath_Init () {
 // Trigger: Sarbus Corpse Spawn
 //--------------------------------------------------------------------------------------------------
 bool gt_SarbusCorpseSpawn_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
     // Conditions
     if (testConds) {
         if (!((UnitGetType(EventUnitCreatedUnit()) == "SarbusCorpse"))) {
@@ -3200,6 +3312,7 @@ void gt_SarbusCorpseSpawn_Init () {
 // Trigger: Investigation Mission Update
 //--------------------------------------------------------------------------------------------------
 bool gt_InvestigationMissionUpdate_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
     // Actions
     if (!runActions) {
         return true;
@@ -3222,6 +3335,7 @@ void gt_InvestigationMissionUpdate_Init () {
 // Trigger: Investigation Mission
 //--------------------------------------------------------------------------------------------------
 bool gt_InvestigationMission_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
     // Actions
     if (!runActions) {
         return true;
@@ -3258,6 +3372,7 @@ bool gt_LabEntranceChatter_Func (bool testConds, bool runActions) {
     playergroup lv_speakers;
     int lv_currentSpeaker;
 
+    // Automatic Variable Declarations
     // Variable Initialization
     lv_speakers = PlayerGroupCopy(lib840A968C_gf_GetLivingMarineSquadPlayers());
     lv_currentSpeaker = UnitGetOwner(EventUnit());
@@ -3291,6 +3406,7 @@ void gt_LabEntranceChatter_Init () {
 // Trigger: Reception Area Transmission
 //--------------------------------------------------------------------------------------------------
 bool gt_ReceptionAreaTransmission_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
     // Actions
     if (!runActions) {
         return true;
@@ -3311,6 +3427,7 @@ void gt_ReceptionAreaTransmission_Init () {
 // Trigger: Infestation Research Transmission
 //--------------------------------------------------------------------------------------------------
 bool gt_InfestationResearchTransmission_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
     // Actions
     if (!runActions) {
         return true;
@@ -3332,6 +3449,7 @@ void gt_InfestationResearchTransmission_Init () {
 // Trigger: Workstation - TX1
 //--------------------------------------------------------------------------------------------------
 bool gt_WorkstationTX1_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
     // Actions
     if (!runActions) {
         return true;
@@ -3360,6 +3478,7 @@ void gt_WorkstationTX1_Init () {
 // Trigger: Dissection Workstation
 //--------------------------------------------------------------------------------------------------
 bool gt_DissectionWorkstation_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
     // Actions
     if (!runActions) {
         return true;
@@ -3382,6 +3501,7 @@ void gt_DissectionWorkstation_Init () {
 // Trigger: Demeter Workstation
 //--------------------------------------------------------------------------------------------------
 bool gt_DemeterWorkstation_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
     // Actions
     if (!runActions) {
         return true;
@@ -3404,6 +3524,7 @@ void gt_DemeterWorkstation_Init () {
 // Trigger: Pool viewing Deck
 //--------------------------------------------------------------------------------------------------
 bool gt_PoolviewingDeck_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
     // Actions
     if (!runActions) {
         return true;
@@ -3426,6 +3547,7 @@ void gt_PoolviewingDeck_Init () {
 // Trigger: Charlie Escape Hole
 //--------------------------------------------------------------------------------------------------
 bool gt_CharlieEscapeHole_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
     // Actions
     if (!runActions) {
         return true;
@@ -3448,6 +3570,7 @@ void gt_CharlieEscapeHole_Init () {
 // Trigger: Charlie Pen
 //--------------------------------------------------------------------------------------------------
 bool gt_CharliePen_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
     // Actions
     if (!runActions) {
         return true;
@@ -3470,6 +3593,7 @@ void gt_CharliePen_Init () {
 // Trigger: Investigation Mission Intial End
 //--------------------------------------------------------------------------------------------------
 bool gt_InvestigationMissionIntialEnd_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
     // Actions
     if (!runActions) {
         return true;
@@ -3491,6 +3615,7 @@ void gt_InvestigationMissionIntialEnd_Init () {
 // Trigger: Investigation Mission Final End
 //--------------------------------------------------------------------------------------------------
 bool gt_InvestigationMissionFinalEnd_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
     // Actions
     if (!runActions) {
         return true;
@@ -3511,6 +3636,7 @@ void gt_InvestigationMissionFinalEnd_Init () {
 // Trigger: Tarion Spawn
 //--------------------------------------------------------------------------------------------------
 bool gt_TarionSpawn_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
     // Actions
     if (!runActions) {
         return true;
@@ -3543,6 +3669,7 @@ void gt_TarionSpawn_Init () {
 // Trigger: Tarion Death
 //--------------------------------------------------------------------------------------------------
 bool gt_TarionDeath_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
     // Actions
     if (!runActions) {
         return true;
@@ -3567,12 +3694,12 @@ void gt_TarionDeath_Init () {
 // Trigger: Tarion Hordes
 //--------------------------------------------------------------------------------------------------
 bool gt_TarionHordes_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
     // Actions
     if (!runActions) {
         return true;
     }
 
-    lib1765BC64_gf_HordeMode(AIWaveTargetUnitGroup(lib840A968C_gf_GetMarineGroup()), PointFromId(2318), UnitGroupCount(lib840A968C_gf_GetMarineGroup(), c_unitCountAlive), lib840A968C_gv_currentChapter);
     return true;
 }
 
@@ -3587,6 +3714,7 @@ void gt_TarionHordes_Init () {
 // Trigger: Monolith Begin
 //--------------------------------------------------------------------------------------------------
 bool gt_MonolithBegin_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
     // Actions
     if (!runActions) {
         return true;
@@ -3615,6 +3743,10 @@ bool gt_RentodusSpawn_Func (bool testConds, bool runActions) {
     int lv_superHeavyCount;
     waveinfo lv_rentodousWave;
 
+    // Automatic Variable Declarations
+    int auto6B14C399_ae;
+    int auto6B14C399_var;
+
     // Variable Initialization
     lv_superHeavyCount = (CeilingI((PlayerGroupCount(lib840A968C_gf_GetLivingMarineSquadPlayers()) / 4.0)) + lib1E3F036D_gf_GameDifficultyInteger(0, 2, 4));
 
@@ -3635,12 +3767,12 @@ bool gt_RentodusSpawn_Func (bool testConds, bool runActions) {
     lv_superHeavies[4] = "Bonebreaker";
     lv_superHeavies[5] = "Stonewall";
     Wait(1.0, c_timeGame);
-    IntLoopBegin(1, lv_superHeavyCount);
-    for ( ; !IntLoopDone() ; IntLoopStep() ) {
+    auto6B14C399_ae = lv_superHeavyCount;
+    auto6B14C399_var = 1;
+    for ( ; auto6B14C399_var <= auto6B14C399_ae; auto6B14C399_var += 1 ) {
         libNtve_gf_CreateUnitsWithDefaultFacing(1, lv_superHeavies[RandomInt(1, 5)], 0, lib1E3F036D_gv_zombiePlayer, UnitGetPosition(gv_rentodus));
         AIAttackWaveUseUnit(lib1E3F036D_gv_zombiePlayer, UnitLastCreated());
     }
-    IntLoopEnd();
     AIAttackWaveSetTargetEscort(lib1E3F036D_gv_zombiePlayer, libNtve_gf_ConvertUnitToUnitGroup(gv_rentodus), 1);
     AIAttackWaveSend(lib1E3F036D_gv_zombiePlayer, 0, false);
     TriggerEnable(gt_RentodusDeath, true);
@@ -3668,6 +3800,11 @@ bool gt_RentodusDeath_Func (bool testConds, bool runActions) {
     playergroup lv_speakers;
     int lv_currentSpeaker;
 
+    // Automatic Variable Declarations
+    unitgroup autoF14C9340_g;
+    int autoF14C9340_u;
+    unit autoF14C9340_var;
+
     // Variable Initialization
     lv_speakers = lib840A968C_gf_GetLivingMarineSquadPlayers();
 
@@ -3679,11 +3816,13 @@ bool gt_RentodusDeath_Func (bool testConds, bool runActions) {
     TriggerEnable(TriggerGetCurrent(), false);
     TriggerEnable(gt_RentodusMobs, false);
     lib1E3F036D_gf_EndBossFight();
-    UnitGroupLoopBegin(lib840A968C_gf_GetMarineGroup());
-    for ( ; !UnitGroupLoopDone() ; UnitGroupLoopStep() ) {
-        libNtve_gf_MakeUnitInvulnerable(UnitGroupLoopCurrent(), true);
+    autoF14C9340_g = lib840A968C_gf_GetMarineGroup();
+    autoF14C9340_u = UnitGroupCount(autoF14C9340_g, c_unitCountAll);
+    for (;; autoF14C9340_u -= 1) {
+        autoF14C9340_var = UnitGroupUnitFromEnd(autoF14C9340_g, autoF14C9340_u);
+        if (autoF14C9340_var == null) { break; }
+        libNtve_gf_MakeUnitInvulnerable(autoF14C9340_var, true);
     }
-    UnitGroupLoopEnd();
     while (gv_transmissionLock) {
         Wait(1.0, c_timeGame);
     }
@@ -3711,12 +3850,12 @@ void gt_RentodusDeath_Init () {
 // Trigger: Rentodus Mobs
 //--------------------------------------------------------------------------------------------------
 bool gt_RentodusMobs_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
     // Actions
     if (!runActions) {
         return true;
     }
 
-    lib1765BC64_gf_HordeMode(AIWaveTargetUnitGroup(lib840A968C_gf_GetMarineGroup()), lib09BE6BA8_gf_PointAtGroundLevelinRegion(RegionEntireMap()), UnitGroupCount(lib840A968C_gf_GetMarineGroup(), c_unitCountAlive), lib840A968C_gv_currentChapter);
     AIWaveInfoAttack(AIWaveInfo(gv_zombieAssaultWave), lib1E3F036D_gv_zombiePlayer, RegionRandomPoint(RegionPlayableMap()), AIWaveTargetUnitGroup(lib840A968C_gf_GetMarineGroup()), 0);
     return true;
 }
@@ -3735,6 +3874,7 @@ bool gt_AmmoModification_Func (bool testConds, bool runActions) {
     // Variable Declarations
     fixed lv_chancetoSpawn;
 
+    // Automatic Variable Declarations
     // Variable Initialization
     lv_chancetoSpawn = RandomFixed(0.0, 100.0);
 
@@ -3789,6 +3929,7 @@ bool gt_Magazine_Func (bool testConds, bool runActions) {
     // Variable Declarations
     fixed lv_chancetoSpawn;
 
+    // Automatic Variable Declarations
     // Variable Initialization
     lv_chancetoSpawn = RandomFixed(0.0, 100.0);
 
@@ -3895,12 +4036,13 @@ void gt_Magazine_Init () {
 // Trigger: Peackeeper Weapons
 //--------------------------------------------------------------------------------------------------
 bool gt_PeackeeperWeapons_Func (bool testConds, bool runActions) {
-    int autoC9922637_n;
-    int autoC9922637_i;
-
     // Variable Declarations
     fixed lv_chancetoSpawn;
     fixed lv_itemSpawnChance;
+
+    // Automatic Variable Declarations
+    const int autoC9922637_n = 3;
+    int autoC9922637_i;
 
     // Variable Initialization
     lv_chancetoSpawn = RandomFixed(0.0, 100.0);
@@ -3911,7 +4053,6 @@ bool gt_PeackeeperWeapons_Func (bool testConds, bool runActions) {
     }
 
     if ((lv_chancetoSpawn <= 100.0)) {
-        autoC9922637_n = 3;
         for (autoC9922637_i = 1; autoC9922637_i <= autoC9922637_n; autoC9922637_i += 1) {
             lv_itemSpawnChance = RandomFixed(0.0, 100.0);
             if (((lv_itemSpawnChance >= 0) && (lv_itemSpawnChance <= 25))) {
@@ -3945,6 +4086,7 @@ void gt_PeackeeperWeapons_Init () {
 // Trigger: Lab 1
 //--------------------------------------------------------------------------------------------------
 bool gt_Lab1_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
     fixed auto2025D024_chance;
     fixed auto2025D024_roll;
     fixed auto43ADEC7A_chance;
@@ -3983,6 +4125,7 @@ void gt_Lab1_Init () {
 // Trigger: Lab 2
 //--------------------------------------------------------------------------------------------------
 bool gt_Lab2_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
     fixed auto86ECE9E9_chance;
     fixed auto86ECE9E9_roll;
     fixed auto585A28D1_chance;
@@ -4021,6 +4164,7 @@ void gt_Lab2_Init () {
 // Trigger: Lab 3
 //--------------------------------------------------------------------------------------------------
 bool gt_Lab3_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
     fixed auto6338E0BF_chance;
     fixed auto6338E0BF_roll;
     fixed auto2E97684E_chance;
@@ -4062,6 +4206,7 @@ bool gt_FieldLight1_Func (bool testConds, bool runActions) {
     // Variable Declarations
     fixed lv_chancetoSpawn;
 
+    // Automatic Variable Declarations
     // Variable Initialization
     lv_chancetoSpawn = RandomFixed(0.0, 100.0);
 
@@ -4091,6 +4236,7 @@ bool gt_FieldLight2_Func (bool testConds, bool runActions) {
     // Variable Declarations
     fixed lv_chancetoSpawn;
 
+    // Automatic Variable Declarations
     // Variable Initialization
     lv_chancetoSpawn = RandomFixed(0.0, 100.0);
 
@@ -4120,6 +4266,7 @@ bool gt_FieldLight3_Func (bool testConds, bool runActions) {
     // Variable Declarations
     fixed lv_chancetoSpawn;
 
+    // Automatic Variable Declarations
     // Variable Initialization
     lv_chancetoSpawn = RandomFixed(0.0, 100.0);
 
@@ -4149,6 +4296,7 @@ bool gt_FieldLight4_Func (bool testConds, bool runActions) {
     // Variable Declarations
     fixed lv_chancetoSpawn;
 
+    // Automatic Variable Declarations
     // Variable Initialization
     lv_chancetoSpawn = RandomFixed(0.0, 100.0);
 
@@ -4178,6 +4326,7 @@ bool gt_MedicalSupply1_Func (bool testConds, bool runActions) {
     // Variable Declarations
     fixed lv_chancetoSpawn;
 
+    // Automatic Variable Declarations
     // Variable Initialization
     lv_chancetoSpawn = RandomFixed(0.0, 100.0);
 
@@ -4207,6 +4356,7 @@ bool gt_MedicalSupply2_Func (bool testConds, bool runActions) {
     // Variable Declarations
     fixed lv_chancetoSpawn;
 
+    // Automatic Variable Declarations
     // Variable Initialization
     lv_chancetoSpawn = RandomFixed(0.0, 100.0);
 
@@ -4236,6 +4386,7 @@ bool gt_MedicalSupply3_Func (bool testConds, bool runActions) {
     // Variable Declarations
     fixed lv_chancetoSpawn;
 
+    // Automatic Variable Declarations
     // Variable Initialization
     lv_chancetoSpawn = RandomFixed(0.0, 100.0);
 
@@ -4265,6 +4416,7 @@ bool gt_MedicalSupply4_Func (bool testConds, bool runActions) {
     // Variable Declarations
     fixed lv_chancetoSpawn;
 
+    // Automatic Variable Declarations
     // Variable Initialization
     lv_chancetoSpawn = RandomFixed(0.0, 100.0);
 
@@ -4294,6 +4446,7 @@ bool gt_MedicalSupply5_Func (bool testConds, bool runActions) {
     // Variable Declarations
     fixed lv_chancetoSpawn;
 
+    // Automatic Variable Declarations
     // Variable Initialization
     lv_chancetoSpawn = RandomFixed(0.0, 100.0);
 
@@ -4323,6 +4476,7 @@ bool gt_MedicalSupply6_Func (bool testConds, bool runActions) {
     // Variable Declarations
     fixed lv_chancetoSpawn;
 
+    // Automatic Variable Declarations
     // Variable Initialization
     lv_chancetoSpawn = RandomFixed(0.0, 100.0);
 
@@ -4352,6 +4506,7 @@ bool gt_MedicalSupply7_Func (bool testConds, bool runActions) {
     // Variable Declarations
     fixed lv_chancetoSpawn;
 
+    // Automatic Variable Declarations
     // Variable Initialization
     lv_chancetoSpawn = RandomFixed(0.0, 100.0);
 
@@ -4381,6 +4536,7 @@ bool gt_MedicalSupply8_Func (bool testConds, bool runActions) {
     // Variable Declarations
     fixed lv_chancetoSpawn;
 
+    // Automatic Variable Declarations
     // Variable Initialization
     lv_chancetoSpawn = RandomFixed(0.0, 100.0);
 
@@ -4410,6 +4566,7 @@ bool gt_MedicalSupply9_Func (bool testConds, bool runActions) {
     // Variable Declarations
     fixed lv_chancetoSpawn;
 
+    // Automatic Variable Declarations
     // Variable Initialization
     lv_chancetoSpawn = RandomFixed(0.0, 100.0);
 
@@ -4439,6 +4596,7 @@ bool gt_MedicalSupply10_Func (bool testConds, bool runActions) {
     // Variable Declarations
     fixed lv_chancetoSpawn;
 
+    // Automatic Variable Declarations
     // Variable Initialization
     lv_chancetoSpawn = RandomFixed(0.0, 100.0);
 
@@ -4468,6 +4626,7 @@ bool gt_MedicalSupply11_Func (bool testConds, bool runActions) {
     // Variable Declarations
     fixed lv_chancetoSpawn;
 
+    // Automatic Variable Declarations
     // Variable Initialization
     lv_chancetoSpawn = RandomFixed(0.0, 100.0);
 
@@ -4497,6 +4656,7 @@ bool gt_MedicalSupply12_Func (bool testConds, bool runActions) {
     // Variable Declarations
     fixed lv_chancetoSpawn;
 
+    // Automatic Variable Declarations
     // Variable Initialization
     lv_chancetoSpawn = RandomFixed(0.0, 100.0);
 
@@ -4526,6 +4686,7 @@ bool gt_MedicalSupply13_Func (bool testConds, bool runActions) {
     // Variable Declarations
     fixed lv_chancetoSpawn;
 
+    // Automatic Variable Declarations
     // Variable Initialization
     lv_chancetoSpawn = RandomFixed(0.0, 100.0);
 
@@ -4555,6 +4716,7 @@ bool gt_MedicalSupply14_Func (bool testConds, bool runActions) {
     // Variable Declarations
     fixed lv_chancetoSpawn;
 
+    // Automatic Variable Declarations
     // Variable Initialization
     lv_chancetoSpawn = RandomFixed(0.0, 100.0);
 
@@ -4584,6 +4746,7 @@ bool gt_MedicalSupply15_Func (bool testConds, bool runActions) {
     // Variable Declarations
     fixed lv_chancetoSpawn;
 
+    // Automatic Variable Declarations
     // Variable Initialization
     lv_chancetoSpawn = RandomFixed(0.0, 100.0);
 
@@ -4613,6 +4776,7 @@ bool gt_MedicalSupply16_Func (bool testConds, bool runActions) {
     // Variable Declarations
     fixed lv_chancetoSpawn;
 
+    // Automatic Variable Declarations
     // Variable Initialization
     lv_chancetoSpawn = RandomFixed(0.0, 100.0);
 
@@ -4642,6 +4806,7 @@ bool gt_MedicalSupply17_Func (bool testConds, bool runActions) {
     // Variable Declarations
     fixed lv_chancetoSpawn;
 
+    // Automatic Variable Declarations
     // Variable Initialization
     lv_chancetoSpawn = RandomFixed(0.0, 100.0);
 
@@ -4671,6 +4836,7 @@ bool gt_MedicalSupply18_Func (bool testConds, bool runActions) {
     // Variable Declarations
     fixed lv_chancetoSpawn;
 
+    // Automatic Variable Declarations
     // Variable Initialization
     lv_chancetoSpawn = RandomFixed(0.0, 100.0);
 
@@ -4700,6 +4866,7 @@ bool gt_MedicalSupply19_Func (bool testConds, bool runActions) {
     // Variable Declarations
     fixed lv_chancetoSpawn;
 
+    // Automatic Variable Declarations
     // Variable Initialization
     lv_chancetoSpawn = RandomFixed(0.0, 100.0);
 
@@ -4729,6 +4896,7 @@ bool gt_MedicalSupply20_Func (bool testConds, bool runActions) {
     // Variable Declarations
     fixed lv_chancetoSpawn;
 
+    // Automatic Variable Declarations
     // Variable Initialization
     lv_chancetoSpawn = RandomFixed(0.0, 100.0);
 
@@ -4758,6 +4926,7 @@ bool gt_MedicalSupply21_Func (bool testConds, bool runActions) {
     // Variable Declarations
     fixed lv_chancetoSpawn;
 
+    // Automatic Variable Declarations
     // Variable Initialization
     lv_chancetoSpawn = RandomFixed(0.0, 100.0);
 
@@ -4787,6 +4956,7 @@ bool gt_MedicalSupply22_Func (bool testConds, bool runActions) {
     // Variable Declarations
     fixed lv_chancetoSpawn;
 
+    // Automatic Variable Declarations
     // Variable Initialization
     lv_chancetoSpawn = RandomFixed(0.0, 100.0);
 
@@ -4816,6 +4986,7 @@ bool gt_MedicalSupply23_Func (bool testConds, bool runActions) {
     // Variable Declarations
     fixed lv_chancetoSpawn;
 
+    // Automatic Variable Declarations
     // Variable Initialization
     lv_chancetoSpawn = RandomFixed(0.0, 100.0);
 
@@ -4845,6 +5016,7 @@ bool gt_MedicalSupply24_Func (bool testConds, bool runActions) {
     // Variable Declarations
     fixed lv_chancetoSpawn;
 
+    // Automatic Variable Declarations
     // Variable Initialization
     lv_chancetoSpawn = RandomFixed(0.0, 100.0);
 
@@ -4874,6 +5046,7 @@ bool gt_MedicalSupply25_Func (bool testConds, bool runActions) {
     // Variable Declarations
     fixed lv_chancetoSpawn;
 
+    // Automatic Variable Declarations
     // Variable Initialization
     lv_chancetoSpawn = RandomFixed(0.0, 100.0);
 
@@ -4903,6 +5076,7 @@ bool gt_Flare1_Func (bool testConds, bool runActions) {
     // Variable Declarations
     fixed lv_chancetoSpawn;
 
+    // Automatic Variable Declarations
     // Variable Initialization
     lv_chancetoSpawn = RandomFixed(0.0, 100.0);
 
@@ -4932,6 +5106,7 @@ bool gt_Flare2_Func (bool testConds, bool runActions) {
     // Variable Declarations
     fixed lv_chancetoSpawn;
 
+    // Automatic Variable Declarations
     // Variable Initialization
     lv_chancetoSpawn = RandomFixed(0.0, 100.0);
 
@@ -4961,6 +5136,7 @@ bool gt_Flare3_Func (bool testConds, bool runActions) {
     // Variable Declarations
     fixed lv_chancetoSpawn;
 
+    // Automatic Variable Declarations
     // Variable Initialization
     lv_chancetoSpawn = RandomFixed(0.0, 100.0);
 
@@ -4990,6 +5166,7 @@ bool gt_Flare4_Func (bool testConds, bool runActions) {
     // Variable Declarations
     fixed lv_chancetoSpawn;
 
+    // Automatic Variable Declarations
     // Variable Initialization
     lv_chancetoSpawn = RandomFixed(0.0, 100.0);
 
@@ -5019,6 +5196,7 @@ bool gt_Flare5_Func (bool testConds, bool runActions) {
     // Variable Declarations
     fixed lv_chancetoSpawn;
 
+    // Automatic Variable Declarations
     // Variable Initialization
     lv_chancetoSpawn = RandomFixed(0.0, 100.0);
 
@@ -5048,6 +5226,7 @@ bool gt_Flare6_Func (bool testConds, bool runActions) {
     // Variable Declarations
     fixed lv_chancetoSpawn;
 
+    // Automatic Variable Declarations
     // Variable Initialization
     lv_chancetoSpawn = RandomFixed(0.0, 100.0);
 
@@ -5077,6 +5256,7 @@ bool gt_Flare7_Func (bool testConds, bool runActions) {
     // Variable Declarations
     fixed lv_chancetoSpawn;
 
+    // Automatic Variable Declarations
     // Variable Initialization
     lv_chancetoSpawn = RandomFixed(0.0, 100.0);
 
@@ -5106,6 +5286,7 @@ bool gt_Flare8_Func (bool testConds, bool runActions) {
     // Variable Declarations
     fixed lv_chancetoSpawn;
 
+    // Automatic Variable Declarations
     // Variable Initialization
     lv_chancetoSpawn = RandomFixed(0.0, 100.0);
 
@@ -5135,6 +5316,7 @@ bool gt_Flare9_Func (bool testConds, bool runActions) {
     // Variable Declarations
     fixed lv_chancetoSpawn;
 
+    // Automatic Variable Declarations
     // Variable Initialization
     lv_chancetoSpawn = RandomFixed(0.0, 100.0);
 
@@ -5164,6 +5346,7 @@ bool gt_Flare10_Func (bool testConds, bool runActions) {
     // Variable Declarations
     fixed lv_chancetoSpawn;
 
+    // Automatic Variable Declarations
     // Variable Initialization
     lv_chancetoSpawn = RandomFixed(0.0, 100.0);
 
@@ -5193,6 +5376,7 @@ bool gt_Flare11_Func (bool testConds, bool runActions) {
     // Variable Declarations
     fixed lv_chancetoSpawn;
 
+    // Automatic Variable Declarations
     // Variable Initialization
     lv_chancetoSpawn = RandomFixed(0.0, 100.0);
 
@@ -5222,6 +5406,7 @@ bool gt_Flare12_Func (bool testConds, bool runActions) {
     // Variable Declarations
     fixed lv_chancetoSpawn;
 
+    // Automatic Variable Declarations
     // Variable Initialization
     lv_chancetoSpawn = RandomFixed(0.0, 100.0);
 
@@ -5251,6 +5436,7 @@ bool gt_Flare13_Func (bool testConds, bool runActions) {
     // Variable Declarations
     fixed lv_chancetoSpawn;
 
+    // Automatic Variable Declarations
     // Variable Initialization
     lv_chancetoSpawn = RandomFixed(0.0, 100.0);
 
@@ -5280,6 +5466,7 @@ bool gt_Flare14_Func (bool testConds, bool runActions) {
     // Variable Declarations
     fixed lv_chancetoSpawn;
 
+    // Automatic Variable Declarations
     // Variable Initialization
     lv_chancetoSpawn = RandomFixed(0.0, 100.0);
 
@@ -5306,6 +5493,7 @@ void gt_Flare14_Init () {
 // Trigger: Ambient Attacks On Players
 //--------------------------------------------------------------------------------------------------
 bool gt_AmbientAttacksOnPlayers_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
     // Actions
     if (!runActions) {
         return true;
@@ -5327,6 +5515,7 @@ void gt_AmbientAttacksOnPlayers_Init () {
 // Trigger: Infestor Killed
 //--------------------------------------------------------------------------------------------------
 bool gt_InfestorKilled_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
     // Actions
     if (!runActions) {
         return true;
@@ -5349,6 +5538,7 @@ void gt_InfestorKilled_Init () {
 // Trigger: Infestor Start Mission
 //--------------------------------------------------------------------------------------------------
 bool gt_InfestorStartMission_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
     // Conditions
     if (testConds) {
         if (!((PlayerDifficulty(1) != 0))) {
