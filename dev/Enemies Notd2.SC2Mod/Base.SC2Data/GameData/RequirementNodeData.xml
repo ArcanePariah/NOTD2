@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="us-ascii"?>
 <Catalog>
+    <CRequirementCountBehavior id="CountBehaviorAmbientSpawnMarkerCompleteOnly">
+        <Flags index="TechTreeCheat" value="0"/>
+        <Tooltip value="RequirementNode/Tooltip/##id##"/>
+        <Count Link="AmbientSpawnMarker" State="CompleteOnly"/>
+    </CRequirementCountBehavior>
     <CRequirementCountUnit id="CountUnitParasiteMoundCompleteOnly">
         <Flags index="TechTreeCheat" value="0"/>
         <Tooltip value=""/>
@@ -11,6 +16,11 @@
         <OperandArray index="0" value="CountUnitParasiteMoundCompleteOnly"/>
         <OperandArray index="1" value="0"/>
     </CRequirementGT>
+    <CRequirementGTE id="GTECountBehaviorAmbientSpawnMarkerCompleteOnly100">
+        <Tooltip value="RequirementNode/Tooltip/##id##"/>
+        <OperandArray index="0" value="CountBehaviorAmbientSpawnMarkerCompleteOnly"/>
+        <OperandArray index="1" value="100"/>
+    </CRequirementGTE>
     <CRequirementCountUpgrade id="UpgradeInfestor2CompleteOnly">
         <Count Link="InfestorNOTD"/>
     </CRequirementCountUpgrade>

@@ -97,6 +97,14 @@
         <SearchFilters value="-;Player,Ally,Neutral,Item"/>
     </CEffectDamage>
     <CEffectApplyBehavior id="AirborneDifficultyScaling" parent="DifficultyScalingTemplate"/>
+    <CEffectSet id="AmbientSpawnEffect">
+        <EditorCategories value=""/>
+        <EffectArray value="WalkerDifficultyScaling"/>
+        <EffectArray value="AmbientSpawnMarker"/>
+    </CEffectSet>
+    <CEffectApplyBehavior id="AmbientSpawnMarker">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
     <CEffectSet id="BeastExplodeAcid">
         <EditorCategories value="Race:Zombie"/>
         <EffectArray value="BeastExplodeAcidDmaage"/>

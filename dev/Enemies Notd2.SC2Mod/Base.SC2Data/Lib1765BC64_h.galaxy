@@ -5,19 +5,21 @@ include "TriggerLibs/natives"
 //--------------------------------------------------------------------------------------------------
 // Constants
 const string lib1765BC64_gv_zombieIntialize = "ZombiesStart";
+const int lib1765BC64_gv_ambientSpawnCap = 100;
+const int lib1765BC64_gv_spawnZones = 16;
 
 // Variable Declarations
 waveinfo lib1765BC64_gv_ambientWaveInfo;
-unitgroup lib1765BC64_gv_zombieSpawners;
-int lib1765BC64_gv_spawnZones;
-int lib1765BC64_gv_numberofSpawners;
+unitgroup lib1765BC64_gv_ambientSpawners;
+unitgroup lib1765BC64_gv_aggressiveSpawners;
+unitgroup lib1765BC64_gv_horderSpawners;
 timer lib1765BC64_gv_eltradWaitTimer;
 bool lib1765BC64_gv_eltradFleeing;
 unit lib1765BC64_gv_sarbus;
 unit lib1765BC64_gv_sarbusTarget;
 
 // Function Declarations
-void lib1765BC64_gf_PlaceZombieSpawner (string lp_spawnerType, int lp_zone, fixed lp_zoneSize, int lp_numberofZones);
+unit lib1765BC64_gf_PlaceZombieSpawner (string lp_spawnerType, int lp_zone, fixed lp_zoneSize, int lp_numberofZones);
 void lib1765BC64_gf_ZoneSpawning (string lp_spawner, int lp_numberofSpawners);
 void lib1765BC64_gf_AttackWaveFromInfoImmediateGather (int lp_player, point lp_rallyPoint, waveinfo lp_waveInfo, wavetarget lp_attackTarget, int lp_attackTime);
 void lib1765BC64_gf_AIThinkEltrad (int lp_player, unit lp_aiUnit, unitgroup lp_scanGroup);
@@ -25,6 +27,7 @@ unitgroup lib1765BC64_gf_GetLowLifeEnemies (unitgroup lp_scanGroup, fixed lp_lif
 order lib1765BC64_gf_EltradWaiting (int lp_player, unit lp_aiUnit, unitgroup lp_scanGroup);
 
 // Trigger Declarations
+trigger lib1765BC64_gt_TestZombieSpawns;
 trigger lib1765BC64_gt_ZombieSettings;
 trigger lib1765BC64_gt_SetupAmbientWave;
 trigger lib1765BC64_gt_OvergrownDamageReduction;

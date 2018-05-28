@@ -4,6 +4,17 @@
         <InfoFlags index="Hidden" value="1"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
     </CBehaviorBuff>
+    <CBehaviorBuff id="AmbientSpawnDiabled">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Requirements value="AmbientSpawnCap"/>
+        <Modification>
+            <AbilClassDisableArray index="CAbilTrain" value="1"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AmbientSpawnMarker">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+    </CBehaviorBuff>
     <CBehaviorBuff id="BlinkMultiplyImmuneToDamage">
         <InfoFlags index="Hidden" value="1"/>
         <DamageResponse Chance="1" ModifyFraction="0"/>

@@ -184,7 +184,7 @@
     </CAbilAugment>
     <CAbilEffectTarget id="BonebreakerLeap">
         <Alignment value="Negative"/>
-        <OrderArray index="0" DisplayType="Confirm" Model="Assets\UI\Cursors\WayPointConfirmSwarm\WayPointConfirmSwarm.m3"/>
+        <OrderArray index="0" Model="Assets\UI\Cursors\WayPointConfirmSwarm\WayPointConfirmSwarm.m3"/>
         <EditorCategories value="Race:Terran,AbilityorEffectType:Units"/>
         <Effect index="0" value="BonebreakerLeapLaunchMissile"/>
         <Flags index="AbortOnAllianceChange" value="0"/>
@@ -339,7 +339,7 @@
     </CAbilMorph>
     <CAbilEffectTarget id="GorgonBlindingVomit">
         <Alignment value="Negative"/>
-        <OrderArray index="0" DisplayType="Confirm" Model="Assets\UI\Cursors\WayPointConfirmSwarm\WayPointConfirmSwarm.m3"/>
+        <OrderArray index="0" Model="Assets\UI\Cursors\WayPointConfirmSwarm\WayPointConfirmSwarm.m3"/>
         <EditorCategories value="Race:Zerg,AbilityorEffectType:Units"/>
         <Effect index="0" value="GorgonBlindingVomitSet"/>
         <Flags index="AutoCast" value="1"/>
@@ -366,7 +366,7 @@
     </CAbilMorph>
     <CAbilEffectTarget id="BansheeScream">
         <Alignment value="Negative"/>
-        <OrderArray index="0" DisplayType="Confirm" Model="Assets\UI\Cursors\WayPointConfirmSwarm\WayPointConfirmSwarm.m3"/>
+        <OrderArray index="0" Model="Assets\UI\Cursors\WayPointConfirmSwarm\WayPointConfirmSwarm.m3"/>
         <EditorCategories value="Race:Terran,AbilityorEffectType:Units"/>
         <Effect index="0" value="BansheeScreamSet"/>
         <Flags index="AutoCast" value="1"/>
@@ -386,7 +386,7 @@
         <CmdButtonArray index="Execute" DefaultButtonFace="BansheeScream"/>
     </CAbilEffectTarget>
     <CAbilEffectTarget id="BlitzerCharge">
-        <OrderArray index="0" DisplayType="Confirm" Model="Assets\UI\Cursors\WayPointConfirmSwarm\WayPointConfirmSwarm.m3"/>
+        <OrderArray index="0" Model="Assets\UI\Cursors\WayPointConfirmSwarm\WayPointConfirmSwarm.m3"/>
         <EditorCategories value="Race:Zerg,AbilityorEffectType:Units"/>
         <Effect index="0" value="SuperCharge"/>
         <Flags index="AutoCast" value="1"/>
@@ -429,7 +429,7 @@
     </CAbilMorph>
     <CAbilEffectTarget id="BonebreakerBoulder">
         <Alignment value="Negative"/>
-        <OrderArray index="0" DisplayType="Confirm" Model="Assets\UI\Cursors\WayPointConfirmSwarm\WayPointConfirmSwarm.m3"/>
+        <OrderArray index="0" Model="Assets\UI\Cursors\WayPointConfirmSwarm\WayPointConfirmSwarm.m3"/>
         <EditorCategories value="Race:Terran,AbilityorEffectType:Units"/>
         <Effect index="0" value="BonebreakerBoulderLaunchMissile"/>
         <Flags index="AbortOnAllianceChange" value="0"/>
@@ -503,7 +503,7 @@
         <QueueCount value="5"/>
         <QueueSize value="5"/>
     </CAbilQueue>
-    <CAbilTrain id="AmbientSpawn" parent="ZombieSpawnTemplate" ScalingEffect="WalkerDifficultyScaling">
+    <CAbilTrain id="AmbientSpawn" parent="ZombieSpawnTemplate" ScalingEffect="AmbientSpawnEffect">
         <InfoArray index="Train1" Time="15">
             <Charge Link="ZombieWalkerFemaleColonist"/>
             <Cooldown Link="ZombieWalkerFemaleColonist" TimeUse="5"/>
@@ -533,48 +533,6 @@
             <Cooldown Link="ZombieWalkerPrisoner" TimeUse="5"/>
             <Button Requirements="GameisnotNightmare"/>
             <Unit value="MarsPrisoner2"/>
-            <Flags index="AutoCast" value="1"/>
-            <Flags index="AutoCastOn" value="1"/>
-        </InfoArray>
-        <InfoArray index="Train5" Time="5" Effect="HoundDifficultyScaling">
-            <Cooldown Link="ZombieHound" TimeUse="5"/>
-            <Button Requirements="GameisNormal"/>
-            <Unit value="Hound"/>
-            <Flags index="AutoCast" value="1"/>
-            <Flags index="AutoCastOn" value="1"/>
-        </InfoArray>
-        <InfoArray index="Train6" Time="5" Effect="StalkerDifficultyScaling">
-            <Cooldown TimeUse="5"/>
-            <Button Requirements="GameisNotRecruit"/>
-            <Unit value="Stalker2"/>
-            <Flags index="AutoCast" value="1"/>
-            <Flags index="AutoCastOn" value="1"/>
-        </InfoArray>
-        <InfoArray index="Train7" Time="5">
-            <Cooldown Link="ZombieShambler" TimeUse="5"/>
-            <Button Requirements="GameisNightmare"/>
-            <Unit value="Shambler"/>
-            <Flags index="AutoCast" value="1"/>
-            <Flags index="AutoCastOn" value="1"/>
-        </InfoArray>
-        <InfoArray index="Train8" Time="5">
-            <Cooldown Link="ZombieRoamer" TimeUse="5"/>
-            <Button Requirements="GameisNightmare"/>
-            <Unit value="Roamer"/>
-            <Flags index="AutoCast" value="1"/>
-            <Flags index="AutoCastOn" value="1"/>
-        </InfoArray>
-        <InfoArray index="Train9" Time="5" Effect="HoundDifficultyScaling">
-            <Cooldown Link="ZombieSeeker" TimeUse="5"/>
-            <Button Requirements="GameisNightmare"/>
-            <Unit value="Seeker"/>
-            <Flags index="AutoCast" value="1"/>
-            <Flags index="AutoCastOn" value="1"/>
-        </InfoArray>
-        <InfoArray index="Train10" Time="5" Effect="AirborneDifficultyScaling">
-            <Cooldown Link="ZombieGargoyle" TimeUse="5"/>
-            <Button Requirements="GameisNightmare"/>
-            <Unit value="Gargoyle"/>
             <Flags index="AutoCast" value="1"/>
             <Flags index="AutoCastOn" value="1"/>
         </InfoArray>

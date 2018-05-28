@@ -391,6 +391,7 @@
         <Radius value="0.3125"/>
         <InnerRadius value="0.3125"/>
         <EditorCategories value="ObjectFamily:Melee,ObjectType:Unit"/>
+        <TechAliasArray value="Alias_ZombieWalker"/>
     </CUnit>
     <CUnit id="Banshee2" parent="AirborneTemplate">
         <FlagArray index="KillCredit" value="1"/>
@@ -1410,7 +1411,7 @@
         <Food value="-5"/>
         <BehaviorArray Link="Range4"/>
     </CUnit>
-    <CUnit id="AmbientSpawner" parent="ZombieUnitSpawnerTemplate" SpawnAbility="ZombieWalkerSpawn">
-        <AbilArray index="1" Link="AmbientSpawn"/>
+    <CUnit id="AmbientSpawner" parent="ZombieUnitSpawnerTemplate" SpawnAbility="AmbientSpawn">
+        <BehaviorArray index="0" Link="AmbientSpawnDiabled"/>
     </CUnit>
 </Catalog>
