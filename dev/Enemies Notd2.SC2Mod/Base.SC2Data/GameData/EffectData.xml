@@ -96,11 +96,23 @@
         <ExcludeArray Value="Target"/>
         <SearchFilters value="-;Player,Ally,Neutral,Item"/>
     </CEffectDamage>
+    <CEffectApplyBehavior id="AggressiveAmbientSpawnTimedLife">
+        <ValidatorArray index="0" value="AggressiveAmbientSpawnNotTimedLife"/>
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="AggressiveAmbientSpawnTimedLifeApplication">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
     <CEffectApplyBehavior id="AirborneDifficultyScaling" parent="DifficultyScalingTemplate"/>
     <CEffectSet id="AmbientSpawnEffect">
         <EditorCategories value=""/>
         <EffectArray value="WalkerDifficultyScaling"/>
         <EffectArray value="AmbientSpawnMarker"/>
+    </CEffectSet>
+    <CEffectSet id="AggressiveAmbientSpawnEffect">
+        <EditorCategories value=""/>
+        <EffectArray value="WalkerDifficultyScaling"/>
+        <EffectArray value="AggressiveAmbientSpawnTimedLifeApplication"/>
     </CEffectSet>
     <CEffectApplyBehavior id="AmbientSpawnMarker">
         <EditorCategories value=""/>

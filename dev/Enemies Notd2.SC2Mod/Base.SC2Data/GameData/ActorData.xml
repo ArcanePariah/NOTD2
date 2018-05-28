@@ -42,6 +42,7 @@
             <Image value="Assets\Textures\Wireframe-Zerg-Zergling.dds"/>
         </Wireframe>
     </CActorUnit>
+    <CActorUnit id="AggressiveAmbientSpawner" parent="ZombieUnitSpawnerTemplate" unitName="AggressiveAmbientSpawner"/>
     <CActorModel id="AttackMetal" parent="ModelAnimationStyleOneShotNoOrphan">
         <On Terms="Effect.ShamblerAttack.Start; At Target; ValidateEffect noShields; ValidateUnitType IsMechanical" Send="Create"/>
         <On Terms="ActorCreation" Send="TimerSet 0.750000 Kill"/>
@@ -2656,6 +2657,10 @@
         <On index="62" removed="1"/>
         <On index="63" removed="1"/>
         <On index="64" removed="1"/>
+        <On index="65" removed="1"/>
+        <On index="66" removed="1"/>
+        <On index="67" removed="1"/>
+        <On index="68" removed="1"/>
         <DeathArray index="Normal" ModelLink="InfestorDeath" SoundLink=""/>
         <DeathArray index="Disintegrate" ModelLink="InfestorDeathAcid" SoundLink="Uni_DeathFXAcid"/>
         <DeathArray index="Fire" ModelLink="InfestorDeathFire" SoundLink="Uni_DeathFXFire"/>
@@ -3496,7 +3501,7 @@
     <CActorUnit id="ZombieUnitHeavySlasherSpawner" parent="ZombieUnitSpawnerTemplate" unitName="ZombieUnitHeavySlasherSpawner"/>
     <CActorUnit id="ZombieUnitHeavyStalkerSpawner" parent="ZombieUnitSpawnerTemplate" unitName="ZombieUnitHeavyStalkerSpawner"/>
     <CActorUnit id="ZombieUnitSuicideSpawner" parent="ZombieUnitSpawnerTemplate" unitName="ZombieUnitSuicideSpawner"/>
-    <CActorUnit id="ZombieUnitWalkerSpawner" parent="ZombieUnitSpawnerTemplate" unitName="AmbientSpawner"/>
+    <CActorUnit id="AmbientSpawner" parent="ZombieUnitSpawnerTemplate" unitName="AmbientSpawner"/>
     <CActorAction id="ZombieWalkerColonistAttack" parent="GenericAttack" effectAttack="ZombieWalkerColonistAttack">
         <LaunchAssets Sound="Zeratul_AttackLaunch"/>
     </CActorAction>

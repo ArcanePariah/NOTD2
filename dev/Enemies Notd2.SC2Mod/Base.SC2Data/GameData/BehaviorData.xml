@@ -1,5 +1,17 @@
 <?xml version="1.0" encoding="us-ascii"?>
 <Catalog>
+    <CBehaviorBuff id="AggressiveAmbientSpawnTimedLife">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <RemoveValidatorArray value="AggressiveAmbientTimedLifeEnemyCheck"/>
+        <Duration value="10"/>
+        <ExpireEffect value="SuicideRemove"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="AggressiveAmbientSpawnTimedLifeApplication">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <DisableValidatorArray value="AggressiveAmbientTimedLifeApplication"/>
+        <Period value="0.0625"/>
+        <PeriodicEffect value="AggressiveAmbientSpawnTimedLife"/>
+    </CBehaviorBuff>
     <CBehaviorBuff id="AirborneDifficultyScaling">
         <InfoFlags index="Hidden" value="1"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
@@ -858,7 +870,7 @@
     </CBehaviorBuff>
     <CBehaviorBuff id="ZombieUnitSpawnDisable">
         <EditorCategories value="AbilityorEffectType:Units"/>
-        <DisableValidatorArray value="ZombieSpawnDisable"/>
+        <DisableValidatorArray value="AggressiveAmbientSpawnDisable"/>
         <Modification>
             <AbilLinkDisableArray value="AmbientSpawn"/>
             <AbilLinkDisableArray value="ZombieAnimalSpawn"/>

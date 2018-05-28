@@ -1,9 +1,22 @@
 <?xml version="1.0" encoding="us-ascii"?>
 <Catalog>
-    <CValidatorLocationEnumArea id="EnemiesWithinRange2">
+    <CValidatorUnitCompareBehaviorCount id="AggressiveAmbientSpawnNotTimedLife">
+        <Behavior value="AggressiveAmbientSpawnTimedLife"/>
+    </CValidatorUnitCompareBehaviorCount>
+    <CValidatorCombine id="AggressiveAmbientTimedLifeApplication">
+        <CombineArray value="AggressiveAmbientTimedLifeEnemyCheck"/>
+        <Negate value="1"/>
+    </CValidatorCombine>
+    <CValidatorLocationEnumArea id="AggressiveAmbientTimedLifeEnemyCheck">
+        <WhichLocation Value="SourceUnit"/>
+        <AreaArray Radius="30"/>
+        <Compare value="Eq"/>
+        <SearchFilters value="-;Self,Player,Ally,Neutral"/>
+    </CValidatorLocationEnumArea>
+    <CValidatorLocationEnumArea id="AggressiveAmbientSpawnEnemiesTooClose">
         <ResultFailed value="MustTargetVisibleLocation"/>
         <WhichLocation Value="SourceUnit"/>
-        <AreaArray Radius="20"/>
+        <AreaArray Radius="5"/>
         <SearchFilters value="-;Self,Player,Ally,Neutral"/>
         <ExcludeArray Value="Source"/>
     </CValidatorLocationEnumArea>
@@ -17,9 +30,7 @@
         <Type value="Fraction"/>
         <Value value="0.5"/>
     </CValidatorUnitCompareVital>
-    <CValidatorUnitFilters id="IsMechanical">
-        <Filters value="Mechanical;-"/>
-    </CValidatorUnitFilters>
+    <CValidatorUnitFilters id="IsMechanical"/>
     <CValidatorUnitCompareVital id="MininumEnergyRequiredtoMendHeal">
         <WhichUnit Value="Caster"/>
         <Compare value="GE"/>
@@ -56,9 +67,7 @@
         <AreaArray Radius="8" Validator="TargetisReactor"/>
         <SearchFlags index="ExtendByUnitRadius" value="1"/>
     </CValidatorLocationEnumArea>
-    <CValidatorUnitFilters id="TargetIsPlayer">
-        <Filters value="-;Ally,Neutral,Enemy"/>
-    </CValidatorUnitFilters>
+    <CValidatorUnitFilters id="TargetIsPlayer"/>
     <CValidatorUnitCompareVital id="TargetUnitGE80">
         <Compare value="LT"/>
         <Type value="Fraction"/>
@@ -78,16 +87,16 @@
     <CValidatorUnitFilters id="UnitisLight">
         <Filters value="Light;-"/>
     </CValidatorUnitFilters>
-    <CValidatorLocationEnumArea id="EnemiesWithinRange">
+    <CValidatorLocationEnumArea id="AggressiveAmbientSpawnEnemiesWithinRange">
         <ResultFailed value="MustTargetVisibleLocation"/>
         <WhichLocation Value="SourceUnit"/>
-        <AreaArray Radius="90"/>
-        <SearchFilters value="-;Self,Player,Ally,Neutral"/>
+        <AreaArray Radius="20"/>
         <Compare value="Eq"/>
+        <SearchFilters value="-;Self,Player,Ally,Neutral"/>
         <ExcludeArray Value="Source"/>
     </CValidatorLocationEnumArea>
-    <CValidatorCombine id="ZombieSpawnDisable">
-        <CombineArray value="EnemiesWithinRange2"/>
-        <CombineArray value="EnemiesWithinRange"/>
+    <CValidatorCombine id="AggressiveAmbientSpawnDisable">
+        <CombineArray value="AggressiveAmbientSpawnEnemiesTooClose"/>
+        <CombineArray value="AggressiveAmbientSpawnEnemiesWithinRange"/>
     </CValidatorCombine>
 </Catalog>

@@ -231,17 +231,13 @@ order lib1765BC64_gf_EltradWaiting (int lp_player, unit lp_aiUnit, unitgroup lp_
 
 // Triggers
 //--------------------------------------------------------------------------------------------------
-// Trigger: Test Zombie Spawns
+// Trigger: Test Aggressive Ambient Zombie Spawns
 //--------------------------------------------------------------------------------------------------
-bool lib1765BC64_gt_TestZombieSpawns_Func (bool testConds, bool runActions) {
+bool lib1765BC64_gt_TestAggressiveAmbientZombieSpawns_Func (bool testConds, bool runActions) {
     // Variable Declarations
     unitgroup lv_currentZombieGroup;
 
     // Automatic Variable Declarations
-    unitgroup auto61F220DB_g;
-    int auto61F220DB_u;
-    unit auto61F220DB_var;
-
     // Variable Initialization
     lv_currentZombieGroup = UnitGroupEmpty();
 
@@ -257,29 +253,14 @@ bool lib1765BC64_gt_TestZombieSpawns_Func (bool testConds, bool runActions) {
         return true;
     }
 
-    lib1765BC64_gf_ZoneSpawning("AmbientSpawner", 5);
-    while (!((UnitGroupCount(UnitGroup(null, lib1E3F036D_gv_zombiePlayer, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0), c_unitCountAlive) >= 116))) {
-        Wait(1.0, c_timeGame);
-    }
-    auto61F220DB_g = UnitGroup(null, lib1E3F036D_gv_zombiePlayer, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
-    auto61F220DB_u = UnitGroupCount(auto61F220DB_g, c_unitCountAll);
-    for (;; auto61F220DB_u -= 1) {
-        auto61F220DB_var = UnitGroupUnitFromEnd(auto61F220DB_g, auto61F220DB_u);
-        if (auto61F220DB_var == null) { break; }
-        if (UnitHasBehavior2(auto61F220DB_var, "AmbientSpawnMarker")) {
-            UnitGroupAdd(lv_currentZombieGroup, auto61F220DB_var);
-        }
-
-    }
-    TextExpressionSetToken("Param/Expression/lib_1765BC64_11D67AE2", "A", IntToText(UnitGroupCount(lv_currentZombieGroup, c_unitCountAlive)));
-    TriggerDebugOutput(1, TextExpressionAssemble("Param/Expression/lib_1765BC64_11D67AE2"), true);
+    lib1765BC64_gf_ZoneSpawning("AggressiveAmbientSpawner", 16);
     return true;
 }
 
 //--------------------------------------------------------------------------------------------------
-void lib1765BC64_gt_TestZombieSpawns_Init () {
-    lib1765BC64_gt_TestZombieSpawns = TriggerCreate("lib1765BC64_gt_TestZombieSpawns_Func");
-    TriggerAddEventTimeElapsed(lib1765BC64_gt_TestZombieSpawns, 1.0, c_timeGame);
+void lib1765BC64_gt_TestAggressiveAmbientZombieSpawns_Init () {
+    lib1765BC64_gt_TestAggressiveAmbientZombieSpawns = TriggerCreate("lib1765BC64_gt_TestAggressiveAmbientZombieSpawns_Func");
+    TriggerAddEventTimeElapsed(lib1765BC64_gt_TestAggressiveAmbientZombieSpawns, 1.0, c_timeGame);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -390,7 +371,7 @@ void lib1765BC64_gt_RadiationFieldUpgrade_Init () {
 }
 
 void lib1765BC64_InitTriggers () {
-    lib1765BC64_gt_TestZombieSpawns_Init();
+    lib1765BC64_gt_TestAggressiveAmbientZombieSpawns_Init();
     lib1765BC64_gt_ZombieSettings_Init();
     lib1765BC64_gt_SetupAmbientWave_Init();
     lib1765BC64_gt_OvergrownDamageReduction_Init();

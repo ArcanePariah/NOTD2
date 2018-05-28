@@ -15,6 +15,36 @@
         <InfoArray index="Train8" Effect="##ScalingEffect##"/>
         <InfoArray index="Train9" Effect="##ScalingEffect##"/>
     </CAbilTrain>
+    <CAbilTrain id="AggressiveAmbientSpawn" parent="ZombieSpawnTemplate" ScalingEffect="AggressiveAmbientSpawnEffect">
+        <InfoArray index="Train1" Time="10">
+            <Cooldown Link="ZombieWalkerFemaleColonist" TimeUse="5"/>
+            <Button Requirements="GameisnotNightmare"/>
+            <Unit value="MarsColonistFemale2"/>
+            <Flags index="AutoCast" value="1"/>
+            <Flags index="AutoCastOn" value="1"/>
+        </InfoArray>
+        <InfoArray index="Train2" Time="10">
+            <Cooldown Link="ZombieWalkerMaleColonist" TimeUse="5"/>
+            <Button Requirements="GameisnotNightmare"/>
+            <Unit value="MarsColonistMale2"/>
+            <Flags index="AutoCast" value="1"/>
+            <Flags index="AutoCastOn" value="1"/>
+        </InfoArray>
+        <InfoArray index="Train3" Time="10">
+            <Cooldown Link="ZombieWalkerScientist" TimeUse="5"/>
+            <Button Requirements="GameisnotNightmare"/>
+            <Unit value="MarsScientist2"/>
+            <Flags index="AutoCast" value="1"/>
+            <Flags index="AutoCastOn" value="1"/>
+        </InfoArray>
+        <InfoArray index="Train4" Time="10">
+            <Cooldown Link="ZombieWalkerPrisoner" TimeUse="5"/>
+            <Button Requirements="GameisnotNightmare"/>
+            <Unit value="MarsPrisoner2"/>
+            <Flags index="AutoCast" value="1"/>
+            <Flags index="AutoCastOn" value="1"/>
+        </InfoArray>
+    </CAbilTrain>
     <CAbilTrain id="BlinkMulitply">
         <EditorCategories value="Race:Zerg,AbilityorEffectType:Units"/>
         <Flags index="AutoCastOffOwnerLeave" value="0"/>
